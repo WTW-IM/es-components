@@ -1,0 +1,34 @@
+{
+  "name": "@aabenoja/oe-react-bootstrap",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-js && npm run build-css",
+    "build-js": "babel components -d lib",
+    "build-css": "lessc styles/bootstrap.less css/bootstrap.less",
+    "less-lint": "lessc --lint styles/bootstrap.less",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-plugin-transform-object-rest-spread": "^6.19.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "classnames": "^2.2.5",
+    "csso": "^2.3.0",
+    "less": "^2.7.1",
+    "react": "^15.4.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "babel-runtime": "^6.20.0"
+  }
+}

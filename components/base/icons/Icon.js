@@ -12,7 +12,7 @@ Icon.propTypes = {
    */
   name: React.PropTypes.string.isRequired,
   /**
-   * Specify icon size
+   * Specify icon size.
    */
   size: React.PropTypes.oneOf([24, 34, 48])
 };

@@ -8,7 +8,7 @@ module.exports = {
   sections: [
     {
       name: 'Base',
-      components: './components/base/*.js'
+      components: './components/base/**/*.js'
     }
   ],
   getExampleFilename(componentPath) {

@@ -20,16 +20,16 @@ module.exports = {
     return `import ${componentName} from 'oe-react-bootstrap/${importPath}'`;
   },
   updateWebpackConfig(config) {
-    config.entry.push(path.join(__dirname, 'css/bootstrap.css'));
+    config.entry.push(path.join(__dirname, 'styles/bootstrap.less'));
 
     config.module.loaders.push({
       test: /\.js$/,
       include: baseComponentDir,
       loader: 'babel'
     }, {
-      test: /\.css$/,
-      include: path.join(__dirname, './css'),
-      loader: 'style!css'
+      test: /\.less$/,
+      include: path.join(__dirname, './styles'),
+      loader: 'style!css!less'
     }, {
       test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
       include: path.join(__dirname, './webfonts'),

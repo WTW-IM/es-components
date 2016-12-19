@@ -1,4 +1,4 @@
-oe-react-bootstrap
+OneExchange-ComponentGuide
 ==================
 
 # Build commands

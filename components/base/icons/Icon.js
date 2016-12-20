@@ -14,10 +14,19 @@ Icon.propTypes = {
   /**
    * Specify icon size.
    */
-  size: React.PropTypes.oneOf([24, 34, 48])
+  size: React.PropTypes.oneOf([16, 18, 24, 48]),
+  /**
+   * Icon is white.
+   */
+  white: React.PropTypes.bool
 };
 
-export default function Icon({ className, name, size, ...other }) {
-  const classes = classnames(className, `oe-icon-${name}`, `size-${size}`);
+export default function Icon({ className, name, size, white, ...other }) {
+  const classes = classnames(
+    className,
+    `oe-icon-${name}`,
+    `size-${size}`,
+    { ['icon-white']: white }
+  );
   return <i className={classes} {...other} />;
 }

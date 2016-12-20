@@ -19,6 +19,7 @@ module.exports = {
     const importPath = path.relative(baseComponentDir, componentPath).replace(/\.js$/, '');
     return `import ${componentName} from 'OneExchange-ComponentGuide/${importPath}'`;
   },
+  skipComponentsWithoutExample: true,
   updateWebpackConfig(config) {
     config.entry.push(path.join(__dirname, 'styles/bootstrap.less'));
 

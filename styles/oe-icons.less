@@ -1,3 +1,5 @@
+@import "./variables.less";
+
 @font-face {
   font-family: 'oecom-icons';
   src:url('../webfonts/oecom-icons.eot');
@@ -20,12 +22,17 @@ i {
   text-transform: none;
   display: inline-block;
   line-height: 1;
+  &[class*="size-16"] { font-size: 16px; }
+  &[class*="size-18"] { font-size: 18px; }
   &[class*="size-24"] { font-size: 24px; }
-  &[class*="size-34"] { font-size: 34px; }
   &[class*="size-48"] { font-size: 48px; }
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-white {
+  color: @white;
 }
 
 @import "./oe-icon-definitions.less";

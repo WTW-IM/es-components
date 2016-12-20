@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import { shallow } from 'enzyme';
 import Icon from './Icon';
@@ -9,7 +11,12 @@ describe('Icon', () => {
   });
 
   it('applies the correct size class', () => {
-    const instance = shallow(<Icon name="federal" size="24" />);
-    expect(instance.hasClass('size-24')).toBe(true);
+    const instance = shallow(<Icon name="federal" size={18} />);
+    expect(instance.hasClass('size-18')).toBe(true);
+  });
+
+  it('applies the icon-white class given the white prop', () => {
+    const instance = shallow(<Icon name="federal" white />);
+    expect(instance.hasClass('icon-white')).toBe(true);
   });
 });

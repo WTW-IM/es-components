@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "npm run build-js && npm run build-css",
     "build-js": "babel components -d . --ignore specs.js",

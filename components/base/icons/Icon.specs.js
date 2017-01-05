@@ -2,6 +2,9 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+
+jest.mock('./oe-icons.less', () => ({}));
+
 import Icon from './Icon';
 
 describe('Icon', () => {

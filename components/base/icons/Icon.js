@@ -2,6 +2,8 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import './oe-icons.less';
+
 Icon.propTypes = {
   /**
    * CSS classes to apply

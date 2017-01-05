@@ -21,15 +21,13 @@ module.exports = {
   },
   skipComponentsWithoutExample: true,
   updateWebpackConfig(config) {
-    config.entry.push(path.join(__dirname, 'styles/bootstrap.less'));
-
     config.module.loaders.push({
       test: /\.js$/,
       include: baseComponentDir,
       loader: 'babel'
     }, {
       test: /\.less$/,
-      include: path.join(__dirname, './styles'),
+      include: [path.join(__dirname, './styles'), baseComponentDir],
       loader: 'style!css!less'
     }, {
       test: /\.eot$|\.ttf$|\.svg$|\.woff$/,

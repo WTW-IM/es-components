@@ -10,13 +10,10 @@ OneExchange-ComponentGuide
     | - Icon.js
     | - Icon.md
     | - Icon.specs.js
-  | - buttons
-    | - Button.js
-    | - Button.md
-    | - Button.specs.js
+    | - icons.less
 - css
 | - bootstrap.less (compiled from less)
-- styles (contains all our less files)
+- styles (contains shared less files)
 ```
 
 ## Build commands

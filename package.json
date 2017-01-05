@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "build": "npm run build-js && npm run build-css",
+    "build": "npm run build-js",
     "build-js": "babel components -d . --ignore specs.js,*.md --copy-files",
     "build-css": "lessc styles/bootstrap.less css/bootstrap.css",
     "lint": "eslint ./components",

@@ -3,3 +3,4 @@ base/
 !/components/base/
 node_modules
 npm-debug.log
+*.tgz

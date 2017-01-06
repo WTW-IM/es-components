@@ -1,0 +1,13 @@
+@import (reference) "./variables.less";
+@import "./mixins.less";
+
+.error {
+  color:  @errorText;
+}
+
+.label-style {
+  display: block;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  .shorthand(@baseFontSize * .75, bold, @baseLineHeight * .75);
+}

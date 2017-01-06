@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build": "npm run build-js",
-    "build-js": "babel components -d . --ignore specs.js,*.md --copy-files",
+    "build-js": "babel components -d lib --ignore specs.js,*.md --copy-files",
     "build-css": "lessc styles/bootstrap.less css/bootstrap.css",
     "lint": "eslint ./components",
     "styleguide-build": "styleguidist build",

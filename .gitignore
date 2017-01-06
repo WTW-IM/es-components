@@ -1,6 +1,5 @@
 css/
-base/
-!/components/base/
+lib/
 node_modules
 npm-debug.log
 *.tgz

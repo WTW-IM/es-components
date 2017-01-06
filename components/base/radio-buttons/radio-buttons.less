@@ -31,16 +31,12 @@
   }
 }
 
-.disabled-label {
-  cursor: not-allowed;
-
-  &.empty-radio:before {
+.disabled-label .empty-radio:before {
     .radioFill(@white);
-  }
+}
 
-  &.filled-radio:before {
+.disabled-label .filled-radio:before {
     .radioFill(@gray);
-  }
 }
 
 .radio-button {

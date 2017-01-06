@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { noop } from 'lodash';
 import '../../../styles/inputs.less';
-import './radio-list.less';
+import './radio-buttons.less';
 
 function RadioButton({
   id,

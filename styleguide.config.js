@@ -4,6 +4,7 @@ const baseComponentDir = path.join(__dirname, './components');
 const cssDir = path.join(__dirname, './css');
 
 module.exports = {
+  styleguideDir: 'docs',
   title: 'OneExchange React Bootstrap',
   sections: [
     {

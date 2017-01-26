@@ -5,15 +5,15 @@ import '../../../styles/inputs.less';
 import './radio-buttons.less';
 
 function RadioButton({
-  id,
-  disabled,
-  shouldDisplayValidation,
-  checked,
-  inline,
   labelText,
   name,
-  onChange,
+  checked = false,
+  id,
+  disabled = false,
+  inline = true,
+  onChange = noop,
   value,
+  shouldDisplayValidation = false,
   ...radioProps
 }) {
   const radioLabelClasses = classNames('label-style', 'radio-label', {
@@ -29,7 +29,7 @@ function RadioButton({
   });
 
   const radioWrapperClasses = classNames({
-    'error': shouldDisplayValidation,
+    error: shouldDisplayValidation,
     'inline-radio-list': inline
   });
 
@@ -55,6 +55,7 @@ function RadioButton({
 RadioButton.propTypes = {
   labelText: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
+  checked: React.PropTypes.bool,
   id: React.PropTypes.string,
   disabled: React.PropTypes.bool,
   inline: React.PropTypes.bool,
@@ -64,13 +65,6 @@ RadioButton.propTypes = {
    * Should the radio button be displayed as invalid
    */
   shouldDisplayValidation: React.PropTypes.bool
-};
-
-RadioButton.defaultProps = {
-  disabled: false,
-  inline: true,
-  shouldDisplayValidation: false,
-  onChange: noop
 };
 
 export default RadioButton;

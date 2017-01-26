@@ -1,4 +1,5 @@
 /* eslint-env jest */
+/* eslint-disable max-len */
 
 import React from 'react';
 import { mount } from 'enzyme';
@@ -22,7 +23,7 @@ describe('RadioButton component', () => {
   });
 
   it('applies the errored-radio class when checked and disabled are false and shouldDisplayValidation is true', () => {
-    radioButtonInstance.setProps({ shouldDisplayValidation: true })
+    radioButtonInstance.setProps({ shouldDisplayValidation: true });
     expect(radioDisplaySpan.hasClass('errored-radio')).toBe(true);
   });
 
@@ -37,7 +38,7 @@ describe('RadioButton component', () => {
   });
 
   it('applies the disabled-filled-radio class when shouldDisplayValidation is false and checked and disabled are true', () => {
-    radioButtonInstance.setProps({ checked: true, disabled: true});
+    radioButtonInstance.setProps({ checked: true, disabled: true });
     expect(radioDisplaySpan.hasClass('disabled-filled-radio')).toBe(true);
   });
 });

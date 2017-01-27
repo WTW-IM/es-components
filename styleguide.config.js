@@ -9,19 +9,31 @@ module.exports = {
   sections: [
     {
       name: 'Base',
-      components: './components/base/**/*.js'
+      components: function () {
+        return [
+          './components/base/icons/Icon.js'
+        ];
+      },
+      sections: [
+        {
+          name: 'Containers',
+          content: './components/base/containers/Containers.md',
+          components: './components/base/containers/**/*.js'
+        }
+      ]
+    },
+    {
+      name: 'Controls',
+      components: './components/controls/**/*.js'
     }
   ],
   getExampleFilename(componentPath) {
     return componentPath.replace(/\.js$/, '.md');
   },
-  getComponentPathLine(componentPath) {
-    const componentName = path.basename(componentPath, '.js');
-    const importPath = path.relative(baseComponentDir, componentPath).replace(/\.js$/, '');
-    return `import ${componentName} from 'OneExchange-ComponentGuide/${importPath}'`;
-  },
   skipComponentsWithoutExample: true,
   updateWebpackConfig(config) {
+    config.entry.push(path.join(__dirname, 'styles/core.less'));
+
     config.module.loaders.push({
       test: /\.js$/,
       include: baseComponentDir,

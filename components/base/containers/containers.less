@@ -1,3 +1,12 @@
+@import "../../../styles/variables/colors.less";
+@import "../../../styles/variables/sizes.less";
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -7,4 +16,17 @@
   margin-right: 15px;
   margin-bottom: 0;
   vertical-align: middle;
+}
+
+.legend-style {
+  border: 0;
+  border-bottom: 1px solid @grayDark;
+  color: @grayDark;
+  display: block;
+  font-size: @baseFontSize * 0.75;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-transform: uppercase;
+  width: 100%;
 }

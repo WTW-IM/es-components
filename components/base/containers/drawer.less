@@ -1,0 +1,44 @@
+@import "../../../styles/variables/colors.less";
+
+.drawer {
+  background-color: @white;
+  border-top: 1px solid @grayLight;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.drawer-panel {
+  border-bottom: 1px solid @grayLight;
+}
+
+.drawer-panel-header {
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.drawer-panel-header:hover {
+  background-color: @grayLighter;
+  color: @wtwViolet;
+}
+
+.drawer-panel-icon {
+  margin-right: .4em;
+  position: relative;
+  top: -1px;
+}
+
+.drawer-panel-body {
+  background-color: @white;
+  border-bottom: 4px solid @grayLight;
+  color: @grayDarkest;
+  overflow: hidden;
+}
+
+.drawer-panel-body--inactive {
+  display: none;
+}
+
+.drawer--animate-active {
+  -webkit-transition: height 0.2s linear;
+  transition: height 0.2s linear;
+}

@@ -38,6 +38,7 @@ Option    | Type             | Description
 header    | string           | Header text displayed next to the open/close icon
 key       | string           | Manually set the key value for the panel (otherwise uses index)
 className | string or object | Add additional CSS classes to the drawer item element
+noPadding | boolean          | Removes the default padding from the panel body
 
 
 ### Advanced Example:
@@ -52,7 +53,7 @@ className | string or object | Add additional CSS classes to the drawer item ele
       <li>Another Item</li>
     </ul>
   </DrawerPanel>
-  <DrawerPanel header="Collapsable Item 3" key="3">
+  <DrawerPanel header="Collapsable Item 3" key="3" noPadding>
     <div>
       More content. Anim pariatur cliche reprehenderit, enim eiusmod
       high life accusamus terry richardson ad squid.

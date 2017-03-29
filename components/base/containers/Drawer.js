@@ -59,6 +59,7 @@ class Drawer extends Component {
       // If there is no key provided, use the panel order as default key
       const key = child.key || String(index);
       const header = child.props.header;
+      const noPadding = child.props.noPadding || false;
 
       let isActive = false;
       if (isAccordion) {
@@ -70,6 +71,7 @@ class Drawer extends Component {
       const props = {
         key,
         header,
+        noPadding,
         isActive,
         children: child.props.children,
         onItemClick: this.onClickItem(key).bind(this),
@@ -111,8 +113,8 @@ Drawer.propTypes = {
 };
 
 Drawer.defaultProps = {
-  closedIconName: 'plus',
   isAccordion: false,
+  closedIconName: 'plus',
   openedIconName: 'minus'
 };
 

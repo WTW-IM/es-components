@@ -1,99 +1,39 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import Animate from 'rc-animate';
-import cssAnimation from 'css-animation';
 import Icon from '../icons/icon';
-
-function animate(node, show, done) {
-  let height;
-  const animNode = node;
-  return cssAnimation(node, 'drawer--animate', {
-    start() {
-      if (!show) {
-        animNode.style.height = `${animNode.offsetHeight}px`;
-      } else {
-        height = animNode.offsetHeight;
-        animNode.style.height = 0;
-      }
-    },
-    active() {
-      animNode.style.height = `${show ? height : 0}px`;
-    },
-    end() {
-      animNode.style.height = '';
-      done();
-    }
-  });
-}
-
-function animation() {
-  return {
-    enter(node, done) {
-      return animate(node, true, done);
-    },
-    leave(node, done) {
-      return animate(node, false, done);
-    }
-  };
-}
-
-class PanelContent extends Component {
-  shouldComponentUpdate(nextProps) {
-    return this.props.isActive || nextProps.isActive;
-  }
-
-  render() {
-    this._isActivated = this._isActivated || this.props.isActive;
-    if (!this._isActivated) {
-      return null;
-    }
-
-    const { isActive, children } = this.props;
-    const contentCls = classNames({
-      'drawer-panel-body': true,
-      'drawer-panel-body--active': isActive,
-      'drawer-panel-body--inactive': !isActive
-    });
-
-    return (
-      <div className={contentCls} role="tabpanel">
-        {isActive ? <div className={'drawer-panel-content'}>{children}</div> : null}
-      </div>
-    );
-  }
-}
-
-PanelContent.propTypes = {
-  isActive: PropTypes.bool,
-  children: PropTypes.any
-};
+import Collapse from 'react-smooth-collapse-customizable';
 
 const DrawerPanel = (props) => {
-  const { className,
-    header,
+  const {
     children,
-    isActive,
-    openedIconName,
+    className,
     closedIconName,
-    onItemClick } = props;
-  const classes = classNames('drawer-panel', className);
+    header,
+    isActive,
+    noPadding,
+    onItemClick,
+    openedIconName
+  } = props;
+  const panelClasses = classNames('drawer-panel', className);
+  const bodyClasses = classNames(
+    'drawer-panel__body',
+    { 'drawer-panel__body--padded': !noPadding }
+  );
 
   return (
-    <div className={classes}>
+    <div className={panelClasses}>
       <div
-        className="drawer-panel-header"
+        className="drawer-panel__header"
         onClick={() => onItemClick()}
         role="tab"
         aria-expanded={isActive}
       >
-        <Icon className="drawer-panel-icon" name={isActive ? openedIconName : closedIconName} />
+        <Icon className="drawer-panel__icon" name={isActive ? openedIconName : closedIconName} />
         {header}
       </div>
-      <Animate showProp="isActive" exclusive component="" animation={animation()}>
-        <PanelContent isActive={isActive}>
-          {children}
-        </PanelContent>
-      </Animate>
+      <Collapse expanded={isActive} className={bodyClasses} heightTransition=".35s ease">
+        {children}
+      </Collapse>
     </div>
   );
 };
@@ -104,19 +44,21 @@ DrawerPanel.propTypes = {
     PropTypes.string,
     PropTypes.object
   ]),
+  closedIconName: PropTypes.string,
   header: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.node
   ]),
   isActive: PropTypes.bool,
+  noPadding: PropTypes.bool,
   onItemClick: PropTypes.func,
-  openedIconName: PropTypes.string,
-  closedIconName: PropTypes.string
+  openedIconName: PropTypes.string
 };
 
 DrawerPanel.defaultProps = {
-  isActive: false
+  isActive: false,
+  noPadding: false
 };
 
 export default DrawerPanel;

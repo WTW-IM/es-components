@@ -11,34 +11,29 @@
   border-bottom: 1px solid @grayLight;
 }
 
-.drawer-panel-header {
+.drawer-panel__header {
   cursor: pointer;
   padding: 10px 15px;
 }
 
-.drawer-panel-header:hover {
+.drawer-panel__header:hover {
   background-color: @grayLighter;
   color: @wtwViolet;
 }
 
-.drawer-panel-icon {
+.drawer-panel__icon {
   margin-right: .4em;
   position: relative;
   top: -1px;
 }
 
-.drawer-panel-body {
+.drawer-panel__body {
   background-color: @white;
   border-bottom: 4px solid @grayLight;
   color: @grayDarkest;
   overflow: hidden;
 }
 
-.drawer-panel-body--inactive {
-  display: none;
-}
-
-.drawer--animate-active {
-  -webkit-transition: height 0.2s linear;
-  transition: height 0.2s linear;
+.drawer-panel__body--padded > div {
+  padding: 10px;
 }

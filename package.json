@@ -45,12 +45,13 @@
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-styleguidist": "^4.4.1",
+    "react-test-renderer": "^15.4.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
-    "rc-animate": "^2.3.3"
+    "react-smooth-collapse-customizable": "^1.1.1"
   }
 }

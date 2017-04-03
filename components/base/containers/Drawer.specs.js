@@ -44,7 +44,7 @@ describe('drawer component', () => {
       const panels = drawerInstance
                       .find('[aria-expanded]')
                       .filterWhere(node => !node.prop('aria-expanded'));
-                      
+
       expect(panels.length).toBe(3);
     });
 

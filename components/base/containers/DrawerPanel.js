@@ -39,18 +39,21 @@ const DrawerPanel = (props) => {
 };
 
 DrawerPanel.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.any.isRequired,
+  /** Add additional CSS classes to the drawer item element */
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
   ]),
   closedIconName: PropTypes.string,
+  /** Header text displayed next to the open/close icon */
   header: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.node
-  ]),
+  ]).isRequired,
   isActive: PropTypes.bool,
+  /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   onItemClick: PropTypes.func,
   openedIconName: PropTypes.string

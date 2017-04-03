@@ -2,60 +2,58 @@ import React, { PropTypes, Children, Component } from 'react';
 import classNames from 'classnames';
 import './drawer.less';
 
-function toArray(activeKey) {
-  let currentActiveKey = activeKey;
-  if (!Array.isArray(currentActiveKey)) {
-    currentActiveKey = currentActiveKey ? [currentActiveKey] : [];
+function toArray(activeKeys) {
+  let currentActiveKeys = activeKeys;
+  if (!Array.isArray(currentActiveKeys)) {
+    currentActiveKeys = currentActiveKeys ? [currentActiveKeys] : [];
   }
-  return currentActiveKey;
+  return currentActiveKeys;
 }
 
 class Drawer extends Component {
   constructor(props) {
     super(props);
 
-    const currentActiveKey = this.props.defaultActiveKeys;
+    const currentActiveKeys = this.props.defaultActiveKeys;
     this.state = {
-      activeKey: toArray(currentActiveKey)
+      activeKeys: toArray(currentActiveKeys)
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if ('activeKey' in nextProps) {
+    if ('activeKeys' in nextProps) {
       this.setState({
-        activeKey: toArray(nextProps.activeKey)
+        activeKeys: toArray(nextProps.activeKeys)
       });
     }
   }
 
   onClickItem(key) {
     return () => {
-      let activeKey = this.state.activeKey;
+      let activeKeys = [...this.state.activeKeys];
 
       if (this.props.isAccordion) {
-        activeKey = activeKey[0] === key ? [] : [key];
+        activeKeys = activeKeys[0] === key ? [] : [key];
       } else {
-        activeKey = [...activeKey];
-        const index = activeKey.indexOf(key);
+        const index = activeKeys.indexOf(key);
         const isActive = index > -1;
+
         if (isActive) {
-          activeKey.splice(index, 1);
+          activeKeys.splice(index, 1);
         } else {
-          activeKey.push(key);
+          activeKeys.push(key);
         }
       }
 
-      this.setState({ activeKey });
+      this.setState({ activeKeys });
     };
   }
 
-  getItems() {
-    const activeKey = this.state.activeKey;
+  getPanels() {
+    const activeKeys = this.state.activeKeys;
     const { isAccordion } = this.props;
-    const newChildren = [];
 
-    Children.forEach(this.props.children, (child, index) => {
-      if (!child) return;
+    return Children.map(this.props.children, (child, index) => {
       // If there is no key provided, use the panel order as default key
       const key = child.key || String(index);
       const header = child.props.header;
@@ -63,9 +61,9 @@ class Drawer extends Component {
 
       let isActive = false;
       if (isAccordion) {
-        isActive = activeKey[0] === key;
+        isActive = activeKeys[0] === key;
       } else {
-        isActive = activeKey.indexOf(key) > -1;
+        isActive = activeKeys.indexOf(key) > -1;
       }
 
       const props = {
@@ -79,10 +77,8 @@ class Drawer extends Component {
         openedIconName: this.props.openedIconName
       };
 
-      newChildren.push(React.cloneElement(child, props));
+      return React.cloneElement(child, props);
     });
-
-    return newChildren;
   }
 
   render() {
@@ -91,7 +87,7 @@ class Drawer extends Component {
 
     return (
       <div className={classes}>
-        {this.getItems()}
+        {this.getPanels()}
       </div>
     );
   }
@@ -99,16 +95,21 @@ class Drawer extends Component {
 
 Drawer.propTypes = {
   children: PropTypes.any,
+  /** Add additional CSS classes to the root drawer element */
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
   ]),
+  /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
+  /** Specify which panels are opened by default */
   defaultActiveKeys: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
+  /** Only allows one DrawerPanel to be open at a time */
   isAccordion: PropTypes.bool,
+  /** Override the default minus icon with another OE icon name */
   openedIconName: PropTypes.string
 };
 

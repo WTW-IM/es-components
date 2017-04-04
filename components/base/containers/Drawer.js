@@ -1,5 +1,6 @@
 import React, { PropTypes, Children, Component } from 'react';
 import classNames from 'classnames';
+import DrawerPanel from './DrawerPanel';
 import './drawer.less';
 
 function toArray(activeKeys) {
@@ -8,6 +9,18 @@ function toArray(activeKeys) {
     currentActiveKeys = currentActiveKeys ? [currentActiveKeys] : [];
   }
   return currentActiveKeys;
+}
+
+function drawerPanelPropType(props, propName, componentName) {
+  const value = props[propName];
+  const errMsg = componentName + ' ' + propName + ' contains an element that is not a DrawerPanel.';
+
+  if (Array.isArray(value) && value.some(({type}) => type !== DrawerPanel)) {
+    return new Error(errMsg);
+  }
+  if (!Array.isArray(value) && value.type !== DrawerPanel) {
+    return new Error(errMsg);
+  }
 }
 
 class Drawer extends Component {
@@ -94,7 +107,8 @@ class Drawer extends Component {
 }
 
 Drawer.propTypes = {
-  children: PropTypes.any,
+  /** Should only contain one or more DrawerPanel elements */
+  children: drawerPanelPropType,
   /** Add additional CSS classes to the root drawer element */
   className: PropTypes.oneOfType([
     PropTypes.string,

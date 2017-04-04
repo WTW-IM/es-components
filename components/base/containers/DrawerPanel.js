@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
-import Icon from '../icons/icon';
+import Icon from '../icons/Icon';
 import Collapse from 'react-smooth-collapse-customizable';
 
 const DrawerPanel = (props) => {

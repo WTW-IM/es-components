@@ -1,0 +1,63 @@
+@import "../../../styles/variables/colors.less";
+
+.alert {
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  padding: 15px;
+}
+
+.alertColors(@color, @desaturationAmount, @lightenAmount) {
+  background-color: lighten(desaturate(@color, @desaturationAmount), @lightenAmount);
+  border-color: @color;
+  color: @color;
+}
+
+.alert__success {
+  .alertColors(@success, 50%, 75%);
+}
+
+.alert__information {
+  .alertColors(@information, 45%, 60%);
+}
+
+.alert__warning {
+  .alertColors(@warning, 45%, 45%);
+  color: @grayDarkest;
+}
+
+.alert__danger {
+  .alertColors(@danger, 45%, 55%);
+}
+
+.alert__advisor {
+  .alertColors(@advisor, 45%, 37%);
+  color: @grayDarkest;
+}
+
+.alert__icon {
+  margin-right: 5px;
+}
+
+.alert__leading-header {
+  margin: 0;
+}
+
+.alert__dismiss {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 27px;
+  font-weight: bold;
+  opacity: 0.2;
+  text-shadow: 0 1px 0 @white;
+}
+
+.alert__calls-to-action {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row-reverse;
+}

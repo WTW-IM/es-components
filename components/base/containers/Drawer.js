@@ -13,14 +13,15 @@ function toArray(activeKeys) {
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];
-  const errMsg = componentName + ' ' + propName + ' contains an element that is not a DrawerPanel.';
+  const errMsg = `${componentName} ${propName} contains an element that is not a DrawerPanel.`;
 
-  if (Array.isArray(value) && value.some(({type}) => type !== DrawerPanel)) {
+  if (Array.isArray(value) && value.some(({ type }) => type !== DrawerPanel)) {
     return new Error(errMsg);
   }
   if (!Array.isArray(value) && value.type !== DrawerPanel) {
     return new Error(errMsg);
   }
+  return null;
 }
 
 class Drawer extends Component {

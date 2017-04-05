@@ -30,5 +30,5 @@ export default function Icon({ className, name, size, white, ...other }) {
     `size-${size}`,
     { ['icon-white']: white }
   );
-  return <i className={classes} {...other} />;
+  return <i aria-hidden className={classes} {...other} />;
 }

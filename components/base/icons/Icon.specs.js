@@ -22,4 +22,9 @@ describe('Icon', () => {
     const instance = shallow(<Icon name="federal" white />);
     expect(instance.hasClass('icon-white')).toBe(true);
   });
+
+  it('includes the aria-hidden attribute', () => {
+    const instance = shallow(<Icon name="federal" size={16} />);
+    expect(instance.prop('aria-hidden')).toBe(true);
+  });
 });

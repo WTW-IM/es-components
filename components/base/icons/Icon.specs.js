@@ -9,7 +9,7 @@ import Icon from './Icon';
 
 describe('Icon', () => {
   it('applies the classname for a given name', () => {
-    const instance = shallow(<Icon name="federal" />);
+    const instance = shallow(<Icon name="federal" size={16} />);
     expect(instance.hasClass('oe-icon-federal')).toBe(true);
   });
 
@@ -18,9 +18,9 @@ describe('Icon', () => {
     expect(instance.hasClass('size-18')).toBe(true);
   });
 
-  it('applies the icon-white class given the white prop', () => {
-    const instance = shallow(<Icon name="federal" white />);
-    expect(instance.hasClass('icon-white')).toBe(true);
+  it('applies the oe-icon-lt-* class when given the lightweight prop', () => {
+    const instance = shallow(<Icon name="federal" size={16} lightweight />);
+    expect(instance.hasClass('oe-icon-lt-federal')).toBe(true);
   });
 
   it('includes the aria-hidden attribute', () => {

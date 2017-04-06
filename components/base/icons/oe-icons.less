@@ -4,15 +4,21 @@
   font-family: 'oecom-icons';
   src:url('../../../webfonts/oecom-icons.eot');
   src:url('../../../webfonts/oecom-icons.eot') format('embedded-opentype'),
-    url('../../../webfonts/oecom-icons.woff') format('woff'),
-    url('../../../webfonts/oecom-icons.ttf') format('truetype'),
-    url('../../../webfonts/oecom-icons.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+      url('../../../webfonts/oecom-icons.woff') format('woff'),
+      url('../../../webfonts/oecom-icons.ttf') format('truetype'),
+      url('../../../webfonts/oecom-icons.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'oe-icons-light';
+  src:url('../../../webfonts/oe-icons-light.eot');
+  src:url('../../../webfonts/oe-icons-light.eot') format('embedded-opentype'),
+      url('../../../webfonts/oe-icons-light.woff') format('woff'),
+      url('../../../webfonts/oe-icons-light.ttf') format('truetype'),
+      url('../../../webfonts/oe-icons-light.svg') format('svg');
 }
 
 i {
-  font-family: 'oecom-icons';
   speak: none;
   vertical-align: text-bottom;
   font-style: normal;
@@ -31,8 +37,12 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-white {
-  color: @white;
+i[class^="oe-icon"] {
+  font-family: 'oecom-icons';
+}
+
+i[class^="oe-icon-lt"] {
+  font-family: 'oe-icons-light';
 }
 
 @import "./oe-icon-definitions.less";

@@ -1,0 +1,159 @@
+exports[`drawer component accordion renders as expected 1`] = `
+<div
+  className="drawer important">
+  <div
+    className="drawer-panel">
+    <div
+      aria-expanded={true}
+      className="drawer-panel__header"
+      onClick={[Function]}
+      role="tab">
+      <i
+        aria-hidden={true}
+        className="oe-icon-minus drawer-panel__icon size-undefined" />
+      collapse 1
+    </div>
+    <div
+      className="drawer-panel__body drawer-panel__body--padded"
+      style={
+        Object {
+          "display": null,
+          "height": "auto",
+          "overflow": "hidden",
+          "transition": "height .35s ease",
+        }
+      }>
+      <div
+        className={undefined}
+        style={
+          Object {
+            "overflow": "hidden",
+          }
+        }>
+        first
+      </div>
+    </div>
+  </div>
+  <div
+    className="drawer-panel">
+    <div
+      aria-expanded={false}
+      className="drawer-panel__header"
+      onClick={[Function]}
+      role="tab">
+      <i
+        aria-hidden={true}
+        className="oe-icon-plus drawer-panel__icon size-undefined" />
+      collapse 2
+    </div>
+    <div
+      className="drawer-panel__body drawer-panel__body--padded"
+      style={
+        Object {
+          "display": "none",
+          "height": "0px",
+          "overflow": "hidden",
+          "transition": "height .35s ease",
+        }
+      } />
+  </div>
+  <div
+    className="drawer-panel important">
+    <div
+      aria-expanded={false}
+      className="drawer-panel__header"
+      onClick={[Function]}
+      role="tab">
+      <i
+        aria-hidden={true}
+        className="oe-icon-plus drawer-panel__icon size-undefined" />
+      collapse 3
+    </div>
+    <div
+      className="drawer-panel__body drawer-panel__body--padded"
+      style={
+        Object {
+          "display": "none",
+          "height": "0px",
+          "overflow": "hidden",
+          "transition": "height .35s ease",
+        }
+      } />
+  </div>
+</div>
+`;
+
+exports[`drawer component drawer renders as expected 1`] = `
+<div
+  className="drawer important">
+  <div
+    className="drawer-panel">
+    <div
+      aria-expanded={false}
+      className="drawer-panel__header"
+      onClick={[Function]}
+      role="tab">
+      <i
+        aria-hidden={true}
+        className="oe-icon-plus drawer-panel__icon size-undefined" />
+      collapse 1
+    </div>
+    <div
+      className="drawer-panel__body drawer-panel__body--padded"
+      style={
+        Object {
+          "display": "none",
+          "height": "0px",
+          "overflow": "hidden",
+          "transition": "height .35s ease",
+        }
+      } />
+  </div>
+  <div
+    className="drawer-panel">
+    <div
+      aria-expanded={false}
+      className="drawer-panel__header"
+      onClick={[Function]}
+      role="tab">
+      <i
+        aria-hidden={true}
+        className="oe-icon-plus drawer-panel__icon size-undefined" />
+      collapse 2
+    </div>
+    <div
+      className="drawer-panel__body"
+      style={
+        Object {
+          "display": "none",
+          "height": "0px",
+          "overflow": "hidden",
+          "transition": "height .35s ease",
+        }
+      } />
+  </div>
+  <div
+    className="drawer-panel alt-drawer">
+    <div
+      aria-expanded={false}
+      className="drawer-panel__header"
+      onClick={[Function]}
+      role="tab">
+      <i
+        aria-hidden={true}
+        className="oe-icon-plus drawer-panel__icon size-undefined" />
+      collapse 3
+    </div>
+    <div
+      className="drawer-panel__body drawer-panel__body--padded"
+      style={
+        Object {
+          "display": "none",
+          "height": "0px",
+          "overflow": "hidden",
+          "transition": "height .35s ease",
+        }
+      } />
+  </div>
+</div>
+`;

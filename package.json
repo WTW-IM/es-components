@@ -7,6 +7,7 @@
   "scripts": {
     "build": "npm run build-js",
     "build-js": "babel components -d lib --ignore specs.js,*.md --copy-files",
+    "ci": "npm run lint && npm test",
     "lint": "eslint ./components",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",

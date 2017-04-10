@@ -1,7 +1,6 @@
 const path = require('path');
 
-const baseComponentDir = path.join(__dirname, './components');
-const cssDir = path.join(__dirname, './css');
+const baseComponentDir = path.join(__dirname, 'src/components');
 
 module.exports = {
   styleguideDir: 'docs',
@@ -11,20 +10,20 @@ module.exports = {
       name: 'Base',
       components: function () {
         return [
-          './components/base/icons/Icon.js'
+          path.join(baseComponentDir, 'base/icons/Icon.js')
         ];
       },
       sections: [
         {
           name: 'Containers',
-          content: './components/base/containers/Containers.md',
-          components: './components/base/containers/**/*.js'
+          content: path.join(baseComponentDir, 'base/containers/Containers.md'),
+          components: path.join(baseComponentDir, 'base/containers/**/*.js')
         }
       ]
     },
     {
       name: 'Controls',
-      components: './components/controls/**/*.js'
+      components: path.join(baseComponentDir, '/controls/**/*.js')
     }
   ],
   getExampleFilename(componentPath) {
@@ -39,11 +38,11 @@ module.exports = {
         loader: 'babel'
         }, {
           test: /\.less$/,
-          include: [path.join(__dirname, './styles'), baseComponentDir],
+          include: [path.join(__dirname, 'src/styles'), baseComponentDir],
           loader: 'style!css!less'
         }, {
           test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
-          include: path.join(__dirname, './webfonts'),
+          include: path.join(__dirname, 'src/webfonts'),
           loader: 'file'
         }]
     }

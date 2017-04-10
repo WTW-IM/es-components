@@ -1,7 +1,7 @@
 {
-  "name": "OneExchange-ComponentGuide",
+  "name": "es-components",
   "version": "0.0.3",
-  "description": "",
+  "description": "React components built for Exchange Solutions products",
   "main": "index.js",
   "private": true,
   "scripts": {
@@ -12,8 +12,8 @@
     "styleguide-server": "styleguidist server",
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Exchange Solutions",
+  "license": "MIT",
   "jest": {
     "testRegex": "specs\\.js$"
   },

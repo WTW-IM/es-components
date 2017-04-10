@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "React components built for Exchange Solutions products",
   "main": "index.js",
   "private": true,

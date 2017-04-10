@@ -31,23 +31,28 @@ module.exports = {
     return componentPath.replace(/\.js$/, '.md');
   },
   skipComponentsWithoutExample: true,
-  updateWebpackConfig(config) {
-    config.entry.push(path.join(__dirname, 'styles/core.less'));
-
-    config.module.loaders.push({
-      test: /\.js$/,
-      include: baseComponentDir,
-      loader: 'babel'
-    }, {
-      test: /\.less$/,
-      include: [path.join(__dirname, './styles'), baseComponentDir],
-      loader: 'style!css!less'
-    }, {
-      test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
-      include: path.join(__dirname, './webfonts'),
-      loader: 'file'
-    });
-
-    return config;
+  webpackConfig: {
+    module: {
+      loaders: [{
+        test: /\.js$/,
+        include: baseComponentDir,
+        loader: 'babel'
+        }, {
+          test: /\.less$/,
+          include: [path.join(__dirname, './styles'), baseComponentDir],
+          loader: 'style!css!less'
+        }, {
+          test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
+          include: path.join(__dirname, './webfonts'),
+          loader: 'file'
+        }]
+    }
+  },
+  styles: {
+    Playground: {
+      preview: {
+        fontFamily: ['"Helvetica Neue"']
+      }
+    }
   }
 };

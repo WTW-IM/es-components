@@ -1,12 +1,15 @@
 const path = require('path');
+const version = require('./package.json').version;
 
 const styleguidePaths = require('./config/paths');
 
 const baseComponentDir = styleguidePaths.baseComponentDir;
 
 module.exports = {
+  assetsDir: 'public',
   styleguideDir: 'docs',
-  title: 'OneExchange React Bootstrap',
+  title: `Exchange Solutions React Components v${version}`,
+  template: 'config/template.html',
   sections: [
     {
       name: 'Base',

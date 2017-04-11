@@ -3,7 +3,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-jest.mock('../icons/oe-icons.less', () => {});
 jest.mock('./alerts.less', () => {});
 
 import Icon from '../icons/Icon';

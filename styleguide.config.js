@@ -1,6 +1,8 @@
 const path = require('path');
 
-const baseComponentDir = path.join(__dirname, 'src/components');
+const styleguidePaths = require('./config/paths');
+
+const baseComponentDir = styleguidePaths.baseComponentDir;
 
 module.exports = {
   styleguideDir: 'docs',
@@ -30,23 +32,7 @@ module.exports = {
     return componentPath.replace(/\.js$/, '.md');
   },
   skipComponentsWithoutExample: true,
-  webpackConfig: {
-    module: {
-      loaders: [{
-        test: /\.js$/,
-        include: baseComponentDir,
-        loader: 'babel'
-        }, {
-          test: /\.less$/,
-          include: [path.join(__dirname, 'src/styles'), baseComponentDir],
-          loader: 'style!css!less'
-        }, {
-          test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
-          include: path.join(__dirname, 'src/webfonts'),
-          loader: 'file'
-        }]
-    }
-  },
+  webpackConfig: require('./config/webpack.config.js'),
   styles: {
     Playground: {
       preview: {

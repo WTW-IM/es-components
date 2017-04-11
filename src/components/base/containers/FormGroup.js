@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import './containers.less';
@@ -22,12 +23,12 @@ FormGroup.propTypes = {
    /**
     * Should render in an error state
     */
-  hasError: React.PropTypes.bool,
+  hasError: PropTypes.bool,
   /**
    * Should the child elements render line
    */
-  inline: React.PropTypes.bool,
-  children: React.PropTypes.element
+  inline: PropTypes.bool,
+  children: PropTypes.element
 };
 
 FormGroup.defaultProps = {

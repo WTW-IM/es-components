@@ -12,7 +12,7 @@ const containerStyle = {
     <Icon size={48} name="federal" /> Regular
   </div>
   <div style={containerStyle}>
-    <Icon size={48} name="home" light /> Light icons use a lighter weight icon font
+    <Icon size={48} name="home" lightweight /> Light icons use a lighter weight icon font
   </div>
 </div>
 ```

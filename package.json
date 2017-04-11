@@ -7,6 +7,7 @@
   "scripts": {
     "build": "npm run build-js",
     "build-js": "babel components -d lib --ignore specs.js,*.md --copy-files",
+    "ci": "npm run lint && npm test",
     "lint": "eslint ./components",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
@@ -40,13 +41,14 @@
     "jest": "^18.0.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "prop-types": "^15.5.6",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
-    "react-styleguidist": "^4.4.1",
+    "react-styleguidist": "^5.0.6",
     "react-test-renderer": "^15.4.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.3.3"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",

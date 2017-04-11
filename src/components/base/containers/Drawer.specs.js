@@ -8,7 +8,6 @@ import Drawer from './Drawer';
 import DrawerPanel from './DrawerPanel';
 
 jest.mock('../../../styles/variables/colors.less', () => ({}));
-jest.mock('../icons/oe-icons.less', () => ({}));
 jest.mock('./drawer.less', () => ({}));
 
 describe('drawer component', () => {

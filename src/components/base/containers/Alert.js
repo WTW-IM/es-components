@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { noop } from 'lodash';
 
@@ -90,40 +91,40 @@ function Alert({
 const alertTypes = ['success', 'information', 'warning', 'danger', 'advisor'];
 
 const callToActionShape = {
-  actionButtonContent: React.PropTypes.node.isRequired,
+  actionButtonContent: PropTypes.node.isRequired,
   /**
    * Function that executes when a button is clicked
    */
-  action: React.PropTypes.func.isRequired
+  action: PropTypes.func.isRequired
 };
 
 Alert.propTypes = {
-  type: React.PropTypes.oneOf(alertTypes).isRequired,
+  type: PropTypes.oneOf(alertTypes).isRequired,
   /**
    * The bolded text in the leading text
    */
-  header: React.PropTypes.string,
+  header: PropTypes.string,
   /**
    * The non-bolded text in the leading text
    */
-  additionalText: React.PropTypes.string.isRequired,
+  additionalText: PropTypes.string.isRequired,
   /**
    * Additional elements rendered after the leading text
    */
-  children: React.PropTypes.element,
+  children: PropTypes.element,
   /**
    * Include the corresponding icon in the alert's leading text
    */
-  includeIcon: React.PropTypes.bool,
+  includeIcon: PropTypes.bool,
   /**
    * Render a dismiss button
    */
-  dismissable: React.PropTypes.bool,
+  dismissable: PropTypes.bool,
   /**
    * Function to execute when dismiss button is clicked
    */
-  onDismiss: React.PropTypes.func,
-  callsToAction: React.PropTypes.arrayOf(React.PropTypes.shape(callToActionShape))
+  onDismiss: PropTypes.func,
+  callsToAction: PropTypes.arrayOf(PropTypes.shape(callToActionShape))
 };
 
 export default Alert;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { noop } from 'lodash';
 import '../../../styles/inputs.less';
@@ -53,18 +54,18 @@ function RadioButton({
 }
 
 RadioButton.propTypes = {
-  labelText: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  checked: React.PropTypes.bool,
-  id: React.PropTypes.string,
-  disabled: React.PropTypes.bool,
-  inline: React.PropTypes.bool,
-  onChange: React.PropTypes.func,
-  value: React.PropTypes.any,
+  labelText: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  checked: PropTypes.bool,
+  id: PropTypes.string,
+  disabled: PropTypes.bool,
+  inline: PropTypes.bool,
+  onChange: PropTypes.func,
+  value: PropTypes.any,
   /**
    * Should the radio button be displayed as invalid
    */
-  shouldDisplayValidation: React.PropTypes.bool
+  shouldDisplayValidation: PropTypes.bool
 };
 
 export default RadioButton;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 function renderLegend(text, additionalLegendClasses) {
@@ -25,12 +26,12 @@ Fieldset.propTypes = {
   /**
    * determine whether or not to add a legend and what text to display
    */
-  legendText: React.PropTypes.string,
+  legendText: PropTypes.string,
   /**
    * Additional classes to be applied to the legend element
    */
-  additionalLegendClasses: React.PropTypes.string,
-  children: React.PropTypes.node
+  additionalLegendClasses: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default Fieldset;

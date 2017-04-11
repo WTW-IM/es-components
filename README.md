@@ -1,16 +1,18 @@
-OneExchange-ComponentGuide
+Exchange Solutions React components
 ==================
+
+[![Build Status](https://travis-ci.org/TWExchangeSolutions/es-components.svg?branch=master)](https://travis-ci.org/TWExchangeSolutions/es-components)
 
 ## Project Structure
 ```
-- base (compiled js from components/base)
-- components
-| - base
-  | - icons
-    | - Icon.js
-    | - Icon.md
-    | - Icon.specs.js
-    | - icons.less
+- src
+| - components
+  | - base
+    | - icons
+      | - Icon.js
+      | - Icon.md
+      | - Icon.specs.js
+      | - icons.less
 - styles (contains shared less files)
 ```
 
@@ -18,5 +20,5 @@ OneExchange-ComponentGuide
 ```
 npm run build (build all assets)
 npm run build-js (build javascripts)
-npm run styleguide-server (run the styleguide on localhost:3000)
+npm run styleguide-server (run the styleguide on localhost:6060)
 ```

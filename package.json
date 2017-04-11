@@ -47,7 +47,7 @@
     "react-styleguidist": "^5.0.6",
     "react-test-renderer": "^15.4.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.3.3"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",

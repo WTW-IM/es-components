@@ -13,18 +13,18 @@ module.exports = {
     path: styleguidePaths.exampleBundlesDir
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       include: baseComponentDir,
-      loader: 'babel'
-      }, {
-        test: /\.less$/,
-        include: [path.join(styleguidePaths.srcDir, 'styles'), baseComponentDir],
-        loader: 'style!css!less'
-      }, {
-        test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
-        include: path.join(styleguidePaths.srcDir, 'webfonts'),
-        loader: 'file'
-      }]
-    }
+      use: ['babel-loader']
+    }, {
+      test: /\.less$/,
+      include: [path.join(styleguidePaths.srcDir, 'styles'), baseComponentDir],
+      use: ['style-loader', 'css-loader', 'less-loader']
+    }, {
+      test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
+      include: path.join(styleguidePaths.srcDir, 'webfonts'),
+      use: ['file-loader']
+    }]
+  }
 };

@@ -43,7 +43,8 @@ module.exports = {
   styles: {
     Playground: {
       preview: {
-        fontFamily: ['"Helvetica Neue"']
+        fontFamily: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        fontSize: '18px'
       }
     }
   }

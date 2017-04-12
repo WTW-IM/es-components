@@ -1,0 +1,29 @@
+exports[`FormGroup container component renders as expected 1`] = `
+<div
+  className="biAlqo">
+  <div>
+    Some child
+  </div>
+</div>
+`;
+
+exports[`FormGroup container component renders as expected when inline 1`] = `
+<div
+  className="gOIrHN">
+  <div>
+    First child
+  </div>
+  <div>
+    Second child
+  </div>
+</div>
+`;
+
+exports[`FormGroup container component renders as expected when there is an error 1`] = `
+<div
+  className="bSnWOL">
+  <div>
+    Some child
+  </div>
+</div>
+`;

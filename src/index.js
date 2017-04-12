@@ -1,1 +1,1 @@
-export Button from './components/controls/Button';
+export Button from './components/controls/buttons/Button';

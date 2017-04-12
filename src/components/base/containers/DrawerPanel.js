@@ -1,8 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Icon from '../icons/Icon';
+import { colors } from '../../theme';
+import styled from 'styled-components';
 import Collapse from 'react-smooth-collapse-customizable';
+
+const PanelWrapper = styled.div`
+  border-bottom: 1px solid ${colors.grayLight};
+`;
+
+const PanelHeader = styled.div`
+  cursor: pointer;
+  padding: 10px 15px;
+
+  &:hover {
+    background-color: ${colors.grayLighter};
+    color: ${colors.wtwViolet};
+  }
+`;
+
+const PanelIcon = styled(Icon)`
+  margin-right: .4em;
+  position: relative;
+  top: -1px;
+`;
+
+const PanelBody = styled(Collapse)`
+  background-color: ${colors.white};
+  border-bottom: 4px solid ${colors.grayLight};
+  color: ${colors.grayDarkest};
+  overflow: hidden;
+
+  > div {
+    padding: ${(props) => (props.noPadding ? '0' : '10px')};
+  }
+`;
 
 const DrawerPanel = (props) => {
   const {
@@ -15,27 +47,17 @@ const DrawerPanel = (props) => {
     onItemClick,
     openedIconName
   } = props;
-  const panelClasses = classNames('drawer-panel', className);
-  const bodyClasses = classNames(
-    'drawer-panel__body',
-    { 'drawer-panel__body--padded': !noPadding }
-  );
 
   return (
-    <div className={panelClasses}>
-      <div
-        className="drawer-panel__header"
-        onClick={() => onItemClick()}
-        role="tab"
-        aria-expanded={isActive}
-      >
-        <Icon className="drawer-panel__icon" name={isActive ? openedIconName : closedIconName} />
+    <PanelWrapper className={className}>
+      <PanelHeader onClick={() => onItemClick()} role="tab" aria-expanded={isActive}>
+        <PanelIcon name={isActive ? openedIconName : closedIconName} />
         {header}
-      </div>
-      <Collapse expanded={isActive} className={bodyClasses} heightTransition=".35s ease">
+      </PanelHeader>
+      <PanelBody expanded={isActive} heightTransition=".35s ease" noPadding={noPadding}>
         {children}
-      </Collapse>
-    </div>
+      </PanelBody>
+    </PanelWrapper>
   );
 };
 

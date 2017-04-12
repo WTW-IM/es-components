@@ -1,8 +1,8 @@
 import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import DrawerPanel from './DrawerPanel';
-import './drawer.less';
+import { colors } from '../../theme';
+import styled from 'styled-components';
 
 function toArray(activeKeys) {
   let currentActiveKeys = activeKeys;
@@ -24,6 +24,13 @@ function drawerPanelPropType(props, propName, componentName) {
   }
   return null;
 }
+
+const StyledDrawer = styled.div`
+  background-color: ${colors.white};
+  border-top: 1px solid ${colors.grayLight};
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+`;
 
 class Drawer extends Component {
   constructor(props) {
@@ -66,7 +73,6 @@ class Drawer extends Component {
 
   getPanels() {
     const activeKeys = this.state.activeKeys;
-    const { isAccordion } = this.props;
 
     return Children.map(this.props.children, (child, index) => {
       // If there is no key provided, use the panel order as default key
@@ -75,7 +81,7 @@ class Drawer extends Component {
       const noPadding = child.props.noPadding || false;
 
       let isActive = false;
-      if (isAccordion) {
+      if (this.props.isAccordion) {
         isActive = activeKeys[0] === key;
       } else {
         isActive = activeKeys.indexOf(key) > -1;
@@ -97,13 +103,10 @@ class Drawer extends Component {
   }
 
   render() {
-    const { className } = this.props;
-    const classes = classNames('drawer', className);
-
     return (
-      <div className={classes}>
+      <StyledDrawer className={this.props.className}>
         {this.getPanels()}
-      </div>
+      </StyledDrawer>
     );
   }
 }

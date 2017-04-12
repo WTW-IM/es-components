@@ -1,13 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import styled from 'styled-components';
+
+import { colors, sizes } from '../../theme';
+
+const Legend = styled.legend`
+  border: 0;
+  border-bottom: 1px solid ${colors.grayDark};
+  color: ${colors.grayDark};
+  display: block;
+  font-size: ${sizes.baseFontSize * 0.75}px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  padding: 0;
+  text-transform: uppercase;
+  width: 100%;
+`;
 
 function renderLegend(text, additionalLegendClasses) {
-  const legendClasses = classnames('legend-style', additionalLegendClasses);
   return text ?
-    <legend className={legendClasses}>{text}</legend> :
+    <Legend className={additionalLegendClasses}>{text}</Legend> :
     null;
 }
+
+const StyledFieldset = styled.fieldset`
+  border: 0;
+  margin: 0;
+  padding: 0;
+`;
 
 function Fieldset({
   additionalLegendClasses,
@@ -15,21 +35,17 @@ function Fieldset({
   children
 }) {
   return (
-    <fieldset>
+    <StyledFieldset>
       { renderLegend(legendText, additionalLegendClasses) }
       { children }
-    </fieldset>
+    </StyledFieldset>
   );
 }
 
 Fieldset.propTypes = {
-  /**
-   * determine whether or not to add a legend and what text to display
-   */
+  /** Determine whether or not to add a legend and what text to display  */
   legendText: PropTypes.string,
-  /**
-   * Additional classes to be applied to the legend element
-   */
+  /** Additional classes to be applied to the legend element */
   additionalLegendClasses: PropTypes.string,
   children: PropTypes.node
 };

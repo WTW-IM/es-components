@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build-js",
-    "build-js": "babel components -d lib --ignore specs.js,*.md --copy-files",
+    "build-js": "babel src/components -d lib --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
-    "lint": "eslint ./components",
+    "lint": "eslint src",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
     "test": "jest"
@@ -31,7 +31,7 @@
     "babel-preset-react": "^6.16.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.26.1",
-    "enzyme": "^2.6.0",
+    "enzyme": "^2.8.1",
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
     "eslint-plugin-babel": "^3.3.0",
@@ -53,6 +53,7 @@
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
     "react-smooth-collapse-customizable": "^1.1.1",
-    "styled-components": "^1.4.4"
+    "styled-components": "^1.4.4",
+    "tinycolor2": "^1.4.1"
   }
 }

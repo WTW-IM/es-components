@@ -1,20 +1,20 @@
 exports[`drawer component accordion renders as expected 1`] = `
 <div
-  className="drawer important">
+  className="dtLLet">
   <div
-    className="drawer-panel">
+    className="first byHzie">
     <div
       aria-expanded={true}
-      className="drawer-panel__header"
+      className="FZHLd"
       onClick={[Function]}
       role="tab">
       <i
         aria-hidden={true}
-        className="drawer-panel__icon hHXwPy" />
+        className="cTarNb hHXwPy" />
       collapse 1
     </div>
     <div
-      className="drawer-panel__body drawer-panel__body--padded"
+      className="lkOJFZ"
       style={
         Object {
           "display": null,
@@ -35,19 +35,19 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="drawer-panel">
+    className="second byHzie">
     <div
       aria-expanded={false}
-      className="drawer-panel__header"
+      className="FZHLd"
       onClick={[Function]}
       role="tab">
       <i
         aria-hidden={true}
-        className="drawer-panel__icon cmlWEk" />
+        className="cTarNb cmlWEk" />
       collapse 2
     </div>
     <div
-      className="drawer-panel__body drawer-panel__body--padded"
+      className="lkOJFZ"
       style={
         Object {
           "display": "none",
@@ -58,19 +58,19 @@ exports[`drawer component accordion renders as expected 1`] = `
       } />
   </div>
   <div
-    className="drawer-panel important">
+    className="third byHzie">
     <div
       aria-expanded={false}
-      className="drawer-panel__header"
+      className="FZHLd"
       onClick={[Function]}
       role="tab">
       <i
         aria-hidden={true}
-        className="drawer-panel__icon cmlWEk" />
+        className="cTarNb cmlWEk" />
       collapse 3
     </div>
     <div
-      className="drawer-panel__body drawer-panel__body--padded"
+      className="lkOJFZ"
       style={
         Object {
           "display": "none",
@@ -85,21 +85,21 @@ exports[`drawer component accordion renders as expected 1`] = `
 
 exports[`drawer component drawer renders as expected 1`] = `
 <div
-  className="drawer important">
+  className="important dtLLet">
   <div
-    className="drawer-panel">
+    className="first byHzie">
     <div
       aria-expanded={false}
-      className="drawer-panel__header"
+      className="FZHLd"
       onClick={[Function]}
       role="tab">
       <i
         aria-hidden={true}
-        className="drawer-panel__icon cmlWEk" />
+        className="cTarNb cmlWEk" />
       collapse 1
     </div>
     <div
-      className="drawer-panel__body drawer-panel__body--padded"
+      className="lkOJFZ"
       style={
         Object {
           "display": "none",
@@ -110,19 +110,19 @@ exports[`drawer component drawer renders as expected 1`] = `
       } />
   </div>
   <div
-    className="drawer-panel">
+    className="second byHzie">
     <div
       aria-expanded={false}
-      className="drawer-panel__header"
+      className="FZHLd"
       onClick={[Function]}
       role="tab">
       <i
         aria-hidden={true}
-        className="drawer-panel__icon cmlWEk" />
+        className="cTarNb cmlWEk" />
       collapse 2
     </div>
     <div
-      className="drawer-panel__body"
+      className="dIyrRA"
       style={
         Object {
           "display": "none",
@@ -133,19 +133,19 @@ exports[`drawer component drawer renders as expected 1`] = `
       } />
   </div>
   <div
-    className="drawer-panel alt-drawer">
+    className="third byHzie">
     <div
       aria-expanded={false}
-      className="drawer-panel__header"
+      className="FZHLd"
       onClick={[Function]}
       role="tab">
       <i
         aria-hidden={true}
-        className="drawer-panel__icon cmlWEk" />
+        className="cTarNb cmlWEk" />
       collapse 3
     </div>
     <div
-      className="drawer-panel__body drawer-panel__body--padded"
+      className="lkOJFZ"
       style={
         Object {
           "display": "none",

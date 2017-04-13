@@ -15,7 +15,7 @@ const PanelHeader = styled.div`
 
   &:hover {
     background-color: ${colors.grayLighter};
-    color: ${colors.wtwViolet};
+    color: ${colors.accent};
   }
 `;
 

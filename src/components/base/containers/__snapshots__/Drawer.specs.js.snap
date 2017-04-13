@@ -11,6 +11,9 @@ exports[`drawer component accordion renders as expected 1`] = `
       <i
         aria-hidden={true}
         className="cTarNb hHXwPy" />
+        content="63d"
+        fontFamily="oecom-icons"
+        fontSize="inherit" />
       collapse 1
     </div>
     <div
@@ -44,6 +47,9 @@ exports[`drawer component accordion renders as expected 1`] = `
       <i
         aria-hidden={true}
         className="cTarNb cmlWEk" />
+        content="63f"
+        fontFamily="oecom-icons"
+        fontSize="inherit" />
       collapse 2
     </div>
     <div
@@ -67,6 +73,9 @@ exports[`drawer component accordion renders as expected 1`] = `
       <i
         aria-hidden={true}
         className="cTarNb cmlWEk" />
+        content="63f"
+        fontFamily="oecom-icons"
+        fontSize="inherit" />
       collapse 3
     </div>
     <div
@@ -96,6 +105,9 @@ exports[`drawer component drawer renders as expected 1`] = `
       <i
         aria-hidden={true}
         className="cTarNb cmlWEk" />
+        content="63f"
+        fontFamily="oecom-icons"
+        fontSize="inherit" />
       collapse 1
     </div>
     <div
@@ -119,6 +131,9 @@ exports[`drawer component drawer renders as expected 1`] = `
       <i
         aria-hidden={true}
         className="cTarNb cmlWEk" />
+        content="63f"
+        fontFamily="oecom-icons"
+        fontSize="inherit" />
       collapse 2
     </div>
     <div
@@ -142,6 +157,9 @@ exports[`drawer component drawer renders as expected 1`] = `
       <i
         aria-hidden={true}
         className="cTarNb cmlWEk" />
+        content="63f"
+        fontFamily="oecom-icons"
+        fontSize="inherit" />
       collapse 3
     </div>
     <div

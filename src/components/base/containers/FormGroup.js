@@ -1,39 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import styled from 'styled-components';
 
-import './containers.less';
+import { colors } from '../../theme';
+
+function getErrorColor(hasError) {
+  return hasError ? colors.red : 'inherit';
+}
+
+const BaseFormGroup = styled.div`
+  color: ${props => getErrorColor(props.error)};
+`;
+
+const InlineFormGroup = styled(BaseFormGroup)`
+  display: flex;
+  margin-bottom: 0;
+  vertical-align: middle;
+
+  > * {
+    margin-right: 15px;
+  }
+`;
+
+const StackedFormGroup = styled(BaseFormGroup)`
+  margin-bottom: 20px;
+`;
 
 function FormGroup({
-  hasError,
-  inline,
+  hasError = false,
+  inline = false,
   children
 }) {
-  const formClass = inline ? 'form-group-inline' : 'form-group';
-  const classes = classNames(formClass, { error: hasError });
+  const FormGroupContainer = inline ? InlineFormGroup : StackedFormGroup;
 
   return (
-    <div className={classes}>
+    <FormGroupContainer error={hasError}>
       {children}
-    </div>
+    </FormGroupContainer>
   );
 }
 
 FormGroup.propTypes = {
-   /**
-    * Should render in an error state
-    */
+   /** Should render in an error state */
   hasError: PropTypes.bool,
-  /**
-   * Should the child elements render line
-   */
+  /** Should the child elements render inline */
   inline: PropTypes.bool,
   children: PropTypes.element
-};
-
-FormGroup.defaultProps = {
-  hasError: false,
-  inline: false
 };
 
 export default FormGroup;

@@ -27,7 +27,7 @@ A ``FormGroup`` can be rendered with errors as well.
 </FormGroup>
 ```
 
-Render a ``FormGroup`` with the inline prop set to true in order to have inline form elements.
+Render a ``FormGroup`` with the inline prop set to true will render all its children in line with a 15 pixel margin between items.
 ```
 <div>
   <FormGroup inline>
@@ -35,8 +35,6 @@ Render a ``FormGroup`` with the inline prop set to true in order to have inline 
       <span className="label-style">First Name</span>
       <input type="text" />
     </label>
-  </FormGroup>
-  <FormGroup inline>
     <label>
       <span className="label-style">Last Name</span>
       <input type="text" />

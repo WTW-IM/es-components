@@ -1,37 +1,39 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import FormGroup from './FormGroup';
 
-jest.mock('./containers.less', () => ({}));
-
 describe('FormGroup container component', () => {
-  let instance;
-
-  beforeEach(() => {
-    instance = shallow(
+  it('renders as expected', () => {
+    const tree = renderer.create(
       <FormGroup>
-        <div>Test</div>
+        <div>Some child</div>
       </FormGroup>
     );
+
+    expect(tree).toMatchSnapshot();
   });
 
-  it('has form-group class when inline prop is false by default', () => {
-    expect(instance.hasClass('form-group')).toBe(true);
-    expect(instance.hasClass('form-group-inline')).toBe(false);
+  it('renders as expected when there is an error', () => {
+    const tree = renderer.create(
+      <FormGroup hasError>
+        <div>Some child</div>
+      </FormGroup>
+    );
+
+    expect(tree).toMatchSnapshot();
   });
 
-  it('has form-group-inline class when inline prop is true', () => {
-    instance.setProps({ inline: true });
-    expect(instance.hasClass('form-group')).toBe(false);
-    expect(instance.hasClass('form-group-inline')).toBe(true);
-  });
+  it('renders as expected when inline', () => {
+    const tree = renderer.create(
+      <FormGroup inline>
+        <div>First child</div>
+        <div>Second child</div>
+      </FormGroup>
+    );
 
-  it('has error class only when hasError prop is true', () => {
-    expect(instance.hasClass('error')).toBe(false);
-    instance.setProps({ hasError: true });
-    expect(instance.hasClass('error')).toBe(true);
+    expect(tree).toMatchSnapshot();
   });
 });

@@ -2,43 +2,82 @@
 /* eslint-disable max-len */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 
-jest.mock('../../../styles/inputs.less', () => ({}));
-jest.mock('./radio-buttons.less', () => ({}));
+import { colors } from '../../theme';
 
+import getRadioFillVariables from './radio-fill-variables';
 import RadioButton from './RadioButton';
 
 describe('RadioButton component', () => {
-  let radioButtonInstance;
-  let radioDisplaySpan;
+  it('renders as expected', () => {
+    const tree = renderer.create(<RadioButton id="test" labelText="test" name="rad" />);
 
-  beforeEach(() => {
-    radioButtonInstance = mount(<RadioButton name="test" labelText="Testing 1, 2, 3" />);
-    radioDisplaySpan = radioButtonInstance.find('span').last();
+    expect(tree).toMatchSnapshot();
+  });
+});
+
+describe('getRadioFillVariables', () => {
+  it('returns { fill: gray, hover: white } when unchecked, disabled, and valid', () => {
+    const checked = false;
+    const disabled = true;
+    const invalid = false;
+
+    const { fill, hover } = getRadioFillVariables(checked, disabled, invalid);
+
+    expect(fill).toBe(colors.gray);
+    expect(hover).toBe(colors.white);
   });
 
-  it('applies the empty-radio class when checked, disabled, and shouldDisplayValidation are false', () => {
-    expect(radioDisplaySpan.hasClass('empty-radio')).toBe(true);
+  it('returns { fill: accent } when checked, not disabled, and valid', () => {
+    const checked = true;
+    const disabled = false;
+    const invalid = false;
+
+    const { fill } = getRadioFillVariables(checked, disabled, invalid);
+
+    expect(fill).toBe(colors.accent);
   });
 
-  it('applies the errored-radio class when checked and disabled are false and shouldDisplayValidation is true', () => {
-    radioButtonInstance.setProps({ shouldDisplayValidation: true });
-    expect(radioDisplaySpan.hasClass('errored-radio')).toBe(true);
+  it('returns { fill: gray } when checked, disabled, and valid', () => {
+    const checked = true;
+    const disabled = true;
+    const invalid = false;
+
+    const { fill } = getRadioFillVariables(checked, disabled, invalid);
+
+    expect(fill).toBe(colors.gray);
   });
 
-  it('applies the disabled-radio class when checked and shouldDisplayValidation are false and disabled is true', () => {
-    radioButtonInstance.setProps({ disabled: true });
-    expect(radioDisplaySpan.hasClass('disabled-radio')).toBe(true);
+  it('returns { fill: danger, hover: danger } when unchecked, not disabled, and invalid', () => {
+    const checked = false;
+    const disabled = false;
+    const invalid = true;
+
+    const { fill, hover } = getRadioFillVariables(checked, disabled, invalid);
+
+    expect(fill).toBe(colors.danger);
+    expect(hover).toBe(colors.danger);
   });
 
-  it('applies the filled-radio class when disabled and shouldDisplayValidation are false and checked is true', () => {
-    radioButtonInstance.setProps({ checked: true });
-    expect(radioDisplaySpan.hasClass('filled-radio')).toBe(true);
+  it('returns { fill: danger } when checked, not disabled, and invalid', () => {
+    const checked = true;
+    const disabled = false;
+    const invalid = true;
+
+    const { fill } = getRadioFillVariables(checked, disabled, invalid);
+
+    expect(fill).toBe(colors.danger);
   });
 
-  it('applies the disabled-filled-radio class when shouldDisplayValidation is false and checked and disabled are true', () => {
-    radioButtonInstance.setProps({ checked: true, disabled: true });
-    expect(radioDisplaySpan.hasClass('disabled-filled-radio')).toBe(true);
+  it('returns { fill: grayDarker, hover: grayDarker } when unchecked, not disabled, and valid', () => {
+    const checked = false;
+    const disabled = false;
+    const invalid = false;
+
+    const { fill, hover } = getRadioFillVariables(checked, disabled, invalid);
+
+    expect(fill).toBe(colors.grayDarker);
+    expect(hover).toBe(colors.grayDarker);
   });
 });

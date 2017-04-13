@@ -31,6 +31,10 @@ module.exports = {
       components: path.join(baseComponentDir, '/controls/**/*.js')
     }
   ],
+  getComponentPathLine(componentPath) {
+    const name = path.basename(componentPath, '.js');
+    return `import { ${name} } from 'es-components';`;
+  },
   getExampleFilename(componentPath) {
     return componentPath.replace(/\.js$/, '.md');
   },

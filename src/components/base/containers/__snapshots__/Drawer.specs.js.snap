@@ -5,7 +5,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     className="first byHzie">
     <div
       aria-expanded={true}
-      className="FZHLd"
+      className="elnnFO"
       onClick={[Function]}
       role="tab">
       <i
@@ -38,7 +38,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     className="second byHzie">
     <div
       aria-expanded={false}
-      className="FZHLd"
+      className="elnnFO"
       onClick={[Function]}
       role="tab">
       <i
@@ -61,7 +61,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     className="third byHzie">
     <div
       aria-expanded={false}
-      className="FZHLd"
+      className="elnnFO"
       onClick={[Function]}
       role="tab">
       <i
@@ -90,7 +90,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     className="first byHzie">
     <div
       aria-expanded={false}
-      className="FZHLd"
+      className="elnnFO"
       onClick={[Function]}
       role="tab">
       <i
@@ -113,7 +113,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     className="second byHzie">
     <div
       aria-expanded={false}
-      className="FZHLd"
+      className="elnnFO"
       onClick={[Function]}
       role="tab">
       <i
@@ -136,7 +136,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     className="third byHzie">
     <div
       aria-expanded={false}
-      className="FZHLd"
+      className="elnnFO"
       onClick={[Function]}
       role="tab">
       <i

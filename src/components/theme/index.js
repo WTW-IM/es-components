@@ -15,3 +15,8 @@ export const colors = {
   advisor: '#ff6310',
   errorText: '#df190f'
 };
+
+export const sizes = {
+  baseFontSize: 18,
+  baseLightHeight: 24
+};

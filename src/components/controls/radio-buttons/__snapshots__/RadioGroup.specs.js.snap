@@ -1,0 +1,141 @@
+exports[`RadioGroup component renders as expected 1`] = `
+<fieldset
+  className="fFUjwm">
+  <label
+    checked={false}
+    className="cBgQSg"
+    disabled={false}
+    htmlFor="test-option-1">
+    <input
+      className="djIxZF"
+      disabled={false}
+      id="test-option-1"
+      name="test"
+      onChange={[Function]}
+      type="radio"
+      value={undefined} />
+    <span
+      className="radio-fill fDIfVH"
+      fill="#fff" />
+    <span
+      className="cxSMDT">
+      Option 0
+    </span>
+  </label>
+  <label
+    checked={false}
+    className="cBgQSg"
+    disabled={false}
+    htmlFor="test-option-2">
+    <input
+      className="djIxZF"
+      disabled={false}
+      id="test-option-2"
+      name="test"
+      onChange={[Function]}
+      type="radio"
+      value={undefined} />
+    <span
+      className="radio-fill fDIfVH"
+      fill="#fff" />
+    <span
+      className="cxSMDT">
+      Option 1
+    </span>
+  </label>
+  <label
+    checked={false}
+    className="cBgQSg"
+    disabled={false}
+    htmlFor="test-option-3">
+    <input
+      className="djIxZF"
+      disabled={false}
+      id="test-option-3"
+      name="test"
+      onChange={[Function]}
+      type="radio"
+      value={undefined} />
+    <span
+      className="radio-fill fDIfVH"
+      fill="#fff" />
+    <span
+      className="cxSMDT">
+      Option 2
+    </span>
+  </label>
+</fieldset>
+`;
+
+exports[`RadioGroup component renders as expected with legend text 1`] = `
+<fieldset
+  className="fFUjwm">
+  <legend
+    className="efjiDS">
+    Test legend
+  </legend>
+  <label
+    checked={false}
+    className="cBgQSg"
+    disabled={false}
+    htmlFor="test-option-1">
+    <input
+      className="djIxZF"
+      disabled={false}
+      id="test-option-1"
+      name="test"
+      onChange={[Function]}
+      type="radio"
+      value={undefined} />
+    <span
+      className="radio-fill fDIfVH"
+      fill="#fff" />
+    <span
+      className="cxSMDT">
+      Option 0
+    </span>
+  </label>
+  <label
+    checked={false}
+    className="cBgQSg"
+    disabled={false}
+    htmlFor="test-option-2">
+    <input
+      className="djIxZF"
+      disabled={false}
+      id="test-option-2"
+      name="test"
+      onChange={[Function]}
+      type="radio"
+      value={undefined} />
+    <span
+      className="radio-fill fDIfVH"
+      fill="#fff" />
+    <span
+      className="cxSMDT">
+      Option 1
+    </span>
+  </label>
+  <label
+    checked={false}
+    className="cBgQSg"
+    disabled={false}
+    htmlFor="test-option-3">
+    <input
+      className="djIxZF"
+      disabled={false}
+      id="test-option-3"
+      name="test"
+      onChange={[Function]}
+      type="radio"
+      value={undefined} />
+    <span
+      className="radio-fill fDIfVH"
+      fill="#fff" />
+    <span
+      className="cxSMDT">
+      Option 2
+    </span>
+  </label>
+</fieldset>
+`;

@@ -11,7 +11,7 @@ exports[`Fieldset component renders as expected with legendText 1`] = `
 <fieldset
   className="fFUjwm">
   <legend
-    className="hGUyTq">
+    className="efjiDS">
     I am legend
   </legend>
   <div>

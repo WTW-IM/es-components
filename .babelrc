@@ -3,6 +3,7 @@
   "plugins": [
     "transform-object-rest-spread",
     "transform-runtime",
-    "transform-export-extensions"
+    "transform-export-extensions",
+    "transform-class-properties"
   ]
 }

@@ -9,11 +9,9 @@ const Legend = styled.legend`
   border-bottom: 1px solid ${colors.grayDark};
   color: ${colors.grayDark};
   display: block;
-  font-size: ${sizes.baseFontSize * 0.75}px;
-  font-weight: bold;
-  margin: 0 0 10px 0;
+  font-size: ${sizes.baseFontSize * 1.5}px;
+  margin: 0 0 25px 0;
   padding: 0;
-  text-transform: uppercase;
   width: 100%;
 `;
 

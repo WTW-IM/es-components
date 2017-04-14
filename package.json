@@ -7,6 +7,7 @@
     "build": "babel src -d lib --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
+    "prepublish": "npm run build",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
     "test": "jest"

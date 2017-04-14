@@ -1,47 +1,36 @@
 ## Alert Types
 
-### Success
 ```
-<Alert
-  type="success"
-  header="Success!"
-  additionalText="You did a thing."
-/>
-```
+<div>
+  <Alert
+    type="success"
+    header="Success!"
+    additionalText="You did a thing."
+  />
 
-### Information
-```
-<Alert
-  type="information"
-  header="Information!"
-  additionalText="Here's some information you need to know."
-/>
-```
+  <Alert
+    type="information"
+    header="Information!"
+    additionalText="Here's some information you need to know."
+  />
 
-### Warning
-```
-<Alert
-  type="warning"
-  additionalText="Here's a warning."
-/>
-```
+  <Alert
+    type="warning"
+    additionalText="Here's a warning."
+  />
 
-### Danger
-```
-<Alert
-  type="danger"
-  header="Danger!"
-  additionalText="You're about to do something dangerous!"
-/>
-```
+  <Alert
+    type="danger"
+    header="Danger!"
+    additionalText="You're about to do something dangerous!"
+  />
 
-### Advisor
-```
-<Alert
-  type="advisor"
-  header="Advisor!"
-  additionalText="This message is for benefit advisors."
-/>
+  <Alert
+    type="advisor"
+    header="Advisor!"
+    additionalText="This message is for benefit advisors."
+  />
+</div>
 ```
 
 Adding the ``dismissable`` prop will render a dismiss button that will execute the provided ``onDismiss`` function.
@@ -77,6 +66,12 @@ const callsToAction = [
         actionButtonContent: 'Secondary',
         action() {
           alert('You clicked the secondary button')
+        }
+      },
+      {
+        actionButtonContent: 'Tertiary',
+        action() {
+          alert('You clicked the tertiary button')
         }
       }
     ];

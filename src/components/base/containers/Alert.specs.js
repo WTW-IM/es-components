@@ -3,11 +3,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-jest.mock('./alerts.less', () => {});
+import Alert from './Alert';
 
 import Icon from '../icons/Icon';
-
-import Alert from './Alert';
+import Button from '../../controls/buttons/Button';
 
 let instanceToRender;
 
@@ -33,12 +32,6 @@ function getMountedInstance(props) {
 it('alert has the alert role', () => {
   const instance = getShallowInstance();
   expect(instance.prop('role')).toBe('alert');
-});
-
-it('applies the appropriate alert classes based on the type', () => {
-  const instance = getShallowInstance();
-  expect(instance.hasClass('alert')).toBe(true);
-  expect(instance.hasClass('alert__success')).toBe(true);
 });
 
 it('header text is emphasized by strong tag', () => {
@@ -88,23 +81,18 @@ describe('when callsToAction are provided', () => {
 
   let instance;
 
-
   beforeEach(() => {
     instance = getMountedInstance(instanceProps);
   });
 
-  it('adds a button with the btn-primary class for the first call to action', () => {
-    expect(instance.find('.btn').first().hasClass('btn-primary')).toBe(true);
-  });
+  it('adds a Button instance for all calls to action', () => {
+    const buttons = instance.find(Button);
 
-  it('adds additional buttons with btn-default class for any additional call to action', () => {
-    const buttons = instance.find('.btn').not('.btn-primary');
-
-    expect(buttons.every('.btn-default')).toBe(true);
+    expect(buttons.length).toBe(3);
   });
 
   it('executes callToAction function provided to the button', () => {
-    const button = instance.find('.btn-primary');
+    const button = instance.find(Button).first();
 
     button.simulate('click');
 

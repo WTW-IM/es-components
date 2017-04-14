@@ -1,0 +1,21 @@
+exports[`RadioButton component renders as expected 1`] = `
+<label
+  checked={false}
+  className="cBgQSg"
+  disabled={false}
+  htmlFor="test">
+  <input
+    className="djIxZF"
+    disabled={false}
+    id="test"
+    name="rad"
+    onChange={[Function]}
+    type="radio"
+    value={undefined} />
+  <span
+    className="radio-fill fDIfVH"
+    fill="#fff" />
+  <span
+    className="cxSMDT" />
+</label>
+`;

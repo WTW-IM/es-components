@@ -129,10 +129,10 @@ class Tooltip extends Component {
 
   render() {
     return (
-      <div>
-        <div ref="target" onMouseEnter={() => this.toggle()} onMouseLeave={() => this.toggle()}>
+      <span>
+        <span ref="target" onMouseEnter={() => this.toggle()} onMouseLeave={() => this.toggle()}>
           {this.props.children}
-        </div>
+        </span>
 
         <Overlay
           show={this.state.show}
@@ -145,14 +145,16 @@ class Tooltip extends Component {
             {this.props.content}
           </Popup>
         </Overlay>
-      </div>
+      </span>
     );
   }
 }
 
 Tooltip.propTypes = {
   children: PropTypes.any.isRequired,
-  content: PropTypes.node,
+  /** The text the tooltip displays */
+  content: PropTypes.node.isRequired,
+  /** Set the position of the tooltip over the content */
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
 };
 

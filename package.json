@@ -1,12 +1,13 @@
 {
   "name": "es-components",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React components built for Exchange Solutions products",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
+    "prepublish": "npm run build",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",
     "test": "jest"

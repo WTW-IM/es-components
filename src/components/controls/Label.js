@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { sizes } from '../theme';
 
 const Label = styled.label`
+  color: ${props => props.color || 'inherit'};
   display: block;
   margin-bottom: 5px;
   text-transform: uppercase;

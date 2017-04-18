@@ -3,15 +3,9 @@ Use a ``Fieldset`` component to group related fields.
 ### Fieldset example without a legend:
 ```
 <Fieldset>
-  <FormGroup>
-    <Textbox labelText="First name:" />
-  </FormGroup>
-  <FormGroup>
-    <Textbox labelText="Middle initial:" />
-  </FormGroup>
-  <FormGroup>
-    <Textbox labelText="Last name:" />
-  </FormGroup>
+  <Textbox labelText="First name:" />
+  <Textbox labelText="Middle initial:" />
+  <Textbox labelText="Last name:" />
 </Fieldset>
 ```
 
@@ -19,14 +13,8 @@ Use a ``Fieldset`` component to group related fields.
 
 ```
 <Fieldset legendText="Please enter your name">
-  <FormGroup>
-    <Textbox labelText="First name:" />
-  </FormGroup>
-  <FormGroup>
-    <Textbox labelText="Middle initial:" />
-  </FormGroup>
-  <FormGroup>
-    <Textbox labelText="Last name:" />
-  </FormGroup>
+  <Textbox labelText="First name:" />
+  <Textbox labelText="Middle initial:" />
+  <Textbox labelText="Last name:" />
 </Fieldset>
 ```

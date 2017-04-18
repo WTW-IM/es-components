@@ -3,16 +3,16 @@ Use ``Drawer`` and ``DrawerPanel`` components to wrap content in collapsable pan
 ### Basic Example:
 ```
 <Drawer>
-  <DrawerPanel header="Collapsable Item 1">
+  <DrawerPanel header="Panel 1">
     <p>Pretty much any content you want in here.</p>
   </DrawerPanel>
-  <DrawerPanel header="Collapsable Item 2">
+  <DrawerPanel header="Panel 2">
     <ul>
       <li>List Item</li>
       <li>Another Item</li>
     </ul>
   </DrawerPanel>
-  <DrawerPanel header="Collapsable Item 3">
+  <DrawerPanel header="Panel 3">
     <div>
       More content. Anim pariatur cliche reprehenderit, enim eiusmod
       high life accusamus terry richardson ad squid.
@@ -24,16 +24,16 @@ Use ``Drawer`` and ``DrawerPanel`` components to wrap content in collapsable pan
 ### Advanced Example:
 ```
 <Drawer isAccordion defaultActiveKeys="1" closedIconName="hand-right" openedIconName="hand-down" className="drawer-big">
-  <DrawerPanel header="Collapsable Item 1" key="1">
+  <DrawerPanel header="Panel 1" key="1">
     <p>Pretty much any content you want in here.</p>
   </DrawerPanel>
-  <DrawerPanel header="Collapsable Item 2" key="2" noPadding>
+  <DrawerPanel header="Panel 2" key="2" noPadding>
     <ul>
       <li>List Item</li>
       <li>Another Item</li>
     </ul>
   </DrawerPanel>
-  <DrawerPanel header="Collapsable Item 3" key="3" className="alt-color">
+  <DrawerPanel header="Panel 3" key="3" className="alt-color">
     <div>
       More content. Anim pariatur cliche reprehenderit, enim eiusmod
       high life accusamus terry richardson ad squid.

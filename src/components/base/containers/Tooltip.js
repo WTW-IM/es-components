@@ -12,6 +12,9 @@ const TooltipInner = styled.div`
   background-color: ${colors.black};
   border-radius: 2px;
   color: ${colors.white};
+  font-family: sans-serif;
+  font-size: .85em;
+  opacity: .9;
   padding: 3px 8px;
   text-align: center;
 `;
@@ -20,6 +23,7 @@ const TooltipArrowBase = styled.div`
   border-color: transparent;
   border-style: solid;
   height: 0;
+  opacity: .9;
   position: absolute;
   width: 0;
 `;

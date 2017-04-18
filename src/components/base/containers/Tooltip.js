@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import Overlay from 'react-overlays/lib/Overlay';
+import Transition from 'react-overlays/lib/Transition';
 import styled from 'styled-components';
 import { colors } from '../../theme';
+import './tooltip.less';
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -80,8 +82,28 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
+const Fade = (props) => (
+  <Transition
+    className="transition-out"
+    enteredClassName="transition-in"
+    enteringClassName="transition-in"
+    in={props.in}
+    mountOnEnter="true"
+    unmountOnExit="false"
+    timeout="200"
+    transitionAppear="true"
+  >
+    {props.children}
+  </Transition>
+);
+
+Fade.propTypes = {
+  children: PropTypes.any.isRequired,
+  in: PropTypes.boolean
+};
+
 const Popup = (props) => {
-  const { children, position, style } = props;
+  const { className, children, position, style } = props;
   let TooltipStyled;
   let TooltipArrow;
 
@@ -105,7 +127,7 @@ const Popup = (props) => {
   }
 
   return (
-    <TooltipStyled style={{ ...style }}>
+    <TooltipStyled className={className} style={{ ...style }}>
       <TooltipArrow />
       <TooltipInner>
         {children}
@@ -116,6 +138,7 @@ const Popup = (props) => {
 
 Popup.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   style: PropTypes.object
 };
@@ -127,14 +150,18 @@ class Tooltip extends Component {
     this.state = { show: false };
   }
 
-  toggle() {
-    return this.setState({ show: !this.state.show });
+  show() {
+    return this.setState({ show: true });
+  }
+
+  hide() {
+    return this.setState({ show: false });
   }
 
   render() {
     return (
       <span>
-        <span ref="target" onMouseEnter={() => this.toggle()} onMouseLeave={() => this.toggle()}>
+        <span ref="target" onMouseEnter={() => this.show()} onMouseLeave={() => this.hide()}>
           {this.props.children}
         </span>
 
@@ -144,6 +171,7 @@ class Tooltip extends Component {
           placement={this.props.position}
           container={document.body}
           target={ props => findDOMNode(this.refs.target)}
+          transition={Fade}
         >
           <Popup position={this.props.position}>
             {this.props.content}

@@ -2,9 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import Overlay from 'react-overlays/lib/Overlay';
 import Transition from 'react-overlays/lib/Transition';
-import styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 import { colors } from '../../theme';
-import './tooltip.less';
+
+injectGlobal`
+  .transition-out {
+    opacity: 0;
+    transition: opacity 200ms linear;
+  }
+
+  .transition-in {
+    opacity: .9;
+  }
+`;
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -16,7 +26,6 @@ const TooltipInner = styled.div`
   color: ${colors.white};
   font-family: sans-serif;
   font-size: 12px;
-  opacity: .9;
   padding: 3px 8px;
   text-align: center;
 `;
@@ -25,7 +34,6 @@ const TooltipArrowBase = styled.div`
   border-color: transparent;
   border-style: solid;
   height: 0;
-  opacity: .9;
   position: absolute;
   width: 0;
 `;

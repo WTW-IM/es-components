@@ -4,7 +4,6 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import Tooltip from './Tooltip';
-jest.mock('./tooltip.less', () => ({}));
 
 describe('tooltip component', () => {
   it('renders tooltip children', () => {

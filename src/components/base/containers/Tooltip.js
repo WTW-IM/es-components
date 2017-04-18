@@ -13,7 +13,7 @@ const TooltipInner = styled.div`
   border-radius: 2px;
   color: ${colors.white};
   font-family: sans-serif;
-  font-size: .85em;
+  font-size: 12px;
   opacity: .9;
   padding: 3px 8px;
   text-align: center;

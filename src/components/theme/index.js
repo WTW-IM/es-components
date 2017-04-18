@@ -34,7 +34,20 @@ export const backgroundColors = {
   advisor: getBackgroundColor(colors.advisor, 37)
 };
 
+export const inputColors = {
+  inputDefaultBorder: '#ccc',
+  inputDefaultFocus: '#66afe9',
+  inputDefaultBoxShadow: 'rgba(102, 175, 233, 0.6)',
+
+  inputSuccessBorder: '#003300',
+  inputSuccessBoxShadow: '#00cc00',
+
+  inputWarningBorder: '#2a2a2a',
+  inputWarningBoxShadow: '#777'
+};
+
+
 export const sizes = {
   baseFontSize: 18,
-  baseLightHeight: 24
+  baseLineHeight: 24
 };

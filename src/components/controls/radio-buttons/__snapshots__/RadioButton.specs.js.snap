@@ -1,7 +1,7 @@
 exports[`RadioButton component renders as expected 1`] = `
 <label
   checked={false}
-  className="kzbzUG"
+  className="yTQbE"
   disabled={false}
   htmlFor="test">
   <input

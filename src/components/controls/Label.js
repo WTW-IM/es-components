@@ -4,12 +4,12 @@ import { sizes } from '../theme';
 
 const Label = styled.label`
   color: ${props => props.color || 'inherit'};
-  display: block;
-  margin-bottom: 5px;
+  display: ${props => (props.inline ? 'inline-flex' : 'block')};
+  margin-bottom: ${props => (props.inline ? 'none' : '5px')};
   text-transform: uppercase;
+  flex: ${props => (props.inline ? 'auto' : 'initial')};
   font-size: ${sizes.baseFontSize * 0.75}px;
   font-weight: bold;
-  line-height: ${sizes.baseLineHeight * 0.75}px;
 
   &[disabled] {
     cursor: not-allowed;

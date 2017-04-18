@@ -169,7 +169,8 @@ const buttonTypes = [
   'success',
   'info',
   'warning',
-  'danger'
+  'danger',
+  'link'
 ];
 
 const buttonSizes = [

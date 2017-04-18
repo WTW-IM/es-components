@@ -100,7 +100,7 @@ function renderCallsToAction(callsToAction) {
 
 const BaseAlertContainer = styled.div`
    background-color: ${props => props.alertVariation.color};
-   border: 1px solid ${props => props.alertVariation.color};
+   border: 1px solid ${props => props.alertVariation.borderColor};
    border-radius: 2px;
    color: ${props => props.alertVariation.foregroundColor};
    margin-bottom: 25px;

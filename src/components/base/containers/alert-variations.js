@@ -1,33 +1,29 @@
-import tinycolor from 'tinycolor2';
-
-import { colors } from '../../theme';
-
-function getBackgroundColor(color, lightenAmount, desaturationAmount = 45) {
-  return tinycolor(color)
-    .desaturate(desaturationAmount)
-    .lighten(lightenAmount)
-    .toRgbString();
-}
+import { colors, backgroundColors } from '../../theme';
 
 export const alertVariations = {
   success: {
-    color: getBackgroundColor(colors.success, 75, 50),
+    color: backgroundColors.success,
+    borderColor: colors.success,
     foregroundColor: colors.success
   },
   information: {
-    color: getBackgroundColor(colors.information, 60),
+    color: backgroundColors.information,
+    borderColor: colors.information,
     foregroundColor: colors.information
   },
   warning: {
-    color: getBackgroundColor(colors.warning, 45),
+    color: backgroundColors.warning,
+    borderColor: colors.warning,
     foregroundColor: colors.grayDarkest
   },
   danger: {
-    color: getBackgroundColor(colors.danger, 55),
+    color: backgroundColors.danger,
+    borderColor: colors.danger,
     foregroundColor: colors.danger
   },
   advisor: {
-    color: getBackgroundColor(colors.advisor, 37),
+    color: backgroundColors.advisor,
+    borderColor: colors.advisor,
     foregroundColor: colors.grayDarkest
   }
 };

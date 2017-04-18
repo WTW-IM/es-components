@@ -5,7 +5,7 @@ import Transition from 'react-overlays/lib/Transition';
 import styled, { injectGlobal } from 'styled-components';
 import { colors } from '../../theme';
 
-injectGlobal`
+injectGlobal(`
   .transition-out {
     opacity: 0;
     transition: opacity 200ms linear;
@@ -14,7 +14,7 @@ injectGlobal`
   .transition-in {
     opacity: .9;
   }
-`;
+`);
 
 const TooltipBase = styled.div`
   position: absolute;

@@ -56,6 +56,7 @@
     "classnames": "^2.2.5",
     "react-overlays": "^0.6.12",
     "react-smooth-collapse-customizable": "^1.1.1",
+    "slug": "^0.9.1",
     "styled-components": "^1.4.4",
     "tinycolor2": "^1.4.1"
   }

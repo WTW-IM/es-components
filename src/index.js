@@ -7,5 +7,6 @@ export Fieldset from './components/base/containers/Fieldset';
 export FormGroup from './components/base/containers/FormGroup';
 export Tooltip from './components/base/containers/Tooltip';
 
+export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';

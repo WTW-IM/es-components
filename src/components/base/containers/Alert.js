@@ -82,11 +82,11 @@ function renderCallsToAction(callsToAction) {
   return (
     <CallsToAction>
       {callsToAction.map((callToAction, index) => {
-        const type = index === 0 ? 'primary' : 'default';
+        const buttonStyleType = index === 0 ? 'primary' : 'default';
 
         return (
           <Button
-            type={type}
+            styleType={buttonStyleType}
             key={index}
             handleOnClick={callToAction.action}
           >

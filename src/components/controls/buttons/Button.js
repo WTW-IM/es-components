@@ -120,14 +120,14 @@ function Button({
   handleOnClick,
   children,
   buttonClasses,
-  type = 'default',
+  styleType = 'default',
   size = 'default',
   block = false,
   alternative = false,
     ...buttonProps
 }) {
   const buttonSize = buttonSizeStyles[size];
-  const isLinkButton = type === 'link';
+  const isLinkButton = styleType === 'link';
   const sharedProps = {
     block,
     buttonSize,
@@ -137,7 +137,7 @@ function Button({
   };
 
   if (alternative) {
-    const buttonVariant = alternateButtonVariants[type];
+    const buttonVariant = alternateButtonVariants[styleType];
     return (
       <AlternateButton buttonVariant={buttonVariant} {...sharedProps}>
         <AlternateChildrenContainer>
@@ -154,7 +154,7 @@ function Button({
     );
   }
 
-  const buttonVariant = defaultButtonVariants[type];
+  const buttonVariant = defaultButtonVariants[styleType];
   return (
     <DefaultButton buttonVariant={buttonVariant} {...sharedProps}>
       {children}
@@ -162,7 +162,7 @@ function Button({
   );
 }
 
-const buttonTypes = [
+const buttonStyleTypes = [
   'default',
   'primary',
   'accent',
@@ -186,7 +186,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /** Any additional classes to apply to the button */
   buttonClasses: PropTypes.string,
-  type: PropTypes.oneOf(buttonTypes),
+  styleType: PropTypes.oneOf(buttonStyleTypes),
   size: PropTypes.oneOf(buttonSizes),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,

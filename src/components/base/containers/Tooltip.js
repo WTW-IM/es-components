@@ -5,7 +5,8 @@ import Transition from 'react-overlays/lib/Transition';
 import styled, { injectGlobal } from 'styled-components';
 import { colors } from '../../theme';
 
-injectGlobal(`
+/* eslint-disable no-unused-expressions */
+injectGlobal`
   .transition-out {
     opacity: 0;
     transition: opacity 200ms linear;
@@ -14,7 +15,8 @@ injectGlobal(`
   .transition-in {
     opacity: .9;
   }
-`);
+`;
+/* eslint-enable no-unused-expressions */
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -96,10 +98,10 @@ const Fade = (props) => (
     enteredClassName="transition-in"
     enteringClassName="transition-in"
     in={props.in}
-    mountOnEnter="true"
-    unmountOnExit="false"
-    timeout="200"
-    transitionAppear="true"
+    mountOnEnter
+    unmountOnExit={false}
+    timeout={200}
+    transitionAppear
   >
     {props.children}
   </Transition>
@@ -107,7 +109,7 @@ const Fade = (props) => (
 
 Fade.propTypes = {
   children: PropTypes.any.isRequired,
-  in: PropTypes.boolean
+  in: PropTypes.bool
 };
 
 const Popup = (props) => {

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import Overlay from 'react-overlays/lib/Overlay';
 import Transition from 'react-overlays/lib/Transition';
 import styled, { injectGlobal } from 'styled-components';
@@ -156,7 +155,6 @@ Popup.propTypes = {
 class Tooltip extends Component {
   constructor(props) {
     super(props);
-
     this.state = { show: false };
   }
 
@@ -171,7 +169,11 @@ class Tooltip extends Component {
   render() {
     return (
       <span>
-        <span ref="target" onMouseEnter={() => this.show()} onMouseLeave={() => this.hide()}>
+        <span
+          ref={(span) => { this.toolTipTarget = span; }}
+          onMouseEnter={() => this.show()}
+          onMouseLeave={() => this.hide()}
+        >
           {this.props.children}
         </span>
 
@@ -180,7 +182,7 @@ class Tooltip extends Component {
           onHide={() => this.setState({ show: false })}
           placement={this.props.position}
           container={document.body}
-          target={ props => findDOMNode(this.refs.target)}
+          target={props => this.toolTipTarget}
           transition={Fade}
         >
           <Popup position={this.props.position}>

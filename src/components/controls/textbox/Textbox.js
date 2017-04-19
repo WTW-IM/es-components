@@ -5,15 +5,15 @@ import { noop } from 'lodash';
 import slug from 'slug';
 
 import Icon from '../../base/icons/Icon';
-import { colors, sizes } from '../../theme';
+import { sizes } from '../../theme';
+import { LabelText, InputBase } from '../BaseControls';
 import Label from '../Label';
 import Addon from './Addon';
-import getValidationStateVariables from './getValidationStateVariables';
+import getValidationStateVariables from '../getValidationStateVariables';
 import getAddonType from './getAddonType';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
-  margin-bottom: 20px;
 `;
 
 function getBorderRadius(addonType) {
@@ -29,42 +29,8 @@ function getBorderRadius(addonType) {
   }
 }
 
-const StyledText = styled.input`
-  border: 1px solid ${props => props.borderColor};
+const StyledText = styled(InputBase)`
   border-radius: ${props => getBorderRadius(props.addonType)};
-  box-sizing: border-box;
-  box-shadow: ${props => props.boxShadow};
-  color: ${colors.grayDark};
-  font-size: ${sizes.baseFontSize}px;
-  font-weight: normal;
-  height: 39px;
-  padding: 6px 12px;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  width: 100%;
-
-  &:focus {
-    border-color: ${props => props.focusBorderColor};
-    outline: 0;
-    box-shadow: ${props => props.focusBoxShadow};
-  }
-
-  &:disabled {
-    background-color: ${colors.grayLighter};
-    cursor: not-allowed;
-  }
-
-  &:read-only {
-    background-color: ${colors.grayLighter};
-    cursor: text;
-  }
-`;
-
-const LabelText = styled.span`
-  align-self: ${props => (props.inline ? 'center' : 'initial')};
-  flex: '0 auto';
-  flex-basis: 90px;
-  display: block;
-  margin-bottom: ${props => (props.inline ? 'initial' : '5px')};
 `;
 
 const AdditionalHelpContent = styled.div`

@@ -98,7 +98,7 @@ const Fade = (props) => (
     enteringClassName="transition-in"
     in={props.in}
     mountOnEnter
-    unmountOnExit={false}
+    unmountOnExit
     timeout={200}
     transitionAppear
   >

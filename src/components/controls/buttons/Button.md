@@ -1,4 +1,6 @@
-## Button types
+Any additional props passed to the Button component will get passed to the HTML button element.
+
+## Button Style Types
 
 ```
 const buttonExampleStyle = {
@@ -13,19 +15,19 @@ function noop() { }
 <div style={buttonExampleStyle}>
   <Button handleOnClick={noop}>Default</Button>
 
-  <Button handleOnClick={noop} type="primary">Primary</Button>
+  <Button handleOnClick={noop} styleType="primary">Primary</Button>
 
-  <Button handleOnClick={noop} type="accent">Accent</Button>
+  <Button handleOnClick={noop} styleType="accent">Accent</Button>
 
-  <Button handleOnClick={noop} type="success">Success</Button>
+  <Button handleOnClick={noop} styleType="success">Success</Button>
 
-  <Button handleOnClick={noop} type="info">Information</Button>
+  <Button handleOnClick={noop} styleType="info">Information</Button>
 
-  <Button handleOnClick={noop} type="warning">Warning</Button>
+  <Button handleOnClick={noop} styleType="warning">Warning</Button>
 
-  <Button handleOnClick={noop} type="danger">Danger</Button>
+  <Button handleOnClick={noop} styleType="danger">Danger</Button>
 
-  <Button handleOnClick={noop} type="link">Link</Button>
+  <Button handleOnClick={noop} styleType="link">Link</Button>
 </div>
 ```
 
@@ -46,17 +48,17 @@ function noop() { }
 <div style={buttonExampleStyle}>
   <Button handleOnClick={noop} alternative>Default</Button>
 
-  <Button handleOnClick={noop} type="primary" alternative>Primary</Button>
+  <Button handleOnClick={noop} styleType="primary" alternative>Primary</Button>
 
-  <Button handleOnClick={noop} type="accent" alternative>Accent</Button>
+  <Button handleOnClick={noop} styleType="accent" alternative>Accent</Button>
 
-  <Button handleOnClick={noop} type="success" alternative>Success</Button>
+  <Button handleOnClick={noop} styleType="success" alternative>Success</Button>
 
-  <Button handleOnClick={noop} type="info" alternative>Information</Button>
+  <Button handleOnClick={noop} styleType="info" alternative>Information</Button>
 
-  <Button handleOnClick={noop} type="warning" alternative>Warning</Button>
+  <Button handleOnClick={noop} styleType="warning" alternative>Warning</Button>
 
-  <Button handleOnClick={noop} type="danger" alternative>Danger</Button>
+  <Button handleOnClick={noop} styleType="danger" alternative>Danger</Button>
 </div>
 ```
 
@@ -118,14 +120,14 @@ const buttonContainerStyle = {
   width: '300px',
   height: '50px',
   padding: '10px',
-  ['background-color']: '#ddd',
+  backgroundColor: '#ddd',
   border: '1px solid #444'
 };
 
 function noop() { }
 
 <div style={buttonContainerStyle}>
-  <Button onClick={noop} block type="primary">Block button</Button>
+  <Button handleOnClick={noop} block styleType="primary">Block button</Button>
 </div>
 
 ```
@@ -145,19 +147,19 @@ function noop() { }
 <div style={buttonExampleStyle}>
   <Button handleOnClick={noop} disabled>Default</Button>
 
-  <Button handleOnClick={noop} type="primary" disabled>Primary</Button>
+  <Button handleOnClick={noop} styleType="primary" disabled>Primary</Button>
 
-  <Button handleOnClick={noop} type="accent" disabled>Accent</Button>
+  <Button handleOnClick={noop} styleType="accent" disabled>Accent</Button>
 
-  <Button handleOnClick={noop} type="success" disabled>Success</Button>
+  <Button handleOnClick={noop} styleType="success" disabled>Success</Button>
 
-  <Button handleOnClick={noop} type="info" disabled>Information</Button>
+  <Button handleOnClick={noop} styleType="info" disabled>Information</Button>
 
-  <Button handleOnClick={noop} type="warning" disabled>Warning</Button>
+  <Button handleOnClick={noop} styleType="warning" disabled>Warning</Button>
 
-  <Button handleOnClick={noop} type="danger" disabled>Danger</Button>
+  <Button handleOnClick={noop} styleType="danger" disabled>Danger</Button>
 
-  <Button handleOnClick={noop} type="link" disabled>Link</Button>
+  <Button handleOnClick={noop} styleType="link" disabled>Link</Button>
 </div>
 
 

@@ -1,7 +1,8 @@
 {
   "name": "es-components",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "React components built for Exchange Solutions products",
+  "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib --ignore specs.js,*.md --copy-files",
@@ -52,9 +53,11 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
+    "babel-plugin-lodash": "^3.2.11",
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
     "react-overlays": "^0.6.12",
+    "lodash": "^4.17.4",
     "react-smooth-collapse-customizable": "^1.1.1",
     "slug": "^0.9.1",
     "styled-components": "^1.4.4",

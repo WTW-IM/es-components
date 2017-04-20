@@ -27,7 +27,7 @@ const TooltipInner = styled.div`
   color: ${colors.white};
   font-family: sans-serif;
   font-size: 12px;
-  padding: 3px 8px;
+  padding: 4px 8px 5px 8px;
   text-align: center;
 `;
 

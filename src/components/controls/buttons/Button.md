@@ -118,14 +118,14 @@ const buttonContainerStyle = {
   width: '300px',
   height: '50px',
   padding: '10px',
-  ['background-color']: '#ddd',
+  backgroundColor: '#ddd',
   border: '1px solid #444'
 };
 
 function noop() { }
 
 <div style={buttonContainerStyle}>
-  <Button onClick={noop} block type="primary">Block button</Button>
+  <Button handleOnClick={noop} block type="primary">Block button</Button>
 </div>
 
 ```

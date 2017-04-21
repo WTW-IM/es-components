@@ -4,8 +4,8 @@ import { sizes } from '../theme';
 
 const Label = styled.label`
   color: ${props => props.color || 'inherit'};
-  display: ${props => (props.inline ? 'inline-flex' : 'block')};
-  margin-bottom: ${props => (props.inline ? 'none' : '5px')};
+  display: ${props => (props.inline ? 'flex' : 'block')};
+  margin-bottom: 20px;
   text-transform: uppercase;
   flex: ${props => (props.inline ? 'auto' : 'initial')};
   font-size: ${sizes.baseFontSize * 0.75}px;

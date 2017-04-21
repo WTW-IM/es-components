@@ -1,4 +1,4 @@
-import { inputColors, backgroundColors, colors } from '../../theme';
+import { inputColors, backgroundColors, colors } from '../theme';
 
 export default function getValidationStateVariables(validationState) {
   switch (validationState) {

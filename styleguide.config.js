@@ -1,6 +1,6 @@
 const path = require('path');
-const version = require('./package.json').version;
 
+const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
 
 const baseComponentDir = styleguidePaths.baseComponentDir;
@@ -39,6 +39,9 @@ module.exports = {
     return componentPath.replace(/\.js$/, '.md');
   },
   skipComponentsWithoutExample: true,
+  context: {
+    dateFormat: 'date-fns/format'
+  },
   webpackConfig: require('./config/webpack.config.js'),
   styles: {
     Playground: {

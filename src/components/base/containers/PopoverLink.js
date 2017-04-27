@@ -20,6 +20,36 @@ function getArrowPlacement(popoverPlacement) {
   }
 }
 
+/*
+  monkey-patching the FocusTrap component
+  fixes a timing issue with the popover
+*/
+FocusTrap.prototype.componentDidMount = function() {
+  const specifiedFocusTrapOptions = this.props.focusTrapOptions;
+  const tailoredFocusTrapOptions = {
+    returnFocusOnDeactivate: false
+  };
+  for (const optionName in specifiedFocusTrapOptions) {
+    if (!specifiedFocusTrapOptions.hasOwnProperty(optionName)) continue;
+    if (optionName === 'returnFocusOnDeactivate') continue;
+    tailoredFocusTrapOptions[optionName] =
+      specifiedFocusTrapOptions[optionName];
+  }
+
+  this.focusTrap = this.props._createFocusTrap(
+    this.node,
+    tailoredFocusTrapOptions
+  );
+  if (this.props.active) {
+    setTimeout(() => {
+      this.focusTrap.activate();
+    }, 0);
+  }
+  if (this.props.paused) {
+    this.focusTrap.pause();
+  }
+}
+
 class PopoverLink extends React.Component {
   static propTypes = {
     linkContent: PropTypes.node.isRequired,
@@ -43,18 +73,17 @@ class PopoverLink extends React.Component {
     super(props);
 
     this.state = { isOpen: false };
-
-    this.hidePopover = this.hidePopover.bind(this);
-    this.togglePopover = this.togglePopover.bind(this);
   }
 
-  togglePopover() {
-    this.setState(previousState => ({ isOpen: !previousState.isOpen }));
+  showPopover = () => {
+    this.setState({ isOpen: true });
   }
 
-  hidePopover() {
-    this.setState({ isOpen: false });
-    this.props.onPopoverHidden();
+  hidePopover = () => {
+    if(this.state.isOpen) {
+      this.setState({ isOpen: false });
+      this.props.onPopoverHidden();
+    }
   }
 
   render() {
@@ -70,8 +99,7 @@ class PopoverLink extends React.Component {
     const arrowPlacement = getArrowPlacement(popoverPlacement);
     const shouldCloseOnAnyClick = !containsFormElement;
     const focusTrapOptions = {
-      clickOutsideDeactivates: !containsFormElement,
-      onDeactivate: () => this.hidePopover()
+      onDeactivate: this.hidePopover
     };
 
     return (
@@ -79,7 +107,7 @@ class PopoverLink extends React.Component {
         <span ref={(span) => { this.popoverTarget = span; }}>
           <Button data-trigger="focus"
             styleType="link"
-            handleOnClick={this.togglePopover}
+            handleOnClick={this.showPopover}
           >
             {linkContent}
           </Button>

@@ -152,12 +152,6 @@ export default class Popover extends React.Component {
     containsFormElement: false
   }
 
-  componentDidUpdate() {
-    if (this.props.containsFormElement) {
-      this.popoverContent.focus();
-    }
-  }
-
   render() {
     const {
       title,
@@ -179,7 +173,6 @@ export default class Popover extends React.Component {
         positionLeft={positionLeft}
         positionTop={positionTop}
         tabIndex={containsFormElement ? 0 : null}
-        innerRef={(div) => { this.popoverContent = div; }}
       >
         {popoverTitle}
         <PopoverBodyContent>

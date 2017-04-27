@@ -24,7 +24,7 @@ function getArrowPlacement(popoverPlacement) {
   monkey-patching the FocusTrap component
   fixes a timing issue with the popover
 */
-FocusTrap.prototype.componentDidMount = function() {
+FocusTrap.prototype.componentDidMount = function componentDidMount() {
   const specifiedFocusTrapOptions = this.props.focusTrapOptions;
   const tailoredFocusTrapOptions = {
     returnFocusOnDeactivate: false
@@ -48,7 +48,7 @@ FocusTrap.prototype.componentDidMount = function() {
   if (this.props.paused) {
     this.focusTrap.pause();
   }
-}
+};
 
 class PopoverLink extends React.Component {
   static propTypes = {
@@ -80,7 +80,7 @@ class PopoverLink extends React.Component {
   }
 
   hidePopover = () => {
-    if(this.state.isOpen) {
+    if (this.state.isOpen) {
       this.setState({ isOpen: false });
       this.props.onPopoverHidden();
     }

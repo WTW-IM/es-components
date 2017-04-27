@@ -6,12 +6,12 @@ import { colors } from '../../theme';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
-  .transition-out {
+  .tooltip-transition-out {
     opacity: 0;
     transition: opacity 200ms linear;
   }
 
-  .transition-in {
+  .tooltip-transition-in {
     opacity: .9;
   }
 `;
@@ -93,13 +93,13 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 
 const Fade = (props) => (
   <Transition
-    className="transition-out"
-    enteredClassName="transition-in"
-    enteringClassName="transition-in"
+    className="tooltip-transition-out"
+    enteredClassName="tooltip-transition-in"
+    enteringClassName="tooltip-transition-in"
     in={props.in}
     mountOnEnter
     unmountOnExit
-    timeout={200}
+    timeout={5000}
     transitionAppear
   >
     {props.children}

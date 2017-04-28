@@ -5,6 +5,21 @@ import { noop } from 'lodash';
 import Button from '../../controls/buttons/Button';
 import Popover from './Popover';
 import FocusTrap from 'focus-trap-react';
+import Fade from '../../util/Fade';
+import { injectGlobal } from 'styled-components';
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+  .popover-transition-out {
+    opacity: 0;
+    transition: opacity 200ms linear;
+  }
+
+  .popover-transition-in {
+    opacity: 1;
+  }
+`;
+/* eslint-enable no-unused-expressions */
 
 function getArrowPlacement(popoverPlacement) {
   switch (popoverPlacement) {
@@ -35,7 +50,6 @@ FocusTrap.prototype.componentDidMount = function componentDidMount() {
     tailoredFocusTrapOptions[optionName] =
       specifiedFocusTrapOptions[optionName];
   }
-
   this.focusTrap = this.props._createFocusTrap(
     this.node,
     tailoredFocusTrapOptions
@@ -49,6 +63,10 @@ FocusTrap.prototype.componentDidMount = function componentDidMount() {
     this.focusTrap.pause();
   }
 };
+
+const FadeTransition = (props) => (
+  <Fade transitionClassOut="popover-transition-out" transitionClassIn="popover-transition-in" {...props} />
+);
 
 class PopoverLink extends React.Component {
   static propTypes = {
@@ -97,7 +115,6 @@ class PopoverLink extends React.Component {
 
     const { isOpen } = this.state;
     const arrowPlacement = getArrowPlacement(popoverPlacement);
-    const shouldCloseOnAnyClick = !containsFormElement;
     const focusTrapOptions = {
       onDeactivate: this.hidePopover
     };
@@ -117,8 +134,9 @@ class PopoverLink extends React.Component {
           show={isOpen}
           placement={popoverPlacement}
           target={this.popoverTarget}
-          rootClose={shouldCloseOnAnyClick}
+          rootClose={!containsFormElement}
           onHide={this.hidePopover}
+          transition={FadeTransition}
         >
           <Popover title={popoverTitle} arrowPlacement={arrowPlacement} containsFormElement={containsFormElement}>
             <FocusTrap active={containsFormElement} focusTrapOptions={focusTrapOptions}>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { colors, sizes } from '../../theme';
+import classNames from 'classnames';
 
 const ArrowBase = styled.div`
   border-color: transparent;
@@ -136,7 +137,7 @@ const PopoverBodyContent = styled.div`
   padding: 9px 14px;
 `;
 
-// positionLeft and positionTop props get passed to by the Overlay component
+// className, positionLeft and positionTop props get passed to by the Overlay component
 export default class Popover extends React.Component {
   static propTypes = {
     title: PropTypes.string,
@@ -144,7 +145,8 @@ export default class Popover extends React.Component {
     positionLeft: PropTypes.number,
     positionTop: PropTypes.number,
     children: PropTypes.node,
-    containsFormElement: PropTypes.bool
+    containsFormElement: PropTypes.bool,
+    className: PropTypes.string
   }
 
   static defaultProps = {
@@ -159,16 +161,18 @@ export default class Popover extends React.Component {
       positionLeft,
       positionTop,
       children,
-      containsFormElement
+      containsFormElement,
+      className
     } = this.props;
 
+    const popoverClassNames = classNames(className, arrowPlacement);
     const hasTitle = title !== undefined;
     const popoverTitle = hasTitle ? <PopoverTitle>{title}</PopoverTitle> : null;
 
     const Arrow = getArrow(arrowPlacement);
     return (
       <PopoverContent
-        className={arrowPlacement}
+        className={popoverClassNames}
         role="tooltip"
         positionLeft={positionLeft}
         positionTop={positionTop}

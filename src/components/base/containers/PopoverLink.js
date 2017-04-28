@@ -69,24 +69,6 @@ const FadeTransition = (props) => (
 );
 
 class PopoverLink extends React.Component {
-  static propTypes = {
-    linkContent: PropTypes.node.isRequired,
-    popoverTitle: PropTypes.string,
-    /** The content displayed in the popover body */
-    popoverContent: PropTypes.node.isRequired,
-    /** The placement of the popover in relation to the link */
-    popoverPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    containsFormElement: PropTypes.bool,
-    /** Function to run when the popover is hidden */
-    onPopoverHidden: PropTypes.func
-  }
-
-  static defaultProps = {
-    popoverPlacement: 'top',
-    containsFormElement: false,
-    onPopoverHidden: noop
-  }
-
   constructor(props) {
     super(props);
 
@@ -106,7 +88,7 @@ class PopoverLink extends React.Component {
 
   render() {
     const {
-      linkContent,
+      children,
       popoverTitle,
       popoverContent,
       popoverPlacement,
@@ -126,7 +108,7 @@ class PopoverLink extends React.Component {
             styleType="link"
             handleOnClick={this.showPopover}
           >
-            {linkContent}
+            {children}
           </Button>
         </span>
 
@@ -148,5 +130,25 @@ class PopoverLink extends React.Component {
     );
   }
 }
+
+PopoverLink.propTypes = {
+  /** The link content which activates the popover */
+  children: PropTypes.node.isRequired,
+  /** The text displayed in the popover title section */
+  popoverTitle: PropTypes.string,
+  /** The content displayed in the popover body */
+  popoverContent: PropTypes.node.isRequired,
+  /** The placement of the popover in relation to the link */
+  popoverPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  containsFormElement: PropTypes.bool,
+  /** Function to run when the popover is hidden */
+  onPopoverHidden: PropTypes.func
+};
+
+PopoverLink.defaultProps = {
+  popoverPlacement: 'top',
+  containsFormElement: false,
+  onPopoverHidden: noop
+};
 
 export default PopoverLink;

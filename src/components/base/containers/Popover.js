@@ -138,52 +138,52 @@ const PopoverBodyContent = styled.div`
 `;
 
 // className, positionLeft and positionTop props get passed to by the Overlay component
-export default class Popover extends React.Component {
-  static propTypes = {
-    title: PropTypes.string,
-    arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    positionLeft: PropTypes.number,
-    positionTop: PropTypes.number,
-    children: PropTypes.node,
-    containsFormElement: PropTypes.bool,
-    className: PropTypes.string
-  }
+const Popover = (props) => {
+  const {
+    title,
+    arrowPlacement,
+    positionLeft,
+    positionTop,
+    children,
+    containsFormElement,
+    className
+  } = props;
 
-  static defaultProps = {
-    arrowPlacement: 'top',
-    containsFormElement: false
-  }
+  const popoverClassNames = classNames(className, arrowPlacement);
+  const hasTitle = title !== undefined;
+  const popoverTitle = hasTitle ? <PopoverTitle>{title}</PopoverTitle> : null;
+  const Arrow = getArrow(arrowPlacement);
 
-  render() {
-    const {
-      title,
-      arrowPlacement,
-      positionLeft,
-      positionTop,
-      children,
-      containsFormElement,
-      className
-    } = this.props;
+  return (
+    <PopoverContent
+      className={popoverClassNames}
+      role="tooltip"
+      positionLeft={positionLeft}
+      positionTop={positionTop}
+      tabIndex={containsFormElement ? 0 : null}
+    >
+      {popoverTitle}
+      <PopoverBodyContent>
+        {children}
+      </PopoverBodyContent>
+      <Arrow displayColor={hasTitle} />
+    </PopoverContent>
+  );
+};
 
-    const popoverClassNames = classNames(className, arrowPlacement);
-    const hasTitle = title !== undefined;
-    const popoverTitle = hasTitle ? <PopoverTitle>{title}</PopoverTitle> : null;
+Popover.propTypes = {
+  title: PropTypes.string,
+  arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  positionLeft: PropTypes.number,
+  positionTop: PropTypes.number,
+  children: PropTypes.node,
+  containsFormElement: PropTypes.bool,
+  className: PropTypes.string
+};
 
-    const Arrow = getArrow(arrowPlacement);
-    return (
-      <PopoverContent
-        className={popoverClassNames}
-        role="tooltip"
-        positionLeft={positionLeft}
-        positionTop={positionTop}
-        tabIndex={containsFormElement ? 0 : null}
-      >
-        {popoverTitle}
-        <PopoverBodyContent>
-          {children}
-        </PopoverBodyContent>
-        <Arrow displayColor={hasTitle} />
-      </PopoverContent>
-    );
-  }
-}
+Popover.defaultProps = {
+  arrowPlacement: 'top',
+  containsFormElement: false
+};
+
+export default Popover;

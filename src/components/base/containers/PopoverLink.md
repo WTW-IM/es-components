@@ -2,10 +2,11 @@
 <p>
   Click
   <PopoverLink
-    linkContent="here "
     popoverTitle="Popover"
-    popoverContent="This is the popover's content. lkalakjdflkaj flakdjf lakdjf lakdfjl adkfj akdfjalkd fjalkdfj ladkfj kajdffj adf adkflja ldfjlad kfjadlkfj."
-  /> to activate the popover.
+    popoverContent="This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
+  >
+    here
+  </PopoverLink> to activate the popover.
 </p>
 ```
 
@@ -31,23 +32,13 @@ function PopoverForm() {
 const popoverContent = <PopoverForm />;
 
 <p>
-  You can even put forms inside of a
-  <PopoverLink
-    linkContent="popover"
-    popoverContent={popoverContent}
-    containsFormElement
-  />.
+  You can even put forms inside of a <PopoverLink popoverContent={popoverContent} containsFormElement>popover</PopoverLink>. Using the <em>containsFormElement</em> attribute will lock focus to the popover, keeping tab navigation inside. 
 </p>
 ```
 
 ```
-const popoverContent = <Icon name="question-sign" />;
-
 <p>
   Click the question mark for some help text.
-  <PopoverLink
-    linkContent={popoverContent}
-    popoverContent="Here's some help text"
-  />
+  <PopoverLink popoverContent="Here's some help text"><Icon name="question-sign" /></PopoverLink>
 </p>
 ```

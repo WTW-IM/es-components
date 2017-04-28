@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled, { injectGlobal } from 'styled-components';
 import { colors } from '../../theme';
@@ -136,7 +137,7 @@ const FadeTransition = (props) => (
   <Fade transitionClassOut="tooltip-transition-out" transitionClassIn="tooltip-transition-in" {...props} />
 );
 
-class Tooltip extends Component {
+class Tooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = { show: false };

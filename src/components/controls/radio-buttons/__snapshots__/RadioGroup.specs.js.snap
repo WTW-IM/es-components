@@ -2,8 +2,8 @@ exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
   className="fFUjwm">
   <label
-    checked={false}
-    className="cvaaHl"
+    checked={true}
+    className="hiUcLz"
     disabled={false}
     htmlFor="test-option-1">
     <input
@@ -15,16 +15,16 @@ exports[`RadioGroup component renders as expected 1`] = `
       type="radio"
       value={undefined} />
     <span
-      className="radio-fill fDIfVH"
-      fill="#fff" />
+      className="radio-fill fCBRvK"
+      fill="#5a0c6f" />
     <span
       className="cxSMDT">
       Option 0
     </span>
   </label>
   <label
-    checked={false}
-    className="cvaaHl"
+    checked={true}
+    className="hiUcLz"
     disabled={false}
     htmlFor="test-option-2">
     <input
@@ -36,16 +36,16 @@ exports[`RadioGroup component renders as expected 1`] = `
       type="radio"
       value={undefined} />
     <span
-      className="radio-fill fDIfVH"
-      fill="#fff" />
+      className="radio-fill fCBRvK"
+      fill="#5a0c6f" />
     <span
       className="cxSMDT">
       Option 1
     </span>
   </label>
   <label
-    checked={false}
-    className="cvaaHl"
+    checked={true}
+    className="hiUcLz"
     disabled={false}
     htmlFor="test-option-3">
     <input
@@ -57,8 +57,8 @@ exports[`RadioGroup component renders as expected 1`] = `
       type="radio"
       value={undefined} />
     <span
-      className="radio-fill fDIfVH"
-      fill="#fff" />
+      className="radio-fill fCBRvK"
+      fill="#5a0c6f" />
     <span
       className="cxSMDT">
       Option 2
@@ -75,8 +75,8 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     Test legend
   </legend>
   <label
-    checked={false}
-    className="cvaaHl"
+    checked={true}
+    className="hiUcLz"
     disabled={false}
     htmlFor="test-option-1">
     <input
@@ -88,16 +88,16 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       type="radio"
       value={undefined} />
     <span
-      className="radio-fill fDIfVH"
-      fill="#fff" />
+      className="radio-fill fCBRvK"
+      fill="#5a0c6f" />
     <span
       className="cxSMDT">
       Option 0
     </span>
   </label>
   <label
-    checked={false}
-    className="cvaaHl"
+    checked={true}
+    className="hiUcLz"
     disabled={false}
     htmlFor="test-option-2">
     <input
@@ -109,16 +109,16 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       type="radio"
       value={undefined} />
     <span
-      className="radio-fill fDIfVH"
-      fill="#fff" />
+      className="radio-fill fCBRvK"
+      fill="#5a0c6f" />
     <span
       className="cxSMDT">
       Option 1
     </span>
   </label>
   <label
-    checked={false}
-    className="cvaaHl"
+    checked={true}
+    className="hiUcLz"
     disabled={false}
     htmlFor="test-option-3">
     <input
@@ -130,8 +130,8 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       type="radio"
       value={undefined} />
     <span
-      className="radio-fill fDIfVH"
-      fill="#fff" />
+      className="radio-fill fCBRvK"
+      fill="#5a0c6f" />
     <span
       className="cxSMDT">
       Option 2

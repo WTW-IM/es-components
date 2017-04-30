@@ -3,13 +3,13 @@ Group radio buttons together using a ``RadioGroup`` component.
 ```
 const options = [{
   optionText: 'Red',
-  value: 'red'
+  optionValue: 'red'
 }, {
   optionText: 'Green',
-  value: 'green'
+  optionValue: 'green'
 }, {
   optionText: 'Blue',
-  value: 'blue'
+  optionValue: 'blue'
 }];
 
 <RadioGroup name="colors" radioOptions={options} checkedValue="green" />
@@ -20,13 +20,13 @@ Providing a ``legendText`` option will render a legend with the grouped radio bu
 ```
 const options = [{
   optionText: 'Hiking',
-  value: 'hiking'
+  optionValue: 'hiking'
 }, {
   optionText: 'Biking',
-  value: 'biking'
+  optionValue: 'biking'
 }, {
   optionText: 'kayaking',
-  value: 'kayaking'
+  optionValue: 'kayaking'
 }];
 
 <RadioGroup
@@ -41,13 +41,13 @@ Setting the ``inline`` option to false will stack the radio buttons
 ```
 const options = [{
   optionText: 'Meat',
-  value: 'meat'
+  optionValue: 'meat'
 }, {
   optionText: 'Seafood',
-  value: 'seafood'
+  optionValue: 'seafood'
 }, {
   optionText: 'Vegetarian',
-  value: 'vegetarian'
+  optionValue: 'vegetarian'
 }];
 
 <RadioGroup
@@ -62,14 +62,13 @@ Each radio is displayed as an error when the ``hasError`` prop is true. An error
 ```
 const options = [{
   optionText: 'First',
-  value: '1'
+  optionValue: '1'
 }, {
   optionText: 'Second',
-  value: '2'
+  optionValue: '2'
 }, {
   optionText: 'Third',
-
-value: '3'
+  optionValue: '3'
 }];
 
 <RadioGroup
@@ -82,13 +81,13 @@ value: '3'
 ```
 const options = [{
   optionText: 'Planes',
-  value: 'plane'
+  optionValue: 'plane'
 }, {
   optionText: 'Trains',
-  value: 'train'
+  optionValue: 'train'
 }, {
   optionText: 'Automobiles',
-  value: 'automobile'
+  optionValue: 'automobile'
 }];
 
 <RadioGroup
@@ -104,13 +103,13 @@ Each radio is disabled when the ``disableAllOptions`` prop is true. A disabled r
 ```
 const options = [{
   optionText: 'Apple',
-  value: 'apple'
+  optionValue: 'apple'
 }, {
   optionText: 'Banana',
-  value: 'banana'
+  optionValue: 'banana'
 }, {
   optionText: 'Pear',
-  value: 'pear'
+  optionValue: 'pear'
 }];
 
 <RadioGroup
@@ -123,10 +122,10 @@ const options = [{
 ```
 const options = [{
   optionText: 'Books',
-  value: 'books'
+  optionValue: 'books'
 }, {
   optionText: 'Television',
-  value: 'tv'
+  optionValue: 'tv'
 }];
 
 <RadioGroup
@@ -141,13 +140,13 @@ Individual options can also be disabled.
 ```
 const options = [{
   optionText: 'Hamburger',
-  value: 'burger'
+  optionValue: 'burger'
 }, {
   optionText: 'Cheeseburger',
-  value: 'cheeseburger'
+  optionValue: 'cheeseburger'
 }, {
   optionText: 'Hotdog',
-  value: 'hotdog',
+  optionValue: 'hotdog',
   disabled: true
 }];
 

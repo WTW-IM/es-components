@@ -119,6 +119,7 @@ Provide an ``appendText`` or ``prependText`` prop for appending and prepending i
 ### Additional props
 
 Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided.
+The react ``autoFocus`` property is also accepted.
 
 #### Disabled and Readonly
 

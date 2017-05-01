@@ -11,7 +11,7 @@ import RadioButton from './RadioButton';
 
 describe('RadioButton component', () => {
   it('renders as expected', () => {
-    const tree = renderer.create(<RadioButton id="test" labelText="test" name="rad" />);
+    const tree = renderer.create(<RadioButton id="test" optionText="test" name="rad" />);
 
     expect(tree).toMatchSnapshot();
   });

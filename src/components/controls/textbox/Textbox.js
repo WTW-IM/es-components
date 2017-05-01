@@ -84,7 +84,8 @@ class Textbox extends React.Component {
   static defaultProps = {
     inline: false,
     handleOnChange: noop,
-    handleFocusLost: noop
+    handleFocusLost: noop,
+    value: ''
   }
 
   constructor(props) {

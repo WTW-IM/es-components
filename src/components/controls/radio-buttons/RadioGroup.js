@@ -8,7 +8,7 @@ import RadioButton from './RadioButton';
 
 const radioOptionShape = {
   optionText: PropTypes.string.isRequired,
-  value: PropTypes.any.isRequired,
+  optionValue: PropTypes.any.isRequired,
   /** Render this option as disabled */
   disabled: PropTypes.bool
 };

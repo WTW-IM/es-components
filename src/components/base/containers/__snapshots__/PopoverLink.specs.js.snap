@@ -1,4 +1,4 @@
-exports[`popoverLink component renders popoverLink children 1`] = `
+exports[`popoverLink component renders as expected 1`] = `
 <span>
   <span>
     <button

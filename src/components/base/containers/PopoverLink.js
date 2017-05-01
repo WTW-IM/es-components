@@ -75,11 +75,19 @@ class PopoverLink extends React.Component {
     this.state = { isOpen: false };
   }
 
-  showPopover = () => {
-    this.setState({ isOpen: true });
+  togglePopover = () => {
+    if (this.state.isOpen) {
+      this.hidePopover();
+    } else {
+      this.setState({ isOpen: true });
+    }
   }
 
   hidePopover = () => {
+    /*
+      The focus trap calls this twice for some reason, even if the onHide call
+      is removed from the Overlay. Checking so onPopoverHidden isn't called twice.
+    */
     if (this.state.isOpen) {
       this.setState({ isOpen: false });
       this.props.onPopoverHidden();
@@ -106,7 +114,7 @@ class PopoverLink extends React.Component {
         <span ref={(span) => { this.popoverTarget = span; }}>
           <Button data-trigger="focus"
             styleType="link"
-            handleOnClick={this.showPopover}
+            handleOnClick={this.togglePopover}
           >
             {children}
           </Button>

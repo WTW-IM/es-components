@@ -16,6 +16,8 @@ exports[`RadioButton component renders as expected 1`] = `
     className="radio-fill fDIfVH"
     fill="#fff" />
   <span
-    className="cxSMDT" />
+    className="cxSMDT">
+    test
+  </span>
 </label>
 `;

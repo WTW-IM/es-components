@@ -13,7 +13,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={undefined} />
+      value={0} />
     <span
       className="radio-fill fDIfVH"
       fill="#fff" />
@@ -34,7 +34,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={undefined} />
+      value={1} />
     <span
       className="radio-fill fDIfVH"
       fill="#fff" />
@@ -55,7 +55,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={undefined} />
+      value={2} />
     <span
       className="radio-fill fDIfVH"
       fill="#fff" />
@@ -86,7 +86,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={undefined} />
+      value={0} />
     <span
       className="radio-fill fDIfVH"
       fill="#fff" />
@@ -107,7 +107,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={undefined} />
+      value={1} />
     <span
       className="radio-fill fDIfVH"
       fill="#fff" />
@@ -128,7 +128,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={undefined} />
+      value={2} />
     <span
       className="radio-fill fDIfVH"
       fill="#fff" />

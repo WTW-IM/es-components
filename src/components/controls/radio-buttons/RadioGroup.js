@@ -8,7 +8,7 @@ import RadioButton from './RadioButton';
 
 const radioOptionShape = {
   optionText: PropTypes.string.isRequired,
-  value: PropTypes.any.isRequired,
+  optionValue: PropTypes.any.isRequired,
   /** Render this option as disabled */
   disabled: PropTypes.bool
 };
@@ -74,7 +74,7 @@ class RadioGroup extends React.Component {
       <Fieldset legendText={legendText}>
         {radioOptions.map((config, index) => {
           const radioId = `${name}-option-${index + 1}`;
-          const checked = config.value === checkedValue;
+          const checked = config.optionValue === checkedValue;
           const disabled = disableAllOptions || config.disabled;
           const radioProps = {
             name,

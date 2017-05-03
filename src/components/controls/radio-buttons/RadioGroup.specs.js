@@ -11,7 +11,7 @@ import RadioGroup from './RadioGroup';
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
     optionText: `Option ${idx}`,
-    value: idx,
+    optionValue: idx,
     disabled: idx === optionIndexToDisable
   }));
 }

@@ -1,0 +1,12 @@
+exports[`popoverLink component renders as expected 1`] = `
+<span>
+  <span>
+    <button
+      className="kKThPK"
+      data-trigger="focus"
+      onClick={[Function]}>
+      This is the popover link text.
+    </button>
+  </span>
+</span>
+`;

@@ -1,17 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
-import Transition from 'react-overlays/lib/Transition';
 import styled, { injectGlobal } from 'styled-components';
 import { colors } from '../../theme';
+import Fade from '../../util/Fade';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
-  .transition-out {
+  .tooltip-transition-out {
     opacity: 0;
     transition: opacity 200ms linear;
   }
 
-  .transition-in {
+  .tooltip-transition-in {
     opacity: .9;
   }
 `;
@@ -91,26 +92,6 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
-const Fade = (props) => (
-  <Transition
-    className="transition-out"
-    enteredClassName="transition-in"
-    enteringClassName="transition-in"
-    in={props.in}
-    mountOnEnter
-    unmountOnExit
-    timeout={200}
-    transitionAppear
-  >
-    {props.children}
-  </Transition>
-);
-
-Fade.propTypes = {
-  children: PropTypes.any.isRequired,
-  in: PropTypes.bool
-};
-
 const Popup = (props) => {
   const { className, children, position, style } = props;
   let TooltipStyled;
@@ -136,7 +117,7 @@ const Popup = (props) => {
   }
 
   return (
-    <TooltipStyled className={className} style={{ ...style }}>
+    <TooltipStyled role="tooltip" className={className} style={style}>
       <TooltipArrow />
       <TooltipInner>
         {children}
@@ -152,38 +133,37 @@ Popup.propTypes = {
   style: PropTypes.object
 };
 
-class Tooltip extends Component {
+const FadeTransition = (props) => (
+  <Fade transitionClassOut="tooltip-transition-out" transitionClassIn="tooltip-transition-in" {...props} />
+);
+
+class Tooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = { show: false };
   }
 
-  show() {
-    return this.setState({ show: true });
-  }
+  show = () => this.setState({ show: true });
 
-  hide() {
-    return this.setState({ show: false });
-  }
+  hide = () => this.setState({ show: false });
 
   render() {
     return (
       <span>
         <span
           ref={(span) => { this.toolTipTarget = span; }}
-          onMouseEnter={() => this.show()}
-          onMouseLeave={() => this.hide()}
+          onMouseEnter={this.show}
+          onMouseLeave={this.hide}
         >
           {this.props.children}
         </span>
 
         <Overlay
           show={this.state.show}
-          onHide={() => this.setState({ show: false })}
           placement={this.props.position}
           container={document.body}
           target={props => this.toolTipTarget}
-          transition={Fade}
+          transition={FadeTransition}
         >
           <Popup position={this.props.position}>
             {this.props.content}

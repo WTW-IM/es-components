@@ -5,6 +5,7 @@ export Drawer from './components/base/containers/Drawer';
 export Fieldset from './components/base/containers/Fieldset';
 export FormGroup from './components/base/containers/FormGroup';
 export Tooltip from './components/base/containers/Tooltip';
+export PopoverLink from './components/base/containers/PopoverLink';
 
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';

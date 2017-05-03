@@ -2,7 +2,7 @@ exports[`drawer component accordion renders as expected 1`] = `
 <div
   className="dtLLet">
   <div
-    className="first byHzie">
+    className="first jMiPui">
     <div
       aria-expanded={true}
       className="elnnFO"
@@ -17,7 +17,6 @@ exports[`drawer component accordion renders as expected 1`] = `
       collapse 1
     </div>
     <div
-      className="lkOJFZ"
       style={
         Object {
           "display": null,
@@ -27,7 +26,6 @@ exports[`drawer component accordion renders as expected 1`] = `
         }
       }>
       <div
-        className={undefined}
         style={
           Object {
             "overflow": "hidden",
@@ -38,7 +36,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second byHzie">
+    className="second jMiPui">
     <div
       aria-expanded={false}
       className="elnnFO"
@@ -53,18 +51,17 @@ exports[`drawer component accordion renders as expected 1`] = `
       collapse 2
     </div>
     <div
-      className="lkOJFZ"
       style={
         Object {
           "display": "none",
-          "height": "0px",
+          "height": "0",
           "overflow": "hidden",
           "transition": "height .35s ease",
         }
       } />
   </div>
   <div
-    className="third byHzie">
+    className="third jMiPui">
     <div
       aria-expanded={false}
       className="elnnFO"
@@ -79,11 +76,10 @@ exports[`drawer component accordion renders as expected 1`] = `
       collapse 3
     </div>
     <div
-      className="lkOJFZ"
       style={
         Object {
           "display": "none",
-          "height": "0px",
+          "height": "0",
           "overflow": "hidden",
           "transition": "height .35s ease",
         }
@@ -96,7 +92,7 @@ exports[`drawer component drawer renders as expected 1`] = `
 <div
   className="important dtLLet">
   <div
-    className="first byHzie">
+    className="first jMiPui">
     <div
       aria-expanded={false}
       className="elnnFO"
@@ -111,18 +107,17 @@ exports[`drawer component drawer renders as expected 1`] = `
       collapse 1
     </div>
     <div
-      className="lkOJFZ"
       style={
         Object {
           "display": "none",
-          "height": "0px",
+          "height": "0",
           "overflow": "hidden",
           "transition": "height .35s ease",
         }
       } />
   </div>
   <div
-    className="second byHzie">
+    className="second kTCRfe">
     <div
       aria-expanded={false}
       className="elnnFO"
@@ -137,18 +132,17 @@ exports[`drawer component drawer renders as expected 1`] = `
       collapse 2
     </div>
     <div
-      className="dIyrRA"
       style={
         Object {
           "display": "none",
-          "height": "0px",
+          "height": "0",
           "overflow": "hidden",
           "transition": "height .35s ease",
         }
       } />
   </div>
   <div
-    className="third byHzie">
+    className="third jMiPui">
     <div
       aria-expanded={false}
       className="elnnFO"
@@ -163,11 +157,10 @@ exports[`drawer component drawer renders as expected 1`] = `
       collapse 3
     </div>
     <div
-      className="lkOJFZ"
       style={
         Object {
           "display": "none",
-          "height": "0px",
+          "height": "0",
           "overflow": "hidden",
           "transition": "height .35s ease",
         }

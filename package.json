@@ -59,7 +59,7 @@
     "focus-trap-react": "^3.0.3",
     "lodash": "^4.17.4",
     "react-overlays": "^0.7.0",
-    "react-smooth-collapse-customizable": "^1.1.1",
+    "react-smooth-collapse": "^1.2.0",
     "slug": "^0.9.1",
     "styled-components": "^1.4.6",
     "tinycolor2": "^1.4.1"

@@ -14,7 +14,7 @@ function toArray(activeKeys) {
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];
-  const errMsg = `${componentName} ${propName} contains an element that is not a DrawerPanel.`;
+  const errMsg = `${componentName} ${propName} contains an element that is not a Drawer.Panel.`;
 
   if (Array.isArray(value) && value.some(({ type }) => type !== DrawerPanel)) {
     return new Error(errMsg);
@@ -112,7 +112,7 @@ class Drawer extends Component {
 }
 
 Drawer.propTypes = {
-  /** Should only contain one or more DrawerPanel elements */
+  /** Should only contain one or more Drawer.Panel elements */
   children: drawerPanelPropType,
   /** Add additional CSS classes to the root drawer element */
   className: PropTypes.oneOfType([

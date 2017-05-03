@@ -77,7 +77,7 @@ class Drawer extends Component {
     return Children.map(this.props.children, (child, index) => {
       // If there is no key provided, use the panel order as default key
       const key = child.key || String(index);
-      const header = child.props.header;
+      const title = child.props.title;
       const noPadding = child.props.noPadding || false;
 
       let isActive = false;
@@ -89,7 +89,7 @@ class Drawer extends Component {
 
       const props = {
         key,
-        header,
+        title,
         noPadding,
         isActive,
         children: child.props.children,
@@ -137,5 +137,7 @@ Drawer.defaultProps = {
   closedIconName: 'plus',
   openedIconName: 'minus'
 };
+
+Drawer.Panel = DrawerPanel;
 
 export default Drawer;

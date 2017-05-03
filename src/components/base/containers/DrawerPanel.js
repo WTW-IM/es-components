@@ -9,7 +9,7 @@ const PanelWrapper = styled.div`
   border-bottom: 1px solid ${colors.grayLight};
 `;
 
-const PanelHeader = styled.div`
+const PanelTitle = styled.div`
   cursor: pointer;
   padding: 10px 15px;
 
@@ -41,7 +41,7 @@ const DrawerPanel = (props) => {
     children,
     className,
     closedIconName,
-    header,
+    title,
     isActive,
     noPadding,
     onItemClick,
@@ -50,10 +50,10 @@ const DrawerPanel = (props) => {
 
   return (
     <PanelWrapper className={className}>
-      <PanelHeader onClick={() => onItemClick()} role="tab" aria-expanded={isActive}>
+      <PanelTitle onClick={() => onItemClick()} role="tab" aria-expanded={isActive}>
         <PanelIcon name={isActive ? openedIconName : closedIconName} />
-        {header}
-      </PanelHeader>
+        {title}
+      </PanelTitle>
       <PanelBody expanded={isActive} heightTransition=".35s ease" noPadding={noPadding}>
         {children}
       </PanelBody>
@@ -69,8 +69,8 @@ DrawerPanel.propTypes = {
     PropTypes.object
   ]),
   closedIconName: PropTypes.string,
-  /** Header text displayed next to the open/close icon */
-  header: PropTypes.oneOfType([
+  /** Title text displayed next to the open/close icon */
+  title: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.node

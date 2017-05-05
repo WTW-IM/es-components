@@ -14,7 +14,7 @@ function toArray(activeKeys) {
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];
-  const errMsg = `${componentName} ${propName} contains an element that is not a DrawerPanel.`;
+  const errMsg = `${componentName} ${propName} contains an element that is not a Drawer.Panel.`;
 
   if (Array.isArray(value) && value.some(({ type }) => type !== DrawerPanel)) {
     return new Error(errMsg);
@@ -77,7 +77,7 @@ class Drawer extends Component {
     return Children.map(this.props.children, (child, index) => {
       // If there is no key provided, use the panel order as default key
       const key = child.key || String(index);
-      const header = child.props.header;
+      const title = child.props.title;
       const noPadding = child.props.noPadding || false;
 
       let isActive = false;
@@ -89,7 +89,7 @@ class Drawer extends Component {
 
       const props = {
         key,
-        header,
+        title,
         noPadding,
         isActive,
         children: child.props.children,
@@ -112,7 +112,7 @@ class Drawer extends Component {
 }
 
 Drawer.propTypes = {
-  /** Should only contain one or more DrawerPanel elements */
+  /** Should only contain one or more Drawer.Panel elements */
   children: drawerPanelPropType,
   /** Add additional CSS classes to the root drawer element */
   className: PropTypes.oneOfType([
@@ -137,5 +137,7 @@ Drawer.defaultProps = {
   closedIconName: 'plus',
   openedIconName: 'minus'
 };
+
+Drawer.Panel = DrawerPanel;
 
 export default Drawer;

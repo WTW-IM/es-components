@@ -5,7 +5,7 @@ import { colors, sizes } from '../theme';
 export const LabelText = styled.span`
   align-self: ${props => (props.inline ? 'center' : 'initial')};
   color: ${props => props.foregroundColor || 'inherit'};
-  flex: '0 auto';
+  flex: 0 auto;
   flex-basis: 90px;
   display: block;
   margin-bottom: ${props => (props.inline ? 'initial' : '5px')};

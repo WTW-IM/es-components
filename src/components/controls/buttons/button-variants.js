@@ -38,7 +38,9 @@ const defaultButtonVariants = {
   },
   primary: {
     backgroundColor: getBackgroundColor(colors.black, 30),
-    hoverBackgroundColor: getHoverBackgroundColor(getBackgroundColor(colors.black, 30)),
+    hoverBackgroundColor: getHoverBackgroundColor(
+      getBackgroundColor(colors.black, 30)
+    ),
     borderColor: getBorderColor(getBackgroundColor(colors.black, 30), 20),
     boxShadowColor: getBoxShadowColor(getBackgroundColor(colors.black, 30)),
     foregroundColor: colors.white
@@ -50,11 +52,12 @@ const defaultButtonVariants = {
   danger: getSimpleButtonVariation(colors.danger)
 };
 
-
-function getAlternateColor(color,
-                           foregroundColor = color,
-                           hoverForegroundColor = colors.white,
-                           lightenAmount = 5) {
+function getAlternateColor(
+  color,
+  foregroundColor = color,
+  hoverForegroundColor = colors.white,
+  lightenAmount = 5
+) {
   const alternateColor = tinycolor(color).lighten(lightenAmount);
   return {
     borderColor: alternateColor,
@@ -65,16 +68,22 @@ function getAlternateColor(color,
 }
 
 const alternateButtonVariants = {
-  default: getAlternateColor(colors.grayLight, colors.grayDarkest, colors.grayDarkest, 0),
+  default: getAlternateColor(
+    colors.grayLight,
+    colors.grayDarkest,
+    colors.grayDarkest,
+    0
+  ),
   primary: getAlternateColor(colors.black, 30),
   accent: getAlternateColor(colors.accent),
   success: getAlternateColor(colors.success),
   info: getAlternateColor(colors.information),
-  warning: getAlternateColor(colors.warning, colors.grayDarkest, colors.grayDarkest),
+  warning: getAlternateColor(
+    colors.warning,
+    colors.grayDarkest,
+    colors.grayDarkest
+  ),
   danger: getAlternateColor(colors.danger)
 };
 
-export {
-  defaultButtonVariants,
-  alternateButtonVariants
-};
+export { defaultButtonVariants, alternateButtonVariants };

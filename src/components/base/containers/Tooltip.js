@@ -92,7 +92,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
-const Popup = (props) => {
+const Popup = props => {
   const { className, children, position, style } = props;
   let TooltipStyled;
   let TooltipArrow;
@@ -133,8 +133,12 @@ Popup.propTypes = {
   style: PropTypes.object
 };
 
-const FadeTransition = (props) => (
-  <Fade transitionClassOut="tooltip-transition-out" transitionClassIn="tooltip-transition-in" {...props} />
+const FadeTransition = props => (
+  <Fade
+    transitionClassOut="tooltip-transition-out"
+    transitionClassIn="tooltip-transition-in"
+    {...props}
+  />
 );
 
 class Tooltip extends React.Component {
@@ -151,7 +155,9 @@ class Tooltip extends React.Component {
     return (
       <span>
         <span
-          ref={(span) => { this.toolTipTarget = span; }}
+          ref={span => {
+            this.toolTipTarget = span;
+          }}
           onMouseEnter={this.show}
           onMouseLeave={this.hide}
         >

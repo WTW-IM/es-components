@@ -10,23 +10,22 @@ describe('Dropdown component', () => {
   let select;
 
   beforeEach(() => {
-    const options = [{
-      optionText: 'Test 1',
-      optionValue: '1'
-    }, {
-      optionText: 'Test 2',
-      optionValue: '2'
-    }, {
-      optionText: 'Test 3',
-      optionValue: '3'
-    }];
+    const options = [
+      {
+        optionText: 'Test 1',
+        optionValue: '1'
+      },
+      {
+        optionText: 'Test 2',
+        optionValue: '2'
+      },
+      {
+        optionText: 'Test 3',
+        optionValue: '3'
+      }
+    ];
 
-    instance = mount(
-      <Dropdown
-        labelText="Test"
-        options={options}
-      />
-    );
+    instance = mount(<Dropdown labelText="Test" options={options} />);
 
     select = instance.find('select');
   });

@@ -57,7 +57,7 @@ const BottomPlacementArrow = styled(ArrowBase)`
   top: -11px;
 
   &:after {
-    border-bottom-color: ${(props) => (props.displayColor ? colors.accent : colors.white)};
+    border-bottom-color: ${props => (props.displayColor ? colors.accent : colors.white)};
     border-top-width: 0;
     margin-left: -10px;
     top: 1px;
@@ -138,7 +138,7 @@ const PopoverBodyContent = styled.div`
 `;
 
 // className, positionLeft and positionTop props get passed to by the Overlay component
-const Popover = (props) => {
+const Popover = props => {
   const {
     title,
     arrowPlacement,

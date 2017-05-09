@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { regular, light } from './icon-definitions';
 
-
 const StyledIcon = styled.i`
   display: inline-block;
   font-family: ${props => props.fontFamily};
@@ -24,13 +23,7 @@ const StyledIcon = styled.i`
   }
 `;
 
-function Icon({
-  className,
-  name,
-  size,
-  lightweight = false,
-  ...other
-}) {
+function Icon({ className, name, size, lightweight = false, ...other }) {
   const styledIconProps = {};
 
   if (lightweight) {

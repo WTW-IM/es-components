@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 
 import { buttonSizeStyles } from './button-sizes';
-import { defaultButtonVariants, alternateButtonVariants } from './button-variants';
+import {
+  defaultButtonVariants,
+  alternateButtonVariants
+} from './button-variants';
 
 import { colors } from '../../theme';
 
@@ -124,7 +127,7 @@ function Button({
   size = 'default',
   block = false,
   alternative = false,
-    ...buttonProps
+  ...buttonProps
 }) {
   const buttonSize = buttonSizeStyles[size];
   const isLinkButton = styleType === 'link';
@@ -173,12 +176,7 @@ const buttonStyleTypes = [
   'link'
 ];
 
-const buttonSizes = [
-  'lg',
-  'default',
-  'sm',
-  'xs'
-];
+const buttonSizes = ['lg', 'default', 'sm', 'xs'];
 
 Button.propTypes = {
   /** Function to execute when button is clicked */

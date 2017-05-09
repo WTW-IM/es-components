@@ -157,7 +157,4 @@ const light = {
   ['oe-icon-lt-arrow-up']: '610'
 };
 
-export {
-  regular,
-  light
-};
+export { regular, light };

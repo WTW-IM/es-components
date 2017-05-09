@@ -95,7 +95,6 @@ describe('Textbox component', () => {
   });
 });
 
-
 describe('getAddonType', () => {
   it('returns "prepend" when hasPrependContent is true and hasAppendContent is false', () => {
     const hasPrependContent = true;

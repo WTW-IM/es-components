@@ -5,7 +5,6 @@ import { noop } from 'lodash';
 import Fieldset from '../../base/containers/Fieldset';
 import RadioButton from './RadioButton';
 
-
 const radioOptionShape = {
   optionText: PropTypes.string.isRequired,
   optionValue: PropTypes.any.isRequired,
@@ -20,7 +19,8 @@ class RadioGroup extends React.Component {
     /** The text to render in the legend */
     legendText: PropTypes.string,
     /** Options for the radio group to display */
-    radioOptions: PropTypes.arrayOf(PropTypes.shape(radioOptionShape)).isRequired,
+    radioOptions: PropTypes.arrayOf(PropTypes.shape(radioOptionShape))
+      .isRequired,
     /** Selected option for the radio group */
     checkedValue: PropTypes.any,
     /** Display all radio buttons in an errored state */
@@ -31,14 +31,14 @@ class RadioGroup extends React.Component {
     inline: PropTypes.bool,
     /** Function to execute when the value of the radio group changes */
     onCheckedValueChanged: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     hasError: false,
     disableAllOptions: false,
     inline: true,
     onCheckedValueChanged: noop
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -54,9 +54,12 @@ class RadioGroup extends React.Component {
 
   handleOnChange(event) {
     const { value: checkedValue } = event.currentTarget;
-    this.setState({
-      checkedValue
-    }, () => this.props.onCheckedValueChanged(checkedValue));
+    this.setState(
+      {
+        checkedValue
+      },
+      () => this.props.onCheckedValueChanged(checkedValue)
+    );
   }
 
   render() {

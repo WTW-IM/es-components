@@ -9,9 +9,7 @@ let instance;
 const onClick = jest.fn();
 
 beforeEach(() => {
-  instance = shallow(
-    <Button handleOnClick={onClick}>test</Button>
-  );
+  instance = shallow(<Button handleOnClick={onClick}>test</Button>);
 });
 
 it('renders child text inside of button', () => {
@@ -21,7 +19,9 @@ it('renders child text inside of button', () => {
 it('renders child nodes inside of button', () => {
   const child = <span>Hello</span>;
 
-  const instanceWithChild = shallow(<Button handleOnClick={jest.fn()}>{child}</Button>);
+  const instanceWithChild = shallow(
+    <Button handleOnClick={jest.fn()}>{child}</Button>
+  );
 
   expect(instanceWithChild.children().node).toBe(child);
 });

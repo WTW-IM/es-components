@@ -11,21 +11,42 @@ describe('drawer component', () => {
     let drawerInstance;
 
     beforeEach(() => {
-      drawerInstance = mount(<Drawer className="important">
-        <Drawer.Panel title="collapse 1" key="1" className="first">first</Drawer.Panel>
-        <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>second</Drawer.Panel>
-        <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
-      </Drawer>);
+      drawerInstance = mount(
+        <Drawer className="important">
+          <Drawer.Panel title="collapse 1" key="1" className="first">
+            first
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
+            second
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 3" key="3" className="third">
+            third
+          </Drawer.Panel>
+        </Drawer>
+      );
     });
 
     it('renders as expected', () => {
-      const tree = renderer.create(
-        <Drawer className="important">
-          <Drawer.Panel title="collapse 1" key="1" className="first">first</Drawer.Panel>
-          <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>second</Drawer.Panel>
-          <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
-        </Drawer>
-      ).toJSON();
+      const tree = renderer
+        .create(
+          <Drawer className="important">
+            <Drawer.Panel title="collapse 1" key="1" className="first">
+              first
+            </Drawer.Panel>
+            <Drawer.Panel
+              title="collapse 2"
+              key="2"
+              className="second"
+              noPadding
+            >
+              second
+            </Drawer.Panel>
+            <Drawer.Panel title="collapse 3" key="3" className="third">
+              third
+            </Drawer.Panel>
+          </Drawer>
+        )
+        .toJSON();
 
       expect(tree).toMatchSnapshot();
     });
@@ -62,11 +83,13 @@ describe('drawer component', () => {
     });
 
     it('should set multiple default panels open at start', () => {
-      const drawerKeysInstance = mount(<Drawer defaultActiveKeys={['2', '3']}>
-        <Drawer.Panel title="collapse 1" key="1">first</Drawer.Panel>
-        <Drawer.Panel title="collapse 2" key="2">second</Drawer.Panel>
-        <Drawer.Panel title="collapse 3" key="3">third</Drawer.Panel>
-      </Drawer>);
+      const drawerKeysInstance = mount(
+        <Drawer defaultActiveKeys={['2', '3']}>
+          <Drawer.Panel title="collapse 1" key="1">first</Drawer.Panel>
+          <Drawer.Panel title="collapse 2" key="2">second</Drawer.Panel>
+          <Drawer.Panel title="collapse 3" key="3">third</Drawer.Panel>
+        </Drawer>
+      );
 
       const panels = drawerKeysInstance.find('[aria-expanded]');
       expect(panels.at(0).prop('aria-expanded')).toBe(false);
@@ -79,21 +102,37 @@ describe('drawer component', () => {
     let accordionInstance;
 
     beforeEach(() => {
-      accordionInstance = mount(<Drawer isAccordion defaultActiveKeys="1">
-        <Drawer.Panel title="collapse 1" key="1" className="first">first</Drawer.Panel>
-        <Drawer.Panel title="collapse 2" key="2" className="second">second</Drawer.Panel>
-        <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
-      </Drawer>);
+      accordionInstance = mount(
+        <Drawer isAccordion defaultActiveKeys="1">
+          <Drawer.Panel title="collapse 1" key="1" className="first">
+            first
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 2" key="2" className="second">
+            second
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 3" key="3" className="third">
+            third
+          </Drawer.Panel>
+        </Drawer>
+      );
     });
 
     it('renders as expected', () => {
-      const tree = renderer.create(
-        <Drawer isAccordion defaultActiveKeys="1">
-          <Drawer.Panel title="collapse 1" key="1" className="first">first</Drawer.Panel>
-          <Drawer.Panel title="collapse 2" key="2" className="second">second</Drawer.Panel>
-          <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
-        </Drawer>
-      ).toJSON();
+      const tree = renderer
+        .create(
+          <Drawer isAccordion defaultActiveKeys="1">
+            <Drawer.Panel title="collapse 1" key="1" className="first">
+              first
+            </Drawer.Panel>
+            <Drawer.Panel title="collapse 2" key="2" className="second">
+              second
+            </Drawer.Panel>
+            <Drawer.Panel title="collapse 3" key="3" className="third">
+              third
+            </Drawer.Panel>
+          </Drawer>
+        )
+        .toJSON();
 
       expect(tree).toMatchSnapshot();
     });

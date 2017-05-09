@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Transition from 'react-overlays/lib/Transition';
 
-const Fade = (props) => (
+const Fade = props => (
   <Transition
     className={props.transitionClassOut}
     enteredClassName={props.transitionClassIn}

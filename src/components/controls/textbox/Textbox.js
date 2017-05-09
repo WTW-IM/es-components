@@ -79,14 +79,14 @@ class Textbox extends React.Component {
     appendContent: PropTypes.node,
     /** Default value of the textbox */
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  }
+  };
 
   static defaultProps = {
     inline: false,
     handleOnChange: noop,
     handleFocusLost: noop,
     value: ''
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -145,10 +145,14 @@ class Textbox extends React.Component {
 
     const hasHelpContent = additionalHelpContent !== undefined;
 
-    const ariaId = hasHelpContent ? `${slug(labelText, { lower: true })}-help-content` : null;
-    const additionalHelp = hasHelpContent ?
-          <AdditionalHelpContent id={ariaId}>{additionalHelpContent}</AdditionalHelpContent> :
-          null;
+    const ariaId = hasHelpContent
+      ? `${slug(labelText, { lower: true })}-help-content`
+      : null;
+    const additionalHelp = hasHelpContent
+      ? <AdditionalHelpContent id={ariaId}>
+          {additionalHelpContent}
+        </AdditionalHelpContent>
+      : null;
 
     const hasPrependedText = prependContent !== undefined;
     const hasAppendedText = appendContent !== undefined;
@@ -156,9 +160,9 @@ class Textbox extends React.Component {
     const addonType = getAddonType(hasPrependedText, hasAppendedText);
     const hasAddon = addonType !== null;
 
-    const icon = inputVariables.icon !== undefined ?
-          <TextIcon name={inputVariables.icon} size={20} /> :
-          null;
+    const icon = inputVariables.icon !== undefined
+      ? <TextIcon name={inputVariables.icon} size={20} />
+      : null;
 
     const inputName = name || labelText.replace(/\s+/g, '');
 
@@ -166,7 +170,12 @@ class Textbox extends React.Component {
       <TextBoxLabel color={inputVariables.foregroundColor} inline={inline}>
         <LabelText inline={inline}>{labelText}</LabelText>
         <InputWrapper>
-          {this.renderAddon('prepend', prependContent, inputVariables, hasPrependedText)}
+          {this.renderAddon(
+            'prepend',
+            prependContent,
+            inputVariables,
+            hasPrependedText
+          )}
           <TextWrapper hasAddon={hasAddon}>
             <StyledText
               addonType={addonType}
@@ -181,7 +190,13 @@ class Textbox extends React.Component {
             />
             {icon}
           </TextWrapper>
-          {this.renderAddon('append', appendContent, inputVariables, hasAppendedText, inline)}
+          {this.renderAddon(
+            'append',
+            appendContent,
+            inputVariables,
+            hasAppendedText,
+            inline
+          )}
         </InputWrapper>
         {additionalHelp}
       </TextBoxLabel>

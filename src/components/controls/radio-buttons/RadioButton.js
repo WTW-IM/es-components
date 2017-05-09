@@ -75,7 +75,11 @@ function RadioButton({
   isInErrorState = false,
   ...radioProps
 }) {
-  const { hover, fill } = getRadioFillVariables(checked, disabled, isInErrorState);
+  const { hover, fill } = getRadioFillVariables(
+    checked,
+    disabled,
+    isInErrorState
+  );
   const radioDisplayFill = checked ? fill : colors.white;
 
   const labelProps = {
@@ -98,7 +102,11 @@ function RadioButton({
         disabled={disabled}
         {...radioProps}
       />
-      <RadioDisplay className="radio-fill" borderColor={fill} fill={radioDisplayFill} />
+      <RadioDisplay
+        className="radio-fill"
+        borderColor={fill}
+        fill={radioDisplayFill}
+      />
       <RadioText>{optionText}</RadioText>
     </RadioLabel>
   );

@@ -1,6 +1,10 @@
 import tinycolor from 'tinycolor2';
 
-export function getBackgroundColor(color, lightenAmount, desaturationAmount = 45) {
+export function getBackgroundColor(
+  color,
+  lightenAmount,
+  desaturationAmount = 45
+) {
   return tinycolor(color)
     .desaturate(desaturationAmount)
     .lighten(lightenAmount)
@@ -45,7 +49,6 @@ export const inputColors = {
   inputWarningBorder: '#2a2a2a',
   inputWarningBoxShadow: '#777'
 };
-
 
 export const sizes = {
   baseFontSize: 18,

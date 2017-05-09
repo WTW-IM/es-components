@@ -64,8 +64,12 @@ FocusTrap.prototype.componentDidMount = function componentDidMount() {
   }
 };
 
-const FadeTransition = (props) => (
-  <Fade transitionClassOut="popover-transition-out" transitionClassIn="popover-transition-in" {...props} />
+const FadeTransition = props => (
+  <Fade
+    transitionClassOut="popover-transition-out"
+    transitionClassIn="popover-transition-in"
+    {...props}
+  />
 );
 
 class PopoverLink extends React.Component {
@@ -81,7 +85,7 @@ class PopoverLink extends React.Component {
     } else {
       this.setState({ isOpen: true });
     }
-  }
+  };
 
   hidePopover = () => {
     /*
@@ -92,7 +96,7 @@ class PopoverLink extends React.Component {
       this.setState({ isOpen: false });
       this.props.onPopoverHidden();
     }
-  }
+  };
 
   render() {
     const {
@@ -111,8 +115,13 @@ class PopoverLink extends React.Component {
 
     return (
       <span>
-        <span ref={(span) => { this.popoverTarget = span; }}>
-          <Button data-trigger="focus"
+        <span
+          ref={span => {
+            this.popoverTarget = span;
+          }}
+        >
+          <Button
+            data-trigger="focus"
             styleType="link"
             handleOnClick={this.togglePopover}
           >
@@ -128,8 +137,15 @@ class PopoverLink extends React.Component {
           onHide={this.hidePopover}
           transition={FadeTransition}
         >
-          <Popover title={popoverTitle} arrowPlacement={arrowPlacement} containsFormElement={containsFormElement}>
-            <FocusTrap active={containsFormElement} focusTrapOptions={focusTrapOptions}>
+          <Popover
+            title={popoverTitle}
+            arrowPlacement={arrowPlacement}
+            containsFormElement={containsFormElement}
+          >
+            <FocusTrap
+              active={containsFormElement}
+              focusTrapOptions={focusTrapOptions}
+            >
               {popoverContent}
             </FocusTrap>
           </Popover>

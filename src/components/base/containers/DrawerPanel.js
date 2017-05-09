@@ -14,7 +14,7 @@ const PanelWrapper = styled.div`
     color: ${colors.grayDarkest};
 
     > div {
-      padding: ${(props) => (props.noPadding ? '0' : '10px')};
+      padding: ${props => (props.noPadding ? '0' : '10px')};
     }
   }
 `;
@@ -35,7 +35,7 @@ const PanelIcon = styled(Icon)`
   top: -1px;
 `;
 
-const DrawerPanel = (props) => {
+const DrawerPanel = props => {
   const {
     children,
     className,
@@ -49,7 +49,11 @@ const DrawerPanel = (props) => {
 
   return (
     <PanelWrapper className={className} noPadding={noPadding}>
-      <PanelTitle onClick={() => onItemClick()} role="tab" aria-expanded={isActive}>
+      <PanelTitle
+        onClick={() => onItemClick()}
+        role="tab"
+        aria-expanded={isActive}
+      >
         <PanelIcon name={isActive ? openedIconName : closedIconName} />
         {title}
       </PanelTitle>
@@ -63,10 +67,7 @@ const DrawerPanel = (props) => {
 DrawerPanel.propTypes = {
   children: PropTypes.any.isRequired,
   /** Add additional CSS classes to the drawer item element */
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   closedIconName: PropTypes.string,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.oneOfType([

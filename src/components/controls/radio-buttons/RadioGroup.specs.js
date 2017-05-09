@@ -24,10 +24,8 @@ describe('RadioGroup component', () => {
     defaultOptions = buildOptions(3);
 
     instance = shallow(
-      <RadioGroup
-        name="test"
-        radioOptions={defaultOptions}
-      />);
+      <RadioGroup name="test" radioOptions={defaultOptions} />
+    );
   });
 
   it('renders a RadioButton for each option', () => {
@@ -37,7 +35,9 @@ describe('RadioGroup component', () => {
   it('renders each RadioButton as disabled when disableAllOptions is true', () => {
     instance.setProps({ disableAllOptions: true });
 
-    const allDisabled = instance.find(RadioButton).everyWhere(x => x.prop('disabled'));
+    const allDisabled = instance
+      .find(RadioButton)
+      .everyWhere(x => x.prop('disabled'));
 
     expect(allDisabled).toBe(true);
   });
@@ -56,17 +56,16 @@ describe('RadioGroup component', () => {
   it('renders each radio in an error state when hasError is true', () => {
     instance.setProps({ hasError: true });
 
-    const allErrored = instance.find(RadioButton).everyWhere(radio => radio.prop('isInErrorState'));
+    const allErrored = instance
+      .find(RadioButton)
+      .everyWhere(radio => radio.prop('isInErrorState'));
 
     expect(allErrored).toBe(true);
   });
 
   it('renders as expected', () => {
     const tree = renderer.create(
-      <RadioGroup
-        name="test"
-        radioOptions={defaultOptions}
-      />
+      <RadioGroup name="test" radioOptions={defaultOptions} />
     );
 
     expect(tree).toMatchSnapshot();

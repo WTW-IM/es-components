@@ -19,7 +19,7 @@ import {
   noop
 } from 'lodash';
 
-import { isParseableDate } from '../../util/prop-validators';
+import { isPropValidDate } from '../../util/prop-validators';
 import * as picker from './picker-fns';
 import pickerStateTransitions from './picker-state-transitions';
 import * as dateConstants from './date-constants';
@@ -43,7 +43,7 @@ export default class DatePicker extends React.Component {
     descentAmount: PropTypes.number,
     startingSelectionMode: PropTypes.oneOf(['year', 'month']),
     /** The currently selected date */
-    preselectedDate: isParseableDate
+    preselectedDate: isPropValidDate
   }
 
   static defaultProps = {

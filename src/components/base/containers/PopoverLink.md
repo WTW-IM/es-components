@@ -32,13 +32,13 @@ function PopoverForm() {
 const popoverContent = <PopoverForm />;
 
 <p>
-  You can even put forms inside of a <PopoverLink popoverContent={popoverContent} containsFormElement>popover</PopoverLink>. Using the <em>containsFormElement</em> attribute will lock focus to the popover, keeping tab navigation inside. 
+  You can even put forms inside of a <PopoverLink popoverContent={popoverContent} containsFormElement>popover</PopoverLink>. Using the <em>containsFormElement</em> attribute will lock focus to the popover, keeping tab navigation inside.
 </p>
 ```
 
 ```
 <p>
   Click the question mark for some help text.
-  <PopoverLink popoverContent="Here's some help text"><Icon name="question-sign" /></PopoverLink>
+  <PopoverLink popoverContent="Here's some help text" suppressUnderline><Icon name="question-sign" /></PopoverLink>
 </p>
 ```

@@ -1,72 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Overlay from 'react-overlays/lib/Overlay';
 import { noop } from 'lodash';
+import styled from 'styled-components';
+
 import Button from '../../controls/buttons/Button';
-import Popover from './Popover';
-import FocusTrap from 'focus-trap-react';
-import Fade from '../../util/Fade';
-import { injectGlobal } from 'styled-components';
+import PopoverTrigger from '../../util/PopoverTrigger';
 
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  .popover-transition-out {
-    opacity: 0;
-    transition: opacity 200ms linear;
-  }
-
-  .popover-transition-in {
-    opacity: 1;
-  }
+const PopoverButton = styled(Button)`
+  border-bottom: ${props => (props.suppressUnderline ? 'none' : '1px dotted')};
+  text-decoration: none;
 `;
-/* eslint-enable no-unused-expressions */
-
-function getArrowPlacement(popoverPlacement) {
-  switch (popoverPlacement) {
-    case 'top':
-    case 'bottom':
-      return popoverPlacement;
-    case 'right':
-      return 'left';
-    case 'left':
-      return 'right';
-    default:
-      return popoverPlacement;
-  }
-}
-
-/*
-  monkey-patching the FocusTrap component
-  fixes a timing issue with the popover
-*/
-FocusTrap.prototype.componentDidMount = function componentDidMount() {
-  const specifiedFocusTrapOptions = this.props.focusTrapOptions;
-  const tailoredFocusTrapOptions = {
-    returnFocusOnDeactivate: false
-  };
-  for (const optionName in specifiedFocusTrapOptions) {
-    if (!specifiedFocusTrapOptions.hasOwnProperty(optionName)) continue;
-    if (optionName === 'returnFocusOnDeactivate') continue;
-    tailoredFocusTrapOptions[optionName] =
-      specifiedFocusTrapOptions[optionName];
-  }
-  this.focusTrap = this.props._createFocusTrap(
-    this.node,
-    tailoredFocusTrapOptions
-  );
-  if (this.props.active) {
-    setTimeout(() => {
-      this.focusTrap.activate();
-    }, 0);
-  }
-  if (this.props.paused) {
-    this.focusTrap.pause();
-  }
-};
-
-const FadeTransition = (props) => (
-  <Fade transitionClassOut="popover-transition-out" transitionClassIn="popover-transition-in" {...props} />
-);
 
 class PopoverLink extends React.Component {
   constructor(props) {
@@ -100,41 +43,34 @@ class PopoverLink extends React.Component {
       popoverTitle,
       popoverContent,
       popoverPlacement,
+      suppressUnderline,
       containsFormElement
     } = this.props;
 
     const { isOpen } = this.state;
-    const arrowPlacement = getArrowPlacement(popoverPlacement);
-    const focusTrapOptions = {
-      onDeactivate: this.hidePopover
-    };
 
     return (
-      <span>
-        <span ref={(span) => { this.popoverTarget = span; }}>
-          <Button data-trigger="focus"
+      <PopoverTrigger
+        popoverTitle={popoverTitle}
+        popoverContent={popoverContent}
+        popoverTarget={this.popoverTarget}
+        shouldDisplayPopover={isOpen}
+        onHideOverlay={this.hidePopover}
+        containsFormElement={containsFormElement}
+        popoverPlacement={popoverPlacement}
+      >
+        <span ref={span => { this.popoverTarget = span; }}>
+          <PopoverButton
+            data-trigger="focus"
             styleType="link"
             handleOnClick={this.togglePopover}
+            ref={span => { this.popoverTarget = span; }}
+            suppressUnderline={suppressUnderline}
           >
             {children}
-          </Button>
+          </PopoverButton>
         </span>
-
-        <Overlay
-          show={isOpen}
-          placement={popoverPlacement}
-          target={this.popoverTarget}
-          rootClose={!containsFormElement}
-          onHide={this.hidePopover}
-          transition={FadeTransition}
-        >
-          <Popover title={popoverTitle} arrowPlacement={arrowPlacement} containsFormElement={containsFormElement}>
-            <FocusTrap active={containsFormElement} focusTrapOptions={focusTrapOptions}>
-              {popoverContent}
-            </FocusTrap>
-          </Popover>
-        </Overlay>
-      </span>
+      </PopoverTrigger>
     );
   }
 }
@@ -150,13 +86,16 @@ PopoverLink.propTypes = {
   popoverPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   containsFormElement: PropTypes.bool,
   /** Function to run when the popover is hidden */
-  onPopoverHidden: PropTypes.func
+  onPopoverHidden: PropTypes.func,
+  /** Hide underline from link. Useful for children like Icons */
+  suppressUnderline: PropTypes.bool
 };
 
 PopoverLink.defaultProps = {
   popoverPlacement: 'top',
   containsFormElement: false,
-  onPopoverHidden: noop
+  onPopoverHidden: noop,
+  suppressUnderline: false
 };
 
 export default PopoverLink;

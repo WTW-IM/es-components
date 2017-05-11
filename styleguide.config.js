@@ -27,6 +27,11 @@ module.exports = {
     {
       name: 'Controls',
       components: path.join(baseComponentDir, '/controls/**/*.js')
+    },
+    {
+      name: 'Patterns',
+      content: path.join(baseComponentDir, 'patterns/Patterns.md'),
+      components: path.join(baseComponentDir, 'patterns/**/*.js')
     }
   ],
   getComponentPathLine(componentPath) {

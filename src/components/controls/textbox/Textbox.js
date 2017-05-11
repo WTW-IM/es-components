@@ -95,12 +95,19 @@ class Textbox extends React.Component {
       currentValue: props.initialValue
     };
 
+    this.setTextboxRef = this.setTextboxRef.bind(this);
     this.handleOnTextChanged = this.handleOnTextChanged.bind(this);
     this.handleOnTextFocusLost = this.handleOnTextFocusLost.bind(this);
   }
 
   componentWillReceiveProps({ initialValue }) {
     this.setState(() => ({ currentValue: initialValue }));
+  }
+
+  setTextboxRef(ref, type) {
+    if (type) {
+      this[`${type}Ref`] = ref;
+    }
   }
 
   executeHandler(event, handlerName) {
@@ -121,6 +128,7 @@ class Textbox extends React.Component {
     if (shouldRenderAddon) {
       return (
         <Addon
+          ref={addon => this.setTextboxRef(addon, type)}
           className={type}
           backgroundColor={inputVariables.addonBackgroundColor}
           borderColor={inputVariables.borderColor}
@@ -182,6 +190,7 @@ class Textbox extends React.Component {
           )}
           <TextWrapper includeMargin={hasNoAddon && inline}>
             <StyledText
+              ref={ref => this.setTextboxRef(ref, 'textbox')}
               addonType={addonType}
               type="text"
               name={inputName}
@@ -191,6 +200,7 @@ class Textbox extends React.Component {
               value={this.state.currentValue}
               {...inputVariables}
               {...additionalTextProps}
+              innerRef={this.setTextboxRef}
             />
             {icon}
           </TextWrapper>

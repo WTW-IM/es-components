@@ -3,20 +3,11 @@ import PropTypes from 'prop-types';
 import Icon from '../icons/Icon';
 import { colors } from '../../theme';
 import styled from 'styled-components';
-import Collapse from 'react-smooth-collapse';
+import Collapse from '../../util/Collapse';
+import genId from '../../util/genId';
 
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${colors.grayLight};
-
-  > div:nth-of-type(2) {
-    background-color: ${colors.white};
-    border-bottom: 4px solid ${colors.grayLight};
-    color: ${colors.grayDarkest};
-
-    > div {
-      padding: ${(props) => (props.noPadding ? '0' : '10px')};
-    }
-  }
 `;
 
 const PanelTitle = styled.div`
@@ -35,6 +26,16 @@ const PanelIcon = styled(Icon)`
   top: -1px;
 `;
 
+const PanelBody = styled(Collapse)`
+  background-color: ${colors.white};
+  border-bottom: 4px solid ${colors.grayLight};
+  color: ${colors.grayDarkest};
+
+  > div {
+    padding: ${(props) => (props.noPadding ? '0' : '10px 10px 10px 40px')};
+  }
+`;
+
 const DrawerPanel = (props) => {
   const {
     children,
@@ -47,15 +48,17 @@ const DrawerPanel = (props) => {
     openedIconName
   } = props;
 
+  const ariaId = genId();
+
   return (
     <PanelWrapper className={className} noPadding={noPadding}>
-      <PanelTitle onClick={() => onItemClick()} role="tab" aria-expanded={isActive}>
+      <PanelTitle onClick={() => onItemClick()} role="tab" aria-expanded={isActive} aria-controls={ariaId}>
         <PanelIcon name={isActive ? openedIconName : closedIconName} />
         {title}
       </PanelTitle>
-      <Collapse expanded={isActive} heightTransition=".35s ease">
+      <PanelBody expanded={isActive} heightTransition=".35s ease" id={ariaId}>
         {children}
-      </Collapse>
+      </PanelBody>
     </PanelWrapper>
   );
 };

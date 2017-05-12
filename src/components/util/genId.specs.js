@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import genId from './genId';
 
 describe('genId', () => {
@@ -10,7 +12,7 @@ describe('genId', () => {
   it('generates only alpha characters', () => {
     const result = genId();
 
-    expect(/^[a-zA-Z]+$/.test(result)).toBeTrue;
+    expect(/^[a-zA-Z]+$/.test(result)).toBe(true);
   });
 
   it('generates a unique string each subsequent execution', () => {

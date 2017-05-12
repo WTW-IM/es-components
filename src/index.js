@@ -10,3 +10,4 @@ export PopoverLink from './components/base/containers/PopoverLink';
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
+export Dropdown from './components/controls/dropdown/Dropdown';

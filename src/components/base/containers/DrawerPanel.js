@@ -12,6 +12,8 @@ const PanelWrapper = styled.div`
 
 const PanelTitle = styled.div`
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
   padding: 10px 15px;
 
   &:hover {
@@ -42,6 +44,7 @@ const DrawerPanel = (props) => {
     className,
     closedIconName,
     title,
+    titleAside,
     isActive,
     noPadding,
     onItemClick,
@@ -49,12 +52,16 @@ const DrawerPanel = (props) => {
   } = props;
 
   const ariaId = genId();
+  const aside = titleAside !== undefined ? <span>{titleAside}</span> : null;
 
   return (
     <PanelWrapper className={className} noPadding={noPadding}>
       <PanelTitle onClick={() => onItemClick()} role="tab" aria-expanded={isActive} aria-controls={ariaId}>
-        <PanelIcon name={isActive ? openedIconName : closedIconName} />
-        {title}
+        <span>
+          <PanelIcon name={isActive ? openedIconName : closedIconName} />
+          {title}
+        </span>
+        {aside}
       </PanelTitle>
       <PanelBody expanded={isActive} heightTransition=".35s ease" id={ariaId}>
         {children}
@@ -77,6 +84,11 @@ DrawerPanel.propTypes = {
     PropTypes.number,
     PropTypes.node
   ]).isRequired,
+  /** Aside text/content displayed on the right side of the panel title */
+  titleAside: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node
+  ]),
   isActive: PropTypes.bool,
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,

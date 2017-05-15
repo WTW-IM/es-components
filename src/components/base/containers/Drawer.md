@@ -45,15 +45,16 @@ style, where only one panel can be opened at a time.
 
 ### Advanced Example
 Use the ``noPadding`` property to remove default padding within a panel (useful for lists and tables).
+Use the ``titleAside`` property to display text or other content on the right side of the panel header.
 You can customize the key property of each Panel; if not specified the default is a zero-based array.
 Both the Drawer and Drawer.Panel components will accept additional classNames.
 
 ```
 <Drawer defaultActiveKeys={["first", "third"]} closedIconName="hand-right" openedIconName="hand-down" className="drawer-big">
-  <Drawer.Panel title="Panel 1" key="first" noPadding>
+  <Drawer.Panel title="Panel 1" key="first" noPadding titleAside={<em>aside text</em>}>
     <p>The default padding has been removed from this panel.</p>
   </Drawer.Panel>
-  <Drawer.Panel title="Panel 2" key="second" noPadding>
+  <Drawer.Panel title="Panel 2" key="second" noPadding titleAside={<Icon name='tag' />}>
     <ul>
       <li>List Item</li>
       <li>Another Item</li>

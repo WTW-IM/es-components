@@ -14,7 +14,7 @@ describe('drawer component', () => {
     beforeEach(() => {
       instanceToRender = (
         <Drawer className="important">
-          <Drawer.Panel title="collapse 1" key="1" className="first">first</Drawer.Panel>
+          <Drawer.Panel title="collapse 1" key="1" className="first" titleAside="side text">first</Drawer.Panel>
           <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>second</Drawer.Panel>
           <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
         </Drawer>

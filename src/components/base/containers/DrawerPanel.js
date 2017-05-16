@@ -34,11 +34,11 @@ const PanelBody = styled(Collapse)`
   color: ${colors.grayDarkest};
 
   > div {
-    padding: ${(props) => (props.noPadding ? '0' : '10px 10px 10px 40px')};
+    padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
   }
 `;
 
-const DrawerPanel = (props) => {
+const DrawerPanel = props => {
   const {
     children,
     className,
@@ -52,7 +52,7 @@ const DrawerPanel = (props) => {
   } = props;
 
   const ariaId = genId();
-  const aside = titleAside !== undefined ? <span>{titleAside}</span> : null;
+  const showAside = titleAside !== undefined;
 
   return (
     <PanelWrapper className={className} noPadding={noPadding}>
@@ -61,7 +61,7 @@ const DrawerPanel = (props) => {
           <PanelIcon name={isActive ? openedIconName : closedIconName} />
           {title}
         </span>
-        {aside}
+        {showAside && <span>{titleAside}</span>}
       </PanelTitle>
       <PanelBody expanded={isActive} heightTransition=".35s ease" id={ariaId}>
         {children}

@@ -73,8 +73,7 @@ function RadioButton({
   onChange = noop,
   value,
   isInErrorState = false,
-  ...radioProps
-}) {
+  ...radioProps }) {
   const { hover, fill } = getRadioFillVariables(checked, disabled, isInErrorState);
   const radioDisplayFill = checked ? fill : colors.white;
 

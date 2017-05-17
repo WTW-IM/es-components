@@ -1,4 +1,4 @@
-export default function genId() {
+export default function generateAlphaName() {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   let text = '';
   for (let i = 0; i < 6; i++) {

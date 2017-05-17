@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 import Drawer from './Drawer';
 
-jest.mock('../../util/genId', () => () => 'abcdef');
+jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
 
 describe('drawer component', () => {
   describe('drawer', () => {

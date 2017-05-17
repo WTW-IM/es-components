@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import genId from './genId';
+import genId from './generateAlphaName';
 
 describe('genId', () => {
   it('generates a 6 character string', () => {

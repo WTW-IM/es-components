@@ -4,7 +4,7 @@ import Icon from '../icons/Icon';
 import { colors } from '../../theme';
 import styled from 'styled-components';
 import Collapse from '../../util/Collapse';
-import genId from '../../util/genId';
+import genId from '../../util/generateAlphaName';
 
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${colors.grayLight};

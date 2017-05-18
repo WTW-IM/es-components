@@ -2,21 +2,26 @@ exports[`drawer component accordion renders as expected 1`] = `
 <div
   className="dtLLet">
   <div
-    className="first jMiPui">
+    className="first byHzie">
     <div
+      aria-controls="abcdef"
       aria-expanded={true}
-      className="elnnFO"
+      className="cqIlEf"
       onClick={[Function]}
       role="tab">
-      <i
-        aria-hidden={true}
-        className="cTarNb idGniF"
-        content="63d"
-        fontFamily="oecom-icons"
-        fontSize="inherit" />
-      collapse 1
+      <span>
+        <i
+          aria-hidden={true}
+          className="cTarNb idGniF"
+          content="63d"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+        collapse 1
+      </span>
     </div>
     <div
+      className="jJqMaE"
+      id="abcdef"
       style={
         Object {
           "display": null,
@@ -36,21 +41,26 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second jMiPui">
+    className="second byHzie">
     <div
+      aria-controls="abcdef"
       aria-expanded={false}
-      className="elnnFO"
+      className="cqIlEf"
       onClick={[Function]}
       role="tab">
-      <i
-        aria-hidden={true}
-        className="cTarNb dyzqxb"
-        content="63f"
-        fontFamily="oecom-icons"
-        fontSize="inherit" />
-      collapse 2
+      <span>
+        <i
+          aria-hidden={true}
+          className="cTarNb dyzqxb"
+          content="63f"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+        collapse 2
+      </span>
     </div>
     <div
+      className="jJqMaE"
+      id="abcdef"
       style={
         Object {
           "display": "none",
@@ -61,21 +71,26 @@ exports[`drawer component accordion renders as expected 1`] = `
       } />
   </div>
   <div
-    className="third jMiPui">
+    className="third byHzie">
     <div
+      aria-controls="abcdef"
       aria-expanded={false}
-      className="elnnFO"
+      className="cqIlEf"
       onClick={[Function]}
       role="tab">
-      <i
-        aria-hidden={true}
-        className="cTarNb dyzqxb"
-        content="63f"
-        fontFamily="oecom-icons"
-        fontSize="inherit" />
-      collapse 3
+      <span>
+        <i
+          aria-hidden={true}
+          className="cTarNb dyzqxb"
+          content="63f"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+        collapse 3
+      </span>
     </div>
     <div
+      className="jJqMaE"
+      id="abcdef"
       style={
         Object {
           "display": "none",
@@ -92,21 +107,29 @@ exports[`drawer component drawer renders as expected 1`] = `
 <div
   className="important dtLLet">
   <div
-    className="first jMiPui">
+    className="first byHzie">
     <div
+      aria-controls="abcdef"
       aria-expanded={false}
-      className="elnnFO"
+      className="cqIlEf"
       onClick={[Function]}
       role="tab">
-      <i
-        aria-hidden={true}
-        className="cTarNb dyzqxb"
-        content="63f"
-        fontFamily="oecom-icons"
-        fontSize="inherit" />
-      collapse 1
+      <span>
+        <i
+          aria-hidden={true}
+          className="cTarNb dyzqxb"
+          content="63f"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+        collapse 1
+      </span>
+      <span>
+        side text
+      </span>
     </div>
     <div
+      className="jJqMaE"
+      id="abcdef"
       style={
         Object {
           "display": "none",
@@ -117,21 +140,26 @@ exports[`drawer component drawer renders as expected 1`] = `
       } />
   </div>
   <div
-    className="second kTCRfe">
+    className="second byHzie">
     <div
+      aria-controls="abcdef"
       aria-expanded={false}
-      className="elnnFO"
+      className="cqIlEf"
       onClick={[Function]}
       role="tab">
-      <i
-        aria-hidden={true}
-        className="cTarNb dyzqxb"
-        content="63f"
-        fontFamily="oecom-icons"
-        fontSize="inherit" />
-      collapse 2
+      <span>
+        <i
+          aria-hidden={true}
+          className="cTarNb dyzqxb"
+          content="63f"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+        collapse 2
+      </span>
     </div>
     <div
+      className="jJqMaE"
+      id="abcdef"
       style={
         Object {
           "display": "none",
@@ -142,21 +170,26 @@ exports[`drawer component drawer renders as expected 1`] = `
       } />
   </div>
   <div
-    className="third jMiPui">
+    className="third byHzie">
     <div
+      aria-controls="abcdef"
       aria-expanded={false}
-      className="elnnFO"
+      className="cqIlEf"
       onClick={[Function]}
       role="tab">
-      <i
-        aria-hidden={true}
-        className="cTarNb dyzqxb"
-        content="63f"
-        fontFamily="oecom-icons"
-        fontSize="inherit" />
-      collapse 3
+      <span>
+        <i
+          aria-hidden={true}
+          className="cTarNb dyzqxb"
+          content="63f"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+        collapse 3
+      </span>
     </div>
     <div
+      className="jJqMaE"
+      id="abcdef"
       style={
         Object {
           "display": "none",

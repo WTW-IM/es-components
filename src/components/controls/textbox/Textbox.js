@@ -42,7 +42,7 @@ const AdditionalHelpContent = styled.div`
 
 const TextWrapper = styled.div`
   flex: auto;
-  margin-right: ${props => (props.hasAddon ? '0' : '20px')};
+  margin-right: ${props => (props.includeMargin ? '20px' : '0')};
   position: relative;
 `;
 
@@ -78,24 +78,29 @@ class Textbox extends React.Component {
     /** Content to append to input box */
     appendContent: PropTypes.node,
     /** Default value of the textbox */
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  }
+    initialValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  };
 
   static defaultProps = {
     inline: false,
     handleOnChange: noop,
-    handleFocusLost: noop
-  }
+    handleFocusLost: noop,
+    initialValue: ''
+  };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      currentValue: ''
+      currentValue: props.initialValue
     };
 
     this.handleOnTextChanged = this.handleOnTextChanged.bind(this);
     this.handleOnTextFocusLost = this.handleOnTextFocusLost.bind(this);
+  }
+
+  componentWillReceiveProps({ initialValue }) {
+    this.setState(() => ({ currentValue: initialValue }));
   }
 
   executeHandler(event, handlerName) {
@@ -144,20 +149,24 @@ class Textbox extends React.Component {
 
     const hasHelpContent = additionalHelpContent !== undefined;
 
-    const ariaId = hasHelpContent ? `${slug(labelText, { lower: true })}-help-content` : null;
-    const additionalHelp = hasHelpContent ?
-          <AdditionalHelpContent id={ariaId}>{additionalHelpContent}</AdditionalHelpContent> :
-          null;
+    const ariaId = hasHelpContent
+      ? `${slug(labelText, { lower: true })}-help-content`
+      : null;
+    const additionalHelp = hasHelpContent
+      ? <AdditionalHelpContent id={ariaId}>
+          {additionalHelpContent}
+        </AdditionalHelpContent>
+      : null;
 
     const hasPrependedText = prependContent !== undefined;
     const hasAppendedText = appendContent !== undefined;
 
     const addonType = getAddonType(hasPrependedText, hasAppendedText);
-    const hasAddon = addonType !== null;
+    const hasNoAddon = addonType === null;
 
-    const icon = inputVariables.icon !== undefined ?
-          <TextIcon name={inputVariables.icon} size={20} /> :
-          null;
+    const icon = inputVariables.icon !== undefined
+      ? <TextIcon name={inputVariables.icon} size={20} />
+      : null;
 
     const inputName = name || labelText.replace(/\s+/g, '');
 
@@ -165,8 +174,13 @@ class Textbox extends React.Component {
       <TextBoxLabel color={inputVariables.foregroundColor} inline={inline}>
         <LabelText inline={inline}>{labelText}</LabelText>
         <InputWrapper>
-          {this.renderAddon('prepend', prependContent, inputVariables, hasPrependedText)}
-          <TextWrapper hasAddon={hasAddon}>
+          {this.renderAddon(
+            'prepend',
+            prependContent,
+            inputVariables,
+            hasPrependedText
+          )}
+          <TextWrapper includeMargin={hasNoAddon && inline}>
             <StyledText
               addonType={addonType}
               type="text"
@@ -180,7 +194,13 @@ class Textbox extends React.Component {
             />
             {icon}
           </TextWrapper>
-          {this.renderAddon('append', appendContent, inputVariables, hasAppendedText, inline)}
+          {this.renderAddon(
+            'append',
+            appendContent,
+            inputVariables,
+            hasAppendedText,
+            inline
+          )}
         </InputWrapper>
         {additionalHelp}
       </TextBoxLabel>

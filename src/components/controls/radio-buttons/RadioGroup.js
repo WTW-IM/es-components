@@ -52,6 +52,10 @@ class RadioGroup extends React.Component {
     };
   }
 
+  componentWillReceiveProps({ checkedValue }) {
+    this.setState(() => ({ checkedValue }));
+  }
+
   handleOnChange(event) {
     const { value: checkedValue } = event.currentTarget;
     this.setState({

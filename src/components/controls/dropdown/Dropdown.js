@@ -55,6 +55,10 @@ export default class Dropdown extends React.Component {
     this.handleFocusLost = this.handleFocusLost.bind(this);
   }
 
+  componentWillReceiveProps({ selectedValue }) {
+    this.setState(() => ({ currentValue: selectedValue }));
+  }
+
   handleEvent(event, handlerName) {
     const { value } = event.target;
 

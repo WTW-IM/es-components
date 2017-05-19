@@ -127,13 +127,13 @@ The react ``autoFocus`` property is also accepted.
 <div>
   <Textbox
     labelText="Disabled"
-    value="John Doe"
+    initialValue="John Doe"
     disabled
   />
 
   <Textbox
     labelText="Readonly"
-    value="Jane Doe"
+    initialValue="Jane Doe"
     readOnly
   />
 

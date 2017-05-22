@@ -1,11 +1,11 @@
 export Icon from './components/base/icons/Icon';
 
-export Alert from './components/base/containers/Alert';
-export Drawer from './components/base/containers/Drawer';
-export Fieldset from './components/base/containers/Fieldset';
-export FormGroup from './components/base/containers/FormGroup';
-export Tooltip from './components/base/containers/Tooltip';
-export PopoverLink from './components/base/containers/PopoverLink';
+export Alert from './components/containers/Alert';
+export Drawer from './components/containers/Drawer';
+export Fieldset from './components/containers/Fieldset';
+export FormGroup from './components/containers/FormGroup';
+export Tooltip from './components/containers/Tooltip';
+export PopoverLink from './components/containers/PopoverLink';
 
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';

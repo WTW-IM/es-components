@@ -1,9 +1,0 @@
-exports[`tooltip component renders tooltip children 1`] = `
-<span>
-  <span
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}>
-    This is the tooltip target.
-  </span>
-</span>
-`;

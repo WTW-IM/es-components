@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
-import Fieldset from '../../base/containers/fieldset/Fieldset';
+import Fieldset from '../../containers/fieldset/Fieldset';
 import RadioButton from './RadioButton';
 
 const radioOptionShape = {

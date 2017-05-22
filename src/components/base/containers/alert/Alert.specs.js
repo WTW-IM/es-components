@@ -5,8 +5,8 @@ import { shallow, mount } from 'enzyme';
 
 import Alert from './Alert';
 
-import Icon from '../icons/Icon';
-import Button from '../../controls/buttons/Button';
+import Icon from '../../icons/Icon';
+import Button from '../../../controls/buttons/Button';
 
 let instanceToRender;
 

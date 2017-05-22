@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 import { alertVariations } from './alert-variations';
 
-import Icon from '../icons/Icon';
-import Button from '../../controls/buttons/Button';
-import { colors } from '../../theme';
+import Icon from '../../icons/Icon';
+import Button from '../../../controls/buttons/Button';
+import { colors } from '../../../theme';
 
 const DismissButton = styled.button`
   align-self: flex-start;
@@ -22,8 +22,12 @@ const DismissButton = styled.button`
 
 function renderDismissButton(onDismiss) {
   return (
-    <DismissButton aria-label="Close" onClick={onDismiss} className="alert__dismiss">
-      <span aria-hidden="true">&times;</span>
+    <DismissButton
+      aria-label="Close"
+      onClick={onDismiss}
+      className="alert__dismiss"
+    >
+      <span aria-hidden="true">×</span>
     </DismissButton>
   );
 }
@@ -49,7 +53,12 @@ const LeadingHeader = styled.p`
   margin: 0;
 `;
 
-function renderLeadingHeader(alertType, includeIcon, leadingHeader, leadingText) {
+function renderLeadingHeader(
+  alertType,
+  includeIcon,
+  leadingHeader,
+  leadingText
+) {
   const hasLeadingHeaderText = leadingHeader !== undefined;
   const hasLeadingText = leadingText !== undefined;
 
@@ -128,7 +137,9 @@ function Alert({
   const alertVariation = alertVariations[type];
   const hasCallsToAction = callsToAction.length > 0;
 
-  const AlertContainer = dismissable ? DismissableAlertContainer : BaseAlertContainer;
+  const AlertContainer = dismissable
+    ? DismissableAlertContainer
+    : BaseAlertContainer;
 
   return (
     <AlertContainer alertVariation={alertVariation} role="alert">

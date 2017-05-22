@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { colors, sizes } from '../../theme';
+import { colors, sizes } from '../../../theme';
 
 const Legend = styled.legend`
   border: 0;
@@ -16,9 +16,9 @@ const Legend = styled.legend`
 `;
 
 function renderLegend(text, additionalLegendClasses) {
-  return text ?
-    <Legend className={additionalLegendClasses}>{text}</Legend> :
-    null;
+  return text
+    ? <Legend className={additionalLegendClasses}>{text}</Legend>
+    : null;
 }
 
 const StyledFieldset = styled.fieldset`
@@ -27,15 +27,11 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({
-  additionalLegendClasses,
-  legendText,
-  children
-}) {
+function Fieldset({ additionalLegendClasses, legendText, children }) {
   return (
     <StyledFieldset>
-      { renderLegend(legendText, additionalLegendClasses) }
-      { children }
+      {renderLegend(legendText, additionalLegendClasses)}
+      {children}
     </StyledFieldset>
   );
 }

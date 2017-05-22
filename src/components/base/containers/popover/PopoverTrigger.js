@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import { injectGlobal } from 'styled-components';
 
-import Popover from '../base/containers/Popover';
+import Popover from './Popover';
 import PopoverFadeTransition from './PopoverFadeTransition';
-import FocusTrap from './FocusTrap';
+import FocusTrap from '../../../util/FocusTrap';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -67,7 +67,10 @@ function PopoverTrigger({
           arrowPlacement={arrowPlacement}
           containsFormElement={containsFormElement}
         >
-          <FocusTrap active={containsFormElement} focusTrapOptions={focusTrapOptions}>
+          <FocusTrap
+            active={containsFormElement}
+            focusTrapOptions={focusTrapOptions}
+          >
             {popoverContent}
           </FocusTrap>
         </Popover>

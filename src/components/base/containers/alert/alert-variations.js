@@ -1,4 +1,4 @@
-import { colors, backgroundColors } from '../../theme';
+import { colors, backgroundColors } from '../../../theme';
 
 export const alertVariations = {
   success: {

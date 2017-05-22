@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled, { injectGlobal } from 'styled-components';
-import { colors } from '../../theme';
-import Fade from '../../util/Fade';
+import { colors } from '../../../theme';
+import Fade from '../../../util/Fade';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
@@ -92,7 +92,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
-const Popup = (props) => {
+const Popup = props => {
   const { className, children, position, style } = props;
   let TooltipStyled;
   let TooltipArrow;
@@ -133,8 +133,12 @@ Popup.propTypes = {
   style: PropTypes.object
 };
 
-const FadeTransition = (props) => (
-  <Fade transitionClassOut="tooltip-transition-out" transitionClassIn="tooltip-transition-in" {...props} />
+const FadeTransition = props => (
+  <Fade
+    transitionClassOut="tooltip-transition-out"
+    transitionClassIn="tooltip-transition-in"
+    {...props}
+  />
 );
 
 class Tooltip extends React.Component {
@@ -151,7 +155,9 @@ class Tooltip extends React.Component {
     return (
       <span>
         <span
-          ref={(span) => { this.toolTipTarget = span; }}
+          ref={span => {
+            this.toolTipTarget = span;
+          }}
           onMouseEnter={this.show}
           onMouseLeave={this.hide}
         >

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../icons/Icon';
-import { colors } from '../../theme';
+import Icon from '../../icons/Icon';
+import { colors } from '../../../theme';
 import styled from 'styled-components';
-import Collapse from '../../util/Collapse';
-import genId from '../../util/generateAlphaName';
+import Collapse from '../../../util/Collapse';
+import genId from '../../../util/generateAlphaName';
 
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${colors.grayLight};
@@ -34,11 +34,11 @@ const PanelBody = styled(Collapse)`
   color: ${colors.grayDarkest};
 
   > div {
-    padding: ${(props) => (props.noPadding ? '0' : '10px 10px 10px 40px')};
+    padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
   }
 `;
 
-const DrawerPanel = (props) => {
+const DrawerPanel = props => {
   const {
     children,
     className,
@@ -56,7 +56,12 @@ const DrawerPanel = (props) => {
 
   return (
     <PanelWrapper className={className} noPadding={noPadding}>
-      <PanelTitle onClick={() => onItemClick()} role="tab" aria-expanded={isActive} aria-controls={ariaId}>
+      <PanelTitle
+        onClick={() => onItemClick()}
+        role="tab"
+        aria-expanded={isActive}
+        aria-controls={ariaId}
+      >
         <span>
           <PanelIcon name={isActive ? openedIconName : closedIconName} />
           {title}
@@ -73,10 +78,7 @@ const DrawerPanel = (props) => {
 DrawerPanel.propTypes = {
   children: PropTypes.any.isRequired,
   /** Add additional CSS classes to the drawer item element */
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object
-  ]),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   closedIconName: PropTypes.string,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.oneOfType([
@@ -85,10 +87,7 @@ DrawerPanel.propTypes = {
     PropTypes.node
   ]).isRequired,
   /** Aside text/content displayed on the right side of the panel title */
-  titleAside: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node
-  ]),
+  titleAside: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   isActive: PropTypes.bool,
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,

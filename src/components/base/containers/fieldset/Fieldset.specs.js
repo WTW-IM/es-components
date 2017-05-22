@@ -9,10 +9,7 @@ import Fieldset from './Fieldset';
 describe('Fieldset component', () => {
   it('adds additional classes to legend element when aditionalLegendClasses prop is supplied', () => {
     const instance = mount(
-      <Fieldset
-        legendText="I am legend"
-        additionalLegendClasses="legendary"
-      />
+      <Fieldset legendText="I am legend" additionalLegendClasses="legendary" />
     );
     expect(instance.find('legend').hasClass('legendary')).toBe(true);
   });

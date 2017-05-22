@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
 import Drawer from './Drawer';
 
-jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
+jest.mock('../../../util/generateAlphaName', () => () => 'abcdef');
 
 describe('drawer component', () => {
   describe('drawer', () => {
@@ -14,9 +14,20 @@ describe('drawer component', () => {
     beforeEach(() => {
       instanceToRender = (
         <Drawer className="important">
-          <Drawer.Panel title="collapse 1" key="1" className="first" titleAside="side text">first</Drawer.Panel>
-          <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>second</Drawer.Panel>
-          <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
+          <Drawer.Panel
+            title="collapse 1"
+            key="1"
+            className="first"
+            titleAside="side text"
+          >
+            first
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
+            second
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 3" key="3" className="third">
+            third
+          </Drawer.Panel>
         </Drawer>
       );
     });
@@ -60,11 +71,13 @@ describe('drawer component', () => {
     });
 
     it('should set multiple default panels open at start', () => {
-      const drawerInstance = mount(<Drawer defaultActiveKeys={['2', '3']}>
-        <Drawer.Panel title="collapse 1" key="1">first</Drawer.Panel>
-        <Drawer.Panel title="collapse 2" key="2">second</Drawer.Panel>
-        <Drawer.Panel title="collapse 3" key="3">third</Drawer.Panel>
-      </Drawer>);
+      const drawerInstance = mount(
+        <Drawer defaultActiveKeys={['2', '3']}>
+          <Drawer.Panel title="collapse 1" key="1">first</Drawer.Panel>
+          <Drawer.Panel title="collapse 2" key="2">second</Drawer.Panel>
+          <Drawer.Panel title="collapse 3" key="3">third</Drawer.Panel>
+        </Drawer>
+      );
 
       const panels = drawerInstance.find('[aria-expanded]');
       expect(panels.at(0).prop('aria-expanded')).toBe(false);
@@ -79,9 +92,15 @@ describe('drawer component', () => {
     beforeEach(() => {
       instanceToRender = (
         <Drawer isAccordion defaultActiveKeys="1">
-          <Drawer.Panel title="collapse 1" key="1" className="first">first</Drawer.Panel>
-          <Drawer.Panel title="collapse 2" key="2" className="second">second</Drawer.Panel>
-          <Drawer.Panel title="collapse 3" key="3" className="third">third</Drawer.Panel>
+          <Drawer.Panel title="collapse 1" key="1" className="first">
+            first
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 2" key="2" className="second">
+            second
+          </Drawer.Panel>
+          <Drawer.Panel title="collapse 3" key="3" className="third">
+            third
+          </Drawer.Panel>
         </Drawer>
       );
     });

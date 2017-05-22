@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled from 'styled-components';
 
-import Button from '../../controls/buttons/Button';
-import PopoverTrigger from '../../util/PopoverTrigger';
+import Button from '../../../controls/buttons/Button';
+import PopoverTrigger from './PopoverTrigger';
 
 const PopoverButton = styled(Button)`
   border-bottom: ${props => (props.suppressUnderline ? 'none' : '1px dotted')};
@@ -24,7 +24,7 @@ class PopoverLink extends React.Component {
     } else {
       this.setState({ isOpen: true });
     }
-  }
+  };
 
   hidePopover = () => {
     /*
@@ -35,7 +35,7 @@ class PopoverLink extends React.Component {
       this.setState({ isOpen: false });
       this.props.onPopoverHidden();
     }
-  }
+  };
 
   render() {
     const {
@@ -59,12 +59,18 @@ class PopoverLink extends React.Component {
         containsFormElement={containsFormElement}
         popoverPlacement={popoverPlacement}
       >
-        <span ref={span => { this.popoverTarget = span; }}>
+        <span
+          ref={span => {
+            this.popoverTarget = span;
+          }}
+        >
           <PopoverButton
             data-trigger="focus"
             styleType="link"
             handleOnClick={this.togglePopover}
-            ref={span => { this.popoverTarget = span; }}
+            ref={span => {
+              this.popoverTarget = span;
+            }}
             suppressUnderline={suppressUnderline}
           >
             {children}

@@ -13,16 +13,14 @@ module.exports = {
   sections: [
     {
       name: 'Base',
-      components: function () {
-        return [
-          path.join(baseComponentDir, 'base/icons/Icon.js')
-        ];
+      components: function() {
+        return [path.join(baseComponentDir, 'base/icons/Icon.js')];
       },
       sections: [
         {
           name: 'Containers',
-          content: path.join(baseComponentDir, 'base/containers/Containers.md'),
-          components: path.join(baseComponentDir, 'base/containers/**/*.js')
+          content: path.join(baseComponentDir, 'containers/Containers.md'),
+          components: path.join(baseComponentDir, 'containers/**/*.js')
         }
       ]
     },

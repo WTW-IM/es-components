@@ -105,6 +105,7 @@ const PopoverContent = styled.div`
   line-height: 1.4;
   max-width: 25%;
   position: absolute;
+  z-index: 10;
 
   &.top {
     left: ${props => props.positionLeft}px;

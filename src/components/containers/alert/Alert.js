@@ -35,8 +35,8 @@ function renderDismissButton(onDismiss) {
 const iconMap = {
   success: 'ok-sign',
   information: 'info-sign',
-  warning: 'exclaimation-sign',
-  danger: 'exclaimation-sign',
+  warning: 'exclamation-sign',
+  danger: 'exclamation-sign',
   advisor: 'agent'
 };
 
@@ -132,7 +132,8 @@ function Alert({
   children,
   includeIcon = false,
   dismissable = false,
-  onDismiss = noop
+  onDismiss = noop,
+  ...otherProps
 }) {
   const alertVariation = alertVariations[type];
   const hasCallsToAction = callsToAction.length > 0;
@@ -142,7 +143,11 @@ function Alert({
     : BaseAlertContainer;
 
   return (
-    <AlertContainer alertVariation={alertVariation} role="alert">
+    <AlertContainer
+      {...otherProps}
+      alertVariation={alertVariation}
+      role="alert"
+    >
       <AlertContent>
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
         {children}
@@ -166,9 +171,9 @@ Alert.propTypes = {
   /** The bolded text in the leading text */
   header: PropTypes.string,
   /** The non-bolded text in the leading text */
-  additionalText: PropTypes.string.isRequired,
+  additionalText: PropTypes.string,
   /** Additional elements rendered after the leading text */
-  children: PropTypes.element,
+  children: PropTypes.node,
   /** Include the corresponding icon in the alert's leading text */
   includeIcon: PropTypes.bool,
   /** Render a dismiss button */

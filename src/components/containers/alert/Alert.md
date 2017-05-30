@@ -83,6 +83,15 @@ const callsToAction = [
 />
 ```
 
+Providing ``extraNotificationText`` will render a bell icon and the provided text in the upper-right corner of the alert.
+```
+<Alert
+  type="success"
+  additionalText="Look at the extra notification!"
+  extraNotificationText="I'm a notification!"
+/>
+```
+
 Any additional children will get rendered before call to action buttons.
 ```
 <Alert

@@ -91,7 +91,7 @@ const NotificationIcon = styled(Icon)`
 
 function renderExtraNotification(notificationText) {
   return (
-    <ExtraNotification>
+    <ExtraNotification className="alert__notification">
       <NotificationIcon name="bell" />
       <small>{notificationText}</small>
     </ExtraNotification>

@@ -73,9 +73,9 @@ function renderLeadingHeader(
     <LeadingHeader>
       {includeIcon ? renderIcon(alertType) : null}
       {hasLeadingHeaderText ? <strong>{leadingHeader}<br /></strong> : null}
-      <LeadingText adjustText={adjustText}>
-        {hasLeadingText ? leadingText : null}
-      </LeadingText>
+      {hasLeadingText
+        ? <LeadingText adjustText={adjustText}>{leadingText}</LeadingText>
+        : null}
     </LeadingHeader>
   );
 }

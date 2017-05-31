@@ -56,7 +56,7 @@ const LeadingHeader = styled.p`
 `;
 
 const LeadingText = styled.span`
-  margin-left: ${props => (props.adjustText ? '22px' : '0')};
+  margin-left: ${props => (props.adjustText ? '24px' : '0')};
 `;
 
 function renderLeadingHeader(
@@ -144,7 +144,7 @@ const AlertContainer = styled.div`
 
 const AlertContent = styled.div`
   padding: 0 15px 15px;
-  margin-left: ${props => (props.hasIcon ? '22px' : '0')};
+  margin-left: ${props => (props.hasIcon ? '24px' : '0')};
 `;
 
 const AlertHeader = styled.div`

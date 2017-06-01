@@ -118,7 +118,18 @@ describe('when extraNotificationText is provided', () => {
     expect(instance.find('small').text()).toBe('test');
   });
 
-  it('displays an icon', () => {
-    expect(instance.find(Icon).length).toBe(1);
+  it('displays the default icon', () => {
+    expect(instance.find(Icon).prop('name')).toBe('federal');
+  });
+
+  it('displays a different icon if provided one', () => {
+    const newNotification = {
+      notificationText: 'test',
+      notificationIcon: 'bell'
+    };
+
+    instance.setProps({ extraNotification: newNotification });
+
+    expect(instance.find(Icon).prop('name')).toBe('bell');
   });
 });

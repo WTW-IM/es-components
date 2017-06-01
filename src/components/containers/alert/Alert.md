@@ -83,12 +83,17 @@ const callsToAction = [
 />
 ```
 
-Providing ``extraNotificationText`` will render a bell icon and the provided text in the upper-right corner of the alert.
+Providing ``extraNotification`` with an object will render the selected icon and the provided text in the upper-right corner of the alert. If no icon is chosen, the `federal` icon will be used by default.
 ```
+const notification = { 
+  notificationText: 'I\'m a notification!',
+  notificationIcon: 'bell'
+ };
+
 <Alert
   type="success"
   additionalText="Look at the extra notification!"
-  extraNotificationText="I'm a notification!"
+  extraNotification={notification}
 />
 ```
 

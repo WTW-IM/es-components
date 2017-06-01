@@ -86,13 +86,16 @@ const ExtraNotification = styled.p`
 `;
 
 const NotificationIcon = styled(Icon)`
-  margin-right: 10px;
+  margin-right: 7px;
+  margin-bottom: 2px;
 `;
 
-function renderExtraNotification(notificationText) {
+function renderExtraNotification(notification) {
+  const { notificationText, notificationIcon = 'federal' } = notification;
+
   return (
     <ExtraNotification className="alert__notification">
-      <NotificationIcon name="bell" />
+      <NotificationIcon name={notificationIcon} />
       <small>{notificationText}</small>
     </ExtraNotification>
   );
@@ -165,12 +168,12 @@ function Alert({
   includeIcon = false,
   dismissable = false,
   onDismiss = noop,
-  extraNotificationText,
+  extraNotification,
   ...otherProps
 }) {
   const alertVariation = alertVariations[type];
   const hasCallsToAction = callsToAction.length > 0;
-  const hasExtraNotification = extraNotificationText;
+  const hasExtraNotification = extraNotification;
   const hasChildren = React.Children.count(children) > 0;
 
   return (
@@ -183,7 +186,7 @@ function Alert({
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
         <AlertHeaderText>
           {hasExtraNotification
-            ? renderExtraNotification(extraNotificationText)
+            ? renderExtraNotification(extraNotification)
             : null}
           {dismissable ? renderDismissButton(onDismiss) : null}
         </AlertHeaderText>
@@ -205,6 +208,11 @@ const callToActionShape = {
   action: PropTypes.func.isRequired
 };
 
+const extraNotificationShape = {
+  notificationText: PropTypes.node.isRequired,
+  notificationIcon: PropTypes.string
+};
+
 Alert.propTypes = {
   type: PropTypes.oneOf(alertTypes).isRequired,
   /** The bolded text in the leading text */
@@ -219,8 +227,8 @@ Alert.propTypes = {
   dismissable: PropTypes.bool,
   /** Function to execute when dismiss button is clicked */
   onDismiss: PropTypes.func,
-  /** The small text included in the extra notification */
-  extraNotificationText: PropTypes.string,
+  /** The small text and icon included in the extra notification */
+  extraNotification: PropTypes.shape(extraNotificationShape),
   callsToAction: PropTypes.arrayOf(PropTypes.shape(callToActionShape))
 };
 

@@ -101,7 +101,8 @@ describe('when callsToAction are provided', () => {
 });
 
 describe('when extraNotificationText is provided', () => {
-  const instanceProps = { extraNotificationText: 'test' };
+  const extraNotification = { notificationText: 'test' };
+  const instanceProps = { extraNotification };
 
   let instance;
 
@@ -117,7 +118,7 @@ describe('when extraNotificationText is provided', () => {
     expect(instance.find('small').text()).toBe('test');
   });
 
-  it('displays a static icon', () => {
+  it('displays an icon', () => {
     expect(instance.find(Icon).length).toBe(1);
   });
 });

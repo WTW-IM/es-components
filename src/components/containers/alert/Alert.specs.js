@@ -101,7 +101,8 @@ describe('when callsToAction are provided', () => {
 });
 
 describe('when extraNotificationText is provided', () => {
-  const instanceProps = { extraNotificationText: 'test' };
+  const extraNotification = { notificationText: 'test' };
+  const instanceProps = { extraNotification };
 
   let instance;
 
@@ -117,7 +118,18 @@ describe('when extraNotificationText is provided', () => {
     expect(instance.find('small').text()).toBe('test');
   });
 
-  it('displays a static icon', () => {
-    expect(instance.find(Icon).length).toBe(1);
+  it('displays the default icon', () => {
+    expect(instance.find(Icon).prop('name')).toBe('federal');
+  });
+
+  it('displays a different icon if provided one', () => {
+    const newNotification = {
+      notificationText: 'test',
+      notificationIcon: 'bell'
+    };
+
+    instance.setProps({ extraNotification: newNotification });
+
+    expect(instance.find(Icon).prop('name')).toBe('bell');
   });
 });

@@ -49,7 +49,7 @@ const ModalHeader = (props, context) => {
 
   return (
     <Header {...otherProps}>
-      <Title>{children}</Title>
+      <Title id={modal.ariaId}>{children}</Title>
 
       {closeButton &&
         <Button type="button" aria-label="Close" onClick={modal.onHide}>

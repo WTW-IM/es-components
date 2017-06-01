@@ -1,10 +1,10 @@
 ```
 <div>
-  <Button onClick={() => setState({show: true, size: 'small'})} style={{marginRight:'15px'}}>Open Small Modal</Button>
+  <Button handleOnClick={() => setState({show: true, size: 'small'})} style={{marginRight:'15px'}}>Open Small Modal</Button>
 
-  <Button onClick={() => setState({show: true, size: 'medium'})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
+  <Button handleOnClick={() => setState({show: true, size: 'medium'})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
 
-  <Button onClick={() => setState({show: true, size: 'large'})}>Open Large Modal</Button>
+  <Button handleOnClick={() => setState({show: true, size: 'large'})}>Open Large Modal</Button>
 
   <Modal
     size={state.size}

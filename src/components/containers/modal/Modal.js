@@ -2,18 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import events from 'dom-helpers/events';
-import ownerDocument from 'dom-helpers/ownerDocument';
-import canUseDOM from 'dom-helpers/util/inDOM';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
-import BaseModal from 'react-overlays/lib/Modal';
-import isOverflowing from 'react-overlays/lib/utils/isOverflowing';
 import { noop } from 'lodash';
 import { colors, sizes } from '../../theme';
+import genId from '../../util/generateAlphaName';
+
+import BaseModal from 'react-overlays/lib/Modal';
 import Fade from '../../util/Fade';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
+
+import events from 'dom-helpers/events';
+import ownerDocument from 'dom-helpers/ownerDocument';
+import canUseDOM from 'dom-helpers/util/inDOM';
+import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
+import isOverflowing from 'react-overlays/lib/utils/isOverflowing';
 
 function getModalWidth(size) {
   switch (size) {
@@ -70,14 +73,16 @@ class Modal extends React.Component {
     super(props, context);
 
     this.state = {
-      style: {}
+      style: {},
+      ariaId: genId()
     };
   }
 
   getChildContext() {
     return {
       modal: {
-        onHide: this.props.onHide
+        onHide: this.props.onHide,
+        ariaId: this.state.ariaId
       }
     };
   }
@@ -90,7 +95,7 @@ class Modal extends React.Component {
     this.props.onEntering();
 
     events.on(window, 'resize', this.handleWindowResize);
-    this.updateStyle();
+    this.adjustForScrollbar();
   };
 
   handleExited = () => {
@@ -100,7 +105,7 @@ class Modal extends React.Component {
   };
 
   handleWindowResize = () => {
-    this.updateStyle();
+    this.adjustForScrollbar();
   };
 
   handleDialogClick = evnt => {
@@ -111,7 +116,7 @@ class Modal extends React.Component {
     this.props.onHide();
   };
 
-  updateStyle() {
+  adjustForScrollbar() {
     if (!canUseDOM) {
       return;
     }
@@ -140,7 +145,6 @@ class Modal extends React.Component {
 
   render() {
     const { animation, backdrop, children, onHide, show, size } = this.props;
-
     const inClassName = show && 'in';
 
     return (
@@ -162,6 +166,7 @@ class Modal extends React.Component {
           className={inClassName}
           onClick={backdrop === true ? this.handleDialogClick : null}
           role="dialog"
+          aria-labelledby={this.state.ariaId}
           style={{ ...this.state.style }}
           tabIndex="-1"
         >
@@ -216,7 +221,8 @@ Modal.defaultProps = {
 
 Modal.childContextTypes = {
   modal: PropTypes.shape({
-    onHide: PropTypes.func
+    onHide: PropTypes.func,
+    ariaId: PropTypes.string
   })
 };
 

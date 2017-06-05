@@ -43,7 +43,7 @@ Adding the ``dismissable`` prop will render a dismiss button that will execute t
 />
 ```
 
-Adding the ``includeIcon`` prop will render an appropriate icon for the alert type.
+Adding the ``includeIcon`` prop will render an appropriate icon for the alert type. <em>If the viewport is less than 768px, it will not render any icons in the alert.</em>
 ```
 <Alert
   type="advisor"
@@ -52,7 +52,7 @@ Adding the ``includeIcon`` prop will render an appropriate icon for the alert ty
 />
 ```
 
-Providing ``callsToAction`` will render a button for each which executes that action. The first button will receive the ``btn-primary`` class and any additional button will receive the ``btn-default`` class.
+Providing ``callsToAction`` will render a button for each which executes that action. The first button will receive the ``primary`` style type and any additional button will receive the ``default`` style type.
 ```
 
 const callsToAction = [
@@ -85,7 +85,7 @@ const callsToAction = [
 
 Providing ``extraNotification`` with an object will render the selected icon and the provided text in the upper-right corner of the alert. If no icon is chosen, the `federal` icon will be used by default.
 ```
-const notification = { 
+const notification = {
   notificationText: 'I\'m a notification!',
   notificationIcon: 'bell'
  };

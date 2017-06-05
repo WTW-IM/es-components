@@ -43,6 +43,10 @@ const iconMap = {
 const AlertIcon = styled(Icon)`
   margin-right: 5px;
   margin-bottom: 2px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 function renderIcon(type) {
@@ -51,8 +55,8 @@ function renderIcon(type) {
 }
 
 const LeadingHeader = styled.p`
-  padding: 15px;
   margin: 0;
+  padding: 15px;
 `;
 
 const LeadingText = styled.span`
@@ -81,13 +85,19 @@ function renderLeadingHeader(
 }
 
 const ExtraNotification = styled.p`
-  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
   margin: 0;
+  padding: 15px;
 `;
 
 const NotificationIcon = styled(Icon)`
   margin-right: 7px;
   margin-bottom: 2px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 function renderExtraNotification(notification) {
@@ -114,6 +124,21 @@ const CallsToAction = styled.div`
 
   & > button:not(:first-of-type) {
     margin-right: 15px;
+  }
+
+  @media (max-width: 767px) {
+    display: block;
+    padding: 15px;
+
+    & > button {
+      display: block;
+      margin-bottom: 15px;
+      width: 100%;
+
+      &:active {
+        margin-bottom: 15px;
+      }
+    }
   }
 `;
 

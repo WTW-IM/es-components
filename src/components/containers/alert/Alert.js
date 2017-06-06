@@ -173,6 +173,10 @@ const AlertContainer = styled.div`
 const AlertContent = styled.div`
   padding: 0 15px 15px;
   margin-left: ${props => (props.hasIcon ? '24px' : '0')};
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
 `;
 
 const AlertHeader = styled.div`

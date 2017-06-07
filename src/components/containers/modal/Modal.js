@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { noop } from 'lodash';
-import { colors, sizes } from '../../theme';
+import { colors, sizes, screenSize } from '../../theme';
 import genId from '../../util/generateAlphaName';
 
 import BaseModal from 'react-overlays/lib/Modal';
@@ -13,31 +13,14 @@ import Body from './ModalBody';
 import Footer from './ModalFooter';
 
 import events from 'dom-helpers/events';
-import ownerDocument from 'dom-helpers/ownerDocument';
 import canUseDOM from 'dom-helpers/util/inDOM';
 import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
 import isOverflowing from 'react-overlays/lib/utils/isOverflowing';
 
-function getModalWidth(size) {
-  switch (size) {
-    case 'small':
-      return 300;
-    case 'large':
-      return 900;
-    default:
-      return 600;
-  }
-}
-
-const backdropStyle = {
-  backgroundColor: colors.black,
-  bottom: 0,
-  left: 0,
-  opacity: 0.5,
-  position: 'fixed',
-  right: 0,
-  top: 0,
-  zIndex: 1040
+const modalSize = {
+  small: '300px',
+  medium: '600px',
+  large: '900px'
 };
 
 const DialogWrapper = styled.div`
@@ -52,10 +35,26 @@ const DialogWrapper = styled.div`
   z-Index: 1050;
 `;
 
-const ModalDialog = styled.div`
-  margin: 30px auto;
+const ModalDialogMedium = styled.div`
+  margin: 10px;
   position: relative;
-  width: ${props => getModalWidth(props.size)}px;
+  @media (min-width: ${screenSize.tablet}) {
+    margin: 30px auto;
+    width: ${modalSize.medium};
+  }
+`;
+
+const ModalDialogSmall = ModalDialogMedium.extend`
+  @media (min-width: ${screenSize.phone}) {
+    margin: 30px auto;
+    width: ${modalSize.small};
+  }
+`;
+
+const ModalDialogLarge = ModalDialogMedium.extend`
+  @media (min-width: ${screenSize.desktop}) {
+    width: ${modalSize.large};
+  }
 `;
 
 const ModalContent = styled.div`
@@ -124,7 +123,6 @@ class Modal extends React.Component {
     const dialogNode = this.modal.getDialogElement();
     const dialogHeight = dialogNode.scrollHeight;
 
-    const document = ownerDocument(dialogNode);
     const bodyIsOverflowing = isOverflowing(
       ReactDOM.findDOMNode(document.body)
     );
@@ -146,6 +144,29 @@ class Modal extends React.Component {
   render() {
     const { animation, backdrop, children, onHide, show, size } = this.props;
     const inClassName = show && 'in';
+    const backdropStyle = {
+      backgroundColor: colors.black,
+      bottom: 0,
+      left: 0,
+      opacity: 0.5,
+      position: 'fixed',
+      right: 0,
+      top: 0,
+      zIndex: 1040
+    };
+
+    let ModalDialog;
+    switch (this.props.size) {
+      case 'small':
+        ModalDialog = ModalDialogSmall;
+        break;
+      case 'large':
+        ModalDialog = ModalDialogLarge;
+        break;
+      default:
+        ModalDialog = ModalDialogMedium;
+        break;
+    }
 
     return (
       <BaseModal
@@ -163,10 +184,10 @@ class Modal extends React.Component {
         transition={animation ? Fade : undefined}
       >
         <DialogWrapper
+          aria-labelledby={this.state.ariaId}
           className={inClassName}
           onClick={backdrop === true ? this.handleDialogClick : null}
           role="dialog"
-          aria-labelledby={this.state.ariaId}
           style={{ ...this.state.style }}
           tabIndex="-1"
         >

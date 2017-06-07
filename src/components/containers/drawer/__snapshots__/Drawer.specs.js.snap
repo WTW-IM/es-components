@@ -1,18 +1,18 @@
 exports[`drawer component accordion renders as expected 1`] = `
 <div
-  className="dtLLet">
+  className="sc-EHOje ktKLsF">
   <div
-    className="first byHzie">
+    className="first sc-bwzfXH dYpfLQ">
     <div
       aria-controls="abcdef"
       aria-expanded={true}
-      className="cqIlEf"
+      className="sc-htpNat kITHuH"
       onClick={[Function]}
       role="tab">
       <span>
         <i
           aria-hidden={true}
-          className="cTarNb idGniF"
+          className="sc-bxivhb beQLQJ sc-bdVaJa dRgmsV"
           content="63d"
           fontFamily="oecom-icons"
           fontSize="inherit" />
@@ -20,7 +20,7 @@ exports[`drawer component accordion renders as expected 1`] = `
       </span>
     </div>
     <div
-      className="jJqMaE"
+      className="sc-ifAKCX eMUdZt"
       id="abcdef"
       style={
         Object {
@@ -41,17 +41,17 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second byHzie">
+    className="second sc-bwzfXH dYpfLQ">
     <div
       aria-controls="abcdef"
       aria-expanded={false}
-      className="cqIlEf"
+      className="sc-htpNat kITHuH"
       onClick={[Function]}
       role="tab">
       <span>
         <i
           aria-hidden={true}
-          className="cTarNb dyzqxb"
+          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
           content="63f"
           fontFamily="oecom-icons"
           fontSize="inherit" />
@@ -59,7 +59,7 @@ exports[`drawer component accordion renders as expected 1`] = `
       </span>
     </div>
     <div
-      className="jJqMaE"
+      className="sc-ifAKCX eMUdZt"
       id="abcdef"
       style={
         Object {
@@ -71,17 +71,17 @@ exports[`drawer component accordion renders as expected 1`] = `
       } />
   </div>
   <div
-    className="third byHzie">
+    className="third sc-bwzfXH dYpfLQ">
     <div
       aria-controls="abcdef"
       aria-expanded={false}
-      className="cqIlEf"
+      className="sc-htpNat kITHuH"
       onClick={[Function]}
       role="tab">
       <span>
         <i
           aria-hidden={true}
-          className="cTarNb dyzqxb"
+          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
           content="63f"
           fontFamily="oecom-icons"
           fontSize="inherit" />
@@ -89,7 +89,7 @@ exports[`drawer component accordion renders as expected 1`] = `
       </span>
     </div>
     <div
-      className="jJqMaE"
+      className="sc-ifAKCX eMUdZt"
       id="abcdef"
       style={
         Object {
@@ -105,19 +105,19 @@ exports[`drawer component accordion renders as expected 1`] = `
 
 exports[`drawer component drawer renders as expected 1`] = `
 <div
-  className="important dtLLet">
+  className="important sc-EHOje ktKLsF">
   <div
-    className="first byHzie">
+    className="first sc-bwzfXH dYpfLQ">
     <div
       aria-controls="abcdef"
       aria-expanded={false}
-      className="cqIlEf"
+      className="sc-htpNat kITHuH"
       onClick={[Function]}
       role="tab">
       <span>
         <i
           aria-hidden={true}
-          className="cTarNb dyzqxb"
+          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
           content="63f"
           fontFamily="oecom-icons"
           fontSize="inherit" />
@@ -128,7 +128,7 @@ exports[`drawer component drawer renders as expected 1`] = `
       </span>
     </div>
     <div
-      className="jJqMaE"
+      className="sc-ifAKCX eMUdZt"
       id="abcdef"
       style={
         Object {
@@ -140,17 +140,17 @@ exports[`drawer component drawer renders as expected 1`] = `
       } />
   </div>
   <div
-    className="second byHzie">
+    className="second sc-bwzfXH dYpfLQ">
     <div
       aria-controls="abcdef"
       aria-expanded={false}
-      className="cqIlEf"
+      className="sc-htpNat kITHuH"
       onClick={[Function]}
       role="tab">
       <span>
         <i
           aria-hidden={true}
-          className="cTarNb dyzqxb"
+          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
           content="63f"
           fontFamily="oecom-icons"
           fontSize="inherit" />
@@ -158,7 +158,7 @@ exports[`drawer component drawer renders as expected 1`] = `
       </span>
     </div>
     <div
-      className="jJqMaE"
+      className="sc-ifAKCX eMUdZt"
       id="abcdef"
       style={
         Object {
@@ -170,17 +170,17 @@ exports[`drawer component drawer renders as expected 1`] = `
       } />
   </div>
   <div
-    className="third byHzie">
+    className="third sc-bwzfXH dYpfLQ">
     <div
       aria-controls="abcdef"
       aria-expanded={false}
-      className="cqIlEf"
+      className="sc-htpNat kITHuH"
       onClick={[Function]}
       role="tab">
       <span>
         <i
           aria-hidden={true}
-          className="cTarNb dyzqxb"
+          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
           content="63f"
           fontFamily="oecom-icons"
           fontSize="inherit" />
@@ -188,7 +188,7 @@ exports[`drawer component drawer renders as expected 1`] = `
       </span>
     </div>
     <div
-      className="jJqMaE"
+      className="sc-ifAKCX eMUdZt"
       id="abcdef"
       style={
         Object {

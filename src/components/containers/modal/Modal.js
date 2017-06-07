@@ -32,7 +32,7 @@ const DialogWrapper = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  z-Index: 1050;
+  z-index: 1050;
 `;
 
 const ModalDialogMedium = styled.div`
@@ -116,11 +116,12 @@ class Modal extends React.Component {
   };
 
   adjustForScrollbar() {
+    /* taken nearly verbatim from react-bootstrap */
     if (!canUseDOM) {
       return;
     }
 
-    const dialogNode = this.modal.getDialogElement();
+    const dialogNode = this.dialog;
     const dialogHeight = dialogNode.scrollHeight;
 
     const bodyIsOverflowing = isOverflowing(
@@ -190,6 +191,9 @@ class Modal extends React.Component {
           role="dialog"
           style={{ ...this.state.style }}
           tabIndex="-1"
+          innerRef={dialog => {
+            this.dialog = dialog;
+          }}
         >
           <ModalDialog size={size}>
             <ModalContent>

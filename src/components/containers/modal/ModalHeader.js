@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { colors } from '../../theme';
+import { noop } from 'lodash';
 
 const Header = styled.div`
   background-color: ${colors.accent};
@@ -46,13 +47,15 @@ const ScreenReaderText = styled.span`
 const ModalHeader = (props, context) => {
   const { closeButton, children, ...otherProps } = props;
   const modal = context.modal;
+  const onHide = modal ? modal.onHide : noop;
+  const ariaId = modal ? modal.ariaId : null;
 
   return (
     <Header {...otherProps}>
-      <Title id={modal.ariaId}>{children}</Title>
+      <Title id={ariaId}>{children}</Title>
 
       {closeButton &&
-        <Button type="button" aria-label="Close" onClick={modal.onHide}>
+        <Button type="button" aria-label="Close" onClick={onHide}>
           <span aria-hidden="true">×</span>
           <ScreenReaderText>Close</ScreenReaderText>
         </Button>}
@@ -72,7 +75,8 @@ ModalHeader.defaultProps = {
 
 ModalHeader.contextTypes = {
   modal: PropTypes.shape({
-    onHide: PropTypes.func
+    onHide: PropTypes.func,
+    ariaId: PropTypes.string
   })
 };
 

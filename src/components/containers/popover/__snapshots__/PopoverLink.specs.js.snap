@@ -2,7 +2,7 @@ exports[`popoverLink component renders as expected 1`] = `
 <span>
   <span>
     <button
-      className="gUBhKw kKThPK"
+      className="sc-fjdhpX jzETuU sc-bZQynM kMNeGw sc-bwzfXH ebzKCJ"
       data-trigger="focus"
       onClick={[Function]}>
       This is the popover link text.

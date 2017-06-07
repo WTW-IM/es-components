@@ -13,5 +13,6 @@ export Button from './components/controls/buttons/Button';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
 export Dropdown from './components/controls/dropdown/Dropdown';
 export DatePicker from './components/controls/datepicker/DatePicker';
+export Checkbox from './components/controls/checkbox/Checkbox';
 
 export DatePickerTextbox from './components/patterns/datepicker-textbox/DatePickerTextbox';

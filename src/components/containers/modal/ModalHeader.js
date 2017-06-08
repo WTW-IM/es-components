@@ -64,7 +64,7 @@ const ModalHeader = (props, context) => {
 };
 
 ModalHeader.propTypes = {
-  /** Specify whether the Component should contain a close button */
+  /** Specify whether the modal header should contain a close button */
   closeButton: PropTypes.bool,
   children: PropTypes.any
 };

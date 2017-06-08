@@ -207,7 +207,7 @@ class Modal extends React.Component {
 }
 
 Modal.propTypes = {
-  /** Open and close the Modal with a slide and fade animation. */
+  /** Open and close the Modal with a fade animation. */
   animation: PropTypes.bool,
   /**
    * Include a backdrop component. Specify 'static' for a backdrop that doesn't

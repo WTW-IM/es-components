@@ -55,6 +55,7 @@ function renderIcon(type) {
 }
 
 const LeadingHeader = styled.p`
+  display: flex;
   margin: 0;
   padding: 15px;
 `;
@@ -100,13 +101,17 @@ const NotificationIcon = styled(Icon)`
   }
 `;
 
+const NotificationText = styled.small`
+  flex: 1;
+`;
+
 function renderExtraNotification(notification) {
   const { notificationText, notificationIcon = 'federal' } = notification;
 
   return (
     <ExtraNotification className="alert__notification">
       <NotificationIcon name={notificationIcon} />
-      <small>{notificationText}</small>
+      <NotificationText>{notificationText}</NotificationText>
     </ExtraNotification>
   );
 }

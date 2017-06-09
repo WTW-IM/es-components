@@ -99,3 +99,37 @@ describe('when callsToAction are provided', () => {
     expect(primaryAction.mock.calls.length).toBe(1);
   });
 });
+
+describe('when extraNotificationText is provided', () => {
+  const extraNotification = { notificationText: 'test' };
+  const instanceProps = { extraNotification };
+
+  let instance;
+
+  beforeEach(() => {
+    instance = getMountedInstance(instanceProps);
+  });
+
+  it('adds an ExtraNotification to the alert', () => {
+    expect(instance.find('.alert__notification').length).toBe(1);
+  });
+
+  it('displays the passed text as small', () => {
+    expect(instance.find('small').text()).toBe('test');
+  });
+
+  it('displays the default icon', () => {
+    expect(instance.find(Icon).prop('name')).toBe('federal');
+  });
+
+  it('displays a different icon if provided one', () => {
+    const newNotification = {
+      notificationText: 'test',
+      notificationIcon: 'bell'
+    };
+
+    instance.setProps({ extraNotification: newNotification });
+
+    expect(instance.find(Icon).prop('name')).toBe('bell');
+  });
+});

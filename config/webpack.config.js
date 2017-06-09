@@ -14,10 +14,6 @@ module.exports = {
       test: /\.less$/,
       include: [path.join(styleguidePaths.srcDir, 'styles'), baseComponentDir],
       use: ['style-loader', 'css-loader', 'less-loader']
-    }, {
-      test: /\.eot$|\.ttf$|\.svg$|\.woff$/,
-      include: path.join(styleguidePaths.srcDir, 'webfonts'),
-      use: ['file-loader']
     }]
   }
 };

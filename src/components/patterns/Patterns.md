@@ -1,0 +1,1 @@
+The components in this section are composed of several components and make up common UX patterns to be used throughout applications.

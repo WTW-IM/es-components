@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
+import { noop, isNil } from 'lodash';
 import slug from 'slug';
 
 import Label from '../Label';
@@ -33,7 +33,7 @@ export default class Dropdown extends React.Component {
     onOptionChanged: PropTypes.func,
     /** Function to execute when the dropdown loses focus */
     onDropdownFocusLost: PropTypes.func
-  }
+  };
 
   static defaultProps = {
     inline: false,
@@ -42,13 +42,13 @@ export default class Dropdown extends React.Component {
     selectedValue: '',
     onOptionChanged: noop,
     onDropdownFocusLost: noop
-  }
+  };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      currentValue: props.selectedValue
+      currentValue: isNil(props.selectedValue) ? '' : props.selectedValue
     };
 
     this.handleOptionChanged = this.handleOptionChanged.bind(this);
@@ -56,7 +56,9 @@ export default class Dropdown extends React.Component {
   }
 
   componentWillReceiveProps({ selectedValue }) {
-    this.setState(() => ({ currentValue: selectedValue }));
+    this.setState(() => ({
+      currentValue: isNil(selectedValue) ? '' : selectedValue
+    }));
   }
 
   handleEvent(event, handlerName) {
@@ -88,14 +90,16 @@ export default class Dropdown extends React.Component {
 
     const { currentValue } = this.state;
 
-    const firstOption = includeDefaultFirstOption ?
-            <option disabled value="">{firstOptionDisplayText}</option> :
-            null;
+    const firstOption = includeDefaultFirstOption
+      ? <option disabled value="">{firstOptionDisplayText}</option>
+      : null;
 
     const selectOptions = options.map(opt => {
       const optionKey = slug(opt.optionValue);
       return (
-        <option key={optionKey} value={opt.optionValue}>{opt.optionText}</option>
+        <option key={optionKey} value={opt.optionValue}>
+          {opt.optionText}
+        </option>
       );
     });
 
@@ -104,7 +108,12 @@ export default class Dropdown extends React.Component {
 
     return (
       <Label inline={inline}>
-        <LabelText foregroundColor={selectVariables.foregroundColor} inline={inline}>{labelText}</LabelText>
+        <LabelText
+          foregroundColor={selectVariables.foregroundColor}
+          inline={inline}
+        >
+          {labelText}
+        </LabelText>
         <SelectBase
           name={selectName}
           value={currentValue}

@@ -24,13 +24,18 @@ const DismissAlert = styled(DismissButton)`
 const iconMap = {
   success: 'ok-sign',
   information: 'info-sign',
-  warning: 'exclaimation-sign',
-  danger: 'exclaimation-sign',
+  warning: 'exclamation-sign',
+  danger: 'exclamation-sign',
   advisor: 'agent'
 };
 
 const AlertIcon = styled(Icon)`
   margin-right: 5px;
+  margin-bottom: 2px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 function renderIcon(type) {
@@ -39,7 +44,13 @@ function renderIcon(type) {
 }
 
 const LeadingHeader = styled.p`
+  display: flex;
   margin: 0;
+  padding: 15px;
+`;
+
+const LeadingText = styled.span`
+  margin-left: ${props => (props.adjustText ? '24px' : '0')};
 `;
 
 function renderLeadingHeader(
@@ -50,13 +61,47 @@ function renderLeadingHeader(
 ) {
   const hasLeadingHeaderText = leadingHeader !== undefined;
   const hasLeadingText = leadingText !== undefined;
+  const adjustText = hasLeadingHeaderText && includeIcon;
 
   return (
     <LeadingHeader>
       {includeIcon ? renderIcon(alertType) : null}
       {hasLeadingHeaderText ? <strong>{leadingHeader}<br /></strong> : null}
-      {hasLeadingText ? leadingText : null}
+      {hasLeadingText
+        ? <LeadingText adjustText={adjustText}>{leadingText}</LeadingText>
+        : null}
     </LeadingHeader>
+  );
+}
+
+const ExtraNotification = styled.p`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 15px;
+`;
+
+const NotificationIcon = styled(Icon)`
+  margin-right: 7px;
+  margin-bottom: 2px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
+const NotificationText = styled.small`
+  flex: 1;
+`;
+
+function renderExtraNotification(notification) {
+  const { notificationText, notificationIcon = 'federal' } = notification;
+
+  return (
+    <ExtraNotification className="alert__notification">
+      <NotificationIcon name={notificationIcon} />
+      <NotificationText>{notificationText}</NotificationText>
+    </ExtraNotification>
   );
 }
 
@@ -73,6 +118,21 @@ const CallsToAction = styled.div`
 
   & > button:not(:first-of-type) {
     margin-right: 15px;
+  }
+
+  @media (max-width: 767px) {
+    display: block;
+    padding: 15px;
+
+    & > button {
+      display: block;
+      margin-bottom: 15px;
+      width: 100%;
+
+      &:active {
+        margin-bottom: 15px;
+      }
+    }
   }
 `;
 
@@ -96,7 +156,7 @@ function renderCallsToAction(callsToAction) {
   );
 }
 
-const BaseAlertContainer = styled.div`
+const AlertContainer = styled.div`
    background-color: ${props => props.alertVariation.color};
    border: 1px solid ${props => props.alertVariation.borderColor};
    border-radius: 2px;
@@ -104,13 +164,22 @@ const BaseAlertContainer = styled.div`
    margin-bottom: 25px;
 `;
 
-const DismissableAlertContainer = styled(BaseAlertContainer)`
+const AlertContent = styled.div`
+  padding: 0 15px 15px;
+  margin-left: ${props => (props.hasIcon ? '24px' : '0')};
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
+`;
+
+const AlertHeader = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const AlertContent = styled.div`
-  padding: 15px;
+const AlertHeaderText = styled.div`
+  display: flex;
 `;
 
 function Alert({
@@ -121,23 +190,35 @@ function Alert({
   children,
   includeIcon = false,
   dismissable = false,
-  onDismiss = noop
+  onDismiss = noop,
+  extraNotification,
+  ...otherProps
 }) {
   const alertVariation = alertVariations[type];
   const hasCallsToAction = callsToAction.length > 0;
-
-  const AlertContainer = dismissable
-    ? DismissableAlertContainer
-    : BaseAlertContainer;
+  const hasExtraNotification = extraNotification;
+  const hasChildren = React.Children.count(children) > 0;
 
   return (
-    <AlertContainer alertVariation={alertVariation} role="alert">
-      <AlertContent>
+    <AlertContainer
+      {...otherProps}
+      alertVariation={alertVariation}
+      role="alert"
+    >
+      <AlertHeader>
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
-        {children}
-      </AlertContent>
-      {dismissable &&
-        <DismissAlert onClick={onDismiss} className="alert__dismiss" />}
+        <AlertHeaderText>
+          {hasExtraNotification
+            ? renderExtraNotification(extraNotification)
+            : null}
+          {dismissable &&
+            <DismissAlert onClick={onDismiss} className="alert__dismiss" />}
+        </AlertHeaderText>
+      </AlertHeader>
+
+      {hasChildren
+        ? <AlertContent hasIcon={includeIcon}>{children}</AlertContent>
+        : null}
       {hasCallsToAction ? renderCallsToAction(callsToAction) : null}
     </AlertContainer>
   );
@@ -151,20 +232,27 @@ const callToActionShape = {
   action: PropTypes.func.isRequired
 };
 
+const extraNotificationShape = {
+  notificationText: PropTypes.node.isRequired,
+  notificationIcon: PropTypes.string
+};
+
 Alert.propTypes = {
   type: PropTypes.oneOf(alertTypes).isRequired,
   /** The bolded text in the leading text */
   header: PropTypes.string,
   /** The non-bolded text in the leading text */
-  additionalText: PropTypes.string.isRequired,
+  additionalText: PropTypes.string,
   /** Additional elements rendered after the leading text */
-  children: PropTypes.element,
+  children: PropTypes.node,
   /** Include the corresponding icon in the alert's leading text */
   includeIcon: PropTypes.bool,
   /** Render a dismiss button */
   dismissable: PropTypes.bool,
   /** Function to execute when dismiss button is clicked */
   onDismiss: PropTypes.func,
+  /** The small text and icon included in the extra notification */
+  extraNotification: PropTypes.shape(extraNotificationShape),
   callsToAction: PropTypes.arrayOf(PropTypes.shape(callToActionShape))
 };
 

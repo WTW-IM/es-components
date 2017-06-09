@@ -1,22 +1,21 @@
 exports[`modal header component renders with close button 1`] = `
 <div
-  className="header sc-bdVaJa UgNLO">
+  className="header sc-htpNat emAhSe">
   <h4
-    className="sc-bwzfXH dtTgkt"
+    className="sc-bxivhb ddKihU"
     id={null}>
     This is the header with close button.
   </h4>
   <button
     aria-label="Close"
-    className="sc-htpNat hloEoM"
-    onClick={[Function]}
-    type="button">
+    className="sc-ifAKCX fHfvgf sc-bdVaJa ijDihB"
+    onClick={[Function]}>
     <span
       aria-hidden="true">
       ×
     </span>
     <span
-      className="sc-bxivhb COfqB">
+      className="sc-bwzfXH fkxhjC">
       Close
     </span>
   </button>
@@ -25,9 +24,9 @@ exports[`modal header component renders with close button 1`] = `
 
 exports[`modal header component renders without close button 1`] = `
 <div
-  className="header sc-bdVaJa UgNLO">
+  className="header sc-htpNat emAhSe">
   <h4
-    className="sc-bwzfXH dtTgkt"
+    className="sc-bxivhb ddKihU"
     id={null}>
     This is the header without close button.
   </h4>

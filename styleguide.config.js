@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
@@ -46,6 +47,17 @@ module.exports = {
     dateFormat: 'date-fns/format'
   },
   webpackConfig: require('./config/webpack.config.js'),
+  dangerouslyUpdateWebpackConfig(webpackConfig, env) {
+    webpackConfig.plugins.push(
+      new CopyWebpackPlugin([
+        {
+          from: path.join(styleguidePaths.publicDir, 'webfonts'),
+          to:  path.join(webpackConfig.output.path, 'webfonts')
+        }
+      ])
+    );
+    return webpackConfig;
+  },
   styles: {
     Playground: {
       preview: {

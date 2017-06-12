@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "3.7.0",
+  "version": "3.8.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",
@@ -71,12 +71,13 @@
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.28.3",
+    "dom-helpers": "^3.2.1",
     "focus-trap-react": "^3.0.3",
     "lodash": "^4.17.4",
     "react-overlays": "^0.7.0",
     "react-smooth-collapse": "^1.2.0",
     "slug": "^0.9.1",
-    "styled-components": "^1.4.6",
+    "styled-components": "^2.0.0",
     "tinycolor2": "^1.4.1"
   }
 }

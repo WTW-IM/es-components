@@ -7,30 +7,19 @@ import { alertVariations } from './alert-variations';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
+import DismissButton from '../../controls/DismissButton';
 import { colors } from '../../theme';
 
-const DismissButton = styled.button`
-  align-self: flex-start;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  font-size: 27px;
-  font-weight: bold;
+const DismissAlert = styled(DismissButton)`
+  line-height: 1.4;
   opacity: 0.2;
+  padding: 6px 12px;
   text-shadow: 0 1px 0 ${colors.white};
-`;
 
-function renderDismissButton(onDismiss) {
-  return (
-    <DismissButton
-      aria-label="Close"
-      onClick={onDismiss}
-      className="alert__dismiss"
-    >
-      <span aria-hidden="true">×</span>
-    </DismissButton>
-  );
-}
+  &:hover {
+    opacity: 0.5;
+  }
+`;
 
 const iconMap = {
   success: 'ok-sign',
@@ -222,7 +211,8 @@ function Alert({
           {hasExtraNotification
             ? renderExtraNotification(extraNotification)
             : null}
-          {dismissable ? renderDismissButton(onDismiss) : null}
+          {dismissable &&
+            <DismissAlert onClick={onDismiss} className="alert__dismiss" />}
         </AlertHeaderText>
       </AlertHeader>
 

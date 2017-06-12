@@ -1,13 +1,13 @@
 exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
-  className="fFUjwm">
+  className="sc-bZQynM dSZIHB">
   <label
     checked={false}
-    className="cvaaHl"
+    className="sc-bwzfXH htHPuU sc-bdVaJa fskDIC"
     disabled={false}
     htmlFor="test-option-1">
     <input
-      className="djIxZF"
+      className="sc-htpNat vkqtM"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -15,20 +15,20 @@ exports[`RadioGroup component renders as expected 1`] = `
       type="radio"
       value={0} />
     <span
-      className="radio-fill fDIfVH"
+      className="radio-fill sc-ifAKCX gnYOzT"
       fill="#fff" />
     <span
-      className="cxSMDT">
+      className="sc-bxivhb bRNnnP">
       Option 0
     </span>
   </label>
   <label
     checked={false}
-    className="cvaaHl"
+    className="sc-bwzfXH htHPuU sc-bdVaJa fskDIC"
     disabled={false}
     htmlFor="test-option-2">
     <input
-      className="djIxZF"
+      className="sc-htpNat vkqtM"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -36,20 +36,20 @@ exports[`RadioGroup component renders as expected 1`] = `
       type="radio"
       value={1} />
     <span
-      className="radio-fill fDIfVH"
+      className="radio-fill sc-ifAKCX gnYOzT"
       fill="#fff" />
     <span
-      className="cxSMDT">
+      className="sc-bxivhb bRNnnP">
       Option 1
     </span>
   </label>
   <label
     checked={false}
-    className="cvaaHl"
+    className="sc-bwzfXH htHPuU sc-bdVaJa fskDIC"
     disabled={false}
     htmlFor="test-option-3">
     <input
-      className="djIxZF"
+      className="sc-htpNat vkqtM"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -57,10 +57,10 @@ exports[`RadioGroup component renders as expected 1`] = `
       type="radio"
       value={2} />
     <span
-      className="radio-fill fDIfVH"
+      className="radio-fill sc-ifAKCX gnYOzT"
       fill="#fff" />
     <span
-      className="cxSMDT">
+      className="sc-bxivhb bRNnnP">
       Option 2
     </span>
   </label>
@@ -69,18 +69,18 @@ exports[`RadioGroup component renders as expected 1`] = `
 
 exports[`RadioGroup component renders as expected with legend text 1`] = `
 <fieldset
-  className="fFUjwm">
+  className="sc-bZQynM dSZIHB">
   <legend
-    className="efjiDS">
+    className="sc-EHOje eWkBBJ">
     Test legend
   </legend>
   <label
     checked={false}
-    className="cvaaHl"
+    className="sc-bwzfXH htHPuU sc-bdVaJa fskDIC"
     disabled={false}
     htmlFor="test-option-1">
     <input
-      className="djIxZF"
+      className="sc-htpNat vkqtM"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -88,20 +88,20 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       type="radio"
       value={0} />
     <span
-      className="radio-fill fDIfVH"
+      className="radio-fill sc-ifAKCX gnYOzT"
       fill="#fff" />
     <span
-      className="cxSMDT">
+      className="sc-bxivhb bRNnnP">
       Option 0
     </span>
   </label>
   <label
     checked={false}
-    className="cvaaHl"
+    className="sc-bwzfXH htHPuU sc-bdVaJa fskDIC"
     disabled={false}
     htmlFor="test-option-2">
     <input
-      className="djIxZF"
+      className="sc-htpNat vkqtM"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -109,20 +109,20 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       type="radio"
       value={1} />
     <span
-      className="radio-fill fDIfVH"
+      className="radio-fill sc-ifAKCX gnYOzT"
       fill="#fff" />
     <span
-      className="cxSMDT">
+      className="sc-bxivhb bRNnnP">
       Option 1
     </span>
   </label>
   <label
     checked={false}
-    className="cvaaHl"
+    className="sc-bwzfXH htHPuU sc-bdVaJa fskDIC"
     disabled={false}
     htmlFor="test-option-3">
     <input
-      className="djIxZF"
+      className="sc-htpNat vkqtM"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -130,10 +130,10 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       type="radio"
       value={2} />
     <span
-      className="radio-fill fDIfVH"
+      className="radio-fill sc-ifAKCX gnYOzT"
       fill="#fff" />
     <span
-      className="cxSMDT">
+      className="sc-bxivhb bRNnnP">
       Option 2
     </span>
   </label>

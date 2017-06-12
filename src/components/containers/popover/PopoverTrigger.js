@@ -1,24 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
-import { injectGlobal } from 'styled-components';
 
 import Popover from './Popover';
-import PopoverFadeTransition from './PopoverFadeTransition';
+import Fade from '../../util/Fade';
 import FocusTrap from '../../util/FocusTrap';
-
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  .popover-transition-out {
-    opacity: 0;
-    transition: opacity 200ms linear;
-  }
-
-  .popover-transition-in {
-    opacity: 1;
-  }
-`;
-/* eslint-enable no-unused-expressions */
 
 function getArrowPlacement(popoverPlacement) {
   switch (popoverPlacement) {
@@ -58,7 +44,7 @@ function PopoverTrigger({
         show={shouldDisplayPopover}
         placement={popoverPlacement}
         target={popoverTarget}
-        transition={PopoverFadeTransition}
+        transition={Fade}
         onHide={onHideOverlay}
         rootClose={!containsFormElement}
       >

@@ -4,24 +4,29 @@ exports[`drawer component accordion renders as expected 1`] = `
   <div
     className="first sc-bwzfXH dYpfLQ">
     <div
-      aria-controls="abcdef"
-      aria-expanded={true}
-      className="sc-htpNat kITHuH"
-      onClick={[Function]}
-      role="tab">
-      <span>
-        <i
-          aria-hidden={true}
-          className="sc-bxivhb beQLQJ sc-bdVaJa dRgmsV"
-          content="63d"
-          fontFamily="oecom-icons"
-          fontSize="inherit" />
-        collapse 1
-      </span>
+      id="abcdef"
+      role="heading">
+      <button
+        aria-controls="abcdef"
+        aria-expanded={true}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}>
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb beQLQJ sc-bdVaJa dRgmsV"
+            content="63d"
+            fontFamily="oecom-icons"
+            fontSize="inherit" />
+          collapse 1
+        </span>
+      </button>
     </div>
     <div
+      aria-labelledby="abcdef"
       className="sc-ifAKCX eMUdZt"
       id="abcdef"
+      role="region"
       style={
         Object {
           "display": null,
@@ -43,24 +48,29 @@ exports[`drawer component accordion renders as expected 1`] = `
   <div
     className="second sc-bwzfXH dYpfLQ">
     <div
-      aria-controls="abcdef"
-      aria-expanded={false}
-      className="sc-htpNat kITHuH"
-      onClick={[Function]}
-      role="tab">
-      <span>
-        <i
-          aria-hidden={true}
-          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
-          content="63f"
-          fontFamily="oecom-icons"
-          fontSize="inherit" />
-        collapse 2
-      </span>
+      id="abcdef"
+      role="heading">
+      <button
+        aria-controls="abcdef"
+        aria-expanded={false}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}>
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            content="63f"
+            fontFamily="oecom-icons"
+            fontSize="inherit" />
+          collapse 2
+        </span>
+      </button>
     </div>
     <div
+      aria-labelledby="abcdef"
       className="sc-ifAKCX eMUdZt"
       id="abcdef"
+      role="region"
       style={
         Object {
           "display": "none",
@@ -73,24 +83,29 @@ exports[`drawer component accordion renders as expected 1`] = `
   <div
     className="third sc-bwzfXH dYpfLQ">
     <div
-      aria-controls="abcdef"
-      aria-expanded={false}
-      className="sc-htpNat kITHuH"
-      onClick={[Function]}
-      role="tab">
-      <span>
-        <i
-          aria-hidden={true}
-          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
-          content="63f"
-          fontFamily="oecom-icons"
-          fontSize="inherit" />
-        collapse 3
-      </span>
+      id="abcdef"
+      role="heading">
+      <button
+        aria-controls="abcdef"
+        aria-expanded={false}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}>
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            content="63f"
+            fontFamily="oecom-icons"
+            fontSize="inherit" />
+          collapse 3
+        </span>
+      </button>
     </div>
     <div
+      aria-labelledby="abcdef"
       className="sc-ifAKCX eMUdZt"
       id="abcdef"
+      role="region"
       style={
         Object {
           "display": "none",
@@ -109,27 +124,32 @@ exports[`drawer component drawer renders as expected 1`] = `
   <div
     className="first sc-bwzfXH dYpfLQ">
     <div
-      aria-controls="abcdef"
-      aria-expanded={false}
-      className="sc-htpNat kITHuH"
-      onClick={[Function]}
-      role="tab">
-      <span>
-        <i
-          aria-hidden={true}
-          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
-          content="63f"
-          fontFamily="oecom-icons"
-          fontSize="inherit" />
-        collapse 1
-      </span>
-      <span>
-        side text
-      </span>
+      id="abcdef"
+      role="heading">
+      <button
+        aria-controls="abcdef"
+        aria-expanded={false}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}>
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            content="63f"
+            fontFamily="oecom-icons"
+            fontSize="inherit" />
+          collapse 1
+        </span>
+        <aside>
+          side text
+        </aside>
+      </button>
     </div>
     <div
+      aria-labelledby="abcdef"
       className="sc-ifAKCX eMUdZt"
       id="abcdef"
+      role="region"
       style={
         Object {
           "display": "none",
@@ -142,24 +162,29 @@ exports[`drawer component drawer renders as expected 1`] = `
   <div
     className="second sc-bwzfXH dYpfLQ">
     <div
-      aria-controls="abcdef"
-      aria-expanded={false}
-      className="sc-htpNat kITHuH"
-      onClick={[Function]}
-      role="tab">
-      <span>
-        <i
-          aria-hidden={true}
-          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
-          content="63f"
-          fontFamily="oecom-icons"
-          fontSize="inherit" />
-        collapse 2
-      </span>
+      id="abcdef"
+      role="heading">
+      <button
+        aria-controls="abcdef"
+        aria-expanded={false}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}>
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            content="63f"
+            fontFamily="oecom-icons"
+            fontSize="inherit" />
+          collapse 2
+        </span>
+      </button>
     </div>
     <div
+      aria-labelledby="abcdef"
       className="sc-ifAKCX eMUdZt"
       id="abcdef"
+      role="region"
       style={
         Object {
           "display": "none",
@@ -172,24 +197,29 @@ exports[`drawer component drawer renders as expected 1`] = `
   <div
     className="third sc-bwzfXH dYpfLQ">
     <div
-      aria-controls="abcdef"
-      aria-expanded={false}
-      className="sc-htpNat kITHuH"
-      onClick={[Function]}
-      role="tab">
-      <span>
-        <i
-          aria-hidden={true}
-          className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
-          content="63f"
-          fontFamily="oecom-icons"
-          fontSize="inherit" />
-        collapse 3
-      </span>
+      id="abcdef"
+      role="heading">
+      <button
+        aria-controls="abcdef"
+        aria-expanded={false}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}>
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            content="63f"
+            fontFamily="oecom-icons"
+            fontSize="inherit" />
+          collapse 3
+        </span>
+      </button>
     </div>
     <div
+      aria-labelledby="abcdef"
       className="sc-ifAKCX eMUdZt"
       id="abcdef"
+      role="region"
       style={
         Object {
           "display": "none",

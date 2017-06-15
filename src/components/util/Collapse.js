@@ -12,26 +12,31 @@ Collapse.prototype.render = function render() {
   const visibleWhenClosed = this._visibleWhenClosed();
   const { height, fullyClosed, hasBeenVisibleBefore } = this.state;
   const {
-    heightTransition,
+    'aria-labelledby': labelledby,
     children,
     className,
-    id
+    heightTransition,
+    id,
+    role
   } = this.props;
 
-  const innerEl = hasBeenVisibleBefore ?
-    <div ref="inner" style={{ overflow: 'hidden' }}>
-      { children }
-    </div>
+  const innerEl = hasBeenVisibleBefore
+    ? <div ref="inner" style={{ overflow: 'hidden' }}>
+        {children}
+      </div>
     : null;
 
   return (
     <div
-      ref="main"
-      id={id}
+      aria-labelledby={labelledby}
       className={className}
+      id={id}
+      ref="main"
+      role={role}
       style={{
-        height, overflow: 'hidden',
-        display: (fullyClosed && !visibleWhenClosed) ? 'none' : null,
+        height,
+        overflow: 'hidden',
+        display: fullyClosed && !visibleWhenClosed ? 'none' : null,
         transition: `height ${heightTransition}`
       }}
     >

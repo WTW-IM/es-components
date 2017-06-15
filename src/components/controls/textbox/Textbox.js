@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop, isNil } from 'lodash';
-import slug from 'slug';
 
 import Icon from '../../base/icons/Icon';
 import { sizes } from '../../theme';
@@ -11,6 +10,7 @@ import Label from '../Label';
 import Addon from './Addon';
 import getValidationStateVariables from '../getValidationStateVariables';
 import getAddonType from './getAddonType';
+import genId from '../../util/generateAlphaName';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
@@ -159,14 +159,14 @@ class Textbox extends React.Component {
 
     const hasHelpContent = additionalHelpContent !== undefined;
 
-    const ariaId = hasHelpContent
-      ? `${slug(labelText, { lower: true })}-help-content`
-      : null;
-    const additionalHelp = hasHelpContent
-      ? <AdditionalHelpContent id={ariaId}>
-          {additionalHelpContent}
-        </AdditionalHelpContent>
-      : null;
+    const textboxId = genId();
+    const helpId = hasHelpContent ? genId() : null;
+
+    const additionalHelp =
+      hasHelpContent &&
+      <AdditionalHelpContent id={helpId} className="textbox__help">
+        {additionalHelpContent}
+      </AdditionalHelpContent>;
 
     const hasPrependedText = prependContent !== undefined;
     const hasAppendedText = appendContent !== undefined;
@@ -181,7 +181,11 @@ class Textbox extends React.Component {
     const inputName = name || labelText.replace(/\s+/g, '');
 
     return (
-      <TextBoxLabel color={inputVariables.foregroundColor} inline={inline}>
+      <TextBoxLabel
+        htmlFor={textboxId}
+        color={inputVariables.foregroundColor}
+        inline={inline}
+      >
         <LabelText inline={inline}>{labelText}</LabelText>
         <InputWrapper>
           {this.renderAddon(
@@ -192,13 +196,14 @@ class Textbox extends React.Component {
           )}
           <TextWrapper includeMargin={hasNoAddon && inline}>
             <StyledText
+              id={textboxId}
               ref={ref => this.setTextboxRef(ref, 'textbox')}
               addonType={addonType}
               type="text"
               name={inputName}
               onChange={this.handleOnTextChanged}
               onBlur={this.handleOnTextFocusLost}
-              aria-describedby={ariaId}
+              aria-describedby={helpId}
               value={this.state.currentValue}
               {...inputVariables}
               {...additionalTextProps}

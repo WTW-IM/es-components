@@ -65,6 +65,7 @@ class PopoverLink extends React.Component {
           }}
         >
           <PopoverButton
+            aria-haspopup="dialog"
             data-trigger="focus"
             styleType="link"
             handleOnClick={this.togglePopover}

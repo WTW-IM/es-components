@@ -10,11 +10,15 @@ const PanelWrapper = styled.div`
   border-bottom: 1px solid ${colors.grayLight};
 `;
 
-const PanelTitle = styled.div`
+const PanelButton = styled.button`
+  background: none;
+  border: 0;
   cursor: pointer;
   display: flex;
+  font-size: 18px;
   justify-content: space-between;
   padding: 10px 15px;
+  width: 100%;
 
   &:hover {
     background-color: ${colors.grayLighter};
@@ -43,32 +47,40 @@ const DrawerPanel = props => {
     children,
     className,
     closedIconName,
-    title,
-    titleAside,
     isActive,
     noPadding,
     onItemClick,
-    openedIconName
+    openedIconName,
+    title,
+    titleAside
   } = props;
 
-  const ariaId = genId();
-  const aside = titleAside !== undefined ? <span>{titleAside}</span> : null;
+  const headingAriaId = genId();
+  const regionAriaId = genId();
+  const aside = titleAside !== undefined && <aside>{titleAside}</aside>;
 
   return (
     <PanelWrapper className={className} noPadding={noPadding}>
-      <PanelTitle
-        onClick={() => onItemClick()}
-        role="tab"
-        aria-expanded={isActive}
-        aria-controls={ariaId}
+      <div id={headingAriaId} role="heading">
+        <PanelButton
+          aria-expanded={isActive}
+          aria-controls={regionAriaId}
+          onClick={() => onItemClick()}
+        >
+          <span>
+            <PanelIcon name={isActive ? openedIconName : closedIconName} />
+            {title}
+          </span>
+          {aside}
+        </PanelButton>
+      </div>
+      <PanelBody
+        aria-labelledby={headingAriaId}
+        expanded={isActive}
+        heightTransition=".35s ease"
+        id={regionAriaId}
+        role="region"
       >
-        <span>
-          <PanelIcon name={isActive ? openedIconName : closedIconName} />
-          {title}
-        </span>
-        {aside}
-      </PanelTitle>
-      <PanelBody expanded={isActive} heightTransition=".35s ease" id={ariaId}>
         {children}
       </PanelBody>
     </PanelWrapper>

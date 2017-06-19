@@ -14,7 +14,7 @@ export const LabelText = styled.span`
 const baseStyles = `
   border-radius: 2px;
   box-sizing: border-box;
-  color: ${colors.grayDark};
+  color: ${colors.grayDarkest};
   font-size: ${sizes.baseFontSize}px;
   font-weight: normal;
   height: 39px;

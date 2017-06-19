@@ -40,34 +40,34 @@ describe('drawer component', () => {
     it('click should toggle panel state', () => {
       const drawerInstance = mount(instanceToRender);
       const firstPanel = drawerInstance.find('.first');
-      const panelTitle = firstPanel.find({ role: 'tab' });
+      const panelButton = firstPanel.find('button');
 
-      expect(panelTitle.prop('aria-expanded')).toBe(false);
+      expect(panelButton.prop('aria-expanded')).toBe(false);
 
-      panelTitle.simulate('click');
-      expect(panelTitle.prop('aria-expanded')).toBe(true);
+      panelButton.simulate('click');
+      expect(panelButton.prop('aria-expanded')).toBe(true);
 
-      panelTitle.simulate('click');
-      expect(panelTitle.prop('aria-expanded')).toBe(false);
+      panelButton.simulate('click');
+      expect(panelButton.prop('aria-expanded')).toBe(false);
     });
 
     it('should allow more than one drawer to be opened at a time', () => {
       const drawerInstance = mount(instanceToRender);
       const firstPanel = drawerInstance.find('.first');
-      const firstTitle = firstPanel.find({ role: 'tab' });
+      const firstButton = firstPanel.find('button');
       const thirdPanel = drawerInstance.find('.third');
-      const thirdTitle = thirdPanel.find({ role: 'tab' });
+      const thirdButton = thirdPanel.find('button');
 
-      expect(firstTitle.prop('aria-expanded')).toBe(false);
-      expect(thirdTitle.prop('aria-expanded')).toBe(false);
+      expect(firstButton.prop('aria-expanded')).toBe(false);
+      expect(thirdButton.prop('aria-expanded')).toBe(false);
 
-      firstTitle.simulate('click');
-      expect(firstTitle.prop('aria-expanded')).toBe(true);
-      expect(thirdTitle.prop('aria-expanded')).toBe(false);
+      firstButton.simulate('click');
+      expect(firstButton.prop('aria-expanded')).toBe(true);
+      expect(thirdButton.prop('aria-expanded')).toBe(false);
 
-      thirdTitle.simulate('click');
-      expect(firstTitle.prop('aria-expanded')).toBe(true);
-      expect(thirdTitle.prop('aria-expanded')).toBe(true);
+      thirdButton.simulate('click');
+      expect(firstButton.prop('aria-expanded')).toBe(true);
+      expect(thirdButton.prop('aria-expanded')).toBe(true);
     });
 
     it('should set multiple default panels open at start', () => {
@@ -122,16 +122,16 @@ describe('drawer component', () => {
     it('should only allow one drawer to be opened at a time', () => {
       const accordionInstance = mount(instanceToRender);
       const firstPanel = accordionInstance.find('.first');
-      const firstTitle = firstPanel.find({ role: 'tab' });
+      const firstButton = firstPanel.find('button');
       const thirdPanel = accordionInstance.find('.third');
-      const thirdTitle = thirdPanel.find({ role: 'tab' });
+      const thirdButton = thirdPanel.find('button');
 
-      expect(firstTitle.prop('aria-expanded')).toBe(true);
-      expect(thirdTitle.prop('aria-expanded')).toBe(false);
+      expect(firstButton.prop('aria-expanded')).toBe(true);
+      expect(thirdButton.prop('aria-expanded')).toBe(false);
 
-      thirdTitle.simulate('click');
-      expect(firstTitle.prop('aria-expanded')).toBe(false);
-      expect(thirdTitle.prop('aria-expanded')).toBe(true);
+      thirdButton.simulate('click');
+      expect(firstButton.prop('aria-expanded')).toBe(false);
+      expect(thirdButton.prop('aria-expanded')).toBe(true);
     });
   });
 });

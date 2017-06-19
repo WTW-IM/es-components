@@ -12,7 +12,7 @@ const ArrowBase = styled.div`
 
   &:after {
     border-color: transparent;
-    border-style: solid
+    border-style: solid;
     border-width: 10px;
     content: " ";
     position: absolute;

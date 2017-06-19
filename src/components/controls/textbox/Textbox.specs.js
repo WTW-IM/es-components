@@ -9,6 +9,8 @@ import getAddonType from './getAddonType';
 import Addon from './Addon';
 import Textbox from './Textbox';
 
+jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
+
 describe('Textbox component', () => {
   let instance;
   let input;
@@ -71,16 +73,16 @@ describe('Textbox component', () => {
 
     describedBy = input.prop('aria-describedby');
     expect(describedBy).not.toBeUndefined();
-    expect(describedBy).toBe('text-help-content');
+    expect(describedBy).toBe('abcdef');
   });
 
   it('renders additionalHelp when the additionalHelpContent props is provided', () => {
-    let help = instance.find('#text-help-content');
+    let help = instance.find('.textbox__help');
     expect(help.length).toBe(0);
 
     instance.setProps({ additionalHelpContent: 'I am here to help' });
 
-    help = instance.find('#text-help-content');
+    help = instance.find('.textbox__help');
     expect(help.text()).toBe('I am here to help');
   });
 
@@ -94,7 +96,6 @@ describe('Textbox component', () => {
     expect(icon.length).toBe(1);
   });
 });
-
 
 describe('getAddonType', () => {
   it('returns "prepend" when hasPrependContent is true and hasAppendContent is false', () => {

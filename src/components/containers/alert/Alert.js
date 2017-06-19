@@ -43,14 +43,15 @@ function renderIcon(type) {
   return <AlertIcon name={iconName} />;
 }
 
-const LeadingHeader = styled.p`
+const LeadingHeader = styled.div`
   display: flex;
   margin: 0;
   padding: 15px;
 `;
 
-const LeadingText = styled.span`
-  margin-left: ${props => (props.adjustText ? '24px' : '0')};
+const StrongHeader = styled.strong`
+  display: block;
+  padding-bottom: .25em;
 `;
 
 function renderLeadingHeader(
@@ -61,20 +62,19 @@ function renderLeadingHeader(
 ) {
   const hasLeadingHeaderText = leadingHeader !== undefined;
   const hasLeadingText = leadingText !== undefined;
-  const adjustText = hasLeadingHeaderText && includeIcon;
 
   return (
     <LeadingHeader>
-      {includeIcon ? renderIcon(alertType) : null}
-      {hasLeadingHeaderText ? <strong>{leadingHeader}<br /></strong> : null}
-      {hasLeadingText
-        ? <LeadingText adjustText={adjustText}>{leadingText}</LeadingText>
-        : null}
+      {includeIcon && renderIcon(alertType)}
+      <div>
+        {hasLeadingHeaderText && <StrongHeader>{leadingHeader}</StrongHeader>}
+        {hasLeadingText && <div>{leadingText}</div>}
+      </div>
     </LeadingHeader>
   );
 }
 
-const ExtraNotification = styled.p`
+const ExtraNotification = styled.aside`
   display: flex;
   flex-wrap: wrap;
   margin: 0;
@@ -90,17 +90,13 @@ const NotificationIcon = styled(Icon)`
   }
 `;
 
-const NotificationText = styled.small`
-  flex: 1;
-`;
-
 function renderExtraNotification(notification) {
   const { notificationText, notificationIcon = 'federal' } = notification;
 
   return (
     <ExtraNotification className="alert__notification">
       <NotificationIcon name={notificationIcon} />
-      <NotificationText>{notificationText}</NotificationText>
+      <small>{notificationText}</small>
     </ExtraNotification>
   );
 }
@@ -178,10 +174,6 @@ const AlertHeader = styled.div`
   justify-content: space-between;
 `;
 
-const AlertHeaderText = styled.div`
-  display: flex;
-`;
-
 function Alert({
   type,
   header,
@@ -207,19 +199,16 @@ function Alert({
     >
       <AlertHeader>
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
-        <AlertHeaderText>
-          {hasExtraNotification
-            ? renderExtraNotification(extraNotification)
-            : null}
+        <div>
+          {hasExtraNotification && renderExtraNotification(extraNotification)}
           {dismissable &&
             <DismissAlert onClick={onDismiss} className="alert__dismiss" />}
-        </AlertHeaderText>
+        </div>
       </AlertHeader>
 
-      {hasChildren
-        ? <AlertContent hasIcon={includeIcon}>{children}</AlertContent>
-        : null}
-      {hasCallsToAction ? renderCallsToAction(callsToAction) : null}
+      {hasChildren &&
+        <AlertContent hasIcon={includeIcon}>{children}</AlertContent>}
+      {hasCallsToAction && renderCallsToAction(callsToAction)}
     </AlertContainer>
   );
 }

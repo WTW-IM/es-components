@@ -35,7 +35,7 @@ it('alert has the alert role', () => {
 });
 
 it('header text is emphasized by strong tag', () => {
-  const instance = getShallowInstance();
+  const instance = getMountedInstance();
   expect(instance.find('strong').text()).toBe('alert header');
 });
 

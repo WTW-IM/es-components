@@ -4,6 +4,7 @@ import { sizes } from '../theme';
 
 const Label = styled.label`
   color: ${props => props.color || 'inherit'};
+  cursor: pointer;
   display: ${props => (props.inline ? 'flex' : 'block')};
   margin-bottom: 20px;
   text-transform: uppercase;

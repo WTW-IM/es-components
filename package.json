@@ -74,8 +74,8 @@
     "dom-helpers": "^3.2.1",
     "focus-trap-react": "^3.0.3",
     "lodash": "^4.17.4",
+    "react-animate-height": "^0.9.7",
     "react-overlays": "^0.7.0",
-    "react-smooth-collapse": "^1.2.0",
     "slug": "^0.9.1",
     "styled-components": "^2.0.0",
     "tinycolor2": "^1.4.1"

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Icon from '../../base/icons/Icon';
 import { colors } from '../../theme';
 import styled from 'styled-components';
-import Collapse from '../../util/Collapse';
 import genId from '../../util/generateAlphaName';
+import AnimateHeight from 'react-animate-height';
 
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${colors.grayLight};
@@ -32,12 +32,14 @@ const PanelIcon = styled(Icon)`
   top: -1px;
 `;
 
-const PanelBody = styled(Collapse)`
+const PanelBody = styled(({ noPadding, ...rest }) => (
+  <AnimateHeight {...rest} />
+))`
   background-color: ${colors.white};
-  border-bottom: 4px solid ${colors.grayLight};
   color: ${colors.grayDarkest};
 
   > div {
+    border-bottom: 4px solid ${colors.grayLight};
     padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
   }
 `;
@@ -76,8 +78,7 @@ const DrawerPanel = props => {
       </div>
       <PanelBody
         aria-labelledby={headingAriaId}
-        expanded={isActive}
-        heightTransition=".35s ease"
+        height={isActive ? 'auto' : 0}
         id={regionAriaId}
         noPadding={noPadding}
         role="region"

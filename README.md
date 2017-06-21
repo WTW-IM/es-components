@@ -3,6 +3,10 @@ Exchange Solutions React components
 
 [![Build Status](https://travis-ci.org/TWExchangeSolutions/es-components.svg?branch=master)](https://travis-ci.org/TWExchangeSolutions/es-components)
 
+## Documentation and Demos
+
+[https://twexchangesolutions.github.io/es-components/](https://twexchangesolutions.github.io/es-components/)
+
 ## Versioning
 
 Use [semantic versioning](http://semver.org/) to ensure that a consistent version is always available for publish. Use ``npm version`` in order to increase the version numbers. Push version updates as a separate commit.

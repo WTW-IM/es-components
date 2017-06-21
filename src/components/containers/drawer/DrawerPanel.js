@@ -60,7 +60,7 @@ const DrawerPanel = props => {
   const aside = titleAside !== undefined && <aside>{titleAside}</aside>;
 
   return (
-    <PanelWrapper className={className} noPadding={noPadding}>
+    <PanelWrapper className={className}>
       <div id={headingAriaId} role="heading">
         <PanelButton
           aria-expanded={isActive}
@@ -79,6 +79,7 @@ const DrawerPanel = props => {
         expanded={isActive}
         heightTransition=".35s ease"
         id={regionAriaId}
+        noPadding={noPadding}
         role="region"
       >
         {children}

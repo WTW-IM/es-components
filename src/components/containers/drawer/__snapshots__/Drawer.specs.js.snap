@@ -182,7 +182,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
     <div
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="sc-ifAKCX eEgeqQ"
       id="abcdef"
       role="region"
       style={

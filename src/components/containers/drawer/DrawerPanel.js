@@ -78,6 +78,7 @@ const DrawerPanel = props => {
       </div>
       <PanelBody
         aria-labelledby={headingAriaId}
+        duration={300}
         height={isActive ? 'auto' : 0}
         id={regionAriaId}
         noPadding={noPadding}

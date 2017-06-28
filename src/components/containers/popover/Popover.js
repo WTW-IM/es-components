@@ -130,10 +130,8 @@ const PopoverContent = styled.div`
 `;
 
 const PopoverTitle = styled.div`
-  background-color: ${colors.accent};
   color: ${colors.white};
   padding: 8px 14px;
-  flex-grow: 1;
 `;
 
 const PopoverBodyContent = styled.div`
@@ -141,9 +139,8 @@ const PopoverBodyContent = styled.div`
 `;
 
 const DismissPopover = styled(DismissButton)`
-  background-color: ${props => (props.hasTitle ? colors.accent : 'none')};
   color: ${props => (props.hasTitle ? colors.white : colors.grayDark)};
-  padding: ${props => (props.hasTitle ? '5px 14px' : '0px 14px')};
+  padding: ${props => (props.hasTitle ? '4px 14px' : '0px 14px')};
   margin-left: auto;
 `;
 
@@ -151,6 +148,7 @@ const PopoverHeader = styled.div`
   display: flex;
   justify-content: space-between;
   height: ${props => (props.hasTitle || props.containsFormElement ? 'auto' : '7px')};
+  background-color: ${props => (props.hasTitle ? colors.accent : 'none')};
 `;
 
 // className, positionLeft and positionTop props get passed to by the Overlay component

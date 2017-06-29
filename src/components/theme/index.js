@@ -21,6 +21,7 @@ export const colors = {
   gray: '#aaa',
   grayLight: '#ddd',
   grayLighter: '#eee',
+  grayLightest: '#f7f7f7',
   success: '#060',
   accent: '#5a0c6f',
   information: '#1b6284',

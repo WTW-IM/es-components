@@ -27,14 +27,14 @@ class SideNav extends Component {
   }
 
   onNavClick = (navId = null) => {
-    const { onItemSelection = noop } = this.props;
+    const { onItemSelected = noop } = this.props;
 
     if (this.state.defaultSelected) {
       this.setState({ selected: navId }, () => {
-        onItemSelection(navId);
+        onItemSelected(navId);
       });
     } else {
-      onItemSelection(navId);
+      onItemSelected(navId);
     }
   };
 
@@ -71,7 +71,7 @@ SideNav.propTypes = {
   /** Use to set a default nav, stateful mode */
   defaultSelected: PropTypes.string,
   /** Function called when a nav item is clicked */
-  onItemSelection: PropTypes.func
+  onItemSelected: PropTypes.func
 };
 
 SideNav.Item = NavItem;

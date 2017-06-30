@@ -151,6 +151,7 @@ class NavItem extends Component {
     const {
       altStyle = false,
       children,
+      className,
       highlightedId,
       id,
       isDisabled,
@@ -160,6 +161,7 @@ class NavItem extends Component {
     const NavItemStyled = altStyle ? NavItemAltStyle : NavItemBase;
 
     const itemProps = {
+      className,
       onClick: isDisabled ? noop : this.onNavItemClicked,
       onNavClick,
       isActive: id === highlightedId,
@@ -180,6 +182,7 @@ class NavItem extends Component {
 NavItem.propTypes = {
   altStyle: PropTypes.bool,
   children: PropTypes.node,
+  className: PropTypes.string,
   highlightedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.oneOfType([
     PropTypes.string.isRequired,

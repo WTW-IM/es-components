@@ -24,10 +24,10 @@
 </div>
 ```
 
-Setting ```onItemSelected``` will fire the function when a ```SideNav.Item``` is clicked.
+Setting ```onItemSelected``` will execute the function when a ```SideNav.Item``` is clicked.
 ```
 <div style={{width: '30%'}}>
-  <SideNav defaultSelected="home" onItemSelection={ (id) => {alert(id); }}>
+  <SideNav defaultSelected="home" onItemSelected={ (id) => {alert(id); }}>
     <SideNav.Item id="home">Home</SideNav.Item>
     <SideNav.Item id="cart">Cart</SideNav.Item>
     <SideNav.Item id="info" isDisabled>Disabled</SideNav.Item>
@@ -49,7 +49,7 @@ Set ```onNavClick``` on an individual ```SideNav.Item```.
 Manage selected item state manually using ```selected``` instead of ```defaultSelected```.
 ```
 <div style={{width: '30%'}}>
-  <SideNav selected={state.selected} onItemSelection={ (id) => {setState({selected: id})} }>
+  <SideNav selected={state.selected} onItemSelected={ (id) => {setState({selected: id})} }>
     <SideNav.Item id="home"><a>Home</a></SideNav.Item>
     <SideNav.Item id="cart">Cart</SideNav.Item>
     <SideNav.Item id="info"><a>Help</a></SideNav.Item>

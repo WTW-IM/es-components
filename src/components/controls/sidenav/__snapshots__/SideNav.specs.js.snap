@@ -1,0 +1,55 @@
+exports[`drawer renders as expected 1`] = `
+<nav
+  className="sc-ifAKCX hvutRM">
+  <ul>
+    <li>
+      <div
+        className="home sc-bwzfXH YgUoe"
+        onClick={[Function]}>
+        <span
+          className="sc-bxivhb khxFsg">
+          Home
+        </span>
+        <i
+          aria-hidden={true}
+          className="sc-bdVaJa izWgQO"
+          content="620"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+      </div>
+    </li>
+    <li>
+      <div
+        className="cart sc-bwzfXH jNiTgJ"
+        onClick={[Function]}>
+        <span
+          className="sc-bxivhb khxFsg">
+          Cart
+        </span>
+        <i
+          aria-hidden={true}
+          className="sc-bdVaJa izWgQO"
+          content="620"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+      </div>
+    </li>
+    <li>
+      <div
+        className="info sc-bwzfXH bGNvpM"
+        onClick={[Function]}>
+        <span
+          className="sc-bxivhb khxFsg">
+          Disabled
+        </span>
+        <i
+          aria-hidden={true}
+          className="sc-bdVaJa izWgQO"
+          content="620"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+      </div>
+    </li>
+  </ul>
+</nav>
+`;

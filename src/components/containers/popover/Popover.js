@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors, sizes } from '../../theme';
+import { colors, sizes, screenSize } from '../../theme';
 import classNames from 'classnames';
 import DismissButton from '../../controls/DismissButton';
 
@@ -108,6 +108,10 @@ const PopoverContent = styled.div`
   position: absolute;
   z-index: 10;
 
+  @media (max-width: ${screenSize.phone}) {
+    max-width: 100%;
+  }
+
   &.top {
     left: ${props => props.positionLeft}px;
     top: ${props => props.positionTop - 11}px;
@@ -116,6 +120,10 @@ const PopoverContent = styled.div`
   &.bottom {
     left: ${props => props.positionLeft}px;
     top: ${props => props.positionTop + 11}px;
+
+    @media (max-width: ${screenSize.phone}) {
+      left: 0;
+    }
   }
 
   &.left {

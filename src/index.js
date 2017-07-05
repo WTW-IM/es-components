@@ -16,3 +16,4 @@ export DatePicker from './components/controls/datepicker/DatePicker';
 export Checkbox from './components/controls/checkbox/Checkbox';
 
 export DatePickerTextbox from './components/patterns/datepicker-textbox/DatePickerTextbox';
+export Incrementer from './components/patterns/incrementer/Incrementer';

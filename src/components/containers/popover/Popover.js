@@ -148,7 +148,7 @@ const PopoverBodyContent = styled.div`
 
 const DismissPopover = styled(DismissButton)`
   color: ${props => (props.hasTitle ? colors.white : colors.grayDark)};
-  padding: ${props => (props.hasTitle ? '4px 14px' : '0px 14px')};
+  padding: ${props => (props.hasTitle ? '8px 14px' : '0px 14px')};
   margin-left: auto;
 `;
 
@@ -162,6 +162,7 @@ const PopoverHeader = styled.div`
 // className, positionLeft and positionTop props get passed to by the Overlay component
 const Popover = props => {
   const {
+    id,
     title,
     arrowPlacement,
     positionLeft,
@@ -179,6 +180,7 @@ const Popover = props => {
 
   return (
     <PopoverContent
+      id={id}
       className={popoverClassNames}
       role="tooltip"
       positionLeft={positionLeft}
@@ -201,6 +203,7 @@ const Popover = props => {
 };
 
 Popover.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string,
   arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   positionLeft: PropTypes.number,

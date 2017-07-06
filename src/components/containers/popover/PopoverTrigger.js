@@ -21,6 +21,7 @@ function getArrowPlacement(popoverPlacement) {
 }
 
 function PopoverTrigger({
+  popoverId,
   popoverTitle,
   popoverContent,
   popoverTarget,
@@ -49,6 +50,7 @@ function PopoverTrigger({
         rootClose={!containsFormElement}
       >
         <Popover
+          id={popoverId}
           title={popoverTitle}
           arrowPlacement={arrowPlacement}
           containsFormElement={containsFormElement}
@@ -67,6 +69,7 @@ function PopoverTrigger({
 }
 
 PopoverTrigger.propTypes = {
+  popoverId: PropTypes.string.isRequired,
   popoverTitle: PropTypes.string,
   popoverContent: PropTypes.node.isRequired,
   popoverTarget: PropTypes.object,

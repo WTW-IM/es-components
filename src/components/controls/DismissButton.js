@@ -22,7 +22,7 @@ const ScreenReaderText = styled.span`
 `;
 
 const DismissButton = props => (
-  <DismissButtonBase aria-label="Close" {...props}>
+  <DismissButtonBase {...props}>
     <span aria-hidden="true">×</span>
     <ScreenReaderText>Close</ScreenReaderText>
   </DismissButtonBase>

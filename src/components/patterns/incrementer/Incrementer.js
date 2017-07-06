@@ -56,7 +56,11 @@ class Incrementer extends React.Component {
   }
 
   componentWillReceiveProps({ startingValue }) {
-    this.setState(this.determineDisabledStates(startingValue));
+    const disabledStates = this.determineDisabledStates(startingValue);
+    this.setState(() => ({
+      value: startingValue,
+      ...disabledStates
+    }));
   }
 
   componentWillUpdate(nextProps, nextState) {

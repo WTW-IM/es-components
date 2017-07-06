@@ -40,6 +40,7 @@ class PopoverLink extends React.Component {
   render() {
     const {
       children,
+      popoverId,
       popoverTitle,
       popoverContent,
       popoverPlacement,
@@ -51,6 +52,7 @@ class PopoverLink extends React.Component {
 
     return (
       <PopoverTrigger
+        popoverId={popoverId}
         popoverTitle={popoverTitle}
         popoverContent={popoverContent}
         popoverTarget={this.popoverTarget}
@@ -65,7 +67,8 @@ class PopoverLink extends React.Component {
           }}
         >
           <PopoverButton
-            aria-haspopup="dialog"
+            aria-haspopup="true"
+            aria-describedby={popoverId}
             data-trigger="focus"
             styleType="link"
             handleOnClick={this.togglePopover}
@@ -85,6 +88,8 @@ class PopoverLink extends React.Component {
 PopoverLink.propTypes = {
   /** The link content which activates the popover */
   children: PropTypes.node.isRequired,
+  /** Helps identify the content element for accessibility */
+  popoverId: PropTypes.string.isRequired,
   /** The text displayed in the popover title section */
   popoverTitle: PropTypes.string,
   /** The content displayed in the popover body */

@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "3.11.0",
+  "version": "3.11.1",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",

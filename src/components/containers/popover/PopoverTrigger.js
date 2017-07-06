@@ -52,6 +52,7 @@ function PopoverTrigger({
           title={popoverTitle}
           arrowPlacement={arrowPlacement}
           containsFormElement={containsFormElement}
+          dismissPopover={onHideOverlay}
         >
           <FocusTrap
             active={containsFormElement}

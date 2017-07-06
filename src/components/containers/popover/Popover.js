@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors, sizes } from '../../theme';
+import { colors, sizes, screenSize } from '../../theme';
 import classNames from 'classnames';
+import DismissButton from '../../controls/DismissButton';
 
 const ArrowBase = styled.div`
   border-color: transparent;
@@ -107,6 +108,10 @@ const PopoverContent = styled.div`
   position: absolute;
   z-index: 10;
 
+  @media (max-width: ${screenSize.phone}) {
+    max-width: 100%;
+  }
+
   &.top {
     left: ${props => props.positionLeft}px;
     top: ${props => props.positionTop - 11}px;
@@ -115,6 +120,10 @@ const PopoverContent = styled.div`
   &.bottom {
     left: ${props => props.positionLeft}px;
     top: ${props => props.positionTop + 11}px;
+
+    @media (max-width: ${screenSize.phone}) {
+      left: 0;
+    }
   }
 
   &.left {
@@ -129,13 +138,25 @@ const PopoverContent = styled.div`
 `;
 
 const PopoverTitle = styled.div`
-  background-color: ${colors.accent};
   color: ${colors.white};
   padding: 8px 14px;
 `;
 
 const PopoverBodyContent = styled.div`
   padding: 9px 14px;
+`;
+
+const DismissPopover = styled(DismissButton)`
+  color: ${props => (props.hasTitle ? colors.white : colors.grayDark)};
+  padding: ${props => (props.hasTitle ? '4px 14px' : '0px 14px')};
+  margin-left: auto;
+`;
+
+const PopoverHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: ${props => (props.hasTitle || props.containsFormElement ? 'auto' : '7px')};
+  background-color: ${props => (props.hasTitle ? colors.accent : 'none')};
 `;
 
 // className, positionLeft and positionTop props get passed to by the Overlay component
@@ -147,7 +168,8 @@ const Popover = props => {
     positionTop,
     children,
     containsFormElement,
-    className
+    className,
+    dismissPopover
   } = props;
 
   const popoverClassNames = classNames(className, arrowPlacement);
@@ -163,7 +185,13 @@ const Popover = props => {
       positionTop={positionTop}
       tabIndex={containsFormElement ? 0 : null}
     >
-      {popoverTitle}
+      <PopoverHeader
+        hasTitle={hasTitle}
+        containsFormElement={containsFormElement}
+      >
+        {popoverTitle}
+        <DismissPopover hasTitle={hasTitle} onClick={dismissPopover} />
+      </PopoverHeader>
       <PopoverBodyContent>
         {children}
       </PopoverBodyContent>
@@ -179,7 +207,8 @@ Popover.propTypes = {
   positionTop: PropTypes.number,
   children: PropTypes.node,
   containsFormElement: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  dismissPopover: PropTypes.func
 };
 
 Popover.defaultProps = {

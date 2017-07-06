@@ -7,7 +7,7 @@
       <SideNav.Item id="cart">Cart</SideNav.Item>
       <SideNav.Item id="help">Help</SideNav.Item>
       <SideNav.Item id="info"><a>About</a></SideNav.Item>
-      <SideNav.Item id="info" isDisabled>Disabled</SideNav.Item>
+      <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
     </SideNav>
   </div>
 
@@ -18,7 +18,7 @@
       <SideNav.Item id="cart">Cart</SideNav.Item>
       <SideNav.Item id="help">Help</SideNav.Item>
       <SideNav.Item id="info"><a>About</a></SideNav.Item>
-      <SideNav.Item id="info" isDisabled>Disabled</SideNav.Item>
+      <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
     </SideNav>
   </div>
 </div>

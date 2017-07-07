@@ -23,24 +23,19 @@ exports[`drawer component accordion renders as expected 1`] = `
       </button>
     </div>
     <div
+      aria-hidden={false}
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="rah-static rah-static--height-auto sc-ifAKCX gUdFEl"
       id="abcdef"
       role="region"
       style={
         Object {
-          "display": null,
           "height": "auto",
-          "overflow": "hidden",
-          "transition": "height .35s ease",
+          "overflow": "visible",
         }
       }>
       <div
-        style={
-          Object {
-            "overflow": "hidden",
-          }
-        }>
+        className={undefined}>
         first
       </div>
     </div>
@@ -67,18 +62,22 @@ exports[`drawer component accordion renders as expected 1`] = `
       </button>
     </div>
     <div
+      aria-hidden={true}
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="rah-static rah-static--height-zero sc-ifAKCX gUdFEl"
       id="abcdef"
       role="region"
       style={
         Object {
-          "display": "none",
-          "height": "0",
+          "height": 0,
           "overflow": "hidden",
-          "transition": "height .35s ease",
         }
-      } />
+      }>
+      <div
+        className={undefined}>
+        second
+      </div>
+    </div>
   </div>
   <div
     className="third sc-bwzfXH dYpfLQ">
@@ -102,18 +101,22 @@ exports[`drawer component accordion renders as expected 1`] = `
       </button>
     </div>
     <div
+      aria-hidden={true}
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="rah-static rah-static--height-zero sc-ifAKCX gUdFEl"
       id="abcdef"
       role="region"
       style={
         Object {
-          "display": "none",
-          "height": "0",
+          "height": 0,
           "overflow": "hidden",
-          "transition": "height .35s ease",
         }
-      } />
+      }>
+      <div
+        className={undefined}>
+        third
+      </div>
+    </div>
   </div>
 </div>
 `;
@@ -146,18 +149,22 @@ exports[`drawer component drawer renders as expected 1`] = `
       </button>
     </div>
     <div
+      aria-hidden={true}
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="rah-static rah-static--height-zero sc-ifAKCX gUdFEl"
       id="abcdef"
       role="region"
       style={
         Object {
-          "display": "none",
-          "height": "0",
+          "height": 0,
           "overflow": "hidden",
-          "transition": "height .35s ease",
         }
-      } />
+      }>
+      <div
+        className={undefined}>
+        first
+      </div>
+    </div>
   </div>
   <div
     className="second sc-bwzfXH dYpfLQ">
@@ -181,18 +188,22 @@ exports[`drawer component drawer renders as expected 1`] = `
       </button>
     </div>
     <div
+      aria-hidden={true}
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="rah-static rah-static--height-zero sc-ifAKCX lnWkgR"
       id="abcdef"
       role="region"
       style={
         Object {
-          "display": "none",
-          "height": "0",
+          "height": 0,
           "overflow": "hidden",
-          "transition": "height .35s ease",
         }
-      } />
+      }>
+      <div
+        className={undefined}>
+        second
+      </div>
+    </div>
   </div>
   <div
     className="third sc-bwzfXH dYpfLQ">
@@ -216,18 +227,22 @@ exports[`drawer component drawer renders as expected 1`] = `
       </button>
     </div>
     <div
+      aria-hidden={true}
       aria-labelledby="abcdef"
-      className="sc-ifAKCX eMUdZt"
+      className="rah-static rah-static--height-zero sc-ifAKCX gUdFEl"
       id="abcdef"
       role="region"
       style={
         Object {
-          "display": "none",
-          "height": "0",
+          "height": 0,
           "overflow": "hidden",
-          "transition": "height .35s ease",
         }
-      } />
+      }>
+      <div
+        className={undefined}>
+        third
+      </div>
+    </div>
   </div>
 </div>
 `;

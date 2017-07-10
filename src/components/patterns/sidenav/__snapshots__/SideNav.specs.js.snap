@@ -3,9 +3,11 @@ exports[`drawer renders as expected 1`] = `
   className="sc-ifAKCX hvutRM">
   <ul>
     <li>
-      <div
-        className="home sc-bwzfXH YgUoe"
-        onClick={[Function]}>
+      <a
+        className="home sc-bwzfXH cjEGFn"
+        href="/home"
+        onClick={[Function]}
+        title="Home">
         <span
           className="sc-bxivhb khxFsg">
           Home
@@ -16,12 +18,14 @@ exports[`drawer renders as expected 1`] = `
           content="620"
           fontFamily="oecom-icons"
           fontSize="inherit" />
-      </div>
+      </a>
     </li>
     <li>
-      <div
-        className="cart sc-bwzfXH jNiTgJ"
-        onClick={[Function]}>
+      <a
+        className="cart sc-bwzfXH fAErvV"
+        href="#/"
+        onClick={[Function]}
+        title="Cart">
         <span
           className="sc-bxivhb khxFsg">
           Cart
@@ -32,12 +36,33 @@ exports[`drawer renders as expected 1`] = `
           content="620"
           fontFamily="oecom-icons"
           fontSize="inherit" />
-      </div>
+      </a>
     </li>
     <li>
-      <div
-        className="info sc-bwzfXH bGNvpM"
-        onClick={[Function]}>
+      <a
+        className="external sc-bwzfXH fAErvV"
+        href="http://www.google.com"
+        onClick={[Function]}
+        target="_blank"
+        title="External Link">
+        <span
+          className="sc-bxivhb khxFsg">
+          External Link
+        </span>
+        <i
+          aria-hidden={true}
+          className="sc-bdVaJa izWgQO"
+          content="620"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+      </a>
+    </li>
+    <li>
+      <a
+        className="info sc-bwzfXH iabUra"
+        href="#/"
+        onClick={[Function]}
+        title="Disabled">
         <span
           className="sc-bxivhb khxFsg">
           Disabled
@@ -48,7 +73,7 @@ exports[`drawer renders as expected 1`] = `
           content="620"
           fontFamily="oecom-icons"
           fontSize="inherit" />
-      </div>
+      </a>
     </li>
   </ul>
 </nav>

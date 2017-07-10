@@ -25,18 +25,24 @@ describe('drawer', () => {
           id="home"
           className="home"
           onNavClick={navId => onNavClick(navId)}
-        >
-          Home
-        </SideNav.Item>
-        <SideNav.Item id="cart" className="cart">Cart</SideNav.Item>
+          title="Home"
+          targetUrl="/home"
+        />
+        <SideNav.Item id="cart" className="cart" title="Cart" />
+        <SideNav.Item
+          id="external"
+          className="external"
+          title="External Link"
+          targetUrl="http://www.google.com"
+          isExternalLink
+        />
         <SideNav.Item
           id="info"
           className="info"
           onNavClick={() => onNavClick()}
+          title="Disabled"
           isDisabled
-        >
-          Disabled
-        </SideNav.Item>
+        />
       </SideNav>
     );
   });

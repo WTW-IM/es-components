@@ -5,21 +5,14 @@ import styled, { css } from 'styled-components';
 import { noop } from 'lodash';
 import Icon from '../../base/icons/Icon';
 
-const NavItemBase = styled.div`
+const AnchorBase = styled.a`
   background-color: ${colors.white};
   color: ${colors.black};
   display: flex;
   justify-content: space-between;
   cursor: pointer;
   padding: 10px;
-
-  a {
-    color: ${colors.black};
-    display: block;
-    margin: -10px -30px -10px -10px;
-    padding: 10px 30px 10px 10px;
-    text-decoration: none;
-  }
+  text-decoration: none;
 
   i {
     color: ${colors.white};
@@ -42,17 +35,9 @@ const NavItemBase = styled.div`
     background-color: ${colors.accent};
     color: ${colors.white};
 
-    a {
-      color: ${colors.white};
-    }
-
     &:hover {
       background-color: ${colors.accent};
       color: ${colors.white};
-
-      a {
-        color: ${colors.white};
-      }
 
       i {
         color: ${colors.white};
@@ -69,10 +54,6 @@ const NavItemBase = styled.div`
       pointer-events: none;
     }
 
-    a {
-      color: ${colors.grayDark};
-    }
-
     i {
       color: ${colors.grayLightest};
     }
@@ -81,10 +62,6 @@ const NavItemBase = styled.div`
       background-color: ${colors.grayLightest};
       color: ${colors.grayDark};
 
-      a {
-        color: ${colors.grayDark};
-      }
-
       i {
         color: ${colors.grayLightest};
       }
@@ -92,7 +69,7 @@ const NavItemBase = styled.div`
   `}
 `;
 
-const NavItemAltStyle = NavItemBase.extend`
+const AnchorAltStyle = AnchorBase.extend`
   &:hover {
     border-left: 4px solid ${colors.accent};
     padding-left: 6px;
@@ -104,10 +81,6 @@ const NavItemAltStyle = NavItemBase.extend`
     color: ${colors.accent};
     padding-left: 6px;
 
-    a {
-      color: ${colors.accent};
-    }
-
     i {
       color: ${colors.accent};
     }
@@ -115,10 +88,6 @@ const NavItemAltStyle = NavItemBase.extend`
     &:hover {
       background-color: ${colors.grayLight};
       color: ${colors.accent};
-
-      a {
-        color: ${colors.accent};
-      }
 
       i {
         color: ${colors.accent};
@@ -150,48 +119,68 @@ class NavItem extends Component {
   render() {
     const {
       altStyle = false,
-      children,
       className,
       highlightedId,
       id,
       isDisabled,
-      onNavClick = noop
+      isExternalLink = false,
+      onNavClick = noop,
+      targetUrl,
+      title
     } = this.props;
 
-    const NavItemStyled = altStyle ? NavItemAltStyle : NavItemBase;
+    const AnchorStyled = altStyle ? AnchorAltStyle : AnchorBase;
+    const href = targetUrl || '#/';
+    const openExternal = targetUrl && isExternalLink;
 
     const itemProps = {
       className,
+      href,
+      isActive: id === highlightedId,
+      isDisabled,
       onClick: isDisabled ? noop : this.onNavItemClicked,
       onNavClick,
-      isActive: id === highlightedId,
-      isDisabled
+      ...(openExternal && { target: '_blank' }),
+      title
     };
 
     return (
       <li>
-        <NavItemStyled {...itemProps}>
-          <FlexSpan>{children}</FlexSpan>
+        <AnchorStyled {...itemProps}>
+          <FlexSpan>{title}</FlexSpan>
           <Icon name="chevron-right" />
-        </NavItemStyled>
+        </AnchorStyled>
       </li>
     );
   }
 }
 
 NavItem.propTypes = {
+  /** @ignore */
   altStyle: PropTypes.bool,
-  children: PropTypes.node,
+  /** Additional CSS classes to apply */
   className: PropTypes.string,
+  /** @ignore */
   highlightedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Each item must have a unique identifier */
   id: PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.number.isRequired
   ]),
+  /** Disable the nav item to render it un-clickable */
   isDisabled: PropTypes.bool,
+  /** @ignore */
   isHighlighted: PropTypes.bool,
+  /** @ignore */
   onClick: PropTypes.func,
-  onNavClick: PropTypes.func
+  /** Used to assign an onClick event */
+  onNavClick: PropTypes.func,
+  /** Sets the link to open in a new browser window */
+  isExternalLink: PropTypes.bool,
+  /** Set the href target for the link */
+  targetUrl: PropTypes.string,
+  /** The displayed link text */
+  title: PropTypes.string.isRequired
 };
 
 NavItem.defaultProps = {

@@ -36,7 +36,36 @@ function PopoverTrigger({
 
   const arrowPlacement = getArrowPlacement(popoverPlacement);
 
-  return (
+  const trapped = (
+    <span>
+      {children}
+
+      <Overlay
+        show={shouldDisplayPopover}
+        placement={popoverPlacement}
+        target={popoverTarget}
+        transition={Fade}
+        onHide={onHideOverlay}
+        rootClose={!containsFormElement}
+      >
+        <FocusTrap
+          active={containsFormElement}
+          focusTrapOptions={focusTrapOptions}
+        >
+          <Popover
+            title={popoverTitle}
+            arrowPlacement={arrowPlacement}
+            containsFormElement={containsFormElement}
+            dismissPopover={onHideOverlay}
+          >
+            {popoverContent}
+          </Popover>
+        </FocusTrap>
+      </Overlay>
+    </span>
+  );
+
+  const nonTrapped = (
     <span>
       {children}
 
@@ -54,16 +83,12 @@ function PopoverTrigger({
           containsFormElement={containsFormElement}
           dismissPopover={onHideOverlay}
         >
-          <FocusTrap
-            active={containsFormElement}
-            focusTrapOptions={focusTrapOptions}
-          >
-            {popoverContent}
-          </FocusTrap>
+          {popoverContent}
         </Popover>
       </Overlay>
     </span>
   );
+  return containsFormElement ? trapped : nonTrapped;
 }
 
 PopoverTrigger.propTypes = {

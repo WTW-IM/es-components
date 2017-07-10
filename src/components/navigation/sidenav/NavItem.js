@@ -123,7 +123,7 @@ class NavItem extends Component {
       highlightedId,
       id,
       isDisabled,
-      isExternalLink = false,
+      isExternalLink,
       onNavClick = noop,
       targetUrl,
       title
@@ -163,10 +163,7 @@ NavItem.propTypes = {
   /** @ignore */
   highlightedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Each item must have a unique identifier */
-  id: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.number.isRequired
-  ]),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** Disable the nav item to render it un-clickable */
   isDisabled: PropTypes.bool,
   /** @ignore */
@@ -184,6 +181,8 @@ NavItem.propTypes = {
 };
 
 NavItem.defaultProps = {
+  isDisabled: false,
+  isExternalLink: false,
   onNavClick: noop
 };
 

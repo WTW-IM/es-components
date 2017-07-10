@@ -1,4 +1,5 @@
 import FocusTrap from 'focus-trap-react';
+import React from 'react';
 
 /*
   monkey-patching the FocusTrap component
@@ -15,6 +16,9 @@ FocusTrap.prototype.componentDidMount = function componentDidMount() {
     tailoredFocusTrapOptions[optionName] =
       specifiedFocusTrapOptions[optionName];
   }
+  if (this._reactInternalInstance._hostContainerInfo._node) {
+    this.setNode(this._reactInternalInstance._hostContainerInfo._node);
+  }
   this.focusTrap = this.props._createFocusTrap(
     this.node,
     tailoredFocusTrapOptions
@@ -27,6 +31,40 @@ FocusTrap.prototype.componentDidMount = function componentDidMount() {
   if (this.props.paused) {
     this.focusTrap.pause();
   }
+};
+
+FocusTrap.prototype.render = function render() {
+  const elementProps = {
+    ref: this.setNode
+  };
+
+  const checkedProps = [
+    'active',
+    'paused',
+    'tag',
+    'focusTrapOptions',
+    '_createFocusTrap'
+  ];
+
+  // This will get id, className, style, etc. -- arbitrary element props
+  for (const prop in this.props) {
+    if (!this.props.hasOwnProperty(prop)) continue;
+    if (checkedProps.indexOf(prop) !== -1) continue;
+    if (prop === 'children' || prop === 'ref') continue;
+    elementProps[prop] = this.props[prop];
+  }
+
+  const childrenWithProps = React.Children.map(this.props.children, child =>
+    React.cloneElement(child, elementProps)
+  );
+
+  const returnValue = React.createElement(
+    this.props.tag,
+    this.className,
+    childrenWithProps
+  );
+
+  return returnValue;
 };
 
 export default FocusTrap;

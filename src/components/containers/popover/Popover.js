@@ -58,7 +58,8 @@ const BottomPlacementArrow = styled(ArrowBase)`
   top: -11px;
 
   &:after {
-    border-bottom-color: ${props => (props.displayColor ? colors.accent : colors.white)};
+    border-bottom-color: ${props =>
+      props.displayColor ? colors.accent : colors.white};
     border-top-width: 0;
     margin-left: -10px;
     top: 1px;
@@ -142,9 +143,7 @@ const PopoverTitle = styled.div`
   padding: 8px 14px;
 `;
 
-const PopoverBodyContent = styled.div`
-  padding: 9px 14px;
-`;
+const PopoverBodyContent = styled.div`padding: 9px 14px;`;
 
 const DismissPopover = styled(DismissButton)`
   color: ${props => (props.hasTitle ? colors.white : colors.grayDark)};
@@ -155,12 +154,13 @@ const DismissPopover = styled(DismissButton)`
 const PopoverHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  height: ${props => (props.hasTitle || props.containsFormElement ? 'auto' : '7px')};
+  height: ${props =>
+    props.hasTitle || props.containsFormElement ? 'auto' : '15px'};
   background-color: ${props => (props.hasTitle ? colors.accent : 'none')};
 `;
 
 // className, positionLeft and positionTop props get passed to by the Overlay component
-const Popover = props => {
+const Popover = function(props) {
   const {
     title,
     arrowPlacement,
@@ -174,7 +174,11 @@ const Popover = props => {
 
   const popoverClassNames = classNames(className, arrowPlacement);
   const hasTitle = title !== undefined;
-  const popoverTitle = hasTitle ? <PopoverTitle>{title}</PopoverTitle> : null;
+  const popoverTitle = hasTitle
+    ? <PopoverTitle>
+        {title}
+      </PopoverTitle>
+    : null;
   const Arrow = getArrow(arrowPlacement);
 
   return (

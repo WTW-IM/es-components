@@ -39,9 +39,9 @@ Setting ```onItemSelected``` will execute the function when a ```SideNav.Item```
 ```
 <div style={{width: '30%'}}>
   <SideNav defaultSelected="home" onItemSelected={ (id) => {alert(id); }}>
-    <SideNav.Item id="home">Home</SideNav.Item>
-    <SideNav.Item id="cart">Cart</SideNav.Item>
-    <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
+    <SideNav.Item id="home"><Icon name="home" /> Home</SideNav.Item>
+    <SideNav.Item id="cart"><Icon name="shopping-cart" /> Cart</SideNav.Item>
+    <SideNav.Item id="disabled" isDisabled><Icon name="ban-circle" /> Disabled</SideNav.Item>
   </SideNav>
 </div>
 ```

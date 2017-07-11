@@ -14,7 +14,7 @@ const AnchorBase = styled.a`
   padding: 10px;
   text-decoration: none;
 
-  i {
+  > i {
     color: ${colors.white};
   }
 
@@ -22,11 +22,7 @@ const AnchorBase = styled.a`
     background-color: ${colors.grayLighter};
     color: ${colors.accent};
 
-    a {
-      color: ${colors.accent};
-    }
-
-    i {
+    > i {
       color: ${colors.accent};
     }
   }
@@ -39,7 +35,7 @@ const AnchorBase = styled.a`
       background-color: ${colors.accent};
       color: ${colors.white};
 
-      i {
+      > i {
         color: ${colors.white};
       }
     }
@@ -50,11 +46,11 @@ const AnchorBase = styled.a`
     color: ${colors.grayDark};
     cursor: not-allowed;
 
-    span {
+    > span {
       pointer-events: none;
     }
 
-    i {
+    > i {
       color: ${colors.grayLightest};
     }
 
@@ -62,7 +58,7 @@ const AnchorBase = styled.a`
       background-color: ${colors.grayLightest};
       color: ${colors.grayDark};
 
-      i {
+      > i {
         color: ${colors.grayLightest};
       }
     }
@@ -81,7 +77,7 @@ const AnchorAltStyle = AnchorBase.extend`
     color: ${colors.accent};
     padding-left: 6px;
 
-    i {
+    > i {
       color: ${colors.accent};
     }
 
@@ -89,7 +85,7 @@ const AnchorAltStyle = AnchorBase.extend`
       background-color: ${colors.grayLight};
       color: ${colors.accent};
 
-      i {
+      > i {
         color: ${colors.accent};
       }
     }

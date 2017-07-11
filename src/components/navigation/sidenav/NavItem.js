@@ -119,14 +119,14 @@ class NavItem extends Component {
   render() {
     const {
       altStyle = false,
+      children,
       className,
       highlightedId,
       id,
       isDisabled,
       isExternalLink,
       onNavClick = noop,
-      targetUrl,
-      title
+      targetUrl
     } = this.props;
 
     const AnchorStyled = altStyle ? AnchorAltStyle : AnchorBase;
@@ -140,14 +140,13 @@ class NavItem extends Component {
       isDisabled,
       onClick: isDisabled ? noop : this.onNavItemClicked,
       onNavClick,
-      ...(openExternal && { target: '_blank' }),
-      title
+      ...(openExternal && { target: '_blank' })
     };
 
     return (
       <li>
         <AnchorStyled {...itemProps}>
-          <FlexSpan>{title}</FlexSpan>
+          <FlexSpan>{children}</FlexSpan>
           <Icon name="chevron-right" />
         </AnchorStyled>
       </li>
@@ -158,6 +157,8 @@ class NavItem extends Component {
 NavItem.propTypes = {
   /** @ignore */
   altStyle: PropTypes.bool,
+  /** Item content */
+  children: PropTypes.any,
   /** Additional CSS classes to apply */
   className: PropTypes.string,
   /** @ignore */
@@ -175,9 +176,7 @@ NavItem.propTypes = {
   /** Sets the link to open in a new browser window */
   isExternalLink: PropTypes.bool,
   /** Set the href target for the link */
-  targetUrl: PropTypes.string,
-  /** The displayed link text */
-  title: PropTypes.string.isRequired
+  targetUrl: PropTypes.string
 };
 
 NavItem.defaultProps = {

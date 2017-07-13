@@ -65,7 +65,7 @@ class SideNav extends Component {
 SideNav.propTypes = {
   /** Use the alternate nav style */
   altStyle: PropTypes.bool,
-  children: PropTypes.any,
+  children: PropTypes.node,
   /** Use to manually select nav item by id, stateless mode */
   selected: PropTypes.string,
   /** Use to set a default nav, stateful mode */

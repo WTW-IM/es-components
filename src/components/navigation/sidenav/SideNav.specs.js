@@ -25,10 +25,19 @@ describe('drawer', () => {
           id="home"
           className="home"
           onNavClick={navId => onNavClick(navId)}
+          targetUrl="/home"
         >
           Home
         </SideNav.Item>
         <SideNav.Item id="cart" className="cart">Cart</SideNav.Item>
+        <SideNav.Item
+          id="external"
+          className="external"
+          targetUrl="http://www.google.com"
+          isExternalLink
+        >
+          External Link
+        </SideNav.Item>
         <SideNav.Item
           id="info"
           className="info"

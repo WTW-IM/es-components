@@ -3,8 +3,9 @@ exports[`drawer renders as expected 1`] = `
   className="sc-ifAKCX hvutRM">
   <ul>
     <li>
-      <div
-        className="home sc-bwzfXH YgUoe"
+      <a
+        className="home sc-bwzfXH kEPtnz"
+        href="/home"
         onClick={[Function]}>
         <span
           className="sc-bxivhb khxFsg">
@@ -16,11 +17,12 @@ exports[`drawer renders as expected 1`] = `
           content="620"
           fontFamily="oecom-icons"
           fontSize="inherit" />
-      </div>
+      </a>
     </li>
     <li>
-      <div
-        className="cart sc-bwzfXH jNiTgJ"
+      <a
+        className="cart sc-bwzfXH jEMmwW"
+        href="#/"
         onClick={[Function]}>
         <span
           className="sc-bxivhb khxFsg">
@@ -32,11 +34,30 @@ exports[`drawer renders as expected 1`] = `
           content="620"
           fontFamily="oecom-icons"
           fontSize="inherit" />
-      </div>
+      </a>
     </li>
     <li>
-      <div
-        className="info sc-bwzfXH bGNvpM"
+      <a
+        className="external sc-bwzfXH jEMmwW"
+        href="http://www.google.com"
+        onClick={[Function]}
+        target="_blank">
+        <span
+          className="sc-bxivhb khxFsg">
+          External Link
+        </span>
+        <i
+          aria-hidden={true}
+          className="sc-bdVaJa izWgQO"
+          content="620"
+          fontFamily="oecom-icons"
+          fontSize="inherit" />
+      </a>
+    </li>
+    <li>
+      <a
+        className="info sc-bwzfXH dWICOj"
+        href="#/"
         onClick={[Function]}>
         <span
           className="sc-bxivhb khxFsg">
@@ -48,7 +69,7 @@ exports[`drawer renders as expected 1`] = `
           content="620"
           fontFamily="oecom-icons"
           fontSize="inherit" />
-      </div>
+      </a>
     </li>
   </ul>
 </nav>

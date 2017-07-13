@@ -28,6 +28,10 @@ module.exports = {
       components: path.join(baseComponentDir, '/controls/**/*.js')
     },
     {
+      name: 'Navigation',
+      components: path.join(baseComponentDir, '/navigation/**/*.js')
+    },
+    {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
       components: path.join(baseComponentDir, 'patterns/**/*.js')

@@ -1,4 +1,4 @@
-Icons will inherit their size unless otherwise specified. The full <a href="https://qa-es-ui-guidelines-whitlockjohn.c9users.io/media/#glyphicons" target="_blank">icon set</a> shows all the available icons.
+Icons will inherit their size unless otherwise specified. The full <a href="http://prototypes-wtw.net/media/#glyphicons" target="_blank">icon set</a> shows all the available icons.
 
 ```
 const containerStyle = {

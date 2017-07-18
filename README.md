@@ -42,7 +42,11 @@ Any time the npm package is published, the documentation should be updated as we
 
 ## Contributing
 
-Submit a pull request when you're ready to have your code reviewed and apply the ``ready for review`` label. Once it has been reviewed, ensure the version and documentation commits have been added and apply the ``ready for merge`` label. See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on standards.
+When adding a component, refer to the [Exchange Solutions UI Guidelines](http://prototypes-wtw.net/). This is a work-in-progress, so communicate with the UX team if you have any questions.
+
+Submit a pull request when you're ready to have your code reviewed and apply the ``ready for review`` label. Once it has been reviewed, ensure the version and documentation commits have been added and apply the ``ready for merge`` label.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on standards.
 
 ## Tools
 

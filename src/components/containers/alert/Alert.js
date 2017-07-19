@@ -192,11 +192,7 @@ function Alert({
   const hasChildren = React.Children.count(children) > 0;
 
   return (
-    <AlertContainer
-      {...otherProps}
-      alertVariation={alertVariation}
-      role="alert"
-    >
+    <AlertContainer {...otherProps} alertVariation={alertVariation}>
       <AlertHeader>
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
         <div>

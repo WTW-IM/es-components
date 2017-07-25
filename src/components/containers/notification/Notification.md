@@ -1,31 +1,31 @@
-## Alert Types
+## Notification Types
 
 ```
 <div>
-  <Alert
+  <Notification
     type="success"
     header="Success!"
     additionalText="You did a thing."
   />
 
-  <Alert
+  <Notification
     type="information"
     header="Information!"
     additionalText="Here's some information you need to know."
   />
 
-  <Alert
+  <Notification
     type="warning"
     additionalText="Here's a warning."
   />
 
-  <Alert
+  <Notification
     type="danger"
     header="Danger!"
     additionalText="You're about to do something dangerous!"
   />
 
-  <Alert
+  <Notification
     type="advisor"
     header="Advisor!"
     additionalText="This message is for benefit advisors."
@@ -35,7 +35,7 @@
 
 Adding the ``dismissable`` prop will render a dismiss button that will execute the provided ``onDismiss`` function.
 ```
-<Alert
+<Notification
   type="success"
   additionalText="I have a dismiss button. Click it!"
   dismissable
@@ -43,9 +43,9 @@ Adding the ``dismissable`` prop will render a dismiss button that will execute t
 />
 ```
 
-Adding the ``includeIcon`` prop will render an appropriate icon for the alert type. <em>If the viewport is less than 768px, it will not render any icons in the alert.</em>
+Adding the ``includeIcon`` prop will render an appropriate icon for the alert type. <em>If the viewport is less than 768px, it will not render any icons in the notification.</em>
 ```
-<Alert
+<Notification
   type="advisor"
   additionalText="Please read"
   includeIcon
@@ -75,7 +75,7 @@ const callsToAction = [
         }
       }
     ];
-<Alert
+<Notification
   type="warning"
   header="Action is required"
   additionalText="Please click one of the buttons"
@@ -83,23 +83,23 @@ const callsToAction = [
 />
 ```
 
-Providing ``extraNotification`` with an object will render the selected icon and the provided text in the upper-right corner of the alert. If no icon is chosen, the `federal` icon will be used by default.
+Providing ``extraAlert`` with an object will render the selected icon and the provided text in the upper-right corner of the alert. If no icon is chosen, the `federal` icon will be used by default.
 ```
-const notification = {
-  notificationText: 'I\'m a notification!',
-  notificationIcon: 'bell'
+const extraAlert = {
+  alertText: 'I\'m an extra little alert!',
+  alertIcon: 'bell'
  };
 
-<Alert
+<Notification
   type="success"
-  additionalText="Look at the extra notification!"
-  extraNotification={notification}
+  additionalText="Look at the extra alert!"
+  extraAlert={extraAlert}
 />
 ```
 
 Any additional children will get rendered before call to action buttons.
 ```
-<Alert
+<Notification
   type="information"
   additionalText="Here's some information to get you started"
 >
@@ -108,5 +108,5 @@ Any additional children will get rendered before call to action buttons.
     <li>Item B</li>
     <li>Item C</li>
   </ol>
-</Alert>
+</Notification>
 ```

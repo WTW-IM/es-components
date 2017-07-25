@@ -17,7 +17,7 @@ describe('My Component', () => {
     instance = shallow(<MyComponent />);
   });
 
-  it('renders an Alert component only when there are validation errors', () => {
+  it('renders a Notification component only when there are validation errors', () => {
     instance.setProps({ validationErrors: [{ valueName: 'firstName', messages: ['First name is required'] }] });
     // assertion
   })
@@ -30,7 +30,7 @@ Test that things get rendered properly based on Component logic.
 
 Some examples:
 
-``it('renders an Alert component only when there are validation errors')``
+``it('renders a Notification component only when there are validation errors')``
 ``it('renders an active class when selected')``
 ``it('renders 3 list items when there are three items passed in props')``
 

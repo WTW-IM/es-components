@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Alert from './Alert';
+import Notification from './Notification';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
@@ -12,10 +12,10 @@ let instanceToRender;
 
 beforeEach(() => {
   instanceToRender = (
-    <Alert
+    <Notification
       type="success"
-      header="alert header"
-      additionalText="test alert text"
+      header="notification header"
+      additionalText="test notification text"
     />
   );
 });
@@ -29,26 +29,32 @@ function getMountedInstance(props) {
   return mount(instanceToRender).setProps(props);
 }
 
-it('alert has the alert role', () => {
+it('notification has the dialog role by default', () => {
   const instance = getShallowInstance();
+  expect(instance.prop('role')).toBe('dialog');
+});
+
+it('notification has the alert role when isAlert prop is true', () => {
+  const instance = getShallowInstance();
+  instance.setProps({ isAlert: true });
   expect(instance.prop('role')).toBe('alert');
 });
 
-it('header text is emphasized by strong tag', () => {
+it('header text is emphasized with h4 tag', () => {
   const instance = getMountedInstance();
-  expect(instance.find('strong').text()).toBe('alert header');
+  expect(instance.find('h4').text()).toBe('notification header');
 });
 
-it('alert has dismissable button when dismissable is true', () => {
+it('notification has dismissable button when dismissable is true', () => {
   const instance = getMountedInstance();
-  expect(instance.find('.alert__dismiss').length).toBe(0);
+  expect(instance.find('.notification__dismiss').length).toBe(0);
 
   instance.setProps({ dismissable: true });
 
-  expect(instance.find('.alert__dismiss').length).toBe(1);
+  expect(instance.find('.notification__dismiss').length).toBe(1);
 });
 
-it('alert prepends icon appropriate to type when includeIcon is true', () => {
+it('notification prepends icon appropriate to type when includeIcon is true', () => {
   const instance = getMountedInstance();
   expect(instance.find(Icon).length).toBe(0);
 
@@ -100,9 +106,9 @@ describe('when callsToAction are provided', () => {
   });
 });
 
-describe('when extraNotificationText is provided', () => {
-  const extraNotification = { notificationText: 'test' };
-  const instanceProps = { extraNotification };
+describe('when extraAlert is provided', () => {
+  const extraAlert = { alertText: 'test' };
+  const instanceProps = { extraAlert };
 
   let instance;
 
@@ -110,8 +116,8 @@ describe('when extraNotificationText is provided', () => {
     instance = getMountedInstance(instanceProps);
   });
 
-  it('adds an ExtraNotification to the alert', () => {
-    expect(instance.find('.alert__notification').length).toBe(1);
+  it('adds an ExtraAlert to the notification', () => {
+    expect(instance.find('.extra__alert').length).toBe(1);
   });
 
   it('displays the passed text as small', () => {
@@ -123,12 +129,12 @@ describe('when extraNotificationText is provided', () => {
   });
 
   it('displays a different icon if provided one', () => {
-    const newNotification = {
-      notificationText: 'test',
-      notificationIcon: 'bell'
+    const newAlert = {
+      alertText: 'test',
+      alertIcon: 'bell'
     };
 
-    instance.setProps({ extraNotification: newNotification });
+    instance.setProps({ extraAlert: newAlert });
 
     expect(instance.find(Icon).prop('name')).toBe('bell');
   });

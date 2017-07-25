@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled from 'styled-components';
 
-import { alertVariations } from './alert-variations';
+import { notificationVariations } from './notification-variations';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
 import { colors } from '../../theme';
 
-const DismissAlert = styled(DismissButton)`
+const DismissNotification = styled(DismissButton)`
   line-height: 1.4;
   opacity: 0.2;
   padding: 6px 12px;
@@ -29,7 +29,7 @@ const iconMap = {
   advisor: 'agent'
 };
 
-const AlertIcon = styled(Icon)`
+const NotificationIcon = styled(Icon)`
   margin-right: 5px;
   margin-bottom: 2px;
 
@@ -40,7 +40,7 @@ const AlertIcon = styled(Icon)`
 
 function renderIcon(type) {
   const iconName = iconMap[type];
-  return <AlertIcon name={iconName} />;
+  return <NotificationIcon name={iconName} />;
 }
 
 const LeadingHeader = styled.div`
@@ -49,13 +49,14 @@ const LeadingHeader = styled.div`
   padding: 15px;
 `;
 
-const StrongHeader = styled.strong`
+const StrongHeader = styled.h4`
   display: block;
   padding-bottom: .25em;
+  margin: 0;
 `;
 
 function renderLeadingHeader(
-  alertType,
+  notificationType,
   includeIcon,
   leadingHeader,
   leadingText
@@ -65,23 +66,29 @@ function renderLeadingHeader(
 
   return (
     <LeadingHeader>
-      {includeIcon && renderIcon(alertType)}
+      {includeIcon && renderIcon(notificationType)}
       <div>
-        {hasLeadingHeaderText && <StrongHeader>{leadingHeader}</StrongHeader>}
-        {hasLeadingText && <div>{leadingText}</div>}
+        {hasLeadingHeaderText &&
+          <StrongHeader>
+            {leadingHeader}
+          </StrongHeader>}
+        {hasLeadingText &&
+          <div>
+            {leadingText}
+          </div>}
       </div>
     </LeadingHeader>
   );
 }
 
-const ExtraNotification = styled.aside`
+const ExtraAlert = styled.aside`
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: 15px;
 `;
 
-const NotificationIcon = styled(Icon)`
+const ExtraAlertIcon = styled(Icon)`
   margin-right: 7px;
   margin-bottom: 2px;
 
@@ -90,14 +97,16 @@ const NotificationIcon = styled(Icon)`
   }
 `;
 
-function renderExtraNotification(notification) {
-  const { notificationText, notificationIcon = 'federal' } = notification;
+function renderExtraAlert(alert) {
+  const { alertText, alertIcon = 'federal' } = alert;
 
   return (
-    <ExtraNotification className="alert__notification">
-      <NotificationIcon name={notificationIcon} />
-      <small>{notificationText}</small>
-    </ExtraNotification>
+    <ExtraAlert className="extra__alert">
+      <ExtraAlertIcon name={alertIcon} />
+      <small>
+        {alertText}
+      </small>
+    </ExtraAlert>
   );
 }
 
@@ -152,15 +161,15 @@ function renderCallsToAction(callsToAction) {
   );
 }
 
-const AlertContainer = styled.div`
-   background-color: ${props => props.alertVariation.color};
-   border: 1px solid ${props => props.alertVariation.borderColor};
-   border-radius: 2px;
-   color: ${props => props.alertVariation.foregroundColor};
-   margin-bottom: 25px;
+const NotificationContainer = styled.div`
+  background-color: ${props => props.notificationVariation.color};
+  border: 1px solid ${props => props.notificationVariation.borderColor};
+  border-radius: 2px;
+  color: ${props => props.notificationVariation.foregroundColor};
+  margin-bottom: 25px;
 `;
 
-const AlertContent = styled.div`
+const NotificationContent = styled.div`
   padding: 0 15px 15px;
   margin-left: ${props => (props.hasIcon ? '24px' : '0')};
 
@@ -169,12 +178,12 @@ const AlertContent = styled.div`
   }
 `;
 
-const AlertHeader = styled.div`
+const NotificationHeader = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-function Alert({
+function Notification({
   type,
   header,
   additionalText,
@@ -182,38 +191,51 @@ function Alert({
   children,
   includeIcon = false,
   dismissable = false,
+  isAlert = false,
   onDismiss = noop,
-  extraNotification,
+  extraAlert,
   ...otherProps
 }) {
-  const alertVariation = alertVariations[type];
+  const notificationVariation = notificationVariations[type];
   const hasCallsToAction = callsToAction.length > 0;
-  const hasExtraNotification = extraNotification;
+  const hasExtraAlert = extraAlert;
   const hasChildren = React.Children.count(children) > 0;
+  const roleType = isAlert ? 'alert' : 'dialog';
 
   return (
-    <AlertContainer
+    <NotificationContainer
       {...otherProps}
-      alertVariation={alertVariation}
-      role="alert"
+      notificationVariation={notificationVariation}
+      role={roleType}
     >
-      <AlertHeader>
+      <NotificationHeader>
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
         <div>
-          {hasExtraNotification && renderExtraNotification(extraNotification)}
+          {hasExtraAlert && renderExtraAlert(extraAlert)}
           {dismissable &&
-            <DismissAlert onClick={onDismiss} className="alert__dismiss" />}
+            <DismissNotification
+              onClick={onDismiss}
+              className="notification__dismiss"
+            />}
         </div>
-      </AlertHeader>
+      </NotificationHeader>
 
       {hasChildren &&
-        <AlertContent hasIcon={includeIcon}>{children}</AlertContent>}
+        <NotificationContent hasIcon={includeIcon}>
+          {children}
+        </NotificationContent>}
       {hasCallsToAction && renderCallsToAction(callsToAction)}
-    </AlertContainer>
+    </NotificationContainer>
   );
 }
 
-const alertTypes = ['success', 'information', 'warning', 'danger', 'advisor'];
+const notificationTypes = [
+  'success',
+  'information',
+  'warning',
+  'danger',
+  'advisor'
+];
 
 const callToActionShape = {
   actionButtonContent: PropTypes.node.isRequired,
@@ -221,28 +243,30 @@ const callToActionShape = {
   action: PropTypes.func.isRequired
 };
 
-const extraNotificationShape = {
-  notificationText: PropTypes.node.isRequired,
-  notificationIcon: PropTypes.string
+const extraAlertShape = {
+  alertText: PropTypes.node.isRequired,
+  alertIcon: PropTypes.string
 };
 
-Alert.propTypes = {
-  type: PropTypes.oneOf(alertTypes).isRequired,
+Notification.propTypes = {
+  type: PropTypes.oneOf(notificationTypes).isRequired,
   /** The bolded text in the leading text */
   header: PropTypes.string,
   /** The non-bolded text in the leading text */
   additionalText: PropTypes.string,
   /** Additional elements rendered after the leading text */
   children: PropTypes.node,
-  /** Include the corresponding icon in the alert's leading text */
+  /** Include the corresponding icon in the notification's leading text */
   includeIcon: PropTypes.bool,
   /** Render a dismiss button */
   dismissable: PropTypes.bool,
+  /** Makes the Notification act as an alert for screen-reader accessibility */
+  isAlert: PropTypes.bool,
   /** Function to execute when dismiss button is clicked */
   onDismiss: PropTypes.func,
   /** The small text and icon included in the extra notification */
-  extraNotification: PropTypes.shape(extraNotificationShape),
+  extraAlert: PropTypes.shape(extraAlertShape),
   callsToAction: PropTypes.arrayOf(PropTypes.shape(callToActionShape))
 };
 
-export default Alert;
+export default Notification;

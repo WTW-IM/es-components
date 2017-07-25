@@ -1,6 +1,6 @@
 import { colors, backgroundColors } from '../../theme';
 
-export const alertVariations = {
+export const notificationVariations = {
   success: {
     color: backgroundColors.success,
     borderColor: colors.success,

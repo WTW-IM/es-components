@@ -1,6 +1,6 @@
 export Icon from './components/base/icons/Icon';
 
-export Alert from './components/containers/alert/Alert';
+export Notification from './components/containers/notification/Notification';
 export Drawer from './components/containers/drawer/Drawer';
 export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';

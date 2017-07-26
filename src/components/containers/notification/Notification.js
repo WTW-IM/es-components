@@ -50,7 +50,6 @@ const LeadingHeader = styled.div`
 `;
 
 const StrongHeader = styled.h4`
-  display: block;
   padding-bottom: .25em;
   margin: 0;
 `;

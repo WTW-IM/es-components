@@ -83,7 +83,7 @@ const callsToAction = [
 />
 ```
 
-Providing ``extraAlert`` with an object will render the selected icon and the provided text in the upper-right corner of the alert. If no icon is chosen, the `federal` icon will be used by default.
+Providing ``extraAlert`` with an object will render the selected icon and the provided text in the upper-right corner of the notification. If no icon is chosen, the `federal` icon will be used by default.
 ```
 const extraAlert = {
   alertText: 'I\'m an extra little alert!',

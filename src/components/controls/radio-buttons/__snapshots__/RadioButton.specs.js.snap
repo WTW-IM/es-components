@@ -1,9 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`RadioButton component renders as expected 1`] = `
 <label
   checked={false}
   className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
   disabled={false}
-  htmlFor="test">
+  htmlFor="test"
+>
   <input
     className="sc-htpNat vkqtM"
     disabled={false}
@@ -11,12 +14,15 @@ exports[`RadioButton component renders as expected 1`] = `
     name="rad"
     onChange={[Function]}
     type="radio"
-    value={undefined} />
+    value={undefined}
+  />
   <span
     className="radio-fill sc-ifAKCX gnYOzT"
-    fill="#fff" />
+    fill="#fff"
+  />
   <span
-    className="sc-bxivhb bRNnnP">
+    className="sc-bxivhb bRNnnP"
+  >
     test
   </span>
 </label>

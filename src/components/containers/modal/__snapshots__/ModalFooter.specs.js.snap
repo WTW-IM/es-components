@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`modal footer component renders as expected 1`] = `
 <div
-  className="footer sc-bdVaJa eDwEsd">
+  className="footer sc-bdVaJa eDwEsd"
+>
   This is the footer.
 </div>
 `;

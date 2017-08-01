@@ -146,6 +146,13 @@ function renderCallsToAction(callsToAction) {
       {callsToAction.map((callToAction, index) => {
         const buttonStyleType = index === 0 ? 'primary' : 'default';
 
+        if (React.isValidElement(callToAction)) {
+          return React.cloneElement(callToAction, {
+            styleType: buttonStyleType,
+            key: index
+          });
+        }
+
         return (
           <Button
             styleType={buttonStyleType}
@@ -265,7 +272,9 @@ Notification.propTypes = {
   onDismiss: PropTypes.func,
   /** The small text and icon included in the extra notification */
   extraAlert: PropTypes.shape(extraAlertShape),
-  callsToAction: PropTypes.arrayOf(PropTypes.shape(callToActionShape))
+  callsToAction: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.shape(callToActionShape), PropTypes.element])
+  )
 };
 
 export default Notification;

@@ -1,11 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
-  className="sc-bZQynM dSZIHB">
+  className="sc-bZQynM dSZIHB"
+>
   <label
     checked={false}
     className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
     disabled={false}
-    htmlFor="test-option-1">
+    htmlFor="test-option-1"
+  >
     <input
       className="sc-htpNat vkqtM"
       disabled={false}
@@ -13,12 +17,15 @@ exports[`RadioGroup component renders as expected 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={0} />
+      value={0}
+    />
     <span
       className="radio-fill sc-ifAKCX gnYOzT"
-      fill="#fff" />
+      fill="#fff"
+    />
     <span
-      className="sc-bxivhb bRNnnP">
+      className="sc-bxivhb bRNnnP"
+    >
       Option 0
     </span>
   </label>
@@ -26,7 +33,8 @@ exports[`RadioGroup component renders as expected 1`] = `
     checked={false}
     className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
     disabled={false}
-    htmlFor="test-option-2">
+    htmlFor="test-option-2"
+  >
     <input
       className="sc-htpNat vkqtM"
       disabled={false}
@@ -34,12 +42,15 @@ exports[`RadioGroup component renders as expected 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={1} />
+      value={1}
+    />
     <span
       className="radio-fill sc-ifAKCX gnYOzT"
-      fill="#fff" />
+      fill="#fff"
+    />
     <span
-      className="sc-bxivhb bRNnnP">
+      className="sc-bxivhb bRNnnP"
+    >
       Option 1
     </span>
   </label>
@@ -47,7 +58,8 @@ exports[`RadioGroup component renders as expected 1`] = `
     checked={false}
     className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
     disabled={false}
-    htmlFor="test-option-3">
+    htmlFor="test-option-3"
+  >
     <input
       className="sc-htpNat vkqtM"
       disabled={false}
@@ -55,12 +67,15 @@ exports[`RadioGroup component renders as expected 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={2} />
+      value={2}
+    />
     <span
       className="radio-fill sc-ifAKCX gnYOzT"
-      fill="#fff" />
+      fill="#fff"
+    />
     <span
-      className="sc-bxivhb bRNnnP">
+      className="sc-bxivhb bRNnnP"
+    >
       Option 2
     </span>
   </label>
@@ -69,16 +84,19 @@ exports[`RadioGroup component renders as expected 1`] = `
 
 exports[`RadioGroup component renders as expected with legend text 1`] = `
 <fieldset
-  className="sc-bZQynM dSZIHB">
+  className="sc-bZQynM dSZIHB"
+>
   <legend
-    className="sc-EHOje eWkBBJ">
+    className="sc-EHOje eWkBBJ"
+  >
     Test legend
   </legend>
   <label
     checked={false}
     className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
     disabled={false}
-    htmlFor="test-option-1">
+    htmlFor="test-option-1"
+  >
     <input
       className="sc-htpNat vkqtM"
       disabled={false}
@@ -86,12 +104,15 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={0} />
+      value={0}
+    />
     <span
       className="radio-fill sc-ifAKCX gnYOzT"
-      fill="#fff" />
+      fill="#fff"
+    />
     <span
-      className="sc-bxivhb bRNnnP">
+      className="sc-bxivhb bRNnnP"
+    >
       Option 0
     </span>
   </label>
@@ -99,7 +120,8 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     checked={false}
     className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
     disabled={false}
-    htmlFor="test-option-2">
+    htmlFor="test-option-2"
+  >
     <input
       className="sc-htpNat vkqtM"
       disabled={false}
@@ -107,12 +129,15 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={1} />
+      value={1}
+    />
     <span
       className="radio-fill sc-ifAKCX gnYOzT"
-      fill="#fff" />
+      fill="#fff"
+    />
     <span
-      className="sc-bxivhb bRNnnP">
+      className="sc-bxivhb bRNnnP"
+    >
       Option 1
     </span>
   </label>
@@ -120,7 +145,8 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     checked={false}
     className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
     disabled={false}
-    htmlFor="test-option-3">
+    htmlFor="test-option-3"
+  >
     <input
       className="sc-htpNat vkqtM"
       disabled={false}
@@ -128,12 +154,15 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       name="test"
       onChange={[Function]}
       type="radio"
-      value={2} />
+      value={2}
+    />
     <span
       className="radio-fill sc-ifAKCX gnYOzT"
-      fill="#fff" />
+      fill="#fff"
+    />
     <span
-      className="sc-bxivhb bRNnnP">
+      className="sc-bxivhb bRNnnP"
+    >
       Option 2
     </span>
   </label>

@@ -55,6 +55,38 @@ Adding the ``includeIcon`` prop will render an appropriate icon for the alert ty
 Providing ``callsToAction`` will render a button for each which executes that action. The first button will receive the ``primary`` style type and any additional button will receive the ``default`` style type.
 ```
 
+class CustomButton extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      content: 'Secondary',
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    if (this.state.isProcessing) return;
+
+    this.setState({ content: 'Processing', isProcessing: true });
+
+    setTimeout(() => this.setState({ content: 'Secondary', isProcessing: false }), 3000);
+  }
+
+  render() {
+    const { isProcessing, content } = this.state;
+    return (
+      <Button
+        handleOnClick={this.handleClick}
+        disabled={isProcessing}
+      >
+        {content}
+      </Button>
+    );
+  }
+}
+
 const callsToAction = [
       {
         actionButtonContent: 'Primary',
@@ -62,12 +94,7 @@ const callsToAction = [
           confirm('You clicked a button!');
         }
       },
-      {
-        actionButtonContent: 'Secondary',
-        action() {
-          alert('You clicked the secondary button')
-        }
-      },
+      <CustomButton />,
       {
         actionButtonContent: 'Tertiary',
         action() {

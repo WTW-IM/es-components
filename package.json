@@ -25,6 +25,7 @@
   "author": "Exchange Solutions",
   "license": "MIT",
   "jest": {
+    "setupTestFrameworkScriptFile": "./config/jest-setup.js",
     "testRegex": "specs\\.js$"
   },
   "peerDependencies": {
@@ -75,7 +76,7 @@
     "dom-helpers": "^3.2.1",
     "focus-trap-react": "^3.0.3",
     "lodash": "^4.17.4",
-    "react-animate-height": "^0.9.7",
+    "react-animate-height": "^0.9.11",
     "react-overlays": "^0.7.0",
     "slug": "^0.9.1",
     "styled-components": "^2.0.0",

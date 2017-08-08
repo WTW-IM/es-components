@@ -1,8 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`tooltip component renders tooltip children 1`] = `
 <span>
   <span
     onMouseEnter={[Function]}
-    onMouseLeave={[Function]}>
+    onMouseLeave={[Function]}
+  >
     This is the tooltip target.
   </span>
 </span>

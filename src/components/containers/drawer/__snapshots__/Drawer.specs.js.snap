@@ -1,23 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`drawer component accordion renders as expected 1`] = `
 <div
-  className="sc-EHOje ktKLsF">
+  className="sc-EHOje ktKLsF"
+>
   <div
-    className="first sc-bwzfXH dYpfLQ">
+    className="first sc-bwzfXH dYpfLQ"
+  >
     <div
       id="abcdef"
-      role="heading">
+      role="heading"
+    >
       <button
         aria-controls="abcdef"
         aria-expanded={true}
         className="sc-htpNat ebhkUu"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span>
           <i
             aria-hidden={true}
             className="sc-bxivhb beQLQJ sc-bdVaJa dRgmsV"
             content="63d"
             fontFamily="oecom-icons"
-            fontSize="inherit" />
+            fontSize="inherit"
+          />
           collapse 1
         </span>
       </button>
@@ -33,30 +40,36 @@ exports[`drawer component accordion renders as expected 1`] = `
           "height": "auto",
           "overflow": "visible",
         }
-      }>
+      }
+    >
       <div
-        className={undefined}>
+        className={undefined}
+      >
         first
       </div>
     </div>
   </div>
   <div
-    className="second sc-bwzfXH dYpfLQ">
+    className="second sc-bwzfXH dYpfLQ"
+  >
     <div
       id="abcdef"
-      role="heading">
+      role="heading"
+    >
       <button
         aria-controls="abcdef"
         aria-expanded={false}
         className="sc-htpNat ebhkUu"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span>
           <i
             aria-hidden={true}
             className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
-            fontSize="inherit" />
+            fontSize="inherit"
+          />
           collapse 2
         </span>
       </button>
@@ -72,30 +85,36 @@ exports[`drawer component accordion renders as expected 1`] = `
           "height": 0,
           "overflow": "hidden",
         }
-      }>
+      }
+    >
       <div
-        className={undefined}>
+        className={undefined}
+      >
         second
       </div>
     </div>
   </div>
   <div
-    className="third sc-bwzfXH dYpfLQ">
+    className="third sc-bwzfXH dYpfLQ"
+  >
     <div
       id="abcdef"
-      role="heading">
+      role="heading"
+    >
       <button
         aria-controls="abcdef"
         aria-expanded={false}
         className="sc-htpNat ebhkUu"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span>
           <i
             aria-hidden={true}
             className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
-            fontSize="inherit" />
+            fontSize="inherit"
+          />
           collapse 3
         </span>
       </button>
@@ -111,9 +130,11 @@ exports[`drawer component accordion renders as expected 1`] = `
           "height": 0,
           "overflow": "hidden",
         }
-      }>
+      }
+    >
       <div
-        className={undefined}>
+        className={undefined}
+      >
         third
       </div>
     </div>
@@ -123,24 +144,29 @@ exports[`drawer component accordion renders as expected 1`] = `
 
 exports[`drawer component drawer renders as expected 1`] = `
 <div
-  className="important sc-EHOje ktKLsF">
+  className="important sc-EHOje ktKLsF"
+>
   <div
-    className="first sc-bwzfXH dYpfLQ">
+    className="first sc-bwzfXH dYpfLQ"
+  >
     <div
       id="abcdef"
-      role="heading">
+      role="heading"
+    >
       <button
         aria-controls="abcdef"
         aria-expanded={false}
         className="sc-htpNat ebhkUu"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span>
           <i
             aria-hidden={true}
             className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
-            fontSize="inherit" />
+            fontSize="inherit"
+          />
           collapse 1
         </span>
         <aside>
@@ -159,30 +185,36 @@ exports[`drawer component drawer renders as expected 1`] = `
           "height": 0,
           "overflow": "hidden",
         }
-      }>
+      }
+    >
       <div
-        className={undefined}>
+        className={undefined}
+      >
         first
       </div>
     </div>
   </div>
   <div
-    className="second sc-bwzfXH dYpfLQ">
+    className="second sc-bwzfXH dYpfLQ"
+  >
     <div
       id="abcdef"
-      role="heading">
+      role="heading"
+    >
       <button
         aria-controls="abcdef"
         aria-expanded={false}
         className="sc-htpNat ebhkUu"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span>
           <i
             aria-hidden={true}
             className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
-            fontSize="inherit" />
+            fontSize="inherit"
+          />
           collapse 2
         </span>
       </button>
@@ -198,30 +230,36 @@ exports[`drawer component drawer renders as expected 1`] = `
           "height": 0,
           "overflow": "hidden",
         }
-      }>
+      }
+    >
       <div
-        className={undefined}>
+        className={undefined}
+      >
         second
       </div>
     </div>
   </div>
   <div
-    className="third sc-bwzfXH dYpfLQ">
+    className="third sc-bwzfXH dYpfLQ"
+  >
     <div
       id="abcdef"
-      role="heading">
+      role="heading"
+    >
       <button
         aria-controls="abcdef"
         aria-expanded={false}
         className="sc-htpNat ebhkUu"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span>
           <i
             aria-hidden={true}
             className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
-            fontSize="inherit" />
+            fontSize="inherit"
+          />
           collapse 3
         </span>
       </button>
@@ -237,9 +275,11 @@ exports[`drawer component drawer renders as expected 1`] = `
           "height": 0,
           "overflow": "hidden",
         }
-      }>
+      }
+    >
       <div
-        className={undefined}>
+        className={undefined}
+      >
         third
       </div>
     </div>

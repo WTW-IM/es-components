@@ -97,6 +97,22 @@ describe('when callsToAction are provided', () => {
     expect(buttons.length).toBe(3);
   });
 
+  it('allows components to be provided directly', () => {
+    const myButton = (
+      <Button id="myButton" handleOnClick={jest.fn()}>My button</Button>
+    );
+    const buttonedCallsToAction = [
+      callsToAction[0],
+      myButton,
+      callsToAction[2]
+    ];
+    instance.setProps({ callsToAction: buttonedCallsToAction });
+
+    const buttons = instance.find(Button);
+    expect(buttons.length).toBe(3);
+    expect(instance.find('#myButton')).not.toBeUndefined();
+  });
+
   it('executes callToAction function provided to the button', () => {
     const button = instance.find(Button).first();
 

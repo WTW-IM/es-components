@@ -1,6 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Fieldset component renders as expected 1`] = `
 <fieldset
-  className="sc-bwzfXH kzYDuJ">
+  className="sc-bwzfXH kzYDuJ"
+>
   <div>
     Fieldset child
   </div>
@@ -9,9 +12,11 @@ exports[`Fieldset component renders as expected 1`] = `
 
 exports[`Fieldset component renders as expected with legendText 1`] = `
 <fieldset
-  className="sc-bwzfXH kzYDuJ">
+  className="sc-bwzfXH kzYDuJ"
+>
   <legend
-    className="sc-bdVaJa iccFxT">
+    className="sc-bdVaJa iccFxT"
+  >
     I am legend
   </legend>
   <div>

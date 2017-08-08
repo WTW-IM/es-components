@@ -1,14 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`drawer renders as expected 1`] = `
 <nav
-  className="sc-ifAKCX hvutRM">
+  className="sc-ifAKCX hvutRM"
+>
   <ul>
     <li>
       <a
         className="home sc-bwzfXH kEPtnz"
         href="/home"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span
-          className="sc-bxivhb khxFsg">
+          className="sc-bxivhb khxFsg"
+        >
           Home
         </span>
         <i
@@ -16,16 +21,19 @@ exports[`drawer renders as expected 1`] = `
           className="sc-bdVaJa izWgQO"
           content="620"
           fontFamily="oecom-icons"
-          fontSize="inherit" />
+          fontSize="inherit"
+        />
       </a>
     </li>
     <li>
       <a
         className="cart sc-bwzfXH jEMmwW"
         href="#/"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span
-          className="sc-bxivhb khxFsg">
+          className="sc-bxivhb khxFsg"
+        >
           Cart
         </span>
         <i
@@ -33,7 +41,8 @@ exports[`drawer renders as expected 1`] = `
           className="sc-bdVaJa izWgQO"
           content="620"
           fontFamily="oecom-icons"
-          fontSize="inherit" />
+          fontSize="inherit"
+        />
       </a>
     </li>
     <li>
@@ -41,9 +50,11 @@ exports[`drawer renders as expected 1`] = `
         className="external sc-bwzfXH jEMmwW"
         href="http://www.google.com"
         onClick={[Function]}
-        target="_blank">
+        target="_blank"
+      >
         <span
-          className="sc-bxivhb khxFsg">
+          className="sc-bxivhb khxFsg"
+        >
           External Link
         </span>
         <i
@@ -51,16 +62,19 @@ exports[`drawer renders as expected 1`] = `
           className="sc-bdVaJa izWgQO"
           content="620"
           fontFamily="oecom-icons"
-          fontSize="inherit" />
+          fontSize="inherit"
+        />
       </a>
     </li>
     <li>
       <a
         className="info sc-bwzfXH dWICOj"
         href="#/"
-        onClick={[Function]}>
+        onClick={[Function]}
+      >
         <span
-          className="sc-bxivhb khxFsg">
+          className="sc-bxivhb khxFsg"
+        >
           Disabled
         </span>
         <i
@@ -68,7 +82,8 @@ exports[`drawer renders as expected 1`] = `
           className="sc-bdVaJa izWgQO"
           content="620"
           fontFamily="oecom-icons"
-          fontSize="inherit" />
+          fontSize="inherit"
+        />
       </a>
     </li>
   </ul>

@@ -42,14 +42,6 @@ class Drawer extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if ('activeKeys' in nextProps) {
-      this.setState({
-        activeKeys: toArray(nextProps.activeKeys)
-      });
-    }
-  }
-
   onClickItem(key) {
     return () => {
       let activeKeys = [...this.state.activeKeys];
@@ -58,9 +50,9 @@ class Drawer extends Component {
         activeKeys = activeKeys[0] === key ? [] : [key];
       } else {
         const index = activeKeys.indexOf(key);
-        const isActive = index > -1;
+        const isOpen = index > -1;
 
-        if (isActive) {
+        if (isOpen) {
           activeKeys.splice(index, 1);
         } else {
           activeKeys.push(key);
@@ -76,15 +68,15 @@ class Drawer extends Component {
 
     return Children.map(this.props.children, (child, index) => {
       // If there is no key provided, use the panel order as default key
-      const key = child.key || String(index);
+      const key = child.key || String(index + 1);
       const { title, titleAside } = child.props;
       const noPadding = child.props.noPadding || false;
 
-      let isActive = false;
+      let isOpen = false;
       if (this.props.isAccordion) {
-        isActive = activeKeys[0] === key;
+        isOpen = activeKeys[0] === key;
       } else {
-        isActive = activeKeys.indexOf(key) > -1;
+        isOpen = activeKeys.indexOf(key) > -1;
       }
 
       const props = {
@@ -92,7 +84,7 @@ class Drawer extends Component {
         title,
         titleAside,
         noPadding,
-        isActive,
+        isOpen,
         children: child.props.children,
         onItemClick: this.onClickItem(key).bind(this),
         closedIconName: this.props.closedIconName,

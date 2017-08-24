@@ -5,7 +5,7 @@
   "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src -d lib --ignore specs.js,*.md --copy-files",
+    "build": "NODE_ENV=production babel src -d lib --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
     "precommit": "lint-staged",
@@ -37,6 +37,7 @@
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.9",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.19.0",
     "babel-plugin-transform-runtime": "^6.15.0",

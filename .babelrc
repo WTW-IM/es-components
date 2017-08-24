@@ -5,6 +5,7 @@
     "transform-object-rest-spread",
     "transform-runtime",
     "transform-export-extensions",
-    "transform-class-properties"
+    "transform-class-properties",
+    "transform-es2015-modules-umd"
   ]
 }

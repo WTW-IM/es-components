@@ -1,4 +1,4 @@
-import React, { Children, Component, cloneElement } from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../theme';
 import styled from 'styled-components';
@@ -17,61 +17,47 @@ const NavStyled = styled.nav`
   }
 `;
 
-class SideNav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: props.defaultSelected,
-      defaultSelected: props.defaultSelected
-    };
-  }
+const SideNav = props => {
+  const { altStyle, children, onItemSelected, selected } = props;
 
-  onNavClick = (navId = null) => {
-    const { onItemSelected = noop } = this.props;
-
-    if (this.state.defaultSelected) {
-      this.setState({ selected: navId }, () => {
-        onItemSelected(navId);
-      });
-    } else {
-      onItemSelected(navId);
-    }
+  const onNavClick = (navId = null) => {
+    onItemSelected(navId);
   };
 
-  render() {
-    const { altStyle, children, selected } = this.props;
-    return (
-      <NavStyled>
-        <ul>
-          {Children.toArray(children).map(child => {
-            if (child !== null && child.type === NavItem) {
-              const currentSelected = this.state.defaultSelected
-                ? this.state.selected
-                : selected;
-              return cloneElement(child, {
-                altStyle,
-                highlightedId: currentSelected,
-                onClick: this.onNavClick
-              });
-            }
-            return child;
-          })}
-        </ul>
-      </NavStyled>
-    );
-  }
-}
+  return (
+    <NavStyled>
+      <ul>
+        {Children.toArray(children).map(child => {
+          if (child !== null && child.type === NavItem) {
+            const currentSelected = selected;
+            return cloneElement(child, {
+              altStyle,
+              highlightedId: currentSelected,
+              onNavClick
+            });
+          }
+          return child;
+        })}
+      </ul>
+    </NavStyled>
+  );
+};
 
 SideNav.propTypes = {
   /** Use the alternate nav style */
   altStyle: PropTypes.bool,
   children: PropTypes.node,
-  /** Use to manually select nav item by id, stateless mode */
+  /** Use to manually select nav item by id, controlled mode */
   selected: PropTypes.string,
-  /** Use to set a default nav, stateful mode */
+  /** Use to set a default nav, uncontrolled mode */
   defaultSelected: PropTypes.string,
   /** Function called when a nav item is clicked */
   onItemSelected: PropTypes.func
+};
+
+SideNav.defaultProps = {
+  altStyle: false,
+  onItemSelected: noop
 };
 
 SideNav.Item = NavItem;

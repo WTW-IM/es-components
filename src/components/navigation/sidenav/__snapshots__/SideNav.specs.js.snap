@@ -7,7 +7,7 @@ exports[`drawer renders as expected 1`] = `
   <ul>
     <li>
       <a
-        className="home sc-bwzfXH kEPtnz"
+        className="home sc-bwzfXH jEMmwW"
         href="/home"
         onClick={[Function]}
       >

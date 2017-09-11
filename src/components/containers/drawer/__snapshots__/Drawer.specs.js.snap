@@ -5,7 +5,7 @@ exports[`drawer component accordion renders as expected 1`] = `
   className="sc-EHOje ktKLsF"
 >
   <div
-    className="first sc-bwzfXH dYpfLQ"
+    className="first sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -50,7 +50,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second sc-bwzfXH dYpfLQ"
+    className="second sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -95,7 +95,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="third sc-bwzfXH dYpfLQ"
+    className="third sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -147,7 +147,7 @@ exports[`drawer component drawer renders as expected 1`] = `
   className="important sc-EHOje ktKLsF"
 >
   <div
-    className="first sc-bwzfXH dYpfLQ"
+    className="first sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -195,7 +195,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second sc-bwzfXH dYpfLQ"
+    className="second sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -240,7 +240,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="third sc-bwzfXH dYpfLQ"
+    className="third sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"

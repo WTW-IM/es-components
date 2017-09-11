@@ -7,12 +7,12 @@ exports[`drawer renders as expected 1`] = `
   <ul>
     <li>
       <a
-        className="home sc-bwzfXH jEMmwW"
+        className="home sc-bwzfXH kdkTdX"
         href="/home"
         onClick={[Function]}
       >
         <span
-          className="sc-bxivhb khxFsg"
+          className="sc-bxivhb gYEJOJ"
         >
           Home
         </span>
@@ -27,12 +27,12 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="cart sc-bwzfXH jEMmwW"
+        className="cart sc-bwzfXH kdkTdX"
         href="#/"
         onClick={[Function]}
       >
         <span
-          className="sc-bxivhb khxFsg"
+          className="sc-bxivhb gYEJOJ"
         >
           Cart
         </span>
@@ -47,13 +47,13 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="external sc-bwzfXH jEMmwW"
+        className="external sc-bwzfXH kdkTdX"
         href="http://www.google.com"
         onClick={[Function]}
         target="_blank"
       >
         <span
-          className="sc-bxivhb khxFsg"
+          className="sc-bxivhb gYEJOJ"
         >
           External Link
         </span>
@@ -68,12 +68,12 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="info sc-bwzfXH dWICOj"
+        className="info sc-bwzfXH echfcF"
         href="#/"
         onClick={[Function]}
       >
         <span
-          className="sc-bxivhb khxFsg"
+          className="sc-bxivhb gYEJOJ"
         >
           Disabled
         </span>

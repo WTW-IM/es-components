@@ -78,9 +78,7 @@
     "lodash": "^4.17.4",
     "react-animate-height": "^0.9.11",
     "react-overlays": "^0.7.0",
-    "slug": "^0.9.1",
     "styled-components": "^2.0.0",
-    "tinycolor2": "^1.4.1",
-    "uncontrollable": "^4.1.0"
+    "tinycolor2": "^1.4.1"
   }
 }

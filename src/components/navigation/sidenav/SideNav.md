@@ -1,14 +1,12 @@
 ```
 class NavExample extends React.Component {
   constructor() {
-    super();
     this.state = { selected: "home" };
     this.onItemSelected = this.onItemSelected.bind(this);
   }
 
   onItemSelected(value) {
     this.setState({ selected: value });
-    alert(`${value} selected!`);
   };
 
   render() {
@@ -46,7 +44,6 @@ Use `onItemSelected` to control the `selected` value.
 ```
 class NavExample extends React.Component {
   constructor() {
-    super();
     this.state = { selected: "home" };
     this.onItemSelected = this.onItemSelected.bind(this);
   }
@@ -75,21 +72,19 @@ Assign a `targetUrl` to set the nav link href location. Use `isExternalLink` to 
 ```
 class NavExample extends React.Component {
   constructor() {
-    super();
     this.state = { selected: "home" };
     this.onItemSelected = this.onItemSelected.bind(this);
   }
 
   onItemSelected(value) {
     this.setState({ selected: value });
-    alert(`${value} selected!`);
   };
 
   render() {
     return (
       <div style={{width: '30%'}}>
         <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected }>
-          <SideNav.Item id="home" targetUrl="/" onClick={ () => (alert('Time to go Home!'))}>Home</SideNav.Item>
+          <SideNav.Item id="home" targetUrl="/">Home</SideNav.Item>
           <SideNav.Item id="medicare" targetUrl="https://medicare.oneexchange.com" isExternalLink>Medicare Site</SideNav.Item>
           <SideNav.Item id="sidenav" targetUrl="#sidenav">SideNav Section</SideNav.Item>
         </SideNav>
@@ -104,7 +99,6 @@ Set `onClick` on an individual `SideNav.Item`.
 ```
 class NavExample extends React.Component {
   constructor() {
-    super();
     this.state = { selected: "home" };
     this.onItemSelected = this.onItemSelected.bind(this);
   }

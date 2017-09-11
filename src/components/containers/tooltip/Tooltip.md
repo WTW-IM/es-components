@@ -1,4 +1,4 @@
-Use a ``Tooltip`` component to display a small hover tip over content.
+Use a `Tooltip` component to display a small hover tip over content.
 
 ### Basic Tooltip:
 ```

@@ -10,7 +10,7 @@
 </div>
 ```
 
-Pass a ``handleOnChange`` function to execute any time the input box value changes. This function will have the current value of the input box passed to it.
+Pass a `handleOnChange` function to execute any time the input box value changes. This function will have the current value of the input box passed to it.
 
 ```
 function onChange(value) {
@@ -23,7 +23,7 @@ function onChange(value) {
 />
 ```
 
-Pass a ``handleFocusLost`` function to execute when the text box loses focus. This function will have the current value of the input passed to it.
+Pass a `handleFocusLost` function to execute when the text box loses focus. This function will have the current value of the input passed to it.
 
 ```
 function onFocusLost(value) {
@@ -36,7 +36,7 @@ function onFocusLost(value) {
 />
 ```
 
-Adding an ``additionalHelpContent`` prop will provide additional help content underneath the text box.
+Adding an `additionalHelpContent` prop will provide additional help content underneath the text box.
 
 ```
 <Textbox
@@ -72,7 +72,7 @@ Adding an ``additionalHelpContent`` prop will provide additional help content un
 
 ### Appending and Prepending text
 
-Provide an ``appendText`` or ``prependText`` prop for appending and prepending inputs. Validation state colorings will also be applied.
+Provide an `appendText` or `prependText` prop for appending and prepending inputs. Validation state colorings will also be applied.
 
 ```
 <div>
@@ -119,7 +119,7 @@ Provide an ``appendText`` or ``prependText`` prop for appending and prepending i
 ### Additional props
 
 Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided.
-The react ``autoFocus`` property is also accepted.
+The react `autoFocus` property is also accepted.
 
 #### Disabled and Readonly
 

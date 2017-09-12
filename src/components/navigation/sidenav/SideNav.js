@@ -18,7 +18,7 @@ const NavStyled = styled.nav`
 `;
 
 const SideNav = props => {
-  const { altStyle, children, onItemSelected, selected } = props;
+  const { useAltStyle, children, onItemSelected, selected } = props;
 
   const onNavClick = (navId = null) => {
     onItemSelected(navId);
@@ -31,7 +31,7 @@ const SideNav = props => {
           if (child !== null && child.type === NavItem) {
             const currentSelected = selected;
             return cloneElement(child, {
-              altStyle,
+              useAltStyle,
               highlightedId: currentSelected,
               onNavClick
             });
@@ -45,7 +45,7 @@ const SideNav = props => {
 
 SideNav.propTypes = {
   /** Use the alternate nav style */
-  altStyle: PropTypes.bool,
+  useAltStyle: PropTypes.bool,
   children: PropTypes.node,
   /** Use to manually select nav item by id, controlled mode */
   selected: PropTypes.string,
@@ -56,7 +56,7 @@ SideNav.propTypes = {
 };
 
 SideNav.defaultProps = {
-  altStyle: false,
+  useAltStyle: false,
   onItemSelected: noop
 };
 

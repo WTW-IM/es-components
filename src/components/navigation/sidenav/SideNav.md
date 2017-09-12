@@ -25,7 +25,7 @@ class NavExample extends React.Component {
 
         <div style={{width: '30%'}}>
           <h3>Alternate Style</h3>
-          <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected } altStyle>
+          <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected } useAltStyle>
             <SideNav.Item id="home">Home</SideNav.Item>
             <SideNav.Item id="cart">Cart</SideNav.Item>
             <SideNav.Item id="help">Help</SideNav.Item>
@@ -110,7 +110,7 @@ class NavExample extends React.Component {
   render() {
     return (
       <div style={{width: '30%'}}>
-        <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected } altStyle>
+        <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected } useAltStyle>
           <SideNav.Item id="home" onClick={ () => (alert('Time to go Home!'))}>Home</SideNav.Item>
           <SideNav.Item id="cart" onClick={ () => (alert('You clicked the Cart!'))}>Cart</SideNav.Item>
           <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>

@@ -107,7 +107,7 @@ const FlexSpan = styled.span`flex-grow: 1;`;
 
 const NavItem = props => {
   const {
-    altStyle,
+    useAltStyle,
     children,
     className,
     highlightedId,
@@ -124,7 +124,7 @@ const NavItem = props => {
     onClick(id);
   };
 
-  const AnchorStyled = altStyle ? AnchorAltStyle : AnchorBase;
+  const AnchorStyled = useAltStyle ? AnchorAltStyle : AnchorBase;
   const href = targetUrl || '#/';
   const openExternal = targetUrl && isExternalLink;
 
@@ -149,7 +149,7 @@ const NavItem = props => {
 
 NavItem.propTypes = {
   /** @ignore */
-  altStyle: PropTypes.bool,
+  useAltStyle: PropTypes.bool,
   /** Item content */
   children: PropTypes.any,
   /** Additional CSS classes to apply */
@@ -173,7 +173,7 @@ NavItem.propTypes = {
 };
 
 NavItem.defaultProps = {
-  altStyle: false,
+  useAltStyle: false,
   isDisabled: false,
   isExternalLink: false,
   onClick: noop

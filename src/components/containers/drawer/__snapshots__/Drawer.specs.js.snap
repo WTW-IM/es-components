@@ -2,7 +2,7 @@
 
 exports[`drawer component accordion renders as expected 1`] = `
 <div
-  className="sc-EHOje ktKLsF"
+  className="important sc-EHOje ktKLsF"
 >
   <div
     className="first sc-bwzfXH fsHaqT"
@@ -13,32 +13,35 @@ exports[`drawer component accordion renders as expected 1`] = `
     >
       <button
         aria-controls="abcdef"
-        aria-expanded={true}
+        aria-expanded={false}
         className="sc-htpNat ebhkUu"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa dRgmsV"
-            content="63d"
+            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            content="63f"
             fontFamily="oecom-icons"
             fontSize="inherit"
           />
           collapse 1
         </span>
+        <aside>
+          side text
+        </aside>
       </button>
     </div>
     <div
-      aria-hidden={false}
+      aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-auto sc-ifAKCX gUdFEl"
+      className="rah-static rah-static--height-zero sc-ifAKCX gUdFEl"
       id="abcdef"
       role="region"
       style={
         Object {
-          "height": "auto",
-          "overflow": "visible",
+          "height": 0,
+          "overflow": "hidden",
         }
       }
     >
@@ -77,7 +80,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX gUdFEl"
+      className="rah-static rah-static--height-zero sc-ifAKCX lnWkgR"
       id="abcdef"
       role="region"
       style={

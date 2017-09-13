@@ -1,16 +1,9 @@
-import React, { Children, Component } from 'react';
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import DrawerPanel from './DrawerPanel';
 import { colors } from '../../theme';
 import styled from 'styled-components';
-
-function toArray(activeKeys) {
-  let currentActiveKeys = activeKeys;
-  if (!Array.isArray(currentActiveKeys)) {
-    currentActiveKeys = currentActiveKeys ? [currentActiveKeys] : [];
-  }
-  return currentActiveKeys;
-}
+import { noop } from 'lodash';
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];
@@ -32,99 +25,93 @@ const StyledDrawer = styled.div`
   margin-bottom: 25px;
 `;
 
-class Drawer extends Component {
-  constructor(props) {
-    super(props);
+const Drawer = props => {
+  const {
+    activeKeys,
+    children,
+    className,
+    closedIconName,
+    isAccordion,
+    onActiveKeysChanged,
+    openedIconName
+  } = props;
 
-    const currentActiveKeys = this.props.defaultActiveKeys;
-    this.state = {
-      activeKeys: toArray(currentActiveKeys)
-    };
-  }
+  const onItemClick = key => {
+    let nextActiveKeys = [...activeKeys];
 
-  onClickItem(key) {
-    return () => {
-      let activeKeys = [...this.state.activeKeys];
+    if (isAccordion) {
+      nextActiveKeys = nextActiveKeys[0] === key ? [] : [key];
+    } else {
+      const index = nextActiveKeys.indexOf(key);
+      const isOpen = index > -1;
 
-      if (this.props.isAccordion) {
-        activeKeys = activeKeys[0] === key ? [] : [key];
+      if (isOpen) {
+        nextActiveKeys.splice(index, 1);
       } else {
-        const index = activeKeys.indexOf(key);
-        const isOpen = index > -1;
-
-        if (isOpen) {
-          activeKeys.splice(index, 1);
-        } else {
-          activeKeys.push(key);
-        }
+        nextActiveKeys.push(key);
       }
+    }
 
-      this.setState({ activeKeys });
-    };
-  }
+    onActiveKeysChanged(nextActiveKeys);
+  };
 
-  getPanels() {
-    const activeKeys = this.state.activeKeys;
-
-    return Children.map(this.props.children, (child, index) => {
+  const getPanels = () =>
+    Children.map(children, (child, index) => {
       // If there is no key provided, use the panel order as default key
       const key = child.key || String(index + 1);
       const { title, titleAside } = child.props;
       const noPadding = child.props.noPadding || false;
 
       let isOpen = false;
-      if (this.props.isAccordion) {
+      if (isAccordion) {
         isOpen = activeKeys[0] === key;
       } else {
         isOpen = activeKeys.indexOf(key) > -1;
       }
 
-      const props = {
+      const childProps = {
         key,
         title,
         titleAside,
         noPadding,
         isOpen,
         children: child.props.children,
-        onItemClick: this.onClickItem(key).bind(this),
-        closedIconName: this.props.closedIconName,
-        openedIconName: this.props.openedIconName
+        onItemClick: () => onItemClick(key),
+        closedIconName,
+        openedIconName
       };
 
-      return React.cloneElement(child, props);
+      return React.cloneElement(child, childProps);
     });
-  }
 
-  render() {
-    return (
-      <StyledDrawer className={this.props.className}>
-        {this.getPanels()}
-      </StyledDrawer>
-    );
-  }
-}
+  return <StyledDrawer className={className}>{getPanels()}</StyledDrawer>;
+};
 
 Drawer.propTypes = {
+  /** Set which panels are open */
+  activeKeys: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   /** Should only contain one or more Drawer.Panel elements */
   children: drawerPanelPropType,
   /** Add additional CSS classes to the root drawer element */
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
-  /** Specify which panels are opened by default */
-  defaultActiveKeys: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]),
   /** Only allows one DrawerPanel to be open at a time */
   isAccordion: PropTypes.bool,
+  /** Function called when changing active keys */
+  onActiveKeysChanged: PropTypes.func,
   /** Override the default minus icon with another OE icon name */
   openedIconName: PropTypes.string
 };
 
 Drawer.defaultProps = {
+  activeKeys: [],
   isAccordion: false,
   closedIconName: 'plus',
+  onActiveKeysChanged: noop,
   openedIconName: 'minus'
 };
 

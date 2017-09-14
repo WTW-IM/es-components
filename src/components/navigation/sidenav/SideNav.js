@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { colors } from '../../theme';
 import styled from 'styled-components';
 import { noop } from 'lodash';
+import uncontrollable from 'uncontrollable';
 
 import NavItem from './NavItem';
 
@@ -17,7 +18,7 @@ const NavStyled = styled.nav`
   }
 `;
 
-const SideNav = props => {
+export const SideNav = props => {
   const { useAltStyle, children, onItemSelected, selected } = props;
 
   const onNavClick = (navId = null) => {
@@ -47,7 +48,7 @@ SideNav.propTypes = {
   /** Use the alternate nav style */
   useAltStyle: PropTypes.bool,
   children: PropTypes.node,
-  /** Use to manually select nav item by id, controlled mode */
+  /** Set the selected nav item by id, controlled mode */
   selected: PropTypes.string,
   /** Use to set a default nav, uncontrolled mode */
   defaultSelected: PropTypes.string,
@@ -60,6 +61,10 @@ SideNav.defaultProps = {
   onItemSelected: noop
 };
 
-SideNav.Item = NavItem;
+const UncontrolledSideNav = uncontrollable(SideNav, {
+  selected: 'onItemSelected'
+});
 
-export default SideNav;
+UncontrolledSideNav.Item = NavItem;
+
+export default UncontrolledSideNav;

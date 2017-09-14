@@ -4,6 +4,7 @@ import DrawerPanel from './DrawerPanel';
 import { colors } from '../../theme';
 import styled from 'styled-components';
 import { noop } from 'lodash';
+import uncontrollable from 'uncontrollable';
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];
@@ -25,7 +26,7 @@ const StyledDrawer = styled.div`
   margin-bottom: 25px;
 `;
 
-const Drawer = props => {
+export const Drawer = props => {
   const {
     activeKeys,
     children,
@@ -99,6 +100,11 @@ Drawer.propTypes = {
   className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
+  /** Used in uncontrolled mode to set initial drawer state */
+  defaultActiveKeys: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   /** Only allows one DrawerPanel to be open at a time */
   isAccordion: PropTypes.bool,
   /** Function called when changing active keys */
@@ -115,6 +121,10 @@ Drawer.defaultProps = {
   openedIconName: 'minus'
 };
 
-Drawer.Panel = DrawerPanel;
+const UncontrolledDrawer = uncontrollable(Drawer, {
+  activeKeys: 'onActiveKeysChanged'
+});
 
-export default Drawer;
+UncontrolledDrawer.Panel = DrawerPanel;
+
+export default UncontrolledDrawer;

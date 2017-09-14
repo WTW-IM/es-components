@@ -77,7 +77,10 @@ describe('drawer component', () => {
     });
 
     it('should allow rendering more than one active drawer', () => {
-      const drawerInstance = mount(buildDrawer({ activeKeys: ['1', '3'] }));
+      const onActiveKeysChanged = jest.fn();
+      const drawerInstance = mount(
+        buildDrawer({ activeKeys: ['1', '3'], onActiveKeysChanged })
+      );
       const firstPanel = drawerInstance.find('.first');
       const firstButton = firstPanel.find('button');
       const thirdPanel = drawerInstance.find('.third');

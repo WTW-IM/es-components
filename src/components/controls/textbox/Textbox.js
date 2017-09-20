@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { noop, isNil } from 'lodash';
+import { noop } from 'lodash';
 
 import Icon from '../../base/icons/Icon';
 import { sizes } from '../../theme';
@@ -11,10 +11,6 @@ import Addon from './Addon';
 import getValidationStateVariables from '../getValidationStateVariables';
 import getAddonType from './getAddonType';
 import genId from '../../util/generateAlphaName';
-
-const TextBoxLabel = styled(Label)`
-  flex-basis: 50%;
-`;
 
 function getBorderRadius(addonType) {
   switch (addonType) {
@@ -28,6 +24,8 @@ function getBorderRadius(addonType) {
       return '2px';
   }
 }
+
+const TextBoxLabel = styled(Label)`flex-basis: 50%;`;
 
 const StyledText = styled(InputBase)`
   border-radius: ${props => getBorderRadius(props.addonType)};
@@ -58,171 +56,144 @@ const InputWrapper = styled.div`
   flex: auto;
 `;
 
-class Textbox extends React.Component {
-  static propTypes = {
-    labelText: PropTypes.string.isRequired,
-    /** The name of the input */
-    name: PropTypes.string,
-    /** Display label inline with text box */
-    inline: PropTypes.bool,
-    /** Function to execute when text box value changes */
-    handleOnChange: PropTypes.func,
-    /** Function to execute when text box loses focus */
-    handleFocusLost: PropTypes.func,
-    /** Content to display underneath the text box */
-    additionalHelpContent: PropTypes.node,
-    /** Display label and text with contextual state colorings */
-    validationState: PropTypes.oneOf(['success', 'warning', 'danger']),
-    /** Content to prepend input box with */
-    prependContent: PropTypes.node,
-    /** Content to append to input box */
-    appendContent: PropTypes.node,
-    /** Default value of the textbox */
-    initialValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+function renderAddon(
+  type,
+  addonContent,
+  inputVariables,
+  inline,
+  prependAddonRef
+) {
+  // debugger;
+  return (
+    <Addon
+      className={type}
+      backgroundColor={inputVariables.addonBackgroundColor}
+      borderColor={inputVariables.borderColor}
+      inline={inline}
+      innerRef={prependAddonRef}
+    >
+      {addonContent}
+    </Addon>
+  );
+}
+
+const Textbox = props => {
+  const {
+    labelText,
+    name,
+    inline,
+    inputRef,
+    prependAddonRef,
+    additionalHelpContent,
+    validationState,
+    prependContent,
+    appendContent,
+    onChange,
+    onBlur,
+    ...additionalTextProps
+  } = props;
+
+  const hasHelpContent = additionalHelpContent !== undefined;
+  const helpId = hasHelpContent ? genId() : null;
+  const additionalHelp = hasHelpContent && (
+    <AdditionalHelpContent id={helpId} className="textbox__help">
+      {additionalHelpContent}
+    </AdditionalHelpContent>
+  );
+
+  const hasPrependedText = prependContent !== undefined;
+  const hasAppendedText = appendContent !== undefined;
+  const addonType = getAddonType(hasPrependedText, hasAppendedText);
+  const hasNoAddon = addonType === null;
+
+  const inputVariables = getValidationStateVariables(validationState);
+  const icon =
+    inputVariables.icon !== undefined ? (
+      <TextIcon name={inputVariables.icon} size={20} />
+    ) : null;
+
+  const inputName = name || labelText.replace(/\s+/g, '');
+  const textboxId = genId();
+
+  const handleOnBlur = event => {
+    onBlur(event.target.value);
   };
 
-  static defaultProps = {
-    inline: false,
-    handleOnChange: noop,
-    handleFocusLost: noop,
-    initialValue: ''
+  const handleOnChange = event => {
+    onChange(event.target.value);
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      currentValue: isNil(props.initialValue) ? '' : props.initialValue
-    };
-
-    this.setTextboxRef = this.setTextboxRef.bind(this);
-    this.handleOnTextChanged = this.handleOnTextChanged.bind(this);
-    this.handleOnTextFocusLost = this.handleOnTextFocusLost.bind(this);
-  }
-
-  componentWillReceiveProps({ initialValue }) {
-    this.setState(() => ({
-      currentValue: isNil(initialValue) ? '' : initialValue
-    }));
-  }
-
-  setTextboxRef(ref, type) {
-    if (type) {
-      this[`${type}Ref`] = ref;
-    }
-  }
-
-  executeHandler(event, handlerName) {
-    const { value } = event.target;
-    const handler = this.props[handlerName];
-    this.setState({ currentValue: value }, () => handler(value));
-  }
-
-  handleOnTextChanged(event) {
-    this.executeHandler(event, 'handleOnChange');
-  }
-
-  handleOnTextFocusLost(event) {
-    this.executeHandler(event, 'handleFocusLost');
-  }
-
-  renderAddon(type, addonContent, inputVariables, shouldRenderAddon, inline) {
-    if (shouldRenderAddon) {
-      return (
-        <Addon
-          ref={addon => this.setTextboxRef(addon, type)}
-          className={type}
-          backgroundColor={inputVariables.addonBackgroundColor}
-          borderColor={inputVariables.borderColor}
-          inline={inline}
-        >
-          {addonContent}
-        </Addon>
-      );
-    }
-    return null;
-  }
-
-  render() {
-    const {
-      labelText,
-      name,
-      inline,
-      additionalHelpContent,
-      validationState,
-      prependContent,
-      appendContent,
-      ...additionalTextProps
-    } = this.props;
-
-    const inputVariables = getValidationStateVariables(validationState);
-
-    const hasHelpContent = additionalHelpContent !== undefined;
-
-    const textboxId = genId();
-    const helpId = hasHelpContent ? genId() : null;
-
-    const additionalHelp =
-      hasHelpContent &&
-      <AdditionalHelpContent id={helpId} className="textbox__help">
-        {additionalHelpContent}
-      </AdditionalHelpContent>;
-
-    const hasPrependedText = prependContent !== undefined;
-    const hasAppendedText = appendContent !== undefined;
-
-    const addonType = getAddonType(hasPrependedText, hasAppendedText);
-    const hasNoAddon = addonType === null;
-
-    const icon = inputVariables.icon !== undefined
-      ? <TextIcon name={inputVariables.icon} size={20} />
-      : null;
-
-    const inputName = name || labelText.replace(/\s+/g, '');
-
-    return (
-      <TextBoxLabel
-        htmlFor={textboxId}
-        color={inputVariables.foregroundColor}
-        inline={inline}
-      >
-        <LabelText inline={inline}>{labelText}</LabelText>
-        <InputWrapper>
-          {this.renderAddon(
+  return (
+    <TextBoxLabel
+      htmlFor={textboxId}
+      color={inputVariables.foregroundColor}
+      inline={inline}
+    >
+      <LabelText inline={inline}>{labelText}</LabelText>
+      <InputWrapper>
+        {hasPrependedText &&
+          renderAddon(
             'prepend',
             prependContent,
             inputVariables,
-            hasPrependedText
+            false,
+            prependAddonRef
           )}
-          <TextWrapper includeMargin={hasNoAddon && inline}>
-            <StyledText
-              id={textboxId}
-              ref={ref => this.setTextboxRef(ref, 'textbox')}
-              addonType={addonType}
-              type="text"
-              name={inputName}
-              onChange={this.handleOnTextChanged}
-              onBlur={this.handleOnTextFocusLost}
-              aria-describedby={helpId}
-              value={this.state.currentValue}
-              {...inputVariables}
-              {...additionalTextProps}
-              innerRef={this.setTextboxRef}
-            />
-            {icon}
-          </TextWrapper>
-          {this.renderAddon(
-            'append',
-            appendContent,
-            inputVariables,
-            hasAppendedText,
-            inline
-          )}
-        </InputWrapper>
-        {additionalHelp}
-      </TextBoxLabel>
-    );
-  }
-}
+        <TextWrapper includeMargin={hasNoAddon && inline}>
+          <StyledText
+            id={textboxId}
+            addonType={addonType}
+            type="text"
+            name={inputName}
+            onChange={handleOnChange}
+            onBlur={handleOnBlur}
+            aria-describedby={helpId}
+            {...inputVariables}
+            {...additionalTextProps}
+            innerRef={inputRef}
+          />
+          {icon}
+        </TextWrapper>
+        {hasAppendedText &&
+          renderAddon('append', appendContent, inputVariables, inline)}
+      </InputWrapper>
+      {additionalHelp}
+    </TextBoxLabel>
+  );
+};
+
+Textbox.propTypes = {
+  labelText: PropTypes.string.isRequired,
+  /** The name of the input */
+  name: PropTypes.string,
+  /** @ignore */
+  inputRef: PropTypes.func,
+  /** @ignore */
+  prependAddonRef: PropTypes.func,
+  /** Display label inline with text box */
+  inline: PropTypes.bool,
+  /** Function to execute when text box value changes */
+  onChange: PropTypes.func,
+  /** Function to execute when text box loses focus */
+  onBlur: PropTypes.func,
+  /** Content to display underneath the text box */
+  additionalHelpContent: PropTypes.node,
+  /** Display label and text with contextual state colorings */
+  validationState: PropTypes.oneOf(['success', 'warning', 'danger']),
+  /** Content to prepend input box with */
+  prependContent: PropTypes.node,
+  /** Content to append to input box */
+  appendContent: PropTypes.node,
+  /** Set the initial value for uncontrolled mode */
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Value of the textbox */
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+Textbox.defaultProps = {
+  inline: false,
+  onChange: noop,
+  onBlur: noop
+};
 
 export default Textbox;

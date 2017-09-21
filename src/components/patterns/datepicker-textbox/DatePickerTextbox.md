@@ -1,4 +1,4 @@
-The datepicker will be displayed when the textbox is clicked or focused on. The `DatePickerTextbox` component can be passed an object with props that will propagate to the `DatePicker` component.
+The datepicker will be displayed when the textbox is clicked or focused on. The `DatePickerTextbox` component can be passed an object with `DatePicker` component props.
 
 ```
 const datePickerProps = {

@@ -17,4 +17,4 @@ const containerStyle = {
 </div>
 ```
 
-**Note:** Icons will not work if the ``oecom-icons`` and ``oe-icons-light`` font faces are not loaded into a stylesheet prior to using the Icon component.
+**Note:** Icons will not work if the `oecom-icons` and `oe-icons-light` font faces are not loaded into a stylesheet prior to using the Icon component.

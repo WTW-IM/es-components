@@ -1,4 +1,4 @@
-Use ``Drawer`` and ``Drawer.Panel`` components to wrap content in collapsable panels.
+Use `Drawer` and `Drawer.Panel` components to wrap content in collapsable panels.
 
 ### Basic Example
 ```
@@ -20,7 +20,7 @@ Use ``Drawer`` and ``Drawer.Panel`` components to wrap content in collapsable pa
 
 
 ### Accordion
-Add the ``isAccordion`` property to change the default behavior to an accordion
+Add the `isAccordion` property to change the default behavior to an accordion
 style, where only one panel can be opened at a time.
 ```
 <Drawer isAccordion>
@@ -44,9 +44,9 @@ style, where only one panel can be opened at a time.
 
 
 ### Advanced Example
-Use the ``noPadding`` property to remove default padding within a panel (useful for lists and tables).
-Use the ``titleAside`` property to display text or other content on the right side of the panel header.
-You can customize the ``key`` property of each Panel; if not specified the default is a zero-based array.
+Use the `noPadding` property to remove default padding within a panel (useful for lists and tables).
+Use the `titleAside` property to display text or other content on the right side of the panel header.
+You can customize the `key` property of each Panel; if not specified the default is a zero-based array.
 Both the Drawer and Drawer.Panel components will accept additional classNames.
 
 ```

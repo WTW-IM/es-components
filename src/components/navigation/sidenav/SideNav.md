@@ -24,7 +24,7 @@
 </div>
 ```
 
-Assign a ```targetUrl``` to set the nav link href location. Use ```isExternalLink``` to open the link in a new browser window.
+Assign a `targetUrl` to set the nav link href location. Use `isExternalLink` to open the link in a new browser window.
 ```
 <div style={{width: '30%'}}>
   <SideNav defaultSelected="home">
@@ -35,7 +35,7 @@ Assign a ```targetUrl``` to set the nav link href location. Use ```isExternalLin
 </div>
 ```
 
-Setting ```onItemSelected``` will execute the function when a ```SideNav.Item``` is clicked.
+Setting `onItemSelected` will execute the function when a `SideNav.Item` is clicked.
 ```
 <div style={{width: '30%'}}>
   <SideNav defaultSelected="home" onItemSelected={ (id) => {alert(id); }}>
@@ -46,7 +46,7 @@ Setting ```onItemSelected``` will execute the function when a ```SideNav.Item```
 </div>
 ```
 
-Set ```onNavClick``` on an individual ```SideNav.Item```.
+Set `onNavClick` on an individual `SideNav.Item`.
 ```
 <div style={{width: '30%'}}>
   <SideNav defaultSelected="home" altStyle>
@@ -57,7 +57,7 @@ Set ```onNavClick``` on an individual ```SideNav.Item```.
 </div>
 ```
 
-Manage selected item state manually using ```selected``` instead of ```defaultSelected```.
+Manage selected item state manually using `selected` instead of `defaultSelected`.
 ```
 <div style={{width: '30%'}}>
   <SideNav selected={state.selected} onItemSelected={ (id) => {setState({selected: id})} }>

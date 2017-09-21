@@ -17,8 +17,6 @@ const dateFormat = 'M/D/YYYY';
 export default class DatePickerTextbox extends React.Component {
   static propTypes = {
     labelText: PropTypes.string.isRequired,
-    /** Textbox component used to trigger the DatePicker display */
-    textComponent: PropTypes.func,
     /** Function to execute with the formatted date */
     dateSelected: PropTypes.func,
     /** The currently selected date */
@@ -31,8 +29,7 @@ export default class DatePickerTextbox extends React.Component {
     dateSelected: noop,
     handleTextboxChanged: noop,
     handleTextboxFocusLost: noop,
-    datePickerProps: {},
-    textComponent: Textbox
+    datePickerProps: {}
   };
 
   constructor(props) {
@@ -50,15 +47,10 @@ export default class DatePickerTextbox extends React.Component {
     this.displayPicker = this.displayPicker.bind(this);
     this.hidePicker = this.hidePicker.bind(this);
     this.togglePicker = this.togglePicker.bind(this);
-    this.setPopoverTarget = this.setPopoverTarget.bind(this);
   }
 
   componentWillReceiveProps({ preselectedDate }) {
     this.setState(() => ({ preselectedDate }));
-  }
-
-  setPopoverTarget(ref) {
-    this.popoverTarget = ref.prependRef;
   }
 
   togglePicker() {
@@ -102,7 +94,7 @@ export default class DatePickerTextbox extends React.Component {
   }
 
   render() {
-    const { labelText, datePickerProps, textComponent } = this.props;
+    const { labelText, datePickerProps } = this.props;
     const { displayPicker, preselectedDate } = this.state;
     const prependedIcon = <Icon name="calendar" />;
 
@@ -115,27 +107,31 @@ export default class DatePickerTextbox extends React.Component {
     );
 
     const textProps = {
-      ref: this.setPopoverTarget,
       labelText,
       prependContent: prependedIcon,
       onFocus: this.displayPicker,
       onClick: this.togglePicker,
-      handleOnChange: this.dateTextboxChanged,
-      handleFocusLost: this.dateTextboxFocusLost,
-      initialValue: format(preselectedDate, dateFormat),
+      onChange: this.dateTextboxChanged,
+      onBlur: this.dateTextboxFocusLost,
+      value: format(preselectedDate, dateFormat),
       ...this.props
     };
 
     return (
       <PopoverTrigger
         popoverContent={popoverContent}
-        popoverTarget={this.popoverTarget}
+        popoverTarget={this.addon}
         shouldDisplayPopover={displayPicker}
         onHideOverlay={this.hidePicker}
         containsFormElement
         popoverPlacement="top"
       >
-        {React.createElement(textComponent, textProps)}
+        <Textbox
+          {...textProps}
+          prependAddonRef={addon => {
+            this.addon = addon;
+          }}
+        />
       </PopoverTrigger>
     );
   }

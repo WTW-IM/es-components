@@ -15,15 +15,11 @@ describe('Textbox component', () => {
   let instance;
   let input;
   const onChange = jest.fn();
-  const onFocusLost = jest.fn();
+  const onBlur = jest.fn();
 
   beforeEach(() => {
     instance = mount(
-      <Textbox
-        labelText="Text"
-        handleOnChange={onChange}
-        handleFocusLost={onFocusLost}
-      />
+      <Textbox labelText="Text" onChange={onChange} onBlur={onBlur} />
     );
 
     input = instance.find('input');
@@ -36,15 +32,7 @@ describe('Textbox component', () => {
 
   it('executes the handeFocusLost function when the input focus is lost with the value of the input', () => {
     input.simulate('blur', { target: { value: '' } });
-    expect(onFocusLost).toBeCalledWith('');
-  });
-
-  it('sets the state to the value when a handler is executed', () => {
-    input.simulate('blur', { target: { value: '' } });
-    expect(instance.state('currentValue')).toBe('');
-
-    input.simulate('change', { target: { value: 'text' } });
-    expect(instance.state('currentValue')).toBe('text');
+    expect(onBlur).toBeCalledWith('');
   });
 
   it('renders addon content when "prependContent" prop is passed', () => {

@@ -10,33 +10,48 @@
 </div>
 ```
 
-Pass a ``handleOnChange`` function to execute any time the input box value changes. This function will have the current value of the input box passed to it.
+Pass an `onChange` function to execute any time the input box value changes. This function will have the current value of the input box passed to it. The following is a simple controlled example, where state is handled outside the component. (See [Controlled Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and [Uncontrolled Components](https://facebook.github.io/react/docs/uncontrolled-components.html).)
 
 ```
-function onChange(value) {
-  console.log(value);
+class TextboxExample extends React.Component {
+  constructor() {
+    this.state = { value: "" };
+    this.handleOnTextChange = this.handleOnTextChange.bind(this);
+  }
+
+  handleOnTextChange(value) {
+    console.log(value);
+    this.setState({ value });
+  }
+
+  render() {
+    return (
+      <Textbox
+        labelText="Controlled Example"
+        value={state.value}
+        onChange={this.handleOnTextChange}
+      />
+    )
+  }
 }
-
-<Textbox
-  labelText="First name"
-  handleOnChange={onChange}
-/>
+<TextboxExample />
 ```
 
-Pass a ``handleFocusLost`` function to execute when the text box loses focus. This function will have the current value of the input passed to it.
+Pass an `onBlur` function to execute when the text box loses focus. This function will have the current value of the input passed to it. To provide a default value in an uncontrolled `Textbox` component, use `defaultValue`.
 
 ```
-function onFocusLost(value) {
+function handleOnBlur(value) {
   confirm(`You entered ${value}. Is that correct?`);
 }
 
 <Textbox
+  defaultValue="Default"
   labelText="First name"
-  handleFocusLost={onFocusLost}
+  onBlur={handleOnBlur}
 />
 ```
 
-Adding an ``additionalHelpContent`` prop will provide additional help content underneath the text box.
+Adding an `additionalHelpContent` prop will provide additional help content underneath the text box.
 
 ```
 <Textbox
@@ -72,7 +87,7 @@ Adding an ``additionalHelpContent`` prop will provide additional help content un
 
 ### Appending and Prepending text
 
-Provide an ``appendText`` or ``prependText`` prop for appending and prepending inputs. Validation state colorings will also be applied.
+Provide an `appendText` or `prependText` prop for appending and prepending inputs. Validation state colorings will also be applied.
 
 ```
 <div>
@@ -119,7 +134,7 @@ Provide an ``appendText`` or ``prependText`` prop for appending and prepending i
 ### Additional props
 
 Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided.
-The react ``autoFocus`` property is also accepted.
+The react `autoFocus` property is also accepted.
 
 #### Disabled and Readonly
 

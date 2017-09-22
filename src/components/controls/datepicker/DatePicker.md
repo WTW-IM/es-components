@@ -1,4 +1,4 @@
-The default date picker will start with current year and descend back 120 years. Selecting a date will run the passed ``daySelected`` function with the selected date as a parameter.
+The default date picker will start with current year and descend back 120 years. Selecting a date will run the passed `daySelected` function with the selected date as a parameter.
 
 ```
 function daySelected(date) {
@@ -12,7 +12,7 @@ function daySelected(date) {
 </div>
 ```
 
-Setting the ``descentAmount`` to anything less than 12 with a ``startingSelectionMode`` of "month" will start the datepicker with the day selection and suppress the ability to select a month without using the Previous and Next buttons.
+Setting the `descentAmount` to anything less than 12 with a `startingSelectionMode` of "month" will start the datepicker with the day selection and suppress the ability to select a month without using the Previous and Next buttons.
 
 ```
 function daySelected(date) {
@@ -26,7 +26,7 @@ function daySelected(date) {
 </div>
 ```
 
-Setting the ``preSelectedDate`` will set the currently selected date.
+Setting the `preSelectedDate` will set the currently selected date.
 
 ```
 function daySelected(date) {
@@ -39,4 +39,3 @@ function daySelected(date) {
   <div id="selected-date-ex-4" className="datepicker-example__result" />
 </div>
 ```
-

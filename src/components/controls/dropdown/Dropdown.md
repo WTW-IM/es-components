@@ -23,7 +23,7 @@ const options = [{
 </div>
 ```
 
-Passing an ``onOptionChanged`` function will execute with the value of the dropdown when the option has changed.
+Passing an `onOptionChanged` function will execute with the value of the dropdown when the option has changed.
 
 ```
 const options = [{
@@ -48,7 +48,7 @@ function onOptionChanged(value) {
 />
 ```
 
-Passing an ``onDropdownFocusLost`` function will execute with the value of the dropdown when the dropdown loses focus.
+Passing an `onDropdownFocusLost` function will execute with the value of the dropdown when the dropdown loses focus.
 
 ```
 const options = [{

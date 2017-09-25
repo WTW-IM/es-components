@@ -33,7 +33,7 @@
 </div>
 ```
 
-Adding the ``dismissable`` prop will render a dismiss button that will execute the provided ``onDismiss`` function.
+Adding the `dismissable` prop will render a dismiss button that will execute the provided `onDismiss` function.
 ```
 <Notification
   type="success"
@@ -43,7 +43,7 @@ Adding the ``dismissable`` prop will render a dismiss button that will execute t
 />
 ```
 
-Adding the ``includeIcon`` prop will render an appropriate icon for the alert type. <em>If the viewport is less than 768px, it will not render any icons in the notification.</em>
+Adding the `includeIcon` prop will render an appropriate icon for the alert type. <em>If the viewport is less than 768px, it will not render any icons in the notification.</em>
 ```
 <Notification
   type="advisor"
@@ -52,7 +52,7 @@ Adding the ``includeIcon`` prop will render an appropriate icon for the alert ty
 />
 ```
 
-Providing ``callsToAction`` will render a button for each which executes that action. The first button will receive the ``primary`` style type and any additional button will receive the ``default`` style type.
+Providing `callsToAction` will render a button for each which executes that action. The first button will receive the `primary` style type and any additional button will receive the `default` style type.
 ```
 
 class CustomButton extends React.Component {
@@ -110,7 +110,7 @@ const callsToAction = [
 />
 ```
 
-Providing ``extraAlert`` with an object will render the selected icon and the provided text in the upper-right corner of the notification. If no icon is chosen, the `federal` icon will be used by default.
+Providing `extraAlert` with an object will render the selected icon and the provided text in the upper-right corner of the notification. If no icon is chosen, the `federal` icon will be used by default.
 ```
 const extraAlert = {
   alertText: 'I\'m an extra little alert!',

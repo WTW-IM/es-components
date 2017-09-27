@@ -76,6 +76,7 @@
     "dom-helpers": "^3.2.1",
     "lodash": "^4.17.4",
     "react-animate-height": "^0.9.11",
+    "react-datepicker": "^0.55.0",
     "react-overlays": "^0.7.0",
     "styled-components": "^2.0.0",
     "tinycolor2": "^1.4.1",

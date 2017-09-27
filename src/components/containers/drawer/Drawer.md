@@ -48,9 +48,7 @@ Use the `noPadding` property to remove default padding within a panel (useful fo
 Use the `titleAside` property to display text or other content on the right side of the panel header.
 You can customize the `key` property of each Panel; if not specified a default key value will be assigned
 matching the Panel's numeric position.
-
 Both the Drawer and Drawer.Panel components will accept additional classNames.
-
 ```
 class DrawerExample extends React.Component {
   constructor() {

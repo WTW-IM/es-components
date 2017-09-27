@@ -1,4 +1,4 @@
-Use a ``Fieldset`` component to group related fields.
+Use a `Fieldset` component to group related fields.
 
 ### Fieldset example without a legend:
 ```

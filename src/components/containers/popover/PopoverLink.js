@@ -15,19 +15,10 @@ const PopoverButton = styled(Button)`
 export class PopoverLink extends React.Component {
   toggleShow = () => {
     const showPopover = !this.props.showPopover;
-
     this.props.onToggle(showPopover);
-
-    if (!showPopover) {
-      this.props.onPopoverHidden();
-    }
   };
 
   hidePopover = () => {
-    /*
-      The focus trap calls this twice for some reason, even if the onHide call
-      is removed from the Overlay. Checking so onPopoverHidden isn't called twice.
-    */
     if (this.props.showPopover) {
       this.toggleShow();
     }
@@ -40,7 +31,7 @@ export class PopoverLink extends React.Component {
       popoverContent,
       popoverPlacement,
       showPopover,
-      suppressCloseButton,
+      showCloseButton,
       suppressUnderline
     } = this.props;
 
@@ -52,7 +43,7 @@ export class PopoverLink extends React.Component {
         popoverTarget={this.popoverTarget}
         popoverTitle={popoverTitle}
         showPopover={showPopover}
-        suppressCloseButton={suppressCloseButton}
+        showCloseButton={showCloseButton}
       >
         <PopoverButton
           aria-haspopup="dialog"
@@ -80,24 +71,21 @@ PopoverLink.propTypes = {
   popoverContent: PropTypes.node.isRequired,
   /** The placement of the popover in relation to the link */
   popoverPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  /** Function called when the popover is hidden */
-  onPopoverHidden: PropTypes.func,
   /** Function to toggle display of popover */
   onToggle: PropTypes.func,
   /** Displays or hides the popover */
   showPopover: PropTypes.bool,
-  /** Hide the default 'x' close button */
-  suppressCloseButton: PropTypes.bool,
+  /** Display a close ('x') button */
+  showCloseButton: PropTypes.bool,
   /** Hide underline from link. Useful for children like Icons */
   suppressUnderline: PropTypes.bool
 };
 
 PopoverLink.defaultProps = {
   popoverPlacement: 'top',
-  onPopoverHidden: noop,
   onToggle: noop,
   showPopover: false,
-  suppressCloseButton: true,
+  showCloseButton: false,
   suppressUnderline: false
 };
 

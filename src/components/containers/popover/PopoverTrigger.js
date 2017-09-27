@@ -28,7 +28,7 @@ const PopoverTrigger = props => {
     popoverTarget,
     popoverTitle,
     showPopover,
-    suppressCloseButton
+    showCloseButton
   } = props;
 
   const arrowPlacement = getArrowPlacement(popoverPlacement);
@@ -47,7 +47,7 @@ const PopoverTrigger = props => {
         <Popover
           arrowPlacement={arrowPlacement}
           dismissPopover={onHideOverlay}
-          suppressCloseButton={suppressCloseButton}
+          showCloseButton={showCloseButton}
           title={popoverTitle}
         >
           {popoverContent}
@@ -65,13 +65,13 @@ PopoverTrigger.propTypes = {
   popoverTarget: PropTypes.object,
   popoverTitle: PropTypes.string,
   showPopover: PropTypes.bool,
-  suppressCloseButton: PropTypes.bool
+  showCloseButton: PropTypes.bool
 };
 
 PopoverTrigger.defaultProps = {
   popoverPlacement: 'top',
   showPopover: false,
-  suppressCloseButton: false
+  showCloseButton: false
 };
 
 export default PopoverTrigger;

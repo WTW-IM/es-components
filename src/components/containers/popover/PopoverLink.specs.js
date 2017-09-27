@@ -33,15 +33,4 @@ describe('popoverLink component', () => {
     button.simulate('click');
     expect(onToggle).toHaveBeenCalled();
   });
-
-  it('calls onPopoverHidden once when popover is closed', () => {
-    const popoverInstance = mount(instanceToRender);
-    const button = popoverInstance.find('[data-trigger="focus"]');
-
-    button.simulate('click');
-    expect(onToggle).toHaveBeenCalled();
-    button.simulate('click');
-    expect(onToggle).toHaveBeenCalled();
-    expect(onPopoverHidden).toHaveBeenCalled();
-  });
 });

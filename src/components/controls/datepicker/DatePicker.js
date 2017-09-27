@@ -87,7 +87,9 @@ export const DatePicker = props => {
 };
 
 DatePicker.propTypes = {
+  /** Event handler for onChange event */
   onChange: PropTypes.func,
+  /** Moment object representing the selected date */
   selectedDate: PropTypes.object
 };
 

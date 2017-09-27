@@ -4,7 +4,6 @@ import Overlay from 'react-overlays/lib/Overlay';
 
 import Popover from './Popover';
 import Fade from '../../util/Fade';
-import FocusTrap from '../../util/FocusTrap';
 
 function getArrowPlacement(popoverPlacement) {
   switch (popoverPlacement) {
@@ -20,61 +19,59 @@ function getArrowPlacement(popoverPlacement) {
   }
 }
 
-function PopoverTrigger({
-  popoverTitle,
-  popoverContent,
-  popoverTarget,
-  shouldDisplayPopover = false,
-  popoverPlacement = 'top',
-  containsFormElement = false,
-  onHideOverlay,
-  children
-}) {
-  const focusTrapOptions = {
-    onDeactivate: onHideOverlay
-  };
+const PopoverTrigger = props => {
+  const {
+    children,
+    onHideOverlay,
+    popoverContent,
+    popoverPlacement,
+    popoverTarget,
+    popoverTitle,
+    showPopover,
+    suppressCloseButton
+  } = props;
 
   const arrowPlacement = getArrowPlacement(popoverPlacement);
 
   return (
     <span>
       {children}
-
       <Overlay
-        show={shouldDisplayPopover}
+        onHide={onHideOverlay}
         placement={popoverPlacement}
+        rootClose
+        show={showPopover}
         target={popoverTarget}
         transition={Fade}
-        onHide={onHideOverlay}
-        rootClose={!containsFormElement}
       >
         <Popover
-          title={popoverTitle}
           arrowPlacement={arrowPlacement}
-          containsFormElement={containsFormElement}
           dismissPopover={onHideOverlay}
+          suppressCloseButton={suppressCloseButton}
+          title={popoverTitle}
         >
-          <FocusTrap
-            active={containsFormElement}
-            focusTrapOptions={focusTrapOptions}
-          >
-            {popoverContent}
-          </FocusTrap>
+          {popoverContent}
         </Popover>
       </Overlay>
     </span>
   );
-}
+};
 
 PopoverTrigger.propTypes = {
-  popoverTitle: PropTypes.string,
-  popoverContent: PropTypes.node.isRequired,
-  popoverTarget: PropTypes.object,
-  shouldDisplayPopover: PropTypes.bool,
-  popoverPlacement: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
-  containsFormElement: PropTypes.bool,
+  children: PropTypes.node.isRequired,
   onHideOverlay: PropTypes.func,
-  children: PropTypes.node.isRequired
+  popoverContent: PropTypes.node.isRequired,
+  popoverPlacement: PropTypes.oneOf(['top', 'bottom', 'left', 'right']),
+  popoverTarget: PropTypes.object,
+  popoverTitle: PropTypes.string,
+  showPopover: PropTypes.bool,
+  suppressCloseButton: PropTypes.bool
+};
+
+PopoverTrigger.defaultProps = {
+  popoverPlacement: 'top',
+  showPopover: false,
+  suppressCloseButton: false
 };
 
 export default PopoverTrigger;

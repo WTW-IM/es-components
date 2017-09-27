@@ -130,9 +130,8 @@ export default class DatePickerTextbox extends React.Component {
       <PopoverTrigger
         popoverContent={popoverContent}
         popoverTarget={this.popoverTarget}
-        shouldDisplayPopover={displayPicker}
+        showPopover={displayPicker}
         onHideOverlay={this.hidePicker}
-        containsFormElement
         popoverPlacement="top"
       >
         {React.createElement(textComponent, textProps)}

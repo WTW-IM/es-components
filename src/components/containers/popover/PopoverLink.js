@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled from 'styled-components';
+import uncontrollable from 'uncontrollable';
 
 import Button from '../../controls/buttons/Button';
 import PopoverTrigger from './PopoverTrigger';
@@ -11,18 +12,14 @@ const PopoverButton = styled(Button)`
   text-decoration: none;
 `;
 
-class PopoverLink extends React.Component {
-  constructor(props) {
-    super(props);
+export class PopoverLink extends React.Component {
+  toggleShow = () => {
+    const showPopover = !this.props.showPopover;
 
-    this.state = { isOpen: false };
-  }
+    this.props.onToggle(showPopover);
 
-  togglePopover = () => {
-    if (this.state.isOpen) {
-      this.hidePopover();
-    } else {
-      this.setState({ isOpen: true });
+    if (!showPopover) {
+      this.props.onPopoverHidden();
     }
   };
 
@@ -31,9 +28,8 @@ class PopoverLink extends React.Component {
       The focus trap calls this twice for some reason, even if the onHide call
       is removed from the Overlay. Checking so onPopoverHidden isn't called twice.
     */
-    if (this.state.isOpen) {
-      this.setState({ isOpen: false });
-      this.props.onPopoverHidden();
+    if (this.props.showPopover) {
+      this.toggleShow();
     }
   };
 
@@ -43,40 +39,33 @@ class PopoverLink extends React.Component {
       popoverTitle,
       popoverContent,
       popoverPlacement,
-      suppressUnderline,
-      containsFormElement
+      showPopover,
+      suppressCloseButton,
+      suppressUnderline
     } = this.props;
-
-    const { isOpen } = this.state;
 
     return (
       <PopoverTrigger
-        popoverTitle={popoverTitle}
-        popoverContent={popoverContent}
-        popoverTarget={this.popoverTarget}
-        shouldDisplayPopover={isOpen}
         onHideOverlay={this.hidePopover}
-        containsFormElement={containsFormElement}
+        popoverContent={popoverContent}
         popoverPlacement={popoverPlacement}
+        popoverTarget={this.popoverTarget}
+        popoverTitle={popoverTitle}
+        showPopover={showPopover}
+        suppressCloseButton={suppressCloseButton}
       >
-        <span
-          ref={span => {
-            this.popoverTarget = span;
+        <PopoverButton
+          aria-haspopup="dialog"
+          data-trigger="focus"
+          handleOnClick={this.toggleShow}
+          ref={btn => {
+            this.popoverTarget = btn;
           }}
+          styleType="link"
+          suppressUnderline={suppressUnderline}
         >
-          <PopoverButton
-            aria-haspopup="dialog"
-            data-trigger="focus"
-            styleType="link"
-            handleOnClick={this.togglePopover}
-            ref={span => {
-              this.popoverTarget = span;
-            }}
-            suppressUnderline={suppressUnderline}
-          >
-            {children}
-          </PopoverButton>
-        </span>
+          {children}
+        </PopoverButton>
       </PopoverTrigger>
     );
   }
@@ -91,18 +80,29 @@ PopoverLink.propTypes = {
   popoverContent: PropTypes.node.isRequired,
   /** The placement of the popover in relation to the link */
   popoverPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  containsFormElement: PropTypes.bool,
-  /** Function to run when the popover is hidden */
+  /** Function called when the popover is hidden */
   onPopoverHidden: PropTypes.func,
+  /** Function to toggle display of popover */
+  onToggle: PropTypes.func,
+  /** Displays or hides the popover */
+  showPopover: PropTypes.bool,
+  /** Hide the default 'x' close button */
+  suppressCloseButton: PropTypes.bool,
   /** Hide underline from link. Useful for children like Icons */
   suppressUnderline: PropTypes.bool
 };
 
 PopoverLink.defaultProps = {
   popoverPlacement: 'top',
-  containsFormElement: false,
   onPopoverHidden: noop,
+  onToggle: noop,
+  showPopover: false,
+  suppressCloseButton: true,
   suppressUnderline: false
 };
 
-export default PopoverLink;
+const UncontrolledPopoverLink = uncontrollable(PopoverLink, {
+  showPopover: 'onToggle'
+});
+
+export default UncontrolledPopoverLink;

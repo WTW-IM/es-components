@@ -1,6 +1,6 @@
-Use the ```closeButton``` attribute on the Modal.Header to show or hide the "X" button.
+Use the `closeButton` attribute on the Modal.Header to show or hide the "X" button.
 
-For accessbility, make sure to include the attribute ```aria-haspopup='dialog'``` on whatever link you create to activate the modal.
+For accessbility, make sure to include the attribute `aria-haspopup='dialog'` on whatever link you create to activate the modal.
 
 ```
 <div>

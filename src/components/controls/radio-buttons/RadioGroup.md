@@ -1,4 +1,4 @@
-Group radio buttons together using a ``RadioGroup`` component.
+Group radio buttons together using a `RadioGroup` component.
 
 ```
 const options = [{
@@ -15,7 +15,7 @@ const options = [{
 <RadioGroup name="colors" radioOptions={options} checkedValue="green" />
 ```
 
-Providing a ``legendText`` option will render a legend with the grouped radio buttons.
+Providing a `legendText` option will render a legend with the grouped radio buttons.
 
 ```
 const options = [{
@@ -36,7 +36,7 @@ const options = [{
 />
 ```
 
-Setting the ``inline`` option to false will stack the radio buttons
+Setting the `inline` option to false will stack the radio buttons
 
 ```
 const options = [{
@@ -57,7 +57,7 @@ const options = [{
 />
 ```
 
-Each radio is displayed as an error when the ``hasError`` prop is true. An errored radio group with a default checked option is rendered with a filled radio button.
+Each radio is displayed as an error when the `hasError` prop is true. An errored radio group with a default checked option is rendered with a filled radio button.
 
 ```
 const options = [{
@@ -98,7 +98,7 @@ const options = [{
 />
 ```
 
-Each radio is disabled when the ``disableAllOptions`` prop is true. A disabled radio group with a default checked option is rendered with a filled radio button.
+Each radio is disabled when the `disableAllOptions` prop is true. A disabled radio group with a default checked option is rendered with a filled radio button.
 
 ```
 const options = [{

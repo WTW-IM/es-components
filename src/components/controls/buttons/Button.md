@@ -33,7 +33,7 @@ function noop() { }
 
 ### Alternative button types
 
-Setting the ``alternative`` prop will give the button the alternative style for each type.
+Setting the `alternative` prop will give the button the alternative style for each type.
 
 ```
 const buttonExampleStyle = {
@@ -113,7 +113,7 @@ function noop() {}
 </div>
 ```
 
-Setting the ``block`` property will force the button to expand to the width of it's parent container.
+Setting the `block` property will force the button to expand to the width of it's parent container.
 
 ```
 const buttonContainerStyle = {
@@ -132,7 +132,7 @@ function noop() { }
 
 ```
 
-Any additional prop sent will be included on the button. For example, setting the ``disabled`` property will put the button into a disabled state, making it unclickable.
+Any additional prop sent will be included on the button. For example, setting the `disabled` property will put the button into a disabled state, making it unclickable.
 
 ```
 const buttonExampleStyle = {

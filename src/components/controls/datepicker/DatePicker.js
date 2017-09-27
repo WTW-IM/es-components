@@ -18,23 +18,46 @@ const Help = styled.div`
   top: 12px;
 `;
 
+const List = styled.ul`
+  margin: 10px 0;
+  padding: 0 20px;
+`;
+
 export const DatePicker = props => {
   const { onChange, selectedDate } = props;
   const prependedIcon = <Icon name="calendar" />;
   const textbox = <Textbox prependContent={prependedIcon} labelText="" />;
   const helpText = (
     <small>
-      <ul>
-        <li>Left: Move to the previous day</li>
-        <li>Right: Move to the next day</li>
-        <li>Up: Move to the previous week</li>
-        <li>Down: Move to the next week</li>
-        <li>PgUp: Move to the previous month</li>
-        <li>PgDn: Move to the next month</li>
-        <li>Home: Move to the previous year</li>
-        <li>End: Move to the next year</li>
-        <li>Enter/Esc/Tab: Close the calendar</li>
-      </ul>
+      <List>
+        <li>
+          <strong>Left</strong>: Move to the previous day
+        </li>
+        <li>
+          <strong>Right</strong>: Move to the next day
+        </li>
+        <li>
+          <strong>Up</strong>: Move to the previous week
+        </li>
+        <li>
+          <strong>Down</strong>: Move to the next week
+        </li>
+        <li>
+          <strong>PgUp</strong>: Move to the previous month
+        </li>
+        <li>
+          <strong>PgDn</strong>: Move to the next month
+        </li>
+        <li>
+          <strong>Home</strong>: Move to the previous year
+        </li>
+        <li>
+          <strong>End</strong>: Move to the next year
+        </li>
+        <li>
+          <strong>Enter/Esc/Tab</strong>: Close the calendar
+        </li>
+      </List>
     </small>
   );
 

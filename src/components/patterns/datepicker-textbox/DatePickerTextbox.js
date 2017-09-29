@@ -123,7 +123,6 @@ export default class DatePickerTextbox extends React.Component {
         popoverTarget={this.addon}
         shouldDisplayPopover={displayPicker}
         onHideOverlay={this.hidePicker}
-        containsFormElement
         popoverPlacement="top"
       >
         <Textbox

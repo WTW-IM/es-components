@@ -15,7 +15,7 @@ const ArrowBase = styled.div`
     border-color: transparent;
     border-style: solid;
     border-width: 10px;
-    content: " ";
+    content: ' ';
     position: absolute;
   }
 `;
@@ -50,6 +50,7 @@ const RightPlacementArrow = styled(ArrowBase)`
   }
 `;
 
+// prettier-ignore
 const BottomPlacementArrow = styled(ArrowBase)`
   border-bottom-color: rgba(0, 0, 0, 0.25);
   border-top-width: 0;
@@ -58,7 +59,8 @@ const BottomPlacementArrow = styled(ArrowBase)`
   top: -11px;
 
   &:after {
-    border-bottom-color: ${props => (props.displayColor ? colors.accent : colors.white)};
+    border-bottom-color: ${props =>
+      (props.displayColor ? colors.accent : colors.white)};
     border-top-width: 0;
     margin-left: -10px;
     top: 1px;
@@ -101,7 +103,7 @@ const PopoverContent = styled.div`
   background-color: ${colors.white};
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: ${sizes.baseFontSize}px;
   line-height: 1.4;
   max-width: 25%;
@@ -142,40 +144,37 @@ const PopoverTitle = styled.div`
   padding: 8px 14px;
 `;
 
-const PopoverBodyContent = styled.div`
-  padding: 9px 14px;
-`;
+const PopoverBodyContent = styled.div`padding: 9px 14px;`;
 
 const DismissPopover = styled(DismissButton)`
   color: ${props => (props.hasTitle ? colors.white : colors.grayDark)};
-  padding: ${props => (props.hasTitle ? '4px 14px' : '0px 14px')};
+  padding: ${props => (props.hasTitle ? '4px 14px' : '0px 10px')};
   margin-left: auto;
 `;
 
 const PopoverHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  height: ${props => (props.hasTitle || props.containsFormElement ? 'auto' : '7px')};
+  height: ${props => (props.hasTitle ? 'auto' : '16px')};
   background-color: ${props => (props.hasTitle ? colors.accent : 'none')};
 `;
 
-// className, positionLeft and positionTop props get passed to by the Overlay component
 const Popover = props => {
   const {
-    title,
     arrowPlacement,
+    children,
+    className,
+    dismissPopover,
     positionLeft,
     positionTop,
-    children,
-    containsFormElement,
-    className,
-    dismissPopover
+    showCloseButton,
+    title
   } = props;
 
-  const popoverClassNames = classNames(className, arrowPlacement);
-  const hasTitle = title !== undefined;
-  const popoverTitle = hasTitle ? <PopoverTitle>{title}</PopoverTitle> : null;
   const Arrow = getArrow(arrowPlacement);
+  const hasTitle = title !== undefined;
+  const popoverClassNames = classNames(className, arrowPlacement);
+  const showHeader = hasTitle || showCloseButton;
 
   return (
     <PopoverContent
@@ -183,37 +182,36 @@ const Popover = props => {
       role="tooltip"
       positionLeft={positionLeft}
       positionTop={positionTop}
-      tabIndex={containsFormElement ? 0 : null}
+      tabIndex={null}
     >
-      <PopoverHeader
-        hasTitle={hasTitle}
-        containsFormElement={containsFormElement}
-      >
-        {popoverTitle}
-        <DismissPopover hasTitle={hasTitle} onClick={dismissPopover} />
-      </PopoverHeader>
-      <PopoverBodyContent>
-        {children}
-      </PopoverBodyContent>
+      {showHeader && (
+        <PopoverHeader hasTitle={hasTitle}>
+          {hasTitle && <PopoverTitle>{title}</PopoverTitle>}
+          {showCloseButton && (
+            <DismissPopover onClick={dismissPopover} hasTitle={hasTitle} />
+          )}
+        </PopoverHeader>
+      )}
+      <PopoverBodyContent>{children}</PopoverBodyContent>
       <Arrow displayColor={hasTitle} />
     </PopoverContent>
   );
 };
 
 Popover.propTypes = {
-  title: PropTypes.string,
   arrowPlacement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  children: PropTypes.node,
+  className: PropTypes.string,
+  dismissPopover: PropTypes.func,
   positionLeft: PropTypes.number,
   positionTop: PropTypes.number,
-  children: PropTypes.node,
-  containsFormElement: PropTypes.bool,
-  className: PropTypes.string,
-  dismissPopover: PropTypes.func
+  showCloseButton: PropTypes.bool,
+  title: PropTypes.string
 };
 
 Popover.defaultProps = {
   arrowPlacement: 'top',
-  containsFormElement: false
+  showCloseButton: false
 };
 
 export default Popover;

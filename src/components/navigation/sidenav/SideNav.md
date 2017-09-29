@@ -1,3 +1,4 @@
+(Uncontrolled) Use `defaultSelected` to set an initial selected item.
 ```
 <div style={{display: 'flex'}}>
   <div style={{width: '30%', marginRight: '4em'}}>
@@ -13,7 +14,7 @@
 
   <div style={{width: '30%'}}>
     <h3>Alternate Style</h3>
-    <SideNav defaultSelected="home" altStyle>
+    <SideNav useAltStyle defaultSelected="home">
       <SideNav.Item id="home">Home</SideNav.Item>
       <SideNav.Item id="cart">Cart</SideNav.Item>
       <SideNav.Item id="help">Help</SideNav.Item>
@@ -24,46 +25,52 @@
 </div>
 ```
 
-Assign a `targetUrl` to set the nav link href location. Use `isExternalLink` to open the link in a new browser window.
+(Controlled) Use `onItemSelected` to control the `selected` value.
 ```
-<div style={{width: '30%'}}>
-  <SideNav defaultSelected="home">
-    <SideNav.Item id="home" targetUrl="/" onNavClick={ () => (alert('Time to go Home!'))}>Home</SideNav.Item>
-    <SideNav.Item id="medicare" targetUrl="https://medicare.oneexchange.com" isExternalLink>Medicare Site</SideNav.Item>
-    <SideNav.Item id="alerts" targetUrl="#alert">Alert Section</SideNav.Item>
-  </SideNav>
-</div>
+class NavExample extends React.Component {
+  constructor() {
+    this.state = { selected: "home" };
+    this.onItemSelected = this.onItemSelected.bind(this);
+  }
+
+  onItemSelected(value) {
+    this.setState({ selected: value });
+    alert(`${value} selected!`);
+  };
+
+  render() {
+    return (
+      <div style={{width: '30%'}}>
+        <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected }>
+          <SideNav.Item id="home"><Icon name="home" /> Home</SideNav.Item>
+          <SideNav.Item id="cart"><Icon name="shopping-cart" /> Cart</SideNav.Item>
+          <SideNav.Item id="disabled" isDisabled><Icon name="ban-circle" /> Disabled</SideNav.Item>
+        </SideNav>
+      </div>
+    )
+  }
+}
+<NavExample />
 ```
 
-Setting `onItemSelected` will execute the function when a `SideNav.Item` is clicked.
+Set `onClick` on an individual `SideNav.Item`.
 ```
 <div style={{width: '30%'}}>
-  <SideNav defaultSelected="home" onItemSelected={ (id) => {alert(id); }}>
-    <SideNav.Item id="home"><Icon name="home" /> Home</SideNav.Item>
-    <SideNav.Item id="cart"><Icon name="shopping-cart" /> Cart</SideNav.Item>
-    <SideNav.Item id="disabled" isDisabled><Icon name="ban-circle" /> Disabled</SideNav.Item>
-  </SideNav>
-</div>
-```
-
-Set `onNavClick` on an individual `SideNav.Item`.
-```
-<div style={{width: '30%'}}>
-  <SideNav defaultSelected="home" altStyle>
-    <SideNav.Item id="home" onNavClick={ () => (alert('Time to go Home!'))}>Home</SideNav.Item>
-    <SideNav.Item id="cart" onNavClick={ () => (alert('You clicked the Cart!'))}>Cart</SideNav.Item>
+  <SideNav useAltStyle>
+    <SideNav.Item id="home" onClick={ () => (alert('Time to go Home!'))}>Home</SideNav.Item>
+    <SideNav.Item id="cart" onClick={ () => (alert('You clicked the Cart!'))}>Cart</SideNav.Item>
     <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
   </SideNav>
 </div>
 ```
 
-Manage selected item state manually using `selected` instead of `defaultSelected`.
+Assign a `targetUrl` to set the nav link href location. Use `isExternalLink` to open the link in a new browser window.
 ```
 <div style={{width: '30%'}}>
-  <SideNav selected={state.selected} onItemSelected={ (id) => {setState({selected: id})} }>
-    <SideNav.Item id="home">Home</SideNav.Item>
-    <SideNav.Item id="cart">Cart</SideNav.Item>
-    <SideNav.Item id="help">Help</SideNav.Item>
+  <SideNav>
+    <SideNav.Item id="home" targetUrl="/">Home</SideNav.Item>
+    <SideNav.Item id="medicare" targetUrl="https://medicare.oneexchange.com" isExternalLink>Medicare Site</SideNav.Item>
+    <SideNav.Item id="sidenav" targetUrl="#sidenav">SideNav Section</SideNav.Item>
   </SideNav>
 </div>
 ```

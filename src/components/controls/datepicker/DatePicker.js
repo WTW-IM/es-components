@@ -23,10 +23,26 @@ const List = styled.ul`
   padding: 0 20px;
 `;
 
+class DateTextbox extends React.PureComponent {
+  focus() {
+    this.inputElement.focus();
+  }
+
+  render() {
+    return (
+      <Textbox
+        {...this.props}
+        inputRef={input => (this.inputElement = input)}
+      />
+    );
+  }
+}
+DateTextbox.proptypes = Textbox.proptypes;
+
 export const DatePicker = props => {
   const { onChange, selectedDate } = props;
   const prependedIcon = <Icon name="calendar" />;
-  const textbox = <Textbox prependContent={prependedIcon} labelText="" />;
+  const textbox = <DateTextbox prependContent={prependedIcon} labelText="" />;
   const helpText = (
     <small>
       <List>

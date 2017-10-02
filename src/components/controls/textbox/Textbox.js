@@ -63,7 +63,6 @@ function renderAddon(
   inline,
   prependAddonRef
 ) {
-  // debugger;
   return (
     <Addon
       innerRef={prependAddonRef}
@@ -117,11 +116,11 @@ const Textbox = props => {
   const textboxId = genId();
 
   const handleOnBlur = event => {
-    onBlur(event.target.value);
+    onBlur(event);
   };
 
   const handleOnChange = event => {
-    onChange(event.target.value);
+    onChange(event);
   };
 
   return (
@@ -168,7 +167,9 @@ Textbox.propTypes = {
   labelText: PropTypes.string.isRequired,
   /** The name of the input */
   name: PropTypes.string,
+  /** Reference to the underlying input DOM element */
   inputRef: PropTypes.func,
+  /** Reference to the underlying prepend DOM element */
   prependAddonRef: PropTypes.func,
   /** Display label inline with text box */
   inline: PropTypes.bool,

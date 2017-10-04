@@ -16,7 +16,7 @@ const Container = styled.div`display: flex;`;
 const Help = styled.div`
   margin-left: 0.5em;
   position: relative;
-  top: 12px;
+  top: 26px;
 `;
 
 const List = styled.ul`
@@ -110,7 +110,7 @@ export const DatePicker = props => {
 
 DatePicker.propTypes = {
   /** Label to display above datepicker */
-  labelText: PropTypes.string,
+  labelText: PropTypes.string.isRequired,
   /** Name property for the form control */
   name: PropTypes.string,
   /** Event handler for onChange event */

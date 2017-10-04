@@ -11,5 +11,5 @@ Keyboard support
 * Enter/Esc/Tab: Close the calendar
 
 ```
-<DatePicker />
+<DatePicker maskType="date" labelText="Pick a Date" />
 ```

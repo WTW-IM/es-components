@@ -41,7 +41,9 @@ Pass an `onBlur` function to execute when the text box loses focus. This functio
 
 ```
 function handleOnBlur(event) {
-  confirm(`You entered ${event.target.value}. Is that correct?`);
+  if(event.target.value.length > 0) {
+    confirm(`You entered ${event.target.value}. Is that correct?`);
+  }
 }
 
 <Textbox

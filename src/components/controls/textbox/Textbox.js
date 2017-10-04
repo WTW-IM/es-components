@@ -5,7 +5,7 @@ import { noop } from 'lodash';
 
 import Icon from '../../base/icons/Icon';
 import { sizes } from '../../theme';
-import { LabelText, InputBase } from '../BaseControls';
+import { LabelText, InputBase, MaskedInputBase } from '../BaseControls';
 import Label from '../Label';
 import Addon from './Addon';
 import getValidationStateVariables from '../getValidationStateVariables';
@@ -31,6 +31,8 @@ const StyledText = styled(InputBase)`
   border-radius: ${props => getBorderRadius(props.addonType)};
 `;
 
+const StyledMask = StyledText.withComponent(MaskedInputBase);
+
 const AdditionalHelpContent = styled.div`
   font-size: ${sizes.baseFontSize}px;
   font-weight: normal;
@@ -55,6 +57,27 @@ const InputWrapper = styled.div`
   display: flex;
   flex: auto;
 `;
+
+const inputMaskType = {
+  date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
+  phone: [
+    '(',
+    /[1-9]/,
+    /\d/,
+    /\d/,
+    ')',
+    ' ',
+    /\d/,
+    /\d/,
+    /\d/,
+    '-',
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/
+  ],
+  zip: [/\d/, /\d/, /\d/, /\d/, /\d/]
+};
 
 function renderAddon(
   type,
@@ -90,6 +113,7 @@ const Textbox = props => {
     appendContent,
     onChange,
     onBlur,
+    maskType,
     ...additionalTextProps
   } = props;
 
@@ -105,8 +129,32 @@ const Textbox = props => {
   const hasAppendedText = appendContent !== undefined;
   const addonType = getAddonType(hasPrependedText, hasAppendedText);
   const hasNoAddon = addonType === null;
+  const Input = maskType === 'none' ? StyledText : StyledMask;
+
+  let mask;
+  switch (maskType) {
+    case 'date':
+      mask = inputMaskType.date;
+      break;
+    case 'phone':
+      mask = inputMaskType.phone;
+      break;
+    case 'zip':
+      mask = inputMaskType.zip;
+      break;
+    default:
+      mask = [];
+      break;
+  }
 
   const inputVariables = getValidationStateVariables(validationState);
+  const inputStyleProps = {
+    borderColor: inputVariables.borderColor,
+    boxShadow: inputVariables.boxShadow,
+    focusBorderColor: inputVariables.focusBorderColor,
+    focusBoxShadow: inputVariables.focusBoxShadow
+  };
+
   const icon =
     inputVariables.icon !== undefined ? (
       <TextIcon name={inputVariables.icon} size={20} />
@@ -140,7 +188,7 @@ const Textbox = props => {
             prependAddonRef
           )}
         <TextWrapper includeMargin={hasNoAddon && inline}>
-          <StyledText
+          <Input
             id={textboxId}
             addonType={addonType}
             type="text"
@@ -149,9 +197,10 @@ const Textbox = props => {
             onBlur={handleOnBlur}
             aria-describedby={helpId}
             value={value}
-            {...inputVariables}
+            {...inputStyleProps}
             {...additionalTextProps}
             innerRef={inputRef}
+            mask={mask}
           />
           {icon}
         </TextWrapper>
@@ -188,11 +237,14 @@ Textbox.propTypes = {
   /** Set the initial value, uncontrolled mode */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Value of the textbox */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Sets a mask type on the input */
+  maskType: PropTypes.oneOf(['none', 'date', 'phone', 'zip'])
 };
 
 Textbox.defaultProps = {
   inline: false,
+  maskType: 'none',
   onChange: noop,
   onBlur: noop
 };

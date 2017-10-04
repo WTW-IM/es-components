@@ -8,6 +8,15 @@ import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
 import './datepicker.less';
 import uncontrollable from 'uncontrollable';
+import styled from 'styled-components';
+
+const DateContainer = styled.div`display: flex;`;
+
+const CalendarIcon = styled(Icon)`
+  left: -28px;
+  position: relative;
+  top: 30px;
+`;
 
 class DateTextbox extends React.PureComponent {
   focus() {
@@ -26,25 +35,21 @@ DateTextbox.proptypes = Textbox.proptypes;
 
 export const DatePicker = props => {
   const { labelText, onChange, selectedDate } = props;
-  const prependedIcon = <Icon name="calendar" />;
-  const textbox = (
-    <DateTextbox
-      labelText={labelText}
-      maskType="date"
-      prependContent={prependedIcon}
-    />
-  );
+  const textbox = <DateTextbox labelText={labelText} maskType="date" />;
 
   const handleChange = date => {
     onChange(date);
   };
 
   return (
-    <ReactDatePicker
-      selected={selectedDate}
-      onChange={handleChange}
-      customInput={textbox}
-    />
+    <DateContainer>
+      <ReactDatePicker
+        selected={selectedDate}
+        onChange={handleChange}
+        customInput={textbox}
+      />
+      <CalendarIcon name="calendar" />
+    </DateContainer>
   );
 };
 
@@ -53,7 +58,7 @@ DatePicker.propTypes = {
   labelText: PropTypes.string.isRequired,
   /** Name property for the form control */
   name: PropTypes.string,
-  /** Event handler for onChange event */
+  /** Callback fired when value is changed */
   onChange: PropTypes.func,
   /** Moment object representing the selected date */
   selectedDate: PropTypes.object

@@ -14,8 +14,9 @@ const DateContainer = styled.div`display: flex;`;
 
 const CalendarIcon = styled(Icon)`
   left: -28px;
+  pointer-events: none;
   position: relative;
-  top: 30px;
+  top: 29px;
 `;
 
 class DateTextbox extends React.PureComponent {

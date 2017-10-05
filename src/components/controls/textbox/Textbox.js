@@ -11,6 +11,7 @@ import Addon from './Addon';
 import getValidationStateVariables from '../getValidationStateVariables';
 import getAddonType from './getAddonType';
 import genId from '../../util/generateAlphaName';
+import inputMask from './inputMask';
 
 function getBorderRadius(addonType) {
   switch (addonType) {
@@ -57,27 +58,6 @@ const InputWrapper = styled.div`
   display: flex;
   flex: auto;
 `;
-
-const inputMaskType = {
-  date: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
-  phone: [
-    '(',
-    /[1-9]/,
-    /\d/,
-    /\d/,
-    ')',
-    ' ',
-    /\d/,
-    /\d/,
-    /\d/,
-    '-',
-    /\d/,
-    /\d/,
-    /\d/,
-    /\d/
-  ],
-  zip: [/\d/, /\d/, /\d/, /\d/, /\d/]
-};
 
 function renderAddon(
   type,
@@ -129,23 +109,9 @@ const Textbox = props => {
   const hasAppendedText = appendContent !== undefined;
   const addonType = getAddonType(hasPrependedText, hasAppendedText);
   const hasNoAddon = addonType === null;
-  const Input = maskType === 'none' ? StyledText : StyledMask;
 
-  let mask;
-  switch (maskType) {
-    case 'date':
-      mask = inputMaskType.date;
-      break;
-    case 'phone':
-      mask = inputMaskType.phone;
-      break;
-    case 'zip':
-      mask = inputMaskType.zip;
-      break;
-    default:
-      mask = [];
-      break;
-  }
+  const Input = maskType === 'none' ? StyledText : StyledMask;
+  const maskArgs = inputMask[maskType];
 
   const inputVariables = getValidationStateVariables(validationState);
   const inputStyleProps = {
@@ -200,7 +166,7 @@ const Textbox = props => {
             {...inputStyleProps}
             {...additionalTextProps}
             innerRef={inputRef}
-            mask={mask}
+            {...maskArgs}
           />
           {icon}
         </TextWrapper>
@@ -239,7 +205,14 @@ Textbox.propTypes = {
   /** Value of the textbox */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets a mask type on the input */
-  maskType: PropTypes.oneOf(['none', 'date', 'phone', 'zip'])
+  maskType: PropTypes.oneOf([
+    'none',
+    'date',
+    'dollars',
+    'phone',
+    'ssnum',
+    'zip'
+  ])
 };
 
 Textbox.defaultProps = {

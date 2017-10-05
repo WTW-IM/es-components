@@ -16,6 +16,7 @@ describe('Textbox component', () => {
   let input;
   const onChange = jest.fn();
   const onBlur = jest.fn();
+  const mockEvent = { target: { value: 'some text' } };
 
   beforeEach(() => {
     instance = mount(
@@ -25,14 +26,14 @@ describe('Textbox component', () => {
     input = instance.find('input');
   });
 
-  it('executes the handleOnChange function when text is changed with the value of the input', () => {
-    input.simulate('change', { target: { value: 'text' } });
-    expect(onChange).toBeCalledWith('text');
+  it('executes the handleOnChange function when text is changed', () => {
+    input.simulate('change', mockEvent);
+    expect(onChange).toHaveBeenCalled();
   });
 
-  it('executes the handeFocusLost function when the input focus is lost with the value of the input', () => {
-    input.simulate('blur', { target: { value: '' } });
-    expect(onBlur).toBeCalledWith('');
+  it('executes the handeOnBlur function when the input focus is lost', () => {
+    input.simulate('blur', mockEvent);
+    expect(onBlur).toHaveBeenCalled();
   });
 
   it('renders addon content when "prependContent" prop is passed', () => {

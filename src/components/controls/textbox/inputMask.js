@@ -25,13 +25,19 @@ const inputMask = {
       /\d/,
       /\d/,
       /\d/
-    ]
+    ],
+    showMask: true,
+    keepCharPositions: true
   },
   ssnum: {
     mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+    showMask: true,
     keepCharPositions: true
   },
-  zip: { mask: [/\d/, /\d/, /\d/, /\d/, /\d/] }
+  zip: {
+    mask: [/\d/, /\d/, /\d/, /\d/, /\d/],
+    guide: false
+  }
 };
 
 export default inputMask;

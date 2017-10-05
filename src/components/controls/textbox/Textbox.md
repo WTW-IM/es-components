@@ -133,6 +133,35 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
 </div>
 ```
 
+### Text masks
+
+```
+<div>
+  <Textbox labelText="US Dollar" maskType="dollar" />
+
+  <Textbox
+    labelText="Phone Number"
+    maskType="phone"
+  />
+
+  <Textbox
+    labelText="Social Security Number"
+    maskType="ssnum"
+  />
+
+  <Textbox
+    labelText="Zip Code"
+    maskType="zip"
+  />
+
+  <Textbox
+    labelText="Date"
+    maskType="date"
+    placeholder="mm/dd/yyyy"
+  />
+</div>
+```
+
 ### Additional props
 
 Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided.

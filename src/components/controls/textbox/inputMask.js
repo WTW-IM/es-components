@@ -8,7 +8,7 @@ const inputMask = {
     pipe: createautoCorrectedDatePipe('mm/dd/yyyy'),
     keepCharPositions: true
   },
-  dollars: { mask: createNumberMask({}) },
+  dollar: { mask: createNumberMask({}) },
   phone: {
     mask: [
       '(',
@@ -28,7 +28,8 @@ const inputMask = {
     ]
   },
   ssnum: {
-    mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+    mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
+    keepCharPositions: true
   },
   zip: { mask: [/\d/, /\d/, /\d/, /\d/, /\d/] }
 };

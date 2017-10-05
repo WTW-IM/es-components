@@ -205,14 +205,7 @@ Textbox.propTypes = {
   /** Value of the textbox */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets a mask type on the input */
-  maskType: PropTypes.oneOf([
-    'none',
-    'date',
-    'dollars',
-    'phone',
-    'ssnum',
-    'zip'
-  ])
+  maskType: PropTypes.oneOf(['none', 'date', 'dollar', 'phone', 'ssnum', 'zip'])
 };
 
 Textbox.defaultProps = {

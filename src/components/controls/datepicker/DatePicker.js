@@ -5,7 +5,6 @@ import { noop } from 'lodash';
 import Icon from '../../base/icons/Icon';
 import Textbox from '../textbox/Textbox';
 import ReactDatePicker from 'react-datepicker';
-import moment from 'moment';
 import './datepicker.less';
 import uncontrollable from 'uncontrollable';
 import styled from 'styled-components';
@@ -29,7 +28,7 @@ class DateTextbox extends React.PureComponent {
   }
 
   render() {
-    return <Textbox {...this.props} />;
+    return <Textbox {...this.props} placeholder="mm/dd/yyyy" />;
   }
 }
 DateTextbox.proptypes = Textbox.proptypes;
@@ -66,8 +65,7 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
-  onChange: noop,
-  selectedDate: moment()
+  onChange: noop
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

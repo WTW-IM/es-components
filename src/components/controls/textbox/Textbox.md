@@ -95,38 +95,38 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
 <div>
   <Textbox
     labelText="Appended"
-    appendContent=".00"
+    appendIconName="calendar"
   />
 
   <Textbox
     labelText="Prepended"
-    prependContent="@"
+    prependIconName="phone"
   />
 
   <Textbox
     labelText="Appended and prepended"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
   />
 
   <Textbox
     labelText="Success"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
     validationState="success"
   />
 
   <Textbox
     labelText="Warning"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
     validationState="warning"
   />
 
   <Textbox
     labelText="Danger"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
     validationState="danger"
   />
 

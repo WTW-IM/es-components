@@ -8,7 +8,7 @@ const inputMask = {
     pipe: createautoCorrectedDatePipe('mm/dd/yyyy'),
     keepCharPositions: true
   },
-  dollar: { mask: createNumberMask({}) },
+  dollar: { mask: createNumberMask({ prefix: '' }) },
   phone: {
     mask: [
       '(',

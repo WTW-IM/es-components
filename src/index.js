@@ -12,9 +12,9 @@ export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
 export Dropdown from './components/controls/dropdown/Dropdown';
-export DatePicker from './components/controls/datepicker/DatePicker';
 export Checkbox from './components/controls/checkbox/Checkbox';
 
 export SideNav from './components/navigation/sidenav/SideNav';
 
+export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';

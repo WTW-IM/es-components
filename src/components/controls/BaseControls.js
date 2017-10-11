@@ -1,8 +1,4 @@
-import React from 'react';
-import MaskedInput from 'react-text-mask';
 import styled from 'styled-components';
-import { omit } from 'lodash';
-
 import { colors, sizes } from '../theme';
 
 export const LabelText = styled.span`
@@ -49,19 +45,6 @@ export const InputBase = styled.input`
     cursor: text;
   }
 `;
-
-export const MaskedInputBase = InputBase.withComponent(props => (
-  <MaskedInput
-    {...omit(props, [
-      'addonType',
-      'borderColor',
-      'boxShadow',
-      'focusBorderColor',
-      'focusBoxShadow',
-      'initialValue'
-    ])}
-  />
-));
 
 export const SelectBase = styled.select`
   ${baseStyles} background-color: ${colors.white};

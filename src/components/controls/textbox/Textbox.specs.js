@@ -4,9 +4,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Icon from '../../base/icons/Icon';
-
-import getAddonType from './getAddonType';
-import Addon from './Addon';
 import Textbox from './Textbox';
 
 jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
@@ -36,22 +33,22 @@ describe('Textbox component', () => {
     expect(onBlur).toHaveBeenCalled();
   });
 
-  it('renders addon content when "prependContent" prop is passed', () => {
-    instance.setProps({ prependContent: 'prepend' });
+  it('renders addon icon when "prependIconName" prop is passed', () => {
+    instance.setProps({ prependIconName: 'prepend' });
 
-    expect(instance.find(Addon).length).toBe(1);
+    expect(instance.find(Icon).length).toBe(1);
   });
 
-  it('renders addon content when "appendContent" prop is passed', () => {
-    instance.setProps({ appendContent: 'append' });
+  it('renders addon icon when "appendIconName" prop is passed', () => {
+    instance.setProps({ appendIconName: 'append' });
 
-    expect(instance.find(Addon).length).toBe(1);
+    expect(instance.find(Icon).length).toBe(1);
   });
 
-  it('renders addon content when both "prependContent" and "appendContent" props are passed', () => {
-    instance.setProps({ prependContent: 'prepend', appendContent: 'append' });
+  it('renders addon icons when both "prependIconName" and "appendIconName" props are passed', () => {
+    instance.setProps({ prependIconName: 'prepend', appendIconName: 'append' });
 
-    expect(instance.find(Addon).length).toBe(2);
+    expect(instance.find(Icon).length).toBe(2);
   });
 
   it('sets aria-describedby on input when the additionalHelpContent prop is provided', () => {
@@ -83,39 +80,5 @@ describe('Textbox component', () => {
 
     icon = instance.find(Icon);
     expect(icon.length).toBe(1);
-  });
-});
-
-describe('getAddonType', () => {
-  it('returns "prepend" when hasPrependContent is true and hasAppendContent is false', () => {
-    const hasPrependContent = true;
-    const hasAppendContent = false;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBe('prepend');
-  });
-
-  it('returns "append" when hasPrependContent is false and hasAppendContent is true', () => {
-    const hasPrependContent = false;
-    const hasAppendContent = true;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBe('append');
-  });
-
-  it('returns "both" when hasPrependContent is true and hasAppendContent is true', () => {
-    const hasPrependContent = true;
-    const hasAppendContent = true;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBe('both');
-  });
-
-  it('returns null when hasPrependContent is false and hasAppendContent is false', () => {
-    const hasPrependContent = false;
-    const hasAppendContent = false;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBeNull();
   });
 });

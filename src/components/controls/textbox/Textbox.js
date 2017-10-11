@@ -1,38 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { noop } from 'lodash';
+import styled, { css } from 'styled-components';
+import { noop, omit } from 'lodash';
+import MaskedInput from 'react-text-mask';
 
 import Icon from '../../base/icons/Icon';
 import { sizes } from '../../theme';
-import { LabelText, InputBase, MaskedInputBase } from '../BaseControls';
+import { LabelText, InputBase } from '../BaseControls';
 import Label from '../Label';
-import Addon from './Addon';
-import getValidationStateVariables from '../getValidationStateVariables';
-import getAddonType from './getAddonType';
+import {
+  validationIconName,
+  validationTextColor,
+  validationInputColor
+} from '../validationStateVars';
 import genId from '../../util/generateAlphaName';
-import inputMask from './inputMask';
+import inputMaskType from './inputMaskType';
 
-function getBorderRadius(addonType) {
-  switch (addonType) {
-    case 'append':
-      return '2px 0 0 2px';
-    case 'prepend':
-      return '0 2px 2px 0';
-    case 'both':
-      return '0';
-    default:
-      return '2px';
-  }
-}
+const defaultInputPad = '12px';
+const rightPad = {
+  0: defaultInputPad,
+  1: '2em',
+  2: '3.6em'
+};
+const paddings = css`
+  padding-left: ${props => (props.hasPrepend ? '2em' : defaultInputPad)};
+  padding-right: ${props => rightPad[props.numAppendIconNames]};
+`;
 
 const TextBoxLabel = styled(Label)`flex-basis: 50%;`;
 
-const StyledText = styled(InputBase)`
-  border-radius: ${props => getBorderRadius(props.addonType)};
-`;
+// apply styles to masked input, but remove props it doesn't use
+const StyledMaskedInput = InputBase.withComponent(props => (
+  <MaskedInput
+    {...omit(props, [
+      'borderColor',
+      'boxShadow',
+      'focusBorderColor',
+      'focusBoxShadow',
+      'hasPrepend',
+      'initialValue',
+      'numAppendIconNames'
+    ])}
+  />
+));
+const StyledMask = StyledMaskedInput.extend`${paddings};`;
 
-const StyledMask = StyledText.withComponent(MaskedInputBase);
+const StyledText = styled(InputBase)`${paddings};`;
 
 const AdditionalHelpContent = styled.div`
   font-size: ${sizes.baseFontSize}px;
@@ -47,37 +60,27 @@ const TextWrapper = styled.div`
   position: relative;
 `;
 
-const TextIcon = styled(Icon)`
+const addonAttrs = `
   font-weight: normal;
+  pointer-events: none;
   position: absolute;
-  right: 9px;
   top: 9px;
+`;
+
+const Prepend = styled(Icon)`${addonAttrs} left: 9px;`;
+
+const Append = styled.div`
+  ${addonAttrs} right: 9px;
+
+  i {
+    margin-left: 9px;
+  }
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   flex: auto;
 `;
-
-function renderAddon(
-  type,
-  addonContent,
-  inputVariables,
-  inline,
-  prependAddonRef
-) {
-  return (
-    <Addon
-      innerRef={prependAddonRef}
-      className={type}
-      backgroundColor={inputVariables.addonBackgroundColor}
-      borderColor={inputVariables.borderColor}
-      inline={inline}
-    >
-      {addonContent}
-    </Addon>
-  );
-}
 
 const Textbox = props => {
   const {
@@ -86,11 +89,10 @@ const Textbox = props => {
     value,
     inline,
     inputRef,
-    prependAddonRef,
     additionalHelpContent,
     validationState,
-    prependContent,
-    appendContent,
+    prependIconName,
+    appendIconName,
     onChange,
     onBlur,
     maskType,
@@ -105,26 +107,16 @@ const Textbox = props => {
     </AdditionalHelpContent>
   );
 
-  const hasPrependedText = prependContent !== undefined;
-  const hasAppendedText = appendContent !== undefined;
-  const addonType = getAddonType(hasPrependedText, hasAppendedText);
-  const hasNoAddon = addonType === null;
+  const hasPrepend = prependIconName !== undefined;
+  const hasAppend = appendIconName !== undefined;
+  const hasValidationIcon = validationState !== 'normal';
+
+  let numAppendIconNames = 0;
+  if (hasAppend) numAppendIconNames++;
+  if (hasValidationIcon) numAppendIconNames++;
 
   const Input = maskType === 'none' ? StyledText : StyledMask;
-  const maskArgs = inputMask[maskType];
-
-  const inputVariables = getValidationStateVariables(validationState);
-  const inputStyleProps = {
-    borderColor: inputVariables.borderColor,
-    boxShadow: inputVariables.boxShadow,
-    focusBorderColor: inputVariables.focusBorderColor,
-    focusBoxShadow: inputVariables.focusBoxShadow
-  };
-
-  const icon =
-    inputVariables.icon !== undefined ? (
-      <TextIcon name={inputVariables.icon} size={20} />
-    ) : null;
+  const maskArgs = inputMaskType[maskType];
 
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = genId();
@@ -140,38 +132,37 @@ const Textbox = props => {
   return (
     <TextBoxLabel
       htmlFor={textboxId}
-      color={inputVariables.foregroundColor}
+      color={validationTextColor[validationState]}
       inline={inline}
     >
       <LabelText inline={inline}>{labelText}</LabelText>
       <InputWrapper>
-        {hasPrependedText &&
-          renderAddon(
-            'prepend',
-            prependContent,
-            inputVariables,
-            false,
-            prependAddonRef
-          )}
-        <TextWrapper includeMargin={hasNoAddon && inline}>
+        <TextWrapper includeMargin={inline}>
+          {hasPrepend && <Prepend name={prependIconName} size={20} />}
           <Input
-            id={textboxId}
-            addonType={addonType}
-            type="text"
-            name={inputName}
-            onChange={handleOnChange}
-            onBlur={handleOnBlur}
             aria-describedby={helpId}
-            value={value}
-            {...inputStyleProps}
-            {...additionalTextProps}
+            hasPrepend={hasPrepend}
+            id={textboxId}
             innerRef={inputRef}
+            name={inputName}
+            numAppendIconNames={numAppendIconNames}
+            onBlur={handleOnBlur}
+            onChange={handleOnChange}
+            type="text"
+            value={value}
+            {...additionalTextProps}
+            {...validationInputColor[validationState]}
             {...maskArgs}
           />
-          {icon}
+          {(hasAppend || hasValidationIcon) && (
+              <Append>
+                {hasValidationIcon && (
+                  <Icon name={validationIconName[validationState]} size={20} />
+                )}
+                {hasAppend && <Icon name={appendIconName} size={20} />}
+              </Append>
+            )}
         </TextWrapper>
-        {hasAppendedText &&
-          renderAddon('append', appendContent, inputVariables, inline)}
       </InputWrapper>
       {additionalHelp}
     </TextBoxLabel>
@@ -184,8 +175,6 @@ Textbox.propTypes = {
   name: PropTypes.string,
   /** Reference to the underlying input DOM element */
   inputRef: PropTypes.func,
-  /** Reference to the underlying prepend DOM element */
-  prependAddonRef: PropTypes.func,
   /** Display label inline with text box */
   inline: PropTypes.bool,
   /** Function to execute when text box value changes */
@@ -195,11 +184,11 @@ Textbox.propTypes = {
   /** Content to display underneath the text box */
   additionalHelpContent: PropTypes.node,
   /** Display label and text with contextual state colorings */
-  validationState: PropTypes.oneOf(['success', 'warning', 'danger']),
+  validationState: PropTypes.oneOf(['normal', 'success', 'warning', 'danger']),
   /** Content to prepend input box with */
-  prependContent: PropTypes.node,
+  prependIconName: PropTypes.string,
   /** Content to append to input box */
-  appendContent: PropTypes.node,
+  appendIconName: PropTypes.string,
   /** Set the initial value, uncontrolled mode */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Value of the textbox */
@@ -212,7 +201,8 @@ Textbox.defaultProps = {
   inline: false,
   maskType: 'none',
   onChange: noop,
-  onBlur: noop
+  onBlur: noop,
+  validationState: 'normal'
 };
 
 export default Textbox;

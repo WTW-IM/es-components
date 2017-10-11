@@ -11,5 +11,13 @@ Keyboard support
 * Enter/Esc/Tab: Close the calendar
 
 ```
-<DatePicker labelText="Pick a Date" />
+function handleOnChange(date) {
+  console.log(`Date selected: ${date}`);
+}
+
+function handleOnChangeRaw(event) {
+  console.log(`Input value: ${event.target.value}`);
+}
+
+<DatePicker labelText="Pick a Date" onChange={handleOnChange} onChangeRaw={handleOnChangeRaw} />
 ```

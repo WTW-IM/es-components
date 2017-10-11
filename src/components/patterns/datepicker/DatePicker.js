@@ -2,54 +2,57 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import Icon from '../../base/icons/Icon';
 import Textbox from '../../controls/textbox/Textbox';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
-import styled from 'styled-components';
 import './datepicker.less';
 
-const DateContainer = styled.div`display: flex;`;
-
-const CalendarIcon = styled(Icon)`
-  left: -28px;
-  pointer-events: none;
-  position: relative;
-  top: 29px;
-`;
-
 class DateTextbox extends React.PureComponent {
-  focus() {
-    this.inputElement.focus();
-  }
+  static propTypes = Textbox.propTypes;
 
   componentDidMount() {
     this.inputElement = findDOMNode(this).querySelector('input');
   }
 
+  focus() {
+    this.inputElement.focus();
+  }
+
   render() {
-    return <Textbox {...this.props} placeholder="mm/dd/yyyy" />;
+    return <Textbox {...this.props} />;
   }
 }
-DateTextbox.proptypes = Textbox.proptypes;
 
 export const DatePicker = props => {
-  const { labelText, onChange, selectedDate } = props;
-  const textbox = <DateTextbox labelText={labelText} maskType="date" />;
+  const {
+    labelText,
+    onChange,
+    onChangeRaw,
+    placeholder,
+    selectedDate,
+    ...otherInputProps
+  } = props;
+  const textbox = (
+    <DateTextbox
+      labelText={labelText}
+      maskType="date"
+      appendIconName="calendar"
+    />
+  );
 
   const handleChange = date => {
     onChange(date);
   };
 
   return (
-    <DateContainer>
-      <ReactDatePicker
-        selected={selectedDate}
-        onChange={handleChange}
-        customInput={textbox}
-      />
-      <CalendarIcon name="calendar" />
-    </DateContainer>
+    <ReactDatePicker
+      selected={selectedDate}
+      onChange={handleChange}
+      onChangeRaw={onChangeRaw}
+      customInput={textbox}
+      placeholderText={placeholder}
+      {...otherInputProps}
+    />
   );
 };
 
@@ -58,14 +61,20 @@ DatePicker.propTypes = {
   labelText: PropTypes.string.isRequired,
   /** Name property for the form control */
   name: PropTypes.string,
-  /** Callback fired when value is changed */
+  /** Callback fired when a valid date is entered */
   onChange: PropTypes.func,
+  /** Callback fired when input value is changed */
+  onChangeRaw: PropTypes.func,
+  /** input field placeholder */
+  placeholder: PropTypes.string,
   /** Moment object representing the selected date */
   selectedDate: PropTypes.object
 };
 
 DatePicker.defaultProps = {
-  onChange: noop
+  onChange: noop,
+  onChangeRaw: noop,
+  placeholder: 'mm/dd/yyyy'
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

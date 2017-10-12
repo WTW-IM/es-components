@@ -25,54 +25,74 @@ class DateTextbox extends React.PureComponent {
 
 export const DatePicker = props => {
   const {
+    additionalHelpContent,
+    children,
     labelText,
-    onChange,
-    onChangeRaw,
     placeholder,
     selectedDate,
-    ...otherInputProps
+    ...otherProps
   } = props;
+
   const textbox = (
     <DateTextbox
       labelText={labelText}
       maskType="date"
       appendIconName="calendar"
+      additionalHelpContent={additionalHelpContent}
     />
   );
-
-  const handleChange = date => {
-    onChange(date);
-  };
 
   return (
     <ReactDatePicker
       selected={selectedDate}
-      onChange={handleChange}
-      onChangeRaw={onChangeRaw}
       customInput={textbox}
       placeholderText={placeholder}
-      {...otherInputProps}
-    />
+      {...otherProps}
+    >
+      {children}
+    </ReactDatePicker>
   );
 };
 
 DatePicker.propTypes = {
+  /** Additional text displayed below the input */
+  additionalHelpContent: PropTypes.node,
+  /** Content to display within and below the calendar */
+  children: PropTypes.node,
   /** Label to display above datepicker */
   labelText: PropTypes.string.isRequired,
   /** Name property for the form control */
   name: PropTypes.string,
   /** Callback fired when a valid date is entered */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /** Callback fired when input value is changed */
   onChangeRaw: PropTypes.func,
+  /** Callback fired when datepicker loses focus */
+  onBlur: PropTypes.func,
   /** input field placeholder */
   placeholder: PropTypes.string,
   /** Moment object representing the selected date */
-  selectedDate: PropTypes.object
+  selectedDate: PropTypes.object,
+  /** Array of moment objects to exclude from the calendar */
+  excludeDates: PropTypes.array,
+  /** Array of moment objects to highlight on the calendar */
+  highlightDates: PropTypes.array,
+  /** Array of moment objects to whitelist on calendar */
+  includeDates: PropTypes.array,
+  /** Function used to filter calendar dates */
+  filterDate: PropTypes.func,
+  /** Sets the datepicker as the Start input of a data range */
+  selectsStart: PropTypes.bool,
+  /** Sets the datepicker as the End input of a date range */
+  selectsEnd: PropTypes.bool,
+  /** Sets the start date (moment) in a range */
+  startDate: PropTypes.object,
+  /** Sets the end date (moment) in a range */
+  endDate: PropTypes.object
 };
 
 DatePicker.defaultProps = {
-  onChange: noop,
+  onBlur: noop,
   onChangeRaw: noop,
   placeholder: 'mm/dd/yyyy'
 };

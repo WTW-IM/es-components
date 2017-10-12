@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { noop, omit } from 'lodash';
-import MaskedInput from 'react-text-mask';
+import MaskedInput from '../../util/reactTextMask';
 
 import Icon from '../../base/icons/Icon';
 import { sizes } from '../../theme';
@@ -121,14 +121,6 @@ const Textbox = props => {
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = genId();
 
-  const handleOnBlur = event => {
-    onBlur(event);
-  };
-
-  const handleOnChange = event => {
-    onChange(event);
-  };
-
   return (
     <TextBoxLabel
       htmlFor={textboxId}
@@ -146,8 +138,8 @@ const Textbox = props => {
             innerRef={inputRef}
             name={inputName}
             numAppendIconNames={numAppendIconNames}
-            onBlur={handleOnBlur}
-            onChange={handleOnChange}
+            onBlur={onBlur}
+            onChange={onChange}
             type="text"
             value={value}
             {...additionalTextProps}

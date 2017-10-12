@@ -11,26 +11,32 @@ jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
 describe('Textbox component', () => {
   let instance;
   let input;
-  const onChange = jest.fn();
-  const onBlur = jest.fn();
-  const mockEvent = { target: { value: 'some text' } };
+  const handleOnChange = jest.fn();
+  const handleOnBlur = jest.fn();
+  const mockEvent = { target: { value: '112' } };
 
   beforeEach(() => {
     instance = mount(
-      <Textbox labelText="Text" onChange={onChange} onBlur={onBlur} />
+      <Textbox
+        labelText="Text"
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+      />
     );
 
     input = instance.find('input');
+    handleOnChange.mockClear();
+    handleOnBlur.mockClear();
   });
 
   it('executes the handleOnChange function when text is changed', () => {
     input.simulate('change', mockEvent);
-    expect(onChange).toHaveBeenCalled();
+    expect(handleOnChange).toBeCalled();
   });
 
   it('executes the handeOnBlur function when the input focus is lost', () => {
     input.simulate('blur', mockEvent);
-    expect(onBlur).toHaveBeenCalled();
+    expect(handleOnBlur).toBeCalled();
   });
 
   it('renders addon icon when "prependIconName" prop is passed', () => {
@@ -80,5 +86,38 @@ describe('Textbox component', () => {
 
     icon = instance.find(Icon);
     expect(icon.length).toBe(1);
+  });
+});
+
+describe('Textbox with Mask', () => {
+  let instance;
+  let input;
+  const handleOnChange = jest.fn();
+  const handleOnBlur = jest.fn();
+  const mockEvent = { target: { value: '112' } };
+
+  beforeEach(() => {
+    instance = mount(
+      <Textbox
+        labelText="Text"
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        maskType="ssnum"
+      />
+    );
+
+    input = instance.find('input');
+    handleOnChange.mockClear();
+    handleOnBlur.mockClear();
+  });
+
+  it('executes the handleOnChange function when text is changed with mask', () => {
+    input.simulate('change', mockEvent);
+    expect(handleOnChange).toBeCalled();
+  });
+
+  it('executes the handeOnBlur function when the input focus is lost with mask', () => {
+    input.simulate('blur', mockEvent);
+    expect(handleOnBlur).toBeCalled();
   });
 });

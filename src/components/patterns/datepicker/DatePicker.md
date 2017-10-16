@@ -125,7 +125,7 @@ const moment = require('moment');
 
 ```
 <DatePicker labelText="Child Content" onChange={()=>{}}>
-  <div style={{textAlign: 'center', padding: '5px'}}><strong>Enjoy your calendar!</strong></div>
+  <div style={{textAlign: 'center', padding: '5px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn <br/> Day: Arrows</strong></div>
 </DatePicker>
 ```
 

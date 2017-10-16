@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { noop, omit } from 'lodash';
-import MaskedInput from '../../util/reactTextMask';
+import MaskedInput from '../../util/ReactTextMask';
 
 import Icon from '../../base/icons/Icon';
 import { sizes } from '../../theme';
@@ -27,7 +27,9 @@ const paddings = css`
   padding-right: ${props => rightPad[props.numAppendIconNames]};
 `;
 
-const TextBoxLabel = styled(Label)`flex-basis: 50%;`;
+const TextBoxLabel = styled(Label)`
+  flex-basis: 50%;
+`;
 
 // apply styles to masked input, but remove props it doesn't use
 const StyledMaskedInput = InputBase.withComponent(props => (
@@ -43,9 +45,13 @@ const StyledMaskedInput = InputBase.withComponent(props => (
     ])}
   />
 ));
-const StyledMask = StyledMaskedInput.extend`${paddings};`;
+const StyledMask = StyledMaskedInput.extend`
+  ${paddings};
+`;
 
-const StyledText = styled(InputBase)`${paddings};`;
+const StyledText = styled(InputBase)`
+  ${paddings};
+`;
 
 const AdditionalHelpContent = styled.div`
   font-size: ${sizes.baseFontSize}px;
@@ -67,7 +73,9 @@ const addonAttrs = `
   top: 9px;
 `;
 
-const Prepend = styled(Icon)`${addonAttrs} left: 9px;`;
+const Prepend = styled(Icon)`
+  ${addonAttrs} left: 9px;
+`;
 
 const Append = styled.div`
   ${addonAttrs} right: 9px;
@@ -147,13 +155,13 @@ const Textbox = props => {
             {...maskArgs}
           />
           {(hasAppend || hasValidationIcon) && (
-              <Append>
-                {hasValidationIcon && (
-                  <Icon name={validationIconName[validationState]} size={20} />
-                )}
-                {hasAppend && <Icon name={appendIconName} size={20} />}
-              </Append>
-            )}
+            <Append>
+              {hasValidationIcon && (
+                <Icon name={validationIconName[validationState]} size={20} />
+              )}
+              {hasAppend && <Icon name={appendIconName} size={20} />}
+            </Append>
+          )}
         </TextWrapper>
       </InputWrapper>
       {additionalHelp}

@@ -2,55 +2,10 @@
 
 exports[`drawer component accordion renders as expected 1`] = `
 <div
-  className="sc-EHOje ktKLsF"
+  className="important sc-EHOje ktKLsF"
 >
   <div
-    className="first sc-bwzfXH dYpfLQ"
-  >
-    <div
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={true}
-        className="sc-htpNat ebhkUu"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa dRgmsV"
-            content="63d"
-            fontFamily="oecom-icons"
-            fontSize="inherit"
-          />
-          collapse 1
-        </span>
-      </button>
-    </div>
-    <div
-      aria-hidden={false}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-auto sc-ifAKCX gUdFEl"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": "auto",
-          "overflow": "visible",
-        }
-      }
-    >
-      <div
-        className={undefined}
-      >
-        first
-      </div>
-    </div>
-  </div>
-  <div
-    className="second sc-bwzfXH dYpfLQ"
+    className="first sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -65,13 +20,16 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
             fontSize="inherit"
           />
-          collapse 2
+          collapse 1
         </span>
+        <aside>
+          side text
+        </aside>
       </button>
     </div>
     <div
@@ -90,12 +48,12 @@ exports[`drawer component accordion renders as expected 1`] = `
       <div
         className={undefined}
       >
-        second
+        first
       </div>
     </div>
   </div>
   <div
-    className="third sc-bwzfXH dYpfLQ"
+    className="second sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -110,7 +68,52 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
+            content="63f"
+            fontFamily="oecom-icons"
+            fontSize="inherit"
+          />
+          collapse 2
+        </span>
+      </button>
+    </div>
+    <div
+      aria-hidden={true}
+      aria-labelledby="abcdef"
+      className="rah-static rah-static--height-zero sc-ifAKCX lnWkgR"
+      id="abcdef"
+      role="region"
+      style={
+        Object {
+          "height": 0,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <div
+        className={undefined}
+      >
+        second
+      </div>
+    </div>
+  </div>
+  <div
+    className="third sc-bwzfXH fsHaqT"
+  >
+    <div
+      id="abcdef"
+      role="heading"
+    >
+      <button
+        aria-controls="abcdef"
+        aria-expanded={false}
+        className="sc-htpNat ebhkUu"
+        onClick={[Function]}
+      >
+        <span>
+          <i
+            aria-hidden={true}
+            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
             fontSize="inherit"
@@ -147,7 +150,7 @@ exports[`drawer component drawer renders as expected 1`] = `
   className="important sc-EHOje ktKLsF"
 >
   <div
-    className="first sc-bwzfXH dYpfLQ"
+    className="first sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -162,7 +165,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
             fontSize="inherit"
@@ -195,7 +198,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second sc-bwzfXH dYpfLQ"
+    className="second sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -210,7 +213,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
             fontSize="inherit"
@@ -240,7 +243,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="third sc-bwzfXH dYpfLQ"
+    className="third sc-bwzfXH fsHaqT"
   >
     <div
       id="abcdef"
@@ -255,7 +258,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb beQLQJ sc-bdVaJa iOqSxE"
+            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
             content="63f"
             fontFamily="oecom-icons"
             fontSize="inherit"

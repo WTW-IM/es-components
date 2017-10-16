@@ -20,7 +20,7 @@ Thresholds can be set that will set a range for values that the incrementer will
 />
 ```
 
-Passing a function to ``onValueUpdated`` will execute that function with the new value.
+Passing a function to `onValueUpdated` will execute that function with the new value.
 
 ```
 function printNewValue(value) {

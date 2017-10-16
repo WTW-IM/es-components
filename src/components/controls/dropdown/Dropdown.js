@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop, isNil } from 'lodash';
-import slug from 'slug';
 
 import Label from '../Label';
 import { LabelText, SelectBase } from '../BaseControls';
@@ -90,12 +89,14 @@ export default class Dropdown extends React.Component {
 
     const { currentValue } = this.state;
 
-    const firstOption = includeDefaultFirstOption
-      ? <option disabled value="">{firstOptionDisplayText}</option>
-      : null;
+    const firstOption = includeDefaultFirstOption ? (
+      <option disabled value="">
+        {firstOptionDisplayText}
+      </option>
+    ) : null;
 
     const selectOptions = options.map(opt => {
-      const optionKey = slug(opt.optionValue);
+      const optionKey = opt.optionValue.replace(/\s/g, '');
       return (
         <option key={optionKey} value={opt.optionValue}>
           {opt.optionText}
@@ -104,7 +105,6 @@ export default class Dropdown extends React.Component {
     });
 
     const selectVariables = getValidationStateVariables(validationState);
-    const selectName = name || slug(labelText);
 
     return (
       <Label inline={inline}>
@@ -115,7 +115,7 @@ export default class Dropdown extends React.Component {
           {labelText}
         </LabelText>
         <SelectBase
-          name={selectName}
+          name={name}
           value={currentValue}
           onChange={this.handleOptionChanged}
           onBlur={this.handleFocusLost}

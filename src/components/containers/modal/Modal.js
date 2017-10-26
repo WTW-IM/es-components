@@ -5,6 +5,7 @@ import { noop } from 'lodash';
 import { colors, sizes, screenSize } from '../../theme';
 import genId from '../../util/generateAlphaName';
 
+import FocusTrap from 'focus-trap-react';
 import BaseModal from 'react-overlays/lib/Modal';
 import Fade from '../../util/Fade';
 import Header from './ModalHeader';
@@ -18,7 +19,6 @@ const modalSize = {
 };
 
 const DialogWrapper = styled(BaseModal)`
-  cursor: pointer;
   height: 100%;
   left: 0;
   position: fixed;
@@ -52,7 +52,7 @@ const ModalDialogLarge = ModalDialogMedium.extend`
   }
 `;
 
-const ModalContent = styled.div`
+const ModalContent = styled(FocusTrap)`
   background-clip: padding-box;
   background-color: ${colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -86,6 +86,7 @@ class Modal extends React.Component {
       animation,
       backdrop,
       children,
+      escapeExits,
       onEnter,
       onExit,
       onHide,
@@ -96,7 +97,7 @@ class Modal extends React.Component {
     const backdropStyle = {
       backgroundColor: colors.black,
       bottom: 0,
-      cursor: 'pointer',
+      cursor: backdrop === 'static' ? 'auto' : 'pointer',
       left: 0,
       opacity: 0.5,
       position: 'fixed',
@@ -118,12 +119,18 @@ class Modal extends React.Component {
         break;
     }
 
+    // using focus-trap-react until react-overlays fixes their scroll bug
+    let focusTrapOptions = {
+      escapeDeactivates: escapeExits,
+      clickOutsideDeactivates: backdrop === true,
+      returnFocusOnDeactivate: false
+    };
+
     return (
       <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}
-        backdropTransitionTimeout={200}
-        dialogTransitionTimeout={200}
+        keyboard={escapeExits}
         onEnter={onEnter}
         onExit={onExit}
         onHide={onHide}
@@ -131,7 +138,9 @@ class Modal extends React.Component {
         transition={animation ? Fade : undefined}
       >
         <ModalDialog size={size} aria-labelledby={this.state.ariaId}>
-          <ModalContent className="ModalContent">{children}</ModalContent>
+          <ModalContent focusTrapOptions={focusTrapOptions}>
+            {children}
+          </ModalContent>
         </ModalDialog>
       </DialogWrapper>
     );
@@ -146,11 +155,15 @@ Modal.propTypes = {
    * trigger an "onHide" when clicked.
    */
   backdrop: PropTypes.oneOf(['static', true, false]),
+  /** Sets whether clicking outside exits the modal */
+  backdropClickExits: PropTypes.bool,
   /**
    * Usually contains a Modal.Title, Modal.Body, and Modal.Footer
    * but can contain any content
    */
   children: PropTypes.any,
+  /** Set whether the Escape key exits the modal */
+  escapeExits: PropTypes.bool,
   /** Callback fired when the Modal transitions in */
   onEnter: PropTypes.func,
   /** Callback fired when the modal transitions out */
@@ -169,6 +182,7 @@ Modal.propTypes = {
 Modal.defaultProps = {
   animation: true,
   backdrop: true,
+  escapeExits: true,
   onEnter: noop,
   onExit: noop,
   onHide: noop,

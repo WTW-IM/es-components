@@ -7,7 +7,7 @@ import { injectGlobal } from 'styled-components';
 injectGlobal`
   .default-transition-out {
     opacity: 0;
-    transition: opacity 200ms linear;
+    transition: opacity 300ms linear;
   }
 
   .default-transition-in {
@@ -31,7 +31,6 @@ const Fade = props => {
       enteredClassName={transitionClassIn}
       enteringClassName={transitionClassIn}
       in={transitionIn}
-      mountOnEnter
       unmountOnExit
       timeout={timeout}
       transitionAppear

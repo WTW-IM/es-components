@@ -5,7 +5,6 @@ import { noop } from 'lodash';
 import { colors, sizes, screenSize } from '../../theme';
 import genId from '../../util/generateAlphaName';
 
-import FocusTrap from 'focus-trap-react';
 import BaseModal from 'react-overlays/lib/Modal';
 import Fade from '../../util/Fade';
 import Header from './ModalHeader';
@@ -52,7 +51,7 @@ const ModalDialogLarge = ModalDialogMedium.extend`
   }
 `;
 
-const ModalContent = styled(FocusTrap)`
+const ModalContent = styled.div`
   background-clip: padding-box;
   background-color: ${colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -119,13 +118,6 @@ class Modal extends React.Component {
         break;
     }
 
-    // using focus-trap-react until react-overlays fixes their scroll bug
-    let focusTrapOptions = {
-      escapeDeactivates: escapeExits,
-      clickOutsideDeactivates: backdrop === true,
-      returnFocusOnDeactivate: false
-    };
-
     return (
       <DialogWrapper
         backdrop={backdrop}
@@ -138,9 +130,7 @@ class Modal extends React.Component {
         transition={animation ? Fade : undefined}
       >
         <ModalDialog size={size} aria-labelledby={this.state.ariaId}>
-          <ModalContent focusTrapOptions={focusTrapOptions}>
-            {children}
-          </ModalContent>
+          <ModalContent>{children}</ModalContent>
         </ModalDialog>
       </DialogWrapper>
     );

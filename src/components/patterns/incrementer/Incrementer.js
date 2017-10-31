@@ -6,8 +6,7 @@ import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import { InputBase } from '../../controls/BaseControls';
-import getValidationStateVariables
-  from '../../controls/getValidationStateVariables';
+import { validationInputColor } from '../../controls/validationStateVars';
 
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
@@ -71,10 +70,10 @@ class Incrementer extends React.Component {
     const { lowerThreshold, upperThreshold } = this.props;
 
     return {
-      incrementButtonDisabled: isNumber(upperThreshold) &&
-        value === upperThreshold,
-      decrementButtonDisabled: isNumber(lowerThreshold) &&
-        value === lowerThreshold
+      incrementButtonDisabled:
+        isNumber(upperThreshold) && value === upperThreshold,
+      decrementButtonDisabled:
+        isNumber(lowerThreshold) && value === lowerThreshold
     };
   }
 
@@ -109,8 +108,6 @@ class Incrementer extends React.Component {
       incrementButtonDisabled
     } = this.state;
 
-    const inputStyleValues = getValidationStateVariables();
-
     return (
       <div>
         <Button
@@ -122,7 +119,7 @@ class Incrementer extends React.Component {
           <Icon name="minus" />
         </Button>
         <IncrementerTextbox
-          {...inputStyleValues}
+          {...validationInputColor.default}
           type="text"
           value={value}
           readOnly

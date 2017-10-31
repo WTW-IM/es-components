@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { colors, sizes } from '../theme';
 
 export const LabelText = styled.span`
@@ -33,8 +32,7 @@ const baseStyles = `
 `;
 
 export const InputBase = styled.input`
-  ${baseStyles}
-  border: 1px solid ${props => props.borderColor};
+  ${baseStyles} border: 1px solid ${props => props.borderColor};
   box-shadow: ${props => props.boxShadow};
 
   &:focus {
@@ -49,8 +47,7 @@ export const InputBase = styled.input`
 `;
 
 export const SelectBase = styled.select`
-  ${baseStyles}
-  background-color: ${colors.white};
+  ${baseStyles} background-color: ${colors.white};
   border: 1px solid ${props => props.borderColor};
 
   color: ${props => props.foregroundColor};

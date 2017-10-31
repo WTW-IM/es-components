@@ -19,9 +19,9 @@ class TextboxExample extends React.Component {
     this.handleOnTextChange = this.handleOnTextChange.bind(this);
   }
 
-  handleOnTextChange(value) {
-    console.log(value);
-    this.setState({ value });
+  handleOnTextChange(event) {
+    console.log(event.target.value);
+    this.setState({ value: event.target.value });
   }
 
   render() {
@@ -40,8 +40,10 @@ class TextboxExample extends React.Component {
 Pass an `onBlur` function to execute when the text box loses focus. This function will have the current value of the input passed to it. To provide a default value in an uncontrolled `Textbox` component, use `defaultValue`.
 
 ```
-function handleOnBlur(value) {
-  confirm(`You entered ${value}. Is that correct?`);
+function handleOnBlur(event) {
+  if(event.target.value.length > 0) {
+    confirm(`You entered ${event.target.value}. Is that correct?`);
+  }
 }
 
 <Textbox
@@ -93,41 +95,70 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
 <div>
   <Textbox
     labelText="Appended"
-    appendContent=".00"
+    appendIconName="calendar"
   />
 
   <Textbox
     labelText="Prepended"
-    prependContent="@"
+    prependIconName="phone"
   />
 
   <Textbox
     labelText="Appended and prepended"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
   />
 
   <Textbox
     labelText="Success"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
     validationState="success"
   />
 
   <Textbox
     labelText="Warning"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
     validationState="warning"
   />
 
   <Textbox
     labelText="Danger"
-    appendContent=".00"
-    prependContent="$"
+    appendIconName="user"
+    prependIconName="phone"
     validationState="danger"
   />
 
+</div>
+```
+
+### Text masks
+
+```
+<div>
+  <Textbox labelText="US Dollar" maskType="dollar" />
+
+  <Textbox
+    labelText="Phone Number"
+    maskType="phone"
+  />
+
+  <Textbox
+    labelText="Social Security Number"
+    maskType="ssnum"
+  />
+
+  <Textbox
+    labelText="Zip Code"
+    maskType="zip"
+  />
+
+  <Textbox
+    labelText="Date"
+    maskType="date"
+    placeholder="mm/dd/yyyy"
+  />
 </div>
 ```
 

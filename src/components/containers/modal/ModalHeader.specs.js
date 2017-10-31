@@ -21,7 +21,7 @@ describe('modal header component', () => {
 
   it('renders without close button', () => {
     instanceToRender = (
-      <ModalHeader className="header" closeButton={false}>
+      <ModalHeader className="header" hideCloseButton>
         This is the header without close button.
       </ModalHeader>
     );

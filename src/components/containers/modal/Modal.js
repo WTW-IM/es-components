@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 import { colors, sizes, screenSize } from '../../theme';
@@ -12,32 +11,27 @@ import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
 
-import events from 'dom-helpers/events';
-import canUseDOM from 'dom-helpers/util/inDOM';
-import getScrollbarSize from 'dom-helpers/util/scrollbarSize';
-import isOverflowing from 'react-overlays/lib/utils/isOverflowing';
-
 const modalSize = {
   small: '300px',
   medium: '600px',
   large: '900px'
 };
 
-const DialogWrapper = styled.div`
-  bottom: 0;
+const DialogWrapper = styled(BaseModal)`
+  height: 100%;
   left: 0;
-  outline: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
   position: fixed;
-  right: 0;
+  text-align: center;
   top: 0;
-  z-index: 1050;
+  width: 100%;
+  z-index: 1040;
 `;
 
 const ModalDialogMedium = styled.div`
-  margin: 10px;
-  position: relative;
+  cursor: default;
+  display: inline-block;
+  top: 2em;
+
   @media (min-width: ${screenSize.tablet}) {
     margin: 30px auto;
     width: ${modalSize.medium};
@@ -61,7 +55,7 @@ const ModalContent = styled.div`
   background-clip: padding-box;
   background-color: ${colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: ${sizes.baseFontSize}px;
   outline: 0;
   position: relative;
@@ -86,78 +80,33 @@ class Modal extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    this.handleExited();
-  }
-
-  handleEntering = () => {
-    this.props.onEntering();
-
-    events.on(window, 'resize', this.handleWindowResize);
-    this.adjustForScrollbar();
-  };
-
-  handleExited = () => {
-    this.props.onExited();
-
-    events.off(window, 'resize', this.handleWindowResize);
-  };
-
-  handleWindowResize = () => {
-    this.adjustForScrollbar();
-  };
-
-  handleDialogClick = evnt => {
-    if (evnt.target !== evnt.currentTarget) {
-      return;
-    }
-
-    this.props.onHide();
-  };
-
-  adjustForScrollbar() {
-    /* taken nearly verbatim from react-bootstrap */
-    if (!canUseDOM) {
-      return;
-    }
-
-    const dialogNode = this.dialog;
-    const dialogHeight = dialogNode.scrollHeight;
-
-    const bodyIsOverflowing = isOverflowing(
-      ReactDOM.findDOMNode(document.body)
-    );
-    const modalIsOverflowing =
-      dialogHeight > document.documentElement.clientHeight;
-
-    this.setState({
-      style: {
-        paddingRight: bodyIsOverflowing && !modalIsOverflowing
-          ? getScrollbarSize()
-          : undefined,
-        paddingLeft: !bodyIsOverflowing && modalIsOverflowing
-          ? getScrollbarSize()
-          : undefined
-      }
-    });
-  }
-
   render() {
-    const { animation, backdrop, children, onHide, show, size } = this.props;
-    const inClassName = show && 'in';
+    const {
+      animation,
+      backdrop,
+      children,
+      escapeExits,
+      onEnter,
+      onExit,
+      onHide,
+      show,
+      size
+    } = this.props;
+
     const backdropStyle = {
       backgroundColor: colors.black,
       bottom: 0,
+      cursor: backdrop === 'static' ? 'auto' : 'pointer',
       left: 0,
       opacity: 0.5,
       position: 'fixed',
       right: 0,
       top: 0,
-      zIndex: 1040
+      zIndex: 'auto'
     };
 
     let ModalDialog;
-    switch (this.props.size) {
+    switch (size) {
       case 'small':
         ModalDialog = ModalDialogSmall;
         break;
@@ -170,38 +119,20 @@ class Modal extends React.Component {
     }
 
     return (
-      <BaseModal
+      <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}
-        backdropTransitionTimeout={150}
-        dialogTransitionTimeout={300}
-        onEntering={this.handleEntering}
-        onExited={this.handleExited}
+        keyboard={escapeExits}
+        onEnter={onEnter}
+        onExit={onExit}
         onHide={onHide}
-        ref={modal => {
-          this.modal = modal;
-        }}
         show={show}
         transition={animation ? Fade : undefined}
       >
-        <DialogWrapper
-          aria-labelledby={this.state.ariaId}
-          className={inClassName}
-          onClick={backdrop === true ? this.handleDialogClick : null}
-          role="dialog"
-          style={{ ...this.state.style }}
-          tabIndex="-1"
-          innerRef={dialog => {
-            this.dialog = dialog;
-          }}
-        >
-          <ModalDialog size={size}>
-            <ModalContent>
-              {children}
-            </ModalContent>
-          </ModalDialog>
-        </DialogWrapper>
-      </BaseModal>
+        <ModalDialog size={size} aria-labelledby={this.state.ariaId}>
+          <ModalContent>{children}</ModalContent>
+        </ModalDialog>
+      </DialogWrapper>
     );
   }
 }
@@ -214,15 +145,19 @@ Modal.propTypes = {
    * trigger an "onHide" when clicked.
    */
   backdrop: PropTypes.oneOf(['static', true, false]),
+  /** Sets whether clicking outside exits the modal */
+  backdropClickExits: PropTypes.bool,
   /**
    * Usually contains a Modal.Title, Modal.Body, and Modal.Footer
    * but can contain any content
    */
   children: PropTypes.any,
-  /** Callback fired as the Modal begins to transition in */
-  onEntering: PropTypes.func,
-  /** Callback fired after the Modal finishes transitioning out */
-  onExited: PropTypes.func,
+  /** Set whether the Escape key exits the modal */
+  escapeExits: PropTypes.bool,
+  /** Callback fired when the Modal transitions in */
+  onEnter: PropTypes.func,
+  /** Callback fired when the modal transitions out */
+  onExit: PropTypes.func,
   /**
    * A callback fired when the header closeButton or non-static backdrop is
    * clicked. Required if either are specified.
@@ -237,8 +172,9 @@ Modal.propTypes = {
 Modal.defaultProps = {
   animation: true,
   backdrop: true,
-  onEntering: noop,
-  onExited: noop,
+  escapeExits: true,
+  onEnter: noop,
+  onExit: noop,
   onHide: noop,
   show: false,
   size: 'medium'

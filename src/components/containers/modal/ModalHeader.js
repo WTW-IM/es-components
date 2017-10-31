@@ -26,7 +26,7 @@ const DismissModal = styled(DismissButton)`
 `;
 
 const ModalHeader = (props, context) => {
-  const { closeButton, children, ...otherProps } = props;
+  const { hideCloseButton, children, ...otherProps } = props;
   const modal = context.modal;
   const onHide = modal ? modal.onHide : noop;
   const ariaId = modal ? modal.ariaId : null;
@@ -35,19 +35,19 @@ const ModalHeader = (props, context) => {
     <Header {...otherProps}>
       <Title id={ariaId}>{children}</Title>
 
-      {closeButton && <DismissModal onClick={onHide} />}
+      {!hideCloseButton && <DismissModal onClick={onHide} />}
     </Header>
   );
 };
 
 ModalHeader.propTypes = {
   /** Specify whether the modal header should contain a close button */
-  closeButton: PropTypes.bool,
+  hideCloseButton: PropTypes.bool,
   children: PropTypes.any
 };
 
 ModalHeader.defaultProps = {
-  closeButton: true
+  hideCloseButton: false
 };
 
 ModalHeader.contextTypes = {

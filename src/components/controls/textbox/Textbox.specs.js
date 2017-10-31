@@ -4,9 +4,6 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Icon from '../../base/icons/Icon';
-
-import getAddonType from './getAddonType';
-import Addon from './Addon';
 import Textbox from './Textbox';
 
 jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
@@ -14,43 +11,50 @@ jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
 describe('Textbox component', () => {
   let instance;
   let input;
-  const onChange = jest.fn();
-  const onBlur = jest.fn();
+  const handleOnChange = jest.fn();
+  const handleOnBlur = jest.fn();
+  const mockEvent = { target: { value: '112' } };
 
   beforeEach(() => {
     instance = mount(
-      <Textbox labelText="Text" onChange={onChange} onBlur={onBlur} />
+      <Textbox
+        labelText="Text"
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+      />
     );
 
     input = instance.find('input');
+    handleOnChange.mockClear();
+    handleOnBlur.mockClear();
   });
 
-  it('executes the handleOnChange function when text is changed with the value of the input', () => {
-    input.simulate('change', { target: { value: 'text' } });
-    expect(onChange).toBeCalledWith('text');
+  it('executes the handleOnChange function when text is changed', () => {
+    input.simulate('change', mockEvent);
+    expect(handleOnChange).toBeCalled();
   });
 
-  it('executes the handeFocusLost function when the input focus is lost with the value of the input', () => {
-    input.simulate('blur', { target: { value: '' } });
-    expect(onBlur).toBeCalledWith('');
+  it('executes the handeOnBlur function when the input focus is lost', () => {
+    input.simulate('blur', mockEvent);
+    expect(handleOnBlur).toBeCalled();
   });
 
-  it('renders addon content when "prependContent" prop is passed', () => {
-    instance.setProps({ prependContent: 'prepend' });
+  it('renders addon icon when "prependIconName" prop is passed', () => {
+    instance.setProps({ prependIconName: 'prepend' });
 
-    expect(instance.find(Addon).length).toBe(1);
+    expect(instance.find(Icon).length).toBe(1);
   });
 
-  it('renders addon content when "appendContent" prop is passed', () => {
-    instance.setProps({ appendContent: 'append' });
+  it('renders addon icon when "appendIconName" prop is passed', () => {
+    instance.setProps({ appendIconName: 'append' });
 
-    expect(instance.find(Addon).length).toBe(1);
+    expect(instance.find(Icon).length).toBe(1);
   });
 
-  it('renders addon content when both "prependContent" and "appendContent" props are passed', () => {
-    instance.setProps({ prependContent: 'prepend', appendContent: 'append' });
+  it('renders addon icons when both "prependIconName" and "appendIconName" props are passed', () => {
+    instance.setProps({ prependIconName: 'prepend', appendIconName: 'append' });
 
-    expect(instance.find(Addon).length).toBe(2);
+    expect(instance.find(Icon).length).toBe(2);
   });
 
   it('sets aria-describedby on input when the additionalHelpContent prop is provided', () => {
@@ -85,36 +89,35 @@ describe('Textbox component', () => {
   });
 });
 
-describe('getAddonType', () => {
-  it('returns "prepend" when hasPrependContent is true and hasAppendContent is false', () => {
-    const hasPrependContent = true;
-    const hasAppendContent = false;
+describe('Textbox with Mask', () => {
+  let instance;
+  let input;
+  const handleOnChange = jest.fn();
+  const handleOnBlur = jest.fn();
+  const mockEvent = { target: { value: '112' } };
 
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBe('prepend');
+  beforeEach(() => {
+    instance = mount(
+      <Textbox
+        labelText="Text"
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        maskType="ssnum"
+      />
+    );
+
+    input = instance.find('input');
+    handleOnChange.mockClear();
+    handleOnBlur.mockClear();
   });
 
-  it('returns "append" when hasPrependContent is false and hasAppendContent is true', () => {
-    const hasPrependContent = false;
-    const hasAppendContent = true;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBe('append');
+  it('executes the handleOnChange function when text is changed with mask', () => {
+    input.simulate('change', mockEvent);
+    expect(handleOnChange).toBeCalled();
   });
 
-  it('returns "both" when hasPrependContent is true and hasAppendContent is true', () => {
-    const hasPrependContent = true;
-    const hasAppendContent = true;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBe('both');
-  });
-
-  it('returns null when hasPrependContent is false and hasAppendContent is false', () => {
-    const hasPrependContent = false;
-    const hasAppendContent = false;
-
-    const addonType = getAddonType(hasPrependContent, hasAppendContent);
-    expect(addonType).toBeNull();
+  it('executes the handeOnBlur function when the input focus is lost with mask', () => {
+    input.simulate('blur', mockEvent);
+    expect(handleOnBlur).toBeCalled();
   });
 });

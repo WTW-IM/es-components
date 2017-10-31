@@ -76,8 +76,11 @@
     "focus-trap-react": "^3.0.5",
     "lodash": "^4.17.4",
     "react-animate-height": "^0.9.11",
+    "react-datepicker": "^0.55.0",
     "react-overlays": "^0.7.0",
+    "react-text-mask": "^5.0.2",
     "styled-components": "^2.0.0",
+    "text-mask-addons": "^3.6.0",
     "tinycolor2": "^1.4.1",
     "uncontrollable": "^4.1.0"
   }

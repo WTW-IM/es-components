@@ -4,7 +4,10 @@ import { noop, isNil } from 'lodash';
 
 import Label from '../Label';
 import { LabelText, SelectBase } from '../BaseControls';
-import getValidationStateVariables from '../getValidationStateVariables';
+import {
+  validationInputColor,
+  validationTextColor
+} from '../validationStateVars';
 
 const optionsShape = {
   /** Text to display in drop down */
@@ -27,7 +30,12 @@ export default class Dropdown extends React.Component {
     /** The currently selected value */
     selectedValue: PropTypes.string,
     /** Display label and text with contextual state colorings */
-    validationState: PropTypes.oneOf(['success', 'warning', 'danger']),
+    validationState: PropTypes.oneOf([
+      'normal',
+      'success',
+      'warning',
+      'danger'
+    ]),
     /** Function to execute when the dropdown value changes */
     onOptionChanged: PropTypes.func,
     /** Function to execute when the dropdown loses focus */
@@ -40,7 +48,8 @@ export default class Dropdown extends React.Component {
     firstOptionDisplayText: '--',
     selectedValue: '',
     onOptionChanged: noop,
-    onDropdownFocusLost: noop
+    onDropdownFocusLost: noop,
+    validationState: 'normal'
   };
 
   constructor(props) {
@@ -104,12 +113,10 @@ export default class Dropdown extends React.Component {
       );
     });
 
-    const selectVariables = getValidationStateVariables(validationState);
-
     return (
       <Label inline={inline}>
         <LabelText
-          foregroundColor={selectVariables.foregroundColor}
+          foregroundColor={validationTextColor[validationState]}
           inline={inline}
         >
           {labelText}
@@ -119,7 +126,7 @@ export default class Dropdown extends React.Component {
           value={currentValue}
           onChange={this.handleOptionChanged}
           onBlur={this.handleFocusLost}
-          {...selectVariables}
+          {...validationInputColor[validationState]}
           {...selectProps}
         >
           {firstOption}

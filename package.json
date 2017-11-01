@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",
@@ -73,7 +73,6 @@
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
     "date-fns": "^1.28.3",
-    "focus-trap-react": "^3.0.5",
     "lodash": "^4.17.4",
     "react-animate-height": "^0.9.11",
     "react-datepicker": "^0.55.0",

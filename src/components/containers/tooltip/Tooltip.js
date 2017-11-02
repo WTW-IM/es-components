@@ -1,22 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
-import styled, { injectGlobal } from 'styled-components';
+import styled from 'styled-components';
 import { colors } from '../../theme';
 import Fade from '../../util/Fade';
-
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  .tooltip-transition-out {
-    opacity: 0;
-    transition: opacity 200ms linear;
-  }
-
-  .tooltip-transition-in {
-    opacity: .9;
-  }
-`;
-/* eslint-enable no-unused-expressions */
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -92,6 +79,10 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
+const FadeTransition = props => (
+  <Fade duration={200} opacity={0.9} withWrapper {...props} />
+);
+
 const Popup = props => {
   const { className, children, position, style } = props;
   let TooltipStyled;
@@ -119,9 +110,7 @@ const Popup = props => {
   return (
     <TooltipStyled role="tooltip" className={className} style={style}>
       <TooltipArrow />
-      <TooltipInner>
-        {children}
-      </TooltipInner>
+      <TooltipInner>{children}</TooltipInner>
     </TooltipStyled>
   );
 };
@@ -132,14 +121,6 @@ Popup.propTypes = {
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   style: PropTypes.object
 };
-
-const FadeTransition = props => (
-  <Fade
-    transitionClassOut="tooltip-transition-out"
-    transitionClassIn="tooltip-transition-in"
-    {...props}
-  />
-);
 
 class Tooltip extends React.Component {
   constructor(props) {
@@ -171,9 +152,7 @@ class Tooltip extends React.Component {
           target={props => this.toolTipTarget}
           transition={FadeTransition}
         >
-          <Popup position={this.props.position}>
-            {this.props.content}
-          </Popup>
+          <Popup position={this.props.position}>{this.props.content}</Popup>
         </Overlay>
       </span>
     );

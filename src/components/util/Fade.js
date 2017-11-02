@@ -1,56 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Transition from 'react-overlays/lib/Transition';
-import { injectGlobal } from 'styled-components';
+import Transition from 'react-transition-group/Transition';
 
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  .default-transition-out {
-    opacity: 0;
-    transition: opacity 300ms linear;
-  }
+const Fade = ({ children, duration, opacity, withWrapper, ...otherProps }) => {
+  const transitionStyles = {
+    transition: `opacity ${duration}ms ease-in-out`,
+    opacity: 0
+  };
 
-  .default-transition-in {
-    opacity: 1;
-  }
-`;
-/* eslint-enable no-unused-expressions */
+  const stateStyles = {
+    entering: { opacity },
+    entered: { opacity }
+  };
 
-const Fade = props => {
-  const {
-    in: transitionIn,
-    timeout,
-    transitionClassIn,
-    transitionClassOut,
-    ...otherProps
-  } = props;
-
-  return (
-    <Transition
-      className={transitionClassOut}
-      enteredClassName={transitionClassIn}
-      enteringClassName={transitionClassIn}
-      in={transitionIn}
-      unmountOnExit
-      timeout={timeout}
-      transitionAppear
-      {...otherProps}
-    />
+  // the withWrapper option is to support components using the Overlay/Position
+  // react-overlay components, which don't properly pass children style props
+  // as of the 0.8.3
+  return withWrapper ? (
+    <Transition {...otherProps} timeout={duration}>
+      {(state, innerProps) => (
+        <div style={{ ...transitionStyles, ...stateStyles[state] }}>
+          {children}
+        </div>
+      )}
+    </Transition>
+  ) : (
+    <Transition {...otherProps} timeout={duration}>
+      {(state, innerProps) =>
+        React.cloneElement(children, {
+          ...innerProps,
+          style: {
+            ...children.props.style,
+            ...transitionStyles,
+            ...stateStyles[state]
+          }
+        })}
+    </Transition>
   );
 };
 
 Fade.propTypes = {
   children: PropTypes.any.isRequired,
-  in: PropTypes.bool,
-  transitionClassIn: PropTypes.string,
-  transitionClassOut: PropTypes.string,
-  timeout: PropTypes.number
+  duration: PropTypes.number,
+  opacity: PropTypes.number,
+  withWrapper: PropTypes.bool
 };
 
 Fade.defaultProps = {
-  transitionClassIn: 'default-transition-in',
-  transitionClassOut: 'default-transition-out',
-  timeout: 5000
+  duration: 300,
+  opacity: 1,
+  withWrapper: false
 };
 
 export default Fade;

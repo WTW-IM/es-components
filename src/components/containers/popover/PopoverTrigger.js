@@ -19,6 +19,10 @@ function getArrowPlacement(popoverPlacement) {
   }
 }
 
+const FadeTransition = props => (
+  <Fade duration={300} opacity={1} withWrapper {...props} />
+);
+
 const PopoverTrigger = props => {
   const {
     children,
@@ -42,7 +46,7 @@ const PopoverTrigger = props => {
         rootClose
         show={showPopover}
         target={popoverTarget}
-        transition={Fade}
+        transition={FadeTransition}
       >
         <Popover
           arrowPlacement={arrowPlacement}

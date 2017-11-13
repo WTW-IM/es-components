@@ -10,6 +10,9 @@ Keyboard support
 * End: Move to the next year
 * Enter/Esc/Tab: Close the calendar
 
+**Note:** The DatePicker component stylesheet will need to be included in your project. You can
+find this file in the es-component/public/css folder.
+
 ### Events
 
 The `DatePicker` component supports event handlers for `onChange`, `onBlur`, and `onChangeRaw`. The

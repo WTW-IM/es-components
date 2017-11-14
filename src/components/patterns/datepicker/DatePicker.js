@@ -5,7 +5,6 @@ import { noop } from 'lodash';
 import Textbox from '../../controls/textbox/Textbox';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
-import './datepicker.less';
 
 class DateTextbox extends React.PureComponent {
   static propTypes = Textbox.propTypes;

@@ -5,8 +5,6 @@ import { mount } from 'enzyme';
 
 import DatePicker from './DatePicker';
 
-jest.mock('./datepicker.less', () => jest.fn());
-
 describe('DatePicker component', () => {
   let instance;
   let input;

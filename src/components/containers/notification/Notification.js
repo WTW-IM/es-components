@@ -11,9 +11,10 @@ import DismissButton from '../../controls/DismissButton';
 import { colors } from '../../theme';
 
 const DismissNotification = styled(DismissButton)`
-  line-height: 1.4;
+  line-height: 80%;
   opacity: 0.2;
-  padding: 6px 12px;
+  padding: 0;
+  margin-left: 15px;
   text-shadow: 0 1px 0 ${colors.white};
 
   &:hover {
@@ -31,7 +32,7 @@ const iconMap = {
 
 const NotificationIcon = styled(Icon)`
   margin-right: 5px;
-  margin-bottom: 2px;
+  margin-top: 2px;
 
   @media (max-width: 767px) {
     display: none;
@@ -45,12 +46,11 @@ function renderIcon(type) {
 
 const LeadingHeader = styled.div`
   display: flex;
-  margin: 0;
-  padding: 15px;
+  flex-grow: 2;
 `;
 
 const StrongHeader = styled.h4`
-  padding-bottom: .25em;
+  padding-bottom: 0.25em;
   margin: 0;
 `;
 
@@ -67,29 +67,22 @@ function renderLeadingHeader(
     <LeadingHeader>
       {includeIcon && renderIcon(notificationType)}
       <div>
-        {hasLeadingHeaderText &&
-          <StrongHeader>
-            {leadingHeader}
-          </StrongHeader>}
-        {hasLeadingText &&
-          <div>
-            {leadingText}
-          </div>}
+        {hasLeadingHeaderText && <StrongHeader>{leadingHeader}</StrongHeader>}
+        {hasLeadingText && <div>{leadingText}</div>}
       </div>
     </LeadingHeader>
   );
 }
 
 const ExtraAlert = styled.aside`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 15px;
+  max-width: 250px;
+  text-align: right;
+  line-height: 95%;
 `;
 
 const ExtraAlertIcon = styled(Icon)`
   margin-right: 7px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 
   @media (max-width: 767px) {
     display: none;
@@ -102,9 +95,7 @@ function renderExtraAlert(alert) {
   return (
     <ExtraAlert className="extra__alert">
       <ExtraAlertIcon name={alertIcon} />
-      <small>
-        {alertText}
-      </small>
+      <small>{alertText}</small>
     </ExtraAlert>
   );
 }
@@ -187,6 +178,8 @@ const NotificationContent = styled.div`
 const NotificationHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 15px;
+  margin: 0;
 `;
 
 function Notification({
@@ -216,20 +209,20 @@ function Notification({
     >
       <NotificationHeader>
         {renderLeadingHeader(type, includeIcon, header, additionalText)}
-        <div>
-          {hasExtraAlert && renderExtraAlert(extraAlert)}
-          {dismissable &&
-            <DismissNotification
-              onClick={onDismiss}
-              className="notification__dismiss"
-            />}
-        </div>
+        {hasExtraAlert && renderExtraAlert(extraAlert)}
+        {dismissable && (
+          <DismissNotification
+            onClick={onDismiss}
+            className="notification__dismiss"
+          />
+        )}
       </NotificationHeader>
 
-      {hasChildren &&
+      {hasChildren && (
         <NotificationContent hasIcon={includeIcon}>
           {children}
-        </NotificationContent>}
+        </NotificationContent>
+      )}
       {hasCallsToAction && renderCallsToAction(callsToAction)}
     </NotificationContainer>
   );

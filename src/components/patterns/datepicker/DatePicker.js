@@ -5,6 +5,14 @@ import { noop } from 'lodash';
 import Textbox from '../../controls/textbox/Textbox';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
+import { injectGlobal } from 'styled-components';
+import { datepickerStyles } from './datepickerStyles';
+
+/* eslint-disable no-unused-expressions */
+injectGlobal`
+  ${datepickerStyles}
+`;
+/* eslint-enable no-unused-expressions */
 
 class DateTextbox extends React.PureComponent {
   static propTypes = Textbox.propTypes;

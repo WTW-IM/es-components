@@ -2,14 +2,17 @@
 
 exports[`Checkbox renders as expected 1`] = `
 <label
-  className="sc-bwzfXH hJvYSm"
+  className="sc-bwzfXH brRxqE"
   disabled={true}
 >
   <input
     checked={true}
     className="sc-htpNat faSnhJ"
+    disabled={true}
     onChange={[Function]}
+    onClick={[Function]}
     type="checkbox"
+    value={undefined}
   />
   <span
     className="checkbox-fill sc-bxivhb kjuRVg"

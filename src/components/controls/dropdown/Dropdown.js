@@ -25,6 +25,8 @@ export default class Dropdown extends React.Component {
     options: PropTypes.arrayOf(PropTypes.shape(optionsShape)),
     /** Display a default first option */
     includeDefaultFirstOption: PropTypes.bool,
+    /** Prevent default first option from being selected */
+    isDefaultFirstOptionDisabled: PropTypes.bool,
     /** The text of the first option displayed */
     firstOptionDisplayText: PropTypes.string,
     /** The currently selected value */
@@ -45,6 +47,7 @@ export default class Dropdown extends React.Component {
   static defaultProps = {
     inline: false,
     includeDefaultFirstOption: true,
+    isDefaultFirstOptionDisabled: true,
     firstOptionDisplayText: '--',
     selectedValue: '',
     onOptionChanged: noop,
@@ -91,6 +94,7 @@ export default class Dropdown extends React.Component {
       inline,
       options,
       includeDefaultFirstOption,
+      isDefaultFirstOptionDisabled,
       firstOptionDisplayText,
       validationState,
       ...selectProps
@@ -98,11 +102,11 @@ export default class Dropdown extends React.Component {
 
     const { currentValue } = this.state;
 
-    const firstOption = includeDefaultFirstOption ? (
-      <option disabled value="">
-        {firstOptionDisplayText}
-      </option>
-    ) : null;
+    const firstOption = includeDefaultFirstOption
+      ? <option disabled={isDefaultFirstOptionDisabled} value="">
+          {firstOptionDisplayText}
+        </option>
+      : null;
 
     const selectOptions = options.map(opt => {
       const optionKey = opt.optionValue.replace(/\s/g, '');

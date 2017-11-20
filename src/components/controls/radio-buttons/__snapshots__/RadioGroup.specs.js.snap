@@ -11,16 +11,16 @@ exports[`RadioGroup component renders as expected 1`] = `
     htmlFor="test-option-1"
   >
     <input
-      className="sc-htpNat vkqtM"
+      className="sc-htpNat jeuMMj"
       disabled={false}
       id="test-option-1"
       name="test"
-      onChange={[Function]}
+      onClick={[Function]}
       type="radio"
       value={0}
     />
     <span
-      className="radio-fill sc-ifAKCX gnYOzT"
+      className="radio-fill sc-ifAKCX eliKVl"
       fill="#fff"
     />
     <span
@@ -36,16 +36,16 @@ exports[`RadioGroup component renders as expected 1`] = `
     htmlFor="test-option-2"
   >
     <input
-      className="sc-htpNat vkqtM"
+      className="sc-htpNat jeuMMj"
       disabled={false}
       id="test-option-2"
       name="test"
-      onChange={[Function]}
+      onClick={[Function]}
       type="radio"
       value={1}
     />
     <span
-      className="radio-fill sc-ifAKCX gnYOzT"
+      className="radio-fill sc-ifAKCX eliKVl"
       fill="#fff"
     />
     <span
@@ -61,16 +61,16 @@ exports[`RadioGroup component renders as expected 1`] = `
     htmlFor="test-option-3"
   >
     <input
-      className="sc-htpNat vkqtM"
+      className="sc-htpNat jeuMMj"
       disabled={false}
       id="test-option-3"
       name="test"
-      onChange={[Function]}
+      onClick={[Function]}
       type="radio"
       value={2}
     />
     <span
-      className="radio-fill sc-ifAKCX gnYOzT"
+      className="radio-fill sc-ifAKCX eliKVl"
       fill="#fff"
     />
     <span
@@ -98,16 +98,16 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     htmlFor="test-option-1"
   >
     <input
-      className="sc-htpNat vkqtM"
+      className="sc-htpNat jeuMMj"
       disabled={false}
       id="test-option-1"
       name="test"
-      onChange={[Function]}
+      onClick={[Function]}
       type="radio"
       value={0}
     />
     <span
-      className="radio-fill sc-ifAKCX gnYOzT"
+      className="radio-fill sc-ifAKCX eliKVl"
       fill="#fff"
     />
     <span
@@ -123,16 +123,16 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     htmlFor="test-option-2"
   >
     <input
-      className="sc-htpNat vkqtM"
+      className="sc-htpNat jeuMMj"
       disabled={false}
       id="test-option-2"
       name="test"
-      onChange={[Function]}
+      onClick={[Function]}
       type="radio"
       value={1}
     />
     <span
-      className="radio-fill sc-ifAKCX gnYOzT"
+      className="radio-fill sc-ifAKCX eliKVl"
       fill="#fff"
     />
     <span
@@ -148,16 +148,16 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     htmlFor="test-option-3"
   >
     <input
-      className="sc-htpNat vkqtM"
+      className="sc-htpNat jeuMMj"
       disabled={false}
       id="test-option-3"
       name="test"
-      onChange={[Function]}
+      onClick={[Function]}
       type="radio"
       value={2}
     />
     <span
-      className="radio-fill sc-ifAKCX gnYOzT"
+      className="radio-fill sc-ifAKCX eliKVl"
       fill="#fff"
     />
     <span

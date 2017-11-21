@@ -5,7 +5,7 @@ Exchange Solutions React components
 
 ## Documentation and Demos
 
-[https://twexchangesolutions.github.io/es-components/](https://twexchangesolutions.github.io/es-components/)
+[https://wtw-im.github.io/es-components/](https://wtw-im.github.io/es-components/)
 
 ## Versioning
 

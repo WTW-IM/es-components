@@ -6,11 +6,11 @@ import Textbox from '../../controls/textbox/Textbox';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
 import { injectGlobal } from 'styled-components';
-import { datepickerStyles } from './datepickerStyles';
+import { datePickerStyles } from './datePickerStyles';
 
 /* eslint-disable no-unused-expressions */
 injectGlobal`
-  ${datepickerStyles}
+  ${datePickerStyles}
 `;
 /* eslint-enable no-unused-expressions */
 

@@ -1,6 +1,6 @@
 ```
 <div>
-  <Textbox labelText="Stacked" />
+  <Textbox labelText="Stacked" id="foo" />
 
   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
     <Textbox labelText="First name" inline />
@@ -164,32 +164,26 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
 
 ### Additional props
 
-Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided.
-The react `autoFocus` property is also accepted.
-
-#### Disabled and Readonly
+Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided. The react `autoFocus` property is also accepted.
 
 ```
 <div>
   <Textbox
     labelText="Disabled"
-    initialValue="John Doe"
+    defaultValue="John Doe"
     disabled
   />
 
   <Textbox
     labelText="Readonly"
-    initialValue="Jane Doe"
+    defaultValue="Jane Doe"
     readOnly
   />
 
-</div>
-```
-#### Placeholder
+  <Textbox
+    labelText="Placeholder"
+    placeholder="Placeholder is not a specified prop"
+  />
 
-```
-<Textbox
-  labelText="Placeholder"
-  placeholder="Placeholder is not a specified prop"
-/>
+</div>
 ```

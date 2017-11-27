@@ -8,16 +8,16 @@ exports[`RadioButton component renders as expected 1`] = `
   htmlFor="test"
 >
   <input
-    className="sc-htpNat vkqtM"
+    className="sc-htpNat jeuMMj"
     disabled={false}
     id="test"
     name="rad"
-    onChange={[Function]}
+    onClick={[Function]}
     type="radio"
     value={undefined}
   />
   <span
-    className="radio-fill sc-ifAKCX gnYOzT"
+    className="radio-fill sc-ifAKCX eliKVl"
     fill="#fff"
   />
   <span

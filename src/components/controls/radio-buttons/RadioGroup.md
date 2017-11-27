@@ -1,21 +1,5 @@
-Group radio buttons together using a `RadioGroup` component.
+Group radio buttons together using a `RadioGroup` component. Providing a `legendText` prop will render a legend with the grouped radio buttons. Individual options can also be disabled.
 
-```
-const options = [{
-  optionText: 'Red',
-  optionValue: 'red'
-}, {
-  optionText: 'Green',
-  optionValue: 'green'
-}, {
-  optionText: 'Blue',
-  optionValue: 'blue'
-}];
-
-<RadioGroup name="colors" radioOptions={options} checkedValue="green" />
-```
-
-Providing a `legendText` option will render a legend with the grouped radio buttons.
 
 ```
 const options = [{
@@ -25,15 +9,44 @@ const options = [{
   optionText: 'Biking',
   optionValue: 'biking'
 }, {
-  optionText: 'kayaking',
+  optionText: 'Kayaking',
   optionValue: 'kayaking'
+}, {
+  optionText: 'Camping',
+  optionValue: 'camping',
+  isDisabled: true
 }];
 
-<RadioGroup
-  name="recreational-activities"
-  legendText="Recreational activities"
-  radioOptions={options}
-/>
+class RadioGroupExample extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: ''
+    };
+
+    this.optionChanged = this.optionChanged.bind(this);
+  }
+
+  optionChanged(event) {
+    const value = event.target.value;
+    this.setState({ value });
+  }
+
+  render() {
+    return (
+      <RadioGroup
+        name="recreational-activities"
+        legendText="Recreational activities"
+        radioOptions={options}
+        onClick={this.optionChanged}
+        value={this.state.value}
+      />
+    );
+  }
+}
+
+<RadioGroupExample />
 ```
 
 Setting the `inline` option to false will stack the radio buttons
@@ -50,33 +63,38 @@ const options = [{
   optionValue: 'vegetarian'
 }];
 
-<RadioGroup
-  name="plates"
-  radioOptions={options}
-  inline={false}
-/>
+class RadioGroupExample extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: ''
+    };
+
+    this.optionChanged = this.optionChanged.bind(this);
+  }
+
+  optionChanged(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  render() {
+    return (
+      <RadioGroup
+        name="plates"
+        radioOptions={options}
+        inline={false}
+        onClick={this.optionChanged}
+        value={this.state.value}
+      />
+    );
+  }
+}
+
+<RadioGroupExample />
 ```
 
 Each radio is displayed as an error when the `hasError` prop is true. An errored radio group with a default checked option is rendered with a filled radio button.
-
-```
-const options = [{
-  optionText: 'First',
-  optionValue: '1'
-}, {
-  optionText: 'Second',
-  optionValue: '2'
-}, {
-  optionText: 'Third',
-  optionValue: '3'
-}];
-
-<RadioGroup
-  name="placings"
-  radioOptions={options}
-  hasError
-/>
-```
 
 ```
 const options = [{
@@ -90,12 +108,35 @@ const options = [{
   optionValue: 'automobile'
 }];
 
-<RadioGroup
-  name="transports"
-  radioOptions={options}
-  checkedValue="plane"
-  hasError
-/>
+class RadioGroupExample extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 'plane'
+    };
+
+    this.optionChanged = this.optionChanged.bind(this);
+  }
+
+  optionChanged(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  render() {
+    return (
+      <RadioGroup
+        name="transports"
+        radioOptions={options}
+        onClick={this.optionChanged}
+        value={this.state.value}
+        hasError
+      />
+    );
+  }
+}
+
+<RadioGroupExample />
 ```
 
 Each radio is disabled when the `disableAllOptions` prop is true. A disabled radio group with a default checked option is rendered with a filled radio button.
@@ -112,46 +153,32 @@ const options = [{
   optionValue: 'pear'
 }];
 
-<RadioGroup
-  name="fruits"
-  radioOptions={options}
-  disableAllOptions
-/>
-```
+class RadioGroupExample extends React.Component {
+  constructor(props) {
+    super(props);
 
-```
-const options = [{
-  optionText: 'Books',
-  optionValue: 'books'
-}, {
-  optionText: 'Television',
-  optionValue: 'tv'
-}];
+    this.state = {
+      value: 'pear'
+    };
 
-<RadioGroup
-  name="media-preference"
-  radioOptions={options}
-  disableAllOptions
-  checkedValue="books"
-/>
-```
+    this.optionChanged = this.optionChanged.bind(this);
+  }
 
-Individual options can also be disabled.
-```
-const options = [{
-  optionText: 'Hamburger',
-  optionValue: 'burger'
-}, {
-  optionText: 'Cheeseburger',
-  optionValue: 'cheeseburger'
-}, {
-  optionText: 'Hotdog',
-  optionValue: 'hotdog',
-  disabled: true
-}];
+  optionChanged(event) {
+    this.setState({ value: event.target.value });
+  }
 
-<RadioGroup
-  name="cookout-food"
-  radioOptions={options}
-/>
+  render() {
+    return (
+      <RadioGroup
+        name="fruits"
+        radioOptions={options}
+        value={this.state.value}
+        disableAllOptions
+      />
+    );
+  }
+}
+
+<RadioGroupExample />
 ```

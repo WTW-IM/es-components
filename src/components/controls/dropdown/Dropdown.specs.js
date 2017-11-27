@@ -10,43 +10,44 @@ describe('Dropdown component', () => {
   let select;
 
   beforeEach(() => {
-    const options = [{
-      optionText: 'Test 1',
-      optionValue: '1'
-    }, {
-      optionText: 'Test 2',
-      optionValue: '2'
-    }, {
-      optionText: 'Test 3',
-      optionValue: '3'
-    }];
+    const options = [
+      {
+        optionText: 'Test 1',
+        optionValue: '1'
+      },
+      {
+        optionText: 'Test 2',
+        optionValue: '2'
+      },
+      {
+        optionText: 'Test 3',
+        optionValue: '3'
+      }
+    ];
 
-    instance = mount(
-      <Dropdown
-        labelText="Test"
-        options={options}
-      />
-    );
+    instance = mount(<Dropdown labelText="Test" options={options} />);
 
     select = instance.find('select');
   });
 
-  it('executes the passed in "onOptionChanged" function', () => {
-    const onOptionChanged = jest.fn();
-    instance.setProps({ onOptionChanged });
+  it('executes the passed in "onChange" function', () => {
+    const onChange = jest.fn();
+    instance.setProps({ onChange });
 
-    select.simulate('change', { target: { value: '1' } });
+    const event = { target: { value: '1' } };
+    select.simulate('change', event);
 
-    expect(onOptionChanged).toHaveBeenCalledWith('1');
+    expect(onChange).toHaveBeenCalled();
   });
 
-  it('executes the passed in "onDropdownFocusLost" function', () => {
-    const onDropdownFocusLost = jest.fn();
-    instance.setProps({ onDropdownFocusLost });
+  it('executes the passed in "onBlur" function', () => {
+    const onBlur = jest.fn();
+    instance.setProps({ onBlur });
 
-    select.simulate('blur', { target: { value: '2' } });
+    const event = { target: { value: '2' } };
+    select.simulate('blur', event);
 
-    expect(onDropdownFocusLost).toHaveBeenCalledWith('2');
+    expect(onBlur).toHaveBeenCalled();
   });
 
   it('does not render the first option when includeDefaultFirstOption is false', () => {

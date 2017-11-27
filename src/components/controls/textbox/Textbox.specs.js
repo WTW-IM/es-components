@@ -6,8 +6,6 @@ import { mount } from 'enzyme';
 import Icon from '../../base/icons/Icon';
 import Textbox from './Textbox';
 
-jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
-
 describe('Textbox component', () => {
   let instance;
   let input;
@@ -61,11 +59,14 @@ describe('Textbox component', () => {
     let describedBy = input.prop('aria-describedby');
     expect(describedBy).toBeNull();
 
-    instance.setProps({ additionalHelpContent: 'I am here to help' });
+    instance.setProps({
+      id: 'abcdef',
+      additionalHelpContent: 'I am here to help'
+    });
 
     describedBy = input.prop('aria-describedby');
     expect(describedBy).not.toBeUndefined();
-    expect(describedBy).toBe('abcdef');
+    expect(describedBy).toBe('abcdef-help');
   });
 
   it('renders additionalHelp when the additionalHelpContent props is provided', () => {

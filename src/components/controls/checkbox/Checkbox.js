@@ -6,26 +6,31 @@ import { noop } from 'lodash';
 import Label from '../Label';
 import { sizes, colors, inputColors } from '../../theme';
 
+/* eslint-disable no-confusing-arrow */
 const CheckboxLabel = Label.extend`
   font-size: ${sizes.baseFontSize}px;
   font-weight: normal;
   text-transform: none;
 
   > .checkbox-fill {
-    background-color: ${props => (props.isChecked ? colors.accent : colors.white)};
-    border-color: ${props => (props.isChecked ? colors.accent : colors.grayDark)};
+    background-color: ${props =>
+      props.isChecked ? colors.accent : colors.white};
+    border-color: ${props =>
+      props.isChecked ? colors.accent : colors.grayDark};
 
     &:after {
-      border-color: ${props => (props.isChecked > colors.white: colors.grayDark)};
+      border-color: ${colors.white};
     }
   }
 
   &:hover > .checkbox-fill:after {
-    border-color: ${props => (props.isChecked ? colors.white : colors.grayLight)};
+    border-color: ${props =>
+      props.isChecked ? colors.white : colors.grayLight};
   }
 
   &[disabled] > .checkbox-fill {
-    background-color: ${props => (props.isChecked ? colors.gray : colors.white)};
+    background-color: ${props =>
+      props.isChecked ? colors.gray : colors.white};
     border-color: ${colors.gray};
     cursor: not-allowed;
     outline: 0;
@@ -35,6 +40,7 @@ const CheckboxLabel = Label.extend`
     }
   }
 `;
+/* eslint-disable */
 
 const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);
@@ -78,55 +84,42 @@ const CheckboxText = styled.span`
   margin-left: 30px;
 `;
 
-export default class Checkbox extends React.Component {
-  static propTypes = {
-    labelText: PropTypes.string.isRequired,
-    initiallyChecked: PropTypes.bool,
-    checkedValueChanged: PropTypes.func,
-    disabled: PropTypes.bool
-  };
-
-  static defaultProps = {
-    initiallyChecked: false,
-    disabled: false,
-    checkedValueChanged: noop
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.handleOnClick = this.handleOnClick.bind(this);
-  }
-
-  state = {
-    isChecked: this.props.initiallyChecked
-  };
-
-  componentWillReceiveProps({ initiallyChecked }) {
-    this.setState(() => ({ isChecked: initiallyChecked }));
-  }
-
-  handleOnClick({ target }) {
-    if (!this.props.disabled) {
-      this.setState(previousState => ({ isChecked: !previousState.isChecked }));
-      this.props.checkedValueChanged(target.checked);
-    }
-  }
-
-  render() {
-    const { labelText, disabled } = this.props;
-
-    return (
-      <CheckboxLabel disabled={disabled} isChecked={this.state.isChecked}>
-        <CheckboxInput
-          type="checkbox"
-          checked={this.state.isChecked}
-          onChange={this.handleOnClick}
-          focusBorderColor={inputColors.inputDefaultFocus}
-        />
-        <CheckboxWrapper className="checkbox-fill" />
-        <CheckboxText>{labelText}</CheckboxText>
-      </CheckboxLabel>
-    );
-  }
+function Checkbox({
+  labelText,
+  value,
+  isChecked = false,
+  isDisabled = false,
+  onClick = noop,
+  onChange = noop
+}) {
+  return (
+    <CheckboxLabel disabled={isDisabled} isChecked={isChecked}>
+      <CheckboxInput
+        type="checkbox"
+        disabled={isDisabled}
+        value={value}
+        checked={isChecked}
+        onClick={onClick}
+        onChange={onChange}
+        focusBorderColor={inputColors.inputDefaultFocus}
+      />
+      <CheckboxWrapper className="checkbox-fill" />
+      <CheckboxText>
+        {labelText}
+      </CheckboxText>
+    </CheckboxLabel>
+  );
 }
+
+Checkbox.propTypes = {
+  labelText: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isChecked: PropTypes.bool,
+  /* Function to execute when a checkbox is clicked */
+  onClick: PropTypes.func,
+  /* Function to execute when a checkbox checked state is changed */
+  onChange: PropTypes.func,
+  isDisabled: PropTypes.bool
+};
+
+export default Checkbox;

@@ -42,7 +42,7 @@ const RadioInput = styled.input`
   position: absolute;
 
   &:focus ~ .radio-fill {
-    box-shadow: 0 0 3px 3px #83bffc
+    box-shadow: 0 0 3px 3px #83bffc;
   }
 `;
 
@@ -60,7 +60,9 @@ const RadioDisplay = styled.span`
   position: absolute;
   width: 25px;
 
-  &:before { ${props => radioFill(props.fill)} }
+  &:before {
+    ${props => radioFill(props.fill)};
+  }
 `;
 
 function RadioButton({
@@ -68,22 +70,23 @@ function RadioButton({
   name,
   checked = false,
   id,
-  disabled = false,
+  isDisabled = false,
   inline = true,
-  onChange = noop,
+  onClick = noop,
   value,
-  isInErrorState = false,
-  ...radioProps }) {
-  const { hover, fill } = getRadioFillVariables(checked, disabled, isInErrorState);
+  hasError = false,
+  ...radioProps
+}) {
+  const { hover, fill } = getRadioFillVariables(checked, isDisabled, hasError);
   const radioDisplayFill = checked ? fill : colors.white;
 
   const labelProps = {
     checked,
     inline,
-    disabled,
+    disabled: isDisabled,
     htmlFor: id,
     hoverFillColor: hover,
-    error: isInErrorState
+    error: hasError
   };
 
   return (
@@ -92,13 +95,19 @@ function RadioButton({
         type="radio"
         name={name}
         id={id}
-        onChange={onChange}
+        onClick={onClick}
         value={value}
-        disabled={disabled}
+        disabled={isDisabled}
         {...radioProps}
       />
-      <RadioDisplay className="radio-fill" borderColor={fill} fill={radioDisplayFill} />
-      <RadioText>{optionText}</RadioText>
+      <RadioDisplay
+        className="radio-fill"
+        borderColor={fill}
+        fill={radioDisplayFill}
+      />
+      <RadioText>
+        {optionText}
+      </RadioText>
     </RadioLabel>
   );
 }
@@ -108,11 +117,11 @@ RadioButton.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool,
   id: PropTypes.string,
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   inline: PropTypes.bool,
-  onChange: PropTypes.func,
+  onClick: PropTypes.func,
   value: PropTypes.any,
-  isInErrorState: PropTypes.bool
+  hasError: PropTypes.bool
 };
 
 export default RadioButton;

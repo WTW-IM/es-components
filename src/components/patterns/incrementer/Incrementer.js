@@ -1,12 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { noop, isNumber } from 'lodash';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
+import defaultTheme from '../../theme/wtwTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import { InputBase } from '../../controls/BaseControls';
-import { validationInputColor } from '../../controls/validationStateVars';
 
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
@@ -27,14 +27,20 @@ class Incrementer extends React.Component {
     /** The lowest value the incrementer can be decremented to */
     lowerThreshold: PropTypes.number,
     /** Function to execute with the new value */
-    onValueUpdated: PropTypes.func
+    onValueUpdated: PropTypes.func,
+    /**
+     * Theme object used by the ThemeProvider,
+     * automatically passed by any parent component using a ThemeProvider
+     */
+    theme: PropTypes.object
   };
 
   static defaultProps = {
     startingValue: 0,
     incrementAmount: 1,
     decrementAmount: 1,
-    onValueUpdated: noop
+    onValueUpdated: noop,
+    theme: defaultTheme
   };
 
   constructor(props) {
@@ -107,32 +113,35 @@ class Incrementer extends React.Component {
       decrementButtonDisabled,
       incrementButtonDisabled
     } = this.state;
+    const { theme } = this.props;
 
     return (
-      <div>
-        <Button
-          className="decrement-button"
-          styleType="primary"
-          handleOnClick={this.decrementValue}
-          disabled={decrementButtonDisabled}
-        >
-          <Icon name="minus" />
-        </Button>
-        <IncrementerTextbox
-          {...validationInputColor.default}
-          type="text"
-          value={value}
-          readOnly
-        />
-        <Button
-          className="increment-button"
-          styleType="primary"
-          handleOnClick={this.incrementValue}
-          disabled={incrementButtonDisabled}
-        >
-          <Icon name="plus" />
-        </Button>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div>
+          <Button
+            className="decrement-button"
+            styleType="primary"
+            handleOnClick={this.decrementValue}
+            disabled={decrementButtonDisabled}
+          >
+            <Icon name="minus" />
+          </Button>
+          <IncrementerTextbox
+            {...theme.validationInputColor.default}
+            type="text"
+            value={value}
+            readOnly
+          />
+          <Button
+            className="increment-button"
+            styleType="primary"
+            handleOnClick={this.incrementValue}
+            disabled={incrementButtonDisabled}
+          >
+            <Icon name="plus" />
+          </Button>
+        </div>
+      </ThemeProvider>
     );
   }
 }

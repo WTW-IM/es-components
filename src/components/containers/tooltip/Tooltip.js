@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
-import styled from 'styled-components';
-import { colors } from '../../theme';
+import styled, { ThemeProvider } from 'styled-components';
+
+import defaultTheme from '../../theme/wtwTheme';
 import Fade from '../../util/Fade';
 
 const TooltipBase = styled.div`
@@ -10,9 +11,9 @@ const TooltipBase = styled.div`
 `;
 
 const TooltipInner = styled.div`
-  background-color: ${colors.black};
+  background-color: ${props => props.theme.colors.black};
   border-radius: 2px;
-  color: ${colors.white};
+  color: ${props => props.theme.colors.white};
   font-family: sans-serif;
   font-size: 12px;
   padding: 4px 8px 5px 8px;
@@ -48,7 +49,7 @@ const TooltipLeft = styled(TooltipBase)`
 `;
 
 const TooltipArrowTop = styled(TooltipArrowBase)`
-  border-top-color: ${colors.black};
+  border-top-color: ${props => props.theme.colors.black};
   border-width: 5px 5px 0;
   bottom: 0;
   left: 50%;
@@ -56,7 +57,7 @@ const TooltipArrowTop = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowRight = styled(TooltipArrowBase)`
-  border-right-color: ${colors.black};
+  border-right-color: ${props => props.theme.colors.black};
   border-width: 5px 5px 5px 0;
   left: 0;
   margin-top: -5px;
@@ -64,7 +65,7 @@ const TooltipArrowRight = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowBottom = styled(TooltipArrowBase)`
-  border-bottom-color: ${colors.black};
+  border-bottom-color: ${props => props.theme.colors.black};
   border-width: 0 5px 5px;
   left: 50%;
   margin-left: -5px;
@@ -72,7 +73,7 @@ const TooltipArrowBottom = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowLeft = styled(TooltipArrowBase)`
-  border-left-color: ${colors.black};
+  border-left-color: ${props => props.theme.colors.black};
   border-width: 5px 0 5px 5px;
   margin-top: -5px;
   right: 0;
@@ -134,27 +135,29 @@ class Tooltip extends React.Component {
 
   render() {
     return (
-      <span>
-        <span
-          ref={span => {
-            this.toolTipTarget = span;
-          }}
-          onMouseEnter={this.show}
-          onMouseLeave={this.hide}
-        >
-          {this.props.children}
-        </span>
+      <ThemeProvider theme={this.props.theme}>
+        <span>
+          <span
+            ref={span => {
+              this.toolTipTarget = span;
+            }}
+            onMouseEnter={this.show}
+            onMouseLeave={this.hide}
+          >
+            {this.props.children}
+          </span>
 
-        <Overlay
-          show={this.state.show}
-          placement={this.props.position}
-          container={document.body}
-          target={props => this.toolTipTarget}
-          transition={FadeTransition}
-        >
-          <Popup position={this.props.position}>{this.props.content}</Popup>
-        </Overlay>
-      </span>
+          <Overlay
+            show={this.state.show}
+            placement={this.props.position}
+            container={document.body}
+            target={props => this.toolTipTarget}
+            transition={FadeTransition}
+          >
+            <Popup position={this.props.position}>{this.props.content}</Popup>
+          </Overlay>
+        </span>
+      </ThemeProvider>
     );
   }
 }
@@ -164,11 +167,17 @@ Tooltip.propTypes = {
   /** The text the tooltip displays */
   content: PropTypes.node.isRequired,
   /** Set the position of the tooltip over the content */
-  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
+  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 Tooltip.defaultProps = {
-  position: 'top'
+  position: 'top',
+  theme: defaultTheme
 };
 
 export default Tooltip;

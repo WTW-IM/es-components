@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors } from '../../theme';
 import { noop } from 'lodash';
 import DismissButton from '../../controls/DismissButton';
 
+// Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
-  background-color: ${colors.accent};
-  border-bottom: 1px solid ${colors.grayLighter};
-  color: ${colors.white};
+  background-color: ${props => props.theme.colors.accent};
+  border-bottom: 1px solid ${props => props.theme.colors.grayLighter};
+  color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
   padding: 15px;
@@ -21,8 +21,8 @@ const Title = styled.h4`
 `;
 
 const DismissModal = styled(DismissButton)`
-  color: ${colors.white};
-  text-shadow: 0 1px 0 ${colors.black};
+  color: ${props => props.theme.colors.white};
+  text-shadow: 0 1px 0 ${props => props.theme.colors.black};
 `;
 
 const ModalHeader = (props, context) => {

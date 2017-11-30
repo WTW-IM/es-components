@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { colors } from '../../theme';
 import styled, { css } from 'styled-components';
 import { noop } from 'lodash';
+
 import Icon from '../../base/icons/Icon';
 
 const AnchorBase = styled.a`
-  background-color: ${colors.white};
-  color: ${colors.black};
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.black};
   display: flex;
   justify-content: space-between;
   cursor: pointer;
@@ -15,37 +15,37 @@ const AnchorBase = styled.a`
   text-decoration: none;
 
   > i {
-    color: ${colors.white};
+    color: ${props => props.theme.colors.white};
   }
 
   &:hover {
-    background-color: ${colors.grayLighter};
-    color: ${colors.accent};
+    background-color: ${props => props.theme.colors.grayLighter};
+    color: ${props => props.theme.colors.accent};
 
     > i {
-      color: ${colors.accent};
+      color: ${props => props.theme.colors.accent};
     }
   }
 
   ${props =>
     props.isActive &&
     css`
-      background-color: ${colors.accent};
-      color: ${colors.white};
+      background-color: ${props.theme.colors.accent};
+      color: ${props.theme.colors.white};
 
       &:hover {
-        background-color: ${colors.accent};
-        color: ${colors.white};
+        background-color: ${props.theme.colors.accent};
+        color: ${props.theme.colors.white};
 
         > i {
-          color: ${colors.white};
+          color: ${props.theme.colors.white};
         }
       }
     `} ${props =>
       props.isDisabled &&
       css`
-        background-color: ${colors.grayLightest};
-        color: ${colors.grayDark};
+        background-color: ${props.theme.colors.grayLightest};
+        color: ${props.theme.colors.grayDark};
         cursor: not-allowed;
 
         > span {
@@ -53,15 +53,15 @@ const AnchorBase = styled.a`
         }
 
         > i {
-          color: ${colors.grayLightest};
+          color: ${props.theme.colors.grayLightest};
         }
 
         &:hover {
-          background-color: ${colors.grayLightest};
-          color: ${colors.grayDark};
+          background-color: ${props.theme.colors.grayLightest};
+          color: ${props.theme.colors.grayDark};
 
           > i {
-            color: ${colors.grayLightest};
+            color: ${props.theme.colors.grayLightest};
           }
         }
       `};
@@ -69,28 +69,28 @@ const AnchorBase = styled.a`
 
 const AnchorAltStyle = AnchorBase.extend`
   &:hover {
-    border-left: 4px solid ${colors.accent};
+    border-left: 4px solid ${props => props.theme.colors.accent};
     padding-left: 6px;
   }
 
   ${props =>
     props.isActive &&
     css`
-      background-color: ${colors.grayLight};
-      border-left: 4px solid ${colors.accent};
-      color: ${colors.accent};
+      background-color: ${props.theme.colors.grayLight};
+      border-left: 4px solid ${props.theme.colors.accent};
+      color: ${props.theme.colors.accent};
       padding-left: 6px;
 
       > i {
-        color: ${colors.accent};
+        color: ${props.theme.colors.accent};
       }
 
       &:hover {
-        background-color: ${colors.grayLight};
-        color: ${colors.accent};
+        background-color: ${props.theme.colors.grayLight};
+        color: ${props.theme.colors.accent};
 
         > i {
-          color: ${colors.accent};
+          color: ${props.theme.colors.accent};
         }
       }
     `} ${props =>
@@ -103,7 +103,9 @@ const AnchorAltStyle = AnchorBase.extend`
       `};
 `;
 
-const FlexSpan = styled.span`flex-grow: 1;`;
+const FlexSpan = styled.span`
+  flex-grow: 1;
+`;
 
 const NavItem = props => {
   const {

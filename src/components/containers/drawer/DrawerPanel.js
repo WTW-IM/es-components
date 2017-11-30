@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../../base/icons/Icon';
-import { colors } from '../../theme';
 import styled from 'styled-components';
 import genId from '../../util/generateAlphaName';
 import AnimateHeight from 'react-animate-height';
 
-const PanelWrapper = styled.div`border-bottom: 1px solid ${colors.grayLight};`;
+// Note: DrawerPanel relies on a parent (Drawer) with ThemeProvider wrapping it
+const PanelWrapper = styled.div`
+  border-bottom: 1px solid ${props => props.theme.colors.grayLight};
+`;
 
 const PanelButton = styled.button`
   background: none;
@@ -19,8 +21,8 @@ const PanelButton = styled.button`
   width: 100%;
 
   &:hover {
-    background-color: ${colors.grayLighter};
-    color: ${colors.accent};
+    background-color: ${props => props.theme.colors.grayLighter};
+    color: ${props => props.theme.colors.accent};
   }
 `;
 
@@ -33,11 +35,11 @@ const PanelIcon = styled(Icon)`
 const PanelBody = styled(({ noPadding, ...rest }) => (
   <AnimateHeight {...rest} />
 ))`
-  background-color: ${colors.white};
-  color: ${colors.grayDarkest};
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.grayDarkest};
 
   > div {
-    border-bottom: 4px solid ${colors.grayLight};
+    border-bottom: 4px solid ${props => props.theme.colors.grayLight};
     padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
   }
 `;

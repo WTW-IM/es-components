@@ -1,18 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import { noop, omit } from 'lodash';
-import MaskedInput from '../../util/ReactTextMask';
 
+import defaultTheme from '../../theme/wtwTheme';
+import MaskedInput from '../../util/ReactTextMask';
 import Icon from '../../base/icons/Icon';
-import { sizes } from '../../theme';
 import { LabelText, InputBase } from '../BaseControls';
 import Label from '../Label';
-import {
-  validationIconName,
-  validationTextColor,
-  validationInputColor
-} from '../validationStateVars';
 import inputMaskType from './inputMaskType';
 
 const defaultInputPad = '12px';
@@ -31,7 +26,7 @@ const TextBoxLabel = styled(Label)`
 `;
 
 // apply styles to masked input, but remove props it doesn't use
-const StyledMaskedInput = InputBase.withComponent(props =>
+const StyledMaskedInput = InputBase.withComponent(props => (
   <MaskedInput
     {...omit(props, [
       'borderColor',
@@ -43,15 +38,17 @@ const StyledMaskedInput = InputBase.withComponent(props =>
       'numAppendIconNames'
     ])}
   />
-);
-const StyledMask = StyledMaskedInput.extend`${paddings};`;
+));
+const StyledMask = StyledMaskedInput.extend`
+  ${paddings};
+`;
 
 const StyledText = styled(InputBase)`
   ${paddings};
 `;
 
 const AdditionalHelpContent = styled.div`
-  font-size: ${sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize}px;
   font-weight: normal;
   margin: 10px 0 20px 0;
   text-transform: none;
@@ -102,21 +99,22 @@ const Textbox = props => {
     onChange,
     onBlur,
     maskType,
+    theme,
     ...additionalTextProps
   } = props;
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = id !== undefined ? id : `for-${inputName}`;
   const hasHelpContent = additionalHelpContent !== undefined;
   const helpId = hasHelpContent ? `${textboxId}-help` : null;
-  const additionalHelp =
-    hasHelpContent &&
+  const additionalHelp = hasHelpContent && (
     <AdditionalHelpContent id={helpId} className="textbox__help">
       {additionalHelpContent}
-    </AdditionalHelpContent>;
+    </AdditionalHelpContent>
+  );
 
   const hasPrepend = prependIconName !== undefined;
   const hasAppend = appendIconName !== undefined;
-  const hasValidationIcon = validationState !== 'normal';
+  const hasValidationIcon = validationState !== 'default';
 
   let numAppendIconNames = 0;
   if (hasAppend) numAppendIconNames++;
@@ -126,42 +124,47 @@ const Textbox = props => {
   const maskArgs = inputMaskType[maskType];
 
   return (
-    <TextBoxLabel
-      htmlFor={textboxId}
-      color={validationTextColor[validationState]}
-      inline={inline}
-    >
-      <LabelText inline={inline}>
-        {labelText}
-      </LabelText>
-      <InputWrapper>
-        <TextWrapper includeMargin={inline}>
-          {hasPrepend && <Prepend name={prependIconName} size={20} />}
-          <Input
-            aria-describedby={helpId}
-            hasPrepend={hasPrepend}
-            id={textboxId}
-            innerRef={inputRef}
-            name={inputName}
-            numAppendIconNames={numAppendIconNames}
-            onBlur={onBlur}
-            onChange={onChange}
-            type="text"
-            value={value}
-            {...additionalTextProps}
-            {...validationInputColor[validationState]}
-            {...maskArgs}
-          />
-          {(hasAppend || hasValidationIcon) &&
-            <Append>
-              {hasValidationIcon &&
-                <Icon name={validationIconName[validationState]} size={20} />}
-              {hasAppend && <Icon name={appendIconName} size={20} />}
-            </Append>}
-        </TextWrapper>
-      </InputWrapper>
-      {additionalHelp}
-    </TextBoxLabel>
+    <ThemeProvider theme={theme}>
+      <TextBoxLabel
+        htmlFor={textboxId}
+        color={theme.validationTextColor[validationState]}
+        inline={inline}
+      >
+        <LabelText inline={inline}>{labelText}</LabelText>
+        <InputWrapper>
+          <TextWrapper includeMargin={inline}>
+            {hasPrepend && <Prepend name={prependIconName} size={20} />}
+            <Input
+              aria-describedby={helpId}
+              hasPrepend={hasPrepend}
+              id={textboxId}
+              innerRef={inputRef}
+              name={inputName}
+              numAppendIconNames={numAppendIconNames}
+              onBlur={onBlur}
+              onChange={onChange}
+              type="text"
+              value={value}
+              {...additionalTextProps}
+              {...theme.validationInputColor[validationState]}
+              {...maskArgs}
+            />
+            {(hasAppend || hasValidationIcon) && (
+              <Append>
+                {hasValidationIcon && (
+                  <Icon
+                    name={theme.validationIconName[validationState]}
+                    size={20}
+                  />
+                )}
+                {hasAppend && <Icon name={appendIconName} size={20} />}
+              </Append>
+            )}
+          </TextWrapper>
+        </InputWrapper>
+        {additionalHelp}
+      </TextBoxLabel>
+    </ThemeProvider>
   );
 };
 
@@ -182,7 +185,7 @@ Textbox.propTypes = {
   /** Content to display underneath the text box */
   additionalHelpContent: PropTypes.node,
   /** Display label and text with contextual state colorings */
-  validationState: PropTypes.oneOf(['normal', 'success', 'warning', 'danger']),
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /** Content to prepend input box with */
   prependIconName: PropTypes.string,
   /** Content to append to input box */
@@ -192,7 +195,19 @@ Textbox.propTypes = {
   /** Value of the textbox */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets a mask type on the input */
-  maskType: PropTypes.oneOf(['none', 'date', 'dollar', 'phone', 'ssnum', 'zip'])
+  maskType: PropTypes.oneOf([
+    'none',
+    'date',
+    'dollar',
+    'phone',
+    'ssnum',
+    'zip'
+  ]),
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 Textbox.defaultProps = {
@@ -200,7 +215,8 @@ Textbox.defaultProps = {
   maskType: 'none',
   onChange: noop,
   onBlur: noop,
-  validationState: 'normal'
+  validationState: 'default',
+  theme: defaultTheme
 };
 
 export default Textbox;

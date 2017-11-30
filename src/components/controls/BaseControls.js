@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { colors, sizes } from '../theme';
+// Note: Any component importing these will likely need a ThemeProvider wrapper
+import styled, { css } from 'styled-components';
 
 export const LabelText = styled.span`
   align-self: ${props => (props.inline ? 'center' : 'initial')};
@@ -10,11 +10,11 @@ export const LabelText = styled.span`
   margin-bottom: ${props => (props.inline ? 'initial' : '5px')};
 `;
 
-const baseStyles = `
+const baseStyles = css`
   border-radius: 2px;
   box-sizing: border-box;
-  color: ${colors.grayDarkest};
-  font-size: ${sizes.baseFontSize}px;
+  color: ${props => props.theme.colors.grayDarkest};
+  font-size: ${props => props.theme.sizes.baseFontSize}px;
   font-weight: normal;
   height: 39px;
   padding: 6px 12px;
@@ -26,7 +26,7 @@ const baseStyles = `
   }
 
   &:disabled {
-    background-color: ${colors.grayLighter};
+    background-color: ${props => props.theme.colors.grayLighter};
     cursor: not-allowed;
   }
 `;
@@ -41,13 +41,13 @@ export const InputBase = styled.input`
   }
 
   &:read-only {
-    background-color: ${colors.grayLighter};
+    background-color: ${props => props.theme.colors.grayLighter};
     cursor: text;
   }
 `;
 
 export const SelectBase = styled.select`
-  ${baseStyles} background-color: ${colors.white};
+  ${baseStyles} background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.borderColor};
 
   color: ${props => props.foregroundColor};

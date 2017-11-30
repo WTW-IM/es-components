@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import { sizes } from '../theme';
-
+// Note: Label relies on a parent with a ThemeProvider
 const Label = styled.label`
   color: ${props => props.color || 'inherit'};
   cursor: pointer;
@@ -9,7 +8,7 @@ const Label = styled.label`
   margin-bottom: 20px;
   text-transform: uppercase;
   flex: ${props => (props.inline ? 'auto' : 'initial')};
-  font-size: ${sizes.baseFontSize * 0.75}px;
+  font-size: ${props => props.theme.sizes.baseFontSize * 0.75}px;
   font-weight: bold;
 
   &[disabled] {

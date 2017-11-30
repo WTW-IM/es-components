@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { colors } from '../../theme';
 
+// Note: ModalBody relies on a parent (Modal) with ThemeProvider wrapping it
 const ModalBody = styled.div`
-  color: ${colors.grayDarkest};
+  color: ${props => props.theme.colors.grayDarkest};
   padding: 15px;
 `;
 

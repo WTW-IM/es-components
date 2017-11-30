@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
-import { notificationVariations } from './notification-variations';
-
+import defaultTheme from '../../theme/wtwTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
-import { colors } from '../../theme';
 
 const DismissNotification = styled(DismissButton)`
   line-height: 80%;
   opacity: 0.2;
   padding: 0;
   margin-left: 15px;
-  text-shadow: 0 1px 0 ${colors.white};
+  text-shadow: 0 1px 0 ${props => props.theme.colors.white};
 
   &:hover {
     opacity: 0.5;
@@ -159,10 +157,10 @@ function renderCallsToAction(callsToAction) {
 }
 
 const NotificationContainer = styled.div`
-  background-color: ${props => props.notificationVariation.color};
-  border: 1px solid ${props => props.notificationVariation.borderColor};
+  background-color: ${props => props.styles.color};
+  border: 1px solid ${props => props.styles.borderColor};
   border-radius: 2px;
-  color: ${props => props.notificationVariation.foregroundColor};
+  color: ${props => props.styles.foregroundColor};
   margin-bottom: 25px;
 `;
 
@@ -193,38 +191,40 @@ function Notification({
   isAlert = false,
   onDismiss = noop,
   extraAlert,
+  theme,
   ...otherProps
 }) {
-  const notificationVariation = notificationVariations[type];
   const hasCallsToAction = callsToAction.length > 0;
   const hasExtraAlert = extraAlert;
   const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
 
   return (
-    <NotificationContainer
-      {...otherProps}
-      notificationVariation={notificationVariation}
-      role={roleType}
-    >
-      <NotificationHeader>
-        {renderLeadingHeader(type, includeIcon, header, additionalText)}
-        {hasExtraAlert && renderExtraAlert(extraAlert)}
-        {dismissable && (
-          <DismissNotification
-            onClick={onDismiss}
-            className="notification__dismiss"
-          />
-        )}
-      </NotificationHeader>
+    <ThemeProvider theme={theme}>
+      <NotificationContainer
+        {...otherProps}
+        styles={theme.notification[type]}
+        role={roleType}
+      >
+        <NotificationHeader>
+          {renderLeadingHeader(type, includeIcon, header, additionalText)}
+          {hasExtraAlert && renderExtraAlert(extraAlert)}
+          {dismissable && (
+            <DismissNotification
+              onClick={onDismiss}
+              className="notification__dismiss"
+            />
+          )}
+        </NotificationHeader>
 
-      {hasChildren && (
-        <NotificationContent hasIcon={includeIcon}>
-          {children}
-        </NotificationContent>
-      )}
-      {hasCallsToAction && renderCallsToAction(callsToAction)}
-    </NotificationContainer>
+        {hasChildren && (
+          <NotificationContent hasIcon={includeIcon}>
+            {children}
+          </NotificationContent>
+        )}
+        {hasCallsToAction && renderCallsToAction(callsToAction)}
+      </NotificationContainer>
+    </ThemeProvider>
   );
 }
 
@@ -268,7 +268,16 @@ Notification.propTypes = {
   /** Display a set of buttons for the user. A custom element or an object describing the button content and action are acceptable. */
   callsToAction: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.shape(callToActionShape), PropTypes.element])
-  )
+  ),
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
+};
+
+Notification.defaultProps = {
+  theme: defaultTheme
 };
 
 export default Notification;

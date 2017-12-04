@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css, ThemeProvider } from 'styled-components';
 import { noop, omit } from 'lodash';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import MaskedInput from '../../util/ReactTextMask';
 import Icon from '../../base/icons/Icon';
 import { LabelText, InputBase } from '../BaseControls';

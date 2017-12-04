@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 import { noop, isNumber } from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import { InputBase } from '../../controls/BaseControls';

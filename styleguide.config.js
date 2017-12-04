@@ -14,9 +14,8 @@ module.exports = {
   sections: [
     {
       name: 'Base',
-      components: function() {
-        return [path.join(baseComponentDir, 'base/icons/Icon.js')];
-      },
+  	  content: path.join(baseComponentDir, 'base/Base.md'),
+      components: path.join(baseComponentDir, 'base/**/*.js')
     },
 	{
 	  name: 'Containers',
@@ -25,11 +24,11 @@ module.exports = {
 	},
     {
       name: 'Controls',
-      components: path.join(baseComponentDir, '/controls/**/*.js')
+      components: path.join(baseComponentDir, 'controls/**/*.js')
     },
     {
       name: 'Navigation',
-      components: path.join(baseComponentDir, '/navigation/**/*.js')
+      components: path.join(baseComponentDir, 'navigation/**/*.js')
     },
     {
       name: 'Patterns',

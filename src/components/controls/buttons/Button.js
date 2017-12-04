@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import tinycolor from 'tinycolor2';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import { buttonSizeStyles } from './button-sizes';
 import {
   defaultButtonVariants,

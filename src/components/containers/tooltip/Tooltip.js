@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled, { ThemeProvider } from 'styled-components';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import Fade from '../../util/Fade';
 
 const TooltipBase = styled.div`

@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import NavItem from './NavItem';
 
 const NavStyled = styled.nav`

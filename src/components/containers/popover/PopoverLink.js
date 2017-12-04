@@ -4,7 +4,7 @@ import { noop } from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 import uncontrollable from 'uncontrollable';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import Button from '../../controls/buttons/Button';
 import PopoverTrigger from './PopoverTrigger';
 

@@ -4,7 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import genId from '../../util/generateAlphaName';
 import Fade from '../../util/Fade';
 import Header from './ModalHeader';

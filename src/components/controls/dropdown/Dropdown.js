@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import { ThemeProvider } from 'styled-components';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import Label from '../Label';
 import { LabelText, SelectBase } from '../BaseControls';
 

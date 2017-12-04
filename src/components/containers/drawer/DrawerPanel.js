@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from '../../base/icons/Icon';
 import styled from 'styled-components';
-import genId from '../../util/generateAlphaName';
 import AnimateHeight from 'react-animate-height';
+
+import genId from '../../util/generateAlphaName';
 
 // Note: DrawerPanel relies on a parent (Drawer) with ThemeProvider wrapping it
 const PanelWrapper = styled.div`

@@ -6,7 +6,7 @@ import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
 import { injectGlobal, ThemeProvider } from 'styled-components';
 
-import defaultTheme from '../../theme/wtwTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import datepickerStyles from './datepickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 

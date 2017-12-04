@@ -1,10 +1,11 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import DrawerPanel from './DrawerPanel';
 import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
-import defaultTheme from '../../theme/wtwTheme';
+
+import defaultTheme from '../../theme/defaultTheme';
+import DrawerPanel from './DrawerPanel';
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];

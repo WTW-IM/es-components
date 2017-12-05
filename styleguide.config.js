@@ -12,10 +12,13 @@ module.exports = {
   title: `Exchange Solutions React Components v${version}`,
   template: 'config/template.html',
   sections: [
+	{
+	  name: 'Themes',
+	  content: path.join(baseComponentDir, 'theme/Themes.md')
+	},
     {
       name: 'Base',
-  	  content: path.join(baseComponentDir, 'base/Base.md'),
-      components: path.join(baseComponentDir, 'base/**/*.js')
+  	  components: path.join(baseComponentDir, 'base/**/*.js')
     },
 	{
 	  name: 'Containers',

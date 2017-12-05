@@ -69,7 +69,6 @@ export default function datepickerStyles(colors, dpColors) {
       display: inline-block;
   }
   .react-datepicker {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 0.9rem;
       background-color: ${colors.white};
       color: ${colors.black};

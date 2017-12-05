@@ -1,6 +1,6 @@
 ## Themes
 
-To apply a theme you can either wrap your root react app component in a `<ThemeProvider theme='[themeName]'>` wrapper component, or individual components. This wrapper provides the supplied theme to any components underneath it. See [styled-components Theming](https://www.styled-components.com/docs/advanced#theming).
+To apply a theme you can either wrap your root react app component in a `<ThemeProvider theme='[themeName]'>` wrapper component, or provide a theme to individual components via the `theme` prop. The `ThemeProvider` wrapper provides the supplied theme to any components underneath it. See [styled-components Theming](https://www.styled-components.com/docs/advanced#theming).
 
 <pre>
 import { ThemeProvider } from 'styled-components';
@@ -16,7 +16,7 @@ render(
 
 Three themes are provided with this library: `defaultTheme`, `wtwTheme`, and `viaTheme`.
 
-To create your own theme, you could simply copy one of the themes (a simple javascript object), modify the values, and import the object into your project and supply that object to the `ThemeProvider`.
+To create your own theme, you could simply copy one of the themes (a simple javascript object), modify the values, and supply that object to the `ThemeProvider`.
 
 ### Theme colors
 
@@ -31,3 +31,7 @@ Accent <div style="background-color: #5a0c6f; padding: 1em; width: 50px"></div> 
 Via |
 --- |
 Accent <div style="background-color: #702082; padding: 1em; width: 50px"></div> | Info <div style="background-color: #00a0d2; padding: 1em; width: 50px"></div> | Advisor <div style="background-color: #c110a0; padding: 1em; width: 50px"></div> | Success <div style="background-color: #00c389; padding: 1em; width: 50px"></div> | Warning <div style="background-color: #ffc107; padding: 1em; width: 50px"></div> | Danger <div style="background-color: #dc3545; padding: 1em; width: 50px"></div> |
+
+### Fonts
+
+Apart from the icon set, this library does not have a specific typography and should work with whatever font you have defined in your project.

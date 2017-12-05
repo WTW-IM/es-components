@@ -17,7 +17,7 @@ const containerStyle = {
 </div>
 ```
 
-**Note:** Icons will not work if the `oecom-icons` and `oe-icons-light` font faces are not loaded into a stylesheet prior to using the Icon component.
+**Note:** Icons will not work if the `oecom-icons` and `oe-icons-light` font faces are not loaded into a stylesheet prior to using the Icon component. For example:
 
 <pre>
 &lt;head&gt;
@@ -44,4 +44,4 @@ const containerStyle = {
 </pre>
 
 You can find these fonts in the `public/webfonts` folder
-where you installed es-components (e.g. `npm_modules/es-components/public/webfonts`). You'll likely want to copy them into your own projects `public` folder.
+where you installed es-components (e.g. `npm_modules/es-components/public/webfonts`). You'll likely want to copy them into your own project's `public` folder.

@@ -6,9 +6,11 @@ const inputMask = {
   date: {
     mask: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
     pipe: createautoCorrectedDatePipe('mm/dd/yyyy'),
-    keepCharPositions: true
+    showMask: false,
+    keepCharPositions: true,
+    placeholderChar: '\u2000'
   },
-  dollar: { mask: createNumberMask({ prefix: '' }) },
+  dollar: { mask: createNumberMask({ prefix: '$' }) },
   phone: {
     mask: [
       '(',
@@ -26,13 +28,15 @@ const inputMask = {
       /\d/,
       /\d/
     ],
-    showMask: true,
-    keepCharPositions: true
+    showMask: false,
+    keepCharPositions: true,
+    placeholderChar: '\u2000'
   },
   ssnum: {
     mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-    showMask: true,
-    keepCharPositions: true
+    showMask: false,
+    keepCharPositions: true,
+    placeholderChar: '\u2000'
   },
   zip: {
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/],

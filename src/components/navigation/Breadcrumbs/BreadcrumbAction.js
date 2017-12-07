@@ -1,36 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { colors } from '../../theme';
+import styled from 'styled-components';
 
-class BreadcrumbAction extends React.Component {
-  state = { hovering: false };
-
-  render() {
-    const hover = () => {
-      this.setState({ hovering: true });
-    };
-    const unhover = () => {
-      this.setState({ hovering: false });
-    };
-    const lineStyle = this.state.hovering ? 'underline' : 'none';
-    return (
-            <span
-              onClick={this.props.Action}
-              className={this.props.ActionClasses}
-              onMouseOver={hover}
-              onMouseOut={unhover}
-              style={{ textDecorationLine: lineStyle, color: colors.accent }}
-            >
-                {this.props.displayName}
-            </span>
-        );
+const SpanStyled = styled.span`
+  &:hover {
+    text-decoration: underline;
   }
+`;
+
+function BreadcrumbAction({ action, name, actionClasses }) {
+  const actionProps = {
+    onClick: action,
+    className: actionClasses
+  };
+  return <SpanStyled {...actionProps}>{name}</SpanStyled>;
 }
 
 BreadcrumbAction.propTypes = {
-  displayName: PropTypes.string,
-  Action: PropTypes.func,
-  ActionClasses: PropTypes.string
+  name: PropTypes.string.isRequired,
+  action: PropTypes.func.isRequired,
+  actionClasses: PropTypes.string
 };
 
 export default BreadcrumbAction;

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import BreadcrumbAction from './BreadcrumbAction';
 import Icon from '../../base/icons/Icon';
 
 function Breadcrumb({ breadcrumbClasses, children, ...props }) {
@@ -18,9 +17,7 @@ function Breadcrumb({ breadcrumbClasses, children, ...props }) {
 
 Breadcrumb.propTypes = {
   breadcrumbClasses: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.any.isRequired
 };
-
-Breadcrumb.BreadcrumbAction = BreadcrumbAction;
 
 export default Breadcrumb;

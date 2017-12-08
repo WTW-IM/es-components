@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testSuite renders as expected 1`] = `
+<div
+  className={undefined}
+>
+  <span>
+    <a>
+      test
+    </a>
+  </span>
+  <span>
+    <i
+      aria-hidden={true}
+      className="sc-bdVaJa izWgQO"
+      content="620"
+      fontFamily="oecom-icons"
+      fontSize="inherit"
+    />
+    <a>
+      test2
+    </a>
+  </span>
+</div>
+`;

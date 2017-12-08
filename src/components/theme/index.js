@@ -27,7 +27,8 @@ export const colors = {
   information: '#1b6284',
   warning: '#ebaf00',
   danger: '#af140c',
-  advisor: '#ff6310'
+  advisor: '#ff6310',
+  linkColor: '#007fa7'
 };
 
 export const backgroundColors = {

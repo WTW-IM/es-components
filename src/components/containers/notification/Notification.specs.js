@@ -30,14 +30,14 @@ function getMountedInstance(props) {
 }
 
 it('notification has the dialog role by default', () => {
-  const instance = getShallowInstance();
-  expect(instance.prop('role')).toBe('dialog');
+  const instance = getShallowInstance().find('[role="dialog"]');
+  expect(instance).toHaveLength(1);
 });
 
 it('notification has the alert role when isAlert prop is true', () => {
   const instance = getShallowInstance();
   instance.setProps({ isAlert: true });
-  expect(instance.prop('role')).toBe('alert');
+  expect(instance.find('[role="alert"]')).toHaveLength(1);
 });
 
 it('header text is emphasized with h4 tag', () => {
@@ -99,7 +99,9 @@ describe('when callsToAction are provided', () => {
 
   it('allows components to be provided directly', () => {
     const myButton = (
-      <Button id="myButton" handleOnClick={jest.fn()}>My button</Button>
+      <Button id="myButton" handleOnClick={jest.fn()}>
+        My button
+      </Button>
     );
     const buttonedCallsToAction = [
       callsToAction[0],

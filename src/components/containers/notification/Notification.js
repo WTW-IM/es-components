@@ -2,11 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
+import tinycolor from 'tinycolor2';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
+
+function adjustColor(color, level) {
+  const colorBase = level > 0 ? '#000' : '#fff';
+  return tinycolor.mix(colorBase, color, Math.abs(level)).toRgbString();
+}
 
 const DismissNotification = styled(DismissButton)`
   line-height: 80%;
@@ -157,10 +163,10 @@ function renderCallsToAction(callsToAction) {
 }
 
 const NotificationContainer = styled.div`
-  background-color: ${props => props.styles.color};
-  border: 1px solid ${props => props.styles.borderColor};
+  background-color: ${props => adjustColor(props.color, -10)};
+  border: 1px solid ${props => adjustColor(props.color, -60)};
   border-radius: 2px;
-  color: ${props => props.styles.foregroundColor};
+  color: ${props => adjustColor(props.color, 60)};
   margin-bottom: 25px;
 `;
 
@@ -203,7 +209,7 @@ function Notification({
     <ThemeProvider theme={theme}>
       <NotificationContainer
         {...otherProps}
-        styles={theme.notification[type]}
+        color={theme.colors[type]}
         role={roleType}
       >
         <NotificationHeader>

@@ -54,15 +54,13 @@ const ButtonBase = styled.button`
 `;
 
 const DefaultButton = styled(ButtonBase)`
-  background-color: ${props =>
-    props.buttonVariant.backgroundColor.toRgbString()};
+  background-color: ${props => props.buttonVariant.backgroundColor};
   border-color: ${props => props.buttonVariant.borderColor};
   box-shadow: 0 4px 0 0 ${props => props.buttonVariant.boxShadowColor};
   color: ${props => props.buttonVariant.foregroundColor};
 
   &[disabled]:hover {
-    background-color: ${props =>
-      props.buttonVariant.backgroundColor.toRgbString()};
+    background-color: ${props => props.buttonVariant.backgroundColor};
   }
 
   &:hover {
@@ -72,13 +70,12 @@ const DefaultButton = styled(ButtonBase)`
 
 const AlternateButton = styled(ButtonBase)`
   background-color: ${props => props.theme.colors.white};
-  border: 2px solid ${props => props.buttonVariant.borderColor.toRgbString()};
+  border: 2px solid ${props => props.buttonVariant.borderColor};
   border-radius: 0;
-  color: ${props => props.buttonVariant.foregroundColor.toRgbString()};
+  color: ${props => props.buttonVariant.foregroundColor};
 
   &:hover {
-    background-color: ${props =>
-      props.buttonVariant.hoverBackgroundColor.toRgbString()};
+    background-color: ${props => props.buttonVariant.hoverBackgroundColor};
     color: ${props => props.buttonVariant.hoverForegroundColor};
   }
 `;
@@ -117,9 +114,10 @@ const LinkButton = styled(ButtonBase)`
 
   &:hover,
   &:focus {
-    color: ${tinycolor(props => props.theme.colors.primary)
-      .darken(15)
-      .toRgbString()};
+    color: ${props =>
+      tinycolor(props.theme.colors.accent)
+        .darken(15)
+        .toRgbString()};
   }
 
   &:hover,

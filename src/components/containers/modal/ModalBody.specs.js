@@ -2,15 +2,19 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { ThemeProvider } from 'styled-components';
 
 import ModalBody from './ModalBody';
+import defaultTheme from '../../theme/defaultTheme';
 
 describe('modal Body component', () => {
   let instanceToRender;
 
   beforeEach(() => {
     instanceToRender = (
-      <ModalBody className="Body">This is the Body.</ModalBody>
+      <ThemeProvider theme={defaultTheme}>
+        <ModalBody className="Body">This is the Body.</ModalBody>
+      </ThemeProvider>
     );
   });
 

@@ -1,7 +1,9 @@
 import tinycolor from 'tinycolor2';
 
 function getBackgroundColor(color, lightenAmount = 5) {
-  return tinycolor(color).lighten(lightenAmount);
+  return tinycolor(color)
+    .lighten(lightenAmount)
+    .toRgbString();
 }
 
 function getHoverBackgroundColor(color, darkenAmount = 10) {
@@ -22,13 +24,32 @@ function getBoxShadowColor(color, darkenAmount = 10) {
     .toRgbString();
 }
 
-function getSimpleButtonVariation(color, foregroundColor = '#fff') {
+function swapForeground(color) {
+  return tinycolor.equals(color, '#000') ? '#fff' : '#000';
+}
+
+function getSimpleButtonVariation(color) {
+  let bgColor = color;
+
+  // if the color supplied is black, we need to lighten up the button.
+  // sticking to black and white text colors for readability.
+  if (tinycolor.equals(color, '#000')) {
+    bgColor = '#444';
+  }
+
+  const backgroundColor = getBackgroundColor(bgColor);
+
+  let textColor = '#fff';
+  if (tinycolor.readability(backgroundColor, textColor) < 2) {
+    textColor = swapForeground(textColor);
+  }
+
   return {
-    backgroundColor: getBackgroundColor(color),
-    hoverBackgroundColor: getHoverBackgroundColor(color),
-    borderColor: getBorderColor(color),
-    boxShadowColor: getBoxShadowColor(color),
-    foregroundColor
+    backgroundColor,
+    hoverBackgroundColor: getHoverBackgroundColor(bgColor),
+    borderColor: getBorderColor(bgColor),
+    boxShadowColor: getBoxShadowColor(bgColor),
+    foregroundColor: textColor
   };
 }
 
@@ -37,15 +58,7 @@ function defaultButtonVariants(colors, type) {
 
   switch (type) {
     case 'primary':
-      variant = {
-        backgroundColor: getBackgroundColor(colors.black, 30),
-        hoverBackgroundColor: getHoverBackgroundColor(
-          getBackgroundColor(colors.black, 30)
-        ),
-        borderColor: getBorderColor(getBackgroundColor(colors.black, 30), 20),
-        boxShadowColor: getBoxShadowColor(getBackgroundColor(colors.black, 30)),
-        foregroundColor: colors.white
-      };
+      variant = getSimpleButtonVariation(colors.primary);
       break;
     case 'accent':
       variant = getSimpleButtonVariation(colors.accent);
@@ -57,7 +70,7 @@ function defaultButtonVariants(colors, type) {
       variant = getSimpleButtonVariation(colors.information);
       break;
     case 'warning':
-      variant = getSimpleButtonVariation(colors.warning, colors.grayDarkest);
+      variant = getSimpleButtonVariation(colors.warning);
       break;
     case 'danger':
       variant = getSimpleButtonVariation(colors.danger);
@@ -81,12 +94,25 @@ function getAlternateColor(
   hoverForegroundColor = '#fff',
   lightenAmount = 5
 ) {
-  const alternateColor = tinycolor(color).lighten(lightenAmount);
+  const alternateColor = tinycolor(color)
+    .lighten(lightenAmount)
+    .toRgbString();
+
+  let textColor = color;
+  if (tinycolor.readability('#fff', color) < 2) {
+    textColor = '#000';
+  }
+
+  let hoverColor = hoverForegroundColor;
+  if (tinycolor.readability(color, hoverForegroundColor) < 2) {
+    hoverColor = '#000';
+  }
+
   return {
     borderColor: alternateColor,
     hoverBackgroundColor: alternateColor,
-    hoverForegroundColor,
-    foregroundColor: tinycolor(foregroundColor) || alternateColor
+    hoverForegroundColor: hoverColor,
+    foregroundColor: tinycolor(textColor).toRgbString() || alternateColor
   };
 }
 
@@ -95,7 +121,7 @@ function alternateButtonVariants(colors, type) {
 
   switch (type) {
     case 'primary':
-      variant = getAlternateColor(colors.black, 30);
+      variant = getAlternateColor(colors.primary, 30);
       break;
     case 'accent':
       variant = getAlternateColor(colors.accent);
@@ -107,11 +133,7 @@ function alternateButtonVariants(colors, type) {
       variant = getAlternateColor(colors.information);
       break;
     case 'warning':
-      variant = getAlternateColor(
-        colors.warning,
-        colors.grayDarkest,
-        colors.grayDarkest
-      );
+      variant = getAlternateColor(colors.warning);
       break;
     case 'danger':
       variant = getAlternateColor(colors.danger);

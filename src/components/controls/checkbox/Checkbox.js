@@ -51,7 +51,7 @@ const CheckboxInput = styled.input`
   position: absolute;
 
   &:focus ~ .checkbox-fill {
-    outline: 5px auto ${props => props.theme.inputColors.inputDefaultFocus};
+    outline: 5px auto ${props => props.theme.colors.inputFocus};
   }
 `;
 
@@ -107,7 +107,7 @@ function Checkbox({
           checked={isChecked}
           onClick={onClick}
           onChange={onChange}
-          focusBorderColor={theme.inputColors.inputDefaultFocus}
+          focusBorderColor={theme.colors.inputFocus}
         />
         <CheckboxWrapper className="checkbox-fill" />
         <CheckboxText>{labelText}</CheckboxText>

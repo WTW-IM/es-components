@@ -73,7 +73,7 @@ export default function datepickerStyles(colors, dpColors) {
       background-color: ${colors.white};
       color: ${colors.black};
       border: 1px solid ${colors.gray};
-      box-shadow: 0 5px 10px ${dpColors.boxShadow};
+      box-shadow: 0 5px 10px ${colors.boxShadowLight};
       display: inline-block;
       position: relative;
   }
@@ -438,7 +438,7 @@ export default function datepickerStyles(colors, dpColors) {
       position: fixed;
       width: 100vw;
       height: 100vh;
-      background-color: ${dpColors.portalBackground};
+      background-color: ${colors.boxShadowDark};
       left: 0;
       top: 0;
       justify-content: center;

@@ -80,10 +80,10 @@ function RadioButton({
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
-    theme.colors,
     checked,
     isDisabled,
-    hasError
+    hasError,
+    theme.colors
   );
   const radioDisplayFill = checked ? fill : theme.colors.white;
 

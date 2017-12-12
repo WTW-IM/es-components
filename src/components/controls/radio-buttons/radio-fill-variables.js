@@ -1,8 +1,8 @@
 export default function getRadioFillVariables(
-  colors,
   isChecked,
   isDisabled,
-  isInvalid
+  isInvalid,
+  colors
 ) {
   const isNotChecked = !isChecked;
   const isNotDisabled = !isDisabled;

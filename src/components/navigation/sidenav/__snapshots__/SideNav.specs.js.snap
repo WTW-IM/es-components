@@ -2,17 +2,17 @@
 
 exports[`drawer renders as expected 1`] = `
 <nav
-  className="sc-ifAKCX hvutRM"
+  className="sc-ifAKCX kMQNfz"
 >
   <ul>
     <li>
       <a
-        className="home sc-bwzfXH kdkTdX"
+        className="home sc-bwzfXH iLPFak"
         href="/home"
         onClick={[Function]}
       >
         <span
-          className="sc-bxivhb gYEJOJ"
+          className="sc-bxivhb khxFsg"
         >
           Home
         </span>
@@ -27,12 +27,12 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="cart sc-bwzfXH kdkTdX"
+        className="cart sc-bwzfXH iLPFak"
         href="#/"
         onClick={[Function]}
       >
         <span
-          className="sc-bxivhb gYEJOJ"
+          className="sc-bxivhb khxFsg"
         >
           Cart
         </span>
@@ -47,13 +47,13 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="external sc-bwzfXH kdkTdX"
+        className="external sc-bwzfXH iLPFak"
         href="http://www.google.com"
         onClick={[Function]}
         target="_blank"
       >
         <span
-          className="sc-bxivhb gYEJOJ"
+          className="sc-bxivhb khxFsg"
         >
           External Link
         </span>
@@ -68,12 +68,12 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="info sc-bwzfXH echfcF"
+        className="info sc-bwzfXH hdqpwO"
         href="#/"
         onClick={[Function]}
       >
         <span
-          className="sc-bxivhb gYEJOJ"
+          className="sc-bxivhb khxFsg"
         >
           Disabled
         </span>

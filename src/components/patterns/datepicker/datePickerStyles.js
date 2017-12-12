@@ -5,10 +5,10 @@ const navArrowHover = colors.grayDark;
 
 const selected = '#216ba5';
 const hover = '#1d5d90';
-const keyboard = '#2a87d0';
-const inRange = 'rgba(33, 107, 165, 0.5)';
+const keyboard = '#2577B6';
+const inRange = '#7DB7E3';
 
-const highlight = '#3dcc4a';
+const highlight = '#23852B';
 const highlightHover = '#32be3f';
 
 const boxShadow = 'rgba(0, 0, 0, 0.2)';
@@ -291,6 +291,7 @@ export const datepickerStyles = `
   }
   .react-datepicker__day--highlighted:hover {
       background-color: ${highlightHover};
+      color: ${colors.black}
   }
   .react-datepicker__day--selected,
   .react-datepicker__day--in-selecting-range,
@@ -314,6 +315,7 @@ export const datepickerStyles = `
   }
   .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
       background-color: ${inRange};
+      color: ${colors.black};
   }
   .react-datepicker__month--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range) {
       background-color: ${colors.grayLight};

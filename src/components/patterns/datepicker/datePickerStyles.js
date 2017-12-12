@@ -275,6 +275,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__day--highlighted:hover {
       background-color: ${dpColors.highlightHover};
+      color: ${colors.black}
   }
   .react-datepicker__day--selected,
   .react-datepicker__day--in-selecting-range,
@@ -298,6 +299,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
       background-color: ${dpColors.inRange};
+      color: ${colors.black};
   }
   .react-datepicker__month--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range) {
       background-color: ${colors.grayLight};

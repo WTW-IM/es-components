@@ -7,7 +7,7 @@ import uncontrollable from 'uncontrollable';
 import { injectGlobal, ThemeProvider } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
-import datepickerStyles from './datepickerStyles';
+import datepickerStyles from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 
 class DateTextbox extends React.PureComponent {

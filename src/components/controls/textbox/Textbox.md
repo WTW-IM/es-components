@@ -142,26 +142,23 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
   <Textbox
     labelText="Phone Number"
     maskType="phone"
-    title="Enter your area code and phone number"
+    title="Providing a title will override the default mask title text"
   />
 
   <Textbox
     labelText="Social Security Number"
     maskType="ssnum"
-    title="Enter your 9-digit social security number"
   />
 
   <Textbox
     labelText="Zip Code"
     maskType="zip"
-    title="Enter your 5-digit zip code"
   />
 
   <Textbox
     labelText="Date"
     maskType="date"
     placeholder="mm/dd/yyyy"
-    title="Enter month, day, and 4-digit year"
   />
 </div>
 ```

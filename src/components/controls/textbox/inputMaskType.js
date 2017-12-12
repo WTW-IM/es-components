@@ -8,7 +8,8 @@ const inputMask = {
     pipe: createautoCorrectedDatePipe('mm/dd/yyyy'),
     showMask: false,
     keepCharPositions: true,
-    placeholderChar: '\u2000'
+    placeholderChar: '\u2000',
+    title: 'Enter month, day, and 4-digit year'
   },
   dollar: { mask: createNumberMask({ prefix: '$' }) },
   phone: {
@@ -30,17 +31,20 @@ const inputMask = {
     ],
     showMask: false,
     keepCharPositions: true,
-    placeholderChar: '\u2000'
+    placeholderChar: '\u2000',
+    title: 'Enter area code and phone number'
   },
   ssnum: {
     mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
     showMask: false,
     keepCharPositions: true,
-    placeholderChar: '\u2000'
+    placeholderChar: '\u2000',
+    title: 'Enter 9-digit social security number'
   },
   zip: {
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
+    guide: false,
+    title: 'Enter 5-digit zip code'
   }
 };
 

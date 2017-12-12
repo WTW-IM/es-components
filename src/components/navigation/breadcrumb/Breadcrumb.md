@@ -1,21 +1,16 @@
 Use breadcrumbs to chain a list of items together
 ```
-
 function Link({destination, name}){
   return <a href={`#${destination}`} style={{textDecorationLine: 'none'}}>{name}</a>
-}
-
-function Button({action, name}){
-  return <button onClick={action}>{name}</button>
 }
 
 function Location({name}){
   return <span>{name}</span>
 }
 
-   <Breadcrumb breadcrumbClasses="test">
+   <Breadcrumb className="test">
     <Link name="home" destination="bye there"/>
-    <Button name="gettting there" action={() => alert("on my way")} />
+    <Button handleOnClick={() => alert("on my way")} styleType="accent">getting there</Button>
     <Link name="test" destination="bye"/>
     <Location name="destination"/>
   </Breadcrumb>

@@ -1,4 +1,6 @@
-Keyboard support
+Supports many other props demoed <a href="https://hacker0x01.github.io/react-datepicker" target="blank">here</a>.
+
+**Keyboard support**
 
 * Left: Move to the previous day
 * Right: Move to the next day
@@ -128,5 +130,3 @@ const moment = require('moment');
   <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
 </DatePicker>
 ```
-
-Supports many other props demoed <a href="https://hacker0x01.github.io/react-datepicker" target="blank">here</a>.

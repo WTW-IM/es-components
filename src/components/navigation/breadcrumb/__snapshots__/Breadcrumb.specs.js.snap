@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`testSuite renders as expected 1`] = `
-<div
-  className={undefined}
->
+<div>
   <span>
     <a>
       test

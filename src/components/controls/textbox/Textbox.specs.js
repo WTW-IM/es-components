@@ -6,56 +6,67 @@ import { mount } from 'enzyme';
 import Icon from '../../base/icons/Icon';
 import Textbox from './Textbox';
 
+const buildTextbox = props => <Textbox labelText="Text" {...props} />;
+
 describe('Textbox component', () => {
-  let instance;
-  let input;
   const handleOnChange = jest.fn();
   const handleOnBlur = jest.fn();
   const mockEvent = { target: { value: '112' } };
 
-  beforeEach(() => {
-    instance = mount(
-      <Textbox
-        labelText="Text"
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-      />
-    );
-
-    input = instance.find('input');
-    handleOnChange.mockClear();
-    handleOnBlur.mockClear();
-  });
-
   it('executes the handleOnChange function when text is changed', () => {
+    const props = {
+      onChange: handleOnChange
+    };
+    const input = mount(buildTextbox(props)).find('input');
+
     input.simulate('change', mockEvent);
     expect(handleOnChange).toBeCalled();
+    handleOnChange.mockClear();
   });
 
   it('executes the handeOnBlur function when the input focus is lost', () => {
+    const props = {
+      onBlur: handleOnBlur
+    };
+    const input = mount(buildTextbox(props)).find('input');
+
     input.simulate('blur', mockEvent);
     expect(handleOnBlur).toBeCalled();
+    handleOnBlur.mockClear();
   });
 
   it('renders addon icon when "prependIconName" prop is passed', () => {
-    instance.setProps({ prependIconName: 'prepend' });
+    const props = {
+      prependIconName: 'prepend'
+    };
+    const instance = mount(buildTextbox(props));
 
     expect(instance.find(Icon).length).toBe(1);
   });
 
   it('renders addon icon when "appendIconName" prop is passed', () => {
-    instance.setProps({ appendIconName: 'append' });
+    const props = {
+      appendIconName: 'append'
+    };
+    const instance = mount(buildTextbox(props));
 
     expect(instance.find(Icon).length).toBe(1);
   });
 
   it('renders addon icons when both "prependIconName" and "appendIconName" props are passed', () => {
-    instance.setProps({ prependIconName: 'prepend', appendIconName: 'append' });
+    const props = {
+      prependIconName: 'prepend',
+      appendIconName: 'append'
+    };
+    const instance = mount(buildTextbox(props));
 
     expect(instance.find(Icon).length).toBe(2);
   });
 
   it('sets aria-describedby on input when the additionalHelpContent prop is provided', () => {
+    const instance = mount(buildTextbox());
+    const input = instance.find('input');
+
     let describedBy = input.prop('aria-describedby');
     expect(describedBy).toBeNull();
 
@@ -63,13 +74,14 @@ describe('Textbox component', () => {
       id: 'abcdef',
       additionalHelpContent: 'I am here to help'
     });
-
     describedBy = input.prop('aria-describedby');
     expect(describedBy).not.toBeUndefined();
     expect(describedBy).toBe('abcdef-help');
   });
 
   it('renders additionalHelp when the additionalHelpContent props is provided', () => {
+    const instance = mount(buildTextbox());
+
     let help = instance.find('.textbox__help');
     expect(help.length).toBe(0);
 
@@ -80,6 +92,8 @@ describe('Textbox component', () => {
   });
 
   it('renders icon when the validationState prop is set', () => {
+    const instance = mount(buildTextbox());
+
     let icon = instance.find(Icon);
     expect(icon.length).toBe(0);
 
@@ -91,34 +105,48 @@ describe('Textbox component', () => {
 });
 
 describe('Textbox with Mask', () => {
-  let instance;
-  let input;
   const handleOnChange = jest.fn();
   const handleOnBlur = jest.fn();
   const mockEvent = { target: { value: '112' } };
 
-  beforeEach(() => {
-    instance = mount(
-      <Textbox
-        labelText="Text"
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        maskType="ssnum"
-      />
-    );
-
-    input = instance.find('input');
-    handleOnChange.mockClear();
-    handleOnBlur.mockClear();
-  });
-
   it('executes the handleOnChange function when text is changed with mask', () => {
-    input.simulate('change', mockEvent);
+    const props = {
+      maskType: 'ssnum',
+      onChange: handleOnChange
+    };
+    const textMask = mount(buildTextbox(props)).find('input');
+
+    textMask.simulate('change', mockEvent);
     expect(handleOnChange).toBeCalled();
+    handleOnChange.mockClear();
   });
 
   it('executes the handeOnBlur function when the input focus is lost with mask', () => {
-    input.simulate('blur', mockEvent);
+    const props = {
+      maskType: 'ssnum',
+      onBlur: handleOnBlur
+    };
+    const textMask = mount(buildTextbox(props)).find('input');
+
+    textMask.simulate('blur', mockEvent);
     expect(handleOnBlur).toBeCalled();
+    handleOnBlur.mockClear();
+  });
+
+  it('displays a default title for ssnum mask', () => {
+    const props = {
+      maskType: 'ssnum'
+    };
+    const textMask = mount(buildTextbox(props)).find('input');
+    expect(textMask.props().title).toBe('Enter 9-digit social security number');
+  });
+
+  it('displays a custom title when passed as prop for ssnum mask', () => {
+    const props = {
+      maskType: 'ssnum',
+      title: 'Test me'
+    };
+    const textMask = mount(buildTextbox(props)).find('input');
+    expect(textMask.props().title).toBe('Test me');
   });
 });

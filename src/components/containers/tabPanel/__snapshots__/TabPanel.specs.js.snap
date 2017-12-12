@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab panel renders as expected 1`] = `
+<div>
+  <button
+    className="sc-bdVaJa eYyOtq"
+  >
+    tab1
+  </button>
+  <button
+    className="testing sc-bwzfXH dnBPMW"
+    onClick={[Function]}
+  >
+    tab2
+  </button>
+  <button
+    className="sc-bwzfXH dnBPMW"
+    onClick={[Function]}
+  >
+    tab3
+  </button>
+  <select
+    className="sc-bxivhb eOMafC"
+    onChange={[Function]}
+    value="multiTab"
+  >
+    <option
+      disabled={true}
+    >
+      multiTab
+    </option>
+    <option
+      value="option1"
+    >
+      option1
+    </option>
+    <option
+      value="option2"
+    >
+      option2
+    </option>
+    <option
+      value="option3"
+    >
+      option3
+    </option>
+  </select>
+  <div
+    className="sc-ifAKCX hjIvEj"
+  >
+    first
+  </div>
+</div>
+`;

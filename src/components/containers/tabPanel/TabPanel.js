@@ -65,9 +65,11 @@ const ContentDiv = styled.div`
 
 function Tab({ name, selected, action, ...props }) {
   return selected ? (
-    <SelectedButton>{name}</SelectedButton>
+    <SelectedButton {...props}>{name}</SelectedButton>
   ) : (
-    <TabButton onClick={() => action(name)}>{name}</TabButton>
+    <TabButton onClick={() => action(name)} {...props}>
+      {name}
+    </TabButton>
   );
 }
 
@@ -95,12 +97,12 @@ function TabList({ options, name, selected, action, ...props }) {
   });
 
   return selected ? (
-    <SelectedDropdown value={name} onChange={update}>
+    <SelectedDropdown value={name} onChange={update} {...props}>
       {Title}
       {selectOptions}
     </SelectedDropdown>
   ) : (
-    <OtherDropdown value={name} onChange={update}>
+    <OtherDropdown value={name} onChange={update} {...props}>
       {Title}
       {selectOptions}
     </OtherDropdown>

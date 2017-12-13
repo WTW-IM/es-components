@@ -1,5 +1,8 @@
 {
-  "extends": "exchange-solutions",
+  "extends":[
+    "exchange-solutions",
+    "plugin:jsx-a11y/recommended"
+  ],
   "parser": "babel-eslint",
   "plugins": [
     "react",
@@ -14,6 +17,9 @@
     }
   },
   "rules": {
-    "max-len": 0
+    "max-len": 0,
+    "jsx-a11y/img-uses-alt": 0,
+    "jsx-a11y/redundant-alt": 0,
+    "jsx-a11y/valid-aria-role": 0
   }
 }

@@ -49,6 +49,7 @@
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
     "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^4.3.0",
     "file-loader": "^0.9.0",
     "husky": "^0.13.3",

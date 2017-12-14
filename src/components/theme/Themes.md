@@ -2,10 +2,10 @@ To apply a theme you can either wrap your root react app component in a `<ThemeP
 
 <pre>
 import { ThemeProvider } from 'styled-components';
-
+import { viaTheme } from 'es-components';
 ...
 render(
-	&lt;ThemeProvider theme={theme}&gt;
+	&lt;ThemeProvider theme={viaTheme}&gt;
 		&lt;MyComponentOrApp /&gt;
 	&lt;/ThemeProvider&gt;
 );

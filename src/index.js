@@ -17,3 +17,7 @@ export SideNav from './components/navigation/sidenav/SideNav';
 
 export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';
+
+export defaultTheme from './components/theme/defaultTheme';
+export wtwTheme from './components/theme/wtwTheme';
+export viaTheme from './components/theme/viaTheme';

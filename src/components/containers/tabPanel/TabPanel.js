@@ -2,119 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { colors } from '../../theme';
 import styled from 'styled-components';
-
-const SelectedButton = styled.button`
-  background-color: ${colors.white};
-  border: 1px solid ${colors.gray};
-  border-bottom: 1px transparent;
-  border-radius: 2px 2px 0 0;
-  color: ${colors.black};
-  display: inline-block;
-  font-size: 18px;
-  font-family: Arial, sans-serif;
-  margin-right: 2px;
-  margin-bottom: -1px;
-  padding: 10px 15px;
-`;
-
-const TabButton = styled.button`
-  background-color: ${colors.white};
-  border: 0px;
-  border-bottom: 1px;
-  color: ${colors.linkColor};
-  display: inline-block;
-  font-size: 18px;
-  font-family: Arial, sans-serif;
-  padding: 10px 15px;
-  &:hover: {
-    background-color: ${colors.grayDarker};
-  }
-`;
-
-const SelectedDropdown = styled.select`
-  background-color: ${colors.white};
-  border: 1px solid ${colors.gray};
-  border-bottom: 1px transparent;
-  border-radius: 2px 2px 0 0;
-  box-shadow: 0px;
-  color: ${colors.black};
-  display: inline-block;
-  font-family: Arial, sans-serif;
-  font-size: 18px;
-  margin-right: 2px;
-  padding: 10px 15px;
-`;
-
-const OtherDropdown = styled.select`
-  background-color: ${colors.white};
-  border: 0px;
-  border-bottom: 1px;
-  color: ${colors.linkColor};
-  display: inline-block;
-  font-size: 18px;
-  font-family: Arial, sans-serif;
-  padding: 10px 15px;
-  &:hover: {
-    background-color: ${colors.grayDarker};
-  }
-`;
+import Tab from './Tab';
+import TabList from './TabList';
 
 const ContentDiv = styled.div`
   border-top: 1px solid ${colors.grayLight};
 `;
-
-function Tab({ name, selected, action, ...props }) {
-  return selected ? (
-    <SelectedButton {...props}>{name}</SelectedButton>
-  ) : (
-    <TabButton onClick={() => action(name)} {...props}>
-      {name}
-    </TabButton>
-  );
-}
-
-Tab.propTypes = {
-  name: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
-  action: PropTypes.func
-};
-
-function TabList({ options, name, selected, action, ...props }) {
-  const update = event => {
-    const value = event.target.value;
-    action(value);
-  };
-
-  const Title = <option disabled>{name}</option>;
-
-  const selectOptions = options.map(opt => {
-    const optionKey = opt.optionText.replace(/\s/g, '');
-    return (
-      <option key={optionKey} value={optionKey}>
-        {opt.optionText}
-      </option>
-    );
-  });
-
-  return selected ? (
-    <SelectedDropdown value={name} onChange={update} {...props}>
-      {Title}
-      {selectOptions}
-    </SelectedDropdown>
-  ) : (
-    <OtherDropdown value={name} onChange={update} {...props}>
-      {Title}
-      {selectOptions}
-    </OtherDropdown>
-  );
-}
-
-TabList.propTypes = {
-  options: PropTypes.array.isRequired,
-  name: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
-  action: PropTypes.func
-};
 
 function TabItem({ name, children }) {
   return <span />;
@@ -128,22 +21,23 @@ TabItem.propTypes = {
   ])
 };
 
-function TabContent({ children, ...props }) {
-  return <ContentDiv>{children}</ContentDiv>;
-}
-
-TabContent.propTypes = {
-  children: PropTypes.any.isRequired
-};
-
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      allValues: []
     };
 
     this.tabChanged = this.tabChanged.bind(this);
+  }
+
+  setupContent(child) {
+    return (
+      <ContentDiv id="tab-panel-content" aria-live="polite">
+        {child}
+      </ContentDiv>
+    );
   }
 
   tabChanged = name => {
@@ -154,15 +48,40 @@ class TabPanel extends React.Component {
     return value === this.state.value || (!this.state.value && index === 0);
   }
 
+  handleKeyDown = event => {
+    let newIndex = 0;
+    const getIndexFromMoreBrowsers = offset => {
+      this.state.allValues.some((val, i) => {
+        if (val === this.state.value) {
+          newIndex = i + offset;
+        }
+        return true;
+      });
+    };
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      getIndexFromMoreBrowsers(-1);
+      const finalIndex =
+        newIndex < 0 ? this.state.allValues.length - 1 : newIndex;
+      this.setState({ value: this.state.allValues[finalIndex] });
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      getIndexFromMoreBrowsers(1);
+      const finalIndex = newIndex >= this.state.allValues.length ? 0 : newIndex;
+      this.setState({ value: this.state.allValues[finalIndex] });
+    }
+  };
+
   render() {
     let content = null;
     const elements = React.Children.map(this.props.children, (child, i) => {
       let selected = false;
       if (child.type === Tab) {
         if (this.isChildSelected(child.props.name, i)) {
-          content = <ContentDiv>{child.props.children}</ContentDiv>;
+          content = this.setupContent(child.props.children);
           selected = true;
         }
+        this.state.allValues.push(child.props.name);
         return React.cloneElement(child, {
           selected,
           action: this.tabChanged,
@@ -174,9 +93,10 @@ class TabPanel extends React.Component {
           child.props.children,
           (secondChild, j) => {
             if (this.isChildSelected(secondChild.props.name, i)) {
-              content = <ContentDiv>{secondChild.props.children}</ContentDiv>;
+              content = this.setupContent(secondChild.props.children);
               selected = true;
             }
+            this.state.allValues.push(secondChild.props.name);
             return { optionText: secondChild.props.name };
           }
         );
@@ -191,7 +111,7 @@ class TabPanel extends React.Component {
     });
 
     return (
-      <div>
+      <div onKeyDown={this.handleKeyDown} role="application">
         {elements}
         {content}
       </div>
@@ -199,24 +119,26 @@ class TabPanel extends React.Component {
   }
 }
 
-TabPanel.propTypes = {
-  children: (props, propName, component) => {
-    let badChild;
-    const isTabItem = child => {
-      const isTab = child.type.name === 'Tab' || child.type.name === 'TabList';
-      if (!isTab) {
-        badChild = child;
-      }
-      return isTab;
-    };
-    if (!props[propName].every(isTabItem)) {
-      return new Error(
-        `Tab Panel only accepts Tab or TabList as direct descendants. You gave a ${badChild
-          .type.name || badChild.type}`
-      );
+function childrenRule(props, propName, component) {
+  let badChild;
+  const isTabItem = child => {
+    const isTab = child.type.name === 'Tab' || child.type.name === 'TabList';
+    if (!isTab) {
+      badChild = child;
     }
-    return true;
+    return isTab;
+  };
+  if (!props[propName].every(isTabItem)) {
+    return new Error(
+      `Tab Panel only accepts Tab or TabList as direct descendants. You gave a ${badChild
+        .type.name || badChild.type}`
+    );
   }
+  return true;
+}
+
+TabPanel.propTypes = {
+  children: childrenRule
 };
 
 TabPanel.Tab = Tab;

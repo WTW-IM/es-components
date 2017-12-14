@@ -24,22 +24,21 @@ Testing text
     </div>
   </TabPanel.Tab>
   <TabPanel.TabList name="many options">
-    <TabPanel.TabItem name="option1" value="TheFirst">
+    <TabPanel.TabItem name="option1">
       <div>
         Hello there.
       </div>
     </TabPanel.TabItem>
-    <TabPanel.TabItem name="option2" value="TheSecond">
+    <TabPanel.TabItem name="option2">
       <div>
-        Lorem Ipsum
+        Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. <a href ="#hi">extra link</a> Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr
       </div>
     </TabPanel.TabItem>
-    <TabPanel.TabItem name="option3" value="TheThird">
+    <TabPanel.TabItem name="option3">
       <div>
         Humbug
       </div>
     </TabPanel.TabItem>
   </TabPanel.TabList>
-  <div></div>
 </TabPanel>
 ```

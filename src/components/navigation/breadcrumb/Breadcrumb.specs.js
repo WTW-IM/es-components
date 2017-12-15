@@ -5,12 +5,12 @@ import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import Breadcrumb from './Breadcrumb';
 
-describe('testSuite', () => {
+describe('BreadcrumbTestSuite', () => {
   let instanceToRender;
 
   beforeEach(() => {
     instanceToRender = (
-      <Breadcrumb>
+      <Breadcrumb name="hello">
         <a>test</a>
         <a>test2</a>
       </Breadcrumb>

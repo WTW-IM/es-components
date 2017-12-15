@@ -8,7 +8,7 @@ function Location({name}){
   return <span>{name}</span>
 }
 
-   <Breadcrumb className="test">
+   <Breadcrumb className="test" name="nav">
     <Link name="home" destination="bye there"/>
     <Button name="gettingThere" handleOnClick={() => alert("on my way")} styleType="accent">getting there</Button>
     <Link name="test" destination="bye"/>

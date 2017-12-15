@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Icon from '../../base/icons/Icon';
+import PropTypes from 'prop-types';
 
-function Breadcrumb({ children, ...props }) {
+function Breadcrumb({ name, children, ...props }) {
   return (
     <div {...props}>
       {React.Children.map(children, (child, i) => (
-        <span key={child.props.name}>
+        <span key={`${name}-item${i}`}>
           {i > 0 && <Icon name="chevron-right" />}
           {child}
         </span>
@@ -16,21 +16,8 @@ function Breadcrumb({ children, ...props }) {
 }
 
 Breadcrumb.propTypes = {
-  children: (props, propName, component) => {
-    if (
-      PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.arrayOf(PropTypes.element)
-      ])
-    ) {
-      return props[propName].every(child => child.props.name)
-        ? null
-        : new Error('The children must have a name attribute');
-    }
-    return new Error(
-      'Please use an element as a child, and ensure the child has a name property'
-    );
-  }
+  name: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default Breadcrumb;

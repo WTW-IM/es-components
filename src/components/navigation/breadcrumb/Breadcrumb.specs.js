@@ -10,7 +10,7 @@ describe('BreadcrumbTestSuite', () => {
 
   beforeEach(() => {
     instanceToRender = (
-      <Breadcrumb name="hello">
+      <Breadcrumb keySelector={child => child.props.name}>
         <a>test</a>
         <a>test2</a>
       </Breadcrumb>

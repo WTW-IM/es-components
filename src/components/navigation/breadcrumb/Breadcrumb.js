@@ -2,11 +2,11 @@ import React from 'react';
 import Icon from '../../base/icons/Icon';
 import PropTypes from 'prop-types';
 
-function Breadcrumb({ name, children, ...props }) {
+function Breadcrumb({ keySelector, children, ...props }) {
   return (
     <div {...props}>
       {React.Children.map(children, (child, i) => (
-        <span key={`${name}-item${i}`}>
+        <span key={keySelector(child)}>
           {i > 0 && <Icon name="chevron-right" />}
           {child}
         </span>
@@ -16,7 +16,7 @@ function Breadcrumb({ name, children, ...props }) {
 }
 
 Breadcrumb.propTypes = {
-  name: PropTypes.string.isRequired,
+  keySelector: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired
 };
 

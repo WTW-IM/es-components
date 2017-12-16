@@ -23,21 +23,69 @@ const buildTabPanel = props => (
         <div>multi third</div>
       </TabPanel.TabItem>
     </TabPanel.TabList>
-    <div />
   </TabPanel>
 );
 
 describe('Tab panel', () => {
+  let panelInstance;
+
+  beforeAll(() => {
+    panelInstance = mount(buildTabPanel());
+  });
+
   it('renders as expected', () => {
     const tree = renderer.create(buildTabPanel()).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('clicking a tab should set the panels value to its name', () => {
-    const panelInstance = mount(buildTabPanel());
     const secondTab = panelInstance.find('.testing');
     expect(panelInstance.state('value')).toBe('');
     secondTab.simulate('click');
     expect(panelInstance.state('value')).toBe('tab2');
+  });
+
+  it('child is selected correctly', () => {
+    panelInstance.setState({ value: 'something' });
+    expect(panelInstance.instance().isChildSelected('something', 5)).toBe(true);
+  });
+
+  it('child is not selected when values are different', () => {
+    panelInstance.setState({ value: 'test' });
+    expect(panelInstance.instance().isChildSelected('something', 5)).toBe(
+      false
+    );
+  });
+
+  it('child is selected when default', () => {
+    panelInstance.setState({ value: '' });
+    expect(panelInstance.instance().isChildSelected('something', 0)).toBe(true);
+  });
+
+  it('decrements when left arrow is pressed', () => {
+    panelInstance.setState({ value: 'bye', allValues: ['hi', 'bye', 'there'] });
+    panelInstance.simulate('keyDown', { key: 'ArrowLeft' });
+    expect(panelInstance.state('value')).toBe('hi');
+  });
+
+  it('increments when right arrow is pressed', () => {
+    panelInstance.setState({ value: 'bye', allValues: ['hi', 'bye', 'there'] });
+    panelInstance.simulate('keyDown', { key: 'ArrowRight' });
+    expect(panelInstance.state('value')).toBe('there');
+  });
+
+  it('decrements and wraps when left arrow is pressed at start', () => {
+    panelInstance.setState({ value: 'hi', allValues: ['hi', 'bye', 'there'] });
+    panelInstance.simulate('keyDown', { key: 'ArrowLeft' });
+    expect(panelInstance.state('value')).toBe('there');
+  });
+
+  it('increments and wraps when right arrow is pressed at end', () => {
+    panelInstance.setState({
+      value: 'there',
+      allValues: ['hi', 'bye', 'there']
+    });
+    panelInstance.simulate('keyDown', { key: 'ArrowRight' });
+    expect(panelInstance.state('value')).toBe('hi');
   });
 });

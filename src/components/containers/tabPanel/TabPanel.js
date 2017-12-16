@@ -15,7 +15,7 @@ function TabItem({ name, children }) {
 
 TabItem.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.oneOf([
+  children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element)
   ])
@@ -30,6 +30,21 @@ class TabPanel extends React.Component {
     };
 
     this.tabChanged = this.tabChanged.bind(this);
+  }
+
+  componentDidMount() {
+    const values = [];
+    React.Children.forEach(this.props.children, (child, i) => {
+      if (child.type === Tab) {
+        values.push(child.props.name);
+      }
+      if (child.type === TabList) {
+        React.Children.forEach(child.props.children, (secondChild, j) => {
+          values.push(secondChild.props.name);
+        });
+      }
+      this.setState({ allValues: values });
+    });
   }
 
   setupContent(child) {
@@ -55,7 +70,7 @@ class TabPanel extends React.Component {
         if (val === this.state.value) {
           newIndex = i + offset;
         }
-        return true;
+        return false;
       });
     };
     if (event.key === 'ArrowLeft') {
@@ -81,7 +96,6 @@ class TabPanel extends React.Component {
           content = this.setupContent(child.props.children);
           selected = true;
         }
-        this.state.allValues.push(child.props.name);
         return React.cloneElement(child, {
           selected,
           action: this.tabChanged,
@@ -96,7 +110,6 @@ class TabPanel extends React.Component {
               content = this.setupContent(secondChild.props.children);
               selected = true;
             }
-            this.state.allValues.push(secondChild.props.name);
             return { optionText: secondChild.props.name };
           }
         );
@@ -120,21 +133,16 @@ class TabPanel extends React.Component {
 }
 
 function childrenRule(props, propName, component) {
-  let badChild;
-  const isTabItem = child => {
-    const isTab = child.type.name === 'Tab' || child.type.name === 'TabList';
-    if (!isTab) {
-      badChild = child;
-    }
-    return isTab;
-  };
-  if (!props[propName].every(isTabItem)) {
+  if (
+    !props[propName].every(
+      child => child.type.name === 'Tab' || child.type.name === 'TabList'
+    )
+  ) {
     return new Error(
-      `Tab Panel only accepts Tab or TabList as direct descendants. You gave a ${badChild
-        .type.name || badChild.type}`
+      'Tab Panel only accepts Tab or TabList as direct descendants.'
     );
   }
-  return true;
+  return null;
 }
 
 TabPanel.propTypes = {

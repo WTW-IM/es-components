@@ -45,9 +45,9 @@ function TabList({ options, name, selected, action, ...props }) {
 }
 
 TabList.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
   name: PropTypes.string.isRequired,
-  selected: PropTypes.bool.isRequired,
+  selected: PropTypes.bool,
   action: PropTypes.func
 };
 

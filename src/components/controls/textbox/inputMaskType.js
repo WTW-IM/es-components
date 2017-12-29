@@ -6,9 +6,12 @@ const inputMask = {
   date: {
     mask: [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/],
     pipe: createautoCorrectedDatePipe('mm/dd/yyyy'),
-    keepCharPositions: true
+    showMask: false,
+    keepCharPositions: true,
+    placeholderChar: '\u2000',
+    title: 'Enter month, day, and 4-digit year'
   },
-  dollar: { mask: createNumberMask({ prefix: '' }) },
+  dollar: { mask: createNumberMask({ prefix: '$' }) },
   phone: {
     mask: [
       '(',
@@ -26,17 +29,22 @@ const inputMask = {
       /\d/,
       /\d/
     ],
-    showMask: true,
-    keepCharPositions: true
+    showMask: false,
+    keepCharPositions: true,
+    placeholderChar: '\u2000',
+    title: 'Enter area code and phone number'
   },
   ssnum: {
     mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],
-    showMask: true,
-    keepCharPositions: true
+    showMask: false,
+    keepCharPositions: true,
+    placeholderChar: '\u2000',
+    title: 'Enter 9-digit social security number'
   },
   zip: {
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/],
-    guide: false
+    guide: false,
+    title: 'Enter 5-digit zip code'
   }
 };
 

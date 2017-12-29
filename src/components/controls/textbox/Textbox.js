@@ -31,7 +31,7 @@ const TextBoxLabel = styled(Label)`
 `;
 
 // apply styles to masked input, but remove props it doesn't use
-const StyledMaskedInput = InputBase.withComponent(props =>
+const StyledMaskedInput = InputBase.withComponent(props => (
   <MaskedInput
     {...omit(props, [
       'borderColor',
@@ -43,8 +43,10 @@ const StyledMaskedInput = InputBase.withComponent(props =>
       'numAppendIconNames'
     ])}
   />
-);
-const StyledMask = StyledMaskedInput.extend`${paddings};`;
+));
+const StyledMask = StyledMaskedInput.extend`
+  ${paddings};
+`;
 
 const StyledText = styled(InputBase)`
   ${paddings};
@@ -108,11 +110,11 @@ const Textbox = props => {
   const textboxId = id !== undefined ? id : `for-${inputName}`;
   const hasHelpContent = additionalHelpContent !== undefined;
   const helpId = hasHelpContent ? `${textboxId}-help` : null;
-  const additionalHelp =
-    hasHelpContent &&
+  const additionalHelp = hasHelpContent && (
     <AdditionalHelpContent id={helpId} className="textbox__help">
       {additionalHelpContent}
-    </AdditionalHelpContent>;
+    </AdditionalHelpContent>
+  );
 
   const hasPrepend = prependIconName !== undefined;
   const hasAppend = appendIconName !== undefined;
@@ -131,9 +133,7 @@ const Textbox = props => {
       color={validationTextColor[validationState]}
       inline={inline}
     >
-      <LabelText inline={inline}>
-        {labelText}
-      </LabelText>
+      <LabelText inline={inline}>{labelText}</LabelText>
       <InputWrapper>
         <TextWrapper includeMargin={inline}>
           {hasPrepend && <Prepend name={prependIconName} size={20} />}
@@ -148,16 +148,18 @@ const Textbox = props => {
             onChange={onChange}
             type="text"
             value={value}
+            {...maskArgs}
             {...additionalTextProps}
             {...validationInputColor[validationState]}
-            {...maskArgs}
           />
-          {(hasAppend || hasValidationIcon) &&
+          {(hasAppend || hasValidationIcon) && (
             <Append>
-              {hasValidationIcon &&
-                <Icon name={validationIconName[validationState]} size={20} />}
+              {hasValidationIcon && (
+                <Icon name={validationIconName[validationState]} size={20} />
+              )}
               {hasAppend && <Icon name={appendIconName} size={20} />}
-            </Append>}
+            </Append>
+          )}
         </TextWrapper>
       </InputWrapper>
       {additionalHelp}

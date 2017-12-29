@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tab panel renders as expected 1`] = `
+<div
+  onKeyDown={[Function]}
+  role="application"
+>
+  <button
+    aria-controls="tab-panel-content"
+    className="sc-bdVaJa fVOfLO"
+    onClick={[Function]}
+    selected={true}
+  >
+    tab1
+  </button>
+  <button
+    aria-controls="tab-panel-content"
+    className="testing sc-bdVaJa dhbpgv"
+    onClick={[Function]}
+    selected={false}
+  >
+    tab2
+  </button>
+  <button
+    aria-controls="tab-panel-content"
+    className="sc-bdVaJa dhbpgv"
+    onClick={[Function]}
+    selected={false}
+  >
+    tab3
+  </button>
+  <select
+    className="sc-bwzfXH gElLmT"
+    onChange={[Function]}
+    selected={false}
+    value="multiTab"
+  >
+    <option
+      disabled={true}
+    >
+      multiTab
+    </option>
+    <option
+      value="option1"
+    >
+      option1
+    </option>
+    <option
+      value="option2"
+    >
+      option2
+    </option>
+    <option
+      value="option3"
+    >
+      option3
+    </option>
+  </select>
+  <div
+    aria-live="polite"
+    className="sc-htpNat iTEfCw"
+    id="tab-panel-content"
+  >
+    first
+  </div>
+</div>
+`;

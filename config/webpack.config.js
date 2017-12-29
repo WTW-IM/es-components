@@ -15,5 +15,9 @@ module.exports = {
       include: [path.join(styleguidePaths.srcDir, 'styles'), baseComponentDir],
       use: ['style-loader', 'css-loader', 'less-loader']
     }]
+  },
+  devServer: {
+    host: '0.0.0.0',
+    disableHostCheck: true
   }
 };

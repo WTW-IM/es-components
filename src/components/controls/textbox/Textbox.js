@@ -145,9 +145,9 @@ const Textbox = props => {
               onChange={onChange}
               type="text"
               value={value}
+              {...maskArgs}
               {...additionalTextProps}
               {...theme.validationInputColor[validationState]}
-              {...maskArgs}
             />
             {(hasAppend || hasValidationIcon) && (
               <Append>

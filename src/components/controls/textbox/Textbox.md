@@ -142,6 +142,7 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
   <Textbox
     labelText="Phone Number"
     maskType="phone"
+    title="Providing a title will override the default mask title text"
   />
 
   <Textbox

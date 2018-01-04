@@ -7,7 +7,6 @@ export Tooltip from './components/containers/tooltip/Tooltip';
 export PopoverLink from './components/containers/popover/PopoverLink';
 export Modal from './components/containers/modal/Modal';
 
-export Label from './components/controls/Label';
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
@@ -18,3 +17,7 @@ export SideNav from './components/navigation/sidenav/SideNav';
 
 export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';
+
+export defaultTheme from './components/theme/defaultTheme';
+export wtwTheme from './components/theme/wtwTheme';
+export viaTheme from './components/theme/viaTheme';

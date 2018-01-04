@@ -1,15 +1,15 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { colors } from '../../theme';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
 
+import defaultTheme from '../../theme/defaultTheme';
 import NavItem from './NavItem';
 
 const NavStyled = styled.nav`
-  background-color: ${colors.white};
-  box-shadow: 2px 2px 5px ${colors.grayDark};
+  background-color: ${props => props.theme.colors.white};
+  box-shadow: 2px 2px 5px ${props => props.theme.colors.grayDark};
 
   ul {
     list-style: none;
@@ -19,28 +19,30 @@ const NavStyled = styled.nav`
 `;
 
 export const SideNav = props => {
-  const { useAltStyle, children, onItemSelected, selected } = props;
+  const { useAltStyle, children, onItemSelected, selected, theme } = props;
 
   const onNavClick = (navId = null) => {
     onItemSelected(navId);
   };
 
   return (
-    <NavStyled>
-      <ul>
-        {Children.toArray(children).map(child => {
-          if (child !== null && child.type === NavItem) {
-            const currentSelected = selected;
-            return cloneElement(child, {
-              useAltStyle,
-              highlightedId: currentSelected,
-              onNavClick
-            });
-          }
-          return child;
-        })}
-      </ul>
-    </NavStyled>
+    <ThemeProvider theme={theme}>
+      <NavStyled>
+        <ul>
+          {Children.toArray(children).map(child => {
+            if (child !== null && child.type === NavItem) {
+              const currentSelected = selected;
+              return cloneElement(child, {
+                useAltStyle,
+                highlightedId: currentSelected,
+                onNavClick
+              });
+            }
+            return child;
+          })}
+        </ul>
+      </NavStyled>
+    </ThemeProvider>
   );
 };
 
@@ -53,12 +55,18 @@ SideNav.propTypes = {
   /** Use to set a default nav, uncontrolled mode */
   defaultSelected: PropTypes.string,
   /** Function called when a nav item is clicked */
-  onItemSelected: PropTypes.func
+  onItemSelected: PropTypes.func,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 SideNav.defaultProps = {
   useAltStyle: false,
-  onItemSelected: noop
+  onItemSelected: noop,
+  theme: defaultTheme
 };
 
 const UncontrolledSideNav = uncontrollable(SideNav, {

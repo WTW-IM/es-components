@@ -1,6 +1,9 @@
-import { colors } from '../../theme';
-
-export default function getRadioFillVariables(isChecked, isDisabled, isInvalid) {
+export default function getRadioFillVariables(
+  isChecked,
+  isDisabled,
+  isInvalid,
+  colors
+) {
   const isNotChecked = !isChecked;
   const isNotDisabled = !isDisabled;
   const isValid = !isInvalid;

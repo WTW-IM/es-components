@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
-import { colors, sizes, screenSize } from '../../theme';
-import genId from '../../util/generateAlphaName';
-
 import BaseModal from 'react-overlays/lib/Modal';
+
+import defaultTheme from '../../theme/defaultTheme';
+import genId from '../../util/generateAlphaName';
 import Fade from '../../util/Fade';
 import Header from './ModalHeader';
 import Body from './ModalBody';
@@ -32,31 +32,30 @@ const ModalDialogMedium = styled.div`
   display: inline-block;
   top: 2em;
 
-  @media (min-width: ${screenSize.tablet}) {
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
     margin: 30px auto;
     width: ${modalSize.medium};
   }
 `;
 
 const ModalDialogSmall = ModalDialogMedium.extend`
-  @media (min-width: ${screenSize.phone}) {
+  @media (min-width: ${props => props.theme.screenSize.phone}) {
     margin: 30px auto;
     width: ${modalSize.small};
   }
 `;
 
 const ModalDialogLarge = ModalDialogMedium.extend`
-  @media (min-width: ${screenSize.desktop}) {
+  @media (min-width: ${props => props.theme.screenSize.desktop}) {
     width: ${modalSize.large};
   }
 `;
 
 const ModalContent = styled.div`
   background-clip: padding-box;
-  background-color: ${colors.white};
+  background-color: ${props => props.theme.colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: ${sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize}px;
   outline: 0;
   position: relative;
 `;
@@ -90,11 +89,12 @@ class Modal extends React.Component {
       onExit,
       onHide,
       show,
-      size
+      size,
+      theme
     } = this.props;
 
     const backdropStyle = {
-      backgroundColor: colors.black,
+      backgroundColor: theme.colors.black,
       bottom: 0,
       cursor: backdrop === 'static' ? 'auto' : 'pointer',
       left: 0,
@@ -119,20 +119,22 @@ class Modal extends React.Component {
     }
 
     return (
-      <DialogWrapper
-        backdrop={backdrop}
-        backdropStyle={backdropStyle}
-        keyboard={escapeExits}
-        onEnter={onEnter}
-        onExit={onExit}
-        onHide={onHide}
-        show={show}
-        transition={animation ? Fade : undefined}
-      >
-        <ModalDialog size={size} aria-labelledby={this.state.ariaId}>
-          <ModalContent>{children}</ModalContent>
-        </ModalDialog>
-      </DialogWrapper>
+      <ThemeProvider theme={theme}>
+        <DialogWrapper
+          backdrop={backdrop}
+          backdropStyle={backdropStyle}
+          keyboard={escapeExits}
+          onEnter={onEnter}
+          onExit={onExit}
+          onHide={onHide}
+          show={show}
+          transition={animation ? Fade : undefined}
+        >
+          <ModalDialog size={size} aria-labelledby={this.state.ariaId}>
+            <ModalContent>{children}</ModalContent>
+          </ModalDialog>
+        </DialogWrapper>
+      </ThemeProvider>
     );
   }
 }
@@ -166,7 +168,12 @@ Modal.propTypes = {
   /** When `true` The modal will show itself. */
   show: PropTypes.bool,
   /** Sets the size of the modal */
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 Modal.defaultProps = {
@@ -177,7 +184,8 @@ Modal.defaultProps = {
   onExit: noop,
   onHide: noop,
   show: false,
-  size: 'medium'
+  size: 'medium',
+  theme: defaultTheme
 };
 
 Modal.childContextTypes = {

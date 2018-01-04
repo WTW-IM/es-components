@@ -1,10 +1,11 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import DrawerPanel from './DrawerPanel';
-import { colors } from '../../theme';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
+
+import defaultTheme from '../../theme/defaultTheme';
+import DrawerPanel from './DrawerPanel';
 
 function drawerPanelPropType(props, propName, componentName) {
   const value = props[propName];
@@ -20,9 +21,9 @@ function drawerPanelPropType(props, propName, componentName) {
 }
 
 const StyledDrawer = styled.div`
-  background-color: ${colors.white};
-  border-top: 1px solid ${colors.grayLight};
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  background-color: ${props => props.theme.colors.white};
+  border-top: 1px solid ${props => props.theme.colors.grayLight};
+  box-shadow: 0 1px 1px ${props => props.theme.colors.boxShadowLight};
   margin-bottom: 25px;
 `;
 
@@ -34,7 +35,8 @@ export const Drawer = props => {
     closedIconName,
     isAccordion,
     onActiveKeysChanged,
-    openedIconName
+    openedIconName,
+    theme
   } = props;
 
   const onItemClick = key => {
@@ -85,7 +87,11 @@ export const Drawer = props => {
       return React.cloneElement(child, childProps);
     });
 
-  return <StyledDrawer className={className}>{getPanels()}</StyledDrawer>;
+  return (
+    <ThemeProvider theme={theme}>
+      <StyledDrawer className={className}>{getPanels()}</StyledDrawer>
+    </ThemeProvider>
+  );
 };
 
 Drawer.propTypes = {
@@ -110,7 +116,12 @@ Drawer.propTypes = {
   /** Function called when changing active keys */
   onActiveKeysChanged: PropTypes.func,
   /** Override the default minus icon with another OE icon name */
-  openedIconName: PropTypes.string
+  openedIconName: PropTypes.string,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 Drawer.defaultProps = {
@@ -118,7 +129,8 @@ Drawer.defaultProps = {
   isAccordion: false,
   closedIconName: 'plus',
   onActiveKeysChanged: noop,
-  openedIconName: 'minus'
+  openedIconName: 'minus',
+  theme: defaultTheme
 };
 
 const UncontrolledDrawer = uncontrollable(Drawer, {

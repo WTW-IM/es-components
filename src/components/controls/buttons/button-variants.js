@@ -1,80 +1,153 @@
 import tinycolor from 'tinycolor2';
 
-import { colors } from '../../theme';
-
 function getBackgroundColor(color, lightenAmount = 5) {
-  return tinycolor(color).lighten(lightenAmount);
+  return tinycolor(color)
+    .lighten(lightenAmount)
+    .toRgbString();
 }
 
 function getHoverBackgroundColor(color, darkenAmount = 10) {
-  return tinycolor(color).darken(darkenAmount).toRgbString();
+  return tinycolor(color)
+    .darken(darkenAmount)
+    .toRgbString();
 }
 
 function getBorderColor(color, darkenAmount = 5) {
-  return tinycolor(color).darken(darkenAmount).toRgbString();
+  return tinycolor(color)
+    .darken(darkenAmount)
+    .toRgbString();
 }
 
 function getBoxShadowColor(color, darkenAmount = 10) {
-  return tinycolor(color).darken(darkenAmount).toRgbString();
+  return tinycolor(color)
+    .darken(darkenAmount)
+    .toRgbString();
 }
 
-function getSimpleButtonVariation(color, foregroundColor = colors.white) {
+function swapForeground(color) {
+  return tinycolor.equals(color, '#000') ? '#fff' : '#000';
+}
+
+function getSimpleButtonVariation(color) {
+  let bgColor = color;
+
+  // if the color supplied is black, we need to lighten up the button.
+  // sticking to black and white text colors for readability.
+  if (tinycolor.equals(color, '#000')) {
+    bgColor = '#444';
+  }
+
+  const backgroundColor = getBackgroundColor(bgColor);
+
+  let textColor = '#fff';
+  if (tinycolor.readability(backgroundColor, textColor) < 2) {
+    textColor = swapForeground(textColor);
+  }
+
   return {
-    backgroundColor: getBackgroundColor(color),
-    hoverBackgroundColor: getHoverBackgroundColor(color),
-    borderColor: getBorderColor(color),
-    boxShadowColor: getBoxShadowColor(color),
-    foregroundColor
+    backgroundColor,
+    hoverBackgroundColor: getHoverBackgroundColor(bgColor),
+    borderColor: getBorderColor(bgColor),
+    boxShadowColor: getBoxShadowColor(bgColor),
+    foregroundColor: textColor
   };
 }
 
-const defaultButtonVariants = {
-  default: {
-    backgroundColor: getBackgroundColor(colors.grayLight, 0),
-    hoverBackgroundColor: getHoverBackgroundColor(colors.grayLight),
-    borderColor: getBorderColor(colors.grayLight, 0),
-    boxShadowColor: getBoxShadowColor(colors.grayLight),
-    foregroundColor: colors.grayDarkest
-  },
-  primary: {
-    backgroundColor: getBackgroundColor(colors.black, 30),
-    hoverBackgroundColor: getHoverBackgroundColor(getBackgroundColor(colors.black, 30)),
-    borderColor: getBorderColor(getBackgroundColor(colors.black, 30), 20),
-    boxShadowColor: getBoxShadowColor(getBackgroundColor(colors.black, 30)),
-    foregroundColor: colors.white
-  },
-  accent: getSimpleButtonVariation(colors.accent),
-  success: getSimpleButtonVariation(colors.success),
-  info: getSimpleButtonVariation(colors.information),
-  warning: getSimpleButtonVariation(colors.warning, colors.grayDarkest),
-  danger: getSimpleButtonVariation(colors.danger)
-};
+function defaultButtonVariants(colors, type) {
+  let variant;
 
+  switch (type) {
+    case 'primary':
+      variant = getSimpleButtonVariation(colors.primary);
+      break;
+    case 'accent':
+      variant = getSimpleButtonVariation(colors.accent);
+      break;
+    case 'success':
+      variant = getSimpleButtonVariation(colors.success);
+      break;
+    case 'info':
+      variant = getSimpleButtonVariation(colors.information);
+      break;
+    case 'warning':
+      variant = getSimpleButtonVariation(colors.warning);
+      break;
+    case 'danger':
+      variant = getSimpleButtonVariation(colors.danger);
+      break;
+    default:
+      variant = {
+        backgroundColor: getBackgroundColor(colors.grayLight, 0),
+        hoverBackgroundColor: getHoverBackgroundColor(colors.grayLight),
+        borderColor: getBorderColor(colors.grayLight, 0),
+        boxShadowColor: getBoxShadowColor(colors.grayLight),
+        foregroundColor: colors.grayDarkest
+      };
+  }
 
-function getAlternateColor(color,
-                           foregroundColor = color,
-                           hoverForegroundColor = colors.white,
-                           lightenAmount = 5) {
-  const alternateColor = tinycolor(color).lighten(lightenAmount);
+  return variant;
+}
+
+function getAlternateColor(
+  color,
+  foregroundColor = color,
+  hoverForegroundColor = '#fff',
+  lightenAmount = 5
+) {
+  const alternateColor = tinycolor(color)
+    .lighten(lightenAmount)
+    .toRgbString();
+
+  let textColor = color;
+  if (tinycolor.readability('#fff', color) < 2) {
+    textColor = '#000';
+  }
+
+  let hoverColor = hoverForegroundColor;
+  if (tinycolor.readability(color, hoverForegroundColor) < 2) {
+    hoverColor = '#000';
+  }
+
   return {
     borderColor: alternateColor,
     hoverBackgroundColor: alternateColor,
-    hoverForegroundColor,
-    foregroundColor: tinycolor(foregroundColor) || alternateColor
+    hoverForegroundColor: hoverColor,
+    foregroundColor: tinycolor(textColor).toRgbString() || alternateColor
   };
 }
 
-const alternateButtonVariants = {
-  default: getAlternateColor(colors.grayLight, colors.grayDarkest, colors.grayDarkest, 0),
-  primary: getAlternateColor(colors.black, 30),
-  accent: getAlternateColor(colors.accent),
-  success: getAlternateColor(colors.success),
-  info: getAlternateColor(colors.information),
-  warning: getAlternateColor(colors.warning, colors.grayDarkest, colors.grayDarkest),
-  danger: getAlternateColor(colors.danger)
-};
+function alternateButtonVariants(colors, type) {
+  let variant;
 
-export {
-  defaultButtonVariants,
-  alternateButtonVariants
-};
+  switch (type) {
+    case 'primary':
+      variant = getAlternateColor(colors.primary, 30);
+      break;
+    case 'accent':
+      variant = getAlternateColor(colors.accent);
+      break;
+    case 'success':
+      variant = getAlternateColor(colors.success);
+      break;
+    case 'info':
+      variant = getAlternateColor(colors.information);
+      break;
+    case 'warning':
+      variant = getAlternateColor(colors.warning);
+      break;
+    case 'danger':
+      variant = getAlternateColor(colors.danger);
+      break;
+    default:
+      variant = getAlternateColor(
+        colors.grayLight,
+        colors.grayDarkest,
+        colors.grayDarkest,
+        0
+      );
+  }
+
+  return variant;
+}
+
+export { defaultButtonVariants, alternateButtonVariants };

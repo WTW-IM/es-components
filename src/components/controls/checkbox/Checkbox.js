@@ -1,42 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 
+import defaultTheme from '../../theme/defaultTheme';
 import Label from '../Label';
-import { sizes, colors, inputColors } from '../../theme';
 
 /* eslint-disable no-confusing-arrow */
 const CheckboxLabel = Label.extend`
-  font-size: ${sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize}px;
   font-weight: normal;
   text-transform: none;
 
   > .checkbox-fill {
     background-color: ${props =>
-      props.isChecked ? colors.accent : colors.white};
+      props.isChecked ? props.theme.colors.accent : props.theme.colors.white};
     border-color: ${props =>
-      props.isChecked ? colors.accent : colors.grayDark};
+      props.isChecked
+        ? props.theme.colors.accent
+        : props.theme.colors.grayDark};
 
     &:after {
-      border-color: ${colors.white};
+      border-color: ${props => props.theme.colors.white};
     }
   }
 
   &:hover > .checkbox-fill:after {
     border-color: ${props =>
-      props.isChecked ? colors.white : colors.grayLight};
+      props.isChecked
+        ? props.theme.colors.white
+        : props.theme.colors.grayLight};
   }
 
   &[disabled] > .checkbox-fill {
     background-color: ${props =>
-      props.isChecked ? colors.gray : colors.white};
-    border-color: ${colors.gray};
+      props.isChecked ? props.theme.colors.gray : props.theme.colors.white};
+    border-color: ${props => props.theme.colors.gray};
     cursor: not-allowed;
     outline: 0;
 
     &:after {
-      border-color: ${colors.white};
+      border-color: ${props => props.theme.colors.white};
     }
   }
 `;
@@ -47,24 +51,24 @@ const CheckboxInput = styled.input`
   position: absolute;
 
   &:focus ~ .checkbox-fill {
-    outline: 5px auto ${inputColors.inputDefaultFocus};
+    outline: 5px auto ${props => props.theme.colors.inputFocus};
   }
 `;
 
 const CheckboxWrapper = styled.span`
-  background: ${colors.white};
-  border: 3px solid ${colors.grayDarker};
+  background: ${props => props.theme.colors.white};
+  border: 3px solid ${props => props.theme.colors.grayDarker};
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
   height: 25px;
   position: absolute;
-  transition: all .25s linear;
+  transition: all 0.25s linear;
   width: 25px;
 
   &:after {
     background: transparent;
-    border: 3px solid ${colors.white};
+    border: 3px solid ${props => props.theme.colors.white};
     border-right: none;
     border-top: none;
     box-sizing: border-box;
@@ -74,7 +78,7 @@ const CheckboxWrapper = styled.span`
     left: 2px;
     position: absolute;
     transform: rotate(-45deg);
-    transition: border .25s linear;
+    transition: border 0.25s linear;
     width: 15px;
   }
 `;
@@ -90,24 +94,25 @@ function Checkbox({
   isChecked = false,
   isDisabled = false,
   onClick = noop,
-  onChange = noop
+  onChange = noop,
+  theme
 }) {
   return (
-    <CheckboxLabel disabled={isDisabled} isChecked={isChecked}>
-      <CheckboxInput
-        type="checkbox"
-        disabled={isDisabled}
-        value={value}
-        checked={isChecked}
-        onClick={onClick}
-        onChange={onChange}
-        focusBorderColor={inputColors.inputDefaultFocus}
-      />
-      <CheckboxWrapper className="checkbox-fill" />
-      <CheckboxText>
-        {labelText}
-      </CheckboxText>
-    </CheckboxLabel>
+    <ThemeProvider theme={theme}>
+      <CheckboxLabel disabled={isDisabled} isChecked={isChecked}>
+        <CheckboxInput
+          type="checkbox"
+          disabled={isDisabled}
+          value={value}
+          checked={isChecked}
+          onClick={onClick}
+          onChange={onChange}
+          focusBorderColor={theme.colors.inputFocus}
+        />
+        <CheckboxWrapper className="checkbox-fill" />
+        <CheckboxText>{labelText}</CheckboxText>
+      </CheckboxLabel>
+    </ThemeProvider>
   );
 }
 
@@ -119,7 +124,16 @@ Checkbox.propTypes = {
   onClick: PropTypes.func,
   /* Function to execute when a checkbox checked state is changed */
   onChange: PropTypes.func,
-  isDisabled: PropTypes.bool
+  isDisabled: PropTypes.bool,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
+};
+
+Checkbox.defaultProps = {
+  theme: defaultTheme
 };
 
 export default Checkbox;

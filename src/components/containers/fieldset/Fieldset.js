@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
-import { colors, sizes } from '../../theme';
+import defaultTheme from '../../theme/defaultTheme';
 
 const Legend = styled.legend`
   border: 0;
-  border-bottom: 1px solid ${colors.grayDark};
-  color: ${colors.grayDark};
+  border-bottom: 1px solid ${props => props.theme.colors.grayDark};
+  color: ${props => props.theme.colors.grayDark};
   display: block;
-  font-size: ${sizes.baseFontSize * 1.5}px;
+  font-size: ${props => props.theme.sizes.baseFontSize * 1.5}px;
   margin: 0 0 25px 0;
   padding: 0;
   width: 100%;
 `;
 
 function renderLegend(text, additionalLegendClasses) {
-  return text
-    ? <Legend className={additionalLegendClasses}>{text}</Legend>
-    : null;
+  return text ? (
+    <Legend className={additionalLegendClasses}>{text}</Legend>
+  ) : null;
 }
 
 const StyledFieldset = styled.fieldset`
@@ -27,12 +27,14 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({ additionalLegendClasses, legendText, children }) {
+function Fieldset({ additionalLegendClasses, legendText, children, theme }) {
   return (
-    <StyledFieldset>
-      {renderLegend(legendText, additionalLegendClasses)}
-      {children}
-    </StyledFieldset>
+    <ThemeProvider theme={theme}>
+      <StyledFieldset>
+        {renderLegend(legendText, additionalLegendClasses)}
+        {children}
+      </StyledFieldset>
+    </ThemeProvider>
   );
 }
 
@@ -41,7 +43,16 @@ Fieldset.propTypes = {
   legendText: PropTypes.string,
   /** Additional classes to be applied to the legend element */
   additionalLegendClasses: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
+};
+
+Fieldset.defaultProps = {
+  theme: defaultTheme
 };
 
 export default Fieldset;

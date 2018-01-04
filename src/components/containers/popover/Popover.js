@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { colors, sizes, screenSize } from '../../theme';
 import classNames from 'classnames';
+
 import DismissButton from '../../controls/DismissButton';
 
 const ArrowBase = styled.div`
@@ -29,7 +29,7 @@ const TopPlacementArrow = styled(ArrowBase)`
 
   &:after {
     border-bottom-width: 0;
-    border-top-color: ${colors.white};
+    border-top-color: ${props => props.theme.colors.white};
     bottom: 1px;
     margin-left: -10px;
   }
@@ -43,7 +43,7 @@ const RightPlacementArrow = styled(ArrowBase)`
   top: 50%;
 
   &:after {
-    border-left-color: ${colors.white};
+    border-left-color: ${props => props.theme.colors.white};
     border-right-width: 0;
     bottom: -10px;
     right: 1px;
@@ -60,7 +60,7 @@ const BottomPlacementArrow = styled(ArrowBase)`
 
   &:after {
     border-bottom-color: ${props =>
-      (props.displayColor ? colors.accent : colors.white)};
+      (props.displayColor ? props.theme.colors.accent : props.theme.colors.white)};
     border-top-width: 0;
     margin-left: -10px;
     top: 1px;
@@ -76,7 +76,7 @@ const LeftPlacementArrow = styled(ArrowBase)`
 
   &:after {
     border-left-width: 0;
-    border-right-color: ${colors.white};
+    border-right-color: ${props => props.theme.colors.white};
     bottom: -10px;
     left: 1px;
   }
@@ -100,17 +100,16 @@ function getArrow(placement) {
 // Add or subtract 11px from the appropriate position to account for the arrow's sizing
 const PopoverContent = styled.div`
   background-clip: padding-box;
-  background-color: ${colors.white};
+  background-color: ${props => props.theme.colors.white};
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: ${sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize}px;
   line-height: 1.4;
   max-width: 25%;
   position: absolute;
   z-index: 10;
 
-  @media (max-width: ${screenSize.phone}) {
+  @media (max-width: ${props => props.theme.screenSize.phone}) {
     max-width: 100%;
   }
 
@@ -123,7 +122,7 @@ const PopoverContent = styled.div`
     left: ${props => props.positionLeft}px;
     top: ${props => props.positionTop + 11}px;
 
-    @media (max-width: ${screenSize.phone}) {
+    @media (max-width: ${props => props.theme.screenSize.phone}) {
       left: 0;
     }
   }
@@ -140,14 +139,18 @@ const PopoverContent = styled.div`
 `;
 
 const PopoverTitle = styled.div`
-  color: ${colors.white};
+  color: ${props => props.theme.colors.white};
   padding: 8px 14px;
 `;
 
-const PopoverBodyContent = styled.div`padding: 9px 14px;`;
+const PopoverBodyContent = styled.div`
+  padding: 9px 14px;
+`;
 
+/* eslint-disable no-confusing-arrow */
 const DismissPopover = styled(DismissButton)`
-  color: ${props => (props.hasTitle ? colors.white : colors.grayDark)};
+  color: ${props =>
+    props.hasTitle ? props.theme.colors.white : props.theme.colors.grayDark};
   padding: ${props => (props.hasTitle ? '4px 14px' : '0px 10px')};
   margin-left: auto;
 `;
@@ -156,8 +159,10 @@ const PopoverHeader = styled.div`
   display: flex;
   justify-content: space-between;
   height: ${props => (props.hasTitle ? 'auto' : '16px')};
-  background-color: ${props => (props.hasTitle ? colors.accent : 'none')};
+  background-color: ${props =>
+    props.hasTitle ? props.theme.colors.accent : 'none'};
 `;
+/* eslint-disable */
 
 const Popover = props => {
   const {

@@ -4,14 +4,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import { colors } from '../../theme';
-
+import defaultTheme from '../../theme/defaultTheme';
 import getRadioFillVariables from './radio-fill-variables';
 import RadioButton from './RadioButton';
 
 describe('RadioButton component', () => {
   it('renders as expected', () => {
-    const tree = renderer.create(<RadioButton id="test" optionText="test" name="rad" />);
+    const tree = renderer.create(
+      <RadioButton id="test" optionText="test" name="rad" />
+    );
 
     expect(tree).toMatchSnapshot();
   });
@@ -23,10 +24,15 @@ describe('getRadioFillVariables', () => {
     const disabled = true;
     const invalid = false;
 
-    const { fill, hover } = getRadioFillVariables(checked, disabled, invalid);
+    const { fill, hover } = getRadioFillVariables(
+      checked,
+      disabled,
+      invalid,
+      defaultTheme.colors
+    );
 
-    expect(fill).toBe(colors.gray);
-    expect(hover).toBe(colors.white);
+    expect(fill).toBe(defaultTheme.colors.gray);
+    expect(hover).toBe(defaultTheme.colors.white);
   });
 
   it('returns { fill: accent } when checked, not disabled, and valid', () => {
@@ -34,9 +40,14 @@ describe('getRadioFillVariables', () => {
     const disabled = false;
     const invalid = false;
 
-    const { fill } = getRadioFillVariables(checked, disabled, invalid);
+    const { fill } = getRadioFillVariables(
+      checked,
+      disabled,
+      invalid,
+      defaultTheme.colors
+    );
 
-    expect(fill).toBe(colors.accent);
+    expect(fill).toBe(defaultTheme.colors.accent);
   });
 
   it('returns { fill: gray } when checked, disabled, and valid', () => {
@@ -44,9 +55,14 @@ describe('getRadioFillVariables', () => {
     const disabled = true;
     const invalid = false;
 
-    const { fill } = getRadioFillVariables(checked, disabled, invalid);
+    const { fill } = getRadioFillVariables(
+      checked,
+      disabled,
+      invalid,
+      defaultTheme.colors
+    );
 
-    expect(fill).toBe(colors.gray);
+    expect(fill).toBe(defaultTheme.colors.gray);
   });
 
   it('returns { fill: danger, hover: danger } when unchecked, not disabled, and invalid', () => {
@@ -54,10 +70,15 @@ describe('getRadioFillVariables', () => {
     const disabled = false;
     const invalid = true;
 
-    const { fill, hover } = getRadioFillVariables(checked, disabled, invalid);
+    const { fill, hover } = getRadioFillVariables(
+      checked,
+      disabled,
+      invalid,
+      defaultTheme.colors
+    );
 
-    expect(fill).toBe(colors.danger);
-    expect(hover).toBe(colors.danger);
+    expect(fill).toBe(defaultTheme.colors.danger);
+    expect(hover).toBe(defaultTheme.colors.danger);
   });
 
   it('returns { fill: danger } when checked, not disabled, and invalid', () => {
@@ -65,9 +86,14 @@ describe('getRadioFillVariables', () => {
     const disabled = false;
     const invalid = true;
 
-    const { fill } = getRadioFillVariables(checked, disabled, invalid);
+    const { fill } = getRadioFillVariables(
+      checked,
+      disabled,
+      invalid,
+      defaultTheme.colors
+    );
 
-    expect(fill).toBe(colors.danger);
+    expect(fill).toBe(defaultTheme.colors.danger);
   });
 
   it('returns { fill: grayDarker, hover: grayDarker } when unchecked, not disabled, and valid', () => {
@@ -75,9 +101,14 @@ describe('getRadioFillVariables', () => {
     const disabled = false;
     const invalid = false;
 
-    const { fill, hover } = getRadioFillVariables(checked, disabled, invalid);
+    const { fill, hover } = getRadioFillVariables(
+      checked,
+      disabled,
+      invalid,
+      defaultTheme.colors
+    );
 
-    expect(fill).toBe(colors.grayDarker);
-    expect(hover).toBe(colors.grayDarker);
+    expect(fill).toBe(defaultTheme.colors.grayDarker);
+    expect(hover).toBe(defaultTheme.colors.grayDarker);
   });
 });

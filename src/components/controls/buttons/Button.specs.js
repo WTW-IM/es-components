@@ -9,9 +9,7 @@ let instance;
 const onClick = jest.fn();
 
 beforeEach(() => {
-  instance = shallow(
-    <Button handleOnClick={onClick}>test</Button>
-  );
+  instance = shallow(<Button handleOnClick={onClick}>test</Button>).dive();
 });
 
 it('renders child text inside of button', () => {
@@ -21,13 +19,15 @@ it('renders child text inside of button', () => {
 it('renders child nodes inside of button', () => {
   const child = <span>Hello</span>;
 
-  const instanceWithChild = shallow(<Button handleOnClick={jest.fn()}>{child}</Button>);
+  const instanceWithChild = shallow(
+    <Button handleOnClick={jest.fn()}>{child}</Button>
+  );
 
-  expect(instanceWithChild.children().node).toBe(child);
+  expect(instanceWithChild.dive().children().node).toBe(child);
 });
 
 it('executes the handleOnClick function passed', () => {
-  instance.simulate('click');
+  instance.dive().simulate('click');
 
   expect(onClick.mock.calls.length).toBe(1);
 });

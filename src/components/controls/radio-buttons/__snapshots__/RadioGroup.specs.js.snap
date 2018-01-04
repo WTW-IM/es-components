@@ -6,7 +6,7 @@ exports[`RadioGroup component renders as expected 1`] = `
 >
   <label
     checked={false}
-    className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -20,7 +20,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={0}
     />
     <span
-      className="radio-fill sc-ifAKCX eliKVl"
+      className="radio-fill sc-ifAKCX jmtqOb"
       fill="#fff"
     />
     <span
@@ -31,7 +31,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -45,7 +45,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={1}
     />
     <span
-      className="radio-fill sc-ifAKCX eliKVl"
+      className="radio-fill sc-ifAKCX jmtqOb"
       fill="#fff"
     />
     <span
@@ -56,7 +56,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
     disabled={false}
     htmlFor="test-option-3"
   >
@@ -70,7 +70,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={2}
     />
     <span
-      className="radio-fill sc-ifAKCX eliKVl"
+      className="radio-fill sc-ifAKCX jmtqOb"
       fill="#fff"
     />
     <span
@@ -87,13 +87,13 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
   className="sc-bZQynM dSZIHB"
 >
   <legend
-    className="sc-EHOje eWkBBJ"
+    className="sc-EHOje kxGMhh"
   >
     Test legend
   </legend>
   <label
     checked={false}
-    className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -107,7 +107,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       value={0}
     />
     <span
-      className="radio-fill sc-ifAKCX eliKVl"
+      className="radio-fill sc-ifAKCX jmtqOb"
       fill="#fff"
     />
     <span
@@ -118,7 +118,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -132,7 +132,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       value={1}
     />
     <span
-      className="radio-fill sc-ifAKCX eliKVl"
+      className="radio-fill sc-ifAKCX jmtqOb"
       fill="#fff"
     />
     <span
@@ -143,7 +143,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH htHPuU sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
     disabled={false}
     htmlFor="test-option-3"
   >
@@ -157,7 +157,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       value={2}
     />
     <span
-      className="radio-fill sc-ifAKCX eliKVl"
+      className="radio-fill sc-ifAKCX jmtqOb"
       fill="#fff"
     />
     <span

@@ -2,7 +2,9 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
+import { ThemeProvider } from 'styled-components';
 
+import defaultTheme from '../../theme/defaultTheme';
 import ModalFooter from './ModalFooter';
 
 describe('modal footer component', () => {
@@ -10,7 +12,9 @@ describe('modal footer component', () => {
 
   beforeEach(() => {
     instanceToRender = (
-      <ModalFooter className="footer">This is the footer.</ModalFooter>
+      <ThemeProvider theme={defaultTheme}>
+        <ModalFooter className="footer">This is the footer.</ModalFooter>
+      </ThemeProvider>
     );
   });
 

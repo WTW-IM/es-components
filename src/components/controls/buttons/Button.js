@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import tinycolor from 'tinycolor2';
 
+import defaultTheme from '../../theme/defaultTheme';
 import { buttonSizeStyles } from './button-sizes';
 import {
   defaultButtonVariants,
   alternateButtonVariants
 } from './button-variants';
-
-import { colors } from '../../theme';
-
 import Icon from '../../base/icons/Icon';
 
 function getBlockPropertyValues(isBlock) {
@@ -56,13 +54,13 @@ const ButtonBase = styled.button`
 `;
 
 const DefaultButton = styled(ButtonBase)`
-  background-color: ${props => props.buttonVariant.backgroundColor.toRgbString()};
+  background-color: ${props => props.buttonVariant.backgroundColor};
   border-color: ${props => props.buttonVariant.borderColor};
   box-shadow: 0 4px 0 0 ${props => props.buttonVariant.boxShadowColor};
   color: ${props => props.buttonVariant.foregroundColor};
 
   &[disabled]:hover {
-    background-color: ${props => props.buttonVariant.backgroundColor.toRgbString()};
+    background-color: ${props => props.buttonVariant.backgroundColor};
   }
 
   &:hover {
@@ -71,13 +69,13 @@ const DefaultButton = styled(ButtonBase)`
 `;
 
 const AlternateButton = styled(ButtonBase)`
-  background-color: ${colors.white};
-  border: 2px solid ${props => props.buttonVariant.borderColor.toRgbString()};
+  background-color: ${props => props.theme.colors.white};
+  border: 2px solid ${props => props.buttonVariant.borderColor};
   border-radius: 0;
-  color: ${props => props.buttonVariant.foregroundColor.toRgbString()};
+  color: ${props => props.buttonVariant.foregroundColor};
 
   &:hover {
-    background-color: ${props => props.buttonVariant.hoverBackgroundColor.toRgbString()};
+    background-color: ${props => props.buttonVariant.hoverBackgroundColor};
     color: ${props => props.buttonVariant.hoverForegroundColor};
   }
 `;
@@ -96,7 +94,7 @@ const AlternateButtonIcon = styled(Icon)`
 const LinkButton = styled(ButtonBase)`
   background-color: transparent;
   box-shadow: none;
-  color: ${colors.accent};
+  color: ${props => props.theme.colors.accent};
   padding: 0;
   text-decoration: underline;
 
@@ -105,7 +103,7 @@ const LinkButton = styled(ButtonBase)`
   }
 
   &[disabled]:hover {
-    color: ${colors.accent};
+    color: ${props => props.theme.colors.accent};
     text-decoration: underline;
   }
 
@@ -114,11 +112,17 @@ const LinkButton = styled(ButtonBase)`
     box-shadow: none;
   }
 
-  &:hover, &:focus {
-    color: ${tinycolor(colors.primary).darken(15).toRgbString()};
+  &:hover,
+  &:focus {
+    color: ${props =>
+      tinycolor(props.theme.colors.accent)
+        .darken(15)
+        .toRgbString()};
   }
 
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     border-color: transperent;
   }
 `;
@@ -131,6 +135,7 @@ function Button({
   size = 'default',
   block = false,
   alternative = false,
+  theme,
   ...buttonProps
 }) {
   const buttonSize = buttonSizeStyles[size];
@@ -144,28 +149,32 @@ function Button({
   };
 
   if (alternative) {
-    const buttonVariant = alternateButtonVariants[styleType];
+    const buttonVariant = alternateButtonVariants(theme.colors, styleType);
     return (
-      <AlternateButton buttonVariant={buttonVariant} {...sharedProps}>
-        <AlternateChildrenContainer>
-          {children}
-          <AlternateButtonIcon name="arrow-right" lightweight />
-        </AlternateChildrenContainer>
-      </AlternateButton>
+      <ThemeProvider theme={theme}>
+        <AlternateButton buttonVariant={buttonVariant} {...sharedProps}>
+          <AlternateChildrenContainer>
+            {children}
+            <AlternateButtonIcon name="arrow-right" lightweight />
+          </AlternateChildrenContainer>
+        </AlternateButton>
+      </ThemeProvider>
     );
   } else if (isLinkButton) {
     return (
-      <LinkButton {...sharedProps}>
-        {children}
-      </LinkButton>
+      <ThemeProvider theme={theme}>
+        <LinkButton {...sharedProps}>{children}</LinkButton>
+      </ThemeProvider>
     );
   }
 
-  const buttonVariant = defaultButtonVariants[styleType];
+  const buttonVariant = defaultButtonVariants(theme.colors, styleType);
   return (
-    <DefaultButton buttonVariant={buttonVariant} {...sharedProps}>
-      {children}
-    </DefaultButton>
+    <ThemeProvider theme={theme}>
+      <DefaultButton buttonVariant={buttonVariant} {...sharedProps}>
+        {children}
+      </DefaultButton>
+    </ThemeProvider>
   );
 }
 
@@ -193,7 +202,16 @@ Button.propTypes = {
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,
   /** Render with the alternative styling */
-  alternative: PropTypes.bool
+  alternative: PropTypes.bool,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
+};
+
+Button.defaultProps = {
+  theme: defaultTheme
 };
 
 export default Button;

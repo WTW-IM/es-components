@@ -12,11 +12,13 @@ module.exports = {
   title: `Exchange Solutions React Components v${version}`,
   template: 'config/template.html',
   sections: [
+	{
+	  name: 'Themes',
+	  content: path.join(baseComponentDir, 'theme/Themes.md')
+	},
     {
       name: 'Base',
-      components: function() {
-        return [path.join(baseComponentDir, 'base/icons/Icon.js')];
-      },
+  	  components: path.join(baseComponentDir, 'base/**/*.js')
     },
 	{
 	  name: 'Containers',
@@ -25,11 +27,11 @@ module.exports = {
 	},
     {
       name: 'Controls',
-      components: path.join(baseComponentDir, '/controls/**/*.js')
+      components: path.join(baseComponentDir, 'controls/**/*.js')
     },
     {
       name: 'Navigation',
-      components: path.join(baseComponentDir, '/navigation/**/*.js')
+      components: path.join(baseComponentDir, 'navigation/**/*.js')
     },
     {
       name: 'Patterns',

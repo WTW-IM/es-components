@@ -2,17 +2,13 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import Textbox from '../../controls/textbox/Textbox';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
-import { injectGlobal } from 'styled-components';
-import { datepickerStyles } from './datePickerStyles';
+import { injectGlobal, ThemeProvider } from 'styled-components';
 
-/* eslint-disable no-unused-expressions */
-injectGlobal`
-  ${datepickerStyles}
-`;
-/* eslint-enable no-unused-expressions */
+import defaultTheme from '../../theme/defaultTheme';
+import datepickerStyles from './datePickerStyles';
+import Textbox from '../../controls/textbox/Textbox';
 
 class DateTextbox extends React.PureComponent {
   static propTypes = Textbox.propTypes;
@@ -37,8 +33,16 @@ export const DatePicker = props => {
     labelText,
     placeholder,
     selectedDate,
+    theme,
     ...otherProps
   } = props;
+
+  const dpStyles = datepickerStyles(theme.colors, theme.datepickerColors);
+  /* eslint-disable no-unused-expressions */
+  injectGlobal`
+    ${dpStyles}
+  `;
+  /* eslint-enable no-unused-expressions */
 
   const textbox = (
     <DateTextbox
@@ -50,14 +54,16 @@ export const DatePicker = props => {
   );
 
   return (
-    <ReactDatePicker
-      selected={selectedDate}
-      customInput={textbox}
-      placeholderText={placeholder}
-      {...otherProps}
-    >
-      {children}
-    </ReactDatePicker>
+    <ThemeProvider theme={theme}>
+      <ReactDatePicker
+        selected={selectedDate}
+        customInput={textbox}
+        placeholderText={placeholder}
+        {...otherProps}
+      >
+        {children}
+      </ReactDatePicker>
+    </ThemeProvider>
   );
 };
 
@@ -95,13 +101,19 @@ DatePicker.propTypes = {
   /** Sets the start date (moment) in a range */
   startDate: PropTypes.object,
   /** Sets the end date (moment) in a range */
-  endDate: PropTypes.object
+  endDate: PropTypes.object,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 DatePicker.defaultProps = {
   onBlur: noop,
   onChangeRaw: noop,
-  placeholder: 'mm/dd/yyyy'
+  placeholder: 'mm/dd/yyyy',
+  theme: defaultTheme
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

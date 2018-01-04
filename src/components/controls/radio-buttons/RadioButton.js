@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { noop } from 'lodash';
 
+import defaultTheme from '../../theme/defaultTheme';
 import Label from '../Label';
-import { colors, sizes } from '../../theme';
-
 import getRadioFillVariables from './radio-fill-variables';
 
 function radioFill(color) {
@@ -24,9 +23,9 @@ function radioFill(color) {
 }
 
 const RadioLabel = styled(Label)`
-  color: ${props => (props.error ? colors.danger : 'inherit')};
+  color: ${props => (props.error ? props.theme.colors.danger : 'inherit')};
   display: ${props => (props.inline ? 'inline-flex' : 'inherit')};
-  font-size: ${sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize}px;
   font-weight: normal;
   margin-right: ${props => (props.inline ? '20px' : 'initial')};
   min-height: 25px;
@@ -34,7 +33,9 @@ const RadioLabel = styled(Label)`
   padding: 5px 0;
   text-transform: none;
 
-  &:hover .radio-fill:before { ${props => radioFill(props.hoverFillColor)} }
+  &:hover .radio-fill:before {
+    ${props => radioFill(props.hoverFillColor)};
+  }
 `;
 
 const RadioInput = styled.input`
@@ -75,10 +76,16 @@ function RadioButton({
   onClick = noop,
   value,
   hasError = false,
+  theme,
   ...radioProps
 }) {
-  const { hover, fill } = getRadioFillVariables(checked, isDisabled, hasError);
-  const radioDisplayFill = checked ? fill : colors.white;
+  const { hover, fill } = getRadioFillVariables(
+    checked,
+    isDisabled,
+    hasError,
+    theme.colors
+  );
+  const radioDisplayFill = checked ? fill : theme.colors.white;
 
   const labelProps = {
     checked,
@@ -90,25 +97,25 @@ function RadioButton({
   };
 
   return (
-    <RadioLabel {...labelProps}>
-      <RadioInput
-        type="radio"
-        name={name}
-        id={id}
-        onClick={onClick}
-        value={value}
-        disabled={isDisabled}
-        {...radioProps}
-      />
-      <RadioDisplay
-        className="radio-fill"
-        borderColor={fill}
-        fill={radioDisplayFill}
-      />
-      <RadioText>
-        {optionText}
-      </RadioText>
-    </RadioLabel>
+    <ThemeProvider theme={theme}>
+      <RadioLabel {...labelProps}>
+        <RadioInput
+          type="radio"
+          name={name}
+          id={id}
+          onClick={onClick}
+          value={value}
+          disabled={isDisabled}
+          {...radioProps}
+        />
+        <RadioDisplay
+          className="radio-fill"
+          borderColor={fill}
+          fill={radioDisplayFill}
+        />
+        <RadioText>{optionText}</RadioText>
+      </RadioLabel>
+    </ThemeProvider>
   );
 }
 
@@ -121,7 +128,16 @@ RadioButton.propTypes = {
   inline: PropTypes.bool,
   onClick: PropTypes.func,
   value: PropTypes.any,
-  hasError: PropTypes.bool
+  hasError: PropTypes.bool,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
+};
+
+RadioButton.defaultProps = {
+  theme: defaultTheme
 };
 
 export default RadioButton;

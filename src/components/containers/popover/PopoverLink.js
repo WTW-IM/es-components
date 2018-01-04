@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import uncontrollable from 'uncontrollable';
 
+import defaultTheme from '../../theme/defaultTheme';
 import Button from '../../controls/buttons/Button';
 import PopoverTrigger from './PopoverTrigger';
 
@@ -32,32 +33,35 @@ export class PopoverLink extends React.Component {
       popoverPlacement,
       showPopover,
       showCloseButton,
-      suppressUnderline
+      suppressUnderline,
+      theme
     } = this.props;
 
     return (
-      <PopoverTrigger
-        onHideOverlay={this.hidePopover}
-        popoverContent={popoverContent}
-        popoverPlacement={popoverPlacement}
-        popoverTarget={this.popoverTarget}
-        popoverTitle={popoverTitle}
-        showPopover={showPopover}
-        showCloseButton={showCloseButton}
-      >
-        <PopoverButton
-          aria-haspopup="dialog"
-          data-trigger="focus"
-          handleOnClick={this.toggleShow}
-          ref={btn => {
-            this.popoverTarget = btn;
-          }}
-          styleType="link"
-          suppressUnderline={suppressUnderline}
+      <ThemeProvider theme={theme}>
+        <PopoverTrigger
+          onHideOverlay={this.hidePopover}
+          popoverContent={popoverContent}
+          popoverPlacement={popoverPlacement}
+          popoverTarget={this.popoverTarget}
+          popoverTitle={popoverTitle}
+          showPopover={showPopover}
+          showCloseButton={showCloseButton}
         >
-          {children}
-        </PopoverButton>
-      </PopoverTrigger>
+          <PopoverButton
+            aria-haspopup="dialog"
+            data-trigger="focus"
+            handleOnClick={this.toggleShow}
+            ref={btn => {
+              this.popoverTarget = btn;
+            }}
+            styleType="link"
+            suppressUnderline={suppressUnderline}
+          >
+            {children}
+          </PopoverButton>
+        </PopoverTrigger>
+      </ThemeProvider>
     );
   }
 }
@@ -78,7 +82,12 @@ PopoverLink.propTypes = {
   /** Display a close ('x') button */
   showCloseButton: PropTypes.bool,
   /** Hide underline from link. Useful for children like Icons */
-  suppressUnderline: PropTypes.bool
+  suppressUnderline: PropTypes.bool,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 PopoverLink.defaultProps = {
@@ -86,7 +95,8 @@ PopoverLink.defaultProps = {
   onToggle: noop,
   showPopover: false,
   showCloseButton: false,
-  suppressUnderline: false
+  suppressUnderline: false,
+  theme: defaultTheme
 };
 
 const UncontrolledPopoverLink = uncontrollable(PopoverLink, {

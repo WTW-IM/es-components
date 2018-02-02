@@ -3,7 +3,9 @@
 exports[`BreadcrumbTestSuite renders as expected 1`] = `
 <div>
   <span>
-    <a>
+    <a
+      href="/test"
+    >
       test
     </a>
   </span>
@@ -15,7 +17,9 @@ exports[`BreadcrumbTestSuite renders as expected 1`] = `
       fontFamily="oecom-icons"
       fontSize="inherit"
     />
-    <a>
+    <a
+      href="/test2"
+    >
       test2
     </a>
   </span>

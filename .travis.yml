@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - "7"
+  - "lts/*"
   - "node"
 script: npm run ci

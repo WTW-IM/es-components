@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",
@@ -49,6 +49,7 @@
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
     "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^4.3.0",
     "file-loader": "^0.9.0",
     "husky": "^0.13.3",

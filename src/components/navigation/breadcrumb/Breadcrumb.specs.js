@@ -11,8 +11,8 @@ describe('BreadcrumbTestSuite', () => {
   beforeEach(() => {
     instanceToRender = (
       <Breadcrumb keySelector={child => child.props.name}>
-        <a>test</a>
-        <a>test2</a>
+        <a href="/test">test</a>
+        <a href="/test2">test2</a>
       </Breadcrumb>
     );
   });

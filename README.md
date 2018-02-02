@@ -1,7 +1,7 @@
 Exchange Solutions React components
 ==================
 
-[![Build Status](https://travis-ci.org/TWExchangeSolutions/es-components.svg?branch=master)](https://travis-ci.org/TWExchangeSolutions/es-components)
+[![Build Status](https://travis-ci.org/WTW-IM/es-components.svg?branch=master)](https://travis-ci.org/WTW-IM/es-components)
 
 ## Documentation and Demos
 

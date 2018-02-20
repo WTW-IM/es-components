@@ -50,6 +50,9 @@ module.exports = {
   context: {
     dateFormat: 'date-fns/format'
   },
+  require: [
+    path.join(__dirname, 'config/react-axe.js')
+  ],
   webpackConfig: require('./config/webpack.config.js'),
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
     webpackConfig.plugins.push(

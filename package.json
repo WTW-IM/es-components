@@ -63,6 +63,7 @@
     "prop-types": "^15.5.6",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
+    "react-axe": "^3.0.0-alpha.1",
     "react-dom": "^15.4.1",
     "react-styleguidist": "^5.0.6",
     "react-test-renderer": "^15.4.2",

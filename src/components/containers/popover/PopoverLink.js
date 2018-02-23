@@ -4,6 +4,7 @@ import { noop } from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 import uncontrollable from 'uncontrollable';
 
+import { buttonStyleTypes } from '../../controls/buttons/button-variants';
 import defaultTheme from '../../theme/defaultTheme';
 import Button from '../../controls/buttons/Button';
 import PopoverTrigger from './PopoverTrigger';
@@ -61,6 +62,7 @@ export class PopoverLink extends React.Component {
             styleType={buttonStyle}
             styledLink={styledLink}
             suppressUnderline={suppressUnderline}
+            theme={theme}
           >
             {children}
           </PopoverButton>
@@ -69,17 +71,6 @@ export class PopoverLink extends React.Component {
     );
   }
 }
-
-const buttonStyleTypes = [
-  'default',
-  'primary',
-  'accent',
-  'success',
-  'info',
-  'warning',
-  'danger',
-  'link'
-];
 
 PopoverLink.propTypes = {
   /** The link content which activates the popover */

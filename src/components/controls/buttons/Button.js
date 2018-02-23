@@ -7,7 +7,8 @@ import defaultTheme from '../../theme/defaultTheme';
 import { buttonSizeStyles } from './button-sizes';
 import {
   defaultButtonVariants,
-  alternateButtonVariants
+  alternateButtonVariants,
+  buttonStyleTypes
 } from './button-variants';
 import Icon from '../../base/icons/Icon';
 
@@ -196,17 +197,6 @@ function Button({
   );
 }
 
-const buttonStyleTypes = [
-  'default',
-  'primary',
-  'accent',
-  'success',
-  'info',
-  'warning',
-  'danger',
-  'link'
-];
-
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
 
 Button.propTypes = {
@@ -215,7 +205,9 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /** Any additional classes to apply to the button */
   buttonClasses: PropTypes.string,
+  /** Chooses the color theme of the button */
   styleType: PropTypes.oneOf(buttonStyleTypes),
+  /** Determines if the button should be rendered as a link with different colors */
   styledLink: PropTypes.bool,
   size: PropTypes.oneOf(buttonSizes),
   /** Make the button's width the size of it's parent container */

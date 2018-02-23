@@ -127,11 +127,25 @@ const LinkButton = styled(ButtonBase)`
   }
 `;
 
+const StyledLinkButton = styled(LinkButton)`
+  color: ${props => props.buttonVariant.backgroundColor};
+  font-size: inherit;
+
+  &:hover,
+  &:focus {
+    color: ${props =>
+      tinycolor(props.buttonVariant.backgroundColor)
+        .darken(15)
+        .toRgbString()};
+  }
+`;
+
 function Button({
   handleOnClick,
   children,
   buttonClasses,
   styleType = 'default',
+  styledLink = false,
   size = 'default',
   block = false,
   alternative = false,
@@ -139,7 +153,7 @@ function Button({
   ...buttonProps
 }) {
   const buttonSize = buttonSizeStyles[size];
-  const isLinkButton = styleType === 'link';
+  const isLinkButton = styleType === 'link' || styledLink;
   const sharedProps = {
     block,
     buttonSize,
@@ -161,11 +175,15 @@ function Button({
       </ThemeProvider>
     );
   } else if (isLinkButton) {
-    return (
-      <ThemeProvider theme={theme}>
-        <LinkButton {...sharedProps}>{children}</LinkButton>
-      </ThemeProvider>
+    const buttonVariant = defaultButtonVariants(theme.colors, styleType);
+    const link = styledLink ? (
+      <StyledLinkButton buttonVariant={buttonVariant} {...sharedProps}>
+        {children}
+      </StyledLinkButton>
+    ) : (
+      <LinkButton {...sharedProps}>{children}</LinkButton>
     );
+    return <ThemeProvider theme={theme}>{link}</ThemeProvider>;
   }
 
   const buttonVariant = defaultButtonVariants(theme.colors, styleType);
@@ -198,6 +216,7 @@ Button.propTypes = {
   /** Any additional classes to apply to the button */
   buttonClasses: PropTypes.string,
   styleType: PropTypes.oneOf(buttonStyleTypes),
+  styledLink: PropTypes.bool,
   size: PropTypes.oneOf(buttonSizes),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,

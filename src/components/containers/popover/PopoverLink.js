@@ -34,8 +34,11 @@ export class PopoverLink extends React.Component {
       showPopover,
       showCloseButton,
       suppressUnderline,
-      theme
+      theme,
+      buttonStyle
     } = this.props;
+
+    const styledLink = buttonStyle !== 'link';
 
     return (
       <ThemeProvider theme={theme}>
@@ -55,7 +58,8 @@ export class PopoverLink extends React.Component {
             ref={btn => {
               this.popoverTarget = btn;
             }}
-            styleType="link"
+            styleType={buttonStyle}
+            styledLink={styledLink}
             suppressUnderline={suppressUnderline}
           >
             {children}
@@ -65,6 +69,17 @@ export class PopoverLink extends React.Component {
     );
   }
 }
+
+const buttonStyleTypes = [
+  'default',
+  'primary',
+  'accent',
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'link'
+];
 
 PopoverLink.propTypes = {
   /** The link content which activates the popover */
@@ -87,7 +102,9 @@ PopoverLink.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  /** The style of the link for the popover */
+  buttonStyle: PropTypes.oneOf(buttonStyleTypes)
 };
 
 PopoverLink.defaultProps = {
@@ -96,7 +113,8 @@ PopoverLink.defaultProps = {
   showPopover: false,
   showCloseButton: false,
   suppressUnderline: false,
-  theme: defaultTheme
+  theme: defaultTheme,
+  buttonStyle: 'link'
 };
 
 const UncontrolledPopoverLink = uncontrollable(PopoverLink, {

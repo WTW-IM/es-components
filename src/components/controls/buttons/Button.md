@@ -28,6 +28,10 @@ function noop() { }
   <Button handleOnClick={noop} styleType="danger">Danger</Button>
 
   <Button handleOnClick={noop} styleType="link">Link</Button>
+
+  <div style={{'font-size':'30px'}}>
+    <Button handleOnClick={noop} styleType="success" styledLink={true}>Styled Link</Button>
+  </div>
 </div>
 ```
 

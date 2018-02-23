@@ -44,7 +44,7 @@ const CheckboxLabel = Label.extend`
     }
   }
 `;
-/* eslint-disable */
+/* eslint-enable */
 
 const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);
@@ -97,6 +97,7 @@ function Checkbox({
   onChange = noop,
   theme
 }) {
+  /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
     <ThemeProvider theme={theme}>
       <CheckboxLabel disabled={isDisabled} isChecked={isChecked}>
@@ -114,6 +115,7 @@ function Checkbox({
       </CheckboxLabel>
     </ThemeProvider>
   );
+  /* eslint-enable */
 }
 
 Checkbox.propTypes = {

@@ -16,6 +16,7 @@ ReactTextMask.prototype.render = function render() {
   delete props.value;
   delete props.showMask;
 
+  /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
     <input
       {...props}
@@ -23,6 +24,7 @@ ReactTextMask.prototype.render = function render() {
       defaultValue={this.props.value}
       ref={inputElement => (this.inputElement = inputElement)}
     />
+    /* eslint-enable */
   );
 };
 

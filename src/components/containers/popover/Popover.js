@@ -162,7 +162,7 @@ const PopoverHeader = styled.div`
   background-color: ${props =>
     props.hasTitle ? props.theme.colors.accent : 'none'};
 `;
-/* eslint-disable */
+/* eslint-enable */
 
 const Popover = props => {
   const {

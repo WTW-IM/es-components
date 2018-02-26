@@ -150,4 +150,15 @@ function alternateButtonVariants(colors, type) {
   return variant;
 }
 
-export { defaultButtonVariants, alternateButtonVariants };
+const buttonStyleTypes = [
+  'default',
+  'primary',
+  'accent',
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'link'
+];
+
+export { defaultButtonVariants, alternateButtonVariants, buttonStyleTypes };

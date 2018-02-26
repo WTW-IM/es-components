@@ -12,7 +12,7 @@ describe('DatePicker component', () => {
   const handleOnChangeRaw = jest.fn();
   const mockOnChangeRawEvent = { target: { value: 'some date' } };
   const mockOnChangeEvent = { target: { value: '10/12/2017' } };
-
+  /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   beforeEach(() => {
     instance = mount(
       <DatePicker
@@ -26,7 +26,7 @@ describe('DatePicker component', () => {
     handleOnChange.mockClear();
     handleOnChangeRaw.mockClear();
   });
-
+  /* eslint-enable */
   it('executes the handleOnChange function when valid date is entered', () => {
     input.simulate('change', mockOnChangeEvent);
     expect(handleOnChange).toBeCalled();

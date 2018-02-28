@@ -6,6 +6,8 @@ export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';
 export PopoverLink from './components/containers/popover/PopoverLink';
 export Modal from './components/containers/modal/Modal';
+export Menu from './components/containers/menu/Menu';
+export MenuSection from './components/containers/menu/MenuSection';
 
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';

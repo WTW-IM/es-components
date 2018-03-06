@@ -20,9 +20,9 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
-            content="63f"
-            fontFamily="oecom-icons"
+            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
+            content="65a"
+            fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
           collapse 1
@@ -68,9 +68,9 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
-            content="63f"
-            fontFamily="oecom-icons"
+            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
+            content="65a"
+            fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
           collapse 2
@@ -113,9 +113,9 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
-            content="63f"
-            fontFamily="oecom-icons"
+            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
+            content="65a"
+            fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
           collapse 3
@@ -165,9 +165,9 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
-            content="63f"
-            fontFamily="oecom-icons"
+            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
+            content="65a"
+            fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
           collapse 1
@@ -213,9 +213,9 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
-            content="63f"
-            fontFamily="oecom-icons"
+            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
+            content="65a"
+            fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
           collapse 2
@@ -258,9 +258,9 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa iOqSxE"
-            content="63f"
-            fontFamily="oecom-icons"
+            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
+            content="65a"
+            fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
           collapse 3

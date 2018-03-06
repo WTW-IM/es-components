@@ -12,9 +12,9 @@ exports[`BreadcrumbTestSuite renders as expected 1`] = `
   <span>
     <i
       aria-hidden={true}
-      className="sc-bdVaJa izWgQO"
-      content="620"
-      fontFamily="oecom-icons"
+      className="sc-bdVaJa cdZdrm"
+      content="61a"
+      fontFamily="indv-mkt-icons"
       fontSize="inherit"
     />
     <a

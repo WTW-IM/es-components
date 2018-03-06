@@ -29,3 +29,20 @@ Use the `Menu` to expose an list of items overlayed over the screen when a butto
   </Menu.MenuSection>
 </Menu>
 ```
+
+### Inline Example
+By adding the `Inline` prop the menu will be displayed without bottom borders side by side.
+
+```
+<Menu header="Small Menu" buttonContent="Open Menu" inline>
+  <Menu.MenuSection title="Menu Section" isFirst>
+    <a href="www.google.com">Go To Google</a>
+  </Menu.MenuSection>
+  <Menu.MenuSection title="Menu Section 2">
+    <a href="www.yahoo.com">Go To Yahoo</a>
+  </Menu.MenuSection>
+  <Menu.MenuSection title="Menu Section 3">
+    <a href="www.lycos.com">Go To Lycos</a>
+  </Menu.MenuSection>
+</Menu>
+```

@@ -44,9 +44,14 @@ const MenuPanel = (props, context) => {
 
 MenuPanel.propTypes = {
   children: PropTypes.any.isRequired,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   closeFunction: PropTypes.func.isRequired
 };
+
+MenuPanel.defaultProps = {
+  isOpen: false
+};
+
 MenuPanel.contextTypes = {
   inline: PropTypes.bool
 };

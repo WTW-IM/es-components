@@ -18,9 +18,7 @@ class Menu extends React.Component {
   }
 
   toggleMenu = () => {
-    this.setState({
-      isMenuOpen: !this.state.isMenuOpen
-    });
+    this.setState(previousState => ({ isMenuOpen: !previousState.isMenuOpen }));
   };
 
   render() {
@@ -28,7 +26,10 @@ class Menu extends React.Component {
 
     return (
       <div className={className}>
-        <ToggleButton handleOnClick={this.toggleMenu}>
+        <ToggleButton
+          handleOnClick={this.toggleMenu}
+          isPressed={this.state.isMenuOpen}
+        >
           {buttonContent}
         </ToggleButton>
         <MenuPanel
@@ -46,7 +47,7 @@ Menu.MenuSection = MenuSection;
 
 Menu.propTypes = {
   children: PropTypes.any.isRequired,
-  buttonContent: PropTypes.string.isRequired,
+  buttonContent: PropTypes.any.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool
 };

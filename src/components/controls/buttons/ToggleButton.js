@@ -1,3 +1,4 @@
+/* eslint no-confusing-arrow: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -7,11 +8,17 @@ import { buttonStyleTypes, defaultButtonVariants } from './button-variants';
 
 class ToggleButton extends React.Component {
   state = {
-    isPressed: false
+    isPressed: this.props.isPressed
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isPressed !== this.state.isPressed) {
+      this.setState({ isPressed: nextProps.isPressed });
+    }
+  }
+
   toggleButton = event => {
-    this.setState({ isPressed: !this.state.isPressed });
+    this.setState(previousState => ({ isPressed: !previousState.isPressed }));
     this.props.handleOnClick(event);
   };
 
@@ -47,9 +54,9 @@ class ToggleButton extends React.Component {
 
 const StyledToggleButton = styled(Button)`
   background-color: ${props =>
-    (props.isPressed
+    props.isPressed
       ? props.buttonVariant.hoverBackgroundColor
-      : props.buttonVariant.backgroundColor)};
+      : props.buttonVariant.backgroundColor};
 `;
 
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
@@ -63,7 +70,8 @@ ToggleButton.propTypes = {
   size: PropTypes.oneOf(buttonSizes),
   block: PropTypes.bool,
   alternative: PropTypes.bool,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  isPressed: PropTypes.bool
 };
 
 ToggleButton.defaultProps = {

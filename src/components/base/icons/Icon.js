@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { regular, light } from './icon-definitions';
-
+import { regular } from './icon-definitions';
 
 const StyledIcon = styled.i`
   display: inline-block;
-  font-family: ${props => props.fontFamily};
+  font-family: ${props => props.fontFamily} !important;
   font-size: ${props => props.fontSize};
   font-style: normal;
   font-weight: inherit;
   font-variant: normal;
   line-height: 1;
+  speak: none;
   text-decoration: none;
   text-transform: none;
   -webkit-font-smoothing: antialiased;
@@ -24,25 +24,12 @@ const StyledIcon = styled.i`
   }
 `;
 
-function Icon({
-  className,
-  name,
-  size,
-  lightweight = false,
-  ...other
-}) {
+function Icon({ className, name, size, ...other }) {
   const styledIconProps = {};
 
-  if (lightweight) {
-    styledIconProps.fontFamily = 'oe-icons-light';
-    styledIconProps.iconDefinition = `oe-icon-lt-${name}`;
-    styledIconProps.content = light[styledIconProps.iconDefinition];
-  } else {
-    styledIconProps.fontFamily = 'oecom-icons';
-    styledIconProps.iconDefinition = `oe-icon-${name}`;
-    styledIconProps.content = regular[styledIconProps.iconDefinition];
-  }
-
+  styledIconProps.fontFamily = 'indv-mkt-icons';
+  styledIconProps.iconDefinition = `im-icon-${name}`;
+  styledIconProps.content = regular[styledIconProps.iconDefinition];
   styledIconProps.fontSize = size !== undefined ? `${size}px` : 'inherit';
 
   return (
@@ -61,9 +48,7 @@ Icon.propTypes = {
   /** Name of the icon to display */
   name: PropTypes.string.isRequired,
   /** Specify icon size in pixels */
-  size: PropTypes.number,
-  /** Use the lightweight icon font */
-  lightweight: PropTypes.bool
+  size: PropTypes.number
 };
 
 export default Icon;

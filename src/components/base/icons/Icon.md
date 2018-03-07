@@ -1,4 +1,4 @@
-Icons will inherit their size unless otherwise specified. The full <a href="http://prototypes-wtw.net/media/#glyphicons" target="blank">icon set</a> shows all the available icons.
+Icons will inherit their size unless otherwise specified. The full <a href="http://prototypes-wtw.net/media/#indv-mkt-icons" target="blank">icon set</a> shows all the available icons.
 
 ```
 const containerStyle = {
@@ -9,36 +9,29 @@ const containerStyle = {
 
 <div>
   <div style={containerStyle}>
-    <Icon size={48} name="federal" /> Regular
+    <Icon size={24} name="accessibility" />
   </div>
   <div style={containerStyle}>
-    <Icon size={48} name="home" lightweight /> Light icons use a lighter weight icon font
+    <Icon size={48} name="home" />
   </div>
 </div>
 ```
 
-**Note:** Icons will not work if the `oecom-icons` and `oe-icons-light` font faces are not loaded into a stylesheet prior to using the Icon component. For example:
+**Note:** Icons will not work if the `indv-mkt-icons` font face is not loaded into a stylesheet prior to using the Icon component. For example:
 
 <pre>
 &lt;head&gt;
   &lt;style&gt;
-    @font-face {
-      font-family: 'oecom-icons';
-      src:url('webfonts/oecom-icons.eot');
-      src:url('webfonts/oecom-icons.eot') format('embedded-opentype'),
-          url('webfonts/oecom-icons.woff') format('woff'),
-          url('webfonts/oecom-icons.ttf') format('truetype'),
-          url('webfonts/oecom-icons.svg') format('svg');
-    }
-
-    @font-face {
-      font-family: 'oe-icons-light';
-      src:url('webfonts/oe-icons-light.eot');
-      src:url('webfonts/oe-icons-light.eot') format('embedded-opentype'),
-          url('webfonts/oe-icons-light.woff') format('woff'),
-          url('webfonts/oe-icons-light.ttf') format('truetype'),
-          url('webfonts/oe-icons-light.svg') format('svg');
-    }
+  @font-face {
+    font-family: 'indv-mkt-icons';
+    src: url('webfonts/indv-mkt-icons.eot?3tk8wr');
+    src: url('webfonts/indv-mkt-icons.eot?3tk8wr#iefix') format('embedded-opentype'),
+      url('webfonts/indv-mkt-icons.ttf?3tk8wr') format('truetype'),
+      url('webfonts/indv-mkt-icons.woff?3tk8wr') format('woff'),
+      url('webfonts/indv-mkt-icons.svg?3tk8wr#indv-mkt-icons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
   &lt;/style&gt;
 &lt;/head&gt;
 </pre>

@@ -65,16 +65,16 @@ describe('Textbox component', () => {
 
   it('sets aria-describedby on input when the additionalHelpContent prop is provided', () => {
     const instance = mount(buildTextbox());
-    const input = instance.find('input');
+    const input = () => instance.find('input');
 
-    let describedBy = input.prop('aria-describedby');
+    let describedBy = input().prop('aria-describedby');
     expect(describedBy).toBeNull();
 
     instance.setProps({
       id: 'abcdef',
       additionalHelpContent: 'I am here to help'
     });
-    describedBy = input.prop('aria-describedby');
+    describedBy = input().prop('aria-describedby');
     expect(describedBy).not.toBeUndefined();
     expect(describedBy).toBe('abcdef-help');
   });
@@ -87,7 +87,7 @@ describe('Textbox component', () => {
 
     instance.setProps({ additionalHelpContent: 'I am here to help' });
 
-    help = instance.find('.textbox__help');
+    help = instance.find('.textbox__help').hostNodes();
     expect(help.text()).toBe('I am here to help');
   });
 

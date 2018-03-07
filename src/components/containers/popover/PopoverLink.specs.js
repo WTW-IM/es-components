@@ -28,7 +28,7 @@ describe('popoverLink component', () => {
 
   it('calls onToggle when link is clicked', () => {
     const popoverInstance = mount(instanceToRender);
-    const button = popoverInstance.find('[data-trigger="focus"]');
+    const button = popoverInstance.find('[data-trigger="focus"]').hostNodes();
 
     button.simulate('click');
     expect(onToggle).toHaveBeenCalled();

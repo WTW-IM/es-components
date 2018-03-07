@@ -47,11 +47,11 @@ it('header text is emphasized with h4 tag', () => {
 
 it('notification has dismissable button when dismissable is true', () => {
   const instance = getMountedInstance();
-  expect(instance.find('.notification__dismiss').length).toBe(0);
+  expect(instance.find('.notification__dismiss').hostNodes().length).toBe(0);
 
   instance.setProps({ dismissable: true });
 
-  expect(instance.find('.notification__dismiss').length).toBe(1);
+  expect(instance.find('.notification__dismiss').hostNodes().length).toBe(1);
 });
 
 it('notification prepends icon appropriate to type when includeIcon is true', () => {
@@ -135,7 +135,7 @@ describe('when extraAlert is provided', () => {
   });
 
   it('adds an ExtraAlert to the notification', () => {
-    expect(instance.find('.extra__alert').length).toBe(1);
+    expect(instance.find('.extra__alert').hostNodes().length).toBe(1);
   });
 
   it('displays the passed text as small', () => {

@@ -58,7 +58,7 @@ describe('drawer', () => {
 
   it('executes onItemSelected with the id of the nav item clicked', () => {
     const navInstance = mount(instanceToRender);
-    const navItem = navInstance.find('.cart');
+    const navItem = navInstance.find('.cart').hostNodes();
 
     navItem.simulate('click');
     expect(onItemSelected).toBeCalledWith('cart');
@@ -66,7 +66,7 @@ describe('drawer', () => {
 
   it('executes onClick when nav item clicked', () => {
     const navInstance = mount(instanceToRender);
-    const navItem = navInstance.find('.home');
+    const navItem = navInstance.find('.home').hostNodes();
 
     navItem.simulate('click');
     expect(onClick).toBeCalledWith('home');
@@ -74,7 +74,7 @@ describe('drawer', () => {
 
   it('disabled item prevents onclick functions', () => {
     const navInstance = mount(instanceToRender);
-    const navItem = navInstance.find('.info');
+    const navItem = navInstance.find('.info').hostNodes();
 
     navItem.simulate('click');
     expect(onClick).not.toBeCalled();

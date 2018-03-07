@@ -23,7 +23,12 @@ it('renders child nodes inside of button', () => {
     <Button handleOnClick={jest.fn()}>{child}</Button>
   );
 
-  expect(instanceWithChild.dive().children().node).toBe(child);
+  expect(
+    instanceWithChild
+      .dive()
+      .children()
+      .getElement()
+  ).toMatchObject(child);
 });
 
 it('executes the handleOnClick function passed', () => {

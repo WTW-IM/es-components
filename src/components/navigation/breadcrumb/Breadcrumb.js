@@ -14,26 +14,14 @@ const OrderedList = styled.ol`
   margin-top: 0;
   padding: 8px 15px;
 
-  > li > a {
-    color: ${props => props.theme.colors.primary};
-    text-decoration: none;
-  }
-
-  > li > a:hover {
-    color: ${props =>
-      tinycolor(props.theme.colors.primary)
-        .darken(15)
-        .toRgbString()};
-    text-decoration: underline;
-  }
-
   > li + li {
-    padding-left: 1.4em;
+    padding-left: 24px;
 
     &::before {
       border-color: ${props => props.theme.colors.gray};
       border-style: solid;
       border-width: 0 2px 2px 0;
+      box-sizing: border-box;
       content: '';
       display: block;
       height: 13px;
@@ -49,7 +37,21 @@ const OrderedList = styled.ol`
 const Crumb = styled.li`
   color: ${props => props.theme.colors.accent};
   display: inline-block;
+  margin-right: 2px;
   position: relative;
+
+  > a {
+    color: ${props => props.theme.colors.primary};
+    text-decoration: none;
+  }
+
+  > a:hover {
+    color: ${props =>
+      tinycolor(props.theme.colors.primary)
+        .darken(15)
+        .toRgbString()};
+    text-decoration: underline;
+  }
 `;
 
 function Breadcrumb({ children, ...props }) {

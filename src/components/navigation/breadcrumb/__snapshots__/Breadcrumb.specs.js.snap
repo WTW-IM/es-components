@@ -2,10 +2,10 @@
 
 exports[`BreadcrumbTestSuite renders as expected 1`] = `
 <ol
-  className="test sc-bdVaJa cyRFfj"
+  className="test sc-bdVaJa fjGuA"
 >
   <li
-    className="sc-bwzfXH kAqDLp"
+    className="sc-bwzfXH cJHHPw"
   >
     <a
       href="/test"
@@ -14,7 +14,7 @@ exports[`BreadcrumbTestSuite renders as expected 1`] = `
     </a>
   </li>
   <li
-    className="sc-bwzfXH kAqDLp"
+    className="sc-bwzfXH cJHHPw"
   >
     <a
       href="/test2"

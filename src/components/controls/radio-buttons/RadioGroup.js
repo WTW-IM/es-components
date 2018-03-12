@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
 import Fieldset from '../../containers/fieldset/Fieldset';
+
 import RadioButton from './RadioButton';
+import defaultTheme from '../../theme/defaultTheme';
+import { ThemeProvider } from 'styled-components';
 
 function RadioGroup({
   name,
@@ -13,28 +16,32 @@ function RadioGroup({
   hasError = false,
   disableAllOptions = false,
   inline = true,
-  onClick = noop
+  onClick = noop,
+  theme
 }) {
   return (
-    <Fieldset legendText={legendText}>
-      {radioOptions.map((config, index) => {
-        const radioId = `${name}-option-${index + 1}`;
-        const checked = config.optionValue === value;
-        const isDisabled = disableAllOptions || config.isDisabled;
-        const radioProps = {
-          name,
-          checked,
-          hasError,
-          isDisabled,
-          inline,
-          onClick,
-          id: radioId,
-          optionText: config.optionText,
-          value: config.optionValue
-        };
-        return <RadioButton key={radioId} {...radioProps} />;
-      })}
-    </Fieldset>
+    <ThemeProvider theme={theme}>
+      <Fieldset legendText={legendText}>
+        {radioOptions.map((config, index) => {
+          const radioId = `${name}-option-${index + 1}`;
+          const checked = config.optionValue === value;
+          const isDisabled = disableAllOptions || config.isDisabled;
+          const radioProps = {
+            name,
+            checked,
+            hasError,
+            isDisabled,
+            inline,
+            onClick,
+            id: radioId,
+            optionText: config.optionText,
+            value: config.optionValue,
+            theme
+          };
+          return <RadioButton key={radioId} {...radioProps} />;
+        })}
+      </Fieldset>
+    </ThemeProvider>
   );
 }
 
@@ -61,7 +68,12 @@ RadioGroup.propTypes = {
   /** Display the radio buttons inline */
   inline: PropTypes.bool,
   /** Function to execute when a radio button is selected */
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  theme: PropTypes.object
+};
+
+RadioGroup.defaultProps = {
+  theme: defaultTheme
 };
 
 export default RadioGroup;

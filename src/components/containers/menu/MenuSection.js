@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import defaultTheme from '../../theme/defaultTheme';
+import styled from 'styled-components';
 
 const StyledMenuSection = styled.div`
   padding-top: ${props => (!props.isFirst && !props.inline ? '20px' : '0px')};
   padding-bottom: ${props => (props.isLast ? '0px' : '20px')};
   border-bottom: ${props =>
-    (!props.isLast && !props.inline
+    !props.isLast && !props.inline
       ? `1px solid ${props.theme.colors.gray}`
-      : 'none')};
+      : 'none'};
 `;
 
 const StyledHeader = styled.div`
@@ -25,12 +24,10 @@ const MenuSection = (props, context) => {
   const { inline } = context;
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <StyledMenuSection isLast={isLast} isFirst={isFirst} inline={inline}>
-        <StyledHeader>{title}</StyledHeader>
-        <StyledChildrenContainer>{children}</StyledChildrenContainer>
-      </StyledMenuSection>
-    </ThemeProvider>
+    <StyledMenuSection isLast={isLast} isFirst={isFirst} inline={inline}>
+      <StyledHeader>{title}</StyledHeader>
+      <StyledChildrenContainer>{children}</StyledChildrenContainer>
+    </StyledMenuSection>
   );
 };
 

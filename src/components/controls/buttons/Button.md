@@ -17,6 +17,8 @@ function noop() { }
 
   <Button handleOnClick={noop} styleType="primary">Primary</Button>
 
+  <Button handleOnClick={noop} styleType="accent" enforceAccessibility={true}>Accent</Button>
+
   <Button handleOnClick={noop} styleType="accent">Accent</Button>
 
   <Button handleOnClick={noop} styleType="success">Success</Button>
@@ -30,7 +32,7 @@ function noop() { }
   <Button handleOnClick={noop} styleType="link">Link</Button>
 
   <div style={{'font-size':'30px'}}>
-    <Button handleOnClick={noop} styleType="success" styledLink={true}>Styled Link</Button>
+    <Button handleOnClick={noop} styleType="primary" styledLink={true}>Styled Link</Button>
   </div>
 </div>
 ```

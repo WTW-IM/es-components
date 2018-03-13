@@ -28,7 +28,7 @@ function swapForeground(color) {
   return tinycolor.equals(color, '#000') ? '#fff' : '#000';
 }
 
-function getSimpleButtonVariation(color) {
+function getSimpleButtonVariation(color, enforceAccessibility) {
   let bgColor = color;
 
   // if the color supplied is black, we need to lighten up the button.
@@ -37,15 +37,13 @@ function getSimpleButtonVariation(color) {
     bgColor = '#444';
   }
 
-  const backgroundColor = getBackgroundColor(bgColor);
-
   let textColor = '#fff';
-  if (tinycolor.readability(backgroundColor, textColor) < 2) {
+  if (enforceAccessibility && !tinycolor.isReadable(bgColor, textColor)) {
     textColor = swapForeground(textColor);
   }
 
   return {
-    backgroundColor,
+    backgroundColor: bgColor,
     hoverBackgroundColor: getHoverBackgroundColor(bgColor),
     borderColor: getBorderColor(bgColor),
     boxShadowColor: getBoxShadowColor(bgColor),
@@ -53,27 +51,30 @@ function getSimpleButtonVariation(color) {
   };
 }
 
-function defaultButtonVariants(colors, type) {
+function defaultButtonVariants(colors, type, enforceAccessibility) {
   let variant;
 
   switch (type) {
     case 'primary':
-      variant = getSimpleButtonVariation(colors.primary);
+      variant = getSimpleButtonVariation(colors.primary, enforceAccessibility);
       break;
     case 'accent':
-      variant = getSimpleButtonVariation(colors.accent);
+      variant = getSimpleButtonVariation(colors.accent, enforceAccessibility);
       break;
     case 'success':
-      variant = getSimpleButtonVariation(colors.success);
+      variant = getSimpleButtonVariation(colors.success, enforceAccessibility);
       break;
     case 'info':
-      variant = getSimpleButtonVariation(colors.information);
+      variant = getSimpleButtonVariation(
+        colors.information,
+        enforceAccessibility
+      );
       break;
     case 'warning':
-      variant = getSimpleButtonVariation(colors.warning);
+      variant = getSimpleButtonVariation(colors.warning, enforceAccessibility);
       break;
     case 'danger':
-      variant = getSimpleButtonVariation(colors.danger);
+      variant = getSimpleButtonVariation(colors.danger, enforceAccessibility);
       break;
     default:
       variant = {

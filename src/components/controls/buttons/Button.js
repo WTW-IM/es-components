@@ -150,6 +150,7 @@ function Button({
   size = 'default',
   block = false,
   alternative = false,
+  enforceAccessibility = false,
   theme,
   ...buttonProps
 }) {
@@ -176,7 +177,11 @@ function Button({
       </ThemeProvider>
     );
   } else if (isLinkButton) {
-    const buttonVariant = defaultButtonVariants(theme.colors, styleType);
+    const buttonVariant = defaultButtonVariants(
+      theme.colors,
+      styleType,
+      enforceAccessibility
+    );
     const link = styledLink ? (
       <StyledLinkButton buttonVariant={buttonVariant} {...sharedProps}>
         {children}
@@ -187,7 +192,11 @@ function Button({
     return <ThemeProvider theme={theme}>{link}</ThemeProvider>;
   }
 
-  const buttonVariant = defaultButtonVariants(theme.colors, styleType);
+  const buttonVariant = defaultButtonVariants(
+    theme.colors,
+    styleType,
+    enforceAccessibility
+  );
   return (
     <ThemeProvider theme={theme}>
       <DefaultButton buttonVariant={buttonVariant} {...sharedProps}>
@@ -214,6 +223,8 @@ Button.propTypes = {
   block: PropTypes.bool,
   /** Render with the alternative styling */
   alternative: PropTypes.bool,
+  /** Decides whether the button colors should enforce accessbility AA standards */
+  enforceAccessibility: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider

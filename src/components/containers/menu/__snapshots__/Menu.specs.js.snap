@@ -11,7 +11,7 @@ exports[`MenuTestSuite renders as expected 1`] = `
     Open Menu
   </button>
   <div
-    className="sc-gZMcBi kGQLuy"
+    className="menu-panel sc-gZMcBi kIqqYI"
   >
     <div
       className="sc-VigVT loKTSv"

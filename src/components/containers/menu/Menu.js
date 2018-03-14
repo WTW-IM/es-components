@@ -71,10 +71,7 @@ class Menu extends React.Component {
             >
               {buttonContent}
             </ToggleButton>
-            <MenuPanel
-              isOpen={this.state.isMenuOpen}
-              closeFunction={this.closeMenu}
-            >
+            <MenuPanel isOpen={this.state.isMenuOpen} onClose={this.closeMenu}>
               {children}
             </MenuPanel>
           </div>

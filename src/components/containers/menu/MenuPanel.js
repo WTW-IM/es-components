@@ -7,7 +7,6 @@ const StyledPanel = styled.div`
   background-color: ${props => props.theme.colors.grayLighter};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
-  z-index: 10;
 `;
 
 const StyledDismissButton = styled(DismissButton)`
@@ -27,7 +26,7 @@ const StyledChildrenContainer = styled.div`
 const MenuPanel = (props, context) => {
   const { children, isOpen, onClose } = props;
   return (
-    <StyledPanel isOpen={isOpen} className="menu-panel" t>
+    <StyledPanel isOpen={isOpen} className="menu-panel">
       <Spacer>
         <StyledDismissButton onClick={onClose} />
       </Spacer>

@@ -3,66 +3,53 @@ Any additional props passed to the Button component will get passed to the HTML 
 ## Button Style Types
 
 ```
-const buttonExampleStyle = {
-  display: 'flex',
-  flexFlow: 'row wrap',
-  justifyContent: 'space-between',
-  paddingTop: '20px'
+const buttonDemoStyle = {
+  margin: '15px 15px 0 0'
 };
 
 function noop() { }
 
-<div style={buttonExampleStyle}>
-  <Button handleOnClick={noop}>Default</Button>
+<div>
+  <Button handleOnClick={noop} style={buttonDemoStyle}>Default</Button>
 
-  <Button handleOnClick={noop} styleType="primary">Primary</Button>
+  <Button handleOnClick={noop} styleType="primary" style={buttonDemoStyle}>Primary</Button>
 
-  <Button handleOnClick={noop} styleType="accent">Accent</Button>
+  <Button handleOnClick={noop} styleType="success" style={buttonDemoStyle}>Success</Button>
 
-  <Button handleOnClick={noop} styleType="success">Success</Button>
+  <Button handleOnClick={noop} styleType="info" style={buttonDemoStyle}>Information</Button>
 
-  <Button handleOnClick={noop} styleType="info">Information</Button>
+  <Button handleOnClick={noop} styleType="warning" style={buttonDemoStyle}>Warning</Button>
 
-  <Button handleOnClick={noop} styleType="warning">Warning</Button>
-
-  <Button handleOnClick={noop} styleType="danger">Danger</Button>
-
-  <Button handleOnClick={noop} styleType="link">Link</Button>
-
-  <div style={{'font-size':'30px'}}>
-    <Button handleOnClick={noop} styleType="success" styledLink={true}>Styled Link</Button>
-  </div>
+  <Button handleOnClick={noop} styleType="danger" style={buttonDemoStyle}>Danger</Button>
 </div>
 ```
 
 ### Alternative button types
 
-Setting the `alternative` prop will give the button the alternative style for each type.
+Setting the `isOutline` prop will apply an alternative outline style. Setting `isLinkButton`
+will render the button as a text link, using the color of the primary `styleType` provided.
 
 ```
-const buttonExampleStyle = {
-  display: 'flex',
-  flexFlow: 'row wrap',
-  justifyContent: 'space-between',
-  paddingTop: '20px'
+const buttonDemoStyle = {
+  margin: '15px 15px 0 0'
 };
 
 function noop() { }
 
-<div style={buttonExampleStyle}>
-  <Button handleOnClick={noop} alternative>Default</Button>
+<div>
+  <Button handleOnClick={noop} isOutline style={buttonDemoStyle}>Default</Button>
 
-  <Button handleOnClick={noop} styleType="primary" alternative>Primary</Button>
+  <Button handleOnClick={noop} styleType="primary" isOutline style={buttonDemoStyle}>Primary</Button>
 
-  <Button handleOnClick={noop} styleType="accent" alternative>Accent</Button>
+  <Button handleOnClick={noop} styleType="success" isOutline style={buttonDemoStyle}>Success</Button>
 
-  <Button handleOnClick={noop} styleType="success" alternative>Success</Button>
+  <Button handleOnClick={noop} styleType="info" isOutline style={buttonDemoStyle}>Information</Button>
 
-  <Button handleOnClick={noop} styleType="info" alternative>Information</Button>
+  <Button handleOnClick={noop} styleType="warning" isOutline style={buttonDemoStyle}>Warning</Button>
 
-  <Button handleOnClick={noop} styleType="warning" alternative>Warning</Button>
+  <Button handleOnClick={noop} styleType="danger" isOutline style={buttonDemoStyle}>Danger</Button>
 
-  <Button handleOnClick={noop} styleType="danger" alternative>Danger</Button>
+  <Button handleOnClick={noop} styleType="primary" isLinkButton style={buttonDemoStyle}>Link</Button>
 </div>
 ```
 
@@ -72,7 +59,7 @@ Including a size will set buttons to a specific size
 
 ```
 const buttonExampleStyle = {
-  marginBottom: '5px'
+  marginBottom: '15px'
 };
 
 function noop() {}
@@ -139,31 +126,26 @@ function noop() { }
 Any additional prop sent will be included on the button. For example, setting the `disabled` property will put the button into a disabled state, making it unclickable.
 
 ```
-const buttonExampleStyle = {
-  display: 'flex',
-  flexFlow: 'row wrap',
-  justifyContent: 'space-between',
-  paddingTop: '20px'
+const buttonDemoStyle = {
+  margin: '15px 15px 0 0'
 };
 
 function noop() { }
 
-<div style={buttonExampleStyle}>
-  <Button handleOnClick={noop} disabled>Default</Button>
+<div>
+  <Button handleOnClick={noop} disabled style={buttonDemoStyle}>Default</Button>
 
-  <Button handleOnClick={noop} styleType="primary" disabled>Primary</Button>
+  <Button handleOnClick={noop} styleType="primary" disabled style={buttonDemoStyle}>Primary</Button>
 
-  <Button handleOnClick={noop} styleType="accent" disabled>Accent</Button>
+  <Button handleOnClick={noop} styleType="success" disabled style={buttonDemoStyle}>Success</Button>
 
-  <Button handleOnClick={noop} styleType="success" disabled>Success</Button>
+  <Button handleOnClick={noop} styleType="info" disabled style={buttonDemoStyle}>Information</Button>
 
-  <Button handleOnClick={noop} styleType="info" disabled>Information</Button>
+  <Button handleOnClick={noop} styleType="warning" disabled style={buttonDemoStyle}>Warning</Button>
 
-  <Button handleOnClick={noop} styleType="warning" disabled>Warning</Button>
+  <Button handleOnClick={noop} styleType="danger" disabled style={buttonDemoStyle}>Danger</Button>
 
-  <Button handleOnClick={noop} styleType="danger" disabled>Danger</Button>
-
-  <Button handleOnClick={noop} styleType="link" disabled>Link</Button>
+  <Button handleOnClick={noop} styleType="primary" isLinkButton disabled style={buttonDemoStyle}>Link</Button>
 </div>
 
 

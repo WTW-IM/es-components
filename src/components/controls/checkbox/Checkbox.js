@@ -14,11 +14,9 @@ const CheckboxLabel = Label.extend`
 
   > .checkbox-fill {
     background-color: ${props =>
-      props.isChecked ? props.theme.colors.accent : props.theme.colors.white};
+      props.isChecked ? props.theme.colors.info : props.theme.colors.white};
     border-color: ${props =>
-      props.isChecked
-        ? props.theme.colors.accent
-        : props.theme.colors.grayDark};
+      props.isChecked ? props.theme.colors.info : props.theme.colors.grayDark};
 
     &:after {
       border-color: ${props => props.theme.colors.white};

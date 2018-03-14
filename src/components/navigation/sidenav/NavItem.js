@@ -20,21 +20,21 @@ const AnchorBase = styled.a`
 
   &:hover {
     background-color: ${props => props.theme.colors.grayLighter};
-    color: ${props => props.theme.colors.accent};
+    color: ${props => props.theme.colors.info};
 
     > i {
-      color: ${props => props.theme.colors.accent};
+      color: ${props => props.theme.colors.info};
     }
   }
 
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props.theme.colors.accent};
+      background-color: ${props.theme.colors.info};
       color: ${props.theme.colors.white};
 
       &:hover {
-        background-color: ${props.theme.colors.accent};
+        background-color: ${props.theme.colors.info};
         color: ${props.theme.colors.white};
 
         > i {
@@ -42,34 +42,34 @@ const AnchorBase = styled.a`
         }
       }
     `} ${props =>
-      props.isDisabled &&
-      css`
+    props.isDisabled &&
+    css`
+      background-color: ${props.theme.colors.grayLightest};
+      color: ${props.theme.colors.grayDark};
+      cursor: not-allowed;
+
+      > span {
+        pointer-events: none;
+      }
+
+      > i {
+        color: ${props.theme.colors.grayLightest};
+      }
+
+      &:hover {
         background-color: ${props.theme.colors.grayLightest};
         color: ${props.theme.colors.grayDark};
-        cursor: not-allowed;
-
-        > span {
-          pointer-events: none;
-        }
 
         > i {
           color: ${props.theme.colors.grayLightest};
         }
-
-        &:hover {
-          background-color: ${props.theme.colors.grayLightest};
-          color: ${props.theme.colors.grayDark};
-
-          > i {
-            color: ${props.theme.colors.grayLightest};
-          }
-        }
-      `};
+      }
+    `};
 `;
 
 const AnchorAltStyle = AnchorBase.extend`
   &:hover {
-    border-left: 4px solid ${props => props.theme.colors.accent};
+    border-left: 4px solid ${props => props.theme.colors.info};
     padding-left: 6px;
   }
 
@@ -77,30 +77,30 @@ const AnchorAltStyle = AnchorBase.extend`
     props.isActive &&
     css`
       background-color: ${props.theme.colors.grayLight};
-      border-left: 4px solid ${props.theme.colors.accent};
-      color: ${props.theme.colors.accent};
+      border-left: 4px solid ${props.theme.colors.info};
+      color: ${props.theme.colors.info};
       padding-left: 6px;
 
       > i {
-        color: ${props.theme.colors.accent};
+        color: ${props.theme.colors.info};
       }
 
       &:hover {
         background-color: ${props.theme.colors.grayLight};
-        color: ${props.theme.colors.accent};
+        color: ${props.theme.colors.info};
 
         > i {
-          color: ${props.theme.colors.accent};
+          color: ${props.theme.colors.info};
         }
       }
     `} ${props =>
-      props.isDisabled &&
-      css`
-        &:hover {
-          border-left: none;
-          padding-left: 10px;
-        }
-      `};
+    props.isDisabled &&
+    css`
+      &:hover {
+        border-left: none;
+        padding-left: 10px;
+      }
+    `};
 `;
 
 const FlexSpan = styled.span`

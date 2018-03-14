@@ -2,7 +2,7 @@
 
 exports[`modal header component renders with close button 1`] = `
 <div
-  className="header sc-htpNat hUOKVO"
+  className="header sc-htpNat kGVNMO"
 >
   <h4
     className="sc-bxivhb ddKihU"
@@ -31,7 +31,7 @@ exports[`modal header component renders with close button 1`] = `
 
 exports[`modal header component renders without close button 1`] = `
 <div
-  className="header sc-htpNat hUOKVO"
+  className="header sc-htpNat kGVNMO"
 >
   <h4
     className="sc-bxivhb ddKihU"

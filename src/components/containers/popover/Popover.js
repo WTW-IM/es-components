@@ -60,7 +60,7 @@ const BottomPlacementArrow = styled(ArrowBase)`
 
   &:after {
     border-bottom-color: ${props =>
-      (props.displayColor ? props.theme.colors.accent : props.theme.colors.white)};
+      (props.displayColor ? props.theme.colors.info : props.theme.colors.white)};
     border-top-width: 0;
     margin-left: -10px;
     top: 1px;
@@ -160,7 +160,7 @@ const PopoverHeader = styled.div`
   justify-content: space-between;
   height: ${props => (props.hasTitle ? 'auto' : '16px')};
   background-color: ${props =>
-    props.hasTitle ? props.theme.colors.accent : 'none'};
+    props.hasTitle ? props.theme.colors.info : 'none'};
 `;
 /* eslint-enable */
 

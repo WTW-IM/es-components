@@ -5,20 +5,20 @@ exports[`MenuTestSuite renders as expected 1`] = `
   className={undefined}
 >
   <button
-    className="sc-htoDjs cIGxYP sc-htpNat rWKSD sc-bwzfXH dwzega"
+    className="sc-ifAKCX SpMax sc-bwzfXH iQZyjB sc-bdVaJa iqJRVx"
     onClick={[Function]}
   >
     Open Menu
   </button>
   <div
-    className="sc-gZMcBi kGQLuy"
+    className="sc-gzVnrw cibmmh"
   >
     <div
-      className="sc-VigVT loKTSv"
+      className="sc-dnqmqq djHNQY"
     >
       <button
         aria-label="Close"
-        className="sc-gqjmRU khcNGr sc-dnqmqq hfBmFx"
+        className="sc-htoDjs hubgrr sc-EHOje cQHrKQ"
         onClick={[Function]}
       >
         <span
@@ -27,25 +27,25 @@ exports[`MenuTestSuite renders as expected 1`] = `
           ×
         </span>
         <span
-          className="sc-iwsKbI kiWUFw"
+          className="sc-bZQynM hmZeWW"
         >
           Close
         </span>
       </button>
     </div>
     <div
-      className="sc-jTzLTM gpDRot"
+      className="sc-iwsKbI kyjaoD"
     >
       <div
-        className="sc-fjdhpX huHgEf"
+        className="sc-gZMcBi jySwZi"
       >
         <div
-          className="sc-jzJRlG hrJpZc"
+          className="sc-gqjmRU fiUekS"
         >
           Menu Section
         </div>
         <div
-          className="sc-cSHVUG GXpav"
+          className="sc-VigVT frPBLq"
         >
           <a
             href="www.google.com"

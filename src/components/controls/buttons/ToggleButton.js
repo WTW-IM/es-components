@@ -1,10 +1,9 @@
 /* eslint no-confusing-arrow: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Button from './Button';
 import defaultTheme from '../../theme/defaultTheme';
-import { buttonStyleTypes, defaultButtonVariants } from './button-variants';
 
 class ToggleButton extends React.Component {
   state = {
@@ -26,37 +25,37 @@ class ToggleButton extends React.Component {
     const {
       buttonClasses,
       styleType,
-      styledLink,
+      isLinkButton,
       size,
       block,
-      alternative,
+      isOutline,
       theme
     } = this.props;
-    const buttonVariant = defaultButtonVariants(theme.colors, styleType);
+    const variant = theme.buttonStyles.buttonsNormal[styleType];
+
     return (
-      <StyledToggleButton
-        handleOnClick={this.toggleButton}
-        buttonClasses={buttonClasses}
-        styleType={styleType}
-        styleLink={styledLink}
-        size={size}
-        block={block}
-        alternative={alternative}
-        theme={theme}
-        buttonVariant={buttonVariant}
-        isPressed={this.state.isPressed}
-      >
-        {this.props.children}
-      </StyledToggleButton>
+      <ThemeProvider theme={theme}>
+        <StyledToggleButton
+          handleOnClick={this.toggleButton}
+          buttonClasses={buttonClasses}
+          styleType={styleType}
+          isLinkButton={isLinkButton}
+          size={size}
+          block={block}
+          isOutline={isOutline}
+          isPressed={this.state.isPressed}
+          variant={variant}
+        >
+          {this.props.children}
+        </StyledToggleButton>
+      </ThemeProvider>
     );
   }
 }
 
 const StyledToggleButton = styled(Button)`
   background-color: ${props =>
-    props.isPressed
-      ? props.buttonVariant.hoverBackgroundColor
-      : props.buttonVariant.backgroundColor};
+    props.isPressed ? props.variant.hoverBgColor : props.variant.bgColor};
 `;
 
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
@@ -65,16 +64,17 @@ ToggleButton.propTypes = {
   handleOnClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   buttonClasses: PropTypes.string,
-  styleType: PropTypes.oneOf(buttonStyleTypes),
-  styledLink: PropTypes.bool,
+  styleType: PropTypes.string,
+  isLinkButton: PropTypes.bool,
   size: PropTypes.oneOf(buttonSizes),
   block: PropTypes.bool,
-  alternative: PropTypes.bool,
+  isOutline: PropTypes.bool,
   theme: PropTypes.object,
   isPressed: PropTypes.bool
 };
 
 ToggleButton.defaultProps = {
+  styleType: 'default',
   theme: defaultTheme
 };
 

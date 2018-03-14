@@ -35,7 +35,7 @@ describe('getRadioFillVariables', () => {
     expect(hover).toBe(defaultTheme.colors.white);
   });
 
-  it('returns { fill: accent } when checked, not disabled, and valid', () => {
+  it('returns { fill: info } when checked, not disabled, and valid', () => {
     const checked = true;
     const disabled = false;
     const invalid = false;
@@ -47,7 +47,7 @@ describe('getRadioFillVariables', () => {
       defaultTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.accent);
+    expect(fill).toBe(defaultTheme.colors.info);
   });
 
   it('returns { fill: gray } when checked, disabled, and valid', () => {

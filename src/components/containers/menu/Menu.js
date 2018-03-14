@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ToggleButton from '../../controls/buttons/ToggleButton';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import defaultTheme from '../../theme/defaultTheme';
 import { buttonStyleTypes } from '../../controls/buttons/button-variants';
+
+const Backdrop = styled.div`
+  background-color: black;
+  bottom: 0;
+  cursor: auto;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: ${props => (props.isMenuOpen ? 'auto' : '-1')};
+`;
 
 class Menu extends React.Component {
   static childContextTypes = {
@@ -38,13 +50,20 @@ class Menu extends React.Component {
       className,
       theme,
       openButtonType,
-      rootClose
+      rootClose,
+      hasBackdrop
     } = this.props;
 
     return (
       <ThemeProvider theme={theme}>
         <RootCloseWrapper onRootClose={this.closeMenu} disabled={!rootClose}>
           <div className={className}>
+            {hasBackdrop && (
+              <Backdrop
+                isMenuOpen={this.state.isMenuOpen}
+                onClick={this.closeMenu}
+              />
+            )}
             <ToggleButton
               handleOnClick={this.toggleMenu}
               isPressed={this.state.isMenuOpen}
@@ -74,7 +93,8 @@ Menu.propTypes = {
   className: PropTypes.string,
   rootClose: PropTypes.bool,
   inline: PropTypes.bool,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  hasBackdrop: PropTypes.bool
 };
 
 Menu.defaultProps = {

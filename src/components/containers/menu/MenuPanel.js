@@ -25,11 +25,11 @@ const StyledChildrenContainer = styled.div`
 `;
 
 const MenuPanel = (props, context) => {
-  const { children, isOpen, closeFunction } = props;
+  const { children, isOpen, onClose } = props;
   return (
     <StyledPanel isOpen={isOpen} className="menu-panel" t>
       <Spacer>
-        <StyledDismissButton onClick={closeFunction} />
+        <StyledDismissButton onClick={onClose} />
       </Spacer>
       <StyledChildrenContainer inline={context.inline}>
         {children}
@@ -41,7 +41,7 @@ const MenuPanel = (props, context) => {
 MenuPanel.propTypes = {
   children: PropTypes.any.isRequired,
   isOpen: PropTypes.bool,
-  closeFunction: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   theme: PropTypes.object
 };
 

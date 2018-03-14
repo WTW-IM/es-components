@@ -2,7 +2,7 @@ Use the `Menu` to expose an list of items overlayed over the screen when a butto
 
 ### Basic Example
 ```
-<Menu header="Small Menu" buttonContent="Open Menu" openButtonType="primary" rootClose>
+<Menu header="Small Menu" buttonContent="Open Menu" openButtonType="primary" rootClose hasBackdrop>
   <Menu.MenuSection title="Menu Section" isFirst rootClose>
     <a href="http://www.google.com">Go To Google</a>
   </Menu.MenuSection>

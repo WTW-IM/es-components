@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import defaultTheme from '../../theme/defaultTheme';
+import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 
 const StyledPanel = styled.div`
-  background-color: ${props => props.theme.colors.grayLight};
+  background-color: ${props => props.theme.colors.grayLighter};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
-  padding-bottom: 30px;
 `;
 
 const StyledDismissButton = styled(DismissButton)`
@@ -26,30 +24,24 @@ const StyledChildrenContainer = styled.div`
 `;
 
 const MenuPanel = (props, context) => {
-  const { children, isOpen, closeFunction } = props;
-
+  const { children, isOpen, onClose } = props;
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <StyledPanel isOpen={isOpen}>
-        <Spacer>
-          <StyledDismissButton onClick={closeFunction} />
-        </Spacer>
-        <StyledChildrenContainer inline={context.inline}>
-          {children}
-        </StyledChildrenContainer>
-      </StyledPanel>
-    </ThemeProvider>
+    <StyledPanel isOpen={isOpen} className="menu-panel">
+      <Spacer>
+        <StyledDismissButton onClick={onClose} />
+      </Spacer>
+      <StyledChildrenContainer inline={context.inline}>
+        {children}
+      </StyledChildrenContainer>
+    </StyledPanel>
   );
 };
 
 MenuPanel.propTypes = {
   children: PropTypes.any.isRequired,
   isOpen: PropTypes.bool,
-  closeFunction: PropTypes.func.isRequired
-};
-
-MenuPanel.defaultProps = {
-  isOpen: false
+  onClose: PropTypes.func.isRequired,
+  theme: PropTypes.object
 };
 
 MenuPanel.contextTypes = {

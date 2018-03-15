@@ -5,13 +5,13 @@ exports[`MenuTestSuite renders as expected 1`] = `
   className={undefined}
 >
   <button
-    className="sc-ifAKCX iVEDWC sc-bwzfXH eWYnIo sc-bdVaJa jXnGOW"
+    className="sc-ifAKCX SpMax sc-bwzfXH kFqobI sc-bdVaJa jXnGOW"
     onClick={[Function]}
   >
     Open Menu
   </button>
   <div
-    className="sc-gzVnrw dDmjtN"
+    className="menu-panel sc-gzVnrw cOYkbZ"
   >
     <div
       className="sc-dnqmqq djHNQY"
@@ -37,7 +37,7 @@ exports[`MenuTestSuite renders as expected 1`] = `
       className="sc-iwsKbI kyjaoD"
     >
       <div
-        className="sc-gZMcBi kDqKYS"
+        className="sc-gZMcBi jySwZi"
       >
         <div
           className="sc-gqjmRU fiUekS"

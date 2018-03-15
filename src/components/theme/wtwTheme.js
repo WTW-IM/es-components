@@ -20,10 +20,8 @@ const grayDark = gray6;
 const grayDarker = gray8;
 const grayDarkest = gray9;
 
-const dflt = black;
-const dfltHover = tinycolor(dflt)
-  .lighten(20)
-  .toRgbString();
+const dflt = gray9;
+const dfltHover = black;
 const dfltBtnTextColor = white;
 const primary = '#5a0c6f';
 const primaryHover = tinycolor(primary)

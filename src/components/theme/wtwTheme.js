@@ -24,9 +24,7 @@ const dflt = gray9;
 const dfltHover = black;
 const dfltBtnTextColor = white;
 const primary = '#5a0c6f';
-const primaryHover = tinycolor(primary)
-  .darken(8)
-  .toRgbString();
+const primaryHover = '#4d1659';
 const info = '#1b6284';
 const infoHover = tinycolor(info)
   .darken(8)
@@ -113,7 +111,7 @@ const theme = {
         activeTextColor: white,
         boxShadowColor: primaryHover
       },
-      secondary: {
+      default: {
         bgColor: dflt,
         textColor: white,
         hoverBgColor: dfltHover,
@@ -160,6 +158,8 @@ const theme = {
       }
     },
     buttonsOutline: {
+      // these can be independent of the main buttons, but generally
+      // should have matching sets
       primary: {
         bgColor: white,
         textColor: primary,

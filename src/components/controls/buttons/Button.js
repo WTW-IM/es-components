@@ -131,18 +131,26 @@ function Button({
     ...buttonProps
   };
 
-  const defaultButton = {
+  const defaultNormal = {
     bgColor: theme.colors.dflt,
     textColor: theme.colors.dfltBtnTextColor,
     hoverBgColor: theme.colors.dfltHover,
     hoverTextColor: theme.colors.dfltBtnTextColor,
     activeBgColor: theme.colors.dfltHover,
     activeTextColor: theme.colors.dfltBtnTextColor,
-    boxShadowColor: theme.colors.dfltHover,
+    boxShadowColor: theme.colors.dfltHover
+  };
+  const defaultOutline = {
+    bgColor: theme.colors.white,
+    textColor: theme.colors.dflt,
+    hoverBgColor: theme.colors.dflt,
+    hoverTextColor: theme.colors.white,
+    activeBgColor: theme.colors.dfltHover,
+    activeTextColor: theme.colors.white,
     borderColor: theme.colors.dflt
   };
 
-  let variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
+  let variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;
   let button = (
     <DefaultButton variant={variant} {...sharedProps}>
       {children}
@@ -150,14 +158,14 @@ function Button({
   );
 
   if (isOutline) {
-    variant = theme.buttonStyles.buttonsOutline[styleType] || defaultButton;
+    variant = theme.buttonStyles.buttonsOutline[styleType] || defaultOutline;
     button = (
       <OutlineButton variant={variant} {...sharedProps}>
         {children}
       </OutlineButton>
     );
   } else if (isLinkButton) {
-    variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
+    variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;
     button = (
       <LinkButton variant={variant} {...sharedProps}>
         {children}
@@ -176,7 +184,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /** Any additional classes to apply to the button */
   buttonClasses: PropTypes.string,
-  /** Chooses the color variant of the button, comes from applied theme */
+  /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
   /** Determines if the button should be rendered as a text link */
   isLinkButton: PropTypes.bool,

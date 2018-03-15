@@ -38,7 +38,7 @@ const buttonDemoStyle = {
 function noop() { }
 
 <div>
-  <Button handleOnClick={noop} isOutline style={buttonDemoStyle}>Default</Button>
+  <Button handleOnClick={noop} styleType="secondary" isOutline style={buttonDemoStyle}>Default</Button>
 
   <Button handleOnClick={noop} styleType="primary" isOutline style={buttonDemoStyle}>Primary</Button>
 

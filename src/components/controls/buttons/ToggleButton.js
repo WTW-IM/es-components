@@ -31,6 +31,7 @@ class ToggleButton extends React.Component {
       isOutline,
       theme
     } = this.props;
+
     const defaultButton = {
       bgColor: theme.colors.dflt,
       textColor: theme.colors.dfltBtnTextColor,
@@ -41,8 +42,22 @@ class ToggleButton extends React.Component {
       boxShadowColor: theme.colors.dfltHover,
       borderColor: theme.colors.dflt
     };
-    const variant =
-      theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
+    const defaultOutline = {
+      bgColor: theme.colors.white,
+      textColor: theme.colors.dflt,
+      hoverBgColor: theme.colors.dflt,
+      hoverTextColor: theme.colors.white,
+      activeBgColor: theme.colors.dfltHover,
+      activeTextColor: theme.colors.white,
+      borderColor: theme.colors.dflt
+    };
+
+    let variant;
+    if (isOutline) {
+      variant = theme.buttonStyles.buttonsOutline[styleType] || defaultOutline;
+    } else {
+      variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
+    }
 
     return (
       <ThemeProvider theme={theme}>
@@ -67,6 +82,8 @@ class ToggleButton extends React.Component {
 const StyledToggleButton = styled(Button)`
   background-color: ${props =>
     props.isPressed ? props.variant.hoverBgColor : props.variant.bgColor};
+  color: ${props =>
+    props.isPressed ? props.variant.activeTextColor : props.variant.textColor};
 `;
 
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];

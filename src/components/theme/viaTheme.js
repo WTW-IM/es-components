@@ -91,6 +91,7 @@ const theme = {
   },
   buttonStyles: {
     buttonsNormal: {
+      // these button types are dynamic, so you can add/remove/rename them
       primary: {
         bgColor: primary,
         textColor: white,
@@ -100,7 +101,7 @@ const theme = {
         activeTextColor: white,
         boxShadowColor: primaryHover
       },
-      secondary: {
+      default: {
         bgColor: dflt,
         textColor: white,
         hoverBgColor: dfltHover,
@@ -147,6 +148,8 @@ const theme = {
       }
     },
     buttonsOutline: {
+      // these can be independent of the main buttons, but generally
+      // should have matching sets
       primary: {
         bgColor: white,
         textColor: primary,
@@ -155,6 +158,51 @@ const theme = {
         activeBgColor: primaryHover,
         activeTextColor: white,
         borderColor: primary
+      },
+      default: {
+        bgColor: white,
+        textColor: dflt,
+        hoverBgColor: dflt,
+        hoverTextColor: white,
+        activeBgColor: dfltHover,
+        activeTextColor: white,
+        borderColor: dflt
+      },
+      success: {
+        bgColor: white,
+        textColor: success,
+        hoverBgColor: success,
+        hoverTextColor: white,
+        activeBgColor: successHover,
+        activeTextColor: white,
+        borderColor: success
+      },
+      info: {
+        bgColor: white,
+        textColor: info,
+        hoverBgColor: info,
+        hoverTextColor: white,
+        activeBgColor: infoHover,
+        activeTextColor: white,
+        borderColor: info
+      },
+      warning: {
+        bgColor: white,
+        textColor: warning,
+        hoverBgColor: warning,
+        hoverTextColor: black,
+        activeBgColor: warningHover,
+        activeTextColor: black,
+        borderColor: warning
+      },
+      danger: {
+        bgColor: white,
+        textColor: danger,
+        hoverBgColor: danger,
+        hoverTextColor: white,
+        activeBgColor: dangerHover,
+        activeTextColor: white,
+        borderColor: danger
       },
       gray: {
         bgColor: white,

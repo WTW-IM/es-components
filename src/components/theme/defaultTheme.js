@@ -101,7 +101,7 @@ const theme = {
         activeTextColor: white,
         boxShadowColor: primaryHover
       },
-      secondary: {
+      default: {
         bgColor: dflt,
         textColor: white,
         hoverBgColor: dfltHover,
@@ -148,6 +148,8 @@ const theme = {
       }
     },
     buttonsOutline: {
+      // these can be independent of the main buttons, but generally
+      // should have matching sets
       primary: {
         bgColor: white,
         textColor: primary,

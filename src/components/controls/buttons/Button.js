@@ -129,16 +129,18 @@ function Button({
     ...buttonProps
   };
 
-  // make sure the button style exists in the theme
-  let buttonType = styleType;
-  if (
-    !theme.buttonStyles.buttonsNormal[buttonType] &&
-    !theme.buttonStyles.buttonsOutline[buttonType]
-  ) {
-    buttonType = 'default';
-  }
+  const defaultButton = {
+    bgColor: theme.colors.dflt,
+    textColor: theme.colors.white,
+    hoverBgColor: theme.colors.dfltHover,
+    hoverTextColor: theme.colors.white,
+    activeBgColor: theme.colors.dfltHover,
+    activeTextColor: theme.colors.white,
+    boxShadowColor: theme.colors.dfltHover,
+    borderColor: theme.colors.dflt
+  };
 
-  let variant = theme.buttonStyles.buttonsNormal[buttonType];
+  let variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
   let button = (
     <DefaultButton variant={variant} {...sharedProps}>
       {children}
@@ -146,14 +148,14 @@ function Button({
   );
 
   if (isOutline) {
-    variant = theme.buttonStyles.buttonsOutline[buttonType];
+    variant = theme.buttonStyles.buttonsOutline[styleType] || defaultButton;
     button = (
       <OutlineButton variant={variant} {...sharedProps}>
         {children}
       </OutlineButton>
     );
   } else if (isLinkButton) {
-    variant = theme.buttonStyles.buttonsNormal[buttonType];
+    variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
     button = (
       <LinkButton variant={variant} {...sharedProps}>
         {children}
@@ -189,7 +191,6 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  styleType: 'default',
   theme: defaultTheme
 };
 

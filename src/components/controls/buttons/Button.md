@@ -9,18 +9,18 @@ const buttonDemoStyle = {
 
 function noop() { }
 
-<div>
-  <Button handleOnClick={noop} style={buttonDemoStyle}>Default</Button>
+<div style={{display: 'flex'}}>
+  <div style={buttonDemoStyle}><Button handleOnClick={noop}>Default</Button></div>
 
-  <Button handleOnClick={noop} styleType="primary" style={buttonDemoStyle}>Primary</Button>
+  <div style={buttonDemoStyle}><Button handleOnClick={noop} styleType="primary">Primary</Button></div>
 
-  <Button handleOnClick={noop} styleType="success" style={buttonDemoStyle}>Success</Button>
+  <div style={buttonDemoStyle}><Button handleOnClick={noop} styleType="success">Success</Button></div>
 
-  <Button handleOnClick={noop} styleType="info" style={buttonDemoStyle}>Information</Button>
+  <div style={buttonDemoStyle}><Button handleOnClick={noop} styleType="info">Information</Button></div>
 
-  <Button handleOnClick={noop} styleType="warning" style={buttonDemoStyle}>Warning</Button>
+  <div style={buttonDemoStyle}><Button handleOnClick={noop} styleType="warning">Warning</Button></div>
 
-  <Button handleOnClick={noop} styleType="danger" style={buttonDemoStyle}>Danger</Button>
+  <div style={buttonDemoStyle}><Button handleOnClick={noop} styleType="danger">Danger</Button></div>
 </div>
 ```
 

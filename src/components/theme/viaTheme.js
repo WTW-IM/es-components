@@ -1,5 +1,3 @@
-import tinycolor from 'tinycolor2';
-
 const white = '#fff';
 const gray1 = '#f4f4f4';
 const gray2 = '#ecedee';
@@ -21,11 +19,18 @@ const grayDarker = gray8;
 const grayDarkest = gray9;
 
 const dflt = '#d8d8d8';
+const dfltHover = '#bfbfbf';
 const primary = '#007fa7';
+const primaryHover = '#005874';
 const info = '#069';
+const infoHover = '#004466';
 const success = '#298544';
+const successHover = '#1d5e30';
 const warning = '#b35f00';
+const warningHover = '#804400';
 const danger = '#c00';
+const dangerHover = '#990000';
+const advisor = warning;
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
@@ -55,11 +60,19 @@ const theme = {
     grayLighter,
     grayLightest,
     white,
+    dflt,
+    dfltHover,
     primary,
+    primaryHover,
     success,
+    successHover,
     info,
+    infoHover,
     warning,
+    warningHover,
     danger,
+    dangerHover,
+    advisor,
     boxShadowLight,
     boxShadowDark,
     inputFocus
@@ -76,59 +89,59 @@ const theme = {
   },
   buttonStyles: {
     buttonsNormal: {
-      default: {
-        bgColor: dflt,
-        textColor: black,
-        hoverBgColor: '#BFBFBF',
-        hoverTextColor: black,
-        activeBgColor: '#BFBFBF',
-        activeTextColor: black,
-        boxShadowColor: '#BFBFBF'
-      },
       primary: {
         bgColor: primary,
         textColor: white,
-        hoverBgColor: '#005874',
+        hoverBgColor: primaryHover,
         hoverTextColor: white,
-        activeBgColor: '#005874',
+        activeBgColor: primaryHover,
         activeTextColor: white,
-        boxShadowColor: '#005874'
+        boxShadowColor: primaryHover
+      },
+      secondary: {
+        bgColor: dflt,
+        textColor: white,
+        hoverBgColor: dfltHover,
+        hoverTextColor: white,
+        activeBgColor: dfltHover,
+        activeTextColor: white,
+        boxShadowColor: dfltHover
       },
       success: {
         bgColor: success,
         textColor: white,
-        hoverBgColor: '#1D5E30',
+        hoverBgColor: successHover,
         hoverTextColor: white,
-        activeBgColor: '#1D5E30',
+        activeBgColor: successHover,
         activeTextColor: white,
-        boxShadowColor: '#1D5E30'
+        boxShadowColor: successHover
       },
       info: {
         bgColor: info,
         textColor: white,
-        hoverBgColor: '#004466',
+        hoverBgColor: infoHover,
         hoverTextColor: white,
-        activeBgColor: '#004466',
+        activeBgColor: infoHover,
         activeTextColor: white,
-        boxShadowColor: '#004466'
+        boxShadowColor: infoHover
       },
       warning: {
         bgColor: warning,
         textColor: white,
-        hoverBgColor: '#804400',
+        hoverBgColor: warningHover,
         hoverTextColor: white,
-        activeBgColor: '#804400',
+        activeBgColor: warningHover,
         activeTextColor: white,
-        boxShadowColor: '#804400'
+        boxShadowColor: warningHover
       },
       danger: {
         bgColor: danger,
         textColor: white,
-        hoverBgColor: '#990000',
+        hoverBgColor: dangerHover,
         hoverTextColor: white,
-        activeBgColor: '#990000',
+        activeBgColor: dangerHover,
         activeTextColor: white,
-        boxShadowColor: '#990000'
+        boxShadowColor: dangerHover
       }
     },
     buttonsAlt: {
@@ -137,37 +150,60 @@ const theme = {
         textColor: primary,
         hoverBgColor: primary,
         hoverTextColor: white,
-        activeBgColor: '#005874',
+        activeBgColor: primaryHover,
         activeTextColor: white,
         borderColor: primary
       },
       gray: {
         bgColor: white,
-        textColor: '#63666A',
-        hoverBgColor: '#63666A',
+        textColor: '#63666a',
+        hoverBgColor: '#63666a',
         hoverTextColor: white,
-        activeBgColor: '#4A4D50',
+        activeBgColor: '#4a4d50',
         activeTextColor: white,
-        borderColor: '#63666A'
+        borderColor: '#63666a'
       },
       magenta: {
         bgColor: white,
-        textColor: '#C110A0',
-        hoverBgColor: '#C110A0',
+        textColor: '#c110a0',
+        hoverBgColor: '#c110a0',
         hoverTextColor: white,
         activeBgColor: '#920C79',
         activeTextColor: white,
-        borderColor: '#C110A0'
+        borderColor: '#c110a0'
       },
       violet: {
         bgColor: white,
         textColor: '#702082',
         hoverBgColor: '#702082',
         hoverTextColor: white,
-        activeBgColor: '#4D1659',
+        activeBgColor: '#4d1659',
         activeTextColor: white,
         borderColor: '#702082'
       }
+    }
+  },
+  // buttonSizes should always have default, lg, sm, xs
+  buttonSizes: {
+    lg: {
+      borderRadius: '3px',
+      fontSize: '26px',
+      padding: '8px 20px 5px'
+    },
+    default: {
+      borderRadius: '2px',
+      fontSize: '18px',
+      padding: '5px 15px 4px'
+    },
+    sm: {
+      borderRadius: '2px',
+      fontSize: '14px',
+      padding: '4px 10px 3px'
+    },
+    xs: {
+      borderRadius: '2px',
+      fontSize: '12px',
+      padding: '3px 10px 2px'
     }
   },
   validationIconName: {
@@ -177,9 +213,7 @@ const theme = {
   },
   validationTextColor: {
     success,
-    warning: tinycolor(warning)
-      .darken(25)
-      .toString(),
+    warning: warningHover,
     danger
   },
   validationInputColor: {

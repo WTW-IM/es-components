@@ -1,5 +1,3 @@
-import tinycolor from 'tinycolor2';
-
 const white = '#fff';
 const gray1 = '#f8f9fa';
 const gray2 = '#e9ecef';
@@ -32,6 +30,7 @@ const warning = '#FFC107';
 const warningHover = '#e0a800';
 const danger = '#DC3545';
 const dangerHover = '#c82333';
+const advisor = warning;
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
@@ -73,6 +72,7 @@ const theme = {
     warningHover,
     danger,
     dangerHover,
+    advisor,
     boxShadowLight,
     boxShadowDark,
     inputFocus
@@ -89,16 +89,7 @@ const theme = {
   },
   buttonStyles: {
     buttonsNormal: {
-      // Must have a default
-      default: {
-        bgColor: dflt,
-        textColor: white,
-        hoverBgColor: dfltHover,
-        hoverTextColor: white,
-        activeBgColor: dfltHover,
-        activeTextColor: white,
-        boxShadowColor: dfltHover
-      },
+      // these button types are dynamic, so you can add/remove/rename them
       primary: {
         bgColor: primary,
         textColor: white,
@@ -155,7 +146,6 @@ const theme = {
       }
     },
     buttonsOutline: {
-      // Must have a default
       primary: {
         bgColor: white,
         textColor: primary,
@@ -242,9 +232,7 @@ const theme = {
   },
   validationTextColor: {
     success,
-    warning: tinycolor(warning)
-      .darken(25)
-      .toString(),
+    warning: warningHover,
     danger
   },
   validationInputColor: {

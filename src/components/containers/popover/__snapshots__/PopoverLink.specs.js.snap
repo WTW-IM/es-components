@@ -4,7 +4,7 @@ exports[`popoverLink component renders as expected 1`] = `
 <span>
   <button
     aria-haspopup="dialog"
-    className="sc-jzJRlG gUzwcG sc-bxivhb jaWzvv sc-bdVaJa iqJRVx"
+    className="sc-jzJRlG gUzwcG sc-bxivhb hkumyt sc-bdVaJa jXnGOW"
     data-trigger="focus"
     onClick={[Function]}
   >

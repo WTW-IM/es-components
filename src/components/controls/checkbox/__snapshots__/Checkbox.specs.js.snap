@@ -2,7 +2,7 @@
 
 exports[`Checkbox renders as expected 1`] = `
 <label
-  className="sc-bwzfXH cRvPIn"
+  className="sc-bwzfXH eeyYVe"
   disabled={true}
 >
   <input
@@ -15,7 +15,7 @@ exports[`Checkbox renders as expected 1`] = `
     value={undefined}
   />
   <span
-    className="checkbox-fill sc-bxivhb gApLGv"
+    className="checkbox-fill sc-bxivhb JpBTF"
   />
   <span
     className="sc-ifAKCX gsuSvB"

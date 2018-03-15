@@ -3,7 +3,7 @@
 exports[`RadioButton component renders as expected 1`] = `
 <label
   checked={false}
-  className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
+  className="sc-bwzfXH isCfaU sc-bdVaJa kHjvzh"
   disabled={false}
   htmlFor="test"
 >
@@ -17,7 +17,7 @@ exports[`RadioButton component renders as expected 1`] = `
     value={undefined}
   />
   <span
-    className="radio-fill sc-ifAKCX jmtqOb"
+    className="radio-fill sc-ifAKCX eliKVl"
     fill="#fff"
   />
   <span

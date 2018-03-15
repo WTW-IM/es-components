@@ -2,12 +2,12 @@
 
 exports[`drawer renders as expected 1`] = `
 <nav
-  className="sc-ifAKCX kMQNfz"
+  className="sc-ifAKCX hvutRM"
 >
   <ul>
     <li>
       <a
-        className="home sc-bwzfXH cHksxC"
+        className="home sc-bwzfXH lfevyf"
         href="/home"
         onClick={[Function]}
       >
@@ -27,7 +27,7 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="cart sc-bwzfXH cHksxC"
+        className="cart sc-bwzfXH lfevyf"
         href="#/"
         onClick={[Function]}
       >
@@ -47,7 +47,7 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="external sc-bwzfXH cHksxC"
+        className="external sc-bwzfXH lfevyf"
         href="http://www.google.com"
         onClick={[Function]}
         target="_blank"
@@ -68,7 +68,7 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="info sc-bwzfXH kdDCMs"
+        className="info sc-bwzfXH klYTsY"
         href="#/"
         onClick={[Function]}
       >

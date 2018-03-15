@@ -146,7 +146,7 @@ const theme = {
         boxShadowColor: dangerHover
       }
     },
-    buttonsAlt: {
+    buttonsOutline: {
       primary: {
         bgColor: white,
         textColor: primary,

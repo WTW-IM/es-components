@@ -31,7 +31,18 @@ class ToggleButton extends React.Component {
       isOutline,
       theme
     } = this.props;
-    const variant = theme.buttonStyles.buttonsNormal[styleType];
+    const defaultButton = {
+      bgColor: theme.colors.dflt,
+      textColor: theme.colors.dfltBtnTextColor,
+      hoverBgColor: theme.colors.dfltHover,
+      hoverTextColor: theme.colors.dfltBtnTextColor,
+      activeBgColor: theme.colors.dfltHover,
+      activeTextColor: theme.colors.dfltBtnTextColor,
+      boxShadowColor: theme.colors.dfltHover,
+      borderColor: theme.colors.dflt
+    };
+    const variant =
+      theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
 
     return (
       <ThemeProvider theme={theme}>

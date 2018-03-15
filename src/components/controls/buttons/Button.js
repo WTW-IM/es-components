@@ -28,6 +28,7 @@ const ButtonBase = styled.button`
   line-height: 1.4;
   padding: ${props => props.buttonSize.padding};
   text-align: center;
+  vertical-align: middle;
   white-space: nowrap;
   width: ${props => getBlockPropertyValues(props.block).width};
 
@@ -46,7 +47,8 @@ const DefaultButton = styled(ButtonBase)`
   border-color: transparent;
   box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
   color: ${props => props.variant.textColor};
-  margin: 0 0 4px 0;
+  margin-bottom: 4px;
+  margin-top: 0;
 
   &[disabled]:hover {
     background-color: ${props => props.variant.bgColor};

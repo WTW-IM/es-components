@@ -1,3 +1,5 @@
+import tinycolor from 'tinycolor2';
+
 const white = '#fff';
 const gray1 = '#f7f7f7';
 const gray2 = '#eee';
@@ -18,19 +20,31 @@ const grayDark = gray6;
 const grayDarker = gray8;
 const grayDarkest = gray9;
 
-const dflt = '#444';
-const dfltHover = '#444';
+const dflt = black;
+const dfltHover = tinycolor(dflt)
+  .lighten(20)
+  .toRgbString();
 const dfltBtnTextColor = white;
 const primary = '#5a0c6f';
-const primaryHover = '#5a0c6f';
+const primaryHover = tinycolor(primary)
+  .darken(8)
+  .toRgbString();
 const info = '#1b6284';
-const infoHover = '#1b6284';
+const infoHover = tinycolor(info)
+  .darken(8)
+  .toRgbString();
 const success = '#060';
-const successHover = '#060';
+const successHover = tinycolor(success)
+  .darken(8)
+  .toRgbString();
 const warning = '#ebaf00';
-const warningHover = '#ebaf00';
+const warningHover = tinycolor(warning)
+  .darken(8)
+  .toRgbString();
 const danger = '#af140c';
-const dangerHover = '#af140c';
+const dangerHover = tinycolor(danger)
+  .darken(8)
+  .toRgbString();
 const advisor = '#ff6310';
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';

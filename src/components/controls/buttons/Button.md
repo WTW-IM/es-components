@@ -4,12 +4,13 @@ Any additional props passed to the Button component will get passed to the HTML 
 
 ```
 const buttonDemoStyle = {
+  display: 'inline-block',
   margin: '15px 15px 0 0'
 };
 
 function noop() { }
 
-<div style={{display: 'flex'}}>
+<div>
   <div style={buttonDemoStyle}><Button handleOnClick={noop}>Default</Button></div>
 
   <div style={buttonDemoStyle}><Button handleOnClick={noop} styleType="primary">Primary</Button></div>

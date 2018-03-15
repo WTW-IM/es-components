@@ -131,11 +131,11 @@ function Button({
 
   const defaultButton = {
     bgColor: theme.colors.dflt,
-    textColor: theme.colors.white,
+    textColor: theme.colors.dfltBtnTextColor,
     hoverBgColor: theme.colors.dfltHover,
-    hoverTextColor: theme.colors.white,
+    hoverTextColor: theme.colors.dfltBtnTextColor,
     activeBgColor: theme.colors.dfltHover,
-    activeTextColor: theme.colors.white,
+    activeTextColor: theme.colors.dfltBtnTextColor,
     boxShadowColor: theme.colors.dfltHover,
     borderColor: theme.colors.dflt
   };

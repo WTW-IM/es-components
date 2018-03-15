@@ -20,6 +20,7 @@ const grayDarkest = gray9;
 
 const dflt = '#6c757d';
 const dfltHover = '#5a6268';
+const dfltBtnTextColor = white;
 const primary = '#007BFF';
 const primaryHover = '#0062cc';
 const info = '#17A2B8';
@@ -62,6 +63,7 @@ const theme = {
     white,
     dflt,
     dfltHover,
+    dfltBtnTextColor,
     primary,
     primaryHover,
     success,

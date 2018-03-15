@@ -2,7 +2,6 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
 import Breadcrumb from './Breadcrumb';
 
 describe('BreadcrumbTestSuite', () => {
@@ -10,7 +9,7 @@ describe('BreadcrumbTestSuite', () => {
 
   beforeEach(() => {
     instanceToRender = (
-      <Breadcrumb keySelector={child => child.props.name}>
+      <Breadcrumb className="test">
         <a href="/test">test</a>
         <a href="/test2">test2</a>
       </Breadcrumb>
@@ -20,11 +19,5 @@ describe('BreadcrumbTestSuite', () => {
   it('renders as expected', () => {
     const tree = renderer.create(instanceToRender).toJSON();
     expect(tree).toMatchSnapshot();
-  });
-
-  it('Does not have arrow on end', () => {
-    const crumbInstance = shallow(instanceToRender);
-    const iconInstances = crumbInstance.find({ name: 'chevron-right' });
-    expect(iconInstances).toHaveLength(1);
   });
 });

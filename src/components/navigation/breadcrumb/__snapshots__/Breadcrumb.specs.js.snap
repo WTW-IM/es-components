@@ -1,27 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BreadcrumbTestSuite renders as expected 1`] = `
-<div>
-  <span>
+<ol
+  className="test sc-bdVaJa fjGuA"
+>
+  <li
+    className="sc-bwzfXH cJHHPw"
+  >
     <a
       href="/test"
     >
       test
     </a>
-  </span>
-  <span>
-    <i
-      aria-hidden={true}
-      className="sc-bdVaJa cdZdrm"
-      content="61a"
-      fontFamily="indv-mkt-icons"
-      fontSize="inherit"
-    />
+  </li>
+  <li
+    className="sc-bwzfXH cJHHPw"
+  >
     <a
       href="/test2"
     >
       test2
     </a>
-  </span>
-</div>
+  </li>
+</ol>
 `;

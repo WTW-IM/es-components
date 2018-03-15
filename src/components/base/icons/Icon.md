@@ -19,9 +19,9 @@ const containerStyle = {
 
 **Note:** Icons will not work if the `indv-mkt-icons` font face is not loaded into a stylesheet prior to using the Icon component. For example:
 
-<pre>
-&lt;head&gt;
-  &lt;style&gt;
+```html
+<head>
+  <style>
   @font-face {
     font-family: 'indv-mkt-icons';
     src: url('webfonts/indv-mkt-icons.eot?3tk8wr');
@@ -32,9 +32,9 @@ const containerStyle = {
     font-weight: normal;
     font-style: normal;
   }
-  &lt;/style&gt;
-&lt;/head&gt;
-</pre>
+  </style>
+</head>
+```
 
 You can find these fonts in the `public/webfonts` folder
 where you installed es-components (e.g. `npm_modules/es-components/public/webfonts`). You'll likely want to copy them into your own project's `public` folder.

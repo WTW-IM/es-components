@@ -29,7 +29,7 @@ function noop() { }
 
   <Button handleOnClick={noop} styleType="link">Link</Button>
 
-  <div style={{'font-size':'30px'}}>
+  <div style={{'fontSize':'30px'}}>
     <Button handleOnClick={noop} styleType="success" styledLink={true}>Styled Link</Button>
   </div>
 </div>

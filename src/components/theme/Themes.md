@@ -1,16 +1,16 @@
 To apply a theme you can either wrap your root react app component in a `<ThemeProvider theme='[themeName]'>` wrapper component, or provide a theme to individual components via the `theme` prop. The `ThemeProvider` wrapper provides the supplied theme to any components underneath it. See [styled-components Theming](https://www.styled-components.com/docs/advanced#theming).
 
-<pre>
+Example:
+```html
 import { ThemeProvider } from 'styled-components';
 import { viaTheme } from 'es-components';
 ...
 render(
-	&lt;ThemeProvider theme={viaTheme}&gt;
-		&lt;MyComponentOrApp /&gt;
-	&lt;/ThemeProvider&gt;
+	<ThemeProvider theme={viaTheme}>
+		<MyComponentOrApp />
+	</ThemeProvider>
 );
-...
-</pre>
+```
 
 Three themes are provided with this library: `defaultTheme`, `wtwTheme`, and `viaTheme`.
 

@@ -1,18 +1,10 @@
-Use breadcrumbs to chain a list of items together
+Use `Breadcrumb` to chain a list of items together. The last element, if not a
+link, will be styled differently to denote the user's current location.
 ```
-function Link({destination, name}){
-  return <a href={`#${destination}`} style={{textDecorationLine: 'none'}}>{name}</a>
-}
-
-function Location({name}){
-  return <span>{name}</span>
-}
-
-   <Breadcrumb className="test" keySelector={(child) => child.props.name}>
-    <Link name="home" destination="bye there"/>
-    <Button name="gettingThere" handleOnClick={() => alert("on my way")} styleType="primary">getting there</Button>
-    <Link name="test" destination="bye"/>
-    <Location name="destination"/>
-  </Breadcrumb>
-
+<Breadcrumb className="test">
+  <a href="#home">Home</a>
+  <a href="#gettingthere">On Our Way</a>
+  <a href="#test">Getting There</a>
+  <span>Destination</span>
+</Breadcrumb>
 ```

@@ -218,7 +218,9 @@ Button.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  /** The name of the button to be sent with the form. */
+  name: PropTypes.string
 };
 
 Button.defaultProps = {

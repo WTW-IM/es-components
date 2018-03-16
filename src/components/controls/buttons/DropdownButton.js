@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../controls/buttons/Button';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
@@ -47,7 +47,6 @@ class DropdownButton extends React.Component {
       buttonValue: props.buttonValue,
       isOpen: false
     };
-    this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
   }
 
   toggleDropdown = () => {
@@ -60,60 +59,76 @@ class DropdownButton extends React.Component {
     }
   };
 
-  handleDropdownItemClick(button) {
+  handleDropdownItemClick = buttonProps => {
+    const { shouldCloseOnButtonClick, shouldUpdateButtonValue } = this.props;
+
     return event => {
-      if (this.props.shouldUpdateButtonValue) {
-        this.setState({ buttonValue: button.buttonValue });
+      if (shouldUpdateButtonValue) {
+        this.setState({ buttonValue: buttonProps.children });
       }
 
-      this.props.onDropdownItemClick(button);
-
-      if (this.props.shouldCloseOnButtonClick) {
+      if (shouldCloseOnButtonClick) {
         this.closeDropdown();
       }
+
+      buttonProps.handleOnClick(event, buttonProps.name);
     };
-  }
+  };
 
   render() {
-    const { theme, dropdownItems, rootClose } = this.props;
+    const { theme, rootClose, children } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <RootCloseWrapper
           onRootClose={this.closeDropdown}
           disabled={!rootClose}
         >
-          <Button handleOnClick={this.toggleDropdown}>
-            {this.state.buttonValue} <Caret />
-          </Button>
-          <ButtonPanel isOpen={this.state.isOpen} theme={theme}>
-            <ButtonPanelChildrenContainer>
-              {dropdownItems.map(button => {
-                const clickFunction = this.handleDropdownItemClick(button);
-                return (
-                  <StyledButtonLink
-                    handleOnClick={clickFunction}
-                    styleType="link"
-                    theme={theme}
-                  >
-                    {button.buttonValue}
-                  </StyledButtonLink>
-                );
-              })}
-            </ButtonPanelChildrenContainer>
-          </ButtonPanel>
+          <div>
+            <Button handleOnClick={this.toggleDropdown}>
+              {this.state.buttonValue} <Caret />
+            </Button>
+            <ButtonPanel isOpen={this.state.isOpen} theme={theme}>
+              <ButtonPanelChildrenContainer>
+                {Children.map(children, child => {
+                  const onClickHandler = this.handleDropdownItemClick(
+                    child.props
+                  );
+                  const newProps = {
+                    handleOnClick: onClickHandler
+                  };
+                  return React.cloneElement(child, newProps);
+                })}
+              </ButtonPanelChildrenContainer>
+            </ButtonPanel>
+          </div>
         </RootCloseWrapper>
       </ThemeProvider>
     );
   }
 }
 
+DropdownButton.Button = StyledButtonLink;
+
 DropdownButton.propTypes = {
+  /** Content shown in the button */
   buttonValue: PropTypes.any.isRequired,
+  children: PropTypes.any.isRequired,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
   theme: PropTypes.object,
+  /**
+   * Defines if the buttons value should update to the last pressed,
+   * childs value.
+   */
   shouldUpdateButtonValue: PropTypes.bool,
+  /** Defines if the dropdown should close when any child button is clicked */
   shouldCloseOnButtonClick: PropTypes.bool,
-  dropdownItems: PropTypes.arrayOf(PropTypes.any),
-  onDropdownItemClick: PropTypes.func,
+  /**
+   * Defines weather the dropdown will close when any other element on the page is clicked.
+   * Uses RootCloseWrapper from React-Overlay
+   */
   rootClose: PropTypes.bool
 };
 

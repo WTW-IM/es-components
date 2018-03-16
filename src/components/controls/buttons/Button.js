@@ -132,22 +132,22 @@ function Button({
   };
 
   const defaultNormal = {
-    bgColor: theme.colors.dflt,
-    textColor: theme.colors.dfltBtnTextColor,
-    hoverBgColor: theme.colors.dfltHover,
-    hoverTextColor: theme.colors.dfltBtnTextColor,
-    activeBgColor: theme.colors.dfltHover,
-    activeTextColor: theme.colors.dfltBtnTextColor,
-    boxShadowColor: theme.colors.dfltHover
+    bgColor: theme.colors.defaultColor,
+    textColor: theme.colors.defaultBtnText,
+    hoverBgColor: theme.colors.defaultHover,
+    hoverTextColor: theme.colors.defaultBtnText,
+    activeBgColor: theme.colors.defaultHover,
+    activeTextColor: theme.colors.defaultBtnText,
+    boxShadowColor: theme.colors.defaultHover
   };
   const defaultOutline = {
     bgColor: theme.colors.white,
-    textColor: theme.colors.dflt,
-    hoverBgColor: theme.colors.dflt,
+    textColor: theme.colors.defaultColor,
+    hoverBgColor: theme.colors.defaultColor,
     hoverTextColor: theme.colors.white,
-    activeBgColor: theme.colors.dfltHover,
+    activeBgColor: theme.colors.defaultHover,
     activeTextColor: theme.colors.white,
-    borderColor: theme.colors.dflt
+    borderColor: theme.colors.defaultColor
   };
 
   let variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;

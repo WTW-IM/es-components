@@ -18,9 +18,9 @@ const grayDark = gray6;
 const grayDarker = gray8;
 const grayDarkest = gray9;
 
-const dflt = '#6c757d';
-const dfltHover = '#5a6268';
-const dfltBtnTextColor = white;
+const defaultColor = '#6c757d';
+const defaultHover = '#5a6268';
+const defaultBtnText = white;
 const primary = '#007BFF';
 const primaryHover = '#0062cc';
 const info = '#17A2B8';
@@ -61,9 +61,9 @@ const theme = {
     grayLighter,
     grayLightest,
     white,
-    dflt,
-    dfltHover,
-    dfltBtnTextColor,
+    defaultColor,
+    defaultHover,
+    defaultBtnText,
     primary,
     primaryHover,
     success,
@@ -102,13 +102,13 @@ const theme = {
         boxShadowColor: primaryHover
       },
       default: {
-        bgColor: dflt,
+        bgColor: defaultColor,
         textColor: white,
-        hoverBgColor: dfltHover,
+        hoverBgColor: defaultHover,
         hoverTextColor: white,
-        activeBgColor: dfltHover,
+        activeBgColor: defaultHover,
         activeTextColor: white,
-        boxShadowColor: dfltHover
+        boxShadowColor: defaultHover
       },
       success: {
         bgColor: success,
@@ -161,12 +161,12 @@ const theme = {
       },
       default: {
         bgColor: white,
-        textColor: dflt,
-        hoverBgColor: dflt,
+        textColor: defaultColor,
+        hoverBgColor: defaultColor,
         hoverTextColor: white,
-        activeBgColor: dfltHover,
+        activeBgColor: defaultHover,
         activeTextColor: white,
-        borderColor: dflt
+        borderColor: defaultColor
       },
       success: {
         bgColor: white,

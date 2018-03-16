@@ -12,7 +12,6 @@ beforeEach(() => {
   instance = mount(<ToggleButton handleOnClick={onClick}>test</ToggleButton>);
 });
 
-
 it('sets isPressed state on click', () => {
   instance.simulate('click');
   expect(instance.state().isPressed).toBe(true);

@@ -17,7 +17,8 @@ const Backdrop = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  z-index: ${props => (props.isMenuOpen ? 'auto' : '-1')};
+  z-index: auto;
+  display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
 class Menu extends React.Component {

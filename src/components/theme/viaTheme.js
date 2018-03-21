@@ -300,7 +300,7 @@ const theme = {
     retina: '320px',
     phone: '480px',
     tablet: '768px',
-    desktop: '992px',
+    desktop: '900px',
     widescreen: '1200px'
   }
 };

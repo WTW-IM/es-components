@@ -10,6 +10,8 @@ export Menu from './components/containers/menu/Menu';
 
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
+export ToggleButton from './components/controls/buttons/ToggleButton';
+export DropdownButton from './components/controls/buttons/DropdownButton';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
 export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';

@@ -1,6 +1,3 @@
-
-## Toggle Button
-
 A simple button that maintains the "depressed" state/display when clicked.
 
 ```

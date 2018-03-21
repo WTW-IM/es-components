@@ -11,6 +11,7 @@ const CheckboxLabel = Label.extend`
   font-size: ${props => props.theme.sizes.baseFontSize}px;
   font-weight: normal;
   text-transform: none;
+  display: flex;
 
   > .checkbox-fill {
     background-color: ${props =>
@@ -60,7 +61,6 @@ const CheckboxWrapper = styled.span`
   box-sizing: border-box;
   cursor: pointer;
   height: 25px;
-  position: absolute;
   transition: all 0.25s linear;
   width: 25px;
 
@@ -72,18 +72,17 @@ const CheckboxWrapper = styled.span`
     box-sizing: border-box;
     content: '';
     height: 9px;
-    top: 3px;
-    left: 2px;
-    position: absolute;
+    display: block;
     transform: rotate(-45deg);
     transition: border 0.25s linear;
     width: 15px;
+    margin: 3px 0 0 2px;
   }
 `;
 
 const CheckboxText = styled.span`
   line-height: 1.4;
-  margin-left: 30px;
+  margin-left: 5px;
 `;
 
 function Checkbox({

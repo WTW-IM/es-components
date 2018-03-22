@@ -42,6 +42,7 @@ const dangerHover = tinycolor(danger)
   .darken(8)
   .toRgbString();
 const advisor = '#ff6310';
+const wtwGray = '#63666a';
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
@@ -87,7 +88,8 @@ const theme = {
     advisor,
     boxShadowLight,
     boxShadowDark,
-    inputFocus
+    inputFocus,
+    wtwGray
   },
   datepickerColors: {
     navArrow,

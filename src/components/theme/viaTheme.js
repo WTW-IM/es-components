@@ -33,6 +33,11 @@ const danger = '#c00';
 const dangerHover = '#990000';
 const advisor = warning;
 
+const vbBlue = '#00a0d2';
+const vbGreen = '#00c389';
+const vbMagenta = '#c110a0';
+const wtwGray = '#63666a';
+
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
 
@@ -78,6 +83,12 @@ const theme = {
     boxShadowLight,
     boxShadowDark,
     inputFocus
+  },
+  brandColors: {
+    vbBlue,
+    vbGreen,
+    vbMagenta,
+    wtwGray
   },
   datepickerColors: {
     navArrow,
@@ -206,21 +217,21 @@ const theme = {
       },
       gray: {
         bgColor: white,
-        textColor: '#63666a',
-        hoverBgColor: '#63666a',
+        textColor: wtwGray,
+        hoverBgColor: wtwGray,
         hoverTextColor: white,
         activeBgColor: '#4a4d50',
         activeTextColor: white,
-        borderColor: '#63666a'
+        borderColor: wtwGray
       },
       magenta: {
         bgColor: white,
-        textColor: '#c110a0',
-        hoverBgColor: '#c110a0',
+        textColor: vbMagenta,
+        hoverBgColor: vbMagenta,
         hoverTextColor: white,
         activeBgColor: '#920C79',
         activeTextColor: white,
-        borderColor: '#c110a0'
+        borderColor: vbMagenta
       },
       violet: {
         bgColor: white,

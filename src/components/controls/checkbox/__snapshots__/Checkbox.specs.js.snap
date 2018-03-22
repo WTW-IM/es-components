@@ -2,7 +2,7 @@
 
 exports[`Checkbox renders as expected 1`] = `
 <label
-  className="sc-bwzfXH iTAuEM"
+  className="sc-bwzfXH hizqnz"
   disabled={true}
 >
   <input

@@ -1,5 +1,3 @@
-import tinycolor from 'tinycolor2';
-
 const white = '#fff';
 const gray1 = '#f4f4f4';
 const gray2 = '#ecedee';
@@ -20,12 +18,19 @@ const grayDark = gray6;
 const grayDarker = gray8;
 const grayDarkest = gray9;
 
+const defaultColor = '#d8d8d8';
+const defaultHover = '#bfbfbf';
+const defaultBtnText = black;
 const primary = '#007fa7';
-const accent = '#00a0d2';
-const information = '#069';
+const primaryHover = '#005874';
+const info = '#069';
+const infoHover = '#004466';
 const success = '#298544';
+const successHover = '#1d5e30';
 const warning = '#b35f00';
+const warningHover = '#804400';
 const danger = '#c00';
+const dangerHover = '#990000';
 const advisor = warning;
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
@@ -56,12 +61,19 @@ const theme = {
     grayLighter,
     grayLightest,
     white,
+    defaultColor,
+    defaultHover,
+    defaultBtnText,
     primary,
+    primaryHover,
     success,
-    accent,
-    information,
+    successHover,
+    info,
+    infoHover,
     warning,
+    warningHover,
     danger,
+    dangerHover,
     advisor,
     boxShadowLight,
     boxShadowDark,
@@ -77,6 +89,173 @@ const theme = {
     highlight,
     highlightHover
   },
+  buttonStyles: {
+    buttonsNormal: {
+      // these button types are dynamic, so you can add/remove/rename them
+      primary: {
+        bgColor: primary,
+        textColor: white,
+        hoverBgColor: primaryHover,
+        hoverTextColor: white,
+        activeBgColor: primaryHover,
+        activeTextColor: white,
+        boxShadowColor: primaryHover
+      },
+      default: {
+        bgColor: defaultColor,
+        textColor: white,
+        hoverBgColor: defaultHover,
+        hoverTextColor: white,
+        activeBgColor: defaultHover,
+        activeTextColor: white,
+        boxShadowColor: defaultHover
+      },
+      success: {
+        bgColor: success,
+        textColor: white,
+        hoverBgColor: successHover,
+        hoverTextColor: white,
+        activeBgColor: successHover,
+        activeTextColor: white,
+        boxShadowColor: successHover
+      },
+      info: {
+        bgColor: info,
+        textColor: white,
+        hoverBgColor: infoHover,
+        hoverTextColor: white,
+        activeBgColor: infoHover,
+        activeTextColor: white,
+        boxShadowColor: infoHover
+      },
+      warning: {
+        bgColor: warning,
+        textColor: white,
+        hoverBgColor: warningHover,
+        hoverTextColor: white,
+        activeBgColor: warningHover,
+        activeTextColor: white,
+        boxShadowColor: warningHover
+      },
+      danger: {
+        bgColor: danger,
+        textColor: white,
+        hoverBgColor: dangerHover,
+        hoverTextColor: white,
+        activeBgColor: dangerHover,
+        activeTextColor: white,
+        boxShadowColor: dangerHover
+      }
+    },
+    buttonsOutline: {
+      // these can be independent of the main buttons, but generally
+      // should have matching sets
+      primary: {
+        bgColor: white,
+        textColor: primary,
+        hoverBgColor: primary,
+        hoverTextColor: white,
+        activeBgColor: primaryHover,
+        activeTextColor: white,
+        borderColor: primary
+      },
+      default: {
+        bgColor: white,
+        textColor: defaultColor,
+        hoverBgColor: defaultColor,
+        hoverTextColor: white,
+        activeBgColor: defaultHover,
+        activeTextColor: white,
+        borderColor: defaultColor
+      },
+      success: {
+        bgColor: white,
+        textColor: success,
+        hoverBgColor: success,
+        hoverTextColor: white,
+        activeBgColor: successHover,
+        activeTextColor: white,
+        borderColor: success
+      },
+      info: {
+        bgColor: white,
+        textColor: info,
+        hoverBgColor: info,
+        hoverTextColor: white,
+        activeBgColor: infoHover,
+        activeTextColor: white,
+        borderColor: info
+      },
+      warning: {
+        bgColor: white,
+        textColor: warning,
+        hoverBgColor: warning,
+        hoverTextColor: black,
+        activeBgColor: warningHover,
+        activeTextColor: black,
+        borderColor: warning
+      },
+      danger: {
+        bgColor: white,
+        textColor: danger,
+        hoverBgColor: danger,
+        hoverTextColor: white,
+        activeBgColor: dangerHover,
+        activeTextColor: white,
+        borderColor: danger
+      },
+      gray: {
+        bgColor: white,
+        textColor: '#63666a',
+        hoverBgColor: '#63666a',
+        hoverTextColor: white,
+        activeBgColor: '#4a4d50',
+        activeTextColor: white,
+        borderColor: '#63666a'
+      },
+      magenta: {
+        bgColor: white,
+        textColor: '#c110a0',
+        hoverBgColor: '#c110a0',
+        hoverTextColor: white,
+        activeBgColor: '#920C79',
+        activeTextColor: white,
+        borderColor: '#c110a0'
+      },
+      violet: {
+        bgColor: white,
+        textColor: '#702082',
+        hoverBgColor: '#702082',
+        hoverTextColor: white,
+        activeBgColor: '#4d1659',
+        activeTextColor: white,
+        borderColor: '#702082'
+      }
+    }
+  },
+  // buttonSizes should always have default, lg, sm, xs
+  buttonSizes: {
+    lg: {
+      borderRadius: '3px',
+      fontSize: '26px',
+      padding: '8px 20px 5px'
+    },
+    default: {
+      borderRadius: '2px',
+      fontSize: '18px',
+      padding: '5px 15px 4px'
+    },
+    sm: {
+      borderRadius: '2px',
+      fontSize: '14px',
+      padding: '4px 10px 3px'
+    },
+    xs: {
+      borderRadius: '2px',
+      fontSize: '12px',
+      padding: '3px 10px 2px'
+    }
+  },
   validationIconName: {
     success: 'ok',
     warning: 'warning-sign',
@@ -84,9 +263,7 @@ const theme = {
   },
   validationTextColor: {
     success,
-    warning: tinycolor(warning)
-      .darken(25)
-      .toString(),
+    warning: warningHover,
     danger
   },
   validationInputColor: {
@@ -123,7 +300,7 @@ const theme = {
     retina: '320px',
     phone: '480px',
     tablet: '768px',
-    desktop: '992px',
+    desktop: '900px',
     widescreen: '1200px'
   }
 };

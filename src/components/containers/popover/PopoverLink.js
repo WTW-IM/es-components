@@ -4,7 +4,6 @@ import { noop } from 'lodash';
 import styled, { ThemeProvider } from 'styled-components';
 import uncontrollable from 'uncontrollable';
 
-import { buttonStyleTypes } from '../../controls/buttons/button-variants';
 import defaultTheme from '../../theme/defaultTheme';
 import Button from '../../controls/buttons/Button';
 import PopoverTrigger from './PopoverTrigger';
@@ -29,6 +28,7 @@ export class PopoverLink extends React.Component {
   render() {
     const {
       children,
+      isLinkButton,
       popoverTitle,
       popoverContent,
       popoverPlacement,
@@ -38,8 +38,6 @@ export class PopoverLink extends React.Component {
       theme,
       buttonStyle
     } = this.props;
-
-    const styledLink = buttonStyle !== 'link';
 
     return (
       <ThemeProvider theme={theme}>
@@ -60,9 +58,8 @@ export class PopoverLink extends React.Component {
               this.popoverTarget = btn;
             }}
             styleType={buttonStyle}
-            styledLink={styledLink}
+            isLinkButton={isLinkButton}
             suppressUnderline={suppressUnderline}
-            theme={theme}
           >
             {children}
           </PopoverButton>
@@ -94,8 +91,10 @@ PopoverLink.propTypes = {
    * automatically passed by any parent component using a ThemeProvider
    */
   theme: PropTypes.object,
-  /** The style of the link for the popover */
-  buttonStyle: PropTypes.oneOf(buttonStyleTypes)
+  /** The button style of the popover link */
+  buttonStyle: PropTypes.string,
+  /** Sets the link to use a text rather than a button style **/
+  isLinkButton: PropTypes.bool
 };
 
 PopoverLink.defaultProps = {
@@ -105,7 +104,8 @@ PopoverLink.defaultProps = {
   showCloseButton: false,
   suppressUnderline: false,
   theme: defaultTheme,
-  buttonStyle: 'link'
+  buttonStyle: 'primary',
+  isLinkButton: true
 };
 
 const UncontrolledPopoverLink = uncontrollable(PopoverLink, {

@@ -14,7 +14,7 @@ exports[`drawer component accordion renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat evKkje"
+        className="sc-htpNat bOpKHm"
         onClick={[Function]}
       >
         <span>
@@ -62,7 +62,7 @@ exports[`drawer component accordion renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat evKkje"
+        className="sc-htpNat bOpKHm"
         onClick={[Function]}
       >
         <span>
@@ -107,7 +107,7 @@ exports[`drawer component accordion renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat evKkje"
+        className="sc-htpNat bOpKHm"
         onClick={[Function]}
       >
         <span>
@@ -159,7 +159,7 @@ exports[`drawer component drawer renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat evKkje"
+        className="sc-htpNat bOpKHm"
         onClick={[Function]}
       >
         <span>
@@ -207,7 +207,7 @@ exports[`drawer component drawer renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat evKkje"
+        className="sc-htpNat bOpKHm"
         onClick={[Function]}
       >
         <span>
@@ -252,7 +252,7 @@ exports[`drawer component drawer renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat evKkje"
+        className="sc-htpNat bOpKHm"
         onClick={[Function]}
       >
         <span>

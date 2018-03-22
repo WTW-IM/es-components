@@ -6,7 +6,6 @@ import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import defaultTheme from '../../theme/defaultTheme';
-import { buttonStyleTypes } from '../../controls/buttons/button-variants';
 
 const Backdrop = styled.div`
   background-color: black;
@@ -87,7 +86,7 @@ Menu.MenuSection = MenuSection;
 Menu.propTypes = {
   children: PropTypes.any.isRequired,
   buttonContent: PropTypes.any.isRequired,
-  openButtonType: PropTypes.oneOf(buttonStyleTypes),
+  openButtonType: PropTypes.string,
   className: PropTypes.string,
   rootClose: PropTypes.bool,
   inline: PropTypes.bool,

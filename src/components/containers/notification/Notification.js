@@ -234,13 +234,7 @@ function Notification({
   );
 }
 
-const notificationTypes = [
-  'success',
-  'information',
-  'warning',
-  'danger',
-  'advisor'
-];
+const notificationTypes = ['success', 'info', 'warning', 'danger', 'advisor'];
 
 const callToActionShape = {
   actionButtonContent: PropTypes.node.isRequired,

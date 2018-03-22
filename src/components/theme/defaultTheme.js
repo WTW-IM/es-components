@@ -1,5 +1,3 @@
-import tinycolor from 'tinycolor2';
-
 const white = '#fff';
 const gray1 = '#f8f9fa';
 const gray2 = '#e9ecef';
@@ -20,13 +18,20 @@ const grayDark = gray6;
 const grayDarker = gray8;
 const grayDarkest = gray9;
 
-const primary = '#495057';
-const accent = '#007bff';
-const information = '#17a2b8';
-const advisor = accent;
-const success = '#28a745';
-const warning = '#ffc107';
-const danger = '#dc3545';
+const defaultColor = '#6c757d';
+const defaultHover = '#5a6268';
+const defaultBtnText = white;
+const primary = '#007BFF';
+const primaryHover = '#0062cc';
+const info = '#17A2B8';
+const infoHover = '#138496';
+const success = '#28A745';
+const successHover = '#218838';
+const warning = '#FFC107';
+const warningHover = '#e0a800';
+const danger = '#DC3545';
+const dangerHover = '#c82333';
+const advisor = warning;
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
@@ -56,12 +61,19 @@ const theme = {
     grayLighter,
     grayLightest,
     white,
+    defaultColor,
+    defaultHover,
+    defaultBtnText,
     primary,
+    primaryHover,
     success,
-    accent,
-    information,
+    successHover,
+    info,
+    infoHover,
     warning,
+    warningHover,
     danger,
+    dangerHover,
     advisor,
     boxShadowLight,
     boxShadowDark,
@@ -77,6 +89,146 @@ const theme = {
     highlight,
     highlightHover
   },
+  buttonStyles: {
+    buttonsNormal: {
+      // these button types are dynamic, so you can add/remove/rename them
+      primary: {
+        bgColor: primary,
+        textColor: white,
+        hoverBgColor: primaryHover,
+        hoverTextColor: white,
+        activeBgColor: primaryHover,
+        activeTextColor: white,
+        boxShadowColor: primaryHover
+      },
+      default: {
+        bgColor: defaultColor,
+        textColor: white,
+        hoverBgColor: defaultHover,
+        hoverTextColor: white,
+        activeBgColor: defaultHover,
+        activeTextColor: white,
+        boxShadowColor: defaultHover
+      },
+      success: {
+        bgColor: success,
+        textColor: white,
+        hoverBgColor: successHover,
+        hoverTextColor: white,
+        activeBgColor: successHover,
+        activeTextColor: white,
+        boxShadowColor: successHover
+      },
+      info: {
+        bgColor: info,
+        textColor: white,
+        hoverBgColor: infoHover,
+        hoverTextColor: white,
+        activeBgColor: infoHover,
+        activeTextColor: white,
+        boxShadowColor: infoHover
+      },
+      warning: {
+        bgColor: warning,
+        textColor: black,
+        hoverBgColor: warningHover,
+        hoverTextColor: black,
+        activeBgColor: warningHover,
+        activeTextColor: black,
+        boxShadowColor: warningHover
+      },
+      danger: {
+        bgColor: danger,
+        textColor: white,
+        hoverBgColor: dangerHover,
+        hoverTextColor: white,
+        activeBgColor: dangerHover,
+        activeTextColor: white,
+        boxShadowColor: dangerHover
+      }
+    },
+    buttonsOutline: {
+      // these can be independent of the main buttons, but generally
+      // should have matching sets
+      primary: {
+        bgColor: white,
+        textColor: primary,
+        hoverBgColor: primary,
+        hoverTextColor: white,
+        activeBgColor: primaryHover,
+        activeTextColor: white,
+        borderColor: primary
+      },
+      default: {
+        bgColor: white,
+        textColor: defaultColor,
+        hoverBgColor: defaultColor,
+        hoverTextColor: white,
+        activeBgColor: defaultHover,
+        activeTextColor: white,
+        borderColor: defaultColor
+      },
+      success: {
+        bgColor: white,
+        textColor: success,
+        hoverBgColor: success,
+        hoverTextColor: white,
+        activeBgColor: successHover,
+        activeTextColor: white,
+        borderColor: success
+      },
+      info: {
+        bgColor: white,
+        textColor: info,
+        hoverBgColor: info,
+        hoverTextColor: white,
+        activeBgColor: infoHover,
+        activeTextColor: white,
+        borderColor: info
+      },
+      warning: {
+        bgColor: white,
+        textColor: warning,
+        hoverBgColor: warning,
+        hoverTextColor: black,
+        activeBgColor: warningHover,
+        activeTextColor: black,
+        borderColor: warning
+      },
+      danger: {
+        bgColor: white,
+        textColor: danger,
+        hoverBgColor: danger,
+        hoverTextColor: white,
+        activeBgColor: dangerHover,
+        activeTextColor: white,
+        borderColor: danger
+      }
+    }
+  },
+  // buttonSizes should always have default, lg, sm, xs
+  buttonSizes: {
+    lg: {
+      borderRadius: '3px',
+      fontSize: '26px',
+      padding: '8px 20px 5px'
+    },
+    default: {
+      borderRadius: '2px',
+      fontSize: '18px',
+      padding: '5px 15px 4px'
+    },
+    sm: {
+      borderRadius: '2px',
+      fontSize: '14px',
+      padding: '4px 10px 3px'
+    },
+    xs: {
+      borderRadius: '2px',
+      fontSize: '12px',
+      padding: '3px 10px 2px'
+    }
+  },
   validationIconName: {
     success: 'ok',
     warning: 'warning-sign',
@@ -84,9 +236,7 @@ const theme = {
   },
   validationTextColor: {
     success,
-    warning: tinycolor(warning)
-      .darken(25)
-      .toString(),
+    warning: warningHover,
     danger
   },
   validationInputColor: {

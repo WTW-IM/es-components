@@ -24,7 +24,7 @@ export default function getRadioFillVariables(
 
   if (isChecked && isNotDisabled && isValid) {
     return {
-      fill: colors.accent
+      fill: colors.info
     };
   }
 

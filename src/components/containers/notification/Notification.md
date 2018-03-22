@@ -26,7 +26,7 @@
   />
 
   <Notification
-    type="information"
+    type="info"
     header="Information!"
     additionalText="Here's some information you need to know."
   />
@@ -127,7 +127,7 @@ const extraAlert = {
 Any additional children will get rendered before call to action buttons.
 ```
 <Notification
-  type="information"
+  type="info"
   additionalText="Here's some information to get you started"
 >
   <ol>

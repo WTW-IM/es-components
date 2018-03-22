@@ -5,7 +5,7 @@ exports[`BreadcrumbTestSuite renders as expected 1`] = `
   className="test sc-bdVaJa fjGuA"
 >
   <li
-    className="sc-bwzfXH cJHHPw"
+    className="sc-bwzfXH fuLMXc"
   >
     <a
       href="/test"
@@ -14,7 +14,7 @@ exports[`BreadcrumbTestSuite renders as expected 1`] = `
     </a>
   </li>
   <li
-    className="sc-bwzfXH cJHHPw"
+    className="sc-bwzfXH fuLMXc"
   >
     <a
       href="/test2"

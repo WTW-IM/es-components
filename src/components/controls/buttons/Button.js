@@ -1,16 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import tinycolor from 'tinycolor2';
 
 import defaultTheme from '../../theme/defaultTheme';
-import { buttonSizeStyles } from './button-sizes';
-import {
-  defaultButtonVariants,
-  alternateButtonVariants,
-  buttonStyleTypes
-} from './button-variants';
-import Icon from '../../base/icons/Icon';
 
 function getBlockPropertyValues(isBlock) {
   if (isBlock) {
@@ -20,7 +12,7 @@ function getBlockPropertyValues(isBlock) {
     };
   }
   return {
-    display: 'initial',
+    display: 'inline-block',
     width: 'initial'
   };
 }
@@ -33,9 +25,11 @@ const ButtonBase = styled.button`
   display: ${props => getBlockPropertyValues(props.block).display};
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
-  margin: 0 0 4px 0;
+  line-height: 1.4;
   padding: ${props => props.buttonSize.padding};
   text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
   width: ${props => getBlockPropertyValues(props.block).width};
 
   &[disabled] {
@@ -46,6 +40,23 @@ const ButtonBase = styled.button`
       pointer-events: none;
     }
   }
+`;
+
+const DefaultButton = styled(ButtonBase)`
+  background-color: ${props => props.variant.bgColor};
+  border-color: transparent;
+  box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
+  color: ${props => props.variant.textColor};
+  margin-bottom: 4px;
+  margin-top: 0;
+
+  &[disabled]:hover {
+    background-color: ${props => props.variant.bgColor};
+  }
+
+  &:hover {
+    background-color: ${props => props.variant.hoverBgColor};
+  }
 
   &:active {
     margin-bottom: 0;
@@ -54,58 +65,38 @@ const ButtonBase = styled.button`
   }
 `;
 
-const DefaultButton = styled(ButtonBase)`
-  background-color: ${props => props.buttonVariant.backgroundColor};
-  border-color: ${props => props.buttonVariant.borderColor};
-  box-shadow: 0 4px 0 0 ${props => props.buttonVariant.boxShadowColor};
-  color: ${props => props.buttonVariant.foregroundColor};
-
-  &[disabled]:hover {
-    background-color: ${props => props.buttonVariant.backgroundColor};
-  }
+const OutlineButton = styled(ButtonBase)`
+  background-color: ${props => props.variant.bgColor};
+  border: 2px solid ${props => props.variant.borderColor};
+  border-radius: 5px;
+  color: ${props => props.variant.textColor};
+  font-weight: bold;
 
   &:hover {
-    background-color: ${props => props.buttonVariant.hoverBackgroundColor};
+    background-color: ${props => props.variant.hoverBgColor};
+    color: ${props => props.variant.hoverTextColor};
   }
-`;
 
-const AlternateButton = styled(ButtonBase)`
-  background-color: ${props => props.theme.colors.white};
-  border: 2px solid ${props => props.buttonVariant.borderColor};
-  border-radius: 0;
-  color: ${props => props.buttonVariant.foregroundColor};
-
-  &:hover {
-    background-color: ${props => props.buttonVariant.hoverBackgroundColor};
-    color: ${props => props.buttonVariant.hoverForegroundColor};
+  &:active {
+    background-color: ${props => props.variant.activeBgColor};
+    color: ${props => props.variant.activeTextColor};
   }
-`;
-
-const AlternateChildrenContainer = styled.div`
-  display: flex;
-  font-weight: bold;
-`;
-
-const AlternateButtonIcon = styled(Icon)`
-  align-self: center;
-  font-weight: bold;
-  margin-left: 5px;
 `;
 
 const LinkButton = styled(ButtonBase)`
   background-color: transparent;
   box-shadow: none;
-  color: ${props => props.theme.colors.accent};
+  color: ${props => props.variant.bgColor};
+  font-size: inherit;
   padding: 0;
   text-decoration: underline;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: transparent;
+    color: ${props => props.variant.hoverBgColor};
     text-decoration: none;
-  }
-
-  &[disabled]:hover {
-    color: ${props => props.theme.colors.accent};
-    text-decoration: underline;
   }
 
   &:active {
@@ -113,31 +104,9 @@ const LinkButton = styled(ButtonBase)`
     box-shadow: none;
   }
 
-  &:hover,
-  &:focus {
-    color: ${props =>
-      tinycolor(props.theme.colors.accent)
-        .darken(15)
-        .toRgbString()};
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: transperent;
-  }
-`;
-
-const StyledLinkButton = styled(LinkButton)`
-  color: ${props => props.buttonVariant.backgroundColor};
-  font-size: inherit;
-
-  &:hover,
-  &:focus {
-    color: ${props =>
-      tinycolor(props.buttonVariant.backgroundColor)
-        .darken(15)
-        .toRgbString()};
+  &[disabled]:hover {
+    color: ${props => props.variant.bgColor};
+    text-decoration: underline;
   }
 `;
 
@@ -146,15 +115,14 @@ function Button({
   children,
   buttonClasses,
   styleType = 'default',
-  styledLink = false,
+  isLinkButton = false,
   size = 'default',
   block = false,
-  alternative = false,
+  isOutline = false,
   theme,
   ...buttonProps
 }) {
-  const buttonSize = buttonSizeStyles[size];
-  const isLinkButton = styleType === 'link' || styledLink;
+  const buttonSize = theme.buttonSizes[size];
   const sharedProps = {
     block,
     buttonSize,
@@ -163,38 +131,49 @@ function Button({
     ...buttonProps
   };
 
-  if (alternative) {
-    const buttonVariant = alternateButtonVariants(theme.colors, styleType);
-    return (
-      <ThemeProvider theme={theme}>
-        <AlternateButton buttonVariant={buttonVariant} {...sharedProps}>
-          <AlternateChildrenContainer>
-            {children}
-            <AlternateButtonIcon name="arrow-right" lightweight />
-          </AlternateChildrenContainer>
-        </AlternateButton>
-      </ThemeProvider>
+  const defaultNormal = {
+    bgColor: theme.colors.defaultColor,
+    textColor: theme.colors.defaultBtnText,
+    hoverBgColor: theme.colors.defaultHover,
+    hoverTextColor: theme.colors.defaultBtnText,
+    activeBgColor: theme.colors.defaultHover,
+    activeTextColor: theme.colors.defaultBtnText,
+    boxShadowColor: theme.colors.defaultHover
+  };
+  const defaultOutline = {
+    bgColor: theme.colors.white,
+    textColor: theme.colors.defaultColor,
+    hoverBgColor: theme.colors.defaultColor,
+    hoverTextColor: theme.colors.white,
+    activeBgColor: theme.colors.defaultHover,
+    activeTextColor: theme.colors.white,
+    borderColor: theme.colors.defaultColor
+  };
+
+  let variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;
+  let button = (
+    <DefaultButton variant={variant} {...sharedProps}>
+      {children}
+    </DefaultButton>
+  );
+
+  if (isOutline) {
+    variant = theme.buttonStyles.buttonsOutline[styleType] || defaultOutline;
+    button = (
+      <OutlineButton variant={variant} {...sharedProps}>
+        {children}
+      </OutlineButton>
     );
   } else if (isLinkButton) {
-    const buttonVariant = defaultButtonVariants(theme.colors, styleType);
-    const link = styledLink ? (
-      <StyledLinkButton buttonVariant={buttonVariant} {...sharedProps}>
+    variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;
+    button = (
+      <LinkButton variant={variant} {...sharedProps}>
         {children}
-      </StyledLinkButton>
-    ) : (
-      <LinkButton {...sharedProps}>{children}</LinkButton>
+      </LinkButton>
     );
-    return <ThemeProvider theme={theme}>{link}</ThemeProvider>;
   }
 
-  const buttonVariant = defaultButtonVariants(theme.colors, styleType);
-  return (
-    <ThemeProvider theme={theme}>
-      <DefaultButton buttonVariant={buttonVariant} {...sharedProps}>
-        {children}
-      </DefaultButton>
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={theme}>{button}</ThemeProvider>;
 }
 
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
@@ -205,15 +184,15 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   /** Any additional classes to apply to the button */
   buttonClasses: PropTypes.string,
-  /** Chooses the color theme of the button */
-  styleType: PropTypes.oneOf(buttonStyleTypes),
-  /** Determines if the button should be rendered as a link with different colors */
-  styledLink: PropTypes.bool,
+  /** Select the color style of the button, types come from theme */
+  styleType: PropTypes.string,
+  /** Determines if the button should be rendered as a text link */
+  isLinkButton: PropTypes.bool,
   size: PropTypes.oneOf(buttonSizes),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,
-  /** Render with the alternative styling */
-  alternative: PropTypes.bool,
+  /** Render the outline button variant */
+  isOutline: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider

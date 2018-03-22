@@ -35,7 +35,7 @@ const OrderedList = styled.ol`
 `;
 
 const Crumb = styled.li`
-  color: ${props => props.theme.colors.accent};
+  color: ${props => props.theme.colors.info};
   display: inline-block;
   margin-right: 2px;
   position: relative;

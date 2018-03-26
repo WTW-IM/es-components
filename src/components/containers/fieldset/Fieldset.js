@@ -40,7 +40,7 @@ function Fieldset({ additionalLegendClasses, legendText, children, theme }) {
 
 Fieldset.propTypes = {
   /** Determine whether or not to add a legend and what text to display  */
-  legendText: PropTypes.string,
+  legendText: PropTypes.object,
   /** Additional classes to be applied to the legend element */
   additionalLegendClasses: PropTypes.string,
   children: PropTypes.node,

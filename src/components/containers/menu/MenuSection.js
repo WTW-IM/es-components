@@ -33,7 +33,7 @@ const MenuSection = (props, context) => {
       inline={inline}
       isOnlySection={isOnlySection}
     >
-      <StyledHeader>{title}</StyledHeader>
+      <StyledHeader aria-label={title}>{title}</StyledHeader>
       <StyledChildrenContainer>{children}</StyledChildrenContainer>
     </StyledMenuSection>
   );

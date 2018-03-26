@@ -36,7 +36,8 @@ export class PopoverLink extends React.Component {
       showCloseButton,
       suppressUnderline,
       theme,
-      buttonStyle
+      buttonStyle,
+      ariaLabel
     } = this.props;
 
     return (
@@ -60,6 +61,7 @@ export class PopoverLink extends React.Component {
             styleType={buttonStyle}
             isLinkButton={isLinkButton}
             suppressUnderline={suppressUnderline}
+            aria-label={ariaLabel}
           >
             {children}
           </PopoverButton>
@@ -94,7 +96,9 @@ PopoverLink.propTypes = {
   /** The button style of the popover link */
   buttonStyle: PropTypes.string,
   /** Sets the link to use a text rather than a button style **/
-  isLinkButton: PropTypes.bool
+  isLinkButton: PropTypes.bool,
+  /** Sets the aria-label attribute to allow for textless buttons **/
+  ariaLabel: PropTypes.string
 };
 
 PopoverLink.defaultProps = {

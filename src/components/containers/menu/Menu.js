@@ -65,9 +65,11 @@ class Menu extends React.Component {
               />
             )}
             <ToggleButton
+              className="open-menu-button"
               handleOnClick={this.toggleMenu}
               isPressed={this.state.isMenuOpen}
               styleType={openButtonType}
+              theme={theme}
             >
               {buttonContent}
             </ToggleButton>

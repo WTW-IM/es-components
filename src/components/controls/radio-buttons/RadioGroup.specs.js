@@ -76,7 +76,7 @@ describe('RadioGroup component', () => {
       <RadioGroup
         name="test"
         radioOptions={defaultOptions}
-        legendText="Test legend"
+        legendContent="Test legend"
       />
     );
 

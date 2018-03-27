@@ -11,7 +11,7 @@ import { ThemeProvider } from 'styled-components';
 function RadioGroup({
   name,
   radioOptions,
-  legendText,
+  legendContent,
   value,
   hasError = false,
   disableAllOptions = false,
@@ -21,7 +21,7 @@ function RadioGroup({
 }) {
   return (
     <ThemeProvider theme={theme}>
-      <Fieldset legendText={legendText}>
+      <Fieldset legendContent={legendContent}>
         {radioOptions.map((config, index) => {
           const radioId = `${name}-option-${index + 1}`;
           const checked = config.optionValue === value;
@@ -55,8 +55,8 @@ const radioOptionShape = {
 RadioGroup.propTypes = {
   /** The name of the radio group */
   name: PropTypes.string.isRequired,
-  /** The text to render in the legend */
-  legendText: PropTypes.string,
+  /** The content to render in the legend */
+  legendContent: PropTypes.node,
   /** Options for the radio group to display */
   radioOptions: PropTypes.arrayOf(PropTypes.shape(radioOptionShape)).isRequired,
   /** Selected option for the radio group */

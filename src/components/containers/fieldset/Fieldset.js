@@ -15,10 +15,8 @@ const Legend = styled.legend`
   width: 100%;
 `;
 
-function renderLegend(text, additionalLegendClasses) {
-  return text ? (
-    <Legend className={additionalLegendClasses}>{text}</Legend>
-  ) : null;
+function renderLegend(content, legendClasses) {
+  return content ? <Legend className={legendClasses}>{content}</Legend> : null;
 }
 
 const StyledFieldset = styled.fieldset`
@@ -27,11 +25,11 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({ additionalLegendClasses, legendText, children, theme }) {
+function Fieldset({ legendClasses, legendContent, children, theme }) {
   return (
     <ThemeProvider theme={theme}>
       <StyledFieldset>
-        {renderLegend(legendText, additionalLegendClasses)}
+        {renderLegend(legendContent, legendClasses)}
         {children}
       </StyledFieldset>
     </ThemeProvider>
@@ -39,10 +37,10 @@ function Fieldset({ additionalLegendClasses, legendText, children, theme }) {
 }
 
 Fieldset.propTypes = {
-  /** Determine whether or not to add a legend and what text to display  */
-  legendText: PropTypes.string,
+  /** Determine whether or not to add a legend and what content to display  */
+  legendContent: PropTypes.node,
   /** Additional classes to be applied to the legend element */
-  additionalLegendClasses: PropTypes.string,
+  legendClasses: PropTypes.string,
   children: PropTypes.node,
   /**
    * Theme object used by the ThemeProvider,

@@ -7,5 +7,7 @@ deploy:
   provider: npm
   email: "abenojaalex@gmail.com"
   api_key: "5c1a90c9-de7b-4cb7-b723-35bb9ea401d9"
+  skip_cleanup: true
   on:
     branch: master
+    node: "node"

@@ -9,7 +9,7 @@
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
     "precommit": "lint-staged && ./rebuild-docs.sh",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "prettify": "prettier --single-quote --write \"src/**/*.js\"",
     "styleguide-build": "styleguidist build",
     "styleguide-server": "styleguidist server",

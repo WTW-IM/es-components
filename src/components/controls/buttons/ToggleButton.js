@@ -29,7 +29,8 @@ class ToggleButton extends React.Component {
       size,
       block,
       isOutline,
-      theme
+      theme,
+      ...buttonProps
     } = this.props;
 
     const defaultButton = {
@@ -62,6 +63,7 @@ class ToggleButton extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <StyledToggleButton
+          {...buttonProps}
           handleOnClick={this.toggleButton}
           buttonClasses={buttonClasses}
           styleType={styleType}

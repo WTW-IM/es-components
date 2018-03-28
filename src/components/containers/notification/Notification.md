@@ -54,7 +54,6 @@ Adding the `includeIcon` prop will render an appropriate icon for the alert type
 
 Providing `callsToAction` will render a button for each which executes that action. The first button will receive the `primary` style type and any additional button will receive the `default` style type.
 ```
-
 class CustomButton extends React.Component {
   constructor(props) {
     super(props);

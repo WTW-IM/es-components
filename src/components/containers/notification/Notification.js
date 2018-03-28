@@ -135,7 +135,7 @@ const CallsToAction = styled.div`
   }
 `;
 
-function renderCallsToAction(callsToAction) {
+function renderCallsToAction(callsToAction, theme) {
   return (
     <CallsToAction>
       {callsToAction.map((callToAction, index) => {
@@ -152,6 +152,7 @@ function renderCallsToAction(callsToAction) {
           <Button
             styleType={buttonStyleType}
             key={index}
+            theme={theme}
             handleOnClick={callToAction.action}
           >
             {callToAction.actionButtonContent}
@@ -228,7 +229,7 @@ function Notification({
             {children}
           </NotificationContent>
         )}
-        {hasCallsToAction && renderCallsToAction(callsToAction)}
+        {hasCallsToAction && renderCallsToAction(callsToAction, theme)}
       </NotificationContainer>
     </ThemeProvider>
   );

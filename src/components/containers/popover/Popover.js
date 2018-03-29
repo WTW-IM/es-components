@@ -160,7 +160,7 @@ const PopoverHeader = styled.div`
   justify-content: space-between;
   height: ${props => (props.hasTitle ? 'auto' : '16px')};
   background-color: ${props =>
-    props.hasTitle ? props.theme.colors.info : 'none'};
+    props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
 `;
 /* eslint-enable */
 

@@ -9,6 +9,7 @@ const gray6 = '#979797';
 const gray8 = '#585858';
 const gray9 = '#444';
 const black = '#000';
+const darkBlue = '#006685';
 
 const grayLightest = gray1;
 const grayLighter = gray2;
@@ -32,6 +33,7 @@ const warningHover = '#804400';
 const danger = '#c00';
 const dangerHover = '#990000';
 const advisor = warning;
+const popoverHeader = darkBlue;
 
 const vbBlue = '#00a0d2';
 const vbGreen = '#00c389';
@@ -82,7 +84,8 @@ const theme = {
     advisor,
     boxShadowLight,
     boxShadowDark,
-    inputFocus
+    inputFocus,
+    popoverHeader
   },
   brandColors: {
     vbBlue,

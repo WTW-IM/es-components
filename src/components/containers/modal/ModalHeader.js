@@ -6,7 +6,7 @@ import DismissButton from '../../controls/DismissButton';
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
-  background-color: ${props => props.theme.colors.info};
+  background-color: ${props => props.theme.colors.popoverHeader};
   border-bottom: 1px solid ${props => props.theme.colors.grayLighter};
   color: ${props => props.theme.colors.white};
   display: flex;

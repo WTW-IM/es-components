@@ -32,6 +32,7 @@ const warningHover = '#e0a800';
 const danger = '#DC3545';
 const dangerHover = '#c82333';
 const advisor = warning;
+const popoverHeader = info;
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
@@ -77,7 +78,8 @@ const theme = {
     advisor,
     boxShadowLight,
     boxShadowDark,
-    inputFocus
+    inputFocus,
+    popoverHeader
   },
   datepickerColors: {
     navArrow,

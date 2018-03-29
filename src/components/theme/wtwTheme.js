@@ -43,6 +43,7 @@ const dangerHover = tinycolor(danger)
   .toRgbString();
 const advisor = '#ff6310';
 const wtwGray = '#63666a';
+const popoverHeader = info;
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
@@ -89,7 +90,8 @@ const theme = {
     boxShadowLight,
     boxShadowDark,
     inputFocus,
-    wtwGray
+    wtwGray,
+    popoverHeader
   },
   datepickerColors: {
     navArrow,

@@ -22,8 +22,7 @@ function RadioGroup({
 }) {
   return (
     <ThemeProvider theme={theme}>
-      <Fieldset legendContent={legendContent}>
-        {extraContent}
+      <Fieldset legendContent={legendContent} extraContent={extraContent}>
         {radioOptions.map((config, index) => {
           const radioId = `${name}-option-${index + 1}`;
           const checked = config.optionValue === value;
@@ -73,7 +72,7 @@ RadioGroup.propTypes = {
   onClick: PropTypes.func,
   /** Extra content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/Radio button relationship.
-  */
+   */
   extraContent: PropTypes.node,
   theme: PropTypes.object
 };

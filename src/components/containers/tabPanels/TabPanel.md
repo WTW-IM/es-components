@@ -2,7 +2,7 @@ Test Tab Panels
 
 ```
 <div>
-<TabPanel theme={{colors:{white: '#000'}}}>
+<TabPanel>
   <TabPanel.Tab name="test1">
     <p>
       HELLO WORLD!!!!

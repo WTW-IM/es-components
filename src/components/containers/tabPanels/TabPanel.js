@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
+import viaTheme from '../../theme/viaTheme';
 import TabList from './TabList';
 import Tab from './Tab';
 
 const TabWrapper = styled('div')`
   display: flex;
   justify-content: center;
+  font-size: 24px;
 
   @media (min-width: 899px) {
     justify-content: flex-start;
@@ -14,7 +16,6 @@ const TabWrapper = styled('div')`
 `;
 
 const TabFormatter = styled('div')`
-  width: auto;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -22,6 +23,10 @@ const TabFormatter = styled('div')`
   @media (min-width: 899px) {
     flex-direction: row;
   }
+`;
+
+const TabContent = styled('div')`
+  border-top: 1px solid #ddd;
 `;
 
 class TabPanel extends React.Component {
@@ -38,7 +43,7 @@ class TabPanel extends React.Component {
     if (this.state.value === '') {
       const child = this.props.children[0];
       const selectedChild = this.getFirstValueChild(child);
-      this.tabChanged(selectedChild.props.name, selectedChild);
+      this.tabChanged(selectedChild.props.name, selectedChild.props.children);
     }
   }
 
@@ -82,7 +87,8 @@ class TabPanel extends React.Component {
         key: child.props.name,
         selected: isSelected,
         action: this.tabChanged,
-        selectedName: this.state.value
+        selectedName: this.state.value,
+        theme
       });
     });
 
@@ -92,7 +98,7 @@ class TabPanel extends React.Component {
           <TabWrapper>
             <TabFormatter>{elements}</TabFormatter>
           </TabWrapper>
-          <div>{this.state.currentContent}</div>
+          <TabContent>{this.state.currentContent}</TabContent>
         </div>
       </ThemeProvider>
     );
@@ -105,7 +111,7 @@ TabPanel.propTypes = {
 };
 
 TabPanel.defaultProps = {
-  theme: {}
+  theme: viaTheme
 };
 
 TabPanel.TabList = TabList;

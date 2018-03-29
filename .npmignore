@@ -1,4 +1,5 @@
 components/
 docs/
-src/styleguide
+es6/styleguide
+lib/styleguide
 styleguide.config.js

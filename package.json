@@ -5,7 +5,9 @@
   "repository": "https://github.com/TWExchangeSolutions/es-components",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src -d lib --ignore specs.js,*.md --copy-files",
+    "build": "npm run build:es5 && npm run build:es6",
+    "build:es5": "babel src -d lib --ignore specs.js,*.md --copy-files",
+    "build:es6": "BABEL_ENV=es6 babel src -d es6 --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
     "precommit": "lint-staged && sh rebuild-docs.sh",

@@ -1,13 +1,15 @@
 {
-  "presets": [ ["wtw-im", {
-    "extractFormatMessage": false,
-    "transformFormatMessage": false
-  }] ],
   "plugins": [
     "transform-runtime",
     "transform-export-extensions",
   ],
   "env": {
+    "development": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
     "es6": {
       "presets": [ ["wtw-im", {
         "env": {
@@ -15,11 +17,25 @@
         },
         "extractFormatMessage": false,
         "transformFormatMessage": false
-      }] ],
-      "plugins": [
-        "transform-runtime",
-        "transform-export-extensions",
-      ],
+      }] ]
+    },
+    "production": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
+    "test": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
+    "styleguidist": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
     }
   }
 }

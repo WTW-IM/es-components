@@ -169,12 +169,15 @@ class RadioGroupExample extends React.Component {
   }
 
   render() {
+    const extra = (<div>Some Descriptive Content about fruit</div>);
     return (
       <RadioGroup
         name="fruits"
+        legendContent="Fruits"
         radioOptions={options}
         value={this.state.value}
         disableAllOptions
+        extraContent={extra}
       />
     );
   }

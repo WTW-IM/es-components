@@ -8,8 +8,7 @@ const StyledDropdown = styled.select`
   display: flex;
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
-  background-color: ${props =>
-    props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
+  background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.gray};
   font-size: 18px;
 

@@ -50,7 +50,7 @@ function Tab({ name, selected, action, children, ...props }) {
 }
 
 Tab.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.node.isRequired,
   selected: PropTypes.bool,
   action: PropTypes.func,
   theme: PropTypes.object,

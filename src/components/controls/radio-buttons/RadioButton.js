@@ -66,7 +66,7 @@ const RadioDisplay = styled.span`
   }
 `;
 
-function RadioButton({
+export function RadioButton({
   optionText,
   name,
   checked = false,

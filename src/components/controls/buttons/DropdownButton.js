@@ -40,7 +40,7 @@ const StyledButtonLink = styled(Button)`
   }
 `;
 
-class DropdownButton extends React.Component {
+export class DropdownButton extends React.Component {
   constructor(props) {
     super();
     this.state = {

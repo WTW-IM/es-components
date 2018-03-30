@@ -20,7 +20,7 @@ const Backdrop = styled.div`
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
-class Menu extends React.Component {
+export class Menu extends React.Component {
   static childContextTypes = {
     inline: PropTypes.bool
   };

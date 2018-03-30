@@ -187,7 +187,7 @@ const NotificationHeader = styled.div`
   margin: 0;
 `;
 
-function Notification({
+export function Notification({
   type,
   header,
   additionalText,

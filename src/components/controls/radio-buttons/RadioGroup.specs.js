@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import { range } from 'lodash';
 
 import RadioButton from './RadioButton';
-import RadioGroup from './RadioGroup';
+import { RadioGroup } from './RadioGroup';
 
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
@@ -45,6 +45,7 @@ describe('RadioGroup component', () => {
   it('renders a specific RadioButton as disabled when that option is set to disabled', () => {
     const radioOptions = buildOptions(3, 0);
     instance.setProps({ radioOptions });
+    console.log(instance.debug());
 
     const firstRadio = instance.find(RadioButton).first();
     expect(firstRadio.prop('isDisabled')).toBe(true);

@@ -110,7 +110,7 @@ const LinkButton = styled(ButtonBase)`
   }
 `;
 
-function Button({
+export function Button({
   handleOnClick,
   children,
   buttonClasses,

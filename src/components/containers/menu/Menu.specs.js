@@ -3,7 +3,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
-import Menu from './Menu';
+import { Menu } from './Menu';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 
 describe('MenuTestSuite', () => {

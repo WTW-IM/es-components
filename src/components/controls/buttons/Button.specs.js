@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Button from './Button';
+import { Button } from './Button';
 
 let instance;
 const onClick = jest.fn();

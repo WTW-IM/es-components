@@ -8,7 +8,7 @@ import RadioButton from './RadioButton';
 import defaultTheme from '../../theme/defaultTheme';
 import { ThemeProvider, withTheme } from 'styled-components';
 
-function RadioGroup({
+export function RadioGroup({
   name,
   radioOptions,
   legendContent,

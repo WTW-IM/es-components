@@ -5,7 +5,7 @@ import styled, { ThemeProvider, withTheme } from 'styled-components';
 import Button from './Button';
 import defaultTheme from '../../theme/defaultTheme';
 
-class ToggleButton extends React.Component {
+export class ToggleButton extends React.Component {
   state = {
     isPressed: this.props.isPressed
   };

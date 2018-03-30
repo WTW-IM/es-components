@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { noop, isNumber } from 'lodash';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
@@ -146,4 +146,4 @@ class Incrementer extends React.Component {
   }
 }
 
-export default Incrementer;
+export default withTheme(Incrementer);

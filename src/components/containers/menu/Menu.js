@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ToggleButton from '../../controls/buttons/ToggleButton';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
@@ -103,4 +103,4 @@ Menu.defaultProps = {
   openButtonType: 'default'
 };
 
-export default Menu;
+export default withTheme(Menu);

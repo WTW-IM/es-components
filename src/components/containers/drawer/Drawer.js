@@ -1,6 +1,6 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
 
@@ -139,4 +139,4 @@ const UncontrolledDrawer = uncontrollable(Drawer, {
 
 UncontrolledDrawer.Panel = DrawerPanel;
 
-export default UncontrolledDrawer;
+export default withTheme(UncontrolledDrawer);

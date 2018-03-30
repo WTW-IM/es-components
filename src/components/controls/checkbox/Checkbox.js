@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 
 import defaultTheme from '../../theme/defaultTheme';
@@ -135,4 +135,4 @@ Checkbox.defaultProps = {
   theme: defaultTheme
 };
 
-export default Checkbox;
+export default withTheme(Checkbox);

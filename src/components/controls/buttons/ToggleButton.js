@@ -1,7 +1,7 @@
 /* eslint no-confusing-arrow: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import Button from './Button';
 import defaultTheme from '../../theme/defaultTheme';
 
@@ -108,4 +108,4 @@ ToggleButton.defaultProps = {
   theme: defaultTheme
 };
 
-export default ToggleButton;
+export default withTheme(ToggleButton);

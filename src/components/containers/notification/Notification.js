@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
 
 import defaultTheme from '../../theme/defaultTheme';
@@ -281,4 +281,4 @@ Notification.defaultProps = {
   theme: defaultTheme
 };
 
-export default Notification;
+export default withTheme(Notification);

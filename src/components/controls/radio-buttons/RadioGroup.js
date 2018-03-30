@@ -6,7 +6,7 @@ import Fieldset from '../../containers/fieldset/Fieldset';
 
 import RadioButton from './RadioButton';
 import defaultTheme from '../../theme/defaultTheme';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, withTheme } from 'styled-components';
 
 function RadioGroup({
   name,
@@ -82,4 +82,4 @@ RadioGroup.defaultProps = {
   theme: defaultTheme
 };
 
-export default RadioGroup;
+export default withTheme(RadioGroup);

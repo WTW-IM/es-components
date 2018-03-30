@@ -5,12 +5,16 @@
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "scripts": {
-    "ci": "sh build.sh",
-    "version_only": "lerna publish --skip-npm",
-    "publish_only": "lerna publish --skip-git",
-    "publish": "lerna publish",
-    "link": "lerna link",
-    "precommit": "lint-staged && sh rebuild-docs.sh"
+    "build": "babel src -d lib --ignore specs.js,*.md --copy-files",
+    "ci": "npm run lint && npm test",
+    "lint": "eslint src",
+    "precommit": "lint-staged && sh rebuild-docs.sh",
+    "prepare": "npm run build",
+    "prettify": "prettier --single-quote --write \"src/**/*.js\"",
+    "styleguide-build": "styleguidist build",
+    "styleguide-server": "styleguidist server",
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "lint-staged": {
     "packages/es-components/src/**/*.js": [

@@ -43,15 +43,17 @@ class TabPanel extends React.Component {
     if (this.state.value === '') {
       const child = this.props.children[0];
       const selectedChild = this.getFirstValueChild(child);
-      this.tabChanged(selectedChild.props.name, selectedChild.props.children);
+      this.tabChanged(
+        selectedChild.props.name ||
+          selectedChild.props.optionText.replace(/\s/g, ''),
+        selectedChild.props.children
+      );
     }
   }
 
   getFirstValueChild(child) {
     if (Array.isArray(child.props.children)) {
-      return child.props.children.filter(
-        innerChild => innerChild.props.optionText
-      )[0];
+      return child.props.children[0];
     }
     return child;
   }

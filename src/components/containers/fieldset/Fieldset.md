@@ -12,7 +12,7 @@ Use a `Fieldset` component to group related fields.
 ### Fieldset with a legend
 
 ```
-<Fieldset legendText="Please enter your name">
+<Fieldset legendContent="Please enter your name">
   <Textbox labelText="First name:" />
   <Textbox labelText="Middle initial:" />
   <Textbox labelText="Last name:" />

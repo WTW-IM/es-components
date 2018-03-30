@@ -37,6 +37,7 @@ function RadioGroup({
             id: radioId,
             optionText: config.optionText,
             value: config.optionValue,
+            ariaHide: extraContent !== undefined,
             theme
           };
           return <RadioButton key={radioId} {...radioProps} />;

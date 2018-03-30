@@ -77,6 +77,7 @@ function RadioButton({
   value,
   hasError = false,
   theme,
+  ariaHide,
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
@@ -113,7 +114,7 @@ function RadioButton({
           borderColor={fill}
           fill={radioDisplayFill}
         />
-        <RadioText>{optionText}</RadioText>
+        <RadioText aria-hidden={ariaHide}>{optionText}</RadioText>
       </RadioLabel>
     </ThemeProvider>
   );
@@ -128,6 +129,7 @@ RadioButton.propTypes = {
   inline: PropTypes.bool,
   onClick: PropTypes.func,
   value: PropTypes.any,
+  ariaHide: PropTypes.bool,
   hasError: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,

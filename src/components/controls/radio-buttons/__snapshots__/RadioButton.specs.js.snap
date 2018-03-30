@@ -21,6 +21,7 @@ exports[`RadioButton component renders as expected 1`] = `
     fill="#fff"
   />
   <span
+    aria-hidden={undefined}
     className="sc-bxivhb bRNnnP"
   >
     test

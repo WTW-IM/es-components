@@ -4,6 +4,25 @@ exports[`Fieldset component renders as expected 1`] = `
 <fieldset
   className="sc-bwzfXH kzYDuJ"
 >
+  <div />
+  <div>
+    Fieldset child
+  </div>
+</fieldset>
+`;
+
+exports[`Fieldset component renders as expected with extra content 1`] = `
+<fieldset
+  className="sc-bwzfXH kzYDuJ"
+>
+  <div>
+    <legend
+      className="sc-bdVaJa bGOwxV"
+    >
+      I am legend
+    </legend>
+    Extra Content
+  </div>
   <div>
     Fieldset child
   </div>
@@ -14,11 +33,13 @@ exports[`Fieldset component renders as expected with legendText 1`] = `
 <fieldset
   className="sc-bwzfXH kzYDuJ"
 >
-  <legend
-    className="sc-bdVaJa bGOwxV"
-  >
-    I am legend
-  </legend>
+  <div>
+    <legend
+      className="sc-bdVaJa bGOwxV"
+    >
+      I am legend
+    </legend>
+  </div>
   <div>
     Fieldset child
   </div>

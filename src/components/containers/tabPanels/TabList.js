@@ -1,16 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Dropdown from '../../controls/dropdown/Dropdown';
 import defaultTheme from '../../theme/defaultTheme';
 import styled from 'styled-components';
 
 /* eslint-disable no-confusing-arrow */
-const StyledDropdown = styled.select`
+const StyledDropdown = styled(Dropdown)`
   display: flex;
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${props =>
+    props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
   border: 1px solid ${props => props.theme.colors.gray};
   font-size: 18px;
+  width: auto;
+  padding: 0px;
+  margin: 0;
+
+  select {
+    border: 0;
+    color: ${props =>
+      props.selected ? props.theme.colors.black : props.theme.colors.primary};
+  }
+  select:hover {
+    background-color: ${props =>
+      props.selected
+        ? props.theme.colors.white
+        : props.theme.colors.grayLighter};
+  }
 
   @media (min-width: 899px) {
     background-color: ${props => props.theme.colors.white};
@@ -21,7 +38,6 @@ const StyledDropdown = styled.select`
     display: inline-block;
     margin: ${props => (props.selected ? '0px 0px -1px 2px' : '0px')};
     padding: 10px 15px;
-    width: auto;
     flex-grow: 1;
     &:hover {
       background-color: ${props =>
@@ -51,29 +67,22 @@ function TabList({
   };
 
   const values = [];
-  const Title = <option disabled>{name}</option>;
-  const selectOptions = React.Children.map(children, (opt, i) => {
+  const selectOptions = children.map((opt, i) => {
     const optionKey = opt.props.optionText.replace(/\s/g, '');
     values.push(optionKey);
-    return (
-      <option key={optionKey} value={optionKey}>
-        {opt.props.optionText}
-      </option>
-    );
+    return { optionText: opt.props.optionText, optionValue: optionKey };
   });
-  const finalSelection = values.indexOf(selectedName) < 0 ? name : selectedName;
+  const finalSelection = values.indexOf(selectedName) < 0 ? '' : selectedName;
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
     <StyledDropdown
+      firstOptionDisplayText={name}
+      inline
       value={finalSelection}
+      options={selectOptions}
       onChange={update}
       selected={selected}
-      theme={theme}
-      {...props}
-    >
-      {Title}
-      {selectOptions}
-    </StyledDropdown>
+    />
   );
   /* eslint-enable */
 }

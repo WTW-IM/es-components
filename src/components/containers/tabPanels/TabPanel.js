@@ -100,16 +100,41 @@ class TabPanel extends React.Component {
           <TabWrapper>
             <TabFormatter>{elements}</TabFormatter>
           </TabWrapper>
-          <TabContent>{this.state.currentContent}</TabContent>
+          <TabContent
+            id="tab-panel-content"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            {this.state.currentContent}
+          </TabContent>
         </div>
       </ThemeProvider>
     );
   }
 }
 
+function childrenRule(props, propName, component) {
+  if (
+    !props[propName].every(
+      child => child.type.name === 'Tab' || child.type.name === 'TabList'
+    )
+  ) {
+    return new Error(
+      'Tab Panel only accepts Tab or TabList as direct descendants.'
+    );
+  }
+  return null;
+}
+
 TabPanel.propTypes = {
+  /**
+   * Theme to be applied to the tab panel. Can be used to style the Tab and Tab List
+   */
   theme: PropTypes.object,
-  children: PropTypes.node
+  /**
+   * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
+   */
+  children: childrenRule
 };
 
 TabPanel.defaultProps = {

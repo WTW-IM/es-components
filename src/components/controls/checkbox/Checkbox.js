@@ -43,7 +43,6 @@ const CheckboxLabel = Label.extend`
     }
   }
 `;
-/* eslint-enable */
 
 const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);
@@ -51,8 +50,15 @@ const CheckboxInput = styled.input`
 
   &:focus ~ .checkbox-fill {
     outline: 5px auto ${props => props.theme.colors.inputFocus};
+    &:after {
+      border-color: ${props =>
+        props.checked
+          ? props.theme.colors.white
+          : props.theme.colors.grayLight};
+    }
   }
 `;
+/* eslint-enable */
 
 const CheckboxWrapper = styled.span`
   background: ${props => props.theme.colors.white};

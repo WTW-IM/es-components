@@ -1,4 +1,4 @@
-export default function arrowStyles(colors, arrowSize) {
+export default function arrowStyles(colors, arrowSize, hasTitle) {
   const sharedStyles = `
         content: '';
         position: absolute;
@@ -45,7 +45,7 @@ export default function arrowStyles(colors, arrowSize) {
         }
         .popper[data-placement^="bottom"] .popper__arrow::after {
             ${sharedStyles}
-            border-bottom-color: ${colors.primary};
+            border-bottom-color: ${hasTitle ? colors.primary : colors.white};
             border-top-width: 0;
             margin-left: -${arrowSize}px;
             top: 1px;

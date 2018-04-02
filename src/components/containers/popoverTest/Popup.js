@@ -7,6 +7,7 @@ import popoverStyles from './popoverStyles';
 
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
+import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
 const defaultStyle = {
   transition: 'opacity 0.2s ease-in-out',
@@ -41,14 +42,20 @@ function Popup({
   arrowSize,
   popperModifiers,
   disableArrow,
+  disableRootClose,
+  hasTitle,
   theme
 }) {
-  const arrowStyles = popoverStyles(theme.colors, getArrowSize(arrowSize));
+  const arrowStyles = popoverStyles(
+    theme.colors,
+    getArrowSize(arrowSize),
+    hasTitle
+  );
   /* eslint-disable no-unused-expressions */
   injectGlobal`${arrowStyles}`;
   /* eslint-enable no-unused-expressions */
 
-  return (
+  let popperObj = (
     <Manager>
       <Target>{trigger}</Target>
       <Transition in={transitionIn} timeout={transitionTimeout}>
@@ -69,6 +76,14 @@ function Popup({
       </Transition>
     </Manager>
   );
+
+  if (!disableRootClose) {
+    popperObj = (
+      <RootCloseWrapper onRootClose={onHide}>{popperObj}</RootCloseWrapper>
+    );
+  }
+
+  return popperObj;
 }
 
 Popup.propTypes = {
@@ -83,7 +98,9 @@ Popup.propTypes = {
   arrowSize: PropTypes.oneOf(['sm', 'md', 'lg', 'default']),
   disablePopperEvents: PropTypes.bool,
   popperModifiers: PropTypes.object,
-  disableArrow: PropTypes.bool
+  disableRootClose: PropTypes.bool,
+  disableArrow: PropTypes.bool,
+  hasTitle: PropTypes.bool
 };
 
 Popup.defaultProps = {

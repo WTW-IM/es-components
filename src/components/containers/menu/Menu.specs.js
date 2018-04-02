@@ -13,7 +13,7 @@ describe('MenuTestSuite', () => {
     instanceToRender = (
       <Menu header="Small Menu" buttonContent="Open Menu">
         <Menu.MenuSection title="Menu Section" isFirst>
-            <a href="www.google.com">Go To Google</a>
+          <a href="www.google.com">Go To Google</a>
         </Menu.MenuSection>
       </Menu>
     );

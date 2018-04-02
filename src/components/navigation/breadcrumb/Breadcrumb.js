@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
 import genId from '../../util/generateAlphaName';
 import defaultTheme from '../../theme/defaultTheme';
@@ -79,4 +79,4 @@ Breadcrumb.defaultProps = {
   theme: defaultTheme
 };
 
-export default Breadcrumb;
+export default withTheme(Breadcrumb);

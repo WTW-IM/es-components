@@ -3,7 +3,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import DropdownButton from './DropdownButton';
+import { DropdownButton } from './DropdownButton';
 import Button from './Button';
 
 const onClick = jest.fn();

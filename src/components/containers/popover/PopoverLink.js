@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import uncontrollable from 'uncontrollable';
 
 import defaultTheme from '../../theme/defaultTheme';
@@ -116,4 +116,4 @@ const UncontrolledPopoverLink = uncontrollable(PopoverLink, {
   showPopover: 'onToggle'
 });
 
-export default UncontrolledPopoverLink;
+export default withTheme(UncontrolledPopoverLink);

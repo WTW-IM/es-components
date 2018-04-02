@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 
 import defaultTheme from '../../theme/defaultTheme';
 import getRadioFillVariables from './radio-fill-variables';
-import RadioButton from './RadioButton';
+import { RadioButton } from './RadioButton';
 
 describe('RadioButton component', () => {
   it('renders as expected', () => {

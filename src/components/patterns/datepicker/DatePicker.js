@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
-import { injectGlobal, ThemeProvider } from 'styled-components';
+import { injectGlobal, ThemeProvider, withTheme } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
 import datepickerStyles from './datePickerStyles';
@@ -120,4 +120,4 @@ const UncontrolledDatePicker = uncontrollable(DatePicker, {
   selectedDate: 'onChange'
 });
 
-export default UncontrolledDatePicker;
+export default withTheme(UncontrolledDatePicker);

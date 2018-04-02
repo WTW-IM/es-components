@@ -3,7 +3,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import ToggleButton from './ToggleButton';
+import { ToggleButton } from './ToggleButton';
 
 let instance;
 const onClick = jest.fn();

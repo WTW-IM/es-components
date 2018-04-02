@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Fade from '../../util/Fade';
@@ -180,4 +180,4 @@ Tooltip.defaultProps = {
   theme: defaultTheme
 };
 
-export default Tooltip;
+export default withTheme(Tooltip);

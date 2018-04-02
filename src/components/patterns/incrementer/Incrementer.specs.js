@@ -3,7 +3,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Button from '../../controls/buttons/Button';
-import Incrementer from './Incrementer';
+import { Incrementer } from './Incrementer';
 
 describe('Incrementer component', () => {
   let incrementer;

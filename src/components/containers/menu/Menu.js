@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ToggleButton from '../../controls/buttons/ToggleButton';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
@@ -20,7 +20,7 @@ const Backdrop = styled.div`
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
-class Menu extends React.Component {
+export class Menu extends React.Component {
   static childContextTypes = {
     inline: PropTypes.bool
   };
@@ -69,7 +69,6 @@ class Menu extends React.Component {
               handleOnClick={this.toggleMenu}
               isPressed={this.state.isMenuOpen}
               styleType={openButtonType}
-              theme={theme}
               aria-expanded={this.state.isMenuOpen}
             >
               {buttonContent}
@@ -103,4 +102,4 @@ Menu.defaultProps = {
   openButtonType: 'default'
 };
 
-export default Menu;
+export default withTheme(Menu);

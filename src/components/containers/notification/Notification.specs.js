@@ -3,7 +3,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Notification from './Notification';
+import { Notification } from './Notification';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';

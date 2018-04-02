@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, ThemeProvider } from 'styled-components';
+import styled, { css, ThemeProvider, withTheme } from 'styled-components';
 import { noop, omit } from 'lodash';
 
 import defaultTheme from '../../theme/defaultTheme';
@@ -219,4 +219,4 @@ Textbox.defaultProps = {
   theme: defaultTheme
 };
 
-export default Textbox;
+export default withTheme(Textbox);

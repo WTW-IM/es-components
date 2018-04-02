@@ -126,6 +126,7 @@ export default function datepickerStyles(colors, dpColors) {
       font-size: 1rem;
   }
   .react-datepicker__navigation {
+      background-color: transparent;
       line-height: 1.7rem;
       text-align: center;
       cursor: pointer;

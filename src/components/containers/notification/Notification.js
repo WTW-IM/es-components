@@ -104,14 +104,25 @@ function renderExtraAlert(alert) {
  * inverse that kind of goes against normal thinking
  */
 const CallsToAction = styled.div`
-  position: absolute;
-  bottom: -50px;
-  right: 0;
   display: flex;
   flex-direction: row-reverse;
 
   & > button:not(:first-of-type) {
     margin-right: 15px;
+  }
+
+  @media (max-width: 767px) {
+  display: block;
+  padding: 0 15px;
+
+  & > button {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+
+    &:active {
+      margin-bottom: 15px;
+    }
   }
 `;
 
@@ -142,12 +153,15 @@ function renderCallsToAction(callsToAction, theme) {
   );
 }
 
+const NotificationWrapper = styled.div`
+  margin-bottom: 25px;
+`;
+
 const NotificationContainer = styled.div`
   background-color: ${props => props.color.bgColor};
   border-radius: 2px;
   color: ${props => props.color.textColor};
-  margin-bottom: ${props => (props.hasCallsToAction ? '65px' : '25px')};
-  position: relative;
+  margin-bottom: 15px;
 `;
 
 const NotificationContent = styled.div`
@@ -187,30 +201,31 @@ export function Notification({
 
   return (
     <ThemeProvider theme={theme}>
-      <NotificationContainer
-        {...otherProps}
-        color={theme.notificationStyles[type]}
-        hasCallsToAction={hasCallsToAction}
-        role={roleType}
-      >
-        <NotificationHeader>
-          {renderLeadingHeader(type, includeIcon, header, additionalText)}
-          {hasExtraAlert && renderExtraAlert(extraAlert)}
-          {dismissable && (
-            <DismissNotification
-              onClick={onDismiss}
-              className="notification__dismiss"
-            />
-          )}
-        </NotificationHeader>
+      <NotificationWrapper>
+        <NotificationContainer
+          {...otherProps}
+          color={theme.notificationStyles[type]}
+          role={roleType}
+        >
+          <NotificationHeader>
+            {renderLeadingHeader(type, includeIcon, header, additionalText)}
+            {hasExtraAlert && renderExtraAlert(extraAlert)}
+            {dismissable && (
+              <DismissNotification
+                onClick={onDismiss}
+                className="notification__dismiss"
+              />
+            )}
+          </NotificationHeader>
 
-        {hasChildren && (
-          <NotificationContent hasIcon={includeIcon}>
-            {children}
-          </NotificationContent>
-        )}
+          {hasChildren && (
+            <NotificationContent hasIcon={includeIcon}>
+              {children}
+            </NotificationContent>
+          )}
+        </NotificationContainer>
         {hasCallsToAction && renderCallsToAction(callsToAction, theme)}
-      </NotificationContainer>
+      </NotificationWrapper>
     </ThemeProvider>
   );
 }

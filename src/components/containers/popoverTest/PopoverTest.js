@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, injectGlobal } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import defaultTheme from '../../theme/defaultTheme';
 
-import { noop } from 'lodash';
 import Button from '../../controls/buttons/Button';
 
-import { Manager, Target, Popper, Arrow } from 'react-popper';
-import popoverStyles from './popoverStyles';
+import Popup from './Popup';
 
-const Container = styled(Manager)`
-  display: inline-block;
+const Container = styled.div`
+  display: ${props => (props.isInline ? 'inline-block' : 'initial')};
 `;
 
 const TriggerButton = styled(Button)`
@@ -28,52 +26,79 @@ const PopoverContainer = styled.div`
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 `;
 
-const PopoverTitle = styled.h3`
+const PopoverHeader = styled.h3`
   color: ${props => props.theme.colors.white};
   background-color: ${props => props.theme.colors.primary};
+  font-size: 18px;
   padding: 8px 14px;
   margin: 0;
 `;
 
 const PopoverContent = styled.div`
-  text-align: left;
   padding: 8px 14px;
 `;
 
-function PopoverTest({
-  popoverTitle,
-  popoverContent,
-  popoverPlacement,
-  children,
-  theme
-}) {
-  const arrowStyles = popoverStyles(theme.colors);
-  /* eslint-disable no-unused-expressions */
-  injectGlobal`${arrowStyles}`;
-  /* eslint-enable no-unused-expressions */
+class PopoverTest extends React.Component {
+  state = {
+    isOpen: false
+  };
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Container>
-        <Target>
-          <TriggerButton isLinkButton handleOnClick={noop}>
-            {children}
-          </TriggerButton>
-        </Target>
-        <Popper className="popper" placement={popoverPlacement}>
-          <PopoverContainer>
-            <PopoverTitle>{popoverTitle}</PopoverTitle>
-            <PopoverContent>{popoverContent}</PopoverContent>
-          </PopoverContainer>
+  handleOnClick = event => {
+    const { isOpen } = this.state;
+    this.setState({ isOpen: !isOpen }, () => this.props.isOpen);
+  };
 
-          <Arrow className="popper__arrow" />
-        </Popper>
-      </Container>
-    </ThemeProvider>
-  );
+  hidePop = event => {
+    this.setState({ isOpen: false }, () => this.props.isOpen);
+  };
+
+  render() {
+    const {
+      popoverTitle,
+      popoverContent,
+      popoverPlacement,
+      children,
+      arrowSize = 'md',
+      isTriggerInline = true,
+      theme
+    } = this.props;
+
+    const triggerButton = (
+      <TriggerButton isLinkButton handleOnClick={this.handleOnClick}>
+        {children}
+      </TriggerButton>
+    );
+
+    return (
+      <ThemeProvider theme={theme}>
+        <Container isInline={isTriggerInline}>
+          <Popup
+            trigger={triggerButton}
+            placement={popoverPlacement}
+            transitionIn={this.state.isOpen}
+            onHide={this.hidePop}
+            arrowSize={arrowSize}
+          >
+            <PopoverContainer>
+              <PopoverHeader>{popoverTitle}</PopoverHeader>
+
+              <PopoverContent>{popoverContent}</PopoverContent>
+            </PopoverContainer>
+          </Popup>
+        </Container>
+      </ThemeProvider>
+    );
+  }
 }
 
 PopoverTest.propTypes = {
+  name: PropTypes.string,
+  isOpen: PropTypes.bool,
+  keepOpen: PropTypes.bool,
+  arrowSize: PropTypes.oneOf(['sm', 'md', 'lg', 'default']),
+  disablePopoverFlipping: PropTypes.bool,
+  isTriggerInline: PropTypes.bool,
+
   /** The link content which activates the popover */
   children: PropTypes.node.isRequired,
   /** The text displayed in the popover title section */
@@ -103,6 +128,7 @@ PopoverTest.propTypes = {
 
 PopoverTest.defaultProps = {
   popoverPlacement: 'bottom',
+  hasCloseButton: true,
   theme: defaultTheme
 };
 

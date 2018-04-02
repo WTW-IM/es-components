@@ -21,6 +21,7 @@ const TabButton = styled.button`
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     margin: ${props => (props.selected ? '0px 0px -1px 2px' : '0px')};
+    z-index: ${props => (props.selected ? '1' : '0')};
     padding: 10px 15px;
     width: auto;
     flex-grow: 1;

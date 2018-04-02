@@ -37,6 +37,7 @@ const StyledDropdown = styled(Dropdown)`
     border-radius: 2px 2px 0 0;
     display: inline-block;
     margin: ${props => (props.selected ? '0px 0px -1px 2px' : '0px')};
+    z-index: ${props => (props.selected ? '1' : '0')};
     padding: 10px 15px;
     flex-grow: 1;
     &:hover {

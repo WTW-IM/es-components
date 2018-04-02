@@ -39,6 +39,9 @@ module.exports = {
       components: path.join(baseComponentDir, 'patterns/**/*.js')
     }
   ],
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'lib/styleguide/ExampleWrapper.js')
+  },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
     return `import { ${name} } from 'es-components';`;

@@ -26,7 +26,10 @@ describe('Incrementer component', () => {
 
   describe('when decrement button is clicked', () => {
     beforeEach(() => {
-      incrementer.find(Button).first().simulate('click');
+      incrementer
+        .find(Button)
+        .first()
+        .simulate('click');
     });
 
     it('value is decreased by decrementAmount', () => {
@@ -40,7 +43,10 @@ describe('Incrementer component', () => {
 
   describe('when increment button is clicked', () => {
     beforeEach(() => {
-      incrementer.find(Button).last().simulate('click');
+      incrementer
+        .find(Button)
+        .last()
+        .simulate('click');
     });
 
     it('value is increased by incrementAmount', () => {

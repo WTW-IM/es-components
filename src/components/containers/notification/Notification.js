@@ -2,17 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
-import tinycolor from 'tinycolor2';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
-
-function adjustColor(color, level) {
-  const colorBase = level > 0 ? '#000' : '#fff';
-  return tinycolor.mix(colorBase, color, Math.abs(level)).toRgbString();
-}
 
 const DismissNotification = styled(DismissButton)`
   line-height: 80%;
@@ -110,28 +104,14 @@ function renderExtraAlert(alert) {
  * inverse that kind of goes against normal thinking
  */
 const CallsToAction = styled.div`
-  align-self: flex-end;
+  position: absolute;
+  bottom: -50px;
+  right: 0;
   display: flex;
   flex-direction: row-reverse;
-  padding: 0 15px 15px 0;
 
   & > button:not(:first-of-type) {
     margin-right: 15px;
-  }
-
-  @media (max-width: 767px) {
-    display: block;
-    padding: 15px;
-
-    & > button {
-      display: block;
-      margin-bottom: 15px;
-      width: 100%;
-
-      &:active {
-        margin-bottom: 15px;
-      }
-    }
   }
 `;
 
@@ -163,11 +143,11 @@ function renderCallsToAction(callsToAction, theme) {
 }
 
 const NotificationContainer = styled.div`
-  background-color: ${props => adjustColor(props.color, -10)};
-  border: 1px solid ${props => adjustColor(props.color, -60)};
+  background-color: ${props => props.color.bgColor};
   border-radius: 2px;
-  color: ${props => adjustColor(props.color, 60)};
-  margin-bottom: 25px;
+  color: ${props => props.color.textColor};
+  margin-bottom: ${props => (props.hasCallsToAction ? '65px' : '25px')};
+  position: relative;
 `;
 
 const NotificationContent = styled.div`
@@ -209,7 +189,8 @@ export function Notification({
     <ThemeProvider theme={theme}>
       <NotificationContainer
         {...otherProps}
-        color={theme.colors[type]}
+        color={theme.notificationStyles[type]}
+        hasCallsToAction={hasCallsToAction}
         role={roleType}
       >
         <NotificationHeader>

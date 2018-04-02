@@ -152,7 +152,6 @@ function renderCallsToAction(callsToAction, theme) {
           <Button
             styleType={buttonStyleType}
             key={index}
-            theme={theme}
             handleOnClick={callToAction.action}
           >
             {callToAction.actionButtonContent}

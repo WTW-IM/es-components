@@ -69,7 +69,6 @@ export class Menu extends React.Component {
               handleOnClick={this.toggleMenu}
               isPressed={this.state.isMenuOpen}
               styleType={openButtonType}
-              theme={theme}
               aria-expanded={this.state.isMenuOpen}
             >
               {buttonContent}

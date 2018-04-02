@@ -2,7 +2,7 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../controls/buttons/Button';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import defaultTheme from '../../theme/defaultTheme';
 
 const Caret = styled.span`
@@ -40,7 +40,7 @@ const StyledButtonLink = styled(Button)`
   }
 `;
 
-class DropdownButton extends React.Component {
+export class DropdownButton extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -136,4 +136,4 @@ DropdownButton.defaultProps = {
   theme: defaultTheme
 };
 
-export default DropdownButton;
+export default withTheme(DropdownButton);

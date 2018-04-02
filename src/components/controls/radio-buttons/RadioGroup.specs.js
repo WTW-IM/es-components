@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import { range } from 'lodash';
 
 import RadioButton from './RadioButton';
-import RadioGroup from './RadioGroup';
+import { RadioGroup } from './RadioGroup';
 
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({

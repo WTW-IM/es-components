@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
 
 import defaultTheme from '../../theme/defaultTheme';
@@ -152,7 +152,6 @@ function renderCallsToAction(callsToAction, theme) {
           <Button
             styleType={buttonStyleType}
             key={index}
-            theme={theme}
             handleOnClick={callToAction.action}
           >
             {callToAction.actionButtonContent}
@@ -187,7 +186,7 @@ const NotificationHeader = styled.div`
   margin: 0;
 `;
 
-function Notification({
+export function Notification({
   type,
   header,
   additionalText,
@@ -281,4 +280,4 @@ Notification.defaultProps = {
   theme: defaultTheme
 };
 
-export default Notification;
+export default withTheme(Notification);

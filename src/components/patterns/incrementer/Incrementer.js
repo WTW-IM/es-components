@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { noop, isNumber } from 'lodash';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
@@ -14,7 +14,7 @@ const IncrementerTextbox = styled(InputBase)`
   width: 60px;
 `;
 
-class Incrementer extends React.Component {
+export class Incrementer extends React.Component {
   static propTypes = {
     /** The value to start the incrementer at */
     startingValue: PropTypes.number,
@@ -146,4 +146,4 @@ class Incrementer extends React.Component {
   }
 }
 
-export default Incrementer;
+export default withTheme(Incrementer);

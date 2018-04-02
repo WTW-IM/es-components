@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, withTheme } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Label from '../Label';
@@ -100,4 +100,4 @@ Dropdown.defaultProps = {
   theme: defaultTheme
 };
 
-export default Dropdown;
+export default withTheme(Dropdown);

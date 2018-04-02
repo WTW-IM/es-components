@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
 
@@ -199,4 +199,4 @@ Modal.Header = Header;
 Modal.Body = Body;
 Modal.Footer = Footer;
 
-export default Modal;
+export default withTheme(Modal);

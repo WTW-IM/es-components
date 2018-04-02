@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, withTheme } from 'styled-components';
 
 import defaultTheme from '../../theme/defaultTheme';
 
@@ -66,4 +66,4 @@ Fieldset.defaultProps = {
   theme: defaultTheme
 };
 
-export default Fieldset;
+export default withTheme(Fieldset);

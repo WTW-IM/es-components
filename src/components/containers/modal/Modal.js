@@ -130,7 +130,11 @@ class Modal extends React.Component {
           show={show}
           transition={animation ? Fade : undefined}
         >
-          <ModalDialog size={size} aria-labelledby={this.state.ariaId}>
+          <ModalDialog
+            size={size}
+            aria-labelledby={this.state.ariaId}
+            className="modal-dialog"
+          >
             <ModalContent>{children}</ModalContent>
           </ModalDialog>
         </DialogWrapper>

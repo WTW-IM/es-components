@@ -60,7 +60,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-styleguidist": "^6.5.1",
+    "react-styleguidist": "^7.0.3",
     "react-test-renderer": "^16.2.0",
     "style-loader": "^0.13.1",
     "webpack": "^2.3.3"

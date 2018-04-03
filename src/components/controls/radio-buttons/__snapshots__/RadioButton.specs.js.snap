@@ -8,7 +8,7 @@ exports[`RadioButton component renders as expected 1`] = `
   htmlFor="test"
 >
   <input
-    className="sc-htpNat jeuMMj"
+    className="sc-htpNat VGtDe"
     disabled={false}
     id="test"
     name="rad"

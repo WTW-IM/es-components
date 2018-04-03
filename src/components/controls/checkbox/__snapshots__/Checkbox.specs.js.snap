@@ -7,7 +7,7 @@ exports[`Checkbox renders as expected 1`] = `
 >
   <input
     checked={true}
-    className="sc-htpNat iQXGTD"
+    className="sc-htpNat hESkBQ"
     disabled={true}
     onChange={[Function]}
     onClick={[Function]}

@@ -10,7 +10,37 @@ module.exports = {
   assetsDir: 'public',
   styleguideDir: 'docs',
   title: `Exchange Solutions React Components v${version}`,
-  template: 'config/template.html',
+  template: {
+    meta: [
+      { charset: "utf-8" },
+      { 
+        name: "viewport", 
+        content: "width=device-width, initial-scale=1.0"
+      }
+    ],
+    head: {
+      raw: `<style>
+        @font-face {
+        font-family: 'indv-mkt-icons';
+        src: url('webfonts/indv-mkt-icons.eot?3tk8wr');
+        src: url('webfonts/indv-mkt-icons.eot?3tk8wr#iefix') format('embedded-opentype'),
+          url('webfonts/indv-mkt-icons.ttf?3tk8wr') format('truetype'),
+          url('webfonts/indv-mkt-icons.woff?3tk8wr') format('woff'),
+          url('webfonts/indv-mkt-icons.svg?3tk8wr#indv-mkt-icons') format('svg');
+        font-weight: normal;
+        font-style: normal;
+        }
+
+        body {
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+      </style>`
+    }
+  },
+  ribbon: {
+    url: 'https://github.com/WTW-IM/es-components',
+    text: 'Fork me on GitHub'
+  },
   sections: [
 	{
 	  name: 'Themes',

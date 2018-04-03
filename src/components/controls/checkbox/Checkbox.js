@@ -49,7 +49,7 @@ const CheckboxInput = styled.input`
   position: absolute;
 
   &:focus ~ .checkbox-fill {
-    box-shadow: 0 0 3px 3px #83bffc;
+    box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
     &:after {
       border-color: ${props =>
         props.checked

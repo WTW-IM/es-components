@@ -12,7 +12,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     htmlFor="test-option-1"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat VGtDe"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -38,7 +38,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     htmlFor="test-option-2"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat VGtDe"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -64,7 +64,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     htmlFor="test-option-3"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat VGtDe"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -104,7 +104,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     htmlFor="test-option-1"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat VGtDe"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -130,7 +130,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     htmlFor="test-option-2"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat VGtDe"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -156,7 +156,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
     htmlFor="test-option-3"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat VGtDe"
       disabled={false}
       id="test-option-3"
       name="test"

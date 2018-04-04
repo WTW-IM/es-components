@@ -8,6 +8,22 @@ Exchange Solutions React components
 
 [https://wtw-im.github.io/es-components/](https://wtw-im.github.io/es-components/)
 
+## Installation and Usage
+
+```shell
+npm install --save es-components
+```
+
+`es-components` comes optimized for tree shaking. If your build tool does not support tree shaking please direct your imports towards `es-components/lib`.
+You may use either direct file paths or destructure from the index file.
+
+```js
+// use this to keep the size of your bundles light
+import Component from 'es-components/lib/path/to/component';
+// or
+import { Component } from 'es-components/lib';
+```
+
 ## Versioning
 
 Use [semantic versioning](http://semver.org/) to ensure that a consistent version is always available for publish. Use ``npm version`` in order to increase the version numbers. Push version updates as a separate commit.

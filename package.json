@@ -3,7 +3,8 @@
   "version": "10.6.1",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/TWExchangeSolutions/es-components",
-  "main": "lib/index.js",
+  "main": "es6/index.js",
+  "sideEffects": false,
   "scripts": {
     "build": "npm run build:es5 && npm run build:es6",
     "build:es5": "babel src -d lib --ignore specs.js,*.md --copy-files",

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run build:es5 && npm run build:es6",
     "build:es5": "babel src -d lib --ignore specs.js,*.md --copy-files",
-    "build:es6": "BABEL_ENV=es6 babel src -d es6 --ignore specs.js,*.md --copy-files",
+    "build:es6": "cross-env BABEL_ENV=es6 babel src -d es6 --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
     "precommit": "lint-staged && sh rebuild-docs.sh",
@@ -42,6 +42,7 @@
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-wtw-im": "^1.1.0",
     "copy-webpack-plugin": "^4.5.1",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.26.1",
     "enzyme": "^3.3.0",
     "eslint": "^2.13.1",

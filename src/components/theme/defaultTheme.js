@@ -91,6 +91,28 @@ const theme = {
     highlight,
     highlightHover
   },
+  notificationStyles: {
+    success: {
+      bgColor: success,
+      textColor: white
+    },
+    info: {
+      bgColor: info,
+      textColor: white
+    },
+    warning: {
+      bgColor: warning,
+      textColor: black
+    },
+    danger: {
+      bgColor: danger,
+      textColor: white
+    },
+    advisor: {
+      bgColor: advisor,
+      textColor: black
+    }
+  },
   buttonStyles: {
     buttonsNormal: {
       // these button types are dynamic, so you can add/remove/rename them

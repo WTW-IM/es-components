@@ -2,17 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
-import tinycolor from 'tinycolor2';
 
 import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
-
-function adjustColor(color, level) {
-  const colorBase = level > 0 ? '#000' : '#fff';
-  return tinycolor.mix(colorBase, color, Math.abs(level)).toRgbString();
-}
 
 const DismissNotification = styled(DismissButton)`
   line-height: 80%;
@@ -38,7 +32,7 @@ const NotificationIcon = styled(Icon)`
   margin-right: 5px;
   margin-top: 2px;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
     display: none;
   }
 `;
@@ -88,7 +82,7 @@ const ExtraAlertIcon = styled(Icon)`
   margin-right: 7px;
   margin-bottom: 4px;
 
-  @media (max-width: 767px) {
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
     display: none;
   }
 `;
@@ -110,27 +104,24 @@ function renderExtraAlert(alert) {
  * inverse that kind of goes against normal thinking
  */
 const CallsToAction = styled.div`
-  align-self: flex-end;
   display: flex;
   flex-direction: row-reverse;
-  padding: 0 15px 15px 0;
+  margin-top: 12px;
 
-  & > button:not(:first-of-type) {
-    margin-right: 15px;
-  }
-
-  @media (max-width: 767px) {
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
     display: block;
-    padding: 15px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  margin-left: 15px;
+
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+    width: 100%;
+    margin: 12px 0 0 0;
 
     & > button {
-      display: block;
-      margin-bottom: 15px;
       width: 100%;
-
-      &:active {
-        margin-bottom: 15px;
-      }
     }
   }
 `;
@@ -142,39 +133,47 @@ function renderCallsToAction(callsToAction, theme) {
         const buttonStyleType = index === 0 ? 'primary' : 'default';
 
         if (React.isValidElement(callToAction)) {
-          return React.cloneElement(callToAction, {
-            styleType: buttonStyleType,
-            key: index
-          });
+          return (
+            <ButtonWrapper>
+              {React.cloneElement(callToAction, {
+                styleType: buttonStyleType,
+                key: index
+              })}
+            </ButtonWrapper>
+          );
         }
 
         return (
-          <Button
-            styleType={buttonStyleType}
-            key={index}
-            handleOnClick={callToAction.action}
-          >
-            {callToAction.actionButtonContent}
-          </Button>
+          <ButtonWrapper>
+            <Button
+              styleType={buttonStyleType}
+              key={index}
+              handleOnClick={callToAction.action}
+            >
+              {callToAction.actionButtonContent}
+            </Button>
+          </ButtonWrapper>
         );
       })}
     </CallsToAction>
   );
 }
 
-const NotificationContainer = styled.div`
-  background-color: ${props => adjustColor(props.color, -10)};
-  border: 1px solid ${props => adjustColor(props.color, -60)};
-  border-radius: 2px;
-  color: ${props => adjustColor(props.color, 60)};
+const NotificationWrapper = styled.div`
   margin-bottom: 25px;
+`;
+
+const NotificationBgWrapper = styled.div`
+  background-color: ${props => props.color.bgColor};
+  border-radius: 2px;
+  color: ${props => props.color.textColor};
 `;
 
 const NotificationContent = styled.div`
   padding: 0 15px 15px;
   margin-left: ${props => (props.hasIcon ? '24px' : '0')};
 
-  @media (max-width: 767px) {
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
     margin-left: 0;
   }
 `;
@@ -207,29 +206,31 @@ export function Notification({
 
   return (
     <ThemeProvider theme={theme}>
-      <NotificationContainer
-        {...otherProps}
-        color={theme.colors[type]}
-        role={roleType}
-      >
-        <NotificationHeader>
-          {renderLeadingHeader(type, includeIcon, header, additionalText)}
-          {hasExtraAlert && renderExtraAlert(extraAlert)}
-          {dismissable && (
-            <DismissNotification
-              onClick={onDismiss}
-              className="notification__dismiss"
-            />
-          )}
-        </NotificationHeader>
+      <NotificationWrapper>
+        <NotificationBgWrapper
+          {...otherProps}
+          color={theme.notificationStyles[type]}
+          role={roleType}
+        >
+          <NotificationHeader>
+            {renderLeadingHeader(type, includeIcon, header, additionalText)}
+            {hasExtraAlert && renderExtraAlert(extraAlert)}
+            {dismissable && (
+              <DismissNotification
+                onClick={onDismiss}
+                className="notification__dismiss"
+              />
+            )}
+          </NotificationHeader>
 
-        {hasChildren && (
-          <NotificationContent hasIcon={includeIcon}>
-            {children}
-          </NotificationContent>
-        )}
+          {hasChildren && (
+            <NotificationContent hasIcon={includeIcon}>
+              {children}
+            </NotificationContent>
+          )}
+        </NotificationBgWrapper>
         {hasCallsToAction && renderCallsToAction(callsToAction, theme)}
-      </NotificationContainer>
+      </NotificationWrapper>
     </ThemeProvider>
   );
 }

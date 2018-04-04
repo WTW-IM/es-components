@@ -12,10 +12,10 @@ module.exports = {
   title: `Exchange Solutions React Components v${version}`,
   template: {
     meta: [
-      { charset: "utf-8" },
-      { 
-        name: "viewport", 
-        content: "width=device-width, initial-scale=1.0"
+      { charset: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1.0'
       }
     ],
     head: {
@@ -42,19 +42,19 @@ module.exports = {
     text: 'Fork me on GitHub'
   },
   sections: [
-	{
-	  name: 'Themes',
-	  content: path.join(baseComponentDir, 'theme/Themes.md')
-	},
+    {
+      name: 'Themes',
+      content: path.join(baseComponentDir, 'theme/Themes.md')
+    },
     {
       name: 'Base',
-  	  components: path.join(baseComponentDir, 'base/**/*.js')
+      components: path.join(baseComponentDir, 'base/**/*.js')
     },
-	{
-	  name: 'Containers',
-	  content: path.join(baseComponentDir, 'containers/Containers.md'),
-	  components: path.join(baseComponentDir, 'containers/**/*.js')
-	},
+    {
+      name: 'Containers',
+      content: path.join(baseComponentDir, 'containers/Containers.md'),
+      components: path.join(baseComponentDir, 'containers/**/*.js')
+    },
     {
       name: 'Controls',
       components: path.join(baseComponentDir, 'controls/**/*.js')
@@ -89,7 +89,7 @@ module.exports = {
       new CopyWebpackPlugin([
         {
           from: path.join(styleguidePaths.publicDir, 'webfonts'),
-          to:  path.join(webpackConfig.output.path, 'webfonts')
+          to: path.join(webpackConfig.output.path, 'webfonts')
         }
       ])
     );

@@ -3,15 +3,15 @@
 ```
 <div>
   <Notification
-    type="advisor"
-    header="Advisor!"
-    additionalText="This message is for benefit advisors."
-  />
-
-  <Notification
     type="success"
     header="Success!"
     additionalText="You did a thing."
+  />
+
+  <Notification
+    type="info"
+    header="Information!"
+    additionalText="Here's some information you need to know."
   />
 
   <Notification
@@ -26,9 +26,9 @@
   />
 
   <Notification
-    type="info"
-    header="Information!"
-    additionalText="Here's some information you need to know."
+    type="advisor"
+    header="Advisor!"
+    additionalText="This message is for benefit advisors."
   />
 </div>
 ```

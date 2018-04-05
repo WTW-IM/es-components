@@ -4,13 +4,14 @@ import styled, { ThemeProvider } from 'styled-components';
 import viaTheme from '../../theme/viaTheme';
 import TabList from './TabList';
 import Tab from './Tab';
+import { some } from 'lodash';
 
 const TabWrapper = styled('div')`
   display: flex;
   justify-content: center;
   font-size: 24px;
 
-  @media (min-width: 899px) {
+  @media (min-width: ${props => props.theme.screenSize.desktop}) {
     justify-content: flex-start;
   }
 `;
@@ -20,7 +21,7 @@ const TabFormatter = styled('div')`
   justify-content: center;
   flex-direction: column;
 
-  @media (min-width: 899px) {
+  @media (min-width: ${props => props.theme.screenSize.desktop}) {
     flex-direction: row;
   }
 `;
@@ -41,7 +42,9 @@ class TabPanel extends React.Component {
 
   componentWillMount() {
     if (this.state.value === '') {
-      const child = this.props.children[0];
+      const child = Array.isArray(this.props.children)
+        ? this.props.children[0]
+        : this.props.children;
       const selectedChild = this.getFirstValueChild(child);
       this.tabChanged(
         selectedChild.props.name ||
@@ -60,15 +63,14 @@ class TabPanel extends React.Component {
 
   listIsSelected(list) {
     if (Array.isArray(list.props.children)) {
-      return (
-        list.props.children.filter(child => {
-          if (child.props.optionText) {
-            return (
-              child.props.optionText.replace(/\s/g, '') === this.state.value
-            );
-          }
-          return false;
-        }).length > 0
+      return some(
+        list.props.children,
+        /* eslint-disable no-confusing-arrow */
+        child =>
+          child.props.optionText
+            ? child.props.optionText.replace(/\s/g, '') === this.state.value
+            : false
+        /* eslint-enable */
       );
     }
     return false;
@@ -114,8 +116,12 @@ class TabPanel extends React.Component {
 }
 
 function childrenRule(props, propName, component) {
+  let children = props[propName];
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
   if (
-    !props[propName].every(
+    !children.every(
       child => child.type.name === 'Tab' || child.type.name === 'TabList'
     )
   ) {
@@ -123,6 +129,7 @@ function childrenRule(props, propName, component) {
       'Tab Panel only accepts Tab or TabList as direct descendants.'
     );
   }
+
   return null;
 }
 

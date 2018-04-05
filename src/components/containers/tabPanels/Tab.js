@@ -13,7 +13,7 @@ const TabButton = styled.button`
   display: inline-block;
   font-size: 18px;
 
-  @media (min-width: 899px) {
+  @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
       props.selected ? `1px solid ${props.theme.colors.gray}` : '0px'};

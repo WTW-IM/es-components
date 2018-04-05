@@ -29,7 +29,7 @@ const StyledDropdown = styled(Dropdown)`
         : props.theme.colors.grayLighter};
   }
 
-  @media (min-width: 899px) {
+  @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
       props.selected ? `1px solid ${props.theme.colors.gray}` : '0px'};
@@ -68,7 +68,7 @@ function TabList({
   };
 
   const values = [];
-  const selectOptions = children.map((opt, i) => {
+  const selectOptions = React.Children.map(children, (opt, i) => {
     const optionKey = opt.props.optionText.replace(/\s/g, '');
     values.push(optionKey);
     return { optionText: opt.props.optionText, optionValue: optionKey };
@@ -88,12 +88,25 @@ function TabList({
   /* eslint-enable */
 }
 
+function tabListRule(props, propName, component) {
+  let children = props[propName];
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
+  if (!children.every(child => typeof child.props.optionText !== 'undefined')) {
+    return new Error(
+      'Tab List direct children must have an optionText property.'
+    );
+  }
+
+  return null;
+}
 TabList.propTypes = {
   name: PropTypes.string.isRequired,
   selected: PropTypes.bool,
   action: PropTypes.func,
   theme: PropTypes.object,
-  children: PropTypes.node,
+  children: tabListRule,
   selectedName: PropTypes.string
 };
 

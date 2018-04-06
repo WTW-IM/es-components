@@ -134,20 +134,18 @@ function renderCallsToAction(callsToAction, theme) {
 
         if (React.isValidElement(callToAction)) {
           return (
-            <ButtonWrapper>
+            <ButtonWrapper key={index}>
               {React.cloneElement(callToAction, {
-                styleType: buttonStyleType,
-                key: index
+                styleType: buttonStyleType
               })}
             </ButtonWrapper>
           );
         }
 
         return (
-          <ButtonWrapper>
+          <ButtonWrapper key={index}>
             <Button
               styleType={buttonStyleType}
-              key={index}
               handleOnClick={callToAction.action}
             >
               {callToAction.actionButtonContent}

@@ -188,8 +188,7 @@ Modal.defaultProps = {
   onExit: noop,
   onHide: noop,
   show: false,
-  size: 'medium',
-  theme: defaultTheme
+  size: 'medium'
 };
 
 Modal.childContextTypes = {
@@ -203,4 +202,8 @@ Modal.Header = Header;
 Modal.Body = Body;
 Modal.Footer = Footer;
 
-export default withTheme(Modal);
+const ThemedModal = withTheme(Modal);
+
+ThemedModal.defaultProps = { theme: defaultTheme };
+
+export default ThemedModal;

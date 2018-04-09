@@ -65,14 +65,17 @@ SideNav.propTypes = {
 
 SideNav.defaultProps = {
   useAltStyle: false,
-  onItemSelected: noop,
-  theme: defaultTheme
+  onItemSelected: noop
 };
 
-const UncontrolledSideNav = uncontrollable(SideNav, {
+const ThemedSideNav = withTheme(SideNav);
+
+ThemedSideNav.defaultProps = { theme: defaultTheme };
+
+const UncontrolledSideNav = uncontrollable(ThemedSideNav, {
   selected: 'onItemSelected'
 });
 
 UncontrolledSideNav.Item = NavItem;
 
-export default withTheme(UncontrolledSideNav);
+export default UncontrolledSideNav;

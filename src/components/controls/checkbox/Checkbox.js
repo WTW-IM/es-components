@@ -137,8 +137,10 @@ Checkbox.propTypes = {
   theme: PropTypes.object
 };
 
-Checkbox.defaultProps = {
+const ThemedCheckbox = withTheme(Checkbox);
+
+ThemedCheckbox.defaultProps = {
   theme: defaultTheme
 };
 
-export default withTheme(Checkbox);
+export default ThemedCheckbox;

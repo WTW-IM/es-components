@@ -75,8 +75,10 @@ Breadcrumb.propTypes = {
   theme: PropTypes.object
 };
 
-Breadcrumb.defaultProps = {
+const ThemedBreadcrumb = withTheme(Breadcrumb);
+
+ThemedBreadcrumb.defaultProps = {
   theme: defaultTheme
 };
 
-export default withTheme(Breadcrumb);
+export default ThemedBreadcrumb;

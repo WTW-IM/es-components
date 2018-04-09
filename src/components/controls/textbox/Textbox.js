@@ -215,8 +215,11 @@ Textbox.defaultProps = {
   maskType: 'none',
   onChange: noop,
   onBlur: noop,
-  validationState: 'default',
-  theme: defaultTheme
+  validationState: 'default'
 };
 
-export default withTheme(Textbox);
+const ThemedTextbox = withTheme(Textbox);
+
+ThemedTextbox.defaultProps = { theme: defaultTheme };
+
+export default ThemedTextbox;

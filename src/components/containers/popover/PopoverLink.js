@@ -107,13 +107,16 @@ PopoverLink.defaultProps = {
   showPopover: false,
   showCloseButton: false,
   suppressUnderline: false,
-  theme: defaultTheme,
   buttonStyle: 'primary',
   isLinkButton: true
 };
 
-const UncontrolledPopoverLink = uncontrollable(PopoverLink, {
+const ThemedPopoverLink = withTheme(PopoverLink);
+
+ThemedPopoverLink.defaultProps = { theme: defaultTheme };
+
+const UncontrolledPopoverLink = uncontrollable(ThemedPopoverLink, {
   showPopover: 'onToggle'
 });
 
-export default withTheme(UncontrolledPopoverLink);
+export default UncontrolledPopoverLink;

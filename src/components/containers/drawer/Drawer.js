@@ -129,14 +129,17 @@ Drawer.defaultProps = {
   isAccordion: false,
   closedIconName: 'plus',
   onActiveKeysChanged: noop,
-  openedIconName: 'minus',
-  theme: defaultTheme
+  openedIconName: 'minus'
 };
 
-const UncontrolledDrawer = uncontrollable(Drawer, {
+const ThemedDrawer = withTheme(Drawer);
+
+ThemedDrawer.defaultProps = { theme: defaultTheme };
+
+const UncontrolledDrawer = uncontrollable(ThemedDrawer, {
   activeKeys: 'onActiveKeysChanged'
 });
 
 UncontrolledDrawer.Panel = DrawerPanel;
 
-export default withTheme(UncontrolledDrawer);
+export default UncontrolledDrawer;

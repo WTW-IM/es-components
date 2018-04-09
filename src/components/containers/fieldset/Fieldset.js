@@ -62,8 +62,10 @@ Fieldset.propTypes = {
   theme: PropTypes.object
 };
 
-Fieldset.defaultProps = {
+const ThemedFieldset = withTheme(Fieldset);
+
+ThemedFieldset.defaultProps = {
   theme: defaultTheme
 };
 
-export default withTheme(Fieldset);
+export default ThemedFieldset;

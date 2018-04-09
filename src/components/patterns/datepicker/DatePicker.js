@@ -112,12 +112,15 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   onBlur: noop,
   onChangeRaw: noop,
-  placeholder: 'mm/dd/yyyy',
-  theme: defaultTheme
+  placeholder: 'mm/dd/yyyy'
 };
 
-const UncontrolledDatePicker = uncontrollable(DatePicker, {
+const ThemedDatePicker = withTheme(DatePicker);
+
+ThemedDatePicker.defaultProps = { theme: defaultTheme };
+
+const UncontrolledDatePicker = uncontrollable(ThemedDatePicker, {
   selectedDate: 'onChange'
 });
 
-export default withTheme(UncontrolledDatePicker);
+export default UncontrolledDatePicker;

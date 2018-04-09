@@ -176,8 +176,11 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  position: 'top',
-  theme: defaultTheme
+  position: 'top'
 };
 
-export default withTheme(Tooltip);
+const ThemedTooltip = withTheme(Tooltip);
+
+ThemedTooltip.defaultProps = { theme: defaultTheme };
+
+export default ThemedTooltip;

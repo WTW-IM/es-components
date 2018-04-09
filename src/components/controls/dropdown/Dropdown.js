@@ -96,8 +96,10 @@ Dropdown.propTypes = {
   theme: PropTypes.object
 };
 
-Dropdown.defaultProps = {
+const ThemedDropdown = withTheme(Dropdown);
+
+ThemedDropdown.defaultProps = {
   theme: defaultTheme
 };
 
-export default withTheme(Dropdown);
+export default ThemedDropdown;

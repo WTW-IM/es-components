@@ -25,7 +25,10 @@
   "author": "Exchange Solutions",
   "license": "MIT",
   "jest": {
-    "setupTestFrameworkScriptFile": "./config/jest-setup.js",
+    "setupFiles": [
+      "./config/jest-shims.js",
+      "./config/jest-setup.js"
+    ],
     "testRegex": "specs\\.js$"
   },
   "peerDependencies": {

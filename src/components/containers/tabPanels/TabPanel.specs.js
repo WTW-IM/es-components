@@ -7,7 +7,7 @@ import TabPanel from './TabPanel';
 
 describe('Tab panel component', () => {
   const instanceToRender = (
-    <TabPanel>
+    <TabPanel optionKeyFunc={x => x.replace(/\s/g, '')}>
       <TabPanel.Tab name="test1">
         <div>Test Content 1</div>
       </TabPanel.Tab>
@@ -15,10 +15,10 @@ describe('Tab panel component', () => {
         <div>Test Content 2</div>
       </TabPanel.Tab>
       <TabPanel.TabList name="testList">
-        <span optionText="test3">
+        <span optiontext="test3">
           <div>Test Content 3</div>
         </span>
-        <span optionText="test4">
+        <span optiontext="test4">
           <div>Test Content 4</div>
         </span>
       </TabPanel.TabList>
@@ -26,12 +26,12 @@ describe('Tab panel component', () => {
   );
 
   const complexInstanceToRender = (
-    <TabPanel>
+    <TabPanel optionKeyFunc={x => x.replace(/\s/g, '')}>
       <TabPanel.TabList name="testList">
-        <span optionText="test3">
+        <span optiontext="test3">
           <div>Test Content 3</div>
         </span>
-        <span optionText="test4">
+        <span optiontext="test4">
           <div>Test Content 4</div>
         </span>
       </TabPanel.TabList>

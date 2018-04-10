@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import viaTheme from '../../theme/viaTheme';
+import defaultTheme from '../../theme/defaultTheme';
 import TabList from './TabList';
 import Tab from './Tab';
 import { some } from 'lodash';
@@ -33,25 +33,17 @@ const TabContent = styled('div')`
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
+    const child = Array.isArray(this.props.children)
+      ? this.props.children[0]
+      : this.props.children;
+    const selectedChild = this.getFirstValueChild(child);
     this.state = {
-      value: '',
-      currentContent: ''
+      value:
+        selectedChild.props.name ||
+        this.props.optionKeyFunc(selectedChild.props.optiontext),
+      currentContent: selectedChild.props.children
     };
     this.tabChanged = this.tabChanged.bind(this);
-  }
-
-  componentWillMount() {
-    if (this.state.value === '') {
-      const child = Array.isArray(this.props.children)
-        ? this.props.children[0]
-        : this.props.children;
-      const selectedChild = this.getFirstValueChild(child);
-      this.tabChanged(
-        selectedChild.props.name ||
-          selectedChild.props.optionText.replace(/\s/g, ''),
-        selectedChild.props.children
-      );
-    }
   }
 
   getFirstValueChild(child) {
@@ -63,15 +55,13 @@ class TabPanel extends React.Component {
 
   listIsSelected(list) {
     if (Array.isArray(list.props.children)) {
+      /* eslint-disable no-confusing-arrow */
       return some(
         list.props.children,
-        /* eslint-disable no-confusing-arrow */
         child =>
-          child.props.optionText
-            ? child.props.optionText.replace(/\s/g, '') === this.state.value
-            : false
-        /* eslint-enable */
+          this.props.optionKeyFunc(child.props.optiontext) === this.state.value
       );
+      /* eslint-enable */
     }
     return false;
   }
@@ -81,7 +71,7 @@ class TabPanel extends React.Component {
   }
 
   render() {
-    const { theme, children } = this.props;
+    const { theme, children, optionKeyFunc } = this.props;
     const elements = React.Children.map(children, (child, i) => {
       const isSelected =
         child.props.name === this.state.value ||
@@ -92,7 +82,8 @@ class TabPanel extends React.Component {
         selected: isSelected,
         action: this.tabChanged,
         selectedName: this.state.value,
-        theme
+        theme,
+        optionKeyFunc
       });
     });
 
@@ -141,11 +132,16 @@ TabPanel.propTypes = {
   /**
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
-  children: childrenRule
+  children: childrenRule,
+
+  /**
+   * A function to generate a key from option text in a tab list.
+   */
+  optionKeyFunc: PropTypes.func.isRequired
 };
 
 TabPanel.defaultProps = {
-  theme: viaTheme
+  theme: defaultTheme
 };
 
 TabPanel.TabList = TabList;

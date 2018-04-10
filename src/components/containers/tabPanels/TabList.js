@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Dropdown from '../../controls/dropdown/Dropdown';
 import defaultTheme from '../../theme/defaultTheme';
 import styled from 'styled-components';
+import { some } from 'lodash';
 
 /* eslint-disable no-confusing-arrow */
 const StyledDropdown = styled(Dropdown)`
@@ -57,23 +58,24 @@ function TabList({
   selectedName,
   action,
   theme,
+  optionKeyFunc,
   ...props
 }) {
   const update = event => {
     const value = event.target.value;
-    const filteredChildren = children.filter(
-      child => child.props.optionText.replace(/\s/g, '') === value
-    );
-    action(value, filteredChildren[0].props.children);
+    const filteredChildren = Array.isArray(children)
+      ? children.find(child => optionKeyFunc(child.props.optiontext) === value)
+      : children;
+    action(value, filteredChildren.props.children);
   };
 
-  const values = [];
   const selectOptions = React.Children.map(children, (opt, i) => {
-    const optionKey = opt.props.optionText.replace(/\s/g, '');
-    values.push(optionKey);
-    return { optionText: opt.props.optionText, optionValue: optionKey };
+    const optionKey = optionKeyFunc(opt.props.optiontext);
+    return { optionText: opt.props.optiontext, optionValue: optionKey };
   });
-  const finalSelection = values.indexOf(selectedName) < 0 ? '' : selectedName;
+  const finalSelection = some(selectOptions, ['optionValue', selectedName])
+    ? selectedName
+    : '';
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
     <StyledDropdown
@@ -93,21 +95,43 @@ function tabListRule(props, propName, component) {
   if (!Array.isArray(children)) {
     children = [children];
   }
-  if (!children.every(child => typeof child.props.optionText !== 'undefined')) {
+  if (!children.every(child => typeof child.props.optiontext !== 'undefined')) {
     return new Error(
-      'Tab List direct children must have an optionText property.'
+      'Tab List direct children must have an optiontext property.'
     );
   }
 
   return null;
 }
 TabList.propTypes = {
+  /**
+   * The name of the tab, and the default display value.
+   */
   name: PropTypes.string.isRequired,
+  /**
+   * Whether to format this tab as selected, according to the tabPanel.
+   */
   selected: PropTypes.bool,
+  /**
+   * The action to be taken upon changing the selection in the dropdown
+   */
   action: PropTypes.func,
+  /**
+   * The theme to be used
+   */
   theme: PropTypes.object,
+  /**
+   * the children to be displayed in the content area
+   */
   children: tabListRule,
-  selectedName: PropTypes.string
+  /**
+   * The value of the tab that is currently selected
+   */
+  selectedName: PropTypes.string,
+  /**
+   * A function to generate a key from option text in a tab list. Is passed from the TabPanel
+   */
+  optionKeyFunc: PropTypes.func.isRequired
 };
 
 TabList.defaultProps = {

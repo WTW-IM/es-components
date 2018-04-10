@@ -51,10 +51,25 @@ function Tab({ name, selected, action, children, ...props }) {
 }
 
 Tab.propTypes = {
+  /**
+   * The name of the tab, and the displayed value
+   */
   name: PropTypes.node.isRequired,
+  /**
+   * Whether the tab is selected and should be rendered to appear selected.
+   */
   selected: PropTypes.bool,
+  /**
+   * The function to call when the tab is clicked
+   */
   action: PropTypes.func,
+  /**
+   * The theme used to render the tab
+   */
   theme: PropTypes.object,
+  /**
+   * Children to be rendered in the TabContent area.
+   */
   children: PropTypes.node
 };
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Dropdown from '../../controls/dropdown/Dropdown';
 import defaultTheme from '../../theme/defaultTheme';
 import styled from 'styled-components';
-import { some } from 'lodash';
+import { some, find } from 'lodash';
 
 /* eslint-disable no-confusing-arrow */
 const StyledDropdown = styled(Dropdown)`
@@ -37,9 +37,10 @@ const StyledDropdown = styled(Dropdown)`
     border-bottom: ${props => (props.selected ? '0px' : '1px')};
     border-radius: 2px 2px 0 0;
     display: inline-block;
-    margin: ${props => (props.selected ? '0px 0px -1px 2px' : '0px')};
+    margin: ${props =>
+      props.selected ? '10px 10px -1px 10px' : '10px 10px 0px  10px'};
     z-index: ${props => (props.selected ? '1' : '0')};
-    padding: 10px 15px;
+    padding: 0px 5px;
     flex-grow: 1;
     &:hover {
       background-color: ${props =>
@@ -64,7 +65,7 @@ function TabList({
   const update = event => {
     const value = event.target.value;
     const filteredChildren = Array.isArray(children)
-      ? children.find(child => optionKeyFunc(child.props.optiontext) === value)
+      ? find(children, child => optionKeyFunc(child.props.optiontext) === value)
       : children;
     action(value, filteredChildren.props.children);
   };

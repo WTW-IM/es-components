@@ -93,13 +93,7 @@ class TabPanel extends React.Component {
           <TabWrapper>
             <TabFormatter>{elements}</TabFormatter>
           </TabWrapper>
-          <TabContent
-            id="tab-panel-content"
-            aria-live="assertive"
-            aria-atomic="true"
-          >
-            {this.state.currentContent}
-          </TabContent>
+          <TabContent>{this.state.currentContent}</TabContent>
         </div>
       </ThemeProvider>
     );

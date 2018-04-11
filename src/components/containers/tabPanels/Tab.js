@@ -20,9 +20,10 @@ const TabButton = styled.button`
     border-bottom: ${props => (props.selected ? '0px' : '1px')};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
-    margin: ${props => (props.selected ? '0px 0px -1px 2px' : '0px')};
+    margin: ${props =>
+      props.selected ? '10px 10px -1px 10px' : '10px 10px 0px  10px'};
     z-index: ${props => (props.selected ? '1' : '0')};
-    padding: 10px 15px;
+    padding: 0px 5px;
     width: auto;
     flex-grow: 1;
     text-align: left;
@@ -40,7 +41,6 @@ const TabButton = styled.button`
 function Tab({ name, selected, action, children, ...props }) {
   return (
     <TabButton
-      aria-controls="tab-panel-content"
       onClick={() => action(name, children)}
       selected={selected}
       {...props}

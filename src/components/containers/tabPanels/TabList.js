@@ -12,7 +12,7 @@ const StyledDropdown = styled(Dropdown)`
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
-  border: 1px solid ${props => props.theme.colors.gray};
+  border: 1px solid ${props => props.theme.colors.grayLighter};
   font-size: 18px;
   width: auto;
   padding: 0px;
@@ -34,7 +34,7 @@ const StyledDropdown = styled(Dropdown)`
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
-      props.selected ? `1px solid ${props.theme.colors.gray}` : '0px'};
+      props.selected ? `1px solid ${props.theme.colors.grayLighter}` : '0px'};
     border-bottom: ${props => (props.selected ? '0px' : '1px')};
     border-radius: 2px 2px 0 0;
     display: flex;

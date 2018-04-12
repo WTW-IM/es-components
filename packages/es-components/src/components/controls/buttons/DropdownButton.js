@@ -18,6 +18,7 @@ const Caret = styled.span`
 
 const ButtonPanel = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
+  z-index: 2;
   margin-top: 3px;
   position: absolute;
   border: 1px solid ${props => props.theme.colors.gray3};
@@ -66,7 +67,6 @@ export class DropdownButton extends React.Component {
       if (shouldUpdateButtonValue) {
         this.setState({ buttonValue: buttonProps.children });
       }
-
       if (shouldCloseOnButtonClick) {
         this.closeDropdown();
       }
@@ -76,16 +76,22 @@ export class DropdownButton extends React.Component {
   };
 
   render() {
-    const { theme, rootClose, children } = this.props;
+    const {
+      theme,
+      rootClose,
+      children,
+      className,
+      manualButtonValue
+    } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <RootCloseWrapper
           onRootClose={this.closeDropdown}
           disabled={!rootClose}
         >
-          <div>
+          <div className={className}>
             <Button handleOnClick={this.toggleDropdown}>
-              {this.state.buttonValue} <Caret />
+              {manualButtonValue || this.state.buttonValue} <Caret />
             </Button>
             <ButtonPanel isOpen={this.state.isOpen} theme={theme}>
               <ButtonPanelChildrenContainer>
@@ -112,6 +118,12 @@ DropdownButton.Button = StyledButtonLink;
 DropdownButton.propTypes = {
   /** Content shown in the button */
   buttonValue: PropTypes.any.isRequired,
+  /**
+   * Defines what value should be displayed on the button.
+   * Overrides the stored state value, and renders shouldUpdateButtonValue
+   * useless
+   */
+  manualButtonValue: PropTypes.node,
   children: PropTypes.any.isRequired,
   /**
    * Theme object used by the ThemeProvider,
@@ -129,7 +141,9 @@ DropdownButton.propTypes = {
    * Defines weather the dropdown will close when any other element on the page is clicked.
    * Uses RootCloseWrapper from React-Overlay
    */
-  rootClose: PropTypes.bool
+  rootClose: PropTypes.bool,
+  /** The classes to be applied to the div surrounding the button */
+  className: PropTypes.string
 };
 
 DropdownButton.defaultProps = {

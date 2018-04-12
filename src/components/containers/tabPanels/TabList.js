@@ -12,25 +12,28 @@ const StyledDropdown = styled(Dropdown)`
     props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
   border: 1px solid ${props => props.theme.colors.grayLighter};
   button {
-    display: inline-block;
-    color: ${props =>
-      props.selected ? props.theme.colors.black : props.theme.colors.primary};
     background-color: ${props =>
       props.selected
         ? props.theme.colors.white
         : props.theme.colors.grayLighter};
+    color: ${props =>
+      props.selected ? props.theme.colors.black : props.theme.colors.primary};
+    display: inline-block;
     font-size: 18px;
-    padding: 0px;
     margin: 0;
-
-    @media (max-width: ${props => props.theme.screenSize.desktop}) {
-      width: 100%;
-    }
+    padding: 0px;
     &:active {
       margin: 0;
     }
   }
-
+  @media (max-width: ${props => props.theme.screenSize.desktop}) {
+    button {
+      width: 100%;
+    }
+    div {
+      width: 100%;
+    }
+  }
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     border: 1px solid
       ${props =>
@@ -40,23 +43,20 @@ const StyledDropdown = styled(Dropdown)`
         props.selected ? ' transparent' : props.theme.colors.grayLighter};
     background-color: ${props => props.theme.colors.white};
     margin: 0px 2px -1px 2px;
-
     button {
-      height: 100%;
-      color: ${props =>
-        props.selected ? props.theme.colors.black : props.theme.colors.primary};
       background-color: ${props => props.theme.colors.white};
       border-radius: 2px 2px 0 0;
-      z-index: ${props => (props.selected ? '1' : '0')};
-      padding: 0;
-      flex-grow: 1;
       box-shadow: none;
+      color: ${props =>
+        props.selected ? props.theme.colors.black : props.theme.colors.primary};
+      height: 100%;
       padding: 0px 5px;
-      &:hover {
-        background-color: ${props => props.theme.colors.grayLighter};
-      }
+      z-index: ${props => (props.selected ? '1' : '0')};
       &:active {
         margin: 0;
+      }
+      &:hover {
+        background-color: ${props => props.theme.colors.grayLighter};
       }
     }
   }

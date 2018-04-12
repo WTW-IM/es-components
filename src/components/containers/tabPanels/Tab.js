@@ -5,11 +5,11 @@ import defaultTheme from '../../theme/defaultTheme';
 
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
-  color: ${props =>
-    props.selected ? props.theme.colors.black : props.theme.colors.primary};
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
   border: 1px solid ${props => props.theme.colors.grayLighter};
+  color: ${props =>
+    props.selected ? props.theme.colors.black : props.theme.colors.primary};
   display: inline-block;
   font-size: 18px;
 
@@ -25,11 +25,9 @@ const TabButton = styled.button`
         : `1px solid ${props.theme.colors.grayLighter}`};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
+    padding: 0px 10px;
     margin: 0px 2px -1px 2px;
     z-index: ${props => (props.selected ? '1' : '0')};
-    padding: 0px 10px;
-    flex-grow: 1;
-    text-align: left;
     &:hover {
       background-color: ${props =>
         props.selected

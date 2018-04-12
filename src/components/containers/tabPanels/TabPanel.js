@@ -6,41 +6,37 @@ import TabList from './TabList';
 import Tab from './Tab';
 import { some } from 'lodash';
 
-const TabWrapper = styled('div')`
+const TabWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  font-size: 24px;
+  border-bottom: 1px solid ${props => props.theme.colors.grayLighter};
+`;
 
+const TabFormatter = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  @media (max-width: ${props => props.theme.screenSize.desktop}) {
+    width: 100%;
+  }
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
+    flex-direction: row;
     justify-content: flex-start;
   }
 `;
 
-const TabFormatter = styled('div')`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    flex-direction: row;
-  }
-`;
-
-const TabContent = styled('div')`
-  border-top: 1px solid ${props => props.theme.colors.grayLighter};
-`;
+const TabContent = styled('div')``;
 
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
     const child = Array.isArray(this.props.children)
-      ? this.props.children[0]
-      : this.props.children;
+      ? props.children[0]
+      : props.children;
     const selectedChild = this.getFirstValueChild(child);
     this.state = {
       value:
         selectedChild.props.name ||
-        this.props.optionKeyFunc(selectedChild.props.optiontext),
+        props.optionKeyFunc(selectedChild.props.optiontext),
       currentContent: selectedChild.props.children
     };
     this.tabChanged = this.tabChanged.bind(this);

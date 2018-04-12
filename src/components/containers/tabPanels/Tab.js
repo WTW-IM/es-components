@@ -16,15 +16,18 @@ const TabButton = styled.button`
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
-      props.selected ? `1px solid ${props.theme.colors.grayLighter}` : '0px'};
-    border-bottom: 0;
+      props.selected
+        ? `1px solid ${props.theme.colors.grayLighter}`
+        : '1px solid transparent'};
+    border-bottom: ${props =>
+      props.selected
+        ? ' 1px solid transparent'
+        : `1px solid ${props.theme.colors.grayLighter}`};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
-    margin: ${props =>
-      props.selected ? '0px 2px -1px 2px' : '1px 4px 0px  2px'};
+    margin: 0px 2px -1px 2px;
     z-index: ${props => (props.selected ? '1' : '0')};
     padding: 0px 10px;
-    width: auto;
     flex-grow: 1;
     text-align: left;
     &:hover {

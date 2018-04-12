@@ -14,7 +14,6 @@ const StyledDropdown = styled(Dropdown)`
     props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
   border: 1px solid ${props => props.theme.colors.grayLighter};
   font-size: 18px;
-  width: auto;
   padding: 0px;
   margin: 0;
 
@@ -25,29 +24,26 @@ const StyledDropdown = styled(Dropdown)`
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
   }
   select:hover {
-    background-color: ${props =>
-      props.selected
-        ? props.theme.colors.white
-        : props.theme.colors.grayLighter};
+    background-color: ${props => props.theme.colors.grayLighter};
   }
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
-      props.selected ? `1px solid ${props.theme.colors.grayLighter}` : '0px'};
-    border-bottom: ${props => (props.selected ? '0px' : '1px')};
+      props.selected
+        ? `1px solid ${props.theme.colors.grayLighter}`
+        : '1px solid transparent'};
+    border-bottom: ${props =>
+      props.selected
+        ? ' 1px solid transparent'
+        : `1px solid ${props.theme.colors.grayLighter}`};
     border-radius: 2px 2px 0 0;
-    display: flex;
-    margin: ${props =>
-      props.selected ? '0px 2px -1px 2px' : '1px 4px 0px  2px'};
+    margin: 0px 2px -1px 2px;
     z-index: ${props => (props.selected ? '1' : '0')};
     padding: 0;
     flex-grow: 1;
     &:hover {
-      background-color: ${props =>
-        props.selected
-          ? props.theme.colors.white
-          : props.theme.colors.grayLighter};
+      background-color: ${props => props.theme.colors.grayLighter};
     }
   }
 `;
@@ -59,7 +55,6 @@ function TabList({
   selected,
   selectedName,
   action,
-  theme,
   optionKeyFunc,
   ...props
 }) {
@@ -71,7 +66,7 @@ function TabList({
     action(value, filteredChildren.props.children);
   };
 
-  const selectOptions = React.Children.map(children, (opt, i) => {
+  const selectOptions = React.Children.map(children, opt => {
     const optionKey = optionKeyFunc(opt.props.optiontext);
     return { optionText: opt.props.optiontext, optionValue: optionKey };
   });
@@ -88,6 +83,7 @@ function TabList({
       onChange={update}
       selected={selected}
       aria-expanded={selected}
+      {...props}
     />
   );
   /* eslint-enable */
@@ -130,7 +126,7 @@ TabList.propTypes = {
   /**
    * The value of the tab that is currently selected
    */
-  selectedName: PropTypes.string,
+  selectedName: PropTypes.node,
   /**
    * A function to generate a key from option text in a tab list. Is passed from the TabPanel
    */

@@ -44,15 +44,19 @@ function Dropdown({
     );
   });
 
+  const label = labelText ? (
+    <LabelText
+      foregroundColor={theme.validationTextColor[validationState]}
+      inline={inline}
+    >
+      {labelText}
+    </LabelText>
+  ) : null;
+
   return (
     <ThemeProvider theme={theme}>
       <Label inline={inline} className={className}>
-        <LabelText
-          foregroundColor={theme.validationTextColor[validationState]}
-          inline={inline}
-        >
-          {labelText}
-        </LabelText>
+        {label}
         <SelectBase
           name={name}
           value={value}

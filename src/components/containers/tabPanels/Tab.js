@@ -9,21 +9,21 @@ const TabButton = styled.button`
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
-  border: 1px solid ${props => props.theme.colors.gray};
+  border: 1px solid ${props => props.theme.colors.grayLighter};
   display: inline-block;
   font-size: 18px;
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
-      props.selected ? `1px solid ${props.theme.colors.gray}` : '0px'};
-    border-bottom: ${props => (props.selected ? '0px' : '1px')};
+      props.selected ? `1px solid ${props.theme.colors.grayLighter}` : '0px'};
+    border-bottom: 0;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     margin: ${props =>
-      props.selected ? '10px 10px -1px 10px' : '10px 10px 0px  10px'};
+      props.selected ? '0px 2px -1px 2px' : '1px 4px 0px  2px'};
     z-index: ${props => (props.selected ? '1' : '0')};
-    padding: 0px 5px;
+    padding: 0px 10px;
     width: auto;
     flex-grow: 1;
     text-align: left;
@@ -43,6 +43,7 @@ function Tab({ name, selected, action, children, ...props }) {
     <TabButton
       onClick={() => action(name, children)}
       selected={selected}
+      aria-expanded={selected}
       {...props}
     >
       {name}

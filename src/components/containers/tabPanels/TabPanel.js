@@ -27,7 +27,7 @@ const TabFormatter = styled('div')`
 `;
 
 const TabContent = styled('div')`
-  border-top: 1px solid #ddd;
+  border-top: 1px solid ${props => props.theme.colors.grayLighter};
 `;
 
 class TabPanel extends React.Component {

@@ -3,12 +3,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
 import ModalHeader from './ModalHeader';
-import defaultTheme from '../../theme/defaultTheme';
 
 const buildHeader = props => (
-  <ThemeProvider theme={defaultTheme}>
+  <ThemeProvider theme={viaTheme}>
     <ModalHeader className="header" {...props} />
   </ThemeProvider>
 );

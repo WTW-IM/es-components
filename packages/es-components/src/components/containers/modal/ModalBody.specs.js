@@ -3,16 +3,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { ThemeProvider } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
 import ModalBody from './ModalBody';
-import defaultTheme from '../../theme/defaultTheme';
 
 describe('modal Body component', () => {
   let instanceToRender;
 
   beforeEach(() => {
     instanceToRender = (
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={viaTheme}>
         <ModalBody className="Body">This is the Body.</ModalBody>
       </ThemeProvider>
     );

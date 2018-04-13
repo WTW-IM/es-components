@@ -3,12 +3,12 @@
 exports[`RadioButton component renders as expected 1`] = `
 <label
   checked={false}
-  className="sc-bwzfXH AXaPC sc-bdVaJa kHjvzh"
+  className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
   disabled={false}
   htmlFor="test"
 >
   <input
-    className="sc-htpNat VGtDe"
+    className="sc-htpNat jeuMMj"
     disabled={false}
     id="test"
     name="rad"
@@ -17,7 +17,7 @@ exports[`RadioButton component renders as expected 1`] = `
     value={undefined}
   />
   <span
-    className="radio-fill sc-ifAKCX jmtqOb"
+    className="radio-fill sc-ifAKCX fnveVG"
     fill="#fff"
   />
   <span

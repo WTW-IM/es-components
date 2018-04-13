@@ -3,8 +3,8 @@
 
 import React from 'react';
 import renderer from 'react-test-renderer';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import getRadioFillVariables from './radio-fill-variables';
 import { RadioButton } from './RadioButton';
 
@@ -28,11 +28,11 @@ describe('getRadioFillVariables', () => {
       checked,
       disabled,
       invalid,
-      defaultTheme.colors
+      viaTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.gray);
-    expect(hover).toBe(defaultTheme.colors.white);
+    expect(fill).toBe(viaTheme.colors.gray);
+    expect(hover).toBe(viaTheme.colors.white);
   });
 
   it('returns { fill: info } when checked, not disabled, and valid', () => {
@@ -44,10 +44,10 @@ describe('getRadioFillVariables', () => {
       checked,
       disabled,
       invalid,
-      defaultTheme.colors
+      viaTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.info);
+    expect(fill).toBe(viaTheme.colors.info);
   });
 
   it('returns { fill: gray } when checked, disabled, and valid', () => {
@@ -59,10 +59,10 @@ describe('getRadioFillVariables', () => {
       checked,
       disabled,
       invalid,
-      defaultTheme.colors
+      viaTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.gray);
+    expect(fill).toBe(viaTheme.colors.gray);
   });
 
   it('returns { fill: danger, hover: danger } when unchecked, not disabled, and invalid', () => {
@@ -74,11 +74,11 @@ describe('getRadioFillVariables', () => {
       checked,
       disabled,
       invalid,
-      defaultTheme.colors
+      viaTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.danger);
-    expect(hover).toBe(defaultTheme.colors.danger);
+    expect(fill).toBe(viaTheme.colors.danger);
+    expect(hover).toBe(viaTheme.colors.danger);
   });
 
   it('returns { fill: danger } when checked, not disabled, and invalid', () => {
@@ -90,10 +90,10 @@ describe('getRadioFillVariables', () => {
       checked,
       disabled,
       invalid,
-      defaultTheme.colors
+      viaTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.danger);
+    expect(fill).toBe(viaTheme.colors.danger);
   });
 
   it('returns { fill: grayDarker, hover: grayDarker } when unchecked, not disabled, and valid', () => {
@@ -105,10 +105,10 @@ describe('getRadioFillVariables', () => {
       checked,
       disabled,
       invalid,
-      defaultTheme.colors
+      viaTheme.colors
     );
 
-    expect(fill).toBe(defaultTheme.colors.grayDarker);
-    expect(hover).toBe(defaultTheme.colors.grayDarker);
+    expect(fill).toBe(viaTheme.colors.grayDarker);
+    expect(hover).toBe(viaTheme.colors.grayDarker);
   });
 });

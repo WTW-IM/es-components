@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
+import viaTheme from 'es-components-via-theme';
+
 import genId from '../../util/generateAlphaName';
-import defaultTheme from '../../theme/defaultTheme';
 
 const OrderedList = styled.ol`
   background-color: ${props => props.theme.colors.grayLightest};
@@ -76,7 +77,7 @@ Breadcrumb.propTypes = {
 };
 
 Breadcrumb.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Breadcrumb);

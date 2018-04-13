@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import NavItem from './NavItem';
 
 const NavStyled = styled.nav`
@@ -66,7 +66,7 @@ SideNav.propTypes = {
 SideNav.defaultProps = {
   useAltStyle: false,
   onItemSelected: noop,
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 const UncontrolledSideNav = uncontrollable(SideNav, {

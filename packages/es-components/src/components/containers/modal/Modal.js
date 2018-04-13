@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import genId from '../../util/generateAlphaName';
 import Fade from '../../util/Fade';
 import Header from './ModalHeader';
@@ -189,7 +189,7 @@ Modal.defaultProps = {
   onHide: noop,
   show: false,
   size: 'medium',
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 Modal.childContextTypes = {

@@ -54,6 +54,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "es-components-via-theme": "^1.0.0",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",

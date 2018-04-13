@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
@@ -276,7 +276,7 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Notification);

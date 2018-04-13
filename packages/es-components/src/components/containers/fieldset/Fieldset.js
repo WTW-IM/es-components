@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
-
-import defaultTheme from '../../theme/defaultTheme';
+import viaTheme from 'es-components-via-theme';
 
 const Legend = styled.legend`
   border: 0;
@@ -63,7 +62,7 @@ Fieldset.propTypes = {
 };
 
 Fieldset.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Fieldset);

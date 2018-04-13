@@ -42,7 +42,7 @@ const StyledDropdown = styled(Dropdown)`
       ${props =>
         props.selected ? ' transparent' : props.theme.colors.grayLighter};
     background-color: ${props => props.theme.colors.white};
-    margin: 0px 2px -1px 2px;
+    margin-bottom: -1px;
     button {
       background-color: ${props => props.theme.colors.white};
       border-radius: 2px 2px 0 0;
@@ -50,7 +50,7 @@ const StyledDropdown = styled(Dropdown)`
       color: ${props =>
         props.selected ? props.theme.colors.black : props.theme.colors.primary};
       height: 100%;
-      padding: 0px 5px;
+      padding: 0 5px;
       z-index: ${props => (props.selected ? '1' : '0')};
       &:active {
         margin: 0;

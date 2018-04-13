@@ -25,8 +25,8 @@ const TabButton = styled.button`
         : `1px solid ${props.theme.colors.grayLighter}`};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
-    padding: 0px 10px;
-    margin: 0px 2px -1px 2px;
+    padding: 0 10px;
+    margin: 0 2px -1px 0;
     z-index: ${props => (props.selected ? '1' : '0')};
     &:hover {
       background-color: ${props =>

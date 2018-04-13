@@ -1,3 +1,3 @@
 #!/bin/sh
 npm run styleguide-build
-git add docs/
+git add packages/es-components/docs/

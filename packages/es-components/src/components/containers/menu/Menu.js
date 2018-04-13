@@ -5,7 +5,7 @@ import styled, { ThemeProvider, withTheme } from 'styled-components';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
-import defaultTheme from '../../theme/defaultTheme';
+import viaTheme from 'es-components-via-theme';
 
 const Backdrop = styled.div`
   background-color: black;
@@ -97,7 +97,7 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-  theme: defaultTheme,
+  theme: viaTheme,
   rootClose: false,
   openButtonType: 'default'
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '../../controls/buttons/Button';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
-import defaultTheme from '../../theme/defaultTheme';
+import viaTheme from 'es-components-via-theme';
 
 const Caret = styled.span`
   display: inline-block;
@@ -133,7 +133,7 @@ DropdownButton.propTypes = {
 };
 
 DropdownButton.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(DropdownButton);

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import DrawerPanel from './DrawerPanel';
 
 function drawerPanelPropType(props, propName, componentName) {
@@ -130,7 +130,7 @@ Drawer.defaultProps = {
   closedIconName: 'plus',
   onActiveKeysChanged: noop,
   openedIconName: 'minus',
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 const UncontrolledDrawer = uncontrollable(Drawer, {

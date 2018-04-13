@@ -2,8 +2,8 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { noop, isNumber } from 'lodash';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import { InputBase } from '../../controls/BaseControls';
@@ -40,7 +40,7 @@ export class Incrementer extends React.Component {
     incrementAmount: 1,
     decrementAmount: 1,
     onValueUpdated: noop,
-    theme: defaultTheme
+    theme: viaTheme
   };
 
   constructor(props) {

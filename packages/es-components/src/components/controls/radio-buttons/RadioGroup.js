@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
+import viaTheme from 'es-components-via-theme';
 
 import Fieldset from '../../containers/fieldset/Fieldset';
 
 import RadioButton from './RadioButton';
-import defaultTheme from '../../theme/defaultTheme';
 import { ThemeProvider, withTheme } from 'styled-components';
 
 export function RadioGroup({
@@ -79,7 +79,7 @@ RadioGroup.propTypes = {
 };
 
 RadioGroup.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(RadioGroup);

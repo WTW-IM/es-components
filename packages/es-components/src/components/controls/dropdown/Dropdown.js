@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import { ThemeProvider, withTheme } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import Label from '../Label';
 import { LabelText, SelectBase } from '../BaseControls';
 
@@ -97,7 +97,7 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Dropdown);

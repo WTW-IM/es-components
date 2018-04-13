@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import defaultTheme from '../components/theme/defaultTheme';
+import viaTheme from 'es-components-via-theme';
 
 export default function ExampleWrapper({ children }) {
-  return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={viaTheme}>{children}</ThemeProvider>;
 }

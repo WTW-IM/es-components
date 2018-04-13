@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import Label from '../Label';
 import getRadioFillVariables from './radio-fill-variables';
 
@@ -139,7 +139,7 @@ RadioButton.propTypes = {
 };
 
 RadioButton.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(RadioButton);

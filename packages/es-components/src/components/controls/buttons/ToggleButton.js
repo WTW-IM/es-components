@@ -2,8 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
+
 import Button from './Button';
-import defaultTheme from '../../theme/defaultTheme';
 
 export class ToggleButton extends React.Component {
   state = {
@@ -105,7 +106,7 @@ ToggleButton.propTypes = {
 
 ToggleButton.defaultProps = {
   styleType: 'default',
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(ToggleButton);

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import uncontrollable from 'uncontrollable';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import Button from '../../controls/buttons/Button';
 import PopoverTrigger from './PopoverTrigger';
 
@@ -107,7 +107,7 @@ PopoverLink.defaultProps = {
   showPopover: false,
   showCloseButton: false,
   suppressUnderline: false,
-  theme: defaultTheme,
+  theme: viaTheme,
   buttonStyle: 'primary',
   isLinkButton: true
 };

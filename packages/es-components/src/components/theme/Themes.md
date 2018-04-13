@@ -3,7 +3,8 @@ To apply a theme you can either wrap your root react app component in a `<ThemeP
 Example:
 ```html
 import { ThemeProvider } from 'styled-components';
-import { viaTheme } from 'es-components';
+import viaTheme from 'es-components-via-theme';
+
 ...
 render(
 	<ThemeProvider theme={viaTheme}>
@@ -12,39 +13,9 @@ render(
 );
 ```
 
-Three themes are provided with this library: `defaultTheme`, `wtwTheme`, and `viaTheme`.
-
-To create your own theme, you could simply copy one of the themes (a simple javascript object), modify the values, and supply that object to the `ThemeProvider`.
+The [via benefits theme]() is bundled as the default theme for this component library. To create your own theme, you can copy one of the themes, modify the values, and supply that object to the `ThemeProvider`.
 
 ### Theme colors
-
-<table style="margin-bottom: 1.5em">
-	<tbody>
-		<tr><th colspan="7" style="text-align: left">Default</th></tr>
-		<tr>
-			<td>Primary <div style="background-color: #007BFF; padding: 1em; width: 50px"></div></td>
-			<td>Default <div style="background-color: #6c757d; padding: 1em; width: 50px"></div></td>
-			<td>Info <div style="background-color: #17a2b8; padding: 1em; width: 50px"></div></td>
-			<td>Success <div style="background-color: #28a745; padding: 1em; width: 50px"></div></td>
-			<td>Warning <div style="background-color: #ffc107; padding: 1em; width: 50px"></div></td>
-			<td>Danger <div style="background-color: #dc3545; padding: 1em; width: 50px"></div></td>
-		</tr>
-	</tbody>
-</table>
-
-<table style="margin-bottom: 1.5em">
-	<tbody>
-		<tr><th colspan="7" style="text-align: left">WTW</th></tr>
-		<tr>
-			<td>Primary <div style="background-color: #5a0c6f; padding: 1em; width: 50px"></div></td>
-			<td>Default <div style="background-color: #444; padding: 1em; width: 50px"></div></td>
-			<td>Info <div style="background-color: #1b6284; padding: 1em; width: 50px"></div></td>
-			<td>Success <div style="background-color: #060; padding: 1em; width: 50px"></div></td>
-			<td>Warning <div style="background-color: #ebaf00; padding: 1em; width: 50px"></div></td>
-			<td>Danger <div style="background-color: #af140c; padding: 1em; width: 50px"></div></td>
-		</tr>
-	</tbody>
-</table>
 
 <table style="margin-bottom: 1.5em">
 	<tbody>

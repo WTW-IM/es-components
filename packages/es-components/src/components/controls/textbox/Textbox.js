@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, ThemeProvider, withTheme } from 'styled-components';
 import { noop, omit } from 'lodash';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import MaskedInput from '../../util/ReactTextMask';
 import Icon from '../../base/icons/Icon';
 import { LabelText, InputBase } from '../BaseControls';
@@ -216,7 +216,7 @@ Textbox.defaultProps = {
   onChange: noop,
   onBlur: noop,
   validationState: 'default',
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Textbox);

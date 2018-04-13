@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
-import defaultTheme from '../../theme/defaultTheme';
 import Fade from '../../util/Fade';
 
 const TooltipBase = styled.div`
@@ -177,7 +177,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   position: 'top',
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Tooltip);

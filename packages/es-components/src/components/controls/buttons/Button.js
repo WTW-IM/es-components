@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
-
-import defaultTheme from '../../theme/defaultTheme';
+import viaTheme from 'es-components-via-theme';
 
 function getBlockPropertyValues(isBlock) {
   if (isBlock) {
@@ -203,7 +202,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  theme: defaultTheme
+  theme: viaTheme
 };
 
 export default withTheme(Button);

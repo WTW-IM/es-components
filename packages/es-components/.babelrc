@@ -1,0 +1,41 @@
+{
+  "plugins": [
+    "transform-runtime",
+    "transform-export-extensions"
+  ],
+  "env": {
+    "development": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
+    "es6": {
+      "presets": [ ["wtw-im", {
+        "env": {
+          "modules": false
+        },
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
+    "production": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
+    "test": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    },
+    "styleguidist": {
+      "presets": [ ["wtw-im", {
+        "extractFormatMessage": false,
+        "transformFormatMessage": false
+      }] ]
+    }
+  }
+}

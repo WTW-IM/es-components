@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuTestSuite renders as expected 1`] = `
+<div
+  className={undefined}
+>
+  <button
+    aria-expanded={false}
+    className="open-menu-button sc-ifAKCX cINbJu sc-bwzfXH kFqobI sc-bdVaJa jXnGOW"
+    onClick={[Function]}
+  >
+    Open Menu
+  </button>
+  <div
+    className="menu-panel sc-gzVnrw cOYkbZ"
+  >
+    <div
+      className="sc-dnqmqq djHNQY"
+    >
+      <button
+        aria-label="Close"
+        className="sc-htoDjs hubgrr sc-EHOje cQHrKQ"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden="true"
+        >
+          ×
+        </span>
+        <span
+          className="sc-bZQynM eBGzNP"
+        >
+          Close
+        </span>
+      </button>
+    </div>
+    <div
+      className="sc-iwsKbI kyjaoD"
+    >
+      <div
+        className="sc-gZMcBi jySwZi"
+      >
+        <div
+          aria-label="Menu Section"
+          className="sc-gqjmRU fiUekS"
+        >
+          Menu Section
+        </div>
+        <div
+          className="sc-VigVT frPBLq"
+        >
+          <a
+            href="www.google.com"
+          >
+            Go To Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

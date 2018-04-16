@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import defaultTheme from '../../theme/defaultTheme';
+import defaultTheme from '../../theme/viaTheme';
 import TabList from './TabList';
 import Tab from './Tab';
 import { some } from 'lodash';
@@ -14,7 +14,7 @@ const TabWrapper = styled.div`
 const TabFormatter = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 24px;
+  font-size: inherit;
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
     width: 100%;
   }

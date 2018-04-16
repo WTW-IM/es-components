@@ -14,7 +14,8 @@ const TabButton = styled.button`
   font-size: inherit;
   box-shadow: ${props =>
     props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'unset'};
-  padding: 5px;
+  padding: 10px;
+  text-align: left;
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
@@ -29,7 +30,7 @@ const TabButton = styled.button`
     box-shadow: unset;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
-    padding: 0 10px;
+    padding: 0 3px;
     margin: 0 2px -1px 0;
     z-index: ${props => (props.selected ? '1' : '0')};
     &:hover {

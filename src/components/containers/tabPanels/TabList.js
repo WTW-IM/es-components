@@ -23,14 +23,27 @@ const StyledDropdown = styled(Dropdown)`
     display: inline-block;
     margin: 0;
     font-size: inherit;
-    padding: 0px;
+    padding: 10px;
     &:active {
       margin: 0;
     }
   }
+
+  div button {
+    padding: 5px 10px;
+    text-align: left;
+    box-shadow: unset;
+  }
+
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
+    position: relative;
     button {
+      display: flex;
+      justify-content: space-between;
       width: 100%;
+    }
+    button span {
+      margin: 10px 5px 0 0;
     }
     div {
       width: 100%;
@@ -44,7 +57,6 @@ const StyledDropdown = styled(Dropdown)`
       ${props =>
         props.selected ? ' transparent' : props.theme.colors.grayLighter};
     background-color: ${props => props.theme.colors.white};
-    box-shadow: unset;
     margin-bottom: -1px;
     button {
       background-color: ${props => props.theme.colors.white};
@@ -52,7 +64,8 @@ const StyledDropdown = styled(Dropdown)`
       color: ${props =>
         props.selected ? props.theme.colors.black : props.theme.colors.primary};
       height: 100%;
-      padding: 0 5px;
+      padding: 0 3px;
+      box-shadow: unset;
       z-index: 1;
       &:active {
         margin: 0;

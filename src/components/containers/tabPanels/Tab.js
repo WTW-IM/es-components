@@ -11,7 +11,10 @@ const TabButton = styled.button`
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
   display: inline-block;
-  font-size: 18px;
+  font-size: inherit;
+  box-shadow: ${props =>
+    props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'unset'};
+  padding: 5px;
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
@@ -23,6 +26,7 @@ const TabButton = styled.button`
       props.selected
         ? ' 1px solid transparent'
         : `1px solid ${props.theme.colors.grayLighter}`};
+    box-shadow: unset;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     padding: 0 10px;

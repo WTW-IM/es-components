@@ -90,7 +90,10 @@ export class DropdownButton extends React.Component {
           disabled={!rootClose}
         >
           <div className={className}>
-            <Button handleOnClick={this.toggleDropdown}>
+            <Button
+              handleOnClick={this.toggleDropdown}
+              aria-pressed={this.state.isOpen}
+            >
               {manualButtonValue || this.state.buttonValue} <Caret />
             </Button>
             <ButtonPanel isOpen={this.state.isOpen} theme={theme}>

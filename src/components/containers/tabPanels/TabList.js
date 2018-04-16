@@ -16,11 +16,13 @@ const StyledDropdown = styled(Dropdown)`
       props.selected
         ? props.theme.colors.white
         : props.theme.colors.grayLighter};
+    box-shadow: ${props =>
+      props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'unset'};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     display: inline-block;
-    font-size: 18px;
     margin: 0;
+    font-size: inherit;
     padding: 0px;
     &:active {
       margin: 0;
@@ -42,16 +44,16 @@ const StyledDropdown = styled(Dropdown)`
       ${props =>
         props.selected ? ' transparent' : props.theme.colors.grayLighter};
     background-color: ${props => props.theme.colors.white};
+    box-shadow: unset;
     margin-bottom: -1px;
     button {
       background-color: ${props => props.theme.colors.white};
       border-radius: 2px 2px 0 0;
-      box-shadow: none;
       color: ${props =>
         props.selected ? props.theme.colors.black : props.theme.colors.primary};
       height: 100%;
       padding: 0 5px;
-      z-index: ${props => (props.selected ? '1' : '0')};
+      z-index: 1;
       &:active {
         margin: 0;
       }
@@ -86,7 +88,11 @@ function TabList({
   const selectOptions = React.Children.map(children, opt => {
     const optionKey = optionKeyFunc(opt.props.optiontext);
     return (
-      <DisplayButton name={optionKey} handleOnClick={update}>
+      <DisplayButton
+        name={optionKey}
+        handleOnClick={update}
+        aria-expanded={optionKey === selectedName}
+      >
         {opt.props.optiontext}
       </DisplayButton>
     );
@@ -106,7 +112,6 @@ function TabList({
       shouldUpdateButtonValue
       rootClose
       selected={selected}
-      aria-expanded={selected}
       {...props}
     >
       {selectOptions}

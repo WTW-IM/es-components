@@ -6,6 +6,8 @@
   "repository": "https://github.com/wtw-im/es-components",
   "scripts": {
     "ci": "sh build.sh",
+    "version_only": "lerna publish --skip-npm",
+    "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
     "link": "lerna link",
     "precommit": "lint-staged && sh rebuild-docs.sh"

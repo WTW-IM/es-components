@@ -5,19 +5,11 @@ const gray3 = '#e4e4e4';
 const gray4 = '#d8d8d8';
 const gray5 = '#c5c5c5';
 const gray6 = '#979797';
-// const gray7 = '#707070';
+const gray7 = '#707070';
 const gray8 = '#585858';
 const gray9 = '#444';
 const black = '#000';
 const darkBlue = '#006685';
-
-const grayLightest = gray1;
-const grayLighter = gray2;
-const grayLight = gray3;
-const gray = gray5;
-const grayDark = gray6;
-const grayDarker = gray8;
-const grayDarkest = gray9;
 
 const defaultColor = '#d8d8d8';
 const defaultHover = '#bfbfbf';
@@ -48,8 +40,8 @@ const inputFocus = '#83bffc';
 const inputBoxShadow = 'rgba(102, 175, 233, 0.6)';
 
 // Datepicker colors
-const navArrow = gray;
-const navArrowHover = grayDark;
+const navArrow = gray5;
+const navArrowHover = gray6;
 const selected = '#216ba5';
 const hover = '#1d5d90';
 const keyboard = '#2a87d0';
@@ -60,13 +52,15 @@ const highlightHover = '#32be3f';
 const theme = {
   colors: {
     black,
-    grayDarkest,
-    grayDarker,
-    grayDark,
-    gray,
-    grayLight,
-    grayLighter,
-    grayLightest,
+    gray1,
+    gray2,
+    gray3,
+    gray4,
+    gray5,
+    gray6,
+    gray7,
+    gray9,
+    gray9,
     white,
     defaultColor,
     defaultHover,

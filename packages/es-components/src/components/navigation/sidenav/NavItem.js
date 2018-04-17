@@ -19,7 +19,7 @@ const AnchorBase = styled.a`
   }
 
   &:hover {
-    background-color: ${props => props.theme.colors.grayLighter};
+    background-color: ${props => props.theme.colors.gray2};
     color: ${props => props.theme.colors.info};
 
     > i {
@@ -42,10 +42,10 @@ const AnchorBase = styled.a`
         }
       }
     `} ${props =>
-  props.isDisabled &&
+    props.isDisabled &&
     css`
-      background-color: ${props.theme.colors.grayLightest};
-      color: ${props.theme.colors.grayDark};
+      background-color: ${props.theme.colors.gray1};
+      color: ${props.theme.colors.gray6};
       cursor: not-allowed;
 
       > span {
@@ -53,15 +53,15 @@ const AnchorBase = styled.a`
       }
 
       > i {
-        color: ${props.theme.colors.grayLightest};
+        color: ${props.theme.colors.gray1};
       }
 
       &:hover {
-        background-color: ${props.theme.colors.grayLightest};
-        color: ${props.theme.colors.grayDark};
+        background-color: ${props.theme.colors.gray1};
+        color: ${props.theme.colors.gray6};
 
         > i {
-          color: ${props.theme.colors.grayLightest};
+          color: ${props.theme.colors.gray1};
         }
       }
     `};
@@ -76,7 +76,7 @@ const AnchorAltStyle = AnchorBase.extend`
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props.theme.colors.grayLight};
+      background-color: ${props.theme.colors.gray3};
       border-left: 4px solid ${props.theme.colors.info};
       color: ${props.theme.colors.info};
       padding-left: 6px;
@@ -86,7 +86,7 @@ const AnchorAltStyle = AnchorBase.extend`
       }
 
       &:hover {
-        background-color: ${props.theme.colors.grayLight};
+        background-color: ${props.theme.colors.gray3};
         color: ${props.theme.colors.info};
 
         > i {
@@ -94,7 +94,7 @@ const AnchorAltStyle = AnchorBase.extend`
         }
       }
     `} ${props =>
-  props.isDisabled &&
+    props.isDisabled &&
     css`
       &:hover {
         border-left: none;

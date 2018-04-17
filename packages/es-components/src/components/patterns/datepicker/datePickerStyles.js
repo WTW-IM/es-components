@@ -29,7 +29,7 @@ export default function datepickerStyles(colors, dpColors) {
       z-index: -1;
       border-width: 8px;
       left: -8px;
-      border-bottom-color: ${colors.gray};
+      border-bottom-color: ${colors.gray5};
   }
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle {
       top: 0;
@@ -38,11 +38,11 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
       border-top: none;
-      border-bottom-color: ${colors.grayLightest};
+      border-bottom-color: ${colors.gray1};
   }
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
       top: -1px;
-      border-bottom-color: ${colors.gray};
+      border-bottom-color: ${colors.gray5};
   }
   .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle,
   .react-datepicker__year-read-view--down-arrow,
@@ -63,7 +63,7 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker__year-read-view--down-arrow::before,
   .react-datepicker__month-read-view--down-arrow::before {
       bottom: -1px;
-      border-top-color: ${colors.gray};
+      border-top-color: ${colors.gray5};
   }
   .react-datepicker-wrapper {
       display: inline-block;
@@ -72,7 +72,7 @@ export default function datepickerStyles(colors, dpColors) {
       font-size: 0.9rem;
       background-color: ${colors.white};
       color: ${colors.black};
-      border: 1px solid ${colors.gray};
+      border: 1px solid ${colors.gray5};
       box-shadow: 0 5px 10px ${colors.boxShadowLight};
       display: inline-block;
       position: relative;
@@ -103,8 +103,8 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__header {
       text-align: center;
-      background-color: ${colors.grayLightest};
-      border-bottom: 1px solid ${colors.gray};
+      background-color: ${colors.gray1};
+      border-bottom: 1px solid ${colors.gray5};
       padding-top: 10px;
       position: relative;
   }
@@ -183,11 +183,11 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__time-container {
       float: right;
-      border-left: 1px solid ${colors.gray};
+      border-left: 1px solid ${colors.gray5};
   }
   .react-datepicker__time-container--with-today-button {
       display: inline;
-      border: 1px solid ${colors.gray};
+      border: 1px solid ${colors.gray5};
       position: absolute;
       right: -72px;
       top: 0;
@@ -213,7 +213,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
       cursor: pointer;
-      background-color: ${colors.grayLightest};
+      background-color: ${colors.gray1};
   }
   .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
       background-color: ${dpColors.selected};
@@ -224,14 +224,14 @@ export default function datepickerStyles(colors, dpColors) {
       background-color: ${dpColors.selected};
   }
   .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled {
-      color: ${colors.grayLighter};
+      color: ${colors.gray2};
   }
   .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled:hover {
       cursor: default;
       background-color: transparent;
   }
   .react-datepicker__week-number {
-      color: ${colors.grayLighter};
+      color: ${colors.gray2};
       display: inline-block;
       width: 1.7rem;
       line-height: 1.7rem;
@@ -243,7 +243,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__week-number.react-datepicker__week-number--clickable:hover {
       border-radius: 0.3rem;
-      background-color: ${colors.grayLightest};
+      background-color: ${colors.gray1};
   }
   .react-datepicker__day-names,
   .react-datepicker__week {
@@ -264,7 +264,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__day:hover {
       border-radius: 0.3rem;
-      background-color: ${colors.grayLight};
+      background-color: ${colors.gray3};
   }
   .react-datepicker__day--today {
       font-weight: bold;
@@ -303,12 +303,12 @@ export default function datepickerStyles(colors, dpColors) {
       color: ${colors.black};
   }
   .react-datepicker__month--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range) {
-      background-color: ${colors.grayLight};
+      background-color: ${colors.gray3};
       color: ${colors.black};
   }
   .react-datepicker__day--disabled {
       cursor: default;
-      color: ${colors.gray};
+      color: ${colors.gray5};
   }
   .react-datepicker__day--disabled:hover {
       background-color: transparent;
@@ -329,11 +329,11 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker__year-read-view:hover .react-datepicker__month-read-view--down-arrow,
   .react-datepicker__month-read-view:hover .react-datepicker__year-read-view--down-arrow,
   .react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow {
-      border-top-color: ${colors.gray};
+      border-top-color: ${colors.gray5};
   }
   .react-datepicker__year-read-view--down-arrow,
   .react-datepicker__month-read-view--down-arrow {
-      border-top-color: ${colors.grayLight};
+      border-top-color: ${colors.gray3};
       float: right;
       margin-left: 20px;
       top: 5px;
@@ -342,14 +342,14 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__year-dropdown,
   .react-datepicker__month-dropdown {
-      background-color: ${colors.grayLightest};
+      background-color: ${colors.gray1};
       position: absolute;
       width: 50%;
       left: 25%;
       top: 30px;
       z-index: 1;
       text-align: center;
-      border: 1px solid ${colors.gray};
+      border: 1px solid ${colors.gray5};
   }
   .react-datepicker__year-dropdown:hover,
   .react-datepicker__month-dropdown:hover {
@@ -384,15 +384,15 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__year-option:hover,
   .react-datepicker__month-option:hover {
-      background-color: ${colors.grayLight};
+      background-color: ${colors.gray3};
   }
   .react-datepicker__year-option:hover .react-datepicker__navigation--years-upcoming,
   .react-datepicker__month-option:hover .react-datepicker__navigation--years-upcoming {
-      border-bottom-color: ${colors.grayLight};
+      border-bottom-color: ${colors.gray3};
   }
   .react-datepicker__year-option:hover .react-datepicker__navigation--years-previous,
   .react-datepicker__month-option:hover .react-datepicker__navigation--years-previous {
-      border-top-color: ${colors.grayLight};
+      border-top-color: ${colors.gray3};
   }
   .react-datepicker__year-option--selected,
   .react-datepicker__month-option--selected {
@@ -429,8 +429,8 @@ export default function datepickerStyles(colors, dpColors) {
       top: 50%;
   }
   .react-datepicker__today-button {
-      background: ${colors.grayLightest};
-      border-top: 1px solid ${colors.gray};
+      background: ${colors.gray1};
+      border-top: 1px solid ${colors.gray5};
       cursor: pointer;
       text-align: center;
       font-weight: bold;

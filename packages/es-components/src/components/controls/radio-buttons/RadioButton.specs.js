@@ -19,7 +19,7 @@ describe('RadioButton component', () => {
 });
 
 describe('getRadioFillVariables', () => {
-  it('returns { fill: gray, hover: white } when unchecked, disabled, and valid', () => {
+  it('returns { fill: gray5, hover: white } when unchecked, disabled, and valid', () => {
     const checked = false;
     const disabled = true;
     const invalid = false;
@@ -31,7 +31,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.gray);
+    expect(fill).toBe(viaTheme.colors.gray5);
     expect(hover).toBe(viaTheme.colors.white);
   });
 
@@ -50,7 +50,7 @@ describe('getRadioFillVariables', () => {
     expect(fill).toBe(viaTheme.colors.info);
   });
 
-  it('returns { fill: gray } when checked, disabled, and valid', () => {
+  it('returns { fill: gray5 } when checked, disabled, and valid', () => {
     const checked = true;
     const disabled = true;
     const invalid = false;
@@ -62,7 +62,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.gray);
+    expect(fill).toBe(viaTheme.colors.gray5);
   });
 
   it('returns { fill: danger, hover: danger } when unchecked, not disabled, and invalid', () => {
@@ -96,7 +96,7 @@ describe('getRadioFillVariables', () => {
     expect(fill).toBe(viaTheme.colors.danger);
   });
 
-  it('returns { fill: grayDarker, hover: grayDarker } when unchecked, not disabled, and valid', () => {
+  it('returns { fill: gray8, hover: gray8 } when unchecked, not disabled, and valid', () => {
     const checked = false;
     const disabled = false;
     const invalid = false;
@@ -108,7 +108,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.grayDarker);
-    expect(hover).toBe(viaTheme.colors.grayDarker);
+    expect(fill).toBe(viaTheme.colors.gray8);
+    expect(hover).toBe(viaTheme.colors.gray8);
   });
 });

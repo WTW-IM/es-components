@@ -7,7 +7,7 @@ import viaTheme from 'es-components-via-theme';
 import genId from '../../util/generateAlphaName';
 
 const OrderedList = styled.ol`
-  background-color: ${props => props.theme.colors.grayLightest};
+  background-color: ${props => props.theme.colors.gray1};
   border-radius: 2px;
   line-height: 1.4;
   list-style: none;
@@ -19,7 +19,7 @@ const OrderedList = styled.ol`
     padding-left: 24px;
 
     &::before {
-      border-color: ${props => props.theme.colors.gray};
+      border-color: ${props => props.theme.colors.gray5};
       border-style: solid;
       border-width: 0 2px 2px 0;
       box-sizing: border-box;
@@ -48,9 +48,9 @@ const Crumb = styled.li`
 
   > a:hover {
     color: ${props =>
-    tinycolor(props.theme.colors.primary)
-      .darken(15)
-      .toRgbString()};
+      tinycolor(props.theme.colors.primary)
+        .darken(15)
+        .toRgbString()};
     text-decoration: underline;
   }
 `;

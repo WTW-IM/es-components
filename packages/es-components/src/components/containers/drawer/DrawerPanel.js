@@ -8,7 +8,7 @@ import genId from '../../util/generateAlphaName';
 
 // Note: DrawerPanel relies on a parent (Drawer) with ThemeProvider wrapping it
 const PanelWrapper = styled.div`
-  border-bottom: 1px solid ${props => props.theme.colors.grayLight};
+  border-bottom: 1px solid ${props => props.theme.colors.gray3};
 `;
 
 const PanelButton = styled.button`
@@ -22,7 +22,7 @@ const PanelButton = styled.button`
   width: 100%;
 
   &:hover {
-    background-color: ${props => props.theme.colors.grayLighter};
+    background-color: ${props => props.theme.colors.gray2};
     color: ${props => props.theme.colors.primary};
   }
 `;
@@ -37,10 +37,10 @@ const PanelBody = styled(({ noPadding, ...rest }) => (
   <AnimateHeight {...rest} />
 ))`
   background-color: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.grayDarkest};
+  color: ${props => props.theme.colors.gray9};
 
   > div {
-    border-bottom: 4px solid ${props => props.theme.colors.grayLight};
+    border-bottom: 4px solid ${props => props.theme.colors.gray3};
     padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
   }
 `;

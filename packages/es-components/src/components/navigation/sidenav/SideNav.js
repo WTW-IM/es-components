@@ -9,7 +9,7 @@ import NavItem from './NavItem';
 
 const NavStyled = styled.nav`
   background-color: ${props => props.theme.colors.white};
-  box-shadow: 2px 2px 5px ${props => props.theme.colors.grayDark};
+  box-shadow: 2px 2px 5px ${props => props.theme.colors.gray6};
 
   ul {
     list-style: none;

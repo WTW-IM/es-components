@@ -2,7 +2,7 @@
 
 exports[`modal footer component renders as expected 1`] = `
 <div
-  className="footer sc-bdVaJa dtJhjk"
+  className="footer sc-bdVaJa dieaDT"
 >
   This is the footer.
 </div>

@@ -13,7 +13,7 @@ export const LabelText = styled.span`
 const baseStyles = css`
   border-radius: 2px;
   box-sizing: border-box;
-  color: ${props => props.theme.colors.grayDarkest};
+  color: ${props => props.theme.colors.gray9};
   font-size: ${props => props.theme.sizes.baseFontSize}px;
   font-weight: normal;
   height: 39px;
@@ -26,7 +26,7 @@ const baseStyles = css`
   }
 
   &:disabled {
-    background-color: ${props => props.theme.colors.grayLighter};
+    background-color: ${props => props.theme.colors.gray2};
     cursor: not-allowed;
   }
 `;
@@ -41,7 +41,7 @@ export const InputBase = styled.input`
   }
 
   &:read-only {
-    background-color: ${props => props.theme.colors.grayLighter};
+    background-color: ${props => props.theme.colors.gray2};
     cursor: text;
   }
 `;

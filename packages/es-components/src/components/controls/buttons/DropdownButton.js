@@ -20,7 +20,7 @@ const ButtonPanel = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   margin-top: 3px;
   position: absolute;
-  border: 1px solid ${props => props.theme.colors.grayLight};
+  border: 1px solid ${props => props.theme.colors.gray3};
   background-color: ${props => props.theme.colors.white};
 `;
 
@@ -36,7 +36,7 @@ const StyledButtonLink = styled(Button)`
   text-align: left;
   margin-bottom: 0px;
   &:hover {
-    background-color: ${props => props.theme.colors.grayLighter};
+    background-color: ${props => props.theme.colors.gray2};
   }
 `;
 

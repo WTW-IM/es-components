@@ -9,7 +9,7 @@ const StyledMenuSection = styled.div`
   padding-bottom: ${props => (props.isLast ? '0px' : '20px')};
   border-bottom: ${props =>
     !props.isLast && !props.inline
-      ? `1px solid ${props.theme.colors.gray}`
+      ? `1px solid ${props.theme.colors.gray5}`
       : 'none'};
 `;
 /* eslint-enable */

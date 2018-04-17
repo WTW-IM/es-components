@@ -11,7 +11,7 @@ export default function getRadioFillVariables(
   if (isNotChecked && isDisabled && isValid) {
     return {
       hover: colors.white,
-      fill: colors.gray
+      fill: colors.gray5
     };
   }
 
@@ -30,7 +30,7 @@ export default function getRadioFillVariables(
 
   if (isChecked && isDisabled && isValid) {
     return {
-      fill: colors.gray
+      fill: colors.gray5
     };
   }
 
@@ -41,7 +41,7 @@ export default function getRadioFillVariables(
   }
 
   return {
-    hover: colors.grayDarker,
-    fill: colors.grayDarker
+    hover: colors.gray8,
+    fill: colors.gray8
   };
 }

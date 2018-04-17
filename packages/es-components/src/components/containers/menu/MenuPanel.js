@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 
 const StyledPanel = styled.div`
-  background-color: ${props => props.theme.colors.grayLighter};
+  background-color: ${props => props.theme.colors.gray2};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
 `;

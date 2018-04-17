@@ -31,7 +31,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.gray);
+    expect(fill).toBe(viaTheme.colors.gray5);
     expect(hover).toBe(viaTheme.colors.white);
   });
 
@@ -62,7 +62,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.gray);
+    expect(fill).toBe(viaTheme.colors.gray5);
   });
 
   it('returns { fill: danger, hover: danger } when unchecked, not disabled, and invalid', () => {
@@ -108,7 +108,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.grayDarker);
-    expect(hover).toBe(viaTheme.colors.grayDarker);
+    expect(fill).toBe(viaTheme.colors.gray8);
+    expect(hover).toBe(viaTheme.colors.gray8);
   });
 });

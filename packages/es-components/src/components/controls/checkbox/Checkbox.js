@@ -15,9 +15,9 @@ const CheckboxLabel = Label.extend`
 
   > .checkbox-fill {
     background-color: ${props =>
-    props.isChecked ? props.theme.colors.info : props.theme.colors.white};
+      props.isChecked ? props.theme.colors.info : props.theme.colors.white};
     border-color: ${props =>
-    props.isChecked ? props.theme.colors.info : props.theme.colors.grayDark};
+      props.isChecked ? props.theme.colors.info : props.theme.colors.gray6};
 
     &:after {
       border-color: ${props => props.theme.colors.white};
@@ -26,15 +26,13 @@ const CheckboxLabel = Label.extend`
 
   &:hover > .checkbox-fill:after {
     border-color: ${props =>
-    props.isChecked
-      ? props.theme.colors.white
-      : props.theme.colors.grayLight};
+      props.isChecked ? props.theme.colors.white : props.theme.colors.gray3};
   }
 
   &[disabled] > .checkbox-fill {
     background-color: ${props =>
-    props.isChecked ? props.theme.colors.gray : props.theme.colors.white};
-    border-color: ${props => props.theme.colors.gray};
+      props.isChecked ? props.theme.colors.gray5 : props.theme.colors.white};
+    border-color: ${props => props.theme.colors.gray5};
     cursor: not-allowed;
     outline: 0;
 
@@ -52,9 +50,7 @@ const CheckboxInput = styled.input`
     box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
     &:after {
       border-color: ${props =>
-    props.checked
-      ? props.theme.colors.white
-      : props.theme.colors.grayLight};
+        props.checked ? props.theme.colors.white : props.theme.colors.gray3};
     }
   }
 `;
@@ -62,7 +58,7 @@ const CheckboxInput = styled.input`
 
 const CheckboxWrapper = styled.span`
   background: ${props => props.theme.colors.white};
-  border: 3px solid ${props => props.theme.colors.grayDarker};
+  border: 3px solid ${props => props.theme.colors.gray8};
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;

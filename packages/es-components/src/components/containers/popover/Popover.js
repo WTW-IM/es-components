@@ -150,7 +150,7 @@ const PopoverBodyContent = styled.div`
 /* eslint-disable no-confusing-arrow */
 const DismissPopover = styled(DismissButton)`
   color: ${props =>
-    props.hasTitle ? props.theme.colors.white : props.theme.colors.grayDark};
+    props.hasTitle ? props.theme.colors.white : props.theme.colors.gray6};
   padding: ${props => (props.hasTitle ? '4px 14px' : '0px 10px')};
   margin-left: auto;
 `;

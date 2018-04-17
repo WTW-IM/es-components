@@ -22,7 +22,7 @@ function drawerPanelPropType(props, propName, componentName) {
 
 const StyledDrawer = styled.div`
   background-color: ${props => props.theme.colors.white};
-  border-top: 1px solid ${props => props.theme.colors.grayLight};
+  border-top: 1px solid ${props => props.theme.colors.gray3};
   box-shadow: 0 1px 1px ${props => props.theme.colors.boxShadowLight};
   margin-bottom: 25px;
 `;

@@ -13,7 +13,7 @@ const TabButton = styled.button`
   display: inline-block;
   font-size: inherit;
   box-shadow: ${props =>
-    props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'unset'};
+    props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'none'};
   padding: 10px;
   text-align: left;
 
@@ -27,7 +27,7 @@ const TabButton = styled.button`
       props.selected
         ? ' 1px solid transparent'
         : `1px solid ${props.theme.colors.grayLighter}`};
-    box-shadow: unset;
+    box-shadow: none;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     padding: 0 3px;

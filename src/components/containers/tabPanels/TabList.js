@@ -7,6 +7,28 @@ import styled from 'styled-components';
 import { some, find } from 'lodash';
 
 /* eslint-disable no-confusing-arrow */
+const DisplayButton = styled(Button)`
+  && {
+    @media (max-width: ${props => props.theme.screenSize.desktop}) {
+      background-color: ${props =>
+        props.buttonSelected
+          ? props.theme.colors.primary
+          : props.theme.colors.grayLighter};
+    }
+    color: ${props =>
+      props.buttonSelected ? props.theme.colors.white : 'inherit'};
+    background-color: ${props =>
+      props.buttonSelected ? props.theme.colors.primary : 'inherit'};
+    padding: 5px 10px;
+    text-align: left;
+    box-shadow: unset;
+    &:hover {
+      background-color: ${props => props.theme.colors.primary};
+      color: ${props => props.theme.colors.white};
+    }
+  }
+`;
+
 const StyledDropdown = styled(Dropdown)`
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
@@ -17,7 +39,7 @@ const StyledDropdown = styled(Dropdown)`
         ? props.theme.colors.white
         : props.theme.colors.grayLighter};
     box-shadow: ${props =>
-      props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'unset'};
+      props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'none'};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     display: inline-block;
@@ -28,13 +50,6 @@ const StyledDropdown = styled(Dropdown)`
       margin: 0;
     }
   }
-
-  div button {
-    padding: 5px 10px;
-    text-align: left;
-    box-shadow: unset;
-  }
-
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
     position: relative;
     button {
@@ -47,6 +62,11 @@ const StyledDropdown = styled(Dropdown)`
     }
     div {
       width: 100%;
+      border: 1px solid
+        ${props =>
+          props.selected
+            ? props.theme.colors.gray
+            : props.theme.colors.grayDarker};
     }
   }
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
@@ -65,20 +85,20 @@ const StyledDropdown = styled(Dropdown)`
         props.selected ? props.theme.colors.black : props.theme.colors.primary};
       height: 100%;
       padding: 0 3px;
-      box-shadow: unset;
+      box-shadow: none;
       z-index: 1;
       &:active {
         margin: 0;
       }
       &:hover {
-        background-color: ${props => props.theme.colors.grayLighter};
+        background-color: ${props =>
+          props.selected
+            ? props.theme.colors.white
+            : props.theme.colors.grayLighter};
       }
     }
   }
 `;
-
-const DisplayButton = styled(Button)``;
-
 /* eslint-enable */
 
 function TabList({
@@ -100,10 +120,12 @@ function TabList({
 
   const selectOptions = React.Children.map(children, opt => {
     const optionKey = optionKeyFunc(opt.props.optiontext);
+    const buttonSelected = optionKey === selectedName;
     return (
       <DisplayButton
         name={optionKey}
         handleOnClick={update}
+        buttonSelected={buttonSelected}
         aria-expanded={optionKey === selectedName}
       >
         {opt.props.optiontext}

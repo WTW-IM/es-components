@@ -13,7 +13,7 @@ const DisplayButton = styled(Button)`
       background-color: ${props =>
         props.buttonSelected
           ? props.theme.colors.primary
-          : props.theme.colors.grayLighter};
+          : props.theme.colors.white};
     }
     color: ${props =>
       props.buttonSelected ? props.theme.colors.white : 'inherit'};
@@ -49,6 +49,9 @@ const StyledDropdown = styled(Dropdown)`
     &:active {
       margin: 0;
     }
+    &:hover {
+      background-color: ${props => props.theme.colors.grayLighter};
+    }
   }
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
     position: relative;
@@ -62,11 +65,7 @@ const StyledDropdown = styled(Dropdown)`
     }
     div {
       width: 100%;
-      border: 1px solid
-        ${props =>
-          props.selected
-            ? props.theme.colors.gray
-            : props.theme.colors.grayDarker};
+      border: 1px solid ${props => props.theme.colors.gray};
     }
   }
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
@@ -78,13 +77,16 @@ const StyledDropdown = styled(Dropdown)`
         props.selected ? ' transparent' : props.theme.colors.grayLighter};
     background-color: ${props => props.theme.colors.white};
     margin-bottom: -1px;
+    div {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    }
     button {
       background-color: ${props => props.theme.colors.white};
       border-radius: 2px 2px 0 0;
       color: ${props =>
         props.selected ? props.theme.colors.black : props.theme.colors.primary};
       height: 100%;
-      padding: 0 3px;
+      padding: 10px 15px;
       box-shadow: none;
       z-index: 1;
       &:active {

@@ -30,7 +30,7 @@ const TabButton = styled.button`
     box-shadow: none;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
-    padding: 0 3px;
+    padding: 10px 15px;
     margin: 0 2px -1px 0;
     z-index: ${props => (props.selected ? '1' : '0')};
     &:hover {

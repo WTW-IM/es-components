@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioButton component renders as expected 1`] = `
+<label
+  checked={false}
+  className="sc-bwzfXH ctIRCP sc-bdVaJa kHjvzh"
+  disabled={false}
+  htmlFor="test"
+>
+  <input
+    className="sc-htpNat jeuMMj"
+    disabled={false}
+    id="test"
+    name="rad"
+    onClick={[Function]}
+    type="radio"
+    value={undefined}
+  />
+  <span
+    className="radio-fill sc-ifAKCX cjMraT"
+    fill="#fff"
+  />
+  <span
+    aria-hidden={undefined}
+    className="sc-bxivhb bRNnnP"
+  >
+    test
+  </span>
+</label>
+`;

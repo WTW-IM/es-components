@@ -1,86 +1,36 @@
 {
+
   "name": "es-components",
   "version": "10.7.1",
   "description": "React components built for Exchange Solutions products",
-  "repository": "https://github.com/TWExchangeSolutions/es-components",
-  "browser": "es6/index.js",
-  "main": "lib/index.js",
-  "sideEffects": false,
+  "repository": "https://github.com/wtw-im/es-components",
   "scripts": {
-    "build": "npm run build:es5 && npm run build:es6",
-    "build:es5": "babel src -d lib --ignore specs.js,*.md --copy-files",
-    "build:es6": "cross-env BABEL_ENV=es6 babel src -d es6 --ignore specs.js,*.md --copy-files",
-    "ci": "npm run lint && npm test",
-    "lint": "eslint src",
-    "precommit": "lint-staged && sh rebuild-docs.sh",
-    "prepare": "npm run build",
-    "prettify": "prettier --single-quote --write \"src/**/*.js\"",
-    "styleguide-build": "styleguidist build",
-    "styleguide-server": "styleguidist server",
-    "test": "jest"
+    "ci": "sh build.sh",
+    "version_only": "lerna publish --skip-npm",
+    "publish_only": "lerna publish --skip-git",
+    "publish": "lerna publish",
+    "link": "lerna link",
+    "precommit": "lint-staged && sh rebuild-docs.sh"
   },
   "lint-staged": {
-    "src/**/*.js": [
+    "packages/es-components/src/**/*.js": [
       "prettier --single-quote --write",
       "eslint --fix",
       "git add"
     ]
   },
-  "author": "Exchange Solutions",
+  "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
-  "jest": {
-    "setupTestFrameworkScriptFile": "./config/jest-setup.js",
-    "testRegex": "specs\\.js$"
-  },
-  "peerDependencies": {
-    "react": ">=0.14"
-  },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.2",
     "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.9",
-    "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-wtw-im": "^1.1.0",
-    "copy-webpack-plugin": "^4.5.1",
-    "cross-env": "^5.1.4",
-    "css-loader": "^0.26.1",
-    "enzyme": "^3.3.0",
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^4.3.0",
-    "file-loader": "^0.9.0",
-    "husky": "^0.13.3",
-    "jest": "^18.0.0",
-    "jest-cli": "^20.0.4",
-    "lint-staged": "^3.4.1",
-    "mockdate": "^2.0.1",
-    "prettier": "^1.11.1",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-styleguidist": "^7.0.3",
-    "react-test-renderer": "^16.3.0",
-    "style-loader": "^0.13.1",
-    "webpack": "^2.3.3"
-  },
-  "dependencies": {
-    "babel-runtime": "^6.20.0",
-    "date-fns": "^1.28.3",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "lodash": "^4.17.5",
-    "moment": "^2.21.0",
-    "react-animate-height": "^0.10.10",
-    "react-datepicker": "^1.2.2",
-    "react-overlays": "^0.8.3",
-    "react-text-mask": "5.2.1",
-    "react-transition-group": "^2.2.1",
-    "styled-components": "^2.0.0",
-    "text-mask-addons": "3.7.2",
-    "tinycolor2": "^1.4.1",
-    "uncontrollable": "^4.1.0"
+    "husky": "^0.14.3",
+    "lerna": "^2.10.1",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.12.0"
   }
 }

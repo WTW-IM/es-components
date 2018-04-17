@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox renders as expected 1`] = `
+<label
+  className="sc-bwzfXH fYCssU"
+  disabled={true}
+>
+  <input
+    checked={true}
+    className="sc-htpNat dVmsUC"
+    disabled={true}
+    onChange={[Function]}
+    onClick={[Function]}
+    type="checkbox"
+    value={undefined}
+  />
+  <span
+    className="checkbox-fill sc-bxivhb iHBRSi"
+  />
+  <span
+    className="sc-ifAKCX kVENxO"
+  >
+    Render test
+  </span>
+</label>
+`;

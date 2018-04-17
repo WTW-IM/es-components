@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`modal Body component renders as expected 1`] = `
-<div
-  className="Body sc-bdVaJa azFoI"
->
-  This is the Body.
-</div>
-`;

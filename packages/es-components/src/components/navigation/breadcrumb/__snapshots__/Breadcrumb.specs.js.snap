@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreadcrumbTestSuite renders as expected 1`] = `
+<ol
+  className="test sc-bdVaJa iMOUoM"
+>
+  <li
+    className="sc-bwzfXH jLUeGH"
+  >
+    <a
+      href="/test"
+    >
+      test
+    </a>
+  </li>
+  <li
+    className="sc-bwzfXH jLUeGH"
+  >
+    <a
+      href="/test2"
+    >
+      test2
+    </a>
+  </li>
+</ol>
+`;

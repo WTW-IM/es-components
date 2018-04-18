@@ -8,7 +8,7 @@ import { some } from 'lodash';
 
 const TabWrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid ${props => props.theme.colors.grayLighter};
+  border-bottom: 1px solid ${props => props.theme.colors.gray4};
 `;
 
 const TabFormatter = styled.div`

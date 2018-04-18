@@ -6,14 +6,14 @@ import defaultTheme from 'es-components-via-theme';
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
-    props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
-  border: 1px solid ${props => props.theme.colors.grayLighter};
+    props.selected ? props.theme.colors.white : props.theme.colors.gray4};
+  border: 1px solid ${props => props.theme.colors.gray4};
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
   display: inline-block;
   font-size: inherit;
   box-shadow: ${props =>
-    props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'none'};
+    props.selected ? '0 6px 12px rgba(0, 0, 0, 0.175)' : 'none'};
   padding: 10px;
   text-align: left;
 
@@ -21,12 +21,12 @@ const TabButton = styled.button`
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
       props.selected
-        ? `1px solid ${props.theme.colors.grayLighter}`
+        ? `1px solid ${props.theme.colors.gray4}`
         : '1px solid transparent'};
     border-bottom: ${props =>
       props.selected
         ? ' 1px solid transparent'
-        : `1px solid ${props.theme.colors.grayLighter}`};
+        : `1px solid ${props.theme.colors.gray4}`};
     box-shadow: none;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
@@ -35,9 +35,7 @@ const TabButton = styled.button`
     z-index: ${props => (props.selected ? '1' : '0')};
     &:hover {
       background-color: ${props =>
-        props.selected
-          ? props.theme.colors.white
-          : props.theme.colors.grayLighter};
+        props.selected ? props.theme.colors.white : props.theme.colors.gray4};
     }
   }
 `;

@@ -31,15 +31,13 @@ const DisplayButton = styled(Button)`
 
 const StyledDropdown = styled(Dropdown)`
   background-color: ${props =>
-    props.selected ? props.theme.colors.white : props.theme.colors.grayLighter};
-  border: 1px solid ${props => props.theme.colors.grayLighter};
+    props.selected ? props.theme.colors.white : props.theme.colors.gray4};
+  border: 1px solid ${props => props.theme.colors.gray4};
   button {
     background-color: ${props =>
-      props.selected
-        ? props.theme.colors.white
-        : props.theme.colors.grayLighter};
+      props.selected ? props.theme.colors.white : props.theme.colors.gray4};
     box-shadow: ${props =>
-      props.selected ? `0px 0px 10px ${props.theme.colors.gray}` : 'none'};
+      props.selected ? '0 6px 12px rgba(0, 0, 0, 0.175)' : 'none'};
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     display: inline-block;
@@ -50,7 +48,7 @@ const StyledDropdown = styled(Dropdown)`
       margin: 0;
     }
     &:hover {
-      background-color: ${props => props.theme.colors.grayLighter};
+      background-color: ${props => props.theme.colors.gray4};
     }
   }
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
@@ -65,16 +63,14 @@ const StyledDropdown = styled(Dropdown)`
     }
     div {
       width: 100%;
-      border: 1px solid ${props => props.theme.colors.gray};
+      border: 1px solid ${props => props.theme.colors.gray6};
     }
   }
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     border: 1px solid
-      ${props =>
-        props.selected ? props.theme.colors.grayLighter : 'transparent'};
+      ${props => (props.selected ? props.theme.colors.gray4 : 'transparent')};
     border-bottom: 1px solid
-      ${props =>
-        props.selected ? ' transparent' : props.theme.colors.grayLighter};
+      ${props => (props.selected ? ' transparent' : props.theme.colors.gray4)};
     background-color: ${props => props.theme.colors.white};
     margin-bottom: -1px;
     div {
@@ -94,9 +90,7 @@ const StyledDropdown = styled(Dropdown)`
       }
       &:hover {
         background-color: ${props =>
-          props.selected
-            ? props.theme.colors.white
-            : props.theme.colors.grayLighter};
+          props.selected ? props.theme.colors.white : props.theme.colors.gray4};
       }
     }
   }

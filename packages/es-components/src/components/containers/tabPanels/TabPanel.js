@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import defaultTheme from '../../theme/viaTheme';
+import defaultTheme from 'es-components-via-theme';
 import TabList from './TabList';
 import Tab from './Tab';
 import { some } from 'lodash';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import defaultTheme from '../../theme/defaultTheme';
+import defaultTheme from 'es-components-via-theme';
 
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`

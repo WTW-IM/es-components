@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dropdown from '../../controls/buttons/DropdownButton';
 import Button from '../../controls/buttons/Button';
-import defaultTheme from '../../theme/defaultTheme';
+import defaultTheme from 'es-components-via-theme';
 import styled from 'styled-components';
 import { some, find } from 'lodash';
 

@@ -51,51 +51,51 @@ const highlightHover = '#32be3f';
 
 const theme = {
   colors: {
-    black,
-    gray1,
-    gray2,
-    gray3,
-    gray4,
-    gray5,
-    gray6,
-    gray7,
-    gray9,
-    gray9,
-    white,
-    defaultColor,
-    defaultHover,
-    defaultBtnText,
-    primary,
-    primaryHover,
-    success,
-    successHover,
-    info,
-    infoHover,
-    warning,
-    warningHover,
-    danger,
-    dangerHover,
-    advisor,
-    boxShadowLight,
-    boxShadowDark,
-    inputFocus,
-    popoverHeader
+    black: black,
+    gray1: gray1,
+    gray2: gray2,
+    gray3: gray3,
+    gray4: gray4,
+    gray5: gray5,
+    gray6: gray6,
+    gray7: gray7,
+    gray9: gray9,
+    gray9: gray9,
+    white: white,
+    defaultColor: defaultColor,
+    defaultHover: defaultHover,
+    defaultBtnText: defaultBtnText,
+    primary: primary,
+    primaryHover: primaryHover,
+    success: success,
+    successHover: successHover,
+    info: info,
+    infoHover: infoHover,
+    warning: warning,
+    warningHover: warningHover,
+    danger: danger,
+    dangerHover: dangerHover,
+    advisor: advisor,
+    boxShadowLight: boxShadowLight,
+    boxShadowDark: boxShadowDark,
+    inputFocus: inputFocus,
+    popoverHeader: popoverHeader
   },
   brandColors: {
-    vbBlue,
-    vbGreen,
-    vbMagenta,
-    wtwGray
+    vbBlue: vbBlue,
+    vbGreen: vbGreen,
+    vbMagenta: vbMagenta,
+    wtwGray: wtwGray
   },
   datepickerColors: {
-    navArrow,
-    navArrowHover,
-    selected,
-    hover,
-    keyboard,
-    inRange,
-    highlight,
-    highlightHover
+    navArrow: navArrow,
+    navArrowHover: navArrowHover,
+    selected: selected,
+    hover: hover,
+    keyboard: keyboard,
+    inRange: inRange,
+    highlight: highlight,
+    highlightHover: highlightHover
   },
   notificationStyles: {
     success: {
@@ -292,34 +292,34 @@ const theme = {
     danger: 'remove'
   },
   validationTextColor: {
-    success,
+    success: success,
     warning: warningHover,
-    danger
+    danger: danger
   },
   validationInputColor: {
     success: {
       borderColor: success,
-      boxShadow: `inset 0 0 5px ${success}`,
+      boxShadow: 'inset 0 0 5px ' + success,
       focusBorderColor: success,
-      focusBoxShadow: `0 0 6px ${success}`
+      focusBoxShadow: '0 0 6px ' + success
     },
     warning: {
       borderColor: warning,
-      boxShadow: `inset 0 0 5px ${warning}`,
+      boxShadow: 'inset 0 0 5px ' + warning,
       focusBorderColor: warning,
-      focusBoxShadow: `0 0 6px ${warning}`
+      focusBoxShadow: '0 0 6px ' + warning
     },
     danger: {
       borderColor: danger,
-      boxShadow: `inset 0 0 5px ${danger}`,
+      boxShadow: 'inset 0 0 5px ' + danger,
       focusBorderColor: danger,
-      focusBoxShadow: `0 0 6px ${danger}`
+      focusBoxShadow: '0 0 6px ' + danger
     },
     default: {
       borderColor: inputBorder,
-      boxShadow: `inset 0 1px 1px ${boxShadowLight}`,
+      boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
-      focusBoxShadow: `0 0 8px ${inputBoxShadow}`
+      focusBoxShadow: '0 0 8px ' + inputBoxShadow
     }
   },
   sizes: {

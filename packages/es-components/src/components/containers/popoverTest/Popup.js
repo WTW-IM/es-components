@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectGlobal } from 'styled-components';
-import defaultTheme from '../../theme/defaultTheme';
+import styled, { injectGlobal } from 'styled-components';
 
 import popoverStyles from './popoverStyles';
 
@@ -9,11 +8,15 @@ import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
+const PopperContainer = styled.div`
+  display: ${props => (props.transitionState === 'exited' ? 'none' : 'block')};
+`;
+
 const defaultStyle = {
   transition: 'opacity 0.2s ease-in-out',
-  opacity: 0
+  opacity: 0,
+  zIndex: 5
 };
-
 const transitionStyles = {
   entering: { opacity: 0 },
   entered: { opacity: 1 }
@@ -23,16 +26,17 @@ function getArrowSize(size) {
   switch (size) {
     case 'sm':
       return '5';
-    case 'md':
-      return '10';
     case 'lg':
       return '20';
-    default:
+    case 'none':
       return '0';
+    default:
+      return '10';
   }
 }
 
 function Popup({
+  name,
   transitionIn,
   transitionTimeout,
   placement,
@@ -47,6 +51,7 @@ function Popup({
   theme
 }) {
   const arrowStyles = popoverStyles(
+    name,
     theme.colors,
     getArrowSize(arrowSize),
     hasTitle
@@ -60,18 +65,24 @@ function Popup({
       <Target>{trigger}</Target>
       <Transition in={transitionIn} timeout={transitionTimeout}>
         {state => (
-          <Popper
-            className="popper"
-            placement={placement}
-            modifiers={popperModifiers}
-            style={{
-              ...defaultStyle,
-              ...transitionStyles[state]
-            }}
-          >
-            {children}
-            {disableArrow ? '' : <Arrow className="popper__arrow" />}
-          </Popper>
+          <PopperContainer transitionState={state}>
+            <Popper
+              className={`${name}-popper`}
+              placement={placement}
+              modifiers={popperModifiers}
+              style={{
+                ...defaultStyle,
+                ...transitionStyles[state]
+              }}
+            >
+              {children}
+              {disableArrow ? (
+                ''
+              ) : (
+                <Arrow className={`${name}-popper__arrow`} />
+              )}
+            </Popper>
+          </PopperContainer>
         )}
       </Transition>
     </Manager>
@@ -87,6 +98,7 @@ function Popup({
 }
 
 Popup.propTypes = {
+  name: PropTypes.string,
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   children: PropTypes.node,
   theme: PropTypes.object,
@@ -95,7 +107,7 @@ Popup.propTypes = {
   transitionIn: PropTypes.bool,
   transitionTimeout: PropTypes.number,
   onHide: PropTypes.func,
-  arrowSize: PropTypes.oneOf(['sm', 'md', 'lg', 'default']),
+  arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
   disablePopperEvents: PropTypes.bool,
   popperModifiers: PropTypes.object,
   disableRootClose: PropTypes.bool,
@@ -104,9 +116,8 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  transitionTimeout: 200,
-  placement: 'bottom',
-  theme: defaultTheme
+  transitionTimeout: 100,
+  placement: 'bottom'
 };
 
 export default Popup;

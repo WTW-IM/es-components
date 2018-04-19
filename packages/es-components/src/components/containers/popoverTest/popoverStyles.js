@@ -1,4 +1,4 @@
-export default function arrowStyles(colors, arrowSize, hasTitle) {
+export default function arrowStyles(name, colors, arrowSize, hasTitle) {
   const sharedStyles = `
         content: '';
         position: absolute;
@@ -8,17 +8,17 @@ export default function arrowStyles(colors, arrowSize, hasTitle) {
     `;
 
   return `
-        .popper {
+        .${name}-popper {
             margin: ${arrowSize}px;
         }
-        .popper .popper__arrow {
+        .${name}-popper .${name}-popper__arrow {
             width: 0;
             height: 0;
             border-style: solid;
             position: absolute;
         }
 
-        .popper[data-placement^="top"] .popper__arrow {
+        .${name}-popper[data-placement^="top"] .${name}-popper__arrow {
             border-color: transparent;
             border-width: ${arrowSize}px;
             border-bottom-width: 0;
@@ -26,7 +26,7 @@ export default function arrowStyles(colors, arrowSize, hasTitle) {
             bottom: -${arrowSize}px;
             left: calc(50% - ${arrowSize}px);
         }
-        .popper[data-placement^="top"] .popper__arrow::after {
+        .${name}-popper[data-placement^="top"] .${name}-popper__arrow::after {
             ${sharedStyles}
             border-top-color: ${colors.white};
             border-bottom-width: 0;
@@ -34,24 +34,25 @@ export default function arrowStyles(colors, arrowSize, hasTitle) {
             bottom: 1px;
         }
 
-        .popper[data-placement^="bottom"] .popper__arrow {
+        .${name}-popper[data-placement^="bottom"] .${name}-popper__arrow {
             border-color: transparent;
             border-width: ${arrowSize}px;
             border-top-width: 0;
             border-bottom-color: rgba(0, 0, 0, 0.3);
             top: -${arrowSize}px;
             left: calc(50% - ${arrowSize}px);
-
         }
-        .popper[data-placement^="bottom"] .popper__arrow::after {
+        .${name}-popper[data-placement^="bottom"] .${name}-popper__arrow::after {
             ${sharedStyles}
-            border-bottom-color: ${hasTitle ? colors.primary : colors.white};
+            border-bottom-color: ${
+              hasTitle ? colors.popoverHeader : colors.white
+            };
             border-top-width: 0;
             margin-left: -${arrowSize}px;
             top: 1px;
         }
 
-        .popper[data-placement^="left"] .popper__arrow {
+        .${name}-popper[data-placement^="left"] .${name}-popper__arrow {
             border-color: transparent;
             border-width: ${arrowSize}px;
             border-right-width: 0;
@@ -59,7 +60,7 @@ export default function arrowStyles(colors, arrowSize, hasTitle) {
             right: -${arrowSize}px;
             top: calc(50% - ${arrowSize}px);
         }
-        .popper[data-placement^="left"] .popper__arrow::after {
+        .${name}-popper[data-placement^="left"] .${name}-popper__arrow::after {
             ${sharedStyles}
             border-left-color: ${colors.white};
             border-right-width: 0;
@@ -68,15 +69,14 @@ export default function arrowStyles(colors, arrowSize, hasTitle) {
             top: calc(50% - ${arrowSize}px);
         }
 
-        .popper[data-placement^="right"] .popper__arrow {
+        .${name}-popper[data-placement^="right"] .${name}-popper__arrow {
             border-color: transparent;
             border-width: ${arrowSize}px;
             border-left-width: 0;
             border-right-color: rgba(0, 0, 0, 0.3);
             left: -${arrowSize}px;
-            top: calc(50% - ${arrowSize}px);
         }
-        .popper[data-placement^="right"] .popper__arrow::after {
+        .${name}-popper[data-placement^="right"] .${name}-popper__arrow::after {
             ${sharedStyles}
             border-right-color: ${colors.white};
             border-left-width: 0;

@@ -59,7 +59,7 @@ const theme = {
     gray5: gray5,
     gray6: gray6,
     gray7: gray7,
-    gray9: gray9,
+    gray8: gray8,
     gray9: gray9,
     white: white,
     defaultColor: defaultColor,

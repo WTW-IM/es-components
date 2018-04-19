@@ -6,7 +6,7 @@ import defaultTheme from 'es-components-via-theme';
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
-    props.selected ? props.theme.colors.white : props.theme.colors.gray4};
+    props.selected ? props.theme.colors.white : props.theme.colors.gray2};
   border: 1px solid ${props => props.theme.colors.gray4};
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
@@ -35,7 +35,7 @@ const TabButton = styled.button`
     z-index: ${props => (props.selected ? '1' : '0')};
     &:hover {
       background-color: ${props =>
-        props.selected ? props.theme.colors.white : props.theme.colors.gray4};
+        props.selected ? props.theme.colors.white : props.theme.colors.gray2};
     }
   }
 `;

@@ -9,7 +9,7 @@
     "version_only": "lerna publish --skip-npm",
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
-    "link": "lerna link",
+    "link": "lerna link --force-local",
     "precommit": "lint-staged && sh rebuild-docs.sh"
   },
   "lint-staged": {

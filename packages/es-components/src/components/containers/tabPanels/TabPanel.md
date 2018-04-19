@@ -2,13 +2,13 @@ Tab Panels allow us to store lots more data on the screen and only show the amou
 
 ```
 <div>
-<TabPanel optionKeyFunc={((x) => x.replace(/\s/g, ''))}>
+<TabPanel>
   <TabPanel.Tab name="Hi there">
     <p>
       HELLO WORLD!!!!
     </p>
   </TabPanel.Tab>
-  <TabPanel.Tab name={<div><Icon name="certificate" /><span>Interesting</span><p>5 plans</p></div>}>
+  <TabPanel.Tab name={<div><Icon name="certificate" />Interesting 5 plans</div>}>
     <div>
       <p>
         Nesting is fun

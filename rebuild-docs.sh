@@ -1,3 +1,6 @@
 #!/bin/sh
+cd packages/es-components
 npm run styleguide-build
-git add packages/es-components/docs/
+mv docs/ ../../
+cd ../../
+git add docs/

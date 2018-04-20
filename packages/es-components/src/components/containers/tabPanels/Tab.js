@@ -17,6 +17,10 @@ const TabButton = styled.button`
   padding: 10px;
   text-align: left;
 
+  &:focus {
+    outline: 1px dotted ${props => props.theme.colors.gray4};
+  }
+
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>

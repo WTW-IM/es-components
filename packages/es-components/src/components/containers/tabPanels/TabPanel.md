@@ -1,4 +1,4 @@
-Tab Panels allow us to store lots more data on the screen and only show the amount we want, when we want. This works by having a Tab contain context, or a Tab List that contains elements. Each direct child of the tab list mush contain optiontext that will turn into the title in the dropdown. Tabs are able to have a full node inside instead of just text. This allows us to put in icons and other styling.
+Tab Panels allow us to store lots more data on the screen and only show the amount we want, when we want. This works by having a Tab contain context, or a Tab List that contains elements. Each direct child of the tab list must contain optiontext that will turn into the title in the dropdown. Tabs are able to have a full node inside instead of just text. This allows us to put in icons and other styling.
 
 ```
 <div>

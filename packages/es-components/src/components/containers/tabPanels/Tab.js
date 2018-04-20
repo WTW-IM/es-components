@@ -40,17 +40,31 @@ const TabButton = styled.button`
   }
 `;
 
+const AriaAnnouncer = styled.span`
+  position: fixed;
+  color: transparent;
+  left: -1000px;
+  top: 10px;
+`;
+
 /* eslint-enable */
 
-function Tab({ name, selected, action, children, ...props }) {
+function Tab({ name, selected, action, children, simpleName, ...props }) {
   return (
     <TabButton
-      onClick={() => action(name, children)}
+      onClick={() => action(name, children, simpleName)}
       selected={selected}
+      aria-label={`${simpleName || name} tab`}
       aria-expanded={selected}
       {...props}
     >
       {name}
+      {selected ? (
+        <AriaAnnouncer aria-live="assertive">{`${simpleName ||
+          name} Sub text is now showing`}</AriaAnnouncer>
+      ) : (
+        ''
+      )}
     </TabButton>
   );
 }
@@ -75,7 +89,12 @@ Tab.propTypes = {
   /**
    * Children to be rendered in the TabContent area.
    */
-  children: PropTypes.node
+  children: PropTypes.node,
+
+  /**
+   * A simpler representation for screen readers.
+   */
+  simpleName: PropTypes.string
 };
 
 Tab.defaultProps = {

@@ -22,6 +22,13 @@ const TabFormatter = styled.div`
   }
 `;
 
+const AriaAnnouncer = styled.p`
+  position: fixed;
+  color: transparent;
+  left: -1000px;
+  top: 10px;
+`;
+
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -30,13 +37,18 @@ class TabPanel extends React.Component {
       : props.children;
     this.state = {
       value: child.props.name,
-      currentContent: child.props.children
+      currentContent: child.props.children,
+      simpleName: child.props.simpleName || child.props.name
     };
     this.tabChanged = this.tabChanged.bind(this);
   }
 
-  tabChanged(name, child) {
-    this.setState({ value: name, currentContent: child });
+  tabChanged(name, child, simpleName) {
+    this.setState({
+      value: name,
+      currentContent: child,
+      simpleName: simpleName || name
+    });
   }
 
   render() {
@@ -55,6 +67,9 @@ class TabPanel extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <div>
+          <AriaAnnouncer id="announcer" aria-live="assertive">{`${
+            this.state.simpleName
+          } Sub text is now showing`}</AriaAnnouncer>
           <TabWrapper>
             <TabFormatter>{elements}</TabFormatter>
           </TabWrapper>

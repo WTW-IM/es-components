@@ -3,13 +3,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
-
 import { findDOMNode } from 'react-dom';
+import viaTheme from 'es-components-via-theme';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
-
 import Popup from './Popup';
 
 const Container = styled.div`
@@ -17,11 +15,14 @@ const Container = styled.div`
 `;
 
 const TriggerButton = styled(Button)`
-  border-bottom: ${props => (props.suppressUnderline ? 'none' : '1px dotted')};
-  padding-bottom: ${props => (props.isLinkButton ? '3px' : '')};
+  border-bottom: ${props =>
+    props.isLinkButton ? props.buttonBorderStyle : ''};
+  margin-bottom: ${props => (props.isLinkButton ? '2px' : '')};
   text-decoration: none;
 
-  color: blue;
+  &:hover {
+    border-bottom: ${props => (props.isLinkButton ? '1px solid' : '')};
+  }
 `;
 
 const TriggerButtonLabel = styled.span`
@@ -32,9 +33,9 @@ const TriggerButtonLabel = styled.span`
 `;
 
 const PopoverContainer = styled.div`
-  max-width: 275px;
+  min-width: 270px;
+  max-width: 400px;
   background: ${props => props.theme.colors.white};
-  background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 `;
@@ -45,6 +46,7 @@ const PopoverHeader = styled.div`
   color: ${props => props.theme.colors.white};
   background-color: ${props =>
     props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
+  outline: none;
 `;
 
 const TitleBar = styled.h3`
@@ -86,16 +88,14 @@ class PopoverTest extends React.Component {
 
   componentDidMount() {
     this.header = findDOMNode(this.headerRef);
-    this.content = findDOMNode(this.contentRef);
+    this.popoverContent = findDOMNode(this.contentRef);
     this.closeBtn = findDOMNode(this.closeBtnRef);
     this.triggerBtn = findDOMNode(this.triggerBtnRef);
   }
 
   toggleShow = () => {
-    const { isOpen } = this.state;
-
     setTimeout(() => {
-      const focusableContent = this.content.querySelector('a, button');
+      const focusableContent = this.popoverContent.querySelector('a, button');
       if (focusableContent) {
         focusableContent.focus();
       } else {
@@ -107,16 +107,14 @@ class PopoverTest extends React.Component {
       this.triggerBtn.focus();
     }
 
-    this.setState({ isOpen: !isOpen });
+    this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
   };
 
   hidePopover = () => {
     if (this.state.isOpen) {
-      setTimeout(() => {
-        this.triggerBtn.focus();
-      }, 150);
+      this.triggerBtn.focus();
+      this.setState({ isOpen: false });
     }
-    this.setState({ isOpen: false });
   };
 
   render() {
@@ -124,35 +122,25 @@ class PopoverTest extends React.Component {
       name,
       title,
       content,
-      placement,
       children,
+      placement,
       arrowSize,
+      ariaLabel,
+      buttonStyle,
+      isOutline,
+      isLinkButton,
+      suppressUnderline,
       hasCloseButton,
       hasAltCloseButton,
-      suppressUnderline,
-      isLinkButton,
-      ariaLabel,
+      disableRootClose,
+      popperModifiers,
       theme
     } = this.props;
 
     const hasTitle = title !== undefined;
     const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
     const showCloseButton = hasCloseButton && !hasAltCloseButton;
-
-    const triggerButton = (
-      <TriggerButton
-        isLinkButton={isLinkButton}
-        handleOnClick={this.toggleShow}
-        suppressUnderline={suppressUnderline}
-        ref={btn => {
-          this.triggerBtnRef = btn;
-        }}
-        aria-expanded={this.state.isOpen}
-      >
-        {children}
-        <TriggerButtonLabel>{ariaLabel}</TriggerButtonLabel>
-      </TriggerButton>
-    );
+    const buttonBorderStyle = suppressUnderline ? 'none' : '1px dashed';
 
     const closeButton = (
       <Button
@@ -164,7 +152,6 @@ class PopoverTest extends React.Component {
         Close
       </Button>
     );
-
     const altCloseButton = (
       <AlternateCloseButton
         aria-label="Close"
@@ -178,6 +165,24 @@ class PopoverTest extends React.Component {
       </AlternateCloseButton>
     );
 
+    const triggerButton = (
+      <TriggerButton
+        handleOnClick={this.toggleShow}
+        styleType={buttonStyle}
+        isOutline={isOutline}
+        isLinkButton={isLinkButton}
+        suppressUnderline={suppressUnderline}
+        buttonBorderStyle={buttonBorderStyle}
+        ref={btn => {
+          this.triggerBtnRef = btn;
+        }}
+        aria-expanded={this.state.isOpen}
+      >
+        <span aria-hidden={!!ariaLabel}>{children}</span>
+        <TriggerButtonLabel>{ariaLabel}</TriggerButtonLabel>
+      </TriggerButton>
+    );
+
     return (
       <ThemeProvider theme={theme}>
         <Container>
@@ -185,35 +190,39 @@ class PopoverTest extends React.Component {
             name={name}
             trigger={triggerButton}
             placement={placement}
-            transitionIn={this.state.isOpen}
-            onHide={this.hidePopover}
             arrowSize={arrowSize}
+            onHide={this.hidePopover}
+            transitionIn={this.state.isOpen}
             hasTitle={hasTitle}
+            popperModifiers={popperModifiers}
+            disableRootClose={disableRootClose}
             theme={theme}
+            popperRef={elem => {
+              this.popperRef = elem;
+            }}
           >
             <PopoverContainer
               role="dialog"
               ref={elem => {
                 this.contentRef = elem;
               }}
-              tabIndex={-1}
             >
               <PopoverHeader
                 hasTitle={hasTitle}
+                tabIndex={-1}
                 ref={elem => {
                   this.headerRef = elem;
                 }}
-                tabIndex={-1}
               >
-                {hasTitle ? <TitleBar>{title}</TitleBar> : ''}
-                {hasAltCloseButton ? altCloseButton : ''}
+                {hasTitle && <TitleBar>{title}</TitleBar>}
+                {hasAltCloseButton && altCloseButton}
               </PopoverHeader>
 
               <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
                 <PopoverContent showCloseButton={showCloseButton}>
                   {content}
                 </PopoverContent>
-                {showCloseButton ? closeButton : ''}
+                {showCloseButton && closeButton}
               </PopoverBody>
             </PopoverContainer>
           </Popup>
@@ -225,48 +234,44 @@ class PopoverTest extends React.Component {
 
 PopoverTest.propTypes = {
   /** The name of the popover. Used for differentiating popovers */
-  name: PropTypes.string,
-  /** The link content which activates the popover */
+  name: PropTypes.string.isRequired,
+  /** The content or element which activates the popover */
   children: PropTypes.node.isRequired,
   /** The text displayed in the popover title section */
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   /** The content displayed in the popover body */
-  content: PropTypes.node,
+  content: PropTypes.node.isRequired,
   /** The placement of the popover in relation to the link */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  /** Prevents popover from closing when clicked outside of it */
-  keepOpen: PropTypes.bool,
   /** The size of the arrow on the popover box */
   arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
-  /** Prevents the popover from changing position when the window is resized/scrolled */
-  disablePopoverFlipping: PropTypes.bool,
+  /** Prevents popover from closing when clicked outside of it */
+  disableRootClose: PropTypes.bool,
   /** Display a close button in the bottom right of the popover body */
   hasCloseButton: PropTypes.bool,
-  /** Display a close ('x') button */
+  /** Display a close ('x') button in the popover title bar */
   hasAltCloseButton: PropTypes.bool,
-  /** Function to toggle display of popover */
-  onToggle: PropTypes.func,
-  /** Displays or hides the popover */
-  showPopover: PropTypes.bool,
   /** Hide underline from link. Useful for children like Icons */
   suppressUnderline: PropTypes.bool,
   /** The button style of the popover link */
   buttonStyle: PropTypes.string,
   /** Sets the link to use a text rather than a button style **/
   isLinkButton: PropTypes.bool,
-  /** Sets the aria-label attribute to allow for textless buttons **/
+  /** Sets the link to use the alternate button style **/
+  isOutline: PropTypes.bool,
+  /** Sets the aria-label attribute to allow for textless buttons */
   ariaLabel: PropTypes.string,
+  /** Sets additional popperjs modifiers on the popover */
+  popperModifiers: PropTypes.object,
   /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
+   * Theme object used by the ThemeProvider
    */
   theme: PropTypes.object
 };
 
 PopoverTest.defaultProps = {
-  popoverPlacement: 'bottom',
-  hasCloseButton: true,
-  isLinkButton: true,
+  placement: 'bottom',
+  buttonStyle: 'primary',
   theme: viaTheme
 };
 

@@ -37,18 +37,18 @@ function getArrowSize(size) {
 
 function Popup({
   name,
+  trigger,
+  children,
+  placement,
+  arrowSize,
+  onHide,
+  hasTitle,
   transitionIn,
   transitionTimeout,
-  placement,
-  children,
-  trigger,
-  onHide,
-  arrowSize,
   popperModifiers,
-  disableArrow,
   disableRootClose,
-  hasTitle,
-  theme
+  theme,
+  popperRef
 }) {
   const arrowStyles = popoverStyles(
     name,
@@ -69,18 +69,22 @@ function Popup({
             <Popper
               className={`${name}-popper`}
               placement={placement}
-              modifiers={popperModifiers}
+              modifiers={{
+                preventOverflow: {
+                  boundariesElement: 'viewport'
+                },
+                hide: {
+                  enabled: true
+                }
+              }}
               style={{
                 ...defaultStyle,
                 ...transitionStyles[state]
               }}
+              ref={popperRef}
             >
               {children}
-              {disableArrow ? (
-                ''
-              ) : (
-                <Arrow className={`${name}-popper__arrow`} />
-              )}
+              <Arrow className={`${name}-popper__arrow`} />
             </Popper>
           </PopperContainer>
         )}
@@ -99,20 +103,18 @@ function Popup({
 
 Popup.propTypes = {
   name: PropTypes.string,
-  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  children: PropTypes.node,
-  theme: PropTypes.object,
-  isOpen: PropTypes.bool,
   trigger: PropTypes.node,
+  children: PropTypes.node,
+  onHide: PropTypes.func,
+  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
   transitionIn: PropTypes.bool,
   transitionTimeout: PropTypes.number,
-  onHide: PropTypes.func,
-  arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
-  disablePopperEvents: PropTypes.bool,
-  popperModifiers: PropTypes.object,
+  hasTitle: PropTypes.bool,
   disableRootClose: PropTypes.bool,
-  disableArrow: PropTypes.bool,
-  hasTitle: PropTypes.bool
+  popperModifiers: PropTypes.object,
+  theme: PropTypes.object,
+  popperRef: PropTypes.func
 };
 
 Popup.defaultProps = {

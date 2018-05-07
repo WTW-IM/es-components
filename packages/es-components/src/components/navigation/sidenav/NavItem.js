@@ -41,9 +41,7 @@ const AnchorBase = styled.a`
           color: ${props.theme.colors.white};
         }
       }
-    `} ${props =>
-    props.isDisabled &&
-    css`
+    `} ${props => props.isDisabled && css`
       background-color: ${props.theme.colors.gray1};
       color: ${props.theme.colors.gray6};
       cursor: not-allowed;
@@ -93,9 +91,7 @@ const AnchorAltStyle = AnchorBase.extend`
           color: ${props.theme.colors.info};
         }
       }
-    `} ${props =>
-    props.isDisabled &&
-    css`
+    `} ${props => props.isDisabled && css`
       &:hover {
         border-left: none;
         padding-left: 10px;

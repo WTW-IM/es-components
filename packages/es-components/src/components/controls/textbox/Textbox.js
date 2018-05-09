@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { css, ThemeProvider, withTheme } from 'styled-components';
 import { noop, omit } from 'lodash';
 import viaTheme from 'es-components-via-theme';
+import MaskedInput from 'react-text-mask';
 
-import MaskedInput from '../../util/ReactTextMask';
 import Icon from '../../base/icons/Icon';
 import { LabelText, InputBase } from '../BaseControls';
 import Label from '../Label';

@@ -4,7 +4,7 @@ export Notification from './components/containers/notification/Notification';
 export Drawer from './components/containers/drawer/Drawer';
 export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';
-export PopoverLink from './components/containers/popover/PopoverLink';
+export Popover from './components/containers/popover/Popover';
 export Modal from './components/containers/modal/Modal';
 export Menu from './components/containers/menu/Menu';
 

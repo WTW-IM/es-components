@@ -6,46 +6,46 @@ const styles = {
 
 <div>
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="topEx"
         title="Top"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="top"
     >
         Popover on Top
-    </PopoverTest>
+    </Popover>
     </div>
     
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="bottomEx"
         title="Bottom"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
     >
         Popover on Bottom
-    </PopoverTest>
+    </Popover>
     </div>
 
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="leftEx"
         title="Left"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="left"
     >
         Popover on Left
-    </PopoverTest>
+    </Popover>
     </div>
 
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="rightEx"
         title="Right"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="right"
     >
         Popover on Right
-    </PopoverTest>
+    </Popover>
     </div>
 </div>
 ```
@@ -53,7 +53,7 @@ const styles = {
 ```
 <div>
 Here's an example of a
-<PopoverTest
+<Popover
     name="popEx"
     title="Popover"
     content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
@@ -61,7 +61,7 @@ Here's an example of a
     hasCloseButton
 >
     Popover
-</PopoverTest> 
+</Popover> 
 styled like a link.
 </div>
 ```
@@ -70,7 +70,7 @@ Popovers can wrap Icons or other components. These wrapped elements should inclu
 ```
 <div>
 Click the icon for some help text.
-<PopoverTest
+<Popover
     name="iconEx"
     title="Icon Popover"
     content="Here's some help text!"
@@ -79,7 +79,7 @@ Click the icon for some help text.
     isLinkButton
 > 
     <Icon name='question-sign' />
-</PopoverTest> 
+</Popover> 
 </div>
 ```
 
@@ -91,7 +91,7 @@ const styles = {
 
 <div>
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="smEx"
         title="Small Arrow"
         content="This is the popover's content."
@@ -100,22 +100,22 @@ const styles = {
         arrowSize="sm"
     >
         Small Arrow
-    </PopoverTest>
+    </Popover>
     </div>
     
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="dfltEx"
         title="Default Arrow"
         content="This is the popover's content."
         isOutline
     >
         Default Arrow
-    </PopoverTest>
+    </Popover>
     </div>
 
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="lgEx"
         title="Large Arrow"
         content="This is the popover's content."
@@ -124,11 +124,11 @@ const styles = {
         arrowSize="lg"
     >
         Large Arrow
-    </PopoverTest>
+    </Popover>
     </div>
 
     <div style={styles}>
-    <PopoverTest
+    <Popover
         name="noneEx"
         title="No Arrow"
         content="This is the popover's content."
@@ -137,7 +137,7 @@ const styles = {
         arrowSize="none"
     >
         No Arrow
-    </PopoverTest>
+    </Popover>
     </div>
 </div>
 ```

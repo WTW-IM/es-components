@@ -45,7 +45,7 @@ function Popup({
   hasTitle,
   transitionIn,
   transitionTimeout,
-  popperModifiers,
+  disableFlipping,
   disableRootClose,
   theme,
   popperRef
@@ -65,23 +65,19 @@ function Popup({
       <Target>{trigger}</Target>
       <Transition in={transitionIn} timeout={transitionTimeout}>
         {state => (
-          <PopperContainer transitionState={state}>
+          <PopperContainer transitionState={state} name={name} ref={popperRef}>
             <Popper
               className={`${name}-popper`}
               placement={placement}
               modifiers={{
-                preventOverflow: {
-                  boundariesElement: 'viewport'
-                },
-                hide: {
-                  enabled: true
-                }
+                preventOverflow: { boundariesElement: 'viewport' },
+                hide: { enabled: true },
+                flip: { enabled: !disableFlipping }
               }}
               style={{
                 ...defaultStyle,
                 ...transitionStyles[state]
               }}
-              ref={popperRef}
             >
               {children}
               <Arrow className={`${name}-popper__arrow`} />
@@ -112,7 +108,7 @@ Popup.propTypes = {
   transitionTimeout: PropTypes.number,
   hasTitle: PropTypes.bool,
   disableRootClose: PropTypes.bool,
-  popperModifiers: PropTypes.object,
+  disableFlipping: PropTypes.bool,
   theme: PropTypes.object,
   popperRef: PropTypes.func
 };

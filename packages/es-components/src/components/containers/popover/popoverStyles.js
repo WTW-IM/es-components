@@ -16,6 +16,10 @@ export default function arrowStyles(name, colors, arrowSize, hasTitle) {
             position: absolute;
         }
 
+        .${name}-popper[data-x-out-of-boundaries] {
+            display: none;
+          }
+
         .${name}-popper[data-placement^="top"] .${name}-popper__arrow {
             border-color: transparent;
             border-width: ${arrowSize}px;

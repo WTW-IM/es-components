@@ -17,7 +17,7 @@ exports[`Fieldset component renders as expected with extra content 1`] = `
 >
   <div>
     <legend
-      className="sc-bdVaJa jRrtBY"
+      className="sc-bdVaJa JbwBs"
     >
       I am legend
     </legend>
@@ -35,7 +35,7 @@ exports[`Fieldset component renders as expected with legendText 1`] = `
 >
   <div>
     <legend
-      className="sc-bdVaJa jRrtBY"
+      className="sc-bdVaJa JbwBs"
     >
       I am legend
     </legend>

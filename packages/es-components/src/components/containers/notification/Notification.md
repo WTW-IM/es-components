@@ -136,3 +136,44 @@ Any additional children will get rendered before call to action buttons.
   </ol>
 </Notification>
 ```
+
+### Light Styles
+Applying the `light` prop will use a lighter background color for the given notification type.
+
+```
+<div>
+  <Notification
+    type="success"
+    header="Success!"
+    additionalText="You did a thing."
+    light
+  />
+
+  <Notification
+    type="info"
+    header="Information!"
+    additionalText="Here's some information you need to know."
+    light
+  />
+
+  <Notification
+    type="warning"
+    additionalText="Here's a warning."
+    light
+  />
+
+  <Notification
+    type="danger"
+    header="Danger!"
+    additionalText="You're about to do something dangerous!"
+    light
+  />
+
+  <Notification
+    type="advisor"
+    header="Advisor!"
+    additionalText="This message is for benefit advisors."
+    light
+  />
+</div>
+```

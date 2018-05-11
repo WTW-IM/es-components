@@ -116,6 +116,10 @@ const theme = {
       light: {
         bgColor: successLight,
         textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: success
       }
     },
     info: {
@@ -126,6 +130,10 @@ const theme = {
       light: {
         bgColor: infoLight,
         textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: info
       }
     },
     warning: {
@@ -136,6 +144,10 @@ const theme = {
       light: {
         bgColor: warningLight,
         textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: warning
       }
     },
     danger: {
@@ -146,6 +158,10 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: danger
       }
     },
     advisor: {
@@ -156,6 +172,10 @@ const theme = {
       light: {
         bgColor: advisorLight,
         textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: advisor
       }
     }
   },

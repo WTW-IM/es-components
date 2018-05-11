@@ -1,4 +1,4 @@
-## Notification Types
+### Notification Types
 
 ```
 <div>
@@ -137,7 +137,8 @@ Any additional children will get rendered before call to action buttons.
 </Notification>
 ```
 
-### Light Styles
+### Color Variants
+
 Applying the `light` prop will use a lighter background color for the given notification type.
 
 ```
@@ -177,3 +178,45 @@ Applying the `light` prop will use a lighter background color for the given noti
   />
 </div>
 ```
+
+The `messageOnly` prop can be applied to display the message in the appropriate text color without applying a background color.
+
+```
+<div>
+  <Notification
+    type="success"
+    header="Success!"
+    additionalText="You did a thing."
+    messageOnly
+  />
+
+  <Notification
+    type="info"
+    header="Information!"
+    additionalText="Here's some information you need to know."
+    messageOnly
+  />
+
+  <Notification
+    type="warning"
+    additionalText="Here's a warning."
+    messageOnly
+  />
+
+  <Notification
+    type="danger"
+    header="Danger!"
+    additionalText="You're about to do something dangerous!"
+    messageOnly
+  />
+
+  <Notification
+    type="advisor"
+    header="Advisor!"
+    additionalText="This message is for benefit advisors."
+    messageOnly
+  />
+</div>
+```
+
+If `light` and `messageOnly` are both present `messageOnly` will take precedence.

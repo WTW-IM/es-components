@@ -196,13 +196,19 @@ export function Notification({
   extraAlert,
   theme,
   light,
+  messageOnly,
   ...otherProps
 }) {
   const hasCallsToAction = callsToAction.length > 0;
   const hasExtraAlert = extraAlert;
   const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
-  const bgType = light ? 'light' : 'base';
+  let bgType = 'base';
+  if (messageOnly) {
+    bgType = 'messageOnly';
+  } else if (light) {
+    bgType = 'light';
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -274,6 +280,10 @@ Notification.propTypes = {
    * Use the light color variants of the alert
    */
   light: PropTypes.bool,
+  /*
+   * Display only the message without a colored background
+   */
+  messageOnly: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider

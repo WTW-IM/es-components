@@ -2,7 +2,7 @@
 
 exports[`modal Body component renders as expected 1`] = `
 <div
-  className="Body sc-bdVaJa cIZAzW"
+  className="Body sc-bdVaJa dVAtex"
 >
   This is the Body.
 </div>

@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "11.0.3",
+  "version": "11.0.4",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
@@ -26,6 +26,7 @@
   },
   "peerDependencies": {
     "react": ">=0.14",
+    "es-components-via-theme": "^11.0.2",
     "styled-components": "*"
   },
   "devDependencies": {
@@ -59,7 +60,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "es-components-via-theme": "^1.0.0",
+    "es-components-via-theme": "^11.0.2",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",

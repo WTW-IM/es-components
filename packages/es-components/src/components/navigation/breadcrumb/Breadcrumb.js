@@ -7,7 +7,9 @@ import viaTheme from 'es-components-via-theme';
 import genId from '../../util/generateAlphaName';
 
 function darkenPrimary(primary) {
-  return tinycolor(primary).darken(15).toRgbString();
+  return tinycolor(primary)
+    .darken(15)
+    .toRgbString();
 }
 
 const OrderedList = styled.ol`

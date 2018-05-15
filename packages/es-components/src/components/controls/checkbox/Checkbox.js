@@ -14,8 +14,10 @@ const CheckboxLabel = Label.extend`
   display: flex;
 
   > .checkbox-fill {
-    background-color: ${({ isChecked, theme }) => isChecked ? theme.colors.info : theme.colors.white};
-    border-color: ${({ isChecked, theme }) => isChecked ? theme.colors.info : theme.colors.gray6};
+    background-color: ${({ isChecked, theme }) =>
+      isChecked ? theme.colors.info : theme.colors.white};
+    border-color: ${({ isChecked, theme }) =>
+      isChecked ? theme.colors.info : theme.colors.gray6};
 
     &:after {
       border-color: ${props => props.theme.colors.white};
@@ -23,11 +25,13 @@ const CheckboxLabel = Label.extend`
   }
 
   &:hover > .checkbox-fill:after {
-    border-color: ${({ isChecked, theme }) => isChecked ? theme.colors.white : theme.colors.gray3};
+    border-color: ${({ isChecked, theme }) =>
+      isChecked ? theme.colors.white : theme.colors.gray3};
   }
 
   &[disabled] > .checkbox-fill {
-    background-color: ${({ isChecked, theme }) => isChecked ? theme.colors.gray5 : theme.colors.white};
+    background-color: ${({ isChecked, theme }) =>
+      isChecked ? theme.colors.gray5 : theme.colors.white};
     border-color: ${props => props.theme.colors.gray5};
     cursor: not-allowed;
     outline: 0;
@@ -45,7 +49,8 @@ const CheckboxInput = styled.input`
   &:focus ~ .checkbox-fill {
     box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
     &:after {
-      border-color: ${({ checked, theme }) => checked ? theme.colors.white : theme.colors.gray3};
+      border-color: ${({ checked, theme }) =>
+        checked ? theme.colors.white : theme.colors.gray3};
     }
   }
 `;

@@ -44,7 +44,7 @@ exports[`popover component renders as expected 1`] = `
           role="dialog"
         >
           <div
-            className="sc-iwsKbI izaUtr"
+            className="sc-iwsKbI jOGmdE"
             tabIndex={-1}
           >
             <h3
@@ -54,7 +54,7 @@ exports[`popover component renders as expected 1`] = `
             </h3>
           </div>
           <div
-            className="sc-gqjmRU jdidoo"
+            className="sc-gqjmRU hrhaoz"
           >
             <div
               className="sc-VigVT cztEQg"

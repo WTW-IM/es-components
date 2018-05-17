@@ -69,6 +69,7 @@
     "react-animate-height": "^0.10.10",
     "react-datepicker": "^1.2.2",
     "react-overlays": "^0.8.3",
+    "react-popper": "^0.10.4",
     "react-text-mask": "^5.2.1",
     "react-transition-group": "^2.2.1",
     "text-mask-addons": "3.7.2",

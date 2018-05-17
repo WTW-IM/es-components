@@ -98,11 +98,13 @@ class Popover extends React.Component {
     this.closeBtn = findDOMNode(this.closeBtnRef);
     this.triggerBtn = findDOMNode(this.triggerBtnRef);
     this.popper = findDOMNode(this.popperRef);
-
-    window.addEventListener('scroll', this.hidePopOnScroll);
   }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.hidePopOnScroll);
+  componentDidUpdate() {
+    if (this.state.isOpen) {
+      window.addEventListener('scroll', this.hidePopOnScroll);
+    } else {
+      window.removeEventListener('scroll', this.hidePopOnScroll);
+    }
   }
 
   toggleShow = () => {

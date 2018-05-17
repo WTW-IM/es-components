@@ -21,7 +21,8 @@ const TriggerButton = styled(Button)`
   text-decoration: none;
 
   &:hover {
-    border-bottom: ${props => (props.isLinkButton ? '1px solid' : '')};
+    border-bottom: ${props =>
+      props.isLinkButton && !props.suppressUnderline ? '1px solid' : ''};
   }
 `;
 
@@ -47,6 +48,7 @@ const PopoverHeader = styled.div`
   background-color: ${props =>
     props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
   outline: none;
+  line-height: initial;
 `;
 
 const TitleBar = styled.h3`
@@ -59,6 +61,10 @@ const PopoverBody = styled.div`
   padding: ${props =>
     props.hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   text-align: right;
+  color: ${props => props.theme.colors.gray8};
+  line-height: initial;
+  font-size: 18px;
+  font-weight: normal;
 `;
 
 const PopoverContent = styled.div`
@@ -116,9 +122,11 @@ class Popover extends React.Component {
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
   };
 
-  hidePopover = () => {
+  hidePopover = event => {
     if (this.state.isOpen) {
-      this.triggerBtn.focus();
+      if (event.type !== 'click') {
+        this.triggerBtn.focus();
+      }
       this.setState({ isOpen: false });
     }
   };

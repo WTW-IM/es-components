@@ -195,8 +195,8 @@ export function Notification({
   onDismiss = noop,
   extraAlert,
   theme,
-  light,
-  messageOnly,
+  useLightVariant,
+  useMessageOnlyVariant,
   ...otherProps
 }) {
   const hasCallsToAction = callsToAction.length > 0;
@@ -204,9 +204,9 @@ export function Notification({
   const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
   let bgType = 'base';
-  if (messageOnly) {
+  if (useMessageOnlyVariant) {
     bgType = 'messageOnly';
-  } else if (light) {
+  } else if (useLightVariant) {
     bgType = 'light';
   }
 
@@ -276,14 +276,10 @@ Notification.propTypes = {
   callsToAction: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.shape(callToActionShape), PropTypes.element])
   ),
-  /**
-   * Use the light color variants of the alert
-   */
-  light: PropTypes.bool,
-  /*
-   * Display only the message without a colored background
-   */
-  messageOnly: PropTypes.bool,
+  /** Use the light color variants of the alert */
+  useLightVariant: PropTypes.bool,
+  /** Display only the message without a colored background */
+  useMessageOnlyVariant: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider

@@ -139,7 +139,7 @@ Any additional children will get rendered before call to action buttons.
 
 ### Color Variants
 
-Applying the `light` prop will use a lighter background color for the given notification type.
+Applying the `useLightVariant` prop will use a lighter background color for the given notification type.
 
 ```
 <div>
@@ -147,39 +147,39 @@ Applying the `light` prop will use a lighter background color for the given noti
     type="success"
     header="Success!"
     additionalText="You did a thing."
-    light
+    useLightVariant
   />
 
   <Notification
     type="info"
     header="Information!"
     additionalText="Here's some information you need to know."
-    light
+    useLightVariant
   />
 
   <Notification
     type="warning"
     additionalText="Here's a warning."
-    light
+    useLightVariant
   />
 
   <Notification
     type="danger"
     header="Danger!"
     additionalText="You're about to do something dangerous!"
-    light
+    useLightVariant
   />
 
   <Notification
     type="advisor"
     header="Advisor!"
     additionalText="This message is for benefit advisors."
-    light
+    useLightVariant
   />
 </div>
 ```
 
-The `messageOnly` prop can be applied to display the message in the appropriate text color without applying a background color.
+The `useMessageOnlyVariant` prop can be applied to display the message in the appropriate text color without applying a background color.
 
 ```
 <div>
@@ -187,36 +187,36 @@ The `messageOnly` prop can be applied to display the message in the appropriate 
     type="success"
     header="Success!"
     additionalText="You did a thing."
-    messageOnly
+    useMessageOnlyVariant
   />
 
   <Notification
     type="info"
     header="Information!"
     additionalText="Here's some information you need to know."
-    messageOnly
+    useMessageOnlyVariant
   />
 
   <Notification
     type="warning"
     additionalText="Here's a warning."
-    messageOnly
+    useMessageOnlyVariant
   />
 
   <Notification
     type="danger"
     header="Danger!"
     additionalText="You're about to do something dangerous!"
-    messageOnly
+    useMessageOnlyVariant
   />
 
   <Notification
     type="advisor"
     header="Advisor!"
     additionalText="This message is for benefit advisors."
-    messageOnly
+    useMessageOnlyVariant
   />
 </div>
 ```
 
-If `light` and `messageOnly` are both present `messageOnly` will take precedence.
+If `useLightVariant` and `useMessageOnlyVariant` are both present `useMessageOnlyVariant` will take precedence.

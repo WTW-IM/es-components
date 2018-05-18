@@ -3,3 +3,19 @@ node_js:
   - "lts/*"
   - "node"
 script: npm run ci
+after_success: ./rebuild-docs.sh
+deploy:
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    local-dir: ./packages/es-components/docs
+    on:
+      branch: master
+      node: "node"
+  - provider: script
+    skip-cleanup: true
+    script: ./publish-packages.sh
+    on:
+      branch: master
+      node: "node"

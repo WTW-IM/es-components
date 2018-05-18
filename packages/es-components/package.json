@@ -63,7 +63,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "es-components-via-theme": "^12.0.0",
+    "es-components-via-theme": "^11.0.2",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",

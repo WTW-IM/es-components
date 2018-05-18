@@ -69,6 +69,7 @@ function Popup({
             <Popper
               className={`${name}-popper`}
               placement={placement}
+              eventsEnabled={transitionIn}
               modifiers={{
                 preventOverflow: { boundariesElement: 'viewport' },
                 hide: { enabled: true },

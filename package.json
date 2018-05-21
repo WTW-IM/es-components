@@ -10,7 +10,7 @@
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
     "link": "lerna link --force-local",
-    "precommit": "lint-staged && sh rebuild-docs.sh"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "packages/es-components/src/**/*.js": [

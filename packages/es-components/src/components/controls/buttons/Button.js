@@ -99,7 +99,6 @@ const LinkButton = styled(ButtonBase)`
   }
 
   &:active {
-    margin: 0 0 4px 0;
     box-shadow: none;
   }
 

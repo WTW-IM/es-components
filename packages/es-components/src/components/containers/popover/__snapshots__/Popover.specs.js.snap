@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`popover component renders as expected 1`] = `
+<div
+  className="sc-bZQynM dSsQJY"
+>
+  <div>
+    <div>
+      <button
+        aria-expanded={false}
+        className="sc-gzVnrw jgosdJ sc-htpNat kpbNOk sc-bwzfXH cOfHpN"
+        onClick={[Function]}
+      >
+        <span
+          aria-hidden={false}
+        >
+          Popover Text
+        </span>
+        <span
+          className="sc-htoDjs iqIjis"
+        />
+      </button>
+    </div>
+    <div
+      className="sc-EHOje vChbq"
+      name="popTest"
+    >
+      <div
+        className="popTest-popper"
+        data-placement={undefined}
+        data-x-out-of-boundaries={undefined}
+        style={
+          Object {
+            "opacity": 0,
+            "pointerEvents": "none",
+            "position": "absolute",
+            "transition": "opacity 0.2s ease-in-out",
+            "zIndex": 5,
+          }
+        }
+      >
+        <div
+          className="sc-dnqmqq BnNnH"
+          role="dialog"
+        >
+          <div
+            className="sc-iwsKbI jOGmdE"
+            tabIndex={-1}
+          >
+            <h3
+              className="sc-gZMcBi cPBpHt"
+            >
+              Popover Title
+            </h3>
+          </div>
+          <div
+            className="sc-gqjmRU hrhaoz"
+          >
+            <div
+              className="sc-VigVT cztEQg"
+            >
+              This is the popover content.
+            </div>
+          </div>
+        </div>
+        <span
+          className="popTest-popper__arrow"
+          style={Object {}}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

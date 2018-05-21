@@ -6,6 +6,12 @@ import viaTheme from 'es-components-via-theme';
 
 import genId from '../../util/generateAlphaName';
 
+function darkenPrimary(primary) {
+  return tinycolor(primary)
+    .darken(15)
+    .toRgbString();
+}
+
 const OrderedList = styled.ol`
   background-color: ${props => props.theme.colors.gray1};
   border-radius: 2px;
@@ -47,10 +53,7 @@ const Crumb = styled.li`
   }
 
   > a:hover {
-    color: ${props =>
-      tinycolor(props.theme.colors.primary)
-        .darken(15)
-        .toRgbString()};
+    color: ${props => darkenPrimary(props.theme.colors.primary)};
     text-decoration: underline;
   }
 `;

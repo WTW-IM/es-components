@@ -25,7 +25,7 @@
     "testRegex": "specs\\.js$"
   },
   "peerDependencies": {
-    "es-components-via-theme": "^11.0.2",
+    "es-components-via-theme": "^12.0.0",
     "react": ">=0.14",
     "styled-components": "*"
   },

@@ -31,8 +31,23 @@ module.exports = {
         font-style: normal;
         }
 
+        /* source-sans-pro-regular - latin */
+		@font-face {
+		  font-family: 'Source Sans Pro';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: url('webfonts/source-sans-pro-v11-latin-regular.eot'); /* IE9 Compat Modes */
+		  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
+			   url('webfonts/source-sans-pro-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			   url('webfonts/source-sans-pro-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+			   url('webfonts/source-sans-pro-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+			   url('webfonts/source-sans-pro-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+			   url('webfonts/source-sans-pro-v11-latin-regular.svg#SourceSansPro') format('svg'); /* Legacy iOS */
+		}
+
         body {
-          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          color: #444;
+          font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
         }
       </style>`
     }
@@ -98,7 +113,7 @@ module.exports = {
   styles: {
     Playground: {
       preview: {
-        fontFamily: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        fontFamily: ['Source Sans Pro', 'Segoe UI', 'Segoe', 'Calibri', 'Tahoma', 'sans-serif'],
         fontSize: '18px'
       }
     }

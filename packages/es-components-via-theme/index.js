@@ -22,8 +22,8 @@ const infoLight = '#b8e4f9';
 const success = '#298544';
 const successHover = '#1d5e30';
 const successLight = '#d9eedf';
-const warning = '#b35f00';
-const warningHover = '#804400';
+const warning = '#c25400';
+const warningHover = '#8f3e00';
 const warningLight = '#fcebde';
 const danger = '#c00';
 const dangerHover = '#990000';
@@ -200,6 +200,15 @@ const theme = {
         activeTextColor: black,
         boxShadowColor: defaultHover
       },
+	  darkDefault: {
+        bgColor: gray7,
+        textColor: white,
+        hoverBgColor: gray8,
+        hoverTextColor: white,
+        activeBgColor: gray8,
+        activeTextColor: white,
+        boxShadowColor: gray8
+      },
       success: {
         bgColor: success,
         textColor: white,
@@ -246,17 +255,17 @@ const theme = {
         hoverBgColor: primary,
         hoverTextColor: white,
         activeBgColor: primaryHover,
-        activeTextColor: white,
+        activeTextColor: primary,
         borderColor: primary
       },
       default: {
         bgColor: white,
-        textColor: defaultColor,
-        hoverBgColor: defaultColor,
+        textColor: gray7,
+        hoverBgColor: gray7,
         hoverTextColor: white,
-        activeBgColor: defaultHover,
-        activeTextColor: white,
-        borderColor: defaultColor
+        activeBgColor: gray8,
+        activeTextColor: gray7,
+        borderColor: gray7
       },
       success: {
         bgColor: white,
@@ -264,7 +273,7 @@ const theme = {
         hoverBgColor: success,
         hoverTextColor: white,
         activeBgColor: successHover,
-        activeTextColor: white,
+        activeTextColor: success,
         borderColor: success
       },
       info: {
@@ -273,16 +282,16 @@ const theme = {
         hoverBgColor: info,
         hoverTextColor: white,
         activeBgColor: infoHover,
-        activeTextColor: white,
+        activeTextColor: info,
         borderColor: info
       },
       warning: {
         bgColor: white,
         textColor: warning,
         hoverBgColor: warning,
-        hoverTextColor: black,
+        hoverTextColor: white,
         activeBgColor: warningHover,
-        activeTextColor: black,
+        activeTextColor: warning,
         borderColor: warning
       },
       danger: {
@@ -291,7 +300,7 @@ const theme = {
         hoverBgColor: danger,
         hoverTextColor: white,
         activeBgColor: dangerHover,
-        activeTextColor: white,
+        activeTextColor: danger,
         borderColor: danger
       },
       gray: {
@@ -300,7 +309,7 @@ const theme = {
         hoverBgColor: wtwGray,
         hoverTextColor: white,
         activeBgColor: '#4a4d50',
-        activeTextColor: white,
+        activeTextColor: wtwGray,
         borderColor: wtwGray
       },
       magenta: {
@@ -309,7 +318,7 @@ const theme = {
         hoverBgColor: vbMagenta,
         hoverTextColor: white,
         activeBgColor: '#920C79',
-        activeTextColor: white,
+        activeTextColor: vbMagenta,
         borderColor: vbMagenta
       },
       violet: {
@@ -318,7 +327,7 @@ const theme = {
         hoverBgColor: '#702082',
         hoverTextColor: white,
         activeBgColor: '#4d1659',
-        activeTextColor: white,
+        activeTextColor: '#702082',
         borderColor: '#702082'
       }
     }
@@ -326,24 +335,33 @@ const theme = {
   // buttonSizes should always have default, lg, sm, xs
   buttonSizes: {
     lg: {
-      borderRadius: '3px',
+      borderRadius: '5px',
       fontSize: '26px',
-      padding: '8px 20px 5px'
+      paddingTop: '8px',
+	  paddingSides: '20px',
+	  paddingBottom: '5px'
     },
     default: {
-      borderRadius: '2px',
+      borderRadius: '4px',
       fontSize: '18px',
-      padding: '5px 15px 4px'
+      paddingTop: '5px',
+	  paddingSides: '15px',
+	  paddingBottom: '4px'
     },
     sm: {
-      borderRadius: '2px',
-      fontSize: '14px',
-      padding: '4px 10px 3px'
+      borderRadius: '3px',
+      fontSize: '17px',
+      paddingTop: '4px',
+	  paddingSides: '10px',
+	  paddingBottom: '3px'
     },
     xs: {
-      borderRadius: '2px',
-      fontSize: '12px',
-      padding: '3px 10px 2px'
+      borderRadius: '3px',
+      fontSize: '15px',
+      paddingTop: '3px',
+	  paddingSides: '10px',
+	  paddingBottom: '2px',
+	  textTransform: 'uppercase'
     }
   },
   validationIconName: {

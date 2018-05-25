@@ -83,7 +83,7 @@ const CheckboxWrapper = styled.span`
 `;
 
 const CheckboxText = styled.span`
-  line-height: 1.4;
+  line-height: 1.42;
   margin-left: 5px;
 `;
 

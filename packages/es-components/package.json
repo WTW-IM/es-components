@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
@@ -15,7 +15,7 @@
     "prepare": "npm run build",
     "prettify": "prettier --single-quote --write \"src/**/*.js\"",
     "styleguide-build": "styleguidist build",
-    "styleguide-server": "styleguidist server",
+    "start": "styleguidist server",
     "test": "jest"
   },
   "author": "Willis Towers Watson - Individual Marketplace",
@@ -25,7 +25,7 @@
     "testRegex": "specs\\.js$"
   },
   "peerDependencies": {
-    "es-components-via-theme": "^11.0.2",
+    "es-components-via-theme": "^13.0.0",
     "react": ">=0.14",
     "styled-components": "*"
   },
@@ -41,6 +41,7 @@
     "cross-env": "^5.1.4",
     "css-loader": "^0.26.1",
     "enzyme": "^3.3.0",
+    "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
     "eslint-plugin-babel": "^3.3.0",
@@ -63,7 +64,6 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "es-components-via-theme": "^11.0.2",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",

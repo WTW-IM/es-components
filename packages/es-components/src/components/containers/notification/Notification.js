@@ -22,7 +22,7 @@ const DismissNotification = styled(DismissButton)`
 
 const iconMap = {
   success: 'ok-sign',
-  information: 'info-sign',
+  info: 'info-sign',
   warning: 'exclamation-sign',
   danger: 'exclamation-sign',
   advisor: 'agent'
@@ -195,19 +195,27 @@ export function Notification({
   onDismiss = noop,
   extraAlert,
   theme,
+  useLightVariant,
+  useMessageOnlyVariant,
   ...otherProps
 }) {
   const hasCallsToAction = callsToAction.length > 0;
   const hasExtraAlert = extraAlert;
   const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
+  let bgType = 'base';
+  if (useMessageOnlyVariant) {
+    bgType = 'messageOnly';
+  } else if (useLightVariant) {
+    bgType = 'light';
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <NotificationWrapper>
         <NotificationBgWrapper
           {...otherProps}
-          color={theme.notificationStyles[type]}
+          color={theme.notificationStyles[type][bgType]}
           role={roleType}
         >
           <NotificationHeader>
@@ -268,6 +276,10 @@ Notification.propTypes = {
   callsToAction: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.shape(callToActionShape), PropTypes.element])
   ),
+  /** Use the light color variants of the alert */
+  useLightVariant: PropTypes.bool,
+  /** Display only the message without a colored background */
+  useMessageOnlyVariant: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider

@@ -255,7 +255,7 @@ const theme = {
         hoverBgColor: primary,
         hoverTextColor: white,
         activeBgColor: primaryHover,
-        activeTextColor: primary,
+        activeTextColor: white,
         borderColor: primary
       },
       default: {
@@ -264,7 +264,7 @@ const theme = {
         hoverBgColor: gray7,
         hoverTextColor: white,
         activeBgColor: gray8,
-        activeTextColor: gray7,
+        activeTextColor: white,
         borderColor: gray7
       },
       success: {
@@ -273,7 +273,7 @@ const theme = {
         hoverBgColor: success,
         hoverTextColor: white,
         activeBgColor: successHover,
-        activeTextColor: success,
+        activeTextColor: white,
         borderColor: success
       },
       info: {
@@ -282,7 +282,7 @@ const theme = {
         hoverBgColor: info,
         hoverTextColor: white,
         activeBgColor: infoHover,
-        activeTextColor: info,
+        activeTextColor: white,
         borderColor: info
       },
       warning: {
@@ -291,7 +291,7 @@ const theme = {
         hoverBgColor: warning,
         hoverTextColor: white,
         activeBgColor: warningHover,
-        activeTextColor: warning,
+        activeTextColor: white,
         borderColor: warning
       },
       danger: {
@@ -300,7 +300,7 @@ const theme = {
         hoverBgColor: danger,
         hoverTextColor: white,
         activeBgColor: dangerHover,
-        activeTextColor: danger,
+        activeTextColor: white,
         borderColor: danger
       },
       gray: {
@@ -309,7 +309,7 @@ const theme = {
         hoverBgColor: wtwGray,
         hoverTextColor: white,
         activeBgColor: '#4a4d50',
-        activeTextColor: wtwGray,
+        activeTextColor: white,
         borderColor: wtwGray
       },
       magenta: {
@@ -318,7 +318,7 @@ const theme = {
         hoverBgColor: vbMagenta,
         hoverTextColor: white,
         activeBgColor: '#920C79',
-        activeTextColor: vbMagenta,
+        activeTextColor: white,
         borderColor: vbMagenta
       },
       violet: {
@@ -327,7 +327,7 @@ const theme = {
         hoverBgColor: '#702082',
         hoverTextColor: white,
         activeBgColor: '#4d1659',
-        activeTextColor: '#702082',
+        activeTextColor: white,
         borderColor: '#702082'
       }
     }

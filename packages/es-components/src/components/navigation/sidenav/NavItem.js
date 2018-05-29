@@ -76,21 +76,22 @@ const AnchorAltStyle = AnchorBase.extend`
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props.theme.colors.gray3};
-      border-left: 4px solid ${props.theme.colors.info};
-      color: ${props.theme.colors.info};
+      background-color: ${props.theme.colors.gray1};
+      border-left: 4px solid ${props.theme.brandColors.vbMagenta};
+      color: ${props.theme.brandColors.vbMagenta};
       padding-left: 6px;
 
       > i {
-        color: ${props.theme.colors.info};
+        color: ${props.theme.brandColors.vbMagenta};
       }
 
       &:hover {
-        background-color: ${props.theme.colors.gray3};
-        color: ${props.theme.colors.info};
+        background-color: ${props.theme.colors.gray1};
+        border-left: 4px solid ${props.theme.brandColors.vbMagenta};
+        color: ${props.theme.brandColors.vbMagenta};
 
         > i {
-          color: ${props.theme.colors.info};
+          color: ${props.theme.brandColors.vbMagenta};
         }
       }
     `} ${props =>

@@ -14,9 +14,10 @@ const TooltipInner = styled.div`
   background-color: ${props => props.theme.colors.black};
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
-  font-family: sans-serif;
-  font-size: 12px;
-  padding: 4px 8px 5px 8px;
+  font-size: 15px;
+  line-height: 1.43;
+  max-width: 200px;
+  padding: 3px 8px;
   text-align: center;
 `;
 
@@ -29,22 +30,22 @@ const TooltipArrowBase = styled.div`
 `;
 
 const TooltipTop = styled(TooltipBase)`
-  margin-top: -3px;
+  margin-top: -5px;
   padding: 5px 0;
 `;
 
 const TooltipRight = styled(TooltipBase)`
-  margin-right: 3px;
+  margin-right: 5px;
   padding: 0 5px;
 `;
 
 const TooltipBottom = styled(TooltipBase)`
-  margin-bottom: 3px;
+  margin-bottom: 5px;
   padding: 5px 0;
 `;
 
 const TooltipLeft = styled(TooltipBase)`
-  margin-left: -3px;
+  margin-left: -5px;
   padding: 0 5px;
 `;
 

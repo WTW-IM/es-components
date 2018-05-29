@@ -6,10 +6,11 @@ import DismissButton from '../../controls/DismissButton';
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
-  background-color: ${props => props.theme.colors.popoverHeader};
-  border-bottom: 1px solid ${props => props.theme.colors.gray2};
-  color: ${props => props.theme.colors.white};
+  border-bottom: 2px solid ${props => props.theme.brandColors.vbMagenta};
+  color: ${props => props.theme.colors.gray9};
   display: flex;
+  font-size: 26px;
+  font-weight: 500;
   justify-content: space-between;
   padding: 15px;
 `;
@@ -21,8 +22,14 @@ const Title = styled.h4`
 `;
 
 const DismissModal = styled(DismissButton)`
-  color: ${props => props.theme.colors.white};
-  text-shadow: 0 1px 0 ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.black};
+  line-height: 1;
+  opacity: 0.2;
+  text-shadow: 0 1px 0 ${props => props.theme.colors.white};
+
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const ModalHeader = (props, context) => {

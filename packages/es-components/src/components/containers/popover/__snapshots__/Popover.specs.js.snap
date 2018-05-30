@@ -45,13 +45,17 @@ exports[`popover component renders as expected 1`] = `
         >
           <div
             className="sc-iwsKbI jOGmdE"
-            tabIndex={-1}
           >
             <h3
               className="sc-gZMcBi cPBpHt"
             >
               Popover Title
             </h3>
+            <span
+              aria-label="Press escape to close the Popover"
+              className="sc-fjdhpX dYNDTL"
+              tabIndex={-1}
+            />
           </div>
           <div
             className="sc-gqjmRU hrhaoz"

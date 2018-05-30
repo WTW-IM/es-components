@@ -15,7 +15,7 @@ function darkenPrimary(primary) {
 const OrderedList = styled.ol`
   background-color: ${props => props.theme.colors.gray1};
   border-radius: 2px;
-  line-height: 1.42;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   list-style: none;
   margin-bottom: 25px;
   margin-top: 0;

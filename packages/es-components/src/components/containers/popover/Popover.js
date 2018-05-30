@@ -48,7 +48,7 @@ const PopoverHeader = styled.div`
   background-color: ${props =>
     props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
   outline: none;
-  line-height: initial;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
 `;
 
 const TitleBar = styled.h3`
@@ -62,7 +62,7 @@ const PopoverBody = styled.div`
     props.hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   text-align: right;
   color: ${props => props.theme.colors.gray8};
-  line-height: initial;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   font-size: 18px;
   font-weight: normal;
 `;

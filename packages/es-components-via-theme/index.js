@@ -401,8 +401,8 @@ const theme = {
     }
   },
   sizes: {
-    baseFontSize: 18,
-    baseLineHeight: 24
+    baseFontSize: '18px',
+    baseLineHeight: 1.428
   },
   screenSize: {
     retina: '320px',

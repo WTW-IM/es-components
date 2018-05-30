@@ -15,7 +15,7 @@ const TooltipInner = styled.div`
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
   font-size: 15px;
-  line-height: 1.43;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   max-width: 200px;
   padding: 3px 8px;
   text-align: center;

@@ -25,7 +25,7 @@ function radioFill(color) {
 const RadioLabel = styled(Label)`
   color: ${props => (props.error ? props.theme.colors.danger : 'inherit')};
   display: ${props => (props.inline ? 'inline-flex' : 'inherit')};
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   margin-right: ${props => (props.inline ? '20px' : 'initial')};
   min-height: 25px;

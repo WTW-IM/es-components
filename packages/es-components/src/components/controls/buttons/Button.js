@@ -25,7 +25,7 @@ const ButtonBase = styled.button`
   display: ${props => getBlockPropertyValues(props.block).display};
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
-  line-height: 1.42;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: ${props => props.buttonSize.padding};
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};

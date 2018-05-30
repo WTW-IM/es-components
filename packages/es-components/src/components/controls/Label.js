@@ -7,7 +7,7 @@ const Label = styled.label`
   display: ${props => (props.inline ? 'flex' : 'block')};
   margin-bottom: 20px;
   flex: ${props => (props.inline ? 'auto' : 'initial')};
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
 
   &[disabled] {

@@ -31,25 +31,21 @@ module.exports = {
         font-style: normal;
         }
 
-        /* source-sans-pro-regular - latin */
-		@font-face {
-		  font-family: 'Source Sans Pro';
-		  font-style: normal;
-		  font-weight: 400;
-		  src: url('webfonts/source-sans-pro-v11-latin-regular.eot'); /* IE9 Compat Modes */
-		  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
-			   url('webfonts/source-sans-pro-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-			   url('webfonts/source-sans-pro-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-			   url('webfonts/source-sans-pro-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
-			   url('webfonts/source-sans-pro-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-			   url('webfonts/source-sans-pro-v11-latin-regular.svg#SourceSansPro') format('svg'); /* Legacy iOS */
-		}
-
         body {
           color: #444;
           font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+		  font-weight: 400;
         }
-      </style>`
+		
+		* {
+		  box-sizing: border-box;
+		}
+		
+		input, button, select, textarea {
+		  font-family: inherit;
+		}
+      </style>
+	  <link rel="stylesheet" href="webfonts/source-sans-pro.css">`
     }
   },
   ribbon: {

@@ -48,7 +48,7 @@ const StyledText = styled(InputBase)`
 `;
 
 const AdditionalHelpContent = styled.div`
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   margin: 10px 0 20px 0;
   text-transform: none;

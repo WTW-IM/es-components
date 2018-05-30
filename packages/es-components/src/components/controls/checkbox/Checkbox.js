@@ -8,7 +8,7 @@ import Label from '../Label';
 
 /* eslint-disable no-confusing-arrow */
 const CheckboxLabel = Label.extend`
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   text-transform: none;
   display: flex;
@@ -83,7 +83,7 @@ const CheckboxWrapper = styled.span`
 `;
 
 const CheckboxText = styled.span`
-  line-height: 1.42;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   margin-left: 5px;
 `;
 

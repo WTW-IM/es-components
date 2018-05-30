@@ -15,7 +15,7 @@ const baseStyles = css`
   border-radius: 2px;
   box-sizing: border-box;
   color: ${props => props.theme.colors.gray9};
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   height: 39px;
   padding: 6px 12px;

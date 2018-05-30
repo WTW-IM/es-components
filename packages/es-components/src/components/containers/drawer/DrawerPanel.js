@@ -14,6 +14,7 @@ const PanelWrapper = styled.div`
 const PanelButton = styled.button`
   background: none;
   border: 0;
+  color: ${props => props.theme.colors.primary};
   cursor: pointer;
   display: flex;
   font-size: 18px;
@@ -23,7 +24,7 @@ const PanelButton = styled.button`
 
   &:hover {
     background-color: ${props => props.theme.colors.gray2};
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.brandColors.vbBlue};
   }
 `;
 

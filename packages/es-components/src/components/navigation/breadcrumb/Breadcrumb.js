@@ -42,7 +42,7 @@ const OrderedList = styled.ol`
 `;
 
 const Crumb = styled.li`
-  color: ${props => props.theme.colors.info};
+  color: ${props => props.theme.brandColors.vbMagenta};
   display: inline-block;
   margin-right: 2px;
   position: relative;

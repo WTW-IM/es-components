@@ -8,14 +8,15 @@ import Icon from '../../base/icons/Icon';
 const AnchorBase = styled.a`
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
   padding: 10px;
   text-decoration: none;
 
   > i {
     color: ${props => props.theme.colors.white};
+    line-height: ${props => props.theme.sizes.baseLineHeight};
   }
 
   &:hover {

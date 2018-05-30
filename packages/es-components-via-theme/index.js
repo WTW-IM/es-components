@@ -366,7 +366,7 @@ const theme = {
   },
   validationIconName: {
     success: 'ok',
-    warning: 'warning-sign',
+    warning: 'exclamation-sign',
     danger: 'remove'
   },
   validationTextColor: {

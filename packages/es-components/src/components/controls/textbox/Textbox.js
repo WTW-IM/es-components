@@ -58,15 +58,16 @@ const addonAttrs = `
   font-weight: normal;
   pointer-events: none;
   position: absolute;
-  top: 9px;
 `;
 
 const Prepend = styled(Icon)`
   ${addonAttrs} left: 9px;
+  top: 9px;
 `;
 
 const Append = styled.div`
   ${addonAttrs} right: 9px;
+  top: 8px;
 
   i {
     margin-left: 9px;

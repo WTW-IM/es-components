@@ -138,7 +138,7 @@ export class Incrementer extends React.Component {
             handleOnClick={this.incrementValue}
             disabled={incrementButtonDisabled}
           >
-            <Icon name="plus" />
+            <Icon name="add" />
           </Button>
         </div>
       </ThemeProvider>

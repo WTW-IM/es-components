@@ -337,7 +337,7 @@ const theme = {
     lg: {
       borderRadius: '5px',
       fontSize: '26px',
-      paddingTop: '8px',
+      paddingTop: '6px',
 	  paddingSides: '20px',
 	  paddingBottom: '5px'
     },

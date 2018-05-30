@@ -157,7 +157,6 @@ Setting the `block` property will force the button to expand to the width of it'
 ```
 const buttonContainerStyle = {
   width: '300px',
-  height: '50px',
   padding: '10px',
   backgroundColor: '#ddd',
   border: '1px solid #444'

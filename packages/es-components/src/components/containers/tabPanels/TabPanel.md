@@ -1,4 +1,4 @@
-Tab Panels allow us to store lots more data on the screen and only show the amount we want, when we want. This works by having a Tab contain context, or a Tab List that contains elements. Each direct child of the tab list must contain optiontext that will turn into the title in the dropdown. Tabs are able to have a full node inside instead of just text. This allows us to put in icons and other styling.
+Tab Panels allow us to store lots more data on the screen and only show the amount we want, when we want. This works by having a TabPanel.Tab which provides a quick peek into what information will be display in the content area when clicked. The TabPanel.Tab has a name, which is a string or JSX to be displayed, and an optional simpleName, which is a string that will be read by a screen reader. The TabPanel.Tab can have children inside of it that will be rendered inside of the TabPanel's content area.
 
 ```
 <div>
@@ -21,6 +21,9 @@ Tab Panels allow us to store lots more data on the screen and only show the amou
     </p>
   </TabPanel.Tab>
   <TabPanel.Tab name="dolor sit">
+    <p>
+      Multiple paragraphs inside the Tab.
+    </p>
     <p>
       ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
     </p>

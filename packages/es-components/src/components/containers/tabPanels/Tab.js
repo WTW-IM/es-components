@@ -27,10 +27,8 @@ const TabButton = styled.button`
       props.selected
         ? `1px solid ${props.theme.colors.gray4}`
         : '1px solid transparent'};
-    border-bottom: ${props =>
-      props.selected
-        ? ' 1px solid transparent'
-        : `1px solid ${props.theme.colors.gray4}`};
+    border-bottom-color: ${props =>
+      props.selected ? ' transparent' : `${props.theme.colors.gray4}`};
     box-shadow: none;
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
@@ -63,11 +61,9 @@ function Tab({ name, selected, action, children, simpleName, ...props }) {
       {...props}
     >
       {name}
-      {selected ? (
+      {selected && (
         <AriaAnnouncer aria-live="assertive">{`${simpleName ||
           name} Sub text is now showing`}</AriaAnnouncer>
-      ) : (
-        ''
       )}
     </TabButton>
   );

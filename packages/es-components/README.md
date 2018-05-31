@@ -87,5 +87,5 @@ The component guide is built using [react-styleguidist](https://github.com/style
 ## Build commands
 ```
 npm run build (build javascript)
-npm run styleguide-server (run the styleguide on localhost:6060)
+npm start (run the styleguide on localhost:6060)
 ```

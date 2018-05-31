@@ -18,13 +18,18 @@ const primary = '#007fa7';
 const primaryHover = '#005874';
 const info = '#069';
 const infoHover = '#004466';
+const infoLight = '#b8e4f9';
 const success = '#298544';
 const successHover = '#1d5e30';
+const successLight = '#d9eedf';
 const warning = '#b35f00';
 const warningHover = '#804400';
+const warningLight = '#fcebde';
 const danger = '#c00';
 const dangerHover = '#990000';
+const dangerLight = '#fde7e7';
 const advisor = warning;
+const advisorLight = warningLight;
 const popoverHeader = darkBlue;
 
 const vbBlue = '#00a0d2';
@@ -69,13 +74,18 @@ const theme = {
     primaryHover: primaryHover,
     success: success,
     successHover: successHover,
+    successLight: successLight,
     info: info,
     infoHover: infoHover,
+    infoLight: infoLight,
     warning: warning,
     warningHover: warningHover,
+    warningLight: warningLight,
     danger: danger,
     dangerHover: dangerHover,
+    dangerLight: dangerLight,
     advisor: advisor,
+    advisorLight: advisorLight,
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus,
@@ -99,24 +109,74 @@ const theme = {
   },
   notificationStyles: {
     success: {
-      bgColor: success,
-      textColor: white
+      base: {
+        bgColor: success,
+        textColor: white
+      },
+      light: {
+        bgColor: successLight,
+        textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: success
+      }
     },
     info: {
-      bgColor: info,
-      textColor: white
+      base: {
+        bgColor: info,
+        textColor: white
+      },
+      light: {
+        bgColor: infoLight,
+        textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: info
+      }
     },
     warning: {
-      bgColor: warning,
-      textColor: white
+      base: {
+        bgColor: warning,
+        textColor: white
+      },
+      light: {
+        bgColor: warningLight,
+        textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: warning
+      }
     },
     danger: {
-      bgColor: danger,
-      textColor: white
+      base: {
+        bgColor: danger,
+        textColor: white
+      },
+      light: {
+        bgColor: dangerLight,
+        textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: danger
+      }
     },
     advisor: {
-      bgColor: advisor,
-      textColor: white
+      base: {
+        bgColor: advisor,
+        textColor: white
+      },
+      light: {
+        bgColor: advisorLight,
+        textColor: gray8
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: advisor
+      }
     }
   },
   buttonStyles: {

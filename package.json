@@ -1,7 +1,5 @@
 {
-
   "name": "es-components",
-  "version": "10.7.1",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "scripts": {

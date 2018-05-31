@@ -87,6 +87,12 @@ const AlternateCloseButton = styled(Button)`
   }
 `;
 
+const CloseHelpText = styled.span`
+  height: 1px;
+  width: 1px;
+  color: transparent;
+`;
+
 class Popover extends React.Component {
   state = {
     isOpen: false
@@ -241,15 +247,16 @@ class Popover extends React.Component {
                 this.contentRef = elem;
               }}
             >
-              <PopoverHeader
-                hasTitle={hasTitle}
-                tabIndex={-1}
-                ref={elem => {
-                  this.headerRef = elem;
-                }}
-              >
+              <PopoverHeader hasTitle={hasTitle}>
                 {hasTitle && <TitleBar>{title}</TitleBar>}
                 {hasAltCloseButton && altCloseButton}
+                <CloseHelpText
+                  tabIndex={-1}
+                  ref={elem => {
+                    this.headerRef = elem;
+                  }}
+                  aria-label="Press escape to close the Popover"
+                />
               </PopoverHeader>
 
               <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>

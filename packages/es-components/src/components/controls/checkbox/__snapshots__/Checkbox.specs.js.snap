@@ -6,6 +6,7 @@ exports[`Checkbox renders as expected 1`] = `
   disabled={true}
 >
   <input
+    aria-label={undefined}
     checked={true}
     className="sc-htpNat dVmsUC"
     disabled={true}
@@ -18,6 +19,7 @@ exports[`Checkbox renders as expected 1`] = `
     className="checkbox-fill sc-bxivhb kynQKu"
   />
   <span
+    aria-hidden={false}
     className="sc-ifAKCX kWaOTi"
   >
     Render test

@@ -6,7 +6,7 @@ exports[`MenuTestSuite renders as expected 1`] = `
 >
   <button
     aria-expanded={false}
-    className="open-menu-button sc-ifAKCX drovqE sc-bwzfXH hJmlCu sc-bdVaJa dUrYEC"
+    className="open-menu-button sc-ifAKCX drovqE sc-bwzfXH hJmlCu sc-bdVaJa kHkNOX"
     onClick={[Function]}
   >
     Open Menu

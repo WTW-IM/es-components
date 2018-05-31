@@ -26,7 +26,6 @@ const ButtonBase = styled.button`
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  padding: ${props => props.buttonSize.padding};
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};
   padding-right: ${props => props.buttonSize.paddingSides};

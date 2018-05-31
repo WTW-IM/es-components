@@ -14,14 +14,14 @@ exports[`drawer component accordion renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat TVtNM"
+        className="sc-htpNat jDwJgO"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
-            content="65a"
+            className="sc-bxivhb UZmtw sc-bdVaJa LyjgZ"
+            content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
@@ -62,14 +62,14 @@ exports[`drawer component accordion renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat TVtNM"
+        className="sc-htpNat jDwJgO"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
-            content="65a"
+            className="sc-bxivhb UZmtw sc-bdVaJa LyjgZ"
+            content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
@@ -107,14 +107,14 @@ exports[`drawer component accordion renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat TVtNM"
+        className="sc-htpNat jDwJgO"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
-            content="65a"
+            className="sc-bxivhb UZmtw sc-bdVaJa LyjgZ"
+            content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
@@ -159,14 +159,14 @@ exports[`drawer component drawer renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat TVtNM"
+        className="sc-htpNat jDwJgO"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
-            content="65a"
+            className="sc-bxivhb UZmtw sc-bdVaJa LyjgZ"
+            content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
@@ -207,14 +207,14 @@ exports[`drawer component drawer renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat TVtNM"
+        className="sc-htpNat jDwJgO"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
-            content="65a"
+            className="sc-bxivhb UZmtw sc-bdVaJa LyjgZ"
+            content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />
@@ -252,14 +252,14 @@ exports[`drawer component drawer renders as expected 1`] = `
       <button
         aria-controls="abcdef"
         aria-expanded={false}
-        className="sc-htpNat TVtNM"
+        className="sc-htpNat jDwJgO"
         onClick={[Function]}
       >
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb UZmtw sc-bdVaJa dnSaqI"
-            content="65a"
+            className="sc-bxivhb UZmtw sc-bdVaJa LyjgZ"
+            content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
           />

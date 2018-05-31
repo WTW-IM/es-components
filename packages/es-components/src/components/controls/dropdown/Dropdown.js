@@ -15,6 +15,7 @@ const optionsShape = {
 
 function Dropdown({
   labelText,
+  className,
   name,
   options,
   inline = false,
@@ -45,13 +46,15 @@ function Dropdown({
 
   return (
     <ThemeProvider theme={theme}>
-      <Label inline={inline}>
-        <LabelText
-          foregroundColor={theme.validationTextColor[validationState]}
-          inline={inline}
-        >
-          {labelText}
-        </LabelText>
+      <Label inline={inline} className={className}>
+        {labelText && (
+          <LabelText
+            foregroundColor={theme.validationTextColor[validationState]}
+            inline={inline}
+          >
+            {labelText}
+          </LabelText>
+        )}
         <SelectBase
           name={name}
           value={value}
@@ -69,7 +72,7 @@ function Dropdown({
 }
 
 Dropdown.propTypes = {
-  labelText: PropTypes.string.isRequired,
+  labelText: PropTypes.string,
   /** The name of the select element*/
   name: PropTypes.string,
   /** Display label inline with dropdown */
@@ -93,7 +96,11 @@ Dropdown.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  /**
+   * class name is applied to top level label
+   */
+  className: PropTypes.string
 };
 
 Dropdown.defaultProps = {

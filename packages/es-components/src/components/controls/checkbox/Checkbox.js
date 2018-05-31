@@ -94,6 +94,7 @@ function Checkbox({
   isDisabled = false,
   onClick = noop,
   onChange = noop,
+  ariaLabel,
   theme
 }) {
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
@@ -107,10 +108,11 @@ function Checkbox({
           checked={isChecked}
           onClick={onClick}
           onChange={onChange}
+          aria-label={ariaLabel}
           focusBorderColor={theme.colors.inputFocus}
         />
         <CheckboxWrapper className="checkbox-fill" />
-        <CheckboxText>{labelText}</CheckboxText>
+        <CheckboxText aria-hidden={!!ariaLabel}>{labelText}</CheckboxText>
       </CheckboxLabel>
     </ThemeProvider>
   );
@@ -120,6 +122,8 @@ function Checkbox({
 Checkbox.propTypes = {
   labelText: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Sets the aria-label attribute */
+  ariaLabel: PropTypes.string,
   isChecked: PropTypes.bool,
   /* Function to execute when a checkbox is clicked */
   onClick: PropTypes.func,

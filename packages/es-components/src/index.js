@@ -7,6 +7,7 @@ export Tooltip from './components/containers/tooltip/Tooltip';
 export Popover from './components/containers/popover/Popover';
 export Modal from './components/containers/modal/Modal';
 export Menu from './components/containers/menu/Menu';
+export TabPanel from './components/containers/tabPanels/TabPanel';
 
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';

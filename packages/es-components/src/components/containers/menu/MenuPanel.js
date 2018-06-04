@@ -7,6 +7,7 @@ const StyledPanel = styled.div`
   background-color: ${props => props.theme.colors.gray2};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
+  z-index: 999;
 `;
 
 const StyledDismissButton = styled(DismissButton)`

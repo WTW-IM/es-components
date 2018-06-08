@@ -4,17 +4,18 @@ import styled, { css } from 'styled-components';
 export const LabelText = styled.span`
   align-self: ${props => (props.inline ? 'center' : 'initial')};
   color: ${props => props.foregroundColor || 'inherit'};
-  flex: 0 auto;
-  flex-basis: 90px;
   display: block;
+  flex: 0 auto;
+  flex-basis: 100px;
   margin-bottom: ${props => (props.inline ? 'initial' : '5px')};
+  margin-right: 10px;
 `;
 
 const baseStyles = css`
   border-radius: 2px;
   box-sizing: border-box;
   color: ${props => props.theme.colors.gray9};
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   height: 39px;
   padding: 6px 12px;

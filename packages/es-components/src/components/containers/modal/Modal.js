@@ -55,7 +55,7 @@ const ModalContent = styled.div`
   background-clip: padding-box;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   outline: 0;
   position: relative;
 `;

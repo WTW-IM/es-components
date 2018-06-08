@@ -6,9 +6,10 @@ import viaTheme from 'es-components-via-theme';
 const Legend = styled.legend`
   border: 0;
   border-bottom: 1px solid ${props => props.theme.colors.gray6};
-  color: ${props => props.theme.colors.gray6};
+  color: ${props => props.theme.colors.black};
   display: block;
-  font-size: ${props => props.theme.sizes.baseFontSize * 1.5}px;
+  font-size: 27px;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   margin: 0 0 25px 0;
   padding: 0;
   width: 100%;

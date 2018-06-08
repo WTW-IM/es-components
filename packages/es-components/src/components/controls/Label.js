@@ -6,9 +6,8 @@ const Label = styled.label`
   cursor: pointer;
   display: ${props => (props.inline ? 'flex' : 'block')};
   margin-bottom: 20px;
-  text-transform: uppercase;
   flex: ${props => (props.inline ? 'auto' : 'initial')};
-  font-size: ${props => props.theme.sizes.baseFontSize * 0.75}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
 
   &[disabled] {

@@ -8,14 +8,15 @@ import Icon from '../../base/icons/Icon';
 const AnchorBase = styled.a`
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
   padding: 10px;
   text-decoration: none;
 
   > i {
     color: ${props => props.theme.colors.white};
+    line-height: ${props => props.theme.sizes.baseLineHeight};
   }
 
   &:hover {
@@ -76,21 +77,22 @@ const AnchorAltStyle = AnchorBase.extend`
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props.theme.colors.gray3};
-      border-left: 4px solid ${props.theme.colors.info};
-      color: ${props.theme.colors.info};
+      background-color: ${props.theme.colors.gray1};
+      border-left: 4px solid ${props.theme.brandColors.vbMagenta};
+      color: ${props.theme.brandColors.vbMagenta};
       padding-left: 6px;
 
       > i {
-        color: ${props.theme.colors.info};
+        color: ${props.theme.brandColors.vbMagenta};
       }
 
       &:hover {
-        background-color: ${props.theme.colors.gray3};
-        color: ${props.theme.colors.info};
+        background-color: ${props.theme.colors.gray1};
+        border-left: 4px solid ${props.theme.brandColors.vbMagenta};
+        color: ${props.theme.brandColors.vbMagenta};
 
         > i {
-          color: ${props.theme.colors.info};
+          color: ${props.theme.brandColors.vbMagenta};
         }
       }
     `} ${props =>

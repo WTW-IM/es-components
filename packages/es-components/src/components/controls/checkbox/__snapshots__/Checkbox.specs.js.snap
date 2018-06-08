@@ -2,7 +2,7 @@
 
 exports[`Checkbox renders as expected 1`] = `
 <label
-  className="sc-bwzfXH gowgoo"
+  className="sc-bwzfXH lpnuLf"
   disabled={true}
 >
   <input
@@ -20,7 +20,7 @@ exports[`Checkbox renders as expected 1`] = `
   />
   <span
     aria-hidden={false}
-    className="sc-ifAKCX kVENxO"
+    className="sc-ifAKCX kWaOTi"
   >
     Render test
   </span>

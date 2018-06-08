@@ -13,7 +13,7 @@ render(
 );
 ```
 
-The [via benefits theme]() is bundled as the default theme for this component library. To create your own theme, you can copy one of the themes, modify the values, and supply that object to the `ThemeProvider`.
+The [via benefits theme]() is bundled as the default theme for this component library. To create your own theme, copy the default theme, modify the values, and supply that object to the `ThemeProvider`.
 
 ### Theme colors
 
@@ -33,4 +33,12 @@ The [via benefits theme]() is bundled as the default theme for this component li
 
 ### Fonts
 
-Apart from the icon set, this library does not have a specific typography and should work with whatever font you have defined in your project.
+Apart from the icon set, this library does not have a specific typography and should work with whatever font you have defined in your project. Our UX team's font of choice for
+our applications is `Source Sans Pro`. You can use the font in your project either by getting it from the UX team, or linking to [google's CDN](https://fonts.google.com/specimen/Source+Sans+Pro):
+
+```html
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+	rel="stylesheet"
+>
+```

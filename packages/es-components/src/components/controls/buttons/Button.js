@@ -16,6 +16,7 @@ function getBlockPropertyValues(isBlock) {
   };
 }
 
+/* eslint-disable no-confusing-arrow */
 const ButtonBase = styled.button`
   border: none;
   border-radius: ${props => props.buttonSize.borderRadius};
@@ -24,9 +25,14 @@ const ButtonBase = styled.button`
   display: ${props => getBlockPropertyValues(props.block).display};
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
-  line-height: 1.4;
-  padding: ${props => props.buttonSize.padding};
+  line-height: ${props => props.theme.sizes.baseLineHeight};
+  padding-bottom: ${props => props.buttonSize.paddingBottom};
+  padding-left: ${props => props.buttonSize.paddingSides};
+  padding-right: ${props => props.buttonSize.paddingSides};
+  padding-top: ${props => props.buttonSize.paddingTop};
   text-align: center;
+  text-transform: ${props =>
+    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
   vertical-align: middle;
   white-space: nowrap;
   width: ${props => getBlockPropertyValues(props.block).width};
@@ -40,6 +46,7 @@ const ButtonBase = styled.button`
     }
   }
 `;
+/* eslint-enable */
 
 const DefaultButton = styled(ButtonBase)`
   background-color: ${props => props.variant.bgColor};
@@ -48,6 +55,7 @@ const DefaultButton = styled(ButtonBase)`
   color: ${props => props.variant.textColor};
   margin-bottom: 4px;
   margin-top: 0;
+  transition: background-color 250ms linear;
 
   &[disabled]:hover {
     background-color: ${props => props.variant.bgColor};
@@ -64,12 +72,16 @@ const DefaultButton = styled(ButtonBase)`
   }
 `;
 
+// the padding-bottom is set to the top value intentionally
+// needed for the slight difference from the normal button style
 const OutlineButton = styled(ButtonBase)`
   background-color: ${props => props.variant.bgColor};
   border: 2px solid ${props => props.variant.borderColor};
   border-radius: 5px;
   color: ${props => props.variant.textColor};
   font-weight: bold;
+  padding-bottom: ${props => props.buttonSize.paddingTop};
+  transition: background-color 250ms linear, color 250ms linear;
 
   &:hover {
     background-color: ${props => props.variant.hoverBgColor};

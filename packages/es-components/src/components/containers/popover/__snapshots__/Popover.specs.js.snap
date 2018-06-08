@@ -8,7 +8,7 @@ exports[`popover component renders as expected 1`] = `
     <div>
       <button
         aria-expanded={false}
-        className="sc-gzVnrw jgosdJ sc-htpNat kpbNOk sc-bwzfXH cOfHpN"
+        className="sc-gzVnrw jgosdJ sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
         onClick={[Function]}
       >
         <span
@@ -44,7 +44,7 @@ exports[`popover component renders as expected 1`] = `
           role="dialog"
         >
           <div
-            className="sc-iwsKbI jOGmdE"
+            className="sc-iwsKbI cirLJO"
           >
             <h3
               className="sc-gZMcBi cPBpHt"
@@ -58,7 +58,7 @@ exports[`popover component renders as expected 1`] = `
             />
           </div>
           <div
-            className="sc-gqjmRU hrhaoz"
+            className="sc-gqjmRU eiaKpk"
           >
             <div
               className="sc-VigVT cztEQg"

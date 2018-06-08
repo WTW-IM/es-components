@@ -48,31 +48,26 @@ const StyledText = styled(InputBase)`
 `;
 
 const AdditionalHelpContent = styled.div`
-  font-size: ${props => props.theme.sizes.baseFontSize}px;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   margin: 10px 0 20px 0;
   text-transform: none;
-`;
-
-const TextWrapper = styled.div`
-  flex: auto;
-  margin-right: ${props => (props.includeMargin ? '20px' : '0')};
-  position: relative;
 `;
 
 const addonAttrs = `
   font-weight: normal;
   pointer-events: none;
   position: absolute;
-  top: 9px;
 `;
 
 const Prepend = styled(Icon)`
   ${addonAttrs} left: 9px;
+  top: 9px;
 `;
 
 const Append = styled.div`
   ${addonAttrs} right: 9px;
+  top: 8px;
 
   i {
     margin-left: 9px;
@@ -82,6 +77,8 @@ const Append = styled.div`
 const InputWrapper = styled.div`
   display: flex;
   flex: auto;
+  margin-right: 25px;
+  position: relative;
 `;
 
 const Textbox = props => {
@@ -132,35 +129,33 @@ const Textbox = props => {
       >
         <LabelText inline={inline}>{labelText}</LabelText>
         <InputWrapper>
-          <TextWrapper includeMargin={inline}>
-            {hasPrepend && <Prepend name={prependIconName} size={20} />}
-            <Input
-              aria-describedby={helpId}
-              hasPrepend={hasPrepend}
-              id={textboxId}
-              innerRef={inputRef}
-              name={inputName}
-              numAppendIconNames={numAppendIconNames}
-              onBlur={onBlur}
-              onChange={onChange}
-              type="text"
-              value={value}
-              {...maskArgs}
-              {...additionalTextProps}
-              {...theme.validationInputColor[validationState]}
-            />
-            {(hasAppend || hasValidationIcon) && (
-              <Append>
-                {hasValidationIcon && (
-                  <Icon
-                    name={theme.validationIconName[validationState]}
-                    size={20}
-                  />
-                )}
-                {hasAppend && <Icon name={appendIconName} size={20} />}
-              </Append>
-            )}
-          </TextWrapper>
+          {hasPrepend && <Prepend name={prependIconName} size={20} />}
+          <Input
+            aria-describedby={helpId}
+            hasPrepend={hasPrepend}
+            id={textboxId}
+            innerRef={inputRef}
+            name={inputName}
+            numAppendIconNames={numAppendIconNames}
+            onBlur={onBlur}
+            onChange={onChange}
+            type="text"
+            value={value}
+            {...maskArgs}
+            {...additionalTextProps}
+            {...theme.validationInputColor[validationState]}
+          />
+          {(hasAppend || hasValidationIcon) && (
+            <Append>
+              {hasValidationIcon && (
+                <Icon
+                  name={theme.validationIconName[validationState]}
+                  size={20}
+                />
+              )}
+              {hasAppend && <Icon name={appendIconName} size={20} />}
+            </Append>
+          )}
         </InputWrapper>
         {additionalHelp}
       </TextBoxLabel>

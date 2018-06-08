@@ -7,7 +7,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   <div />
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -33,7 +33,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -59,7 +59,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-3"
   >
@@ -92,14 +92,14 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
 >
   <div>
     <legend
-      className="sc-EHOje bJBAcN"
+      className="sc-EHOje iSPUDq"
     >
       Test legend
     </legend>
   </div>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -125,7 +125,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -151,7 +151,7 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa kHjvzh"
+    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-3"
   >

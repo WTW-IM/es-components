@@ -22,8 +22,8 @@ const infoLight = '#b8e4f9';
 const success = '#298544';
 const successHover = '#1d5e30';
 const successLight = '#d9eedf';
-const warning = '#b35f00';
-const warningHover = '#804400';
+const warning = '#c25400';
+const warningHover = '#8f3e00';
 const warningLight = '#fcebde';
 const danger = '#c00';
 const dangerHover = '#990000';
@@ -200,6 +200,15 @@ const theme = {
         activeTextColor: black,
         boxShadowColor: defaultHover
       },
+      darkDefault: {
+        bgColor: gray7,
+        textColor: white,
+        hoverBgColor: gray8,
+        hoverTextColor: white,
+        activeBgColor: gray8,
+        activeTextColor: white,
+        boxShadowColor: gray8
+      },
       success: {
         bgColor: success,
         textColor: white,
@@ -251,12 +260,12 @@ const theme = {
       },
       default: {
         bgColor: white,
-        textColor: defaultColor,
-        hoverBgColor: defaultColor,
+        textColor: gray7,
+        hoverBgColor: gray7,
         hoverTextColor: white,
-        activeBgColor: defaultHover,
+        activeBgColor: gray8,
         activeTextColor: white,
-        borderColor: defaultColor
+        borderColor: gray7
       },
       success: {
         bgColor: white,
@@ -280,9 +289,9 @@ const theme = {
         bgColor: white,
         textColor: warning,
         hoverBgColor: warning,
-        hoverTextColor: black,
+        hoverTextColor: white,
         activeBgColor: warningHover,
-        activeTextColor: black,
+        activeTextColor: white,
         borderColor: warning
       },
       danger: {
@@ -326,29 +335,38 @@ const theme = {
   // buttonSizes should always have default, lg, sm, xs
   buttonSizes: {
     lg: {
-      borderRadius: '3px',
+      borderRadius: '5px',
       fontSize: '26px',
-      padding: '8px 20px 5px'
+      paddingTop: '6px',
+      paddingSides: '20px',
+      paddingBottom: '5px'
     },
     default: {
-      borderRadius: '2px',
+      borderRadius: '4px',
       fontSize: '18px',
-      padding: '5px 15px 4px'
+      paddingTop: '5px',
+      paddingSides: '15px',
+      paddingBottom: '4px'
     },
     sm: {
-      borderRadius: '2px',
-      fontSize: '14px',
-      padding: '4px 10px 3px'
+      borderRadius: '3px',
+      fontSize: '17px',
+      paddingTop: '4px',
+      paddingSides: '10px',
+      paddingBottom: '3px'
     },
     xs: {
-      borderRadius: '2px',
-      fontSize: '12px',
-      padding: '3px 10px 2px'
+      borderRadius: '3px',
+      fontSize: '15px',
+      paddingTop: '3px',
+      paddingSides: '10px',
+      paddingBottom: '2px',
+      textTransform: 'uppercase'
     }
   },
   validationIconName: {
     success: 'ok',
-    warning: 'warning-sign',
+    warning: 'exclamation-sign',
     danger: 'remove'
   },
   validationTextColor: {
@@ -383,8 +401,8 @@ const theme = {
     }
   },
   sizes: {
-    baseFontSize: 18,
-    baseLineHeight: 24
+    baseFontSize: '18px',
+    baseLineHeight: 1.428
   },
   screenSize: {
     retina: '320px',

@@ -127,7 +127,7 @@ Drawer.propTypes = {
 Drawer.defaultProps = {
   activeKeys: [],
   isAccordion: false,
-  closedIconName: 'plus',
+  closedIconName: 'add',
   onActiveKeysChanged: noop,
   openedIconName: 'minus',
   theme: viaTheme

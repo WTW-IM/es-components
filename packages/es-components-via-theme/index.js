@@ -200,7 +200,7 @@ const theme = {
         activeTextColor: black,
         boxShadowColor: defaultHover
       },
-	  darkDefault: {
+      darkDefault: {
         bgColor: gray7,
         textColor: white,
         hoverBgColor: gray8,
@@ -338,30 +338,30 @@ const theme = {
       borderRadius: '5px',
       fontSize: '26px',
       paddingTop: '6px',
-	  paddingSides: '20px',
-	  paddingBottom: '5px'
+      paddingSides: '20px',
+      paddingBottom: '5px'
     },
     default: {
       borderRadius: '4px',
       fontSize: '18px',
       paddingTop: '5px',
-	  paddingSides: '15px',
-	  paddingBottom: '4px'
+      paddingSides: '15px',
+      paddingBottom: '4px'
     },
     sm: {
       borderRadius: '3px',
       fontSize: '17px',
       paddingTop: '4px',
-	  paddingSides: '10px',
-	  paddingBottom: '3px'
+      paddingSides: '10px',
+      paddingBottom: '3px'
     },
     xs: {
       borderRadius: '3px',
       fontSize: '15px',
       paddingTop: '3px',
-	  paddingSides: '10px',
-	  paddingBottom: '2px',
-	  textTransform: 'uppercase'
+      paddingSides: '10px',
+      paddingBottom: '2px',
+      textTransform: 'uppercase'
     }
   },
   validationIconName: {

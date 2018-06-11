@@ -11,6 +11,7 @@ const AnchorBase = styled.a`
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 10px;
   text-decoration: none;
 

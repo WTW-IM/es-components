@@ -15,7 +15,7 @@ const styles = {
         Popover on Top
     </Popover>
     </div>
-    
+
     <div style={styles}>
     <Popover
         name="bottomEx"
@@ -61,7 +61,7 @@ Here's an example of a
     hasCloseButton
 >
     Popover
-</Popover> 
+</Popover>
 styled like a link.
 </div>
 ```
@@ -77,9 +77,9 @@ Click the icon for some help text.
     suppressUnderline
     ariaLabel="Icon"
     isLinkButton
-> 
-    <Icon name='question-sign' />
-</Popover> 
+>
+    <Icon name='question-circle' />
+</Popover>
 </div>
 ```
 
@@ -102,7 +102,7 @@ const styles = {
         Small Arrow
     </Popover>
     </div>
-    
+
     <div style={styles}>
     <Popover
         name="dfltEx"

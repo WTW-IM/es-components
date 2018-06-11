@@ -8,12 +8,13 @@ const TabButton = styled.button`
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.gray2};
   border: 1px solid ${props => props.theme.colors.gray4};
+  box-shadow: ${props =>
+    props.selected ? '0 6px 12px rgba(0, 0, 0, 0.175)' : 'none'};
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
   display: inline-block;
   font-size: inherit;
-  box-shadow: ${props =>
-    props.selected ? '0 6px 12px rgba(0, 0, 0, 0.175)' : 'none'};
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 10px;
   text-align: left;
 
@@ -35,7 +36,9 @@ const TabButton = styled.button`
     padding: 10px 15px;
     margin: 0 2px -1px 0;
     z-index: ${props => (props.selected ? '1' : '0')};
-    &:hover {
+
+    &:hover,
+    &:focus {
       background-color: ${props =>
         props.selected ? props.theme.colors.white : props.theme.colors.gray2};
     }

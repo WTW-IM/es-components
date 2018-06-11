@@ -31,7 +31,7 @@ const PanelButton = styled.button`
 const PanelIcon = styled(Icon)`
   margin-right: 0.4em;
   position: relative;
-  top: -1px;
+  top: -2px;
 `;
 
 const PanelBody = styled(({ noPadding, ...rest }) => (

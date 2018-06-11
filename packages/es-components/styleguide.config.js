@@ -7,7 +7,6 @@ const styleguidePaths = require('./config/paths');
 const baseComponentDir = styleguidePaths.baseComponentDir;
 
 module.exports = {
-  assetsDir: 'public',
   styleguideDir: 'docs',
   title: `Exchange Solutions React Components v${version}`,
   template: {
@@ -20,32 +19,22 @@ module.exports = {
     ],
     head: {
       raw: `<style>
-        @font-face {
-        font-family: 'indv-mkt-icons';
-        src: url('webfonts/indv-mkt-icons.eot?3tk8wr');
-        src: url('webfonts/indv-mkt-icons.eot?3tk8wr#iefix') format('embedded-opentype'),
-          url('webfonts/indv-mkt-icons.ttf?3tk8wr') format('truetype'),
-          url('webfonts/indv-mkt-icons.woff?3tk8wr') format('woff'),
-          url('webfonts/indv-mkt-icons.svg?3tk8wr#indv-mkt-icons') format('svg');
-        font-weight: normal;
-        font-style: normal;
-        }
-
         body {
           color: #444;
           font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-		  font-weight: 400;
+          font-weight: 400;
         }
-		
-		* {
-		  box-sizing: border-box;
-		}
-		
-		input, button, select, textarea {
-		  font-family: inherit;
-		}
+
+        * {
+          box-sizing: border-box;
+        }
+
+        input, button, select, textarea {
+          font-family: inherit;
+        }
       </style>
-	  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">`
+      <link rel="stylesheet" href="https://cdn.rawgit.com/WTW-IM/es-assets/8fbaf85d/font.css">
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">`
     }
   },
   ribbon: {
@@ -95,21 +84,17 @@ module.exports = {
     dateFormat: 'date-fns/format'
   },
   webpackConfig: require('./config/webpack.config.js'),
-  dangerouslyUpdateWebpackConfig(webpackConfig, env) {
-    webpackConfig.plugins.push(
-      new CopyWebpackPlugin([
-        {
-          from: path.join(styleguidePaths.publicDir, 'webfonts'),
-          to: path.join(webpackConfig.output.path, 'webfonts')
-        }
-      ])
-    );
-    return webpackConfig;
-  },
   styles: {
     Playground: {
       preview: {
-        fontFamily: ['Source Sans Pro', 'Segoe UI', 'Segoe', 'Calibri', 'Tahoma', 'sans-serif'],
+        fontFamily: [
+          'Source Sans Pro',
+          'Segoe UI',
+          'Segoe',
+          'Calibri',
+          'Tahoma',
+          'sans-serif'
+        ],
         fontSize: '18px'
       }
     }

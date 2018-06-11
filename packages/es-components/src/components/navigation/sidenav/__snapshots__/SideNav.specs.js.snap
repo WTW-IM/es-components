@@ -7,7 +7,7 @@ exports[`drawer renders as expected 1`] = `
   <ul>
     <li>
       <a
-        className="home sc-bwzfXH bFUGaW"
+        className="home sc-bwzfXH gWurLg"
         href="/home"
         onClick={[Function]}
       >
@@ -18,7 +18,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa cMtiSf"
+          className="sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
@@ -27,7 +27,7 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="cart sc-bwzfXH bFUGaW"
+        className="cart sc-bwzfXH gWurLg"
         href="#/"
         onClick={[Function]}
       >
@@ -38,7 +38,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa cMtiSf"
+          className="sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
@@ -47,7 +47,7 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="external sc-bwzfXH bFUGaW"
+        className="external sc-bwzfXH gWurLg"
         href="http://www.google.com"
         onClick={[Function]}
         target="_blank"
@@ -59,7 +59,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa cMtiSf"
+          className="sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
@@ -68,7 +68,7 @@ exports[`drawer renders as expected 1`] = `
     </li>
     <li>
       <a
-        className="info sc-bwzfXH evWADI"
+        className="info sc-bwzfXH jFlIWF"
         href="#/"
         onClick={[Function]}
       >
@@ -79,7 +79,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa cMtiSf"
+          className="sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"

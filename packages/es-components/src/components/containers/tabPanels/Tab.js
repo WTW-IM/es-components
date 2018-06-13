@@ -63,7 +63,9 @@ function Tab({ name, selected, action, children, simpleName, ...props }) {
       aria-expanded={selected}
       {...props}
     >
-      {React.cloneElement(name, { selected })}
+      {React.isValidElement(name)
+        ? React.cloneElement(name, { selected })
+        : name}
       {selected && (
         <AriaAnnouncer aria-live="assertive">{`${simpleName ||
           name} Sub text is now showing`}</AriaAnnouncer>

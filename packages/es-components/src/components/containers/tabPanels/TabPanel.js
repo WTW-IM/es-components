@@ -24,7 +24,6 @@ const TabFormatter = styled.div`
 
 const TabContent = styled.div`
   margin-top: -1px;
-  //z-index: 1;
   background-color: ${props => props.theme.colors.white};
   overflow: auto;
   border-top: 1px solid ${props => props.theme.colors.gray4};
@@ -95,7 +94,11 @@ function childrenRule(props, propName, component) {
   if (!Array.isArray(children)) {
     children = [children];
   }
-  if (!children.every(child => child.type.name === 'Tab')) {
+  if (
+    !children.every(
+      child => child.type.name === 'Tab' || child.type.target === Tab
+    )
+  ) {
     return new Error('Tab Panel only accepts Tabs as direct descendants.');
   }
 

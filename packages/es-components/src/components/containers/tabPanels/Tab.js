@@ -34,8 +34,8 @@ const TabButton = styled.button`
     color: ${props =>
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     padding: 10px 15px;
-    margin: 0 2px -1px 0;
-    z-index: ${props => (props.selected ? '1' : '0')};
+    margin: 0 2px 0px 0;
+    z-index: ${props => (props.selected ? '2' : '0')};
 
     &:hover,
     &:focus {
@@ -63,7 +63,7 @@ function Tab({ name, selected, action, children, simpleName, ...props }) {
       aria-expanded={selected}
       {...props}
     >
-      {name}
+      {React.cloneElement(name, { selected })}
       {selected && (
         <AriaAnnouncer aria-live="assertive">{`${simpleName ||
           name} Sub text is now showing`}</AriaAnnouncer>

@@ -6,13 +6,13 @@ import Tab from './Tab';
 
 const TabWrapper = styled.div`
   display: flex;
-  border-bottom: 1px solid ${props => props.theme.colors.gray4};
 `;
 
 const TabFormatter = styled.div`
   display: flex;
   flex-direction: column;
   font-size: inherit;
+  overflow: hidden;
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
     width: 100%;
   }
@@ -20,6 +20,14 @@ const TabFormatter = styled.div`
     flex-direction: row;
     justify-content: flex-start;
   }
+`;
+
+const TabContent = styled.div`
+  margin-top: -1px;
+  //z-index: 1;
+  background-color: ${props => props.theme.colors.white};
+  overflow: auto;
+  border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 
 const AriaAnnouncer = styled.p`
@@ -52,7 +60,7 @@ class TabPanel extends React.Component {
   }
 
   render() {
-    const { theme, children } = this.props;
+    const { theme, children, className } = this.props;
     const elements = React.Children.map(children, (child, i) => {
       const isSelected = child.props.name === this.state.value;
       return React.cloneElement(child, {
@@ -66,14 +74,16 @@ class TabPanel extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div>
+        <div className={className}>
           <AriaAnnouncer id="announcer" aria-live="assertive">{`${
             this.state.simpleName
           } Sub text is now showing`}</AriaAnnouncer>
-          <TabWrapper>
-            <TabFormatter>{elements}</TabFormatter>
+          <TabWrapper className="tab-wrapper">
+            <TabFormatter className="tab-formatter">{elements}</TabFormatter>
           </TabWrapper>
-          <div>{this.state.currentContent}</div>
+          <TabContent className="tab-content">
+            {this.state.currentContent}
+          </TabContent>
         </div>
       </ThemeProvider>
     );
@@ -100,7 +110,8 @@ TabPanel.propTypes = {
   /**
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
-  children: childrenRule
+  children: childrenRule,
+  className: PropTypes.string
 };
 
 TabPanel.defaultProps = {

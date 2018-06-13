@@ -59,7 +59,7 @@ class TabPanel extends React.Component {
   }
 
   render() {
-    const { theme, children, className } = this.props;
+    const { theme, children } = this.props;
     const elements = React.Children.map(children, (child, i) => {
       const isSelected = child.props.name === this.state.value;
       return React.cloneElement(child, {
@@ -73,14 +73,14 @@ class TabPanel extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <div className={className}>
+        <div className="es-tab-panel">
           <AriaAnnouncer id="announcer" aria-live="assertive">{`${
             this.state.simpleName
           } Sub text is now showing`}</AriaAnnouncer>
-          <TabWrapper className="tab-wrapper">
-            <TabFormatter className="tab-formatter">{elements}</TabFormatter>
+          <TabWrapper className="es-tab-wrapper">
+            <TabFormatter className="es-tab-formatter">{elements}</TabFormatter>
           </TabWrapper>
-          <TabContent className="tab-content">
+          <TabContent className="es-tab-content">
             {this.state.currentContent}
           </TabContent>
         </div>
@@ -113,8 +113,7 @@ TabPanel.propTypes = {
   /**
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
-  children: childrenRule,
-  className: PropTypes.string
+  children: childrenRule
 };
 
 TabPanel.defaultProps = {

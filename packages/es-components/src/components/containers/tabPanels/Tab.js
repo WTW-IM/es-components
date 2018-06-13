@@ -35,7 +35,6 @@ const TabButton = styled.button`
       props.selected ? props.theme.colors.black : props.theme.colors.primary};
     padding: 10px 15px;
     margin: 0 2px 0px 0;
-    z-index: ${props => (props.selected ? '2' : '0')};
 
     &:hover,
     &:focus {

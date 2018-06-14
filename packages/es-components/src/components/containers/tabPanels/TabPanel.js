@@ -77,10 +77,12 @@ class TabPanel extends React.Component {
           <AriaAnnouncer id="announcer" aria-live="assertive">{`${
             this.state.simpleName
           } Sub text is now showing`}</AriaAnnouncer>
-          <TabWrapper className="es-tab-wrapper">
-            <TabFormatter className="es-tab-formatter">{elements}</TabFormatter>
+          <TabWrapper className="es-tab-panel__wrapper">
+            <TabFormatter className="es-tab-panel__formatter">
+              {elements}
+            </TabFormatter>
           </TabWrapper>
-          <TabContent className="es-tab-content">
+          <TabContent className="es-tab-panel__content">
             {this.state.currentContent}
           </TabContent>
         </div>

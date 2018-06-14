@@ -44,6 +44,12 @@ const inputBorder = gray4;
 const inputFocus = '#83bffc';
 const inputBoxShadow = 'rgba(102, 175, 233, 0.6)';
 
+const violet = '#5a0c6f';
+const blueLighter = '#d2f4ff';
+const greenLighter = '#c3ffed';
+const violetLighter = '#eac9f2';
+
+
 // Datepicker colors
 const navArrow = gray5;
 const navArrowHover = gray6;
@@ -89,7 +95,11 @@ const theme = {
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus,
-    popoverHeader: popoverHeader
+    popoverHeader: popoverHeader,
+    greenLighter: greenLighter,
+    violetLighter: violetLighter,
+    blueLighter: blueLighter,
+    violet: violet
   },
   brandColors: {
     vbBlue: vbBlue,

@@ -1,12 +1,11 @@
 Tab Panels allow us to store lots more data on the screen and only show the amount we want, when we want. This works by having a TabPanel.Tab which provides a quick peek into what information will be display in the content area when clicked. The TabPanel.Tab has a name, which is a string or JSX to be displayed, and an optional simpleName, which is a string that will be read by a screen reader. The TabPanel.Tab can have children inside of it that will be rendered inside of the TabPanel's content area.
 
 ```
-<div>
 <TabPanel>
   <TabPanel.Tab name="Hi there">
-    <p>
+    <span>
       HELLO WORLD!!!!
-    </p>
+    </span>
   </TabPanel.Tab>
   <TabPanel.Tab simpleName="interesting" name={<div><Icon name="certificate" />Interesting 5 plans</div>}>
     <div>
@@ -29,5 +28,4 @@ Tab Panels allow us to store lots more data on the screen and only show the amou
     </p>
   </TabPanel.Tab>
 </TabPanel>
-</div>
 ```

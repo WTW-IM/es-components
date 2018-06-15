@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mountWithTheme, renderWithTheme } from '../../../testing';
 
 import Checkbox from './Checkbox';
 
@@ -13,7 +12,7 @@ function simulateLabelClick() {
 }
 
 beforeEach(() => {
-  instance = mount(<Checkbox labelText="test" />);
+  instance = mountWithTheme(<Checkbox labelText="test" />);
 });
 
 it('the onClick prop gets executed with the value of the checkbox when clicked', () => {
@@ -26,7 +25,7 @@ it('the onClick prop gets executed with the value of the checkbox when clicked',
 });
 
 it('Checkbox renders as expected', () => {
-  const tree = renderer.create(
+  const tree = renderWithTheme(
     <Checkbox labelText="Render test" isDisabled isChecked />
   );
   expect(tree).toMatchSnapshot();

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled, { withTheme } from 'styled-components';
 import classnames from 'classnames';
 
 function getBlockPropertyValues(isBlock) {
@@ -208,7 +207,7 @@ export function Button({
     );
   }
 
-  return <ThemeProvider theme={theme}>{button}</ThemeProvider>;
+  return button;
 }
 
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
@@ -235,10 +234,6 @@ Button.propTypes = {
   theme: PropTypes.object,
   /** The name of the button to be sent with the form. */
   name: PropTypes.string
-};
-
-Button.defaultProps = {
-  theme: viaTheme
 };
 
 export default withTheme(Button);

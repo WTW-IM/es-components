@@ -5,9 +5,8 @@ import { noop } from 'lodash';
 import Fieldset from '../../containers/fieldset/Fieldset';
 
 import RadioButton from './RadioButton';
-import { withTheme } from 'styled-components';
 
-export function RadioGroup({
+function RadioGroup({
   name,
   radioOptions,
   legendContent,
@@ -16,7 +15,6 @@ export function RadioGroup({
   disableAllOptions = false,
   inline = true,
   onClick = noop,
-  theme,
   extraContent
 }) {
   return (
@@ -70,8 +68,7 @@ RadioGroup.propTypes = {
   /** Extra content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/Radio button relationship.
    */
-  extraContent: PropTypes.node,
-  theme: PropTypes.object
+  extraContent: PropTypes.node
 };
 
-export default withTheme(RadioGroup);
+export default RadioGroup;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { ThemeProvider, withTheme } from 'styled-components';
+import { withTheme } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
 import classnames from 'classnames';
 
@@ -48,31 +48,29 @@ function Dropdown({
   const classNameState = `es-dropdown__select--${validationState}`;
 
   return (
-    <ThemeProvider theme={theme}>
-      <Label inline={inline} className={classnames('es-dropdown', className)}>
-        {labelText && (
-          <LabelText
-            className="es-dropdown__label"
-            foregroundColor={theme.validationTextColor[validationState]}
-            inline={inline}
-          >
-            {labelText}
-          </LabelText>
-        )}
-        <SelectBase
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          className={classNameState}
-          {...theme.validationInputColor[validationState]}
-          {...rest}
+    <Label inline={inline} className={classnames('es-dropdown', className)}>
+      {labelText && (
+        <LabelText
+          className="es-dropdown__label"
+          foregroundColor={theme.validationTextColor[validationState]}
+          inline={inline}
         >
-          {firstOption}
-          {selectOptions}
-        </SelectBase>
-      </Label>
-    </ThemeProvider>
+          {labelText}
+        </LabelText>
+      )}
+      <SelectBase
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        className={classNameState}
+        {...theme.validationInputColor[validationState]}
+        {...rest}
+      >
+        {firstOption}
+        {selectOptions}
+      </SelectBase>
+    </Label>
   );
 }
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
-import viaTheme from 'es-components-via-theme';
 
 import genId from '../../util/generateAlphaName';
 import Fade from '../../util/Fade';
@@ -119,29 +118,27 @@ class Modal extends React.Component {
     }
 
     return (
-      <ThemeProvider theme={theme}>
-        <DialogWrapper
-          backdrop={backdrop}
-          backdropStyle={backdropStyle}
-          keyboard={escapeExits}
-          onEnter={onEnter}
-          onExit={onExit}
-          onHide={onHide}
-          show={show}
-          transition={animation ? Fade : undefined}
-          className="es-modal"
+      <DialogWrapper
+        backdrop={backdrop}
+        backdropStyle={backdropStyle}
+        keyboard={escapeExits}
+        onEnter={onEnter}
+        onExit={onExit}
+        onHide={onHide}
+        show={show}
+        transition={animation ? Fade : undefined}
+        className="es-modal"
+      >
+        <ModalDialog
+          size={size}
+          aria-labelledby={this.state.ariaId}
+          className="es-modal__dialog"
         >
-          <ModalDialog
-            size={size}
-            aria-labelledby={this.state.ariaId}
-            className="es-modal__dialog"
-          >
-            <ModalContent className="es-modal__content">
-              {children}
-            </ModalContent>
-          </ModalDialog>
-        </DialogWrapper>
-      </ThemeProvider>
+          <ModalContent className="es-modal__content">
+            {children}
+          </ModalContent>
+        </ModalDialog>
+      </DialogWrapper>
     );
   }
 }
@@ -191,8 +188,7 @@ Modal.defaultProps = {
   onExit: noop,
   onHide: noop,
   show: false,
-  size: 'medium',
-  theme: viaTheme
+  size: 'medium'
 };
 
 Modal.childContextTypes = {

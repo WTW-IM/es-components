@@ -6,6 +6,14 @@ import viaTheme from 'es-components-via-theme';
 
 const { childContextTypes } = ThemeProvider;
 
+export function shallowWithTheme(tree, theme = viaTheme) {
+  const context = shallow(<ThemeProvider theme={theme} />)
+    .instance()
+    .getChildContext();
+
+  return shallow(tree, { context });
+}
+
 export function mountWithTheme(tree, theme = viaTheme) {
   const context = shallow(<ThemeProvider theme={theme} />)
     .instance()

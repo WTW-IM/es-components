@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled from 'styled-components';
 import classnames from 'classnames';
 
 const Legend = styled.legend`
@@ -30,21 +29,13 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({
-  legendClasses,
-  legendContent,
-  children,
-  extraContent,
-  theme
-}) {
+function Fieldset({ legendClasses, legendContent, children, extraContent }) {
   return (
-    <ThemeProvider theme={theme}>
-      <StyledFieldset className="es-fieldset">
-        {renderLegend(legendContent, legendClasses)}
-        {extraContent}
-        {children}
-      </StyledFieldset>
-    </ThemeProvider>
+    <StyledFieldset className="es-fieldset">
+      {renderLegend(legendContent, legendClasses)}
+      {extraContent}
+      {children}
+    </StyledFieldset>
   );
 }
 
@@ -57,16 +48,7 @@ Fieldset.propTypes = {
   /** Extra content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/input relationship.
    */
-  extraContent: PropTypes.node,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object
+  extraContent: PropTypes.node
 };
 
-Fieldset.defaultProps = {
-  theme: viaTheme
-};
-
-export default withTheme(Fieldset);
+export default Fieldset;

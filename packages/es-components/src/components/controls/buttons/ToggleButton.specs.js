@@ -1,7 +1,8 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from '../../../testing';
+import viaTheme from 'es-components-via-theme';
 
 import { ToggleButton } from './ToggleButton';
 
@@ -9,7 +10,11 @@ let instance;
 const onClick = jest.fn();
 
 beforeEach(() => {
-  instance = mount(<ToggleButton handleOnClick={onClick}>test</ToggleButton>);
+  instance = mountWithTheme(
+    <ToggleButton handleOnClick={onClick} theme={viaTheme}>
+      test
+    </ToggleButton>
+  );
 });
 
 it('sets isPressed state on click', () => {

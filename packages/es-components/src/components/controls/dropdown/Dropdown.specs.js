@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from '../../../testing';
 
 import Dropdown from './Dropdown';
 
@@ -25,7 +25,7 @@ describe('Dropdown component', () => {
       }
     ];
 
-    instance = mount(<Dropdown labelText="Test" options={options} />);
+    instance = mountWithTheme(<Dropdown labelText="Test" options={options} />);
 
     select = instance.find('select');
   });

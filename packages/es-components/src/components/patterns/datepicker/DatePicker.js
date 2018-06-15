@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
-import { injectGlobal, ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { injectGlobal, withTheme } from 'styled-components';
 
 import datepickerStyles from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
@@ -54,16 +53,14 @@ export const DatePicker = props => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <ReactDatePicker
-        selected={selectedDate}
-        customInput={textbox}
-        placeholderText={placeholder}
-        {...otherProps}
-      >
-        {children}
-      </ReactDatePicker>
-    </ThemeProvider>
+    <ReactDatePicker
+      selected={selectedDate}
+      customInput={textbox}
+      placeholderText={placeholder}
+      {...otherProps}
+    >
+      {children}
+    </ReactDatePicker>
   );
 };
 
@@ -112,8 +109,7 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
   onBlur: noop,
   onChangeRaw: noop,
-  placeholder: 'mm/dd/yyyy',
-  theme: viaTheme
+  placeholder: 'mm/dd/yyyy'
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

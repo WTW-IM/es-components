@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from '../../../testing';
 
 import DatePicker from './DatePicker';
 
@@ -14,7 +14,7 @@ describe('DatePicker component', () => {
   const mockOnChangeEvent = { target: { value: '10/12/2017' } };
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   beforeEach(() => {
-    instance = mount(
+    instance = mountWithTheme(
       <DatePicker
         labelText="Test Date"
         onChange={handleOnChange}

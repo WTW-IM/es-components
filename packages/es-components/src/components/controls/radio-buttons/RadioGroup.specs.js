@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithTheme } from '../../../testing';
 import renderer from 'react-test-renderer';
 import { range } from 'lodash';
 
@@ -23,7 +23,7 @@ describe('RadioGroup component', () => {
   beforeEach(() => {
     defaultOptions = buildOptions(3);
 
-    instance = shallow(
+    instance = shallowWithTheme(
       <RadioGroup name="test" radioOptions={defaultOptions} />
     );
   });

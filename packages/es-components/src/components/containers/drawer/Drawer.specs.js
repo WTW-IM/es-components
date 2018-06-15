@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mountWithTheme, renderWithTheme } from '../../../testing';
 import Drawer from './Drawer';
 
 jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
@@ -29,13 +28,15 @@ const buildDrawer = props => (
 describe('drawer component', () => {
   describe('drawer', () => {
     it('renders as expected', () => {
-      const tree = renderer.create(buildDrawer()).toJSON();
+      const tree = renderWithTheme(buildDrawer()).toJSON();
       expect(tree).toMatchSnapshot();
     });
 
     it('clicking a closed panel should add panel key to activeKeys', () => {
       const onActiveKeysChanged = jest.fn();
-      const drawerInstance = mount(buildDrawer({ onActiveKeysChanged }));
+      const drawerInstance = mountWithTheme(
+        buildDrawer({ onActiveKeysChanged })
+      );
       const firstPanel = drawerInstance.find('.first');
       const panelButton = firstPanel.find('button');
 
@@ -47,7 +48,7 @@ describe('drawer component', () => {
 
     it('clicking an open panel should remove panel key from activeKeys', () => {
       const onActiveKeysChanged = jest.fn();
-      const drawerInstance = mount(
+      const drawerInstance = mountWithTheme(
         buildDrawer({ activeKeys: ['1'], onActiveKeysChanged })
       );
       const firstPanel = drawerInstance.find('.first');
@@ -61,7 +62,7 @@ describe('drawer component', () => {
 
     it('should allow a second drawer to be opened', () => {
       const onActiveKeysChanged = jest.fn();
-      const drawerInstance = mount(
+      const drawerInstance = mountWithTheme(
         buildDrawer({ activeKeys: ['1'], onActiveKeysChanged })
       );
       const firstPanel = drawerInstance.find('.first');
@@ -78,7 +79,7 @@ describe('drawer component', () => {
 
     it('should allow rendering more than one active drawer', () => {
       const onActiveKeysChanged = jest.fn();
-      const drawerInstance = mount(
+      const drawerInstance = mountWithTheme(
         buildDrawer({ activeKeys: ['1', '3'], onActiveKeysChanged })
       );
       const firstPanel = drawerInstance.find('.first');
@@ -95,13 +96,13 @@ describe('drawer component', () => {
     const isAccordion = true;
 
     it('renders as expected', () => {
-      const tree = renderer.create(buildDrawer({ isAccordion })).toJSON();
+      const tree = renderWithTheme(buildDrawer({ isAccordion })).toJSON();
       expect(tree).toMatchSnapshot();
     });
 
     it('should only allow one drawer to be opened at a time', () => {
       const onActiveKeysChanged = jest.fn();
-      const accordionInstance = mount(
+      const accordionInstance = mountWithTheme(
         buildDrawer({ isAccordion, onActiveKeysChanged, activeKeys: ['1'] })
       );
       const firstPanel = accordionInstance.find('.first');

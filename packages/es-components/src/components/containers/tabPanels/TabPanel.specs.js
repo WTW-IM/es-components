@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from '../../../testing';
 
 import TabPanel from './TabPanel';
 
@@ -18,12 +18,12 @@ describe('Tab panel component', () => {
   );
 
   it('Will select first child on load', () => {
-    const tabPanelInstance = mount(instanceToRender);
+    const tabPanelInstance = mountWithTheme(instanceToRender);
     expect(tabPanelInstance.state('value')).toBe('test1');
   });
 
   it('Properly selects a tab', () => {
-    const tabPanelInstance = mount(instanceToRender);
+    const tabPanelInstance = mountWithTheme(instanceToRender);
     tabPanelInstance.setState({ value: 'test2' });
     expect(tabPanelInstance.find({ name: 'test2' }).props().selected).toBe(
       true
@@ -31,7 +31,7 @@ describe('Tab panel component', () => {
   });
 
   it('Clicks on tab select them', () => {
-    const tabPanelInstance = mount(instanceToRender);
+    const tabPanelInstance = mountWithTheme(instanceToRender);
     const tab = tabPanelInstance.find({ name: 'test2' });
     const tabButton = tab.find('button');
     tabButton.simulate('click');

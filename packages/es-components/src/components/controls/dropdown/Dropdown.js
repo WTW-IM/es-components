@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import { withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
 import classnames from 'classnames';
 
 import Label from '../Label';
@@ -104,10 +103,6 @@ Dropdown.propTypes = {
    * class name is applied to top level label
    */
   className: PropTypes.string
-};
-
-Dropdown.defaultProps = {
-  theme: viaTheme
 };
 
 export default withTheme(Dropdown);

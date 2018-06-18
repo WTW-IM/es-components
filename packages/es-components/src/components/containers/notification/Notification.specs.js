@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallowWithTheme, mountWithTheme } from '../../../testing';
+import { shallowWithTheme, mountWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
 import { Notification } from './Notification';

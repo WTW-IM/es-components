@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 
 import React from 'react';
-import { renderWithTheme } from '../../../testing';
+import { renderWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
 import getRadioFillVariables from './radio-fill-variables';

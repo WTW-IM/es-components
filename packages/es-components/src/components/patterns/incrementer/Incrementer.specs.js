@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { mountWithTheme } from '../../../testing';
+import { mountWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
 import Button from '../../controls/buttons/Button';

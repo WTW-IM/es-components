@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { renderWithTheme } from '../../../testing';
+import { renderWithTheme } from 'styled-enzyme';
 import Breadcrumb from './Breadcrumb';
 
 describe('BreadcrumbTestSuite', () => {

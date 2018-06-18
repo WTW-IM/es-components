@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallowWithTheme } from '../../../testing';
+import { shallowWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
 import { Button } from './Button';

@@ -1,7 +1,5 @@
 components/
 docs/
 es6/styleguide
-es6/testing
 lib/styleguide
-lib/testing
 styleguide.config.js

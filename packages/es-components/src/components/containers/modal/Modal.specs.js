@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme } from '../../../testing';
+import { mountWithTheme } from 'styled-enzyme';
 import Modal from './Modal';
 
 describe('modal component', () => {

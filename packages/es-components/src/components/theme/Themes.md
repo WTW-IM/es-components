@@ -1,4 +1,4 @@
-To apply a theme you can either wrap your root react app component in a `<ThemeProvider theme='[themeName]'>` wrapper component, or provide a theme to individual components via the `theme` prop. The `ThemeProvider` wrapper provides the supplied theme to any components underneath it. See [styled-components Theming](https://www.styled-components.com/docs/advanced#theming).
+To apply a theme wrap your root react app component in a `<ThemeProvider theme='[themeName]'>` wrapper component. The `ThemeProvider` wrapper provides the supplied theme to any components underneath it. See [styled-components Theming](https://www.styled-components.com/docs/advanced#theming).
 
 Example:
 ```html
@@ -13,7 +13,7 @@ render(
 );
 ```
 
-The [via benefits theme]() is bundled as the default theme for this component library. To create your own theme, copy the default theme, modify the values, and supply that object to the `ThemeProvider`.
+The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) is applied to all the components in this styleguide. To create your own theme, [copy the theme here](https://github.com/WTW-IM/es-components/blob/a05ccfacd68da862413f4bf38a804aa4c607eb48/packages/es-components-via-theme/index.js), modify the values, and supply that object to the `ThemeProvider`.
 
 ### Theme colors
 

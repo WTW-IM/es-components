@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import defaultTheme from 'es-components-via-theme';
 
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
@@ -99,10 +98,6 @@ Tab.propTypes = {
    * A simpler representation for screen readers.
    */
   simpleName: PropTypes.string
-};
-
-Tab.defaultProps = {
-  theme: defaultTheme
 };
 
 export default Tab;

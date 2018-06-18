@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mountWithTheme, renderWithTheme } from '../../../testing';
 import { Menu } from './Menu';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 
@@ -24,12 +23,12 @@ describe('MenuTestSuite', () => {
   });
 
   it('renders as expected', () => {
-    const tree = renderer.create(instanceToRender).toJSON();
+    const tree = renderWithTheme(instanceToRender).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('toggles menu open/closed on click', () => {
-    const instance = mount(instanceToRender);
+    const instance = mountWithTheme(instanceToRender);
     const button = instance.find(ToggleButton);
 
     button.simulate('click');

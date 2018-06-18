@@ -21,7 +21,10 @@
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "jest": {
-    "setupTestFrameworkScriptFile": "./config/jest-setup.js",
+    "setupFiles": [
+      "./config/jest-shims.js",
+      "./config/jest-setup.js"
+    ],
     "testRegex": "specs\\.js$"
   },
   "peerDependencies": {
@@ -41,6 +44,7 @@
     "cross-env": "^5.1.4",
     "css-loader": "^0.26.1",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
@@ -64,7 +68,6 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.6",
-    "enzyme-adapter-react-16": "^1.1.1",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",

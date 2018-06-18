@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallowWithTheme, renderWithTheme } from '../../../testing';
+import { shallowWithTheme, renderWithTheme } from 'styled-enzyme';
 import { range } from 'lodash';
 
 import RadioButton from './RadioButton';

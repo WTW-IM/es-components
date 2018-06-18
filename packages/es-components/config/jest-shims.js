@@ -1,1 +1,3 @@
-global.requestAnimationFrame = cb => setTimeout(cb, 0);
+import { noop } from 'lodash';
+
+global.requestAnimationFrame = noop;

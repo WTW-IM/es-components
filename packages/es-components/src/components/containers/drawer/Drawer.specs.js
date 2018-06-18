@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme, renderWithTheme } from '../../../testing';
+import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 import Drawer from './Drawer';
 
 jest.mock('../../util/generateAlphaName', () => () => 'abcdef');

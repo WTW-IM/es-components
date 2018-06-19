@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
+import classNames from 'classNames';
 
 const Legend = styled.legend`
   border: 0;
@@ -16,7 +17,11 @@ const Legend = styled.legend`
 `;
 
 function renderLegend(content, legendClasses) {
-  return content ? <Legend className={legendClasses}>{content}</Legend> : null;
+  return content ? (
+    <Legend className={classNames('es-fieldset__legend', legendClasses)}>
+      {content}
+    </Legend>
+  ) : null;
 }
 
 const StyledFieldset = styled.fieldset`
@@ -34,11 +39,9 @@ function Fieldset({
 }) {
   return (
     <ThemeProvider theme={theme}>
-      <StyledFieldset>
-        <div>
-          {renderLegend(legendContent, legendClasses)}
-          {extraContent}
-        </div>
+      <StyledFieldset className="es-fieldset">
+        {renderLegend(legendContent, legendClasses)}
+        {extraContent}
         {children}
       </StyledFieldset>
     </ThemeProvider>

@@ -2,9 +2,8 @@
 
 exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
-  className="sc-bZQynM dSZIHB"
+  className="es-fieldset sc-bZQynM dSZIHB"
 >
-  <div />
   <label
     checked={false}
     className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
@@ -88,15 +87,13 @@ exports[`RadioGroup component renders as expected 1`] = `
 
 exports[`RadioGroup component renders as expected with legend text 1`] = `
 <fieldset
-  className="sc-bZQynM dSZIHB"
+  className="es-fieldset sc-bZQynM dSZIHB"
 >
-  <div>
-    <legend
-      className="sc-EHOje iSPUDq"
-    >
-      Test legend
-    </legend>
-  </div>
+  <legend
+    className="es-fieldset__legend sc-EHOje iSPUDq"
+  >
+    Test legend
+  </legend>
   <label
     checked={false}
     className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"

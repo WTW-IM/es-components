@@ -18,7 +18,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
@@ -38,7 +38,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
@@ -59,7 +59,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
@@ -79,7 +79,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"

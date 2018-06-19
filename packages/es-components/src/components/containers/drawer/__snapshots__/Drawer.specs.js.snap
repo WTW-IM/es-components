@@ -20,7 +20,7 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
             content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
@@ -68,7 +68,7 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
             content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
@@ -113,7 +113,7 @@ exports[`drawer component accordion renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
             content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
@@ -165,7 +165,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
             content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
@@ -213,7 +213,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
             content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"
@@ -258,7 +258,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         <span>
           <i
             aria-hidden={true}
-            className="sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
             content="601"
             fontFamily="indv-mkt-icons"
             fontSize="inherit"

@@ -11,7 +11,11 @@ describe('MenuTestSuite', () => {
 
   beforeEach(() => {
     instanceToRender = (
-      <Menu header="Small Menu" buttonContent="Open Menu">
+      <Menu
+        headerContent="Small Menu"
+        buttonContent="Open Menu"
+        className="test"
+      >
         <Menu.MenuSection title="Menu Section" isFirst>
           <a href="www.google.com">Go To Google</a>
         </Menu.MenuSection>

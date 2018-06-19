@@ -4,7 +4,7 @@ import styled, { ThemeProvider, withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
 import viaTheme from 'es-components-via-theme';
-import classNames from 'classNames';
+import classnames from 'classnames';
 
 import DrawerPanel from './DrawerPanel';
 
@@ -90,7 +90,7 @@ export const Drawer = props => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledDrawer className={classNames('es-drawer', className)}>
+      <StyledDrawer className={classnames('es-drawer', className)}>
         {getPanels()}
       </StyledDrawer>
     </ThemeProvider>

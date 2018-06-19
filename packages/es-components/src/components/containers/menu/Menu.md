@@ -2,7 +2,7 @@ Use the `Menu` to expose an list of items overlayed over the screen when a butto
 
 ### Basic Example
 ```
-<Menu header="Small Menu" buttonContent="Open Menu" openButtonType="primary" rootClose hasBackdrop>
+<Menu headerContent="Small Menu" buttonContent="Open Menu" openButtonType="primary" rootClose hasBackdrop>
   <Menu.MenuSection title="Menu Section" isFirst rootClose>
     <a href="http://www.google.com">Go To Google</a>
   </Menu.MenuSection>
@@ -34,7 +34,7 @@ Use the `Menu` to expose an list of items overlayed over the screen when a butto
 By adding the `Inline` prop the menu will be displayed without bottom borders side by side.
 
 ```
-<Menu header="Small Menu" buttonContent="Open Menu" inline>
+<Menu headerContent="Small Menu" buttonContent="Open Menu" inline>
   <Menu.MenuSection title="Menu Section" isFirst>
     <a href="http://www.google.com">Go To Google</a>
   </Menu.MenuSection>

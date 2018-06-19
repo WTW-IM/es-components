@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
-import classNames from 'classNames';
+import classnames from 'classnames';
 
 const Legend = styled.legend`
   border: 0;
@@ -18,7 +18,7 @@ const Legend = styled.legend`
 
 function renderLegend(content, legendClasses) {
   return content ? (
-    <Legend className={classNames('es-fieldset__legend', legendClasses)}>
+    <Legend className={classnames('es-fieldset__legend', legendClasses)}>
       {content}
     </Legend>
   ) : null;

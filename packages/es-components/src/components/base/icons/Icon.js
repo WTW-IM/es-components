@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classNames from 'classNames';
+import classnames from 'classnames';
 
 import { regular } from './icon-definitions';
 
@@ -35,7 +35,7 @@ function Icon({ className, name, size, ...other }) {
   return (
     <StyledIcon
       aria-hidden
-      className={classNames('es-icon', className)}
+      className={classnames('es-icon', className)}
       {...styledIconProps}
       {...other}
     />

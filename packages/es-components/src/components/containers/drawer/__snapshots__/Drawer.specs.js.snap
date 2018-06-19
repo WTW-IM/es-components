@@ -2,12 +2,13 @@
 
 exports[`drawer component accordion renders as expected 1`] = `
 <div
-  className="important sc-EHOje ixLrxb"
+  className="es-drawer important sc-EHOje ixLrxb"
 >
   <div
-    className="first sc-bwzfXH bBIqkK"
+    className="es-drawer__panel first sc-bwzfXH bBIqkK"
   >
     <div
+      className="es-drawer__heading"
       id="abcdef"
       role="heading"
     >
@@ -35,7 +36,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX HqBXT"
+      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
       id="abcdef"
       role="region"
       style={
@@ -53,9 +54,10 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second sc-bwzfXH bBIqkK"
+    className="es-drawer__panel second sc-bwzfXH bBIqkK"
   >
     <div
+      className="es-drawer__heading"
       id="abcdef"
       role="heading"
     >
@@ -80,7 +82,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX bUSXbP"
+      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
       id="abcdef"
       role="region"
       style={
@@ -98,9 +100,10 @@ exports[`drawer component accordion renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="third sc-bwzfXH bBIqkK"
+    className="es-drawer__panel third sc-bwzfXH bBIqkK"
   >
     <div
+      className="es-drawer__heading"
       id="abcdef"
       role="heading"
     >
@@ -125,7 +128,7 @@ exports[`drawer component accordion renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX HqBXT"
+      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
       id="abcdef"
       role="region"
       style={
@@ -147,12 +150,13 @@ exports[`drawer component accordion renders as expected 1`] = `
 
 exports[`drawer component drawer renders as expected 1`] = `
 <div
-  className="important sc-EHOje ixLrxb"
+  className="es-drawer important sc-EHOje ixLrxb"
 >
   <div
-    className="first sc-bwzfXH bBIqkK"
+    className="es-drawer__panel first sc-bwzfXH bBIqkK"
   >
     <div
+      className="es-drawer__heading"
       id="abcdef"
       role="heading"
     >
@@ -180,7 +184,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX HqBXT"
+      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
       id="abcdef"
       role="region"
       style={
@@ -198,9 +202,10 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="second sc-bwzfXH bBIqkK"
+    className="es-drawer__panel second sc-bwzfXH bBIqkK"
   >
     <div
+      className="es-drawer__heading"
       id="abcdef"
       role="heading"
     >
@@ -225,7 +230,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX bUSXbP"
+      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
       id="abcdef"
       role="region"
       style={
@@ -243,9 +248,10 @@ exports[`drawer component drawer renders as expected 1`] = `
     </div>
   </div>
   <div
-    className="third sc-bwzfXH bBIqkK"
+    className="es-drawer__panel third sc-bwzfXH bBIqkK"
   >
     <div
+      className="es-drawer__heading"
       id="abcdef"
       role="heading"
     >
@@ -270,7 +276,7 @@ exports[`drawer component drawer renders as expected 1`] = `
     <div
       aria-hidden={true}
       aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero sc-ifAKCX HqBXT"
+      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
       id="abcdef"
       role="region"
       style={

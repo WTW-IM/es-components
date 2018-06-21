@@ -207,7 +207,6 @@ class Popover extends React.Component {
 
     const triggerButton = (
       <TriggerButton
-        className="es-popover__trigger"
         handleOnClick={this.toggleShow}
         styleType={buttonStyle}
         isOutline={isOutline}

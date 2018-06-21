@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
+import classnames from 'classnames';
 
 import Fade from '../../util/Fade';
 
@@ -110,7 +111,11 @@ const Popup = props => {
   }
 
   return (
-    <TooltipStyled role="tooltip" className={className} style={style}>
+    <TooltipStyled
+      role="tooltip"
+      className={classnames('es-tooltip', className)}
+      style={style}
+    >
       <TooltipArrow />
       <TooltipInner>{children}</TooltipInner>
     </TooltipStyled>
@@ -139,6 +144,7 @@ class Tooltip extends React.Component {
       <ThemeProvider theme={this.props.theme}>
         <span>
           <span
+            className="es-tooltip__target"
             ref={span => {
               this.toolTipTarget = span;
             }}

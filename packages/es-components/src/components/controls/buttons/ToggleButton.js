@@ -94,6 +94,7 @@ const buttonSizes = ['lg', 'default', 'sm', 'xs'];
 ToggleButton.propTypes = {
   handleOnClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  /** @deprecated ToggleButton will accept standard className prop */
   buttonClasses: PropTypes.string,
   styleType: PropTypes.string,
   isLinkButton: PropTypes.bool,

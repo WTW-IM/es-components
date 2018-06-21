@@ -69,7 +69,6 @@ export class Menu extends React.Component {
               />
             )}
             <ToggleButton
-              className="es-menu__toggle-button"
               handleOnClick={this.toggleMenu}
               isPressed={this.state.isMenuOpen}
               styleType={openButtonType}

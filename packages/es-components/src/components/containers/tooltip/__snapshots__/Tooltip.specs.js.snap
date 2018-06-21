@@ -3,6 +3,7 @@
 exports[`tooltip component renders tooltip children 1`] = `
 <span>
   <span
+    className="es-tooltip__target"
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >

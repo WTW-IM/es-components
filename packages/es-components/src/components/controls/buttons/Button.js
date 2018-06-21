@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
+import classnames from 'classnames';
 
 function getBlockPropertyValues(isBlock) {
   if (isBlock) {
@@ -133,12 +134,12 @@ export function Button({
   ...buttonProps
 }) {
   const buttonSize = theme.buttonSizes[size];
+  const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     block,
     buttonSize,
     onClick: handleOnClick,
-    className: buttonClasses,
-    ...buttonProps
+    ...otherProps
   };
 
   const defaultNormal = {
@@ -162,7 +163,15 @@ export function Button({
 
   let variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;
   let button = (
-    <DefaultButton variant={variant} {...sharedProps}>
+    <DefaultButton
+      variant={variant}
+      {...sharedProps}
+      className={classnames(
+        'es-button es-button--default',
+        buttonClasses,
+        className
+      )}
+    >
       {children}
     </DefaultButton>
   );
@@ -170,14 +179,30 @@ export function Button({
   if (isOutline) {
     variant = theme.buttonStyles.buttonsOutline[styleType] || defaultOutline;
     button = (
-      <OutlineButton variant={variant} {...sharedProps}>
+      <OutlineButton
+        variant={variant}
+        {...sharedProps}
+        className={classnames(
+          'es-button es-button--outline',
+          buttonClasses,
+          className
+        )}
+      >
         {children}
       </OutlineButton>
     );
   } else if (isLinkButton) {
     variant = theme.buttonStyles.buttonsNormal[styleType] || defaultNormal;
     button = (
-      <LinkButton variant={variant} {...sharedProps}>
+      <LinkButton
+        variant={variant}
+        {...sharedProps}
+        className={classnames(
+          'es-button es-button--link',
+          buttonClasses,
+          className
+        )}
+      >
         {children}
       </LinkButton>
     );
@@ -192,7 +217,7 @@ Button.propTypes = {
   /** Function to execute when button is clicked */
   handleOnClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  /** Any additional classes to apply to the button */
+  /** @deprecated Button will accept standard className prop */
   buttonClasses: PropTypes.string,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,

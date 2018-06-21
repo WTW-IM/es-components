@@ -2,13 +2,13 @@
 
 exports[`popover component renders as expected 1`] = `
 <div
-  className="sc-bZQynM dSsQJY"
+  className="es-popover sc-bZQynM dSsQJY"
 >
   <div>
     <div>
       <button
         aria-expanded={false}
-        className="sc-gzVnrw jgosdJ sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
+        className="es-popover__trigger sc-gzVnrw jgosdJ sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
         onClick={[Function]}
       >
         <span
@@ -40,11 +40,11 @@ exports[`popover component renders as expected 1`] = `
         }
       >
         <div
-          className="sc-dnqmqq BnNnH"
+          className="es-popover__container sc-dnqmqq BnNnH"
           role="dialog"
         >
           <div
-            className="sc-iwsKbI cirLJO"
+            className="es-popover__header sc-iwsKbI cirLJO"
           >
             <h3
               className="sc-gZMcBi cPBpHt"
@@ -58,10 +58,10 @@ exports[`popover component renders as expected 1`] = `
             />
           </div>
           <div
-            className="sc-gqjmRU eiaKpk"
+            className="es-popover__body sc-gqjmRU eiaKpk"
           >
             <div
-              className="sc-VigVT cztEQg"
+              className="es-popover__content sc-VigVT cztEQg"
             >
               This is the popover content.
             </div>

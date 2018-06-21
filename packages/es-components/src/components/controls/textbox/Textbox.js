@@ -4,6 +4,7 @@ import styled, { css, ThemeProvider, withTheme } from 'styled-components';
 import { noop, omit } from 'lodash';
 import viaTheme from 'es-components-via-theme';
 import MaskedInput from 'react-text-mask';
+import classnames from 'classnames';
 
 import Icon from '../../base/icons/Icon';
 import { LabelText, InputBase } from '../BaseControls';
@@ -99,6 +100,7 @@ const Textbox = props => {
     theme,
     ...additionalTextProps
   } = props;
+  const { className, ...otherProps } = additionalTextProps;
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = id !== undefined ? id : `for-${inputName}`;
   const hasHelpContent = additionalHelpContent !== undefined;
@@ -108,6 +110,7 @@ const Textbox = props => {
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
+  const classNameState = `es-textbox__input--${validationState}`;
 
   const hasPrepend = prependIconName !== undefined;
   const hasAppend = appendIconName !== undefined;
@@ -123,15 +126,19 @@ const Textbox = props => {
   return (
     <ThemeProvider theme={theme}>
       <TextBoxLabel
+        className={classnames('es-textbox', className)}
         htmlFor={textboxId}
         color={theme.validationTextColor[validationState]}
         inline={inline}
       >
-        <LabelText inline={inline}>{labelText}</LabelText>
-        <InputWrapper>
+        <LabelText className="es-textbox__label" inline={inline}>
+          {labelText}
+        </LabelText>
+        <InputWrapper className="es-textbox__wrapper">
           {hasPrepend && <Prepend name={prependIconName} size={20} />}
           <Input
             aria-describedby={helpId}
+            className={classNameState}
             hasPrepend={hasPrepend}
             id={textboxId}
             innerRef={inputRef}
@@ -142,7 +149,7 @@ const Textbox = props => {
             type="text"
             value={value}
             {...maskArgs}
-            {...additionalTextProps}
+            {...otherProps}
             {...theme.validationInputColor[validationState]}
           />
           {(hasAppend || hasValidationIcon) && (

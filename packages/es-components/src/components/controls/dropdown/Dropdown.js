@@ -45,7 +45,7 @@ function Dropdown({
     );
   });
 
-  const classNameState = `es-dropdown--${validationState}`;
+  const classNameState = `es-dropdown__select--${validationState}`;
 
   return (
     <ThemeProvider theme={theme}>

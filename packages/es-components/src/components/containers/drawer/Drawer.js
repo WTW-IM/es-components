@@ -106,7 +106,7 @@ Drawer.propTypes = {
   /** Should only contain one or more Drawer.Panel elements */
   children: drawerPanelPropType,
   /** Add additional CSS classes to the root drawer element */
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  className: PropTypes.string,
   /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
   /** Used in uncontrolled mode to set initial drawer state */

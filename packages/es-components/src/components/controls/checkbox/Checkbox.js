@@ -101,12 +101,11 @@ function Checkbox({
   return (
     <ThemeProvider theme={theme}>
       <CheckboxLabel
-        className="es-checkbox__label"
+        className="es-checkbox"
         disabled={isDisabled}
         isChecked={isChecked}
       >
         <CheckboxInput
-          className="es-checkbox"
           type="checkbox"
           disabled={isDisabled}
           value={value}
@@ -117,7 +116,7 @@ function Checkbox({
           focusBorderColor={theme.colors.inputFocus}
         />
         <CheckboxWrapper className="es-checkbox__fill" />
-        <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
+        <CheckboxText className="es-checkbox__label" aria-hidden={!!ariaLabel}>
           {labelText}
         </CheckboxText>
       </CheckboxLabel>

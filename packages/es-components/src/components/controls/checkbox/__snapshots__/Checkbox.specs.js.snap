@@ -2,13 +2,13 @@
 
 exports[`Checkbox renders as expected 1`] = `
 <label
-  className="es-checkbox__label sc-bwzfXH blPwYw"
+  className="es-checkbox sc-bwzfXH blPwYw"
   disabled={true}
 >
   <input
     aria-label={undefined}
     checked={true}
-    className="es-checkbox sc-htpNat llDmUy"
+    className="sc-htpNat llDmUy"
     disabled={true}
     onChange={[Function]}
     onClick={[Function]}
@@ -20,7 +20,7 @@ exports[`Checkbox renders as expected 1`] = `
   />
   <span
     aria-hidden={false}
-    className="es-checkbox__text sc-ifAKCX kWaOTi"
+    className="es-checkbox__label sc-ifAKCX kWaOTi"
   >
     Render test
   </span>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import { ThemeProvider, withTheme } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
+import classnames from 'classnames';
 
 import Label from '../Label';
 import { LabelText, SelectBase } from '../BaseControls';
@@ -46,9 +47,10 @@ function Dropdown({
 
   return (
     <ThemeProvider theme={theme}>
-      <Label inline={inline} className={className}>
+      <Label inline={inline} className={classnames('es-dropdown', className)}>
         {labelText && (
           <LabelText
+            className="es-dropdown__label"
             foregroundColor={theme.validationTextColor[validationState]}
             inline={inline}
           >

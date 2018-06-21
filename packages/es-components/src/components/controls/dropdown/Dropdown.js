@@ -45,6 +45,8 @@ function Dropdown({
     );
   });
 
+  const classNameState = `es-dropdown--${validationState}`;
+
   return (
     <ThemeProvider theme={theme}>
       <Label inline={inline} className={classnames('es-dropdown', className)}>
@@ -62,6 +64,7 @@ function Dropdown({
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          className={classNameState}
           {...theme.validationInputColor[validationState]}
           {...rest}
         >

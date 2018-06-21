@@ -116,7 +116,7 @@ function Checkbox({
           focusBorderColor={theme.colors.inputFocus}
         />
         <CheckboxWrapper className="es-checkbox__fill" />
-        <CheckboxText className="es-checkbox__label" aria-hidden={!!ariaLabel}>
+        <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
           {labelText}
         </CheckboxText>
       </CheckboxLabel>

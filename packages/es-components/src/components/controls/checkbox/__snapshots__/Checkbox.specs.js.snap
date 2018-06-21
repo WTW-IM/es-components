@@ -20,7 +20,7 @@ exports[`Checkbox renders as expected 1`] = `
   />
   <span
     aria-hidden={false}
-    className="es-checkbox__label sc-ifAKCX kWaOTi"
+    className="es-checkbox__text sc-ifAKCX kWaOTi"
   >
     Render test
   </span>

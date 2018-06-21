@@ -6,12 +6,12 @@ exports[`RadioGroup component renders as expected 1`] = `
 >
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -20,24 +20,24 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={0}
     />
     <span
-      className="radio-fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-ifAKCX fnveVG"
       fill="#fff"
     />
     <span
       aria-hidden={false}
-      className="sc-bxivhb bRNnnP"
+      className="es-radio__text sc-bxivhb bRNnnP"
     >
       Option 0
     </span>
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -46,24 +46,24 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={1}
     />
     <span
-      className="radio-fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-ifAKCX fnveVG"
       fill="#fff"
     />
     <span
       aria-hidden={false}
-      className="sc-bxivhb bRNnnP"
+      className="es-radio__text sc-bxivhb bRNnnP"
     >
       Option 1
     </span>
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -72,12 +72,12 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={2}
     />
     <span
-      className="radio-fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-ifAKCX fnveVG"
       fill="#fff"
     />
     <span
       aria-hidden={false}
-      className="sc-bxivhb bRNnnP"
+      className="es-radio__text sc-bxivhb bRNnnP"
     >
       Option 2
     </span>
@@ -96,12 +96,12 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
   </legend>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -110,24 +110,24 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       value={0}
     />
     <span
-      className="radio-fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-ifAKCX fnveVG"
       fill="#fff"
     />
     <span
       aria-hidden={false}
-      className="sc-bxivhb bRNnnP"
+      className="es-radio__text sc-bxivhb bRNnnP"
     >
       Option 0
     </span>
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -136,24 +136,24 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       value={1}
     />
     <span
-      className="radio-fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-ifAKCX fnveVG"
       fill="#fff"
     />
     <span
       aria-hidden={false}
-      className="sc-bxivhb bRNnnP"
+      className="es-radio__text sc-bxivhb bRNnnP"
     >
       Option 1
     </span>
   </label>
   <label
     checked={false}
-    className="sc-bwzfXH kVIXAD sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
-      className="sc-htpNat jeuMMj"
+      className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -162,12 +162,12 @@ exports[`RadioGroup component renders as expected with legend text 1`] = `
       value={2}
     />
     <span
-      className="radio-fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-ifAKCX fnveVG"
       fill="#fff"
     />
     <span
       aria-hidden={false}
-      className="sc-bxivhb bRNnnP"
+      className="es-radio__text sc-bxivhb bRNnnP"
     >
       Option 2
     </span>

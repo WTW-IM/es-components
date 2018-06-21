@@ -44,7 +44,7 @@ class NavExample extends React.Component {
         <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected }>
           <SideNav.Item id="home"><Icon name="home" /> Home</SideNav.Item>
           <SideNav.Item id="cart"><Icon name="shopping-cart" /> Cart</SideNav.Item>
-          <SideNav.Item id="disabled" isDisabled><Icon name="ban-circle" /> Disabled</SideNav.Item>
+          <SideNav.Item id="disabled" isDisabled><Icon name="no-symbol" /> Disabled</SideNav.Item>
         </SideNav>
       </div>
     )

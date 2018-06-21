@@ -17,7 +17,6 @@ const AnchorBase = styled.a`
 
   > i {
     color: ${props => props.theme.colors.white};
-    line-height: ${props => props.theme.sizes.baseLineHeight};
   }
 
   &:hover {
@@ -143,7 +142,7 @@ const NavItem = props => {
   };
 
   return (
-    <li>
+    <li className="es-sidenav__navitem">
       <AnchorStyled {...itemProps}>
         <FlexSpan>{children}</FlexSpan>
         <Icon name="chevron-right" />

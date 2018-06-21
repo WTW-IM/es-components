@@ -27,7 +27,7 @@ export const SideNav = props => {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavStyled>
+      <NavStyled className="es-sidenav">
         <ul>
           {Children.toArray(children).map(child => {
             if (child !== null && child.type === NavItem) {

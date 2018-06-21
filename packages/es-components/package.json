@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "14.2.0",
+  "version": "14.2.1",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
@@ -63,6 +63,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
+    "classnames": "^2.2.6",
     "enzyme-adapter-react-16": "^1.1.1",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",

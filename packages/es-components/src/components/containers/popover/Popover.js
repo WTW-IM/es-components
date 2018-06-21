@@ -225,7 +225,7 @@ class Popover extends React.Component {
 
     return (
       <ThemeProvider theme={theme}>
-        <Container>
+        <Container className="es-popover">
           <Popup
             name={name}
             trigger={triggerButton}
@@ -242,12 +242,13 @@ class Popover extends React.Component {
             }}
           >
             <PopoverContainer
+              className="es-popover__container"
               role="dialog"
               ref={elem => {
                 this.contentRef = elem;
               }}
             >
-              <PopoverHeader hasTitle={hasTitle}>
+              <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
                 {hasTitle && <TitleBar>{title}</TitleBar>}
                 {hasAltCloseButton && altCloseButton}
                 <CloseHelpText
@@ -259,8 +260,14 @@ class Popover extends React.Component {
                 />
               </PopoverHeader>
 
-              <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
-                <PopoverContent showCloseButton={showCloseButton}>
+              <PopoverBody
+                className="es-popover__body"
+                hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}
+              >
+                <PopoverContent
+                  className="es-popover__content"
+                  showCloseButton={showCloseButton}
+                >
                   {content}
                 </PopoverContent>
                 {showCloseButton && closeButton}

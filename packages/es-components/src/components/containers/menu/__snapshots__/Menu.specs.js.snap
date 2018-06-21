@@ -2,24 +2,27 @@
 
 exports[`MenuTestSuite renders as expected 1`] = `
 <div
-  className={undefined}
+  className="es-menu test"
 >
   <button
     aria-expanded={false}
-    className="open-menu-button sc-ifAKCX drovqE sc-bwzfXH hJmlCu sc-bdVaJa kHkNOX"
+    className="es-button es-button--default sc-ifAKCX drovqE sc-bwzfXH hJmlCu sc-bdVaJa kHkNOX"
     onClick={[Function]}
   >
     Open Menu
   </button>
   <div
-    className="menu-panel sc-gzVnrw ZXtoB"
+    className="es-menu__panel sc-gzVnrw ZXtoB"
   >
-    <div
-      className="sc-dnqmqq djHNQY"
+    <header
+      className="sc-dnqmqq jBxXuW"
     >
+      <span>
+        Small Menu
+      </span>
       <button
         aria-label="Close"
-        className="sc-htoDjs hubgrr sc-EHOje cQHrKQ"
+        className="sc-htoDjs XrUxb sc-EHOje jHwaMP"
         onClick={[Function]}
       >
         <span
@@ -33,20 +36,20 @@ exports[`MenuTestSuite renders as expected 1`] = `
           Close
         </span>
       </button>
-    </div>
+    </header>
     <div
       className="sc-iwsKbI kyjaoD"
     >
-      <div
-        className="sc-gZMcBi ivZJCw"
+      <section
+        className="es-menu__section sc-gZMcBi ivZJCw"
       >
-        <div
+        <header
           aria-label="Menu Section"
           className="sc-gqjmRU fiUekS"
         >
           Menu Section
-        </div>
-        <div
+        </header>
+        <section
           className="sc-VigVT frPBLq"
         >
           <a
@@ -54,8 +57,8 @@ exports[`MenuTestSuite renders as expected 1`] = `
           >
             Go To Google
           </a>
-        </div>
-      </div>
+        </section>
+      </section>
     </div>
   </div>
 </div>

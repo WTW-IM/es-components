@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 /* eslint-disable no-confusing-arrow */
-const StyledMenuSection = styled.div`
+const StyledMenuSection = styled.section`
   padding-top: ${props =>
     !props.isFirst && !props.inline && !props.isOnlySection ? '20px' : '0px'};
   padding-bottom: ${props => (props.isLast ? '0px' : '20px')};
@@ -14,11 +14,11 @@ const StyledMenuSection = styled.div`
 `;
 /* eslint-enable */
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
   padding-left: 10px;
 `;
 
-const StyledChildrenContainer = styled.div`
+const StyledChildrenContainer = styled.section`
   padding: 15px 20px 0px 20px;
 `;
 
@@ -28,6 +28,7 @@ const MenuSection = (props, context) => {
 
   return (
     <StyledMenuSection
+      className="es-menu__section"
       isLast={isLast}
       isFirst={isFirst}
       inline={inline}

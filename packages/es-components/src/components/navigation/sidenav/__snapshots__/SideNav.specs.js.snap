@@ -2,12 +2,14 @@
 
 exports[`drawer renders as expected 1`] = `
 <nav
-  className="sc-ifAKCX kXLRTf"
+  className="es-sidenav sc-ifAKCX kXLRTf"
 >
   <ul>
-    <li>
+    <li
+      className="es-sidenav__navitem"
+    >
       <a
-        className="home sc-bwzfXH gWurLg"
+        className="home sc-bwzfXH igXrdK"
         href="/home"
         onClick={[Function]}
       >
@@ -18,16 +20,18 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
         />
       </a>
     </li>
-    <li>
+    <li
+      className="es-sidenav__navitem"
+    >
       <a
-        className="cart sc-bwzfXH gWurLg"
+        className="cart sc-bwzfXH igXrdK"
         href="#/"
         onClick={[Function]}
       >
@@ -38,16 +42,18 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
         />
       </a>
     </li>
-    <li>
+    <li
+      className="es-sidenav__navitem"
+    >
       <a
-        className="external sc-bwzfXH gWurLg"
+        className="external sc-bwzfXH igXrdK"
         href="http://www.google.com"
         onClick={[Function]}
         target="_blank"
@@ -59,16 +65,18 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"
         />
       </a>
     </li>
-    <li>
+    <li
+      className="es-sidenav__navitem"
+    >
       <a
-        className="info sc-bwzfXH jFlIWF"
+        className="info sc-bwzfXH hJluX"
         href="#/"
         onClick={[Function]}
       >
@@ -79,7 +87,7 @@ exports[`drawer renders as expected 1`] = `
         </span>
         <i
           aria-hidden={true}
-          className="sc-bdVaJa clAcVq"
+          className="es-icon sc-bdVaJa clAcVq"
           content="61f"
           fontFamily="indv-mkt-icons"
           fontSize="inherit"

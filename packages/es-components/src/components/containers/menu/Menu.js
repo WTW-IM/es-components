@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ToggleButton from '../../controls/buttons/ToggleButton';
 import styled, { ThemeProvider, withTheme } from 'styled-components';
+import classnames from 'classnames';
+
+import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
@@ -51,21 +53,22 @@ export class Menu extends React.Component {
       theme,
       openButtonType,
       rootClose,
-      hasBackdrop
+      hasBackdrop,
+      headerContent
     } = this.props;
 
     return (
       <ThemeProvider theme={theme}>
         <RootCloseWrapper onRootClose={this.closeMenu} disabled={!rootClose}>
-          <div className={className}>
+          <div className={classnames('es-menu', className)}>
             {hasBackdrop && (
               <Backdrop
+                className="es-menu__backdrop"
                 isMenuOpen={this.state.isMenuOpen}
                 onClick={this.closeMenu}
               />
             )}
             <ToggleButton
-              className="open-menu-button"
               handleOnClick={this.toggleMenu}
               isPressed={this.state.isMenuOpen}
               styleType={openButtonType}
@@ -73,7 +76,11 @@ export class Menu extends React.Component {
             >
               {buttonContent}
             </ToggleButton>
-            <MenuPanel isOpen={this.state.isMenuOpen} onClose={this.closeMenu}>
+            <MenuPanel
+              headerContent={headerContent}
+              isOpen={this.state.isMenuOpen}
+              onClose={this.closeMenu}
+            >
               {children}
             </MenuPanel>
           </div>
@@ -93,7 +100,8 @@ Menu.propTypes = {
   rootClose: PropTypes.bool,
   inline: PropTypes.bool,
   theme: PropTypes.object,
-  hasBackdrop: PropTypes.bool
+  hasBackdrop: PropTypes.bool,
+  headerContent: PropTypes.node
 };
 
 Menu.defaultProps = {

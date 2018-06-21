@@ -33,7 +33,7 @@ const RadioLabel = styled(Label)`
   padding: 5px 0;
   text-transform: none;
 
-  &:hover .radio-fill:before {
+  &:hover .es-radio__fill:before {
     ${props => radioFill(props.hoverFillColor)};
   }
 `;
@@ -42,7 +42,7 @@ const RadioInput = styled.input`
   opacity: 0;
   position: absolute;
 
-  &:focus ~ .radio-fill {
+  &:focus ~ .es-radio__fill {
     box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
   }
 `;
@@ -99,7 +99,7 @@ export function RadioButton({
 
   return (
     <ThemeProvider theme={theme}>
-      <RadioLabel {...labelProps}>
+      <RadioLabel className="es-radio" {...labelProps}>
         <RadioInput
           type="radio"
           name={name}
@@ -110,11 +110,13 @@ export function RadioButton({
           {...radioProps}
         />
         <RadioDisplay
-          className="radio-fill"
+          className="es-radio__fill"
           borderColor={fill}
           fill={radioDisplayFill}
         />
-        <RadioText aria-hidden={ariaHide}>{optionText}</RadioText>
+        <RadioText className="es-radio__text" aria-hidden={ariaHide}>
+          {optionText}
+        </RadioText>
       </RadioLabel>
     </ThemeProvider>
   );

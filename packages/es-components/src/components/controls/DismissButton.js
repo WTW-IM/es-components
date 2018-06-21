@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const DismissButtonBase = styled.button`
-  align-self: flex-start;
   background: transparent;
   border: 0;
   cursor: pointer;

@@ -12,7 +12,7 @@ exports[`modal header component renders with close button 1`] = `
   </h4>
   <button
     aria-label="Close"
-    className="sc-ifAKCX lfpfxN sc-bdVaJa ijDihB"
+    className="sc-ifAKCX lfpfxN sc-bdVaJa eLdFuS"
     onClick={[Function]}
   >
     <span

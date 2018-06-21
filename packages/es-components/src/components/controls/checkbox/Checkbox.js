@@ -13,7 +13,7 @@ const CheckboxLabel = Label.extend`
   text-transform: none;
   display: flex;
 
-  > .checkbox-fill {
+  > .es-checkbox__fill {
     background-color: ${({ isChecked, theme }) =>
       isChecked ? theme.colors.info : theme.colors.white};
     border-color: ${({ isChecked, theme }) =>
@@ -24,12 +24,12 @@ const CheckboxLabel = Label.extend`
     }
   }
 
-  &:hover > .checkbox-fill:after {
+  &:hover > .es-checkbox__fill:after {
     border-color: ${({ isChecked, theme }) =>
       isChecked ? theme.colors.white : theme.colors.gray3};
   }
 
-  &[disabled] > .checkbox-fill {
+  &[disabled] > .es-checkbox__fill {
     background-color: ${({ isChecked, theme }) =>
       isChecked ? theme.colors.gray5 : theme.colors.white};
     border-color: ${props => props.theme.colors.gray5};
@@ -46,7 +46,7 @@ const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);
   position: absolute;
 
-  &:focus ~ .checkbox-fill {
+  &:focus ~ .es-checkbox__fill {
     box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
     &:after {
       border-color: ${({ checked, theme }) =>
@@ -100,7 +100,11 @@ function Checkbox({
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
     <ThemeProvider theme={theme}>
-      <CheckboxLabel disabled={isDisabled} isChecked={isChecked}>
+      <CheckboxLabel
+        className="es-checkbox"
+        disabled={isDisabled}
+        isChecked={isChecked}
+      >
         <CheckboxInput
           type="checkbox"
           disabled={isDisabled}
@@ -111,8 +115,10 @@ function Checkbox({
           aria-label={ariaLabel}
           focusBorderColor={theme.colors.inputFocus}
         />
-        <CheckboxWrapper className="checkbox-fill" />
-        <CheckboxText aria-hidden={!!ariaLabel}>{labelText}</CheckboxText>
+        <CheckboxWrapper className="es-checkbox__fill" />
+        <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
+          {labelText}
+        </CheckboxText>
       </CheckboxLabel>
     </ThemeProvider>
   );

@@ -78,7 +78,7 @@ class TabPanel extends React.Component {
             this.state.simpleName
           } Sub text is now showing`}</AriaAnnouncer>
           <TabWrapper className="es-tab-panel__wrapper">
-            <TabFormatter className="es-tab-panel__formatter">
+            <TabFormatter className="es-tab-panel__tabs">
               {elements}
             </TabFormatter>
           </TabWrapper>

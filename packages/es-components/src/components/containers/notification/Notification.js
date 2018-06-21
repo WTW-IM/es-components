@@ -128,7 +128,7 @@ const ButtonWrapper = styled.div`
 
 function renderCallsToAction(callsToAction, theme) {
   return (
-    <CallsToAction>
+    <CallsToAction className="es-notification__actions">
       {callsToAction.map((callToAction, index) => {
         const buttonStyleType = index === 0 ? 'primary' : 'default';
 
@@ -212,13 +212,12 @@ export function Notification({
 
   return (
     <ThemeProvider theme={theme}>
-      <NotificationWrapper>
+      <NotificationWrapper className="es-notification__wrapper" role={roleType}>
         <NotificationBgWrapper
           {...otherProps}
           color={theme.notificationStyles[type][bgType]}
-          role={roleType}
         >
-          <NotificationHeader>
+          <NotificationHeader className="es-notification__header">
             {renderLeadingHeader(type, includeIcon, header, additionalText)}
             {hasExtraAlert && renderExtraAlert(extraAlert)}
             {dismissable && (
@@ -230,7 +229,10 @@ export function Notification({
           </NotificationHeader>
 
           {hasChildren && (
-            <NotificationContent hasIcon={includeIcon}>
+            <NotificationContent
+              className="es-notification__content"
+              hasIcon={includeIcon}
+            >
               {children}
             </NotificationContent>
           )}

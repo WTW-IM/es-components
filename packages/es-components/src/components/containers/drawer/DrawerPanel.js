@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from '../../base/icons/Icon';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
+import classnames from 'classnames';
 
 import genId from '../../util/generateAlphaName';
 
@@ -64,8 +65,8 @@ const DrawerPanel = props => {
   const aside = titleAside !== undefined && <aside>{titleAside}</aside>;
 
   return (
-    <PanelWrapper className={className}>
-      <div id={headingAriaId} role="heading">
+    <PanelWrapper className={classnames('es-drawer__panel', className)}>
+      <div className="es-drawer__heading" id={headingAriaId} role="heading">
         <PanelButton
           aria-expanded={isOpen}
           aria-controls={regionAriaId}
@@ -80,6 +81,7 @@ const DrawerPanel = props => {
       </div>
       <PanelBody
         aria-labelledby={headingAriaId}
+        className="es-drawer__body"
         duration={300}
         height={isOpen ? 'auto' : 0}
         id={regionAriaId}

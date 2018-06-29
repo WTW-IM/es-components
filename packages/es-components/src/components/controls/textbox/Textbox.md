@@ -3,7 +3,7 @@
   <Textbox labelText="Stacked" id="foo" />
 
   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-    <Textbox labelText="First name" inline />
+    <Textbox labelText="First name" style={{ marginRight: 25 }} inline />
     <Textbox labelText="Middle initial" inline />
     <Textbox labelText="Last name" inline />
   </div>

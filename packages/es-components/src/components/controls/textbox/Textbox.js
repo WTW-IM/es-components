@@ -78,7 +78,6 @@ const Append = styled.div`
 const InputWrapper = styled.div`
   display: flex;
   flex: auto;
-  margin-right: 25px;
   position: relative;
 `;
 

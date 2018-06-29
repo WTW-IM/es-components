@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { injectGlobal } from 'styled-components';
+import styled, { withTheme, injectGlobal } from 'styled-components';
 
 import popoverStyles from './popoverStyles';
 
@@ -119,4 +119,4 @@ Popup.defaultProps = {
   placement: 'bottom'
 };
 
-export default Popup;
+export default withTheme(Popup);

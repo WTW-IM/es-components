@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import defaultTheme from 'es-components-via-theme';
+import styled from 'styled-components';
 import Tab from './Tab';
 
 const TabWrapper = styled.div`
@@ -59,34 +57,31 @@ class TabPanel extends React.Component {
   }
 
   render() {
-    const { theme, children } = this.props;
+    const { children } = this.props;
     const elements = React.Children.map(children, (child, i) => {
       const isSelected = child.props.name === this.state.value;
       return React.cloneElement(child, {
         key: child.props.name,
         selected: isSelected,
         action: this.tabChanged,
-        selectedName: this.state.value,
-        theme
+        selectedName: this.state.value
       });
     });
 
     return (
-      <ThemeProvider theme={theme}>
-        <div className="es-tab-panel">
-          <AriaAnnouncer id="announcer" aria-live="assertive">{`${
-            this.state.simpleName
-          } Sub text is now showing`}</AriaAnnouncer>
-          <TabWrapper className="es-tab-panel__wrapper">
-            <TabFormatter className="es-tab-panel__tabs">
-              {elements}
-            </TabFormatter>
-          </TabWrapper>
-          <TabContent className="es-tab-panel__content">
-            {this.state.currentContent}
-          </TabContent>
-        </div>
-      </ThemeProvider>
+      <div className="es-tab-panel">
+        <AriaAnnouncer id="announcer" aria-live="assertive">{`${
+          this.state.simpleName
+        } Sub text is now showing`}</AriaAnnouncer>
+        <TabWrapper className="es-tab-panel__wrapper">
+          <TabFormatter className="es-tab-panel__tabs">
+            {elements}
+          </TabFormatter>
+        </TabWrapper>
+        <TabContent className="es-tab-panel__content">
+          {this.state.currentContent}
+        </TabContent>
+      </div>
     );
   }
 }
@@ -109,17 +104,9 @@ function childrenRule(props, propName, component) {
 
 TabPanel.propTypes = {
   /**
-   * Theme to be applied to the tab panel. Can be used to style the Tab and Tab List
-   */
-  theme: PropTypes.object,
-  /**
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
   children: childrenRule
-};
-
-TabPanel.defaultProps = {
-  theme: defaultTheme
 };
 
 TabPanel.Tab = Tab;

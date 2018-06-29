@@ -1,8 +1,7 @@
 /* eslint no-confusing-arrow: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled, { withTheme } from 'styled-components';
 
 import Button from './Button';
 
@@ -62,22 +61,20 @@ export class ToggleButton extends React.Component {
     }
 
     return (
-      <ThemeProvider theme={theme}>
-        <StyledToggleButton
-          {...buttonProps}
-          handleOnClick={this.toggleButton}
-          buttonClasses={buttonClasses}
-          styleType={styleType}
-          isLinkButton={isLinkButton}
-          size={size}
-          block={block}
-          isOutline={isOutline}
-          isPressed={this.state.isPressed}
-          variant={variant}
-        >
-          {this.props.children}
-        </StyledToggleButton>
-      </ThemeProvider>
+      <StyledToggleButton
+        {...buttonProps}
+        handleOnClick={this.toggleButton}
+        buttonClasses={buttonClasses}
+        styleType={styleType}
+        isLinkButton={isLinkButton}
+        size={size}
+        block={block}
+        isOutline={isOutline}
+        isPressed={this.state.isPressed}
+        variant={variant}
+      >
+        {this.props.children}
+      </StyledToggleButton>
     );
   }
 }
@@ -106,8 +103,7 @@ ToggleButton.propTypes = {
 };
 
 ToggleButton.defaultProps = {
-  styleType: 'default',
-  theme: viaTheme
+  styleType: 'default'
 };
 
 export default withTheme(ToggleButton);

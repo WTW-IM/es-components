@@ -1,12 +1,11 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import renderer from 'react-test-renderer';
+import { shallowWithTheme, renderWithTheme } from 'styled-enzyme';
 import { range } from 'lodash';
 
 import RadioButton from './RadioButton';
-import { RadioGroup } from './RadioGroup';
+import RadioGroup from './RadioGroup';
 
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
@@ -23,7 +22,7 @@ describe('RadioGroup component', () => {
   beforeEach(() => {
     defaultOptions = buildOptions(3);
 
-    instance = shallow(
+    instance = shallowWithTheme(
       <RadioGroup name="test" radioOptions={defaultOptions} />
     );
   });
@@ -64,7 +63,7 @@ describe('RadioGroup component', () => {
   });
 
   it('renders as expected', () => {
-    const tree = renderer.create(
+    const tree = renderWithTheme(
       <RadioGroup name="test" radioOptions={defaultOptions} />
     );
 
@@ -72,7 +71,7 @@ describe('RadioGroup component', () => {
   });
 
   it('renders as expected with legend text', () => {
-    const tree = renderer.create(
+    const tree = renderWithTheme(
       <RadioGroup
         name="test"
         radioOptions={defaultOptions}

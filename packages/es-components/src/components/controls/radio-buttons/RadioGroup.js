@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import viaTheme from 'es-components-via-theme';
 
 import Fieldset from '../../containers/fieldset/Fieldset';
 
 import RadioButton from './RadioButton';
-import { ThemeProvider, withTheme } from 'styled-components';
 
-export function RadioGroup({
+function RadioGroup({
   name,
   radioOptions,
   legendContent,
@@ -17,33 +15,29 @@ export function RadioGroup({
   disableAllOptions = false,
   inline = true,
   onClick = noop,
-  theme,
   extraContent
 }) {
   return (
-    <ThemeProvider theme={theme}>
-      <Fieldset legendContent={legendContent} extraContent={extraContent}>
-        {radioOptions.map((config, index) => {
-          const radioId = `${name}-option-${index + 1}`;
-          const checked = config.optionValue === value;
-          const isDisabled = disableAllOptions || config.isDisabled;
-          const radioProps = {
-            name,
-            checked,
-            hasError,
-            isDisabled,
-            inline,
-            onClick,
-            id: radioId,
-            optionText: config.optionText,
-            value: config.optionValue,
-            ariaHide: extraContent !== undefined,
-            theme
-          };
-          return <RadioButton key={radioId} {...radioProps} />;
-        })}
-      </Fieldset>
-    </ThemeProvider>
+    <Fieldset legendContent={legendContent} extraContent={extraContent}>
+      {radioOptions.map((config, index) => {
+        const radioId = `${name}-option-${index + 1}`;
+        const checked = config.optionValue === value;
+        const isDisabled = disableAllOptions || config.isDisabled;
+        const radioProps = {
+          name,
+          checked,
+          hasError,
+          isDisabled,
+          inline,
+          onClick,
+          id: radioId,
+          optionText: config.optionText,
+          value: config.optionValue,
+          ariaHide: extraContent !== undefined
+        };
+        return <RadioButton key={radioId} {...radioProps} />;
+      })}
+    </Fieldset>
   );
 }
 
@@ -74,12 +68,7 @@ RadioGroup.propTypes = {
   /** Extra content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/Radio button relationship.
    */
-  extraContent: PropTypes.node,
-  theme: PropTypes.object
+  extraContent: PropTypes.node
 };
 
-RadioGroup.defaultProps = {
-  theme: viaTheme
-};
-
-export default withTheme(RadioGroup);
+export default RadioGroup;

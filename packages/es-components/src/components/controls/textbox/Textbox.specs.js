@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from 'styled-enzyme';
 
 import Icon from '../../base/icons/Icon';
 import Textbox from './Textbox';
@@ -17,7 +17,7 @@ describe('Textbox component', () => {
     const props = {
       onChange: handleOnChange
     };
-    const input = mount(buildTextbox(props)).find('input');
+    const input = mountWithTheme(buildTextbox(props)).find('input');
 
     input.simulate('change', mockEvent);
     expect(handleOnChange).toBeCalled();
@@ -28,7 +28,7 @@ describe('Textbox component', () => {
     const props = {
       onBlur: handleOnBlur
     };
-    const input = mount(buildTextbox(props)).find('input');
+    const input = mountWithTheme(buildTextbox(props)).find('input');
 
     input.simulate('blur', mockEvent);
     expect(handleOnBlur).toBeCalled();
@@ -39,7 +39,7 @@ describe('Textbox component', () => {
     const props = {
       prependIconName: 'prepend'
     };
-    const instance = mount(buildTextbox(props));
+    const instance = mountWithTheme(buildTextbox(props));
 
     expect(instance.find(Icon).length).toBe(1);
   });
@@ -48,7 +48,7 @@ describe('Textbox component', () => {
     const props = {
       appendIconName: 'append'
     };
-    const instance = mount(buildTextbox(props));
+    const instance = mountWithTheme(buildTextbox(props));
 
     expect(instance.find(Icon).length).toBe(1);
   });
@@ -58,13 +58,13 @@ describe('Textbox component', () => {
       prependIconName: 'prepend',
       appendIconName: 'append'
     };
-    const instance = mount(buildTextbox(props));
+    const instance = mountWithTheme(buildTextbox(props));
 
     expect(instance.find(Icon).length).toBe(2);
   });
 
   it('sets aria-describedby on input when the additionalHelpContent prop is provided', () => {
-    const instance = mount(buildTextbox());
+    const instance = mountWithTheme(buildTextbox());
     const input = () => instance.find('input');
 
     let describedBy = input().prop('aria-describedby');
@@ -80,7 +80,7 @@ describe('Textbox component', () => {
   });
 
   it('renders additionalHelp when the additionalHelpContent props is provided', () => {
-    const instance = mount(buildTextbox());
+    const instance = mountWithTheme(buildTextbox());
 
     let help = instance.find('.textbox__help');
     expect(help.length).toBe(0);
@@ -92,7 +92,7 @@ describe('Textbox component', () => {
   });
 
   it('renders icon when the validationState prop is set', () => {
-    const instance = mount(buildTextbox());
+    const instance = mountWithTheme(buildTextbox());
 
     let icon = instance.find(Icon);
     expect(icon.length).toBe(0);
@@ -114,7 +114,7 @@ describe('Textbox with Mask', () => {
       maskType: 'ssnum',
       onChange: handleOnChange
     };
-    const textMask = mount(buildTextbox(props)).find('input');
+    const textMask = mountWithTheme(buildTextbox(props)).find('input');
 
     textMask.simulate('change', mockEvent);
     expect(handleOnChange).toBeCalled();
@@ -126,7 +126,7 @@ describe('Textbox with Mask', () => {
       maskType: 'ssnum',
       onBlur: handleOnBlur
     };
-    const textMask = mount(buildTextbox(props)).find('input');
+    const textMask = mountWithTheme(buildTextbox(props)).find('input');
 
     textMask.simulate('blur', mockEvent);
     expect(handleOnBlur).toBeCalled();
@@ -137,7 +137,7 @@ describe('Textbox with Mask', () => {
     const props = {
       maskType: 'ssnum'
     };
-    const textMask = mount(buildTextbox(props)).find('input');
+    const textMask = mountWithTheme(buildTextbox(props)).find('input');
     expect(textMask.props().title).toBe('Enter 9-digit social security number');
   });
 
@@ -146,7 +146,7 @@ describe('Textbox with Mask', () => {
       maskType: 'ssnum',
       title: 'Test me'
     };
-    const textMask = mount(buildTextbox(props)).find('input');
+    const textMask = mountWithTheme(buildTextbox(props)).find('input');
     expect(textMask.props().title).toBe('Test me');
   });
 });

@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
@@ -21,12 +20,11 @@ describe('popover component', () => {
   );
 
   function getMountedInstance(props) {
-    mount(instanceToRender);
-    return mount(instanceToRender).setProps(props);
+    return mountWithTheme(instanceToRender).setProps(props);
   }
 
   it('renders as expected', () => {
-    const tree = renderer.create(instanceToRender).toJSON();
+    const tree = renderWithTheme(instanceToRender).toJSON();
     expect(tree).toMatchSnapshot();
   });
 

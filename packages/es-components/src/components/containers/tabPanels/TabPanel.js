@@ -74,9 +74,9 @@ class TabPanel extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="es-tab-panel">
-          <AriaAnnouncer id="announcer" aria-live="assertive">{`${
-            this.state.simpleName
-          } Sub text is now showing`}</AriaAnnouncer>
+          <AriaAnnouncer id="announcer" aria-live="assertive">
+            {this.state.simpleName}
+          </AriaAnnouncer>
           <TabWrapper className="es-tab-panel__wrapper">
             <TabFormatter className="es-tab-panel__tabs">
               {elements}

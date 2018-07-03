@@ -1,15 +1,15 @@
 const white = '#fff';
-const gray1 = '#f7f7f7';
-const gray2 = '#eee';
-const gray3 = '#ddd';
-const gray4 = '#ced4da';
-const gray5 = '#aaa';
-const gray6 = '#888';
-const gray7 = '#495057';
-const gray8 = '#666';
+const gray1 = '#f4f4f4';
+const gray2 = '#ecedee';
+const gray3 = '#e4e4e4';
+const gray4 = '#d8d8d8';
+const gray5 = '#c5c5c5';
+const gray6 = '#979797';
+const gray7 = '#707070';
+const gray8 = '#585858';
 const gray9 = '#444';
 const black = '#000';
-const darkBlue = '#006685';
+const darkBlue = '#00607d';
 
 const defaultColor = gray9;
 const defaultHover = black;
@@ -19,17 +19,17 @@ const primaryHover = '#3e084d';
 const info = '#1b6284';
 const infoHover = '#144962';
 const infoLight = '#227ba6';
-const success = '#006600';
-const successHover = '#003d00';
-const successLight = '#d9eedf';
-const warning = '#ebaf00';
-const warningHover = '#c29100';
-const warningLight = '#ffedb8';
-const danger = '#af140c';
-const dangerHover = '#891009';
-const dangerLight = '#fde7e7';
-const advisor = '#ff6310';
-const advisorLight = '#ffe8dc';
+const success = '#009865';
+const successHover = '#007d50';
+const successLight = '#f3fffb';
+const warning = '#de7400';
+const warningHover = '#c26100';
+const warningLight = '#fff6ee';
+const danger = '#a31e22';
+const dangerHover = '#8c1515';
+const dangerLight = '#fff5f5';
+const advisor = '#ebaf00';
+const advisorLight = '#ffedb8';
 const popoverHeader = darkBlue;
 
 const vbBlue = primaryHover;
@@ -239,11 +239,11 @@ const theme = {
       },
       warning: {
         bgColor: warning,
-        textColor: black,
+        textColor: white,
         hoverBgColor: warningHover,
-        hoverTextColor: black,
+        hoverTextColor: white,
         activeBgColor: warningHover,
-        activeTextColor: black,
+        activeTextColor: white,
         boxShadowColor: warningHover
       },
       danger: {
@@ -299,9 +299,9 @@ const theme = {
         bgColor: white,
         textColor: warning,
         hoverBgColor: warning,
-        hoverTextColor: black,
+        hoverTextColor: white,
         activeBgColor: warningHover,
-        activeTextColor: black,
+        activeTextColor: white,
         borderColor: warning
       },
       danger: {

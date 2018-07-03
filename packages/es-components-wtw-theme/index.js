@@ -14,8 +14,8 @@ const darkBlue = '#006685';
 const defaultColor = gray9;
 const defaultHover = black;
 const defaultBtnText = white;
-const primary = '#5a0c6f';
-const primaryHover = '#4d1659';
+const primary = '#702082';
+const primaryHover = '#3e084d';
 const info = '#1b6284';
 const infoHover = '#144962';
 const infoLight = '#227ba6';
@@ -32,9 +32,9 @@ const advisor = '#ff6310';
 const advisorLight = '#ffe8dc';
 const popoverHeader = darkBlue;
 
-const vbBlue = '#00a0d2';
+const vbBlue = primaryHover;
 const vbGreen = '#00c389';
-const vbMagenta = '#c110a0';
+const vbMagenta = primaryHover;
 const wtwGray = '#63666a';
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
@@ -51,8 +51,8 @@ const violetLighter = '#eac9f2';
 
 
 // Datepicker colors
-const navArrow = gray;
-const navArrowHover = grayDark;
+const navArrow = gray5;
+const navArrowHover = gray6;
 const selected = '#216ba5';
 const hover = '#1d5d90';
 const keyboard = '#2a87d0';
@@ -139,7 +139,7 @@ const theme = {
       },
       light: {
         bgColor: infoLight,
-        textColor: gray8
+        textColor: white
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -202,6 +202,15 @@ const theme = {
         boxShadowColor: primaryHover
       },
       default: {
+        bgColor: '#d8d8d8',
+        textColor: black,
+        hoverBgColor: '#bfbfbf',
+        hoverTextColor: black,
+        activeBgColor: '#bfbfbf',
+        activeTextColor: black,
+        boxShadowColor: '#bfbfbf'
+      },
+      darkDefault: {
         bgColor: defaultColor,
         textColor: white,
         hoverBgColor: defaultHover,

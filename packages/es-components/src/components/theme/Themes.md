@@ -28,6 +28,15 @@ The [via benefits theme]() is bundled as the default theme for this component li
 			<td>Warning <div style="background-color: #b35f00; padding: 1em; width: 50px"></div></td>
 			<td>Danger <div style="background-color: #c00; padding: 1em; width: 50px"></div></td>
 		</tr>
+		<tr><th colspan="7" style="text-align: left">WTW</th></tr>
+		<tr>
+			<td>Primary <div style="background-color: #702082; padding: 1em; width: 50px"></div></td>
+			<td>Default <div style="background-color: #444; padding: 1em; width: 50px"></div></td>
+			<td>Info <div style="background-color: #1b6284; padding: 1em; width: 50px"></div></td>
+			<td>Success <div style="background-color: #009865; padding: 1em; width: 50px"></div></td>
+			<td>Warning <div style="background-color: #de7400; padding: 1em; width: 50px"></div></td>
+			<td>Danger <div style="background-color: #a31e22; padding: 1em; width: 50px"></div></td>
+		</tr>
 	</tbody>
 </table>
 

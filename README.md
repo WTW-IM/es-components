@@ -7,3 +7,7 @@
 # es-components-via-theme
 
 [![npm version](https://badge.fury.io/js/es-components-via-theme.svg)](https://badge.fury.io/js/es-components-via-theme)
+
+# es-components-wtw-theme
+
+[![npm version](https://badge.fury.io/js/es-components-wtw-theme.svg)](https://badge.fury.io/js/es-components-wtw-theme)

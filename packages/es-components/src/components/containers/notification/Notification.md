@@ -129,6 +129,7 @@ Any additional children will get rendered before call to action buttons.
   type="info"
   additionalText="Here's some information to get you started"
 >
+  This is <a href="#">how a link looks</a>.
   <ol>
     <li>Item A</li>
     <li>Item B</li>

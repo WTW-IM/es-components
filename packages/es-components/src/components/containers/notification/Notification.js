@@ -165,6 +165,15 @@ const NotificationBgWrapper = styled.div`
   background-color: ${props => props.color.bgColor};
   border-radius: 2px;
   color: ${props => props.color.textColor};
+
+  a {
+    color: ${props => props.color.textColor};
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 const NotificationContent = styled.div`

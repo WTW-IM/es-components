@@ -143,12 +143,28 @@ Any additional children will get rendered before call to action buttons.
 Applying the `useLightVariant` prop will use a lighter background color for the given notification type.
 
 ```
+const callsToAction = [
+      {
+        actionButtonContent: 'Primary',
+        action() {
+          confirm('You clicked a button!');
+        }
+      },
+      {
+        actionButtonContent: 'Secondary',
+        action() {
+          alert('You clicked the secondary button')
+        }
+      }
+    ];
+
 <div>
   <Notification
     type="success"
     header="Success!"
     additionalText="You did a thing."
     useLightVariant
+    callsToAction={callsToAction}
   />
 
   <Notification

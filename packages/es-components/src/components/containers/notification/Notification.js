@@ -175,6 +175,12 @@ const NotificationBgWrapper = styled.div`
       text-decoration: none;
     }
   }
+
+  .es-popover {
+    .es-button--link {
+      color: ${props => props.color.textColor};
+    }
+  }
 `;
 
 const NotificationHeader = styled.div`

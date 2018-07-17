@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { findDOMNode } from 'react-dom';
 import viaTheme from 'es-components-via-theme';
 
 import Icon from '../../base/icons/Icon';
@@ -29,60 +28,60 @@ const TriggerButton = styled(Button)`
 `;
 
 const TriggerButtonLabel = styled.span`
+  display: block;
   font-size: 0;
   height: 1px;
   overflow: hidden;
-  display: block;
 `;
 
 const PopoverContainer = styled.div`
-  min-width: 270px;
-  max-width: 400px;
   background: ${props => props.theme.colors.white};
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  min-width: 270px;
 `;
 
 const PopoverHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: ${props => props.theme.colors.white};
   background-color: ${props =>
     props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
-  outline: none;
+  color: ${props => props.theme.colors.white};
+  display: flex;
+  justify-content: space-between;
   line-height: ${props => props.theme.sizes.baseLineHeight};
+  outline: none;
 `;
 
 const TitleBar = styled.h3`
   font-size: 18px;
-  padding: 8px 14px;
   margin: 0;
+  padding: 8px 14px;
 `;
 
 const PopoverBody = styled.div`
+  color: ${props => props.theme.colors.gray8};
+  font-size: 18px;
+  font-weight: normal;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: ${props =>
     props.hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   text-align: right;
-  color: ${props => props.theme.colors.gray8};
-  line-height: ${props => props.theme.sizes.baseLineHeight};
-  font-size: 18px;
-  font-weight: normal;
 `;
 
 const PopoverContent = styled.div`
-  text-align: left;
   margin-bottom: ${props => (props.showCloseButton ? '8px' : '0')};
+  text-align: left;
 `;
 
 const AlternateCloseButton = styled(Button)`
+  background: transparent;
+  border: none;
+  box-shadow: none;
   color: ${props =>
     props.hasTitle ? props.theme.colors.white : props.theme.colors.grayDark};
   margin: 0;
   margin-left: auto;
   padding: 0 8px;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 
   &:hover {
     background: transparent;
@@ -90,9 +89,9 @@ const AlternateCloseButton = styled(Button)`
 `;
 
 const CloseHelpText = styled.span`
+  color: transparent;
   height: 1px;
   width: 1px;
-  color: transparent;
 `;
 
 class Popover extends React.Component {
@@ -100,13 +99,6 @@ class Popover extends React.Component {
     isOpen: false
   };
 
-  componentDidMount() {
-    this.header = findDOMNode(this.headerRef);
-    this.popoverContent = findDOMNode(this.contentRef);
-    this.closeBtn = findDOMNode(this.closeBtnRef);
-    this.triggerBtn = findDOMNode(this.triggerBtnRef);
-    this.popper = findDOMNode(this.popperRef);
-  }
   componentDidUpdate() {
     if (this.state.isOpen) {
       window.addEventListener('scroll', this.hidePopOnScroll);
@@ -117,16 +109,17 @@ class Popover extends React.Component {
 
   toggleShow = () => {
     setTimeout(() => {
-      const focusableContent = this.popoverContent.querySelector('a, button');
-      if (focusableContent) {
-        focusableContent.focus();
-      } else {
-        this.header.focus();
+      if (this.contentRef) {
+        const focusableContent = this.contentRef.querySelector('a, button');
+        if (focusableContent) {
+          focusableContent.focus();
+        } else {
+          this.headerRef.focus();
+        }
       }
     }, 200);
-
-    if (this.closeBtn) {
-      this.triggerBtn.focus();
+    if (this.closeBtnRef) {
+      this.triggerBtnRef.focus();
     }
 
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
@@ -135,7 +128,7 @@ class Popover extends React.Component {
   hidePopover = event => {
     if (this.state.isOpen) {
       if (event.type !== 'click') {
-        this.triggerBtn.focus();
+        this.triggerBtnRef.focus();
       }
       this.setState({ isOpen: false });
     }
@@ -143,18 +136,20 @@ class Popover extends React.Component {
 
   hidePopOnScroll = () => {
     setInterval(() => {
-      const bounds = this.popper.getBoundingClientRect();
-      const inViewport =
-        bounds.top >= 90 &&
-        bounds.left >= 0 &&
-        bounds.right <=
-          (window.innerWidth || document.documentElement.clientWidth) &&
-        bounds.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight);
+      if (this.popperRef) {
+        const bounds = this.popperRef.getBoundingClientRect();
+        const inViewport =
+          bounds.top >= 90 &&
+          bounds.left >= 0 &&
+          bounds.right <=
+            (window.innerWidth || document.documentElement.clientWidth) &&
+          bounds.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight);
 
-      if (!inViewport && this.state.isOpen) {
-        this.triggerBtn.focus();
-        this.setState({ isOpen: false });
+        if (!inViewport && this.state.isOpen) {
+          this.triggerBtnRef.focus();
+          this.setState({ isOpen: false });
+        }
       }
     }, 100);
   };
@@ -187,7 +182,7 @@ class Popover extends React.Component {
     const closeButton = (
       <Button
         handleOnClick={this.toggleShow}
-        ref={btn => {
+        innerRef={btn => {
           this.closeBtnRef = btn;
         }}
       >
@@ -199,7 +194,7 @@ class Popover extends React.Component {
         aria-label="Close"
         hasTitle={hasTitle}
         handleOnClick={this.toggleShow}
-        ref={btn => {
+        innerRef={btn => {
           this.closeBtnRef = btn;
         }}
       >
@@ -215,7 +210,7 @@ class Popover extends React.Component {
         isLinkButton={isLinkButton}
         suppressUnderline={suppressUnderline}
         buttonBorderStyle={buttonBorderStyle}
-        ref={btn => {
+        innerRef={btn => {
           this.triggerBtnRef = btn;
         }}
         aria-expanded={this.state.isOpen}
@@ -246,7 +241,7 @@ class Popover extends React.Component {
             <PopoverContainer
               className="es-popover__container"
               role="dialog"
-              ref={elem => {
+              innerRef={elem => {
                 this.contentRef = elem;
               }}
             >
@@ -255,7 +250,7 @@ class Popover extends React.Component {
                 {hasAltCloseButton && altCloseButton}
                 <CloseHelpText
                   tabIndex={-1}
-                  ref={elem => {
+                  innerRef={elem => {
                     this.headerRef = elem;
                   }}
                   aria-label="Press escape to close the Popover"

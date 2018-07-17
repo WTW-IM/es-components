@@ -36,6 +36,7 @@ describe('popover component', () => {
     expect(instance.find(Button).length).toBe(1);
 
     instance.setProps({ hasCloseButton: true });
+    instance.find(Button).simulate('click');
 
     expect(instance.find(Button).length).toBe(2);
   });
@@ -45,6 +46,7 @@ describe('popover component', () => {
     expect(instance.find(Icon).length).toBe(0);
 
     instance.setProps({ hasAltCloseButton: true });
+    instance.find(Button).simulate('click');
 
     expect(instance.find(Icon).length).toBe(1);
   });

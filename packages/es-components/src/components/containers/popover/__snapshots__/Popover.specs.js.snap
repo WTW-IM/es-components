@@ -2,13 +2,13 @@
 
 exports[`popover component renders as expected 1`] = `
 <div
-  className="es-popover sc-bZQynM dSsQJY"
+  className="es-popover sc-EHOje iOWvOn"
 >
   <div>
     <div>
       <button
         aria-expanded={false}
-        className="es-button es-button--default sc-gzVnrw iIXTKM sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
+        className="es-button es-button--default sc-bZQynM cJNYqi sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
         onClick={[Function]}
       >
         <span
@@ -17,61 +17,9 @@ exports[`popover component renders as expected 1`] = `
           Popover Text
         </span>
         <span
-          className="sc-htoDjs iqIjis"
+          className="sc-gzVnrw hEsVHA"
         />
       </button>
-    </div>
-    <div
-      className="sc-EHOje vChbq"
-      name="popTest"
-    >
-      <div
-        className="popTest-popper"
-        data-placement={undefined}
-        data-x-out-of-boundaries={undefined}
-        style={
-          Object {
-            "opacity": 0,
-            "pointerEvents": "none",
-            "position": "absolute",
-            "transition": "opacity 0.2s ease-in-out",
-            "zIndex": 5,
-          }
-        }
-      >
-        <div
-          className="es-popover__container sc-dnqmqq BnNnH"
-          role="dialog"
-        >
-          <div
-            className="es-popover__header sc-iwsKbI cirLJO"
-          >
-            <h3
-              className="sc-gZMcBi cPBpHt"
-            >
-              Popover Title
-            </h3>
-            <span
-              aria-label="Press escape to close the Popover"
-              className="sc-fjdhpX dYNDTL"
-              tabIndex={-1}
-            />
-          </div>
-          <div
-            className="es-popover__body sc-gqjmRU eiaKpk"
-          >
-            <div
-              className="es-popover__content sc-VigVT cztEQg"
-            >
-              This is the popover content.
-            </div>
-          </div>
-        </div>
-        <span
-          className="popTest-popper__arrow"
-          style={Object {}}
-        />
-      </div>
     </div>
   </div>
 </div>

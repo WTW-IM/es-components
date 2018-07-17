@@ -226,11 +226,12 @@ export function Notification({
 
   return (
     <ThemeProvider theme={theme}>
-      <NotificationWrapper className="es-notification__wrapper" role={roleType}>
-        <NotificationBgWrapper
-          {...otherProps}
-          color={theme.notificationStyles[type][bgType]}
-        >
+      <NotificationWrapper
+        className="es-notification__wrapper"
+        role={roleType}
+        {...otherProps}
+      >
+        <NotificationBgWrapper color={theme.notificationStyles[type][bgType]}>
           <NotificationHeader
             className="es-notification__header"
             hasChildren={hasChildren}

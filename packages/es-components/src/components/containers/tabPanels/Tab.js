@@ -44,19 +44,20 @@ const TabButton = styled.button`
   }
 `;
 
-const AriaAnnouncer = styled.span`
-  position: fixed;
-  color: transparent;
-  left: -1000px;
-  top: 10px;
-`;
-
 /* eslint-enable */
 
-function Tab({ name, selected, action, children, simpleName, ...props }) {
+function Tab({
+  name,
+  selected,
+  action,
+  children,
+  simpleName,
+  announcerText,
+  ...props
+}) {
   return (
     <TabButton
-      onClick={() => action(name, children, simpleName)}
+      onClick={() => action(name, children, simpleName, announcerText)}
       selected={selected}
       aria-label={`${simpleName || name} tab`}
       aria-expanded={selected}
@@ -65,10 +66,6 @@ function Tab({ name, selected, action, children, simpleName, ...props }) {
       {React.isValidElement(name)
         ? React.cloneElement(name, { selected })
         : name}
-      {selected && (
-        <AriaAnnouncer aria-live="assertive">{`${simpleName ||
-          name} Sub text is now showing`}</AriaAnnouncer>
-      )}
     </TabButton>
   );
 }
@@ -98,7 +95,11 @@ Tab.propTypes = {
   /**
    * A simpler representation for screen readers.
    */
-  simpleName: PropTypes.string
+  simpleName: PropTypes.string,
+  /*
+  * Additional text to be read after the simple name
+  */
+  announcerText: PropTypes.string
 };
 
 Tab.defaultProps = {

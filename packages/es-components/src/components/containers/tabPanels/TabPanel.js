@@ -45,16 +45,18 @@ class TabPanel extends React.Component {
     this.state = {
       value: child.props.name,
       currentContent: child.props.children,
-      simpleName: child.props.simpleName || child.props.name
+      simpleName: child.props.simpleName || child.props.name,
+      announcerText: ''
     };
     this.tabChanged = this.tabChanged.bind(this);
   }
 
-  tabChanged(name, child, simpleName) {
+  tabChanged(name, child, simpleName, announcerText) {
     this.setState({
       value: name,
       currentContent: child,
-      simpleName: simpleName || name
+      simpleName: simpleName || name,
+      announcerText
     });
   }
 
@@ -75,7 +77,7 @@ class TabPanel extends React.Component {
       <ThemeProvider theme={theme}>
         <div className="es-tab-panel">
           <AriaAnnouncer id="announcer" aria-live="assertive">
-            {this.state.simpleName}
+            {this.state.simpleName} {this.state.announcerText}
           </AriaAnnouncer>
           <TabWrapper className="es-tab-panel__wrapper">
             <TabFormatter className="es-tab-panel__tabs">

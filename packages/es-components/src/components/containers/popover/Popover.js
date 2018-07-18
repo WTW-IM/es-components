@@ -17,6 +17,8 @@ const Container = styled.div`
 const TriggerButton = styled(Button)`
   border-bottom: ${props =>
     props.isLinkButton ? props.buttonBorderStyle : ''};
+  border-radius: ${props =>
+    props.isLinkButton && !props.suppressUnderline ? '0' : ''};
   margin-bottom: ${props => (props.isLinkButton ? '2px' : '')};
   text-decoration: none;
 

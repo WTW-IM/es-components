@@ -21,10 +21,10 @@ const DismissNotification = styled(DismissButton)`
 `;
 
 const iconMap = {
-  success: 'ok-sign',
-  info: 'info-sign',
+  success: 'ok-circle',
+  info: 'info-circle',
   warning: 'exclamation-sign',
-  danger: 'exclamation-sign',
+  danger: 'info-circle',
   advisor: 'agent'
 };
 
@@ -165,22 +165,36 @@ const NotificationBgWrapper = styled.div`
   background-color: ${props => props.color.bgColor};
   border-radius: 2px;
   color: ${props => props.color.textColor};
-`;
+  padding: 15px;
 
-const NotificationContent = styled.div`
-  padding: 0 15px 15px;
-  margin-left: ${props => (props.hasIcon ? '24px' : '0')};
+  a {
+    color: ${props => props.color.textColor};
+    text-decoration: underline;
 
-  @media (max-width: ${props => props.theme.screenSize.tablet}) {
-    margin-left: 0;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .es-popover {
+    .es-button--link {
+      color: ${props => props.color.textColor};
+    }
   }
 `;
 
 const NotificationHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  margin: 0;
+  padding-bottom: ${props => (props.hasChildren ? '15px' : '0')};
+`;
+
+const NotificationContent = styled.div`
+  margin-left: ${props => (props.hasIcon ? '24px' : '0')};
+
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+    margin-left: 0;
+  }
 `;
 
 export function Notification({
@@ -212,12 +226,16 @@ export function Notification({
 
   return (
     <ThemeProvider theme={theme}>
-      <NotificationWrapper className="es-notification__wrapper" role={roleType}>
-        <NotificationBgWrapper
-          {...otherProps}
-          color={theme.notificationStyles[type][bgType]}
-        >
-          <NotificationHeader className="es-notification__header">
+      <NotificationWrapper
+        className="es-notification__wrapper"
+        role={roleType}
+        {...otherProps}
+      >
+        <NotificationBgWrapper color={theme.notificationStyles[type][bgType]}>
+          <NotificationHeader
+            className="es-notification__header"
+            hasChildren={hasChildren}
+          >
             {renderLeadingHeader(type, includeIcon, header, additionalText)}
             {hasExtraAlert && renderExtraAlert(extraAlert)}
             {dismissable && (
@@ -236,8 +254,13 @@ export function Notification({
               {children}
             </NotificationContent>
           )}
+          {hasCallsToAction &&
+            useLightVariant &&
+            renderCallsToAction(callsToAction, theme)}
         </NotificationBgWrapper>
-        {hasCallsToAction && renderCallsToAction(callsToAction, theme)}
+        {hasCallsToAction &&
+          !useLightVariant &&
+          renderCallsToAction(callsToAction, theme)}
       </NotificationWrapper>
     </ThemeProvider>
   );

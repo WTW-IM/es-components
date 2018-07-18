@@ -17,6 +17,7 @@ const TabButton = styled.button`
   line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 10px;
   text-align: left;
+  z-index: 1;
 
   &:focus {
     outline: 1px dotted ${props => props.theme.colors.gray4};

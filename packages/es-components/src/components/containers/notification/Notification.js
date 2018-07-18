@@ -21,10 +21,10 @@ const DismissNotification = styled(DismissButton)`
 `;
 
 const iconMap = {
-  success: 'ok-sign',
-  info: 'info-sign',
+  success: 'ok-circle',
+  info: 'info-circle',
   warning: 'exclamation-sign',
-  danger: 'exclamation-sign',
+  danger: 'info-circle',
   advisor: 'agent'
 };
 

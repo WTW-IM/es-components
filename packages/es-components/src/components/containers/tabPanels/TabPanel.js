@@ -29,13 +29,6 @@ const TabContent = styled.div`
   border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 
-const AriaAnnouncer = styled.p`
-  position: fixed;
-  color: transparent;
-  left: -1000px;
-  top: 10px;
-`;
-
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -44,17 +37,15 @@ class TabPanel extends React.Component {
       : props.children;
     this.state = {
       value: child.props.name,
-      currentContent: child.props.children,
-      simpleName: child.props.simpleName || child.props.name
+      currentContent: child.props.children
     };
     this.tabChanged = this.tabChanged.bind(this);
   }
 
-  tabChanged(name, child, simpleName) {
+  tabChanged(name, child) {
     this.setState({
       value: name,
-      currentContent: child,
-      simpleName: simpleName || name
+      currentContent: child
     });
   }
 
@@ -74,9 +65,6 @@ class TabPanel extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <div className="es-tab-panel">
-          <AriaAnnouncer id="announcer" aria-live="assertive">
-            {this.state.simpleName}
-          </AriaAnnouncer>
           <TabWrapper className="es-tab-panel__wrapper">
             <TabFormatter className="es-tab-panel__tabs">
               {elements}

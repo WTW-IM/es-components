@@ -46,12 +46,12 @@ const TabButton = styled.button`
 `;
 
 const AriaAnnouncer = styled.p`
-  position: absolute;
+  height: 1px;
   left: -10000px;
+  overflow: hidden;
+  position: absolute;
   top: auto;
   width: 1px;
-  height: 1px;
-  overflow: hidden;
 `;
 
 /* eslint-enable */

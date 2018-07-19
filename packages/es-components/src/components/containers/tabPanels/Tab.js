@@ -45,6 +45,13 @@ const TabButton = styled.button`
   }
 `;
 
+const AriaAnnouncer = styled.p`
+  position: fixed;
+  color: transparent;
+  left: -1000px;
+  top: 10px;
+`;
+
 /* eslint-enable */
 
 function Tab({
@@ -64,6 +71,11 @@ function Tab({
       aria-expanded={selected}
       {...props}
     >
+      {selected && (
+        <AriaAnnouncer id="announcer" aria-live="assertive">
+          {simpleName} {announcerText}
+        </AriaAnnouncer>
+      )}
       {React.isValidElement(name)
         ? React.cloneElement(name, { selected })
         : name}

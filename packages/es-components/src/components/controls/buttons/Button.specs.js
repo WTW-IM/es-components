@@ -1,7 +1,8 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallowWithTheme } from 'styled-enzyme';
+import viaTheme from 'es-components-via-theme';
 
 import { Button } from './Button';
 
@@ -9,7 +10,11 @@ let instance;
 const onClick = jest.fn();
 
 beforeEach(() => {
-  instance = shallow(<Button handleOnClick={onClick}>test</Button>).dive();
+  instance = shallowWithTheme(
+    <Button handleOnClick={onClick} theme={viaTheme}>
+      test
+    </Button>
+  ).dive();
 });
 
 it('renders child text inside of button', () => {
@@ -19,8 +24,10 @@ it('renders child text inside of button', () => {
 it('renders child nodes inside of button', () => {
   const child = <span>Hello</span>;
 
-  const instanceWithChild = shallow(
-    <Button handleOnClick={jest.fn()}>{child}</Button>
+  const instanceWithChild = shallowWithTheme(
+    <Button handleOnClick={jest.fn()} theme={viaTheme}>
+      {child}
+    </Button>
   );
 
   expect(

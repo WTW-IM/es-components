@@ -3,9 +3,9 @@ Tab Panels allow us to store lots more data on the screen and only show the amou
 ```
 <TabPanel>
   <TabPanel.Tab name="Hi there">
-    <span>
+    <p>
       HELLO WORLD!!!!
-    </span>
+    </p>
   </TabPanel.Tab>
   <TabPanel.Tab simpleName="interesting" name={<div><Icon name="certificate" />Interesting 5 plans</div>}>
     <div>

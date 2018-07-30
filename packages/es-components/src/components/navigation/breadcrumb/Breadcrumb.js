@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
-import viaTheme from 'es-components-via-theme';
 
 import genId from '../../util/generateAlphaName';
 
@@ -60,27 +59,16 @@ const Crumb = styled.li`
 
 function Breadcrumb({ children, ...props }) {
   return (
-    <ThemeProvider theme={props.theme}>
-      <OrderedList {...props} className="es-breadcrumb">
-        {React.Children.map(children, child => (
-          <Crumb key={genId()}>{child}</Crumb>
-        ))}
-      </OrderedList>
-    </ThemeProvider>
+    <OrderedList {...props} className="es-breadcrumb">
+      {React.Children.map(children, child => (
+        <Crumb key={genId()}>{child}</Crumb>
+      ))}
+    </OrderedList>
   );
 }
 
 Breadcrumb.propTypes = {
-  children: PropTypes.node.isRequired,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object
-};
-
-Breadcrumb.defaultProps = {
-  theme: viaTheme
+  children: PropTypes.node.isRequired
 };
 
 export default withTheme(Breadcrumb);

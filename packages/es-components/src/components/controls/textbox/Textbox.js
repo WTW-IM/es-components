@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, ThemeProvider, withTheme } from 'styled-components';
+import styled, { css, withTheme } from 'styled-components';
 import { noop, omit } from 'lodash';
-import viaTheme from 'es-components-via-theme';
 import MaskedInput from 'react-text-mask';
 import classnames from 'classnames';
 
@@ -97,9 +96,9 @@ const Textbox = props => {
     onBlur,
     maskType,
     theme,
-    ...additionalTextProps
+    className,
+    ...otherProps
   } = props;
-  const { className, ...otherProps } = additionalTextProps;
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = id !== undefined ? id : `for-${inputName}`;
   const hasHelpContent = additionalHelpContent !== undefined;
@@ -123,49 +122,47 @@ const Textbox = props => {
   const maskArgs = inputMaskType[maskType];
 
   return (
-    <ThemeProvider theme={theme}>
-      <TextBoxLabel
-        className={classnames('es-textbox', className)}
-        htmlFor={textboxId}
-        color={theme.validationTextColor[validationState]}
-        inline={inline}
-      >
-        <LabelText className="es-textbox__label" inline={inline}>
-          {labelText}
-        </LabelText>
-        <InputWrapper className="es-textbox__wrapper">
-          {hasPrepend && <Prepend name={prependIconName} size={20} />}
-          <Input
-            aria-describedby={helpId}
-            className={classNameState}
-            hasPrepend={hasPrepend}
-            id={textboxId}
-            innerRef={inputRef}
-            name={inputName}
-            numAppendIconNames={numAppendIconNames}
-            onBlur={onBlur}
-            onChange={onChange}
-            type="text"
-            value={value}
-            {...maskArgs}
-            {...otherProps}
-            {...theme.validationInputColor[validationState]}
-          />
-          {(hasAppend || hasValidationIcon) && (
-            <Append>
-              {hasValidationIcon && (
-                <Icon
-                  name={theme.validationIconName[validationState]}
-                  size={20}
-                />
-              )}
-              {hasAppend && <Icon name={appendIconName} size={20} />}
-            </Append>
-          )}
-        </InputWrapper>
-        {additionalHelp}
-      </TextBoxLabel>
-    </ThemeProvider>
+    <TextBoxLabel
+      className={classnames('es-textbox', className)}
+      htmlFor={textboxId}
+      color={theme.validationTextColor[validationState]}
+      inline={inline}
+    >
+      <LabelText className="es-textbox__label" inline={inline}>
+        {labelText}
+      </LabelText>
+      <InputWrapper className="es-textbox__wrapper">
+        {hasPrepend && <Prepend name={prependIconName} size={20} />}
+        <Input
+          aria-describedby={helpId}
+          className={classNameState}
+          hasPrepend={hasPrepend}
+          id={textboxId}
+          innerRef={inputRef}
+          name={inputName}
+          numAppendIconNames={numAppendIconNames}
+          onBlur={onBlur}
+          onChange={onChange}
+          type="text"
+          value={value}
+          {...maskArgs}
+          {...otherProps}
+          {...theme.validationInputColor[validationState]}
+        />
+        {(hasAppend || hasValidationIcon) && (
+          <Append>
+            {hasValidationIcon && (
+              <Icon
+                name={theme.validationIconName[validationState]}
+                size={20}
+              />
+            )}
+            {hasAppend && <Icon name={appendIconName} size={20} />}
+          </Append>
+        )}
+      </InputWrapper>
+      {additionalHelp}
+    </TextBoxLabel>
   );
 };
 
@@ -208,7 +205,8 @@ Textbox.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  className: PropTypes.string
 };
 
 Textbox.defaultProps = {
@@ -216,8 +214,7 @@ Textbox.defaultProps = {
   maskType: 'none',
   onChange: noop,
   onBlur: noop,
-  validationState: 'default',
-  theme: viaTheme
+  validationState: 'default'
 };
 
 export default withTheme(Textbox);

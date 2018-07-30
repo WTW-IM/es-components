@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { renderWithTheme } from 'styled-enzyme';
 import Breadcrumb from './Breadcrumb';
 
 describe('BreadcrumbTestSuite', () => {
@@ -17,7 +17,7 @@ describe('BreadcrumbTestSuite', () => {
   });
 
   it('renders as expected', () => {
-    const tree = renderer.create(instanceToRender).toJSON();
+    const tree = renderWithTheme(instanceToRender).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

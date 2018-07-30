@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import defaultTheme from 'es-components-via-theme';
-
+import styled, { withTheme } from 'styled-components';
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
@@ -117,8 +115,7 @@ Tab.propTypes = {
   announcerText: PropTypes.string
 };
 
-Tab.defaultProps = {
-  theme: defaultTheme
-};
+const ThemedTab = withTheme(Tab);
+ThemedTab.displayName = 'Tab';
 
-export default Tab;
+export default ThemedTab;

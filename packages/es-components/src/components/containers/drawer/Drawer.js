@@ -1,9 +1,8 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
-import viaTheme from 'es-components-via-theme';
 import classnames from 'classnames';
 
 import DrawerPanel from './DrawerPanel';
@@ -36,8 +35,7 @@ export const Drawer = props => {
     closedIconName,
     isAccordion,
     onActiveKeysChanged,
-    openedIconName,
-    theme
+    openedIconName
   } = props;
 
   const onItemClick = key => {
@@ -89,11 +87,9 @@ export const Drawer = props => {
     });
 
   return (
-    <ThemeProvider theme={theme}>
-      <StyledDrawer className={classnames('es-drawer', className)}>
-        {getPanels()}
-      </StyledDrawer>
-    </ThemeProvider>
+    <StyledDrawer className={classnames('es-drawer', className)}>
+      {getPanels()}
+    </StyledDrawer>
   );
 };
 
@@ -119,12 +115,7 @@ Drawer.propTypes = {
   /** Function called when changing active keys */
   onActiveKeysChanged: PropTypes.func,
   /** Override the default minus icon with another OE icon name */
-  openedIconName: PropTypes.string,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object
+  openedIconName: PropTypes.string
 };
 
 Drawer.defaultProps = {
@@ -132,8 +123,7 @@ Drawer.defaultProps = {
   isAccordion: false,
   closedIconName: 'add',
   onActiveKeysChanged: noop,
-  openedIconName: 'minus',
-  theme: viaTheme
+  openedIconName: 'minus'
 };
 
 const UncontrolledDrawer = uncontrollable(Drawer, {

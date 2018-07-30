@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount } from 'enzyme';
+import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 import SideNav from './SideNav';
 
 describe('drawer', () => {
@@ -52,12 +51,12 @@ describe('drawer', () => {
   });
 
   it('renders as expected', () => {
-    const tree = renderer.create(instanceToRender).toJSON();
+    const tree = renderWithTheme(instanceToRender).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('executes onItemSelected with the id of the nav item clicked', () => {
-    const navInstance = mount(instanceToRender);
+    const navInstance = mountWithTheme(instanceToRender);
     const navItem = navInstance.find('.cart').hostNodes();
 
     navItem.simulate('click');
@@ -65,7 +64,7 @@ describe('drawer', () => {
   });
 
   it('executes onClick when nav item clicked', () => {
-    const navInstance = mount(instanceToRender);
+    const navInstance = mountWithTheme(instanceToRender);
     const navItem = navInstance.find('.home').hostNodes();
 
     navItem.simulate('click');
@@ -73,7 +72,7 @@ describe('drawer', () => {
   });
 
   it('disabled item prevents onclick functions', () => {
-    const navInstance = mount(instanceToRender);
+    const navInstance = mountWithTheme(instanceToRender);
     const navItem = navInstance.find('.info').hostNodes();
 
     navItem.simulate('click');

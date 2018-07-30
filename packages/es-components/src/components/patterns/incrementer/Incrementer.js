@@ -1,8 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { noop, isNumber } from 'lodash';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled, { withTheme } from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
@@ -39,8 +38,7 @@ export class Incrementer extends React.Component {
     startingValue: 0,
     incrementAmount: 1,
     decrementAmount: 1,
-    onValueUpdated: noop,
-    theme: viaTheme
+    onValueUpdated: noop
   };
 
   constructor(props) {
@@ -116,32 +114,30 @@ export class Incrementer extends React.Component {
     const { theme } = this.props;
 
     return (
-      <ThemeProvider theme={theme}>
-        <div>
-          <Button
-            className="decrement-button"
-            styleType="primary"
-            handleOnClick={this.decrementValue}
-            disabled={decrementButtonDisabled}
-          >
-            <Icon name="minus" />
-          </Button>
-          <IncrementerTextbox
-            {...theme.validationInputColor.default}
-            type="text"
-            value={value}
-            readOnly
-          />
-          <Button
-            className="increment-button"
-            styleType="primary"
-            handleOnClick={this.incrementValue}
-            disabled={incrementButtonDisabled}
-          >
-            <Icon name="add" />
-          </Button>
-        </div>
-      </ThemeProvider>
+      <div>
+        <Button
+          className="decrement-button"
+          styleType="primary"
+          handleOnClick={this.decrementValue}
+          disabled={decrementButtonDisabled}
+        >
+          <Icon name="minus" />
+        </Button>
+        <IncrementerTextbox
+          {...theme.validationInputColor.default}
+          type="text"
+          value={value}
+          readOnly
+        />
+        <Button
+          className="increment-button"
+          styleType="primary"
+          handleOnClick={this.incrementValue}
+          disabled={incrementButtonDisabled}
+        >
+          <Icon name="add" />
+        </Button>
+      </div>
     );
   }
 }

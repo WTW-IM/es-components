@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from 'styled-enzyme';
 import Modal from './Modal';
 
 describe('modal component', () => {
@@ -9,7 +9,7 @@ describe('modal component', () => {
   const onHide = jest.fn();
 
   beforeEach(() => {
-    instance = mount(
+    instance = mountWithTheme(
       <Modal show onHide={onHide} animation={false}>
         <div className="body">Modal body text.</div>
       </Modal>

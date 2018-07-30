@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from 'styled-enzyme';
 
 import { DropdownButton } from './DropdownButton';
 import Button from './Button';
@@ -9,7 +9,7 @@ import Button from './Button';
 const onClick = jest.fn();
 
 it('opens/closes dropdown on click', () => {
-  const instance = mount(
+  const instance = mountWithTheme(
     <DropdownButton buttonValue="Button">
       <DropdownButton.Button handleOnClick={onClick}>
         Inner
@@ -26,7 +26,7 @@ it('opens/closes dropdown on click', () => {
 
 it('updates buttonValue on child click when shouldUpdateButtonValue is true', () => {
   const innerContents = 'Inner';
-  const instance = mount(
+  const instance = mountWithTheme(
     <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
       <DropdownButton.Button handleOnClick={onClick}>
         {innerContents}
@@ -40,7 +40,7 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
 });
 
 it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
-  const instance = mount(
+  const instance = mountWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
       <DropdownButton.Button handleOnClick={onClick}>
         Content

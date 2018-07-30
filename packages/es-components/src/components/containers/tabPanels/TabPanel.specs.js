@@ -25,9 +25,12 @@ describe('Tab panel component', () => {
   it('Properly selects a tab', () => {
     const tabPanelInstance = mountWithTheme(instanceToRender);
     tabPanelInstance.setState({ value: 'test2' });
-    expect(tabPanelInstance.find({ name: 'test2' }).props().selected).toBe(
-      true
-    );
+    expect(
+      tabPanelInstance
+        .find({ name: 'test2' })
+        .first()
+        .props().selected
+    ).toBe(true);
   });
 
   it('Clicks on tab select them', () => {

@@ -115,4 +115,7 @@ Tab.propTypes = {
   announcerText: PropTypes.string
 };
 
-export default withTheme(Tab);
+const ThemedTab = withTheme(Tab);
+ThemedTab.displayName = 'Tab';
+
+export default ThemedTab;

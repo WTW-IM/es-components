@@ -62,9 +62,7 @@ class TabPanel extends React.Component {
     return (
       <div className="es-tab-panel">
         <TabWrapper className="es-tab-panel__wrapper">
-          <TabFormatter className="es-tab-panel__tabs">
-            {elements}
-          </TabFormatter>
+          <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
         </TabWrapper>
         <TabContent className="es-tab-panel__content">
           {this.state.currentContent}
@@ -79,9 +77,10 @@ function childrenRule(props, propName, component) {
   if (!Array.isArray(children)) {
     children = [children];
   }
+
   if (
     !children.every(
-      child => child.type.name === 'Tab' || child.type.target === Tab
+      child => child.type.displayName === 'Tab' || child.type.target === Tab
     )
   ) {
     return new Error('Tab Panel only accepts Tabs as direct descendants.');

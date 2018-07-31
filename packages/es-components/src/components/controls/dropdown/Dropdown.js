@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { withTheme } from 'styled-components';
 import classnames from 'classnames';
 
 import Label from '../Label';
@@ -48,31 +47,29 @@ function Dropdown({
   const classNameState = `es-dropdown__select--${validationState}`;
 
   return (
-    <ThemeProvider theme={theme}>
-      <Label inline={inline} className={classnames('es-dropdown', className)}>
-        {labelText && (
-          <LabelText
-            className="es-dropdown__label"
-            foregroundColor={theme.validationTextColor[validationState]}
-            inline={inline}
-          >
-            {labelText}
-          </LabelText>
-        )}
-        <SelectBase
-          name={name}
-          value={value}
-          onChange={onChange}
-          onBlur={onBlur}
-          className={classNameState}
-          {...theme.validationInputColor[validationState]}
-          {...rest}
+    <Label inline={inline} className={classnames('es-dropdown', className)}>
+      {labelText && (
+        <LabelText
+          className="es-dropdown__label"
+          foregroundColor={theme.validationTextColor[validationState]}
+          inline={inline}
         >
-          {firstOption}
-          {selectOptions}
-        </SelectBase>
-      </Label>
-    </ThemeProvider>
+          {labelText}
+        </LabelText>
+      )}
+      <SelectBase
+        name={name}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
+        className={classNameState}
+        {...theme.validationInputColor[validationState]}
+        {...rest}
+      >
+        {firstOption}
+        {selectOptions}
+      </SelectBase>
+    </Label>
   );
 }
 
@@ -106,10 +103,6 @@ Dropdown.propTypes = {
    * class name is applied to top level label
    */
   className: PropTypes.string
-};
-
-Dropdown.defaultProps = {
-  theme: viaTheme
 };
 
 export default withTheme(Dropdown);

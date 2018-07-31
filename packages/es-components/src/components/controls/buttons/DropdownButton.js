@@ -2,8 +2,7 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../controls/buttons/Button';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled from 'styled-components';
 
 const Caret = styled.span`
   display: inline-block;
@@ -76,42 +75,31 @@ export class DropdownButton extends React.Component {
   };
 
   render() {
-    const {
-      theme,
-      rootClose,
-      children,
-      className,
-      manualButtonValue
-    } = this.props;
+    const { rootClose, children, className, manualButtonValue } = this.props;
     return (
-      <ThemeProvider theme={theme}>
-        <RootCloseWrapper
-          onRootClose={this.closeDropdown}
-          disabled={!rootClose}
-        >
-          <div className={className}>
-            <Button
-              handleOnClick={this.toggleDropdown}
-              aria-pressed={this.state.isOpen}
-            >
-              {manualButtonValue || this.state.buttonValue} <Caret />
-            </Button>
-            <ButtonPanel isOpen={this.state.isOpen} theme={theme}>
-              <ButtonPanelChildrenContainer>
-                {Children.map(children, child => {
-                  const onClickHandler = this.handleDropdownItemClick(
-                    child.props
-                  );
-                  const newProps = {
-                    handleOnClick: onClickHandler
-                  };
-                  return React.cloneElement(child, newProps);
-                })}
-              </ButtonPanelChildrenContainer>
-            </ButtonPanel>
-          </div>
-        </RootCloseWrapper>
-      </ThemeProvider>
+      <RootCloseWrapper onRootClose={this.closeDropdown} disabled={!rootClose}>
+        <div className={className}>
+          <Button
+            handleOnClick={this.toggleDropdown}
+            aria-pressed={this.state.isOpen}
+          >
+            {manualButtonValue || this.state.buttonValue} <Caret />
+          </Button>
+          <ButtonPanel isOpen={this.state.isOpen}>
+            <ButtonPanelChildrenContainer>
+              {Children.map(children, child => {
+                const onClickHandler = this.handleDropdownItemClick(
+                  child.props
+                );
+                const newProps = {
+                  handleOnClick: onClickHandler
+                };
+                return React.cloneElement(child, newProps);
+              })}
+            </ButtonPanelChildrenContainer>
+          </ButtonPanel>
+        </div>
+      </RootCloseWrapper>
     );
   }
 }
@@ -129,11 +117,6 @@ DropdownButton.propTypes = {
   manualButtonValue: PropTypes.node,
   children: PropTypes.any.isRequired,
   /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object,
-  /**
    * Defines if the buttons value should update to the last pressed,
    * childs value.
    */
@@ -149,8 +132,4 @@ DropdownButton.propTypes = {
   className: PropTypes.string
 };
 
-DropdownButton.defaultProps = {
-  theme: viaTheme
-};
-
-export default withTheme(DropdownButton);
+export default DropdownButton;

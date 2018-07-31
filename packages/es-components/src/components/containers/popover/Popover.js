@@ -2,8 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
@@ -170,8 +169,7 @@ class Popover extends React.Component {
       hasCloseButton,
       hasAltCloseButton,
       disableRootClose,
-      disableFlipping,
-      theme
+      disableFlipping
     } = this.props;
 
     const hasTitle = title !== undefined;
@@ -221,58 +219,55 @@ class Popover extends React.Component {
     );
 
     return (
-      <ThemeProvider theme={theme}>
-        <Container className="es-popover">
-          <Popup
-            name={name}
-            trigger={triggerButton}
-            placement={placement}
-            arrowSize={arrowSize}
-            onHide={this.hidePopover}
-            transitionIn={this.state.isOpen}
-            hasTitle={hasTitle}
-            disableRootClose={disableRootClose}
-            disableFlipping={disableFlipping}
-            theme={theme}
-            popperRef={elem => {
-              this.popperRef = elem;
+      <Container className="es-popover">
+        <Popup
+          name={name}
+          trigger={triggerButton}
+          placement={placement}
+          arrowSize={arrowSize}
+          onHide={this.hidePopover}
+          transitionIn={this.state.isOpen}
+          hasTitle={hasTitle}
+          disableRootClose={disableRootClose}
+          disableFlipping={disableFlipping}
+          popperRef={elem => {
+            this.popperRef = elem;
+          }}
+        >
+          <PopoverContainer
+            className="es-popover__container"
+            role="dialog"
+            ref={elem => {
+              this.contentRef = elem;
             }}
           >
-            <PopoverContainer
-              className="es-popover__container"
-              role="dialog"
-              innerRef={elem => {
-                this.contentRef = elem;
-              }}
-            >
-              <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
-                {hasTitle && <TitleBar>{title}</TitleBar>}
-                {hasAltCloseButton && altCloseButton}
-                <CloseHelpText
-                  tabIndex={-1}
-                  innerRef={elem => {
-                    this.headerRef = elem;
-                  }}
-                  aria-label="Press escape to close the Popover"
-                />
-              </PopoverHeader>
+            <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
+              {hasTitle && <TitleBar>{title}</TitleBar>}
+              {hasAltCloseButton && altCloseButton}
+              <CloseHelpText
+                tabIndex={-1}
+                ref={elem => {
+                  this.headerRef = elem;
+                }}
+                aria-label="Press escape to close the Popover"
+              />
+            </PopoverHeader>
 
-              <PopoverBody
-                className="es-popover__body"
-                hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}
+            <PopoverBody
+              className="es-popover__body"
+              hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}
+            >
+              <PopoverContent
+                className="es-popover__content"
+                showCloseButton={showCloseButton}
               >
-                <PopoverContent
-                  className="es-popover__content"
-                  showCloseButton={showCloseButton}
-                >
-                  {content}
-                </PopoverContent>
-                {showCloseButton && closeButton}
-              </PopoverBody>
-            </PopoverContainer>
-          </Popup>
-        </Container>
-      </ThemeProvider>
+                {content}
+              </PopoverContent>
+              {showCloseButton && closeButton}
+            </PopoverBody>
+          </PopoverContainer>
+        </Popup>
+      </Container>
     );
   }
 }
@@ -307,17 +302,12 @@ Popover.propTypes = {
   /** Sets the aria-label attribute to allow for textless buttons */
   ariaLabel: PropTypes.string,
   /** Disables popovers ability to change position to stay in viewport */
-  disableFlipping: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider
-   */
-  theme: PropTypes.object
+  disableFlipping: PropTypes.bool
 };
 
 Popover.defaultProps = {
   placement: 'bottom',
-  buttonStyle: 'primary',
-  theme: viaTheme
+  buttonStyle: 'primary'
 };
 
 export default Popover;

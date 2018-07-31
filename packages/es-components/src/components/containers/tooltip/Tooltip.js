@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled from 'styled-components';
 import classnames from 'classnames';
 
 import Fade from '../../util/Fade';
@@ -141,30 +140,28 @@ class Tooltip extends React.Component {
 
   render() {
     return (
-      <ThemeProvider theme={this.props.theme}>
-        <span>
-          <span
-            className="es-tooltip__target"
-            ref={span => {
-              this.toolTipTarget = span;
-            }}
-            onMouseEnter={this.show}
-            onMouseLeave={this.hide}
-          >
-            {this.props.children}
-          </span>
-
-          <Overlay
-            show={this.state.show}
-            placement={this.props.position}
-            container={document.body}
-            target={props => this.toolTipTarget}
-            transition={FadeTransition}
-          >
-            <Popup position={this.props.position}>{this.props.content}</Popup>
-          </Overlay>
+      <span>
+        <span
+          className="es-tooltip__target"
+          ref={span => {
+            this.toolTipTarget = span;
+          }}
+          onMouseEnter={this.show}
+          onMouseLeave={this.hide}
+        >
+          {this.props.children}
         </span>
-      </ThemeProvider>
+
+        <Overlay
+          show={this.state.show}
+          placement={this.props.position}
+          container={document.body}
+          target={props => this.toolTipTarget}
+          transition={FadeTransition}
+        >
+          <Popup position={this.props.position}>{this.props.content}</Popup>
+        </Overlay>
+      </span>
     );
   }
 }
@@ -174,17 +171,11 @@ Tooltip.propTypes = {
   /** The text the tooltip displays */
   content: PropTypes.node.isRequired,
   /** Set the position of the tooltip over the content */
-  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object
+  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
 };
 
 Tooltip.defaultProps = {
-  position: 'top',
-  theme: viaTheme
+  position: 'top'
 };
 
-export default withTheme(Tooltip);
+export default Tooltip;

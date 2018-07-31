@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { renderWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
 import getRadioFillVariables from './radio-fill-variables';
@@ -10,8 +10,8 @@ import { RadioButton } from './RadioButton';
 
 describe('RadioButton component', () => {
   it('renders as expected', () => {
-    const tree = renderer.create(
-      <RadioButton id="test" optionText="test" name="rad" />
+    const tree = renderWithTheme(
+      <RadioButton id="test" optionText="test" name="rad" theme={viaTheme} />
     );
 
     expect(tree).toMatchSnapshot();

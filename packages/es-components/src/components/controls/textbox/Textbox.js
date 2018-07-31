@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css, withTheme } from 'styled-components';
-import { noop, omit } from 'lodash';
+import { omit } from 'lodash';
 import MaskedInput from 'react-text-mask';
 import classnames from 'classnames';
 
@@ -85,19 +85,17 @@ const Textbox = props => {
     labelText,
     name,
     id,
-    value,
     inline,
     inputRef,
     additionalHelpContent,
     validationState,
     prependIconName,
     appendIconName,
-    onChange,
-    onBlur,
     maskType,
+    customMask,
     theme,
     className,
-    ...otherProps
+    ...additionalTextProps
   } = props;
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = id !== undefined ? id : `for-${inputName}`;
@@ -119,7 +117,10 @@ const Textbox = props => {
   if (hasValidationIcon) numAppendIconNames++;
 
   const Input = maskType === 'none' ? StyledText : StyledMask;
-  const maskArgs = inputMaskType[maskType];
+  const maskArgs =
+    maskType === 'custom' && customMask !== undefined
+      ? customMask
+      : inputMaskType[maskType];
 
   return (
     <TextBoxLabel
@@ -141,12 +142,9 @@ const Textbox = props => {
           innerRef={inputRef}
           name={inputName}
           numAppendIconNames={numAppendIconNames}
-          onBlur={onBlur}
-          onChange={onChange}
           type="text"
-          value={value}
           {...maskArgs}
-          {...otherProps}
+          {...additionalTextProps}
           {...theme.validationInputColor[validationState]}
         />
         {(hasAppend || hasValidationIcon) && (
@@ -176,10 +174,6 @@ Textbox.propTypes = {
   inputRef: PropTypes.func,
   /** Display label inline with text box */
   inline: PropTypes.bool,
-  /** Function to execute when text box value changes */
-  onChange: PropTypes.func,
-  /** Function to execute when text box loses focus */
-  onBlur: PropTypes.func,
   /** Content to display underneath the text box */
   additionalHelpContent: PropTypes.node,
   /** Display label and text with contextual state colorings */
@@ -190,8 +184,6 @@ Textbox.propTypes = {
   appendIconName: PropTypes.string,
   /** Set the initial value, uncontrolled mode */
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Value of the textbox */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets a mask type on the input */
   maskType: PropTypes.oneOf([
     'none',
@@ -199,8 +191,17 @@ Textbox.propTypes = {
     'dollar',
     'phone',
     'ssnum',
-    'zip'
+    'zip',
+    'custom'
   ]),
+  customMask: PropTypes.shape({
+    mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]).isRequired,
+    guide: PropTypes.bool,
+    placeholderChar: PropTypes.string,
+    keepCharPositions: PropTypes.bool,
+    pipe: PropTypes.func,
+    showMask: PropTypes.bool
+  }),
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
@@ -212,8 +213,6 @@ Textbox.propTypes = {
 Textbox.defaultProps = {
   inline: false,
   maskType: 'none',
-  onChange: noop,
-  onBlur: noop,
   validationState: 'default'
 };
 

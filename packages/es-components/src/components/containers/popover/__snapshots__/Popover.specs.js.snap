@@ -8,7 +8,7 @@ exports[`popover component renders as expected 1`] = `
     <div>
       <button
         aria-expanded={false}
-        className="es-button es-button--default sc-gzVnrw jgosdJ sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
+        className="es-button es-button--default sc-gzVnrw iIXTKM sc-htpNat cJWpVN sc-bwzfXH jWFaYU"
         onClick={[Function]}
       >
         <span

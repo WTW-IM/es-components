@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
-import { mount } from 'enzyme';
+import { mountWithTheme } from 'styled-enzyme';
+import viaTheme from 'es-components-via-theme';
 
 import Button from '../../controls/buttons/Button';
 import { Incrementer } from './Incrementer';
@@ -12,7 +13,7 @@ describe('Incrementer component', () => {
   beforeEach(() => {
     valueUpdated = jest.fn();
 
-    incrementer = mount(
+    incrementer = mountWithTheme(
       <Incrementer
         startingValue={5}
         incrementAmount={5}
@@ -20,6 +21,7 @@ describe('Incrementer component', () => {
         decrementAmount={5}
         lowerThreshold={0}
         onValueUpdated={valueUpdated}
+        theme={viaTheme}
       />
     );
   });

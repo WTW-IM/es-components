@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled from 'styled-components';
 import classnames from 'classnames';
-
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
-import viaTheme from 'es-components-via-theme';
 
 const Backdrop = styled.div`
   background-color: black;
@@ -50,7 +48,6 @@ export class Menu extends React.Component {
       children,
       buttonContent,
       className,
-      theme,
       openButtonType,
       rootClose,
       hasBackdrop,
@@ -58,34 +55,32 @@ export class Menu extends React.Component {
     } = this.props;
 
     return (
-      <ThemeProvider theme={theme}>
-        <RootCloseWrapper onRootClose={this.closeMenu} disabled={!rootClose}>
-          <div className={classnames('es-menu', className)}>
-            {hasBackdrop && (
-              <Backdrop
-                className="es-menu__backdrop"
-                isMenuOpen={this.state.isMenuOpen}
-                onClick={this.closeMenu}
-              />
-            )}
-            <ToggleButton
-              handleOnClick={this.toggleMenu}
-              isPressed={this.state.isMenuOpen}
-              styleType={openButtonType}
-              aria-expanded={this.state.isMenuOpen}
-            >
-              {buttonContent}
-            </ToggleButton>
-            <MenuPanel
-              headerContent={headerContent}
-              isOpen={this.state.isMenuOpen}
-              onClose={this.closeMenu}
-            >
-              {children}
-            </MenuPanel>
-          </div>
-        </RootCloseWrapper>
-      </ThemeProvider>
+      <RootCloseWrapper onRootClose={this.closeMenu} disabled={!rootClose}>
+        <div className={classnames('es-menu', className)}>
+          {hasBackdrop && (
+            <Backdrop
+              className="es-menu__backdrop"
+              isMenuOpen={this.state.isMenuOpen}
+              onClick={this.closeMenu}
+            />
+          )}
+          <ToggleButton
+            handleOnClick={this.toggleMenu}
+            isPressed={this.state.isMenuOpen}
+            styleType={openButtonType}
+            aria-expanded={this.state.isMenuOpen}
+          >
+            {buttonContent}
+          </ToggleButton>
+          <MenuPanel
+            headerContent={headerContent}
+            isOpen={this.state.isMenuOpen}
+            onClose={this.closeMenu}
+          >
+            {children}
+          </MenuPanel>
+        </div>
+      </RootCloseWrapper>
     );
   }
 }
@@ -99,15 +94,13 @@ Menu.propTypes = {
   className: PropTypes.string,
   rootClose: PropTypes.bool,
   inline: PropTypes.bool,
-  theme: PropTypes.object,
   hasBackdrop: PropTypes.bool,
   headerContent: PropTypes.node
 };
 
 Menu.defaultProps = {
-  theme: viaTheme,
   rootClose: false,
   openButtonType: 'default'
 };
 
-export default withTheme(Menu);
+export default Menu;

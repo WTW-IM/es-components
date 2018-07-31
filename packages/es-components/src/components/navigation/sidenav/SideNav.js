@@ -1,9 +1,8 @@
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
-import viaTheme from 'es-components-via-theme';
 
 import NavItem from './NavItem';
 
@@ -19,30 +18,28 @@ const NavStyled = styled.nav`
 `;
 
 export const SideNav = props => {
-  const { useAltStyle, children, onItemSelected, selected, theme } = props;
+  const { useAltStyle, children, onItemSelected, selected } = props;
 
   const onNavClick = (navId = null) => {
     onItemSelected(navId);
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavStyled className="es-sidenav">
-        <ul>
-          {Children.toArray(children).map(child => {
-            if (child !== null && child.type === NavItem) {
-              const currentSelected = selected;
-              return cloneElement(child, {
-                useAltStyle,
-                highlightedId: currentSelected,
-                onNavClick
-              });
-            }
-            return child;
-          })}
-        </ul>
-      </NavStyled>
-    </ThemeProvider>
+    <NavStyled className="es-sidenav">
+      <ul>
+        {Children.toArray(children).map(child => {
+          if (child !== null && child.type === NavItem) {
+            const currentSelected = selected;
+            return cloneElement(child, {
+              useAltStyle,
+              highlightedId: currentSelected,
+              onNavClick
+            });
+          }
+          return child;
+        })}
+      </ul>
+    </NavStyled>
   );
 };
 
@@ -55,18 +52,12 @@ SideNav.propTypes = {
   /** Use to set a default nav, uncontrolled mode */
   defaultSelected: PropTypes.string,
   /** Function called when a nav item is clicked */
-  onItemSelected: PropTypes.func,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object
+  onItemSelected: PropTypes.func
 };
 
 SideNav.defaultProps = {
   useAltStyle: false,
-  onItemSelected: noop,
-  theme: viaTheme
+  onItemSelected: noop
 };
 
 const UncontrolledSideNav = uncontrollable(SideNav, {

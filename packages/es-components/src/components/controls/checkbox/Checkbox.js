@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { noop } from 'lodash';
-import viaTheme from 'es-components-via-theme';
 
 import Label from '../Label';
 
@@ -99,28 +98,26 @@ function Checkbox({
 }) {
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
-    <ThemeProvider theme={theme}>
-      <CheckboxLabel
-        className="es-checkbox"
+    <CheckboxLabel
+      className="es-checkbox"
+      disabled={isDisabled}
+      isChecked={isChecked}
+    >
+      <CheckboxInput
+        type="checkbox"
         disabled={isDisabled}
-        isChecked={isChecked}
-      >
-        <CheckboxInput
-          type="checkbox"
-          disabled={isDisabled}
-          value={value}
-          checked={isChecked}
-          onClick={onClick}
-          onChange={onChange}
-          aria-label={ariaLabel}
-          focusBorderColor={theme.colors.inputFocus}
-        />
-        <CheckboxWrapper className="es-checkbox__fill" />
-        <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
-          {labelText}
-        </CheckboxText>
-      </CheckboxLabel>
-    </ThemeProvider>
+        value={value}
+        checked={isChecked}
+        onClick={onClick}
+        onChange={onChange}
+        aria-label={ariaLabel}
+        focusBorderColor={theme.colors.inputFocus}
+      />
+      <CheckboxWrapper className="es-checkbox__fill" />
+      <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
+        {labelText}
+      </CheckboxText>
+    </CheckboxLabel>
   );
   /* eslint-enable */
 }
@@ -141,10 +138,6 @@ Checkbox.propTypes = {
    * automatically passed by any parent component using a ThemeProvider
    */
   theme: PropTypes.object
-};
-
-Checkbox.defaultProps = {
-  theme: viaTheme
 };
 
 export default withTheme(Checkbox);

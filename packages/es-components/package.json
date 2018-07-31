@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "14.2.4",
+  "version": "15.0.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
@@ -21,11 +21,13 @@
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "jest": {
-    "setupTestFrameworkScriptFile": "./config/jest-setup.js",
+    "setupFiles": [
+      "./config/jest-shims.js",
+      "./config/jest-setup.js"
+    ],
     "testRegex": "specs\\.js$"
   },
   "peerDependencies": {
-    "es-components-via-theme": "^13.0.0",
     "react": ">=0.14",
     "styled-components": "*"
   },
@@ -41,6 +43,7 @@
     "cross-env": "^5.1.4",
     "css-loader": "^0.26.1",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
@@ -59,12 +62,12 @@
     "react-test-renderer": "^16.3.0",
     "style-loader": "^0.13.1",
     "styled-components": "^3.2.6",
+    "styled-enzyme": "^0.1.0",
     "webpack": "^2.3.3"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.6",
-    "enzyme-adapter-react-16": "^1.1.1",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",

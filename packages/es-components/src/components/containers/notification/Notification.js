@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import styled, { withTheme } from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
@@ -21,10 +20,10 @@ const DismissNotification = styled(DismissButton)`
 `;
 
 const iconMap = {
-  success: 'ok-sign',
-  info: 'info-sign',
+  success: 'ok-circle',
+  info: 'info-circle',
   warning: 'exclamation-sign',
-  danger: 'exclamation-sign',
+  danger: 'info-circle',
   advisor: 'agent'
 };
 
@@ -126,7 +125,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-function renderCallsToAction(callsToAction, theme) {
+function renderCallsToAction(callsToAction) {
   return (
     <CallsToAction className="es-notification__actions">
       {callsToAction.map((callToAction, index) => {
@@ -165,22 +164,36 @@ const NotificationBgWrapper = styled.div`
   background-color: ${props => props.color.bgColor};
   border-radius: 2px;
   color: ${props => props.color.textColor};
-`;
+  padding: 15px;
 
-const NotificationContent = styled.div`
-  padding: 0 15px 15px;
-  margin-left: ${props => (props.hasIcon ? '24px' : '0')};
+  a {
+    color: ${props => props.color.textColor};
+    text-decoration: underline;
 
-  @media (max-width: ${props => props.theme.screenSize.tablet}) {
-    margin-left: 0;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .es-popover {
+    .es-button--link {
+      color: ${props => props.color.textColor};
+    }
   }
 `;
 
 const NotificationHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  margin: 0;
+  padding-bottom: ${props => (props.hasChildren ? '15px' : '0')};
+`;
+
+const NotificationContent = styled.div`
+  margin-left: ${props => (props.hasIcon ? '24px' : '0')};
+
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+    margin-left: 0;
+  }
 `;
 
 export function Notification({
@@ -211,35 +224,33 @@ export function Notification({
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <NotificationWrapper className="es-notification__wrapper" role={roleType}>
-        <NotificationBgWrapper
-          {...otherProps}
-          color={theme.notificationStyles[type][bgType]}
-        >
-          <NotificationHeader className="es-notification__header">
-            {renderLeadingHeader(type, includeIcon, header, additionalText)}
-            {hasExtraAlert && renderExtraAlert(extraAlert)}
-            {dismissable && (
-              <DismissNotification
-                onClick={onDismiss}
-                className="notification__dismiss"
-              />
-            )}
-          </NotificationHeader>
-
-          {hasChildren && (
-            <NotificationContent
-              className="es-notification__content"
-              hasIcon={includeIcon}
-            >
-              {children}
-            </NotificationContent>
+    <NotificationWrapper className="es-notification__wrapper" role={roleType}>
+      <NotificationBgWrapper
+        {...otherProps}
+        color={theme.notificationStyles[type][bgType]}
+      >
+        <NotificationHeader className="es-notification__header">
+          {renderLeadingHeader(type, includeIcon, header, additionalText)}
+          {hasExtraAlert && renderExtraAlert(extraAlert)}
+          {dismissable && (
+            <DismissNotification
+              onClick={onDismiss}
+              className="notification__dismiss"
+            />
           )}
-        </NotificationBgWrapper>
-        {hasCallsToAction && renderCallsToAction(callsToAction, theme)}
-      </NotificationWrapper>
-    </ThemeProvider>
+        </NotificationHeader>
+
+        {hasChildren && (
+          <NotificationContent
+            className="es-notification__content"
+            hasIcon={includeIcon}
+          >
+            {children}
+          </NotificationContent>
+        )}
+      </NotificationBgWrapper>
+      {hasCallsToAction && renderCallsToAction(callsToAction)}
+    </NotificationWrapper>
   );
 }
 
@@ -287,10 +298,6 @@ Notification.propTypes = {
    * automatically passed by any parent component using a ThemeProvider
    */
   theme: PropTypes.object
-};
-
-Notification.defaultProps = {
-  theme: viaTheme
 };
 
 export default withTheme(Notification);

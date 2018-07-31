@@ -3,3 +3,4 @@ es6/
 node_modules
 npm-debug.log
 *.tgz
+lerna-debug.log

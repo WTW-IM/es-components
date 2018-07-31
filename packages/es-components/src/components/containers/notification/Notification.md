@@ -129,6 +129,7 @@ Any additional children will get rendered before call to action buttons.
   type="info"
   additionalText="Here's some information to get you started"
 >
+  This is <a href="#">how a link looks</a>.
   <ol>
     <li>Item A</li>
     <li>Item B</li>
@@ -142,12 +143,28 @@ Any additional children will get rendered before call to action buttons.
 Applying the `useLightVariant` prop will use a lighter background color for the given notification type.
 
 ```
+const callsToAction = [
+      {
+        actionButtonContent: 'Primary',
+        action() {
+          confirm('You clicked a button!');
+        }
+      },
+      {
+        actionButtonContent: 'Secondary',
+        action() {
+          alert('You clicked the secondary button')
+        }
+      }
+    ];
+
 <div>
   <Notification
     type="success"
     header="Success!"
     additionalText="You did a thing."
     useLightVariant
+    callsToAction={callsToAction}
   />
 
   <Notification

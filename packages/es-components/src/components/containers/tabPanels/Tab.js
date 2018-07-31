@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import defaultTheme from 'es-components-via-theme';
-
+import styled, { withTheme } from 'styled-components';
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
@@ -17,6 +15,7 @@ const TabButton = styled.button`
   line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 10px;
   text-align: left;
+  z-index: 1;
 
   &:focus {
     outline: 1px dotted ${props => props.theme.colors.gray4};
@@ -44,31 +43,42 @@ const TabButton = styled.button`
   }
 `;
 
-const AriaAnnouncer = styled.span`
-  position: fixed;
-  color: transparent;
-  left: -1000px;
-  top: 10px;
+const AriaAnnouncer = styled.p`
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 1px;
 `;
 
 /* eslint-enable */
 
-function Tab({ name, selected, action, children, simpleName, ...props }) {
+function Tab({
+  name,
+  selected,
+  action,
+  children,
+  simpleName,
+  announcerText,
+  ...props
+}) {
   return (
     <TabButton
-      onClick={() => action(name, children, simpleName)}
+      onClick={() => action(name, children, simpleName, announcerText)}
       selected={selected}
       aria-label={`${simpleName || name} tab`}
       aria-expanded={selected}
       {...props}
     >
+      {selected && (
+        <AriaAnnouncer id="announcer" aria-live="assertive">
+          {simpleName} {announcerText}
+        </AriaAnnouncer>
+      )}
       {React.isValidElement(name)
         ? React.cloneElement(name, { selected })
         : name}
-      {selected && (
-        <AriaAnnouncer aria-live="assertive">{`${simpleName ||
-          name} Sub text is now showing`}</AriaAnnouncer>
-      )}
     </TabButton>
   );
 }
@@ -98,11 +108,14 @@ Tab.propTypes = {
   /**
    * A simpler representation for screen readers.
    */
-  simpleName: PropTypes.string
+  simpleName: PropTypes.string,
+  /*
+  * Additional text to be read after the simple name
+  */
+  announcerText: PropTypes.string
 };
 
-Tab.defaultProps = {
-  theme: defaultTheme
-};
+const ThemedTab = withTheme(Tab);
+ThemedTab.displayName = 'Tab';
 
-export default Tab;
+export default ThemedTab;

@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
-import defaultTheme from 'es-components-via-theme';
+import styled from 'styled-components';
 import Tab from './Tab';
 
 const TabWrapper = styled.div`
@@ -29,13 +27,6 @@ const TabContent = styled.div`
   border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 
-const AriaAnnouncer = styled.p`
-  position: fixed;
-  color: transparent;
-  left: -1000px;
-  top: 10px;
-`;
-
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -44,49 +35,39 @@ class TabPanel extends React.Component {
       : props.children;
     this.state = {
       value: child.props.name,
-      currentContent: child.props.children,
-      simpleName: child.props.simpleName || child.props.name
+      currentContent: child.props.children
     };
     this.tabChanged = this.tabChanged.bind(this);
   }
 
-  tabChanged(name, child, simpleName) {
+  tabChanged(name, child) {
     this.setState({
       value: name,
-      currentContent: child,
-      simpleName: simpleName || name
+      currentContent: child
     });
   }
 
   render() {
-    const { theme, children } = this.props;
+    const { children } = this.props;
     const elements = React.Children.map(children, (child, i) => {
       const isSelected = child.props.name === this.state.value;
       return React.cloneElement(child, {
         key: child.props.name,
         selected: isSelected,
         action: this.tabChanged,
-        selectedName: this.state.value,
-        theme
+        selectedName: this.state.value
       });
     });
 
     return (
-      <ThemeProvider theme={theme}>
-        <div className="es-tab-panel">
-          <AriaAnnouncer id="announcer" aria-live="assertive">
-            {this.state.simpleName}
-          </AriaAnnouncer>
-          <TabWrapper className="es-tab-panel__wrapper">
-            <TabFormatter className="es-tab-panel__tabs">
-              {elements}
-            </TabFormatter>
-          </TabWrapper>
-          <TabContent className="es-tab-panel__content">
-            {this.state.currentContent}
-          </TabContent>
-        </div>
-      </ThemeProvider>
+      <div className="es-tab-panel">
+        <TabWrapper className="es-tab-panel__wrapper">
+          <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
+        </TabWrapper>
+        <TabContent className="es-tab-panel__content">
+          {this.state.currentContent}
+        </TabContent>
+      </div>
     );
   }
 }
@@ -96,9 +77,10 @@ function childrenRule(props, propName, component) {
   if (!Array.isArray(children)) {
     children = [children];
   }
+
   if (
     !children.every(
-      child => child.type.name === 'Tab' || child.type.target === Tab
+      child => child.type.displayName === 'Tab' || child.type.target === Tab
     )
   ) {
     return new Error('Tab Panel only accepts Tabs as direct descendants.');
@@ -109,17 +91,9 @@ function childrenRule(props, propName, component) {
 
 TabPanel.propTypes = {
   /**
-   * Theme to be applied to the tab panel. Can be used to style the Tab and Tab List
-   */
-  theme: PropTypes.object,
-  /**
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
   children: childrenRule
-};
-
-TabPanel.defaultProps = {
-  theme: defaultTheme
 };
 
 TabPanel.Tab = Tab;

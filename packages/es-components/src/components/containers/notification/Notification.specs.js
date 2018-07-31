@@ -1,7 +1,8 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallowWithTheme, mountWithTheme } from 'styled-enzyme';
+import viaTheme from 'es-components-via-theme';
 
 import { Notification } from './Notification';
 
@@ -16,17 +17,18 @@ beforeEach(() => {
       type="success"
       header="notification header"
       additionalText="test notification text"
+      theme={viaTheme}
     />
   );
 });
 
 function getShallowInstance() {
-  return shallow(instanceToRender);
+  return shallowWithTheme(instanceToRender);
 }
 
 function getMountedInstance(props) {
-  mount(instanceToRender);
-  return mount(instanceToRender).setProps(props);
+  mountWithTheme(instanceToRender);
+  return mountWithTheme(instanceToRender).setProps(props);
 }
 
 it('notification has the dialog role by default', () => {

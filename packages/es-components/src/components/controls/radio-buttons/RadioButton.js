@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider, withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { noop } from 'lodash';
-import viaTheme from 'es-components-via-theme';
 
 import Label from '../Label';
 import getRadioFillVariables from './radio-fill-variables';
@@ -98,27 +97,25 @@ export function RadioButton({
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <RadioLabel className="es-radio" {...labelProps}>
-        <RadioInput
-          type="radio"
-          name={name}
-          id={id}
-          onClick={onClick}
-          value={value}
-          disabled={isDisabled}
-          {...radioProps}
-        />
-        <RadioDisplay
-          className="es-radio__fill"
-          borderColor={fill}
-          fill={radioDisplayFill}
-        />
-        <RadioText className="es-radio__text" aria-hidden={ariaHide}>
-          {optionText}
-        </RadioText>
-      </RadioLabel>
-    </ThemeProvider>
+    <RadioLabel className="es-radio" {...labelProps}>
+      <RadioInput
+        type="radio"
+        name={name}
+        id={id}
+        onClick={onClick}
+        value={value}
+        disabled={isDisabled}
+        {...radioProps}
+      />
+      <RadioDisplay
+        className="es-radio__fill"
+        borderColor={fill}
+        fill={radioDisplayFill}
+      />
+      <RadioText className="es-radio__text" aria-hidden={ariaHide}>
+        {optionText}
+      </RadioText>
+    </RadioLabel>
   );
 }
 
@@ -138,10 +135,6 @@ RadioButton.propTypes = {
    * automatically passed by any parent component using a ThemeProvider
    */
   theme: PropTypes.object
-};
-
-RadioButton.defaultProps = {
-  theme: viaTheme
 };
 
 export default withTheme(RadioButton);

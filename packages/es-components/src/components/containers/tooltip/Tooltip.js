@@ -161,7 +161,7 @@ class Tooltip extends React.Component {
         >
           <Popup position={this.props.position}>{this.props.content}</Popup>
         </Overlay>
-    </span>
+      </span>
     );
   }
 }

@@ -134,9 +134,7 @@ class Modal extends React.Component {
           aria-labelledby={this.state.ariaId}
           className="es-modal__dialog"
         >
-          <ModalContent className="es-modal__content">
-            {children}
-          </ModalContent>
+          <ModalContent className="es-modal__content">{children}</ModalContent>
         </ModalDialog>
       </DialogWrapper>
     );

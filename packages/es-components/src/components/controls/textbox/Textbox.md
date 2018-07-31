@@ -1,3 +1,5 @@
+The Textbox component will accept typical input attributes as props such as onChange, onBlur, value, placeholder, etc.
+
 ```
 <div>
   <Textbox labelText="Stacked" id="foo" />
@@ -163,9 +165,25 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
 </div>
 ```
 
+
+### Custom masks
+
+Create your own text mask using the structure documented [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#text-mask-documentation).
+```
+const mask = {
+    mask: [/[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/, '-', /[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/],
+    showMask: true,
+    keepCharPositions: false,
+    placeholderChar: '_'
+  };
+
+<Textbox name="maskExample" labelText="Enter 6 Letters (No Numbers)" maskType="custom" customMask={mask} />
+```
+
+
 ### Additional props
 
-Any unspecified props that get passed get added as a prop to the input in order to allow for additional HTML attributes to be provided. The react `autoFocus` property is also accepted.
+Other typical input attributes passed to `Textbox` are allowed. The react `autoFocus` property is also accepted.
 
 ```
 <div>
@@ -183,7 +201,7 @@ Any unspecified props that get passed get added as a prop to the input in order 
 
   <Textbox
     labelText="Placeholder"
-    placeholder="Placeholder is not a specified prop"
+    placeholder="Placeholder is one of many input attributes"
   />
 
 </div>

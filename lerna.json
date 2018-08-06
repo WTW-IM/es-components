@@ -3,9 +3,5 @@
   "packages": [
     "packages/*"
   ],
-<<<<<<< HEAD
-  "version": "15.1.1"
-=======
   "version": "15.2.0"
->>>>>>> v15.2.0
 }

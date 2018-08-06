@@ -9,7 +9,7 @@ import { injectGlobal, withTheme } from 'styled-components';
 import datepickerStyles from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 
-class DateTextbox extends React.PureComponent {
+class DateTextbox extends React.Component {
   static propTypes = Textbox.propTypes;
 
   componentDidMount() {

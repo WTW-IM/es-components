@@ -149,4 +149,28 @@ describe('Textbox with Mask', () => {
     const textMask = mountWithTheme(buildTextbox(props)).find('input');
     expect(textMask.props().title).toBe('Test me');
   });
+
+  it('accepts and displays a custom mask', () => {
+    const props = {
+      maskType: 'custom',
+      title: 'custom mask',
+      customMask: {
+        mask: [
+          /[A-Za-z]/,
+          /[A-Za-z]/,
+          /[A-Za-z]/,
+          '-',
+          /[A-Za-z]/,
+          /[A-Za-z]/,
+          /[A-Za-z]/
+        ],
+        showMask: true,
+        keepCharPositions: false,
+        placeholderChar: '_'
+      }
+    };
+    const textMask = mountWithTheme(buildTextbox(props)).find('input');
+    expect(textMask.instance().value).toBe('___-___');
+    expect(textMask.props().title).toBe('custom mask');
+  });
 });

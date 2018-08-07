@@ -202,7 +202,12 @@ Tooltip.propTypes = {
   /** Set the position of the tooltip over the content */
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** Disables the default show onHover functionality */
-  disableHover: PropTypes.bool
+  disableHover: PropTypes.bool,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 Tooltip.defaultProps = {

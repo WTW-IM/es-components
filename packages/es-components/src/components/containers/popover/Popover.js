@@ -237,7 +237,7 @@ class Popover extends React.Component {
           <PopoverContainer
             className="es-popover__container"
             role="dialog"
-            ref={elem => {
+            innerRef={elem => {
               this.contentRef = elem;
             }}
           >
@@ -246,7 +246,7 @@ class Popover extends React.Component {
               {hasAltCloseButton && altCloseButton}
               <CloseHelpText
                 tabIndex={-1}
-                ref={elem => {
+                innerRef={elem => {
                   this.headerRef = elem;
                 }}
                 aria-label="Press escape to close the Popover"

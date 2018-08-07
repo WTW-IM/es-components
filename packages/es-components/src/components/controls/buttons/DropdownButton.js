@@ -108,7 +108,7 @@ DropdownButton.Button = StyledButtonLink;
 
 DropdownButton.propTypes = {
   /** Content shown in the button */
-  buttonValue: PropTypes.any.isRequired,
+  buttonValue: PropTypes.any,
   /**
    * Defines what value should be displayed on the button.
    * Overrides the stored state value, and renders shouldUpdateButtonValue

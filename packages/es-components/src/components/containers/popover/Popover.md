@@ -47,6 +47,7 @@ const styles = {
         Popover on Right
     </Popover>
     </div>
+    
 </div>
 ```
 

@@ -2,12 +2,17 @@
 
 exports[`tooltip component renders tooltip children 1`] = `
 <span>
-  <span
-    className="es-tooltip__target"
+  <button
+    aria-describedby="es-tooltip__test"
+    className="es-button es-button--link es-tooltip__target sc-fjdhpX fFtpZU sc-bxivhb iExzYH sc-bdVaJa kHkNOX"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
     This is the tooltip target.
-  </span>
+  </button>
 </span>
 `;

@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme, injectGlobal } from 'styled-components';
+import { withTheme, injectGlobal } from 'styled-components';
 
 import popoverStyles from './popoverStyles';
 
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
-
-const PopperContainer = styled.div`
-  display: ${props => (props.transitionState === 'exited' ? 'none' : 'block')};
-`;
 
 const defaultStyle = {
   transition: 'opacity 0.2s ease-in-out',
@@ -63,27 +59,34 @@ function Popup({
   let popperObj = (
     <Manager>
       <Target>{trigger}</Target>
-      <Transition in={transitionIn} timeout={transitionTimeout}>
+      <Transition
+        in={transitionIn}
+        timeout={transitionTimeout}
+        mountOnEnter
+        unmountOnExit
+      >
         {state => (
-          <PopperContainer transitionState={state} name={name} ref={popperRef}>
-            <Popper
-              className={`${name}-popper`}
-              placement={placement}
-              eventsEnabled={transitionIn}
-              modifiers={{
-                preventOverflow: { boundariesElement: 'viewport' },
-                hide: { enabled: true },
-                flip: { enabled: !disableFlipping }
-              }}
-              style={{
-                ...defaultStyle,
-                ...transitionStyles[state]
-              }}
-            >
-              {children}
-              <Arrow className={`${name}-popper__arrow`} />
-            </Popper>
-          </PopperContainer>
+          <Popper
+            className={`${name}-popper`}
+            placement={placement}
+            eventsEnabled={transitionIn}
+            modifiers={{
+              preventOverflow: { boundariesElement: document.body },
+              hide: { enabled: true },
+              flip: {
+                enabled: !disableFlipping,
+                behavior: ['left', 'right', 'top', 'bottom']
+              }
+            }}
+            style={{
+              ...defaultStyle,
+              ...transitionStyles[state]
+            }}
+            innerRef={popperRef}
+          >
+            {children}
+            <Arrow className={`${name}-popper__arrow`} />
+          </Popper>
         )}
       </Transition>
     </Manager>

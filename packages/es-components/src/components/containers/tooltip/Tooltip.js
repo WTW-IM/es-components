@@ -6,19 +6,21 @@ import classnames from 'classnames';
 
 import Fade from '../../util/Fade';
 
+import Button from '../../controls/buttons/Button';
+
 const TooltipBase = styled.div`
   position: absolute;
 `;
 
 const TooltipInner = styled.div`
-  background-color: ${props => props.theme.colors.black};
+  background-color: ${props => props.theme.colors.info};
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
   font-size: 15px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  max-width: 200px;
+  max-width: 300px;
   padding: 3px 8px;
-  text-align: center;
+  text-align: left;
 `;
 
 const TooltipArrowBase = styled.div`
@@ -50,7 +52,7 @@ const TooltipLeft = styled(TooltipBase)`
 `;
 
 const TooltipArrowTop = styled(TooltipArrowBase)`
-  border-top-color: ${props => props.theme.colors.black};
+  border-top-color: ${props => props.theme.colors.info};
   border-width: 5px 5px 0;
   bottom: 0;
   left: 50%;
@@ -58,7 +60,7 @@ const TooltipArrowTop = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowRight = styled(TooltipArrowBase)`
-  border-right-color: ${props => props.theme.colors.black};
+  border-right-color: ${props => props.theme.colors.info};
   border-width: 5px 5px 5px 0;
   left: 0;
   margin-top: -5px;
@@ -66,7 +68,7 @@ const TooltipArrowRight = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowBottom = styled(TooltipArrowBase)`
-  border-bottom-color: ${props => props.theme.colors.black};
+  border-bottom-color: ${props => props.theme.colors.info};
   border-width: 0 5px 5px;
   left: 50%;
   margin-left: -5px;
@@ -74,19 +76,29 @@ const TooltipArrowBottom = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowLeft = styled(TooltipArrowBase)`
-  border-left-color: ${props => props.theme.colors.black};
+  border-left-color: ${props => props.theme.colors.info};
   border-width: 5px 0 5px 5px;
   margin-top: -5px;
   right: 0;
   top: 50%;
 `;
 
+const StyledButton = styled(Button)`
+  padding-bottom: 3px;
+  color: ${props => props.theme.colors.primary};
+
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+    text-decoration: none;
+  }
+`;
+
 const FadeTransition = props => (
-  <Fade duration={200} opacity={0.9} withWrapper {...props} />
+  <Fade duration={200} opacity={1} withWrapper {...props} />
 );
 
 const Popup = props => {
-  const { className, children, position, style } = props;
+  const { name, className, children, position, style } = props;
   let TooltipStyled;
   let TooltipArrow;
 
@@ -113,6 +125,7 @@ const Popup = props => {
     <TooltipStyled
       role="tooltip"
       className={classnames('es-tooltip', className)}
+      id={`es-tooltip__${name}`}
       style={style}
     >
       <TooltipArrow />
@@ -122,6 +135,7 @@ const Popup = props => {
 };
 
 Popup.propTypes = {
+  name: PropTypes.string,
   children: PropTypes.any.isRequired,
   className: PropTypes.string,
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
@@ -138,19 +152,31 @@ class Tooltip extends React.Component {
 
   hide = () => this.setState({ show: false });
 
+  closeOnEscape = event => {
+    if (event.keyCode === 27) {
+      this.setState({ show: false });
+    }
+  };
+
   render() {
     return (
       <span>
-        <span
+        <StyledButton
           className="es-tooltip__target"
           ref={span => {
             this.toolTipTarget = span;
           }}
-          onMouseEnter={this.show}
-          onMouseLeave={this.hide}
+          isLinkButton
+          onBlur={this.hide}
+          onFocus={this.show}
+          onMouseEnter={!this.props.disableHover ? this.show : undefined}
+          onMouseLeave={!this.props.disableHover ? this.hide : undefined}
+          handleOnClick={this.show}
+          onKeyDown={this.closeOnEscape}
+          aria-describedby={`es-tooltip__${this.props.name}`}
         >
           {this.props.children}
-        </span>
+        </StyledButton>
 
         <Overlay
           show={this.state.show}
@@ -159,23 +185,34 @@ class Tooltip extends React.Component {
           target={props => this.toolTipTarget}
           transition={FadeTransition}
         >
-          <Popup position={this.props.position}>{this.props.content}</Popup>
+          <Popup position={this.props.position} name={this.props.name}>
+            {this.props.content}
+          </Popup>
         </Overlay>
-    </span>
+      </span>
     );
   }
 }
 
 Tooltip.propTypes = {
+  name: PropTypes.string.isRequired,
   children: PropTypes.any.isRequired,
   /** The text the tooltip displays */
   content: PropTypes.node.isRequired,
   /** Set the position of the tooltip over the content */
-  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left'])
+  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  /** Disables the default show onHover functionality */
+  disableHover: PropTypes.bool,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object
 };
 
 Tooltip.defaultProps = {
-  position: 'top'
+  position: 'top',
+  disableHover: false
 };
 
 export default Tooltip;

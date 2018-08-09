@@ -10,15 +10,16 @@ import Button from '../../controls/buttons/Button';
 
 const TooltipBase = styled.div`
   position: absolute;
+  z-index: 2;
 `;
 
 const TooltipInner = styled.div`
-  background-color: ${props => props.theme.colors.info};
+  background-color: ${props => props.theme.colors.primary};
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
   font-size: 15px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  max-width: 300px;
+  max-width: 250px;
   padding: 3px 8px;
   text-align: left;
 `;
@@ -52,7 +53,7 @@ const TooltipLeft = styled(TooltipBase)`
 `;
 
 const TooltipArrowTop = styled(TooltipArrowBase)`
-  border-top-color: ${props => props.theme.colors.info};
+  border-top-color: ${props => props.theme.colors.primary};
   border-width: 5px 5px 0;
   bottom: 0;
   left: 50%;
@@ -60,7 +61,7 @@ const TooltipArrowTop = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowRight = styled(TooltipArrowBase)`
-  border-right-color: ${props => props.theme.colors.info};
+  border-right-color: ${props => props.theme.colors.primary};
   border-width: 5px 5px 5px 0;
   left: 0;
   margin-top: -5px;
@@ -68,7 +69,7 @@ const TooltipArrowRight = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowBottom = styled(TooltipArrowBase)`
-  border-bottom-color: ${props => props.theme.colors.info};
+  border-bottom-color: ${props => props.theme.colors.primary};
   border-width: 0 5px 5px;
   left: 50%;
   margin-left: -5px;
@@ -76,7 +77,7 @@ const TooltipArrowBottom = styled(TooltipArrowBase)`
 `;
 
 const TooltipArrowLeft = styled(TooltipArrowBase)`
-  border-left-color: ${props => props.theme.colors.info};
+  border-left-color: ${props => props.theme.colors.primary};
   border-width: 5px 0 5px 5px;
   margin-top: -5px;
   right: 0;
@@ -84,10 +85,14 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 `;
 
 const StyledButton = styled(Button)`
-  padding-bottom: 3px;
+  border-bottom: 1px dashed;
   color: ${props => props.theme.colors.primary};
+  line-height: initial;
+  margin-bottom: 3px;
+  text-decoration: none;
 
-  &:hover {
+  &:hover,
+  :focus {
     color: ${props => props.theme.colors.primary};
     text-decoration: none;
   }
@@ -152,6 +157,10 @@ class Tooltip extends React.Component {
 
   hide = () => this.setState({ show: false });
 
+  toggleShow = () => {
+    this.setState(({ show }) => ({ show: !show }));
+  };
+
   closeOnEscape = event => {
     if (event.keyCode === 27) {
       this.setState({ show: false });
@@ -171,8 +180,9 @@ class Tooltip extends React.Component {
           onFocus={this.show}
           onMouseEnter={!this.props.disableHover ? this.show : undefined}
           onMouseLeave={!this.props.disableHover ? this.hide : undefined}
-          handleOnClick={this.show}
+          onMouseDown={this.toggleShow}
           onKeyDown={this.closeOnEscape}
+          handleOnClick={() => {}}
           aria-describedby={`es-tooltip__${this.props.name}`}
         >
           {this.props.children}

@@ -46,9 +46,7 @@ exports[`drawer component accordion renders as expected 1`] = `
         }
       }
     >
-      <div
-        className={undefined}
-      >
+      <div>
         first
       </div>
     </div>
@@ -92,9 +90,7 @@ exports[`drawer component accordion renders as expected 1`] = `
         }
       }
     >
-      <div
-        className={undefined}
-      >
+      <div>
         second
       </div>
     </div>
@@ -138,9 +134,7 @@ exports[`drawer component accordion renders as expected 1`] = `
         }
       }
     >
-      <div
-        className={undefined}
-      >
+      <div>
         third
       </div>
     </div>
@@ -194,9 +188,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         }
       }
     >
-      <div
-        className={undefined}
-      >
+      <div>
         first
       </div>
     </div>
@@ -240,9 +232,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         }
       }
     >
-      <div
-        className={undefined}
-      >
+      <div>
         second
       </div>
     </div>
@@ -286,9 +276,7 @@ exports[`drawer component drawer renders as expected 1`] = `
         }
       }
     >
-      <div
-        className={undefined}
-      >
+      <div>
         third
       </div>
     </div>

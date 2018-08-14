@@ -6,14 +6,12 @@ exports[`Checkbox renders as expected 1`] = `
   disabled={true}
 >
   <input
-    aria-label={undefined}
     checked={true}
     className="sc-htpNat llDmUy"
     disabled={true}
     onChange={[Function]}
     onClick={[Function]}
     type="checkbox"
-    value={undefined}
   />
   <span
     className="es-checkbox__fill sc-bxivhb kynQKu"

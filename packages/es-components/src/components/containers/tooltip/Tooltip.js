@@ -86,6 +86,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 
 const StyledButton = styled(Button)`
   border-bottom: 1px dashed;
+  border-radius: 0;
   color: ${props => props.theme.colors.primary};
   line-height: initial;
   margin-bottom: 3px;

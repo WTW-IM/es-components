@@ -4,7 +4,7 @@ exports[`tooltip component renders tooltip children 1`] = `
 <span>
   <button
     aria-describedby="es-tooltip__test"
-    className="es-button es-button--link es-tooltip__target sc-fjdhpX cFEGnL sc-bxivhb iExzYH sc-bdVaJa kHkNOX"
+    className="es-button es-button--link es-tooltip__target sc-fjdhpX jmdgtu sc-bxivhb iExzYH sc-bdVaJa kHkNOX"
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}

@@ -14,12 +14,14 @@ exports[`RadioButton component renders as expected 1`] = `
     name="rad"
     onClick={[Function]}
     type="radio"
+    value={undefined}
   />
   <span
     className="es-radio__fill sc-ifAKCX fnveVG"
     fill="#fff"
   />
   <span
+    aria-hidden={undefined}
     className="es-radio__text sc-bxivhb bRNnnP"
   >
     test

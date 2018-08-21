@@ -5,7 +5,8 @@ module.exports = {
   mode: 'production',
   output: {
     path: path.join(__dirname, 'bundle'),
-    filename: "[name].min.js"
+    filename: "[name].min.js",
+    libraryTarget: "umd"
   },
   externals: {
     'react': 'react',

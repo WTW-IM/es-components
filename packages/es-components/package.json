@@ -17,7 +17,7 @@
     "styleguide-build": "styleguidist build",
     "start": "styleguidist server",
     "test": "jest",
-    "webpack": "webpack --config webpack.config.js"
+    "webpack": "webpack --config webpack-components-bundle.config.js"
   },
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",

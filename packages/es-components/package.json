@@ -1,13 +1,13 @@
 {
   "name": "es-components",
-  "version": "15.4.0",
+  "version": "15.4.1",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
   "browser": "es6/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:es5 && npm run build:es6",
+    "build": "npm run build:es5 && npm run build:es6 && npm run webpack",
     "build:es5": "babel src -d lib --ignore specs.js,*.md --copy-files",
     "build:es6": "cross-env BABEL_ENV=es6 babel src -d es6 --ignore specs.js,*.md --copy-files",
     "ci": "npm run lint && npm test",
@@ -16,7 +16,8 @@
     "prettify": "prettier --single-quote --write \"src/**/*.js\"",
     "styleguide-build": "styleguidist build",
     "start": "styleguidist server",
-    "test": "jest"
+    "test": "jest",
+    "webpack": "webpack --config webpack-components-bundle.config.js"
   },
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -34,9 +35,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-core": "^6.18.2",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^6.1.2",
-    "babel-loader": "^6.2.9",
+    "babel-loader": "^7.1.5",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-wtw-im": "^1.1.0",
@@ -64,7 +65,8 @@
     "style-loader": "^0.13.1",
     "styled-components": "^3.2.6",
     "styled-enzyme": "^0.1.0",
-    "webpack": "^2.3.3"
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",

@@ -1,5 +1,6 @@
 lib/
 es6/
+bundle/
 node_modules
 npm-debug.log
 *.tgz

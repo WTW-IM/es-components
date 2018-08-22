@@ -9,8 +9,8 @@ module.exports = {
     libraryTarget: "umd"
   },
   externals: {
-    'react': 'react',
-    ['styled-components']: 'styled-components'
+    'react': 'React',
+    ['styled-components']: 'styled'
   },
   module: {
     rules: [

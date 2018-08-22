@@ -34,7 +34,7 @@ import { Component } from 'es-components/lib';
   <link rel="stylesheet" href="https://cdn.rawgit.com/WTW-IM/es-assets/8fbaf85d/font.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
     rel="stylesheet">
-  <!-- You must include React and Styled Components, as ES Components is dependent on those -->
+  <!-- You must include React and Styled Components. ES Components depends on those packages. -->
   <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
   <script src="https://unpkg.com/es-components/bundle/main.min.js"></script>

@@ -31,6 +31,7 @@ import { Component } from 'es-components/lib';
 <head>
   <meta charset="UTF-8">
   <title>My ES Components Site</title>
+  <!-- These fonts are used in the Icon sets, and in general font styles. -->
   <link rel="stylesheet" href="https://cdn.rawgit.com/WTW-IM/es-assets/8fbaf85d/font.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
     rel="stylesheet">

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
-import { noop } from 'lodash';
 
 import Label from '../Label';
 import getRadioFillVariables from './radio-fill-variables';
@@ -9,12 +8,12 @@ import getRadioFillVariables from './radio-fill-variables';
 function radioFill(color) {
   return `
     background-color: ${color};
-    border-radius: 100%;
+    border-radius: 50%;
     content: '';
     display: block;
     height: 13px;
     left: 3px;
-    position: absolute;
+    position: relative;
     width: 13px;
     top: 3px;
     transition: background 0.25s linear;
@@ -23,11 +22,11 @@ function radioFill(color) {
 
 const RadioLabel = styled(Label)`
   color: ${props => (props.error ? props.theme.colors.danger : 'inherit')};
-  display: ${props => (props.inline ? 'inline-flex' : 'inherit')};
+  display: ${props => (props.inline ? 'inline-flex' : 'flex')};
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
+  margin-bottom: 18px;
   margin-right: ${props => (props.inline ? '20px' : 'initial')};
-  min-height: 25px;
   position: relative;
   padding: 5px 0;
   text-transform: none;
@@ -46,18 +45,12 @@ const RadioInput = styled.input`
   }
 `;
 
-const RadioText = styled.span`
-  align-self: center;
-  margin-left: 30px;
-`;
-
 const RadioDisplay = styled.span`
   border: 3px solid ${props => props.borderColor};
-  border-radius: 100%;
+  border-radius: 50%;
   box-sizing: border-box;
-  display: block;
   height: 25px;
-  position: absolute;
+  margin-right: 5px;
   width: 25px;
 
   &:before {
@@ -72,11 +65,8 @@ export function RadioButton({
   id,
   isDisabled = false,
   inline = true,
-  onClick = noop,
-  value,
   hasError = false,
   theme,
-  ariaHide,
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
@@ -102,8 +92,6 @@ export function RadioButton({
         type="radio"
         name={name}
         id={id}
-        onClick={onClick}
-        value={value}
         disabled={isDisabled}
         {...radioProps}
       />
@@ -112,9 +100,7 @@ export function RadioButton({
         borderColor={fill}
         fill={radioDisplayFill}
       />
-      <RadioText className="es-radio__text" aria-hidden={ariaHide}>
-        {optionText}
-      </RadioText>
+      {optionText}
     </RadioLabel>
   );
 }
@@ -126,9 +112,6 @@ RadioButton.propTypes = {
   id: PropTypes.string,
   isDisabled: PropTypes.bool,
   inline: PropTypes.bool,
-  onClick: PropTypes.func,
-  value: PropTypes.any,
-  ariaHide: PropTypes.bool,
   hasError: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,

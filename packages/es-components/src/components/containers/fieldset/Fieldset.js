@@ -29,11 +29,10 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({ legendClasses, legendContent, children, extraContent }) {
+function Fieldset({ legendClasses, legendContent, children }) {
   return (
     <StyledFieldset className="es-fieldset">
       {renderLegend(legendContent, legendClasses)}
-      {extraContent}
       {children}
     </StyledFieldset>
   );
@@ -44,11 +43,7 @@ Fieldset.propTypes = {
   legendContent: PropTypes.node,
   /** Additional classes to be applied to the legend element */
   legendClasses: PropTypes.string,
-  children: PropTypes.node,
-  /** Extra content that can be rendered after the Legend but before the radio buttons, allows
-   * content to be put in that will not affect the accessability of the Legend/input relationship.
-   */
-  extraContent: PropTypes.node
+  children: PropTypes.node
 };
 
 export default Fieldset;

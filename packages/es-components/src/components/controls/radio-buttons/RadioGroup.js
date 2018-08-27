@@ -18,7 +18,8 @@ function RadioGroup({
   extraContent
 }) {
   return (
-    <Fieldset legendContent={legendContent} extraContent={extraContent}>
+    <Fieldset legendContent={legendContent}>
+      {extraContent}
       {radioOptions.map((config, index) => {
         const radioId = `${name}-option-${index + 1}`;
         const checked = config.optionValue === value;

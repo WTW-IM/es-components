@@ -33,8 +33,7 @@ function RadioGroup({
           onClick,
           id: radioId,
           optionText: config.optionText,
-          value: config.optionValue,
-          ariaHide: extraContent !== undefined
+          value: config.optionValue
         };
         return <RadioButton key={radioId} {...radioProps} />;
       })}

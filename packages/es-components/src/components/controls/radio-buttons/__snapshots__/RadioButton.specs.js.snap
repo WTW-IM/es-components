@@ -7,6 +7,7 @@ exports[`RadioButton component renders as expected 1`] = `
   htmlFor="test"
 >
   <input
+    checked={false}
     className="sc-htpNat kOMTgB"
     disabled={false}
     id="test"

@@ -32,14 +32,4 @@ describe('Fieldset component', () => {
 
     expect(tree).toMatchSnapshot();
   });
-
-  it('renders as expected with extra content', () => {
-    const tree = renderWithTheme(
-      <Fieldset legendContent="I am legend" extraContent="Extra Content">
-        <div>Fieldset child</div>
-      </Fieldset>
-    );
-
-    expect(tree).toMatchSnapshot();
-  });
 });

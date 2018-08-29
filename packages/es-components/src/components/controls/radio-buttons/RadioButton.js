@@ -78,7 +78,6 @@ export function RadioButton({
   const radioDisplayFill = checked ? fill : theme.colors.white;
 
   const labelProps = {
-    checked,
     inline,
     disabled: isDisabled,
     htmlFor: id,

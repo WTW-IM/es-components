@@ -2,8 +2,7 @@
 
 exports[`RadioButton component renders as expected 1`] = `
 <label
-  checked={false}
-  className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+  className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa jBoKPV"
   disabled={false}
   htmlFor="test"
 >
@@ -12,17 +11,12 @@ exports[`RadioButton component renders as expected 1`] = `
     disabled={false}
     id="test"
     name="rad"
-    onClick={[Function]}
     type="radio"
   />
   <span
-    className="es-radio__fill sc-ifAKCX fnveVG"
+    className="es-radio__fill sc-bxivhb jNoHRi"
     fill="#fff"
   />
-  <span
-    className="es-radio__text sc-bxivhb bRNnnP"
-  >
-    test
-  </span>
+  test
 </label>
 `;

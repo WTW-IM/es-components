@@ -92,6 +92,7 @@ export function RadioButton({
         name={name}
         id={id}
         disabled={isDisabled}
+        checked={checked}
         {...radioProps}
       />
       <RadioDisplay

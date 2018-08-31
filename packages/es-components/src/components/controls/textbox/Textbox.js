@@ -11,18 +11,11 @@ import Label from '../Label';
 import inputMaskType from './inputMaskType';
 
 const defaultInputPad = '12px';
-const rightPad = {
-  0: defaultInputPad,
-  1: '2em',
-  2: '3.6em'
-};
-const paddings = css`
-  padding-left: ${props => (props.hasPrepend ? '2em' : defaultInputPad)};
-  padding-right: ${props => rightPad[props.numAppendIconNames]};
-`;
+const defaultBorderRadius = '2px';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
+  font-weight: normal;
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -33,51 +26,83 @@ const StyledMaskedInput = InputBase.withComponent(props => (
       'boxShadow',
       'focusBorderColor',
       'focusBoxShadow',
+      'hasAppend',
       'hasPrepend',
       'initialValue',
-      'numAppendIconNames'
+      'hasValidationIcon'
     ])}
   />
 ));
+
+/* eslint-disable no-confusing-arrow */
+const CommonInputStyles = css`
+  border-bottom-left-radius: ${props =>
+    props.hasPrepend ? '0' : defaultBorderRadius};
+  border-bottom-right-radius: ${props =>
+    props.hasAppend ? '0' : defaultBorderRadius};
+  border-top-left-radius: ${props =>
+    props.hasPrepend ? '0' : defaultBorderRadius};
+  border-top-right-radius: ${props =>
+    props.hasAppend ? '0' : defaultBorderRadius};
+  display: table-cell;
+  padding-right: ${props =>
+    props.hasValidationIcon ? '2em' : defaultInputPad};
+`;
+/* eslint-enable */
+
 const StyledMask = StyledMaskedInput.extend`
-  ${paddings};
+  ${CommonInputStyles};
 `;
 
 const StyledText = styled(InputBase)`
-  ${paddings};
+  ${CommonInputStyles};
+`;
+
+const ValidationIconWrapper = styled.span`
+  height: 0;
+  position: relative;
+  width: 0;
+`;
+
+const ValidationIcon = styled(Icon)`
+  height: 20px;
+  pointer-events: none;
+  position: absolute;
+  right: 11px;
+  top: 9px;
 `;
 
 const AdditionalHelpContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
-  font-weight: normal;
   margin: 10px 0 20px 0;
   text-transform: none;
 `;
 
-const addonAttrs = `
-  font-weight: normal;
-  pointer-events: none;
-  position: absolute;
-`;
-
-const Prepend = styled(Icon)`
-  ${addonAttrs} left: 9px;
-  top: 9px;
-`;
-
-const Append = styled.div`
-  ${addonAttrs} right: 9px;
-  top: 8px;
+const AddOn = css`
+  background-color: ${props => props.addOnBgColor};
+  border-radius: ${defaultBorderRadius};
+  color: ${props => props.addOnTextColor};
+  display: table-cell;
+  padding: 6px 12px;
 
   i {
-    margin-left: 9px;
+    vertical-align: middle;
   }
+`;
+
+const Prepend = styled.span`
+  ${AddOn} border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+`;
+
+const Append = styled.span`
+  ${AddOn} border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   flex: auto;
-  position: relative;
 `;
 
 const Textbox = props => {
@@ -112,15 +137,18 @@ const Textbox = props => {
   const hasAppend = appendIconName !== undefined;
   const hasValidationIcon = validationState !== 'default';
 
-  let numAppendIconNames = 0;
-  if (hasAppend) numAppendIconNames++;
-  if (hasValidationIcon) numAppendIconNames++;
-
   const Input = maskType === 'none' ? StyledText : StyledMask;
   const maskArgs =
     maskType === 'custom' && customMask !== undefined
       ? customMask
       : inputMaskType[maskType];
+
+  const addOnTextColor = hasValidationIcon
+    ? theme.colors.white
+    : theme.colors.gray8;
+  const addOnBgColor = hasValidationIcon
+    ? theme.validationTextColor[validationState]
+    : theme.colors.defaultColor;
 
   return (
     <TextBoxLabel
@@ -133,29 +161,37 @@ const Textbox = props => {
         {labelText}
       </LabelText>
       <InputWrapper className="es-textbox__wrapper">
-        {hasPrepend && <Prepend name={prependIconName} size={20} />}
+        {hasPrepend && (
+          <Prepend addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
+            <Icon aria-hidden="true" name={prependIconName} size={20} />
+          </Prepend>
+        )}
         <Input
           aria-describedby={helpId}
           className={classNameState}
+          hasAppend={hasAppend}
           hasPrepend={hasPrepend}
           id={textboxId}
           innerRef={inputRef}
           name={inputName}
-          numAppendIconNames={numAppendIconNames}
+          hasValidationIcon={hasValidationIcon}
           type="text"
           {...maskArgs}
           {...additionalTextProps}
           {...theme.validationInputColor[validationState]}
         />
-        {(hasAppend || hasValidationIcon) && (
-          <Append>
-            {hasValidationIcon && (
-              <Icon
-                name={theme.validationIconName[validationState]}
-                size={20}
-              />
-            )}
-            {hasAppend && <Icon name={appendIconName} size={20} />}
+        {hasValidationIcon && (
+          <ValidationIconWrapper>
+            <ValidationIcon
+              aria-hidden="true"
+              name={theme.validationIconName[validationState]}
+              size={20}
+            />
+          </ValidationIconWrapper>
+        )}
+        {hasAppend && (
+          <Append addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
+            <Icon aria-hidden="true" name={appendIconName} size={20} />
           </Append>
         )}
       </InputWrapper>

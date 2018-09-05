@@ -44,6 +44,7 @@ const CommonInputStyles = css`
     props.hasPrepend ? '0' : defaultBorderRadius};
   border-top-right-radius: ${props =>
     props.hasAppend ? '0' : defaultBorderRadius};
+  box-sizing: border-box;
   display: table-cell;
   padding-right: ${props =>
     props.hasValidationIcon ? '2em' : defaultInputPad};
@@ -78,25 +79,34 @@ const AdditionalHelpContent = styled.div`
   text-transform: none;
 `;
 
+/* eslint-disable no-confusing-arrow */
 const AddOn = css`
   background-color: ${props => props.addOnBgColor};
+  border: 1px solid
+    ${props =>
+      props.addOnBgColor === props.theme.colors.gray3
+        ? props.theme.colors.gray5
+        : props.addOnBgColor};
   border-radius: ${defaultBorderRadius};
   color: ${props => props.addOnTextColor};
   display: table-cell;
-  padding: 6px 12px;
+  padding: 6px 11px;
 
   i {
     vertical-align: middle;
   }
 `;
+/* eslint-enable */
 
 const Prepend = styled.span`
   ${AddOn} border-bottom-right-radius: 0;
+  border-right: none;
   border-top-right-radius: 0;
 `;
 
 const Append = styled.span`
   ${AddOn} border-bottom-left-radius: 0;
+  border-left: none;
   border-top-left-radius: 0;
 `;
 
@@ -148,7 +158,7 @@ const Textbox = props => {
     : theme.colors.gray8;
   const addOnBgColor = hasValidationIcon
     ? theme.validationTextColor[validationState]
-    : theme.colors.defaultColor;
+    : theme.colors.gray3;
 
   return (
     <TextBoxLabel

@@ -40,7 +40,7 @@ const wtwGray = '#63666a';
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
 
-const inputBorder = gray4;
+const inputBorder = gray5;
 const inputFocus = '#83bffc';
 const inputBoxShadow = 'rgba(102, 175, 233, 0.6)';
 

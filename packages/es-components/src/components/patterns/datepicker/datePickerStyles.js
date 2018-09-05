@@ -69,10 +69,10 @@ export default function datepickerStyles(colors, dpColors) {
       display: inline-block;
   }
   .react-datepicker {
-      font-size: 0.9rem;
+      font-size: 18px;
       background-color: ${colors.white};
+      border-radius: 4px;
       color: ${colors.black};
-      border: 1px solid ${colors.gray5};
       box-shadow: 0 5px 10px ${colors.boxShadowLight};
       display: inline-block;
       position: relative;
@@ -103,8 +103,9 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__header {
       text-align: center;
-      background-color: ${colors.gray1};
-      border-bottom: 1px solid ${colors.gray5};
+      background-color: ${colors.white};
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
       padding-top: 10px;
       position: relative;
   }
@@ -123,7 +124,7 @@ export default function datepickerStyles(colors, dpColors) {
       margin: 0 0 5px 0;
       color: ${colors.black};
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 18px;
   }
   .react-datepicker__navigation {
       background-color: transparent;
@@ -248,6 +249,9 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker__day-names,
   .react-datepicker__week {
       white-space: nowrap;
+  }
+  .react-datepicker__day-names {
+      font-weight: bold;
   }
   .react-datepicker__day-name,
   .react-datepicker__day,

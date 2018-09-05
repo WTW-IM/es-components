@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "15.4.3",
+  "version": "15.5.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
@@ -29,6 +29,9 @@
     "testRegex": "specs\\.js$",
     "testURL": "http://localhost/"
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "peerDependencies": {
     "react": ">=0.14",
     "styled-components": "*"
@@ -56,7 +59,7 @@
     "jest": "^23.4.2",
     "jest-cli": "^23.4.2",
     "mockdate": "^2.0.1",
-    "prettier": "^1.11.1",
+    "prettier": "^1.14.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

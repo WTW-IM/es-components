@@ -48,7 +48,7 @@ export const DatePicker = props => {
     <DateTextbox
       labelText={labelText}
       maskType="date"
-      appendIconName="calendar"
+      prependIconName="calendar"
       additionalHelpContent={additionalHelpContent}
       validationState={validationState}
     />

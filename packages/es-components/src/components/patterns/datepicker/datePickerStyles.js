@@ -38,7 +38,7 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
       border-top: none;
-      border-bottom-color: ${colors.gray1};
+      border-bottom-color: ${colors.white};
   }
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
       top: -1px;
@@ -71,8 +71,9 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker {
       font-size: 18px;
       background-color: ${colors.white};
+      border: solid 1px ${colors.gray5};
       border-radius: 4px;
-      color: ${colors.black};
+      color: ${colors.gray9};
       box-shadow: 0 5px 10px ${colors.boxShadowLight};
       display: inline-block;
       position: relative;
@@ -122,7 +123,7 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker__current-month,
   .react-datepicker-time__header {
       margin: 0 0 5px 0;
-      color: ${colors.black};
+      color: ${colors.gray9};
       font-weight: bold;
       font-size: 18px;
   }
@@ -256,7 +257,7 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker__day-name,
   .react-datepicker__day,
   .react-datepicker__time-name {
-      color: ${colors.black};
+      color: ${colors.gray9};
       display: inline-block;
       width: 1.9rem;
       line-height: 1.9rem;
@@ -280,7 +281,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__day--highlighted:hover {
       background-color: ${dpColors.highlightHover};
-      color: ${colors.black}
+      color: ${colors.gray9}
   }
   .react-datepicker__day--selected,
   .react-datepicker__day--in-selecting-range,
@@ -304,11 +305,11 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range) {
       background-color: ${dpColors.inRange};
-      color: ${colors.black};
+      color: ${colors.gray9};
   }
   .react-datepicker__month--selecting-range .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range) {
       background-color: ${colors.gray3};
-      color: ${colors.black};
+      color: ${colors.gray9};
   }
   .react-datepicker__day--disabled {
       cursor: default;

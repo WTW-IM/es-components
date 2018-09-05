@@ -130,3 +130,31 @@ const moment = require('moment');
   <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
 </DatePicker>
 ```
+
+### Validation states
+
+```
+<div>
+  <DatePicker
+    labelText="Success"
+    validationState="success"
+    additionalHelpContent="When validationState is set to Success"
+    onChange={()=>{}} 
+  />
+
+  <DatePicker
+    labelText="Warning"
+    validationState="warning"
+    additionalHelpContent="When validationState is set to Warning"
+    onChange={()=>{}} 
+  />
+
+  <DatePicker
+    labelText="Danger"
+    validationState="danger"
+    additionalHelpContent="When validation state is set to Error"
+    onChange={()=>{}} 
+  />
+
+</div>
+```

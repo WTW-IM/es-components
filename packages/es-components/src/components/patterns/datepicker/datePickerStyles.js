@@ -38,7 +38,7 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
       border-top: none;
-      border-bottom-color: ${colors.white};
+      border-bottom-color: ${dpColors.dpBackground};
   }
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
       top: -1px;
@@ -104,7 +104,7 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__header {
       text-align: center;
-      background-color: ${colors.white};
+      background-color: ${dpColors.dpBackground};
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
       padding-top: 10px;
@@ -123,7 +123,7 @@ export default function datepickerStyles(colors, dpColors) {
   .react-datepicker__current-month,
   .react-datepicker-time__header {
       margin: 0 0 5px 0;
-      color: ${colors.gray9};
+      color: ${colors.white};
       font-weight: bold;
       font-size: 18px;
   }
@@ -253,6 +253,9 @@ export default function datepickerStyles(colors, dpColors) {
   }
   .react-datepicker__day-names {
       font-weight: bold;
+  }
+  .react-datepicker__day-names .react-datepicker__day-name {
+      color: ${colors.white};
   }
   .react-datepicker__day-name,
   .react-datepicker__day,

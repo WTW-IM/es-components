@@ -49,6 +49,16 @@ export class DropdownButton extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isOpen !== this.state.isOpen) {
+      this.triggerButton.focus();
+    }
+  }
+
+  setTriggerButton = ref => {
+    this.triggerButton = ref;
+  };
+
   toggleDropdown = () => {
     this.setState(previousState => ({ isOpen: !previousState.isOpen }));
   };
@@ -82,6 +92,7 @@ export class DropdownButton extends React.Component {
           <Button
             handleOnClick={this.toggleDropdown}
             aria-pressed={this.state.isOpen}
+            innerRef={this.setTriggerButton}
           >
             {manualButtonValue || this.state.buttonValue} <Caret />
           </Button>

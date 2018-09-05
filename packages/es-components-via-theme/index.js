@@ -40,7 +40,7 @@ const wtwGray = '#63666a';
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
 
-const inputBorder = gray4;
+const inputBorder = gray5;
 const inputFocus = '#83bffc';
 const inputBoxShadow = 'rgba(102, 175, 233, 0.6)';
 
@@ -51,14 +51,14 @@ const violetLighter = '#eac9f2';
 
 
 // Datepicker colors
-const navArrow = gray5;
-const navArrowHover = gray6;
-const selected = '#216ba5';
-const hover = '#1d5d90';
-const keyboard = '#2a87d0';
-const inRange = 'rgba(33, 107, 165, 0.5)';
-const highlight = '#3dcc4a';
-const highlightHover = '#32be3f';
+const navArrow = gray6;
+const navArrowHover = gray7;
+const selected = vbMagenta;
+const hover = '#4b063e';
+const keyboard = '#7a0a65';
+const inRange = 'rgba(193, 16, 160, 0.5)';
+const highlight = success;
+const highlightHover = '#007653';
 
 const theme = {
   colors: {

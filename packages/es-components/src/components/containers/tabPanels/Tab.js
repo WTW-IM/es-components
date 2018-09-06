@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
@@ -76,9 +76,7 @@ function Tab({
           {simpleName} {announcerText}
         </AriaAnnouncer>
       )}
-      {React.isValidElement(name)
-        ? React.cloneElement(name, { selected })
-        : name}
+      {name}
     </TabButton>
   );
 }
@@ -104,7 +102,6 @@ Tab.propTypes = {
    * Children to be rendered in the TabContent area.
    */
   children: PropTypes.node,
-
   /**
    * A simpler representation for screen readers.
    */
@@ -115,7 +112,4 @@ Tab.propTypes = {
   announcerText: PropTypes.string
 };
 
-const ThemedTab = withTheme(Tab);
-ThemedTab.displayName = 'Tab';
-
-export default ThemedTab;
+export default Tab;

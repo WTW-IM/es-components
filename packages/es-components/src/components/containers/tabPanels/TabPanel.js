@@ -52,10 +52,8 @@ class TabPanel extends React.Component {
     const elements = React.Children.map(children, (child, i) => {
       const isSelected = child.props.name === this.state.value;
       return React.cloneElement(child, {
-        key: child.props.name,
         selected: isSelected,
-        action: this.tabChanged,
-        selectedName: this.state.value
+        action: this.tabChanged
       });
     });
 
@@ -80,7 +78,7 @@ function childrenRule(props, propName, component) {
 
   if (
     !children.every(
-      child => child.type.displayName === 'Tab' || child.type.target === Tab
+      child => child.type.name === 'Tab' || child.type.target === Tab
     )
   ) {
     return new Error('Tab Panel only accepts Tabs as direct descendants.');

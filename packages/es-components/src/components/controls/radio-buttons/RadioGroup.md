@@ -39,7 +39,7 @@ class RadioGroupExample extends React.Component {
         name="recreational-activities"
         legendText="Recreational activities"
         radioOptions={options}
-        onClick={this.optionChanged}
+        onChange={this.optionChanged}
         value={this.state.value}
       />
     );
@@ -84,7 +84,7 @@ class RadioGroupExample extends React.Component {
         name="plates"
         radioOptions={options}
         inline={false}
-        onClick={this.optionChanged}
+        onChange={this.optionChanged}
         value={this.state.value}
       />
     );
@@ -128,7 +128,7 @@ class RadioGroupExample extends React.Component {
       <RadioGroup
         name="transports"
         radioOptions={options}
-        onClick={this.optionChanged}
+        onChange={this.optionChanged}
         value={this.state.value}
         hasError
       />

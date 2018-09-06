@@ -15,7 +15,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       disabled={false}
       id="test-option-1"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={0}
     />
@@ -36,7 +36,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       disabled={false}
       id="test-option-2"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={1}
     />
@@ -57,7 +57,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       disabled={false}
       id="test-option-3"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={2}
     />
@@ -91,7 +91,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
       disabled={false}
       id="test-option-1"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={0}
     />
@@ -112,7 +112,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
       disabled={false}
       id="test-option-2"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={1}
     />
@@ -133,7 +133,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
       disabled={false}
       id="test-option-3"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={2}
     />

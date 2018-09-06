@@ -61,7 +61,7 @@ const RadioDisplay = styled.span`
 export function RadioButton({
   optionText,
   name,
-  checked = false,
+  isChecked = false,
   id,
   isDisabled = false,
   inline = true,
@@ -70,12 +70,12 @@ export function RadioButton({
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
-    checked,
+    isChecked,
     isDisabled,
     hasError,
     theme.colors
   );
-  const radioDisplayFill = checked ? fill : theme.colors.white;
+  const radioDisplayFill = isChecked ? fill : theme.colors.white;
 
   const labelProps = {
     inline,
@@ -92,6 +92,7 @@ export function RadioButton({
         name={name}
         id={id}
         disabled={isDisabled}
+        checked={isChecked}
         {...radioProps}
       />
       <RadioDisplay
@@ -107,7 +108,7 @@ export function RadioButton({
 RadioButton.propTypes = {
   optionText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  checked: PropTypes.bool,
+  isChecked: PropTypes.bool,
   id: PropTypes.string,
   isDisabled: PropTypes.bool,
   inline: PropTypes.bool,

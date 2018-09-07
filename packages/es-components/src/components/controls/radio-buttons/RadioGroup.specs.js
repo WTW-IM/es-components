@@ -64,18 +64,19 @@ describe('RadioGroup component', () => {
 
   it('renders as expected', () => {
     const tree = renderWithTheme(
-      <RadioGroup name="test" radioOptions={defaultOptions} />
+      <RadioGroup name="test" radioOptions={defaultOptions} value={0} />
     );
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders as expected with legend text', () => {
+  it('renders as expected with legend text and extraContent', () => {
     const tree = renderWithTheme(
       <RadioGroup
         name="test"
         radioOptions={defaultOptions}
         legendContent="Test legend"
+        extraContent="Extra Content!"
       />
     );
 

@@ -51,8 +51,9 @@ const violetLighter = '#eac9f2';
 
 
 // Datepicker colors
-const navArrow = gray5;
-const navArrowHover = gray6;
+const dpBackground = '#006685';
+const navArrow = white;
+const navArrowHover = gray2;
 const selected = '#216ba5';
 const hover = '#1d5d90';
 const keyboard = '#2a87d0';

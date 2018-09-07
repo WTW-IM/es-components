@@ -48,7 +48,7 @@
     "cross-env": "^5.1.4",
     "css-loader": "^0.26.1",
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "^1.5.0",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^2.13.1",
     "eslint-config-exchange-solutions": "^6.0.0",
@@ -84,6 +84,6 @@
     "react-transition-group": "^2.2.1",
     "text-mask-addons": "3.7.2",
     "tinycolor2": "^1.4.1",
-    "uncontrollable": "^4.1.0"
+    "uncontrollable": "^6.0.0"
   }
 }

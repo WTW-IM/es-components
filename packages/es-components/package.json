@@ -76,7 +76,7 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
-    "react-animate-height": "^0.10.10",
+    "react-animate-height": "^2.0.4",
     "react-datepicker": "^1.2.2",
     "react-overlays": "^0.8.3",
     "react-popper": "^0.10.4",

@@ -1,7 +1,7 @@
 {
   "plugins": [
-    "transform-runtime",
-    "transform-export-extensions"
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-export-default-from"
   ],
   "env": {
     "development": {

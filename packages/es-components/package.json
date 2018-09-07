@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "15.5.2",
+  "version": "16.0.0",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "lib/index.js",
@@ -77,7 +77,7 @@
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react-animate-height": "^0.10.10",
-    "react-datepicker": "^1.2.2",
+    "react-datepicker": "1.2.2",
     "react-overlays": "^0.8.3",
     "react-popper": "^0.10.4",
     "react-text-mask": "5.4.1",

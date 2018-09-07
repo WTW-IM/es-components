@@ -2,175 +2,146 @@
 
 exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
-  className="es-fieldset sc-bZQynM dSZIHB"
+  className="es-fieldset sc-EHOje gAPZeA"
 >
   <label
-    checked={false}
-    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH fYkhsp sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
+      checked={true}
       className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-1"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={0}
     />
     <span
-      className="es-radio__fill sc-ifAKCX fnveVG"
-      fill="#fff"
+      className="es-radio__fill sc-bxivhb bwNXgt"
+      fill="#069"
     />
-    <span
-      aria-hidden={false}
-      className="es-radio__text sc-bxivhb bRNnnP"
-    >
-      Option 0
-    </span>
+    Option 0
   </label>
   <label
-    checked={false}
-    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
+      checked={false}
       className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-2"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={1}
     />
     <span
-      className="es-radio__fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-bxivhb jNoHRi"
       fill="#fff"
     />
-    <span
-      aria-hidden={false}
-      className="es-radio__text sc-bxivhb bRNnnP"
-    >
-      Option 1
-    </span>
+    Option 1
   </label>
   <label
-    checked={false}
-    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
+      checked={false}
       className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-3"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={2}
     />
     <span
-      className="es-radio__fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-bxivhb jNoHRi"
       fill="#fff"
     />
-    <span
-      aria-hidden={false}
-      className="es-radio__text sc-bxivhb bRNnnP"
-    >
-      Option 2
-    </span>
+    Option 2
   </label>
 </fieldset>
 `;
 
-exports[`RadioGroup component renders as expected with legend text 1`] = `
+exports[`RadioGroup component renders as expected with legend text and extraContent 1`] = `
 <fieldset
-  className="es-fieldset sc-bZQynM dSZIHB"
+  className="es-fieldset sc-EHOje gAPZeA"
 >
   <legend
-    className="es-fieldset__legend sc-EHOje iSPUDq"
+    className="es-fieldset__legend sc-ifAKCX kkKCeA"
   >
     Test legend
   </legend>
+  Extra Content!
   <label
-    checked={false}
-    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
+      checked={false}
       className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-1"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={0}
     />
     <span
-      className="es-radio__fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-bxivhb jNoHRi"
       fill="#fff"
     />
-    <span
-      aria-hidden={false}
-      className="es-radio__text sc-bxivhb bRNnnP"
-    >
-      Option 0
-    </span>
+    Option 0
   </label>
   <label
-    checked={false}
-    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
+      checked={false}
       className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-2"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={1}
     />
     <span
-      className="es-radio__fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-bxivhb jNoHRi"
       fill="#fff"
     />
-    <span
-      aria-hidden={false}
-      className="es-radio__text sc-bxivhb bRNnnP"
-    >
-      Option 1
-    </span>
+    Option 1
   </label>
   <label
-    checked={false}
-    className="es-radio sc-bwzfXH iRbUYb sc-bdVaJa jBoKPV"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa jBoKPV"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
+      checked={false}
       className="sc-htpNat kOMTgB"
       disabled={false}
       id="test-option-3"
       name="test"
-      onClick={[Function]}
+      onChange={[Function]}
       type="radio"
       value={2}
     />
     <span
-      className="es-radio__fill sc-ifAKCX fnveVG"
+      className="es-radio__fill sc-bxivhb jNoHRi"
       fill="#fff"
     />
-    <span
-      aria-hidden={false}
-      className="es-radio__text sc-bxivhb bRNnnP"
-    >
-      Option 2
-    </span>
+    Option 2
   </label>
 </fieldset>
 `;

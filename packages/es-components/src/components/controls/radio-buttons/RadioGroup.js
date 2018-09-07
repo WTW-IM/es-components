@@ -14,26 +14,26 @@ function RadioGroup({
   hasError = false,
   disableAllOptions = false,
   inline = true,
-  onClick = noop,
+  onChange = noop,
   extraContent
 }) {
   return (
-    <Fieldset legendContent={legendContent} extraContent={extraContent}>
+    <Fieldset legendContent={legendContent}>
+      {extraContent}
       {radioOptions.map((config, index) => {
         const radioId = `${name}-option-${index + 1}`;
-        const checked = config.optionValue === value;
+        const isChecked = config.optionValue === value;
         const isDisabled = disableAllOptions || config.isDisabled;
         const radioProps = {
           name,
-          checked,
+          isChecked,
           hasError,
           isDisabled,
           inline,
-          onClick,
+          onChange,
           id: radioId,
           optionText: config.optionText,
-          value: config.optionValue,
-          ariaHide: extraContent !== undefined
+          value: config.optionValue
         };
         return <RadioButton key={radioId} {...radioProps} />;
       })}
@@ -64,7 +64,7 @@ RadioGroup.propTypes = {
   /** Display the radio buttons inline */
   inline: PropTypes.bool,
   /** Function to execute when a radio button is selected */
-  onClick: PropTypes.func,
+  onChange: PropTypes.func,
   /** Extra content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/Radio button relationship.
    */

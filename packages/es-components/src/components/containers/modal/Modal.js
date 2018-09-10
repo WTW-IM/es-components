@@ -37,14 +37,14 @@ const ModalDialogMedium = styled.div`
   }
 `;
 
-const ModalDialogSmall = ModalDialogMedium.extend`
+const ModalDialogSmall = styled(ModalDialogMedium)`
   @media (min-width: ${props => props.theme.screenSize.phone}) {
     margin: 30px auto;
     width: ${modalSize.small};
   }
 `;
 
-const ModalDialogLarge = ModalDialogMedium.extend`
+const ModalDialogLarge = styled(ModalDialogMedium)`
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     width: ${modalSize.large};
   }

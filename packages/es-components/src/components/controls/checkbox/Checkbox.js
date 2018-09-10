@@ -6,7 +6,7 @@ import { noop } from 'lodash';
 import Label from '../Label';
 
 /* eslint-disable no-confusing-arrow */
-const CheckboxLabel = Label.extend`
+const CheckboxLabel = styled(Label)`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   text-transform: none;

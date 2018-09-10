@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Icon from '../../base/icons/Icon';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
 import classnames from 'classnames';
+import Icon from '../../base/icons/Icon';
 
 import genId from '../../util/generateAlphaName';
 
@@ -120,7 +120,12 @@ DrawerPanel.propTypes = {
 
 DrawerPanel.defaultProps = {
   isOpen: false,
-  noPadding: false
+  noPadding: false,
+  className: null,
+  closedIconName: null,
+  titleAside: null,
+  onItemClick: () => {},
+  openedIconName: null
 };
 
 export default DrawerPanel;

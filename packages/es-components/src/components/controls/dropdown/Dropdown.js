@@ -75,7 +75,7 @@ function Dropdown({
 
 Dropdown.propTypes = {
   labelText: PropTypes.string,
-  /** The name of the select element*/
+  /** The name of the select element */
   name: PropTypes.string,
   /** Display label inline with dropdown */
   inline: PropTypes.bool,
@@ -103,6 +103,22 @@ Dropdown.propTypes = {
    * class name is applied to top level label
    */
   className: PropTypes.string
+};
+
+Dropdown.defaultProps = {
+  labelText: null,
+  name: null,
+  inline: false,
+  options: [],
+  includeDefaultFirstOption: false,
+  isDefaultFirstOptionDisabled: false,
+  firstOptionDisplayText: null,
+  value: null,
+  validationState: 'default',
+  onChange: noop,
+  onBlur: noop,
+  theme: { validationTextColor: {}, validationInputColor: {} },
+  className: null
 };
 
 export default withTheme(Dropdown);

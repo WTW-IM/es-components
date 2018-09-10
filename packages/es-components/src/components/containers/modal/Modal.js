@@ -64,7 +64,6 @@ class Modal extends React.Component {
     super(props, context);
 
     this.state = {
-      style: {},
       ariaId: genId()
     };
   }
@@ -149,8 +148,6 @@ Modal.propTypes = {
    * trigger an "onHide" when clicked.
    */
   backdrop: PropTypes.oneOf(['static', true, false]),
-  /** Sets whether clicking outside exits the modal */
-  backdropClickExits: PropTypes.bool,
   /**
    * Usually contains a Modal.Title, Modal.Body, and Modal.Footer
    * but can contain any content
@@ -186,7 +183,9 @@ Modal.defaultProps = {
   onExit: noop,
   onHide: noop,
   show: false,
-  size: 'medium'
+  size: 'medium',
+  theme: { screenSize: {}, colors: {}, sizes: {} },
+  children: null
 };
 
 Modal.childContextTypes = {

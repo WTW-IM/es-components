@@ -71,4 +71,14 @@ RadioGroup.propTypes = {
   extraContent: PropTypes.node
 };
 
+RadioGroup.defaultProps = {
+  legendContent: null,
+  value: null,
+  hasError: false,
+  disableAllOptions: false,
+  inline: false,
+  onClick: () => {},
+  extraContent: null
+};
+
 export default RadioGroup;

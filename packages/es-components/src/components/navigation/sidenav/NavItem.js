@@ -180,7 +180,13 @@ NavItem.defaultProps = {
   useAltStyle: false,
   isDisabled: false,
   isExternalLink: false,
-  onClick: noop
+  onClick: noop,
+  children: null,
+  className: null,
+  highlightedId: null,
+  isHighlighted: false,
+  onNavClick: noop,
+  targetUrl: null
 };
 
 export default NavItem;

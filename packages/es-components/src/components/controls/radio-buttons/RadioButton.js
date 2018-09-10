@@ -120,4 +120,16 @@ RadioButton.propTypes = {
   theme: PropTypes.object
 };
 
+RadioButton.defaultProps = {
+  checked: false,
+  id: null,
+  isDisabled: false,
+  inline: false,
+  onClick: noop,
+  value: null,
+  ariaHide: false,
+  hasError: false,
+  theme: { colors: {}, sizes: {} }
+};
+
 export default withTheme(RadioButton);

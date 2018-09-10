@@ -259,7 +259,23 @@ Textbox.propTypes = {
 Textbox.defaultProps = {
   inline: false,
   maskType: 'none',
-  validationState: 'default'
+  validationState: 'default',
+  name: null,
+  id: null,
+  inputRef: () => {},
+  additionalHelpContent: null,
+  prependIconName: null,
+  appendIconName: null,
+  defaultValue: null,
+  customMask: null,
+  theme: {
+    sizes: {},
+    colors: {},
+    validationTextColor: {},
+    validationInputColor: {},
+    validationIconName: {}
+  },
+  className: null
 };
 
 export default withTheme(Textbox);

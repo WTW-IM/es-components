@@ -1,7 +1,7 @@
 import isParseableDate from './isParseableDate';
 
-export function isPropValidDate(props, propName, componentName) {
-  const date = props[propName];
+export function isPropValidDate(propsList, propName, componentName) {
+  const date = propsList[propName];
   if (date) {
     if (!isParseableDate(date)) {
       return new Error(`The pre-selected date is not valid. Please enter a parseable date.

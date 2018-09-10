@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withTheme, injectGlobal } from 'styled-components';
 
-import popoverStyles from './popoverStyles';
-
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
+
+import popoverStyles from './popoverStyles';
 
 const defaultStyle = {
   transition: 'opacity 0.2s ease-in-out',

@@ -295,9 +295,9 @@ Popover.propTypes = {
   suppressUnderline: PropTypes.bool,
   /** The button style of the popover link */
   buttonStyle: PropTypes.string,
-  /** Sets the link to use a text rather than a button style **/
+  /** Sets the link to use a text rather than a button style */
   isLinkButton: PropTypes.bool,
-  /** Sets the link to use the alternate button style **/
+  /** Sets the link to use the alternate button style */
   isOutline: PropTypes.bool,
   /** Sets the aria-label attribute to allow for textless buttons */
   ariaLabel: PropTypes.string,
@@ -307,7 +307,16 @@ Popover.propTypes = {
 
 Popover.defaultProps = {
   placement: 'bottom',
-  buttonStyle: 'primary'
+  buttonStyle: 'primary',
+  arrowSize: 'default',
+  disableRootClose: false,
+  hasCloseButton: false,
+  hasAltCloseButton: false,
+  suppressUnderline: false,
+  isLinkButton: false,
+  isOutline: false,
+  ariaLabel: null,
+  disableFlipping: false
 };
 
 export default Popover;

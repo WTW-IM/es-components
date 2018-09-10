@@ -68,8 +68,12 @@ MenuPanel.propTypes = {
   children: PropTypes.any.isRequired,
   headerContent: PropTypes.node,
   isOpen: PropTypes.bool,
-  onClose: PropTypes.func.isRequired,
-  theme: PropTypes.object
+  onClose: PropTypes.func.isRequired
+};
+
+MenuPanel.defaultProps = {
+  headerContent: null,
+  isOpen: false
 };
 
 MenuPanel.contextTypes = {

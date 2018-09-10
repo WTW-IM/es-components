@@ -38,7 +38,10 @@ export class Incrementer extends React.Component {
     startingValue: 0,
     incrementAmount: 1,
     decrementAmount: 1,
-    onValueUpdated: noop
+    onValueUpdated: noop,
+    upperThreshold: null,
+    lowerThreshold: null,
+    theme: { validationInputColor: { default: {} } }
   };
 
   constructor(props) {
@@ -67,7 +70,8 @@ export class Incrementer extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    this.props.onValueUpdated(nextState.value);
+    const { onValueUpdated } = this.props;
+    onValueUpdated(nextState.value);
   }
 
   determineDisabledStates(value) {

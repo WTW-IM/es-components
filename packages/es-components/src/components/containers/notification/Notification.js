@@ -1,3 +1,5 @@
+/* eslint react/no-array-index-key: 0 */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
@@ -298,6 +300,21 @@ Notification.propTypes = {
    * automatically passed by any parent component using a ThemeProvider
    */
   theme: PropTypes.object
+};
+
+Notification.defaultProps = {
+  header: null,
+  additionalText: null,
+  children: null,
+  includeIcon: false,
+  dismissable: false,
+  isAlert: false,
+  onDismiss: noop,
+  extraAlert: { alertText: null, alertIcon: null },
+  callsToAction: [],
+  useLightVariant: false,
+  useMessageOnlyVariant: false,
+  theme: { colors: {}, screenSize: {}, notificationStyles: {} }
 };
 
 export default withTheme(Notification);

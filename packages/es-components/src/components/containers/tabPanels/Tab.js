@@ -73,7 +73,7 @@ function Tab({
     >
       {selected && (
         <AriaAnnouncer id="announcer" aria-live="assertive">
-          {simpleName} {announcerText}
+          {`${simpleName} ${announcerText}`}
         </AriaAnnouncer>
       )}
       {name}
@@ -110,6 +110,15 @@ Tab.propTypes = {
   * Additional text to be read after the simple name
   */
   announcerText: PropTypes.string
+};
+
+Tab.defaultProps = {
+  selected: false,
+  action: () => {},
+  theme: { colors: {}, screenSize: {} },
+  children: null,
+  simpleName: null,
+  announcerText: null
 };
 
 export default Tab;

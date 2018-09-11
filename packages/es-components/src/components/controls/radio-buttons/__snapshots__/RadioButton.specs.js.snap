@@ -12,9 +12,7 @@ exports[`RadioButton component renders as expected 1`] = `
     disabled={false}
     id="test"
     name="rad"
-    onClick={[Function]}
     type="radio"
-    value={null}
   />
   <span
     className="es-radio__fill sc-bxivhb jNoHRi"

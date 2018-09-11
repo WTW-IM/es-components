@@ -77,7 +77,7 @@ RadioGroup.defaultProps = {
   hasError: false,
   disableAllOptions: false,
   inline: false,
-  onClick: () => {},
+  onChange: () => {},
   extraContent: null
 };
 

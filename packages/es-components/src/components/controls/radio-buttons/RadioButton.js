@@ -121,13 +121,10 @@ RadioButton.propTypes = {
 };
 
 RadioButton.defaultProps = {
-  checked: false,
+  isChecked: false,
   id: null,
   isDisabled: false,
   inline: false,
-  onClick: () => {},
-  value: null,
-  ariaHide: false,
   hasError: false,
   theme: { colors: {}, sizes: {} }
 };

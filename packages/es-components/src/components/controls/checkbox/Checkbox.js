@@ -145,7 +145,7 @@ Checkbox.defaultProps = {
   ariaLabel: null,
   isChecked: false,
   onClick: noop,
-  onChange: null,
+  onChange: noop,
   isDisabled: false,
   theme: { colors: {}, sizes: {} }
 };

@@ -62,7 +62,7 @@ const DrawerPanel = props => {
 
   const headingAriaId = genId();
   const regionAriaId = genId();
-  const aside = titleAside !== undefined && <aside>{titleAside}</aside>;
+  const aside = titleAside && <aside>{titleAside}</aside>;
 
   return (
     <PanelWrapper className={classnames('es-drawer__panel', className)}>

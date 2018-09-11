@@ -1,5 +1,7 @@
 Supports many other props demoed <a href="https://hacker0x01.github.io/react-datepicker" target="blank">here</a>.
 
+Passes props through to the TextBox component for additional functionality (for example: validationState).
+
 **Keyboard support**
 
 * Left: Move to the previous day
@@ -129,32 +131,4 @@ const moment = require('moment');
 <DatePicker labelText="Child Content" onChange={()=>{}}>
   <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
 </DatePicker>
-```
-
-### Validation states
-
-```
-<div>
-  <DatePicker
-    labelText="Success"
-    validationState="success"
-    additionalHelpContent="When validationState is set to Success"
-    onChange={()=>{}} 
-  />
-
-  <DatePicker
-    labelText="Warning"
-    validationState="warning"
-    additionalHelpContent="When validationState is set to Warning"
-    onChange={()=>{}} 
-  />
-
-  <DatePicker
-    labelText="Danger"
-    validationState="danger"
-    additionalHelpContent="When validation state is set to Error"
-    onChange={()=>{}} 
-  />
-
-</div>
 ```

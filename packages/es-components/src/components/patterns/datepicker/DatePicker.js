@@ -33,7 +33,6 @@ export const DatePicker = props => {
     placeholder,
     selectedDate,
     theme,
-    validationState,
     ...otherProps
   } = props;
 
@@ -50,7 +49,7 @@ export const DatePicker = props => {
       maskType="date"
       prependIconName="calendar"
       additionalHelpContent={additionalHelpContent}
-      validationState={validationState}
+      {...otherProps}
     />
   );
 
@@ -105,16 +104,13 @@ DatePicker.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object,
-  /** Display label and text with contextual state colorings */
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger'])
+  theme: PropTypes.object
 };
 
 DatePicker.defaultProps = {
   onBlur: noop,
   onChangeRaw: noop,
-  placeholder: 'mm/dd/yyyy',
-  validationState: 'default'
+  placeholder: 'mm/dd/yyyy'
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

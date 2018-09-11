@@ -115,15 +115,15 @@ DatePicker.defaultProps = {
   onChangeRaw: noop,
   placeholder: 'mm/dd/yyyy',
   selectedDate: null,
-  excludeDates: null,
-  highlightDates: null,
-  includeDates: [],
-  filterDate: null,
+  excludeDates: undefined,
+  highlightDates: undefined,
+  includeDates: undefined,
+  filterDate: undefined,
   selectsStart: false,
   selectsEnd: false,
   startDate: null,
   endDate: null,
-  theme: {},
+  theme: { colors: {} },
   validationState: 'default'
 };
 

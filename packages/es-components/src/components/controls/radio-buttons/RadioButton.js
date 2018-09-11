@@ -125,7 +125,7 @@ RadioButton.defaultProps = {
   id: null,
   isDisabled: false,
   inline: false,
-  onClick: noop,
+  onClick: () => {},
   value: null,
   ariaHide: false,
   hasError: false,

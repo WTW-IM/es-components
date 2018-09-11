@@ -133,25 +133,22 @@ const Textbox = props => {
     ...additionalTextProps
   } = props;
   const inputName = name || labelText.replace(/\s+/g, '');
-  const textboxId = id !== undefined ? id : `for-${inputName}`;
-  const hasHelpContent = additionalHelpContent !== undefined;
-  const helpId = hasHelpContent ? `${textboxId}-help` : null;
-  const additionalHelp = hasHelpContent && (
+  const textboxId = id || `for-${inputName}`;
+  const helpId = additionalHelpContent ? `${textboxId}-help` : null;
+  const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent id={helpId} className="textbox__help">
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
   const classNameState = `es-textbox__input--${validationState}`;
 
-  const hasPrepend = prependIconName !== undefined;
-  const hasAppend = appendIconName !== undefined;
+  const hasPrepend = !!prependIconName;
+  const hasAppend = !!appendIconName;
   const hasValidationIcon = validationState !== 'default';
 
   const Input = maskType === 'none' ? StyledText : StyledMask;
   const maskArgs =
-    maskType === 'custom' && customMask !== undefined
-      ? customMask
-      : inputMaskType[maskType];
+    maskType === 'custom' && customMask ? customMask : inputMaskType[maskType];
 
   const addOnTextColor = hasValidationIcon
     ? theme.colors.white
@@ -261,11 +258,11 @@ Textbox.defaultProps = {
   maskType: 'none',
   validationState: 'default',
   name: null,
-  id: null,
-  inputRef: () => {},
+  id: undefined,
+  inputRef: undefined,
   additionalHelpContent: null,
-  prependIconName: null,
-  appendIconName: null,
+  prependIconName: undefined,
+  appendIconName: undefined,
   defaultValue: null,
   customMask: null,
   theme: {

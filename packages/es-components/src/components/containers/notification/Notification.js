@@ -53,25 +53,20 @@ const StrongHeader = styled.h4`
   margin: 0;
 `;
 
-function renderLeadingHeader(
+const renderLeadingHeader = (
   notificationType,
   includeIcon,
   leadingHeader,
   leadingText
-) {
-  const hasLeadingHeaderText = leadingHeader !== undefined;
-  const hasLeadingText = leadingText !== undefined;
-
-  return (
-    <LeadingHeader>
-      {includeIcon && renderIcon(notificationType)}
-      <div>
-        {hasLeadingHeaderText && <StrongHeader>{leadingHeader}</StrongHeader>}
-        {hasLeadingText && <div>{leadingText}</div>}
-      </div>
-    </LeadingHeader>
-  );
-}
+) => (
+  <LeadingHeader>
+    {includeIcon && renderIcon(notificationType)}
+    <div>
+      {leadingHeader && <StrongHeader>{leadingHeader}</StrongHeader>}
+      {leadingHeader && <div>{leadingText}</div>}
+    </div>
+  </LeadingHeader>
+);
 
 const ExtraAlert = styled.aside`
   max-width: 250px;
@@ -215,7 +210,6 @@ export function Notification({
   ...otherProps
 }) {
   const hasCallsToAction = callsToAction.length > 0;
-  const hasExtraAlert = extraAlert;
   const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
   let bgType = 'base';
@@ -233,7 +227,7 @@ export function Notification({
       >
         <NotificationHeader className="es-notification__header">
           {renderLeadingHeader(type, includeIcon, header, additionalText)}
-          {hasExtraAlert && renderExtraAlert(extraAlert)}
+          {extraAlert && renderExtraAlert(extraAlert)}
           {dismissable && (
             <DismissNotification
               onClick={onDismiss}
@@ -310,7 +304,7 @@ Notification.defaultProps = {
   dismissable: false,
   isAlert: false,
   onDismiss: noop,
-  extraAlert: { alertText: null, alertIcon: null },
+  extraAlert: null,
   callsToAction: [],
   useLightVariant: false,
   useMessageOnlyVariant: false,

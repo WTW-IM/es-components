@@ -62,8 +62,9 @@ describe('Dropdown component', () => {
 
   it('renders the text of the first option as the firstOptionDisplayText prop value', () => {
     const firstOptionDisplayText = 'Select one..';
+    const options = [{ optionText: firstOptionDisplayText, optionValue: '1' }];
 
-    instance.setProps({ firstOptionDisplayText });
+    instance.setProps({ firstOptionDisplayText, options });
 
     const optionText = instance
       .find('option')

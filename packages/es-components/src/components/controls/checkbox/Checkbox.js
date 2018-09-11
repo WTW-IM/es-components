@@ -141,7 +141,7 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  value: null,
+  value: '',
   ariaLabel: null,
   isChecked: false,
   onClick: noop,

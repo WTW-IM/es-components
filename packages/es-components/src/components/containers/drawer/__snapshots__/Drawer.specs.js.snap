@@ -75,6 +75,7 @@ exports[`drawer component accordion renders as expected 1`] = `
           />
           collapse 2
         </span>
+        <aside />
       </button>
     </div>
     <div
@@ -119,6 +120,7 @@ exports[`drawer component accordion renders as expected 1`] = `
           />
           collapse 3
         </span>
+        <aside />
       </button>
     </div>
     <div
@@ -217,6 +219,7 @@ exports[`drawer component drawer renders as expected 1`] = `
           />
           collapse 2
         </span>
+        <aside />
       </button>
     </div>
     <div
@@ -261,6 +264,7 @@ exports[`drawer component drawer renders as expected 1`] = `
           />
           collapse 3
         </span>
+        <aside />
       </button>
     </div>
     <div

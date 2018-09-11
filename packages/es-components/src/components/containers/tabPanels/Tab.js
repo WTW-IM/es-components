@@ -115,7 +115,7 @@ Tab.propTypes = {
 Tab.defaultProps = {
   selected: false,
   action: () => {},
-  theme: { colors: {}, screenSize: {} },
+  theme: { colors: {}, screenSize: {}, sizes: {} },
   children: null,
   simpleName: null,
   announcerText: null

@@ -27,7 +27,6 @@ function getShallowInstance() {
 }
 
 function getMountedInstance(props) {
-  mountWithTheme(instanceToRender);
   return mountWithTheme(instanceToRender).setProps(props);
 }
 
@@ -157,5 +156,30 @@ describe('when extraAlert is provided', () => {
     instance.setProps({ extraAlert: newAlert });
 
     expect(instance.find(Icon).prop('name')).toBe('bell');
+  });
+});
+
+describe('rendering the header', () => {
+  const getHeader = props =>
+    getMountedInstance(props)
+      .find('.es-notification__header')
+      .hostNodes();
+
+  it('should display no header when none is provided', () => {
+    const header = getHeader({ header: null, additionalText: null });
+    expect(header.find('h4').length).toBe(0);
+    expect(header.text()).toBe('');
+  });
+
+  it('should display an h4 header when header is provided', () => {
+    const headerText = 'A header!';
+    const header = getHeader({ header: headerText, additionalText: null });
+    expect(header.find('h4').text()).toBe(headerText);
+  });
+
+  it('should display a div header when additionalText is provided', () => {
+    const additionalText = 'added text';
+    const header = getHeader({ header: null, additionalText });
+    expect(header.text()).toBe(additionalText);
   });
 });

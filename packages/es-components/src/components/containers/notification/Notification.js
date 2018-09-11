@@ -63,7 +63,7 @@ const renderLeadingHeader = (
     {includeIcon && renderIcon(notificationType)}
     <div>
       {leadingHeader && <StrongHeader>{leadingHeader}</StrongHeader>}
-      {leadingHeader && <div>{leadingText}</div>}
+      {leadingText && <div>{leadingText}</div>}
     </div>
   </LeadingHeader>
 );

@@ -54,10 +54,13 @@ const SpinnerCircle = styled.circle`
     ${colorsAnimation} 3.5s ease-in-out infinite;
 `;
 
+const getFinalValue = num =>
+  num.includes('%') || num.includes('px') ? num : `${num}px`;
+
 const Spinner = ({ width = '100%', height = '100%', ...otherProps }) => (
   <SpinnerSvg
-    width={width}
-    height={height}
+    width={getFinalValue(width)}
+    height={getFinalValue(height)}
     viewBox="0 0 66 66"
     xmlns="http://www.w3.org/2000/svg"
   >

@@ -8,8 +8,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm run build:es5 && npm run build:es6 && npm run webpack",
-    "build:es5": "babel src -d lib --ignore specs.js,*.md --copy-files",
-    "build:es6": "cross-env BABEL_ENV=es6 babel src -d es6 --ignore specs.js,*.md --copy-files",
+    "build:es5": "babel src -d lib --only src --ignore **/*.specs.js",
+    "build:es6": "cross-env BABEL_ENV=es6 babel src -d es6 --only src --ignore **/*.specs.js",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
     "prepare": "npm run build",
@@ -25,6 +25,10 @@
     "setupFiles": [
       "./config/jest-shims.js",
       "./config/jest-setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "es6",
+      "lib"
     ],
     "testRegex": "specs\\.js$",
     "testURL": "http://localhost/"

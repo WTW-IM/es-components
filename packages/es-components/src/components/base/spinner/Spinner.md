@@ -1,25 +1,21 @@
-Spinners will take up 100% of its container's width and height unless otherwise specified, but the content will always be an exact circle the size of the width or height, whichever is smaller.
+Spinners can be sized how you like, but their contents will always be an exact circle.
+
+They can be sized to the outer container:
 ```
 <div style={{width: 100, height: 100}}>
   <Spinner />
 </div>
 ```
 
-Spinners can take a width and height prop that is a number that will be translated to a pixel value.
-```
-<div>
-  <Spinner width="75" height="75" />
-</div>
-```
-
-Spinners can take a width and height prop that is a pixel value.
+You can manually set width and height:
 ```
 <div>
   <Spinner width="65px" height="65px" />
 </div>
 ```
 
-Spinners can take a width and height prop that is a percentage value.
+
+You can set the size based on a percentage:
 ```
 <div style={{width: 100, height: 100}}>
   <Spinner width="50%" />

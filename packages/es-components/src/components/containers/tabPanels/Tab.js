@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { noop } from 'lodash';
+
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
@@ -114,7 +116,7 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   selected: false,
-  action: () => {},
+  action: noop,
   theme: { colors: {}, screenSize: {}, sizes: {} },
   children: null,
   simpleName: null,

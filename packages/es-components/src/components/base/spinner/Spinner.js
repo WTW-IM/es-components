@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
+import shortid from 'shortid';
 
 const rotatorAnimation = keyframes`
   0% {
@@ -53,17 +55,51 @@ const SpinnerCircle = styled.circle`
     ${colorsAnimation} 3.5s ease-in-out infinite;
 `;
 
-const Spinner = props => (
-  <SpinnerSvg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <SpinnerCircle
-      fill="none"
-      strokeWidth="6"
-      strokeLinecap="round"
-      cx="33"
-      cy="33"
-      r="30"
-    />
-  </SpinnerSvg>
-);
+const Spinner = ({ title, description, ...props }) => {
+  const titleId = title && shortid.generate();
+  const descId = description && shortid.generate();
+
+  return (
+    <SpinnerSvg
+      viewBox="0 0 66 66"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-labelledby={`${titleId} ${descId}`.trim()}
+      {...props}
+    >
+      {title && <title id={titleId}>{title}</title>}
+      {description && <desc id={descId}>{description}</desc>}
+      <SpinnerCircle
+        fill="none"
+        strokeWidth="6"
+        strokeLinecap="round"
+        cx="33"
+        cy="33"
+        r="30"
+      />
+    </SpinnerSvg>
+  );
+};
+
+const descriptionTitleProp = (props, propName, componentName) => {
+  if (!props.title && !props.description) {
+    return new Error('You must provide a title, description, or both.');
+  }
+  return PropTypes.string(props, propName, componentName);
+};
+
+Spinner.propTypes = {
+  /** The title of the spinner for screen readers. This or `description` is
+   * required */
+  title: descriptionTitleProp,
+  /** The description of the spinner for screen readers. This or `title` is
+   * required */
+  description: descriptionTitleProp
+};
+
+Spinner.defaultProps = {
+  title: '',
+  description: ''
+};
 
 export default Spinner;

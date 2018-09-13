@@ -93,6 +93,7 @@
     "react-test-renderer": "^16.3.0",
     "react-text-mask": "5.4.1",
     "react-transition-group": "^2.2.1",
+    "shortid": "^2.2.13",
     "styled-enzyme": "^0.1.0",
     "text-mask-addons": "3.7.2",
     "tinycolor2": "^1.4.1",

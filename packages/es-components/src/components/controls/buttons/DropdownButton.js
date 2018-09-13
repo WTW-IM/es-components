@@ -19,9 +19,13 @@ const ButtonPanel = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   z-index: 2;
   margin-top: 3px;
-  position: absolute;
+  position: relative;
   border: 1px solid ${props => props.theme.colors.gray3};
   background-color: ${props => props.theme.colors.white};
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    position: absolute;
+  }
 `;
 
 const ButtonPanelChildrenContainer = styled.div`

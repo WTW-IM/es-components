@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
 import classnames from 'classnames';
+import { noop } from 'lodash';
 import Icon from '../../base/icons/Icon';
 
 import genId from '../../util/generateAlphaName';
@@ -124,7 +125,7 @@ DrawerPanel.defaultProps = {
   className: null,
   closedIconName: null,
   titleAside: null,
-  onItemClick: () => {},
+  onItemClick: noop,
   openedIconName: null
 };
 

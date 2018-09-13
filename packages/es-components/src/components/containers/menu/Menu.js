@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classnames from 'classnames';
+import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
-import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
 const Backdrop = styled.div`
   background-color: black;
@@ -100,7 +100,11 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
   rootClose: false,
-  openButtonType: 'default'
+  openButtonType: 'default',
+  className: null,
+  inline: false,
+  hasBackdrop: false,
+  headerContent: null
 };
 
 export default Menu;

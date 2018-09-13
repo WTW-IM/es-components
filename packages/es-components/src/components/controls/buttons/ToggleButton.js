@@ -103,7 +103,17 @@ ToggleButton.propTypes = {
 };
 
 ToggleButton.defaultProps = {
-  styleType: 'default'
+  styleType: 'default',
+  buttonClasses: null,
+  isLinkButton: false,
+  size: 'default',
+  block: false,
+  isOutline: false,
+  theme: {
+    colors: {},
+    buttonStyles: { buttonsOutline: {}, buttonsNormal: {} }
+  },
+  isPressed: false
 };
 
 export default withTheme(ToggleButton);

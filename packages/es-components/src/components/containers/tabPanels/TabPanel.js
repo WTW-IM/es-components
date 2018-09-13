@@ -94,6 +94,10 @@ TabPanel.propTypes = {
   children: childrenRule
 };
 
+TabPanel.defaultProps = {
+  children: []
+};
+
 TabPanel.Tab = Tab;
 
 export default TabPanel;

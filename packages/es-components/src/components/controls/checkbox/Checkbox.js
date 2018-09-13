@@ -140,4 +140,14 @@ Checkbox.propTypes = {
   theme: PropTypes.object
 };
 
+Checkbox.defaultProps = {
+  value: '',
+  ariaLabel: null,
+  isChecked: false,
+  onClick: noop,
+  onChange: noop,
+  isDisabled: false,
+  theme: { colors: {}, sizes: {} }
+};
+
 export default withTheme(Checkbox);

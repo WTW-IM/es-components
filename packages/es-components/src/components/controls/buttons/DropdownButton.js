@@ -1,8 +1,8 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../controls/buttons/Button';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import styled from 'styled-components';
+import Button from './Button';
 
 const Caret = styled.span`
   display: inline-block;
@@ -94,7 +94,8 @@ export class DropdownButton extends React.Component {
             aria-pressed={this.state.isOpen}
             innerRef={this.setTriggerButton}
           >
-            {manualButtonValue || this.state.buttonValue} <Caret />
+            {manualButtonValue || this.state.buttonValue}
+            <Caret />
           </Button>
           <ButtonPanel isOpen={this.state.isOpen}>
             <ButtonPanelChildrenContainer>
@@ -141,6 +142,15 @@ DropdownButton.propTypes = {
   rootClose: PropTypes.bool,
   /** The classes to be applied to the div surrounding the button */
   className: PropTypes.string
+};
+
+DropdownButton.defaultProps = {
+  buttonValue: null,
+  manualButtonValue: null,
+  shouldUpdateButtonValue: false,
+  shouldCloseOnButtonClick: false,
+  rootClose: false,
+  className: null
 };
 
 export default DropdownButton;

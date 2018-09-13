@@ -51,4 +51,9 @@ Icon.propTypes = {
   size: PropTypes.number
 };
 
+Icon.defaultProps = {
+  className: null,
+  size: undefined
+};
+
 export default Icon;

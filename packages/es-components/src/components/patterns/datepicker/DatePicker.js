@@ -108,9 +108,23 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
+  additionalHelpContent: null,
+  children: null,
+  name: null,
   onBlur: noop,
   onChangeRaw: noop,
-  placeholder: 'mm/dd/yyyy'
+  placeholder: 'mm/dd/yyyy',
+  selectedDate: null,
+  excludeDates: undefined,
+  highlightDates: undefined,
+  includeDates: undefined,
+  filterDate: undefined,
+  selectsStart: false,
+  selectsEnd: false,
+  startDate: null,
+  endDate: null,
+  theme: { colors: {} },
+  validationState: 'default'
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

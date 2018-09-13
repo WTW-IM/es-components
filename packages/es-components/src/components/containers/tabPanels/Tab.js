@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { noop } from 'lodash';
+
 /* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
@@ -73,7 +75,7 @@ function Tab({
     >
       {selected && (
         <AriaAnnouncer id="announcer" aria-live="assertive">
-          {simpleName} {announcerText}
+          {`${simpleName} ${announcerText}`}
         </AriaAnnouncer>
       )}
       {name}
@@ -110,6 +112,15 @@ Tab.propTypes = {
   * Additional text to be read after the simple name
   */
   announcerText: PropTypes.string
+};
+
+Tab.defaultProps = {
+  selected: false,
+  action: noop,
+  theme: { colors: {}, screenSize: {}, sizes: {} },
+  children: null,
+  simpleName: null,
+  announcerText: null
 };
 
 export default Tab;

@@ -14,11 +14,7 @@ describe('drawer', () => {
     onClick.mockClear();
 
     instanceToRender = (
-      <SideNav
-        onItemSelected={navId => {
-          onItemSelected(navId);
-        }}
-      >
+      <SideNav onItemSelected={navId => onItemSelected(navId)}>
         <SideNav.Item
           id="home"
           className="home"

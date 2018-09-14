@@ -97,10 +97,6 @@ Tab.propTypes = {
    */
   action: PropTypes.func,
   /**
-   * The theme used to render the tab
-   */
-  theme: PropTypes.object,
-  /**
    * Children to be rendered in the TabContent area.
    */
   children: PropTypes.node,
@@ -117,7 +113,6 @@ Tab.propTypes = {
 Tab.defaultProps = {
   selected: false,
   action: noop,
-  theme: { colors: {}, screenSize: {}, sizes: {} },
   children: null,
   simpleName: null,
   announcerText: null

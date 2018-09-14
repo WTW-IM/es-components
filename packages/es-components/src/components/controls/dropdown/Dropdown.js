@@ -98,7 +98,7 @@ Dropdown.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   /**
    * class name is applied to top level label
    */
@@ -117,7 +117,6 @@ Dropdown.defaultProps = {
   validationState: 'default',
   onChange: noop,
   onBlur: noop,
-  theme: { validationTextColor: {}, validationInputColor: {} },
   className: null
 };
 

@@ -117,7 +117,7 @@ RadioButton.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object.isRequired
 };
 
 RadioButton.defaultProps = {
@@ -125,8 +125,7 @@ RadioButton.defaultProps = {
   id: null,
   isDisabled: false,
   inline: false,
-  hasError: false,
-  theme: { colors: {}, sizes: {} }
+  hasError: false
 };
 
 export default withTheme(RadioButton);

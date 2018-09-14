@@ -172,7 +172,7 @@ Modal.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object.isRequired
 };
 
 Modal.defaultProps = {
@@ -184,7 +184,6 @@ Modal.defaultProps = {
   onHide: noop,
   show: false,
   size: 'medium',
-  theme: { screenSize: {}, colors: {}, sizes: {} },
   children: null
 };
 

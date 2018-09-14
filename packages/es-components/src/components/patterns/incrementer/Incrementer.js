@@ -31,7 +31,7 @@ export class Incrementer extends React.Component {
      * Theme object used by the ThemeProvider,
      * automatically passed by any parent component using a ThemeProvider
      */
-    theme: PropTypes.object
+    theme: PropTypes.object.isRequired
   };
 
   static defaultProps = {
@@ -40,8 +40,7 @@ export class Incrementer extends React.Component {
     decrementAmount: 1,
     onValueUpdated: noop,
     upperThreshold: null,
-    lowerThreshold: null,
-    theme: { validationInputColor: { default: {} } }
+    lowerThreshold: null
   };
 
   constructor(props) {

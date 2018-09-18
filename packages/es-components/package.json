@@ -38,6 +38,7 @@
   },
   "peerDependencies": {
     "react": ">=0.14",
+    "react-dom": ">=0.14",
     "styled-components": "*"
   },
   "devDependencies": {
@@ -55,6 +56,7 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.5.0",
+    "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-exchange-solutions": "^7.0.0",
@@ -69,6 +71,7 @@
     "mockdate": "^2.0.1",
     "prettier": "^1.14.1",
     "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-styleguidist": "^7.3.8",
     "react-test-renderer": "^16.3.0",
     "regenerator-runtime": "^0.12.1",
@@ -83,13 +86,11 @@
     "@babel/runtime": "^7.0.0",
     "classnames": "^2.2.6",
     "date-fns": "^1.29.0",
-    "es-components-via-theme": "file:../es-components-via-theme",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "prop-types": "^15.6.1",
     "react-animate-height": "^2.0.4",
     "react-datepicker": "^1.6.0",
-    "react-dom": "^16.4.1",
     "react-overlays": "^0.8.3",
     "react-popper": "^0.10.4",
     "react-text-mask": "5.4.1",

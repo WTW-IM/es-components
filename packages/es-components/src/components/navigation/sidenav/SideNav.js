@@ -1,3 +1,7 @@
+/* eslint react/no-unused-prop-types: 0 */
+/* ^^^ This is because defaultSelected needs to be defined to be documented */
+/* The behavior of defaultSelected is implemented in the Uncontrollable library */
+
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
@@ -57,7 +61,10 @@ SideNav.propTypes = {
 
 SideNav.defaultProps = {
   useAltStyle: false,
-  onItemSelected: noop
+  onItemSelected: noop,
+  children: null,
+  selected: null,
+  defaultSelected: null
 };
 
 const UncontrolledSideNav = uncontrollable(SideNav, {

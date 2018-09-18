@@ -1,3 +1,6 @@
+/* eslint react/no-unused-prop-types: 0 */
+/* ^^^ We need to declare the Theme prop for documentation. */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
@@ -148,6 +151,13 @@ Popup.propTypes = {
   style: PropTypes.object
 };
 
+Popup.defaultProps = {
+  name: null,
+  className: null,
+  position: 'top',
+  style: {}
+};
+
 class Tooltip extends React.Component {
   constructor(props) {
     super(props);
@@ -223,7 +233,8 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   position: 'top',
-  disableHover: false
+  disableHover: false,
+  theme: { colors: {}, sizes: {} }
 };
 
 export default Tooltip;

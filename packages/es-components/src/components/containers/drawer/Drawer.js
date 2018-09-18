@@ -1,3 +1,6 @@
+/* eslint react/no-unused-prop-types: 0 */
+/* ^^^ We need to declare defaultActiveKeys.
+ * It's a prop used by uncontrollable, and needs to be documented */
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
@@ -123,7 +126,10 @@ Drawer.defaultProps = {
   isAccordion: false,
   closedIconName: 'add',
   onActiveKeysChanged: noop,
-  openedIconName: 'minus'
+  openedIconName: 'minus',
+  children: null,
+  className: null,
+  defaultActiveKeys: null
 };
 
 const UncontrolledDrawer = uncontrollable(Drawer, {

@@ -52,4 +52,12 @@ MenuSection.propTypes = {
   isOnlySection: PropTypes.bool
 };
 
+MenuSection.defaultProps = {
+  title: null,
+  children: null,
+  isLast: false,
+  isFirst: false,
+  isOnlySection: false
+};
+
 export default MenuSection;

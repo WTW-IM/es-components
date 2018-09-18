@@ -32,9 +32,8 @@ const DismissModal = styled(DismissButton)`
   }
 `;
 
-const ModalHeader = (props, context) => {
+const ModalHeader = (props, { modal }) => {
   const { hideCloseButton, children, ...otherProps } = props;
-  const modal = context.modal;
   const onHide = modal ? modal.onHide : noop;
   const ariaId = modal ? modal.ariaId : null;
 
@@ -54,7 +53,8 @@ ModalHeader.propTypes = {
 };
 
 ModalHeader.defaultProps = {
-  hideCloseButton: false
+  hideCloseButton: false,
+  children: null
 };
 
 ModalHeader.contextTypes = {

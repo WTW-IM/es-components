@@ -137,7 +137,7 @@ Checkbox.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object.isRequired
 };
 
 Checkbox.defaultProps = {
@@ -146,8 +146,7 @@ Checkbox.defaultProps = {
   isChecked: false,
   onClick: noop,
   onChange: noop,
-  isDisabled: false,
-  theme: { colors: {}, sizes: {} }
+  isDisabled: false
 };
 
 export default withTheme(Checkbox);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import shortid from 'shortid';
+import generateAlphaName from '../../util/generateAlphaName';
 
 const rotatorAnimation = keyframes`
   0% {
@@ -56,8 +56,8 @@ const SpinnerCircle = styled.circle`
 `;
 
 const Spinner = ({ title, description, ...props }) => {
-  const titleId = title && shortid.generate();
-  const descId = description && shortid.generate();
+  const titleId = title && generateAlphaName();
+  const descId = description && generateAlphaName();
 
   return (
     <SpinnerSvg

@@ -23,3 +23,5 @@ export SideNav from './components/navigation/sidenav/SideNav';
 export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';
 export screenReaderOnly from './components/patterns/screenReaderOnly/screenReaderOnly';
+
+export Spinner from './components/base/spinner/Spinner';

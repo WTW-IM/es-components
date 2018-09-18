@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { noop } from 'lodash';
 import Tab from './Tab';
 
 const TabWrapper = styled.div`
@@ -38,6 +40,12 @@ class TabPanel extends React.Component {
       currentContent: child.props.children
     };
     this.tabChanged = this.tabChanged.bind(this);
+  }
+
+  componentDidUpdate(prevProp, prevState) {
+    if (this.state.value !== prevState.value) {
+      this.props.tabChanged(this.state.value);
+    }
   }
 
   tabChanged(name, child) {
@@ -91,11 +99,16 @@ TabPanel.propTypes = {
   /**
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
-  children: childrenRule
+  children: childrenRule,
+  /**
+   * Callback when the selected tab has changed. The callback is given the name of the tab that is active
+   */
+  tabChanged: PropTypes.func
 };
 
 TabPanel.defaultProps = {
-  children: []
+  children: [],
+  tabChanged: noop
 };
 
 TabPanel.Tab = Tab;

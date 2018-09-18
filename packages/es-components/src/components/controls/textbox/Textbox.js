@@ -249,7 +249,7 @@ Textbox.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   className: PropTypes.string
 };
 
@@ -265,13 +265,6 @@ Textbox.defaultProps = {
   appendIconName: undefined,
   defaultValue: null,
   customMask: null,
-  theme: {
-    sizes: {},
-    colors: {},
-    validationTextColor: {},
-    validationInputColor: {},
-    validationIconName: {}
-  },
   className: null
 };
 

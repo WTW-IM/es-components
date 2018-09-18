@@ -104,7 +104,7 @@ DatePicker.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object.isRequired
 };
 
 DatePicker.defaultProps = {
@@ -123,7 +123,6 @@ DatePicker.defaultProps = {
   selectsEnd: false,
   startDate: null,
   endDate: null,
-  theme: { colors: {} },
   validationState: 'default'
 };
 

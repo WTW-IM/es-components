@@ -293,7 +293,7 @@ Notification.propTypes = {
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
    */
-  theme: PropTypes.object
+  theme: PropTypes.object.isRequired
 };
 
 Notification.defaultProps = {
@@ -307,8 +307,7 @@ Notification.defaultProps = {
   extraAlert: null,
   callsToAction: [],
   useLightVariant: false,
-  useMessageOnlyVariant: false,
-  theme: { colors: {}, screenSize: {}, notificationStyles: {} }
+  useMessageOnlyVariant: false
 };
 
 export default withTheme(Notification);

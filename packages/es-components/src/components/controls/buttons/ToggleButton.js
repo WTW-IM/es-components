@@ -98,7 +98,11 @@ ToggleButton.propTypes = {
   size: PropTypes.oneOf(buttonSizes),
   block: PropTypes.bool,
   isOutline: PropTypes.bool,
-  theme: PropTypes.object,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object.isRequired,
   isPressed: PropTypes.bool
 };
 
@@ -109,10 +113,6 @@ ToggleButton.defaultProps = {
   size: 'default',
   block: false,
   isOutline: false,
-  theme: {
-    colors: {},
-    buttonStyles: { buttonsOutline: {}, buttonsNormal: {} }
-  },
   isPressed: false
 };
 

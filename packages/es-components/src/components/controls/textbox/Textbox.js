@@ -51,7 +51,7 @@ const CommonInputStyles = css`
 `;
 /* eslint-enable */
 
-const StyledMask = StyledMaskedInput.extend`
+const StyledMask = styled(StyledMaskedInput)`
   ${CommonInputStyles};
 `;
 

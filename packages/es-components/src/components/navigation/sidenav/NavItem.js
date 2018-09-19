@@ -68,7 +68,7 @@ const AnchorBase = styled.a`
     `};
 `;
 
-const AnchorAltStyle = AnchorBase.extend`
+const AnchorAltStyle = styled(AnchorBase)`
   &:hover {
     border-left: 4px solid ${props => props.theme.colors.info};
     padding-left: 6px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
+import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
 import { injectGlobal, withTheme } from 'styled-components';
@@ -10,7 +10,7 @@ import datepickerStyles from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 
 class DateTextbox extends React.Component {
-  static propTypes = Textbox.propTypes;
+  static propTypes = Textbox.propTypes; // eslint-disable-line react/forbid-foreign-prop-types
 
   componentDidMount() {
     this.inputElement = findDOMNode(this).querySelector('input');
@@ -29,36 +29,65 @@ export const DatePicker = props => {
   const {
     additionalHelpContent,
     children,
+    excludeDates,
+    filterDate,
+    highlightDates,
+    includeDates,
     labelText,
+    name,
+    onChange,
+    onChangeRaw,
+    onBlur,
     placeholder,
     selectedDate,
+    selectsEnd,
+    selectsStart,
+    startDate,
+    endDate,
     theme,
     ...otherProps
   } = props;
+
+  /* eslint-disable react/forbid-foreign-prop-types */
+  const textboxProps = omit(otherProps, ReactDatePicker.propTypes);
+  const datepickerProps = pick(otherProps, ReactDatePicker.propTypes);
+  /* eslint-enable */
 
   const dpStyles = datepickerStyles(theme.colors, theme.datepickerColors);
   /* eslint-disable no-unused-expressions */
   injectGlobal`
     ${dpStyles}
   `;
-  /* eslint-enable no-unused-expressions */
+  /* eslint-enable */
 
   const textbox = (
     <DateTextbox
+      additionalHelpContent={additionalHelpContent}
       labelText={labelText}
       maskType="date"
+      name={name}
       prependIconName="calendar"
-      additionalHelpContent={additionalHelpContent}
-      {...otherProps}
+      {...textboxProps}
     />
   );
 
   return (
     <ReactDatePicker
-      selected={selectedDate}
       customInput={textbox}
+      endDate={endDate}
+      excludeDates={excludeDates}
+      filterDate={filterDate}
+      highlightDates={highlightDates}
+      includeDates={includeDates}
+      onChange={onChange}
+      onChangeRaw={onChangeRaw}
+      onBlur={onBlur}
       placeholderText={placeholder}
-      {...otherProps}
+      selected={selectedDate}
+      selectsEnd={selectsEnd}
+      selectsStart={selectsStart}
+      startDate={startDate}
+      {...datepickerProps}
     >
       {children}
     </ReactDatePicker>

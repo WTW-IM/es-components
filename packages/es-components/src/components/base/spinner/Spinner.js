@@ -81,11 +81,16 @@ const Spinner = ({ title, description, ...props }) => {
   );
 };
 
-const descriptionTitleProp = (props, propName, componentName) => {
+const descriptionTitleProp = (
+  props,
+  propName,
+  componentName,
+  ...otherParams
+) => {
   if (!props.title && !props.description) {
     return new Error('You must provide a title, description, or both.');
   }
-  return PropTypes.string(props, propName, componentName);
+  return PropTypes.string(props, propName, componentName, ...otherParams);
 };
 
 Spinner.propTypes = {

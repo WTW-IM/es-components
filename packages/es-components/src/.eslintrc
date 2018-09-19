@@ -28,7 +28,7 @@
     "react/forbid-prop-types": 0,
     "react/no-find-dom-node": 0,
     "react/destructuring-assignment": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.specs.js"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.specs.js", "**/ExampleWrapper.js"]}]
   },
   "env": {
     "browser": true

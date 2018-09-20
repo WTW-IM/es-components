@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme } from 'styled-enzyme';
+import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 
 import Icon from '../../base/icons/Icon';
 import Textbox from './Textbox';
@@ -12,6 +12,15 @@ describe('Textbox component', () => {
   const handleOnChange = jest.fn();
   const handleOnBlur = jest.fn();
   const mockEvent = { target: { value: '112' } };
+
+  it('renders as expected', () => {
+    const props = {
+      onChange: handleOnChange,
+      value: 'testvalue'
+    };
+    const tree = renderWithTheme(buildTextbox(props)).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
   it('executes the handleOnChange function when text is changed', () => {
     const props = {

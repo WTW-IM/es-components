@@ -15,7 +15,7 @@ const defaultBorderRadius = '2px';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
-  font-weight: normal;
+  font-weight: 700;
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -280,7 +280,7 @@ Textbox.defaultProps = {
   additionalHelpContent: null,
   prependIconName: undefined,
   appendIconName: undefined,
-  defaultValue: null,
+  defaultValue: undefined,
   customMask: null,
   className: null
 };

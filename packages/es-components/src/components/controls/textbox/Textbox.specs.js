@@ -77,7 +77,7 @@ describe('Textbox component', () => {
     const input = () => instance.find('input');
 
     let describedBy = input().prop('aria-describedby');
-    expect(describedBy).toBeNull();
+    expect(describedBy).toBeUndefined();
 
     instance.setProps({
       id: 'abcdef',

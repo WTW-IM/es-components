@@ -14,7 +14,6 @@ exports[`Textbox component renders as expected 1`] = `
     className="es-textbox__wrapper sc-jTzLTM YUSCx"
   >
     <input
-      aria-describedby={null}
       className="es-textbox__input--default sc-htoDjs klSgFt sc-htpNat elpSZV"
       id="for-Text"
       name="Text"

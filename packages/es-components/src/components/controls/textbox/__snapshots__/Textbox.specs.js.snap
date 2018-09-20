@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textbox component renders as expected 1`] = `
+<label
+  className="es-textbox sc-EHOje icryUU sc-ifAKCX eCsUfx"
+  htmlFor="for-Text"
+>
+  <span
+    className="es-textbox__label sc-bwzfXH fKSGuy"
+  >
+    Text
+  </span>
+  <div
+    className="es-textbox__wrapper sc-jTzLTM YUSCx"
+  >
+    <input
+      className="es-textbox__input--default sc-htoDjs klSgFt sc-htpNat elpSZV"
+      id="for-Text"
+      name="Text"
+      onChange={[MockFunction]}
+      type="text"
+      value="testvalue"
+    />
+  </div>
+</label>
+`;

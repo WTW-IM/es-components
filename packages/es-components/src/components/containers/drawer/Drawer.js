@@ -129,7 +129,7 @@ Drawer.defaultProps = {
   openedIconName: 'minus',
   children: null,
   className: null,
-  defaultActiveKeys: null
+  defaultActiveKeys: undefined
 };
 
 const UncontrolledDrawer = uncontrollable(Drawer, {

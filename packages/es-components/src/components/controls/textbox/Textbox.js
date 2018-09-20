@@ -15,7 +15,7 @@ const defaultBorderRadius = '2px';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
-  font-weight: normal;
+  font-weight: 700;
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -134,7 +134,7 @@ const Textbox = props => {
   } = props;
   const inputName = name || labelText.replace(/\s+/g, '');
   const textboxId = id || `for-${inputName}`;
-  const helpId = additionalHelpContent ? `${textboxId}-help` : null;
+  const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent id={helpId} className="textbox__help">
       {additionalHelpContent}
@@ -274,15 +274,15 @@ Textbox.defaultProps = {
   inline: false,
   maskType: 'none',
   validationState: 'default',
-  name: null,
+  name: undefined,
   id: undefined,
   inputRef: noop,
-  additionalHelpContent: null,
+  additionalHelpContent: undefined,
   prependIconName: undefined,
   appendIconName: undefined,
-  defaultValue: null,
-  customMask: null,
-  className: null
+  defaultValue: undefined,
+  customMask: undefined,
+  className: undefined
 };
 
 export default withTheme(Textbox);

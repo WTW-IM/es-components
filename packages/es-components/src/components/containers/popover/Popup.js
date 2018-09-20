@@ -52,9 +52,8 @@ function Popup({
     getArrowSize(arrowSize),
     hasTitle
   );
-  /* eslint-disable no-unused-expressions */
-  injectGlobal`${arrowStyles}`;
-  /* eslint-enable no-unused-expressions */
+
+  injectGlobal`${arrowStyles}`; // eslint-disable-line no-unused-expressions
 
   let popperObj = (
     <Manager>

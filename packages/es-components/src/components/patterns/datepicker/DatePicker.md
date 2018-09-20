@@ -1,4 +1,4 @@
-Supports many other props demoed <a href="https://hacker0x01.github.io/react-datepicker" target="blank">here</a>.
+Based on <a href="https://hacker0x01.github.io/react-datepicker" target="blank">React-Datepicker</a> and supports most of the props documented there.
 
 Passes props through to the TextBox component for additional functionality (for example: validationState).
 

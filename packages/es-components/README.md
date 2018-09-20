@@ -1,7 +1,7 @@
 Exchange Solutions React components
 ==================
 
-[![Build Status](https://travis-ci.org/WTW-IM/es-components.svg?branch=master)](https://travis-ci.org/WTW-IM/es-components)
+[![Build Status](https://travis-ci.com/WTW-IM/es-components.svg?branch=master)](https://travis-ci.com/WTW-IM/es-components)
 [![npm version](https://badge.fury.io/js/es-components.svg)](https://badge.fury.io/js/es-components)
 
 ## Documentation and Demos

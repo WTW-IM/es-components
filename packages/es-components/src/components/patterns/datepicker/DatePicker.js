@@ -27,30 +27,23 @@ class DateTextbox extends React.Component {
 
 export const DatePicker = props => {
   const {
-    additionalHelpContent,
     children,
-    excludeDates,
-    filterDate,
-    highlightDates,
-    includeDates,
-    labelText,
     name,
     onChange,
-    onChangeRaw,
     onBlur,
     placeholder,
     selectedDate,
-    selectsEnd,
-    selectsStart,
-    startDate,
-    endDate,
     theme,
     ...otherProps
   } = props;
 
   /* eslint-disable react/forbid-foreign-prop-types */
-  const textboxProps = omit(otherProps, ReactDatePicker.propTypes);
-  const datepickerProps = pick(otherProps, ReactDatePicker.propTypes);
+  const datepickerProps = pick(
+    otherProps,
+    Object.keys(ReactDatePicker.propTypes)
+  );
+  const textboxProps = omit(otherProps, Object.keys(ReactDatePicker.propTypes));
+
   /* eslint-enable */
 
   const dpStyles = datepickerStyles(theme.colors, theme.datepickerColors);
@@ -62,8 +55,6 @@ export const DatePicker = props => {
 
   const textbox = (
     <DateTextbox
-      additionalHelpContent={additionalHelpContent}
-      labelText={labelText}
       maskType="date"
       name={name}
       prependIconName="calendar"
@@ -74,19 +65,10 @@ export const DatePicker = props => {
   return (
     <ReactDatePicker
       customInput={textbox}
-      endDate={endDate}
-      excludeDates={excludeDates}
-      filterDate={filterDate}
-      highlightDates={highlightDates}
-      includeDates={includeDates}
       onChange={onChange}
-      onChangeRaw={onChangeRaw}
       onBlur={onBlur}
       placeholderText={placeholder}
       selected={selectedDate}
-      selectsEnd={selectsEnd}
-      selectsStart={selectsStart}
-      startDate={startDate}
       {...datepickerProps}
     >
       {children}

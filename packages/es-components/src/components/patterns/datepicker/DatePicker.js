@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
@@ -12,16 +11,16 @@ import Textbox from '../../controls/textbox/Textbox';
 class DateTextbox extends React.Component {
   static propTypes = Textbox.propTypes; // eslint-disable-line react/forbid-foreign-prop-types
 
-  componentDidMount() {
-    this.inputElement = findDOMNode(this).querySelector('input');
-  }
+  setRef = ref => {
+    this.inputElement = ref;
+  };
 
   focus() {
     this.inputElement.focus();
   }
 
   render() {
-    return <Textbox {...this.props} />;
+    return <Textbox inputRef={this.setRef} {...this.props} />;
   }
 }
 

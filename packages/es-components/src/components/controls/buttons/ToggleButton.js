@@ -108,7 +108,7 @@ ToggleButton.propTypes = {
 
 ToggleButton.defaultProps = {
   styleType: 'default',
-  buttonClasses: null,
+  buttonClasses: undefined,
   isLinkButton: false,
   size: 'default',
   block: false,

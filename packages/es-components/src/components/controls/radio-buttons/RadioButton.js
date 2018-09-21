@@ -122,7 +122,7 @@ RadioButton.propTypes = {
 
 RadioButton.defaultProps = {
   isChecked: false,
-  id: null,
+  id: undefined,
   isDisabled: false,
   inline: false,
   hasError: false

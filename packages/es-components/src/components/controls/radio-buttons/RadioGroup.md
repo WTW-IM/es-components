@@ -1,4 +1,4 @@
-Group radio buttons together using a `RadioGroup` component. Providing a `legendText` prop will render a legend with the grouped radio buttons. Individual options can also be disabled.
+Group radio buttons together using a `RadioGroup` component. Providing a `legendContent` prop will render a legend with the grouped radio buttons. Individual options can also be disabled.
 
 
 ```
@@ -37,7 +37,7 @@ class RadioGroupExample extends React.Component {
     return (
       <RadioGroup
         name="recreational-activities"
-        legendText="Recreational activities"
+        legendContent="Recreational activities"
         radioOptions={options}
         onChange={this.optionChanged}
         value={this.state.value}

@@ -63,8 +63,8 @@ SideNav.defaultProps = {
   useAltStyle: false,
   onItemSelected: noop,
   children: null,
-  selected: null,
-  defaultSelected: null
+  selected: undefined,
+  defaultSelected: undefined
 };
 
 const UncontrolledSideNav = uncontrollable(SideNav, {

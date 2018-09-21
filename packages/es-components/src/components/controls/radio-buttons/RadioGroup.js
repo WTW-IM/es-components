@@ -72,13 +72,13 @@ RadioGroup.propTypes = {
 };
 
 RadioGroup.defaultProps = {
-  legendContent: null,
-  value: null,
+  legendContent: undefined,
+  value: undefined,
   hasError: false,
   disableAllOptions: false,
   inline: false,
   onChange: noop,
-  extraContent: null
+  extraContent: undefined
 };
 
 export default RadioGroup;

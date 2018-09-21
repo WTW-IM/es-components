@@ -106,8 +106,8 @@ Dropdown.propTypes = {
 };
 
 Dropdown.defaultProps = {
-  labelText: null,
-  name: null,
+  labelText: undefined,
+  name: undefined,
   inline: false,
   options: [],
   includeDefaultFirstOption: true,
@@ -117,7 +117,7 @@ Dropdown.defaultProps = {
   validationState: 'default',
   onChange: noop,
   onBlur: noop,
-  className: null
+  className: undefined
 };
 
 export default withTheme(Dropdown);

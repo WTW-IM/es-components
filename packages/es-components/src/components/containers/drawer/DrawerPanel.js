@@ -122,11 +122,11 @@ DrawerPanel.propTypes = {
 DrawerPanel.defaultProps = {
   isOpen: false,
   noPadding: false,
-  className: null,
-  closedIconName: null,
-  titleAside: null,
+  className: undefined,
+  closedIconName: 'minus',
+  titleAside: undefined,
   onItemClick: noop,
-  openedIconName: null
+  openedIconName: 'add'
 };
 
 export default DrawerPanel;

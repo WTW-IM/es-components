@@ -210,7 +210,6 @@ export function Notification({
   ...otherProps
 }) {
   const hasCallsToAction = callsToAction.length > 0;
-  const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
   let bgType = 'base';
   if (useMessageOnlyVariant) {
@@ -236,7 +235,7 @@ export function Notification({
           )}
         </NotificationHeader>
 
-        {hasChildren && (
+        {children && (
           <NotificationContent
             className="es-notification__content"
             hasIcon={includeIcon}

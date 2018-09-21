@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme } from 'styled-enzyme';
+import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 
 import TabPanel from './TabPanel';
 
@@ -16,6 +16,31 @@ describe('Tab panel component', () => {
       </TabPanel.Tab>
     </TabPanel>
   );
+
+  const instanceWithAnnouncer = (
+    <TabPanel optionKeyFunc={x => x.replace(/\s/g, '')}>
+      <TabPanel.Tab
+        name="test1"
+        simpleName="I'm Simple Name!"
+        announcerText="Why am I not just part of simpleName?"
+      >
+        <div>Test Content 1</div>
+      </TabPanel.Tab>
+      <TabPanel.Tab name="test2">
+        <div>Test Content 2</div>
+      </TabPanel.Tab>
+    </TabPanel>
+  );
+
+  it('renders as expected', () => {
+    const tree = renderWithTheme(instanceToRender).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders as expected with aria announcer text', () => {
+    const tree = renderWithTheme(instanceWithAnnouncer).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
   it('Will select first child on load', () => {
     const tabPanelInstance = mountWithTheme(instanceToRender);

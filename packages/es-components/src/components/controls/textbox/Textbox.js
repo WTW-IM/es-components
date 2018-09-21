@@ -15,7 +15,6 @@ const defaultBorderRadius = '2px';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
-  font-weight: 700;
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -75,6 +74,7 @@ const ValidationIcon = styled(Icon)`
 
 const AdditionalHelpContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
+  font-weight: 400;
   margin: 10px 0 20px 0;
   text-transform: none;
 `;

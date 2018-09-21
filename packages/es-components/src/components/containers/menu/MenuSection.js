@@ -34,8 +34,10 @@ const MenuSection = (props, context) => {
       inline={inline}
       isOnlySection={isOnlySection}
     >
-      <StyledHeader aria-label={title}>{title}</StyledHeader>
-      <StyledChildrenContainer>{children}</StyledChildrenContainer>
+      {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}
+      {children && (
+        <StyledChildrenContainer>{children}</StyledChildrenContainer>
+      )}
     </StyledMenuSection>
   );
 };

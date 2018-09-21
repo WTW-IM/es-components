@@ -49,8 +49,7 @@ Fieldset.propTypes = {
 Fieldset.defaultProps = {
   legendContent: null,
   legendClasses: null,
-  children: null,
-  extraContent: null
+  children: null
 };
 
 export default Fieldset;

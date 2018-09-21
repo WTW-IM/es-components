@@ -110,6 +110,7 @@ const Popup = props => {
   const { name, className, children, position, style } = props;
   let TooltipStyled;
   let TooltipArrow;
+  const tooltipId = name ? `es-tooltip__${name}` : undefined;
 
   switch (position) {
     case 'right':
@@ -134,7 +135,7 @@ const Popup = props => {
     <TooltipStyled
       role="tooltip"
       className={classnames('es-tooltip', className)}
-      id={`es-tooltip__${name}`}
+      id={tooltipId}
       style={style}
     >
       <TooltipArrow />
@@ -153,7 +154,7 @@ Popup.propTypes = {
 
 Popup.defaultProps = {
   name: null,
-  className: null,
+  className: undefined,
   position: 'top',
   style: {}
 };

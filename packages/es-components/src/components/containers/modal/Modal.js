@@ -184,7 +184,7 @@ Modal.defaultProps = {
   onHide: noop,
   show: false,
   size: 'medium',
-  children: null
+  children: undefined
 };
 
 Modal.childContextTypes = {

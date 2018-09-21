@@ -181,7 +181,7 @@ NavItem.defaultProps = {
   isDisabled: false,
   isExternalLink: false,
   onClick: noop,
-  children: null,
+  children: undefined,
   className: undefined,
   highlightedId: undefined,
   isHighlighted: false,

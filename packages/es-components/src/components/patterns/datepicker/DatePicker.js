@@ -119,7 +119,7 @@ DatePicker.propTypes = {
 
 DatePicker.defaultProps = {
   additionalHelpContent: undefined,
-  children: null,
+  children: undefined,
   name: undefined,
   onBlur: noop,
   onChangeRaw: noop,

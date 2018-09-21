@@ -114,7 +114,7 @@ Tab.propTypes = {
 Tab.defaultProps = {
   selected: false,
   action: noop,
-  children: null,
+  children: undefined,
   simpleName: '',
   announcerText: ''
 };

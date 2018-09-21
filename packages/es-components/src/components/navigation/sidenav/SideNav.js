@@ -62,7 +62,7 @@ SideNav.propTypes = {
 SideNav.defaultProps = {
   useAltStyle: false,
   onItemSelected: noop,
-  children: null,
+  children: undefined,
   selected: undefined,
   defaultSelected: undefined
 };

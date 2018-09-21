@@ -153,8 +153,8 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  name: null,
-  className: null,
+  name: undefined,
+  className: undefined,
   position: 'top',
   style: {}
 };

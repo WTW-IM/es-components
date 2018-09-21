@@ -55,8 +55,8 @@ MenuSection.propTypes = {
 };
 
 MenuSection.defaultProps = {
-  title: null,
-  children: null,
+  title: undefined,
+  children: undefined,
   isLast: false,
   isFirst: false,
   isOnlySection: false

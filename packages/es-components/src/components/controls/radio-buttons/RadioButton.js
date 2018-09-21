@@ -61,11 +61,11 @@ const RadioDisplay = styled.span`
 export function RadioButton({
   optionText,
   name,
-  isChecked = false,
+  isChecked,
   id,
-  isDisabled = false,
-  inline = true,
-  hasError = false,
+  isDisabled,
+  inline,
+  hasError,
   theme,
   ...radioProps
 }) {
@@ -124,7 +124,7 @@ RadioButton.defaultProps = {
   isChecked: false,
   id: undefined,
   isDisabled: false,
-  inline: false,
+  inline: true,
   hasError: false
 };
 

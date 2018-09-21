@@ -127,7 +127,7 @@ Drawer.defaultProps = {
   closedIconName: 'add',
   onActiveKeysChanged: noop,
   openedIconName: 'minus',
-  children: null,
+  children: undefined,
   className: undefined,
   defaultActiveKeys: undefined
 };

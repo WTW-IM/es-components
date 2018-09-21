@@ -2,7 +2,7 @@
 
 exports[`RadioButton component renders as expected 1`] = `
 <label
-  className="es-radio sc-bwzfXH hExkin sc-bdVaJa lgVfRX"
+  className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
   disabled={false}
   htmlFor="test"
 >

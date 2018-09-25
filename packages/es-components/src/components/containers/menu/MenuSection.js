@@ -34,8 +34,10 @@ const MenuSection = (props, context) => {
       inline={inline}
       isOnlySection={isOnlySection}
     >
-      <StyledHeader aria-label={title}>{title}</StyledHeader>
-      <StyledChildrenContainer>{children}</StyledChildrenContainer>
+      {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}
+      {children && (
+        <StyledChildrenContainer>{children}</StyledChildrenContainer>
+      )}
     </StyledMenuSection>
   );
 };
@@ -53,8 +55,8 @@ MenuSection.propTypes = {
 };
 
 MenuSection.defaultProps = {
-  title: null,
-  children: null,
+  title: undefined,
+  children: undefined,
   isLast: false,
   isFirst: false,
   isOnlySection: false

@@ -5,7 +5,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   className="es-fieldset sc-EHOje gAPZeA"
 >
   <label
-    className="es-radio sc-bwzfXH hZbwsh sc-bdVaJa dZVhcB"
+    className="es-radio sc-bwzfXH fYkhsp sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -26,7 +26,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     Option 0
   </label>
   <label
-    className="es-radio sc-bwzfXH hExkin sc-bdVaJa dZVhcB"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -47,7 +47,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     Option 1
   </label>
   <label
-    className="es-radio sc-bwzfXH hExkin sc-bdVaJa dZVhcB"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >
@@ -81,7 +81,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
   </legend>
   Extra Content!
   <label
-    className="es-radio sc-bwzfXH hExkin sc-bdVaJa dZVhcB"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -102,7 +102,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
     Option 0
   </label>
   <label
-    className="es-radio sc-bwzfXH hExkin sc-bdVaJa dZVhcB"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -123,7 +123,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
     Option 1
   </label>
   <label
-    className="es-radio sc-bwzfXH hExkin sc-bdVaJa dZVhcB"
+    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >

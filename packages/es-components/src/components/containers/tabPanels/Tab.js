@@ -73,11 +73,12 @@ function Tab({
       aria-expanded={selected}
       {...props}
     >
-      {selected && (
-        <AriaAnnouncer id="announcer" aria-live="assertive">
-          {`${simpleName} ${announcerText}`}
-        </AriaAnnouncer>
-      )}
+      {selected &&
+        (simpleName.length > 0 || announcerText.length > 0) && (
+          <AriaAnnouncer id="announcer" aria-live="assertive">
+            {`${simpleName} ${announcerText}`}
+          </AriaAnnouncer>
+        )}
       {name}
     </TabButton>
   );
@@ -113,9 +114,9 @@ Tab.propTypes = {
 Tab.defaultProps = {
   selected: false,
   action: noop,
-  children: null,
-  simpleName: null,
-  announcerText: null
+  children: undefined,
+  simpleName: '',
+  announcerText: ''
 };
 
 export default Tab;

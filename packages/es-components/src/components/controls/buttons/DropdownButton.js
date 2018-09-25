@@ -86,7 +86,7 @@ function focusTrap(node) {
 
   return () => {
     node.removeEventListener('keydown', handleTabFocus);
-  }
+  };
 }
 
 function arrowMovement(node) {
@@ -122,7 +122,7 @@ function arrowMovement(node) {
 
   return () => {
     node.removeEventListener('keydown', handleArrowMovementKeys);
-  }
+  };
 }
 
 export class DropdownButton extends React.Component {
@@ -255,12 +255,12 @@ DropdownButton.propTypes = {
 };
 
 DropdownButton.defaultProps = {
-  buttonValue: null,
-  manualButtonValue: null,
+  buttonValue: undefined,
+  manualButtonValue: undefined,
   shouldUpdateButtonValue: false,
   shouldCloseOnButtonClick: false,
   rootClose: false,
-  className: null
+  className: undefined
 };
 
 export default DropdownButton;

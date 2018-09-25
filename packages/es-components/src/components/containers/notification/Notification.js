@@ -197,12 +197,12 @@ export function Notification({
   type,
   header,
   additionalText,
-  callsToAction = [],
+  callsToAction,
   children,
-  includeIcon = false,
-  dismissable = false,
-  isAlert = false,
-  onDismiss = noop,
+  includeIcon,
+  dismissable,
+  isAlert,
+  onDismiss,
   extraAlert,
   theme,
   useLightVariant,
@@ -210,7 +210,6 @@ export function Notification({
   ...otherProps
 }) {
   const hasCallsToAction = callsToAction.length > 0;
-  const hasChildren = React.Children.count(children) > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
   let bgType = 'base';
   if (useMessageOnlyVariant) {
@@ -236,7 +235,7 @@ export function Notification({
           )}
         </NotificationHeader>
 
-        {hasChildren && (
+        {children && (
           <NotificationContent
             className="es-notification__content"
             hasIcon={includeIcon}
@@ -297,14 +296,14 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-  header: null,
-  additionalText: null,
-  children: null,
+  header: undefined,
+  additionalText: undefined,
+  children: undefined,
   includeIcon: false,
   dismissable: false,
   isAlert: false,
   onDismiss: noop,
-  extraAlert: null,
+  extraAlert: undefined,
   callsToAction: [],
   useLightVariant: false,
   useMessageOnlyVariant: false

@@ -11,10 +11,10 @@ function RadioGroup({
   radioOptions,
   legendContent,
   value,
-  hasError = false,
-  disableAllOptions = false,
-  inline = true,
-  onChange = noop,
+  hasError,
+  disableAllOptions,
+  inline,
+  onChange,
   extraContent
 }) {
   return (
@@ -72,13 +72,13 @@ RadioGroup.propTypes = {
 };
 
 RadioGroup.defaultProps = {
-  legendContent: null,
-  value: null,
+  legendContent: undefined,
+  value: undefined,
   hasError: false,
   disableAllOptions: false,
-  inline: false,
+  inline: true,
   onChange: noop,
-  extraContent: null
+  extraContent: undefined
 };
 
 export default RadioGroup;

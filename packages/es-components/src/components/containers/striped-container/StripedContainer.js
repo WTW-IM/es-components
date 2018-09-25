@@ -40,7 +40,7 @@ StripedContainer.propTypes = {
 };
 
 StripedContainer.defaultProps = {
-  children: null
+  children: undefined
 };
 
 export default withTheme(StripedContainer);

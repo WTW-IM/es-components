@@ -118,21 +118,21 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
-  additionalHelpContent: null,
-  children: null,
-  name: null,
+  additionalHelpContent: undefined,
+  children: undefined,
+  name: undefined,
   onBlur: noop,
   onChangeRaw: noop,
   placeholder: 'mm/dd/yyyy',
-  selectedDate: null,
+  selectedDate: undefined,
   excludeDates: undefined,
   highlightDates: undefined,
   includeDates: undefined,
   filterDate: undefined,
   selectsStart: false,
   selectsEnd: false,
-  startDate: null,
-  endDate: null,
+  startDate: undefined,
+  endDate: undefined,
   validationState: 'default'
 };
 

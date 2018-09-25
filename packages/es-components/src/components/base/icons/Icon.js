@@ -52,7 +52,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  className: null,
+  className: undefined,
   size: undefined
 };
 

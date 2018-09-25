@@ -89,10 +89,10 @@ const CheckboxText = styled.span`
 function Checkbox({
   labelText,
   value,
-  isChecked = false,
-  isDisabled = false,
-  onClick = noop,
-  onChange = noop,
+  isChecked,
+  isDisabled,
+  onClick,
+  onChange,
   ariaLabel,
   theme
 }) {
@@ -141,8 +141,8 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  value: '',
-  ariaLabel: null,
+  value: undefined,
+  ariaLabel: undefined,
   isChecked: false,
   onClick: noop,
   onChange: noop,

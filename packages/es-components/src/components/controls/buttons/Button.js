@@ -124,12 +124,13 @@ export function Button({
   handleOnClick,
   children,
   buttonClasses,
-  styleType = 'default',
-  isLinkButton = false,
-  size = 'default',
-  block = false,
-  isOutline = false,
+  styleType,
+  isLinkButton,
+  size,
+  block,
+  isOutline,
   theme,
+  name,
   ...buttonProps
 }) {
   const buttonSize = theme.buttonSizes[size];
@@ -137,6 +138,7 @@ export function Button({
   const sharedProps = {
     block,
     buttonSize,
+    name,
     onClick: handleOnClick,
     ...otherProps
   };
@@ -234,6 +236,16 @@ Button.propTypes = {
   theme: PropTypes.object,
   /** The name of the button to be sent with the form. */
   name: PropTypes.string
+};
+
+Button.defaultProps = {
+  buttonClasses: undefined,
+  name: undefined,
+  styleType: 'default',
+  isLinkButton: false,
+  block: false,
+  isOutline: false,
+  size: 'default'
 };
 
 export default withTheme(Button);

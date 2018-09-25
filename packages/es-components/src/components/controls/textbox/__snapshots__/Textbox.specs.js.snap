@@ -2,7 +2,7 @@
 
 exports[`Textbox component renders as expected 1`] = `
 <label
-  className="es-textbox sc-EHOje icryUU sc-ifAKCX eCsUfx"
+  className="es-textbox sc-EHOje cOnRBL sc-ifAKCX fRlZAL"
   htmlFor="for-Text"
 >
   <span

@@ -101,10 +101,10 @@ Menu.propTypes = {
 Menu.defaultProps = {
   rootClose: false,
   openButtonType: 'default',
-  className: null,
+  className: undefined,
   inline: false,
   hasBackdrop: false,
-  headerContent: null
+  headerContent: undefined
 };
 
 export default Menu;

@@ -54,7 +54,7 @@ ModalHeader.propTypes = {
 
 ModalHeader.defaultProps = {
   hideCloseButton: false,
-  children: null
+  children: undefined
 };
 
 ModalHeader.contextTypes = {

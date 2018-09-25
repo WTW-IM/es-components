@@ -8,7 +8,7 @@ const Label = styled.label`
   margin-bottom: 20px;
   flex: ${props => (props.inline ? 'auto' : 'initial')};
   font-size: ${props => props.theme.sizes.baseFontSize};
-  font-weight: bold;
+  font-weight: 700;
 
   &[disabled] {
     cursor: not-allowed;

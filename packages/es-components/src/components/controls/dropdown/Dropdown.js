@@ -4,8 +4,7 @@ import { noop } from 'lodash';
 import { withTheme } from 'styled-components';
 import classnames from 'classnames';
 
-import Label from '../Label';
-import { LabelText, SelectBase } from '../BaseControls';
+import { Label, LabelText, SelectBase } from '../BaseControls';
 
 const optionsShape = {
   /** Text to display in drop down */

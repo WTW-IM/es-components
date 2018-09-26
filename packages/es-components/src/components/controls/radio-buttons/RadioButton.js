@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-import Label from '../Label';
+import { Label } from '../BaseControls';
 import getRadioFillVariables from './radio-fill-variables';
 
 function radioFill(color) {

@@ -6,15 +6,26 @@ import MaskedInput from 'react-text-mask';
 import classnames from 'classnames';
 
 import Icon from '../../base/icons/Icon';
-import { LabelText, InputBase } from '../BaseControls';
-import Label from '../Label';
+import { Label, LabelText, InputBase } from '../BaseControls';
 import inputMaskType from './inputMaskType';
+import genId from '../../util/generateAlphaName';
 
 const defaultInputPad = '12px';
 const defaultBorderRadius = '2px';
 
 const TextBoxLabel = styled(Label)`
   flex-basis: 50%;
+  font-weight: 400;
+`;
+
+const StyledLabelText = styled(LabelText)`
+  font-weight: 700;
+`;
+
+const OptionalTag = styled.span`
+  font-size: smaller;
+  font-weight: 400;
+  color: ${props => props.theme.colors.gray6};
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -74,8 +85,7 @@ const ValidationIcon = styled(Icon)`
 
 const AdditionalHelpContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
-  font-weight: 400;
-  margin: 10px 0 20px 0;
+  margin: 5px 0 10px 0;
   text-transform: none;
 `;
 
@@ -130,11 +140,12 @@ const Textbox = props => {
     customMask,
     theme,
     className,
+    optional,
     ...additionalTextProps
   } = props;
-  const inputName = name || labelText.replace(/\s+/g, '');
-  const textboxId = id || `for-${inputName}`;
-  const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
+  const uId = genId();
+  const textboxId = id || uId;
+  const helpId = additionalHelpContent ? `${uId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent id={helpId} className="textbox__help">
       {additionalHelpContent}
@@ -182,9 +193,10 @@ const Textbox = props => {
       color={theme.validationTextColor[validationState]}
       inline={inline}
     >
-      <LabelText className="es-textbox__label" inline={inline}>
+      <StyledLabelText className="es-textbox__label" inline={inline}>
         {labelText}
-      </LabelText>
+        {optional && <OptionalTag> Optional</OptionalTag>}
+      </StyledLabelText>
       <InputWrapper className="es-textbox__wrapper">
         {hasPrepend && (
           <Prepend addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
@@ -197,7 +209,7 @@ const Textbox = props => {
           hasAppend={hasAppend}
           hasPrepend={hasPrepend}
           id={textboxId}
-          name={inputName}
+          name={name}
           hasValidationIcon={hasValidationIcon}
           type="text"
           {...maskArgs}
@@ -262,6 +274,8 @@ Textbox.propTypes = {
     pipe: PropTypes.func,
     showMask: PropTypes.bool
   }),
+  /** Displays additional label text denoting this field is 'optional' */
+  optional: PropTypes.bool,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
@@ -282,7 +296,8 @@ Textbox.defaultProps = {
   appendIconName: undefined,
   defaultValue: undefined,
   customMask: undefined,
-  className: undefined
+  className: undefined,
+  optional: false
 };
 
 export default withTheme(Textbox);

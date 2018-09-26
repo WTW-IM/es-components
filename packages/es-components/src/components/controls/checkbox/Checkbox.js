@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { noop } from 'lodash';
 
-import Label from '../Label';
+import { Label } from '../BaseControls';
 
 /* eslint-disable no-confusing-arrow */
 const CheckboxLabel = styled(Label)`

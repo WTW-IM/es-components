@@ -1,6 +1,20 @@
 // Note: Any component importing these will likely need a ThemeProvider wrapper
 import styled, { css } from 'styled-components';
 
+export const Label = styled.label`
+  color: ${props => props.color || 'inherit'};
+  cursor: pointer;
+  display: ${props => (props.inline ? 'flex' : 'block')};
+  margin-bottom: 20px;
+  flex: ${props => (props.inline ? 'auto' : 'initial')};
+  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-weight: 700;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+`;
+
 export const LabelText = styled.span`
   align-self: ${props => (props.inline ? 'center' : 'initial')};
   color: ${props => props.foregroundColor || 'inherit'};

@@ -35,6 +35,16 @@ describe('Textbox component', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('includes "optional" text when optional flag is provided', () => {
+    const props = {
+      onChange: handleOnChange,
+      value: 'testvalue',
+      optional: true
+    };
+    const tree = renderWithTheme(buildTextbox(props)).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   it('executes the handleOnChange function when text is changed', () => {
     const props = {
       onChange: handleOnChange

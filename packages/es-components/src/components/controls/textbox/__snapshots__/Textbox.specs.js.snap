@@ -24,6 +24,35 @@ exports[`Textbox component generates id if no id is provided 1`] = `
 </label>
 `;
 
+exports[`Textbox component includes "optional" text when optional flag is provided 1`] = `
+<label
+  className="es-textbox sc-EHOje YOrxh sc-bwzfXH chwbqs"
+  htmlFor="abcdef"
+>
+  <span
+    className="es-textbox__label sc-bZQynM bVIbJX sc-htpNat iykjZL"
+  >
+    Text
+    <span
+      className="sc-gzVnrw gmYhJt"
+    >
+       Optional
+    </span>
+  </span>
+  <div
+    className="es-textbox__wrapper sc-jzJRlG dVsVQw"
+  >
+    <input
+      className="es-textbox__input--default sc-iwsKbI gdXscJ sc-bxivhb kvEbwS"
+      id="abcdef"
+      onChange={[MockFunction]}
+      type="text"
+      value="testvalue"
+    />
+  </div>
+</label>
+`;
+
 exports[`Textbox component renders as expected 1`] = `
 <label
   className="es-textbox sc-EHOje YOrxh sc-bwzfXH chwbqs"

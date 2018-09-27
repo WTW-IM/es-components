@@ -6,6 +6,8 @@ import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 import Icon from '../../base/icons/Icon';
 import Textbox from './Textbox';
 
+jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
+
 const buildTextbox = props => <Textbox labelText="Text" {...props} />;
 
 describe('Textbox component', () => {
@@ -14,6 +16,17 @@ describe('Textbox component', () => {
   const mockEvent = { target: { value: '112' } };
 
   it('renders as expected', () => {
+    const props = {
+      onChange: handleOnChange,
+      value: 'testvalue',
+      id: 'test-id',
+      name: 'test-textbox'
+    };
+    const tree = renderWithTheme(buildTextbox(props)).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('generates id if no id is provided', () => {
     const props = {
       onChange: handleOnChange,
       value: 'testvalue'

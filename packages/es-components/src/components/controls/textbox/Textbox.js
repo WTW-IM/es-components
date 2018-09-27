@@ -23,9 +23,9 @@ const StyledLabelText = styled(LabelText)`
 `;
 
 const OptionalTag = styled.span`
-  font-size: smaller;
+  font-size: 16px;
   font-weight: 400;
-  color: ${props => props.theme.colors.gray6};
+  color: ${props => props.theme.colors.gray7};
 `;
 
 // apply styles to masked input, but remove props it doesn't use

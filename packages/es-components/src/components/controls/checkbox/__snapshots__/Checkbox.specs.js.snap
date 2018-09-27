@@ -2,23 +2,23 @@
 
 exports[`Checkbox renders as expected 1`] = `
 <label
-  className="es-checkbox sc-bwzfXH iaOWyJ sc-bdVaJa lgVfRX"
+  className="es-checkbox sc-ifAKCX jDGsD sc-bdVaJa lgVfRX"
   disabled={true}
 >
   <input
     checked={true}
-    className="sc-htpNat llDmUy"
+    className="sc-EHOje bvgZQP"
     disabled={true}
     onChange={[Function]}
     onClick={[Function]}
     type="checkbox"
   />
   <span
-    className="es-checkbox__fill sc-bxivhb kynQKu"
+    className="es-checkbox__fill sc-bZQynM bwynZT"
   />
   <span
     aria-hidden={false}
-    className="es-checkbox__text sc-ifAKCX kWaOTi"
+    className="es-checkbox__text sc-gzVnrw LDuPJ"
   >
     Render test
   </span>

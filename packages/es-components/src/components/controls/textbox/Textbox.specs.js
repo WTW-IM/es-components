@@ -35,11 +35,11 @@ describe('Textbox component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('includes "optional" text when optional flag is provided', () => {
+  it('includes additional text when labelSuffix is provided', () => {
     const props = {
       onChange: handleOnChange,
       value: 'testvalue',
-      optional: true
+      labelSuffix: <span>Optional</span>
     };
     const tree = renderWithTheme(buildTextbox(props)).toJSON();
     expect(tree).toMatchSnapshot();

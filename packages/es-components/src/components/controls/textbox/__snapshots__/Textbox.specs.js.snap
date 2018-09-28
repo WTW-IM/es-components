@@ -24,7 +24,7 @@ exports[`Textbox component generates id if no id is provided 1`] = `
 </label>
 `;
 
-exports[`Textbox component includes "optional" text when optional flag is provided 1`] = `
+exports[`Textbox component includes additional text when labelSuffix is provided 1`] = `
 <label
   className="es-textbox sc-EHOje YOrxh sc-bwzfXH chwbqs"
   htmlFor="abcdef"
@@ -34,9 +34,11 @@ exports[`Textbox component includes "optional" text when optional flag is provid
   >
     Text
     <span
-      className="sc-gzVnrw iijeCS"
+      className="sc-gzVnrw psQJc"
     >
-       Optional
+      <span>
+        Optional
+      </span>
     </span>
   </span>
   <div

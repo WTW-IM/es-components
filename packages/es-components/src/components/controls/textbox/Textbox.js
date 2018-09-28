@@ -22,10 +22,11 @@ const StyledLabelText = styled(LabelText)`
   font-weight: 700;
 `;
 
-const OptionalTag = styled.span`
+const LabelSuffix = styled.span`
   color: ${props => props.theme.colors.gray7};
   font-size: 16px;
   font-weight: 400;
+  margin-left: 0.4em;
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -140,7 +141,7 @@ const Textbox = props => {
     customMask,
     theme,
     className,
-    optional,
+    labelSuffix,
     ...additionalTextProps
   } = props;
   const textboxId = id || genId();
@@ -194,7 +195,7 @@ const Textbox = props => {
     >
       <StyledLabelText className="es-textbox__label" inline={inline}>
         {labelText}
-        {optional && <OptionalTag> Optional</OptionalTag>}
+        {labelSuffix && <LabelSuffix>{labelSuffix}</LabelSuffix>}
       </StyledLabelText>
       <InputWrapper className="es-textbox__wrapper">
         {hasPrepend && (
@@ -273,8 +274,11 @@ Textbox.propTypes = {
     pipe: PropTypes.func,
     showMask: PropTypes.bool
   }),
-  /** Displays additional label text denoting this field is 'optional' */
-  optional: PropTypes.bool,
+  /**
+   * Displays additional content after the labelText,
+   * used for denoting optional fields or other states
+   */
+  labelSuffix: PropTypes.element,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
@@ -296,7 +300,7 @@ Textbox.defaultProps = {
   defaultValue: undefined,
   customMask: undefined,
   className: undefined,
-  optional: false
+  labelSuffix: undefined
 };
 
 export default withTheme(Textbox);

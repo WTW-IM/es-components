@@ -34,7 +34,7 @@ exports[`Textbox component includes "optional" text when optional flag is provid
   >
     Text
     <span
-      className="sc-gzVnrw gmYhJt"
+      className="sc-gzVnrw iijeCS"
     >
        Optional
     </span>

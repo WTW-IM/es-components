@@ -23,9 +23,9 @@ const StyledLabelText = styled(LabelText)`
 `;
 
 const OptionalTag = styled.span`
+  color: ${props => props.theme.colors.gray7};
   font-size: 16px;
   font-weight: 400;
-  color: ${props => props.theme.colors.gray7};
 `;
 
 // apply styles to masked input, but remove props it doesn't use
@@ -143,9 +143,8 @@ const Textbox = props => {
     optional,
     ...additionalTextProps
   } = props;
-  const uId = genId();
-  const textboxId = id || uId;
-  const helpId = additionalHelpContent ? `${uId}-help` : undefined;
+  const textboxId = id || genId();
+  const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent id={helpId} className="textbox__help">
       {additionalHelpContent}

@@ -5,11 +5,7 @@ exports[`RadioGroup component renders as expected 1`] = `
   className="es-fieldset sc-htoDjs kAbmqn"
 >
   <label
-<<<<<<< HEAD
-    className="es-radio sc-bwzfXH fYkhsp sc-bdVaJa yehor"
-=======
-    className="es-radio sc-ifAKCX gnOBlI sc-bdVaJa lgVfRX"
->>>>>>> updated tests, updated font CDN link
+    className="es-radio sc-ifAKCX fLKiDU sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -30,11 +26,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     Option 0
   </label>
   <label
-<<<<<<< HEAD
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
-=======
-    className="es-radio sc-ifAKCX bHUjZr sc-bdVaJa lgVfRX"
->>>>>>> updated tests, updated font CDN link
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -55,11 +47,7 @@ exports[`RadioGroup component renders as expected 1`] = `
     Option 1
   </label>
   <label
-<<<<<<< HEAD
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
-=======
-    className="es-radio sc-ifAKCX bHUjZr sc-bdVaJa lgVfRX"
->>>>>>> updated tests, updated font CDN link
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >
@@ -93,7 +81,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
   </legend>
   Extra Content!
   <label
-    className="es-radio sc-ifAKCX bHUjZr sc-bdVaJa lgVfRX"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
@@ -114,7 +102,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
     Option 0
   </label>
   <label
-    className="es-radio sc-ifAKCX bHUjZr sc-bdVaJa lgVfRX"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
@@ -135,7 +123,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
     Option 1
   </label>
   <label
-    className="es-radio sc-ifAKCX bHUjZr sc-bdVaJa lgVfRX"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >

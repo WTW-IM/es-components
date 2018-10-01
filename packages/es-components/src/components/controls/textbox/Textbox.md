@@ -55,6 +55,15 @@ function handleOnBlur(event) {
 />
 ```
 
+The `labelSuffix` prop will display additional styled content after the label text.
+
+```
+<Textbox
+  labelText="Middle name"
+  labelSuffix="Optional"
+/>
+```
+
 Adding an `additionalHelpContent` prop will provide additional help content underneath the text box.
 
 ```

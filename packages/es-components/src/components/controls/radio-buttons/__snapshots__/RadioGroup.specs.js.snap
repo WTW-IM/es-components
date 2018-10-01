@@ -2,16 +2,16 @@
 
 exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
-  className="es-fieldset sc-EHOje gAPZeA"
+  className="es-fieldset sc-htoDjs kAbmqn"
 >
   <label
-    className="es-radio sc-bwzfXH fYkhsp sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fLKiDU sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
       checked={true}
-      className="sc-htpNat kOMTgB"
+      className="sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -20,19 +20,19 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={0}
     />
     <span
-      className="es-radio__fill sc-bxivhb bwNXgt"
+      className="es-radio__fill sc-bZQynM cnpyBY"
       fill="#069"
     />
     Option 0
   </label>
   <label
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
       checked={false}
-      className="sc-htpNat kOMTgB"
+      className="sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -41,19 +41,19 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={1}
     />
     <span
-      className="es-radio__fill sc-bxivhb jNoHRi"
+      className="es-radio__fill sc-bZQynM cFxFaC"
       fill="#fff"
     />
     Option 1
   </label>
   <label
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
       checked={false}
-      className="sc-htpNat kOMTgB"
+      className="sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -62,7 +62,7 @@ exports[`RadioGroup component renders as expected 1`] = `
       value={2}
     />
     <span
-      className="es-radio__fill sc-bxivhb jNoHRi"
+      className="es-radio__fill sc-bZQynM cFxFaC"
       fill="#fff"
     />
     Option 2
@@ -72,22 +72,22 @@ exports[`RadioGroup component renders as expected 1`] = `
 
 exports[`RadioGroup component renders as expected with legend text and extraContent 1`] = `
 <fieldset
-  className="es-fieldset sc-EHOje gAPZeA"
+  className="es-fieldset sc-htoDjs kAbmqn"
 >
   <legend
-    className="es-fieldset__legend sc-ifAKCX kkKCeA"
+    className="es-fieldset__legend sc-gzVnrw fEWCfG"
   >
     Test legend
   </legend>
   Extra Content!
   <label
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
       checked={false}
-      className="sc-htpNat kOMTgB"
+      className="sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -96,19 +96,19 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
       value={0}
     />
     <span
-      className="es-radio__fill sc-bxivhb jNoHRi"
+      className="es-radio__fill sc-bZQynM cFxFaC"
       fill="#fff"
     />
     Option 0
   </label>
   <label
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
       checked={false}
-      className="sc-htpNat kOMTgB"
+      className="sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -117,19 +117,19 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
       value={1}
     />
     <span
-      className="es-radio__fill sc-bxivhb jNoHRi"
+      className="es-radio__fill sc-bZQynM cFxFaC"
       fill="#fff"
     />
     Option 1
   </label>
   <label
-    className="es-radio sc-bwzfXH iWvndJ sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
       checked={false}
-      className="sc-htpNat kOMTgB"
+      className="sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -138,7 +138,7 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
       value={2}
     />
     <span
-      className="es-radio__fill sc-bxivhb jNoHRi"
+      className="es-radio__fill sc-bZQynM cFxFaC"
       fill="#fff"
     />
     Option 2

@@ -134,11 +134,13 @@ class DropdownExample extends React.Component {
 
   render() {
     const { selectedOption } = this.state;
+    const message = `When validationState is set to ${selectedOption.optionText}.`;
     return (
       <Dropdown
         labelText={selectedOption.optionText}
         options={options}
         validationState={selectedOption.optionValue}
+        additionalHelpContent={message}
         onChange={this.optionChanged}
         value={selectedOption.optionValue}
       />

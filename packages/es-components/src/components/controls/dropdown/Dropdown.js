@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { withTheme } from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import classnames from 'classnames';
 
 import { Label, LabelText, SelectBase } from '../BaseControls';
@@ -11,6 +11,14 @@ const optionsShape = {
   optionText: PropTypes.string.isRequired,
   optionValue: PropTypes.string.isRequired
 };
+
+const AdditionalHelpContent = styled.div`
+  color: ${props => props.theme.colors[props.validationState]};
+  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-weight: 400;
+  margin: 10px 0 10px 0;
+  text-transform: none;
+`;
 
 function Dropdown({
   labelText,
@@ -25,9 +33,20 @@ function Dropdown({
   onChange,
   onBlur,
   validationState,
+  additionalHelpContent,
   theme,
   ...rest
 }) {
+  const helpId = additionalHelpContent ? `${name}-help` : undefined;
+  const additionalHelp = additionalHelpContent && (
+    <AdditionalHelpContent
+      id={helpId}
+      className="dropdown__help"
+      validationState={validationState}
+    >
+      {additionalHelpContent}
+    </AdditionalHelpContent>
+  );
   const firstOption = includeDefaultFirstOption ? (
     <option disabled={isDefaultFirstOptionDisabled} value="">
       {firstOptionDisplayText}
@@ -68,6 +87,7 @@ function Dropdown({
         {firstOption}
         {selectOptions}
       </SelectBase>
+      {additionalHelp}
     </Label>
   );
 }
@@ -89,6 +109,8 @@ Dropdown.propTypes = {
   value: PropTypes.string,
   /** Display label and text with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
+  /** Content to display underneath the radio group */
+  additionalHelpContent: PropTypes.node,
   /** Function to execute when the dropdown value changes */
   onChange: PropTypes.func,
   /** Function to execute when the dropdown loses focus */
@@ -114,6 +136,7 @@ Dropdown.defaultProps = {
   firstOptionDisplayText: '--',
   value: '',
   validationState: 'default',
+  additionalHelpContent: undefined,
   onChange: noop,
   onBlur: noop,
   className: undefined

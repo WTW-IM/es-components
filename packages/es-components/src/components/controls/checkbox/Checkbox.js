@@ -8,15 +8,17 @@ import { Label } from '../BaseControls';
 /* eslint-disable no-confusing-arrow */
 const CheckboxLabel = styled(Label)`
   font-size: ${props => props.theme.sizes.baseFontSize};
-  font-weight: normal;
+  font-weight: bold;
   text-transform: none;
   display: flex;
+  flex-flow: wrap;
+  color: ${props => props.theme.colors[props.validationState]};
 
   > .es-checkbox__fill {
     background-color: ${({ isChecked, theme }) =>
       isChecked ? theme.colors.info : theme.colors.white};
-    border-color: ${({ isChecked, theme }) =>
-      isChecked ? theme.colors.info : theme.colors.gray6};
+    border-color: ${({ isChecked, theme, validationState }) =>
+      isChecked ? theme.colors.info : theme.colors[validationState]};
 
     &:after {
       border-color: ${props => props.theme.colors.white};
@@ -86,7 +88,16 @@ const CheckboxText = styled.span`
   margin-left: 5px;
 `;
 
+const AdditionalHelpContent = styled.div`
+  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-weight: 400;
+  margin: 10px 0 10px 0;
+  text-transform: none;
+  flex-basis: 100%;
+`;
+
 function Checkbox({
+  name,
   labelText,
   value,
   isChecked,
@@ -94,14 +105,27 @@ function Checkbox({
   onClick,
   onChange,
   ariaLabel,
+  validationState,
+  additionalHelpContent,
   theme
 }) {
+  const helpId = additionalHelpContent ? `${name}-help` : undefined;
+  const additionalHelp = additionalHelpContent && (
+    <AdditionalHelpContent
+      id={helpId}
+      className="checkbox__help"
+      validationState={validationState}
+    >
+      {additionalHelpContent}
+    </AdditionalHelpContent>
+  );
   /* eslint-disable jsx-a11y/use-onblur-not-onchange */
   return (
     <CheckboxLabel
       className="es-checkbox"
       disabled={isDisabled}
       isChecked={isChecked}
+      validationState={validationState}
     >
       <CheckboxInput
         type="checkbox"
@@ -117,12 +141,15 @@ function Checkbox({
       <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
         {labelText}
       </CheckboxText>
+      {additionalHelp}
     </CheckboxLabel>
   );
   /* eslint-enable */
 }
 
 Checkbox.propTypes = {
+  /** The name of the checkbox */
+  name: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Sets the aria-label attribute */
@@ -133,6 +160,10 @@ Checkbox.propTypes = {
   /* Function to execute when a checkbox checked state is changed */
   onChange: PropTypes.func,
   isDisabled: PropTypes.bool,
+  /** Display checkbox with contextual state colorings */
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
+  /** Content to display underneath the check box */
+  additionalHelpContent: PropTypes.node,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
@@ -146,7 +177,9 @@ Checkbox.defaultProps = {
   isChecked: false,
   onClick: noop,
   onChange: noop,
-  isDisabled: false
+  isDisabled: false,
+  validationState: 'default',
+  additionalHelpContent: undefined
 };
 
 export default withTheme(Checkbox);

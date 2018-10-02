@@ -56,3 +56,56 @@ class CheckboxExample extends React.Component {
 
 <CheckboxExample />
 ```
+### Validation States
+```
+class CheckboxExample extends React.Component {
+  constructor() {
+    this.state = { 
+      isAppleChecked: false,
+      isBananaChecked: false,
+      isStrawberryChecked: false
+    }
+
+    this.toggleCheckbox = this.toggleCheckbox.bind(this);
+  }
+
+  toggleCheckbox(key) {
+    return event => {
+      this.setState({ [key]: event.target.checked });
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Checkbox 
+          labelText="Apple"
+          value="Apple"
+          isChecked={this.state.isAppleChecked}
+          onClick={this.toggleCheckbox('isAppleChecked')}
+          validationState="success"
+          additionalHelpContent="When validationState is set to success."
+        />
+        <Checkbox 
+          labelText="Banana"
+          value="Banana"
+          isChecked={this.state.isBananaChecked}
+          onClick={this.toggleCheckbox('isBananaChecked')}
+          validationState="warning"
+          additionalHelpContent="When validationState is set to warning."
+        />
+        <Checkbox 
+          labelText="Strawberry"
+          value="Strawberry"
+          isChecked={this.state.isStrawberryChecked}
+          onClick={this.toggleCheckbox('isStrawberryChecked')}
+          validationState="danger"
+          additionalHelpContent="When validationState is set to danger."
+        />
+      </div>
+    );
+  }
+}
+
+<CheckboxExample />
+```

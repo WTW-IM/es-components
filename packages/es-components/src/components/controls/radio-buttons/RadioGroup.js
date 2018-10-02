@@ -1,25 +1,54 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
+import styled, { withTheme } from 'styled-components';
 
 import Fieldset from '../../containers/fieldset/Fieldset';
 
 import RadioButton from './RadioButton';
+
+const RadioFieldset = styled(Fieldset)`
+  legend {
+    border: none;
+    font-size: 22px;
+    margin-bottom: 0;
+  }
+`;
+
+const AdditionalHelpContent = styled.div`
+  color: ${props => props.theme.colors[props.validationState]};
+  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-weight: 400;
+  margin: 10px 0 10px 0;
+  text-transform: none;
+`;
 
 function RadioGroup({
   name,
   radioOptions,
   legendContent,
   value,
-  hasError,
   disableAllOptions,
   inline,
   onChange,
-  extraContent
+  introContent,
+  validationState,
+  additionalHelpContent,
+  theme
 }) {
+  const helpId = additionalHelpContent ? `${name}-help` : undefined;
+  const additionalHelp = additionalHelpContent && (
+    <AdditionalHelpContent
+      id={helpId}
+      className="radiogroup__help"
+      validationState={validationState}
+    >
+      {additionalHelpContent}
+    </AdditionalHelpContent>
+  );
   return (
-    <Fieldset legendContent={legendContent}>
-      {extraContent}
+    <RadioFieldset legendContent={legendContent}>
+      {introContent}
       {radioOptions.map((config, index) => {
         const radioId = `${name}-option-${index + 1}`;
         const isChecked = config.optionValue === value;
@@ -27,17 +56,18 @@ function RadioGroup({
         const radioProps = {
           name,
           isChecked,
-          hasError,
           isDisabled,
           inline,
           onChange,
+          validationState,
           id: radioId,
           optionText: config.optionText,
           value: config.optionValue
         };
         return <RadioButton key={radioId} {...radioProps} />;
       })}
-    </Fieldset>
+      {additionalHelp}
+    </RadioFieldset>
   );
 }
 
@@ -57,28 +87,36 @@ RadioGroup.propTypes = {
   radioOptions: PropTypes.arrayOf(PropTypes.shape(radioOptionShape)).isRequired,
   /** Selected option for the radio group */
   value: PropTypes.any,
-  /** Display all radio buttons in an errored state */
-  hasError: PropTypes.bool,
+  /** Display all radio options with contextual state colorings */
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /** Disable all radio buttons */
   disableAllOptions: PropTypes.bool,
   /** Display the radio buttons inline */
   inline: PropTypes.bool,
   /** Function to execute when a radio button is selected */
   onChange: PropTypes.func,
-  /** Extra content that can be rendered after the Legend but before the radio buttons, allows
+  /** Content to display underneath the radio group */
+  additionalHelpContent: PropTypes.node,
+  /** Intro content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/Radio button relationship.
    */
-  extraContent: PropTypes.node
+  introContent: PropTypes.node,
+  /**
+   * Theme object used by the ThemeProvider,
+   * automatically passed by any parent component using a ThemeProvider
+   */
+  theme: PropTypes.object.isRequired
 };
 
 RadioGroup.defaultProps = {
   legendContent: undefined,
   value: undefined,
-  hasError: false,
   disableAllOptions: false,
   inline: true,
   onChange: noop,
-  extraContent: undefined
+  introContent: undefined,
+  validationState: 'default',
+  additionalHelpContent: undefined
 };
 
-export default RadioGroup;
+export default withTheme(RadioGroup);

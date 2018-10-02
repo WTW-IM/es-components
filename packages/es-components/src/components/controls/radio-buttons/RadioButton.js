@@ -21,18 +21,23 @@ function radioFill(color) {
 }
 
 const RadioLabel = styled(Label)`
-  color: ${props => (props.error ? props.theme.colors.danger : 'inherit')};
+  color: ${props => props.theme.colors[props.validationState]};
   display: ${props => (props.inline ? 'inline-flex' : 'flex')};
   font-size: ${props => props.theme.sizes.baseFontSize};
-  font-weight: normal;
-  margin-bottom: 18px;
-  margin-right: ${props => (props.inline ? '20px' : 'initial')};
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-right: ${props => (props.inline ? '15px' : 'initial')};
   position: relative;
   padding: 5px 0;
   text-transform: none;
 
   &:hover .es-radio__fill:before {
     ${props => radioFill(props.hoverFillColor)};
+  }
+
+  @media (max-width: ${props => props.theme.screenSize.phone}) {
+    display: flex;
+    margin-right: initial;
   }
 `;
 
@@ -65,14 +70,14 @@ export function RadioButton({
   id,
   isDisabled,
   inline,
-  hasError,
+  validationState,
   theme,
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
     isChecked,
     isDisabled,
-    hasError,
+    validationState,
     theme.colors
   );
   const radioDisplayFill = isChecked ? fill : theme.colors.white;
@@ -82,8 +87,9 @@ export function RadioButton({
     disabled: isDisabled,
     htmlFor: id,
     hoverFillColor: hover,
-    error: hasError
+    validationState
   };
+  const classNameState = `es-radio__input--${validationState}`;
 
   return (
     <RadioLabel className="es-radio" {...labelProps}>
@@ -93,6 +99,7 @@ export function RadioButton({
         id={id}
         disabled={isDisabled}
         checked={isChecked}
+        className={classNameState}
         {...radioProps}
       />
       <RadioDisplay
@@ -112,7 +119,8 @@ RadioButton.propTypes = {
   id: PropTypes.string,
   isDisabled: PropTypes.bool,
   inline: PropTypes.bool,
-  hasError: PropTypes.bool,
+  /** Display radio button with contextual state colorings */
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
@@ -125,7 +133,7 @@ RadioButton.defaultProps = {
   id: undefined,
   isDisabled: false,
   inline: true,
-  hasError: false
+  validationState: 'default'
 };
 
 export default withTheme(RadioButton);

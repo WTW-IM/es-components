@@ -86,7 +86,8 @@ const ValidationIcon = styled(Icon)`
 
 const AdditionalHelpContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
-  margin: 5px 0 10px 0;
+  font-weight: 400;
+  margin: 10px 0 10px 0;
   text-transform: none;
 `;
 

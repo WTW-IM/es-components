@@ -128,6 +128,7 @@ function Checkbox({
       validationState={validationState}
     >
       <CheckboxInput
+        name={name}
         type="checkbox"
         disabled={isDisabled}
         value={value}

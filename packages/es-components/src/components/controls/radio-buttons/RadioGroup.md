@@ -170,9 +170,10 @@ class RadioGroupExample extends React.Component {
 
   render() {
     const message = `When validationState is set to ${this.props.validationState}.`;
+    const name = `transports-${this.props.validationState}`;
     return (
       <RadioGroup
-        name="transports"
+        name={name}
         legendContent="Mode of Transportation"
         radioOptions={options}
         onChange={this.optionChanged}

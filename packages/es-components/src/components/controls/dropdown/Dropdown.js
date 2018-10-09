@@ -41,7 +41,7 @@ function Dropdown({
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent
       id={helpId}
-      className="dropdown__help"
+      className="es-dropdown__help"
       validationState={validationState}
     >
       {additionalHelpContent}

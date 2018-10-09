@@ -114,12 +114,12 @@ describe('Textbox component', () => {
   it('renders additionalHelp when the additionalHelpContent props is provided', () => {
     const instance = mountWithTheme(buildTextbox());
 
-    let help = instance.find('.textbox__help');
+    let help = instance.find('.es-textbox__help');
     expect(help.length).toBe(0);
 
     instance.setProps({ additionalHelpContent: 'I am here to help' });
 
-    help = instance.find('.textbox__help').hostNodes();
+    help = instance.find('.es-textbox__help').hostNodes();
     expect(help.text()).toBe('I am here to help');
   });
 

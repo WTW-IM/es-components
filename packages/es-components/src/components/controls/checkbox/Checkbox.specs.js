@@ -26,7 +26,7 @@ it('the onClick prop gets executed with the value of the checkbox when clicked',
 
 it('Checkbox renders as expected', () => {
   const tree = renderWithTheme(
-    <Checkbox labelText="Render test" isDisabled isChecked />
+    <Checkbox labelText="Render test" disabled checked />
   );
   expect(tree).toMatchSnapshot();
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
-import { noop } from 'lodash';
 
 import { Label } from '../BaseControls';
 
@@ -15,10 +14,10 @@ const CheckboxLabel = styled(Label)`
   color: ${props => props.theme.colors[props.validationState]};
 
   > .es-checkbox__fill {
-    background-color: ${({ isChecked, theme }) =>
-      isChecked ? theme.colors.info : theme.colors.white};
-    border-color: ${({ isChecked, theme, validationState }) =>
-      isChecked ? theme.colors.info : theme.colors[validationState]};
+    background-color: ${({ checked, theme }) =>
+      checked ? theme.colors.info : theme.colors.white};
+    border-color: ${({ checked, theme, validationState }) =>
+      checked ? theme.colors.info : theme.colors[validationState]};
 
     &:after {
       border-color: ${props => props.theme.colors.white};
@@ -26,13 +25,13 @@ const CheckboxLabel = styled(Label)`
   }
 
   &:hover > .es-checkbox__fill:after {
-    border-color: ${({ isChecked, theme }) =>
-      isChecked ? theme.colors.white : theme.colors.gray3};
+    border-color: ${({ checked, theme }) =>
+      checked ? theme.colors.white : theme.colors.gray3};
   }
 
   &[disabled] > .es-checkbox__fill {
-    background-color: ${({ isChecked, theme }) =>
-      isChecked ? theme.colors.gray5 : theme.colors.white};
+    background-color: ${({ checked, theme }) =>
+      checked ? theme.colors.gray5 : theme.colors.white};
     border-color: ${props => props.theme.colors.gray5};
     cursor: not-allowed;
     outline: 0;
@@ -99,21 +98,16 @@ const AdditionalHelpContent = styled.div`
 function Checkbox({
   name,
   labelText,
-  value,
-  isChecked,
-  isDisabled,
-  onClick,
-  onChange,
-  ariaLabel,
   validationState,
   additionalHelpContent,
-  theme
+  theme,
+  ...checkboxProps
 }) {
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent
       id={helpId}
-      className="checkbox__help"
+      className="es-checkbox__help"
       validationState={validationState}
     >
       {additionalHelpContent}
@@ -123,25 +117,18 @@ function Checkbox({
   return (
     <CheckboxLabel
       className="es-checkbox"
-      disabled={isDisabled}
-      isChecked={isChecked}
       validationState={validationState}
+      checked={checkboxProps.checked}
+      disabled={checkboxProps.disabled}
     >
       <CheckboxInput
         name={name}
         type="checkbox"
-        disabled={isDisabled}
-        value={value}
-        checked={isChecked}
-        onClick={onClick}
-        onChange={onChange}
-        aria-label={ariaLabel}
         focusBorderColor={theme.colors.inputFocus}
+        {...checkboxProps}
       />
       <CheckboxWrapper className="es-checkbox__fill" />
-      <CheckboxText className="es-checkbox__text" aria-hidden={!!ariaLabel}>
-        {labelText}
-      </CheckboxText>
+      <CheckboxText className="es-checkbox__text">{labelText}</CheckboxText>
       {additionalHelp}
     </CheckboxLabel>
   );
@@ -152,15 +139,6 @@ Checkbox.propTypes = {
   /** The name of the checkbox */
   name: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Sets the aria-label attribute */
-  ariaLabel: PropTypes.string,
-  isChecked: PropTypes.bool,
-  /* Function to execute when a checkbox is clicked */
-  onClick: PropTypes.func,
-  /* Function to execute when a checkbox checked state is changed */
-  onChange: PropTypes.func,
-  isDisabled: PropTypes.bool,
   /** Display checkbox with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /** Content to display underneath the check box */
@@ -173,12 +151,6 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
-  value: undefined,
-  ariaLabel: undefined,
-  isChecked: false,
-  onClick: noop,
-  onChange: noop,
-  isDisabled: false,
   validationState: 'default',
   additionalHelpContent: undefined
 };

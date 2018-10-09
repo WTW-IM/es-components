@@ -66,26 +66,23 @@ const RadioDisplay = styled.span`
 export function RadioButton({
   optionText,
   name,
-  isChecked,
-  id,
-  isDisabled,
   inline,
   validationState,
   theme,
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
-    isChecked,
-    isDisabled,
+    radioProps.checked,
+    radioProps.disabled,
     validationState,
     theme.colors
   );
-  const radioDisplayFill = isChecked ? fill : theme.colors.white;
+  const radioDisplayFill = radioProps.checked ? fill : theme.colors.white;
 
   const labelProps = {
     inline,
-    disabled: isDisabled,
-    htmlFor: id,
+    disabled: radioProps.disabled,
+    htmlFor: radioProps.id,
     hoverFillColor: hover,
     validationState
   };
@@ -96,9 +93,6 @@ export function RadioButton({
       <RadioInput
         type="radio"
         name={name}
-        id={id}
-        disabled={isDisabled}
-        checked={isChecked}
         className={classNameState}
         {...radioProps}
       />
@@ -115,9 +109,6 @@ export function RadioButton({
 RadioButton.propTypes = {
   optionText: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  isChecked: PropTypes.bool,
-  id: PropTypes.string,
-  isDisabled: PropTypes.bool,
   inline: PropTypes.bool,
   /** Display radio button with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
@@ -129,9 +120,6 @@ RadioButton.propTypes = {
 };
 
 RadioButton.defaultProps = {
-  isChecked: false,
-  id: undefined,
-  isDisabled: false,
   inline: true,
   validationState: 'default'
 };

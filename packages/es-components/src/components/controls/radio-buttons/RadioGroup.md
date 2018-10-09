@@ -14,7 +14,7 @@ const options = [{
 }, {
   optionText: 'Camping',
   optionValue: 'camping',
-  isDisabled: true
+  disabled: true
 }];
 
 class RadioGroupExample extends React.Component {

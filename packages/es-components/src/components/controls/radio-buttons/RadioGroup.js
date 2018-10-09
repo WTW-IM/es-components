@@ -40,7 +40,7 @@ function RadioGroup({
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent
       id={helpId}
-      className="radiogroup__help"
+      className="es-radiogroup__help"
       validationState={validationState}
     >
       {additionalHelpContent}
@@ -51,18 +51,19 @@ function RadioGroup({
       {introContent}
       {radioOptions.map((config, index) => {
         const radioId = `${name}-option-${index + 1}`;
-        const isChecked = config.optionValue === value;
-        const isDisabled = disableAllOptions || config.isDisabled;
+        const checked = config.optionValue === value;
+        const disabled = disableAllOptions || config.disabled;
         const radioProps = {
           name,
-          isChecked,
-          isDisabled,
+          checked,
+          disabled,
           inline,
           onChange,
           validationState,
           id: radioId,
           optionText: config.optionText,
-          value: config.optionValue
+          value: config.optionValue,
+          theme
         };
         return <RadioButton key={radioId} {...radioProps} />;
       })}
@@ -75,7 +76,7 @@ const radioOptionShape = {
   optionText: PropTypes.string.isRequired,
   optionValue: PropTypes.any.isRequired,
   /** Render this option as disabled */
-  isDisabled: PropTypes.bool
+  disabled: PropTypes.bool
 };
 
 RadioGroup.propTypes = {

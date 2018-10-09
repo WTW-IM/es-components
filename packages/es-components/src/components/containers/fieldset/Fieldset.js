@@ -29,9 +29,10 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({ legendClasses, legendContent, children }) {
+function Fieldset({ legendClasses, legendContent, children, className }) {
+  const fieldsetClasses = classnames('es-fieldset', className);
   return (
-    <StyledFieldset className="es-fieldset">
+    <StyledFieldset className={fieldsetClasses}>
       {renderLegend(legendContent, legendClasses)}
       {children}
     </StyledFieldset>
@@ -43,13 +44,15 @@ Fieldset.propTypes = {
   legendContent: PropTypes.node,
   /** Additional classes to be applied to the legend element */
   legendClasses: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 Fieldset.defaultProps = {
   legendContent: null,
   legendClasses: null,
-  children: undefined
+  children: undefined,
+  className: undefined
 };
 
 export default Fieldset;

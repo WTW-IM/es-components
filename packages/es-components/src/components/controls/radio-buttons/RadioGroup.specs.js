@@ -1,8 +1,9 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallowWithTheme, renderWithTheme } from 'styled-enzyme';
+import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
 import { range } from 'lodash';
+import viaTheme from 'es-components-via-theme';
 
 import RadioButton from './RadioButton';
 import RadioGroup from './RadioGroup';
@@ -11,7 +12,7 @@ function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
     optionText: `Option ${idx}`,
     optionValue: idx,
-    isDisabled: idx === optionIndexToDisable
+    disabled: idx === optionIndexToDisable
   }));
 }
 
@@ -22,8 +23,9 @@ describe('RadioGroup component', () => {
   beforeEach(() => {
     defaultOptions = buildOptions(3);
 
-    instance = shallowWithTheme(
-      <RadioGroup name="test" radioOptions={defaultOptions} />
+    instance = mountWithTheme(
+      <RadioGroup name="test" radioOptions={defaultOptions} />,
+      viaTheme
     );
   });
 
@@ -36,7 +38,7 @@ describe('RadioGroup component', () => {
 
     const allDisabled = instance
       .find(RadioButton)
-      .everyWhere(x => x.prop('isDisabled'));
+      .everyWhere(x => x.prop('disabled'));
 
     expect(allDisabled).toBe(true);
   });
@@ -46,18 +48,18 @@ describe('RadioGroup component', () => {
     instance.setProps({ radioOptions });
 
     const firstRadio = instance.find(RadioButton).first();
-    expect(firstRadio.prop('isDisabled')).toBe(true);
+    expect(firstRadio.prop('disabled')).toBe(true);
 
     const lastRadio = instance.find(RadioButton).last();
-    expect(lastRadio.prop('isDisabled')).toBe(false);
+    expect(lastRadio.prop('disabled')).toBe(false);
   });
 
   it('renders each radio in an error state when hasError is true', () => {
-    instance.setProps({ hasError: true });
+    instance.setProps({ validationState: 'danger' });
 
     const allErrored = instance
       .find(RadioButton)
-      .everyWhere(radio => radio.prop('hasError'));
+      .everyWhere(radio => radio.prop('validationState') === 'danger');
 
     expect(allErrored).toBe(true);
   });

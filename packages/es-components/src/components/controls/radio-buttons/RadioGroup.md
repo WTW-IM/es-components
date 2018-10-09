@@ -14,7 +14,7 @@ const options = [{
 }, {
   optionText: 'Camping',
   optionValue: 'camping',
-  isDisabled: true
+  disabled: true
 }];
 
 class RadioGroupExample extends React.Component {
@@ -93,52 +93,6 @@ class RadioGroupExample extends React.Component {
 
 <RadioGroupExample />
 ```
-
-Each radio is displayed as an error when the `hasError` prop is true. An errored radio group with a default checked option is rendered with a filled radio button.
-
-```
-const options = [{
-  optionText: 'Planes',
-  optionValue: 'plane'
-}, {
-  optionText: 'Trains',
-  optionValue: 'train'
-}, {
-  optionText: 'Automobiles',
-  optionValue: 'automobile'
-}];
-
-class RadioGroupExample extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: 'plane'
-    };
-
-    this.optionChanged = this.optionChanged.bind(this);
-  }
-
-  optionChanged(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    return (
-      <RadioGroup
-        name="transports"
-        radioOptions={options}
-        onChange={this.optionChanged}
-        value={this.state.value}
-        hasError
-      />
-    );
-  }
-}
-
-<RadioGroupExample />
-```
-
 Each radio is disabled when the `disableAllOptions` prop is true. A disabled radio group with a default checked option is rendered with a filled radio button.
 
 ```
@@ -169,7 +123,7 @@ class RadioGroupExample extends React.Component {
   }
 
   render() {
-    const extra = (<div>Some Descriptive Content about fruit</div>);
+    const intro = (<div>Some Descriptive Content about fruit</div>);
     return (
       <RadioGroup
         name="fruits"
@@ -177,11 +131,63 @@ class RadioGroupExample extends React.Component {
         radioOptions={options}
         value={this.state.value}
         disableAllOptions
-        extraContent={extra}
+        introContent={intro}
       />
     );
   }
 }
 
 <RadioGroupExample />
+```
+### Validation States
+
+```
+const options = [{
+  optionText: 'Planes',
+  optionValue: 'plane'
+}, {
+  optionText: 'Trains',
+  optionValue: 'train'
+}, {
+  optionText: 'Automobiles',
+  optionValue: 'automobile'
+}];
+
+class RadioGroupExample extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: 'plane'
+    };
+
+    this.optionChanged = this.optionChanged.bind(this);
+  }
+
+  optionChanged(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  render() {
+    const message = `When validationState is set to ${this.props.validationState}.`;
+    const name = `transports-${this.props.validationState}`;
+    return (
+      <RadioGroup
+        name={name}
+        legendContent="Mode of Transportation"
+        radioOptions={options}
+        onChange={this.optionChanged}
+        value={this.state.value}
+        validationState={this.props.validationState}
+        additionalHelpContent={message}
+      />
+    );
+  }
+}
+
+<div>
+  <RadioGroupExample validationState="success" />
+  <RadioGroupExample validationState="warning" />
+  <RadioGroupExample validationState="danger" />
+</div>
 ```

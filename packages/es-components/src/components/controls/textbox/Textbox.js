@@ -86,7 +86,8 @@ const ValidationIcon = styled(Icon)`
 
 const AdditionalHelpContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
-  margin: 5px 0 10px 0;
+  font-weight: 400;
+  margin: 10px 0 10px 0;
   text-transform: none;
 `;
 
@@ -147,7 +148,7 @@ const Textbox = props => {
   const textboxId = id || genId();
   const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
-    <AdditionalHelpContent id={helpId} className="textbox__help">
+    <AdditionalHelpContent id={helpId} className="es-textbox__help">
       {additionalHelpContent}
     </AdditionalHelpContent>
   );

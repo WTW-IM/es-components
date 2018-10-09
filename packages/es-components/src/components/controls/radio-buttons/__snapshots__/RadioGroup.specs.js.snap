@@ -2,16 +2,16 @@
 
 exports[`RadioGroup component renders as expected 1`] = `
 <fieldset
-  className="es-fieldset sc-htoDjs kAbmqn"
+  className="es-fieldset sc-dnqmqq eDDNas sc-htoDjs kAbmqn"
 >
   <label
-    className="es-radio sc-ifAKCX fLKiDU sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX ckpGqX sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
       checked={true}
-      className="sc-EHOje iFEyAP"
+      className="es-radio__input--default sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -26,13 +26,13 @@ exports[`RadioGroup component renders as expected 1`] = `
     Option 0
   </label>
   <label
-    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fQsAqZ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
       checked={false}
-      className="sc-EHOje iFEyAP"
+      className="es-radio__input--default sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -47,13 +47,13 @@ exports[`RadioGroup component renders as expected 1`] = `
     Option 1
   </label>
   <label
-    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fQsAqZ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
       checked={false}
-      className="sc-EHOje iFEyAP"
+      className="es-radio__input--default sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-3"
       name="test"
@@ -72,22 +72,21 @@ exports[`RadioGroup component renders as expected 1`] = `
 
 exports[`RadioGroup component renders as expected with legend text and extraContent 1`] = `
 <fieldset
-  className="es-fieldset sc-htoDjs kAbmqn"
+  className="es-fieldset sc-dnqmqq eDDNas sc-htoDjs kAbmqn"
 >
   <legend
     className="es-fieldset__legend sc-gzVnrw fEWCfG"
   >
     Test legend
   </legend>
-  Extra Content!
   <label
-    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fQsAqZ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-1"
   >
     <input
       checked={false}
-      className="sc-EHOje iFEyAP"
+      className="es-radio__input--default sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-1"
       name="test"
@@ -102,13 +101,13 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
     Option 0
   </label>
   <label
-    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fQsAqZ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-2"
   >
     <input
       checked={false}
-      className="sc-EHOje iFEyAP"
+      className="es-radio__input--default sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-2"
       name="test"
@@ -123,13 +122,13 @@ exports[`RadioGroup component renders as expected with legend text and extraCont
     Option 1
   </label>
   <label
-    className="es-radio sc-ifAKCX fAXFYa sc-bdVaJa yehor"
+    className="es-radio sc-ifAKCX fQsAqZ sc-bdVaJa yehor"
     disabled={false}
     htmlFor="test-option-3"
   >
     <input
       checked={false}
-      className="sc-EHOje iFEyAP"
+      className="es-radio__input--default sc-EHOje iFEyAP"
       disabled={false}
       id="test-option-3"
       name="test"

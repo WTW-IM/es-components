@@ -26,6 +26,7 @@
       "./config/jest-shims.js",
       "./config/jest-setup.js"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/config/import-matchers.js",
     "testPathIgnorePatterns": [
       "es6",
       "lib"
@@ -67,12 +68,14 @@
     "file-loader": "^0.9.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
+    "jest-dom": "^2.1.0",
     "mockdate": "^2.0.1",
     "prettier": "^1.14.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-styleguidist": "^7.3.8",
     "react-test-renderer": "^16.3.0",
+    "react-testing-library": "^5.2.3",
     "regenerator-runtime": "^0.12.1",
     "request": "^2.88.0",
     "style-loader": "^0.13.1",

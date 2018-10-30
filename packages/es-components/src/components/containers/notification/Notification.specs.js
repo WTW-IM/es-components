@@ -1,67 +1,50 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallowWithTheme, mountWithTheme } from 'styled-enzyme';
+import { render } from 'react-testing-library';
+import { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
 
-import { Notification } from './Notification';
+import Notification from './Notification';
 
-import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 
-let instanceToRender;
-
-beforeEach(() => {
-  instanceToRender = (
-    <Notification
-      type="success"
-      header="notification header"
-      additionalText="test notification text"
-      theme={viaTheme}
-    />
-  );
-});
-
-function getShallowInstance() {
-  return shallowWithTheme(instanceToRender);
-}
-
-function getMountedInstance(props) {
-  return mountWithTheme(instanceToRender).setProps(props);
-}
-
 it('notification has the dialog role by default', () => {
-  const instance = getShallowInstance().find('[role="dialog"]');
-  expect(instance).toHaveLength(1);
+  const { queryByRole } = render(
+    <ThemeProvider theme={viaTheme}>
+      <Notification type="success" />
+    </ThemeProvider>
+  );
+  expect(queryByRole('dialog')).not.toBeNull();
 });
 
 it('notification has the alert role when isAlert prop is true', () => {
-  const instance = getShallowInstance();
-  instance.setProps({ isAlert: true });
-  expect(instance.find('[role="alert"]')).toHaveLength(1);
+  const { queryByRole } = render(
+    <ThemeProvider theme={viaTheme}>
+      <Notification type="success" isAlert />
+    </ThemeProvider>
+  );
+  expect(queryByRole('alert')).not.toBeNull();
 });
 
-it('header text is emphasized with h4 tag', () => {
-  const instance = getMountedInstance();
-  expect(instance.find('h4').text()).toBe('notification header');
+it('dismissable notifications render button to dismiss', () => {
+  const { container } = render(
+    <ThemeProvider theme={viaTheme}>
+      <Notification type="success" dismissable />
+    </ThemeProvider>
+  );
+
+  expect(container.querySelector('.notification__dismiss')).not.toBeNull();
 });
 
-it('notification has dismissable button when dismissable is true', () => {
-  const instance = getMountedInstance();
-  expect(instance.find('.notification__dismiss').hostNodes().length).toBe(0);
+it('notification prepends icon when includeIcon is true', () => {
+  const { container } = render(
+    <ThemeProvider theme={viaTheme}>
+      <Notification type="success" includeIcon />
+    </ThemeProvider>
+  );
 
-  instance.setProps({ dismissable: true });
-
-  expect(instance.find('.notification__dismiss').hostNodes().length).toBe(1);
-});
-
-it('notification prepends icon appropriate to type when includeIcon is true', () => {
-  const instance = getMountedInstance();
-  expect(instance.find(Icon).length).toBe(0);
-
-  instance.setProps({ includeIcon: true });
-
-  expect(instance.find(Icon).length).toBe(1);
+  expect(container.querySelector('i')).not.toBeNull();
 });
 
 describe('when callsToAction are provided', () => {
@@ -84,18 +67,20 @@ describe('when callsToAction are provided', () => {
     }
   ];
 
-  const instanceProps = { callsToAction };
+  it('each calls to action is executable', () => {
+    const { getByText } = render(
+      <ThemeProvider theme={viaTheme}>
+        <Notification callsToAction={callsToAction} type="success" />
+      </ThemeProvider>
+    );
+    getByText('primary').click();
+    expect(primaryAction).toHaveBeenCalled();
 
-  let instance;
+    getByText('secondary').click();
+    expect(secondaryAction).toHaveBeenCalled();
 
-  beforeEach(() => {
-    instance = getMountedInstance(instanceProps);
-  });
-
-  it('adds a Button instance for all calls to action', () => {
-    const buttons = instance.find(Button);
-
-    expect(buttons.length).toBe(3);
+    getByText('tertiary').click();
+    expect(tertiaryAction).toHaveBeenCalled();
   });
 
   it('allows components to be provided directly', () => {
@@ -109,77 +94,30 @@ describe('when callsToAction are provided', () => {
       myButton,
       callsToAction[2]
     ];
-    instance.setProps({ callsToAction: buttonedCallsToAction });
-
-    const buttons = instance.find(Button);
-    expect(buttons.length).toBe(3);
-    expect(instance.find('#myButton')).not.toBeUndefined();
-  });
-
-  it('executes callToAction function provided to the button', () => {
-    const button = instance.find(Button).first();
-
-    button.simulate('click');
-
-    expect(primaryAction.mock.calls.length).toBe(1);
+    const { queryByText } = render(
+      <ThemeProvider theme={viaTheme}>
+        <Notification type="success" callsToAction={buttonedCallsToAction} />
+      </ThemeProvider>
+    );
+    expect(queryByText('My button')).not.toBeNull();
   });
 });
 
-describe('when extraAlert is provided', () => {
-  const extraAlert = { alertText: 'test' };
-  const instanceProps = { extraAlert };
-
-  let instance;
-
-  beforeEach(() => {
-    instance = getMountedInstance(instanceProps);
-  });
-
-  it('adds an ExtraAlert to the notification', () => {
-    expect(instance.find('.extra__alert').hostNodes().length).toBe(1);
-  });
-
-  it('displays the passed text as small', () => {
-    expect(instance.find('small').text()).toBe('test');
-  });
-
-  it('displays the default icon', () => {
-    expect(instance.find(Icon).prop('name')).toBe('federal');
-  });
-
-  it('displays a different icon if provided one', () => {
-    const newAlert = {
-      alertText: 'test',
-      alertIcon: 'bell'
-    };
-
-    instance.setProps({ extraAlert: newAlert });
-
-    expect(instance.find(Icon).prop('name')).toBe('bell');
-  });
+it('adds an ExtraAlert to the notification when provided', () => {
+  const alert = { alertText: 'test' };
+  const { queryByText } = render(
+    <ThemeProvider theme={viaTheme}>
+      <Notification extraAlert={alert} type="success" />
+    </ThemeProvider>
+  );
+  expect(queryByText('test')).not.toBeNull();
 });
 
-describe('rendering the header', () => {
-  const getHeader = props =>
-    getMountedInstance(props)
-      .find('.es-notification__header')
-      .hostNodes();
-
-  it('should display no header when none is provided', () => {
-    const header = getHeader({ header: null, additionalText: null });
-    expect(header.find('h4').length).toBe(0);
-    expect(header.text()).toBe('');
-  });
-
-  it('should display an h4 header when header is provided', () => {
-    const headerText = 'A header!';
-    const header = getHeader({ header: headerText, additionalText: null });
-    expect(header.find('h4').text()).toBe(headerText);
-  });
-
-  it('should display a div header when additionalText is provided', () => {
-    const additionalText = 'added text';
-    const header = getHeader({ header: null, additionalText });
-    expect(header.text()).toBe(additionalText);
-  });
+it('displays additionalText is provided', () => {
+  const { queryByText } = render(
+    <ThemeProvider theme={viaTheme}>
+      <Notification type="success" additionalText="added text" />
+    </ThemeProvider>
+  );
+  expect(queryByText('added text')).not.toBeNull();
 });

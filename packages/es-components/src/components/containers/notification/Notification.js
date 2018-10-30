@@ -193,7 +193,7 @@ const NotificationContent = styled.div`
   }
 `;
 
-export function Notification({
+function Notification({
   type,
   header,
   additionalText,

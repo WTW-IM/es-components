@@ -58,7 +58,9 @@ class TabPanel extends React.Component {
   render() {
     const { children } = this.props;
     const elements = React.Children.map(children, (child, i) => {
-      const isSelected = child.props.name.key === this.state.value.key;
+      const isSelected = child.props.name.key
+        ? child.props.name.key === this.state.value.key
+        : child.props.name === this.state.value;
       return React.cloneElement(child, {
         selected: isSelected,
         action: this.tabChanged

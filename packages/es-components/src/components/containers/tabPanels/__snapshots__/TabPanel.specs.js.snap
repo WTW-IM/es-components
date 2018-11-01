@@ -20,11 +20,11 @@ exports[`Tab panel component renders as expected 1`] = `
         test1
       </button>
       <button
-        aria-expanded={false}
+        aria-expanded={true}
         aria-label="test2 tab"
-        className="sc-bdVaJa jIqSqZ"
+        className="sc-bdVaJa jjYEoD"
         onClick={[Function]}
-        selected={false}
+        selected={true}
       >
         test2
       </button>
@@ -67,11 +67,11 @@ exports[`Tab panel component renders as expected with aria announcer text 1`] = 
         test1
       </button>
       <button
-        aria-expanded={false}
+        aria-expanded={true}
         aria-label="test2 tab"
-        className="sc-bdVaJa jIqSqZ"
+        className="sc-bdVaJa jjYEoD"
         onClick={[Function]}
-        selected={false}
+        selected={true}
       >
         test2
       </button>

@@ -1,208 +1,85 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
+import { render, fireEvent, cleanup } from 'react-testing-library';
+import { ThemeProvider } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
-import Icon from '../../base/icons/Icon';
 import Textbox from './Textbox';
 
-jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
+beforeEach(cleanup);
 
-const buildTextbox = props => <Textbox labelText="Text" {...props} />;
+const buildTextbox = props => (
+  <ThemeProvider theme={viaTheme}>
+    <Textbox labelText="Text" {...props} />
+  </ThemeProvider>
+);
 
-describe('Textbox component', () => {
-  const handleOnChange = jest.fn();
-  const handleOnBlur = jest.fn();
-  const mockEvent = { target: { value: '112' } };
-
-  it('renders as expected', () => {
-    const props = {
-      onChange: handleOnChange,
-      value: 'testvalue',
-      id: 'test-id',
-      name: 'test-textbox'
-    };
-    const tree = renderWithTheme(buildTextbox(props)).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('generates id if no id is provided', () => {
-    const props = {
-      onChange: handleOnChange,
-      value: 'testvalue'
-    };
-    const tree = renderWithTheme(buildTextbox(props)).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('includes additional text when labelSuffix is provided', () => {
-    const props = {
-      onChange: handleOnChange,
-      value: 'testvalue',
-      labelSuffix: <span>Optional</span>
-    };
-    const tree = renderWithTheme(buildTextbox(props)).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('executes the handleOnChange function when text is changed', () => {
-    const props = {
-      onChange: handleOnChange
-    };
-    const input = mountWithTheme(buildTextbox(props)).find('input');
-
-    input.simulate('change', mockEvent);
-    expect(handleOnChange).toBeCalled();
-    handleOnChange.mockClear();
-  });
-
-  it('executes the handeOnBlur function when the input focus is lost', () => {
-    const props = {
-      onBlur: handleOnBlur
-    };
-    const input = mountWithTheme(buildTextbox(props)).find('input');
-
-    input.simulate('blur', mockEvent);
-    expect(handleOnBlur).toBeCalled();
-    handleOnBlur.mockClear();
-  });
-
-  it('renders addon icon when "prependIconName" prop is passed', () => {
-    const props = {
-      prependIconName: 'prepend'
-    };
-    const instance = mountWithTheme(buildTextbox(props));
-
-    expect(instance.find(Icon).length).toBe(1);
-  });
-
-  it('renders addon icon when "appendIconName" prop is passed', () => {
-    const props = {
-      appendIconName: 'append'
-    };
-    const instance = mountWithTheme(buildTextbox(props));
-
-    expect(instance.find(Icon).length).toBe(1);
-  });
-
-  it('renders addon icons when both "prependIconName" and "appendIconName" props are passed', () => {
-    const props = {
-      prependIconName: 'prepend',
-      appendIconName: 'append'
-    };
-    const instance = mountWithTheme(buildTextbox(props));
-
-    expect(instance.find(Icon).length).toBe(2);
-  });
-
-  it('sets aria-describedby on input when the additionalHelpContent prop is provided', () => {
-    const instance = mountWithTheme(buildTextbox());
-    const input = () => instance.find('input');
-
-    let describedBy = input().prop('aria-describedby');
-    expect(describedBy).toBeUndefined();
-
-    instance.setProps({
-      id: 'abcdef',
-      additionalHelpContent: 'I am here to help'
-    });
-    describedBy = input().prop('aria-describedby');
-    expect(describedBy).not.toBeUndefined();
-    expect(describedBy).toBe('abcdef-help');
-  });
-
-  it('renders additionalHelp when the additionalHelpContent props is provided', () => {
-    const instance = mountWithTheme(buildTextbox());
-
-    let help = instance.find('.es-textbox__help');
-    expect(help.length).toBe(0);
-
-    instance.setProps({ additionalHelpContent: 'I am here to help' });
-
-    help = instance.find('.es-textbox__help').hostNodes();
-    expect(help.text()).toBe('I am here to help');
-  });
-
-  it('renders icon when the validationState prop is set', () => {
-    const instance = mountWithTheme(buildTextbox());
-
-    let icon = instance.find(Icon);
-    expect(icon.length).toBe(0);
-
-    instance.setProps({ validationState: 'danger' });
-
-    icon = instance.find(Icon);
-    expect(icon.length).toBe(1);
-  });
+it('includes additional text when labelSuffix is provided', () => {
+  const props = {
+    onChange: jest.fn(),
+    value: 'testvalue',
+    labelSuffix: <span>Optional</span>
+  };
+  const { queryByText } = render(buildTextbox(props));
+  expect(queryByText('Optional')).not.toBeNull();
 });
 
-describe('Textbox with Mask', () => {
-  const handleOnChange = jest.fn();
-  const handleOnBlur = jest.fn();
-  const mockEvent = { target: { value: '112' } };
+it('executes the handleOnChange function when text is changed', () => {
+  const props = {
+    onChange: jest.fn()
+  };
+  const { getByLabelText } = render(buildTextbox(props));
 
-  it('executes the handleOnChange function when text is changed with mask', () => {
-    const props = {
-      maskType: 'ssnum',
-      onChange: handleOnChange
-    };
-    const textMask = mountWithTheme(buildTextbox(props)).find('input');
-
-    textMask.simulate('change', mockEvent);
-    expect(handleOnChange).toBeCalled();
-    handleOnChange.mockClear();
+  fireEvent.change(getByLabelText('Text'), {
+    target: { value: '112' }
   });
+  expect(props.onChange).toHaveBeenCalled();
+});
 
-  it('executes the handeOnBlur function when the input focus is lost with mask', () => {
-    const props = {
-      maskType: 'ssnum',
-      onBlur: handleOnBlur
-    };
-    const textMask = mountWithTheme(buildTextbox(props)).find('input');
+it('executes handleOnBlur when input focus is lost', () => {
+  const props = {
+    onBlur: jest.fn()
+  };
+  const { getByLabelText } = render(buildTextbox(props));
 
-    textMask.simulate('blur', mockEvent);
-    expect(handleOnBlur).toBeCalled();
-    handleOnBlur.mockClear();
-  });
+  fireEvent.blur(getByLabelText('Text'));
+  expect(props.onBlur).toHaveBeenCalled();
+});
 
-  it('displays a default title for ssnum mask', () => {
-    const props = {
-      maskType: 'ssnum'
-    };
-    const textMask = mountWithTheme(buildTextbox(props)).find('input');
-    expect(textMask.props().title).toBe('Enter 9-digit social security number');
-  });
+it('renders addons when provided', () => {
+  function getNumberOfIcons(props) {
+    const { container } = render(buildTextbox(props));
+    return container.querySelectorAll('i').length;
+  }
 
-  it('displays a custom title when passed as prop for ssnum mask', () => {
-    const props = {
-      maskType: 'ssnum',
-      title: 'Test me'
-    };
-    const textMask = mountWithTheme(buildTextbox(props)).find('input');
-    expect(textMask.props().title).toBe('Test me');
-  });
+  expect(getNumberOfIcons({ prependIconName: 'prepend' })).toBe(1);
+  expect(getNumberOfIcons({ appendIconName: 'append' })).toBe(1);
+  expect(getNumberOfIcons({ prependIconName: 'prepend', appendIconName: 'append' })).toBe(2);
+});
 
-  it('accepts and displays a custom mask', () => {
-    const props = {
-      maskType: 'custom',
-      title: 'custom mask',
-      customMask: {
-        mask: [
-          /[A-Za-z]/,
-          /[A-Za-z]/,
-          /[A-Za-z]/,
-          '-',
-          /[A-Za-z]/,
-          /[A-Za-z]/,
-          /[A-Za-z]/
-        ],
-        showMask: true,
-        keepCharPositions: false,
-        placeholderChar: '_'
-      }
-    };
-    const textMask = mountWithTheme(buildTextbox(props)).find('input');
-    expect(textMask.instance().value).toBe('___-___');
-    expect(textMask.props().title).toBe('custom mask');
-  });
+it('applies mask to changed value', () => {
+  const props = {
+    maskType: 'ssnum'
+  };
+  const { getByLabelText } = render(buildTextbox(props));
+
+  fireEvent.change(getByLabelText('Text'), { target: {
+    value: '123452323'
+  }});
+
+  expect(getByLabelText('Text').value).toBe('123-45-2323');
+});
+
+it('updates mask properly', () => {
+  const props = {
+    maskType: 'ssnum'
+  };
+  const { getByLabelText } = render(buildTextbox(props));
+
+  fireEvent.change(getByLabelText('Text'), { target: {
+    value: '8'
+  }});
+
+  expect(getByLabelText('Text').value).toBe('8\u2000\u2000-\u2000\u2000-\u2000\u2000\u2000\u2000')
 });

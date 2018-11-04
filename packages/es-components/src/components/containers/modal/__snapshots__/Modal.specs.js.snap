@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders different modal sections 1`] = `
+<h4
+  class="sc-bxivhb ddKihU"
+  id="abcdef"
+>
+  Header
+</h4>
+`;
+
+exports[`renders different modal sections 2`] = `
+<div
+  class="sc-EHOje drSoMH"
+>
+  Body
+</div>
+`;
+
+exports[`renders different modal sections 3`] = `
+<div
+  class="sc-bZQynM kNdKJ"
+>
+  Footer
+</div>
+`;

@@ -1,66 +1,83 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
-
-import Icon from '../../base/icons/Icon';
-import Button from '../../controls/buttons/Button';
+import { render, cleanup, waitForElement } from 'react-testing-library';
+import { ThemeProvider } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
 import Popover from './Popover';
 
-jest.mock('popper.js', () => {
-  const PopperJS = jest.requireActual('popper.js');
+beforeEach(cleanup);
 
-  return class {
-    static placements = PopperJS.placements;
-
-    constructor() {
-      return {
-        destroy: () => {},
-        scheduleUpdate: () => {}
-      };
-    }
+function buildPopover(props) {
+  const defaults = {
+    name: 'popTest',
+    title: 'Popover Title',
+    content: 'This is the popover content.'
   };
+  const mergedProps = Object.assign({}, defaults, props);
+  return (
+    <ThemeProvider theme={viaTheme}>
+      <Popover {...mergedProps}>Popover Text</Popover>
+    </ThemeProvider>
+  );
+}
+
+it('can be toggled by clicking the button', async () => {
+  const { getByText, queryByText } = render(buildPopover());
+  const trigger = getByText('Popover Text');
+
+  trigger.click();
+  const popoverContent = queryByText('This is the popover content.');
+  expect(popoverContent).not.toBeVisible();
+
+  trigger.click();
+  expect(popoverContent).not.toBeVisible();
 });
 
-describe('popover component', () => {
-  const instanceToRender = (
-    <Popover
-      name="popTest"
-      title="Popover Title"
-      content="This is the popover content."
-    >
-      Popover Text
-    </Popover>
+it('renders the title when provided', async () => {
+  const { getByText, queryByText } = render(buildPopover());
+  getByText('Popover Text').click();
+  await waitForElement(() => getByText('Popover Title'));
+  expect(queryByText('Popover Title')).not.toBeNull();
+});
+
+it('can be closed using the close button', async () => {
+  const { getByText, queryByText } = render(
+    buildPopover({ hasCloseButton: true })
   );
+  getByText('Popover Text').click();
 
-  function getMountedInstance(props) {
-    return mountWithTheme(instanceToRender).setProps(props);
-  }
+  const popoverContent = () => queryByText('This is the popover content.');
+  popoverContent()
+    .parentElement.querySelector('button')
+    .click();
 
-  it('renders as expected', () => {
-    const tree = renderWithTheme(instanceToRender).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+  await waitForElement(() => popoverContent() === null);
+  expect(popoverContent()).toBeNull();
+});
 
-  it('popover body has close button when hasCloseButton is true', () => {
-    const instance = getMountedInstance();
-    // Length starts at 1 to account for the popover trigger button
-    expect(instance.find(Button).length).toBe(1);
+it('can be closed using the alternative close button', async () => {
+  const { getByText, queryByText } = render(
+    buildPopover({ hasAltCloseButton: true })
+  );
+  getByText('Popover Text').click();
+  getByText('Popover Title')
+    .parentElement.querySelector('button')
+    .click();
 
-    instance.setProps({ hasCloseButton: true });
-    instance.find(Button).simulate('click');
+  await waitForElement(
+    () => queryByText('This is the popover content.') === null
+  );
+  expect(queryByText('This is the popover content.')).toBeNull();
+});
 
-    expect(instance.find(Button).length).toBe(2);
-  });
+it('sets focus on a focusable element within the content', () => {
+  jest.useFakeTimers();
+  const popoverContent = <a href="#test">Test link</a>;
+  const { getByText } = render(buildPopover({ content: popoverContent }));
+  getByText('Popover Text').click();
+  jest.runOnlyPendingTimers();
 
-  it('popover header has alternate close button when hasAltCloseButton is true', () => {
-    const instance = getMountedInstance();
-    expect(instance.find(Icon).length).toBe(0);
-
-    instance.setProps({ hasAltCloseButton: true });
-    instance.find(Button).simulate('click');
-
-    expect(instance.find(Icon).length).toBe(1);
-  });
+  expect(getByText('Test link')).toHaveFocus();
 });

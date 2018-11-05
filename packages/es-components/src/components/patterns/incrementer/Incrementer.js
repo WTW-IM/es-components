@@ -13,7 +13,7 @@ const IncrementerTextbox = styled(InputBase)`
   width: 60px;
 `;
 
-export class Incrementer extends React.Component {
+class Incrementer extends React.Component {
   static propTypes = {
     /** The value to start the incrementer at */
     startingValue: PropTypes.number,

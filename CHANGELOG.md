@@ -1,5 +1,4 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+
 
 ## 18.0.0 - 2018-10-09
 Fixes the styling of the RadioGroup

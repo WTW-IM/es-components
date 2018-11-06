@@ -3,11 +3,13 @@
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "scripts": {
+    "build": "sh build.sh",
     "ci": "sh build.sh && sh ci.sh",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
-    "link": "lerna link --force-local"
+    "link": "lerna link --force-local",
+    "start": "npm start --prefix packages/es-components"
   },
   "lint-staged": {
     "packages/es-components/src/**/*.js": [

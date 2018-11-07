@@ -1,26 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BreadcrumbTestSuite renders as expected 1`] = `
-<ol
-  className="es-breadcrumb sc-bdVaJa doUOMs"
->
-  <li
-    className="sc-bwzfXH jyqTmE"
+exports[`renders as expected 1`] = `
+<div>
+  <ol
+    class="es-breadcrumb sc-bdVaJa doUOMs"
   >
-    <a
-      href="/test"
+    <li
+      class="sc-bwzfXH jyqTmE"
     >
-      test
-    </a>
-  </li>
-  <li
-    className="sc-bwzfXH jyqTmE"
-  >
-    <a
-      href="/test2"
+      <a
+        href="/test"
+      >
+        test
+      </a>
+    </li>
+    <li
+      class="sc-bwzfXH jyqTmE"
     >
-      test2
-    </a>
-  </li>
-</ol>
+      <a
+        href="/test-2"
+      >
+        test 2
+      </a>
+    </li>
+    <li
+      class="sc-bwzfXH jyqTmE"
+    >
+      <a
+        href="/test-3"
+      >
+        test 3
+      </a>
+    </li>
+  </ol>
+</div>
 `;

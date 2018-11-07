@@ -30,19 +30,19 @@ The component guide is built using [react-styleguidist](https://github.com/style
 
 ## Project Structure
 ```
-- packages
-| - es-components
-  | - src
-    | - components
-      | - base
-        | - icons
-          | - Icon.js
-          | - Icon.md
-          | - Icon.specs.js
-| - es-components-via-theme
-  | - index.js
-| - es-components-wtw-theme
-  | - index.js
+packages
+├── es-components
+│   └── src
+│       └── components
+│           └── base
+│               └── icons
+│                   ├── Icons..specs.js
+│                   ├── Icons.js
+│                   └── Icons.md
+├── es-components-via-theme
+│   └── index.js
+└── es-components-wtw-theme
+    └── index.js
 ```
 
 ## Build commands

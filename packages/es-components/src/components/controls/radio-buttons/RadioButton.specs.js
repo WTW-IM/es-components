@@ -6,12 +6,12 @@ import viaTheme from 'es-components-via-theme';
 import getRadioFillVariables from './radio-fill-variables';
 
 describe('getRadioFillVariables', () => {
-  it('returns { fill: gray5, hover: white } when unchecked, disabled, and valid', () => {
+  it('returns { fill: gray5 } when unchecked, disabled, and valid', () => {
     const checked = false;
     const disabled = true;
     const validationState = 'default';
 
-    const { fill, hover } = getRadioFillVariables(
+    const { fill } = getRadioFillVariables(
       checked,
       disabled,
       validationState,
@@ -19,10 +19,9 @@ describe('getRadioFillVariables', () => {
     );
 
     expect(fill).toBe(viaTheme.colors.gray5);
-    expect(hover).toBe(viaTheme.colors.white);
   });
 
-  it('returns { fill: info } when checked, not disabled, and valid', () => {
+  it('returns { fill: primary } when checked, not disabled, and valid', () => {
     const checked = true;
     const disabled = false;
     const validationState = 'default';
@@ -34,7 +33,7 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.info);
+    expect(fill).toBe(viaTheme.colors.primary);
   });
 
   it('returns { fill: gray5 } when checked, disabled, and valid', () => {
@@ -52,7 +51,7 @@ describe('getRadioFillVariables', () => {
     expect(fill).toBe(viaTheme.colors.gray5);
   });
 
-  it('returns { fill: danger, hover: gray8 } when unchecked, not disabled, and invalid', () => {
+  it('returns { fill: danger, hover: gray3 } when unchecked, not disabled, and invalid', () => {
     const checked = false;
     const disabled = false;
     const validationState = 'danger';
@@ -65,10 +64,10 @@ describe('getRadioFillVariables', () => {
     );
 
     expect(fill).toBe(viaTheme.colors.danger);
-    expect(hover).toBe(viaTheme.colors.gray8);
+    expect(hover).toBe(viaTheme.colors.gray3);
   });
 
-  it('returns { fill: info } when checked, not disabled, and invalid', () => {
+  it('returns { fill: danger } when checked, not disabled, and invalid', () => {
     const checked = true;
     const disabled = false;
     const validationState = 'danger';
@@ -80,10 +79,10 @@ describe('getRadioFillVariables', () => {
       viaTheme.colors
     );
 
-    expect(fill).toBe(viaTheme.colors.info);
+    expect(fill).toBe(viaTheme.colors[validationState]);
   });
 
-  it('returns { fill: gray8, hover: gray8 } when unchecked, not disabled, and valid', () => {
+  it('returns { fill: gray8, hover: gray3 } when unchecked, not disabled, and valid', () => {
     const checked = false;
     const disabled = false;
     const validationState = 'default';
@@ -96,6 +95,6 @@ describe('getRadioFillVariables', () => {
     );
 
     expect(fill).toBe(viaTheme.colors.gray8);
-    expect(hover).toBe(viaTheme.colors.gray8);
+    expect(hover).toBe(viaTheme.colors.gray3);
   });
 });

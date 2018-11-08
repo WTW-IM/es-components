@@ -4,7 +4,7 @@ Icons will inherit their size unless otherwise specified. <a href="https://wtw-b
 const containerStyle = {
   backgroundColor: '#ddd',
   padding: '10px',
-  width: '400px',
+  width: '150px',
 };
 
 <div>

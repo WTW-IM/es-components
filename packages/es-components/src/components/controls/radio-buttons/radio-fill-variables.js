@@ -4,38 +4,28 @@ export default function getRadioFillVariables(
   validationState,
   colors
 ) {
-  const isNotChecked = !isChecked;
   const isNotDisabled = !isDisabled;
   const isValid = validationState === 'default';
 
-  if (isNotChecked && isDisabled && isValid) {
-    return {
-      hover: colors.white,
-      fill: colors.gray5
-    };
+  if (isDisabled) {
+    return { fill: colors.gray5 };
   }
 
-  if (isNotChecked && isNotDisabled && !isValid) {
+  if (isNotDisabled && !isValid) {
     return {
       fill: colors[validationState],
-      hover: colors.gray8
+      hover: colors.gray3
     };
   }
 
   if (isChecked && isNotDisabled) {
     return {
-      fill: colors.info
-    };
-  }
-
-  if (isChecked && isDisabled && isValid) {
-    return {
-      fill: colors.gray5
+      fill: colors.primary
     };
   }
 
   return {
-    hover: colors.gray8,
-    fill: colors.gray8
+    fill: colors.gray8,
+    hover: colors.gray3
   };
 }

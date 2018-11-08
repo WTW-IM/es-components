@@ -4,20 +4,38 @@ import styled, { withTheme } from 'styled-components';
 
 import { Label } from '../BaseControls';
 
-/* eslint-disable no-confusing-arrow */
+const backgroundColorSelect = (checked, theme, validationState) => {
+  if (checked) {
+    return validationState === 'default'
+      ? theme.colors.primary
+      : theme.colors[validationState];
+  }
+  return theme.colors.white;
+};
+
 const CheckboxLabel = styled(Label)`
+  color: ${props => props.theme.colors[props.validationState]};
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
-  text-transform: none;
-  display: flex;
-  flex-flow: wrap;
-  color: ${props => props.theme.colors[props.validationState]};
+  line-height: ${props => props.theme.sizes.baseLineHeight};
+  margin-bottom: 10px;
+  margin-left: -10px;
+  min-height: 25px;
+  padding: 10px 0 10px 42px;
+  position: relative;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    margin-left: 0;
+    padding: 5px 0 5px 32px;
+  }
 
   > .es-checkbox__fill {
-    background-color: ${({ checked, theme }) =>
-      checked ? theme.colors.info : theme.colors.white};
+    background-color: ${({ checked, theme, validationState }) =>
+      backgroundColorSelect(checked, theme, validationState)};
     border-color: ${({ checked, theme, validationState }) =>
-      checked ? theme.colors.info : theme.colors[validationState]};
+      checked && validationState === 'default'
+        ? theme.colors.primary
+        : theme.colors[validationState]};
 
     &:after {
       border-color: ${props => props.theme.colors.white};
@@ -44,6 +62,7 @@ const CheckboxLabel = styled(Label)`
 
 const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);
+  pointer-events: none;
   position: absolute;
 
   &:focus ~ .es-checkbox__fill {
@@ -54,17 +73,24 @@ const CheckboxInput = styled.input`
     }
   }
 `;
-/* eslint-enable */
 
-const CheckboxWrapper = styled.span`
+const CheckboxDisplay = styled.span`
   background: ${props => props.theme.colors.white};
   border: 3px solid ${props => props.theme.colors.gray8};
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
   height: 25px;
+  left: 10px;
+  position: absolute;
+  top: 0.55em;
   transition: all 0.25s linear;
   width: 25px;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    left: 0;
+    top: 0.35em;
+  }
 
   &:after {
     background: transparent;
@@ -73,26 +99,21 @@ const CheckboxWrapper = styled.span`
     border-top: none;
     box-sizing: border-box;
     content: '';
-    height: 9px;
     display: block;
+    height: 9px;
+    margin: 3px 0 0 2px;
     transform: rotate(-45deg);
     transition: border 0.25s linear;
     width: 15px;
-    margin: 3px 0 0 2px;
   }
-`;
-
-const CheckboxText = styled.span`
-  line-height: ${props => props.theme.sizes.baseLineHeight};
-  margin-left: 5px;
 `;
 
 const AdditionalHelpContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: 400;
   margin: 10px 0 10px 0;
-  text-transform: none;
-  flex-basis: 100%;
+  position: relative;
+  right: 32px;
 `;
 
 function Checkbox({
@@ -113,7 +134,7 @@ function Checkbox({
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
-  /* eslint-disable jsx-a11y/use-onblur-not-onchange */
+
   return (
     <CheckboxLabel
       className="es-checkbox"
@@ -127,12 +148,11 @@ function Checkbox({
         focusBorderColor={theme.colors.inputFocus}
         {...checkboxProps}
       />
-      <CheckboxWrapper className="es-checkbox__fill" />
-      <CheckboxText className="es-checkbox__text">{labelText}</CheckboxText>
+      <CheckboxDisplay className="es-checkbox__fill" />
+      {labelText}
       {additionalHelp}
     </CheckboxLabel>
   );
-  /* eslint-enable */
 }
 
 Checkbox.propTypes = {

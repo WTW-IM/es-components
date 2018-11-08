@@ -19,7 +19,7 @@ const AdditionalHelpContent = styled.div`
   color: ${props => props.theme.colors[props.validationState]};
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: 400;
-  margin: 10px 0 10px 0;
+  margin-bottom: 10px;
   text-transform: none;
 `;
 

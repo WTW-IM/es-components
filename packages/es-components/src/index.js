@@ -25,3 +25,5 @@ export Incrementer from './components/patterns/incrementer/Incrementer';
 export screenReaderOnly from './components/patterns/screenReaderOnly/screenReaderOnly';
 
 export Spinner from './components/base/spinner/Spinner';
+
+export generateAlphaName from './components/util/generateAlphaName';

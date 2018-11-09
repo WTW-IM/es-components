@@ -90,6 +90,7 @@ const AlternateCloseButton = styled(Button)`
 const CloseHelpText = styled.span`
   color: transparent;
   height: 1px;
+  outline: 0;
   width: 1px;
 `;
 

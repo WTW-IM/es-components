@@ -8,6 +8,21 @@ import Button from '../../controls/buttons/Button';
 
 import Popover from './Popover';
 
+jest.mock('popper.js', () => {
+  const PopperJS = jest.requireActual('popper.js');
+
+  return class {
+    static placements = PopperJS.placements;
+
+    constructor() {
+      return {
+        destroy: () => {},
+        scheduleUpdate: () => {}
+      };
+    }
+  };
+});
+
 describe('popover component', () => {
   const instanceToRender = (
     <Popover

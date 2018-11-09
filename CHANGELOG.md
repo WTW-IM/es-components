@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.3 (2018-11-09)</small>
+
+* Build: skip version commits ([0067918](https://github.com/wtw-im/es-components/commit/0067918))
+* Fix: Popover corner outline on focus removed (fixes #223) ([1982bb4](https://github.com/wtw-im/es-components/commit/1982bb4)), closes [#223](https://github.com/wtw-im/es-components/issues/223)
+
+
+
+
+
 ## <small>18.0.2 (2018-11-09)</small>
 
 * Fix: ensure pipeline can push to github ([9f9c6c5](https://github.com/wtw-im/es-components/commit/9f9c6c5))

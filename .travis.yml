@@ -15,8 +15,10 @@ jobs:
     - stage: publish
       node_js: node
       script:
-        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - sh build.sh
+        - git remote set-url origin https://${GITHUB_TOKEN}@github.com/WTW-IM/es-components.git
+        - git checkout ${TRAVIS_BRANCH}
+        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - npx lerna publish --conventional-commits --changelog-preset eslint --yes
         - sh rebuild-docs.sh
       deploy:

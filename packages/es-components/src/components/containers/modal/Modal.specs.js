@@ -1,28 +1,25 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { fireEvent, cleanup } from 'react-testing-library';
 
 import Modal from './Modal';
 import ModalHeader from './ModalHeader';
 import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
+import { renderWithTheme } from '../../util/test-utils';
 
 jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
 
 beforeEach(cleanup);
 
 function renderModal(modalProps) {
-  return render(
-    <ThemeProvider theme={viaTheme}>
-      <Modal show {...modalProps}>
-        <ModalHeader>Header</ModalHeader>
-        <ModalBody>Body</ModalBody>
-        <ModalFooter>Footer</ModalFooter>
-      </Modal>
-    </ThemeProvider>
+  return renderWithTheme(
+    <Modal show {...modalProps}>
+      <ModalHeader>Header</ModalHeader>
+      <ModalBody>Body</ModalBody>
+      <ModalFooter>Footer</ModalFooter>
+    </Modal>
   );
 }
 
@@ -54,14 +51,12 @@ it('renders different modal sections', () => {
 });
 
 it('hides dismiss button when hideCloseButton is true', () => {
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Modal show>
-        <ModalHeader hideCloseButton>Header</ModalHeader>
-        <ModalBody>Body</ModalBody>
-        <ModalFooter>Footer</ModalFooter>
-      </Modal>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <Modal show>
+      <ModalHeader hideCloseButton>Header</ModalHeader>
+      <ModalBody>Body</ModalBody>
+      <ModalFooter>Footer</ModalFooter>
+    </Modal>
   );
   expect(getByText('Header').parentElement.querySelector('button')).toBeNull();
 });

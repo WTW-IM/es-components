@@ -1,10 +1,9 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
 
 import Incrementer from './Incrementer';
+import { renderWithTheme } from '../../util/test-utils';
 
 const valueUpdated = jest.fn();
 
@@ -14,14 +13,12 @@ beforeEach(() => {
 
 function createIncrementer(props) {
   return (
-    <ThemeProvider theme={viaTheme}>
-      <Incrementer {...props} onValueUpdated={valueUpdated} theme={viaTheme} />
-    </ThemeProvider>
+    <Incrementer {...props} onValueUpdated={valueUpdated} theme={viaTheme} />
   );
 }
 
 it('when decrement button is clicked the displayed value is decreased by decrementAmount', () => {
-  const { container, queryByValue } = render(
+  const { container, queryByValue } = renderWithTheme(
     createIncrementer({
       decrementAmount: 5
     })
@@ -32,7 +29,7 @@ it('when decrement button is clicked the displayed value is decreased by decreme
 });
 
 it('when increment button is clicked, the displayed value is increased by incrementAmount', () => {
-  const { container, queryByValue } = render(
+  const { container, queryByValue } = renderWithTheme(
     createIncrementer({
       incrementAmount: 2
     })
@@ -43,7 +40,7 @@ it('when increment button is clicked, the displayed value is increased by increm
 });
 
 it('disables decrementation button when current value equals lowerThreshold', () => {
-  const { container } = render(
+  const { container } = renderWithTheme(
     createIncrementer({
       startingValue: 2,
       lowerThreshold: 0
@@ -58,7 +55,7 @@ it('disables decrementation button when current value equals lowerThreshold', ()
 });
 
 it('disables incrementation button when current value equals upperThreshold', () => {
-  const { container } = render(
+  const { container } = renderWithTheme(
     createIncrementer({
       startingValue: 8,
       upperThreshold: 10

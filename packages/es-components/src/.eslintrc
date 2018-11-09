@@ -29,7 +29,9 @@
     "react/no-find-dom-node": 0,
     "react/destructuring-assignment": 0,
     "linebreak-style": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.specs.js", "**/ExampleWrapper.js"]}]
+    "import/no-extraneous-dependencies": ["error", {
+        "devDependencies": ["**/*.specs.js", "**/ExampleWrapper.js", "src/components/util/test-utils.js"]
+      }]
   },
   "env": {
     "browser": true

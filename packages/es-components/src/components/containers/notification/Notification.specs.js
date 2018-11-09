@@ -1,47 +1,37 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
 
 import Notification from './Notification';
+import { renderWithTheme } from '../../util/test-utils';
 
 import Button from '../../controls/buttons/Button';
 
 it('notification has the dialog role by default', () => {
-  const { queryByRole } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Notification type="success" />
-    </ThemeProvider>
+  const { queryByRole } = renderWithTheme(
+    <Notification type="success" />
   );
   expect(queryByRole('dialog')).not.toBeNull();
 });
 
 it('notification has the alert role when isAlert prop is true', () => {
-  const { queryByRole } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Notification type="success" isAlert />
-    </ThemeProvider>
+  const { queryByRole } = renderWithTheme(
+    <Notification type="success" isAlert />
   );
   expect(queryByRole('alert')).not.toBeNull();
 });
 
 it('dismissable notifications render button to dismiss', () => {
-  const { container } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Notification type="success" dismissable />
-    </ThemeProvider>
+  const { container } = renderWithTheme(
+    <Notification type="success" dismissable />
   );
 
   expect(container.querySelector('.notification__dismiss')).not.toBeNull();
 });
 
 it('notification prepends icon when includeIcon is true', () => {
-  const { container } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Notification type="success" includeIcon />
-    </ThemeProvider>
+  const { container } = renderWithTheme(
+    <Notification type="success" includeIcon />
   );
 
   expect(container.querySelector('i')).not.toBeNull();
@@ -68,10 +58,8 @@ describe('when callsToAction are provided', () => {
   ];
 
   it('each calls to action is executable', () => {
-    const { getByText } = render(
-      <ThemeProvider theme={viaTheme}>
-        <Notification callsToAction={callsToAction} type="success" />
-      </ThemeProvider>
+    const { getByText } = renderWithTheme(
+      <Notification callsToAction={callsToAction} type="success" />
     );
     getByText('primary').click();
     expect(primaryAction).toHaveBeenCalled();
@@ -94,10 +82,8 @@ describe('when callsToAction are provided', () => {
       myButton,
       callsToAction[2]
     ];
-    const { queryByText } = render(
-      <ThemeProvider theme={viaTheme}>
-        <Notification type="success" callsToAction={buttonedCallsToAction} />
-      </ThemeProvider>
+    const { queryByText } = renderWithTheme(
+      <Notification type="success" callsToAction={buttonedCallsToAction} />
     );
     expect(queryByText('My button')).not.toBeNull();
   });
@@ -105,19 +91,15 @@ describe('when callsToAction are provided', () => {
 
 it('adds an ExtraAlert to the notification when provided', () => {
   const alert = { alertText: 'test' };
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Notification extraAlert={alert} type="success" />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Notification extraAlert={alert} type="success" />
   );
   expect(queryByText('test')).not.toBeNull();
 });
 
 it('displays additionalText is provided', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Notification type="success" additionalText="added text" />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Notification type="success" additionalText="added text" />
   );
   expect(queryByText('added text')).not.toBeNull();
 });

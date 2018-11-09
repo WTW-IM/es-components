@@ -1,11 +1,10 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, cleanup, waitForElement } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { cleanup, waitForElement } from 'react-testing-library';
 
 import Popover from './Popover';
+import { renderWithTheme } from '../../util/test-utils';
 
 beforeEach(cleanup);
 
@@ -17,14 +16,12 @@ function buildPopover(props) {
   };
   const mergedProps = Object.assign({}, defaults, props);
   return (
-    <ThemeProvider theme={viaTheme}>
-      <Popover {...mergedProps}>Popover Text</Popover>
-    </ThemeProvider>
+    <Popover {...mergedProps}>Popover Text</Popover>
   );
 }
 
 it('can be toggled by clicking the button', async () => {
-  const { getByText, queryByText } = render(buildPopover());
+  const { getByText, queryByText } = renderWithTheme(buildPopover());
   const trigger = getByText('Popover Text');
 
   trigger.click();
@@ -36,14 +33,14 @@ it('can be toggled by clicking the button', async () => {
 });
 
 it('renders the title when provided', async () => {
-  const { getByText, queryByText } = render(buildPopover());
+  const { getByText, queryByText } = renderWithTheme(buildPopover());
   getByText('Popover Text').click();
   await waitForElement(() => getByText('Popover Title'));
   expect(queryByText('Popover Title')).not.toBeNull();
 });
 
 it('can be closed using the close button', async () => {
-  const { getByText, queryByText } = render(
+  const { getByText, queryByText } = renderWithTheme(
     buildPopover({ hasCloseButton: true })
   );
   getByText('Popover Text').click();
@@ -58,7 +55,7 @@ it('can be closed using the close button', async () => {
 });
 
 it('can be closed using the alternative close button', async () => {
-  const { getByText, queryByText } = render(
+  const { getByText, queryByText } = renderWithTheme(
     buildPopover({ hasAltCloseButton: true })
   );
   getByText('Popover Text').click();
@@ -75,7 +72,7 @@ it('can be closed using the alternative close button', async () => {
 it('sets focus on a focusable element within the content', () => {
   jest.useFakeTimers();
   const popoverContent = <a href="#test">Test link</a>;
-  const { getByText } = render(buildPopover({ content: popoverContent }));
+  const { getByText } = renderWithTheme(buildPopover({ content: popoverContent }));
   getByText('Popover Text').click();
   jest.runOnlyPendingTimers();
 

@@ -1,11 +1,9 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
 
 import Button from './Button';
+import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
 
@@ -17,14 +15,12 @@ function buildButton(props) {
   const mergedProps = Object.assign({}, defaultProps, otherProps);
 
   return (
-    <ThemeProvider theme={viaTheme}>
-      <Button {...mergedProps}>{children}</Button>
-    </ThemeProvider>
+    <Button {...mergedProps}>{children}</Button>
   );
 }
 
 it('renders child text inside of button', () => {
-  const { queryByText } = render(buildButton({ children: 'Test button' }));
+  const { queryByText } = renderWithTheme(buildButton({ children: 'Test button' }));
   const button = queryByText('Test button');
   expect(button).not.toBeNull();
 });
@@ -32,14 +28,14 @@ it('renders child text inside of button', () => {
 it('renders child nodes inside of button', () => {
   const child = <span>Hello</span>;
 
-  const { getByText } = render(buildButton({ children: child }));
+  const { getByText } = renderWithTheme(buildButton({ children: child }));
 
   const foundChild = getByText('Hello');
   expect(foundChild.nodeName).toBe('SPAN');
 });
 
 it('executes the handleOnClick function passed', () => {
-  const { getByText } = render(buildButton({ children: 'Test' }));
+  const { getByText } = renderWithTheme(buildButton({ children: 'Test' }));
 
   getByText('Test').click();
 

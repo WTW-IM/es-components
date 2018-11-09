@@ -1,21 +1,18 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, fireEvent, cleanup } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { fireEvent, cleanup } from 'react-testing-library';
 
 import Tooltip from './Tooltip';
+import { renderWithTheme } from '../../util/test-utils';
 
 beforeEach(cleanup);
 
 it('displays when the mouse enters the target and hides when the mouse leaves the target', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Tooltip name="test" content="this is the tooltip">
-        this is the target
-      </Tooltip>
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Tooltip name="test" content="this is the tooltip">
+      this is the target
+    </Tooltip>
   );
 
   const target = queryByText('this is the target');
@@ -30,12 +27,10 @@ it('displays when the mouse enters the target and hides when the mouse leaves th
 });
 
 it('is displayed on mouseDown if disableHover is true', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Tooltip name="test" content="this is the tooltip" disableHover>
-        this is the target
-      </Tooltip>
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Tooltip name="test" content="this is the tooltip" disableHover>
+      this is the target
+    </Tooltip>
   );
 
   const target = queryByText('this is the target');
@@ -53,12 +48,10 @@ it('is displayed on mouseDown if disableHover is true', () => {
 });
 
 it('is displayed/hidden on focus/blur of target', () => {
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Tooltip name="test" content="this is the tooltip" disableHover>
-        this is the target
-      </Tooltip>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <Tooltip name="test" content="this is the tooltip" disableHover>
+      this is the target
+    </Tooltip>
   );
 
   const target = getByText('this is the target');
@@ -73,12 +66,10 @@ it('is displayed/hidden on focus/blur of target', () => {
 });
 
 it('is hidden when ESC is pressed', () => {
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Tooltip name="test" content="this is the tooltip" disableHover>
-        this is the target
-      </Tooltip>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <Tooltip name="test" content="this is the tooltip" disableHover>
+      this is the target
+    </Tooltip>
   );
 
   const target = getByText('this is the target');

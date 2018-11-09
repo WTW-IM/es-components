@@ -1,22 +1,19 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { cleanup } from 'react-testing-library';
 
 import TabPanel from './TabPanel';
+import { renderWithTheme } from '../../util/test-utils';
 
 beforeEach(cleanup);
 
 it('displays first tab when rendered', () => {
-  const { getByText, queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <TabPanel>
-        <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
-        <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
-      </TabPanel>
-    </ThemeProvider>
+  const { getByText, queryByText } = renderWithTheme(
+    <TabPanel>
+      <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
+      <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
+    </TabPanel>
   );
 
   expect(getByText('Tab number 1')).toBeVisible();
@@ -24,13 +21,11 @@ it('displays first tab when rendered', () => {
 });
 
 it('displays content for tab when corresponding button is clicked', () => {
-  const { getByText, queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <TabPanel>
-        <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
-        <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
-      </TabPanel>
-    </ThemeProvider>
+  const { getByText, queryByText } = renderWithTheme(
+    <TabPanel>
+      <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
+      <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
+    </TabPanel>
   );
 
   getByText('tab 2').click();
@@ -41,13 +36,11 @@ it('displays content for tab when corresponding button is clicked', () => {
 
 it('invokes the passed tabChanged prop only when the tab changes', () => {
   const tabChanged = jest.fn();
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <TabPanel tabChanged={tabChanged}>
-        <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
-        <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
-      </TabPanel>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <TabPanel tabChanged={tabChanged}>
+      <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
+      <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
+    </TabPanel>
   );
 
   const secondTab = getByText('tab 2');

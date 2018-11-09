@@ -1,11 +1,10 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { fireEvent } from 'react-testing-library';
 
 import Dropdown from './Dropdown';
+import { renderWithTheme } from '../../util/test-utils';
 
 const options = [
   {
@@ -24,10 +23,8 @@ const options = [
 
 it('executes the passed in "onChange" function', () => {
   const onChange = jest.fn();
-  const { container } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Dropdown labelText="Test" options={options} onChange={onChange} />
-    </ThemeProvider>
+  const { container } = renderWithTheme(
+    <Dropdown labelText="Test" options={options} onChange={onChange} />
   );
   fireEvent.change(container.querySelector('select'), {
     target: { value: '1' }
@@ -37,10 +34,8 @@ it('executes the passed in "onChange" function', () => {
 
 it('executes the passed in "onBlur" function', () => {
   const onBlur = jest.fn();
-  const { container } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Dropdown labelText="test" options={options} onBlur={onBlur} />
-    </ThemeProvider>
+  const { container } = renderWithTheme(
+    <Dropdown labelText="test" options={options} onBlur={onBlur} />
   );
 
   const select = container.querySelector('select');
@@ -52,23 +47,19 @@ it('executes the passed in "onBlur" function', () => {
 });
 
 it('does not render the first option when includeDefaultFirstOption is false', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Dropdown
-        options={options}
-        firstOptionDisplayText="first"
-        includeDefaultFirstOption={false}
-      />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Dropdown
+      options={options}
+      firstOptionDisplayText="first"
+      includeDefaultFirstOption={false}
+    />
   );
   expect(queryByText('first')).toBeNull();
 });
 
 it('renders the text of the first option as the firstOptionDisplayText prop value', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Dropdown options={options} firstOptionDisplayText="first" />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Dropdown options={options} firstOptionDisplayText="first" />
   );
 
   expect(queryByText('first')).not.toBeNull();

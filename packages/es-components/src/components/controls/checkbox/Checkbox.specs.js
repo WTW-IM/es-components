@@ -1,21 +1,18 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { cleanup } from 'react-testing-library';
 
 import Checkbox from './Checkbox';
+import { renderWithTheme } from '../../util/test-utils';
 
 beforeEach(cleanup);
 
 it('executes onClick prop when label is clicked', () => {
   const onClick = jest.fn();
 
-  const { getByLabelText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Checkbox name="test" labelText="test label" onClick={onClick} />
-    </ThemeProvider>
+  const { getByLabelText } = renderWithTheme(
+    <Checkbox name="test" labelText="test label" onClick={onClick} />
   );
 
   getByLabelText('test label').click();
@@ -24,10 +21,8 @@ it('executes onClick prop when label is clicked', () => {
 
 it('cannot be clicked when disabled', () => {
   const onClick = jest.fn();
-  const { container, getByLabelText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Checkbox name="test" labelText="test label" onClick={onClick} disabled />
-    </ThemeProvider>
+  const { container, getByLabelText } = renderWithTheme(
+    <Checkbox name="test" labelText="test label" onClick={onClick} disabled />
   );
 
   getByLabelText('test label').click();
@@ -36,25 +31,21 @@ it('cannot be clicked when disabled', () => {
 });
 
 it('will render additional help when passed', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Checkbox
-        name="test"
-        labelText="test label"
-        onClick={jest.fn()}
-        additionalHelpContent="help me"
-      />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Checkbox
+      name="test"
+      labelText="test label"
+      onClick={jest.fn()}
+      additionalHelpContent="help me"
+    />
   );
 
   expect(queryByText('help me')).not.toBeNull();
 });
 
 it('will not render additional help when not passed', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <Checkbox name="test" labelText="test label" onClick={jest.fn()} />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <Checkbox name="test" labelText="test label" onClick={jest.fn()} />
   );
 
   expect(queryByText('help me')).toBeNull();

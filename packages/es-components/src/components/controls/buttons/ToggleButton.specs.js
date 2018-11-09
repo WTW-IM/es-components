@@ -1,19 +1,16 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render } from 'react-testing-library';
 import viaTheme from 'es-components-via-theme';
-import { ThemeProvider } from 'styled-components';
 
 import ToggleButton from './ToggleButton';
+import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
 
 it('sets isPressed state on click', () => {
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <ToggleButton handleOnClick={onClick}>test</ToggleButton>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <ToggleButton handleOnClick={onClick}>test</ToggleButton>
   );
   const button = getByText('test');
   button.click();

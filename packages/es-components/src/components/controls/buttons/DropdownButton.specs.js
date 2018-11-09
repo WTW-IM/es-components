@@ -1,25 +1,22 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, cleanup, fireEvent, getByRole } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { cleanup, fireEvent, getByRole } from 'react-testing-library';
 
 import { DropdownButton } from './DropdownButton';
+import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
 
 beforeEach(cleanup);
 
 it('opens/closes dropdown on click', () => {
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <DropdownButton buttonValue="Button">
-        <DropdownButton.Button handleOnClick={onClick}>
-          Inner
-        </DropdownButton.Button>
-      </DropdownButton>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <DropdownButton buttonValue="Button">
+      <DropdownButton.Button handleOnClick={onClick}>
+        Inner
+      </DropdownButton.Button>
+    </DropdownButton>
   );
 
   const button = getByText('Button');
@@ -34,14 +31,12 @@ it('opens/closes dropdown on click', () => {
 
 it('updates buttonValue on child click when shouldUpdateButtonValue is true', () => {
   const innerContents = 'Inner';
-  const { container, getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
-        <DropdownButton.Button handleOnClick={onClick}>
-          {innerContents}
-        </DropdownButton.Button>
-      </DropdownButton>
-    </ThemeProvider>
+  const { container, getByText } = renderWithTheme(
+    <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
+      <DropdownButton.Button handleOnClick={onClick}>
+        {innerContents}
+      </DropdownButton.Button>
+    </DropdownButton>
   );
 
   getByText('Button').click();
@@ -51,14 +46,12 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
 });
 
 it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
-  const { getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
-        <DropdownButton.Button handleOnClick={onClick}>
-          Content
-        </DropdownButton.Button>
-      </DropdownButton>
-    </ThemeProvider>
+  const { getByText } = renderWithTheme(
+    <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
+      <DropdownButton.Button handleOnClick={onClick}>
+        Content
+      </DropdownButton.Button>
+    </DropdownButton>
   );
 
   getByText('Button').click();
@@ -67,17 +60,15 @@ it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
 });
 
 it('allows arrow movement and traps focus when dropdown is opened', () => {
-  const { container, getByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
-        <DropdownButton.Button handleOnClick={onClick}>
-          Item 1
-        </DropdownButton.Button>
-        <DropdownButton.Button handleOnClick={onClick}>
-          Item 2
-        </DropdownButton.Button>
-      </DropdownButton>
-    </ThemeProvider>
+  const { container, getByText } = renderWithTheme(
+    <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
+      <DropdownButton.Button handleOnClick={onClick}>
+        Item 1
+      </DropdownButton.Button>
+      <DropdownButton.Button handleOnClick={onClick}>
+        Item 2
+      </DropdownButton.Button>
+    </DropdownButton>
   );
 
   const firstButton = getByText('Button');

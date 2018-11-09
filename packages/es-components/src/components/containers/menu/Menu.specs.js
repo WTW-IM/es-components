@@ -1,29 +1,27 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, fireEvent } from 'react-testing-library';
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { fireEvent } from 'react-testing-library';
 import { Menu } from './Menu';
+
+import { renderWithTheme } from '../../util/test-utils';
 
 function buildMenu() {
   return (
-    <ThemeProvider theme={viaTheme}>
-      <Menu
-        headerContent="Small Menu"
-        buttonContent="Open Menu"
-        className="test"
-      >
-        <Menu.MenuSection title="Menu Section" isFirst>
-          <a href="#test">Test link</a>
-        </Menu.MenuSection>
-      </Menu>
-    </ThemeProvider>
+    <Menu
+      headerContent="Small Menu"
+      buttonContent="Open Menu"
+      className="test"
+    >
+      <Menu.MenuSection title="Menu Section" isFirst>
+        <a href="#test">Test link</a>
+      </Menu.MenuSection>
+    </Menu>
   );
 }
 
 it('toggles the menu open and closed', () => {
-  const { getByText } = render(buildMenu());
+  const { getByText } = renderWithTheme(buildMenu());
 
   const menuToggleButton = getByText('Open Menu');
   const menuSection = getByText('Menu Section');
@@ -36,7 +34,7 @@ it('toggles the menu open and closed', () => {
 });
 
 it('closes open menu when ESC is pressed', () => {
-  const { container, getByText } = render(buildMenu());
+  const { container, getByText } = renderWithTheme(buildMenu());
 
   getByText('Open Menu').click();
 

@@ -1,12 +1,11 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { cleanup } from 'react-testing-library';
 import { range } from 'lodash';
-import viaTheme from 'es-components-via-theme';
-import { ThemeProvider } from 'styled-components';
 
 import RadioGroup from './RadioGroup';
+import { renderWithTheme } from '../../util/test-utils';
 
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
@@ -20,10 +19,8 @@ beforeEach(cleanup);
 
 it('renders each radio input as disabled when disableAllOptions is true', () => {
   const options = buildOptions(3);
-  const { container } = render(
-    <ThemeProvider theme={viaTheme}>
-      <RadioGroup name="test" radioOptions={options} disableAllOptions />
-    </ThemeProvider>
+  const { container } = renderWithTheme(
+    <RadioGroup name="test" radioOptions={options} disableAllOptions />
   );
 
   const inputs = container.querySelectorAll('input');
@@ -35,10 +32,8 @@ it('renders each radio input as disabled when disableAllOptions is true', () => 
 
 it('renders a specific radio input as disabled when that option is set to disabled', () => {
   const options = buildOptions(3, 0);
-  const { container } = render(
-    <ThemeProvider theme={viaTheme}>
-      <RadioGroup name="test" radioOptions={options} />
-    </ThemeProvider>
+  const { container } = renderWithTheme(
+    <RadioGroup name="test" radioOptions={options} />
   );
 
   const inputs = container.querySelectorAll('input');
@@ -49,42 +44,36 @@ it('renders a specific radio input as disabled when that option is set to disabl
 });
 
 it('renders legend when provided', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <RadioGroup
-        name="test"
-        radioOptions={buildOptions(3)}
-        legendContent="Test legend"
-      />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <RadioGroup
+      name="test"
+      radioOptions={buildOptions(3)}
+      legendContent="Test legend"
+    />
   );
 
   expect(queryByText('Test legend')).not.toBeNull();
 });
 
 it('renders intro when provided', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <RadioGroup
-        name="test"
-        radioOptions={buildOptions(3)}
-        introContent="Test intro"
-      />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <RadioGroup
+      name="test"
+      radioOptions={buildOptions(3)}
+      introContent="Test intro"
+    />
   );
 
   expect(queryByText('Test intro')).not.toBeNull();
 });
 
 it('renders additional help when provided', () => {
-  const { queryByText } = render(
-    <ThemeProvider theme={viaTheme}>
-      <RadioGroup
-        name="test"
-        radioOptions={buildOptions(3)}
-        additionalHelpContent="Test additional help"
-      />
-    </ThemeProvider>
+  const { queryByText } = renderWithTheme(
+    <RadioGroup
+      name="test"
+      radioOptions={buildOptions(3)}
+      additionalHelpContent="Test additional help"
+    />
   );
 
   expect(queryByText('Test additional help')).not.toBeNull();

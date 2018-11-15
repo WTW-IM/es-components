@@ -1,32 +1,52 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
+import { cleanup } from 'react-testing-library';
 
 import Checkbox from './Checkbox';
+import { renderWithTheme } from '../../util/test-utils';
 
-let instance;
+beforeEach(cleanup);
 
-function simulateLabelClick() {
-  instance.find('input').simulate('click', { target: { checked: true } });
-}
-
-beforeEach(() => {
-  instance = mountWithTheme(<Checkbox labelText="test" />);
-});
-
-it('the onClick prop gets executed with the value of the checkbox when clicked', () => {
+it('executes onClick prop when label is clicked', () => {
   const onClick = jest.fn();
-  instance.setProps({ onClick });
 
-  simulateLabelClick();
+  const { getByLabelText } = renderWithTheme(
+    <Checkbox name="test" labelText="test label" onClick={onClick} />
+  );
 
+  getByLabelText('test label').click();
   expect(onClick).toHaveBeenCalled();
 });
 
-it('Checkbox renders as expected', () => {
-  const tree = renderWithTheme(
-    <Checkbox labelText="Render test" disabled checked />
+it('cannot be clicked when disabled', () => {
+  const onClick = jest.fn();
+  const { container, getByLabelText } = renderWithTheme(
+    <Checkbox name="test" labelText="test label" onClick={onClick} disabled />
   );
-  expect(tree).toMatchSnapshot();
+
+  getByLabelText('test label').click();
+  expect(onClick).not.toHaveBeenCalled();
+  expect(container.querySelector('input')).toBeDisabled();
+});
+
+it('will render additional help when passed', () => {
+  const { queryByText } = renderWithTheme(
+    <Checkbox
+      name="test"
+      labelText="test label"
+      onClick={jest.fn()}
+      additionalHelpContent="help me"
+    />
+  );
+
+  expect(queryByText('help me')).not.toBeNull();
+});
+
+it('will not render additional help when not passed', () => {
+  const { queryByText } = renderWithTheme(
+    <Checkbox name="test" labelText="test label" onClick={jest.fn()} />
+  );
+
+  expect(queryByText('help me')).toBeNull();
 });

@@ -1,12 +1,11 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
+import { cleanup } from 'react-testing-library';
 import { range } from 'lodash';
-import viaTheme from 'es-components-via-theme';
 
-import RadioButton from './RadioButton';
 import RadioGroup from './RadioGroup';
+import { renderWithTheme } from '../../util/test-utils';
 
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
@@ -16,72 +15,66 @@ function buildOptions(numberOfOptions, optionIndexToDisable) {
   }));
 }
 
-describe('RadioGroup component', () => {
-  let instance;
-  let defaultOptions;
+beforeEach(cleanup);
 
-  beforeEach(() => {
-    defaultOptions = buildOptions(3);
+it('renders each radio input as disabled when disableAllOptions is true', () => {
+  const options = buildOptions(3);
+  const { container } = renderWithTheme(
+    <RadioGroup name="test" radioOptions={options} disableAllOptions />
+  );
 
-    instance = mountWithTheme(
-      <RadioGroup name="test" radioOptions={defaultOptions} />,
-      viaTheme
-    );
-  });
+  const inputs = container.querySelectorAll('input');
 
-  it('renders a RadioButton for each option', () => {
-    expect(instance.find(RadioButton).length).toBe(3);
-  });
+  expect(inputs[0]).toBeDisabled();
+  expect(inputs[1]).toBeDisabled();
+  expect(inputs[2]).toBeDisabled();
+});
 
-  it('renders each RadioButton as disabled when disableAllOptions is true', () => {
-    instance.setProps({ disableAllOptions: true });
+it('renders a specific radio input as disabled when that option is set to disabled', () => {
+  const options = buildOptions(3, 0);
+  const { container } = renderWithTheme(
+    <RadioGroup name="test" radioOptions={options} />
+  );
 
-    const allDisabled = instance
-      .find(RadioButton)
-      .everyWhere(x => x.prop('disabled'));
+  const inputs = container.querySelectorAll('input');
 
-    expect(allDisabled).toBe(true);
-  });
+  expect(inputs[0]).toBeDisabled();
+  expect(inputs[1]).not.toBeDisabled();
+  expect(inputs[2]).not.toBeDisabled();
+});
 
-  it('renders a specific RadioButton as disabled when that option is set to disabled', () => {
-    const radioOptions = buildOptions(3, 0);
-    instance.setProps({ radioOptions });
+it('renders legend when provided', () => {
+  const { queryByText } = renderWithTheme(
+    <RadioGroup
+      name="test"
+      radioOptions={buildOptions(3)}
+      legendContent="Test legend"
+    />
+  );
 
-    const firstRadio = instance.find(RadioButton).first();
-    expect(firstRadio.prop('disabled')).toBe(true);
+  expect(queryByText('Test legend')).not.toBeNull();
+});
 
-    const lastRadio = instance.find(RadioButton).last();
-    expect(lastRadio.prop('disabled')).toBe(false);
-  });
+it('renders intro when provided', () => {
+  const { queryByText } = renderWithTheme(
+    <RadioGroup
+      name="test"
+      radioOptions={buildOptions(3)}
+      introContent="Test intro"
+    />
+  );
 
-  it('renders each radio in an error state when hasError is true', () => {
-    instance.setProps({ validationState: 'danger' });
+  expect(queryByText('Test intro')).not.toBeNull();
+});
 
-    const allErrored = instance
-      .find(RadioButton)
-      .everyWhere(radio => radio.prop('validationState') === 'danger');
+it('renders additional help when provided', () => {
+  const { queryByText } = renderWithTheme(
+    <RadioGroup
+      name="test"
+      radioOptions={buildOptions(3)}
+      additionalHelpContent="Test additional help"
+    />
+  );
 
-    expect(allErrored).toBe(true);
-  });
-
-  it('renders as expected', () => {
-    const tree = renderWithTheme(
-      <RadioGroup name="test" radioOptions={defaultOptions} value={0} />
-    );
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it('renders as expected with legend text and extraContent', () => {
-    const tree = renderWithTheme(
-      <RadioGroup
-        name="test"
-        radioOptions={defaultOptions}
-        legendContent="Test legend"
-        extraContent="Extra Content!"
-      />
-    );
-
-    expect(tree).toMatchSnapshot();
-  });
+  expect(queryByText('Test additional help')).not.toBeNull();
 });

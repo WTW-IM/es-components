@@ -1,295 +1,263 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`drawer component accordion renders as expected 1`] = `
-<div
-  className="es-drawer important sc-EHOje ixLrxb"
->
+exports[`accordion renders as expected 1`] = `
+<div>
   <div
-    className="es-drawer__panel first sc-bwzfXH bBIqkK"
+    class="es-drawer important sc-EHOje ixLrxb"
   >
     <div
-      className="es-drawer__heading"
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={false}
-        className="sc-htpNat jDwJgO"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
-            content="601"
-            fontFamily="indv-mkt-icons"
-            fontSize="inherit"
-          />
-          collapse 1
-        </span>
-        <aside>
-          side text
-        </aside>
-      </button>
-    </div>
-    <div
-      aria-hidden={true}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": 0,
-          "overflow": "hidden",
-        }
-      }
+      class="es-drawer__panel first sc-bwzfXH bBIqkK"
     >
       <div
-        style={Object {}}
+        class="es-drawer__heading"
+        id="abcdef"
+        role="heading"
       >
-        first
+        <button
+          aria-controls="abcdef"
+          aria-expanded="false"
+          class="sc-htpNat jDwJgO"
+        >
+          <span>
+            <i
+              aria-hidden="true"
+              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              content="601"
+              font-family="indv-mkt-icons"
+              font-size="inherit"
+            />
+            collapse 1
+          </span>
+          <aside>
+            side text
+          </aside>
+        </button>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="abcdef"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        id="abcdef"
+        role="region"
+        style="height: 0px; overflow: hidden;"
+      >
+        <div
+          style="display: none;"
+        >
+          first
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="es-drawer__panel second sc-bwzfXH bBIqkK"
-  >
     <div
-      className="es-drawer__heading"
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={false}
-        className="sc-htpNat jDwJgO"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
-            content="601"
-            fontFamily="indv-mkt-icons"
-            fontSize="inherit"
-          />
-          collapse 2
-        </span>
-      </button>
-    </div>
-    <div
-      aria-hidden={true}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": 0,
-          "overflow": "hidden",
-        }
-      }
+      class="es-drawer__panel second sc-bwzfXH bBIqkK"
     >
       <div
-        style={Object {}}
+        class="es-drawer__heading"
+        id="abcdef"
+        role="heading"
       >
-        second
+        <button
+          aria-controls="abcdef"
+          aria-expanded="false"
+          class="sc-htpNat jDwJgO"
+        >
+          <span>
+            <i
+              aria-hidden="true"
+              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              content="601"
+              font-family="indv-mkt-icons"
+              font-size="inherit"
+            />
+            collapse 2
+          </span>
+        </button>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="abcdef"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
+        id="abcdef"
+        role="region"
+        style="height: 0px; overflow: hidden;"
+      >
+        <div
+          style="display: none;"
+        >
+          second
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="es-drawer__panel third sc-bwzfXH bBIqkK"
-  >
     <div
-      className="es-drawer__heading"
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={false}
-        className="sc-htpNat jDwJgO"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
-            content="601"
-            fontFamily="indv-mkt-icons"
-            fontSize="inherit"
-          />
-          collapse 3
-        </span>
-      </button>
-    </div>
-    <div
-      aria-hidden={true}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": 0,
-          "overflow": "hidden",
-        }
-      }
+      class="es-drawer__panel third sc-bwzfXH bBIqkK"
     >
       <div
-        style={Object {}}
+        class="es-drawer__heading"
+        id="abcdef"
+        role="heading"
       >
-        third
+        <button
+          aria-controls="abcdef"
+          aria-expanded="false"
+          class="sc-htpNat jDwJgO"
+        >
+          <span>
+            <i
+              aria-hidden="true"
+              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              content="601"
+              font-family="indv-mkt-icons"
+              font-size="inherit"
+            />
+            collapse 3
+          </span>
+        </button>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="abcdef"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        id="abcdef"
+        role="region"
+        style="height: 0px; overflow: hidden;"
+      >
+        <div
+          style="display: none;"
+        >
+          third
+        </div>
       </div>
     </div>
   </div>
 </div>
 `;
 
-exports[`drawer component drawer renders as expected 1`] = `
-<div
-  className="es-drawer important sc-EHOje ixLrxb"
->
+exports[`drawer renders as expected 1`] = `
+<div>
   <div
-    className="es-drawer__panel first sc-bwzfXH bBIqkK"
+    class="es-drawer important sc-EHOje ixLrxb"
   >
     <div
-      className="es-drawer__heading"
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={false}
-        className="sc-htpNat jDwJgO"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
-            content="601"
-            fontFamily="indv-mkt-icons"
-            fontSize="inherit"
-          />
-          collapse 1
-        </span>
-        <aside>
-          side text
-        </aside>
-      </button>
-    </div>
-    <div
-      aria-hidden={true}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": 0,
-          "overflow": "hidden",
-        }
-      }
+      class="es-drawer__panel first sc-bwzfXH bBIqkK"
     >
       <div
-        style={Object {}}
+        class="es-drawer__heading"
+        id="abcdef"
+        role="heading"
       >
-        first
+        <button
+          aria-controls="abcdef"
+          aria-expanded="false"
+          class="sc-htpNat jDwJgO"
+        >
+          <span>
+            <i
+              aria-hidden="true"
+              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              content="601"
+              font-family="indv-mkt-icons"
+              font-size="inherit"
+            />
+            collapse 1
+          </span>
+          <aside>
+            side text
+          </aside>
+        </button>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="abcdef"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        id="abcdef"
+        role="region"
+        style="height: 0px; overflow: hidden;"
+      >
+        <div
+          style="display: none;"
+        >
+          first
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="es-drawer__panel second sc-bwzfXH bBIqkK"
-  >
     <div
-      className="es-drawer__heading"
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={false}
-        className="sc-htpNat jDwJgO"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
-            content="601"
-            fontFamily="indv-mkt-icons"
-            fontSize="inherit"
-          />
-          collapse 2
-        </span>
-      </button>
-    </div>
-    <div
-      aria-hidden={true}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": 0,
-          "overflow": "hidden",
-        }
-      }
+      class="es-drawer__panel second sc-bwzfXH bBIqkK"
     >
       <div
-        style={Object {}}
+        class="es-drawer__heading"
+        id="abcdef"
+        role="heading"
       >
-        second
+        <button
+          aria-controls="abcdef"
+          aria-expanded="false"
+          class="sc-htpNat jDwJgO"
+        >
+          <span>
+            <i
+              aria-hidden="true"
+              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              content="601"
+              font-family="indv-mkt-icons"
+              font-size="inherit"
+            />
+            collapse 2
+          </span>
+        </button>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="abcdef"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
+        id="abcdef"
+        role="region"
+        style="height: 0px; overflow: hidden;"
+      >
+        <div
+          style="display: none;"
+        >
+          second
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="es-drawer__panel third sc-bwzfXH bBIqkK"
-  >
     <div
-      className="es-drawer__heading"
-      id="abcdef"
-      role="heading"
-    >
-      <button
-        aria-controls="abcdef"
-        aria-expanded={false}
-        className="sc-htpNat jDwJgO"
-        onClick={[Function]}
-      >
-        <span>
-          <i
-            aria-hidden={true}
-            className="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
-            content="601"
-            fontFamily="indv-mkt-icons"
-            fontSize="inherit"
-          />
-          collapse 3
-        </span>
-      </button>
-    </div>
-    <div
-      aria-hidden={true}
-      aria-labelledby="abcdef"
-      className="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
-      id="abcdef"
-      role="region"
-      style={
-        Object {
-          "height": 0,
-          "overflow": "hidden",
-        }
-      }
+      class="es-drawer__panel third sc-bwzfXH bBIqkK"
     >
       <div
-        style={Object {}}
+        class="es-drawer__heading"
+        id="abcdef"
+        role="heading"
       >
-        third
+        <button
+          aria-controls="abcdef"
+          aria-expanded="false"
+          class="sc-htpNat jDwJgO"
+        >
+          <span>
+            <i
+              aria-hidden="true"
+              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              content="601"
+              font-family="indv-mkt-icons"
+              font-size="inherit"
+            />
+            collapse 3
+          </span>
+        </button>
+      </div>
+      <div
+        aria-hidden="true"
+        aria-labelledby="abcdef"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        id="abcdef"
+        role="region"
+        style="height: 0px; overflow: hidden;"
+      >
+        <div
+          style="display: none;"
+        >
+          third
+        </div>
       </div>
     </div>
   </div>

@@ -1,23 +1,17 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { renderWithTheme } from 'styled-enzyme';
 import Breadcrumb from './Breadcrumb';
+import { renderWithTheme } from '../../util/test-utils';
 
-describe('BreadcrumbTestSuite', () => {
-  let instanceToRender;
+it('renders as expected', () => {
+  const { container } = renderWithTheme(
+    <Breadcrumb>
+      <a href="/test">test</a>
+      <a href="/test-2">test 2</a>
+      <a href="/test-3">test 3</a>
+    </Breadcrumb>
+  );
 
-  beforeEach(() => {
-    instanceToRender = (
-      <Breadcrumb className="test">
-        <a href="/test">test</a>
-        <a href="/test2">test2</a>
-      </Breadcrumb>
-    );
-  });
-
-  it('renders as expected', () => {
-    const tree = renderWithTheme(instanceToRender).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+  expect(container).toMatchSnapshot();
 });

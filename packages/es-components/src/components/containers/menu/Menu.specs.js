@@ -1,39 +1,43 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme, renderWithTheme } from 'styled-enzyme';
+import { fireEvent } from 'react-testing-library';
 import { Menu } from './Menu';
-import ToggleButton from '../../controls/buttons/ToggleButton';
 
-describe('MenuTestSuite', () => {
-  let instanceToRender;
+import { renderWithTheme } from '../../util/test-utils';
 
-  beforeEach(() => {
-    instanceToRender = (
-      <Menu
-        headerContent="Small Menu"
-        buttonContent="Open Menu"
-        className="test"
-      >
-        <Menu.MenuSection title="Menu Section" isFirst>
-          <a href="www.google.com">Go To Google</a>
-        </Menu.MenuSection>
-      </Menu>
-    );
-  });
+function buildMenu() {
+  return (
+    <Menu
+      headerContent="Small Menu"
+      buttonContent="Open Menu"
+      className="test"
+    >
+      <Menu.MenuSection title="Menu Section" isFirst>
+        <a href="#test">Test link</a>
+      </Menu.MenuSection>
+    </Menu>
+  );
+}
 
-  it('renders as expected', () => {
-    const tree = renderWithTheme(instanceToRender).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+it('toggles the menu open and closed', () => {
+  const { getByText } = renderWithTheme(buildMenu());
 
-  it('toggles menu open/closed on click', () => {
-    const instance = mountWithTheme(instanceToRender);
-    const button = instance.find(ToggleButton);
+  const menuToggleButton = getByText('Open Menu');
+  const menuSection = getByText('Menu Section');
 
-    button.simulate('click');
-    expect(instance.state().isMenuOpen).toBe(true);
-    button.simulate('click');
-    expect(instance.state().isMenuOpen).toBe(false);
-  });
+  menuToggleButton.click();
+  expect(menuSection).toBeVisible();
+
+  menuToggleButton.click();
+  expect(menuSection).not.toBeVisible();
+});
+
+it('closes open menu when ESC is pressed', () => {
+  const { container, getByText } = renderWithTheme(buildMenu());
+
+  getByText('Open Menu').click();
+
+  fireEvent.keyDown(container, { keyCode: 27 });
+  expect(getByText('Menu Section')).not.toBeVisible();
 });

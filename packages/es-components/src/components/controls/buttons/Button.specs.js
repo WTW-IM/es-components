@@ -1,45 +1,43 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallowWithTheme } from 'styled-enzyme';
-import viaTheme from 'es-components-via-theme';
 
-import { Button } from './Button';
+import Button from './Button';
+import { renderWithTheme } from '../../util/test-utils';
 
-let instance;
 const onClick = jest.fn();
 
-beforeEach(() => {
-  instance = shallowWithTheme(
-    <Button handleOnClick={onClick} theme={viaTheme}>
-      test
-    </Button>
-  ).dive();
-});
+function buildButton(props) {
+  const { children, ...otherProps } = props;
+  const defaultProps = {
+    handleOnClick: onClick
+  };
+  const mergedProps = Object.assign({}, defaultProps, otherProps);
+
+  return (
+    <Button {...mergedProps}>{children}</Button>
+  );
+}
 
 it('renders child text inside of button', () => {
-  expect(instance.children().text()).toBe('test');
+  const { queryByText } = renderWithTheme(buildButton({ children: 'Test button' }));
+  const button = queryByText('Test button');
+  expect(button).not.toBeNull();
 });
 
 it('renders child nodes inside of button', () => {
   const child = <span>Hello</span>;
 
-  const instanceWithChild = shallowWithTheme(
-    <Button handleOnClick={jest.fn()} theme={viaTheme}>
-      {child}
-    </Button>
-  );
+  const { getByText } = renderWithTheme(buildButton({ children: child }));
 
-  expect(
-    instanceWithChild
-      .dive()
-      .children()
-      .getElement()
-  ).toMatchObject(child);
+  const foundChild = getByText('Hello');
+  expect(foundChild.nodeName).toBe('SPAN');
 });
 
 it('executes the handleOnClick function passed', () => {
-  instance.dive().simulate('click');
+  const { getByText } = renderWithTheme(buildButton({ children: 'Test' }));
 
-  expect(onClick.mock.calls.length).toBe(1);
+  getByText('Test').click();
+
+  expect(onClick).toHaveBeenCalled();
 });

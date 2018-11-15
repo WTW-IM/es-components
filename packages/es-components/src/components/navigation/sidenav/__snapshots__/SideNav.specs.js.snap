@@ -1,99 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`drawer renders as expected 1`] = `
-<nav
-  className="es-sidenav sc-ifAKCX kXLRTf"
->
-  <ul>
-    <li
-      className="es-sidenav__navitem"
-    >
-      <a
-        className="home sc-bwzfXH igXrdK"
-        href="/home"
-        onClick={[Function]}
+exports[`renders as expected 1`] = `
+<div>
+  <nav
+    class="es-sidenav sc-ifAKCX kXLRTf"
+  >
+    <ul>
+      <li
+        class="es-sidenav__navitem"
       >
-        <span
-          className="sc-bxivhb khxFsg"
+        <a
+          class="home sc-bwzfXH igXrdK"
+          href="/home"
         >
-          Home
-        </span>
-        <i
-          aria-hidden={true}
-          className="es-icon sc-bdVaJa clAcVq"
-          content="61f"
-          fontFamily="indv-mkt-icons"
-          fontSize="inherit"
-        />
-      </a>
-    </li>
-    <li
-      className="es-sidenav__navitem"
-    >
-      <a
-        className="cart sc-bwzfXH igXrdK"
-        href="#/"
-        onClick={[Function]}
+          <span
+            class="sc-bxivhb khxFsg"
+          >
+            Home
+          </span>
+          <i
+            aria-hidden="true"
+            class="es-icon sc-bdVaJa clAcVq"
+            content="61f"
+            font-family="indv-mkt-icons"
+            font-size="inherit"
+          />
+        </a>
+      </li>
+      <li
+        class="es-sidenav__navitem"
       >
-        <span
-          className="sc-bxivhb khxFsg"
+        <a
+          class="cart sc-bwzfXH igXrdK"
+          href="#/"
         >
-          Cart
-        </span>
-        <i
-          aria-hidden={true}
-          className="es-icon sc-bdVaJa clAcVq"
-          content="61f"
-          fontFamily="indv-mkt-icons"
-          fontSize="inherit"
-        />
-      </a>
-    </li>
-    <li
-      className="es-sidenav__navitem"
-    >
-      <a
-        className="external sc-bwzfXH igXrdK"
-        href="http://www.google.com"
-        onClick={[Function]}
-        target="_blank"
+          <span
+            class="sc-bxivhb khxFsg"
+          >
+            Cart
+          </span>
+          <i
+            aria-hidden="true"
+            class="es-icon sc-bdVaJa clAcVq"
+            content="61f"
+            font-family="indv-mkt-icons"
+            font-size="inherit"
+          />
+        </a>
+      </li>
+      <li
+        class="es-sidenav__navitem"
       >
-        <span
-          className="sc-bxivhb khxFsg"
+        <a
+          class="external sc-bwzfXH igXrdK"
+          href="http://www.google.com"
+          target="_blank"
         >
-          External Link
-        </span>
-        <i
-          aria-hidden={true}
-          className="es-icon sc-bdVaJa clAcVq"
-          content="61f"
-          fontFamily="indv-mkt-icons"
-          fontSize="inherit"
-        />
-      </a>
-    </li>
-    <li
-      className="es-sidenav__navitem"
-    >
-      <a
-        className="info sc-bwzfXH hJluX"
-        href="#/"
-        onClick={[Function]}
+          <span
+            class="sc-bxivhb khxFsg"
+          >
+            External Link
+          </span>
+          <i
+            aria-hidden="true"
+            class="es-icon sc-bdVaJa clAcVq"
+            content="61f"
+            font-family="indv-mkt-icons"
+            font-size="inherit"
+          />
+        </a>
+      </li>
+      <li
+        class="es-sidenav__navitem"
       >
-        <span
-          className="sc-bxivhb khxFsg"
+        <a
+          class="info sc-bwzfXH hJluX"
+          href="#/"
         >
-          Disabled
-        </span>
-        <i
-          aria-hidden={true}
-          className="es-icon sc-bdVaJa clAcVq"
-          content="61f"
-          fontFamily="indv-mkt-icons"
-          fontSize="inherit"
-        />
-      </a>
-    </li>
-  </ul>
-</nav>
+          <span
+            class="sc-bxivhb khxFsg"
+          >
+            Disabled
+          </span>
+          <i
+            aria-hidden="true"
+            class="es-icon sc-bdVaJa clAcVq"
+            content="61f"
+            font-family="indv-mkt-icons"
+            font-size="inherit"
+          />
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 `;

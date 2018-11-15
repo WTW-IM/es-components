@@ -1,32 +1,37 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme } from 'styled-enzyme';
+import { cleanup, fireEvent, getByRole } from 'react-testing-library';
 
 import { DropdownButton } from './DropdownButton';
-import Button from './Button';
+import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
 
+beforeEach(cleanup);
+
 it('opens/closes dropdown on click', () => {
-  const instance = mountWithTheme(
+  const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button">
       <DropdownButton.Button handleOnClick={onClick}>
         Inner
       </DropdownButton.Button>
     </DropdownButton>
   );
-  const button = instance.find(Button).first();
-  button.simulate('click');
-  expect(instance.state().isOpen).toBe(true);
 
-  button.simulate('click');
-  expect(instance.state().isOpen).toBe(false);
+  const button = getByText('Button');
+  expect(getByText('Inner')).not.toBeVisible();
+
+  button.click();
+  expect(getByText('Inner')).toBeVisible();
+
+  button.click();
+  expect(getByText('Inner')).not.toBeVisible();
 });
 
 it('updates buttonValue on child click when shouldUpdateButtonValue is true', () => {
   const innerContents = 'Inner';
-  const instance = mountWithTheme(
+  const { container, getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
       <DropdownButton.Button handleOnClick={onClick}>
         {innerContents}
@@ -34,13 +39,14 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
     </DropdownButton>
   );
 
-  instance.simulate('click');
-  instance.find(DropdownButton.Button).simulate('click');
-  expect(instance.state().buttonValue).toBe(innerContents);
+  getByText('Button').click();
+  getByText('Inner').click();
+
+  expect(container.querySelectorAll('button')[0]).toHaveTextContent('Inner');
 });
 
 it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
-  const instance = mountWithTheme(
+  const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
       <DropdownButton.Button handleOnClick={onClick}>
         Content
@@ -48,7 +54,46 @@ it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
     </DropdownButton>
   );
 
-  instance.simulate('click');
-  instance.find(DropdownButton.Button).simulate('click');
-  expect(instance.state().isOpen).toBe(false);
+  getByText('Button').click();
+  getByText('Content').click();
+  expect(getByText('Content')).not.toBeVisible();
+});
+
+it('allows arrow movement and traps focus when dropdown is opened', () => {
+  const { container, getByText } = renderWithTheme(
+    <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
+      <DropdownButton.Button handleOnClick={onClick}>
+        Item 1
+      </DropdownButton.Button>
+      <DropdownButton.Button handleOnClick={onClick}>
+        Item 2
+      </DropdownButton.Button>
+    </DropdownButton>
+  );
+
+  const firstButton = getByText('Button');
+  firstButton.click();
+  expect(firstButton).toHaveFocus();
+
+  const pressArrowKey = key =>
+    fireEvent.keyDown(getByRole(container, 'combobox'), {
+      keyCode: key
+    });
+
+  function verifyFocusAfterKeydown(key, button) {
+    pressArrowKey(key);
+    expect(button).toHaveFocus();
+  }
+
+  const firstItemButton = getByText('Item 1');
+  const secondItemButton = getByText('Item 2');
+
+  const downArrow = 40;
+  const upArrow = 38;
+  verifyFocusAfterKeydown(downArrow, firstItemButton);
+  verifyFocusAfterKeydown(downArrow, secondItemButton);
+  verifyFocusAfterKeydown(downArrow, firstButton);
+  // pressing the up arrow key while focused on the first button
+  // will verify focus trap is working as expected
+  verifyFocusAfterKeydown(upArrow, secondItemButton);
 });

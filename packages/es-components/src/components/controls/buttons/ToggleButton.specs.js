@@ -1,25 +1,31 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
-import { ToggleButton } from './ToggleButton';
+import ToggleButton from './ToggleButton';
+import { renderWithTheme } from '../../util/test-utils';
 
-let instance;
 const onClick = jest.fn();
 
-beforeEach(() => {
-  instance = mountWithTheme(
-    <ToggleButton handleOnClick={onClick} theme={viaTheme}>
-      test
-    </ToggleButton>
-  );
-});
-
 it('sets isPressed state on click', () => {
-  instance.simulate('click');
-  expect(instance.state().isPressed).toBe(true);
-  instance.simulate('click');
-  expect(instance.state().isPressed).toBe(false);
+  const { getByText } = renderWithTheme(
+    <ToggleButton handleOnClick={onClick}>test</ToggleButton>
+  );
+  const button = getByText('test');
+  button.click();
+
+  const themeValues = viaTheme.buttonStyles.buttonsNormal.default;
+
+  expect(button).toHaveStyle(`
+    background-color: ${themeValues.hoverBgColor};
+    color: ${themeValues.activeTextColor};
+  `);
+
+  button.click();
+
+  expect(button).toHaveStyle(`
+    background-color: ${themeValues.bgColor};
+    color: ${themeValues.textColor};
+  `);
 });

@@ -1,75 +1,66 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { mountWithTheme } from 'styled-enzyme';
+import { fireEvent } from 'react-testing-library';
 
 import Dropdown from './Dropdown';
+import { renderWithTheme } from '../../util/test-utils';
 
-describe('Dropdown component', () => {
-  let instance;
-  let select;
+const options = [
+  {
+    optionText: 'Test 1',
+    optionValue: '1'
+  },
+  {
+    optionText: 'Test 2',
+    optionValue: '2'
+  },
+  {
+    optionText: 'Test 3',
+    optionValue: '3'
+  }
+];
 
-  beforeEach(() => {
-    const options = [
-      {
-        optionText: 'Test 1',
-        optionValue: '1'
-      },
-      {
-        optionText: 'Test 2',
-        optionValue: '2'
-      },
-      {
-        optionText: 'Test 3',
-        optionValue: '3'
-      }
-    ];
-
-    instance = mountWithTheme(<Dropdown labelText="Test" options={options} />);
-
-    select = instance.find('select');
+it('executes the passed in "onChange" function', () => {
+  const onChange = jest.fn();
+  const { container } = renderWithTheme(
+    <Dropdown labelText="Test" options={options} onChange={onChange} />
+  );
+  fireEvent.change(container.querySelector('select'), {
+    target: { value: '1' }
   });
+  expect(onChange).toHaveBeenCalled();
+});
 
-  it('executes the passed in "onChange" function', () => {
-    const onChange = jest.fn();
-    instance.setProps({ onChange });
+it('executes the passed in "onBlur" function', () => {
+  const onBlur = jest.fn();
+  const { container } = renderWithTheme(
+    <Dropdown labelText="test" options={options} onBlur={onBlur} />
+  );
 
-    const event = { target: { value: '1' } };
-    select.simulate('change', event);
+  const select = container.querySelector('select');
 
-    expect(onChange).toHaveBeenCalled();
-  });
+  fireEvent.focus(select);
+  fireEvent.blur(select);
 
-  it('executes the passed in "onBlur" function', () => {
-    const onBlur = jest.fn();
-    instance.setProps({ onBlur });
+  expect(onBlur).toHaveBeenCalled();
+});
 
-    const event = { target: { value: '2' } };
-    select.simulate('blur', event);
+it('does not render the first option when includeDefaultFirstOption is false', () => {
+  const { queryByText } = renderWithTheme(
+    <Dropdown
+      options={options}
+      firstOptionDisplayText="first"
+      includeDefaultFirstOption={false}
+    />
+  );
+  expect(queryByText('first')).toBeNull();
+});
 
-    expect(onBlur).toHaveBeenCalled();
-  });
+it('renders the text of the first option as the firstOptionDisplayText prop value', () => {
+  const { queryByText } = renderWithTheme(
+    <Dropdown options={options} firstOptionDisplayText="first" />
+  );
 
-  it('does not render the first option when includeDefaultFirstOption is false', () => {
-    const optionsLength = () => instance.find('option').length;
-
-    expect(optionsLength()).toBe(4);
-
-    instance.setProps({ includeDefaultFirstOption: false });
-
-    expect(optionsLength()).toBe(3);
-  });
-
-  it('renders the text of the first option as the firstOptionDisplayText prop value', () => {
-    const firstOptionDisplayText = 'Select one..';
-    const options = [{ optionText: firstOptionDisplayText, optionValue: '1' }];
-
-    instance.setProps({ firstOptionDisplayText, options });
-
-    const optionText = instance
-      .find('option')
-      .first()
-      .text();
-    expect(optionText).toEqual(firstOptionDisplayText);
-  });
+  expect(queryByText('first')).not.toBeNull();
 });

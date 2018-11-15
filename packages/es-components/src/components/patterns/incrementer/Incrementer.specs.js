@@ -1,78 +1,70 @@
 /* eslint-env jest */
 import React from 'react';
-import { mountWithTheme } from 'styled-enzyme';
 import viaTheme from 'es-components-via-theme';
 
-import Button from '../../controls/buttons/Button';
-import { Incrementer } from './Incrementer';
+import Incrementer from './Incrementer';
+import { renderWithTheme } from '../../util/test-utils';
 
-describe('Incrementer component', () => {
-  let incrementer;
-  let valueUpdated;
+const valueUpdated = jest.fn();
 
-  beforeEach(() => {
-    valueUpdated = jest.fn();
+beforeEach(() => {
+  valueUpdated.mockClear();
+});
 
-    incrementer = mountWithTheme(
-      <Incrementer
-        startingValue={5}
-        incrementAmount={5}
-        upperThreshold={20}
-        decrementAmount={5}
-        lowerThreshold={0}
-        onValueUpdated={valueUpdated}
-        theme={viaTheme}
-      />
-    );
-  });
+function createIncrementer(props) {
+  return (
+    <Incrementer {...props} onValueUpdated={valueUpdated} theme={viaTheme} />
+  );
+}
 
-  describe('when decrement button is clicked', () => {
-    beforeEach(() => {
-      incrementer
-        .find(Button)
-        .first()
-        .simulate('click');
-    });
+it('when decrement button is clicked the displayed value is decreased by decrementAmount', () => {
+  const { container, queryByValue } = renderWithTheme(
+    createIncrementer({
+      decrementAmount: 5
+    })
+  );
+  container.getElementsByClassName('decrement-button')[0].click();
+  expect(queryByValue('-5')).not.toBeNull();
+  expect(valueUpdated).toHaveBeenCalledWith(-5);
+});
 
-    it('value is decreased by decrementAmount', () => {
-      expect(incrementer.state('value')).toBe(0);
-    });
+it('when increment button is clicked, the displayed value is increased by incrementAmount', () => {
+  const { container, queryByValue } = renderWithTheme(
+    createIncrementer({
+      incrementAmount: 2
+    })
+  );
+  container.getElementsByClassName('increment-button')[0].click();
+  expect(queryByValue('2')).not.toBeNull();
+  expect(valueUpdated).toHaveBeenCalledWith(2);
+});
 
-    it('calls onValueUpdated prop with decreased value', () => {
-      expect(valueUpdated.mock.calls[0][0]).toBe(0);
-    });
-  });
+it('disables decrementation button when current value equals lowerThreshold', () => {
+  const { container } = renderWithTheme(
+    createIncrementer({
+      startingValue: 2,
+      lowerThreshold: 0
+    })
+  );
+  const decrementButton = container.getElementsByClassName(
+    'decrement-button'
+  )[0];
+  decrementButton.click();
+  decrementButton.click();
+  expect(decrementButton).toBeDisabled();
+});
 
-  describe('when increment button is clicked', () => {
-    beforeEach(() => {
-      incrementer
-        .find(Button)
-        .last()
-        .simulate('click');
-    });
-
-    it('value is increased by incrementAmount', () => {
-      expect(incrementer.state('value')).toBe(10);
-    });
-
-    it('calls onValueUpdated prop with increased value', () => {
-      expect(valueUpdated.mock.calls[0][0]).toBe(10);
-    });
-  });
-
-  it('disables decrementation button when current value equals lowerThreshold', () => {
-    expect(incrementer.state('decrementButtonDisabled')).toBe(false);
-
-    incrementer.setProps({ startingValue: 0 });
-
-    expect(incrementer.state('decrementButtonDisabled')).toBe(true);
-  });
-
-  it('disables incrementation button when current value equals upperThreshold', () => {
-    expect(incrementer.state('incrementButtonDisabled')).toBe(false);
-
-    incrementer.setProps({ startingValue: 20 });
-
-    expect(incrementer.state('incrementButtonDisabled')).toBe(true);
-  });
+it('disables incrementation button when current value equals upperThreshold', () => {
+  const { container } = renderWithTheme(
+    createIncrementer({
+      startingValue: 8,
+      upperThreshold: 10
+    })
+  );
+  const incrementButton = container.getElementsByClassName(
+    'increment-button'
+  )[0];
+  incrementButton.click();
+  incrementButton.click();
+  expect(incrementButton).toBeDisabled();
 });

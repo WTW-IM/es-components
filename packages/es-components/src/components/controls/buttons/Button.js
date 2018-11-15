@@ -25,7 +25,7 @@ const ButtonBase = styled.button`
   display: ${props => getBlockPropertyValues(props.block).display};
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.baseLineHeight};
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};
   padding-right: ${props => props.buttonSize.paddingSides};
@@ -120,7 +120,7 @@ const LinkButton = styled(ButtonBase)`
   }
 `;
 
-export function Button({
+function Button({
   handleOnClick,
   children,
   buttonClasses,
@@ -140,6 +140,7 @@ export function Button({
     buttonSize,
     name,
     onClick: handleOnClick,
+    baseLineHeight: theme.sizes.baseLineHeight,
     ...otherProps
   };
 

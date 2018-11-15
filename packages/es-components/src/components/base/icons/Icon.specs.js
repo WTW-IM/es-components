@@ -1,13 +1,14 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'react-testing-library';
 
 import Icon from './Icon';
 
-describe('Icon', () => {
-  it('includes the aria-hidden attribute', () => {
-    const instance = shallow(<Icon name="federal" size={16} />);
-    expect(instance.prop('aria-hidden')).toBe(true);
-  });
+it('includes the aria-hidden attribute', () => {
+  const { container } = render(<Icon name="federal" size={16} />);
+  const hasAriaHiddenAttribute = container
+    .querySelector('i')
+    .getAttribute('aria-hidden');
+  expect(Boolean(hasAriaHiddenAttribute)).toBe(true);
 });

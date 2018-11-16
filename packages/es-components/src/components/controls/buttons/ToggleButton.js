@@ -1,82 +1,72 @@
 /* eslint no-confusing-arrow: 0 */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
 import Button from './Button';
 
-export class ToggleButton extends React.Component {
-  state = {
-    isPressed: this.props.isPressed
-  };
+function ToggleButton(props) {
+  const [isPressed, setIsPressed] = useState(props.isPressed);
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isPressed !== this.state.isPressed) {
-      this.setState({ isPressed: nextProps.isPressed });
-    }
+  function toggleButton(event) {
+    setIsPressed(!isPressed);
+    props.handleOnClick(event);
   }
 
-  toggleButton = event => {
-    this.setState(previousState => ({ isPressed: !previousState.isPressed }));
-    this.props.handleOnClick(event);
+  const {
+    buttonClasses,
+    styleType,
+    isLinkButton,
+    size,
+    block,
+    isOutline,
+    theme,
+    ...buttonProps
+  } = props;
+
+  const defaultButton = {
+    bgColor: theme.colors.defaultColor,
+    textColor: theme.colors.defaultBtnText,
+    hoverBgColor: theme.colors.defaultHover,
+    hoverTextColor: theme.colors.defaultBtnText,
+    activeBgColor: theme.colors.defaultHover,
+    activeTextColor: theme.colors.defaultBtnText,
+    boxShadowColor: theme.colors.defaultHover,
+    borderColor: theme.colors.defaultColor
+  };
+  const defaultOutline = {
+    bgColor: theme.colors.white,
+    textColor: theme.colors.defaultColor,
+    hoverBgColor: theme.colors.defaultColor,
+    hoverTextColor: theme.colors.white,
+    activeBgColor: theme.colors.defaultHover,
+    activeTextColor: theme.colors.white,
+    borderColor: theme.colors.defaultColor
   };
 
-  render() {
-    const {
-      buttonClasses,
-      styleType,
-      isLinkButton,
-      size,
-      block,
-      isOutline,
-      theme,
-      ...buttonProps
-    } = this.props;
-
-    const defaultButton = {
-      bgColor: theme.colors.defaultColor,
-      textColor: theme.colors.defaultBtnText,
-      hoverBgColor: theme.colors.defaultHover,
-      hoverTextColor: theme.colors.defaultBtnText,
-      activeBgColor: theme.colors.defaultHover,
-      activeTextColor: theme.colors.defaultBtnText,
-      boxShadowColor: theme.colors.defaultHover,
-      borderColor: theme.colors.defaultColor
-    };
-    const defaultOutline = {
-      bgColor: theme.colors.white,
-      textColor: theme.colors.defaultColor,
-      hoverBgColor: theme.colors.defaultColor,
-      hoverTextColor: theme.colors.white,
-      activeBgColor: theme.colors.defaultHover,
-      activeTextColor: theme.colors.white,
-      borderColor: theme.colors.defaultColor
-    };
-
-    let variant;
-    if (isOutline) {
-      variant = theme.buttonStyles.buttonsOutline[styleType] || defaultOutline;
-    } else {
-      variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
-    }
-
-    return (
-      <StyledToggleButton
-        {...buttonProps}
-        handleOnClick={this.toggleButton}
-        buttonClasses={buttonClasses}
-        styleType={styleType}
-        isLinkButton={isLinkButton}
-        size={size}
-        block={block}
-        isOutline={isOutline}
-        isPressed={this.state.isPressed}
-        variant={variant}
-      >
-        {this.props.children}
-      </StyledToggleButton>
-    );
+  let variant;
+  if (isOutline) {
+    variant = theme.buttonStyles.buttonsOutline[styleType] || defaultOutline;
+  } else {
+    variant = theme.buttonStyles.buttonsNormal[styleType] || defaultButton;
   }
+
+  return (
+    <StyledToggleButton
+      {...buttonProps}
+      handleOnClick={toggleButton}
+      buttonClasses={buttonClasses}
+      styleType={styleType}
+      isLinkButton={isLinkButton}
+      size={size}
+      block={block}
+      isOutline={isOutline}
+      isPressed={isPressed}
+      variant={variant}
+    >
+      {props.children}
+    </StyledToggleButton>
+  );
 }
 
 const StyledToggleButton = styled(Button)`

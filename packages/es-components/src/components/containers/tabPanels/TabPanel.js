@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop, findIndex } from 'lodash';
@@ -28,46 +28,40 @@ const TabContent = styled.div`
   border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 
-class TabPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.selectedKey
-    };
+function TabPanel(props) {
+  const { children, selectedKey, tabChanged } = props;
+  const [value, setValue] = useState(selectedKey);
+
+  let displayIndex = findIndex(React.Children.toArray(children), child => {
+    const key = selectedKey || value || value.key;
+    return child.props.name.key ?
+      child.props.name.key === key :
+      child.props.name === key;
+  });
+
+  if (displayIndex < 0) {
+    displayIndex = 0;
   }
 
-  render() {
-    const { children, selectedKey, tabChanged } = this.props;
-    let displayIndex = findIndex(children, child => {
-      const key = selectedKey || this.state.value || this.state.value.key;
-      return child.props.name.key
-        ? child.props.name.key === key
-        : child.props.name === key;
-    });
-    if (displayIndex < 0) {
-      displayIndex = 0;
+  const elements = React.Children.map(children, (child, index) => React.cloneElement(child, {
+    selected: index === displayIndex,
+    action: header => {
+      setValue(header);
+      tabChanged(header);
     }
-    const elements = React.Children.map(children, (child, i) =>
-      React.cloneElement(child, {
-        selected: i === displayIndex,
-        action: header => {
-          this.setState({ value: header });
-          tabChanged(header);
-        }
-      })
-    );
+  }));
 
-    return (
-      <div className="es-tab-panel">
-        <TabWrapper className="es-tab-panel__wrapper">
-          <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
-        </TabWrapper>
-        <TabContent className="es-tab-panel__content">
-          {elements[displayIndex].props.children}
-        </TabContent>
-      </div>
-    );
-  }
+
+  return (
+    <div className="es-tab-panel">
+      <TabWrapper className="es-tab-panel__wrapper">
+        <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
+      </TabWrapper>
+      <TabContent className="es-tab-panel__content">
+        {elements[displayIndex].props.children}
+      </TabContent>
+    </div>
+  );
 }
 
 function childrenRule(props, propName, component) {

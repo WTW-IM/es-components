@@ -3,7 +3,7 @@
 import React from 'react';
 import { cleanup, fireEvent, getByRole } from 'react-testing-library';
 
-import { DropdownButton } from './DropdownButton';
+import DropdownButton from './DropdownButton';
 import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();

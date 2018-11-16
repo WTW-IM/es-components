@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
@@ -29,55 +29,43 @@ const TabContent = styled.div`
   border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 
-class TabPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    const child = Array.isArray(this.props.children)
-      ? props.children[0]
-      : props.children;
-    this.state = {
-      value: child.props.name,
-      currentContent: child.props.children
-    };
-    this.tabChanged = this.tabChanged.bind(this);
-  }
+function TabPanel(props) {
+  const content = Array.isArray(props.children)
+    ? props.children[0]
+    : props.children;
 
-  componentDidUpdate(prevProp, prevState) {
-    if (this.state.value !== prevState.value) {
-      this.props.tabChanged(this.state.value);
+  const [value, setValue] = useState(content.props.name);
+  const [currentContent, setCurrentContent] = useState(content.props.children);
+
+  function tabChanged(name, child) {
+    if (name !== value) {
+      setValue(name);
+      setCurrentContent(child);
+      props.tabChanged(value);
     }
   }
 
-  tabChanged(name, child) {
-    this.setState({
-      value: name,
-      currentContent: child
+  const { children } = props;
+  const elements = React.Children.map(children, (child, i) => {
+    const isSelected = child.props.name.key ?
+      child.props.name.key === value.key :
+      child.props.name === value.name
+    return React.cloneElement(child, {
+      selected: isSelected,
+      action: tabChanged
     });
-  }
+  });
 
-  render() {
-    const { children } = this.props;
-    const elements = React.Children.map(children, (child, i) => {
-      const isSelected = child.props.name.key
-        ? child.props.name.key === this.state.value.key
-        : child.props.name === this.state.value;
-      return React.cloneElement(child, {
-        selected: isSelected,
-        action: this.tabChanged
-      });
-    });
-
-    return (
-      <div className="es-tab-panel">
-        <TabWrapper className="es-tab-panel__wrapper">
-          <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
-        </TabWrapper>
-        <TabContent className="es-tab-panel__content">
-          {this.state.currentContent}
-        </TabContent>
-      </div>
-    );
-  }
+  return (
+    <div className="es-tab-panel">
+      <TabWrapper className="es-tab-panel__wrapper">
+        <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
+      </TabWrapper>
+      <TabContent className="es-tab-panel__content">
+        {currentContent}
+      </TabContent>
+    </div>
+  );
 }
 
 function childrenRule(props, propName, component) {

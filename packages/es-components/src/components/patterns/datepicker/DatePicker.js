@@ -8,23 +8,7 @@ import { injectGlobal, withTheme } from 'styled-components';
 import datepickerStyles from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 
-class DateTextbox extends React.Component {
-  static propTypes = Textbox.propTypes; // eslint-disable-line react/forbid-foreign-prop-types
-
-  setRef = ref => {
-    this.inputElement = ref;
-  };
-
-  focus() {
-    this.inputElement.focus();
-  }
-
-  render() {
-    return <Textbox inputRef={this.setRef} {...this.props} />;
-  }
-}
-
-export const DatePicker = props => {
+export function DatePicker(props) {
   const {
     children,
     name,
@@ -53,7 +37,7 @@ export const DatePicker = props => {
   /* eslint-enable */
 
   const textbox = (
-    <DateTextbox
+    <Textbox
       maskType="date"
       name={name}
       prependIconName="calendar"
@@ -64,6 +48,7 @@ export const DatePicker = props => {
   return (
     <ReactDatePicker
       customInput={textbox}
+      customInputRef="inputRef"
       onChange={onChange}
       onBlur={onBlur}
       placeholderText={placeholder}
@@ -73,7 +58,7 @@ export const DatePicker = props => {
       {children}
     </ReactDatePicker>
   );
-};
+}
 
 DatePicker.propTypes = {
   /** Additional text displayed below the input */
@@ -110,6 +95,8 @@ DatePicker.propTypes = {
   startDate: PropTypes.object,
   /** Sets the end date (moment) in a range */
   endDate: PropTypes.object,
+  /** Display checkbox with contextual state colorings */
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider

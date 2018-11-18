@@ -2,17 +2,13 @@
 
 import React from 'react';
 import { fireEvent } from 'react-testing-library';
-import { Menu } from './Menu';
+import Menu from './Menu';
 
 import { renderWithTheme } from '../../util/test-utils';
 
 function buildMenu() {
   return (
-    <Menu
-      headerContent="Small Menu"
-      buttonContent="Open Menu"
-      className="test"
-    >
+    <Menu headerContent="Small Menu" buttonContent="Open Menu" className="test">
       <Menu.MenuSection title="Menu Section" isFirst>
         <a href="#test">Test link</a>
       </Menu.MenuSection>

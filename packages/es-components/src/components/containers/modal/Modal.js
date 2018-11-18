@@ -6,6 +6,7 @@ import BaseModal from 'react-overlays/lib/Modal';
 
 import genId from '../../util/generateAlphaName';
 import Fade from '../../util/Fade';
+import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
@@ -65,64 +66,49 @@ const ModalContent = styled.div`
   text-align: left;
 `;
 
-class Modal extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      ariaId: genId()
-    };
+function getModalBySize(size) {
+  switch (size) {
+    case 'small':
+      return ModalDialogSmall;
+    case 'large':
+      return ModalDialogLarge;
+    default:
+      return ModalDialogMedium;
   }
+}
 
-  getChildContext() {
-    return {
-      modal: {
-        onHide: this.props.onHide,
-        ariaId: this.state.ariaId
-      }
-    };
-  }
+function Modal(props) {
+  const {
+    animation,
+    backdrop,
+    children,
+    escapeExits,
+    onEnter,
+    onExit,
+    onHide,
+    show,
+    size,
+    theme
+  } = props;
 
-  render() {
-    const {
-      animation,
-      backdrop,
-      children,
-      escapeExits,
-      onEnter,
-      onExit,
-      onHide,
-      show,
-      size,
-      theme
-    } = this.props;
+  const backdropStyle = {
+    backgroundColor: theme.colors.black,
+    bottom: 0,
+    cursor: backdrop === 'static' ? 'auto' : 'pointer',
+    left: 0,
+    opacity: 0.5,
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    zIndex: 'auto'
+  };
 
-    const backdropStyle = {
-      backgroundColor: theme.colors.black,
-      bottom: 0,
-      cursor: backdrop === 'static' ? 'auto' : 'pointer',
-      left: 0,
-      opacity: 0.5,
-      position: 'fixed',
-      right: 0,
-      top: 0,
-      zIndex: 'auto'
-    };
+  const ModalDialog = getModalBySize(size);
 
-    let ModalDialog;
-    switch (size) {
-      case 'small':
-        ModalDialog = ModalDialogSmall;
-        break;
-      case 'large':
-        ModalDialog = ModalDialogLarge;
-        break;
-      default:
-        ModalDialog = ModalDialogMedium;
-        break;
-    }
+  const ariaId = genId();
 
-    return (
+  return (
+    <ModalContext.Provider value={{ onHide, ariaId }}>
       <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}
@@ -136,14 +122,14 @@ class Modal extends React.Component {
       >
         <ModalDialog
           size={size}
-          aria-labelledby={this.state.ariaId}
+          aria-labelledby={ariaId}
           className="es-modal__dialog"
         >
           <ModalContent className="es-modal__content">{children}</ModalContent>
         </ModalDialog>
       </DialogWrapper>
-    );
-  }
+    </ModalContext.Provider>
+  );
 }
 
 Modal.propTypes = {
@@ -191,13 +177,6 @@ Modal.defaultProps = {
   show: false,
   size: 'medium',
   children: undefined
-};
-
-Modal.childContextTypes = {
-  modal: PropTypes.shape({
-    onHide: PropTypes.func,
-    ariaId: PropTypes.string
-  })
 };
 
 Modal.Header = Header;

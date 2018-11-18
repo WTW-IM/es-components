@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classnames from 'classnames';
@@ -6,6 +6,7 @@ import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
+import { InlineContext } from './InlineContext';
 
 const Backdrop = styled.div`
   background-color: black;
@@ -20,69 +21,58 @@ const Backdrop = styled.div`
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
-export class Menu extends React.Component {
-  static childContextTypes = {
-    inline: PropTypes.bool
-  };
+function Menu(props) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  state = {
-    isMenuOpen: false
-  };
-
-  getChildContext() {
-    return { inline: this.props.inline };
+  function toggleMenu() {
+    setIsMenuOpen(!isMenuOpen);
   }
 
-  toggleMenu = () => {
-    this.setState(previousState => ({ isMenuOpen: !previousState.isMenuOpen }));
-  };
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
 
-  closeMenu = () => {
-    if (this.state.isMenuOpen) {
-      this.setState({ isMenuOpen: false });
-    }
-  };
+  const {
+    inline,
+    children,
+    buttonContent,
+    className,
+    openButtonType,
+    rootClose,
+    hasBackdrop,
+    headerContent
+  } = props;
 
-  render() {
-    const {
-      children,
-      buttonContent,
-      className,
-      openButtonType,
-      rootClose,
-      hasBackdrop,
-      headerContent
-    } = this.props;
-
-    return (
-      <RootCloseWrapper onRootClose={this.closeMenu} disabled={!rootClose}>
-        <div className={classnames('es-menu', className)}>
-          {hasBackdrop && (
-            <Backdrop
-              className="es-menu__backdrop"
-              isMenuOpen={this.state.isMenuOpen}
-              onClick={this.closeMenu}
-            />
-          )}
-          <ToggleButton
-            handleOnClick={this.toggleMenu}
-            isPressed={this.state.isMenuOpen}
-            styleType={openButtonType}
-            aria-expanded={this.state.isMenuOpen}
-          >
-            {buttonContent}
-          </ToggleButton>
+  return (
+    <RootCloseWrapper onRootClose={closeMenu} disabled={!rootClose}>
+      <div className={classnames('es-menu', className)}>
+        {hasBackdrop && (
+          <Backdrop
+            className="es-menu__backdrop"
+            isMenuOpen={isMenuOpen}
+            onClick={closeMenu}
+          />
+        )}
+        <ToggleButton
+          handleOnClick={toggleMenu}
+          isPressed={isMenuOpen}
+          styleType={openButtonType}
+          aria-expanded={isMenuOpen}
+        >
+          {buttonContent}
+        </ToggleButton>
+        <InlineContext.Provider value={inline}>
           <MenuPanel
             headerContent={headerContent}
-            isOpen={this.state.isMenuOpen}
-            onClose={this.closeMenu}
+            isOpen={isMenuOpen}
+            onClose={closeMenu}
           >
             {children}
           </MenuPanel>
-        </div>
-      </RootCloseWrapper>
-    );
-  }
+        </InlineContext.Provider>
+      </div>
+    </RootCloseWrapper>
+  );
 }
 
 Menu.MenuSection = MenuSection;

@@ -32,6 +32,11 @@ module.exports = {
         input, button, select, textarea {
           font-family: inherit;
         }
+        
+        code {
+          white-space: pre-wrap !important;
+          word-break: break-word !important;
+        }
       </style>
       <link rel="stylesheet" href="https://cdn.rawgit.com/WTW-IM/es-assets/8fbaf85d/font.css">
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">`

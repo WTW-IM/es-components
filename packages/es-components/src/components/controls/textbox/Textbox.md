@@ -60,7 +60,7 @@ The `labelSuffix` prop will display additional styled content after the label te
 ```
 <Textbox
   labelText="Middle name"
-  labelSuffix="Optional"
+  labelSuffix={<span>Optional</span>}
 />
 ```
 
@@ -174,10 +174,10 @@ Provide an `appendText` or `prependText` prop for appending and prepending input
 </div>
 ```
 
-
 ### Custom masks
 
 Create your own text mask using the structure documented [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#text-mask-documentation).
+
 ```
 const mask = {
     mask: [/[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/, '-', /[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/],
@@ -188,7 +188,6 @@ const mask = {
 
 <Textbox name="maskExample" labelText="Enter 6 Letters (No Numbers)" maskType="custom" customMask={mask} />
 ```
-
 
 ### Additional props
 

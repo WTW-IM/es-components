@@ -21,28 +21,36 @@ function radioFill(color) {
 }
 
 const RadioLabel = styled(Label)`
-  color: ${props => props.theme.colors[props.validationState]};
-  display: ${props => (props.inline ? 'inline-flex' : 'flex')};
+  color: ${props =>
+    props.disabled
+      ? props.theme.colors.gray7
+      : props.theme.colors[props.validationState]};
+  cursor: pointer;
+  display: flex;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
-  margin-bottom: 0;
-  margin-right: ${props => (props.inline ? '15px' : 'initial')};
+  margin-bottom: 10px;
   position: relative;
-  padding: 5px 0;
+  padding: 10px 0 10px 10px;
   text-transform: none;
 
   &:hover .es-radio__fill:before {
     ${props => radioFill(props.hoverFillColor)};
   }
 
-  @media (max-width: ${props => props.theme.screenSize.phone}) {
-    display: flex;
-    margin-right: initial;
+  @media (min-width: ${props => props.theme.screenSize.phone}) {
+    display: ${props => (props.inline ? 'inline-flex' : 'flex')};
+    margin-right: ${props => (props.inline ? '15px' : '0')};
+  }
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    padding: 5px 0;
   }
 `;
 
 const RadioInput = styled.input`
-  opacity: 0;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
   position: absolute;
 
   &:focus ~ .es-radio__fill {
@@ -55,7 +63,7 @@ const RadioDisplay = styled.span`
   border-radius: 50%;
   box-sizing: border-box;
   height: 25px;
-  margin-right: 5px;
+  margin-right: 8px;
   width: 25px;
 
   &:before {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.5 (2018-11-19)</small>
+
+* Update: Checkbox and RadioGroup styles, styleguide styles ([fcb194f](https://github.com/wtw-im/es-components/commit/fcb194f))
+
+
+
+
+
 ## <small>18.0.4 (2018-11-15)</small>
 
 * Update: Add helper function to wrap render ([5c6369e](https://github.com/wtw-im/es-components/commit/5c6369e))

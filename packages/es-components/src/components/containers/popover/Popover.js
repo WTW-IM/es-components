@@ -1,6 +1,6 @@
 /* eslint-disable no-confusing-arrow */
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -94,50 +94,110 @@ const CloseHelpText = styled.span`
   width: 1px;
 `;
 
-class Popover extends React.Component {
-  state = {
-    isOpen: false
-  };
+function Popover(props) {
+  const {
+    name,
+    title,
+    content,
+    children,
+    placement,
+    arrowSize,
+    ariaLabel,
+    buttonStyle,
+    isOutline,
+    isLinkButton,
+    suppressUnderline,
+    hasCloseButton,
+    hasAltCloseButton,
+    disableRootClose,
+    disableFlipping
+  } = props;
 
-  componentDidUpdate() {
-    if (this.state.isOpen) {
-      window.addEventListener('scroll', this.hidePopOnScroll);
-    } else {
-      window.removeEventListener('scroll', this.hidePopOnScroll);
-    }
-  }
+  const hasTitle = title !== undefined;
+  const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
+  const showCloseButton = hasCloseButton && !hasAltCloseButton;
+  const buttonBorderStyle = suppressUnderline ? 'none' : '1px dashed';
 
-  toggleShow = () => {
+  const closeBtnRef = useRef(null);
+  const triggerBtnRef = useRef(null);
+  const popperRef = useRef(null);
+  const contentRef = useRef(null);
+  const headerRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleShow() {
     setTimeout(() => {
-      if (this.contentRef) {
-        const focusableContent = this.contentRef.querySelector('a, button');
+      if (contentRef.current) {
+        const focusableContent = contentRef.current.querySelector('a, button');
         if (focusableContent) {
           focusableContent.focus();
         } else {
-          this.headerRef.focus();
+          headerRef.current.focus();
         }
       }
     }, 200);
-    if (this.closeBtnRef) {
-      this.triggerBtnRef.focus();
+    if (closeBtnRef.current) {
+      triggerBtnRef.current.focus();
     }
+    setIsOpen(!isOpen);
+  }
 
-    this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
-  };
-
-  hidePopover = event => {
-    if (this.state.isOpen) {
+  function hidePopover(event) {
+    if (isOpen) {
       if (event.type !== 'click') {
-        this.triggerBtnRef.focus();
+        triggerBtnRef.current.focus();
       }
-      this.setState({ isOpen: false });
+      setIsOpen(false);
     }
-  };
+  }
 
-  hidePopOnScroll = () => {
+  const closeButton = (
+    <Button
+      handleOnClick={toggleShow}
+      innerRef={btn => {
+        closeBtnRef.current = btn;
+      }}
+    >
+      Close
+    </Button>
+  );
+
+  const altCloseButton = (
+    <AlternateCloseButton
+      aria-label="Close"
+      hasTitle={hasTitle}
+      handleOnClick={toggleShow}
+      innerRef={btn => {
+        closeBtnRef.current = btn;
+      }}
+    >
+      <Icon name="remove" />
+    </AlternateCloseButton>
+  );
+
+  const triggerButton = (
+    <TriggerButton
+      handleOnClick={toggleShow}
+      styleType={buttonStyle}
+      isOutline={isOutline}
+      isLinkButton={isLinkButton}
+      suppressUnderline={suppressUnderline}
+      buttonBorderStyle={buttonBorderStyle}
+      innerRef={btn => {
+        triggerBtnRef.current = btn;
+      }}
+      aria-expanded={isOpen}
+    >
+      <span aria-hidden={!!ariaLabel}>{children}</span>
+      <TriggerButtonLabel>{ariaLabel}</TriggerButtonLabel>
+    </TriggerButton>
+  );
+
+  function hidePopOnScroll() {
     setInterval(() => {
-      if (this.popperRef) {
-        const bounds = this.popperRef.getBoundingClientRect();
+      if (popperRef.current) {
+        const bounds = popperRef.current.getBoundingClientRect();
         const inViewport =
           bounds.top >= 90 &&
           bounds.left >= 0 &&
@@ -146,131 +206,76 @@ class Popover extends React.Component {
           bounds.bottom <=
             (window.innerHeight || document.documentElement.clientHeight);
 
-        if (!inViewport && this.state.isOpen) {
-          this.triggerBtnRef.focus();
-          this.setState({ isOpen: false });
+        if (!inViewport && isOpen) {
+          triggerBtnRef.current.focus();
+          setIsOpen(false);
         }
       }
     }, 100);
-  };
+  }
 
-  render() {
-    const {
-      name,
-      title,
-      content,
-      children,
-      placement,
-      arrowSize,
-      ariaLabel,
-      buttonStyle,
-      isOutline,
-      isLinkButton,
-      suppressUnderline,
-      hasCloseButton,
-      hasAltCloseButton,
-      disableRootClose,
-      disableFlipping
-    } = this.props;
+  useEffect(
+    () => {
+      if (isOpen) {
+        window.addEventListener('scroll', hidePopOnScroll);
+      } else {
+        window.removeEventListener('scroll', hidePopOnScroll);
+      }
+    },
+    [isOpen]
+  );
 
-    const hasTitle = title !== undefined;
-    const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
-    const showCloseButton = hasCloseButton && !hasAltCloseButton;
-    const buttonBorderStyle = suppressUnderline ? 'none' : '1px dashed';
-
-    const closeButton = (
-      <Button
-        handleOnClick={this.toggleShow}
-        innerRef={btn => {
-          this.closeBtnRef = btn;
-        }}
-      >
-        Close
-      </Button>
-    );
-    const altCloseButton = (
-      <AlternateCloseButton
-        aria-label="Close"
+  return (
+    <Container className="es-popover">
+      <Popup
+        name={name}
+        trigger={triggerButton}
+        placement={placement}
+        arrowSize={arrowSize}
+        onHide={hidePopover}
+        transitionIn={isOpen}
         hasTitle={hasTitle}
-        handleOnClick={this.toggleShow}
-        innerRef={btn => {
-          this.closeBtnRef = btn;
+        disableRootClose={disableRootClose}
+        disableFlipping={disableFlipping}
+        popperRef={elem => {
+          popperRef.current = elem;
         }}
       >
-        <Icon name="remove" />
-      </AlternateCloseButton>
-    );
-
-    const triggerButton = (
-      <TriggerButton
-        handleOnClick={this.toggleShow}
-        styleType={buttonStyle}
-        isOutline={isOutline}
-        isLinkButton={isLinkButton}
-        suppressUnderline={suppressUnderline}
-        buttonBorderStyle={buttonBorderStyle}
-        innerRef={btn => {
-          this.triggerBtnRef = btn;
-        }}
-        aria-expanded={this.state.isOpen}
-      >
-        <span aria-hidden={!!ariaLabel}>{children}</span>
-        <TriggerButtonLabel>{ariaLabel}</TriggerButtonLabel>
-      </TriggerButton>
-    );
-
-    return (
-      <Container className="es-popover">
-        <Popup
-          name={name}
-          trigger={triggerButton}
-          placement={placement}
-          arrowSize={arrowSize}
-          onHide={this.hidePopover}
-          transitionIn={this.state.isOpen}
-          hasTitle={hasTitle}
-          disableRootClose={disableRootClose}
-          disableFlipping={disableFlipping}
-          popperRef={elem => {
-            this.popperRef = elem;
+        <PopoverContainer
+          className="es-popover__container"
+          role="dialog"
+          innerRef={elem => {
+            contentRef.current = elem;
           }}
         >
-          <PopoverContainer
-            className="es-popover__container"
-            role="dialog"
-            innerRef={elem => {
-              this.contentRef = elem;
-            }}
-          >
-            <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
-              {hasTitle && <TitleBar>{title}</TitleBar>}
-              {hasAltCloseButton && altCloseButton}
-              <CloseHelpText
-                tabIndex={-1}
-                innerRef={elem => {
-                  this.headerRef = elem;
-                }}
-                aria-label="Press escape to close the Popover"
-              />
-            </PopoverHeader>
+          <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
+            {hasTitle && <TitleBar>{title}</TitleBar>}
+            {hasAltCloseButton && altCloseButton}
+            <CloseHelpText
+              tabIndex={-1}
+              innerRef={elem => {
+                headerRef.current = elem;
+              }}
+              aria-label="Press escape to close the Popover"
+            />
+          </PopoverHeader>
 
-            <PopoverBody
-              className="es-popover__body"
-              hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}
+          <PopoverBody
+            className="es-popover__body"
+            hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}
+          >
+            <PopoverContent
+              className="es-popover__content"
+              showCloseButton={showCloseButton}
             >
-              <PopoverContent
-                className="es-popover__content"
-                showCloseButton={showCloseButton}
-              >
-                {content}
-              </PopoverContent>
-              {showCloseButton && closeButton}
-            </PopoverBody>
-          </PopoverContainer>
-        </Popup>
-      </Container>
-    );
-  }
+              {content}
+            </PopoverContent>
+            {showCloseButton && closeButton}
+          </PopoverBody>
+        </PopoverContainer>
+      </Popup>
+    </Container>
+  );
 }
 
 Popover.propTypes = {

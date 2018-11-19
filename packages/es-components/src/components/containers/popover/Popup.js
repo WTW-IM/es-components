@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withTheme, injectGlobal } from 'styled-components';
+import { withTheme, createGlobalStyle } from 'styled-components';
 
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
@@ -53,7 +53,7 @@ function Popup({
     hasTitle
   );
 
-  injectGlobal`${arrowStyles}`; // eslint-disable-line no-unused-expressions
+  const Styles = createGlobalStyle`${arrowStyles}`; // eslint-disable-line no-unused-expressions
 
   let popperObj = (
     <Manager>
@@ -97,7 +97,12 @@ function Popup({
     );
   }
 
-  return popperObj;
+  return (
+    <>
+      <Styles />
+      {popperObj}
+    </>
+  );
 }
 
 Popup.propTypes = {

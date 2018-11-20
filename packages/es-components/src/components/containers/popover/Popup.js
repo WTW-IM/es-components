@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withTheme, createGlobalStyle } from 'styled-components';
 
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
-import popoverStyles from './popoverStyles';
+import { ArrowStyles } from './popoverStyles';
 
 const defaultStyle = {
   transition: 'opacity 0.2s ease-in-out',
@@ -17,19 +16,6 @@ const transitionStyles = {
   entering: { opacity: 0 },
   entered: { opacity: 1 }
 };
-
-function getArrowSize(size) {
-  switch (size) {
-    case 'sm':
-      return '5';
-    case 'lg':
-      return '20';
-    case 'none':
-      return '0';
-    default:
-      return '10';
-  }
-}
 
 function Popup({
   name,
@@ -43,18 +29,8 @@ function Popup({
   transitionTimeout,
   disableFlipping,
   disableRootClose,
-  theme,
   popperRef
 }) {
-  const arrowStyles = popoverStyles(
-    name,
-    theme.colors,
-    getArrowSize(arrowSize),
-    hasTitle
-  );
-
-  const Styles = createGlobalStyle`${arrowStyles}`; // eslint-disable-line no-unused-expressions
-
   let popperObj = (
     <Manager>
       <Target>{trigger}</Target>
@@ -99,7 +75,7 @@ function Popup({
 
   return (
     <>
-      <Styles />
+      <ArrowStyles name={name} arrowSize={arrowSize} hasTitle={hasTitle} />
       {popperObj}
     </>
   );
@@ -117,7 +93,6 @@ Popup.propTypes = {
   hasTitle: PropTypes.bool,
   disableRootClose: PropTypes.bool,
   disableFlipping: PropTypes.bool,
-  theme: PropTypes.object,
   popperRef: PropTypes.func
 };
 
@@ -126,4 +101,4 @@ Popup.defaultProps = {
   placement: 'bottom'
 };
 
-export default withTheme(Popup);
+export default Popup;

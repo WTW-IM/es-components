@@ -77,13 +77,13 @@ DatePicker.propTypes = {
   onBlur: PropTypes.func,
   /** input field placeholder */
   placeholder: PropTypes.string,
-  /** Moment object representing the selected date */
-  selectedDate: PropTypes.object,
-  /** Array of moment objects to exclude from the calendar */
+  /** Date object representing the selected date */
+  selectedDate: PropTypes.instanceOf(Date),
+  /** Array of Date objects to exclude from the calendar */
   excludeDates: PropTypes.array,
-  /** Array of moment objects to highlight on the calendar */
+  /** Array of Date objects to highlight on the calendar */
   highlightDates: PropTypes.array,
-  /** Array of moment objects to whitelist on calendar */
+  /** Array of Date objects to whitelist on calendar */
   includeDates: PropTypes.array,
   /** Function used to filter calendar dates */
   filterDate: PropTypes.func,
@@ -91,10 +91,10 @@ DatePicker.propTypes = {
   selectsStart: PropTypes.bool,
   /** Sets the datepicker as the End input of a date range */
   selectsEnd: PropTypes.bool,
-  /** Sets the start date (moment) in a range */
-  startDate: PropTypes.object,
-  /** Sets the end date (moment) in a range */
-  endDate: PropTypes.object,
+  /** Sets the start date in a range */
+  startDate: PropTypes.instanceOf(Date),
+  /** Sets the end date in a range */
+  endDate: PropTypes.instanceOf(Date),
   /** Display checkbox with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /**

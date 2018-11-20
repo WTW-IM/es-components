@@ -17,3 +17,15 @@ it('renders DatePicker when textbox is focused', () => {
   getByLabelText('Test date').focus();
   expect(queryByText('November 2018')).not.toBeNull();
 });
+
+it('renders DatePicker when textbox is clicked on', () => {
+  const { getByLabelText, queryByText } = renderWithTheme(
+    <DatePicker
+      labelText="Test date"
+      onChange={jest.fn()}
+      selectedDate={moment(new Date(2018, 10, 7))}
+    />
+  );
+  getByLabelText('Test date').click();
+  expect(queryByText('November 2018')).not.toBeNull();
+})

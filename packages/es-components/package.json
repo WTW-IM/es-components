@@ -37,7 +37,7 @@
     "singleQuote": true
   },
   "peerDependencies": {
-    "react": ">=0.14",
+    "react": ">=16.7",
     "styled-components": "*"
   },
   "devDependencies": {
@@ -68,8 +68,8 @@
     "jest-dom": "^2.1.0",
     "mockdate": "^2.0.1",
     "prettier": "^1.14.1",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2",
     "react-styleguidist": "^7.3.8",
     "react-test-renderer": "^16.3.0",
     "react-testing-library": "^5.2.3",

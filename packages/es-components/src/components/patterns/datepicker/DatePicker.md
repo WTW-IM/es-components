@@ -4,22 +4,23 @@ Passes props through to the TextBox component for additional functionality (for 
 
 **Keyboard support**
 
-* Left: Move to the previous day
-* Right: Move to the next day
-* Up: Move to the previous week
-* Down: Move to the next week
-* PgUp: Move to the previous month
-* PgDn: Move to the next month
-* Home: Move to the previous year
-* End: Move to the next year
-* Enter/Esc/Tab: Close the calendar
+- Left: Move to the previous day
+- Right: Move to the next day
+- Up: Move to the previous week
+- Down: Move to the next week
+- PgUp: Move to the previous month
+- PgDn: Move to the next month
+- Home: Move to the previous year
+- End: Move to the next year
+- Enter/Esc/Tab: Close the calendar
 
 ### Events
 
 The `DatePicker` component supports event handlers for `onChange`, `onBlur`, and `onChangeRaw`. The
-`onChange` event will return a moment object representing the selected date, and only fires when
-a valid date is selected.  The `onBlur` and `onChangeRaw` events will return an event with the
+`onChange` event will return a Date object representing the selected date, and only fires when
+a valid date is selected. The `onBlur` and `onChangeRaw` events will return an event with the
 raw value of the input.
+
 ```
 function handleOnChange(date) {
   console.log(`Date selected: ${date}`);
@@ -30,7 +31,9 @@ function handleOnChangeRaw(event) {
 }
 
 function handleOnBlur(event) {
-  console.log(`OnBlur: ${event.target.value}`)
+  if (event) {
+    console.log(`OnBlur: ${event.target.value}`)
+  }
 }
 
 <DatePicker
@@ -45,10 +48,11 @@ function handleOnBlur(event) {
 ### Date Ranges
 
 ```
-const moment = require('moment');
+const addDays = require('date-fns/add_days');
+const isAfter = require('date-fns/is_after');
 class RangeExample extends React.Component {
   constructor() {
-    this.state = { startDate: moment().add(-5, "days"), endDate: moment()}
+    this.state = { startDate: addDays(new Date(), -5), endDate: new Date()}
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeStart = this.handleChangeStart.bind(this);
     this.handleChangeEnd = this.handleChangeEnd.bind(this);
@@ -58,7 +62,7 @@ class RangeExample extends React.Component {
     startDate = startDate || this.state.startDate
     endDate = endDate || this.state.endDate
 
-    if (startDate.isAfter(endDate)) {
+    if (isAfter(startDate, endDate)) {
       var temp = startDate
       startDate = endDate
       endDate = temp
@@ -102,27 +106,28 @@ class RangeExample extends React.Component {
 The `filterDate` prop accepts a function used to filter the available dates.
 
 ```
+const getDay = require('date-fns/get_day');
+
 function isWeekday(date) {
-  const day = date.day()
+  const day = getDay(date);
   return day !== 0 && day !== 6
 }
 
 <DatePicker labelText="No Weekends" onChange={()=>{}} filterDate={isWeekday} />
-
 ```
 
 ### Include Dates (whitelist)
 
 ```
-const moment = require('moment');
-<DatePicker labelText="Today and Tomorrow" onChange={()=>{}} includeDates={[moment(), moment().add(1, "days")]} />
+const addDays = require('date-fns/add_days');
+<DatePicker labelText="Today and Tomorrow" onChange={()=>{}} includeDates={[new Date(), addDays(new Date(), 1)]} />
 ```
 
 ### Exclude Dates (blacklist)
 
 ```
-const moment = require('moment');
-<DatePicker labelText="Not Today or Yesterday" onChange={()=>{}} excludeDates={[moment(), moment().add(-1, "days")]} />
+const addDays = require('date-fns/add_days');
+<DatePicker labelText="Not Today or Yesterday" onChange={()=>{}} excludeDates={[new Date(), addDays(new Date(), -1)]} />
 ```
 
 ### Child Content

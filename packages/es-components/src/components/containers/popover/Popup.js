@@ -57,7 +57,7 @@ function Popup({
               ...defaultStyle,
               ...transitionStyles[state]
             }}
-            ref={popperRef}
+            innerRef={popperRef}
           >
             {children}
             <Arrow className={`${name}-popper__arrow`} />

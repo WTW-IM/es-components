@@ -155,7 +155,7 @@ function Popover(props) {
   const closeButton = (
     <Button
       handleOnClick={toggleShow}
-      innerRef={btn => {
+      ref={btn => {
         closeBtnRef.current = btn;
       }}
     >
@@ -168,7 +168,7 @@ function Popover(props) {
       aria-label="Close"
       hasTitle={hasTitle}
       handleOnClick={toggleShow}
-      innerRef={btn => {
+      ref={btn => {
         closeBtnRef.current = btn;
       }}
     >
@@ -184,7 +184,7 @@ function Popover(props) {
       isLinkButton={isLinkButton}
       suppressUnderline={suppressUnderline}
       buttonBorderStyle={buttonBorderStyle}
-      innerRef={btn => {
+      ref={btn => {
         triggerBtnRef.current = btn;
       }}
       aria-expanded={isOpen}
@@ -244,7 +244,7 @@ function Popover(props) {
         <PopoverContainer
           className="es-popover__container"
           role="dialog"
-          innerRef={elem => {
+          ref={elem => {
             contentRef.current = elem;
           }}
         >
@@ -253,7 +253,7 @@ function Popover(props) {
             {hasAltCloseButton && altCloseButton}
             <CloseHelpText
               tabIndex={-1}
-              innerRef={elem => {
+              ref={elem => {
                 headerRef.current = elem;
               }}
               aria-label="Press escape to close the Popover"

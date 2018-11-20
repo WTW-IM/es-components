@@ -177,7 +177,7 @@ const Textbox = props => {
       return <input ref={setRef} {...maskedProps} />;
     };
   } else {
-    additionalTextProps.innerRef = inputRef;
+    additionalTextProps.ref = inputRef;
   }
 
   const addOnTextColor = hasValidationIcon

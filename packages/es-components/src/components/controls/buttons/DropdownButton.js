@@ -191,7 +191,7 @@ function DropdownButton(props) {
           handleOnClick={toggleDropdown}
           aria-haspopup="true"
           aria-pressed={isOpen}
-          innerRef={triggerButton}
+          ref={triggerButton}
         >
           {manualButtonValue || buttonValue}
           <Caret />

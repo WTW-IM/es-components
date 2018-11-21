@@ -8,10 +8,10 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm run build:es6 && npm run webpack",
-    "build:es6": "babel src -d es6 --only src --ignore **/*.specs.js",
+    "build:es6": "rollup -c rollup.config.js",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
-    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
     "prettify": "prettier --single-quote --write \"src/**/*.js\"",
     "styleguide-build": "styleguidist build",
     "start": "styleguidist server",
@@ -40,7 +40,6 @@
     "styled-components": "*"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
@@ -74,6 +73,8 @@
     "react-testing-library": "^5.2.3",
     "regenerator-runtime": "^0.12.1",
     "request": "^2.88.0",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3",
     "style-loader": "^0.13.1",
     "styled-components": "^3.4.6",
     "webpack": "^4.18.0",

@@ -1,10 +1,11 @@
 const wtwConfig = {
   extractFormatMessage: false,
-  transformFormatMessage: false
+  transformFormatMessage: false,
+  env: { modules: false }
 };
 
-if (process.env['BABEL_ENV'] === 'es6') {
-  wtwConfig.env = { modules: false };
+if (process.env['NODE_ENV'] === 'test') {
+  wtwConfig.env.modules = 'auto';
 }
 
 module.exports = {

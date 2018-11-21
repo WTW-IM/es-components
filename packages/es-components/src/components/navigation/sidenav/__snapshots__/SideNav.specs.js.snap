@@ -3,24 +3,24 @@
 exports[`renders as expected 1`] = `
 <div>
   <nav
-    class="es-sidenav sc-ifAKCX kXLRTf"
+    class="es-sidenav sc-ifAKCX eEDsWM"
   >
     <ul>
       <li
         class="es-sidenav__navitem"
       >
         <a
-          class="home sc-bwzfXH igXrdK"
+          class="home sc-bwzfXH guxetE"
           href="/home"
         >
           <span
-            class="sc-bxivhb khxFsg"
+            class="sc-bxivhb dgmReD"
           >
             Home
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa clAcVq"
+            class="es-icon sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -31,17 +31,17 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem"
       >
         <a
-          class="cart sc-bwzfXH igXrdK"
+          class="cart sc-bwzfXH guxetE"
           href="#/"
         >
           <span
-            class="sc-bxivhb khxFsg"
+            class="sc-bxivhb dgmReD"
           >
             Cart
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa clAcVq"
+            class="es-icon sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -52,18 +52,18 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem"
       >
         <a
-          class="external sc-bwzfXH igXrdK"
+          class="external sc-bwzfXH guxetE"
           href="http://www.google.com"
           target="_blank"
         >
           <span
-            class="sc-bxivhb khxFsg"
+            class="sc-bxivhb dgmReD"
           >
             External Link
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa clAcVq"
+            class="es-icon sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -74,17 +74,17 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem"
       >
         <a
-          class="info sc-bwzfXH hJluX"
+          class="info sc-bwzfXH kPjAmK"
           href="#/"
         >
           <span
-            class="sc-bxivhb khxFsg"
+            class="sc-bxivhb dgmReD"
           >
             Disabled
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa clAcVq"
+            class="es-icon sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"

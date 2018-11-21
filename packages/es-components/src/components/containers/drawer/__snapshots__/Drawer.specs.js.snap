@@ -3,10 +3,10 @@
 exports[`accordion renders as expected 1`] = `
 <div>
   <div
-    class="es-drawer important sc-EHOje ixLrxb"
+    class="es-drawer important sc-EHOje eHxLwe"
   >
     <div
-      class="es-drawer__panel first sc-bwzfXH bBIqkK"
+      class="es-drawer__panel first sc-bwzfXH lgLpFu"
     >
       <div
         class="es-drawer__heading"
@@ -16,12 +16,12 @@ exports[`accordion renders as expected 1`] = `
         <button
           aria-controls="abcdef"
           aria-expanded="false"
-          class="sc-htpNat jDwJgO"
+          class="sc-htpNat cuotkX"
         >
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -36,7 +36,7 @@ exports[`accordion renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -49,7 +49,7 @@ exports[`accordion renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel second sc-bwzfXH bBIqkK"
+      class="es-drawer__panel second sc-bwzfXH lgLpFu"
     >
       <div
         class="es-drawer__heading"
@@ -59,12 +59,12 @@ exports[`accordion renders as expected 1`] = `
         <button
           aria-controls="abcdef"
           aria-expanded="false"
-          class="sc-htpNat jDwJgO"
+          class="sc-htpNat cuotkX"
         >
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -76,7 +76,7 @@ exports[`accordion renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX fsOgCj"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -89,7 +89,7 @@ exports[`accordion renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel third sc-bwzfXH bBIqkK"
+      class="es-drawer__panel third sc-bwzfXH lgLpFu"
     >
       <div
         class="es-drawer__heading"
@@ -99,12 +99,12 @@ exports[`accordion renders as expected 1`] = `
         <button
           aria-controls="abcdef"
           aria-expanded="false"
-          class="sc-htpNat jDwJgO"
+          class="sc-htpNat cuotkX"
         >
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -116,7 +116,7 @@ exports[`accordion renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -135,10 +135,10 @@ exports[`accordion renders as expected 1`] = `
 exports[`drawer renders as expected 1`] = `
 <div>
   <div
-    class="es-drawer important sc-EHOje ixLrxb"
+    class="es-drawer important sc-EHOje eHxLwe"
   >
     <div
-      class="es-drawer__panel first sc-bwzfXH bBIqkK"
+      class="es-drawer__panel first sc-bwzfXH lgLpFu"
     >
       <div
         class="es-drawer__heading"
@@ -148,12 +148,12 @@ exports[`drawer renders as expected 1`] = `
         <button
           aria-controls="abcdef"
           aria-expanded="false"
-          class="sc-htpNat jDwJgO"
+          class="sc-htpNat cuotkX"
         >
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -168,7 +168,7 @@ exports[`drawer renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -181,7 +181,7 @@ exports[`drawer renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel second sc-bwzfXH bBIqkK"
+      class="es-drawer__panel second sc-bwzfXH lgLpFu"
     >
       <div
         class="es-drawer__heading"
@@ -191,12 +191,12 @@ exports[`drawer renders as expected 1`] = `
         <button
           aria-controls="abcdef"
           aria-expanded="false"
-          class="sc-htpNat jDwJgO"
+          class="sc-htpNat cuotkX"
         >
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -208,7 +208,7 @@ exports[`drawer renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX bUSXbP"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX fsOgCj"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -221,7 +221,7 @@ exports[`drawer renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel third sc-bwzfXH bBIqkK"
+      class="es-drawer__panel third sc-bwzfXH lgLpFu"
     >
       <div
         class="es-drawer__heading"
@@ -231,12 +231,12 @@ exports[`drawer renders as expected 1`] = `
         <button
           aria-controls="abcdef"
           aria-expanded="false"
-          class="sc-htpNat jDwJgO"
+          class="sc-htpNat cuotkX"
         >
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb bCiBaT sc-bdVaJa eTkFwb"
+              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -248,7 +248,7 @@ exports[`drawer renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX HqBXT"
+        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"

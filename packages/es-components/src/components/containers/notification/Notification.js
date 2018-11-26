@@ -3,11 +3,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import DismissButton from '../../controls/DismissButton';
+import { useTheme } from '../../util/useTheme';
 
 const DismissNotification = styled(DismissButton)`
   line-height: 80%;
@@ -204,11 +205,11 @@ function Notification({
   isAlert,
   onDismiss,
   extraAlert,
-  theme,
   useLightVariant,
   useMessageOnlyVariant,
   ...otherProps
 }) {
+  const theme = useTheme();
   const hasCallsToAction = callsToAction.length > 0;
   const roleType = isAlert ? 'alert' : 'dialog';
   let bgType = 'base';
@@ -287,12 +288,7 @@ Notification.propTypes = {
   /** Use the light color variants of the alert */
   useLightVariant: PropTypes.bool,
   /** Display only the message without a colored background */
-  useMessageOnlyVariant: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  useMessageOnlyVariant: PropTypes.bool
 };
 
 Notification.defaultProps = {
@@ -309,4 +305,4 @@ Notification.defaultProps = {
   useMessageOnlyVariant: false
 };
 
-export default withTheme(Notification);
+export default Notification;

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import classnames from 'classnames';
 
 import { Label, LabelText, SelectBase } from '../BaseControls';
+import { useTheme } from '../../util/useTheme';
 
 const optionsShape = {
   /** Text to display in drop down */
@@ -34,9 +35,9 @@ function Dropdown({
   onBlur,
   validationState,
   additionalHelpContent,
-  theme,
   ...rest
 }) {
+  const theme = useTheme();
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent
@@ -116,11 +117,6 @@ Dropdown.propTypes = {
   /** Function to execute when the dropdown loses focus */
   onBlur: PropTypes.func,
   /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * class name is applied to top level label
    */
   className: PropTypes.string
@@ -142,4 +138,4 @@ Dropdown.defaultProps = {
   className: undefined
 };
 
-export default withTheme(Dropdown);
+export default Dropdown;

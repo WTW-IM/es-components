@@ -1,11 +1,13 @@
 /* eslint no-confusing-arrow: 0 */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import Button from './Button';
+import { useTheme } from '../../util/useTheme';
 
 function ToggleButton(props) {
+  const theme = useTheme();
   const [isPressed, setIsPressed] = useState(props.isPressed);
 
   function toggleButton(event) {
@@ -20,7 +22,6 @@ function ToggleButton(props) {
     size,
     block,
     isOutline,
-    theme,
     ...buttonProps
   } = props;
 
@@ -88,11 +89,6 @@ ToggleButton.propTypes = {
   size: PropTypes.oneOf(buttonSizes),
   block: PropTypes.bool,
   isOutline: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired,
   isPressed: PropTypes.bool
 };
 
@@ -106,4 +102,4 @@ ToggleButton.defaultProps = {
   isPressed: false
 };
 
-export default withTheme(ToggleButton);
+export default ToggleButton;

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
+
+import { useTheme } from '../../util/useTheme';
 
 const StripedContainerWrapper = styled.div`
   > * {
@@ -18,7 +20,7 @@ const StripedContainerWrapper = styled.div`
 `;
 
 function StripedContainer(props) {
-  const { theme } = props;
+  const theme = useTheme();
 
   return (
     <StripedContainerWrapper
@@ -31,11 +33,6 @@ function StripedContainer(props) {
 }
 
 StripedContainer.propTypes = {
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired,
   children: PropTypes.node
 };
 
@@ -43,4 +40,4 @@ StripedContainer.defaultProps = {
   children: undefined
 };
 
-export default withTheme(StripedContainer);
+export default StripedContainer;

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
 
 import genId from '../../util/generateAlphaName';
+import { useTheme } from '../../util/useTheme';
 import Fade from '../../util/Fade';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
@@ -87,10 +88,10 @@ function Modal(props) {
     onExit,
     onHide,
     show,
-    size,
-    theme
+    size
   } = props;
 
+  const theme = useTheme();
   const backdropStyle = {
     backgroundColor: theme.colors.black,
     bottom: 0,
@@ -159,12 +160,7 @@ Modal.propTypes = {
   /** When `true` The modal will show itself. */
   show: PropTypes.bool,
   /** Sets the size of the modal */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
 
 Modal.defaultProps = {
@@ -183,4 +179,4 @@ Modal.Header = Header;
 Modal.Body = Body;
 Modal.Footer = Footer;
 
-export default withTheme(Modal);
+export default Modal;

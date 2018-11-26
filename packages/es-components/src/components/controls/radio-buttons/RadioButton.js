@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { Label } from '../BaseControls';
 import getRadioFillVariables from './radio-fill-variables';
+import { useTheme } from '../../util/useTheme';
 
 function radioFill(color) {
   return `
@@ -77,9 +78,9 @@ export function RadioButton({
   name,
   inline,
   validationState,
-  theme,
   ...radioProps
 }) {
+  const theme = useTheme();
   const { hover, fill } = getRadioFillVariables(
     radioProps.checked,
     radioProps.disabled,
@@ -120,12 +121,7 @@ RadioButton.propTypes = {
   name: PropTypes.string.isRequired,
   inline: PropTypes.bool,
   /** Display radio button with contextual state colorings */
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger'])
 };
 
 RadioButton.defaultProps = {
@@ -133,4 +129,4 @@ RadioButton.defaultProps = {
   validationState: 'default'
 };
 
-export default withTheme(RadioButton);
+export default RadioButton;

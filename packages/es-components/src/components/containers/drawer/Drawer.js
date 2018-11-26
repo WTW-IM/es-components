@@ -3,7 +3,7 @@
  * It's a prop used by uncontrollable, and needs to be documented */
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
 import classnames from 'classnames';
@@ -138,4 +138,4 @@ const UncontrolledDrawer = uncontrollable(Drawer, {
 
 UncontrolledDrawer.Panel = DrawerPanel;
 
-export default withTheme(UncontrolledDrawer);
+export default UncontrolledDrawer;

@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { createGlobalStyle, ThemeContext } from 'styled-components';
+import React from 'react';
+import { createGlobalStyle } from 'styled-components';
+import { useTheme } from '../../util/useTheme';
 
 export function DatepickerStyles() {
-  const { colors, datepickerColors: dpColors } = useContext(ThemeContext);
+  const { colors, datepickerColors: dpColors } = useTheme();
   const Styles = createGlobalStyle`
   .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle,
   .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle,

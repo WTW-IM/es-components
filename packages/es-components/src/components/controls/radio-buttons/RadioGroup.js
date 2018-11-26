@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled from 'styled-components';
 
-import Fieldset from '../../containers/fieldset/Fieldset';
-
 import RadioButton from './RadioButton';
+import Fieldset from '../../containers/fieldset/Fieldset';
 
 const RadioFieldset = styled(Fieldset)`
   margin-bottom: 20px;

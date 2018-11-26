@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import classnames from 'classnames';
+
+import { useTheme } from '../../util/useTheme';
 
 function getBlockPropertyValues(isBlock) {
   if (isBlock) {
@@ -129,11 +131,11 @@ function InnerButton({
   size,
   block,
   isOutline,
-  theme,
   name,
   innerRef,
   ...buttonProps
 }) {
+  const theme = useTheme();
   const buttonSize = theme.buttonSizes[size];
   const { className, ...otherProps } = buttonProps;
   const sharedProps = {
@@ -236,11 +238,6 @@ Button.propTypes = {
   block: PropTypes.bool,
   /** Render the outline button variant */
   isOutline: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object,
   /** The name of the button to be sent with the form. */
   name: PropTypes.string
 };
@@ -255,4 +252,4 @@ Button.defaultProps = {
   size: 'default'
 };
 
-export default withTheme(Button);
+export default Button;

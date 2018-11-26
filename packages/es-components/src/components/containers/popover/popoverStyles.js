@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext, createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import { useTheme } from '../../util/useTheme';
 
 function getArrowSize(size) {
   switch (size) {
@@ -17,7 +18,7 @@ function getArrowSize(size) {
 
 export function ArrowStyles(props) {
   const { name, arrowSize: size, hasTitle } = props;
-  const { colors } = useContext(ThemeContext);
+  const { colors } = useTheme();
   const arrowSize = getArrowSize(size);
   const sharedStyles = `
     content: '';

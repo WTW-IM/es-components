@@ -120,7 +120,7 @@ const LinkButton = styled(ButtonBase)`
   }
 `;
 
-function Button({
+function InnerButton({
   handleOnClick,
   children,
   buttonClasses,
@@ -131,6 +131,7 @@ function Button({
   isOutline,
   theme,
   name,
+  innerRef,
   ...buttonProps
 }) {
   const buttonSize = theme.buttonSizes[size];
@@ -141,6 +142,7 @@ function Button({
     name,
     onClick: handleOnClick,
     baseLineHeight: theme.sizes.baseLineHeight,
+    ref: innerRef,
     ...otherProps
   };
 
@@ -212,6 +214,10 @@ function Button({
 
   return button;
 }
+
+const Button = React.forwardRef((props, ref) => (
+  <InnerButton innerRef={ref} {...props} />
+));
 
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
 

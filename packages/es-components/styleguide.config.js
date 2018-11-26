@@ -75,7 +75,7 @@ module.exports = {
     }
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/ExampleWrapper.js')
+    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js')
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');

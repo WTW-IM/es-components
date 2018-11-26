@@ -1,12 +1,7 @@
 const wtwConfig = {
   extractFormatMessage: false,
-  transformFormatMessage: false,
-  env: { modules: false }
+  transformFormatMessage: false
 };
-
-if (process.env['NODE_ENV'] === 'test') {
-  wtwConfig.env.modules = 'auto';
-}
 
 module.exports = {
   presets: [['wtw-im', wtwConfig]],

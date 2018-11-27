@@ -8,52 +8,20 @@ const buttonStyle = {
   margin: '10px 15px 0 0'
 };
 
-function noop() { }
-
 <div>
-  <div style={buttonStyle}><Button handleOnClick={noop}>Default</Button></div>
+  <div style={buttonStyle}><Button>Default</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="darkDefault">Dark Default</Button></div>
+  <div style={buttonStyle}><Button styleType="darkDefault">Dark Default</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="primary">Primary</Button></div>
+  <div style={buttonStyle}><Button styleType="primary">Primary</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="success">Success</Button></div>
+  <div style={buttonStyle}><Button styleType="success">Success</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="info">Information</Button></div>
+  <div style={buttonStyle}><Button styleType="info">Information</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="warning">Warning</Button></div>
+  <div style={buttonStyle}><Button styleType="warning">Warning</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="danger">Danger</Button></div>
-</div>
-```
-
-### Alternative button types
-
-Setting the `isOutline` prop will apply an alternative outline style. Setting `isLinkButton`
-will render the button as a text link, using the color of the primary `styleType` provided.
-
-```
-const buttonStyle = {
-  display: 'inline-block',
-  margin: '10px 15px 0 0'
-};
-
-function noop() { }
-
-<div>
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="default" isOutline>Default</Button></div>
-
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="primary" isOutline>Primary</Button></div>
-
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="success" isOutline>Success</Button></div>
-
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="info" isOutline>Information</Button></div>
-
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="warning" isOutline>Warning</Button></div>
-
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="danger" isOutline>Danger</Button></div>
-
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="primary" isLinkButton>Link</Button></div>
+  <div style={buttonStyle}><Button styleType="danger">Danger</Button></div>
 </div>
 ```
 
@@ -70,85 +38,30 @@ const buttonStyle = {
   marginRight: '15px'
 };
 
-function noop() {}
-
 <div>
   <div style={wrapperStyle}>
-    <Button
-      handleOnClick={noop}
-      size="lg"
-      style={buttonStyle}
-    >
-      Large
-    </Button>
-
-    <Button
-      handleOnClick={noop}
-      size="lg"
-      style={buttonStyle}
-      isOutline
-    >
-      Large
-    </Button>
+    <Button size="lg" style={buttonStyle} styleType="primary">Large</Button>
+    <Button size="lg" style={buttonStyle}>Large</Button>
+    <OutlineButton size="lg" style={buttonStyle} styleType="magenta">Large</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
-    <Button
-      handleOnClick={noop}
-      size="default"
-      style={buttonStyle}
-    >
-      Default
-    </Button>
-
-    <Button
-      handleOnClick={noop}
-      size="default"
-      style={buttonStyle}
-      isOutline
-    >
-      Default
-    </Button>
+    <Button style={buttonStyle} styleType="primary">Default</Button>
+    <Button style={buttonStyle}>Default</Button>
+    <OutlineButton style={buttonStyle} styleType="magenta">Default</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
-    <Button
-      handleOnClick={noop}
-      size="sm"
-      style={buttonStyle}
-    >
-      Small
-    </Button>
-
-    <Button
-      handleOnClick={noop}
-      size="sm"
-      style={buttonStyle}
-      isOutline
-    >
-      Small
-    </Button>
+    <Button size="sm" style={buttonStyle} styleType="primary">Small</Button>
+    <Button size="sm" style={buttonStyle}>Small</Button>
+    <OutlineButton size="sm" style={buttonStyle} styleType="magenta">Small</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
-    <Button
-      handleOnClick={noop}
-      size="xs"
-      style={buttonStyle}
-    >
-      Extra small
-    </Button>
-
-    <Button
-      handleOnClick={noop}
-      size="xs"
-      style={buttonStyle}
-      isOutline
-    >
-      Extra small
-    </Button>
+    <Button size="xs" style={buttonStyle} styleType="primary">Extra Small</Button>
+    <Button size="xs" style={buttonStyle}>Extra Small</Button>
+    <OutlineButton size="xs" style={buttonStyle} styleType="magenta">Extra Small</OutlineButton>
   </div>
-
 </div>
 ```
 
@@ -162,12 +75,9 @@ const buttonContainerStyle = {
   border: '1px solid #444'
 };
 
-function noop() { }
-
 <div style={buttonContainerStyle}>
-  <Button handleOnClick={noop} block styleType="primary">Block button</Button>
+  <Button block styleType="primary">Block button</Button>
 </div>
-
 ```
 
 Any additional prop sent will be included on the button. For example, setting the `disabled` property will put the button into a disabled state, making it unclickable.
@@ -178,21 +88,19 @@ const buttonStyle = {
   margin: '10px 15px 0 0'
 };
 
-function noop() { }
-
 <div>
-  <div style={buttonStyle}><Button handleOnClick={noop} disabled>Default</Button></div>
+  <div style={buttonStyle}><Button disabled>Default</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="primary" disabled>Primary</Button></div>
+  <div style={buttonStyle}><Button styleType="primary" disabled>Primary</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} isOutline styleType="success" disabled>Success</Button></div>
+  <div style={buttonStyle}><Button isOutline styleType="success" disabled>Success</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="info" disabled>Information</Button></div>
+  <div style={buttonStyle}><Button styleType="info" disabled>Information</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="warning" disabled>Warning</Button></div>
+  <div style={buttonStyle}><Button styleType="warning" disabled>Warning</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="danger" disabled>Danger</Button></div>
+  <div style={buttonStyle}><Button styleType="danger" disabled>Danger</Button></div>
 
-  <div style={buttonStyle}><Button handleOnClick={noop} styleType="primary" isLinkButton disabled>Link</Button></div>
+  <div style={buttonStyle}><Button styleType="primary" isLinkButton disabled>Link</Button></div>
 </div>
 ```

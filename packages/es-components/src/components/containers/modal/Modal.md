@@ -5,11 +5,11 @@ an informational dialog that contains no focusable elements, use a popover or so
 
 ```
 <div>
-  <Button aria-haspopup='dialog' handleOnClick={() => setState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
 
-  <Button aria-haspopup='dialog' handleOnClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
 
-  <Button aria-haspopup='dialog' handleOnClick={() => setState({show: true, size: 'large', hideCloseButton: false})}>Open Large Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'large', hideCloseButton: false})}>Open Large Modal</Button>
 
   <Modal
     size={state.size}
@@ -18,7 +18,7 @@ an informational dialog that contains no focusable elements, use a popover or so
   >
     <Modal.Header hideCloseButton={state.hideCloseButton}>This is the header.</Modal.Header>
     <Modal.Body>Body Content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</Modal.Body>
-    <Modal.Footer>This is the footer. <Button handleOnClick={()=> setState({show: false})} style={{margin:0}}>Ok</Button></Modal.Footer>
+    <Modal.Footer>This is the footer. <Button onClick={()=> setState({show: false})} style={{margin:0}}>Ok</Button></Modal.Footer>
   </Modal>
 </div>
 ```

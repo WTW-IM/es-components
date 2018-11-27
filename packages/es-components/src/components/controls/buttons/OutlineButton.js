@@ -6,13 +6,10 @@ import classnames from 'classnames';
 import { ButtonBase } from '../BaseControls';
 import { useTheme } from '../../util/useTheme';
 
-// the padding-bottom is set to the top value intentionally.
-// needed for the slight difference from the normal button style
 const StyledButton = styled(ButtonBase)`
   background-color: ${props => props.variant.bgColor};
   border: 2px solid ${props => props.variant.borderColor};
   color: ${props => props.variant.textColor};
-  padding-bottom: ${props => props.buttonSize.paddingTop};
   transition: background-color 250ms linear, color 250ms linear;
 
   &:hover {

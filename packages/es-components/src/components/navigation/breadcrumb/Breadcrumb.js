@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 
 import genId from '../../util/generateAlphaName';
@@ -71,4 +71,4 @@ Breadcrumb.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default withTheme(Breadcrumb);
+export default Breadcrumb;

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import classnames from 'classnames';
+
+import { useTheme } from '../../util/useTheme';
 
 function getBlockPropertyValues(isBlock) {
   if (isBlock) {
@@ -120,7 +122,7 @@ const LinkButton = styled(ButtonBase)`
   }
 `;
 
-function Button({
+function InnerButton({
   handleOnClick,
   children,
   buttonClasses,
@@ -129,10 +131,11 @@ function Button({
   size,
   block,
   isOutline,
-  theme,
   name,
+  innerRef,
   ...buttonProps
 }) {
+  const theme = useTheme();
   const buttonSize = theme.buttonSizes[size];
   const { className, ...otherProps } = buttonProps;
   const sharedProps = {
@@ -141,6 +144,7 @@ function Button({
     name,
     onClick: handleOnClick,
     baseLineHeight: theme.sizes.baseLineHeight,
+    ref: innerRef,
     ...otherProps
   };
 
@@ -213,6 +217,10 @@ function Button({
   return button;
 }
 
+const Button = React.forwardRef((props, ref) => (
+  <InnerButton innerRef={ref} {...props} />
+));
+
 const buttonSizes = ['lg', 'default', 'sm', 'xs'];
 
 Button.propTypes = {
@@ -230,11 +238,6 @@ Button.propTypes = {
   block: PropTypes.bool,
   /** Render the outline button variant */
   isOutline: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object,
   /** The name of the button to be sent with the form. */
   name: PropTypes.string
 };
@@ -249,4 +252,4 @@ Button.defaultProps = {
   size: 'default'
 };
 
-export default withTheme(Button);
+export default Button;

@@ -153,12 +153,7 @@ function Popover(props) {
   }
 
   const closeButton = (
-    <Button
-      handleOnClick={toggleShow}
-      innerRef={btn => {
-        closeBtnRef.current = btn;
-      }}
-    >
+    <Button handleOnClick={toggleShow} ref={closeBtnRef}>
       Close
     </Button>
   );
@@ -168,9 +163,7 @@ function Popover(props) {
       aria-label="Close"
       hasTitle={hasTitle}
       handleOnClick={toggleShow}
-      innerRef={btn => {
-        closeBtnRef.current = btn;
-      }}
+      ref={closeBtnRef}
     >
       <Icon name="remove" />
     </AlternateCloseButton>
@@ -184,9 +177,7 @@ function Popover(props) {
       isLinkButton={isLinkButton}
       suppressUnderline={suppressUnderline}
       buttonBorderStyle={buttonBorderStyle}
-      innerRef={btn => {
-        triggerBtnRef.current = btn;
-      }}
+      ref={triggerBtnRef}
       aria-expanded={isOpen}
     >
       <span aria-hidden={!!ariaLabel}>{children}</span>
@@ -244,18 +235,14 @@ function Popover(props) {
         <PopoverContainer
           className="es-popover__container"
           role="dialog"
-          innerRef={elem => {
-            contentRef.current = elem;
-          }}
+          ref={contentRef}
         >
           <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
             {hasTitle && <TitleBar>{title}</TitleBar>}
             {hasAltCloseButton && altCloseButton}
             <CloseHelpText
               tabIndex={-1}
-              innerRef={elem => {
-                headerRef.current = elem;
-              }}
+              ref={headerRef}
               aria-label="Press escape to close the Popover"
             />
           </PopoverHeader>

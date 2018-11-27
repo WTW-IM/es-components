@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
 import uncontrollable from 'uncontrollable';
-import { injectGlobal, withTheme } from 'styled-components';
 
-import datepickerStyles from './datePickerStyles';
+import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 
 export function DatePicker(props) {
@@ -16,7 +15,6 @@ export function DatePicker(props) {
     onBlur,
     placeholder,
     selectedDate,
-    theme,
     ...otherProps
   } = props;
 
@@ -29,13 +27,6 @@ export function DatePicker(props) {
 
   /* eslint-enable */
 
-  const dpStyles = datepickerStyles(theme.colors, theme.datepickerColors);
-  /* eslint-disable no-unused-expressions */
-  injectGlobal`
-    ${dpStyles}
-  `;
-  /* eslint-enable */
-
   const textbox = (
     <Textbox
       maskType="date"
@@ -46,17 +37,20 @@ export function DatePicker(props) {
   );
 
   return (
-    <ReactDatePicker
-      customInput={textbox}
-      customInputRef="inputRef"
-      onChange={onChange}
-      onBlur={onBlur}
-      placeholderText={placeholder}
-      selected={selectedDate}
-      {...datepickerProps}
-    >
-      {children}
-    </ReactDatePicker>
+    <>
+      <DatepickerStyles />
+      <ReactDatePicker
+        customInput={textbox}
+        customInputRef="inputRef"
+        onChange={onChange}
+        onBlur={onBlur}
+        placeholderText={placeholder}
+        selected={selectedDate}
+        {...datepickerProps}
+      >
+        {children}
+      </ReactDatePicker>
+    </>
   );
 }
 
@@ -96,12 +90,7 @@ DatePicker.propTypes = {
   /** Sets the end date in a range */
   endDate: PropTypes.instanceOf(Date),
   /** Display checkbox with contextual state colorings */
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger'])
 };
 
 DatePicker.defaultProps = {
@@ -127,4 +116,4 @@ const UncontrolledDatePicker = uncontrollable(DatePicker, {
   selectedDate: 'onChange'
 });
 
-export default withTheme(UncontrolledDatePicker);
+export default UncontrolledDatePicker;

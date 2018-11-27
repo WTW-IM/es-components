@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { noop, isNumber } from 'lodash';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import { InputBase } from '../../controls/BaseControls';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
+import { useTheme } from '../../util/useTheme';
 
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
@@ -17,6 +18,7 @@ const IncrementerTextbox = styled(InputBase)`
 const ScreenReaderButtonText = screenReaderOnly('span');
 
 function Incrementer(props) {
+  const theme = useTheme();
   const [value, setValue] = useState(props.startingValue);
 
   function determineIsDisabled(threshold, newValue) {
@@ -59,7 +61,7 @@ function Incrementer(props) {
         <Icon name="minus" />
       </Button>
       <IncrementerTextbox
-        {...props.theme.validationInputColor.default}
+        {...theme.validationInputColor.default}
         type="text"
         value={value}
         readOnly
@@ -92,12 +94,7 @@ Incrementer.propTypes = {
   /** The lowest value the incrementer can be decremented to */
   lowerThreshold: PropTypes.number,
   /** Function to execute with the new value */
-  onValueUpdated: PropTypes.func,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  onValueUpdated: PropTypes.func
 };
 
 Incrementer.defaultProps = {
@@ -109,4 +106,4 @@ Incrementer.defaultProps = {
   lowerThreshold: null
 };
 
-export default withTheme(Incrementer);
+export default Incrementer;

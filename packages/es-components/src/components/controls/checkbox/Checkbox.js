@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { Label } from '../BaseControls';
+import { useTheme } from '../../util/useTheme';
 
 const backgroundColorSelect = (checked, theme, validationState) => {
   if (checked) {
@@ -121,9 +122,9 @@ function Checkbox({
   labelText,
   validationState,
   additionalHelpContent,
-  theme,
   ...checkboxProps
 }) {
+  const theme = useTheme();
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent
@@ -162,12 +163,7 @@ Checkbox.propTypes = {
   /** Display checkbox with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /** Content to display underneath the check box */
-  additionalHelpContent: PropTypes.node,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  additionalHelpContent: PropTypes.node
 };
 
 Checkbox.defaultProps = {
@@ -175,4 +171,4 @@ Checkbox.defaultProps = {
   additionalHelpContent: undefined
 };
 
-export default withTheme(Checkbox);
+export default Checkbox;

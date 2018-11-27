@@ -4,7 +4,7 @@
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "bundle/main.min.js",
-  "module": "es6/index.js",
+  "module": "lib/index.js",
   "sideEffects": false,
   "scripts": {
     "build": "npm run build:es6 && npm run webpack",
@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "react": ">=16.7",
-    "styled-components": "*"
+    "styled-components": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
@@ -76,7 +76,7 @@
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3",
     "style-loader": "^0.13.1",
-    "styled-components": "^3.4.6",
+    "styled-components": "^4.1.1",
     "webpack": "^4.18.0",
     "webpack-cli": "^3.1.0"
   },

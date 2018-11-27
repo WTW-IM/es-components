@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import styled from 'styled-components';
@@ -129,8 +129,8 @@ function DropdownButton(props) {
   const [buttonValue, setButtonValue] = useState(props.buttonValue);
   const [isOpen, setIsOpen] = useState(false);
 
-  const buttonDropdown = React.createRef();
-  const triggerButton = React.createRef();
+  const buttonDropdown = useRef();
+  const triggerButton = useRef();
 
   useEffect(
     () => {
@@ -191,7 +191,7 @@ function DropdownButton(props) {
           handleOnClick={toggleDropdown}
           aria-haspopup="true"
           aria-pressed={isOpen}
-          innerRef={triggerButton}
+          ref={triggerButton}
         >
           {manualButtonValue || buttonValue}
           <Caret />

@@ -4,7 +4,7 @@
 
 import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
 
@@ -73,4 +73,4 @@ const UncontrolledSideNav = uncontrollable(SideNav, {
 
 UncontrolledSideNav.Item = NavItem;
 
-export default withTheme(UncontrolledSideNav);
+export default UncontrolledSideNav;

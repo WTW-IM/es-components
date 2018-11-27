@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css, withTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { noop, omit } from 'lodash';
 import MaskedInput from 'react-text-mask';
 import classnames from 'classnames';
@@ -9,6 +9,7 @@ import Icon from '../../base/icons/Icon';
 import { Label, LabelText, InputBase } from '../BaseControls';
 import inputMaskType from './inputMaskType';
 import genId from '../../util/generateAlphaName';
+import { useTheme } from '../../util/useTheme';
 
 const defaultInputPad = '12px';
 const defaultBorderRadius = '2px';
@@ -140,12 +141,12 @@ const Textbox = props => {
     appendIconName,
     maskType,
     customMask,
-    theme,
     className,
     labelSuffix,
     ...additionalTextProps
   } = props;
   const textboxId = id || genId();
+  const theme = useTheme();
   const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent id={helpId} className="es-textbox__help">
@@ -177,7 +178,7 @@ const Textbox = props => {
       return <input ref={setRef} {...maskedProps} />;
     };
   } else {
-    additionalTextProps.innerRef = inputRef;
+    additionalTextProps.ref = inputRef;
   }
 
   const addOnTextColor = hasValidationIcon
@@ -280,11 +281,6 @@ Textbox.propTypes = {
    * used for denoting optional fields or other states
    */
   labelSuffix: PropTypes.element,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired,
   className: PropTypes.string
 };
 
@@ -304,4 +300,4 @@ Textbox.defaultProps = {
   labelSuffix: undefined
 };
 
-export default withTheme(Textbox);
+export default Textbox;

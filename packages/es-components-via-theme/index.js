@@ -192,188 +192,230 @@ const theme = {
     }
   },
   buttonStyles: {
-    buttonsNormal: {
-      // these button types are dynamic, so you can add/remove/rename them
-      primary: {
-        bgColor: primary,
-        textColor: white,
-        hoverBgColor: primaryHover,
-        hoverTextColor: white,
-        activeBgColor: primaryHover,
-        activeTextColor: white,
-        boxShadowColor: primaryHover
+    button: {
+      variant: {
+        // default is required
+        primary: {
+          bgColor: primary,
+          textColor: white,
+          hoverBgColor: primaryHover,
+          hoverTextColor: white,
+          activeBgColor: primaryHover,
+          activeTextColor: white,
+          boxShadowColor: primaryHover
+        },
+        default: {
+          bgColor: defaultColor,
+          textColor: black,
+          hoverBgColor: defaultHover,
+          hoverTextColor: black,
+          activeBgColor: defaultHover,
+          activeTextColor: black,
+          boxShadowColor: defaultHover
+        },
+        darkDefault: {
+          bgColor: gray7,
+          textColor: white,
+          hoverBgColor: gray8,
+          hoverTextColor: white,
+          activeBgColor: gray8,
+          activeTextColor: white,
+          boxShadowColor: gray8
+        },
+        success: {
+          bgColor: success,
+          textColor: white,
+          hoverBgColor: successHover,
+          hoverTextColor: white,
+          activeBgColor: successHover,
+          activeTextColor: white,
+          boxShadowColor: successHover
+        },
+        info: {
+          bgColor: info,
+          textColor: white,
+          hoverBgColor: infoHover,
+          hoverTextColor: white,
+          activeBgColor: infoHover,
+          activeTextColor: white,
+          boxShadowColor: infoHover
+        },
+        warning: {
+          bgColor: warning,
+          textColor: white,
+          hoverBgColor: warningHover,
+          hoverTextColor: white,
+          activeBgColor: warningHover,
+          activeTextColor: white,
+          boxShadowColor: warningHover
+        },
+        danger: {
+          bgColor: danger,
+          textColor: white,
+          hoverBgColor: dangerHover,
+          hoverTextColor: white,
+          activeBgColor: dangerHover,
+          activeTextColor: white,
+          boxShadowColor: dangerHover
+        }
       },
-      default: {
-        bgColor: defaultColor,
-        textColor: black,
-        hoverBgColor: defaultHover,
-        hoverTextColor: black,
-        activeBgColor: defaultHover,
-        activeTextColor: black,
-        boxShadowColor: defaultHover
-      },
-      darkDefault: {
-        bgColor: gray7,
-        textColor: white,
-        hoverBgColor: gray8,
-        hoverTextColor: white,
-        activeBgColor: gray8,
-        activeTextColor: white,
-        boxShadowColor: gray8
-      },
-      success: {
-        bgColor: success,
-        textColor: white,
-        hoverBgColor: successHover,
-        hoverTextColor: white,
-        activeBgColor: successHover,
-        activeTextColor: white,
-        boxShadowColor: successHover
-      },
-      info: {
-        bgColor: info,
-        textColor: white,
-        hoverBgColor: infoHover,
-        hoverTextColor: white,
-        activeBgColor: infoHover,
-        activeTextColor: white,
-        boxShadowColor: infoHover
-      },
-      warning: {
-        bgColor: warning,
-        textColor: white,
-        hoverBgColor: warningHover,
-        hoverTextColor: white,
-        activeBgColor: warningHover,
-        activeTextColor: white,
-        boxShadowColor: warningHover
-      },
-      danger: {
-        bgColor: danger,
-        textColor: white,
-        hoverBgColor: dangerHover,
-        hoverTextColor: white,
-        activeBgColor: dangerHover,
-        activeTextColor: white,
-        boxShadowColor: dangerHover
+      // size should always have default, lg, sm, xs
+      // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
+      // fontWeight, lineHeight, textTransform are optional
+      size: {
+        lg: {
+          borderRadius: '5px',
+          fontSize: '26px',
+          lineHeight: '1.333',
+          paddingTop: '8px',
+          paddingSides: '20px',
+          paddingBottom: '5px'
+        },
+        default: {
+          borderRadius: '4px',
+          fontSize: '18px',
+          paddingTop: '5px',
+          paddingSides: '15px',
+          paddingBottom: '4px'
+        },
+        sm: {
+          borderRadius: '3px',
+          fontSize: '17px',
+          lineHeight: '1.5',
+          paddingTop: '4px',
+          paddingSides: '10px',
+          paddingBottom: '3px'
+        },
+        xs: {
+          borderRadius: '3px',
+          fontSize: '15px',
+          lineHeight: '1.5',
+          paddingTop: '3px',
+          paddingSides: '10px',
+          paddingBottom: '2px',
+          textTransform: 'uppercase'
+        }
       }
     },
-    buttonsOutline: {
-      // these can be independent of the main buttons, but generally
-      // should have matching sets
-      primary: {
-        bgColor: white,
-        textColor: primary,
-        hoverBgColor: primary,
-        hoverTextColor: white,
-        activeBgColor: primaryHover,
-        activeTextColor: white,
-        borderColor: primary
+    outlineButton: {
+      variant: {
+        primary: {
+          bgColor: white,
+          textColor: primary,
+          hoverBgColor: primary,
+          hoverTextColor: white,
+          activeBgColor: primaryHover,
+          activeTextColor: white,
+          borderColor: primary
+        },
+        default: {
+          bgColor: white,
+          textColor: gray7,
+          hoverBgColor: gray7,
+          hoverTextColor: white,
+          activeBgColor: gray8,
+          activeTextColor: white,
+          borderColor: gray7
+        },
+        success: {
+          bgColor: white,
+          textColor: success,
+          hoverBgColor: success,
+          hoverTextColor: white,
+          activeBgColor: successHover,
+          activeTextColor: white,
+          borderColor: success
+        },
+        info: {
+          bgColor: white,
+          textColor: info,
+          hoverBgColor: info,
+          hoverTextColor: white,
+          activeBgColor: infoHover,
+          activeTextColor: white,
+          borderColor: info
+        },
+        warning: {
+          bgColor: white,
+          textColor: warning,
+          hoverBgColor: warning,
+          hoverTextColor: white,
+          activeBgColor: warningHover,
+          activeTextColor: white,
+          borderColor: warning
+        },
+        danger: {
+          bgColor: white,
+          textColor: danger,
+          hoverBgColor: danger,
+          hoverTextColor: white,
+          activeBgColor: dangerHover,
+          activeTextColor: white,
+          borderColor: danger
+        },
+        gray: {
+          bgColor: white,
+          textColor: wtwGray,
+          hoverBgColor: wtwGray,
+          hoverTextColor: white,
+          activeBgColor: '#4a4d50',
+          activeTextColor: white,
+          borderColor: wtwGray
+        },
+        magenta: {
+          bgColor: white,
+          textColor: vbMagenta,
+          hoverBgColor: vbMagenta,
+          hoverTextColor: white,
+          activeBgColor: '#920C79',
+          activeTextColor: white,
+          borderColor: vbMagenta
+        },
+        violet: {
+          bgColor: white,
+          textColor: '#702082',
+          hoverBgColor: '#702082',
+          hoverTextColor: white,
+          activeBgColor: '#4d1659',
+          activeTextColor: white,
+          borderColor: '#702082'
+        }
       },
-      default: {
-        bgColor: white,
-        textColor: gray7,
-        hoverBgColor: gray7,
-        hoverTextColor: white,
-        activeBgColor: gray8,
-        activeTextColor: white,
-        borderColor: gray7
+      size: {
+        lg: {
+          borderRadius: '5px',
+          fontSize: '125%',
+          fontWeight: 'bold',
+          paddingTop: '8px',
+          paddingSides: '25px',
+          paddingBottom: '8px'
+        },
+        default: {
+          borderRadius: '4px',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          paddingTop: '5px',
+          paddingSides: '15px',
+          paddingBottom: '5px'
+        },
+        sm: {
+          borderRadius: '3px',
+          fontSize: '75%',
+          fontWeight: 'bold',
+          paddingTop: '4px',
+          paddingSides: '10px',
+          paddingBottom: '4px'
+        },
+        xs: {
+          borderRadius: '3px',
+          fontSize: '60%',
+          fontWeight: 'bold',
+          paddingTop: '4px',
+          paddingSides: '8px',
+          paddingBottom: '4px',
+          textTransform: 'uppercase'
+        }
       },
-      success: {
-        bgColor: white,
-        textColor: success,
-        hoverBgColor: success,
-        hoverTextColor: white,
-        activeBgColor: successHover,
-        activeTextColor: white,
-        borderColor: success
-      },
-      info: {
-        bgColor: white,
-        textColor: info,
-        hoverBgColor: info,
-        hoverTextColor: white,
-        activeBgColor: infoHover,
-        activeTextColor: white,
-        borderColor: info
-      },
-      warning: {
-        bgColor: white,
-        textColor: warning,
-        hoverBgColor: warning,
-        hoverTextColor: white,
-        activeBgColor: warningHover,
-        activeTextColor: white,
-        borderColor: warning
-      },
-      danger: {
-        bgColor: white,
-        textColor: danger,
-        hoverBgColor: danger,
-        hoverTextColor: white,
-        activeBgColor: dangerHover,
-        activeTextColor: white,
-        borderColor: danger
-      },
-      gray: {
-        bgColor: white,
-        textColor: wtwGray,
-        hoverBgColor: wtwGray,
-        hoverTextColor: white,
-        activeBgColor: '#4a4d50',
-        activeTextColor: white,
-        borderColor: wtwGray
-      },
-      magenta: {
-        bgColor: white,
-        textColor: vbMagenta,
-        hoverBgColor: vbMagenta,
-        hoverTextColor: white,
-        activeBgColor: '#920C79',
-        activeTextColor: white,
-        borderColor: vbMagenta
-      },
-      violet: {
-        bgColor: white,
-        textColor: '#702082',
-        hoverBgColor: '#702082',
-        hoverTextColor: white,
-        activeBgColor: '#4d1659',
-        activeTextColor: white,
-        borderColor: '#702082'
-      }
-    }
-  },
-  // buttonSizes should always have default, lg, sm, xs
-  buttonSizes: {
-    lg: {
-      borderRadius: '5px',
-      fontSize: '26px',
-      paddingTop: '6px',
-      paddingSides: '20px',
-      paddingBottom: '5px'
-    },
-    default: {
-      borderRadius: '4px',
-      fontSize: '18px',
-      paddingTop: '5px',
-      paddingSides: '15px',
-      paddingBottom: '4px'
-    },
-    sm: {
-      borderRadius: '3px',
-      fontSize: '17px',
-      paddingTop: '4px',
-      paddingSides: '10px',
-      paddingBottom: '3px'
-    },
-    xs: {
-      borderRadius: '3px',
-      fontSize: '15px',
-      paddingTop: '3px',
-      paddingSides: '10px',
-      paddingBottom: '2px',
-      textTransform: 'uppercase'
     }
   },
   validationIconName: {

@@ -25,7 +25,7 @@ export function ArrowStyles(props) {
     position: absolute;
     border-style: solid;
     border-color: transparent;
-    border-width: ${getArrowSize(arrowSize)}px;
+    border-width: ${arrowSize}px;
   `;
 
   const Styles = createGlobalStyle`
@@ -53,7 +53,7 @@ export function ArrowStyles(props) {
         bottom: 1px;
       }
     }
-    
+
     .${name}-popper[data-placement^="bottom"] .${name}-popper__arrow {
       border-color: transparent;
       border-width: ${arrowSize}px;

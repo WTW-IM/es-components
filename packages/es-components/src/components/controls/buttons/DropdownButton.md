@@ -32,12 +32,12 @@ const alertButtonValues = (event, name) => {
   shouldCloseOnButtonClick>
   <DropdownButton.Button
     name="first"
-    handleOnClick={alertButtonValues}>First Button</DropdownButton.Button>
+    onClick={alertButtonValues}>First Button</DropdownButton.Button>
   <DropdownButton.Button
     name="second"
-    handleOnClick={alertButtonValues}>Second Button</DropdownButton.Button>
+    onClick={alertButtonValues}>Second Button</DropdownButton.Button>
   <DropdownButton.Button
     name="third"
-    handleOnClick={alertButtonValues}>Third Button</DropdownButton.Button>
+    onClick={alertButtonValues}>Third Button</DropdownButton.Button>
 </DropdownButton>
 ```

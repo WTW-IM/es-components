@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import classnames from 'classnames';
+
 import { ButtonBase } from '../BaseControls';
+import { useTheme } from '../../util/useTheme';
 
 // the padding-bottom is set to the top value intentionally.
 // needed for the slight difference from the normal button style
@@ -24,20 +26,22 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-function OutlineButton({
+function InnerButton({
   children,
   styleType,
   size,
   block,
-  theme,
+  innerRef,
   ...buttonProps
 }) {
+  const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];
   const variant = theme.buttonStyles.outlineButton.variant[styleType];
   const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     block,
     buttonSize,
+    ref: innerRef,
     variant,
     ...otherProps
   };
@@ -52,18 +56,17 @@ function OutlineButton({
   );
 }
 
+const OutlineButton = React.forwardRef((props, ref) => (
+  <InnerButton innerRef={ref} {...props} />
+));
+
 OutlineButton.propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  block: PropTypes.bool
 };
 
 OutlineButton.defaultProps = {
@@ -72,4 +75,4 @@ OutlineButton.defaultProps = {
   size: 'default'
 };
 
-export default withTheme(OutlineButton);
+export default OutlineButton;

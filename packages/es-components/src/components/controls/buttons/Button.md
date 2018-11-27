@@ -1,4 +1,4 @@
-Any additional props passed to the Button component will get passed to the HTML button element.
+Additional props supplied to the Button component will be passed to the underlying button element.
 
 ## Button Style Types
 

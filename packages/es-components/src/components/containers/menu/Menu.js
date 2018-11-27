@@ -54,7 +54,7 @@ function Menu(props) {
           />
         )}
         <ToggleButton
-          handleOnClick={toggleMenu}
+          onClick={toggleMenu}
           isPressed={isMenuOpen}
           styleType={openButtonType}
           aria-expanded={isMenuOpen}

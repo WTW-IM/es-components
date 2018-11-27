@@ -1,16 +1,25 @@
 /* eslint no-confusing-arrow: 0 */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Button from './Button';
+import OutlineButton from './OutlineButton';
 import { useTheme } from '../../util/useTheme';
 
-const StyledToggleButton = styled(Button)`
+const buttonMixin = css`
   background-color: ${props =>
     props.isPressed ? props.variant.hoverBgColor : props.variant.bgColor};
   color: ${props =>
     props.isPressed ? props.variant.activeTextColor : props.variant.textColor};
+`;
+
+const StyledButton = styled(Button)`
+  ${buttonMixin};
+`;
+
+const StyledOutlineButton = styled(OutlineButton)`
+  ${buttonMixin};
 `;
 
 function ToggleButton(props) {
@@ -19,47 +28,47 @@ function ToggleButton(props) {
 
   function toggleButton(event) {
     setIsPressed(!isPressed);
-    props.handleOnClick(event);
+    props.onClick(event);
   }
 
-  const {
-    buttonClasses,
-    styleType,
-    size,
-    block,
-    isOutline,
-    ...buttonProps
-  } = props;
+  const { styleType, size, block, isOutline, ...buttonProps } = props;
 
-  let variant;
   if (isOutline) {
-    variant = theme.buttonStyles.buttonsOutline[styleType];
-  } else {
-    variant = theme.buttonStyles.buttonsNormal[styleType];
+    return (
+      <StyledOutlineButton
+        {...buttonProps}
+        onClick={toggleButton}
+        styleType={styleType}
+        size={size}
+        block={block}
+        isOutline={isOutline}
+        isPressed={isPressed}
+        variant={theme.buttonStyles.outlineButton.variant[styleType]}
+      >
+        {props.children}
+      </StyledOutlineButton>
+    );
   }
 
   return (
-    <StyledToggleButton
+    <StyledButton
       {...buttonProps}
-      handleOnClick={toggleButton}
-      buttonClasses={buttonClasses}
+      onClick={toggleButton}
       styleType={styleType}
       size={size}
       block={block}
       isOutline={isOutline}
       isPressed={isPressed}
-      variant={variant}
+      variant={theme.buttonStyles.button.variant[styleType]}
     >
       {props.children}
-    </StyledToggleButton>
+    </StyledButton>
   );
 }
 
 ToggleButton.propTypes = {
-  handleOnClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  /** @deprecated ToggleButton will accept standard className prop */
-  buttonClasses: PropTypes.string,
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   block: PropTypes.bool,
@@ -69,7 +78,6 @@ ToggleButton.propTypes = {
 
 ToggleButton.defaultProps = {
   styleType: 'default',
-  buttonClasses: undefined,
   size: 'default',
   block: false,
   isOutline: false,

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import classnames from 'classnames';
+import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled.button`
   background-color: transparent;
@@ -29,19 +30,21 @@ const StyledButton = styled.button`
   }
 `;
 
-function LinkButton({
+function InnerButton({
   children,
   styleType,
   size,
   block,
-  theme,
+  innerRef,
   ...buttonProps
 }) {
+  const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];
   const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     block,
     variant,
+    ref: innerRef,
     ...otherProps
   };
 
@@ -55,18 +58,17 @@ function LinkButton({
   );
 }
 
+const LinkButton = React.forwardRef((props, ref) => (
+  <InnerButton innerRef={ref} {...props} />
+));
+
 LinkButton.propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  block: PropTypes.bool
 };
 
 LinkButton.defaultProps = {
@@ -75,4 +77,4 @@ LinkButton.defaultProps = {
   size: 'default'
 };
 
-export default withTheme(LinkButton);
+export default LinkButton;

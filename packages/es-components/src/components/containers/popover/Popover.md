@@ -47,7 +47,7 @@ const styles = {
         Popover on Right
     </Popover>
     </div>
-    
+
 </div>
 ```
 
@@ -58,7 +58,7 @@ Here's an example of a
     name="popEx"
     title="Popover"
     content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-    isLinkButton
+    buttonType="LinkButton"
     hasCloseButton
 >
     Popover
@@ -68,6 +68,7 @@ styled like a link.
 ```
 
 Popovers can wrap Icons or other components. These wrapped elements should include the `ariaLabel` prop for screen readers to identify them.
+
 ```
 <div>
 Click the icon for some help text.
@@ -77,7 +78,7 @@ Click the icon for some help text.
     content="Here's some help text!"
     suppressUnderline
     ariaLabel="Icon"
-    isLinkButton
+    buttonType="LinkButton"
 >
     <Icon name='question-circle' />
 </Popover>
@@ -97,7 +98,7 @@ const styles = {
         title="Small Arrow"
         content="This is the popover's content."
         placement="top"
-        isOutline
+        buttonType="OutlineButton"
         arrowSize="sm"
     >
         Small Arrow
@@ -109,7 +110,7 @@ const styles = {
         name="dfltEx"
         title="Default Arrow"
         content="This is the popover's content."
-        isOutline
+        buttonType="OutlineButton"
     >
         Default Arrow
     </Popover>
@@ -121,7 +122,7 @@ const styles = {
         title="Large Arrow"
         content="This is the popover's content."
         placement="top"
-        isOutline
+        buttonType="OutlineButton"
         arrowSize="lg"
     >
         Large Arrow
@@ -134,7 +135,7 @@ const styles = {
         title="No Arrow"
         content="This is the popover's content."
         placement="bottom"
-        isOutline
+        buttonType="OutlineButton"
         arrowSize="none"
     >
         No Arrow

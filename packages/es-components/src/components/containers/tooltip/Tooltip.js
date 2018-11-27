@@ -9,11 +9,11 @@ import classnames from 'classnames';
 
 import Fade from '../../util/Fade';
 
-import Button from '../../controls/buttons/Button';
+import LinkButton from '../../controls/buttons/LinkButton';
 
 const TooltipBase = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 999;
 `;
 
 const TooltipInner = styled.div`
@@ -87,7 +87,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(LinkButton)`
   border-bottom: 1px dashed;
   border-radius: 0;
   color: ${props => props.theme.colors.primary};
@@ -187,14 +187,13 @@ function Tooltip(props) {
       <StyledButton
         className="es-tooltip__target"
         ref={tooltipTarget}
-        isLinkButton
         onBlur={hideTooltip}
         onFocus={showTooltip}
         onMouseEnter={!props.disableHover ? showTooltip : undefined}
         onMouseLeave={!props.disableHover ? hideTooltip : undefined}
         onMouseDown={toggleShow}
         onKeyDown={closeOnEscape}
-        handleOnClick={() => {}}
+        onClick={() => {}}
         aria-describedby={`es-tooltip__${props.name}`}
       >
         {props.children}

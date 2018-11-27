@@ -51,7 +51,7 @@ function Incrementer(props) {
       <Button
         className="decrement-button"
         styleType="primary"
-        handleOnClick={decrementValue}
+        onClick={decrementValue}
         disabled={isDecrementDisabled}
       >
         <ScreenReaderButtonText>
@@ -69,7 +69,7 @@ function Incrementer(props) {
       <Button
         className="increment-button"
         styleType="primary"
-        handleOnClick={incrementValue}
+        onClick={incrementValue}
         disabled={isIncrementDisabled}
       >
         <ScreenReaderButtonText>

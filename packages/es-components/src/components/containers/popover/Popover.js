@@ -1,28 +1,25 @@
-/* eslint-disable no-confusing-arrow */
-
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
+import LinkButton from '../../controls/buttons/LinkButton';
+import OutlineButton from '../../controls/buttons/OutlineButton';
 import Popup from './Popup';
 
 const Container = styled.div`
   display: inline-block;
 `;
 
-const TriggerButton = styled(Button)`
-  border-bottom: ${props =>
-    props.isLinkButton ? props.buttonBorderStyle : ''};
-  border-radius: ${props =>
-    props.isLinkButton && !props.suppressUnderline ? '0' : ''};
-  margin-bottom: ${props => (props.isLinkButton ? '2px' : '')};
+const LinkButtonTrigger = styled(LinkButton)`
+  border-bottom: ${props => props.buttonBorderStyle};
+  border-radius: ${props => (!props.suppressUnderline ? '0' : '')};
+  margin-bottom: 2px;
   text-decoration: none;
 
   &:hover {
-    border-bottom: ${props =>
-      props.isLinkButton && !props.suppressUnderline ? '1px solid' : ''};
+    border-bottom: ${props => (!props.suppressUnderline ? '1px solid' : '')};
   }
 `;
 
@@ -104,8 +101,7 @@ function Popover(props) {
     arrowSize,
     ariaLabel,
     buttonStyle,
-    isOutline,
-    isLinkButton,
+    buttonType,
     suppressUnderline,
     hasCloseButton,
     hasAltCloseButton,
@@ -117,6 +113,18 @@ function Popover(props) {
   const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
   const showCloseButton = hasCloseButton && !hasAltCloseButton;
   const buttonBorderStyle = suppressUnderline ? 'none' : '1px dashed';
+
+  let TriggerButton;
+  switch (buttonType) {
+    case 'LinkButton':
+      TriggerButton = LinkButtonTrigger;
+      break;
+    case 'OutlineButton':
+      TriggerButton = OutlineButton;
+      break;
+    default:
+      TriggerButton = Button;
+  }
 
   const closeBtnRef = useRef(null);
   const triggerBtnRef = useRef(null);
@@ -153,7 +161,7 @@ function Popover(props) {
   }
 
   const closeButton = (
-    <Button handleOnClick={toggleShow} ref={closeBtnRef}>
+    <Button onClick={toggleShow} ref={closeBtnRef}>
       Close
     </Button>
   );
@@ -162,7 +170,7 @@ function Popover(props) {
     <AlternateCloseButton
       aria-label="Close"
       hasTitle={hasTitle}
-      handleOnClick={toggleShow}
+      onClick={toggleShow}
       ref={closeBtnRef}
     >
       <Icon name="remove" />
@@ -171,10 +179,8 @@ function Popover(props) {
 
   const triggerButton = (
     <TriggerButton
-      handleOnClick={toggleShow}
+      onClick={toggleShow}
       styleType={buttonStyle}
-      isOutline={isOutline}
-      isLinkButton={isLinkButton}
       suppressUnderline={suppressUnderline}
       buttonBorderStyle={buttonBorderStyle}
       ref={triggerBtnRef}
@@ -288,10 +294,8 @@ Popover.propTypes = {
   suppressUnderline: PropTypes.bool,
   /** The button style of the popover link */
   buttonStyle: PropTypes.string,
-  /** Sets the link to use a text rather than a button style */
-  isLinkButton: PropTypes.bool,
-  /** Sets the link to use the alternate button style */
-  isOutline: PropTypes.bool,
+  /** The button type used for the popover trigger */
+  buttonType: PropTypes.oneOf(['Button', 'OutlineButton', 'LinkButton']),
   /** Sets the aria-label attribute to allow for textless buttons */
   ariaLabel: PropTypes.string,
   /** Disables popovers ability to change position to stay in viewport */
@@ -301,13 +305,12 @@ Popover.propTypes = {
 Popover.defaultProps = {
   placement: 'bottom',
   buttonStyle: 'primary',
+  buttonType: 'Button',
   arrowSize: 'default',
   disableRootClose: false,
   hasCloseButton: false,
   hasAltCloseButton: false,
   suppressUnderline: false,
-  isLinkButton: false,
-  isOutline: false,
   ariaLabel: null,
   disableFlipping: false
 };

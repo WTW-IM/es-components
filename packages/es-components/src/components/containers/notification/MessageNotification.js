@@ -4,13 +4,13 @@ import { noop } from 'lodash';
 
 import { useNotification } from './useNotification';
 
-const DefaultNotification = useNotification();
+const Notification = useNotification('messageOnly');
 
-function Notification(props) {
-  return <DefaultNotification {...props} />;
+function MessageNotification(props) {
+  return <Notification {...props} />;
 }
 
-Notification.propTypes = {
+MessageNotification.propTypes = {
   /* The type of notification to render */
   type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
     .isRequired,
@@ -24,7 +24,7 @@ Notification.propTypes = {
   children: PropTypes.node
 };
 
-Notification.defaultProps = {
+MessageNotification.defaultProps = {
   includeIcon: false,
   isDismissable: false,
   children: null,
@@ -32,4 +32,4 @@ Notification.defaultProps = {
   onDismiss: noop
 };
 
-export default Notification;
+export default MessageNotification;

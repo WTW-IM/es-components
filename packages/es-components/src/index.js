@@ -1,6 +1,12 @@
 export Icon from './components/base/icons/Icon';
 
 export Notification from './components/containers/notification/Notification';
+export LightNotification from './components/containers/notification/LightNotification';
+export MessageNotification from './components/containers/notification/MessageNotification';
+export {
+  InlineMessage,
+  Message
+} from './components/containers/notification/Message';
 export Drawer from './components/containers/drawer/Drawer';
 export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';

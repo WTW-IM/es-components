@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { noop } from 'lodash';
+import { noop, findIndex } from 'lodash';
 import Tab from './Tab';
 
 const TabWrapper = styled.div`
@@ -32,48 +32,40 @@ const TabContent = styled.div`
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
-    const child = Array.isArray(this.props.children)
-      ? props.children[0]
-      : props.children;
     this.state = {
-      value: child.props.name,
-      currentContent: child.props.children
+      parentTabChanged: props.tabChanged
     };
     this.tabChanged = this.tabChanged.bind(this);
   }
 
-  componentDidUpdate(prevProp, prevState) {
-    if (this.state.value !== prevState.value) {
-      this.props.tabChanged(this.state.value);
-    }
-  }
-
-  tabChanged(name, child) {
-    this.setState({
-      value: name,
-      currentContent: child
-    });
+  tabChanged(header) {
+    this.state.parentTabChanged(header);
   }
 
   render() {
-    const { children } = this.props;
+    const { children, selectedKey } = this.props;
+    let displayIndex = findIndex(children, (child) => 
+      child.props.header.key
+        ? child.props.header.key === selectedKey
+        : child.props.header === selectedKey
+      );
+      if(displayIndex < 0){
+        displayIndex = 0;
+      }
     const elements = React.Children.map(children, (child, i) => {
-      const isSelected = child.props.name.key
-        ? child.props.name.key === this.state.value.key
-        : child.props.name === this.state.value;
       return React.cloneElement(child, {
-        selected: isSelected,
+        selected: i === displayIndex,
         action: this.tabChanged
       });
     });
-
+    
     return (
       <div className="es-tab-panel">
         <TabWrapper className="es-tab-panel__wrapper">
           <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
         </TabWrapper>
         <TabContent className="es-tab-panel__content">
-          {this.state.currentContent}
+          {elements[displayIndex].props.children}
         </TabContent>
       </div>
     );

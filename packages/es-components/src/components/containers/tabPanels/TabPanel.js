@@ -52,12 +52,10 @@ class TabPanel extends React.Component {
       if(displayIndex < 0){
         displayIndex = 0;
       }
-    const elements = React.Children.map(children, (child, i) => {
-      return React.cloneElement(child, {
+    const elements = React.Children.map(children, (child, i) => React.cloneElement(child, {
         selected: i === displayIndex,
         action: this.tabChanged
-      });
-    });
+    }));
     
     return (
       <div className="es-tab-panel">
@@ -97,12 +95,17 @@ TabPanel.propTypes = {
   /**
    * Callback when the selected tab has changed. The callback is given the name of the tab that is active
    */
-  tabChanged: PropTypes.func
+  tabChanged: PropTypes.func,
+  /**
+   * The key for the selected tab
+   */
+  selectedKey: PropTypes.string
 };
 
 TabPanel.defaultProps = {
   children: [],
-  tabChanged: noop
+  tabChanged: noop,
+  selectedKey: ''
 };
 
 TabPanel.Tab = Tab;

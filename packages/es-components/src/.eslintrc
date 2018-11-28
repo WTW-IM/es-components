@@ -31,7 +31,8 @@
     "linebreak-style": 0,
     "import/no-extraneous-dependencies": ["error", {
         "devDependencies": ["**/*.specs.js", "**/ExampleWrapper.js", "src/components/util/test-utils.js"]
-      }]
+      }],
+      "prefer-arrow-callback": 0
   },
   "env": {
     "browser": true

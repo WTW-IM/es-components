@@ -31,6 +31,9 @@ export HorizontalNav from './components/navigation/horizontalnav/HorizontalNav';
 export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';
 export screenReaderOnly from './components/patterns/screenReaderOnly/screenReaderOnly';
+export CallToAction from './components/patterns/callToAction/CallToAction';
+export LightCallToAction from './components/patterns/callToAction/LightCallToAction';
+export Action from './components/patterns/callToAction/Action';
 
 export Spinner from './components/base/spinner/Spinner';
 

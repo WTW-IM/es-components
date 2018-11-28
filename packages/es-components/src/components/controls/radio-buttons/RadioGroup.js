@@ -8,10 +8,12 @@ import Fieldset from '../../containers/fieldset/Fieldset';
 import RadioButton from './RadioButton';
 
 const RadioFieldset = styled(Fieldset)`
+  margin-bottom: 20px;
   legend {
     border: none;
     font-size: 22px;
-    margin-bottom: 0;
+    line-height: 1;
+    margin-bottom: 5px;
   }
 `;
 

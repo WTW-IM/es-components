@@ -57,7 +57,7 @@ const AriaAnnouncer = styled.p`
 /* eslint-enable */
 
 function Tab({
-  name,
+  header,
   selected,
   action,
   children,
@@ -67,9 +67,9 @@ function Tab({
 }) {
   return (
     <TabButton
-      onClick={() => action(name, children, simpleName, announcerText)}
+      onClick={() => action(header, children, simpleName, announcerText)}
       selected={selected}
-      aria-label={`${simpleName || name} tab`}
+      aria-label={`${simpleName || header} tab`}
       aria-expanded={selected}
       {...props}
     >
@@ -79,16 +79,16 @@ function Tab({
             {`${simpleName} ${announcerText}`}
           </AriaAnnouncer>
         )}
-      {name}
+      {header}
     </TabButton>
   );
 }
 
 Tab.propTypes = {
   /**
-   * The name of the tab, and the displayed value
+   * The header of the tab, and the displayed value
    */
-  name: PropTypes.node.isRequired,
+  header: PropTypes.node.isRequired,
   /**
    * Whether the tab is selected and should be rendered to appear selected.
    */

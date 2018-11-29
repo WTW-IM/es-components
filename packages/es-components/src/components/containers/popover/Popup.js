@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Manager, Target, Popper, Arrow } from 'react-popper';
+import { Manager, Reference, Popper } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
@@ -33,7 +33,7 @@ function Popup({
 }) {
   let popperObj = (
     <Manager>
-      <Target>{trigger}</Target>
+      <Reference>{({ ref }) => React.cloneElement(trigger, { ref })}</Reference>
       <Transition
         in={transitionIn}
         timeout={transitionTimeout}
@@ -59,8 +59,16 @@ function Popup({
             }}
             innerRef={popperRef}
           >
-            {children}
-            <Arrow className={`${name}-popper__arrow`} />
+            {({ ref, style, innerPlacement, arrowProps }) => (
+              <div ref={ref} style={style} date-placement={innerPlacement}>
+                {children}
+                <div
+                  className={`${name}-popper__arrow`}
+                  ref={arrowProps.ref}
+                  style={arrowProps.style}
+                />
+              </div>
+            )}
           </Popper>
         )}
       </Transition>

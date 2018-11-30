@@ -4,30 +4,10 @@ import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
-import LinkButton from '../../controls/buttons/LinkButton';
-import OutlineButton from '../../controls/buttons/OutlineButton';
 import Popup from './Popup';
 
 const Container = styled.div`
   display: inline-block;
-`;
-
-const LinkButtonTrigger = styled(LinkButton)`
-  border-bottom: ${props => props.buttonBorderStyle};
-  border-radius: ${props => (!props.suppressUnderline ? '0' : '')};
-  margin-bottom: 2px;
-  text-decoration: none;
-
-  &:hover {
-    border-bottom: ${props => (!props.suppressUnderline ? '1px solid' : '')};
-  }
-`;
-
-const TriggerButtonLabel = styled.span`
-  display: block;
-  font-size: 0;
-  height: 1px;
-  overflow: hidden;
 `;
 
 const PopoverContainer = styled.div`
@@ -96,13 +76,9 @@ function Popover(props) {
     name,
     title,
     content,
-    children,
     placement,
     arrowSize,
-    ariaLabel,
-    buttonStyle,
-    buttonType,
-    suppressUnderline,
+    render,
     hasCloseButton,
     hasAltCloseButton,
     disableRootClose,
@@ -112,19 +88,6 @@ function Popover(props) {
   const hasTitle = title !== undefined;
   const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
   const showCloseButton = hasCloseButton && !hasAltCloseButton;
-  const buttonBorderStyle = suppressUnderline ? 'none' : '1px dashed';
-
-  let TriggerButton;
-  switch (buttonType) {
-    case 'LinkButton':
-      TriggerButton = LinkButtonTrigger;
-      break;
-    case 'OutlineButton':
-      TriggerButton = OutlineButton;
-      break;
-    default:
-      TriggerButton = Button;
-  }
 
   const closeBtnRef = useRef(null);
   const triggerBtnRef = useRef(null);
@@ -177,20 +140,6 @@ function Popover(props) {
     </AlternateCloseButton>
   );
 
-  const triggerButton = (
-    <TriggerButton
-      onClick={toggleShow}
-      styleType={buttonStyle}
-      suppressUnderline={suppressUnderline}
-      buttonBorderStyle={buttonBorderStyle}
-      ref={triggerBtnRef}
-      aria-expanded={isOpen}
-    >
-      <span aria-hidden={!!ariaLabel}>{children}</span>
-      <TriggerButtonLabel>{ariaLabel}</TriggerButtonLabel>
-    </TriggerButton>
-  );
-
   function hidePopOnScroll() {
     setInterval(() => {
       if (popperRef.current) {
@@ -226,7 +175,7 @@ function Popover(props) {
     <Container className="es-popover">
       <Popup
         name={name}
-        trigger={triggerButton}
+        trigger={render({ ref: triggerBtnRef, toggleShow, isOpen })}
         placement={placement}
         arrowSize={arrowSize}
         onHide={hidePopover}
@@ -274,8 +223,6 @@ function Popover(props) {
 Popover.propTypes = {
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
-  /** The content or element which activates the popover */
-  children: PropTypes.node.isRequired,
   /** The text displayed in the popover title section */
   title: PropTypes.string.isRequired,
   /** The content displayed in the popover body */
@@ -290,28 +237,18 @@ Popover.propTypes = {
   hasCloseButton: PropTypes.bool,
   /** Display a close ('x') button in the popover title bar */
   hasAltCloseButton: PropTypes.bool,
-  /** Hide underline from link. Useful for children like Icons */
-  suppressUnderline: PropTypes.bool,
-  /** The button style of the popover link */
-  buttonStyle: PropTypes.string,
-  /** The button type used for the popover trigger */
-  buttonType: PropTypes.oneOf(['Button', 'OutlineButton', 'LinkButton']),
-  /** Sets the aria-label attribute to allow for textless buttons */
-  ariaLabel: PropTypes.string,
+  /** Function returning a button component to be used as the popover trigger */
+  render: PropTypes.func.isRequired,
   /** Disables popovers ability to change position to stay in viewport */
   disableFlipping: PropTypes.bool
 };
 
 Popover.defaultProps = {
   placement: 'bottom',
-  buttonStyle: 'primary',
-  buttonType: 'Button',
   arrowSize: 'default',
   disableRootClose: false,
   hasCloseButton: false,
   hasAltCloseButton: false,
-  suppressUnderline: false,
-  ariaLabel: null,
   disableFlipping: false
 };
 

@@ -4,6 +4,7 @@ import React from 'react';
 import { cleanup, waitForElement } from 'react-testing-library';
 
 import Popover from './Popover';
+import Button from '../../controls/buttons/Button';
 import { renderWithTheme } from '../../util/test-utils';
 
 beforeEach(cleanup);
@@ -16,7 +17,19 @@ function buildPopover(props) {
   };
   const mergedProps = Object.assign({}, defaults, props);
   return (
-    <Popover {...mergedProps}>Popover Text</Popover>
+    <Popover
+      {...mergedProps}
+      render={({ ref, toggleShow, isOpen }) => (
+        <Button
+          onClick={toggleShow}
+          aria-expanded={isOpen}
+          ref={ref}
+          styleType="primary"
+        >
+          Popover Text
+        </Button>
+      )}
+    />
   );
 }
 
@@ -72,7 +85,9 @@ it('can be closed using the alternative close button', async () => {
 it('sets focus on a focusable element within the content', () => {
   jest.useFakeTimers();
   const popoverContent = <a href="#test">Test link</a>;
-  const { getByText } = renderWithTheme(buildPopover({ content: popoverContent }));
+  const { getByText } = renderWithTheme(
+    buildPopover({ content: popoverContent })
+  );
   getByText('Popover Text').click();
   jest.runOnlyPendingTimers();
 

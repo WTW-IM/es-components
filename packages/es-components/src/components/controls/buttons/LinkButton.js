@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   box-shadow: none;
   color: ${props => props.variant.bgColor};
   font-size: inherit;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 0;
   text-decoration: underline;
 
@@ -51,7 +52,7 @@ function InnerButton({
   return (
     <StyledButton
       {...sharedProps}
-      className={classnames('es-button es-button--outline', className)}
+      className={classnames('es-button es-button--link', className)}
     >
       {children}
     </StyledButton>

@@ -276,7 +276,8 @@ const theme = {
           fontSize: '18px',
           paddingTop: '5px',
           paddingSides: '15px',
-          paddingBottom: '4px'
+          paddingBottom: '4px',
+          lineHeight: '1.43'
         },
         sm: {
           borderRadius: '3px',

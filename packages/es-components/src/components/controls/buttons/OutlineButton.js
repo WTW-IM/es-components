@@ -10,6 +10,10 @@ const StyledButton = styled(ButtonBase)`
   background-color: ${props => props.variant.bgColor};
   border: 2px solid ${props => props.variant.borderColor};
   color: ${props => props.variant.textColor};
+  line-height: ${props =>
+    props.variant.lineHeight
+      ? props.variant.lineHeight
+      : props.theme.sizes.baseLineHeight};
   transition: background-color 250ms linear, color 250ms linear;
 
   &:hover {

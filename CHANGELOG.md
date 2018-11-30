@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.6 (2018-11-30)</small>
+
+* Fix: Adjusts the legend spacing so that the legendContent will be in-line ([2662cb6](https://github.com/wtw-im/es-components/commit/2662cb6))
+
+
+
+
+
 ## <small>18.0.5 (2018-11-19)</small>
 
 * Update: Checkbox and RadioGroup styles, styleguide styles ([fcb194f](https://github.com/wtw-im/es-components/commit/fcb194f))

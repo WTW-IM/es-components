@@ -11,6 +11,10 @@ const StyledButton = styled(ButtonBase)`
   border-color: transparent;
   box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
   color: ${props => props.variant.textColor};
+  line-height: ${props =>
+    props.variant.lineHeight
+      ? props.variant.lineHeight
+      : props.theme.sizes.baseLineHeight};
   margin-bottom: 4px;
   margin-top: 0;
   transition: background-color 250ms linear;

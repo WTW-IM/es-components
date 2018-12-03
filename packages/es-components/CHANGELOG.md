@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.7 (2018-12-03)</small>
+
+* Merge pull request #241 from jrios/ie11-compat-fixes ([31ada3e](https://github.com/wtw-im/es-components/commit/31ada3e)), closes [#241](https://github.com/wtw-im/es-components/issues/241)
+* Fix: add babel-polyfill to head ([2b31435](https://github.com/wtw-im/es-components/commit/2b31435))
+
+
+
+
+
 ## <small>18.0.6 (2018-11-30)</small>
 
 * Fix: Adjusts the legend spacing so that the legendContent will be in-line ([2662cb6](https://github.com/wtw-im/es-components/commit/2662cb6))

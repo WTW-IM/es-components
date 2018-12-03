@@ -3,7 +3,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "18.0.6",
+  "version": "18.0.7",
   "command": {
     "publish": {
       "message": "[SKIP CI] %s"

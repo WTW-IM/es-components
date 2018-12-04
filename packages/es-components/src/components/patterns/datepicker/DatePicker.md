@@ -4,22 +4,23 @@ Passes props through to the TextBox component for additional functionality (for 
 
 **Keyboard support**
 
-* Left: Move to the previous day
-* Right: Move to the next day
-* Up: Move to the previous week
-* Down: Move to the next week
-* PgUp: Move to the previous month
-* PgDn: Move to the next month
-* Home: Move to the previous year
-* End: Move to the next year
-* Enter/Esc/Tab: Close the calendar
+- Left: Move to the previous day
+- Right: Move to the next day
+- Up: Move to the previous week
+- Down: Move to the next week
+- PgUp: Move to the previous month
+- PgDn: Move to the next month
+- Home: Move to the previous year
+- End: Move to the next year
+- Enter/Esc/Tab: Close the calendar
 
 ### Events
 
 The `DatePicker` component supports event handlers for `onChange`, `onBlur`, and `onChangeRaw`. The
 `onChange` event will return a moment object representing the selected date, and only fires when
-a valid date is selected.  The `onBlur` and `onChangeRaw` events will return an event with the
+a valid date is selected. The `onBlur` and `onChangeRaw` events will return an event with the
 raw value of the input.
+
 ```
 function handleOnChange(date) {
   console.log(`Date selected: ${date}`);
@@ -73,7 +74,7 @@ class RangeExample extends React.Component {
 
   render() {
     return (
-      <div style={{ display: 'flex', width: '65%', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', width: '70%', justifyContent: 'space-between' }}>
         <DatePicker
           labelText="Start Date"
           onChange={this.handleChangeStart}
@@ -108,7 +109,6 @@ function isWeekday(date) {
 }
 
 <DatePicker labelText="No Weekends" onChange={()=>{}} filterDate={isWeekday} />
-
 ```
 
 ### Include Dates (whitelist)

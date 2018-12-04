@@ -14,7 +14,7 @@ const styles = {
       title="Top"
       content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
       placement="top"
-      render={({ ref, toggleShow, isOpen }) => (
+      renderTrigger={({ ref, toggleShow, isOpen }) => (
         <Button
           onClick={toggleShow}
           aria-expanded={isOpen}
@@ -32,7 +32,7 @@ const styles = {
         name="bottomEx"
         title="Bottom"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <Button
             onClick={toggleShow}
             aria-expanded={isOpen}
@@ -51,7 +51,7 @@ const styles = {
         title="Left"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="left"
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <Button
             onClick={toggleShow}
             aria-expanded={isOpen}
@@ -70,7 +70,7 @@ const styles = {
         title="Right"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="right"
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <Button
             onClick={toggleShow}
             aria-expanded={isOpen}
@@ -94,7 +94,7 @@ Here's an example of a
     title="Popover"
     content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
     hasCloseButton
-    render={({ ref, toggleShow, isOpen }) => (
+    renderTrigger={({ ref, toggleShow, isOpen }) => (
       <PopoverLink
         onClick={toggleShow}
         aria-expanded={isOpen}
@@ -120,7 +120,7 @@ Click the icon for some help text.
     content="Here's some help text!"
     suppressUnderline
     ariaLabel="Icon"
-    render={({ ref, toggleShow, isOpen }) => (
+    renderTrigger={({ ref, toggleShow, isOpen }) => (
       <PopoverLink
         onClick={toggleShow}
         aria-expanded={isOpen}
@@ -150,7 +150,7 @@ const styles = {
         content="This is the popover's content."
         placement="top"
         arrowSize="sm"
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <OutlineButton
             onClick={toggleShow}
             aria-expanded={isOpen}
@@ -168,7 +168,7 @@ const styles = {
         name="dfltEx"
         title="Default Arrow"
         content="This is the popover's content."
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <OutlineButton
             onClick={toggleShow}
             aria-expanded={isOpen}
@@ -188,7 +188,7 @@ const styles = {
         content="This is the popover's content."
         placement="top"
         arrowSize="lg"
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <OutlineButton
             onClick={toggleShow}
             aria-expanded={isOpen}
@@ -208,7 +208,7 @@ const styles = {
         content="This is the popover's content."
         placement="bottom"
         arrowSize="none"
-        render={({ ref, toggleShow, isOpen }) => (
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
           <OutlineButton
             onClick={toggleShow}
             aria-expanded={isOpen}

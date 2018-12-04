@@ -72,35 +72,3 @@ export const SelectBase = styled.select`
     box-shadow: ${props => props.focusBoxShadow};
   }
 `;
-
-export const ButtonBase = styled.button`
-  border: none;
-  border-radius: ${props => props.buttonSize.borderRadius};
-  box-sizing: border-box;
-  cursor: pointer;
-  display: ${props => (props.block ? 'block' : 'inline-block')};
-  font-family: inherit;
-  font-size: ${props => props.buttonSize.fontSize};
-  font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
-  line-height: ${props =>
-    props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
-  padding-bottom: ${props => props.buttonSize.paddingBottom};
-  padding-left: ${props => props.buttonSize.paddingSides};
-  padding-right: ${props => props.buttonSize.paddingSides};
-  padding-top: ${props => props.buttonSize.paddingTop};
-  text-align: center;
-  text-transform: ${props =>
-    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
-  vertical-align: middle;
-  white-space: nowrap;
-  width: ${props => (props.block ? '100%' : 'initial')};
-
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 0.65;
-
-    > * {
-      pointer-events: none;
-    }
-  }
-`;

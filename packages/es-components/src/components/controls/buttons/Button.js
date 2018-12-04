@@ -3,34 +3,71 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classnames from 'classnames';
 
-import { ButtonBase } from '../BaseControls';
 import { useTheme } from '../../util/useTheme';
 
-const StyledButton = styled(ButtonBase)`
-  background-color: ${props => props.variant.bgColor};
-  border-color: transparent;
-  box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
-  color: ${props => props.variant.textColor};
-  line-height: ${props =>
-    props.variant.lineHeight
-      ? props.variant.lineHeight
-      : props.theme.sizes.baseLineHeight};
-  margin-bottom: 4px;
-  margin-top: 0;
-  transition: background-color 250ms linear;
+const StyledButton = styled.button`
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  display: ${props => (props.block ? 'block' : 'inline-block')};
+  padding: 0;
+  width: ${props => (props.block ? '100%' : 'initial')};
 
-  &[disabled]:hover {
+  .es-button--display {
     background-color: ${props => props.variant.bgColor};
+    border-color: transparent;
+    box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
+    border-radius: ${props => props.buttonSize.borderRadius};
+    color: ${props => props.variant.textColor};
+    cursor: pointer;
+    display: ${props => (props.block ? 'block' : 'inline-block')};
+    font-family: inherit;
+    font-size: ${props => props.buttonSize.fontSize};
+    font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
+    line-height: ${props =>
+      props.buttonSize.lineHeight
+        ? props.buttonSize.lineHeight
+        : props.theme.sizes.baseLineHeight};
+    margin-bottom: 4px;
+    margin-top: 0;
+    padding-bottom: ${props => props.buttonSize.paddingBottom};
+    padding-left: ${props => props.buttonSize.paddingSides};
+    padding-right: ${props => props.buttonSize.paddingSides};
+    padding-top: ${props => props.buttonSize.paddingTop};
+    text-align: center;
+    text-transform: ${props =>
+      props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
+    transition: background-color 250ms linear;
+    vertical-align: middle;
+    white-space: nowrap;
   }
 
-  &:hover {
+  &:hover .es-button--display {
     background-color: ${props => props.variant.hoverBgColor};
   }
 
   &:active {
+    outline: none;
+  }
+
+  &:active .es-button--display {
+    box-shadow: 0 0 0 0 transparent;
     margin-bottom: 0;
     margin-top: 4px;
-    box-shadow: 0 0 0 0 transparent;
+  }
+
+  &[disabled],
+  &[disabled] .es-button--display {
+    cursor: not-allowed;
+    opacity: 0.65;
+
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  &[disabled]:hover .es-button--display {
+    background-color: ${props => props.variant.bgColor};
   }
 `;
 
@@ -59,7 +96,7 @@ function InnerButton({
       {...sharedProps}
       className={classnames('es-button es-button--default', className)}
     >
-      {children}
+      <div className="es-button--display">{children}</div>
     </StyledButton>
   );
 }

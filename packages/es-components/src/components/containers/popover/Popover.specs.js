@@ -19,7 +19,7 @@ function buildPopover(props) {
   return (
     <Popover
       {...mergedProps}
-      render={({ ref, toggleShow, isOpen }) => (
+      renderTrigger={({ ref, toggleShow, isOpen }) => (
         <Button
           onClick={toggleShow}
           aria-expanded={isOpen}

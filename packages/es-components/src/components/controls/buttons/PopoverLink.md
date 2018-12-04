@@ -4,8 +4,8 @@ A specially styled `LinkButton` that can be used with `Popover` if a text link i
 <PopoverLink styleType="success">Popover Link Button</PopoverLink>
 ```
 
-You can optionally suppress the underline in the link.
+You can optionally suppress the underline in the link. This can be useful when using icons.
 
 ```
-<PopoverLink suppressUnderline styleType="success">Popover Link Button</PopoverLink>
+<PopoverLink suppressUnderline styleType="primary"><Icon name="accessibility" size={30} /></PopoverLink>
 ```

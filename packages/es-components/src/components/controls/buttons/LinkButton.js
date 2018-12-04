@@ -31,19 +31,11 @@ const StyledButton = styled.button`
   }
 `;
 
-function InnerButton({
-  children,
-  styleType,
-  size,
-  block,
-  innerRef,
-  ...buttonProps
-}) {
+function InnerButton({ children, styleType, innerRef, ...buttonProps }) {
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];
   const { className, ...otherProps } = buttonProps;
   const sharedProps = {
-    block,
     variant,
     ref: innerRef,
     ...otherProps
@@ -66,16 +58,11 @@ const LinkButton = React.forwardRef((props, ref) => (
 LinkButton.propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string,
-  size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
-  /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool
+  styleType: PropTypes.string
 };
 
 LinkButton.defaultProps = {
-  styleType: 'default',
-  block: false,
-  size: 'default'
+  styleType: 'default'
 };
 
 export default LinkButton;

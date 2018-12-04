@@ -3,18 +3,32 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classnames from 'classnames';
 
-import { ButtonBase } from '../BaseControls';
 import { useTheme } from '../../util/useTheme';
 
-const StyledButton = styled(ButtonBase)`
+const StyledButton = styled.button`
   background-color: ${props => props.variant.bgColor};
   border: 2px solid ${props => props.variant.borderColor};
+  border-radius: ${props => props.buttonSize.borderRadius};
+  box-sizing: border-box;
   color: ${props => props.variant.textColor};
+  cursor: pointer;
+  display: ${props => (props.block ? 'block' : 'inline-block')};
+  font-family: inherit;
+  font-size: ${props => props.buttonSize.fontSize};
+  font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   line-height: ${props =>
-    props.variant.lineHeight
-      ? props.variant.lineHeight
-      : props.theme.sizes.baseLineHeight};
+    props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
+  padding-bottom: ${props => props.buttonSize.paddingBottom};
+  padding-left: ${props => props.buttonSize.paddingSides};
+  padding-right: ${props => props.buttonSize.paddingSides};
+  padding-top: ${props => props.buttonSize.paddingTop};
+  text-align: center;
+  text-transform: ${props =>
+    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
   transition: background-color 250ms linear, color 250ms linear;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: ${props => (props.block ? '100%' : 'initial')};
 
   &:hover {
     background-color: ${props => props.variant.hoverBgColor};
@@ -24,6 +38,15 @@ const StyledButton = styled(ButtonBase)`
   &:active {
     background-color: ${props => props.variant.activeBgColor};
     color: ${props => props.variant.activeTextColor};
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.65;
+
+    > * {
+      pointer-events: none;
+    }
   }
 `;
 

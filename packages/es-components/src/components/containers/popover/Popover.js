@@ -78,7 +78,7 @@ function Popover(props) {
     content,
     placement,
     arrowSize,
-    render,
+    renderTrigger,
     hasCloseButton,
     hasAltCloseButton,
     disableRootClose,
@@ -175,7 +175,7 @@ function Popover(props) {
     <Container className="es-popover">
       <Popup
         name={name}
-        trigger={render({ ref: triggerBtnRef, toggleShow, isOpen })}
+        trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
         placement={placement}
         arrowSize={arrowSize}
         onHide={hidePopover}
@@ -238,7 +238,7 @@ Popover.propTypes = {
   /** Display a close ('x') button in the popover title bar */
   hasAltCloseButton: PropTypes.bool,
   /** Function returning a button component to be used as the popover trigger */
-  render: PropTypes.func.isRequired,
+  renderTrigger: PropTypes.func.isRequired,
   /** Disables popovers ability to change position to stay in viewport */
   disableFlipping: PropTypes.bool
 };

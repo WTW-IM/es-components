@@ -7,45 +7,50 @@ const Message = require('./Message').Message;
 const InlineMessage = require('./Message').InlineMessage;
 
 <div>
-  <Notification
-    type="success"
-  >
-    <Message emphasizedText="Success" text="This is a successful notification!" />
+  <Notification type="success">
+    <Message
+      emphasizedText="Success"
+      text="This is a successful notification!"
+    />
   </Notification>
 
-  <Notification
-    type="info"
-  >
-    <InlineMessage emphasizedText="Info" text="This is an inline informational notification!" />
+  <Notification type="info">
+    <InlineMessage
+      emphasizedText="Info"
+      text="This is an inline informational notification!"
+    />
   </Notification>
 
-  <Notification
-    type="warning"
-  >
+  <Notification type="warning">
     <Message text="This is a warning notification!" />
   </Notification>
 
-  <Notification
-    type="danger"
-  >
+  <Notification type="danger">
     <InlineMessage text="This is a danger notification!" />
   </Notification>
 
-  <Notification
-    type="advisor"
-  >
+  <Notification type="advisor">
     <div style={{ flexBasis: '100%' }}>
       <h3>This is an advisor alert!</h3>
       <p>
-        Children are rendered in a flex container and <a href="#notification">links</a> render with underlined text, but <Popover
-              name="notification-popover"
-              title="Advisor popover"
-              content="Some content that is helpful to advisors!"
-              placement="top"
-              isLinkButton
+        Children are rendered in a flex container and{' '}
+        <a href="#notification">links</a> render with underlined text, but
+        <Popover
+          name="notification-popover"
+          title="Advisor Popover"
+          content="Some content that is helpful to advisors!"
+          placement="top"
+          renderTrigger={({ ref, toggleShow, isOpen }) => (
+            <PopoverLink
+              onClick={toggleShow}
+              aria-expanded={isOpen}
+              ref={ref}
+              styleType="primary"
             >
               popovers
-            </Popover> get dashed underlined text.
+            </PopoverLink>
+          )}
+        /> get dashed underlined text.
       </p>
       <h4>Any element can be rendered!</h4>
       <ul>
@@ -54,20 +59,16 @@ const InlineMessage = require('./Message').InlineMessage;
         <li>Item C</li>
       </ul>
     </div>
-
-    </Notification>
-</div>
+  </Notification>
+</div>;
 ```
 
-Setting the `includeIcon` prop to `true` will render the icon associated with the `type` prop. 
+Setting the `includeIcon` prop to `true` will render the icon associated with the `type` prop.
 
 If the screen size is less than `768px`, it will not be displayed.
 
 ```jsx
-<Notification
-  type="success"
-  includeIcon
->
+<Notification type="success" includeIcon>
   <p>Congrats! You did it!</p>
 </Notification>
 ```
@@ -76,7 +77,9 @@ Setting the `isDismissable` prop to `true` will add a button to remove the `Noti
 
 ```jsx
 function NotificationApp() {
-  const [message, setMessage] = React.useState('This message is displayed until notification is removed');
+  const [message, setMessage] = React.useState(
+    'This message is displayed until notification is removed'
+  );
 
   function notificationDismissed() {
     setMessage('Notification was removed!');
@@ -96,5 +99,5 @@ function NotificationApp() {
   );
 }
 
-<NotificationApp />
+<NotificationApp />;
 ```

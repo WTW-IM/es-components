@@ -15,7 +15,9 @@ const buttonMixin = css`
 `;
 
 const StyledButton = styled(Button)`
-  ${buttonMixin};
+  .es-button--display {
+    ${buttonMixin};
+  }
 `;
 
 const StyledOutlineButton = styled(OutlineButton)`
@@ -32,26 +34,13 @@ function ToggleButton(props) {
   }
 
   const { styleType, size, block, isOutline, ...buttonProps } = props;
-
-  if (isOutline) {
-    return (
-      <StyledOutlineButton
-        {...buttonProps}
-        onClick={toggleButton}
-        styleType={styleType}
-        size={size}
-        block={block}
-        isOutline={isOutline}
-        isPressed={isPressed}
-        variant={theme.buttonStyles.outlineButton.variant[styleType]}
-      >
-        {props.children}
-      </StyledOutlineButton>
-    );
-  }
+  const ToggleButtonType = isOutline ? StyledOutlineButton : StyledButton;
+  const styles = isOutline
+    ? theme.buttonStyles.outlineButton
+    : theme.buttonStyles.button;
 
   return (
-    <StyledButton
+    <ToggleButtonType
       {...buttonProps}
       onClick={toggleButton}
       styleType={styleType}
@@ -59,10 +48,10 @@ function ToggleButton(props) {
       block={block}
       isOutline={isOutline}
       isPressed={isPressed}
-      variant={theme.buttonStyles.button.variant[styleType]}
+      variant={styles.variant[styleType]}
     >
       {props.children}
-    </StyledButton>
+    </ToggleButtonType>
   );
 }
 

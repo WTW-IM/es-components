@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.8 (2018-12-05)</small>
+
+* Fix: textbox append/prepend height matches input height cross-browser ([543c352](https://github.com/wtw-im/es-components/commit/543c352))
+
+
+
+
+
 ## <small>18.0.7 (2018-12-03)</small>
 
 * Merge pull request #241 from jrios/ie11-compat-fixes ([31ada3e](https://github.com/wtw-im/es-components/commit/31ada3e)), closes [#241](https://github.com/wtw-im/es-components/issues/241)

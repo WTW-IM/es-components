@@ -57,6 +57,7 @@ const CommonInputStyles = css`
     props.hasAppend ? '0' : defaultBorderRadius};
   box-sizing: border-box;
   display: table-cell;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding-right: ${props =>
     props.hasValidationIcon ? '2em' : defaultInputPad};
 `;
@@ -102,9 +103,12 @@ const AddOn = css`
   border-radius: ${defaultBorderRadius};
   color: ${props => props.addOnTextColor};
   display: table-cell;
+  height: 39px;
+  line-height: 1.2;
   padding: 6px 11px;
 
   i {
+    line-height: 1;
     vertical-align: middle;
   }
 `;
@@ -201,7 +205,7 @@ const Textbox = props => {
       <InputWrapper className="es-textbox__wrapper">
         {hasPrepend && (
           <Prepend addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
-            <Icon aria-hidden="true" name={prependIconName} size={20} />
+            <Icon aria-hidden="true" name={prependIconName} size={18} />
           </Prepend>
         )}
         <Input
@@ -222,13 +226,13 @@ const Textbox = props => {
             <ValidationIcon
               aria-hidden="true"
               name={theme.validationIconName[validationState]}
-              size={20}
+              size={18}
             />
           </ValidationIconWrapper>
         )}
         {hasAppend && (
           <Append addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
-            <Icon aria-hidden="true" name={appendIconName} size={20} />
+            <Icon aria-hidden="true" name={appendIconName} size={18} />
           </Append>
         )}
       </InputWrapper>

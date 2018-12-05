@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { InlineContext } from './InlineContext';
 
 /* eslint-disable no-confusing-arrow */
 const StyledMenuSection = styled.section`
@@ -22,9 +23,9 @@ const StyledChildrenContainer = styled.section`
   padding: 15px 20px 0px 20px;
 `;
 
-const MenuSection = (props, context) => {
+function MenuSection(props) {
   const { title, children, isLast, isFirst, isOnlySection } = props;
-  const { inline } = context;
+  const inline = useContext(InlineContext);
 
   return (
     <StyledMenuSection
@@ -40,11 +41,7 @@ const MenuSection = (props, context) => {
       )}
     </StyledMenuSection>
   );
-};
-
-MenuSection.contextTypes = {
-  inline: PropTypes.bool
-};
+}
 
 MenuSection.propTypes = {
   title: PropTypes.string,

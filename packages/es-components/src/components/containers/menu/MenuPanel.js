@@ -77,8 +77,4 @@ MenuPanel.defaultProps = {
   isOpen: false
 };
 
-MenuPanel.contextTypes = {
-  inline: PropTypes.bool
-};
-
 export default MenuPanel;

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.9 (2018-12-06)</small>
+
+* Merge branch 'master' into boxsize-fix ([5f9339d](https://github.com/wtw-im/es-components/commit/5f9339d))
+* Fix: box-sizing on textbox prepend/append ([1b4c542](https://github.com/wtw-im/es-components/commit/1b4c542))
+
+
+
+
+
 ## <small>18.0.8 (2018-12-05)</small>
 
 * Fix: textbox append/prepend height matches input height cross-browser ([543c352](https://github.com/wtw-im/es-components/commit/543c352))

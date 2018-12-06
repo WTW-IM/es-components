@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Button from './Button';
+import LinkButton from './LinkButton';
 import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
@@ -14,7 +14,7 @@ function buildButton(props) {
   };
   const mergedProps = Object.assign({}, defaultProps, otherProps);
 
-  return <Button {...mergedProps}>{children}</Button>;
+  return <LinkButton {...mergedProps}>{children}</LinkButton>;
 }
 
 it('renders child text inside of button', () => {

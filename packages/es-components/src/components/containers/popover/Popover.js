@@ -1,5 +1,3 @@
-/* eslint-disable no-confusing-arrow */
-
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -10,27 +8,6 @@ import Popup from './Popup';
 
 const Container = styled.div`
   display: inline-block;
-`;
-
-const TriggerButton = styled(Button)`
-  border-bottom: ${props =>
-    props.isLinkButton ? props.buttonBorderStyle : ''};
-  border-radius: ${props =>
-    props.isLinkButton && !props.suppressUnderline ? '0' : ''};
-  margin-bottom: ${props => (props.isLinkButton ? '2px' : '')};
-  text-decoration: none;
-
-  &:hover {
-    border-bottom: ${props =>
-      props.isLinkButton && !props.suppressUnderline ? '1px solid' : ''};
-  }
-`;
-
-const TriggerButtonLabel = styled.span`
-  display: block;
-  font-size: 0;
-  height: 1px;
-  overflow: hidden;
 `;
 
 const PopoverContainer = styled.div`
@@ -99,14 +76,9 @@ function Popover(props) {
     name,
     title,
     content,
-    children,
     placement,
     arrowSize,
-    ariaLabel,
-    buttonStyle,
-    isOutline,
-    isLinkButton,
-    suppressUnderline,
+    renderTrigger,
     hasCloseButton,
     hasAltCloseButton,
     disableRootClose,
@@ -116,7 +88,6 @@ function Popover(props) {
   const hasTitle = title !== undefined;
   const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
   const showCloseButton = hasCloseButton && !hasAltCloseButton;
-  const buttonBorderStyle = suppressUnderline ? 'none' : '1px dashed';
 
   const closeBtnRef = useRef(null);
   const triggerBtnRef = useRef(null);
@@ -153,7 +124,7 @@ function Popover(props) {
   }
 
   const closeButton = (
-    <Button handleOnClick={toggleShow} ref={closeBtnRef}>
+    <Button onClick={toggleShow} ref={closeBtnRef}>
       Close
     </Button>
   );
@@ -162,27 +133,11 @@ function Popover(props) {
     <AlternateCloseButton
       aria-label="Close"
       hasTitle={hasTitle}
-      handleOnClick={toggleShow}
+      onClick={toggleShow}
       ref={closeBtnRef}
     >
       <Icon name="remove" />
     </AlternateCloseButton>
-  );
-
-  const triggerButton = (
-    <TriggerButton
-      handleOnClick={toggleShow}
-      styleType={buttonStyle}
-      isOutline={isOutline}
-      isLinkButton={isLinkButton}
-      suppressUnderline={suppressUnderline}
-      buttonBorderStyle={buttonBorderStyle}
-      ref={triggerBtnRef}
-      aria-expanded={isOpen}
-    >
-      <span aria-hidden={!!ariaLabel}>{children}</span>
-      <TriggerButtonLabel>{ariaLabel}</TriggerButtonLabel>
-    </TriggerButton>
   );
 
   function hidePopOnScroll() {
@@ -220,7 +175,7 @@ function Popover(props) {
     <Container className="es-popover">
       <Popup
         name={name}
-        trigger={triggerButton}
+        trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
         placement={placement}
         arrowSize={arrowSize}
         onHide={hidePopover}
@@ -268,8 +223,6 @@ function Popover(props) {
 Popover.propTypes = {
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
-  /** The content or element which activates the popover */
-  children: PropTypes.node.isRequired,
   /** The text displayed in the popover title section */
   title: PropTypes.string.isRequired,
   /** The content displayed in the popover body */
@@ -284,31 +237,18 @@ Popover.propTypes = {
   hasCloseButton: PropTypes.bool,
   /** Display a close ('x') button in the popover title bar */
   hasAltCloseButton: PropTypes.bool,
-  /** Hide underline from link. Useful for children like Icons */
-  suppressUnderline: PropTypes.bool,
-  /** The button style of the popover link */
-  buttonStyle: PropTypes.string,
-  /** Sets the link to use a text rather than a button style */
-  isLinkButton: PropTypes.bool,
-  /** Sets the link to use the alternate button style */
-  isOutline: PropTypes.bool,
-  /** Sets the aria-label attribute to allow for textless buttons */
-  ariaLabel: PropTypes.string,
+  /** Function returning a button component to be used as the popover trigger */
+  renderTrigger: PropTypes.func.isRequired,
   /** Disables popovers ability to change position to stay in viewport */
   disableFlipping: PropTypes.bool
 };
 
 Popover.defaultProps = {
   placement: 'bottom',
-  buttonStyle: 'primary',
   arrowSize: 'default',
   disableRootClose: false,
   hasCloseButton: false,
   hasAltCloseButton: false,
-  suppressUnderline: false,
-  isLinkButton: false,
-  isOutline: false,
-  ariaLabel: null,
   disableFlipping: false
 };
 

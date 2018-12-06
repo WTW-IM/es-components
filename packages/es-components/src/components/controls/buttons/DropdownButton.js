@@ -2,27 +2,30 @@ import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import styled from 'styled-components';
+import classnames from 'classnames';
+
 import Button from './Button';
+import LinkButton from './LinkButton';
 import generateAlphaName from '../../util/generateAlphaName';
 
 const Caret = styled.span`
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px dashed;
   display: inline-block;
-  width: 0;
   height: 0;
   margin-left: 5px;
   vertical-align: middle;
-  border-top: 4px dashed;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+  width: 0;
 `;
 
 const ButtonPanel = styled.div`
+  background-color: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.gray3};
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  z-index: 2;
   margin-top: 3px;
   position: relative;
-  border: 1px solid ${props => props.theme.colors.gray3};
-  background-color: ${props => props.theme.colors.white};
+  z-index: 999;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     position: absolute;
@@ -34,14 +37,18 @@ const ButtonPanelChildrenContainer = styled.div`
   flex-direction: column;
 `;
 
-const StyledButtonLink = styled(Button)`
-  padding: 10px 20px;
+const StyledButtonLink = styled(LinkButton)`
   color: black;
-  text-decoration: none;
-  text-align: left;
   margin-bottom: 0px;
+  text-align: left;
+  text-decoration: none;
+  padding: 10px 20px;
+
+  &:active,
+  &:focus,
   &:hover {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.primary};
+    color: white;
   }
 `;
 
@@ -171,33 +178,42 @@ function DropdownButton(props) {
         closeDropdown();
       }
 
-      buttonProps.handleOnClick(event, buttonProps.name);
+      buttonProps.onClick(event, buttonProps.name);
     };
   }
 
-  const { rootClose, children, className, manualButtonValue } = props;
+  const {
+    rootClose,
+    children,
+    className,
+    manualButtonValue,
+    styleType,
+    ...otherProps
+  } = props;
   const panelId = generateAlphaName();
   return (
     <RootCloseWrapper onRootClose={closeDropdown} disabled={!rootClose}>
       <div
         ref={buttonDropdown}
-        className={className}
+        className={classnames('es-dropdown-button', className)}
         role="combobox"
         aria-controls={panelId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
         <Button
-          handleOnClick={toggleDropdown}
+          {...otherProps}
+          onClick={toggleDropdown}
           aria-haspopup="true"
           aria-pressed={isOpen}
           ref={triggerButton}
+          styleType={styleType}
         >
           {manualButtonValue || buttonValue}
           <Caret />
         </Button>
         <ButtonPanel
-          className="es-button-dropdown__button-panel"
+          className="es-dropdown-button__button-panel"
           isOpen={isOpen}
           id={panelId}
         >
@@ -205,7 +221,7 @@ function DropdownButton(props) {
             {Children.map(children, child => {
               const onClickHandler = handleDropdownItemClick(child.props);
               const newProps = {
-                handleOnClick: onClickHandler,
+                onClick: onClickHandler,
                 role: 'option'
               };
               return React.cloneElement(child, newProps);
@@ -237,10 +253,12 @@ DropdownButton.propTypes = {
   /** Defines if the dropdown should close when any child button is clicked */
   shouldCloseOnButtonClick: PropTypes.bool,
   /**
-   * Defines weather the dropdown will close when any other element on the page is clicked.
+   * Defines whether the dropdown will close when any other element on the page is clicked.
    * Uses RootCloseWrapper from React-Overlay
    */
   rootClose: PropTypes.bool,
+  /** Select the color style of the button, types come from theme */
+  styleType: PropTypes.string,
   /** The classes to be applied to the div surrounding the button */
   className: PropTypes.string
 };
@@ -250,6 +268,7 @@ DropdownButton.defaultProps = {
   manualButtonValue: undefined,
   shouldUpdateButtonValue: false,
   shouldCloseOnButtonClick: false,
+  styleType: 'default',
   rootClose: false,
   className: undefined
 };

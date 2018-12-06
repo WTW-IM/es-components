@@ -13,9 +13,7 @@ beforeEach(cleanup);
 it('opens/closes dropdown on click', () => {
   const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button">
-      <DropdownButton.Button handleOnClick={onClick}>
-        Inner
-      </DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Inner</DropdownButton.Button>
     </DropdownButton>
   );
 
@@ -33,7 +31,7 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
   const innerContents = 'Inner';
   const { container, getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
-      <DropdownButton.Button handleOnClick={onClick}>
+      <DropdownButton.Button onClick={onClick}>
         {innerContents}
       </DropdownButton.Button>
     </DropdownButton>
@@ -48,9 +46,7 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
 it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
   const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
-      <DropdownButton.Button handleOnClick={onClick}>
-        Content
-      </DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Content</DropdownButton.Button>
     </DropdownButton>
   );
 
@@ -62,16 +58,12 @@ it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
 it('allows arrow movement and traps focus when dropdown is opened', () => {
   const { container, getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
-      <DropdownButton.Button handleOnClick={onClick}>
-        Item 1
-      </DropdownButton.Button>
-      <DropdownButton.Button handleOnClick={onClick}>
-        Item 2
-      </DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Item 1</DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Item 2</DropdownButton.Button>
     </DropdownButton>
   );
 
-  const firstButton = getByText('Button');
+  const firstButton = getByText('Button').closest('button');
   firstButton.click();
   expect(firstButton).toHaveFocus();
 

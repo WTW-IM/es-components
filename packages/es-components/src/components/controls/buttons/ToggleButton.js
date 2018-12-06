@@ -1,5 +1,5 @@
 /* eslint no-confusing-arrow: 0 */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
@@ -27,6 +27,12 @@ const StyledOutlineButton = styled(OutlineButton)`
 function ToggleButton(props) {
   const theme = useTheme();
   const [isPressed, setIsPressed] = useState(props.isPressed);
+  const prevPressedProp = useRef(props.isPressed);
+
+  if (prevPressedProp.current !== props.isPressed) {
+    prevPressedProp.current = props.isPressed;
+    setIsPressed(props.isPressed);
+  }
 
   function toggleButton(event) {
     setIsPressed(!isPressed);

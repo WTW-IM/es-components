@@ -20,10 +20,10 @@ const Header = styled.header`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: ${props => (props.hasHeaderContent ? '10px' : '0')}
+  padding-bottom: ${props => (props.hasHeaderContent ? '10px' : '0')};
   padding-left: 11px;
   padding-right: 5px;
-  padding-top: ${props => (props.hasHeaderContent ? '5px' : '0')}
+  padding-top: ${props => (props.hasHeaderContent ? '5px' : '0')};
 `;
 
 const StyledChildrenContainer = styled.div`
@@ -75,10 +75,6 @@ MenuPanel.propTypes = {
 MenuPanel.defaultProps = {
   headerContent: null,
   isOpen: false
-};
-
-MenuPanel.contextTypes = {
-  inline: PropTypes.bool
 };
 
 export default MenuPanel;

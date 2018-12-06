@@ -101,6 +101,7 @@ const AddOn = css`
         ? props.theme.colors.gray5
         : props.addOnBgColor};
   border-radius: ${defaultBorderRadius};
+  box-sizing: border-box;
   color: ${props => props.addOnTextColor};
   display: table-cell;
   height: 39px;

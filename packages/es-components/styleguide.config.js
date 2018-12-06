@@ -25,10 +25,6 @@ module.exports = {
           font-weight: 400;
         }
 
-        * {
-          box-sizing: border-box;
-        }
-
         input, button, select, textarea {
           font-family: inherit;
         }

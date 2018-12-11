@@ -16,6 +16,10 @@
       "prettier --single-quote --write",
       "eslint --fix",
       "git add"
+    ],
+    "packages/useValidators/*.js": [
+      "prettier --single-quote --write",
+      "git add"
     ]
   },
   "husky": {

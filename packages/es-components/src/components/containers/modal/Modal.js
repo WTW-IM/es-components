@@ -30,6 +30,7 @@ const ModalDialogMedium = styled.div`
   cursor: default;
   display: inline-block;
   top: 2em;
+  width: 100%;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     margin: 30px auto;
@@ -38,6 +39,8 @@ const ModalDialogMedium = styled.div`
 `;
 
 const ModalDialogSmall = styled(ModalDialogMedium)`
+  width: 100%;
+
   @media (min-width: ${props => props.theme.screenSize.phone}) {
     margin: 30px auto;
     width: ${modalSize.small};
@@ -45,6 +48,8 @@ const ModalDialogSmall = styled(ModalDialogMedium)`
 `;
 
 const ModalDialogLarge = styled(ModalDialogMedium)`
+  width: 100%;
+
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     width: ${modalSize.large};
   }

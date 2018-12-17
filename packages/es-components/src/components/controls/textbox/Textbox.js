@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { noop, omit } from 'lodash';
 import MaskedInput from 'react-text-mask';
-import classnames from 'classnames';
 
 import Icon from '../../base/icons/Icon';
 import { Label, LabelText, InputBase } from '../BaseControls';
@@ -141,7 +140,6 @@ const Textbox = props => {
     appendIconName,
     maskType,
     customMask,
-    className,
     labelSuffix,
     ...additionalTextProps
   } = props;
@@ -149,11 +147,10 @@ const Textbox = props => {
   const theme = useTheme();
   const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
-    <AdditionalHelpContent id={helpId} className="es-textbox__help">
+    <AdditionalHelpContent id={helpId}>
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
-  const classNameState = `es-textbox__input--${validationState}`;
 
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
@@ -190,16 +187,15 @@ const Textbox = props => {
 
   return (
     <TextBoxLabel
-      className={classnames('es-textbox', className)}
       htmlFor={textboxId}
       color={theme.validationTextColor[validationState]}
       inline={inline}
     >
-      <StyledLabelText className="es-textbox__label" inline={inline}>
+      <StyledLabelText inline={inline}>
         {labelText}
         {labelSuffix && <LabelSuffix>{labelSuffix}</LabelSuffix>}
       </StyledLabelText>
-      <InputWrapper className="es-textbox__wrapper">
+      <InputWrapper>
         {hasPrepend && (
           <Prepend addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
             <Icon aria-hidden="true" name={prependIconName} size={20} />
@@ -207,7 +203,6 @@ const Textbox = props => {
         )}
         <Input
           aria-describedby={helpId}
-          className={classNameState}
           hasAppend={hasAppend}
           hasPrepend={hasPrepend}
           id={textboxId}
@@ -280,8 +275,7 @@ Textbox.propTypes = {
    * Displays additional content after the labelText,
    * used for denoting optional fields or other states
    */
-  labelSuffix: PropTypes.element,
-  className: PropTypes.string
+  labelSuffix: PropTypes.element
 };
 
 Textbox.defaultProps = {
@@ -296,7 +290,6 @@ Textbox.defaultProps = {
   appendIconName: undefined,
   defaultValue: undefined,
   customMask: undefined,
-  className: undefined,
   labelSuffix: undefined
 };
 

@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import Fade from '../../util/Fade';
 
@@ -106,8 +105,8 @@ const FadeTransition = props => (
   <Fade duration={200} opacity={1} withWrapper {...props} />
 );
 
-const Popup = props => {
-  const { name, className, children, position, style } = props;
+function Popup(props) {
+  const { name, children, position, style, ...other } = props;
   let TooltipStyled;
   let TooltipArrow;
   const tooltipId = name ? `es-tooltip__${name}` : undefined;
@@ -132,35 +131,29 @@ const Popup = props => {
   }
 
   return (
-    <TooltipStyled
-      role="tooltip"
-      className={classnames('es-tooltip', className)}
-      id={tooltipId}
-      style={style}
-    >
+    <TooltipStyled role="tooltip" id={tooltipId} style={style} {...other}>
       <TooltipArrow />
       <TooltipInner>{children}</TooltipInner>
     </TooltipStyled>
   );
-};
+}
 
 Popup.propTypes = {
   name: PropTypes.string,
   children: PropTypes.any.isRequired,
-  className: PropTypes.string,
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   style: PropTypes.object
 };
 
 Popup.defaultProps = {
   name: undefined,
-  className: undefined,
   position: 'top',
   style: {}
 };
 
 function Tooltip(props) {
   const [show, setShow] = useState(false);
+  const { name, disableHover, position, content, children, ...other } = props;
 
   function showTooltip() {
     setShow(true);
@@ -183,34 +176,33 @@ function Tooltip(props) {
   const tooltipTarget = React.createRef();
 
   return (
-    <span>
+    <>
       <StyledButton
-        className="es-tooltip__target"
         ref={tooltipTarget}
         onBlur={hideTooltip}
         onFocus={showTooltip}
-        onMouseEnter={!props.disableHover ? showTooltip : undefined}
-        onMouseLeave={!props.disableHover ? hideTooltip : undefined}
+        onMouseEnter={!disableHover ? showTooltip : undefined}
+        onMouseLeave={!disableHover ? hideTooltip : undefined}
         onMouseDown={toggleShow}
         onKeyDown={closeOnEscape}
         onClick={() => {}}
-        aria-describedby={`es-tooltip__${props.name}`}
+        aria-describedby={`es-tooltip__${name}`}
       >
-        {props.children}
+        {children}
       </StyledButton>
 
       <Overlay
         show={show}
-        placement={props.position}
+        placement={position}
         container={document.body}
         target={() => tooltipTarget.current}
         transition={FadeTransition}
       >
-        <Popup position={props.position} name={props.name}>
-          {props.content}
+        <Popup position={position} name={name} {...other}>
+          {content}
         </Popup>
       </Overlay>
-    </span>
+    </>
   );
 }
 

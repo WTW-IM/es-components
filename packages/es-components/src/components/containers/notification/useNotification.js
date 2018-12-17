@@ -52,10 +52,7 @@ const NotificationContent = React.forwardRef(
         ) : null}
         {children}
         {isDismissable ? (
-          <DismissButton
-            onClick={dismissNotification}
-            className="notification__dismiss"
-          >
+          <DismissButton onClick={dismissNotification}>
             <Icon name="remove" size={27} />
           </DismissButton>
         ) : null}
@@ -66,9 +63,9 @@ const NotificationContent = React.forwardRef(
 
 const Notification = styled.div`
   align-items: center;
-  background-color: ${props => props.color.bgColor};
+  background-color: ${props => props.variant.bgColor};
   border-radius: 2px;
-  color: ${props => props.color.textColor};
+  color: ${props => props.variant.textColor};
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 25px;
@@ -79,7 +76,7 @@ const Notification = styled.div`
   }
 
   a {
-    color: ${props => props.color.textColor};
+    color: ${props => props.variant.textColor};
     text-decoration: underline;
 
     &:hover {
@@ -88,7 +85,7 @@ const Notification = styled.div`
   }
 
   .es-popover .es-button--link {
-    color: ${props => props.color.textColor};
+    color: ${props => props.variant.textColor};
   }
 `;
 
@@ -96,12 +93,12 @@ export function useNotification(styleType = 'base') {
   return function BaseNotification({ role, type, children, ...rest }) {
     const theme = useTheme();
     const notificationRef = useRef(null);
-    const color = theme.notificationStyles[type][styleType];
+    const variant = theme.notificationStyles[type][styleType];
 
     const notificationContentProps = { type, ...rest };
 
     return (
-      <Notification ref={notificationRef} role={role} color={color}>
+      <Notification ref={notificationRef} role={role} variant={variant}>
         <NotificationContent
           ref={notificationRef}
           {...notificationContentProps}

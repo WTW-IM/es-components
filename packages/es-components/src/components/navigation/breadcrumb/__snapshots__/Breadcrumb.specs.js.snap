@@ -3,7 +3,7 @@
 exports[`renders as expected 1`] = `
 <div>
   <ol
-    class="es-breadcrumb sc-bdVaJa dCMrdy"
+    class="sc-bdVaJa dCMrdy"
   >
     <li
       class="sc-bwzfXH ifLTcf"

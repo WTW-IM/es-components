@@ -32,6 +32,7 @@ class DropdownChangedExample extends React.Component {
   render() {
     return (
       <Dropdown
+        name={this.props.name}
         inline={this.props.inline}
         value={this.state.selectedValue}
         labelText="Operating Systems"
@@ -45,11 +46,10 @@ class DropdownChangedExample extends React.Component {
 
 
 <div>
-  <DropdownChangedExample inline={false} />
+  <DropdownChangedExample name="dropdown1" inline={false} />
   <p>Dropdowns can also be rendered inline</p>
-  <DropdownChangedExample inline />
+  <DropdownChangedExample name="dropdown2" inline />
 </div>
-
 ```
 
 Passing an `onBlur` function will execute with the value of the dropdown when the dropdown loses focus.
@@ -91,6 +91,7 @@ class DropdownBlurExample extends React.Component {
   render() {
     return (
       <Dropdown
+        name="vehicle"
         value={this.state.selectedValue}
         labelText="Choose your favorite vehicle"
         isDefaultFirstOptionDisabled={false}
@@ -137,6 +138,7 @@ class DropdownExample extends React.Component {
     const message = `When validationState is set to ${selectedOption.optionText}.`;
     return (
       <Dropdown
+        name="example"
         labelText={selectedOption.optionText}
         options={options}
         validationState={selectedOption.optionValue}
@@ -188,6 +190,7 @@ class DropdownExample extends React.Component {
   render() {
     return (
       <Dropdown
+        name="suffix"
         labelText="Suffix"
         options={options}
         value="sr"
@@ -198,4 +201,4 @@ class DropdownExample extends React.Component {
 }
 
 <DropdownExample />
-````
+```

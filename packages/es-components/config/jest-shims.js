@@ -1,3 +1,1 @@
-import { noop } from 'lodash';
-
-global.requestAnimationFrame = noop;
+global.requestAnimationFrame = function noop(){};

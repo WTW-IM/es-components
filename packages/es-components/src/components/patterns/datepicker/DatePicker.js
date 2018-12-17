@@ -65,8 +65,6 @@ DatePicker.propTypes = {
   name: PropTypes.string,
   /** Callback fired when a valid date is entered */
   onChange: PropTypes.func.isRequired,
-  /** Callback fired when input value is changed */
-  onChangeRaw: PropTypes.func,
   /** Callback fired when datepicker loses focus */
   onBlur: PropTypes.func,
   /** input field placeholder */
@@ -98,7 +96,6 @@ DatePicker.defaultProps = {
   children: undefined,
   name: undefined,
   onBlur: noop,
-  onChangeRaw: noop,
   placeholder: 'mm/dd/yyyy',
   selectedDate: undefined,
   excludeDates: undefined,

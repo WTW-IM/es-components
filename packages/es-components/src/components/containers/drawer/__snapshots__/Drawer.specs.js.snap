@@ -3,13 +3,12 @@
 exports[`accordion renders as expected 1`] = `
 <div>
   <div
-    class="es-drawer important sc-EHOje eHxLwe"
+    class="important sc-EHOje eHxLwe"
   >
     <div
-      class="es-drawer__panel first sc-bwzfXH lgLpFu"
+      class="first sc-bwzfXH lgLpFu"
     >
       <div
-        class="es-drawer__heading"
         id="abcdef"
         role="heading"
       >
@@ -21,7 +20,7 @@ exports[`accordion renders as expected 1`] = `
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
+              class="sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -36,7 +35,7 @@ exports[`accordion renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
+        class="rah-static rah-static--height-zero sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -49,10 +48,9 @@ exports[`accordion renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel second sc-bwzfXH lgLpFu"
+      class="second sc-bwzfXH lgLpFu"
     >
       <div
-        class="es-drawer__heading"
         id="abcdef"
         role="heading"
       >
@@ -64,7 +62,7 @@ exports[`accordion renders as expected 1`] = `
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
+              class="sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -76,7 +74,7 @@ exports[`accordion renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX fsOgCj"
+        class="rah-static rah-static--height-zero sc-ifAKCX fsOgCj"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -89,10 +87,9 @@ exports[`accordion renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel third sc-bwzfXH lgLpFu"
+      class="third sc-bwzfXH lgLpFu"
     >
       <div
-        class="es-drawer__heading"
         id="abcdef"
         role="heading"
       >
@@ -104,7 +101,7 @@ exports[`accordion renders as expected 1`] = `
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
+              class="sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -116,7 +113,7 @@ exports[`accordion renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
+        class="rah-static rah-static--height-zero sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -135,13 +132,12 @@ exports[`accordion renders as expected 1`] = `
 exports[`drawer renders as expected 1`] = `
 <div>
   <div
-    class="es-drawer important sc-EHOje eHxLwe"
+    class="important sc-EHOje eHxLwe"
   >
     <div
-      class="es-drawer__panel first sc-bwzfXH lgLpFu"
+      class="first sc-bwzfXH lgLpFu"
     >
       <div
-        class="es-drawer__heading"
         id="abcdef"
         role="heading"
       >
@@ -153,7 +149,7 @@ exports[`drawer renders as expected 1`] = `
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
+              class="sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -168,7 +164,7 @@ exports[`drawer renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
+        class="rah-static rah-static--height-zero sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -181,10 +177,9 @@ exports[`drawer renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel second sc-bwzfXH lgLpFu"
+      class="second sc-bwzfXH lgLpFu"
     >
       <div
-        class="es-drawer__heading"
         id="abcdef"
         role="heading"
       >
@@ -196,7 +191,7 @@ exports[`drawer renders as expected 1`] = `
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
+              class="sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -208,7 +203,7 @@ exports[`drawer renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX fsOgCj"
+        class="rah-static rah-static--height-zero sc-ifAKCX fsOgCj"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"
@@ -221,10 +216,9 @@ exports[`drawer renders as expected 1`] = `
       </div>
     </div>
     <div
-      class="es-drawer__panel third sc-bwzfXH lgLpFu"
+      class="third sc-bwzfXH lgLpFu"
     >
       <div
-        class="es-drawer__heading"
         id="abcdef"
         role="heading"
       >
@@ -236,7 +230,7 @@ exports[`drawer renders as expected 1`] = `
           <span>
             <i
               aria-hidden="true"
-              class="es-icon sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
+              class="sc-bxivhb dNJpYT sc-bdVaJa gLmFHY"
               content="601"
               font-family="indv-mkt-icons"
               font-size="inherit"
@@ -248,7 +242,7 @@ exports[`drawer renders as expected 1`] = `
       <div
         aria-hidden="true"
         aria-labelledby="abcdef"
-        class="rah-static rah-static--height-zero es-drawer__body sc-ifAKCX dldzKW"
+        class="rah-static rah-static--height-zero sc-ifAKCX dldzKW"
         id="abcdef"
         role="region"
         style="height: 0px; overflow: hidden;"

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
-import classnames from 'classnames';
 import { noop } from 'lodash';
 import Icon from '../../base/icons/Icon';
 
@@ -51,14 +50,14 @@ const PanelBody = styled(({ noPadding, ...rest }) => (
 const DrawerPanel = props => {
   const {
     children,
-    className,
     closedIconName,
     isOpen,
     noPadding,
     onItemClick,
     openedIconName,
     title,
-    titleAside
+    titleAside,
+    ...other
   } = props;
 
   const headingAriaId = genId();
@@ -66,8 +65,8 @@ const DrawerPanel = props => {
   const aside = titleAside && <aside>{titleAside}</aside>;
 
   return (
-    <PanelWrapper className={classnames('es-drawer__panel', className)}>
-      <div className="es-drawer__heading" id={headingAriaId} role="heading">
+    <PanelWrapper {...other}>
+      <div id={headingAriaId} role="heading">
         <PanelButton
           aria-expanded={isOpen}
           aria-controls={regionAriaId}
@@ -82,7 +81,6 @@ const DrawerPanel = props => {
       </div>
       <PanelBody
         aria-labelledby={headingAriaId}
-        className="es-drawer__body"
         duration={300}
         height={isOpen ? 'auto' : 0}
         id={regionAriaId}
@@ -97,8 +95,6 @@ const DrawerPanel = props => {
 
 DrawerPanel.propTypes = {
   children: PropTypes.any.isRequired,
-  /** Add additional CSS classes to the drawer item element */
-  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   /** @ignore */
   closedIconName: PropTypes.string,
   /** Title text displayed next to the open/close icon */
@@ -122,7 +118,6 @@ DrawerPanel.propTypes = {
 DrawerPanel.defaultProps = {
   isOpen: false,
   noPadding: false,
-  className: undefined,
   closedIconName: 'minus',
   titleAside: undefined,
   onItemClick: noop,

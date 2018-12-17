@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import { regular } from './icon-definitions';
 
@@ -24,27 +23,18 @@ const StyledIcon = styled.i`
   }
 `;
 
-function Icon({ className, name, size, ...other }) {
-  const styledIconProps = {};
+function Icon({ name, size, ...other }) {
+  const styledIconProps = {
+    content: regular[`im-icon-${name}`],
+    fontFamily: 'indv-mkt-icons',
+    fontSize: size !== undefined ? `${size}px` : 'inherit',
+    iconDefinition: `im-icon-${name}`
+  };
 
-  styledIconProps.fontFamily = 'indv-mkt-icons';
-  styledIconProps.iconDefinition = `im-icon-${name}`;
-  styledIconProps.content = regular[styledIconProps.iconDefinition];
-  styledIconProps.fontSize = size !== undefined ? `${size}px` : 'inherit';
-
-  return (
-    <StyledIcon
-      aria-hidden
-      className={classnames('es-icon', className)}
-      {...styledIconProps}
-      {...other}
-    />
-  );
+  return <StyledIcon aria-hidden {...styledIconProps} {...other} />;
 }
 
 Icon.propTypes = {
-  /** CSS classes to apply */
-  className: PropTypes.string,
   /** Name of the icon to display */
   name: PropTypes.string.isRequired,
   /** Specify icon size in pixels */
@@ -52,7 +42,6 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  className: undefined,
   size: undefined
 };
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import { Label, LabelText, SelectBase } from '../BaseControls';
 import { useTheme } from '../../util/useTheme';
@@ -21,30 +19,23 @@ const AdditionalHelpContent = styled.div`
   text-transform: none;
 `;
 
-function Dropdown({
-  labelText,
-  className,
-  name,
-  options,
-  inline,
-  includeDefaultFirstOption,
-  isDefaultFirstOptionDisabled,
-  firstOptionDisplayText,
-  value,
-  onChange,
-  onBlur,
-  validationState,
-  additionalHelpContent,
-  ...rest
-}) {
+function Dropdown(props) {
+  const {
+    labelText,
+    name,
+    options,
+    inline,
+    includeDefaultFirstOption,
+    isDefaultFirstOptionDisabled,
+    firstOptionDisplayText,
+    validationState,
+    additionalHelpContent,
+    ...other
+  } = props;
   const theme = useTheme();
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
-    <AdditionalHelpContent
-      id={helpId}
-      className="es-dropdown__help"
-      validationState={validationState}
-    >
+    <AdditionalHelpContent id={helpId} validationState={validationState}>
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
@@ -63,28 +54,17 @@ function Dropdown({
     );
   });
 
-  const classNameState = `es-dropdown__select--${validationState}`;
-
   return (
-    <Label inline={inline} className={classnames('es-dropdown', className)}>
+    <Label inline={inline}>
       {labelText && (
         <LabelText
-          className="es-dropdown__label"
           foregroundColor={theme.validationTextColor[validationState]}
           inline={inline}
         >
           {labelText}
         </LabelText>
       )}
-      <SelectBase
-        name={name}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        className={classNameState}
-        {...theme.validationInputColor[validationState]}
-        {...rest}
-      >
+      <SelectBase {...theme.validationInputColor[validationState]} {...other}>
         {firstOption}
         {selectOptions}
       </SelectBase>
@@ -96,7 +76,7 @@ function Dropdown({
 Dropdown.propTypes = {
   labelText: PropTypes.string,
   /** The name of the select element */
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   /** Display label inline with dropdown */
   inline: PropTypes.bool,
   options: PropTypes.arrayOf(PropTypes.shape(optionsShape)),
@@ -106,36 +86,21 @@ Dropdown.propTypes = {
   isDefaultFirstOptionDisabled: PropTypes.bool,
   /** The text of the first option displayed */
   firstOptionDisplayText: PropTypes.string,
-  /** The currently selected value */
-  value: PropTypes.string,
   /** Display label and text with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /** Content to display underneath the radio group */
-  additionalHelpContent: PropTypes.node,
-  /** Function to execute when the dropdown value changes */
-  onChange: PropTypes.func,
-  /** Function to execute when the dropdown loses focus */
-  onBlur: PropTypes.func,
-  /**
-   * class name is applied to top level label
-   */
-  className: PropTypes.string
+  additionalHelpContent: PropTypes.node
 };
 
 Dropdown.defaultProps = {
   labelText: undefined,
-  name: undefined,
   inline: false,
   options: [],
   includeDefaultFirstOption: true,
   isDefaultFirstOptionDisabled: true,
   firstOptionDisplayText: '--',
-  value: '',
   validationState: 'default',
-  additionalHelpContent: undefined,
-  onChange: noop,
-  onBlur: noop,
-  className: undefined
+  additionalHelpContent: undefined
 };
 
 export default Dropdown;

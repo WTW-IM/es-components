@@ -7,7 +7,7 @@ The Textbox component will accept typical input attributes as props such as onCh
   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
     <Textbox labelText="First name" style={{ marginRight: 25 }} inline />
     <Textbox labelText="Middle initial" inline />
-    <Textbox labelText="Last name" inline />
+    <Textbox labelText="Last name" inline className="custom-class" />
   </div>
 </div>
 ```

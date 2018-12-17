@@ -53,7 +53,7 @@ function MenuPanel(props) {
   const inline = useContext(InlineContext);
 
   return (
-    <StyledPanel isOpen={isOpen} className="es-menu__panel">
+    <StyledPanel isOpen={isOpen}>
       <Header hasHeaderContent={hasHeaderContent}>
         {hasHeaderContent && <span>{headerContent}</span>}
         <StyledDismissButton onClick={onClose} />

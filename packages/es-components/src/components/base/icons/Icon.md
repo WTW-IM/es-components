@@ -12,7 +12,7 @@ const containerStyle = {
     <Icon size={24} name="accessibility" />
   </div>
   <div style={containerStyle}>
-    <Icon size={48} name="home" />
+    <Icon size={48} name="home" className="custom-class" />
   </div>
 </div>
 ```

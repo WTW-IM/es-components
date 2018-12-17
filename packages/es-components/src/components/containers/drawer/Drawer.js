@@ -1,12 +1,8 @@
-/* eslint react/no-unused-prop-types: 0 */
-/* ^^^ We need to declare defaultActiveKeys.
- * It's a prop used by uncontrollable, and needs to be documented */
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 import uncontrollable from 'uncontrollable';
-import classnames from 'classnames';
 
 import DrawerPanel from './DrawerPanel';
 
@@ -34,11 +30,11 @@ export const Drawer = props => {
   const {
     activeKeys,
     children,
-    className,
     closedIconName,
     isAccordion,
     onActiveKeysChanged,
-    openedIconName
+    openedIconName,
+    ...other
   } = props;
 
   const onItemClick = key => {
@@ -89,11 +85,7 @@ export const Drawer = props => {
       return React.cloneElement(child, childProps);
     });
 
-  return (
-    <StyledDrawer className={classnames('es-drawer', className)}>
-      {getPanels()}
-    </StyledDrawer>
-  );
+  return <StyledDrawer {...other}>{getPanels()}</StyledDrawer>;
 };
 
 Drawer.propTypes = {
@@ -104,8 +96,6 @@ Drawer.propTypes = {
   ]),
   /** Should only contain one or more Drawer.Panel elements */
   children: drawerPanelPropType,
-  /** Add additional CSS classes to the root drawer element */
-  className: PropTypes.string,
   /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
   /** Used in uncontrolled mode to set initial drawer state */
@@ -128,7 +118,6 @@ Drawer.defaultProps = {
   onActiveKeysChanged: noop,
   openedIconName: 'minus',
   children: undefined,
-  className: undefined,
   defaultActiveKeys: undefined
 };
 

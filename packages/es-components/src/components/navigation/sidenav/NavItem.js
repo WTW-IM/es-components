@@ -113,14 +113,14 @@ const NavItem = props => {
   const {
     useAltStyle,
     children,
-    className,
     highlightedId,
     id,
     isDisabled,
     isExternalLink,
     onClick,
     onNavClick,
-    targetUrl
+    targetUrl,
+    ...other
   } = props;
 
   const onNavItemClicked = () => {
@@ -132,8 +132,7 @@ const NavItem = props => {
   const href = targetUrl || '#/';
   const openExternal = targetUrl && isExternalLink;
 
-  const itemProps = {
-    className,
+  const anchorProps = {
     href,
     isActive: id === highlightedId,
     isDisabled,
@@ -142,8 +141,8 @@ const NavItem = props => {
   };
 
   return (
-    <li className="es-sidenav__navitem">
-      <AnchorStyled {...itemProps}>
+    <li {...other}>
+      <AnchorStyled {...anchorProps}>
         <FlexSpan>{children}</FlexSpan>
         <Icon name="chevron-right" />
       </AnchorStyled>
@@ -156,16 +155,12 @@ NavItem.propTypes = {
   useAltStyle: PropTypes.bool,
   /** Item content */
   children: PropTypes.any,
-  /** Additional CSS classes to apply */
-  className: PropTypes.string,
   /** @ignore */
   highlightedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Each item must have a unique identifier */
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** Disable the nav item to render it un-clickable */
   isDisabled: PropTypes.bool,
-  /** @ignore */
-  isHighlighted: PropTypes.bool,
   /** Used to assign an onClick event */
   onClick: PropTypes.func,
   /** @ignore */
@@ -182,9 +177,7 @@ NavItem.defaultProps = {
   isExternalLink: false,
   onClick: noop,
   children: undefined,
-  className: undefined,
   highlightedId: undefined,
-  isHighlighted: false,
   onNavClick: noop,
   targetUrl: undefined
 };

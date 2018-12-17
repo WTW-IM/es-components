@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 const Legend = styled.legend`
   border: 0;
@@ -15,25 +14,18 @@ const Legend = styled.legend`
   width: 100%;
 `;
 
-function renderLegend(content, legendClasses) {
-  return content ? (
-    <Legend className={classnames('es-fieldset__legend', legendClasses)}>
-      {content}
-    </Legend>
-  ) : null;
-}
-
 const StyledFieldset = styled.fieldset`
   border: 0;
   margin: 0;
   padding: 0;
 `;
 
-function Fieldset({ legendClasses, legendContent, children, className }) {
-  const fieldsetClasses = classnames('es-fieldset', className);
+function Fieldset(props) {
+  const { legendContent, children, ...other } = props;
+
   return (
-    <StyledFieldset className={fieldsetClasses}>
-      {renderLegend(legendContent, legendClasses)}
+    <StyledFieldset {...other}>
+      {legendContent && <Legend>{legendContent}</Legend>}
       {children}
     </StyledFieldset>
   );
@@ -42,17 +34,12 @@ function Fieldset({ legendClasses, legendContent, children, className }) {
 Fieldset.propTypes = {
   /** Determine whether or not to add a legend and what content to display  */
   legendContent: PropTypes.node,
-  /** Additional classes to be applied to the legend element */
-  legendClasses: PropTypes.string,
-  children: PropTypes.node,
-  className: PropTypes.string
+  children: PropTypes.node
 };
 
 Fieldset.defaultProps = {
   legendContent: null,
-  legendClasses: null,
-  children: undefined,
-  className: undefined
+  children: undefined
 };
 
 export default Fieldset;

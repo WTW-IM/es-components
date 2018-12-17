@@ -47,9 +47,9 @@ function TabPanel(props) {
 
   const { children } = props;
   const elements = React.Children.map(children, (child, i) => {
-    const isSelected = child.props.name.key ?
-      child.props.name.key === value.key :
-      child.props.name === value.name
+    const isSelected = child.props.name.key
+      ? child.props.name.key === value.key
+      : child.props.name === value.name;
     return React.cloneElement(child, {
       selected: isSelected,
       action: tabChanged
@@ -57,13 +57,11 @@ function TabPanel(props) {
   });
 
   return (
-    <div className="es-tab-panel">
-      <TabWrapper className="es-tab-panel__wrapper">
-        <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
+    <div>
+      <TabWrapper>
+        <TabFormatter>{elements}</TabFormatter>
       </TabWrapper>
-      <TabContent className="es-tab-panel__content">
-        {currentContent}
-      </TabContent>
+      <TabContent>{currentContent}</TabContent>
     </div>
   );
 }

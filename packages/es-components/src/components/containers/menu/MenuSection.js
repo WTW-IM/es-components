@@ -29,7 +29,6 @@ function MenuSection(props) {
 
   return (
     <StyledMenuSection
-      className="es-menu__section"
       isLast={isLast}
       isFirst={isFirst}
       inline={inline}

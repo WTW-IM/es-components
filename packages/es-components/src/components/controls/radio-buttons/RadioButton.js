@@ -95,16 +95,10 @@ export function RadioButton({
     hoverFillColor: hover,
     validationState
   };
-  const classNameState = `es-radio__input--${validationState}`;
 
   return (
-    <RadioLabel className="es-radio" {...labelProps}>
-      <RadioInput
-        type="radio"
-        name={name}
-        className={classNameState}
-        {...radioProps}
-      />
+    <RadioLabel {...labelProps}>
+      <RadioInput type="radio" name={name} {...radioProps} />
       <RadioDisplay
         className="es-radio__fill"
         borderColor={fill}

@@ -38,11 +38,7 @@ function RadioGroup({
   const theme = useTheme();
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
-    <AdditionalHelpContent
-      id={helpId}
-      className="es-radiogroup__help"
-      validationState={validationState}
-    >
+    <AdditionalHelpContent id={helpId} validationState={validationState}>
       {additionalHelpContent}
     </AdditionalHelpContent>
   );

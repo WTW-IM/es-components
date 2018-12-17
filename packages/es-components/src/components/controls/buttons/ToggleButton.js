@@ -15,7 +15,7 @@ const buttonMixin = css`
 `;
 
 const StyledButton = styled(Button)`
-  .es-button--display {
+  .es-button__display {
     ${buttonMixin};
   }
 `;

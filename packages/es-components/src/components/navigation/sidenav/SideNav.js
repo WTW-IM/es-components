@@ -22,14 +22,14 @@ const NavStyled = styled.nav`
 `;
 
 export const SideNav = props => {
-  const { useAltStyle, children, onItemSelected, selected } = props;
+  const { useAltStyle, children, onItemSelected, selected, ...other } = props;
 
   const onNavClick = (navId = null) => {
     onItemSelected(navId);
   };
 
   return (
-    <NavStyled className="es-sidenav">
+    <NavStyled {...other}>
       <ul>
         {Children.toArray(children).map(child => {
           if (child !== null && child.type === NavItem) {

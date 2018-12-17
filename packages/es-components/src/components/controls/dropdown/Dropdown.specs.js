@@ -24,7 +24,12 @@ const options = [
 it('executes the passed in "onChange" function', () => {
   const onChange = jest.fn();
   const { container } = renderWithTheme(
-    <Dropdown labelText="Test" options={options} onChange={onChange} />
+    <Dropdown
+      name="test"
+      labelText="Test"
+      options={options}
+      onChange={onChange}
+    />
   );
   fireEvent.change(container.querySelector('select'), {
     target: { value: '1' }
@@ -35,7 +40,7 @@ it('executes the passed in "onChange" function', () => {
 it('executes the passed in "onBlur" function', () => {
   const onBlur = jest.fn();
   const { container } = renderWithTheme(
-    <Dropdown labelText="test" options={options} onBlur={onBlur} />
+    <Dropdown name="test" labelText="test" options={options} onBlur={onBlur} />
   );
 
   const select = container.querySelector('select');
@@ -49,6 +54,7 @@ it('executes the passed in "onBlur" function', () => {
 it('does not render the first option when includeDefaultFirstOption is false', () => {
   const { queryByText } = renderWithTheme(
     <Dropdown
+      name="test"
       options={options}
       firstOptionDisplayText="first"
       includeDefaultFirstOption={false}
@@ -59,7 +65,7 @@ it('does not render the first option when includeDefaultFirstOption is false', (
 
 it('renders the text of the first option as the firstOptionDisplayText prop value', () => {
   const { queryByText } = renderWithTheme(
-    <Dropdown options={options} firstOptionDisplayText="first" />
+    <Dropdown name="test" options={options} firstOptionDisplayText="first" />
   );
 
   expect(queryByText('first')).not.toBeNull();

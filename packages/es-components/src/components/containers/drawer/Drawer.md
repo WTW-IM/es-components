@@ -1,6 +1,7 @@
 Use `Drawer` and `Drawer.Panel` components to wrap content in collapsable panels. This component can be used in a controlled or uncontrolled way. When uncontrolled, you can specify `defaultActiveKeys` to set initial state. When controlled, you must supply both `activeKeys` and an `onActiveKeysChanged` handler.
 
 ### Basic Example (Uncontrolled)
+
 ```
 <Drawer defaultActiveKeys={"1"}>
   <Drawer.Panel title="Panel 1">
@@ -18,13 +19,14 @@ Use `Drawer` and `Drawer.Panel` components to wrap content in collapsable panels
 </Drawer>
 ```
 
-
 ### Accordion (Uncontrolled)
+
 Add the `isAccordion` property to change the default behavior to an accordion
 style, where only one panel can be opened at a time.
+
 ```
-<Drawer isAccordion>
-  <Drawer.Panel title="Accordion Panel 1">
+<Drawer isAccordion className="my-drawer">
+  <Drawer.Panel className="panel-1" title="Accordion Panel 1">
     <p>Pretty much any content you want in here.</p>
   </Drawer.Panel>
   <Drawer.Panel title="Accordion Panel 2" noPadding>
@@ -42,13 +44,13 @@ style, where only one panel can be opened at a time.
 </Drawer>
 ```
 
-
 ### Advanced Example (Controlled)
+
 Use the `noPadding` property to remove default padding within a panel (useful for lists and tables).
 Use the `titleAside` property to display text or other content on the right side of the panel header.
 You can customize the `key` property of each Panel; if not specified a default key value will be assigned
 matching the Panel's numeric position.
-Both the Drawer and Drawer.Panel components will accept additional classNames.
+
 ```
 class DrawerExample extends React.Component {
   constructor() {

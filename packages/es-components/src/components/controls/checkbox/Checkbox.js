@@ -127,18 +127,13 @@ function Checkbox({
   const theme = useTheme();
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
-    <AdditionalHelpContent
-      id={helpId}
-      className="es-checkbox__help"
-      validationState={validationState}
-    >
+    <AdditionalHelpContent id={helpId} validationState={validationState}>
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
 
   return (
     <CheckboxLabel
-      className="es-checkbox"
       validationState={validationState}
       checked={checkboxProps.checked}
       disabled={checkboxProps.disabled}

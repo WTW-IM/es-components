@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
@@ -36,22 +35,18 @@ function Menu(props) {
     inline,
     children,
     buttonContent,
-    className,
     openButtonType,
     rootClose,
     hasBackdrop,
-    headerContent
+    headerContent,
+    ...other
   } = props;
 
   return (
     <RootCloseWrapper onRootClose={closeMenu} disabled={!rootClose}>
-      <div className={classnames('es-menu', className)}>
+      <div {...other}>
         {hasBackdrop && (
-          <Backdrop
-            className="es-menu__backdrop"
-            isMenuOpen={isMenuOpen}
-            onClick={closeMenu}
-          />
+          <Backdrop isMenuOpen={isMenuOpen} onClick={closeMenu} />
         )}
         <ToggleButton
           onClick={toggleMenu}
@@ -81,7 +76,6 @@ Menu.propTypes = {
   children: PropTypes.any.isRequired,
   buttonContent: PropTypes.any.isRequired,
   openButtonType: PropTypes.string,
-  className: PropTypes.string,
   rootClose: PropTypes.bool,
   inline: PropTypes.bool,
   hasBackdrop: PropTypes.bool,
@@ -91,7 +85,6 @@ Menu.propTypes = {
 Menu.defaultProps = {
   rootClose: false,
   openButtonType: 'default',
-  className: undefined,
   inline: false,
   hasBackdrop: false,
   headerContent: undefined

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import { useTheme } from '../../util/useTheme';
 
@@ -50,34 +49,19 @@ const StyledButton = styled.button`
   }
 `;
 
-function InnerButton({
-  children,
-  styleType,
-  size,
-  block,
-  innerRef,
-  ...buttonProps
-}) {
+function InnerButton({ children, styleType, size, block, innerRef, ...other }) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];
   const variant = theme.buttonStyles.outlineButton.variant[styleType];
-  const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     block,
     buttonSize,
     ref: innerRef,
     variant,
-    ...otherProps
+    ...other
   };
 
-  return (
-    <StyledButton
-      {...sharedProps}
-      className={classnames('es-button es-button--outline', className)}
-    >
-      {children}
-    </StyledButton>
-  );
+  return <StyledButton {...sharedProps}>{children}</StyledButton>;
 }
 
 const OutlineButton = React.forwardRef((props, ref) => (

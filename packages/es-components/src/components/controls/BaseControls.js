@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 export const Label = styled.label`
   color: ${props => props.color || 'inherit'};
   cursor: pointer;
-  display: ${props => (props.inline ? 'flex' : 'block')};
+  display: ${props => (props.inline ? 'flex' : 'block')}
   margin-bottom: 20px;
   flex: ${props => (props.inline ? 'auto' : 'initial')};
   font-size: ${props => props.theme.sizes.baseFontSize};
@@ -58,17 +58,5 @@ export const InputBase = styled.input`
   &:read-only {
     background-color: ${props => props.theme.colors.gray2};
     cursor: text;
-  }
-`;
-
-export const SelectBase = styled.select`
-  ${baseStyles} background-color: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.borderColor};
-
-  color: ${props => props.foregroundColor};
-
-  &:focus {
-    border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props => props.focusBoxShadow};
   }
 `;

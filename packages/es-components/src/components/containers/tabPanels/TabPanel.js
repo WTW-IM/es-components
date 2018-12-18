@@ -33,11 +33,6 @@ class TabPanel extends React.Component {
     tabChanged(header);
   }
 
-  constructor(props) {
-    super(props);
-    this.tabChanged = this.parentTabChanged.bind(this);
-  }
-
   render() {
     const { children, selectedKey, tabChanged } = this.props;
     let displayIndex = findIndex(children, (child) => 

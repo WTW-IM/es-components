@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.10 (2018-12-18)</small>
+
+* Fix: Fix mobile modals and overflow on tab panel ([d3fb15c](https://github.com/wtw-im/es-components/commit/d3fb15c))
+* Fix: remove comment style ([a742797](https://github.com/wtw-im/es-components/commit/a742797))
+* New: control displayed tab directly with selectedKey prop ([aa8e106](https://github.com/wtw-im/es-components/commit/aa8e106))
+
+
+
+
+
 ## <small>18.0.9 (2018-12-06)</small>
 
 * Merge branch 'master' into boxsize-fix ([5f9339d](https://github.com/wtw-im/es-components/commit/5f9339d))

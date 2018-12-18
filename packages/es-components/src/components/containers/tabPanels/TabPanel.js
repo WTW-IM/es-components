@@ -25,25 +25,21 @@ const TabFormatter = styled.div`
 const TabContent = styled.div`
   margin-top: -1px;
   background-color: ${props => props.theme.colors.white};
-  //overflow: auto;
   border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      parentTabChanged: props.tabChanged
-    };
     this.tabChanged = this.tabChanged.bind(this);
   }
 
-  tabChanged(header) {
-    this.state.parentTabChanged(header);
+  tabChanged(header, parentTabChanged) {
+    parentTabChanged(header);
   }
 
   render() {
-    const { children, selectedKey } = this.props;
+    const { children, selectedKey, tabChanged } = this.props;
     let displayIndex = findIndex(children, (child) => 
       child.props.header.key
         ? child.props.header.key === selectedKey
@@ -54,7 +50,7 @@ class TabPanel extends React.Component {
       }
     const elements = React.Children.map(children, (child, i) => React.cloneElement(child, {
         selected: i === displayIndex,
-        action: this.tabChanged
+        action: (header) => {this.tabChanged(header, tabChanged)}
     }));
     
     return (

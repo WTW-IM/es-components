@@ -67,7 +67,7 @@ function Tab({
 }) {
   return (
     <TabButton
-      onClick={() => action(header, children, simpleName, announcerText)}
+      onClick={() => action(header)}
       selected={selected}
       aria-label={`${simpleName || header} tab`}
       aria-expanded={selected}

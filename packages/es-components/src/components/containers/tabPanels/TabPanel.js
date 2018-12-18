@@ -29,13 +29,13 @@ const TabContent = styled.div`
 `;
 
 class TabPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.tabChanged = this.tabChanged.bind(this);
+  static parentTabChanged(header, tabChanged) {
+    tabChanged(header);
   }
 
-  tabChanged(header, parentTabChanged) {
-    parentTabChanged(header);
+  constructor(props) {
+    super(props);
+    this.tabChanged = this.parentTabChanged.bind(this);
   }
 
   render() {
@@ -50,7 +50,7 @@ class TabPanel extends React.Component {
       }
     const elements = React.Children.map(children, (child, i) => React.cloneElement(child, {
         selected: i === displayIndex,
-        action: (header) => {this.tabChanged(header, tabChanged)}
+        action: (header) => {this.parentTabChanged(header, tabChanged)}
     }));
     
     return (

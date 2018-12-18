@@ -25,7 +25,6 @@ const TabFormatter = styled.div`
 const TabContent = styled.div`
   margin-top: -1px;
   background-color: ${props => props.theme.colors.white};
-  //overflow: auto;
   border-top: 1px solid ${props => props.theme.colors.gray4};
 `;
 

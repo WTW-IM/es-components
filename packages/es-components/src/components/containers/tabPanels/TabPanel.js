@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { noop } from 'lodash';
+import { noop, findIndex } from 'lodash';
 import Tab from './Tab';
 
 const TabWrapper = styled.div`
@@ -32,40 +32,31 @@ const TabContent = styled.div`
 class TabPanel extends React.Component {
   constructor(props) {
     super(props);
-    const child = Array.isArray(this.props.children)
-      ? props.children[0]
-      : props.children;
     this.state = {
-      value: child.props.name,
-      currentContent: child.props.children
+      value: props.selectedKey
     };
-    this.tabChanged = this.tabChanged.bind(this);
-  }
-
-  componentDidUpdate(prevProp, prevState) {
-    if (this.state.value !== prevState.value) {
-      this.props.tabChanged(this.state.value);
-    }
-  }
-
-  tabChanged(name, child) {
-    this.setState({
-      value: name,
-      currentContent: child
-    });
   }
 
   render() {
-    const { children } = this.props;
-    const elements = React.Children.map(children, (child, i) => {
-      const isSelected = child.props.name.key
-        ? child.props.name.key === this.state.value.key
-        : child.props.name === this.state.value;
-      return React.cloneElement(child, {
-        selected: isSelected,
-        action: this.tabChanged
-      });
+    const { children, selectedKey, tabChanged } = this.props;
+    let displayIndex = findIndex(children, child => {
+      const key = selectedKey || this.state.value || this.state.value.key;
+      return child.props.name.key
+        ? child.props.name.key === key
+        : child.props.name === key;
     });
+    if (displayIndex < 0) {
+      displayIndex = 0;
+    }
+    const elements = React.Children.map(children, (child, i) =>
+      React.cloneElement(child, {
+        selected: i === displayIndex,
+        action: header => {
+          this.setState({ value: header });
+          tabChanged(header);
+        }
+      })
+    );
 
     return (
       <div className="es-tab-panel">
@@ -73,7 +64,7 @@ class TabPanel extends React.Component {
           <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
         </TabWrapper>
         <TabContent className="es-tab-panel__content">
-          {this.state.currentContent}
+          {elements[displayIndex].props.children}
         </TabContent>
       </div>
     );
@@ -102,6 +93,7 @@ TabPanel.propTypes = {
    * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
    */
   children: childrenRule,
+  selectedKey: PropTypes.any,
   /**
    * Callback when the selected tab has changed. The callback is given the name of the tab that is active
    */
@@ -110,6 +102,7 @@ TabPanel.propTypes = {
 
 TabPanel.defaultProps = {
   children: [],
+  selectedKey: '',
   tabChanged: noop
 };
 

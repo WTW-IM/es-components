@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.11 (2018-12-19)</small>
+
+* Fix: modal content now left-aligned ([23019c6](https://github.com/wtw-im/es-components/commit/23019c6))
+
+
+
+
+
 ## <small>18.0.10 (2018-12-18)</small>
 
 * Fix: Fix mobile modals and overflow on tab panel ([d3fb15c](https://github.com/wtw-im/es-components/commit/d3fb15c))

@@ -62,6 +62,7 @@ const ModalContent = styled.div`
   font-size: ${props => props.theme.sizes.baseFontSize};
   outline: 0;
   position: relative;
+  text-align: left;
 `;
 
 class Modal extends React.Component {

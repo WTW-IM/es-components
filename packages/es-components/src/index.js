@@ -19,6 +19,7 @@ export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
 
 export SideNav from './components/navigation/sidenav/SideNav';
+export HorizontalNav from './components/navigation/horizontalnav/HorizontalNav';
 
 export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';

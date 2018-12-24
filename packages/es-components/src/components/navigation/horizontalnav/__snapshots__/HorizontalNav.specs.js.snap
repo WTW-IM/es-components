@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+<div>
+  <nav
+    class="es-horizontalnav sc-bxivhb cMujCD"
+  >
+    <ul>
+      <li
+        class="es-horizontalnav__navitem"
+      >
+        <a
+          class="home sc-bdVaJa cisBhB"
+          href="/home"
+        >
+          <span
+            class="sc-htpNat kbKuoc"
+          >
+            Home
+          </span>
+        </a>
+      </li>
+      <li
+        class="es-horizontalnav__navitem"
+      >
+        <a
+          class="cart sc-bdVaJa cisBhB"
+          href="#/"
+        >
+          <span
+            class="sc-htpNat kbKuoc"
+          >
+            Cart
+          </span>
+        </a>
+      </li>
+      <li
+        class="es-horizontalnav__navitem"
+      >
+        <a
+          class="external sc-bdVaJa cisBhB"
+          href="http://www.google.com"
+          target="_blank"
+        >
+          <span
+            class="sc-htpNat kbKuoc"
+          >
+            External Link
+          </span>
+        </a>
+      </li>
+      <li
+        class="es-horizontalnav__navitem"
+      >
+        <a
+          class="info sc-bdVaJa bQVDYh"
+          href="#/"
+        >
+          <span
+            class="sc-htpNat kbKuoc"
+          >
+            Disabled
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;

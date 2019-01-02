@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.13 (2019-01-02)</small>
+
+* Fix: move checkboxLabel ([30f433b](https://github.com/wtw-im/es-components/commit/30f433b))
+* Update: Separate checkboxLabel to its own component ([17a1b34](https://github.com/wtw-im/es-components/commit/17a1b34))
+
+
+
+
+
 ## <small>18.0.12 (2018-12-24)</small>
 
 * New: adds HorizontalNav component ([d3f46d2](https://github.com/wtw-im/es-components/commit/d3f46d2))

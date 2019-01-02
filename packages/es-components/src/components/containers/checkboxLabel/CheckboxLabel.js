@@ -1,7 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Label } from '../BaseControls';
+import { Label } from '../../controls/BaseControls';
 
 const backgroundColorSelect = (checked, theme, validationState) => {
   if (checked) {
@@ -12,7 +10,7 @@ const backgroundColorSelect = (checked, theme, validationState) => {
   return theme.colors.white;
 };
 
-const StyledLabel = styled(Label)`
+export default styled(Label)`
   color: ${props => props.theme.colors[props.validationState]};
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
@@ -58,27 +56,3 @@ const StyledLabel = styled(Label)`
     }
   }
 `;
-
-function CheckboxLabel({ checked, validationState, children }) {
-  return (
-    <StyledLabel 
-      checked={checked}
-      validationState={validationState}
-    >
-      {children}
-    </StyledLabel>
-  );
-}
-
-CheckboxLabel.propTypes = {
-  checked: PropTypes.bool,
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
-  children: PropTypes.element.isRequired
-}
-
-CheckboxLabel.defaultProps = {
-  checked: false,
-  validationState: 'default'
-}
-
-export default CheckboxLabel;

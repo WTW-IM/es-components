@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-import CheckboxLabel from './CheckboxLabel';
+import CheckboxLabel from '../../containers/checkboxLabel/CheckboxLabel';
 
 const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);

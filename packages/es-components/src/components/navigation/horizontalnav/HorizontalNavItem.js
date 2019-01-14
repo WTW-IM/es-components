@@ -101,6 +101,7 @@ export function HorizontalNavItem(props) {
   const AnchorStyled = useAltStyle ? AnchorAltStyle : AnchorBase;
   const href = targetUrl || '#/';
   const openExternal = targetUrl && isExternalLink;
+  const target = openExternal ? '_blank' : '_self';
 
   const itemProps = {
     className,
@@ -108,7 +109,7 @@ export function HorizontalNavItem(props) {
     isActive: id === highlightedId,
     isDisabled,
     onClick: isDisabled ? noop : onNavItemClicked,
-    ...(openExternal && { target: '_blank' })
+    target
   };
 
   return (

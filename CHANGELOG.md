@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.15 (2019-01-15)</small>
+
+* Update: adds disableFocus for tooltips ([4b103f0](https://github.com/wtw-im/es-components/commit/4b103f0))
+
+
+
+
+
 ## <small>18.0.14 (2019-01-15)</small>
 
 * Fix: simplifies target attribute on HorizontalNav ([8922ab5](https://github.com/wtw-im/es-components/commit/8922ab5))

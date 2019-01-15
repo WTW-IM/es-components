@@ -12,6 +12,7 @@ exports[`renders as expected 1`] = `
         <a
           class="home sc-bdVaJa cisBhB"
           href="/home"
+          target="_self"
         >
           <span
             class="sc-htpNat kbKuoc"
@@ -26,6 +27,7 @@ exports[`renders as expected 1`] = `
         <a
           class="cart sc-bdVaJa cisBhB"
           href="#/"
+          target="_self"
         >
           <span
             class="sc-htpNat kbKuoc"
@@ -55,6 +57,7 @@ exports[`renders as expected 1`] = `
         <a
           class="info sc-bdVaJa bQVDYh"
           href="#/"
+          target="_self"
         >
           <span
             class="sc-htpNat kbKuoc"

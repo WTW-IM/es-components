@@ -189,12 +189,12 @@ class Tooltip extends React.Component {
           }}
           isLinkButton
           onBlur={this.hide}
-          onFocus={this.show}
+          onFocus={!this.props.disableFocus ? this.show : undefined}
           onMouseEnter={!this.props.disableHover ? this.show : undefined}
           onMouseLeave={!this.props.disableHover ? this.hide : undefined}
           onMouseDown={this.toggleShow}
           onKeyDown={this.closeOnEscape}
-          handleOnClick={() => {}}
+          handleOnClick={this.show}
           aria-describedby={`es-tooltip__${this.props.name}`}
         >
           {this.props.children}
@@ -224,12 +224,15 @@ Tooltip.propTypes = {
   /** Set the position of the tooltip over the content */
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** Disables the default show onHover functionality */
-  disableHover: PropTypes.bool
+  disableHover: PropTypes.bool,
+  /** Disables the default show onFocus functionality */
+  disableFocus: PropTypes.bool
 };
 
 Tooltip.defaultProps = {
   position: 'top',
-  disableHover: false
+  disableHover: false,
+  disableFocus: false
 };
 
 export default Tooltip;

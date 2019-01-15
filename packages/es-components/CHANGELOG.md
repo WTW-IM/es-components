@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.14 (2019-01-15)</small>
+
+* Fix: simplifies target attribute on HorizontalNav ([8922ab5](https://github.com/wtw-im/es-components/commit/8922ab5))
+
+
+
+
+
 ## <small>18.0.13 (2019-01-02)</small>
 
 * Fix: move checkboxLabel ([30f433b](https://github.com/wtw-im/es-components/commit/30f433b))

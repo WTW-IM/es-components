@@ -10,7 +10,6 @@ import { Label, LabelText, InputBase } from '../BaseControls';
 import inputMaskType from './inputMaskType';
 import genId from '../../util/generateAlphaName';
 
-const defaultInputPad = '12px';
 const defaultBorderRadius = '2px';
 
 const TextBoxLabel = styled(Label)`
@@ -39,8 +38,7 @@ const StyledMaskedInput = InputBase.withComponent(props => (
       'focusBoxShadow',
       'hasAppend',
       'hasPrepend',
-      'initialValue',
-      'hasValidationIcon'
+      'initialValue'
     ])}
   />
 ));
@@ -58,8 +56,7 @@ const CommonInputStyles = css`
   box-sizing: border-box;
   display: table-cell;
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  padding-right: ${props =>
-    props.hasValidationIcon ? '2em' : defaultInputPad};
+  padding-right: 2em;
 `;
 /* eslint-enable */
 
@@ -220,7 +217,6 @@ const Textbox = props => {
           hasPrepend={hasPrepend}
           id={textboxId}
           name={name}
-          hasValidationIcon={hasValidationIcon}
           type="text"
           {...maskArgs}
           {...additionalTextProps}

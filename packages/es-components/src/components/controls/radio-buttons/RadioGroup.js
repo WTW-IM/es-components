@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import Fieldset from '../../containers/fieldset/Fieldset';
 
@@ -36,7 +36,7 @@ function RadioGroup({
   introContent,
   validationState,
   additionalHelpContent,
-  theme
+  ...other
 }) {
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
@@ -65,7 +65,7 @@ function RadioGroup({
           id: radioId,
           optionText: config.optionText,
           value: config.optionValue,
-          theme
+          ...other
         };
         return <RadioButton key={radioId} {...radioProps} />;
       })}
@@ -103,12 +103,7 @@ RadioGroup.propTypes = {
   /** Intro content that can be rendered after the Legend but before the radio buttons, allows
    * content to be put in that will not affect the accessability of the Legend/Radio button relationship.
    */
-  introContent: PropTypes.node,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  introContent: PropTypes.node
 };
 
 RadioGroup.defaultProps = {
@@ -122,4 +117,4 @@ RadioGroup.defaultProps = {
   additionalHelpContent: undefined
 };
 
-export default withTheme(RadioGroup);
+export default RadioGroup;

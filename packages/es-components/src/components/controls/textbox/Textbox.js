@@ -153,7 +153,11 @@ const Textbox = props => {
   const textboxId = id || genId();
   const helpId = additionalHelpContent ? `${textboxId}-help` : undefined;
   const additionalHelp = additionalHelpContent && (
-    <AdditionalHelpContent id={helpId} className="es-textbox__help">
+    <AdditionalHelpContent
+      id={helpId}
+      className="es-textbox__help"
+      aria-live="polite"
+    >
       {additionalHelpContent}
     </AdditionalHelpContent>
   );

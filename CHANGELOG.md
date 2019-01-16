@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.18 (2019-01-16)</small>
+
+* Fix: allow additional props to pass to radio buttons from RadioGroup ([4bd4fd0](https://github.com/wtw-im/es-components/commit/4bd4fd0))
+
+
+
+
+
 ## <small>18.0.17 (2019-01-16)</small>
 
 * Fix: textbox padding for consistency with or without validation icon ([7dd8778](https://github.com/wtw-im/es-components/commit/7dd8778))

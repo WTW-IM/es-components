@@ -137,6 +137,7 @@ const Popup = props => {
       className={classnames('es-tooltip', className)}
       id={tooltipId}
       style={style}
+      aria-live="polite"
     >
       <TooltipArrow />
       <TooltipInner>{children}</TooltipInner>
@@ -208,7 +209,7 @@ class Tooltip extends React.Component {
           transition={FadeTransition}
         >
           <Popup position={this.props.position} name={this.props.name}>
-            {this.props.content}
+            <span>{this.props.content}</span>
           </Popup>
         </Overlay>
       </span>

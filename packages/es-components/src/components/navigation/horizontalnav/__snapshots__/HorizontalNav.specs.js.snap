@@ -3,19 +3,19 @@
 exports[`renders as expected 1`] = `
 <div>
   <nav
-    class="es-horizontalnav sc-bxivhb cMujCD"
+    class="es-horizontalnav sc-bxivhb iGwUnB"
   >
     <ul>
       <li
         class="es-horizontalnav__navitem"
       >
         <a
-          class="home sc-bdVaJa cisBhB"
+          class="home sc-bdVaJa dbZvjI"
           href="/home"
           target="_self"
         >
           <span
-            class="sc-htpNat kbKuoc"
+            class="sc-htpNat PrCLB"
           >
             Home
           </span>
@@ -25,12 +25,12 @@ exports[`renders as expected 1`] = `
         class="es-horizontalnav__navitem"
       >
         <a
-          class="cart sc-bdVaJa cisBhB"
+          class="cart sc-bdVaJa dbZvjI"
           href="#/"
           target="_self"
         >
           <span
-            class="sc-htpNat kbKuoc"
+            class="sc-htpNat PrCLB"
           >
             Cart
           </span>
@@ -40,12 +40,12 @@ exports[`renders as expected 1`] = `
         class="es-horizontalnav__navitem"
       >
         <a
-          class="external sc-bdVaJa cisBhB"
+          class="external sc-bdVaJa dbZvjI"
           href="http://www.google.com"
           target="_blank"
         >
           <span
-            class="sc-htpNat kbKuoc"
+            class="sc-htpNat PrCLB"
           >
             External Link
           </span>
@@ -55,12 +55,12 @@ exports[`renders as expected 1`] = `
         class="es-horizontalnav__navitem"
       >
         <a
-          class="info sc-bdVaJa bQVDYh"
+          class="info sc-bdVaJa gLttC"
           href="#/"
           target="_self"
         >
           <span
-            class="sc-htpNat kbKuoc"
+            class="sc-htpNat PrCLB"
           >
             Disabled
           </span>

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.19 (2019-01-18)</small>
+
+* Fix: updates tooltips to read with aria-live ([c20106e](https://github.com/wtw-im/es-components/commit/c20106e))
+
+
+
+
+
 ## <small>18.0.18 (2019-01-16)</small>
 
 * Fix: allow additional props to pass to radio buttons from RadioGroup ([4bd4fd0](https://github.com/wtw-im/es-components/commit/4bd4fd0))

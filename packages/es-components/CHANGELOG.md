@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.20 (2019-01-25)</small>
+
+* Fix: ensuring Tooltips have type='button' ([ab7f95a](https://github.com/wtw-im/es-components/commit/ab7f95a))
+
+
+
+
+
 ## <small>18.0.19 (2019-01-18)</small>
 
 * Fix: updates tooltips to read with aria-live ([c20106e](https://github.com/wtw-im/es-components/commit/c20106e))

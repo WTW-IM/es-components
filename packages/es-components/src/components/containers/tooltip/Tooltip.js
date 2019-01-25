@@ -185,6 +185,7 @@ class Tooltip extends React.Component {
       <span>
         <StyledButton
           className="es-tooltip__target"
+          type="button"
           ref={span => {
             this.toolTipTarget = span;
           }}

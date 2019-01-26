@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.21 (2019-01-26)</small>
+
+* Fix: giving Popover triggers/closes type='button' ([1497f9a](https://github.com/wtw-im/es-components/commit/1497f9a))
+
+
+
+
+
 ## <small>18.0.20 (2019-01-25)</small>
 
 * Fix: ensuring Tooltips have type='button' ([ab7f95a](https://github.com/wtw-im/es-components/commit/ab7f95a))

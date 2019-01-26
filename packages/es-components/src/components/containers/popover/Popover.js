@@ -180,6 +180,7 @@ class Popover extends React.Component {
 
     const closeButton = (
       <Button
+        type="button"
         handleOnClick={this.toggleShow}
         innerRef={btn => {
           this.closeBtnRef = btn;
@@ -190,6 +191,7 @@ class Popover extends React.Component {
     );
     const altCloseButton = (
       <AlternateCloseButton
+        type="button"
         aria-label="Close"
         hasTitle={hasTitle}
         handleOnClick={this.toggleShow}
@@ -203,6 +205,7 @@ class Popover extends React.Component {
 
     const triggerButton = (
       <TriggerButton
+        type="button"
         handleOnClick={this.toggleShow}
         styleType={buttonStyle}
         isOutline={isOutline}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import screenReaderOnly from '../patterns/screenReaderOnly/screenReaderOnly';
 
 const DismissButtonBase = styled.button`
   background: transparent;
@@ -9,16 +10,7 @@ const DismissButtonBase = styled.button`
   font-weight: bold;
 `;
 
-const ScreenReaderText = styled.span`
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-`;
+const ScreenReaderText = screenReaderOnly('span');
 
 const DismissButton = props => (
   <DismissButtonBase aria-label="Close" {...props}>

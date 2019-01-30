@@ -12,6 +12,7 @@ it('renders DatePicker when textbox is focused', () => {
       labelText="Test date"
       onChange={jest.fn()}
       selectedDate={moment(new Date(2018, 10, 7))}
+      allowNativeDatepickerOnMobile={false}
     />
   );
   getByLabelText('Test date').focus();

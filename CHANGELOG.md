@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.22 (2019-01-31)</small>
+
+* Update: adds software blue color ([1a68ac3](https://github.com/wtw-im/es-components/commit/1a68ac3))
+
+
+
+
+
 ## <small>18.0.21 (2019-01-26)</small>
 
 * Fix: giving Popover triggers/closes type='button' ([1497f9a](https://github.com/wtw-im/es-components/commit/1497f9a))

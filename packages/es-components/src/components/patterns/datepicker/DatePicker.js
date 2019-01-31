@@ -114,8 +114,7 @@ export const DatePicker = props => {
     </ReactDatePicker>
   );
 
-  const phoneCssWidth = props.theme.screenSize.phone;
-  const phoneWidth = parseInt(phoneCssWidth.replace('px'), 10) || 0;
+  const phoneWidth = parseInt(props.theme.screenSize.phone, 10) || 0;
   const datePicker =
     allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
       ? mobileDatePicker

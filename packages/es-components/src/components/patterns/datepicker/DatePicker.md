@@ -40,6 +40,7 @@ function handleOnBlur(event) {
   onChange={handleOnChange}
   onChangeRaw={handleOnChangeRaw}
   onBlur={handleOnBlur}
+  allowNativeDatepickerOnMobile={false}
 />
 ```
 
@@ -82,6 +83,7 @@ class RangeExample extends React.Component {
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           selectedDate={this.state.startDate}
+          allowNativeDatepickerOnMobile={false}
         />
         <DatePicker
           labelText="End Date"
@@ -90,12 +92,25 @@ class RangeExample extends React.Component {
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           selectedDate={this.state.endDate}
+          allowNativeDatepickerOnMobile={false}
         />
       </div>
     )
   }
 }
 <RangeExample />
+```
+
+### Native Mobile Date Picker
+
+The `allowNativeDatepickerOnMobile` prop allows for the substitution of the React DatePicker with the
+native one on mobile devices. This defaults to `true`.
+
+```
+<DatePicker
+  labelText="Pick a Date"
+  additionalHelpContent={<small>Change the screen size to see the transformation.</small>}
+/>
 ```
 
 ### Filter Dates
@@ -108,27 +123,27 @@ function isWeekday(date) {
   return day !== 0 && day !== 6
 }
 
-<DatePicker labelText="No Weekends" onChange={()=>{}} filterDate={isWeekday} />
+<DatePicker labelText="No Weekends" onChange={()=>{}} filterDate={isWeekday} allowNativeDatepickerOnMobile={false} />
 ```
 
 ### Include Dates (whitelist)
 
 ```
 const moment = require('moment');
-<DatePicker labelText="Today and Tomorrow" onChange={()=>{}} includeDates={[moment(), moment().add(1, "days")]} />
+<DatePicker labelText="Today and Tomorrow" onChange={()=>{}} includeDates={[moment(), moment().add(1, "days")]} allowNativeDatepickerOnMobile={false} />
 ```
 
 ### Exclude Dates (blacklist)
 
 ```
 const moment = require('moment');
-<DatePicker labelText="Not Today or Yesterday" onChange={()=>{}} excludeDates={[moment(), moment().add(-1, "days")]} />
+<DatePicker labelText="Not Today or Yesterday" onChange={()=>{}} excludeDates={[moment(), moment().add(-1, "days")]} allowNativeDatepickerOnMobile={false} />
 ```
 
 ### Child Content
 
 ```
-<DatePicker labelText="Child Content" onChange={()=>{}}>
+<DatePicker labelText="Child Content" onChange={()=>{}} allowNativeDatepickerOnMobile={false}>
   <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
 </DatePicker>
 ```

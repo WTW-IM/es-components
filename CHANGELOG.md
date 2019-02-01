@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.23 (2019-02-01)</small>
+
+* Update: add test coverage for withWindowSize and Datepicker ([a7325c0](https://github.com/wtw-im/es-components/commit/a7325c0))
+* Update: allow the native date picker to be used on mobile devices ([340fc54](https://github.com/wtw-im/es-components/commit/340fc54))
+
+
+
+
+
 ## <small>18.0.22 (2019-01-31)</small>
 
 * Update: adds software blue color ([1a68ac3](https://github.com/wtw-im/es-components/commit/1a68ac3))

@@ -32,7 +32,7 @@ const InlineMessage = require('./Message').InlineMessage;
   <Notification type="advisor">
     <div style={{ flexBasis: '100%' }}>
       <h3>This is an advisor alert!</h3>
-      <p>
+      <div>
         Children are rendered in a flex container and{' '}
         <a href="#notification">links</a> render with underlined text, but
         <Popover
@@ -51,7 +51,7 @@ const InlineMessage = require('./Message').InlineMessage;
             </PopoverLink>
           )}
         /> get dashed underlined text.
-      </p>
+      </div>
       <h4>Any element can be rendered!</h4>
       <ul>
         <li>Item A</li>

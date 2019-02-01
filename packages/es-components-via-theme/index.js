@@ -119,6 +119,14 @@ const theme = {
     highlight: highlight,
     highlightHover: highlightHover
   },
+  headingSize: {
+    1: '44.78976px',
+    2: '37.3248px',
+    3: '31.104px',
+    4: '25.92px',
+    5: '21.6px',
+    6: '18px'
+  },
   notificationStyles: {
     success: {
       base: {

@@ -15,13 +15,27 @@ const Legend = styled.legend`
   width: 100%;
 `;
 
-function renderLegend(content, legendClasses) {
-  return content ? (
-    <Legend className={classnames('es-fieldset__legend', legendClasses)}>
-      {content}
+const FieldsetLegend = ({ legendClasses, legendId, children }) =>
+  children ? (
+    <Legend
+      className={classnames('es-fieldset__legend', legendClasses)}
+      id={legendId}
+    >
+      {children}
     </Legend>
   ) : null;
-}
+
+FieldsetLegend.propTypes = {
+  legendClasses: PropTypes.string,
+  legendId: PropTypes.string,
+  children: PropTypes.node
+};
+
+FieldsetLegend.defaultProps = {
+  legendClasses: null,
+  legendId: null,
+  children: null
+};
 
 const StyledFieldset = styled.fieldset`
   border: 0;
@@ -29,11 +43,19 @@ const StyledFieldset = styled.fieldset`
   padding: 0;
 `;
 
-function Fieldset({ legendClasses, legendContent, children, className }) {
+function Fieldset({
+  legendClasses,
+  legendContent,
+  legendId,
+  children,
+  className
+}) {
   const fieldsetClasses = classnames('es-fieldset', className);
   return (
     <StyledFieldset className={fieldsetClasses}>
-      {renderLegend(legendContent, legendClasses)}
+      <FieldsetLegend {...{ legendClasses, legendId }}>
+        {legendContent}
+      </FieldsetLegend>
       {children}
     </StyledFieldset>
   );
@@ -44,6 +66,8 @@ Fieldset.propTypes = {
   legendContent: PropTypes.node,
   /** Additional classes to be applied to the legend element */
   legendClasses: PropTypes.string,
+  /** Additional id for the legend element */
+  legendId: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string
 };
@@ -51,6 +75,7 @@ Fieldset.propTypes = {
 Fieldset.defaultProps = {
   legendContent: null,
   legendClasses: null,
+  legendId: null,
   children: undefined,
   className: undefined
 };

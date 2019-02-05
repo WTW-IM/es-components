@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled from 'styled-components';
+import generateAlphaName from '../../util/generateAlphaName';
 
 import Fieldset from '../../containers/fieldset/Fieldset';
 
@@ -39,6 +40,8 @@ function RadioGroup({
   ...other
 }) {
   const helpId = additionalHelpContent ? `${name}-help` : undefined;
+  const idHash = generateAlphaName();
+  const legendId = `radio-legend-${idHash}`;
   const additionalHelp = additionalHelpContent && (
     <AdditionalHelpContent
       id={helpId}
@@ -49,7 +52,7 @@ function RadioGroup({
     </AdditionalHelpContent>
   );
   return (
-    <RadioFieldset legendContent={legendContent}>
+    <RadioFieldset {...{ legendContent, legendId }}>
       {introContent}
       {radioOptions.map((config, index) => {
         const radioId = `${name}-option-${index + 1}`;

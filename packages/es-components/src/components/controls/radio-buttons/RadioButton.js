@@ -78,6 +78,7 @@ export function RadioButton({
   inline,
   validationState,
   theme,
+  descriptorIds,
   ...radioProps
 }) {
   const { hover, fill } = getRadioFillVariables(
@@ -87,6 +88,7 @@ export function RadioButton({
     theme.colors
   );
   const radioDisplayFill = radioProps.checked ? fill : theme.colors.white;
+  const radioId = radioProps.id;
 
   const labelProps = {
     inline,
@@ -96,6 +98,7 @@ export function RadioButton({
     validationState
   };
   const classNameState = `es-radio__input--${validationState}`;
+  const spanId = `${radioId}-text`;
 
   return (
     <RadioLabel className="es-radio" {...labelProps}>
@@ -103,6 +106,7 @@ export function RadioButton({
         type="radio"
         name={name}
         className={classNameState}
+        aria-labelledBy={`${descriptorIds} ${spanId}`.trim()}
         {...radioProps}
       />
       <RadioDisplay
@@ -110,7 +114,9 @@ export function RadioButton({
         borderColor={fill}
         fill={radioDisplayFill}
       />
-      {optionText}
+      <span aria-hidden id={spanId}>
+        {optionText}
+      </span>
     </RadioLabel>
   );
 }
@@ -121,6 +127,8 @@ RadioButton.propTypes = {
   inline: PropTypes.bool,
   /** Display radio button with contextual state colorings */
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
+  /** Extra descriptor IDs for aria-labelledby */
+  descriptorIds: PropTypes.string,
   /**
    * Theme object used by the ThemeProvider,
    * automatically passed by any parent component using a ThemeProvider
@@ -130,7 +138,8 @@ RadioButton.propTypes = {
 
 RadioButton.defaultProps = {
   inline: true,
-  validationState: 'default'
+  validationState: 'default',
+  descriptorIds: ''
 };
 
 export default withTheme(RadioButton);

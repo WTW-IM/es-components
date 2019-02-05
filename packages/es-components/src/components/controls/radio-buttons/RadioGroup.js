@@ -51,11 +51,12 @@ function RadioGroup({
       {additionalHelpContent}
     </AdditionalHelpContent>
   );
+
   return (
     <RadioFieldset {...{ legendContent, legendId }}>
       {introContent}
       {radioOptions.map((config, index) => {
-        const radioId = `${name}-option-${index + 1}`;
+        const radioId = `${name}-option-${index + 1}-${idHash}`;
         const checked = config.optionValue === value;
         const disabled = disableAllOptions || config.disabled;
         const radioProps = {
@@ -68,6 +69,7 @@ function RadioGroup({
           id: radioId,
           optionText: config.optionText,
           value: config.optionValue,
+          descriptorIds: legendId,
           ...other
         };
         return <RadioButton key={radioId} {...radioProps} />;

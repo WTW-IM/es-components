@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import classnames from 'classnames';
 
+import generateAlphaName from '../../util/generateAlphaName';
+
 const Legend = styled.legend`
   border: 0;
   border-bottom: 1px solid ${props => props.theme.colors.gray6};
@@ -15,11 +17,12 @@ const Legend = styled.legend`
   width: 100%;
 `;
 
-const FieldsetLegend = ({ legendClasses, legendId, children }) =>
+const FieldsetLegend = ({ legendClasses, legendId, children, ...otherProps }) =>
   children ? (
     <Legend
       className={classnames('es-fieldset__legend', legendClasses)}
       id={legendId}
+      {...otherProps}
     >
       {children}
     </Legend>
@@ -51,9 +54,15 @@ function Fieldset({
   className
 }) {
   const fieldsetClasses = classnames('es-fieldset', className);
+  const legId = legendId || `${generateAlphaName()}-legend`;
+
   return (
-    <StyledFieldset className={fieldsetClasses}>
-      <FieldsetLegend {...{ legendClasses, legendId }}>
+    <StyledFieldset className={fieldsetClasses} aria-labelledby={legId}>
+      <FieldsetLegend
+        aria-hidden
+        legendId={legId}
+        legendClasses={legendClasses}
+      >
         {legendContent}
       </FieldsetLegend>
       {children}

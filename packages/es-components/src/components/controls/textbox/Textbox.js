@@ -80,7 +80,7 @@ const ValidationIcon = styled(Icon)`
   pointer-events: none;
   position: absolute;
   right: 11px;
-  top: 9px;
+  top: 10px;
 `;
 
 const AdditionalHelpContent = styled.div`

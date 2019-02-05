@@ -19,16 +19,11 @@ const DismissButton = styled.button`
   cursor: pointer;
 `;
 
-const iconNames = {
-  success: 'ok-circle',
-  info: 'info-circle',
-  warning: 'exclamation-sign',
-  danger: 'info-circle',
-  advisor: 'agent'
-};
-
 const NotificationContent = React.forwardRef(
-  ({ type, includeIcon, isDismissable, onDismiss, children }, ref) => {
+  (
+    { type, includeIcon, isDismissable, onDismiss, children, iconName },
+    ref
+  ) => {
     const [isDismissed, setIsDismissed] = useState(false);
 
     useMutationEffect(
@@ -47,9 +42,7 @@ const NotificationContent = React.forwardRef(
 
     return (
       <>
-        {includeIcon ? (
-          <NotificationIcon name={iconNames[type]} size={28} />
-        ) : null}
+        {includeIcon ? <NotificationIcon name={iconName} size={28} /> : null}
         {children}
         {isDismissable ? (
           <DismissButton
@@ -97,8 +90,8 @@ export function useNotification(styleType = 'base') {
     const theme = useTheme();
     const notificationRef = useRef(null);
     const color = theme.notificationStyles[type][styleType];
-
-    const notificationContentProps = { type, ...rest };
+    const iconName = theme.validationIconName[type];
+    const notificationContentProps = { iconName, type, ...rest };
 
     return (
       <Notification ref={notificationRef} role={role} color={color}>

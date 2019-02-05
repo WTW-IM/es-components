@@ -49,7 +49,6 @@ const blueLighter = '#d2f4ff';
 const greenLighter = '#c3ffed';
 const violetLighter = '#eac9f2';
 
-
 // Datepicker colors
 const dpBackground = '#006685';
 const navArrow = white;
@@ -391,9 +390,11 @@ const theme = {
     }
   },
   validationIconName: {
-    success: 'ok',
+    success: 'ok-circle',
+    info: 'info-circle',
     warning: 'exclamation-sign',
-    danger: 'remove'
+    danger: 'remove-circle',
+    advisor: 'agent'
   },
   validationTextColor: {
     success: success,

@@ -96,6 +96,7 @@ export const DatePicker = props => {
     <NativeDatePicker
       selectedDate={selectedDate}
       onChange={onChange}
+      onBlur={onBlur}
       name={name}
       {...textboxProps}
     />

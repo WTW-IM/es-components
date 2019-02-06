@@ -57,6 +57,7 @@ const CommonInputStyles = css`
   display: table-cell;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   padding-right: 2em;
+  -webkit-appearance: none;
 `;
 /* eslint-enable */
 

@@ -4,21 +4,18 @@ import React from 'react';
 import { fireEvent, cleanup } from 'react-testing-library';
 import { renderWithTheme } from '../../util/test-utils';
 
+import Control from '../Control';
+import Label from '../label/Label';
 import Textbox from './Textbox';
 
 beforeEach(cleanup);
 
-const buildTextbox = props => <Textbox labelText="Text" {...props} />;
-
-it('includes additional text when labelSuffix is provided', () => {
-  const props = {
-    onChange: jest.fn(),
-    value: 'testvalue',
-    labelSuffix: <span>Optional</span>
-  };
-  const { queryByText } = renderWithTheme(buildTextbox(props));
-  expect(queryByText('Optional')).not.toBeNull();
-});
+const buildTextbox = props => (
+  <Control>
+    <Label for="test">Text</Label>
+    <Textbox id="test" {...props} />
+  </Control>
+);
 
 it('executes the handleOnChange function when text is changed', () => {
   const props = {

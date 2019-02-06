@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
-import { InputBase } from '../../controls/BaseControls';
+import InputBase from '../../controls/textbox/InputText';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import { useTheme } from '../../util/useTheme';
 

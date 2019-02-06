@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
 import { useTheme } from '../util/useTheme';
+import ValidationContext from './ValidationContext';
 
 const FlexControl = styled.div`
   color: ${props => props.textColor};
@@ -44,7 +45,9 @@ function Control({ validationState, orientation, children }) {
       textColor={textColor}
       {...theme.validationInputColor[validationState]}
     >
-      {children}
+      <ValidationContext.Provider value={validationState}>
+        {children}
+      </ValidationContext.Provider>
     </ControlWrapper>
   );
 }

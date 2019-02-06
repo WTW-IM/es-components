@@ -18,6 +18,9 @@ export StripedContainer from './components/containers/striped-container/StripedC
 export CheckboxLabel from './components/containers/checkboxLabel/CheckboxLabel';
 export Heading from './components/containers/heading/Heading';
 
+export Control from './components/controls/Control';
+export AdditionalHelp from './components/controls/AdditionalHelp';
+export Label from './components/controls/label/Label';
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
 export ToggleButton from './components/controls/buttons/ToggleButton';

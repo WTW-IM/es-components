@@ -55,14 +55,8 @@ export function DatePicker(props) {
 }
 
 DatePicker.propTypes = {
-  /** Additional text displayed below the input */
-  additionalHelpContent: PropTypes.node,
   /** Content to display within and below the calendar */
   children: PropTypes.node,
-  /** Label to display above datepicker */
-  labelText: PropTypes.string.isRequired,
-  /** Name property for the form control */
-  name: PropTypes.string,
   /** Callback fired when a valid date is entered */
   onChange: PropTypes.func.isRequired,
   /** Callback fired when input value is changed */
@@ -94,7 +88,6 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
-  additionalHelpContent: undefined,
   children: undefined,
   name: undefined,
   onBlur: noop,

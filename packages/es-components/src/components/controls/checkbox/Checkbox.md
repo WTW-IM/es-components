@@ -1,15 +1,27 @@
 ```
-<div>
-  <Checkbox name="uncheckedByDefault" labelText="I am unchecked by default" />
-  <Checkbox name="checkedByDefault" labelText="I am checked by default" checked onChange={()=>{}} />
-  <Checkbox name="disabled" labelText="I am disabled" disabled />
-  <Checkbox name="uncheckedByDefault" labelText="I am checked and disabled" checked onChange={()=>{}} disabled />
-</div>
+const Control = require('../Control').default;
+
+<>
+  <Control>
+    <Checkbox name="uncheckedByDefault">I am unchecked by default</Checkbox>
+  </Control>
+  <Control>
+    <Checkbox name="checkedByDefault" checked onChange={()=>{}}>I am checked by default</Checkbox>
+  </Control>
+  <Control>
+    <Checkbox name="disabled" disabled>I am a disabled checkbox</Checkbox>
+  </Control>
+  <Control>
+    <Checkbox name="uncheckedByDefault" checked onChange={()=>{}} disabled>I am checked and disabled</Checkbox>
+  </Control>
+</>
 ```
 
 Passing a function will execute with the current selection status of the Checkbox.
 
 ```
+const Control = require('../Control').default;
+
 class CheckboxExample extends React.Component {
   constructor() {
     this.state = {
@@ -32,34 +44,39 @@ class CheckboxExample extends React.Component {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'space-between',
-      maxWidth: '40%',
       width: '350px'
     };
 
     return (
       <div style={wrapperStyle}>
-        <Checkbox
-          name="Apple"
-          labelText="Apple"
-          value="Apple"
-          checked={this.state.isAppleChecked}
-          onChange={this.toggleCheckbox('isAppleChecked')}
-        />
-        <Checkbox
-          name="Banana"
-          labelText="Banana"
-          value="Banana"
-          checked={this.state.isBananaChecked}
-          onChange={this.toggleCheckbox('isBananaChecked')}
-        />
-        <Checkbox
-          name="Strawberry"
-          labelText="Strawberry"
-          value="Strawberry"
-          checked={this.state.isStrawberryChecked}
-          onChange={this.toggleCheckbox('isStrawberryChecked')}
-          disabled
-        />
+        <Control>
+          <Checkbox
+            value="Apple"
+            checked={this.state.isAppleChecked}
+            onChange={this.toggleCheckbox('isAppleChecked')}
+          >
+            Apple
+          </Checkbox>
+        </Control>
+        <Control>
+          <Checkbox
+            value="Banana"
+            checked={this.state.isBananaChecked}
+            onChange={this.toggleCheckbox('isBananaChecked')}
+          >
+            Banana
+          </Checkbox>
+        </Control>
+        <Control>
+          <Checkbox
+            value="Strawberry"
+            checked={this.state.isStrawberryChecked}
+            onChange={this.toggleCheckbox('isStrawberryChecked')}
+            disabled
+          >
+            Strawberry
+          </Checkbox>
+        </Control>
       </div>
     );
   }
@@ -71,6 +88,9 @@ class CheckboxExample extends React.Component {
 ### Validation States
 
 ```
+const Control = require('../Control').default;
+const AdditionalHelp = require('../AdditionalHelp').default;
+
 class CheckboxExample extends React.Component {
   constructor() {
     this.state = {
@@ -91,33 +111,42 @@ class CheckboxExample extends React.Component {
   render() {
     return (
       <div>
-        <Checkbox
-          name="Apple_Success"
-          labelText="Apple"
-          value="Apple"
-          checked={this.state.isAppleChecked}
-          onChange={this.toggleCheckbox('isAppleChecked')}
-          validationState="success"
-          additionalHelpContent="When validationState is set to success."
-        />
-        <Checkbox
-          name="Banana_Success"
-          labelText="Banana"
-          value="Banana"
-          checked={this.state.isBananaChecked}
-          onChange={this.toggleCheckbox('isBananaChecked')}
-          validationState="warning"
-          additionalHelpContent="When validationState is set to warning."
-        />
-        <Checkbox
-          name="Strawberry_danger"
-          labelText="Strawberry"
-          value="Strawberry"
-          checked={this.state.isStrawberryChecked}
-          onChange={this.toggleCheckbox('isStrawberryChecked')}
-          validationState="danger"
-          additionalHelpContent="When validationState is set to danger."
-        />
+        <Control validationState="success">
+          <Checkbox
+            value="Apple"
+            checked={this.state.isAppleChecked}
+            onChange={this.toggleCheckbox('isAppleChecked')}
+          >
+            Apple
+          </Checkbox>
+          <AdditionalHelp>
+            When validation state is set to success.
+          </AdditionalHelp>
+        </Control>
+        <Control validationState="warning">
+          <Checkbox
+            value="Banana"
+            checked={this.state.isBananaChecked}
+            onChange={this.toggleCheckbox('isBananaChecked')}
+          >
+            Banana
+          </Checkbox>
+          <AdditionalHelp>
+            When validation state is set to warning.
+          </AdditionalHelp>
+        </Control>
+        <Control validationState="danger">
+          <Checkbox
+            value="Strawberry"
+            checked={this.state.isStrawberryChecked}
+            onChange={this.toggleCheckbox('isStrawberryChecked')}
+          >
+            Strawberry
+          </Checkbox>
+          <AdditionalHelp>
+            When validation state is set to danger.
+          </AdditionalHelp>
+        </Control>
       </div>
     );
   }

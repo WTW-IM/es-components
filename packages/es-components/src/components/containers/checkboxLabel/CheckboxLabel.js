@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Label } from '../../controls/BaseControls';
+import Label from '../../controls/label/Label';
 
 const backgroundColorSelect = (checked, theme, validationState) => {
   if (checked) {
@@ -11,11 +11,10 @@ const backgroundColorSelect = (checked, theme, validationState) => {
 };
 
 export default styled(Label)`
-  color: ${props => props.theme.colors[props.validationState]};
+  color: inherit;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  margin-bottom: 10px;
   margin-left: -10px;
   min-height: 25px;
   padding: 10px 0 10px 42px;

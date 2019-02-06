@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.24 (2019-02-06)</small>
+
+* Update: handle the onBlur event in the native datepickers ([0fc941c](https://github.com/wtw-im/es-components/commit/0fc941c))
+* Update: prevent browsers from adding custom styling to textboxes ([198d33e](https://github.com/wtw-im/es-components/commit/198d33e))
+
+
+
+
+
 ## <small>18.0.23 (2019-02-01)</small>
 
 * Update: add test coverage for withWindowSize and Datepicker ([a7325c0](https://github.com/wtw-im/es-components/commit/a7325c0))

@@ -49,6 +49,22 @@ const NativeDatePicker = props => {
   );
 };
 
+const ReactDatePickerWrapper = ({ selectedDate, children, ...props }) => {
+  let verifiedDate = selectedDate;
+  if (typeof selectedDate === 'string') {
+    const newDateMoment = moment(selectedDate, 'L');
+    const isFullDate =
+      selectedDate && newDateMoment.format('L') === selectedDate;
+    verifiedDate = isFullDate ? newDateMoment : undefined;
+  }
+
+  return (
+    <ReactDatePicker selected={verifiedDate} {...props}>
+      {children}
+    </ReactDatePicker>
+  );
+};
+
 export const DatePicker = props => {
   /* eslint-disable no-unused-vars */
   const {
@@ -103,16 +119,16 @@ export const DatePicker = props => {
   );
 
   const nonMobileDatePicker = (
-    <ReactDatePicker
+    <ReactDatePickerWrapper
       customInput={textbox}
       onChange={onChange}
       onBlur={onBlur}
       placeholderText={placeholder}
-      selected={selectedDate}
+      selectedDate={selectedDate}
       {...datepickerProps}
     >
       {children}
-    </ReactDatePicker>
+    </ReactDatePickerWrapper>
   );
 
   const phoneWidth = parseInt(props.theme.screenSize.phone, 10) || 0;
@@ -142,7 +158,7 @@ DatePicker.propTypes = {
   /** input field placeholder */
   placeholder: PropTypes.string,
   /** Moment object representing the selected date */
-  selectedDate: PropTypes.object,
+  selectedDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /** Array of moment objects to exclude from the calendar */
   excludeDates: PropTypes.array,
   /** Array of moment objects to highlight on the calendar */

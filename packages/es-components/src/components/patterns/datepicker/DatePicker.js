@@ -30,26 +30,7 @@ class DateTextbox extends React.Component {
   }
 }
 
-const NativeDatePicker = props => {
-  const onChangeIntercept = event => props.onChange(moment(event.target.value));
-  const dateValue =
-    !!props.selectedDate && props.selectedDate.isValid()
-      ? props.selectedDate.format('YYYY-MM-DD')
-      : '';
-
-  return (
-    <DateTextbox
-      name={props.name}
-      prependIconName="calendar"
-      type="date"
-      value={dateValue}
-      {...props}
-      onChange={onChangeIntercept}
-    />
-  );
-};
-
-const ReactDatePickerWrapper = ({ selectedDate, children, ...props }) => {
+const getVerifiedDate = selectedDate => {
   let verifiedDate = selectedDate;
   if (typeof selectedDate === 'string') {
     const newDateMoment = moment(selectedDate, 'L');
@@ -57,7 +38,40 @@ const ReactDatePickerWrapper = ({ selectedDate, children, ...props }) => {
       selectedDate && newDateMoment.format('L') === selectedDate;
     verifiedDate = isFullDate ? newDateMoment : undefined;
   }
+  return verifiedDate;
+};
 
+const NativeDatePicker = ({
+  selectedDate,
+  name,
+  onChange,
+  onChangeRaw,
+  ...props
+}) => {
+  const onChangeIntercept = event => onChange(moment(event.target.value));
+  const onChangeRawIntercept = event =>
+    (onChangeRaw || noop)(moment(event.target.value));
+  const verifiedDate = getVerifiedDate(selectedDate);
+  const dateValue =
+    !!verifiedDate && verifiedDate.isValid()
+      ? verifiedDate.format('YYYY-MM-DD')
+      : '';
+
+  return (
+    <DateTextbox
+      name={name}
+      prependIconName="calendar"
+      type="date"
+      value={dateValue}
+      {...props}
+      onChange={onChangeIntercept}
+      onChangeRaw={onChangeRawIntercept}
+    />
+  );
+};
+
+const ReactDatePickerWrapper = ({ selectedDate, children, ...props }) => {
+  const verifiedDate = getVerifiedDate(selectedDate);
   return (
     <ReactDatePicker selected={verifiedDate} {...props}>
       {children}

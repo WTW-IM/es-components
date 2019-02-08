@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Label } from '../BaseControls';
+import Label from '../label/Label';
 import getRadioFillVariables from './radio-fill-variables';
 import { useTheme } from '../../util/useTheme';
+import ValidationContext from '../ValidationContext';
+import genId from '../../util/generateAlphaName';
 
 function radioFill(color) {
   return `
@@ -22,10 +23,7 @@ function radioFill(color) {
 }
 
 const RadioLabel = styled(Label)`
-  color: ${props =>
-    props.disabled
-      ? props.theme.colors.gray7
-      : props.theme.colors[props.validationState]};
+  color: ${props => (props.disabled ? props.theme.colors.gray7 : 'inherit')};
   cursor: pointer;
   display: flex;
   font-size: ${props => props.theme.sizes.baseFontSize};
@@ -73,14 +71,11 @@ const RadioDisplay = styled.span`
   }
 `;
 
-export function RadioButton({
-  optionText,
-  name,
-  inline,
-  validationState,
-  ...radioProps
-}) {
+export function RadioButton({ name, children, ...radioProps }) {
+  const id = radioProps.id || genId();
+
   const theme = useTheme();
+  const validationState = React.useContext(ValidationContext);
   const { hover, fill } = getRadioFillVariables(
     radioProps.checked,
     radioProps.disabled,
@@ -90,9 +85,8 @@ export function RadioButton({
   const radioDisplayFill = radioProps.checked ? fill : theme.colors.white;
 
   const labelProps = {
-    inline,
     disabled: radioProps.disabled,
-    htmlFor: radioProps.id,
+    htmlFor: id,
     hoverFillColor: hover,
     validationState
   };
@@ -104,6 +98,7 @@ export function RadioButton({
         type="radio"
         name={name}
         className={classNameState}
+        id={id}
         {...radioProps}
       />
       <RadioDisplay
@@ -111,22 +106,9 @@ export function RadioButton({
         borderColor={fill}
         fill={radioDisplayFill}
       />
-      {optionText}
+      {children}
     </RadioLabel>
   );
 }
-
-RadioButton.propTypes = {
-  optionText: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  inline: PropTypes.bool,
-  /** Display radio button with contextual state colorings */
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger'])
-};
-
-RadioButton.defaultProps = {
-  inline: true,
-  validationState: 'default'
-};
 
 export default RadioButton;

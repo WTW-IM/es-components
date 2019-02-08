@@ -29,6 +29,7 @@ export OutlineButton from './components/controls/buttons/OutlineButton';
 export LinkButton from './components/controls/buttons/LinkButton';
 export PopoverLink from './components/controls/buttons/PopoverLink';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
+export RadioButton from './components/controls/radio-buttons/RadioButton';
 export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
 

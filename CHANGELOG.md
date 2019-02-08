@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.25 (2019-02-08)</small>
+
+* Update: accounting for partial string dates in DatePicker ([0ae1c22](https://github.com/wtw-im/es-components/commit/0ae1c22))
+* Update: ensuring Native and React datepickers work with partial dates ([9796543](https://github.com/wtw-im/es-components/commit/9796543))
+* Update: removing unnecessary onChangeRaw on native datepicker ([f91515a](https://github.com/wtw-im/es-components/commit/f91515a))
+* Update: renaming wrappers and reducing complexity in DatePicker ([faeec89](https://github.com/wtw-im/es-components/commit/faeec89))
+
+
+
+
+
 ## <small>18.0.24 (2019-02-06)</small>
 
 * Update: handle the onBlur event in the native datepickers ([0fc941c](https://github.com/wtw-im/es-components/commit/0fc941c))

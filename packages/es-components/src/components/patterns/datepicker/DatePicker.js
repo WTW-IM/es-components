@@ -10,7 +10,7 @@ import datepickerStyles from './datePickerStyles';
 import withWindowSize from '../../util/withWindowSize';
 import Textbox from '../../controls/textbox/Textbox';
 
-const DatePickerWrapper = styled.div`
+const DatePickerBlockContainer = styled.div`
   display: inline-block;
 `;
 
@@ -30,16 +30,27 @@ class DateTextbox extends React.Component {
   }
 }
 
-const NativeDatePicker = props => {
-  const onChangeIntercept = event => props.onChange(moment(event.target.value));
+const getVerifiedDate = selectedDate => {
+  let verifiedDate = selectedDate;
+  if (typeof selectedDate === 'string') {
+    const newDateMoment = moment(selectedDate, 'L');
+    const isFullDate =
+      selectedDate && newDateMoment.format('L') === selectedDate;
+    verifiedDate = isFullDate ? newDateMoment : undefined;
+  }
+  return verifiedDate;
+};
+
+function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
+  const onChangeIntercept = event => onChange(moment(event.target.value));
   const dateValue =
-    !!props.selectedDate && props.selectedDate.isValid()
-      ? props.selectedDate.format('YYYY-MM-DD')
+    !!selectedDate && selectedDate.isValid()
+      ? selectedDate.format('YYYY-MM-DD')
       : '';
 
   return (
     <DateTextbox
-      name={props.name}
+      name={name}
       prependIconName="calendar"
       type="date"
       value={dateValue}
@@ -47,9 +58,9 @@ const NativeDatePicker = props => {
       onChange={onChangeIntercept}
     />
   );
-};
+}
 
-export const DatePicker = props => {
+export function DatePicker(props) {
   /* eslint-disable no-unused-vars */
   const {
     children,
@@ -82,6 +93,7 @@ export const DatePicker = props => {
     ${dpStyles}
   `;
   /* eslint-enable */
+  const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
     <DateTextbox
@@ -94,7 +106,7 @@ export const DatePicker = props => {
 
   const mobileDatePicker = (
     <NativeDatePicker
-      selectedDate={selectedDate}
+      selectedDate={verifiedDate}
       onChange={onChange}
       onBlur={onBlur}
       name={name}
@@ -108,7 +120,7 @@ export const DatePicker = props => {
       onChange={onChange}
       onBlur={onBlur}
       placeholderText={placeholder}
-      selected={selectedDate}
+      selected={verifiedDate}
       {...datepickerProps}
     >
       {children}
@@ -121,8 +133,8 @@ export const DatePicker = props => {
       ? mobileDatePicker
       : nonMobileDatePicker;
 
-  return <DatePickerWrapper>{datePicker}</DatePickerWrapper>;
-};
+  return <DatePickerBlockContainer>{datePicker}</DatePickerBlockContainer>;
+}
 
 DatePicker.propTypes = {
   /** Additional text displayed below the input */
@@ -142,7 +154,7 @@ DatePicker.propTypes = {
   /** input field placeholder */
   placeholder: PropTypes.string,
   /** Moment object representing the selected date */
-  selectedDate: PropTypes.object,
+  selectedDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /** Array of moment objects to exclude from the calendar */
   excludeDates: PropTypes.array,
   /** Array of moment objects to highlight on the calendar */

@@ -70,3 +70,15 @@ it('renders the custom date input when the screen is bigger than phone sized', (
   const datePickerElement = getByLabelText('Big screen DatePicker');
   expect(datePickerElement.getAttribute('type')).toBe('text');
 });
+
+it('renders the date picker naturally when given a partial date in selectedDate', () => {
+  expect(() =>
+    renderWithTheme(
+      <DatePicker
+        labelText="Partial Date DatePicker"
+        selectedDate="04/04"
+        onChange={jest.fn()}
+      />
+    )
+  ).not.toThrow();
+});

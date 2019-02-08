@@ -41,16 +41,8 @@ const getVerifiedDate = selectedDate => {
   return verifiedDate;
 };
 
-const NativeDatePicker = ({
-  selectedDate,
-  name,
-  onChange,
-  onChangeRaw,
-  ...props
-}) => {
+const NativeDatePicker = ({ selectedDate, name, onChange, ...props }) => {
   const onChangeIntercept = event => onChange(moment(event.target.value));
-  const onChangeRawIntercept = event =>
-    (onChangeRaw || noop)(moment(event.target.value));
   const verifiedDate = getVerifiedDate(selectedDate);
   const dateValue =
     !!verifiedDate && verifiedDate.isValid()
@@ -65,7 +57,6 @@ const NativeDatePicker = ({
       value={dateValue}
       {...props}
       onChange={onChangeIntercept}
-      onChangeRaw={onChangeRawIntercept}
     />
   );
 };

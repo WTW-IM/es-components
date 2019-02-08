@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Label from '../label/Label';
@@ -131,9 +130,5 @@ function Checkbox({ children, ...checkboxProps }) {
     </CheckboxLabel>
   );
 }
-
-Checkbox.propTypes = {
-  labelText: PropTypes.string.isRequired
-};
 
 export default Checkbox;

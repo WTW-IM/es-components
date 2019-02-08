@@ -15,7 +15,6 @@ export Modal from './components/containers/modal/Modal';
 export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
-export CheckboxLabel from './components/containers/checkboxLabel/CheckboxLabel';
 export Heading from './components/containers/heading/Heading';
 
 export Control from './components/controls/Control';

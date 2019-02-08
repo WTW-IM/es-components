@@ -10,7 +10,7 @@ import datepickerStyles from './datePickerStyles';
 import withWindowSize from '../../util/withWindowSize';
 import Textbox from '../../controls/textbox/Textbox';
 
-const DatePickerWrapper = styled.div`
+const DatePickerBlockContainer = styled.div`
   display: inline-block;
 `;
 
@@ -41,12 +41,11 @@ const getVerifiedDate = selectedDate => {
   return verifiedDate;
 };
 
-const NativeDatePicker = ({ selectedDate, name, onChange, ...props }) => {
+function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   const onChangeIntercept = event => onChange(moment(event.target.value));
-  const verifiedDate = getVerifiedDate(selectedDate);
   const dateValue =
-    !!verifiedDate && verifiedDate.isValid()
-      ? verifiedDate.format('YYYY-MM-DD')
+    !!selectedDate && selectedDate.isValid()
+      ? selectedDate.format('YYYY-MM-DD')
       : '';
 
   return (
@@ -59,18 +58,9 @@ const NativeDatePicker = ({ selectedDate, name, onChange, ...props }) => {
       onChange={onChangeIntercept}
     />
   );
-};
+}
 
-const ReactDatePickerWrapper = ({ selectedDate, children, ...props }) => {
-  const verifiedDate = getVerifiedDate(selectedDate);
-  return (
-    <ReactDatePicker selected={verifiedDate} {...props}>
-      {children}
-    </ReactDatePicker>
-  );
-};
-
-export const DatePicker = props => {
+export function DatePicker(props) {
   /* eslint-disable no-unused-vars */
   const {
     children,
@@ -103,6 +93,7 @@ export const DatePicker = props => {
     ${dpStyles}
   `;
   /* eslint-enable */
+  const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
     <DateTextbox
@@ -115,7 +106,7 @@ export const DatePicker = props => {
 
   const mobileDatePicker = (
     <NativeDatePicker
-      selectedDate={selectedDate}
+      selectedDate={verifiedDate}
       onChange={onChange}
       onBlur={onBlur}
       name={name}
@@ -124,16 +115,16 @@ export const DatePicker = props => {
   );
 
   const nonMobileDatePicker = (
-    <ReactDatePickerWrapper
+    <ReactDatePicker
       customInput={textbox}
       onChange={onChange}
       onBlur={onBlur}
       placeholderText={placeholder}
-      selectedDate={selectedDate}
+      selected={verifiedDate}
       {...datepickerProps}
     >
       {children}
-    </ReactDatePickerWrapper>
+    </ReactDatePicker>
   );
 
   const phoneWidth = parseInt(props.theme.screenSize.phone, 10) || 0;
@@ -142,8 +133,8 @@ export const DatePicker = props => {
       ? mobileDatePicker
       : nonMobileDatePicker;
 
-  return <DatePickerWrapper>{datePicker}</DatePickerWrapper>;
-};
+  return <DatePickerBlockContainer>{datePicker}</DatePickerBlockContainer>;
+}
 
 DatePicker.propTypes = {
   /** Additional text displayed below the input */

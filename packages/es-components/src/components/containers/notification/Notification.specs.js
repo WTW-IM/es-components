@@ -1,6 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
+import { wait } from 'react-testing-library';
 
 import Notification from './Notification';
 import { renderWithTheme } from '../../util/test-utils';
@@ -36,7 +37,7 @@ describe('dismissable notifications', () => {
 
     container.querySelector('.notification__dismiss').click();
 
-    expect(() => getByText('I am here!')).toThrow();
+    wait(() => expect(() => getByText('I am here!')).toThrow());
   });
 
   it('invokes the passed "onDismiss" function', () => {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.26 (2019-02-11)</small>
+
+* New: add table component ([0f03823](https://github.com/wtw-im/es-components/commit/0f03823))
+
+
+
+
+
 ## <small>18.0.25 (2019-02-08)</small>
 
 * Update: accounting for partial string dates in DatePicker ([0ae1c22](https://github.com/wtw-im/es-components/commit/0ae1c22))

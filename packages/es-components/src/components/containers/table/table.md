@@ -1,0 +1,32 @@
+```
+<Table>
+    <thead>
+        <TableRow>
+            <TableHeaderCell>Age</TableHeaderCell>
+            <TableHeaderCell>Name</TableHeaderCell>
+        </TableRow>
+    </thead>
+    <tbody>
+        <TableRow>
+            <TableBodyCell>33</TableBodyCell>
+            <TableBodyCell>Bill</TableBodyCell>
+        </TableRow>
+        <TableRow>
+            <TableBodyCell>20</TableBodyCell>
+            <TableBodyCell>Robin</TableBodyCell>
+        </TableRow>
+        <TableRow>
+            <TableBodyCell>45</TableBodyCell>
+            <TableBodyCell>Thomas</TableBodyCell>
+        </TableRow>
+        <TableRow>
+            <TableBodyCell>40</TableBodyCell>
+            <TableBodyCell>Michael</TableBodyCell>
+        </TableRow>
+        <TableRow>
+            <TableBodyCell>24</TableBodyCell>
+            <TableBodyCell>Noah</TableBodyCell>
+        </TableRow>
+    </tbody>
+</Table>
+```

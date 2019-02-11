@@ -10,6 +10,10 @@ export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
 export CheckboxLabel from './components/containers/checkboxLabel/CheckboxLabel';
+export Table from './components/containers/Table';
+export TableHeaderCell from './components/containers/Table';
+export TableBodyCell from './components/containers/Table';
+export TableRow from './components/containers/Table';
 
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';

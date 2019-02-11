@@ -15,9 +15,11 @@ export Modal from './components/containers/modal/Modal';
 export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
-export CheckboxLabel from './components/containers/checkboxLabel/CheckboxLabel';
 export Heading from './components/containers/heading/Heading';
 
+export Control from './components/controls/Control';
+export AdditionalHelp from './components/controls/AdditionalHelp';
+export Label from './components/controls/label/Label';
 export Textbox from './components/controls/textbox/Textbox';
 export Button from './components/controls/buttons/Button';
 export ToggleButton from './components/controls/buttons/ToggleButton';
@@ -26,6 +28,7 @@ export OutlineButton from './components/controls/buttons/OutlineButton';
 export LinkButton from './components/controls/buttons/LinkButton';
 export PopoverLink from './components/controls/buttons/PopoverLink';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
+export RadioButton from './components/controls/radio-buttons/RadioButton';
 export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
 

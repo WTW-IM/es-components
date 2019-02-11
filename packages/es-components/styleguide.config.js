@@ -59,6 +59,7 @@ module.exports = {
     },
     {
       name: 'Controls',
+      content: path.join(baseComponentDir, 'controls/Controls.md'),
       components: path.join(baseComponentDir, 'controls/**/*.js')
     },
     {
@@ -98,6 +99,11 @@ module.exports = {
           'sans-serif'
         ],
         fontSize: '18px'
+      }
+    },
+    Code: {
+      code: {
+        color: '#007fa7'
       }
     }
   }

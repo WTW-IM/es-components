@@ -12,7 +12,7 @@ it('executes onClick prop when label is clicked', () => {
   const onClick = jest.fn();
 
   const { getByLabelText } = renderWithTheme(
-    <Checkbox name="test" labelText="test label" onClick={onClick} />
+    <Checkbox name="test" onClick={onClick}>test label</Checkbox>
   );
 
   getByLabelText('test label').click();
@@ -22,31 +22,10 @@ it('executes onClick prop when label is clicked', () => {
 it('cannot be clicked when disabled', () => {
   const onClick = jest.fn();
   const { container, getByLabelText } = renderWithTheme(
-    <Checkbox name="test" labelText="test label" onClick={onClick} disabled />
+    <Checkbox name="test" onClick={onClick} disabled>test label</Checkbox>
   );
 
   getByLabelText('test label').click();
   expect(onClick).not.toHaveBeenCalled();
   expect(container.querySelector('input')).toBeDisabled();
-});
-
-it('will render additional help when passed', () => {
-  const { queryByText } = renderWithTheme(
-    <Checkbox
-      name="test"
-      labelText="test label"
-      onClick={jest.fn()}
-      additionalHelpContent="help me"
-    />
-  );
-
-  expect(queryByText('help me')).not.toBeNull();
-});
-
-it('will not render additional help when not passed', () => {
-  const { queryByText } = renderWithTheme(
-    <Checkbox name="test" labelText="test label" onClick={jest.fn()} />
-  );
-
-  expect(queryByText('help me')).toBeNull();
 });

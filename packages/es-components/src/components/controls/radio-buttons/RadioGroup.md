@@ -4,37 +4,29 @@ Group `RadioButton` components together using a `RadioGroup`. Any additional pro
 const RadioButton = require('./RadioButton').default
 const Control = require('../Control').default
 
-class RadioGroupExample extends React.Component {
-  constructor(props) {
-    super(props)
+function RadioGroupExample() {
+  const [activity, setActivity] = React.useState('nothing')
 
-    this.state = { activity: 'nothing' }
-
-    this.handleRadioChange = this.handleRadioChange.bind(this)
+  function handleRadioChange(event) {
+    setActivity(event.target.value)
   }
 
-  handleRadioChange(e) {
-    this.setState({ activity: e.target.value })
-  }
-
-  render() {
-    return (
-      <>
-        <Fieldset legendContent="Recreational Activities">
-          <Control orientation="inline" validationState="success">
-            <RadioGroup name="recreational-activities" onChange={this.handleRadioChange} selectedValue={this.state.activity}>
-              <RadioButton value="hiking">Hiking</RadioButton>
-              <RadioButton value="biking" disabled>Biking</RadioButton>
-              <RadioButton value="kayaking">Kayaking</RadioButton>
-              <RadioButton value="camping">Camping</RadioButton>
-            </RadioGroup>
-          </Control>
-        </Fieldset>
-        <p>You've selected: {this.state.activity}</p>
-      </>
-    )
-  }
-}
+  return (
+    <>
+      <Fieldset legendContent="Recreational Activities">
+        <Control orientation="inline" validationState="success">
+          <RadioGroup name="recreational-activities" onChange={handleRadioChange} selectedValue={activity}>
+            <RadioButton value="hiking">Hiking</RadioButton>
+            <RadioButton value="biking" disabled>Biking</RadioButton>
+            <RadioButton value="kayaking">Kayaking</RadioButton>
+            <RadioButton value="camping">Camping</RadioButton>
+          </RadioGroup>
+        </Control>
+      </Fieldset>
+      <p>You've selected: {activity}</p>
+    </>
+  )
+};
 
 <RadioGroupExample />
 ```

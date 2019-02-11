@@ -41,7 +41,6 @@ export function DatePicker(props) {
       <DatepickerStyles />
       <ReactDatePicker
         customInput={textbox}
-        customInputRef="inputRef"
         onChange={onChange}
         onBlur={onBlur}
         placeholderText={placeholder}
@@ -82,9 +81,7 @@ DatePicker.propTypes = {
   /** Sets the start date in a range */
   startDate: PropTypes.instanceOf(Date),
   /** Sets the end date in a range */
-  endDate: PropTypes.instanceOf(Date),
-  /** Display checkbox with contextual state colorings */
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger'])
+  endDate: PropTypes.instanceOf(Date)
 };
 
 DatePicker.defaultProps = {
@@ -101,8 +98,7 @@ DatePicker.defaultProps = {
   selectsStart: false,
   selectsEnd: false,
   startDate: undefined,
-  endDate: undefined,
-  validationState: 'default'
+  endDate: undefined
 };
 
 const UncontrolledDatePicker = uncontrollable(DatePicker, {

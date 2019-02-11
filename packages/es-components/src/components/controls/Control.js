@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
@@ -18,13 +18,13 @@ const FlexControl = styled.div`
     box-shadow: ${props => props.focusBoxShadow};
   }
 
-  @media(max-width: ${props => props.theme.screenSize.tablet}) {
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
     flex-direction: row;
   }
 `;
 
 const InlineControl = styled(FlexControl)`
-  @media(max-width: ${props => props.theme.screenSize.tablet}) {
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
     align-items: center;
   }
 `;
@@ -64,4 +64,4 @@ Control.defaultProps = {
   children: null
 };
 
-export default withTheme(Control);
+export default Control;

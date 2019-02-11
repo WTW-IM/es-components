@@ -4,7 +4,7 @@ A `Dropdown` component works exactly like a native `<select>` tag with style att
 const Control = require('../Control').default;
 
 <Control>
-  <Label for="dropdown-1">Select an operating system</Label>
+  <Label htmlFor="dropdown-1">Select an operating system</Label>
   <Dropdown
     id="dropdown-1"
     onChange={({ target }) => console.log(target.value)}
@@ -17,14 +17,14 @@ const Control = require('../Control').default;
 </Control>
 ```
 
-Wrap the dropdown in a `Control` with `inline` passed for the `orientation` prop to render the label and input horizontally.
+Wrap the dropdown in a `Control` with `inline` passed htmlFor the `orientation` prop to render the label and input horizontally.
 
 ```
 const Control = require('../Control').default;
 const AdditionalHelp = require('../AdditionalHelp').default;
 
 <Control orientation="inline" validationState="danger">
-  <Label for="dropdown-2">Choose your favorite vehicle</Label>
+  <Label htmlFor="dropdown-2">Choose your favorite vehicle</Label>
   <Dropdown id="dropdown-2" aria-describedby="dropdown-2-help">
     <option value="">--</option>
     <option value="car">Car</option>

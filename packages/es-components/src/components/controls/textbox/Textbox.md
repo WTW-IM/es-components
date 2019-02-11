@@ -5,46 +5,41 @@ const Control = require('../Control').default;
 
 <>
   <Control>
-    <Label for="stacked">Stacked</Label>
+    <Label htmlFor="stacked">Stacked</Label>
     <Textbox id="stacked" />
   </Control>
 
   <Control orientation="inline">
-    <Label for="inline">Inline</Label>
+    <Label htmlFor="inline">Inline</Label>
     <Textbox id="inline" />
   </Control>
 </>
 ```
 
-Pass an `onChange` function to execute any time the input box value changes. This function will have the current value of the input box passed to it. The following is a simple controlled example, where state is handled outside the component. (See [Controlled Components](https://facebook.github.io/react/docs/forms.html#controlled-components) and [Uncontrolled Components](https://facebook.github.io/react/docs/uncontrolled-components.html).)
+Pass an `onChange` function to execute any time the input box value changes. This function will have the current value of the input box passed to it. The following is a simple controlled example, where state is handled outside the component. (See [Controlled Components](https://facebook.github.io/react/docs/htmlForms.html#controlled-components) and [Uncontrolled Components](https://facebook.github.io/react/docs/uncontrolled-components.html).)
 
 ```
-const Control = require('../Control').default;
+const Control = require('../Control').default
 
-class TextboxExample extends React.Component {
-  constructor() {
-    this.state = { value: "" };
-    this.handleOnTextChange = this.handleOnTextChange.bind(this);
+function TextboxExample() {
+  const [value, setValue] = React.useState('')
+
+  function handleOnTextChange(event) {
+    console.log(event.target.value)
+    setValue(event.target.value)
   }
 
-  handleOnTextChange(event) {
-    console.log(event.target.value);
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    return (
-      <Control>
-        <Label for="controlled-example">Controlled Example</Label>
-        <Textbox
-          id="controlled-example"
-          value={state.value}
-          onChange={this.handleOnTextChange}
-        />
-      </Control>
-    )
-  }
-}
+  return (
+    <Control>
+      <Label htmlFor="controlled-example">Controlled Example</Label>
+      <Textbox
+        id="controlled-example"
+        value={value}
+        onChange={handleOnTextChange}
+      />
+    </Control>
+  )
+};
 
 <TextboxExample />
 ```
@@ -61,10 +56,10 @@ function handleOnBlur(event) {
 }
 
 <Control>
-  <Label>First name</Label>
+  <Label htmlFor="firstName">First name</Label>
   <Textbox
+    id="firstName"
     defaultValue="Default"
-    labelText="First name"
     onBlur={handleOnBlur}
   />
 </Control>
@@ -72,7 +67,7 @@ function handleOnBlur(event) {
 
 ### Validation states
 
-Validation states are driven from the `Control` component. This is what they look like for Textboxes.
+Validation states are driven from the `Control` component. This is what they look like htmlFor Textboxes.
 
 ```
 const Control = require('../Control').default;
@@ -80,19 +75,19 @@ const AdditionalHelp = require('../AdditionalHelp').default;
 
 <>
   <Control validationState="success">
-    <Label for="success">Success</Label>
+    <Label htmlFor="success">Success</Label>
     <Textbox id="success" aria-describedby="success-help" />
     <AdditionalHelp id="success-help">When validationState is set to success</AdditionalHelp>
   </Control>
 
   <Control validationState="warning">
-    <Label for="warning">Warning</Label>
+    <Label htmlFor="warning">Warning</Label>
     <Textbox id="warning" aria-describedby="warning-help" />
     <AdditionalHelp id="warning-help">When validationState is set to warning</AdditionalHelp>
   </Control>
 
   <Control validationState="danger">
-    <Label for="danger">Danger</Label>
+    <Label htmlFor="danger">Danger</Label>
     <Textbox id="danger" aria-describedby="danger-help" />
     <AdditionalHelp id="danger-help">When validationState is set to danger</AdditionalHelp>
   </Control>
@@ -101,14 +96,14 @@ const AdditionalHelp = require('../AdditionalHelp').default;
 
 ### Appending and Prepending text
 
-Provide an `appendText` or `prependText` prop for appending and prepending inputs. Validation state colorings will also be applied.
+Provide an `appendText` or `prependText` prop htmlFor appending and prepending inputs. Validation state colorings will also be applied.
 
 ```
 const Control = require('../Control').default;
 
 <>
   <Control>
-    <Label for="appended">Appended</Label>
+    <Label htmlFor="appended">Appended</Label>
     <Textbox
       id="appended"
       appendIconName="calendar"
@@ -116,7 +111,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control>
-    <Label for="prepended">Prepended</Label>
+    <Label htmlFor="prepended">Prepended</Label>
     <Textbox
       id="prepended"
       prependIconName="phone"
@@ -124,7 +119,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control>
-    <Label for="both">Appended and prepended</Label>
+    <Label htmlFor="both">Appended and prepended</Label>
     <Textbox
       id="both"
       appendIconName="user"
@@ -133,7 +128,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control validationState="success">
-    <Label for="appended">Appended</Label>
+    <Label htmlFor="appended">Appended</Label>
     <Textbox
       id="appended"
       appendIconName="calendar"
@@ -141,7 +136,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control validationState="warning">
-    <Label for="prepended">Prepended</Label>
+    <Label htmlFor="prepended">Prepended</Label>
     <Textbox
       id="prepended"
       prependIconName="phone"
@@ -149,7 +144,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control validationState="danger">
-    <Label for="both">Appended and prepended</Label>
+    <Label htmlFor="both">Appended and prepended</Label>
     <Textbox
       id="both"
       appendIconName="user"
@@ -166,12 +161,12 @@ const Control = require('../Control').default;
 
 <>
   <Control>
-    <Label for="dollar">US Dollar</Label>
+    <Label htmlFor="dollar">US Dollar</Label>
     <Textbox id="dollar" maskType="dollar" />
   </Control>
 
   <Control>
-    <Label for="phone-number">Phone number</Label>
+    <Label htmlFor="phone-number">Phone number</Label>
     <Textbox 
       id="phone-number"
       maskType="phone"
@@ -180,17 +175,17 @@ const Control = require('../Control').default;
   </Control>
 
   <Control>
-    <Label for="ssn">Social Security Number</Label>
+    <Label htmlFor="ssn">Social Security Number</Label>
     <Textbox id="ssn" maskType="ssnum" />
   </Control>
 
   <Control>
-    <Label for="zip">Zip code</Label>
+    <Label htmlFor="zip">Zip code</Label>
     <Textbox id="zip" maskType="zip" />
   </Control>
 
   <Control>
-    <Label for="date">Date</Label>
+    <Label htmlFor="date">Date</Label>
     <Textbox id="date" maskType="date" placeholder="mm/dd/yyyy" />
   </Control>
 </>
@@ -211,7 +206,7 @@ const mask = {
   };
 
 <Control>
-  <Label for="mask">Enter 6 letters (no numbers)</Label>
+  <Label htmlFor="mask">Enter 6 letters (no numbers)</Label>
   <Textbox id="mask" maskType="custom" customMask={mask} />
 </Control>
 ```
@@ -225,7 +220,7 @@ const Control = require('../Control').default;
 
 <>
   <Control>
-    <Label for="disabled">Disabled</Label>
+    <Label htmlFor="disabled">Disabled</Label>
     <Textbox
       id="disabled"
       defaultValue="John Doe"
@@ -234,7 +229,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control>
-    <Label for="readonly">Readonly</Label>
+    <Label htmlFor="readonly">Readonly</Label>
     <Textbox
       id="readonly"
       defaultValue="Jane Doe"
@@ -243,7 +238,7 @@ const Control = require('../Control').default;
   </Control>
 
   <Control>
-    <Label for="placeholder">Placeholder</Label>
+    <Label htmlFor="placeholder">Placeholder</Label>
     <Textbox
       id="placeholder"
       placeholder="Placeholder is one of many input attributes"

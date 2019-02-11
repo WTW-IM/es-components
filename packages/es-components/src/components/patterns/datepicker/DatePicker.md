@@ -20,6 +20,7 @@ The `DatePicker` component supports event handlers for `onChange`, `onBlur`, and
 
 ```
 const Control = require('../../controls/Control').default;
+const AdditionalHelp = require('../../controls/AdditionalHelp').default;
 
 function handleOnChange(date) {
   console.log(`Date selected: ${date}`);
@@ -38,12 +39,13 @@ function handleOnBlur(event) {
 <Control>
   <Label>Pick a Date</Label>
   <DatePicker
-    labelText="Pick a Date"
-    additionalHelpContent={<small>View the console to see the events.</small>}
     onChange={handleOnChange}
     onChangeRaw={handleOnChangeRaw}
     onBlur={handleOnBlur}
   />
+  <AdditionalHelp>
+    <small>View the console to see the events.</small>
+  </AdditionalHelp>
 </Control>
 ```
 
@@ -55,17 +57,13 @@ const isAfter = require('date-fns/is_after');
 
 const Control = require('../../controls/Control').default;
 
-class RangeExample extends React.Component {
-  constructor() {
-    this.state = { startDate: addDays(new Date(), -5), endDate: new Date()}
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChangeStart = this.handleChangeStart.bind(this);
-    this.handleChangeEnd = this.handleChangeEnd.bind(this);
-  }
+function RangeExample() {
+  const currentDate = new Date();
+  const [range, setRange] = React.useState({ startDate: addDays(currentDate, -5), endDate: currentDate });
 
-  handleChange({ startDate, endDate }) {
-    startDate = startDate || this.state.startDate
-    endDate = endDate || this.state.endDate
+  function handleChange({ startDate, endDate }) {
+    startDate = startDate || range.startDate
+    endDate = endDate || range.endDate
 
     if (isAfter(startDate, endDate)) {
       var temp = startDate
@@ -73,40 +71,43 @@ class RangeExample extends React.Component {
       endDate = temp
     }
 
-    this.setState({ startDate, endDate })
+    setRange({ startDate, endDate })
   }
 
-  handleChangeStart(startDate) {this.handleChange({ startDate })}
-
-  handleChangeEnd(endDate) {this.handleChange({ endDate })}
-
-  render() {
-    return (
-      <div style={{ display: 'flex', width: '70%', justifyContent: 'space-between' }}>
-        <Control>
-          <Label for="range-start-date">Start Date</Label>
-          <DatePicker
-            onChange={this.handleChangeStart}
-            selectsStart
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-            selectedDate={this.state.startDate}
-          />
-        </Control>
-        <Control>
-          <Label for="range-end-date">End Date</Label>
-          <DatePicker
-            onChange={this.handleChangeEnd}
-            selectsEnd
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-            selectedDate={this.state.endDate}
-          />
-        </Control>
-      </div>
-    )
+  function handleChangeStart(startDate) {
+    handleChange({ startDate })
   }
-}
+
+  function handleChangeEnd(endDate) {
+    handleChange({ endDate })
+  }
+
+  return (
+    <div style={{ display: 'flex', width: '70%', justifyContent: 'space-between' }}>
+      <Control>
+        <Label htmlFor="range-start-date">Start Date</Label>
+        <DatePicker
+          onChange={handleChangeStart}
+          selectsStart
+          startDate={range.startDate}
+          endDate={range.endDate}
+          selectedDate={range.startDate}
+        />
+      </Control>
+      <Control>
+        <Label htmlFor="range-end-date">End Date</Label>
+        <DatePicker
+          onChange={handleChangeEnd}
+          selectsEnd
+          startDate={range.startDate}
+          endDate={range.endDate}
+          selectedDate={range.endDate}
+        />
+      </Control>
+    </div>
+  )
+};
+
 <RangeExample />
 ```
 
@@ -126,7 +127,7 @@ function isWeekday(date) {
 }
 
 <Control>
-  <Label for="weekday-only">No Weekends</Label>
+  <Label htmlFor="weekday-only">No Weekends</Label>
   <DatePicker id="weekday-only" onChange={()=>{}} filterDate={isWeekday} />
 </Control>
 ```
@@ -139,7 +140,7 @@ const addDays = require('date-fns/add_days');
 const Control = require('../../controls/Control').default;
 
 <Control>
-  <Label for="today-and-tomorrow">Today and Tomorrow</Label>
+  <Label htmlFor="today-and-tomorrow">Today and Tomorrow</Label>
   <DatePicker id="today-and-tomorrow" onChange={()=>{}} includeDates={[new Date(), addDays(new Date(), 1)]} />
 </Control>
 ```
@@ -152,7 +153,7 @@ const addDays = require('date-fns/add_days');
 const Control = require('../../controls/Control').default;
 
 <Control>
-  <Label for="not-today-nor-tomorrow">Not Today or Yesterday</Label>
+  <Label htmlFor="not-today-nor-tomorrow">Not Today or Yesterday</Label>
   <DatePicker id="not-today-nor-tomorrow" onChange={()=>{}} excludeDates={[new Date(), addDays(new Date(), -1)]} />
 </Control>
 ```

@@ -31,18 +31,13 @@ beforeEach(() => {
   );
 });
 
-it.only('renders as expected', () => {
-  const { container } = renderWithTheme(instanceToRender);
-  expect(container).toMatchSnapshot();
-});
-
-it.only('executes onClick when nav item clicked', () => {
+it('executes onClick when nav item clicked', () => {
   const { getByText } = renderWithTheme(instanceToRender);
   getByText('Home').click();
   expect(onClick).toHaveBeenCalled();
 });
 
-it.only('disabled item prevents onclick functions', () => {
+it('disabled item prevents onclick functions', () => {
   const { getByText } = renderWithTheme(instanceToRender);
   getByText('Disabled').click();
   expect(onClick).not.toBeCalled();

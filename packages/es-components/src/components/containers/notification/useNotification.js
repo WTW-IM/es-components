@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMutationEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
@@ -20,15 +20,12 @@ const DismissButton = styled.button`
 `;
 
 const NotificationContent = React.forwardRef(
-  (
-    { type, includeIcon, isDismissable, onDismiss, children, iconName },
-    ref
-  ) => {
+  ({ includeIcon, isDismissable, onDismiss, children, iconName }, ref) => {
     const [isDismissed, setIsDismissed] = useState(false);
 
-    useMutationEffect(
+    useEffect(
       function removeNotification() {
-        if (ref.current) {
+        if (isDismissed) {
           ref.current.remove();
         }
       },

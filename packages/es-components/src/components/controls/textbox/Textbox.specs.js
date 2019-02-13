@@ -12,7 +12,7 @@ beforeEach(cleanup);
 
 const buildTextbox = props => (
   <Control>
-    <Label for="test">Text</Label>
+    <Label htmlFor="test">Text</Label>
     <Textbox id="test" {...props} />
   </Control>
 );
@@ -47,7 +47,9 @@ it('renders addons when provided', () => {
 
   expect(getNumberOfIcons({ prependIconName: 'prepend' })).toBe(1);
   expect(getNumberOfIcons({ appendIconName: 'append' })).toBe(1);
-  expect(getNumberOfIcons({ prependIconName: 'prepend', appendIconName: 'append' })).toBe(2);
+  expect(
+    getNumberOfIcons({ prependIconName: 'prepend', appendIconName: 'append' })
+  ).toBe(2);
 });
 
 it('applies mask to changed value', () => {
@@ -56,9 +58,11 @@ it('applies mask to changed value', () => {
   };
   const { getByLabelText } = renderWithTheme(buildTextbox(props));
 
-  fireEvent.change(getByLabelText('Text'), { target: {
-    value: '123452323'
-  }});
+  fireEvent.change(getByLabelText('Text'), {
+    target: {
+      value: '123452323'
+    }
+  });
 
   expect(getByLabelText('Text').value).toBe('123-45-2323');
 });
@@ -69,9 +73,13 @@ it('updates mask properly', () => {
   };
   const { getByLabelText } = renderWithTheme(buildTextbox(props));
 
-  fireEvent.change(getByLabelText('Text'), { target: {
-    value: '8'
-  }});
+  fireEvent.change(getByLabelText('Text'), {
+    target: {
+      value: '8'
+    }
+  });
 
-  expect(getByLabelText('Text').value).toBe('8\u2000\u2000-\u2000\u2000-\u2000\u2000\u2000\u2000')
+  expect(getByLabelText('Text').value).toBe(
+    '8\u2000\u2000-\u2000\u2000-\u2000\u2000\u2000\u2000'
+  );
 });

@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   box-sizing: border-box;
   color: ${props => props.variant.textColor};
   cursor: pointer;
-  display: ${props => (props.block ? 'block' : 'inline-block')};
+  display: block;
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
@@ -28,7 +28,12 @@ const StyledButton = styled.button`
   transition: background-color 250ms linear, color 250ms linear;
   vertical-align: middle;
   white-space: nowrap;
-  width: ${props => (props.block ? '100%' : 'initial')};
+  width: 100%;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    display: ${props => (props.block ? 'block' : 'inline-block')};
+    width: ${props => (props.block ? '100%' : 'initial')};
+  }
 
   &:hover {
     background-color: ${props => props.variant.hoverBgColor};

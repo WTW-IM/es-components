@@ -137,7 +137,7 @@ DatePicker.propTypes = {
   onBlur: PropTypes.func,
   /** input field placeholder */
   placeholder: PropTypes.string,
-  /** Moment object representing the selected date */
+  /** Date object or string representing the selected date */
   selectedDate: PropTypes.oneOfType([
     PropTypes.instanceOf(Date),
     PropTypes.string

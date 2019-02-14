@@ -9,9 +9,14 @@ const StyledButton = styled.button`
   background: none;
   border: none;
   box-sizing: border-box;
-  display: ${props => (props.block ? 'block' : 'inline-block')};
+  display: block;
   padding: 0;
-  width: ${props => (props.block ? '100%' : 'initial')};
+  width: 100%;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    display: ${props => (props.block ? 'block' : 'inline-block')};
+    width: ${props => (props.block ? '100%' : 'initial')};
+  }
 
   .es-button--display {
     background-color: ${props => props.variant.bgColor};
@@ -20,7 +25,6 @@ const StyledButton = styled.button`
     border-radius: ${props => props.buttonSize.borderRadius};
     color: ${props => props.variant.textColor};
     cursor: pointer;
-    display: ${props => (props.block ? 'block' : 'inline-block')};
     font-family: inherit;
     font-size: ${props => props.buttonSize.fontSize};
     font-weight: ${props => props.buttonSize.fontWeight || 'normal'};

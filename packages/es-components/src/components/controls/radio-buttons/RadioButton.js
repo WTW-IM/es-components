@@ -35,7 +35,7 @@ const RadioLabel = styled(Label)`
   text-transform: none;
 
   &:hover .es-radio__fill:before {
-    ${props => radioFill(props.hoverFillColor)};
+    ${props => !props.checked && radioFill(props.hoverFillColor)};
   }
 
   @media (min-width: ${props => props.theme.screenSize.phone}) {
@@ -88,7 +88,8 @@ export function RadioButton({ name, children, ...radioProps }) {
     disabled: radioProps.disabled,
     htmlFor: id,
     hoverFillColor: hover,
-    validationState
+    validationState,
+    checked: radioProps.checked
   };
   const classNameState = `es-radio__input--${validationState}`;
 

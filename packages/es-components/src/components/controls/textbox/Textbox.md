@@ -6,7 +6,7 @@ const Control = require('../Control').default;
 <>
   <Control>
     <Label htmlFor="stacked">Stacked</Label>
-    <Textbox id="stacked" />
+    <Textbox id="stacked" className="custom-class" />
   </Control>
 
   <Control orientation="inline">
@@ -167,7 +167,7 @@ const Control = require('../Control').default;
 
   <Control>
     <Label htmlFor="phone-number">Phone number</Label>
-    <Textbox 
+    <Textbox
       id="phone-number"
       maskType="phone"
       title="Providing a title will override the default mask title text"

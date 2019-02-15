@@ -9,6 +9,10 @@ import InputBase from '../../controls/textbox/InputText';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import { useTheme } from '../../util/useTheme';
 
+const IncrementerWrapper = styled.div`
+  display: flex;
+`;
+
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
   text-align: center;
@@ -47,9 +51,8 @@ function Incrementer(props) {
   }
 
   return (
-    <div>
+    <IncrementerWrapper>
       <Button
-        className="decrement-button"
         styleType="primary"
         onClick={decrementValue}
         disabled={isDecrementDisabled}
@@ -67,7 +70,6 @@ function Incrementer(props) {
         readOnly
       />
       <Button
-        className="increment-button"
         styleType="primary"
         onClick={incrementValue}
         disabled={isIncrementDisabled}
@@ -78,7 +80,7 @@ function Incrementer(props) {
         </ScreenReaderButtonText>
         <Icon name="add" />
       </Button>
-    </div>
+    </IncrementerWrapper>
   );
 }
 

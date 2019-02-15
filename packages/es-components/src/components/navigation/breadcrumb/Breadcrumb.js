@@ -59,7 +59,7 @@ const Crumb = styled.li`
 
 function Breadcrumb({ children, ...props }) {
   return (
-    <OrderedList {...props} className="es-breadcrumb">
+    <OrderedList {...props}>
       {React.Children.map(children, child => (
         <Crumb key={genId()}>{child}</Crumb>
       ))}

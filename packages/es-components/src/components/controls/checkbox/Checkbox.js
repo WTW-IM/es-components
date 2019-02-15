@@ -115,7 +115,6 @@ function Checkbox({ children, ...checkboxProps }) {
 
   return (
     <CheckboxLabel
-      className="es-checkbox"
       validationState={validationState}
       checked={checkboxProps.checked}
       disabled={checkboxProps.disabled}

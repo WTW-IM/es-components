@@ -91,17 +91,10 @@ export function RadioButton({ name, children, ...radioProps }) {
     validationState,
     checked: radioProps.checked
   };
-  const classNameState = `es-radio__input--${validationState}`;
 
   return (
-    <RadioLabel className="es-radio" {...labelProps}>
-      <RadioInput
-        type="radio"
-        name={name}
-        className={classNameState}
-        id={id}
-        {...radioProps}
-      />
+    <RadioLabel {...labelProps}>
+      <RadioInput type="radio" name={name} id={id} {...radioProps} />
       <RadioDisplay
         className="es-radio__fill"
         borderColor={fill}

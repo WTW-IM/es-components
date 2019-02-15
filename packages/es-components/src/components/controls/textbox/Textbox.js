@@ -118,7 +118,6 @@ function Textbox(props) {
   const theme = useTheme();
 
   const validationState = React.useContext(ValidationContext);
-  const classNameState = `es-textbox__input--${validationState}`;
 
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
@@ -151,14 +150,13 @@ function Textbox(props) {
     : theme.colors.gray3;
 
   return (
-    <InputWrapper className="es-textbox__wrapper">
+    <InputWrapper>
       {hasPrepend && (
         <Prepend addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
           <Icon aria-hidden="true" name={prependIconName} size={18} />
         </Prepend>
       )}
       <Input
-        className={classNameState}
         hasAppend={hasAppend}
         hasPrepend={hasPrepend}
         type="text"

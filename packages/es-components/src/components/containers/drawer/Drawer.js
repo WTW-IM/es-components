@@ -28,11 +28,11 @@ export const Drawer = props => {
   const {
     activeKeys,
     children,
-    className,
     closedIconName,
     isAccordion,
     onActiveKeysChanged,
-    openedIconName
+    openedIconName,
+    ...other
   } = props;
 
   const onItemClick = key => {
@@ -83,7 +83,7 @@ export const Drawer = props => {
       return React.cloneElement(child, childProps);
     });
 
-  return <StyledDrawer className={className}>{getPanels()}</StyledDrawer>;
+  return <StyledDrawer {...other}>{getPanels()}</StyledDrawer>;
 };
 
 Drawer.propTypes = {
@@ -94,8 +94,6 @@ Drawer.propTypes = {
   ]),
   /** Should only contain one or more Drawer.Panel elements */
   children: drawerPanelPropType,
-  /** Add additional CSS classes to the root drawer element */
-  className: PropTypes.string,
   /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
   /** Only allows one DrawerPanel to be open at a time */
@@ -111,8 +109,7 @@ Drawer.defaultProps = {
   isAccordion: false,
   closedIconName: 'add',
   openedIconName: 'minus',
-  children: undefined,
-  className: undefined
+  children: undefined
 };
 
 Drawer.Panel = DrawerPanel;

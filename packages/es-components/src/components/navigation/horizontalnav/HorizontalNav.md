@@ -1,76 +1,95 @@
 (Uncontrolled) Use `defaultSelected` to set an initial selected item.
 ```
-<div>
-  <div>
-    <h3>Standard</h3>
-    <HorizontalNav defaultSelected="home">
-      <HorizontalNav.Item id="home" targetUrl="#home">Home</HorizontalNav.Item>
-      <HorizontalNav.Item id="cart">Cart</HorizontalNav.Item>
-      <HorizontalNav.Item id="help">Help</HorizontalNav.Item>
-      <HorizontalNav.Item id="info">About</HorizontalNav.Item>
-      <HorizontalNav.Item id="disabled" isDisabled>Disabled</HorizontalNav.Item>
-    </HorizontalNav>
-  </div>
+<>
+  <h3>Standard</h3>
+  <HorizontalNav selected="home">
+    <HorizontalNav.Item id="home">
+      <a href="#home">Home</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="cart">
+      <a href="#cart">Cart</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="help">
+      <a href="#help">Help</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="info">
+      <a href="#info">About</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="disabled" isDisabled>
+      <a href="#disabled">Disabled</a>
+    </HorizontalNav.Item>
+  </HorizontalNav>
 
-  <div>
-    <h3>Alternate Style</h3>
-    <HorizontalNav useAltStyle defaultSelected="snapshot">
-      <HorizontalNav.Item id="snapshot">Plan Snapshot</HorizontalNav.Item>
-      <HorizontalNav.Item id="medical">Medical Benefits</HorizontalNav.Item>
-      <HorizontalNav.Item id="drug">Drug Benefits</HorizontalNav.Item>
-      <HorizontalNav.Item id="docs">Plan Documents</HorizontalNav.Item>
-      <HorizontalNav.Item id="disabled" isDisabled>Disabled</HorizontalNav.Item>
-    </HorizontalNav>
-  </div>
-</div>
+  <h3>Alternate Style</h3>
+  <HorizontalNav useAltStyle selected="home">
+    <HorizontalNav.Item id="home">
+      <a href="#home">Home</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="cart">
+      <a href="#cart">Cart</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="help">
+      <a href="#help">Help</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="info">
+      <a href="#info">About</a>
+    </HorizontalNav.Item>
+    <HorizontalNav.Item id="disabled" isDisabled>
+      <a href="#disabled">Disabled</a>
+    </HorizontalNav.Item>
+  </HorizontalNav>
+</>
 ```
 
 (Controlled) Use `onItemSelected` to control the `selected` value.
 ```
-class NavExample extends React.Component {
-  constructor() {
-    this.state = { selected: "home" };
-    this.onItemSelected = this.onItemSelected.bind(this);
-  }
-
-  onItemSelected(value) {
-    this.setState({ selected: value });
-    alert(`${value} selected!`);
-  };
-
-  render() {
-    return (
-      <div>
-        <HorizontalNav selected={ this.state.selected } onItemSelected={ this.onItemSelected }>
-          <HorizontalNav.Item id="home"><Icon name="home" /> Home</HorizontalNav.Item>
-          <HorizontalNav.Item id="cart"><Icon name="shopping-cart" /> Cart</HorizontalNav.Item>
-          <HorizontalNav.Item id="disabled" isDisabled><Icon name="no-symbol" /> Disabled</HorizontalNav.Item>
-        </HorizontalNav>
-      </div>
-    )
-  }
+function Link({ className, children, ...rest }) {
+  return <a className={className} href="#" {...rest}>{children}</a>;
 }
+
+function NavExample(props) {
+  const [selected, setSelected] = React.useState("home")
+  const [useAltStyle, setUseAltStyle] = React.useState(false);
+
+  function onItemSelected(value) {
+    return e => {
+      e.preventDefault();
+      setSelected(value);
+      alert(`you selected ${value}`);
+    }
+  }
+
+  function switchStyle() {
+    setUseAltStyle(!useAltStyle);
+  }
+
+  return (
+    <div>
+      <HorizontalNav selected={ selected } useAltStyle={useAltStyle}>
+        <HorizontalNav.Item id="home">
+          <button onClick={onItemSelected('home')}>
+            <Icon name="home" style={{ marginRight: '10px' }} />
+            Time to go home!
+          </button>
+        </HorizontalNav.Item>
+        <HorizontalNav.Item id="cart">
+          <a href="#shopping-cart" onClick={onItemSelected('cart')}>
+            <Icon name="shopping-cart" style={{ marginRight: '10px' }} />
+            Shopping Cart
+          </a>
+        </HorizontalNav.Item>
+        <HorizontalNav.Item id="edit">
+          <Link onClick={onItemSelected('edit')}>
+            <Icon name="edit" style={{ marginRight: '10px' }} />
+            Edit account
+          </Link>
+        </HorizontalNav.Item>
+      </HorizontalNav>
+      <hr />
+      <Button onClick={switchStyle}>Switch to Alternative Style</Button>
+    </div>
+  )
+};
+
 <NavExample />
-```
-
-Set `onClick` on an individual `HorizontalNav.Item`.
-```
-<div>
-  <HorizontalNav useAltStyle>
-    <HorizontalNav.Item id="home" onClick={ () => (alert('Time to go Home!'))}>Home</HorizontalNav.Item>
-    <HorizontalNav.Item id="cart" onClick={ () => (alert('You clicked the Cart!'))}>Cart</HorizontalNav.Item>
-    <HorizontalNav.Item id="disabled" isDisabled>Disabled</HorizontalNav.Item>
-  </HorizontalNav>
-</div>
-```
-
-Assign a `targetUrl` to set the nav link href location. Use `isExternalLink` to open the link in a new browser window.
-```
-<div>
-  <HorizontalNav>
-    <HorizontalNav.Item id="home" targetUrl="/">Home</HorizontalNav.Item>
-    <HorizontalNav.Item id="medicare" targetUrl="https://medicare.oneexchange.com" isExternalLink>Medicare Site</HorizontalNav.Item>
-    <HorizontalNav.Item id="sidenav" targetUrl="#sidenav">HorizontalNav Section</HorizontalNav.Item>
-  </HorizontalNav>
-</div>
 ```

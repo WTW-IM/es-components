@@ -1,76 +1,99 @@
-(Uncontrolled) Use `defaultSelected` to set an initial selected item.
-```
-<div style={{display: 'flex'}}>
-  <div style={{width: '30%', marginRight: '4em'}}>
-    <h3>Standard</h3>
-    <SideNav defaultSelected="home">
-      <SideNav.Item id="home" targetUrl="#home">Home</SideNav.Item>
-      <SideNav.Item id="cart">Cart</SideNav.Item>
-      <SideNav.Item id="help">Help</SideNav.Item>
-      <SideNav.Item id="info">About</SideNav.Item>
-      <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
-    </SideNav>
-  </div>
+Use `SideNav` to create an uncontrolled navigation menu. Each `SideNav.Item` will render with the same styling. A `SideNav.Item` only accepts one child component and will typically be a `a`, `button`, or client side routing `Link`-type component.
 
-  <div style={{width: '30%'}}>
-    <h3>Alternate Style</h3>
-    <SideNav useAltStyle defaultSelected="home">
-      <SideNav.Item id="home">Home</SideNav.Item>
-      <SideNav.Item id="cart">Cart</SideNav.Item>
-      <SideNav.Item id="help">Help</SideNav.Item>
-      <SideNav.Item id="info">About</SideNav.Item>
-      <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
-    </SideNav>
-  </div>
-</div>
+```
+<>
+  <h3>Standard</h3>
+  <SideNav selected="home">
+    <SideNav.Item id="home">
+      <a href="#home">Home</a>
+    </SideNav.Item>
+    <SideNav.Item id="cart">
+      <a href="#cart">Cart</a>
+    </SideNav.Item>
+    <SideNav.Item id="help">
+      <a href="#help">Help</a>
+    </SideNav.Item>
+    <SideNav.Item id="info">
+      <a href="#info">About</a>
+    </SideNav.Item>
+    <SideNav.Item id="disabled" isDisabled>
+      <a href="#disabled">Disabled</a>
+    </SideNav.Item>
+  </SideNav>
+
+  <h3>Alternate Style</h3>
+  <SideNav useAltStyle selected="home">
+    <SideNav.Item id="home">
+      <a href="#home">Home</a>
+    </SideNav.Item>
+    <SideNav.Item id="cart">
+      <a href="#cart">Cart</a>
+    </SideNav.Item>
+    <SideNav.Item id="help">
+      <a href="#help">Help</a>
+    </SideNav.Item>
+    <SideNav.Item id="info">
+      <a href="#info">About</a>
+    </SideNav.Item>
+    <SideNav.Item id="disabled" isDisabled>
+      <a href="#disabled">Disabled</a>
+    </SideNav.Item>
+  </SideNav>
+</>
 ```
 
-(Controlled) Use `onItemSelected` to control the `selected` value.
+Change the `selected` prop that is passed to `SideNav` to change when an item is clicked.
+
 ```
-class NavExample extends React.Component {
-  constructor() {
-    this.state = { selected: "home" };
-    this.onItemSelected = this.onItemSelected.bind(this);
+function Link({ className, children, ...rest }) {
+  return <a className={className} href="#" {...rest}>{children}</a>;
+}
+
+function NavExample(props) {
+  const [selected, setSelected] = React.useState("home")
+  const [useAltStyle, setUseAltStyle] = React.useState(false);
+
+  function onItemSelected(value) {
+    return e => {
+      e.preventDefault();
+      setSelected(value);
+      alert(`you selected ${value}`);
+    }
   }
 
-  onItemSelected(value) {
-    this.setState({ selected: value });
-    alert(`${value} selected!`);
-  };
+  function switchStyle() {
+    setUseAltStyle(!useAltStyle);
+  }
 
-  render() {
-    return (
+  return (
+    <>
       <div style={{width: '30%'}}>
-        <SideNav selected={ this.state.selected } onItemSelected={ this.onItemSelected }>
-          <SideNav.Item id="home"><Icon name="home" /> Home</SideNav.Item>
-          <SideNav.Item id="cart"><Icon name="shopping-cart" /> Cart</SideNav.Item>
-          <SideNav.Item id="disabled" isDisabled><Icon name="no-symbol" /> Disabled</SideNav.Item>
+        <SideNav selected={ selected } useAltStyle={useAltStyle}>
+          <SideNav.Item id="home">
+            <button onClick={onItemSelected('home')}>
+              <Icon name="home" style={{ marginRight: '10px' }} />
+              Time to go home!
+            </button>
+          </SideNav.Item>
+          <SideNav.Item id="cart">
+            <a href="#shopping-cart" onClick={onItemSelected('cart')}>
+              <Icon name="shopping-cart" style={{ marginRight: '10px' }} />
+              Shopping Cart
+            </a>
+          </SideNav.Item>
+          <SideNav.Item id="edit">
+            <Link onClick={onItemSelected('edit')}>
+              <Icon name="edit" style={{ marginRight: '10px' }} />
+              Edit account
+            </Link>
+          </SideNav.Item>
         </SideNav>
       </div>
-    )
-  }
-}
+      <hr />
+      <Button onClick={switchStyle}>Switch to Alternative Style</Button>
+    </>
+  )
+};
+
 <NavExample />
-```
-
-Set `onClick` on an individual `SideNav.Item`.
-```
-<div style={{width: '30%'}}>
-  <SideNav useAltStyle>
-    <SideNav.Item id="home" onClick={ () => (alert('Time to go Home!'))}>Home</SideNav.Item>
-    <SideNav.Item id="cart" onClick={ () => (alert('You clicked the Cart!'))}>Cart</SideNav.Item>
-    <SideNav.Item id="disabled" isDisabled>Disabled</SideNav.Item>
-  </SideNav>
-</div>
-```
-
-Assign a `targetUrl` to set the nav link href location. Use `isExternalLink` to open the link in a new browser window.
-```
-<div style={{width: '30%'}}>
-  <SideNav>
-    <SideNav.Item id="home" targetUrl="/">Home</SideNav.Item>
-    <SideNav.Item id="medicare" targetUrl="https://medicare.oneexchange.com" isExternalLink>Medicare Site</SideNav.Item>
-    <SideNav.Item id="sidenav" targetUrl="#sidenav">SideNav Section</SideNav.Item>
-  </SideNav>
-</div>
 ```

@@ -88,7 +88,8 @@ function Modal(props) {
     onExit,
     onHide,
     show,
-    size
+    size,
+    ...other
   } = props;
 
   const theme = useTheme();
@@ -119,14 +120,9 @@ function Modal(props) {
         onHide={onHide}
         show={show}
         transition={animation ? Fade : undefined}
-        className="es-modal"
       >
-        <ModalDialog
-          size={size}
-          aria-labelledby={ariaId}
-          className="es-modal__dialog"
-        >
-          <ModalContent className="es-modal__content">{children}</ModalContent>
+        <ModalDialog size={size} aria-labelledby={ariaId} {...other}>
+          <ModalContent>{children}</ModalContent>
         </ModalDialog>
       </DialogWrapper>
     </ModalContext.Provider>

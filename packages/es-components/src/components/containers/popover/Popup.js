@@ -42,7 +42,6 @@ function Popup({
       >
         {state => (
           <Popper
-            className={`${name}-popper`}
             placement={placement}
             eventsEnabled={transitionIn}
             modifiers={{
@@ -60,7 +59,7 @@ function Popup({
             innerRef={popperRef}
           >
             {children}
-            <Arrow className={`${name}-popper__arrow`} />
+            <Arrow />
           </Popper>
         )}
       </Transition>

@@ -172,7 +172,7 @@ function Popover(props) {
   );
 
   return (
-    <Container className="es-popover">
+    <Container>
       <Popup
         name={name}
         trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
@@ -187,12 +187,8 @@ function Popover(props) {
           popperRef.current = elem;
         }}
       >
-        <PopoverContainer
-          className="es-popover__container"
-          role="dialog"
-          ref={contentRef}
-        >
-          <PopoverHeader className="es-popover__header" hasTitle={hasTitle}>
+        <PopoverContainer role="dialog" ref={contentRef}>
+          <PopoverHeader hasTitle={hasTitle}>
             {hasTitle && <TitleBar>{title}</TitleBar>}
             {hasAltCloseButton && altCloseButton}
             <CloseHelpText
@@ -202,14 +198,8 @@ function Popover(props) {
             />
           </PopoverHeader>
 
-          <PopoverBody
-            className="es-popover__body"
-            hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}
-          >
-            <PopoverContent
-              className="es-popover__content"
-              showCloseButton={showCloseButton}
-            >
+          <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
+            <PopoverContent showCloseButton={showCloseButton}>
               {content}
             </PopoverContent>
             {showCloseButton && closeButton}

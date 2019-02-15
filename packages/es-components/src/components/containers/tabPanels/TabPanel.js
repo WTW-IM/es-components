@@ -34,33 +34,32 @@ function TabPanel(props) {
 
   let displayIndex = findIndex(React.Children.toArray(children), child => {
     const key = selectedKey || value || value.key;
-    return child.props.name.key ?
-      child.props.name.key === key :
-      child.props.name === key;
+    return child.props.name.key
+      ? child.props.name.key === key
+      : child.props.name === key;
   });
 
   if (displayIndex < 0) {
     displayIndex = 0;
   }
 
-  const elements = React.Children.map(children, (child, index) => React.cloneElement(child, {
-    selected: index === displayIndex,
-    action: header => {
-      setValue(header);
-      tabChanged(header);
-    }
-  }));
-
+  const elements = React.Children.map(children, (child, index) =>
+    React.cloneElement(child, {
+      selected: index === displayIndex,
+      action: header => {
+        setValue(header);
+        tabChanged(header);
+      }
+    })
+  );
 
   return (
-    <div className="es-tab-panel">
-      <TabWrapper className="es-tab-panel__wrapper">
-        <TabFormatter className="es-tab-panel__tabs">{elements}</TabFormatter>
+    <>
+      <TabWrapper>
+        <TabFormatter>{elements}</TabFormatter>
       </TabWrapper>
-      <TabContent className="es-tab-panel__content">
-        {elements[displayIndex].props.children}
-      </TabContent>
-    </div>
+      <TabContent>{elements[displayIndex].props.children}</TabContent>
+    </>
   );
 }
 

@@ -20,7 +20,7 @@ exports[`renders as expected 1`] = `
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa tXzOW"
+            class="sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -41,7 +41,7 @@ exports[`renders as expected 1`] = `
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa tXzOW"
+            class="sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -63,7 +63,7 @@ exports[`renders as expected 1`] = `
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa tXzOW"
+            class="sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -84,7 +84,7 @@ exports[`renders as expected 1`] = `
           </span>
           <i
             aria-hidden="true"
-            class="es-icon sc-bdVaJa tXzOW"
+            class="sc-bdVaJa tXzOW"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"

@@ -34,7 +34,7 @@ describe('dismissable notifications', () => {
     );
     expect(() => getByText('I am here!')).not.toThrow();
 
-    container.querySelector('.notification__dismiss').click();
+    container.querySelector('button').click();
 
     expect(() => getByText('I am here!')).toThrow();
   });
@@ -47,7 +47,7 @@ describe('dismissable notifications', () => {
       </Notification>
     );
 
-    container.querySelector('.notification__dismiss').click();
+    container.querySelector('button').click();
 
     expect(onDismiss).toHaveBeenCalled();
   });

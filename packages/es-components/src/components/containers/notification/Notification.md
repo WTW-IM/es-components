@@ -41,12 +41,7 @@ const InlineMessage = require('./Message').InlineMessage;
           content="Some content that is helpful to advisors!"
           placement="top"
           renderTrigger={({ ref, toggleShow, isOpen }) => (
-            <PopoverLink
-              onClick={toggleShow}
-              aria-expanded={isOpen}
-              ref={ref}
-              styleType="primary"
-            >
+            <PopoverLink onClick={toggleShow} aria-expanded={isOpen} ref={ref}>
               popovers
             </PopoverLink>
           )}

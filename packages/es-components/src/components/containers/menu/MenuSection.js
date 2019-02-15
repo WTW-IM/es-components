@@ -24,16 +24,16 @@ const StyledChildrenContainer = styled.section`
 `;
 
 function MenuSection(props) {
-  const { title, children, isLast, isFirst, isOnlySection } = props;
+  const { title, children, isLast, isFirst, isOnlySection, ...other } = props;
   const inline = useContext(InlineContext);
 
   return (
     <StyledMenuSection
-      className="es-menu__section"
       isLast={isLast}
       isFirst={isFirst}
       inline={inline}
       isOnlySection={isOnlySection}
+      {...other}
     >
       {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}
       {children && (

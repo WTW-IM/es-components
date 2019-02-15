@@ -22,32 +22,42 @@ The `DatePicker` component supports event handlers for `onChange`, `onBlur`, and
 const Control = require('../../controls/Control').default;
 const AdditionalHelp = require('../../controls/AdditionalHelp').default;
 
-function handleOnChange(date) {
-  console.log(`Date selected: ${date}`);
-}
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
 
-function handleOnChangeRaw(event) {
-  console.log(`OnChangeRaw: ${event.target.value}`);
-}
-
-function handleOnBlur(event) {
-  if (event) {
-    console.log(`OnBlur: ${event.target.value}`);
+  function handleOnChange(date) {
+    setSelectedValue(date);
+    console.log(`Date selected: ${date}`);
   }
+
+  function handleOnChangeRaw(event) {
+    console.log(`OnChangeRaw: ${event.target.value}`);
+  }
+
+  function handleOnBlur(event) {
+    if (event) {
+      console.log(`OnBlur: ${event.target.value}`);
+    }
+  }
+
+  return (
+    <Control>
+      <Label>Pick a Date</Label>
+      <DatePicker
+        onChange={handleOnChange}
+        onChangeRaw={handleOnChangeRaw}
+        onBlur={handleOnBlur}
+        allowNativeDatepickerOnMobile={false}
+        selectedDate={selectedValue}
+      />
+      <AdditionalHelp>
+        <small>View the console to see the events.</small>
+      </AdditionalHelp>
+    </Control>
+  );
 }
 
-<Control>
-  <Label>Pick a Date</Label>
-  <DatePicker
-    onChange={handleOnChange}
-    onChangeRaw={handleOnChangeRaw}
-    onBlur={handleOnBlur}
-    allowNativeDatepickerOnMobile={false}
-  />
-  <AdditionalHelp>
-    <small>View the console to see the events.</small>
-  </AdditionalHelp>
-</Control>
+<DatePickerExample />
 ```
 
 ### Date Ranges
@@ -125,13 +135,29 @@ native one on mobile devices. This defaults to `true`.
 const Control = require('../../controls/Control').default;
 const AdditionalHelp = require('../../controls/AdditionalHelp').default;
 
-<Control>
-  <Label htmlFor="pick-a-date">Pick a Date</Label>
-  <DatePicker id="pick-a-date" onChange={()=>{}} />
-  <AdditionalHelp>
-    <small>Change the screen size to see the transformation.</small>
-  </AdditionalHelp>
-</Control>
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
+
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+
+  return (
+    <Control>
+      <Label htmlFor="pick-a-date">Pick a Date</Label>
+      <DatePicker
+        id="pick-a-date"
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+      />
+      <AdditionalHelp>
+        <small>Change the screen size to see the transformation.</small>
+      </AdditionalHelp>
+    </Control>
+  )
+}
+
+<DatePickerExample />
 ```
 
 ### Filter Dates
@@ -140,45 +166,94 @@ The `filterDate` prop accepts a function used to filter the available dates.
 
 ```
 const getDay = require('date-fns/get_day');
-
 const Control = require('../../controls/Control').default;
 
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
 
-function isWeekday(date) {
-  const day = getDay(date);
-  return day !== 0 && day !== 6
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+
+  function isWeekday(date) {
+    const day = getDay(date);
+    return day !== 0 && day !== 6
+  }
+
+  return (
+    <Control>
+      <Label htmlFor="weekday-only">No Weekends</Label>
+      <DatePicker
+        id="weekday-only"
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+        filterDate={isWeekday}
+        allowNativeDatepickerOnMobile={false}
+      />
+    </Control>
+  )
 }
 
-<Control>
-  <Label htmlFor="weekday-only">No Weekends</Label>
-  <DatePicker id="weekday-only" onChange={()=>{}} filterDate={isWeekday}  allowNativeDatepickerOnMobile={false} />
-</Control>
+<DatePickerExample />
 ```
 
 ### Include Dates (whitelist)
 
 ```
 const addDays = require('date-fns/add_days');
-
 const Control = require('../../controls/Control').default;
 
-<Control>
-  <Label htmlFor="today-and-tomorrow">Today and Tomorrow</Label>
-  <DatePicker id="today-and-tomorrow" onChange={()=>{}} includeDates={[new Date(), addDays(new Date(), 1)]} allowNativeDatepickerOnMobile={false} />
-</Control>
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
+
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+
+  return (
+    <Control>
+      <Label htmlFor="today-and-tomorrow">Today and Tomorrow</Label>
+      <DatePicker
+        id="today-and-tomorrow"
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+        includeDates={[new Date(), addDays(new Date(), 1)]}
+        allowNativeDatepickerOnMobile={false}
+      />
+    </Control>
+  )
+}
+
+<DatePickerExample />
 ```
 
 ### Exclude Dates (blacklist)
 
 ```
 const addDays = require('date-fns/add_days');
-
 const Control = require('../../controls/Control').default;
 
-<Control>
-  <Label htmlFor="not-today-nor-tomorrow">Not Today or Yesterday</Label>
-  <DatePicker id="not-today-nor-tomorrow" onChange={()=>{}} excludeDates={[new Date(), addDays(new Date(), -1)]}  allowNativeDatepickerOnMobile={false} />
-</Control>
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
+
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+
+  return (
+    <Control>
+      <Label htmlFor="not-today-nor-tomorrow">Not Today or Yesterday</Label>
+      <DatePicker
+        id="not-today-nor-tomorrow"
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+        excludeDates={[new Date(), addDays(new Date(), -1)]}
+        allowNativeDatepickerOnMobile={false} />
+    </Control>
+  )
+}
+
+<DatePickerExample />
 ```
 
 ### Child Content
@@ -186,10 +261,26 @@ const Control = require('../../controls/Control').default;
 ```
 const Control = require('../../controls/Control').default;
 
-<Control>
-  <Label>Child Content</Label>
-  <DatePicker onChange={()=>{}} allowNativeDatepickerOnMobile={false}>
-    <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
-  </DatePicker>
-</Control>
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
+
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+
+  return (
+    <Control>
+      <Label>Child Content</Label>
+      <DatePicker
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+        allowNativeDatepickerOnMobile={false}
+      >
+        <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
+      </DatePicker>
+    </Control>
+  )
+}
+
+<DatePickerExample />
 ```

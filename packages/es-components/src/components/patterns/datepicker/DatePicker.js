@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
-import uncontrollable from 'uncontrollable';
 import styled, { withTheme } from 'styled-components';
 import { parse, format, isValid } from 'date-fns';
 
@@ -74,7 +73,6 @@ export function DatePicker(props) {
     Object.keys(ReactDatePicker.propTypes)
   );
   const textboxProps = omit(otherProps, Object.keys(ReactDatePicker.propTypes));
-
   /* eslint-enable */
 
   const textbox = (
@@ -189,12 +187,7 @@ DatePicker.defaultProps = {
   startDate: undefined,
   endDate: undefined,
   windowWidth: undefined,
-  allowNativeDatepickerOnMobile: true,
-  validationState: 'default'
+  allowNativeDatepickerOnMobile: true
 };
 
-const UncontrolledDatePicker = uncontrollable(DatePicker, {
-  selectedDate: 'onChange'
-});
-
-export default withTheme(withWindowSize(UncontrolledDatePicker));
+export default withTheme(withWindowSize(DatePicker));

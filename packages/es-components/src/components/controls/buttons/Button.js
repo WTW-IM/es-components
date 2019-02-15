@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import { useTheme } from '../../util/useTheme';
 
@@ -18,7 +17,7 @@ const StyledButton = styled.button`
     width: ${props => (props.block ? '100%' : 'initial')};
   }
 
-  .es-button--display {
+  .es-button__display {
     background-color: ${props => props.variant.bgColor};
     border-color: transparent;
     box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
@@ -46,7 +45,7 @@ const StyledButton = styled.button`
     white-space: nowrap;
   }
 
-  &:hover .es-button--display {
+  &:hover .es-button__display {
     background-color: ${props => props.variant.hoverBgColor};
   }
 
@@ -54,14 +53,14 @@ const StyledButton = styled.button`
     outline: none;
   }
 
-  &:active .es-button--display {
+  &:active .es-button__display {
     box-shadow: 0 0 0 0 transparent;
     margin-bottom: 0;
     margin-top: 4px;
   }
 
   &[disabled],
-  &[disabled] .es-button--display {
+  &[disabled] .es-button__display {
     cursor: not-allowed;
     opacity: 0.65;
 
@@ -70,37 +69,26 @@ const StyledButton = styled.button`
     }
   }
 
-  &[disabled]:hover .es-button--display {
+  &[disabled]:hover .es-button__display {
     background-color: ${props => props.variant.bgColor};
   }
 `;
 
-function InnerButton({
-  children,
-  styleType,
-  size,
-  block,
-  innerRef,
-  ...buttonProps
-}) {
+function InnerButton({ children, styleType, size, block, innerRef, ...other }) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
-  const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     block,
     buttonSize,
     ref: innerRef,
     variant,
-    ...otherProps
+    ...other
   };
 
   return (
-    <StyledButton
-      {...sharedProps}
-      className={classnames('es-button es-button--default', className)}
-    >
-      <div className="es-button--display">{children}</div>
+    <StyledButton type="button" {...sharedProps}>
+      <div className="es-button__display">{children}</div>
     </StyledButton>
   );
 }

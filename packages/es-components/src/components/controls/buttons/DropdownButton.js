@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import Button from './Button';
 import LinkButton from './LinkButton';
@@ -185,7 +184,6 @@ function DropdownButton(props) {
   const {
     rootClose,
     children,
-    className,
     manualButtonValue,
     styleType,
     ...otherProps
@@ -195,7 +193,6 @@ function DropdownButton(props) {
     <RootCloseWrapper onRootClose={closeDropdown} disabled={!rootClose}>
       <div
         ref={buttonDropdown}
-        className={classnames('es-dropdown-button', className)}
         role="combobox"
         aria-controls={panelId}
         aria-expanded={isOpen}
@@ -212,11 +209,7 @@ function DropdownButton(props) {
           {manualButtonValue || buttonValue}
           <Caret />
         </Button>
-        <ButtonPanel
-          className="es-dropdown-button__button-panel"
-          isOpen={isOpen}
-          id={panelId}
-        >
+        <ButtonPanel isOpen={isOpen} id={panelId}>
           <ButtonPanelChildrenContainer>
             {Children.map(children, child => {
               const onClickHandler = handleDropdownItemClick(child.props);
@@ -258,9 +251,7 @@ DropdownButton.propTypes = {
    */
   rootClose: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string,
-  /** The classes to be applied to the div surrounding the button */
-  className: PropTypes.string
+  styleType: PropTypes.string
 };
 
 DropdownButton.defaultProps = {
@@ -269,8 +260,7 @@ DropdownButton.defaultProps = {
   shouldUpdateButtonValue: false,
   shouldCloseOnButtonClick: false,
   styleType: 'default',
-  rootClose: false,
-  className: undefined
+  rootClose: false
 };
 
 export default DropdownButton;

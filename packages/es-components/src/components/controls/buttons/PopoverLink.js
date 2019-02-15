@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 import LinkButton from './LinkButton';
 import { useTheme } from '../../util/useTheme';
 
@@ -23,26 +22,18 @@ function InnerButton({
   styleType,
   innerRef,
   suppressUnderline,
-  ...buttonProps
+  ...other
 }) {
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];
-  const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     variant,
     suppressUnderline,
     ref: innerRef,
-    ...otherProps
+    ...other
   };
 
-  return (
-    <StyledButton
-      {...sharedProps}
-      className={classnames('es-button es-button--popover-trigger', className)}
-    >
-      {children}
-    </StyledButton>
-  );
+  return <StyledButton {...sharedProps}>{children}</StyledButton>;
 }
 
 const PopoverLink = React.forwardRef((props, ref) => (

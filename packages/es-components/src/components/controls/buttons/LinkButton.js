@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import classnames from 'classnames';
 import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled.button`
@@ -31,21 +30,17 @@ const StyledButton = styled.button`
   }
 `;
 
-function InnerButton({ children, styleType, innerRef, ...buttonProps }) {
+function InnerButton({ children, styleType, innerRef, ...other }) {
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];
-  const { className, ...otherProps } = buttonProps;
   const sharedProps = {
     variant,
     ref: innerRef,
-    ...otherProps
+    ...other
   };
 
   return (
-    <StyledButton
-      {...sharedProps}
-      className={classnames('es-button es-button--link', className)}
-    >
+    <StyledButton type="button" {...sharedProps}>
       {children}
     </StyledButton>
   );

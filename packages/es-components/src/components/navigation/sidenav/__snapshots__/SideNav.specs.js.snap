@@ -3,67 +3,60 @@
 exports[`renders as expected 1`] = `
 <div>
   <nav
-    class="es-sidenav sc-ifAKCX eEDsWM"
+    class="es-sidenav sc-bdVaJa dfCwPs"
   >
     <ul>
       <li
-        class="es-sidenav__navitem"
+        class="es-sidenav__navitem sc-bxivhb hehtwM"
       >
-        <a
-          class="home sc-bwzfXH guxetE"
-          href="/home"
+        <button
+          class="sc-bZQynM bWlXFz"
+          type="button"
         >
-          <span
-            class="sc-bxivhb dgmReD"
-          >
+          <span>
             Home
           </span>
           <i
             aria-hidden="true"
-            class="sc-bdVaJa tXzOW"
+            class="es-icon sc-EHOje bKZlAL sc-htpNat jhNKym"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
           />
-        </a>
+        </button>
       </li>
       <li
-        class="es-sidenav__navitem"
+        class="es-sidenav__navitem sc-bxivhb bUFNFk"
       >
-        <a
-          class="cart sc-bwzfXH guxetE"
-          href="#/"
+        <button
+          class="sc-gzVnrw ciikse"
+          type="button"
         >
-          <span
-            class="sc-bxivhb dgmReD"
-          >
+          <span>
             Cart
           </span>
           <i
             aria-hidden="true"
-            class="sc-bdVaJa tXzOW"
+            class="es-icon sc-EHOje bKZlAL sc-htpNat jhNKym"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
           />
-        </a>
+        </button>
       </li>
       <li
-        class="es-sidenav__navitem"
+        class="es-sidenav__navitem sc-bxivhb bUFNFk"
       >
         <a
-          class="external sc-bwzfXH guxetE"
-          href="http://www.google.com"
-          target="_blank"
+          class="sc-htoDjs gqVpaa"
+          href="https://google.com"
         >
-          <span
-            class="sc-bxivhb dgmReD"
-          >
+          <span>
             External Link
           </span>
           <i
             aria-hidden="true"
-            class="sc-bdVaJa tXzOW"
+            class="es-icon sc-EHOje bKZlAL sc-htpNat jhNKym"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
@@ -71,25 +64,23 @@ exports[`renders as expected 1`] = `
         </a>
       </li>
       <li
-        class="es-sidenav__navitem"
+        class="es-sidenav__navitem sc-bxivhb ckuDAk"
       >
-        <a
-          class="info sc-bwzfXH kPjAmK"
-          href="#/"
+        <button
+          class="sc-dnqmqq cVcjIO"
+          type="button"
         >
-          <span
-            class="sc-bxivhb dgmReD"
-          >
+          <span>
             Disabled
           </span>
           <i
             aria-hidden="true"
-            class="sc-bdVaJa tXzOW"
+            class="es-icon sc-EHOje bKZlAL sc-htpNat jhNKym"
             content="61f"
             font-family="indv-mkt-icons"
             font-size="inherit"
           />
-        </a>
+        </button>
       </li>
     </ul>
   </nav>

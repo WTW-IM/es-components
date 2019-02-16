@@ -31,12 +31,11 @@ const StyledButton = styled.button`
       props.buttonSize.lineHeight
         ? props.buttonSize.lineHeight
         : props.theme.sizes.baseLineHeight};
-    margin-bottom: 4px;
-    margin-top: 0;
     padding-bottom: ${props => props.buttonSize.paddingBottom};
     padding-left: ${props => props.buttonSize.paddingSides};
     padding-right: ${props => props.buttonSize.paddingSides};
     padding-top: ${props => props.buttonSize.paddingTop};
+    position: relative;
     text-align: center;
     text-transform: ${props =>
       props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
@@ -55,8 +54,7 @@ const StyledButton = styled.button`
 
   &:active .es-button__display {
     box-shadow: 0 0 0 0 transparent;
-    margin-bottom: 0;
-    margin-top: 4px;
+    top: 4px;
   }
 
   &[disabled],

@@ -6,6 +6,7 @@ import styled, { withTheme } from 'styled-components';
 import { parse, format, isValid } from 'date-fns';
 
 import { DatepickerStyles } from './datePickerStyles';
+
 import Textbox from '../../controls/textbox/Textbox';
 import withWindowSize from '../../util/withWindowSize';
 
@@ -74,6 +75,7 @@ export function DatePicker(props) {
   );
   const textboxProps = omit(otherProps, Object.keys(ReactDatePicker.propTypes));
   /* eslint-enable */
+  const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
     <Textbox
@@ -83,7 +85,6 @@ export function DatePicker(props) {
       {...textboxProps}
     />
   );
-  const verifiedDate = getVerifiedDate(selectedDate);
 
   const mobileDatePicker = (
     <NativeDatePicker

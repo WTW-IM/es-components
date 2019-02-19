@@ -16,6 +16,12 @@ export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
 export Heading from './components/containers/heading/Heading';
+export {
+  Table,
+  TableHeaderCell,
+  TableBodyCell,
+  TableRow
+} from './components/containers/table/Table';
 
 export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';
@@ -45,3 +51,4 @@ export Action from './components/patterns/callToAction/Action';
 export Spinner from './components/base/spinner/Spinner';
 
 export generateAlphaName from './components/util/generateAlphaName';
+export withWindowSize from './components/util/withWindowSize';

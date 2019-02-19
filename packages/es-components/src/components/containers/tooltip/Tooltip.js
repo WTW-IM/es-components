@@ -6,6 +6,10 @@ import styled from 'styled-components';
 import Fade from '../../util/Fade';
 import LinkButton from '../../controls/buttons/LinkButton';
 
+import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
+
+import generateAlphaName from '../../util/generateAlphaName';
+
 const TooltipBase = styled.div`
   position: absolute;
   z-index: 999;
@@ -153,6 +157,8 @@ Popup.defaultProps = {
   style: {}
 };
 
+const SrContentContainer = screenReaderOnly('div');
+
 function Tooltip(props) {
   const [show, setShow] = useState(false);
   const {
@@ -184,6 +190,7 @@ function Tooltip(props) {
   }
 
   const tooltipTarget = React.createRef();
+  const descriptionId = React.useRef(`${generateAlphaName()}-description`);
 
   return (
     <>
@@ -196,10 +203,13 @@ function Tooltip(props) {
         onMouseDown={toggleShow}
         onKeyDown={closeOnEscape}
         onClick={() => {}}
-        aria-describedby={`es-tooltip__${name}`}
+        aria-describedby={descriptionId.current}
       >
         {children}
       </StyledButton>
+      <SrContentContainer id={descriptionId.current}>
+        {content}
+      </SrContentContainer>
 
       <Overlay
         show={show}

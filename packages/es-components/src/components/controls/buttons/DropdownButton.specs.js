@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, fireEvent, getByRole } from 'react-testing-library';
+import { cleanup, fireEvent, getByRole, wait } from 'react-testing-library';
 
 import DropdownButton from './DropdownButton';
 import { renderWithTheme } from '../../util/test-utils';
@@ -74,7 +74,9 @@ it('allows arrow movement and traps focus when dropdown is opened', () => {
 
   function verifyFocusAfterKeydown(key, button) {
     pressArrowKey(key);
-    expect(button).toHaveFocus();
+    wait(() => {
+      expect(button).toHaveFocus();
+    });
   }
 
   const firstItemButton = getByText('Item 1');

@@ -160,6 +160,18 @@ function DatePickerExample() {
 <DatePickerExample />
 ```
 
+### Native Mobile Date Picker
+
+The `allowNativeDatepickerOnMobile` prop allows for the substitution of the React DatePicker with the
+native one on mobile devices. This defaults to `true`.
+
+```
+<DatePicker
+  labelText="Pick a Date"
+  additionalHelpContent={<small>Change the screen size to see the transformation.</small>}
+/>
+```
+
 ### Filter Dates
 
 The `filterDate` prop accepts a function used to filter the available dates.

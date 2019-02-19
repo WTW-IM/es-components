@@ -99,7 +99,8 @@ const theme = {
     greenLighter: greenLighter,
     violetLighter: violetLighter,
     blueLighter: blueLighter,
-    violet: violet
+    violet: violet,
+    softwareBlue: darkBlue
   },
   brandColors: {
     vbBlue: vbBlue,

@@ -164,7 +164,7 @@ Popup.defaultProps = {
   style: {}
 };
 
-const SrContentContainer = screenReaderOnly(styled.div``);
+const SrContentContainer = screenReaderOnly('div');
 
 class Tooltip extends React.Component {
   constructor(props) {

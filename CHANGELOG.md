@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.27 (2019-02-19)</small>
+
+* Update: tooltip tests accounting for screen reader changes ([de8956e](https://github.com/wtw-im/es-components/commit/de8956e))
+* Update: using a static element to describe Tooltips ([2b35f1c](https://github.com/wtw-im/es-components/commit/2b35f1c))
+* Update: using string reference to get to screen reader only div ([d402193](https://github.com/wtw-im/es-components/commit/d402193))
+
+
+
+
+
 ## <small>18.0.26 (2019-02-11)</small>
 
 * New: add table component ([0f03823](https://github.com/wtw-im/es-components/commit/0f03823))

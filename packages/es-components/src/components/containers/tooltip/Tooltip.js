@@ -11,6 +11,10 @@ import Fade from '../../util/Fade';
 
 import Button from '../../controls/buttons/Button';
 
+import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
+
+import generateAlphaName from '../../util/generateAlphaName';
+
 const TooltipBase = styled.div`
   position: absolute;
   z-index: 2;
@@ -160,10 +164,13 @@ Popup.defaultProps = {
   style: {}
 };
 
+const SrContentContainer = screenReaderOnly('div');
+
 class Tooltip extends React.Component {
   constructor(props) {
     super(props);
     this.state = { show: false };
+    this.descriptionId = `${generateAlphaName()}-description`;
   }
 
   show = () => this.setState({ show: true });
@@ -181,6 +188,15 @@ class Tooltip extends React.Component {
   };
 
   render() {
+    const {
+      disableFocus,
+      disableHover,
+      children,
+      position,
+      name,
+      content
+    } = this.props;
+
     return (
       <span>
         <StyledButton
@@ -191,26 +207,29 @@ class Tooltip extends React.Component {
           }}
           isLinkButton
           onBlur={this.hide}
-          onFocus={!this.props.disableFocus ? this.show : undefined}
-          onMouseEnter={!this.props.disableHover ? this.show : undefined}
-          onMouseLeave={!this.props.disableHover ? this.hide : undefined}
+          onFocus={!disableFocus ? this.show : undefined}
+          onMouseEnter={!disableHover ? this.show : undefined}
+          onMouseLeave={!disableHover ? this.hide : undefined}
           onMouseDown={this.toggleShow}
           onKeyDown={this.closeOnEscape}
           handleOnClick={this.show}
-          aria-describedby={`es-tooltip__${this.props.name}`}
+          aria-describedby={this.descriptionId}
         >
-          {this.props.children}
+          {children}
         </StyledButton>
+        <SrContentContainer id={this.descriptionId}>
+          {content}
+        </SrContentContainer>
 
         <Overlay
           show={this.state.show}
-          placement={this.props.position}
+          placement={position}
           container={document.body}
           target={props => this.toolTipTarget}
           transition={FadeTransition}
         >
-          <Popup position={this.props.position} name={this.props.name}>
-            <span>{this.props.content}</span>
+          <Popup position={position} name={name}>
+            <span aria-hidden="true">{content}</span>
           </Popup>
         </Overlay>
       </span>

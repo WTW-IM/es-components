@@ -16,7 +16,7 @@ function RadioGroup({
       key,
       name,
       disabled,
-      checked,
+      defaultChecked: checked,
       ...rest
     });
   });

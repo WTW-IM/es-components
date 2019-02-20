@@ -74,23 +74,23 @@ const RadioDisplay = styled.span`
 
 export function RadioButton({ name, children, ...radioProps }) {
   const id = radioProps.id || genId();
-
+  const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
   const { hover, fill } = getRadioFillVariables(
-    radioProps.checked,
+    isChecked,
     radioProps.disabled,
     validationState,
     theme.colors
   );
-  const radioDisplayFill = radioProps.checked ? fill : theme.colors.white;
+  const radioDisplayFill = isChecked ? fill : theme.colors.white;
 
   const labelProps = {
     disabled: radioProps.disabled,
     htmlFor: id,
     hoverFillColor: hover,
     validationState,
-    checked: radioProps.checked
+    checked: isChecked
   };
 
   return (

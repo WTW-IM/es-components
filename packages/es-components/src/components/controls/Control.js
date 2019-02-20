@@ -24,18 +24,15 @@ const FlexControl = styled.div`
 `;
 
 const InlineControl = styled(FlexControl)`
+  flex-direction: row;
+
   @media (max-width: ${props => props.theme.screenSize.tablet}) {
     align-items: center;
   }
 `;
 
-const StackedControl = styled(FlexControl)`
-  flex-direction: column;
-`;
-
 function Control({ validationState, orientation, children }) {
-  const ControlWrapper =
-    orientation === 'inline' ? InlineControl : StackedControl;
+  const ControlWrapper = orientation === 'inline' ? InlineControl : FlexControl;
 
   const theme = useTheme();
   const textColor = theme.validationTextColor[validationState];

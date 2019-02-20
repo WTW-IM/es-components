@@ -33,6 +33,7 @@ const RadioLabel = styled(Label)`
   position: relative;
   padding: 10px 0 10px 10px;
   text-transform: none;
+  flex-basis: 15%;
 
   &:hover .es-radio__fill:before {
     ${props => !props.checked && radioFill(props.hoverFillColor)};

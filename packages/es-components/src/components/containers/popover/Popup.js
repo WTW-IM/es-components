@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { Manager, Target, Popper, Arrow } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
@@ -31,8 +30,9 @@ function Popup({
   disableRootClose,
   popperRef
 }) {
-  let popperObj = (
+  const popperObj = (
     <Manager>
+      <ArrowStyles name={name} arrowSize={arrowSize} hasTitle={hasTitle} />
       <Target>{trigger}</Target>
       <Transition
         in={transitionIn}
@@ -42,6 +42,7 @@ function Popup({
       >
         {state => (
           <Popper
+            className={`${name}-popper`}
             placement={placement}
             eventsEnabled={transitionIn}
             modifiers={{
@@ -59,7 +60,7 @@ function Popup({
             innerRef={popperRef}
           >
             {children}
-            <Arrow />
+            <Arrow className={`${name}-popper__arrow`} />
           </Popper>
         )}
       </Transition>
@@ -67,17 +68,12 @@ function Popup({
   );
 
   if (!disableRootClose) {
-    popperObj = (
+    return (
       <RootCloseWrapper onRootClose={onHide}>{popperObj}</RootCloseWrapper>
     );
   }
 
-  return (
-    <>
-      <ArrowStyles name={name} arrowSize={arrowSize} hasTitle={hasTitle} />
-      {popperObj}
-    </>
-  );
+  return popperObj;
 }
 
 Popup.propTypes = {

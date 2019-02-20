@@ -43,5 +43,6 @@
     "lerna": "^3.4.3",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3"
-  }
+  },
+  "version": "19.0.3-alpha"
 }

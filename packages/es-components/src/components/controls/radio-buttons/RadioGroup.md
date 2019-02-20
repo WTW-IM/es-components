@@ -3,6 +3,7 @@ Group `RadioButton` components together using a `RadioGroup`. Any additional pro
 ```
 const RadioButton = require('./RadioButton').default
 const Control = require('../Control').default
+const AdditionalHelp = require('../AdditionalHelp').default;
 
 function RadioGroupExample() {
   const [activity, setActivity] = React.useState('nothing')
@@ -21,6 +22,7 @@ function RadioGroupExample() {
             <RadioButton value="kayaking">Kayaking</RadioButton>
             <RadioButton value="camping">Camping</RadioButton>
           </RadioGroup>
+          <AdditionalHelp>Select your favorite activity</AdditionalHelp>
         </Control>
       </Fieldset>
       <p>You've selected: {activity}</p>

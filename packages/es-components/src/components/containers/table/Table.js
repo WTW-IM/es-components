@@ -13,9 +13,13 @@ export const TableRow = styled.tr`
 `;
 
 export const TableBodyCell = styled.td`
-  border-bottom: 2px solid ${props => props.theme.colors.gray5};
+  border-bottom: 1px solid ${props => props.theme.colors.gray4};
   padding: 8px;
   text-align: left;
 `;
 
-export const TableHeaderCell = TableBodyCell.withComponent('th');
+export const TableHeaderCell = styled.th`
+  border-bottom: 2px solid ${props => props.theme.colors.gray4};
+  padding: 8px;
+  text-align: left;
+`;

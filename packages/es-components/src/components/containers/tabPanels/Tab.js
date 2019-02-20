@@ -20,7 +20,7 @@ const TabButton = styled.button`
   z-index: 1;
 
   &:focus {
-    outline: 1px dotted ${props => props.theme.colors.gray4};
+    outline: none;
   }
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {

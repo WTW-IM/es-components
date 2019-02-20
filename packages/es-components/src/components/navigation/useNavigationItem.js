@@ -14,21 +14,21 @@ const NavItemWrapper = styled.li`
 
   &:hover {
     background-color: ${props => props.theme.colors.gray2};
-    color: ${props => props.theme.colors.info};
+    color: ${props => props.theme.colors.primary};
 
     > i {
-      color: ${props => props.theme.colors.info};
+      color: ${props => props.theme.colors.primary};
     }
   }
 
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props.theme.colors.info};
+      background-color: ${props.theme.colors.primary};
       color: ${props.theme.colors.white};
 
       &:hover {
-        background-color: ${props.theme.colors.info};
+        background-color: ${props.theme.colors.primary};
         color: ${props.theme.colors.white};
 
         > i {

@@ -24,6 +24,7 @@ const FlexControl = styled.div`
 `;
 
 const InlineControl = styled(FlexControl)`
+  align-items: center;
   flex-direction: row;
 
   @media (max-width: ${props => props.theme.screenSize.tablet}) {
@@ -31,7 +32,8 @@ const InlineControl = styled(FlexControl)`
   }
 `;
 
-function Control({ validationState, orientation, children }) {
+function Control(props) {
+  const { validationState, orientation, children } = props;
   const ControlWrapper = orientation === 'inline' ? InlineControl : FlexControl;
 
   const theme = useTheme();
@@ -41,6 +43,7 @@ function Control({ validationState, orientation, children }) {
     <ControlWrapper
       textColor={textColor}
       {...theme.validationInputColor[validationState]}
+      className={props.className}
     >
       <ValidationContext.Provider value={validationState}>
         {children}

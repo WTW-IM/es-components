@@ -101,7 +101,6 @@ const Append = styled.span`
 
 const InputWrapper = styled.div`
   display: flex;
-  flex: 1 0 80%;
 `;
 
 function Textbox(props) {

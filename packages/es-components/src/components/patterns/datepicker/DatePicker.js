@@ -29,6 +29,23 @@ const getVerifiedDate = selectedDate => {
   return verifiedDate;
 };
 
+// required for react-text-mask to properly set a ref
+class DateTextbox extends React.Component {
+  static propTypes = Textbox.propTypes; // eslint-disable-line react/forbid-foreign-prop-types
+
+  setRef = ref => {
+    this.inputElement = ref;
+  };
+
+  focus() {
+    this.inputElement.focus();
+  }
+
+  render() {
+    return <Textbox inputRef={this.setRef} {...this.props} />;
+  }
+}
+
 function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   const onChangeIntercept = event => {
     onChange(getParsedDate(event.target.value));
@@ -78,7 +95,7 @@ export function DatePicker(props) {
   const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
-    <Textbox
+    <DateTextbox
       maskType="date"
       name={name}
       prependIconName="calendar"

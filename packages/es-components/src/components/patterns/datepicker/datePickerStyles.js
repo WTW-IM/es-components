@@ -110,7 +110,7 @@ export function DatepickerStyles() {
       z-index: 1060;
   }
   .react-datepicker-popper[data-placement^="bottom"] {
-    margin-top: 0;
+    margin-top: 12px;
   }
     .react-datepicker-popper[data-placement^="top"] {
     margin-bottom: 6px;

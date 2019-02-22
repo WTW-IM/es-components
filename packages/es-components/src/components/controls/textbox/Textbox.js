@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { omit } from 'lodash';
+import { omit, noop } from 'lodash';
 import MaskedInput from 'react-text-mask';
 
 import Icon from '../../base/icons/Icon';
@@ -110,6 +110,7 @@ function Textbox(props) {
     appendIconName,
     maskType,
     customMask,
+    inputRef,
     ...additionalTextProps
   } = props;
   const theme = useTheme();
@@ -130,6 +131,7 @@ function Textbox(props) {
         // Failing to call ref from the `react-text-mask` render prop will cause
         // `react-text-mask` to break, as it needs the ref to function
         ref(inputElement);
+        inputRef(inputElement);
       };
 
       // based on ReactTextMask.defaultProps.render since we don't normally use
@@ -137,6 +139,8 @@ function Textbox(props) {
       // https://github.com/text-mask/text-mask/blob/72ed2c40ecd99817b946f15d3e75a4944b364f4e/react/src/reactTextMask.js#L89
       return <input ref={setRef} {...maskedProps} />;
     };
+  } else {
+    additionalTextProps.ref = inputRef;
   }
 
   const addOnTextColor = hasValidationIcon
@@ -201,14 +205,16 @@ Textbox.propTypes = {
     keepCharPositions: PropTypes.bool,
     pipe: PropTypes.func,
     showMask: PropTypes.bool
-  })
+  }),
+  inputRef: PropTypes.func
 };
 
 Textbox.defaultProps = {
   maskType: 'none',
   prependIconName: undefined,
   appendIconName: undefined,
-  customMask: undefined
+  customMask: undefined,
+  inputRef: noop
 };
 
 export default Textbox;

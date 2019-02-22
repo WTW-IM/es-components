@@ -66,17 +66,16 @@ const AnswerDisplay = styled.span`
   font-weight: bold;
   display: block;
   padding: 10px 10px 10px 10px;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 const AnswerInput = styled.input`
   clip-path: inset(100%);
-  clip: rect(1px 1px 1px 1px); /* IE 6/7 */
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;

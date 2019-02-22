@@ -17,13 +17,7 @@ const AnswerSet = styled.div`
 function AnswerGroup({
   name,
   radioOptions,
-  value,
-  disableAllOptions,
-  inline,
   onChange,
-  introContent,
-  validationState,
-  additionalHelpContent,
   itemWidth,
   theme,
   ...other

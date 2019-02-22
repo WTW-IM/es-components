@@ -35,11 +35,14 @@ function AnswerGroup({
 }
 
 AnswerGroup.propTypes = {
-  /** The name of the radio group */
+  /** The name of the answer group */
   name: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  /** The width of each item when in desktop view */
   itemWidth: PropTypes.string,
+  /** Select the color style of the buttons, types come from theme */
   styleType: PropTypes.string,
+  /** Select the color style of the selected button, types come from theme */
   selectedType: PropTypes.string
 };
 

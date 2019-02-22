@@ -7,7 +7,6 @@ const AnswerSet = styled.div`
   flex-wrap: nowrap;
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    float: left;
   }
 `;
 
@@ -39,7 +38,7 @@ AnswerGroup.propTypes = {
   /** The name of the radio group */
   name: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  itemWidth: PropTypes.number,
+  itemWidth: PropTypes.string,
   styleType: PropTypes.string,
   selectedType: PropTypes.string
 };

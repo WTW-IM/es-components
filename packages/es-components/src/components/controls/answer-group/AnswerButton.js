@@ -27,6 +27,7 @@ const AnswerLabel = styled.label`
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     min-width: ${props => props.itemWidth};
+    flex-grow: 0;
   }
 `;
 

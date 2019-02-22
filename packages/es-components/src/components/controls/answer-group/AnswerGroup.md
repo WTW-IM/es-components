@@ -1,4 +1,4 @@
-Group `RadioButton` components together using a `RadioGroup`. Any additional props passed to `RadioGroup` will propagate to each individual `RadioButton`.
+Group `AnswerButton` components together using a `AnswerGroup`. Any additional props passed to `AnswerGroup` will propagate to each individual `AnswerButton`.
 
 ```
 const AnswerButton = require('./AnswerButton').default

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>18.0.28 (2019-02-22)</small>
+
+* Fix: Icon on Notification Type Danger ([f6d7ef5](https://github.com/wtw-im/es-components/commit/f6d7ef5))
+
+
+
+
+
 ## <small>18.0.27 (2019-02-19)</small>
 
 * Update: tooltip tests accounting for screen reader changes ([de8956e](https://github.com/wtw-im/es-components/commit/de8956e))

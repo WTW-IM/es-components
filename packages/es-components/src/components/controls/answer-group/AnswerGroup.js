@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 import styled, { withTheme } from 'styled-components';
 
-import { AnswerButton } from "./AnswerButton";
+import { AnswerButton } from './AnswerButton';
 
 const AnswerSet = styled.div`
   display: flex;
@@ -28,7 +28,6 @@ function AnswerGroup({
   theme,
   ...other
 }) {
-
   return (
     <AnswerSet>
       {radioOptions.map((config, index) => {
@@ -43,7 +42,7 @@ function AnswerGroup({
           theme,
           ...other
         };
-        return <AnswerButton key={radioId} {...radioProps} />
+        return <AnswerButton key={radioId} {...radioProps} />;
       })}
     </AnswerSet>
   );
@@ -78,7 +77,7 @@ AnswerGroup.propTypes = {
    */
   introContent: PropTypes.node,
   itemWidth: PropTypes.number,
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
 AnswerGroup.defaultProps = {

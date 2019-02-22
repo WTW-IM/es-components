@@ -5,7 +5,7 @@ import { cleanup } from 'react-testing-library';
 import { range } from 'lodash';
 
 import { renderWithTheme } from '../../util/test-utils';
-import AnswerGroup from "./AnswerGroup";
+import AnswerGroup from './AnswerGroup';
 
 function buildOptions(numberOfOptions, optionIndexToDisable) {
   return range(0, numberOfOptions).map(idx => ({
@@ -16,4 +16,3 @@ function buildOptions(numberOfOptions, optionIndexToDisable) {
 }
 
 beforeEach(cleanup);
-

@@ -1,3 +1,5 @@
+import AnswerGroup from "./components/controls/answer-group/AnswerGroup";
+
 export Icon from './components/base/icons/Icon';
 
 export Notification from './components/containers/notification/Notification';
@@ -33,6 +35,8 @@ export DropdownButton from './components/controls/buttons/DropdownButton';
 export OutlineButton from './components/controls/buttons/OutlineButton';
 export LinkButton from './components/controls/buttons/LinkButton';
 export PopoverLink from './components/controls/buttons/PopoverLink';
+export AnswerButton from './components/controls/answer-group/AnswerButton';
+export AnswerGroup from './components/controls/answer-group/AnswerGroup';
 export RadioGroup from './components/controls/radio-buttons/RadioGroup';
 export RadioButton from './components/controls/radio-buttons/RadioButton';
 export Dropdown from './components/controls/dropdown/Dropdown';

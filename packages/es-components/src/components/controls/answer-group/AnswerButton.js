@@ -63,7 +63,7 @@ const AnswerInput = styled.input`
   }
 `;
 
-export function AnswerButton({
+function AnswerButton({
   name,
   children,
   itemWidth,

@@ -25,7 +25,7 @@ const iconMap = {
   success: 'ok-circle',
   info: 'info-circle',
   warning: 'exclamation-sign',
-  danger: 'info-circle',
+  danger: 'exclamation-circle',
   advisor: 'agent'
 };
 

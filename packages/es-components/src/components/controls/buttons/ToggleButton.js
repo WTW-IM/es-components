@@ -1,4 +1,3 @@
-/* eslint no-confusing-arrow: 0 */
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
@@ -55,6 +54,7 @@ function ToggleButton(props) {
       isOutline={isOutline}
       isPressed={isPressed}
       variant={styles.variant[styleType]}
+      aria-pressed={isPressed}
     >
       {props.children}
     </ToggleButtonType>

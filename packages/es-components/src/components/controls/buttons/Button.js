@@ -72,28 +72,25 @@ const StyledButton = styled.button`
   }
 `;
 
-function InnerButton({ children, styleType, size, block, innerRef, ...other }) {
+function Button(props) {
+  const { children, styleType, size, block, innerRef, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
-  const sharedProps = {
-    block,
-    buttonSize,
-    ref: innerRef,
-    variant,
-    ...other
-  };
 
   return (
-    <StyledButton type="button" {...sharedProps}>
+    <StyledButton
+      type="button"
+      block={block}
+      buttonSize={buttonSize}
+      variant={variant}
+      ref={innerRef}
+      {...other}
+    >
       <div className="es-button__display">{children}</div>
     </StyledButton>
   );
 }
-
-const Button = React.forwardRef((props, ref) => (
-  <InnerButton innerRef={ref} {...props} />
-));
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
@@ -110,4 +107,6 @@ Button.defaultProps = {
   size: 'default'
 };
 
-export default Button;
+export default React.forwardRef((props, ref) => (
+  <Button innerRef={ref} {...props} />
+));

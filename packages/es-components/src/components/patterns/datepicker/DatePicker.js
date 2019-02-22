@@ -10,7 +10,7 @@ import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 import withWindowSize from '../../util/withWindowSize';
 
-const DatePickerBlockContainer = styled.div`
+const BlockContainer = styled.div`
   display: inline-block;
 `;
 
@@ -120,7 +120,7 @@ export function DatePicker(props) {
   return (
     <>
       <DatepickerStyles />
-      <DatePickerBlockContainer>{datePicker}</DatePickerBlockContainer>
+      <BlockContainer>{datePicker}</BlockContainer>
     </>
   );
 }

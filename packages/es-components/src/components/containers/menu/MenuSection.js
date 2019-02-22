@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { InlineContext } from './InlineContext';
 
-/* eslint-disable no-confusing-arrow */
 const StyledMenuSection = styled.section`
   padding-top: ${props =>
     !props.isFirst && !props.inline && !props.isOnlySection ? '20px' : '0px'};
@@ -13,7 +12,6 @@ const StyledMenuSection = styled.section`
       ? `1px solid ${props.theme.colors.gray5}`
       : 'none'};
 `;
-/* eslint-enable */
 
 const StyledHeader = styled.header`
   padding-left: 10px;

@@ -12,22 +12,6 @@ import ValidationContext from '../ValidationContext';
 
 const defaultBorderRadius = '2px';
 
-// apply styles to masked input, but remove props it doesn't use
-const StyledMaskedInput = InputBase.withComponent(props => (
-  <MaskedInput
-    {...omit(props, [
-      'borderColor',
-      'boxShadow',
-      'focusBorderColor',
-      'focusBoxShadow',
-      'hasAppend',
-      'hasPrepend',
-      'initialValue'
-    ])}
-  />
-));
-
-/* eslint-disable no-confusing-arrow */
 const CommonInputStyles = css`
   border-bottom-left-radius: ${props =>
     props.hasPrepend ? '0' : defaultBorderRadius};
@@ -44,11 +28,25 @@ const CommonInputStyles = css`
   padding-right: 2em;
   -webkit-appearance: none;
 `;
-/* eslint-enable */
 
-const StyledMask = styled(StyledMaskedInput)`
+// apply styles to masked input, but remove props it doesn't use
+const StyledMaskInput = styled(props => (
+  <MaskedInput
+    {...omit(props, [
+      'borderColor',
+      'boxShadow',
+      'focusBorderColor',
+      'focusBoxShadow',
+      'hasAppend',
+      'hasPrepend',
+      'initialValue'
+    ])}
+  />
+))`
   ${CommonInputStyles};
 `;
+
+const StyledMask = props => <InputBase as={StyledMaskInput} {...props} />;
 
 const StyledText = styled(InputBase)`
   ${CommonInputStyles};
@@ -68,7 +66,6 @@ const ValidationIcon = styled(Icon)`
   top: 10px;
 `;
 
-/* eslint-disable no-confusing-arrow */
 const AddOn = css`
   background-color: ${props => props.addOnBgColor};
   border: 1px solid
@@ -89,7 +86,6 @@ const AddOn = css`
     vertical-align: middle;
   }
 `;
-/* eslint-enable */
 
 const Prepend = styled.span`
   ${AddOn} border-bottom-right-radius: 0;

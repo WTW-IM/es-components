@@ -17,9 +17,6 @@ function AnswerGroupExample() {
         <AnswerButton value="yes">Yes</AnswerButton>
         <AnswerButton value="no">No</AnswerButton>
       </AnswerGroup>
-      <br/>
-      <br/>
-      <br/>
       <p>You've selected: {activity}</p>
     </>
   )
@@ -43,12 +40,40 @@ function AnswerGroupExample() {
 
   return (
     <>
-      <AnswerGroup name="household-type" styleType="warning" successType="success" itemWidth="200px" onChange={handleRadioChange} >
+      <AnswerGroup name="household-type" styleType="default" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} >
+        <AnswerButton value="single" isOutline>Single</AnswerButton>
+        <AnswerButton value="married" isOutline>Married</AnswerButton>
+        <AnswerButton value="head" isOutline>Head of Household</AnswerButton>
+      </AnswerGroup>
+      <p>You've selected: {activity}</p>
+    </>
+  )
+};
+
+<AnswerGroupExample />
+```
+
+
+Setting the `isOutline` property will apply a flat style to each `AnswerButton`
+
+```
+const AnswerButton = require('./AnswerButton').default
+
+
+function AnswerGroupExample() {
+  const [activity, setActivity] = React.useState('nothing')
+
+  function handleRadioChange(event) {
+    setActivity(event.target.value)
+  }
+
+  return (
+    <>
+      <AnswerGroup name="household-type" styleType="primary" successType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline >
         <AnswerButton value="single">Single</AnswerButton>
         <AnswerButton value="married">Married</AnswerButton>
         <AnswerButton value="head">Head of Household</AnswerButton>
       </AnswerGroup>
-      <br/>
       <p>You've selected: {activity}</p>
     </>
   )

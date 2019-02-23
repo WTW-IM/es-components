@@ -16,6 +16,7 @@ function AnswerGroup({
   itemWidth,
   styleType,
   selectedType,
+  isOutline,
   ...rest
 }) {
   const renderButtons = () =>
@@ -27,6 +28,7 @@ function AnswerGroup({
         itemWidth,
         styleType,
         selectedType,
+        isOutline,
         ...rest
       });
     });
@@ -43,13 +45,16 @@ AnswerGroup.propTypes = {
   /** Select the color style of the buttons, types come from theme */
   styleType: PropTypes.string,
   /** Select the color style of the selected button, types come from theme */
-  selectedType: PropTypes.string
+  selectedType: PropTypes.string,
+  /** Set if the items should have a flat outline style */
+  isOutline: PropTypes.bool
 };
 
 AnswerGroup.defaultProps = {
   styleType: 'primary',
   selectedType: 'success',
-  itemWidth: '75px'
+  itemWidth: '75px',
+  isOutline: false
 };
 
 export default AnswerGroup;

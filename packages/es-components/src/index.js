@@ -1,5 +1,3 @@
-import AnswerGroup from "./components/controls/answer-group/AnswerGroup";
-
 export Icon from './components/base/icons/Icon';
 
 export Notification from './components/containers/notification/Notification';

@@ -4,16 +4,19 @@ import genId from '../../util/generateAlphaName';
 import { useTheme } from '../../util/useTheme';
 
 const AnswerLabel = styled.label`
-  flex-grow: 1;
-  font-weight: ${props => props.style.fontWeight || 'normal'};
-  font-size: ${props => props.style.fontSize};
   background-color: ${props => props.style.bgColor};
   border-color: transparent;
   box-shadow: 0 4px 0 0 ${props => props.style.boxShadowColor};
   color: ${props => props.style.textColor};
+  flex-grow: 1;
+  font-weight: ${props => props.style.fontWeight || 'normal'};
+  font-size: ${props => props.style.fontSize};
   margin-bottom: 4px;
   margin-top: 0;
-  transition: background-color 250ms linear;
+  text-align: center;
+  text-transform: ${props =>
+    props.style.textTransform ? props.style.textTransform : 'none'};
+  transition: background-color 250ms linear, color 250ms linear;
 
   &:hover {
     background-color: ${props => props.style.successHover};
@@ -23,6 +26,8 @@ const AnswerLabel = styled.label`
     margin-bottom: 0;
     margin-top: 4px;
     box-shadow: 0 0 0 0 transparent;
+    background-color: ${props => props.style.activeBgColor};
+    color: ${props => props.style.activeTextColor};
   }
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
@@ -32,41 +37,37 @@ const AnswerLabel = styled.label`
 `;
 
 const OutlineAnswerLabel = styled(AnswerLabel)`
-  flex-grow: 1;
+  background-color: transparent;
   border: 2px solid ${props => props.style.bgColor};
+  box-shadow: none;
   box-sizing: border-box;
   color: ${props => props.style.bgColor};
-  font-size: ${props => props.style.fontSize};
-  font-weight: ${props => props.style.fontWeight || 'normal'};
   text-align: center;
   text-transform: ${props =>
     props.style.textTransform ? props.style.textTransform : 'none'};
-  transition: background-color 250ms linear, color 250ms linear;
-  vertical-align: middle;
-  white-space: nowrap;
-  box-shadow: none;
-  background-color: transparent;
   margin: 0;
-
-  @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    min-width: ${props => props.itemWidth};
-    flex-grow: 0;
-  }
 
   &:active {
     margin: 0;
-    background-color: ${props => props.style.activeBgColor};
-    color: ${props => props.style.activeTextColor};
+    background-color: ${props => props.selected.activeBgColor};
+    color: ${props => props.selected.activeTextColor};
   }
 
   &:first-child {
-    border-radius: 5px 2px 2px 5px;
-    border-right: none;
+    border-radius: 4px 0 0 4px;
+  }
+
+  &:first-child + label {
+    border-left: none;
   }
 
   &:last-child {
-    border-radius: 2px 5px 5px 2px;
     border-left: none;
+    border-radius: 0 4px 4px 0;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    border-left: 1px;
   }
 `;
 

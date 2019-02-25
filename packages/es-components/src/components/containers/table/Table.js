@@ -28,4 +28,5 @@ Table.Row = TableRow;
 Table.Cell = TableBodyCell;
 Table.HeaderCell = TableHeaderCell;
 
+/** @component */
 export default Table;

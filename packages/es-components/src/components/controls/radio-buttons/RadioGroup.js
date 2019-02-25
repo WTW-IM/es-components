@@ -36,4 +36,5 @@ RadioGroup.defaultProps = {
   disableAllOptions: false
 };
 
+/** @component */
 export default RadioGroup;

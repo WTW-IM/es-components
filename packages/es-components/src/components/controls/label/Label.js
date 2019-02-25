@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.label`
+const Label = styled.label`
   color: inherit;
   cursor: pointer;
   flex: 0 1 20%;
@@ -12,3 +12,6 @@ export default styled.label`
     cursor: not-allowed;
   }
 `;
+
+/** @component */
+export default Label;

@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "19.0.8-alpha",
+  "version": "19.0.9-alpha",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "bundle/main.min.js",
@@ -89,7 +89,7 @@
     "react-datepicker": "^2.0.0",
     "react-overlays": "^0.8.3",
     "react-popper": "^0.10.4",
-    "react-text-mask": "5.4.1",
+    "react-text-mask": "^5.4.3",
     "react-transition-group": "^2.2.1",
     "text-mask-addons": "3.7.2",
     "tinycolor2": "^1.4.1",

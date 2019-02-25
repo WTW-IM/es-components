@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.select`
+const Dropdown = styled.select`
   background-color: ${props => props.theme.colors.white};
   border: 1px solid;
   border-color: inherit;
@@ -24,3 +24,6 @@ export default styled.select`
     cursor: not-allowed;
   }
 `;
+
+/** @component */
+export default Dropdown;

@@ -25,7 +25,7 @@ function AnswerGroupExample() {
 <AnswerGroupExample />
 ```
 
-You can apply different button styles using the `styleType` and `selectedType` props
+You can apply different button styles using the `styleType`, `size`, and `selectedType` props
 
 ```
 const AnswerButton = require('./AnswerButton').default
@@ -40,7 +40,7 @@ function AnswerGroupExample() {
 
   return (
     <>
-      <AnswerGroup name="household-type" styleType="default" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} >
+      <AnswerGroup name="household-type" size="sm" styleType="warning" selectedType="success" itemWidth="200px" onChange={handleRadioChange} >
         <AnswerButton value="single" isOutline>Single</AnswerButton>
         <AnswerButton value="married" isOutline>Married</AnswerButton>
         <AnswerButton value="head" isOutline>Head of Household</AnswerButton>

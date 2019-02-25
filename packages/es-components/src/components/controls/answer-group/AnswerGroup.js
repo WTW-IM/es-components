@@ -43,13 +43,16 @@ AnswerGroup.propTypes = {
   styleType: PropTypes.string,
   /** Select the color style of the selected button, types come from theme */
   selectedType: PropTypes.string,
+  /** Set the button size, sizes come from theme (buttonStyles) */
+  size: PropTypes.string,
   /** Set if the items should have a flat outline style */
   isOutline: PropTypes.bool
 };
 
 AnswerGroup.defaultProps = {
-  styleType: 'primary',
+  styleType: 'default',
   selectedType: 'success',
+  size: 'default',
   itemWidth: '75px',
   isOutline: false
 };

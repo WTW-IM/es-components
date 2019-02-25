@@ -9,17 +9,19 @@ const AnswerLabel = styled.label`
   box-shadow: 0 4px 0 0 ${props => props.style.boxShadowColor};
   color: ${props => props.style.textColor};
   flex-grow: 1;
-  font-weight: ${props => props.style.fontWeight || 'normal'};
-  font-size: ${props => props.style.fontSize};
+  font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
+  font-size: ${props => props.buttonSize.fontSize};
+  line-height: ${props => props.buttonSize.lineHeight};
   margin-bottom: 4px;
   margin-top: 0;
   text-align: center;
   text-transform: ${props =>
-    props.style.textTransform ? props.style.textTransform : 'none'};
+    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
   transition: background-color 250ms linear, color 250ms linear;
 
   &:hover {
-    background-color: ${props => props.style.successHover};
+    background-color: ${props => props.style.hoverBgColor};
+    color: ${props => props.style.hoverTextColor};
   }
 
   &:active {
@@ -37,15 +39,10 @@ const AnswerLabel = styled.label`
 `;
 
 const OutlineAnswerLabel = styled(AnswerLabel)`
-  background-color: transparent;
-  border: 2px solid ${props => props.style.bgColor};
+  border: 2px solid ${props => props.selected.borderColor};
   box-shadow: none;
   box-sizing: border-box;
-  color: ${props => props.style.bgColor};
   margin: 0;
-  text-align: center;
-  text-transform: ${props =>
-    props.style.textTransform ? props.style.textTransform : 'none'};
 
   &:active {
     background-color: ${props => props.selected.activeBgColor};
@@ -73,10 +70,8 @@ const OutlineAnswerLabel = styled(AnswerLabel)`
 
 const AnswerDisplay = styled.span`
   display: block;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 10px 10px 10px;
-  text-align: center;
+  padding-top: ${props => props.buttonSize.paddingTop};
+  padding-bottom: ${props => props.buttonSize.paddingBottom};
   user-select: none;
 `;
 
@@ -92,17 +87,19 @@ const AnswerInput = styled.input`
   &:checked + span {
     background-color: ${props => props.selected.bgColor};
     box-shadow: 0 4px 0 0 ${props => props.selected.boxShadowColor};
-    /* Selected Color should always be white */
     color: ${props => props.selected.textColor};
+  }
+
+  &:checked + span:active {
+    box-shadow: 0 0 0 0 transparent;
   }
 `;
 
 const OutlineAnswerInput = styled(AnswerInput)`
   &:checked + span {
-    background-color: ${props => props.selected.bgColor};
+    background-color: ${props => props.selected.hoverBgColor};
     box-shadow: 0 0 0 0 ${props => props.selected.boxShadowColor};
-    /* Selected Color should always be white */
-    color: ${props => props.selected.textColor};
+    color: ${props => props.selected.hoverTextColor};
   }
 `;
 
@@ -112,18 +109,27 @@ function AnswerButton({
   itemWidth,
   styleType,
   selectedType,
+  size,
   isOutline,
   ...radioProps
 }) {
   const id = radioProps.id || genId();
   const theme = useTheme();
-  const style = theme.buttonStyles.button.variant[styleType];
-  const selected = theme.buttonStyles.button.variant[selectedType];
+  let style = theme.buttonStyles.button.variant[styleType];
+  let selected = theme.buttonStyles.button.variant[selectedType];
+  let buttonSize = theme.buttonStyles.button.size[size];
+
+  if (isOutline) {
+    style = theme.buttonStyles.outlineButton.variant[styleType];
+    selected = theme.buttonStyles.outlineButton.variant[selectedType];
+    buttonSize = theme.buttonStyles.outlineButton.size[size];
+  }
 
   const labelProps = {
     itemWidth,
     style,
-    selected
+    selected,
+    buttonSize
   };
 
   let button = (
@@ -135,7 +141,7 @@ function AnswerButton({
         {...radioProps}
         {...labelProps}
       />
-      <AnswerDisplay>{children}</AnswerDisplay>
+      <AnswerDisplay buttonSize={buttonSize}>{children}</AnswerDisplay>
     </AnswerLabel>
   );
 
@@ -149,7 +155,7 @@ function AnswerButton({
           {...radioProps}
           {...labelProps}
         />
-        <AnswerDisplay>{children}</AnswerDisplay>
+        <AnswerDisplay buttonSize={buttonSize}>{children}</AnswerDisplay>
       </OutlineAnswerLabel>
     );
   }

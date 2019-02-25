@@ -43,8 +43,6 @@ function Control(props) {
   const theme = useTheme();
   const textColor = theme.validationTextColor[validationState];
 
-  console.log(theme.validationInputColor[validationState]);
-
   return (
     <ControlWrapper
       textColor={textColor}

@@ -1,36 +1,32 @@
 ```
-const TableRow = require('./Table').TableRow;
-const TableHeaderCell = require('./Table').TableHeaderCell;
-const TableBodyCell = require('./Table').TableBodyCell;
-
 <Table>
   <thead>
-    <TableRow>
-      <TableHeaderCell>Name</TableHeaderCell>
-      <TableHeaderCell>Age</TableHeaderCell>
-    </TableRow>
+    <Table.Row>
+      <Table.HeaderCell>Name</Table.HeaderCell>
+      <Table.HeaderCell>Age</Table.HeaderCell>
+    </Table.Row>
   </thead>
   <tbody>
-    <TableRow>
-      <TableBodyCell>Bill</TableBodyCell>
-      <TableBodyCell>33</TableBodyCell>
-    </TableRow>
-    <TableRow>
-      <TableBodyCell>Robin</TableBodyCell>
-      <TableBodyCell>20</TableBodyCell>
-    </TableRow>
-    <TableRow>
-      <TableBodyCell>Thomas</TableBodyCell>
-      <TableBodyCell>45</TableBodyCell>
-    </TableRow>
-    <TableRow>
-      <TableBodyCell>Michael</TableBodyCell>
-      <TableBodyCell>40</TableBodyCell>
-    </TableRow>
-    <TableRow>
-      <TableBodyCell>Noah</TableBodyCell>
-      <TableBodyCell>24</TableBodyCell>
-    </TableRow>
+    <Table.Row>
+      <Table.Cell>Bill</Table.Cell>
+      <Table.Cell>33</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Robin</Table.Cell>
+      <Table.Cell>20</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Thomas</Table.Cell>
+      <Table.Cell>45</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Michael</Table.Cell>
+      <Table.Cell>40</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>Noah</Table.Cell>
+      <Table.Cell>24</Table.Cell>
+    </Table.Row>
   </tbody>
 </Table>
 ```

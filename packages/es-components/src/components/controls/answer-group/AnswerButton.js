@@ -23,16 +23,16 @@ const AnswerLabel = styled.label`
   }
 
   &:active {
+    background-color: ${props => props.style.activeBgColor};
+    box-shadow: 0 0 0 0 transparent;
+    color: ${props => props.style.activeTextColor};
     margin-bottom: 0;
     margin-top: 4px;
-    box-shadow: 0 0 0 0 transparent;
-    background-color: ${props => props.style.activeBgColor};
-    color: ${props => props.style.activeTextColor};
   }
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    min-width: ${props => props.itemWidth};
     flex-grow: 0;
+    min-width: ${props => props.itemWidth};
   }
 `;
 
@@ -42,15 +42,15 @@ const OutlineAnswerLabel = styled(AnswerLabel)`
   box-shadow: none;
   box-sizing: border-box;
   color: ${props => props.style.bgColor};
+  margin: 0;
   text-align: center;
   text-transform: ${props =>
     props.style.textTransform ? props.style.textTransform : 'none'};
-  margin: 0;
 
   &:active {
-    margin: 0;
     background-color: ${props => props.selected.activeBgColor};
     color: ${props => props.selected.activeTextColor};
+    margin: 0;
   }
 
   &:first-child {
@@ -72,16 +72,11 @@ const OutlineAnswerLabel = styled(AnswerLabel)`
 `;
 
 const AnswerDisplay = styled.span`
-  text-align: center;
+  display: block;
   font-size: 16px;
   font-weight: bold;
-  display: block;
   padding: 10px 10px 10px 10px;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  text-align: center;
   user-select: none;
 `;
 
@@ -97,7 +92,6 @@ const AnswerInput = styled.input`
   &:checked + span {
     background-color: ${props => props.selected.bgColor};
     box-shadow: 0 4px 0 0 ${props => props.selected.boxShadowColor};
-
     /* Selected Color should always be white */
     color: ${props => props.selected.textColor};
   }

@@ -16,12 +16,7 @@ export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
 export Heading from './components/containers/heading/Heading';
-export {
-  Table,
-  TableHeaderCell,
-  TableBodyCell,
-  TableRow
-} from './components/containers/table/Table';
+export Table from './components/containers/table/Table';
 
 export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';

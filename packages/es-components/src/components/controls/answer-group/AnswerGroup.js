@@ -5,9 +5,6 @@ import styled from 'styled-components';
 const AnswerSet = styled.div`
   display: flex;
   flex-wrap: nowrap;
-
-  @media (min-width: ${props => props.theme.screenSize.desktop}) {
-  }
 `;
 
 function AnswerGroup({

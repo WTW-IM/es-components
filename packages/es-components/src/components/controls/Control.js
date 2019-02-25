@@ -12,6 +12,10 @@ const FlexControl = styled.div`
   margin-bottom: 20px;
   flex-direction: column;
 
+  select {
+    border-color: ${props => props.borderColor};
+  }
+
   input:focus,
   select:focus {
     border-color: ${props => props.focusBorderColor};
@@ -38,6 +42,8 @@ function Control(props) {
 
   const theme = useTheme();
   const textColor = theme.validationTextColor[validationState];
+
+  console.log(theme.validationInputColor[validationState]);
 
   return (
     <ControlWrapper

@@ -25,7 +25,7 @@ function AnswerGroupExample() {
 <AnswerGroupExample />
 ```
 
-You can apply different button styles using the `styleType` and `successType` props
+You can apply different button styles using the `styleType` and `selectedType` props
 
 ```
 const AnswerButton = require('./AnswerButton').default
@@ -53,7 +53,6 @@ function AnswerGroupExample() {
 <AnswerGroupExample />
 ```
 
-
 Setting the `isOutline` property will apply a flat style to each `AnswerButton`
 
 ```
@@ -69,7 +68,7 @@ function AnswerGroupExample() {
 
   return (
     <>
-      <AnswerGroup name="household-type" styleType="primary" successType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline >
+      <AnswerGroup name="household-type" styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline >
         <AnswerButton value="left">Left</AnswerButton>
         <AnswerButton value="middle">Middle</AnswerButton>
         <AnswerButton value="right">Right</AnswerButton>

@@ -5,19 +5,19 @@ const AnswerButton = require('./AnswerButton').default
 
 
 function AnswerGroupExample() {
-  const [activity, setActivity] = React.useState('nothing')
+  const [answer, setAnswer] = React.useState('nothing')
 
   function handleRadioChange(event) {
-    setActivity(event.target.value)
+    setAnswer(event.target.value)
   }
 
   return (
     <>
-      <AnswerGroup name="yes-no-question" onChange={handleRadioChange} >
+      <AnswerGroup name="yes-no-question" onChange={handleRadioChange} selectedValue={answer}>
         <AnswerButton value="yes">Yes</AnswerButton>
         <AnswerButton value="no">No</AnswerButton>
       </AnswerGroup>
-      <p>You've selected: {activity}</p>
+      <p>You've selected: {answer}</p>
     </>
   )
 };
@@ -30,22 +30,21 @@ You can apply different button styles using the `styleType`, `size`, and `select
 ```
 const AnswerButton = require('./AnswerButton').default
 
-
 function AnswerGroupExample() {
-  const [activity, setActivity] = React.useState('nothing')
+  const [answer, setAnswer] = React.useState('nothing')
 
   function handleRadioChange(event) {
-    setActivity(event.target.value)
+    setAnswer(event.target.value)
   }
 
   return (
     <>
-      <AnswerGroup name="household-type" size="sm" styleType="warning" selectedType="success" itemWidth="200px" onChange={handleRadioChange} >
+      <AnswerGroup name="household-type" size="sm" styleType="warning" selectedType="success" itemWidth="200px" onChange={handleRadioChange} selectedValue={answer}>
         <AnswerButton value="single" isOutline>Single</AnswerButton>
         <AnswerButton value="married" isOutline>Married</AnswerButton>
         <AnswerButton value="head" isOutline>Head of Household</AnswerButton>
       </AnswerGroup>
-      <p>You've selected: {activity}</p>
+      <p>You've selected: {answer}</p>
     </>
   )
 };
@@ -58,22 +57,21 @@ Setting the `isOutline` property will apply a flat style to each `AnswerButton`
 ```
 const AnswerButton = require('./AnswerButton').default
 
-
 function AnswerGroupExample() {
-  const [activity, setActivity] = React.useState('nothing')
+  const [answer, setAnswer] = React.useState('nothing')
 
   function handleRadioChange(event) {
-    setActivity(event.target.value)
+    setAnswer(event.target.value)
   }
 
   return (
     <>
-      <AnswerGroup name="household-type" styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline >
+      <AnswerGroup name="household-type" styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline selectedValue={answer}>
         <AnswerButton value="left">Left</AnswerButton>
         <AnswerButton value="middle">Middle</AnswerButton>
         <AnswerButton value="right">Right</AnswerButton>
       </AnswerGroup>
-      <p>You've selected: {activity}</p>
+      <p>You've selected: {answer}</p>
     </>
   )
 };

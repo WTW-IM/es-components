@@ -1,24 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const outlineStyles = css`
+  > label:first-child > div {
+    border-radius: 4px 0 0 4px;
+  }
+
+  > label:last-child > div {
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+  }
+
+  > label:not(:first-child):not(:last-child) > div {
+    border-left: 1px;
+  }
+`;
 
 const AnswerSet = styled.div`
   display: flex;
   flex-wrap: nowrap;
+
+  ${props => props.isOutline && outlineStyles};
 `;
 
 function AnswerGroup({
   name,
+  disableAllOptions,
   children,
   itemWidth,
   styleType,
   selectedType,
+  selectedValue,
   isOutline,
   ...rest
 }) {
   const renderButtons = () =>
     React.Children.map(children, (child, index) => {
       const key = `${name}-option-${index + 1}`;
+      const disabled = disableAllOptions || child.props.disabled;
+      const checked = selectedValue === child.props.value;
       return React.cloneElement(child, {
         key,
         name,
@@ -26,11 +47,13 @@ function AnswerGroup({
         styleType,
         selectedType,
         isOutline,
+        disabled,
+        defaultChecked: checked,
         ...rest
       });
     });
 
-  return <AnswerSet>{renderButtons()}</AnswerSet>;
+  return <AnswerSet isOutline={isOutline}>{renderButtons()}</AnswerSet>;
 }
 
 AnswerGroup.propTypes = {
@@ -46,7 +69,11 @@ AnswerGroup.propTypes = {
   /** Set the button size, sizes come from theme (buttonStyles) */
   size: PropTypes.string,
   /** Set if the items should have a flat outline style */
-  isOutline: PropTypes.bool
+  isOutline: PropTypes.bool,
+  /** Disable all radio buttons */
+  disableAllOptions: PropTypes.bool,
+  /** Selected option for the answer group */
+  selectedValue: PropTypes.any
 };
 
 AnswerGroup.defaultProps = {
@@ -54,7 +81,9 @@ AnswerGroup.defaultProps = {
   selectedType: 'success',
   size: 'default',
   itemWidth: '75px',
-  isOutline: false
+  isOutline: false,
+  disableAllOptions: false,
+  selectedValue: undefined
 };
 
 export default AnswerGroup;

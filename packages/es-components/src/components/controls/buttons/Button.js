@@ -8,6 +8,7 @@ const StyledButton = styled.button`
   background: none;
   border: none;
   box-sizing: border-box;
+  cursor: pointer;
   display: block;
   padding: 0;
   width: 100%;

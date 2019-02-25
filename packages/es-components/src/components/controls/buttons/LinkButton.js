@@ -7,6 +7,7 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   box-shadow: none;
+  cursor: pointer;
   color: ${props => props.variant.bgColor};
   font-size: inherit;
   line-height: ${props => props.theme.sizes.baseLineHeight};

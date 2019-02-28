@@ -23,12 +23,13 @@ const AnswerDisplay = styled.div`
   margin-bottom: 4px;
   margin-top: 0;
   padding-top: ${props => props.buttonSize.paddingTop};
+  padding-right: ${props => props.buttonSize.paddingSides};
   padding-bottom: ${props => props.buttonSize.paddingBottom};
+  padding-left: ${props => props.buttonSize.paddingSides};
   text-align: center;
   text-transform: ${props =>
     props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
-  transition: background-color 250ms linear, color 250ms linear,
-    box-shadow 250ms linear;
+  transition: background-color 250ms linear, color 250ms linear;
   user-select: none;
 
   &:active {

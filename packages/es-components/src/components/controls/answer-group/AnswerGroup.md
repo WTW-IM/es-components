@@ -40,9 +40,9 @@ function AnswerGroupExample() {
   return (
     <>
       <AnswerGroup name="household-type" size="sm" styleType="warning" selectedType="success" itemWidth="200px" onChange={handleRadioChange} selectedValue={answer}>
-        <AnswerButton value="single" isOutline>Single</AnswerButton>
-        <AnswerButton value="married" isOutline>Married</AnswerButton>
-        <AnswerButton value="head" isOutline>Head of Household</AnswerButton>
+        <AnswerButton value="single">Single</AnswerButton>
+        <AnswerButton value="married">Married</AnswerButton>
+        <AnswerButton value="head">Head of Household</AnswerButton>
       </AnswerGroup>
       <p>You've selected: {answer}</p>
     </>

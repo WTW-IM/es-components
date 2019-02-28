@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
+import RadioGroup from '../radio-buttons/RadioGroup';
+
 const outlineStyles = css`
   > label:first-child > div {
     border-radius: 4px 0 0 4px;
@@ -24,36 +26,12 @@ const AnswerSet = styled.div`
   ${props => props.isOutline && outlineStyles};
 `;
 
-function AnswerGroup({
-  name,
-  disableAllOptions,
-  children,
-  itemWidth,
-  styleType,
-  selectedType,
-  selectedValue,
-  isOutline,
-  ...rest
-}) {
-  const renderButtons = () =>
-    React.Children.map(children, (child, index) => {
-      const key = `${name}-option-${index + 1}`;
-      const disabled = disableAllOptions || child.props.disabled;
-      const checked = selectedValue === child.props.value;
-      return React.cloneElement(child, {
-        key,
-        name,
-        itemWidth,
-        styleType,
-        selectedType,
-        isOutline,
-        disabled,
-        defaultChecked: checked,
-        ...rest
-      });
-    });
-
-  return <AnswerSet isOutline={isOutline}>{renderButtons()}</AnswerSet>;
+function AnswerGroup(props) {
+  return (
+    <AnswerSet isOutline={props.isOutline}>
+      <RadioGroup {...props} />
+    </AnswerSet>
+  );
 }
 
 AnswerGroup.propTypes = {

@@ -79,6 +79,11 @@ const AnswerInput = styled.input`
   position: absolute;
   white-space: nowrap;
   width: 1px;
+
+  &:focus + div {
+    background-color: ${props => props.style.activeBgColor};
+    color: ${props => props.style.activeTextColor};
+  }
 `;
 
 function AnswerButton({
@@ -112,7 +117,13 @@ function AnswerButton({
 
   return (
     <AnswerLabel itemWidth={itemWidth} htmlFor={id}>
-      <AnswerInput type="radio" name={name} id={id} {...radioProps} />
+      <AnswerInput
+        type="radio"
+        name={name}
+        id={id}
+        style={style}
+        {...radioProps}
+      />
       <Display {...buttonProps}>{children}</Display>
     </AnswerLabel>
   );

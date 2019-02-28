@@ -66,7 +66,7 @@ function AnswerGroupExample() {
 
   return (
     <>
-      <AnswerGroup name="household-type" styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline selectedValue={answer}>
+      <AnswerGroup name="position" styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline selectedValue={answer}>
         <AnswerButton value="left">Left</AnswerButton>
         <AnswerButton value="middle">Middle</AnswerButton>
         <AnswerButton value="right">Right</AnswerButton>

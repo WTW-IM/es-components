@@ -22,7 +22,7 @@ const FlexControl = styled.div`
     box-shadow: ${props => props.focusBoxShadow};
   }
 
-  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
     flex-direction: row;
   }
 `;
@@ -31,7 +31,7 @@ const InlineControl = styled(FlexControl)`
   align-items: center;
   flex-direction: row;
 
-  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
     align-items: center;
   }
 `;

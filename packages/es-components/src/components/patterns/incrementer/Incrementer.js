@@ -41,12 +41,14 @@ function Incrementer(props) {
     setValue(newValue);
     props.onValueUpdated(newValue);
     setIsDecrementDisabled(determineIsDisabled(props.lowerThreshold, newValue));
+    setIsIncrementDisabled(determineIsDisabled(props.upperThreshold, newValue));
   }
 
   function incrementValue() {
     const newValue = value + props.incrementAmount;
     setValue(newValue);
     props.onValueUpdated(newValue);
+    setIsDecrementDisabled(determineIsDisabled(props.lowerThreshold, newValue));
     setIsIncrementDisabled(determineIsDisabled(props.upperThreshold, newValue));
   }
 

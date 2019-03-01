@@ -29,6 +29,7 @@ const RadioLabel = styled(Label)`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
   line-height: ${props => props.theme.sizes.baseLineHeight};
+  margin-right: 15px;
   margin-bottom: 10px;
   position: relative;
   padding: 10px 0 10px 10px;

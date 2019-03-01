@@ -21,18 +21,15 @@ const FlexControl = styled.div`
     border-color: ${props => props.focusBorderColor};
     box-shadow: ${props => props.focusBoxShadow};
   }
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    flex-direction: row;
-  }
 `;
 
 const InlineControl = styled(FlexControl)`
   align-items: center;
   flex-direction: row;
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    align-items: center;
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+    align-items: flex-start;
+    flex-direction: column;
   }
 `;
 

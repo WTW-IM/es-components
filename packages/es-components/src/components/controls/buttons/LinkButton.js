@@ -31,17 +31,17 @@ const StyledButton = styled.button`
   }
 `;
 
-function LinkButton(props) {
-  const { children, styleType, innerRef, ...other } = props;
+const LinkButton = React.forwardRef((props, ref) => {
+  const { children, styleType, ...other } = props;
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];
 
   return (
-    <StyledButton ref={innerRef} variant={variant} type="button" {...other}>
+    <StyledButton ref={ref} variant={variant} type="button" {...other}>
       {children}
     </StyledButton>
   );
-}
+});
 
 LinkButton.propTypes = {
   children: PropTypes.node.isRequired,
@@ -53,6 +53,4 @@ LinkButton.defaultProps = {
   styleType: 'default'
 };
 
-export default React.forwardRef((props, ref) => (
-  <LinkButton innerRef={ref} {...props} />
-));
+export default LinkButton;

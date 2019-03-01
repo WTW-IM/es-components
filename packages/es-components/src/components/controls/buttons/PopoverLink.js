@@ -17,14 +17,14 @@ const StyledButton = styled(LinkButton)`
   }
 `;
 
-function PopoverLink(props) {
-  const { children, styleType, innerRef, suppressUnderline, ...other } = props;
+const PopoverLink = React.forwardRef((props, ref) => {
+  const { children, styleType, suppressUnderline, ...other } = props;
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];
 
   return (
     <StyledButton
-      ref={innerRef}
+      ref={ref}
       variant={variant}
       suppressUnderline={suppressUnderline}
       {...other}
@@ -32,7 +32,7 @@ function PopoverLink(props) {
       {children}
     </StyledButton>
   );
-}
+});
 
 PopoverLink.propTypes = {
   children: PropTypes.node.isRequired,
@@ -47,6 +47,4 @@ PopoverLink.defaultProps = {
   suppressUnderline: false
 };
 
-export default React.forwardRef((props, ref) => (
-  <PopoverLink innerRef={ref} {...props} />
-));
+export default PopoverLink;

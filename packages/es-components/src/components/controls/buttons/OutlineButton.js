@@ -54,15 +54,15 @@ const StyledButton = styled.button`
   }
 `;
 
-function OutlineButton(props) {
-  const { children, styleType, size, block, innerRef, ...other } = props;
+const OutlineButton = React.forwardRef((props, ref) => {
+  const { children, styleType, size, block, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];
   const variant = theme.buttonStyles.outlineButton.variant[styleType];
 
   return (
     <StyledButton
-      ref={innerRef}
+      ref={ref}
       block={block}
       buttonSize={buttonSize}
       variant={variant}
@@ -72,7 +72,7 @@ function OutlineButton(props) {
       {children}
     </StyledButton>
   );
-}
+});
 
 OutlineButton.propTypes = {
   children: PropTypes.node.isRequired,
@@ -89,6 +89,4 @@ OutlineButton.defaultProps = {
   size: 'default'
 };
 
-export default React.forwardRef((props, ref) => (
-  <OutlineButton innerRef={ref} {...props} />
-));
+export default OutlineButton;

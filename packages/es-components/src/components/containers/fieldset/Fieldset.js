@@ -7,7 +7,7 @@ const Legend = styled.legend`
   border-bottom: 1px solid ${props => props.theme.colors.gray6};
   color: ${props => props.theme.colors.black};
   display: block;
-  font-size: 27px;
+  font-size: 21.6px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   margin: 0 0 25px 0;
   padding: 0;

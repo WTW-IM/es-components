@@ -40,11 +40,6 @@ const RadioLabel = styled(Label)`
     ${props => !props.checked && radioFill(props.hoverFillColor)};
   }
 
-  @media (min-width: ${props => props.theme.screenSize.phone}) {
-    display: ${props => (props.inline ? 'inline-flex' : 'flex')};
-    margin-right: ${props => (props.inline ? '15px' : '0')};
-  }
-
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     padding: 5px 0;
   }

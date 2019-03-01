@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { omit, noop } from 'lodash';
-import MaskedInput from 'react-text-mask';
 
 import Icon from '../../base/icons/Icon';
 import InputBase from './InputText';
-import inputMaskType from './inputMaskType';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
@@ -29,26 +26,7 @@ const CommonInputStyles = css`
   -webkit-appearance: none;
 `;
 
-// apply styles to masked input, but remove props it doesn't use
-const StyledMaskInput = styled(props => (
-  <MaskedInput
-    {...omit(props, [
-      'borderColor',
-      'boxShadow',
-      'focusBorderColor',
-      'focusBoxShadow',
-      'hasAppend',
-      'hasPrepend',
-      'initialValue'
-    ])}
-  />
-))`
-  ${CommonInputStyles};
-`;
-
-const StyledMask = props => <InputBase as={StyledMaskInput} {...props} />;
-
-const StyledText = styled(InputBase)`
+const Input = styled(InputBase)`
   ${CommonInputStyles};
 `;
 
@@ -103,15 +81,8 @@ const InputWrapper = styled.div`
   display: flex;
 `;
 
-function Textbox(props) {
-  const {
-    prependIconName,
-    appendIconName,
-    maskType,
-    customMask,
-    inputRef,
-    ...additionalTextProps
-  } = props;
+const Textbox = React.forwardRef((props, ref) => {
+  const { prependIconName, appendIconName, ...additionalTextProps } = props;
   const theme = useTheme();
 
   const validationState = React.useContext(ValidationContext);
@@ -119,28 +90,6 @@ function Textbox(props) {
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
   const hasValidationIcon = validationState !== 'default';
-
-  const Input = maskType === 'none' ? StyledText : StyledMask;
-  const maskArgs =
-    maskType === 'custom' && customMask ? customMask : inputMaskType[maskType];
-
-  if (maskType !== 'none') {
-    maskArgs.render = (ref, maskedProps) => {
-      const setRef = inputElement => {
-        // Failing to call ref from the `react-text-mask` render prop will cause
-        // `react-text-mask` to break, as it needs the ref to function
-        ref(inputElement);
-        inputRef(inputElement);
-      };
-
-      // based on ReactTextMask.defaultProps.render since we don't normally use
-      // the render prop
-      // https://github.com/text-mask/text-mask/blob/72ed2c40ecd99817b946f15d3e75a4944b364f4e/react/src/reactTextMask.js#L89
-      return <input ref={setRef} {...maskedProps} />;
-    };
-  } else {
-    additionalTextProps.ref = inputRef;
-  }
 
   const addOnTextColor = hasValidationIcon
     ? theme.colors.white
@@ -160,7 +109,7 @@ function Textbox(props) {
         hasAppend={hasAppend}
         hasPrepend={hasPrepend}
         type="text"
-        {...maskArgs}
+        ref={ref}
         {...additionalTextProps}
         {...theme.validationInputColor[validationState]}
       />
@@ -180,40 +129,18 @@ function Textbox(props) {
       )}
     </InputWrapper>
   );
-}
+});
 
 Textbox.propTypes = {
   /** Content to prepend input box with */
   prependIconName: PropTypes.string,
   /** Content to append to input box */
-  appendIconName: PropTypes.string,
-  /** Sets a mask type on the input */
-  maskType: PropTypes.oneOf([
-    'none',
-    'date',
-    'dollar',
-    'phone',
-    'ssnum',
-    'zip',
-    'custom'
-  ]),
-  customMask: PropTypes.shape({
-    mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]).isRequired,
-    guide: PropTypes.bool,
-    placeholderChar: PropTypes.string,
-    keepCharPositions: PropTypes.bool,
-    pipe: PropTypes.func,
-    showMask: PropTypes.bool
-  }),
-  inputRef: PropTypes.func
+  appendIconName: PropTypes.string
 };
 
 Textbox.defaultProps = {
-  maskType: 'none',
   prependIconName: undefined,
-  appendIconName: undefined,
-  customMask: undefined,
-  inputRef: noop
+  appendIconName: undefined
 };
 
 export default Textbox;

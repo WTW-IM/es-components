@@ -7,7 +7,7 @@ const ModalFooter = styled.div`
   text-align: right;
 
   button {
-    width: initial;
+    width: auto;
   }
 `;
 

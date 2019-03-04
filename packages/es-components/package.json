@@ -3,12 +3,13 @@
   "version": "19.0.22-alpha",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
-  "main": "bundle/main.min.js",
   "module": "lib/index.js",
+  "main": "cjs/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:es6 && npm run webpack",
-    "build:es6": "rollup -c rollup.config.js",
+    "build": "npm run build:es5 && npm run build:es6 && npm run webpack",
+    "build:es5": "rollup -c rollup.es5.js",
+    "build:es6": "rollup -c rollup.es6.js",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
@@ -81,7 +82,7 @@
     "webpack-cli": "^3.1.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime-corejs2": "^7.3.4",
     "date-fns": "^1.29.0",
     "lodash": "^4.17.5",
     "prop-types": "^15.6.1",

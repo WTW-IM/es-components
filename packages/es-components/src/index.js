@@ -49,3 +49,4 @@ export Spinner from './components/base/spinner/Spinner';
 
 export generateAlphaName from './components/util/generateAlphaName';
 export { useWindowWidth } from './components/util/useWindowWidth';
+export { useTheme } from './components/util/useTheme';

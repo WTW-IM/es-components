@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "19.0.26-alpha",
+  "version": "19.0.27-alpha",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "main": "bundle/main.min.js",

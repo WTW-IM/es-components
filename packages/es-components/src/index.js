@@ -50,3 +50,4 @@ export Spinner from './components/base/spinner/Spinner';
 
 export generateAlphaName from './components/util/generateAlphaName';
 export withWindowSize from './components/util/withWindowSize';
+export StyleReset from './components/util/StyleReset';

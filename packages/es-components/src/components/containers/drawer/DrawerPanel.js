@@ -5,7 +5,7 @@ import AnimateHeight from 'react-animate-height';
 import { noop } from 'lodash';
 import Icon from '../../base/icons/Icon';
 
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 // Note: DrawerPanel relies on a parent (Drawer) with ThemeProvider wrapping it
 const PanelWrapper = styled.div`
@@ -60,8 +60,8 @@ const DrawerPanel = props => {
     ...other
   } = props;
 
-  const headingAriaId = genId();
-  const regionAriaId = genId();
+  const headingAriaId = useUniqueId();
+  const regionAriaId = useUniqueId();
   const aside = titleAside && <aside>{titleAside}</aside>;
 
   return (

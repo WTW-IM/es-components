@@ -10,7 +10,6 @@ import { useWindowWidth } from '../../util/useWindowWidth';
 import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 
-
 const BlockContainer = styled.div`
   display: inline-block;
 `;
@@ -121,8 +120,6 @@ function DatePicker(props) {
     </ReactDatePicker>
   );
 
-  const theme = useTheme();
-
   const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
   const datePicker =
     allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
@@ -194,6 +191,5 @@ DatePicker.defaultProps = {
   endDate: undefined,
   allowNativeDatepickerOnMobile: true
 };
-
 
 export default DatePicker;

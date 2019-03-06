@@ -1,6 +1,7 @@
 .npmrc
 lib/
 es6/
+cjs/
 bundle/
 node_modules
 npm-debug.log

@@ -68,7 +68,7 @@ const RadioDisplay = styled.span`
 `;
 
 export function RadioButton({ name, children, ...radioProps }) {
-  const id = radioProps.id || useUniqueId();
+  const id = useUniqueId(radioProps.id);
   const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);

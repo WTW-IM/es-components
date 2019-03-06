@@ -5,7 +5,7 @@ import Label from '../label/Label';
 import getRadioFillVariables from './radio-fill-variables';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 function radioFill(color) {
   return `
@@ -68,7 +68,7 @@ const RadioDisplay = styled.span`
 `;
 
 export function RadioButton({ name, children, ...radioProps }) {
-  const id = radioProps.id || genId();
+  const id = radioProps.id || useUniqueId();
   const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);

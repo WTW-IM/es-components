@@ -23,6 +23,7 @@ export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';
 export Label from './components/controls/label/Label';
 export Textbox from './components/controls/textbox/Textbox';
+export MaskedTextbox from './components/controls/textbox/MaskedTextbox';
 export Button from './components/controls/buttons/Button';
 export ToggleButton from './components/controls/buttons/ToggleButton';
 export DropdownButton from './components/controls/buttons/DropdownButton';
@@ -49,5 +50,6 @@ export Action from './components/patterns/callToAction/Action';
 export Spinner from './components/base/spinner/Spinner';
 
 export generateAlphaName from './components/util/generateAlphaName';
-export withWindowSize from './components/util/withWindowSize';
+export { useWindowWidth } from './components/util/useWindowWidth';
 export StyleReset from './components/util/StyleReset';
+export { useTheme } from './components/util/useTheme';

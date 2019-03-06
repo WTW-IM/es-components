@@ -10,6 +10,13 @@ import { renderWithTheme } from '../../util/test-utils';
 
 const phoneWidth = parseInt(viaTheme.screenSize.phone, 10);
 
+function setScreenWidth(size) {
+  Object.defineProperty(window.document.body, 'clientWidth', {
+    value: size,
+    writable: true
+  });
+}
+
 afterEach(cleanup);
 
 it('renders DatePicker when textbox is focused', () => {
@@ -46,14 +53,11 @@ it('renders DatePicker when textbox is clicked on', () => {
 });
 
 it('renders the native date input when the screen is phone sized', () => {
+  setScreenWidth(phoneWidth);
   const { getByLabelText } = renderWithTheme(
     <Control>
       <Label htmlFor="test-date">Phone sized DatePicker</Label>
-      <DatePicker
-        id="test-date"
-        onChange={jest.fn()}
-        defaultWidth={phoneWidth}
-      />
+      <DatePicker id="test-date" onChange={jest.fn()} />
     </Control>
   );
   const datePickerElement = getByLabelText('Phone sized DatePicker');
@@ -61,14 +65,11 @@ it('renders the native date input when the screen is phone sized', () => {
 });
 
 it('renders the native date input when the screen is smaller than phone sized', () => {
+  setScreenWidth(phoneWidth - 1);
   const { getByLabelText } = renderWithTheme(
     <Control>
       <Label htmlFor="test-date">Very small screen DatePicker</Label>
-      <DatePicker
-        id="test-date"
-        onChange={jest.fn()}
-        defaultWidth={phoneWidth - 1}
-      />
+      <DatePicker id="test-date" onChange={jest.fn()} />
     </Control>
   );
   const datePickerElement = getByLabelText('Very small screen DatePicker');
@@ -76,13 +77,13 @@ it('renders the native date input when the screen is smaller than phone sized', 
 });
 
 it('renders the custom date input when the screen is smaller than phone sized, but we specify the native date picker should not be used', () => {
+  setScreenWidth(phoneWidth - 1);
   const { getByLabelText } = renderWithTheme(
     <Control>
       <Label htmlFor="test-date">Still the custom date picker</Label>
       <DatePicker
         id="test-date"
         onChange={jest.fn()}
-        defaultWidth={phoneWidth - 1}
         allowNativeDatepickerOnMobile={false}
       />
     </Control>
@@ -92,14 +93,11 @@ it('renders the custom date input when the screen is smaller than phone sized, b
 });
 
 it('renders the custom date input when the screen is bigger than phone sized', () => {
+  setScreenWidth(phoneWidth + 1);
   const { getByLabelText } = renderWithTheme(
     <Control>
       <Label htmlFor="test-date">Big screen DatePicker</Label>
-      <DatePicker
-        id="test-date"
-        onChange={jest.fn()}
-        defaultWidth={phoneWidth + 1}
-      />
+      <DatePicker id="test-date" onChange={jest.fn()} />
     </Control>
   );
   const datePickerElement = getByLabelText('Big screen DatePicker');

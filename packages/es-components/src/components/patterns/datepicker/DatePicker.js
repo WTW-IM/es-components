@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { parse, format, isValid } from 'date-fns';
+import { useTheme } from '../../util/useTheme';
+import { useWindowWidth } from '../../util/useWindowWidth';
 
 import { DatepickerStyles } from './datePickerStyles';
-
 import Textbox from '../../controls/textbox/Textbox';
-import withWindowSize from '../../util/withWindowSize';
 
 const BlockContainer = styled.div`
   display: inline-block;
@@ -29,20 +29,19 @@ const getVerifiedDate = selectedDate => {
   return verifiedDate;
 };
 
-// required for react-text-mask to properly set a ref
+// required for react-datepicker 2.0.0 to properly set focus
 class DateTextbox extends React.Component {
-  static propTypes = Textbox.propTypes; // eslint-disable-line react/forbid-foreign-prop-types
-
-  setRef = ref => {
-    this.inputElement = ref;
-  };
+  constructor() {
+    super();
+    this.inputRef = React.createRef();
+  }
 
   focus() {
-    this.inputElement.focus();
+    this.inputRef.current.focus();
   }
 
   render() {
-    return <Textbox inputRef={this.setRef} {...this.props} />;
+    return <Textbox ref={this.inputRef} {...this.props} />;
   }
 }
 
@@ -67,7 +66,7 @@ function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   );
 }
 
-export function DatePicker(props) {
+function DatePicker(props) {
   /* eslint-disable no-unused-vars */
   const {
     children,
@@ -76,14 +75,12 @@ export function DatePicker(props) {
     onBlur,
     placeholder,
     selectedDate,
-    theme,
     allowNativeDatepickerOnMobile,
-    defaultWidth,
-    defaultHeight,
-    windowHeight,
-    windowWidth,
     ...otherProps
   } = props;
+
+  const theme = useTheme();
+  const windowWidth = useWindowWidth();
 
   /* eslint-disable react/forbid-foreign-prop-types */
   const datepickerProps = pick(
@@ -95,12 +92,7 @@ export function DatePicker(props) {
   const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
-    <DateTextbox
-      maskType="date"
-      name={name}
-      prependIconName="calendar"
-      {...textboxProps}
-    />
+    <DateTextbox name={name} prependIconName="calendar" {...textboxProps} />
   );
 
   const mobileDatePicker = (
@@ -128,7 +120,7 @@ export function DatePicker(props) {
     </ReactDatePicker>
   );
 
-  const phoneWidth = parseInt(props.theme.screenSize.phone, 10) || 0;
+  const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
   const datePicker =
     allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
       ? mobileDatePicker
@@ -174,19 +166,12 @@ DatePicker.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   /** Sets the end date in a range */
   endDate: PropTypes.instanceOf(Date),
-  /** The width of the window. Passed in from the withWindowSize higher order component */
-  windowWidth: PropTypes.number,
   /**
    * Determines whether to use the native datepicker instead of the React datepicker on mobile devices.
    * For complicated scenarios like date ranges and such, it is recommended to disable this.
    * Defaults to true.
    */
-  allowNativeDatepickerOnMobile: PropTypes.bool,
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  allowNativeDatepickerOnMobile: PropTypes.bool
 };
 
 DatePicker.defaultProps = {
@@ -204,8 +189,7 @@ DatePicker.defaultProps = {
   selectsEnd: false,
   startDate: undefined,
   endDate: undefined,
-  windowWidth: undefined,
   allowNativeDatepickerOnMobile: true
 };
 
-export default withTheme(withWindowSize(DatePicker));
+export default DatePicker;

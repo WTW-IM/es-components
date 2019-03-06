@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { render } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
 import withWindowSize from './withWindowSize';
 
 const InnerComponent = ({ windowWidth, windowHeight }) => (
@@ -25,20 +25,22 @@ const triggerResize = () => {
   global.window.dispatchEvent(resizeEvent);
 };
 
-beforeEach(() => {
-  Object.defineProperty(global.document.body, 'clientWidth', {
-    value: 500,
-    writable: true
-  });
-
-  Object.defineProperty(global.document.body, 'clientHeight', {
-    value: 500,
-    writable: true
-  });
-
-  const { body } = global.document;
-  if (body.firstChild) body.removeChild(body.firstChild);
+Object.defineProperty(global.document.body, 'clientWidth', {
+  value: 500,
+  writable: true
 });
+
+Object.defineProperty(global.document.body, 'clientHeight', {
+  value: 500,
+  writable: true
+});
+
+beforeEach(() => {
+  global.document.body.clientWidth = 500;
+  global.document.body.clientHeight = 500;
+});
+
+afterEach(cleanup);
 
 it('uses a passed windowWidth if one is present', () => {
   const { getByTestId } = render(<WindowSizeComponent defaultWidth={1000} />);

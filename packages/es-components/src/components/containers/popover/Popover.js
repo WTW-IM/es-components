@@ -49,7 +49,11 @@ const PopoverContent = styled.div`
   text-align: left;
 `;
 
-const AlternateCloseButton = styled(Button)`
+const PopoverCloseButton = styled(Button)`
+  width: auto;
+`;
+
+const AlternateCloseButton = styled(PopoverCloseButton)`
   background: transparent;
   border: none;
   box-shadow: none;
@@ -124,9 +128,9 @@ function Popover(props) {
   }
 
   const closeButton = (
-    <Button onClick={toggleShow} ref={closeBtnRef}>
+    <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
       Close
-    </Button>
+    </PopoverCloseButton>
   );
 
   const altCloseButton = (

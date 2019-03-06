@@ -4,11 +4,12 @@ import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
 import styled from 'styled-components';
 import { parse, format, isValid } from 'date-fns';
+import { useTheme } from '../../util/useTheme';
+import { useWindowWidth } from '../../util/useWindowWidth';
 
 import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
-import withWindowSize from '../../util/withWindowSize';
-import { useTheme } from '../../util/useTheme';
+
 
 const BlockContainer = styled.div`
   display: inline-block;
@@ -66,7 +67,7 @@ function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   );
 }
 
-export function DatePicker(props) {
+function DatePicker(props) {
   /* eslint-disable no-unused-vars */
   const {
     children,
@@ -76,12 +77,11 @@ export function DatePicker(props) {
     placeholder,
     selectedDate,
     allowNativeDatepickerOnMobile,
-    defaultWidth,
-    defaultHeight,
-    windowHeight,
-    windowWidth,
     ...otherProps
   } = props;
+
+  const theme = useTheme();
+  const windowWidth = useWindowWidth();
 
   /* eslint-disable react/forbid-foreign-prop-types */
   const datepickerProps = pick(
@@ -122,6 +122,7 @@ export function DatePicker(props) {
   );
 
   const theme = useTheme();
+
   const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
   const datePicker =
     allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
@@ -168,8 +169,6 @@ DatePicker.propTypes = {
   startDate: PropTypes.instanceOf(Date),
   /** Sets the end date in a range */
   endDate: PropTypes.instanceOf(Date),
-  /** The width of the window. Passed in from the withWindowSize higher order component */
-  windowWidth: PropTypes.number,
   /**
    * Determines whether to use the native datepicker instead of the React datepicker on mobile devices.
    * For complicated scenarios like date ranges and such, it is recommended to disable this.
@@ -193,8 +192,8 @@ DatePicker.defaultProps = {
   selectsEnd: false,
   startDate: undefined,
   endDate: undefined,
-  windowWidth: undefined,
   allowNativeDatepickerOnMobile: true
 };
 
-export default withWindowSize(DatePicker);
+
+export default DatePicker;

@@ -50,4 +50,5 @@ export Action from './components/patterns/callToAction/Action';
 export Spinner from './components/base/spinner/Spinner';
 
 export generateAlphaName from './components/util/generateAlphaName';
-export withWindowSize from './components/util/withWindowSize';
+export { useWindowWidth } from './components/util/useWindowWidth';
+export { useTheme } from './components/util/useTheme';

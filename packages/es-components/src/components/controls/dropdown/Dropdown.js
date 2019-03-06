@@ -7,13 +7,12 @@ const Dropdown = styled.select`
   border-radius: 2px;
   box-sizing: border-box;
   color: inherit;
-  flex: 1 0 80%;
+  flex-basis: auto;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   height: 39px;
   padding: 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  width: 100%;
 
   &:focus {
     outline: 0;

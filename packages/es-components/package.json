@@ -25,7 +25,7 @@
     "setupFiles": [
       "./config/jest-shims.js"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/config/import-matchers.js",
+    "setupFilesAfterEnv": [ "<rootDir>/config/import-matchers.js" ],
     "testPathIgnorePatterns": [
       "es6",
       "lib"
@@ -46,14 +46,14 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-styled-components": "^1.8.0",
     "babel-preset-wtw-im": "^2.3.1",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "es-components-via-theme": "file:../es-components-via-theme",
-    "eslint": "^5.4.0",
+    "eslint": "^5.15.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-exchange-solutions": "^7.0.0",
     "eslint-config-prettier": "^3.0.1",
@@ -62,8 +62,8 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^0.9.0",
-    "jest": "^23.6.0",
-    "jest-cli": "^23.6.0",
+    "jest": "^24.1.0",
+    "jest-cli": "^24.1.0",
     "jest-dom": "^2.1.0",
     "mockdate": "^2.0.1",
     "prettier": "^1.14.1",
@@ -84,7 +84,7 @@
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.4",
     "date-fns": "^1.29.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.1",
     "react-animate-height": "^2.0.4",
     "react-datepicker": "^2.0.0",

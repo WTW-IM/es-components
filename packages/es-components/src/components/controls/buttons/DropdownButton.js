@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Button from './Button';
 import LinkButton from './LinkButton';
-import generateAlphaName from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 const Caret = styled.span`
   border-left: 4px solid transparent;
@@ -137,6 +137,7 @@ function DropdownButton(props) {
 
   const buttonDropdown = useRef();
   const triggerButton = useRef();
+  const panelId = useUniqueId();
 
   useEffect(
     () => {
@@ -188,7 +189,7 @@ function DropdownButton(props) {
     styleType,
     ...otherProps
   } = props;
-  const panelId = generateAlphaName();
+
   return (
     <RootCloseWrapper onRootClose={closeDropdown} disabled={!rootClose}>
       <div

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 function darkenPrimary(primary) {
   return tinycolor(primary)
@@ -58,10 +58,11 @@ const Crumb = styled.li`
 `;
 
 function Breadcrumb({ children, ...props }) {
+  const uniqueId = useUniqueId();
   return (
     <OrderedList {...props}>
       {React.Children.map(children, child => (
-        <Crumb key={genId()}>{child}</Crumb>
+        <Crumb key={uniqueId}>{child}</Crumb>
       ))}
     </OrderedList>
   );

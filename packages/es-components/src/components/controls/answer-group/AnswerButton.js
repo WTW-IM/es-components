@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 import { useTheme } from '../../util/useTheme';
 
 const AnswerLabel = styled.label`
@@ -97,7 +97,7 @@ function AnswerButton({
   checked,
   ...radioProps
 }) {
-  const id = radioProps.id || genId();
+  const id = useUniqueId(radioProps.id);
   const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
   const buttonStyle = isOutline ? 'outlineButton' : 'button';

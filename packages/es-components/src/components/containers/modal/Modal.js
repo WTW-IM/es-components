@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
 
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 import { useTheme } from '../../util/useTheme';
 import Fade from '../../util/Fade';
 import { ModalContext } from './ModalContext';
@@ -107,7 +107,7 @@ function Modal(props) {
 
   const ModalDialog = getModalBySize(size);
 
-  const ariaId = genId();
+  const ariaId = useUniqueId();
 
   return (
     <ModalContext.Provider value={{ onHide, ariaId }}>

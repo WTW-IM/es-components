@@ -8,7 +8,7 @@ import LinkButton from '../../controls/buttons/LinkButton';
 
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 
-import generateAlphaName from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -190,7 +190,8 @@ function Tooltip(props) {
   }
 
   const tooltipTarget = React.createRef();
-  const descriptionId = React.useRef(`${generateAlphaName()}-description`);
+  const idHash = useUniqueId();
+  const descriptionId = `${idHash}-description`;
 
   return (
     <>
@@ -203,13 +204,11 @@ function Tooltip(props) {
         onMouseDown={toggleShow}
         onKeyDown={closeOnEscape}
         onClick={() => {}}
-        aria-describedby={descriptionId.current}
+        aria-describedby={descriptionId}
       >
         {children}
       </StyledButton>
-      <SrContentContainer id={descriptionId.current}>
-        {content}
-      </SrContentContainer>
+      <SrContentContainer id={descriptionId}>{content}</SrContentContainer>
 
       <Overlay
         show={show}

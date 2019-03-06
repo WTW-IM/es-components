@@ -7,13 +7,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * Update: change notification danger icon ([20ea50e](https://github.com/WTW-IM/es-components/commit/20ea50e))
 * Update: removed unused classnames dependency ([ea75f3b](https://github.com/WTW-IM/es-components/commit/ea75f3b))
-* Merge branch 'master' into next ([1e72337](https://github.com/WTW-IM/es-components/commit/1e72337))
 * v19.0.0-alpha ([8da53d5](https://github.com/WTW-IM/es-components/commit/8da53d5))
-
-
-
-
-
-## <small>18.0.22 (2019-01-31)</small>
-
-* Update: adds software blue color ([1a68ac3](https://github.com/WTW-IM/es-components/commit/1a68ac3))

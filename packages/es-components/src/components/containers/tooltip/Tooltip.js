@@ -1,23 +1,18 @@
-/* eslint react/no-unused-prop-types: 0 */
-/* ^^^ We need to declare the Theme prop for documentation. */
-
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from 'react-overlays/lib/Overlay';
 import styled from 'styled-components';
-import classnames from 'classnames';
 
 import Fade from '../../util/Fade';
-
-import Button from '../../controls/buttons/Button';
+import LinkButton from '../../controls/buttons/LinkButton';
 
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 
-import generateAlphaName from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 const TooltipBase = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 999;
 `;
 
 const TooltipInner = styled.div`
@@ -91,7 +86,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   top: 50%;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(LinkButton)`
   border-bottom: 1px dashed;
   border-radius: 0;
   color: ${props => props.theme.colors.primary};
@@ -111,7 +106,7 @@ const FadeTransition = props => (
 );
 
 const Popup = props => {
-  const { name, className, children, position, style } = props;
+  const { name, children, position, style, ...other } = props;
   let TooltipStyled;
   let TooltipArrow;
   const tooltipId = name ? `es-tooltip__${name}` : undefined;
@@ -138,10 +133,10 @@ const Popup = props => {
   return (
     <TooltipStyled
       role="tooltip"
-      className={classnames('es-tooltip', className)}
       id={tooltipId}
       style={style}
       aria-live="polite"
+      {...other}
     >
       <TooltipArrow />
       <TooltipInner>{children}</TooltipInner>
@@ -152,89 +147,82 @@ const Popup = props => {
 Popup.propTypes = {
   name: PropTypes.string,
   children: PropTypes.any.isRequired,
-  className: PropTypes.string,
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   style: PropTypes.object
 };
 
 Popup.defaultProps = {
   name: undefined,
-  className: undefined,
   position: 'top',
   style: {}
 };
 
 const SrContentContainer = screenReaderOnly('div');
 
-class Tooltip extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: false };
-    this.descriptionId = `${generateAlphaName()}-description`;
+function Tooltip(props) {
+  const [show, setShow] = useState(false);
+  const {
+    name,
+    disableHover,
+    disableFocus,
+    position,
+    content,
+    children,
+    ...other
+  } = props;
+
+  function showTooltip() {
+    setShow(true);
   }
 
-  show = () => this.setState({ show: true });
+  function hideTooltip() {
+    setShow(false);
+  }
 
-  hide = () => this.setState({ show: false });
+  function toggleShow() {
+    setShow(!show);
+  }
 
-  toggleShow = () => {
-    this.setState(({ show }) => ({ show: !show }));
-  };
-
-  closeOnEscape = event => {
+  function closeOnEscape(event) {
     if (event.keyCode === 27) {
-      this.setState({ show: false });
+      setShow(false);
     }
-  };
-
-  render() {
-    const {
-      disableFocus,
-      disableHover,
-      children,
-      position,
-      name,
-      content
-    } = this.props;
-
-    return (
-      <span>
-        <StyledButton
-          className="es-tooltip__target"
-          type="button"
-          ref={span => {
-            this.toolTipTarget = span;
-          }}
-          isLinkButton
-          onBlur={this.hide}
-          onFocus={!disableFocus ? this.show : undefined}
-          onMouseEnter={!disableHover ? this.show : undefined}
-          onMouseLeave={!disableHover ? this.hide : undefined}
-          onMouseDown={this.toggleShow}
-          onKeyDown={this.closeOnEscape}
-          handleOnClick={this.show}
-          aria-describedby={this.descriptionId}
-        >
-          {children}
-        </StyledButton>
-        <SrContentContainer id={this.descriptionId}>
-          {content}
-        </SrContentContainer>
-
-        <Overlay
-          show={this.state.show}
-          placement={position}
-          container={document.body}
-          target={props => this.toolTipTarget}
-          transition={FadeTransition}
-        >
-          <Popup position={position} name={name}>
-            <span aria-hidden="true">{content}</span>
-          </Popup>
-        </Overlay>
-      </span>
-    );
   }
+
+  const tooltipTarget = React.createRef();
+  const idHash = useUniqueId();
+  const descriptionId = `${idHash}-description`;
+
+  return (
+    <>
+      <StyledButton
+        ref={tooltipTarget}
+        onBlur={hideTooltip}
+        onFocus={!disableFocus ? showTooltip : undefined}
+        onMouseEnter={!disableHover ? showTooltip : undefined}
+        onMouseLeave={!disableHover ? hideTooltip : undefined}
+        onMouseDown={toggleShow}
+        onKeyDown={closeOnEscape}
+        onClick={() => {}}
+        aria-describedby={descriptionId}
+      >
+        {children}
+      </StyledButton>
+      <SrContentContainer id={descriptionId}>{content}</SrContentContainer>
+
+      <Overlay
+        show={show}
+        placement={position}
+        container={document.body}
+        target={() => tooltipTarget.current}
+        transition={FadeTransition}
+      >
+        <Popup position={position} name={name} {...other}>
+          {content}
+        </Popup>
+      </Overlay>
+    </>
+  );
 }
 
 Tooltip.propTypes = {

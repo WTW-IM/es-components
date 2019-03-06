@@ -34,10 +34,10 @@ module.exports = {
           word-break: break-word !important;
         }
       </style>
-      <link rel="stylesheet" href="https://cdn.rawgit.com/WTW-IM/es-assets/8fbaf85d/font.css">
+      <link rel="stylesheet" href="https://wtw-bdaim-cdn.azureedge.net/es-assets/es-assets-master/font.css">
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
-      <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>`
-    }
+      <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
+    `}
   },
   ribbon: {
     url: 'https://github.com/WTW-IM/es-components',
@@ -59,6 +59,7 @@ module.exports = {
     },
     {
       name: 'Controls',
+      content: path.join(baseComponentDir, 'controls/Controls.md'),
       components: path.join(baseComponentDir, 'controls/**/*.js')
     },
     {
@@ -72,7 +73,7 @@ module.exports = {
     }
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/ExampleWrapper.js')
+    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js')
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
@@ -98,6 +99,11 @@ module.exports = {
           'sans-serif'
         ],
         fontSize: '18px'
+      }
+    },
+    Code: {
+      code: {
+        color: '#007fa7'
       }
     }
   }

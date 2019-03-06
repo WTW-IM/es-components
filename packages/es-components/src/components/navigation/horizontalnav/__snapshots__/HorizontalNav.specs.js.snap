@@ -3,68 +3,56 @@
 exports[`renders as expected 1`] = `
 <div>
   <nav
-    class="es-horizontalnav sc-bxivhb cMujCD"
+    class="es-sidenav sc-bwzfXH fOrtDJ"
   >
     <ul>
       <li
-        class="es-horizontalnav__navitem"
+        class="es-sidenav__navitem sc-bxivhb fZrkkg"
       >
-        <a
-          class="home sc-bdVaJa cisBhB"
-          href="/home"
-          target="_self"
+        <button
+          class="sc-bZQynM cBoIkp"
+          type="button"
         >
-          <span
-            class="sc-htpNat kbKuoc"
-          >
+          <span>
             Home
           </span>
-        </a>
+        </button>
       </li>
       <li
-        class="es-horizontalnav__navitem"
+        class="es-sidenav__navitem sc-bxivhb bhVqaQ"
       >
-        <a
-          class="cart sc-bdVaJa cisBhB"
-          href="#/"
-          target="_self"
+        <button
+          class="sc-gzVnrw ctSpxD"
+          type="button"
         >
-          <span
-            class="sc-htpNat kbKuoc"
-          >
+          <span>
             Cart
           </span>
-        </a>
+        </button>
       </li>
       <li
-        class="es-horizontalnav__navitem"
+        class="es-sidenav__navitem sc-bxivhb bhVqaQ"
       >
         <a
-          class="external sc-bdVaJa cisBhB"
-          href="http://www.google.com"
-          target="_blank"
+          class="sc-htoDjs eHAfOz"
+          href="https://google.com"
         >
-          <span
-            class="sc-htpNat kbKuoc"
-          >
+          <span>
             External Link
           </span>
         </a>
       </li>
       <li
-        class="es-horizontalnav__navitem"
+        class="es-sidenav__navitem sc-bxivhb jkBINK"
       >
-        <a
-          class="info sc-bdVaJa bQVDYh"
-          href="#/"
-          target="_self"
+        <button
+          class="sc-dnqmqq lcawqa"
+          type="button"
         >
-          <span
-            class="sc-htpNat kbKuoc"
-          >
+          <span>
             Disabled
           </span>
-        </a>
+        </button>
       </li>
     </ul>
   </nav>

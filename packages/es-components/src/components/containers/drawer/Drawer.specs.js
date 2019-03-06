@@ -30,16 +30,11 @@ const buildDrawer = props => (
 beforeEach(cleanup);
 
 describe('drawer', () => {
-  it('renders as expected', () => {
-    const { container } = renderWithTheme(buildDrawer());
-    expect(container).toMatchSnapshot();
-  });
-
-  it('opens a closed panel', () => {
+  it('active panel is opened', () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = renderWithTheme(buildDrawer({ onActiveKeysChanged }));
-
-    getByText('collapse 1').click();
+    const { getByText } = renderWithTheme(
+      buildDrawer({ onActiveKeysChanged, activeKeys: ['1'] })
+    );
 
     expect(getByText('first')).toBeVisible();
     expect(getByText('second')).not.toBeVisible();
@@ -48,35 +43,8 @@ describe('drawer', () => {
 
   it('allows multiple panels to be opened at the same time', () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = renderWithTheme(buildDrawer({ onActiveKeysChanged }));
-
-    getByText('collapse 1').click();
-    getByText('collapse 3').click();
-
-    expect(getByText('first')).toBeVisible();
-    expect(getByText('second')).not.toBeVisible();
-    expect(getByText('third')).toBeVisible();
-  });
-
-  it('closes a previously opened panel', async () => {
-    jest.useFakeTimers();
-    const onActiveKeysChanged = jest.fn();
-    const { getByText } = renderWithTheme(buildDrawer({ onActiveKeysChanged }));
-
-    const secondPanelToggle = getByText('collapse 2');
-    secondPanelToggle.click();
-
-    expect(getByText('second')).toBeVisible();
-
-    secondPanelToggle.click();
-    jest.runOnlyPendingTimers();
-    expect(getByText('second')).not.toBeVisible();
-  });
-
-  it('allows drawers to be opened by default', () => {
-    const onActiveKeysChanged = jest.fn();
     const { getByText } = renderWithTheme(
-      buildDrawer({ activeKeys: ['1', '3'], onActiveKeysChanged })
+      buildDrawer({ onActiveKeysChanged, activeKeys: ['1', '3'] })
     );
 
     expect(getByText('first')).toBeVisible();
@@ -88,23 +56,14 @@ describe('drawer', () => {
 describe('accordion', () => {
   const isAccordion = true;
 
-  it('renders as expected', () => {
-    const { container } = renderWithTheme(buildDrawer({ isAccordion }));
-    expect(container).toMatchSnapshot();
-  });
-
   it('should only allow one drawer to be opened at a time', () => {
     jest.useFakeTimers();
     const onActiveKeysChanged = jest.fn();
     const { getByText } = renderWithTheme(
-      buildDrawer({ isAccordion, onActiveKeysChanged, activeKeys: ['1'] })
+      buildDrawer({ isAccordion, onActiveKeysChanged, activeKeys: ['1', '2'] })
     );
 
     expect(getByText('first')).toBeVisible();
-
-    getByText('collapse 2').click();
-    jest.runOnlyPendingTimers();
-
     expect(getByText('second')).not.toBeVisible();
   });
 });

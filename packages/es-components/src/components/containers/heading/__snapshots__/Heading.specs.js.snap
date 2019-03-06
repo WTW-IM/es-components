@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders heading level with another size 1`] = `
+<div>
+  <div>
+    <h1
+      class="sc-bdVaJa gbxEJg"
+    >
+      Heading level 1
+    </h1>
+    <h3
+      class="sc-bdVaJa bbqOIv"
+    >
+      Heading level 3
+    </h3>
+    <h3
+      class="sc-bdVaJa gbxEJg"
+    >
+      Heading level 3 size 1
+    </h3>
+  </div>
+</div>
+`;

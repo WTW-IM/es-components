@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { InlineContext } from './InlineContext';
 
-/* eslint-disable no-confusing-arrow */
 const StyledMenuSection = styled.section`
   padding-top: ${props =>
     !props.isFirst && !props.inline && !props.isOnlySection ? '20px' : '0px'};
@@ -12,7 +12,6 @@ const StyledMenuSection = styled.section`
       ? `1px solid ${props.theme.colors.gray5}`
       : 'none'};
 `;
-/* eslint-enable */
 
 const StyledHeader = styled.header`
   padding-left: 10px;
@@ -22,17 +21,17 @@ const StyledChildrenContainer = styled.section`
   padding: 15px 20px 0px 20px;
 `;
 
-const MenuSection = (props, context) => {
-  const { title, children, isLast, isFirst, isOnlySection } = props;
-  const { inline } = context;
+function MenuSection(props) {
+  const { title, children, isLast, isFirst, isOnlySection, ...other } = props;
+  const inline = useContext(InlineContext);
 
   return (
     <StyledMenuSection
-      className="es-menu__section"
       isLast={isLast}
       isFirst={isFirst}
       inline={inline}
       isOnlySection={isOnlySection}
+      {...other}
     >
       {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}
       {children && (
@@ -40,11 +39,7 @@ const MenuSection = (props, context) => {
       )}
     </StyledMenuSection>
   );
-};
-
-MenuSection.contextTypes = {
-  inline: PropTypes.bool
-};
+}
 
 MenuSection.propTypes = {
   title: PropTypes.string,

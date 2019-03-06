@@ -1,11 +1,17 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { noop, isNumber } from 'lodash';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
-import { InputBase } from '../../controls/BaseControls';
+import InputBase from '../../controls/textbox/InputText';
+import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
+import { useTheme } from '../../util/useTheme';
+
+const IncrementerWrapper = styled.div`
+  display: flex;
+`;
 
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
@@ -13,136 +19,110 @@ const IncrementerTextbox = styled(InputBase)`
   width: 60px;
 `;
 
-class Incrementer extends React.Component {
-  static propTypes = {
-    /** The value to start the incrementer at */
-    startingValue: PropTypes.number,
-    /** The amount to increment the value by */
-    incrementAmount: PropTypes.number,
-    /** The amount to decrement the value by */
-    decrementAmount: PropTypes.number,
-    /** The highest value the incrementer can be incremented to */
-    upperThreshold: PropTypes.number,
-    /** The lowest value the incrementer can be decremented to */
-    lowerThreshold: PropTypes.number,
-    /** Function to execute with the new value */
-    onValueUpdated: PropTypes.func,
-    /**
-     * Theme object used by the ThemeProvider,
-     * automatically passed by any parent component using a ThemeProvider
-     */
-    theme: PropTypes.object.isRequired
-  };
-
-  static defaultProps = {
-    startingValue: 0,
-    incrementAmount: 1,
-    decrementAmount: 1,
-    onValueUpdated: noop,
-    upperThreshold: null,
-    lowerThreshold: null
-  };
-
-  constructor(props) {
-    super(props);
-
-    const { startingValue } = this.props;
-
-    this.decrementValue = this.decrementValue.bind(this);
-    this.incrementValue = this.incrementValue.bind(this);
-
-    this.determineDisabledStates = this.determineDisabledStates.bind(this);
-
-    const disabledStates = this.determineDisabledStates(startingValue);
-    this.state = {
-      value: startingValue,
-      ...disabledStates
-    };
-  }
-
-  componentWillReceiveProps({ startingValue }) {
-    const disabledStates = this.determineDisabledStates(startingValue);
-    this.setState(() => ({
-      value: startingValue,
-      ...disabledStates
-    }));
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    const { onValueUpdated } = this.props;
-    onValueUpdated(nextState.value);
-  }
-
-  determineDisabledStates(value) {
-    const { lowerThreshold, upperThreshold } = this.props;
-
-    return {
-      incrementButtonDisabled:
-        isNumber(upperThreshold) && value === upperThreshold,
-      decrementButtonDisabled:
-        isNumber(lowerThreshold) && value === lowerThreshold
-    };
-  }
-
-  decrementValue() {
-    this.setState(previous => {
-      const { decrementAmount } = this.props;
-      const newValue = previous.value - decrementAmount;
-      const disabledStates = this.determineDisabledStates(newValue);
-      return {
-        value: newValue,
-        ...disabledStates
-      };
-    });
-  }
-
-  incrementValue() {
-    this.setState(previous => {
-      const { incrementAmount } = this.props;
-      const newValue = previous.value + incrementAmount;
-      const disabledStates = this.determineDisabledStates(newValue);
-      return {
-        value: newValue,
-        ...disabledStates
-      };
-    });
-  }
-
-  render() {
-    const {
-      value,
-      decrementButtonDisabled,
-      incrementButtonDisabled
-    } = this.state;
-    const { theme } = this.props;
-
-    return (
-      <div>
-        <Button
-          className="decrement-button"
-          styleType="primary"
-          handleOnClick={this.decrementValue}
-          disabled={decrementButtonDisabled}
-        >
-          <Icon name="minus" />
-        </Button>
-        <IncrementerTextbox
-          {...theme.validationInputColor.default}
-          type="text"
-          value={value}
-          readOnly
-        />
-        <Button
-          className="increment-button"
-          styleType="primary"
-          handleOnClick={this.incrementValue}
-          disabled={incrementButtonDisabled}
-        >
-          <Icon name="add" />
-        </Button>
-      </div>
-    );
-  }
+function determineIsDisabled(threshold, newValue) {
+  return isNumber(threshold) && newValue === threshold;
 }
 
-export default withTheme(Incrementer);
+function updateCountReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {
+        count: state.count + action.amount
+      };
+    case 'decrement':
+      return {
+        count: state.count - action.amount
+      };
+    default:
+  }
+  return null;
+}
+
+const ScreenReaderButtonText = screenReaderOnly('span');
+
+function Incrementer(props) {
+  const theme = useTheme();
+
+  const [state, dispatch] = React.useReducer(updateCountReducer, {
+    count: props.startingValue
+  });
+  const isIncrementDisabled = determineIsDisabled(
+    props.upperThreshold,
+    state.count
+  );
+  const isDecrementDisabled = determineIsDisabled(
+    props.lowerThreshold,
+    state.count
+  );
+
+  React.useEffect(() => {
+    props.onValueUpdated(state.count);
+  });
+
+  function decrementValue() {
+    dispatch({ type: 'decrement', amount: props.decrementAmount });
+  }
+
+  function incrementValue() {
+    dispatch({ type: 'increment', amount: props.incrementAmount });
+  }
+
+  return (
+    <IncrementerWrapper>
+      <Button
+        styleType="primary"
+        onClick={decrementValue}
+        disabled={isDecrementDisabled}
+      >
+        <ScreenReaderButtonText>
+          Decrement value by
+          {props.decrementAmount}
+        </ScreenReaderButtonText>
+        <Icon name="minus" />
+      </Button>
+      <IncrementerTextbox
+        {...theme.validationInputColor.default}
+        type="text"
+        value={state.count}
+        readOnly
+      />
+      <Button
+        styleType="primary"
+        onClick={incrementValue}
+        disabled={isIncrementDisabled}
+      >
+        <ScreenReaderButtonText>
+          Increment value by
+          {props.incrementAmount}
+        </ScreenReaderButtonText>
+        <Icon name="add" />
+      </Button>
+    </IncrementerWrapper>
+  );
+}
+
+Incrementer.propTypes = {
+  /** The value to start the incrementer at */
+  startingValue: PropTypes.number,
+  /** The amount to increment the value by */
+  incrementAmount: PropTypes.number,
+  /** The amount to decrement the value by */
+  decrementAmount: PropTypes.number,
+  /** The highest value the incrementer can be incremented to */
+  upperThreshold: PropTypes.number,
+  /** The lowest value the incrementer can be decremented to */
+  lowerThreshold: PropTypes.number,
+  /** Function to execute with the new value */
+  onValueUpdated: PropTypes.func
+};
+
+Incrementer.defaultProps = {
+  startingValue: 0,
+  incrementAmount: 1,
+  decrementAmount: 1,
+  onValueUpdated: noop,
+  upperThreshold: null,
+  lowerThreshold: null
+};
+
+export default Incrementer;

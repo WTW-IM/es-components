@@ -10,17 +10,17 @@ const onClick = jest.fn();
 function buildButton(props) {
   const { children, ...otherProps } = props;
   const defaultProps = {
-    handleOnClick: onClick
+    onClick
   };
   const mergedProps = Object.assign({}, defaultProps, otherProps);
 
-  return (
-    <Button {...mergedProps}>{children}</Button>
-  );
+  return <Button {...mergedProps}>{children}</Button>;
 }
 
 it('renders child text inside of button', () => {
-  const { queryByText } = renderWithTheme(buildButton({ children: 'Test button' }));
+  const { queryByText } = renderWithTheme(
+    buildButton({ children: 'Test button' })
+  );
   const button = queryByText('Test button');
   expect(button).not.toBeNull();
 });
@@ -34,7 +34,7 @@ it('renders child nodes inside of button', () => {
   expect(foundChild.nodeName).toBe('SPAN');
 });
 
-it('executes the handleOnClick function passed', () => {
+it('executes the onClick function passed', () => {
   const { getByText } = renderWithTheme(buildButton({ children: 'Test' }));
 
   getByText('Test').click();

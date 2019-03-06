@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { noop } from 'lodash';
 import DismissButton from '../../controls/DismissButton';
+import { ModalContext } from './ModalContext';
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
@@ -32,10 +32,9 @@ const DismissModal = styled(DismissButton)`
   }
 `;
 
-const ModalHeader = (props, { modal }) => {
+function ModalHeader(props) {
   const { hideCloseButton, children, ...otherProps } = props;
-  const onHide = modal ? modal.onHide : noop;
-  const ariaId = modal ? modal.ariaId : null;
+  const { onHide, ariaId } = useContext(ModalContext);
 
   return (
     <Header {...otherProps}>
@@ -44,7 +43,7 @@ const ModalHeader = (props, { modal }) => {
       {!hideCloseButton && <DismissModal onClick={onHide} />}
     </Header>
   );
-};
+}
 
 ModalHeader.propTypes = {
   /** Specify whether the modal header should contain a close button */

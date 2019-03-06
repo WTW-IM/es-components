@@ -1,3 +1,6 @@
+Popover utilizes a [render prop](https://reactjs.org/docs/render-props.html) to display the popover trigger, which is typically a button component.
+This function will require `ref`, `toggleShow`, and `isOpen` parameters to function properly.
+
 ```
 const styles = {
     display: 'inline-block',
@@ -7,13 +10,21 @@ const styles = {
 <div>
     <div style={styles}>
     <Popover
-        name="topEx"
-        title="Top"
-        content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-        placement="top"
-    >
-        Popover on Top
-    </Popover>
+      name="topEx"
+      title="Top"
+      content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
+      placement="top"
+      renderTrigger={({ ref, toggleShow, isOpen }) => (
+        <Button
+          onClick={toggleShow}
+          aria-expanded={isOpen}
+          ref={ref}
+          styleType="primary"
+        >
+          Popover on Top
+        </Button>
+      )}
+    />
     </div>
 
     <div style={styles}>
@@ -21,9 +32,17 @@ const styles = {
         name="bottomEx"
         title="Bottom"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-    >
-        Popover on Bottom
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <Button
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            Popover on Bottom
+          </Button>
+        )}
+      />
     </div>
 
     <div style={styles}>
@@ -32,9 +51,17 @@ const styles = {
         title="Left"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="left"
-    >
-        Popover on Left
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <Button
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            Popover on Left
+          </Button>
+        )}
+      />
     </div>
 
     <div style={styles}>
@@ -43,11 +70,19 @@ const styles = {
         title="Right"
         content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
         placement="right"
-    >
-        Popover on Right
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <Button
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            Popover on Right
+          </Button>
+        )}
+      />
     </div>
-    
+
 </div>
 ```
 
@@ -58,16 +93,24 @@ Here's an example of a
     name="popEx"
     title="Popover"
     content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-    isLinkButton
     hasCloseButton
->
-    Popover
-</Popover>
+    renderTrigger={({ ref, toggleShow, isOpen }) => (
+      <PopoverLink
+        onClick={toggleShow}
+        aria-expanded={isOpen}
+        ref={ref}
+        styleType="primary"
+      >
+        Popover
+      </PopoverLink>
+    )}
+  />
 styled like a link.
 </div>
 ```
 
-Popovers can wrap Icons or other components. These wrapped elements should include the `ariaLabel` prop for screen readers to identify them.
+Popovers can include Icons or other components. Keep accessibility in mind and provide aria labels where appropriate.
+
 ```
 <div>
 Click the icon for some help text.
@@ -77,10 +120,19 @@ Click the icon for some help text.
     content="Here's some help text!"
     suppressUnderline
     ariaLabel="Icon"
-    isLinkButton
->
-    <Icon name='question-circle' />
-</Popover>
+    renderTrigger={({ ref, toggleShow, isOpen }) => (
+      <PopoverLink
+        onClick={toggleShow}
+        aria-expanded={isOpen}
+        ref={ref}
+        suppressUnderline
+        styleType="primary"
+      >
+        <span aria-hidden="true"><Icon name='question-circle' /></span>
+        <span style={{ fontSize: '0', height: '1px', display: 'block', overflow: 'hidden' }}>Icon</span>
+      </PopoverLink>
+    )}
+/>
 </div>
 ```
 
@@ -97,11 +149,18 @@ const styles = {
         title="Small Arrow"
         content="This is the popover's content."
         placement="top"
-        isOutline
         arrowSize="sm"
-    >
-        Small Arrow
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <OutlineButton
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            Small Arrow
+          </OutlineButton>
+        )}
+    />
     </div>
 
     <div style={styles}>
@@ -109,10 +168,17 @@ const styles = {
         name="dfltEx"
         title="Default Arrow"
         content="This is the popover's content."
-        isOutline
-    >
-        Default Arrow
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <OutlineButton
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            Default Arrow
+          </OutlineButton>
+        )}
+    />
     </div>
 
     <div style={styles}>
@@ -121,11 +187,18 @@ const styles = {
         title="Large Arrow"
         content="This is the popover's content."
         placement="top"
-        isOutline
         arrowSize="lg"
-    >
-        Large Arrow
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <OutlineButton
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            Large Arrow
+          </OutlineButton>
+        )}
+    />
     </div>
 
     <div style={styles}>
@@ -134,11 +207,18 @@ const styles = {
         title="No Arrow"
         content="This is the popover's content."
         placement="bottom"
-        isOutline
         arrowSize="none"
-    >
-        No Arrow
-    </Popover>
+        renderTrigger={({ ref, toggleShow, isOpen }) => (
+          <OutlineButton
+            onClick={toggleShow}
+            aria-expanded={isOpen}
+            ref={ref}
+            styleType="primary"
+          >
+            No Arrow
+          </OutlineButton>
+        )}
+    />
     </div>
 </div>
 ```

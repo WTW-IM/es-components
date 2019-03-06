@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { noop } from 'lodash';
 import BaseModal from 'react-overlays/lib/Modal';
 
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
+import { useTheme } from '../../util/useTheme';
 import Fade from '../../util/Fade';
+import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
@@ -65,64 +67,50 @@ const ModalContent = styled.div`
   text-align: left;
 `;
 
-class Modal extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      ariaId: genId()
-    };
+function getModalBySize(size) {
+  switch (size) {
+    case 'small':
+      return ModalDialogSmall;
+    case 'large':
+      return ModalDialogLarge;
+    default:
+      return ModalDialogMedium;
   }
+}
 
-  getChildContext() {
-    return {
-      modal: {
-        onHide: this.props.onHide,
-        ariaId: this.state.ariaId
-      }
-    };
-  }
+function Modal(props) {
+  const {
+    animation,
+    backdrop,
+    children,
+    escapeExits,
+    onEnter,
+    onExit,
+    onHide,
+    show,
+    size,
+    ...other
+  } = props;
 
-  render() {
-    const {
-      animation,
-      backdrop,
-      children,
-      escapeExits,
-      onEnter,
-      onExit,
-      onHide,
-      show,
-      size,
-      theme
-    } = this.props;
+  const theme = useTheme();
+  const backdropStyle = {
+    backgroundColor: theme.colors.black,
+    bottom: 0,
+    cursor: backdrop === 'static' ? 'auto' : 'pointer',
+    left: 0,
+    opacity: 0.5,
+    position: 'fixed',
+    right: 0,
+    top: 0,
+    zIndex: 'auto'
+  };
 
-    const backdropStyle = {
-      backgroundColor: theme.colors.black,
-      bottom: 0,
-      cursor: backdrop === 'static' ? 'auto' : 'pointer',
-      left: 0,
-      opacity: 0.5,
-      position: 'fixed',
-      right: 0,
-      top: 0,
-      zIndex: 'auto'
-    };
+  const ModalDialog = getModalBySize(size);
 
-    let ModalDialog;
-    switch (size) {
-      case 'small':
-        ModalDialog = ModalDialogSmall;
-        break;
-      case 'large':
-        ModalDialog = ModalDialogLarge;
-        break;
-      default:
-        ModalDialog = ModalDialogMedium;
-        break;
-    }
+  const ariaId = useUniqueId();
 
-    return (
+  return (
+    <ModalContext.Provider value={{ onHide, ariaId }}>
       <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}
@@ -132,18 +120,13 @@ class Modal extends React.Component {
         onHide={onHide}
         show={show}
         transition={animation ? Fade : undefined}
-        className="es-modal"
       >
-        <ModalDialog
-          size={size}
-          aria-labelledby={this.state.ariaId}
-          className="es-modal__dialog"
-        >
-          <ModalContent className="es-modal__content">{children}</ModalContent>
+        <ModalDialog size={size} aria-labelledby={ariaId} {...other}>
+          <ModalContent>{children}</ModalContent>
         </ModalDialog>
       </DialogWrapper>
-    );
-  }
+    </ModalContext.Provider>
+  );
 }
 
 Modal.propTypes = {
@@ -173,12 +156,7 @@ Modal.propTypes = {
   /** When `true` The modal will show itself. */
   show: PropTypes.bool,
   /** Sets the size of the modal */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
 
 Modal.defaultProps = {
@@ -193,15 +171,8 @@ Modal.defaultProps = {
   children: undefined
 };
 
-Modal.childContextTypes = {
-  modal: PropTypes.shape({
-    onHide: PropTypes.func,
-    ariaId: PropTypes.string
-  })
-};
-
 Modal.Header = Header;
 Modal.Body = Body;
 Modal.Footer = Footer;
 
-export default withTheme(Modal);
+export default Modal;

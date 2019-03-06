@@ -10,12 +10,12 @@ const onClick = jest.fn();
 
 it('sets isPressed state on click', () => {
   const { getByText } = renderWithTheme(
-    <ToggleButton handleOnClick={onClick}>test</ToggleButton>
+    <ToggleButton onClick={onClick}>test</ToggleButton>
   );
   const button = getByText('test');
   button.click();
 
-  const themeValues = viaTheme.buttonStyles.buttonsNormal.default;
+  const themeValues = viaTheme.buttonStyles.button.variant.default;
 
   expect(button).toHaveStyle(`
     background-color: ${themeValues.hoverBgColor};

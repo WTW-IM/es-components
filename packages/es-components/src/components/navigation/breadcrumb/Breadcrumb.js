@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 
-import genId from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 function darkenPrimary(primary) {
   return tinycolor(primary)
@@ -58,10 +58,11 @@ const Crumb = styled.li`
 `;
 
 function Breadcrumb({ children, ...props }) {
+  const uniqueId = useUniqueId();
   return (
-    <OrderedList {...props} className="es-breadcrumb">
+    <OrderedList {...props}>
       {React.Children.map(children, child => (
-        <Crumb key={genId()}>{child}</Crumb>
+        <Crumb key={uniqueId}>{child}</Crumb>
       ))}
     </OrderedList>
   );
@@ -71,4 +72,4 @@ Breadcrumb.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default withTheme(Breadcrumb);
+export default Breadcrumb;

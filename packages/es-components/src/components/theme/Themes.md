@@ -56,3 +56,21 @@ our applications is `Source Sans Pro`. You can use the font in your project eith
 	rel="stylesheet"
 >
 ```
+
+### Styles
+
+A small style reset is available to use in your project. This sets a baseline for general elements
+and allows headings and inputs to properly inherit fonts. To use it, import `StyleReset` and include the
+element anywhere in your app.
+
+```html
+import StyleReset from 'es-components';
+
+...
+render(
+  <>
+    <StyleReset />
+    <MyApp />
+  </>
+);
+```

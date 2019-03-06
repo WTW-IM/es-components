@@ -1,9 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 
-import { Label } from '../BaseControls';
+import Label from '../label/Label';
 import getRadioFillVariables from './radio-fill-variables';
+import { useTheme } from '../../util/useTheme';
+import ValidationContext from '../ValidationContext';
+import useUniqueId from '../../util/useUniqueId';
 
 function radioFill(color) {
   return `
@@ -21,27 +23,20 @@ function radioFill(color) {
 }
 
 const RadioLabel = styled(Label)`
-  color: ${props =>
-    props.disabled
-      ? props.theme.colors.gray7
-      : props.theme.colors[props.validationState]};
+  color: ${props => (props.disabled ? props.theme.colors.gray7 : 'inherit')};
   cursor: pointer;
   display: flex;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
   line-height: ${props => props.theme.sizes.baseLineHeight};
+  margin-right: 15px;
   margin-bottom: 10px;
   position: relative;
   padding: 10px 0 10px 10px;
   text-transform: none;
 
   &:hover .es-radio__fill:before {
-    ${props => radioFill(props.hoverFillColor)};
-  }
-
-  @media (min-width: ${props => props.theme.screenSize.phone}) {
-    display: ${props => (props.inline ? 'inline-flex' : 'flex')};
-    margin-right: ${props => (props.inline ? '15px' : '0')};
+    ${props => !props.checked && radioFill(props.hoverFillColor)};
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
@@ -72,65 +67,38 @@ const RadioDisplay = styled.span`
   }
 `;
 
-export function RadioButton({
-  optionText,
-  name,
-  inline,
-  validationState,
-  theme,
-  ...radioProps
-}) {
+export function RadioButton({ name, children, ...radioProps }) {
+  const id = useUniqueId(radioProps.id);
+  const isChecked = radioProps.checked || radioProps.defaultChecked;
+  const theme = useTheme();
+  const validationState = React.useContext(ValidationContext);
   const { hover, fill } = getRadioFillVariables(
-    radioProps.checked,
+    isChecked,
     radioProps.disabled,
     validationState,
     theme.colors
   );
-  const radioDisplayFill = radioProps.checked ? fill : theme.colors.white;
+  const radioDisplayFill = isChecked ? fill : theme.colors.white;
 
   const labelProps = {
-    inline,
     disabled: radioProps.disabled,
-    htmlFor: radioProps.id,
+    htmlFor: id,
     hoverFillColor: hover,
-    validationState
+    validationState,
+    checked: isChecked
   };
-  const classNameState = `es-radio__input--${validationState}`;
 
   return (
-    <RadioLabel className="es-radio" {...labelProps}>
-      <RadioInput
-        type="radio"
-        name={name}
-        className={classNameState}
-        {...radioProps}
-      />
+    <RadioLabel {...labelProps}>
+      <RadioInput type="radio" name={name} id={id} {...radioProps} />
       <RadioDisplay
         className="es-radio__fill"
         borderColor={fill}
         fill={radioDisplayFill}
       />
-      {optionText}
+      {children}
     </RadioLabel>
   );
 }
 
-RadioButton.propTypes = {
-  optionText: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  inline: PropTypes.bool,
-  /** Display radio button with contextual state colorings */
-  validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
-  /**
-   * Theme object used by the ThemeProvider,
-   * automatically passed by any parent component using a ThemeProvider
-   */
-  theme: PropTypes.object.isRequired
-};
-
-RadioButton.defaultProps = {
-  inline: true,
-  validationState: 'default'
-};
-
-export default withTheme(RadioButton);
+export default RadioButton;

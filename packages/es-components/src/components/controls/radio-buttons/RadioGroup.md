@@ -1,193 +1,90 @@
-Group radio buttons together using a `RadioGroup` component. Providing a `legendContent` prop will render a legend with the grouped radio buttons. Individual options can also be disabled.
-
+Group `RadioButton` components together using a `RadioGroup`. Any additional props passed to `RadioGroup` will propagate to each individual `RadioButton`.
 
 ```
-const options = [{
-  optionText: 'Hiking',
-  optionValue: 'hiking'
-}, {
-  optionText: 'Biking',
-  optionValue: 'biking'
-}, {
-  optionText: 'Kayaking',
-  optionValue: 'kayaking'
-}, {
-  optionText: 'Camping',
-  optionValue: 'camping',
-  disabled: true
-}];
+const RadioButton = require('./RadioButton').default
+const Control = require('../Control').default
 
-class RadioGroupExample extends React.Component {
-  constructor(props) {
-    super(props);
+function RadioGroupExample() {
+  const [activity, setActivity] = React.useState('nothing')
 
-    this.state = {
-      value: ''
-    };
-
-    this.optionChanged = this.optionChanged.bind(this);
+  function handleRadioChange(event) {
+    setActivity(event.target.value)
   }
 
-  optionChanged(event) {
-    const value = event.target.value;
-    this.setState({ value });
-  }
-
-  render() {
-    return (
-      <RadioGroup
-        name="recreational-activities"
-        legendContent="Recreational activities"
-        radioOptions={options}
-        onChange={this.optionChanged}
-        value={this.state.value}
-      />
-    );
-  }
-}
+  return (
+    <>
+      <Fieldset legendContent="Recreational Activities">
+        <Control orientation="inline" validationState="success">
+          <RadioGroup name="recreational-activities" onChange={handleRadioChange} selectedValue={activity}>
+            <RadioButton value="hiking">Hiking</RadioButton>
+            <RadioButton value="biking" disabled>Biking</RadioButton>
+            <RadioButton value="kayaking">Kayaking</RadioButton>
+            <RadioButton value="camping">Camping</RadioButton>
+          </RadioGroup>
+        </Control>
+      </Fieldset>
+      <p>You've selected: {activity}</p>
+    </>
+  )
+};
 
 <RadioGroupExample />
 ```
 
-Setting the `inline` option to false will stack the radio buttons
+Each radio is disabled when the `disableAllOptions` prop is true.
 
 ```
-const options = [{
-  optionText: 'Meat',
-  optionValue: 'meat'
-}, {
-  optionText: 'Seafood',
-  optionValue: 'seafood'
-}, {
-  optionText: 'Vegetarian',
-  optionValue: 'vegetarian'
-}];
+const RadioButton = require('./RadioButton').default;
+const Control = require('../Control').default;
 
-class RadioGroupExample extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: ''
-    };
-
-    this.optionChanged = this.optionChanged.bind(this);
-  }
-
-  optionChanged(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    return (
-      <RadioGroup
-        name="plates"
-        radioOptions={options}
-        inline={false}
-        onChange={this.optionChanged}
-        value={this.state.value}
-      />
-    );
-  }
-}
-
-<RadioGroupExample />
+<Control>
+  <RadioGroup
+    name="plates"
+    selectedValue="seafood"
+    disableAllOptions
+  >
+    <RadioButton value="meat">Meat</RadioButton>
+    <RadioButton value="seafood">Seafood</RadioButton>
+    <RadioButton value="vegetarian">Vegetarian</RadioButton>
+  </RadioGroup>
+</Control>
 ```
-Each radio is disabled when the `disableAllOptions` prop is true. A disabled radio group with a default checked option is rendered with a filled radio button.
 
-```
-const options = [{
-  optionText: 'Apple',
-  optionValue: 'apple'
-}, {
-  optionText: 'Banana',
-  optionValue: 'banana'
-}, {
-  optionText: 'Pear',
-  optionValue: 'pear'
-}];
-
-class RadioGroupExample extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: 'pear'
-    };
-
-    this.optionChanged = this.optionChanged.bind(this);
-  }
-
-  optionChanged(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    const intro = (<div>Some Descriptive Content about fruit</div>);
-    return (
-      <RadioGroup
-        name="fruits"
-        legendContent="Fruits"
-        radioOptions={options}
-        value={this.state.value}
-        disableAllOptions
-        introContent={intro}
-      />
-    );
-  }
-}
-
-<RadioGroupExample />
-```
 ### Validation States
 
 ```
-const options = [{
-  optionText: 'Planes',
-  optionValue: 'plane'
-}, {
-  optionText: 'Trains',
-  optionValue: 'train'
-}, {
-  optionText: 'Automobiles',
-  optionValue: 'automobile'
-}];
+const RadioButton = require('./RadioButton').default;
+const Control = require('../Control').default;
 
-class RadioGroupExample extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: 'plane'
-    };
-
-    this.optionChanged = this.optionChanged.bind(this);
-  }
-
-  optionChanged(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  render() {
-    const message = `When validationState is set to ${this.props.validationState}.`;
-    const name = `transports-${this.props.validationState}`;
-    return (
-      <RadioGroup
-        name={name}
-        legendContent="Mode of Transportation"
-        radioOptions={options}
-        onChange={this.optionChanged}
-        value={this.state.value}
-        validationState={this.props.validationState}
-        additionalHelpContent={message}
-      />
-    );
-  }
-}
+const options = [
+  <RadioButton key="1" value="planes">Planes</RadioButton>,
+  <RadioButton key="2" value="trains">Trains</RadioButton>,
+  <RadioButton key="3" value="automobiles">Automobiles</RadioButton>
+];
 
 <div>
-  <RadioGroupExample validationState="success" />
-  <RadioGroupExample validationState="warning" />
-  <RadioGroupExample validationState="danger" />
+  <Fieldset legendContent="Success">
+    <Control validationState="success">
+      <RadioGroup name="success">
+        {options}
+      </RadioGroup>
+    </Control>
+  </Fieldset>
+
+  <Fieldset legendContent="Warning">
+    <Control validationState="warning">
+      <RadioGroup name="warning">
+        {options}
+      </RadioGroup>
+    </Control>
+  </Fieldset>
+
+  <Fieldset legendContent="Danger">
+    <Control validationState="danger" orientation="inline">
+      <RadioGroup name="danger">
+        {options}
+      </RadioGroup>
+    </Control>
+  </Fieldset>
 </div>
 ```

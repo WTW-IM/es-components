@@ -1,28 +1,30 @@
-import React, { Children } from 'react';
+import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 import styled from 'styled-components';
+
 import Button from './Button';
-import generateAlphaName from '../../util/generateAlphaName';
+import LinkButton from './LinkButton';
+import useUniqueId from '../../util/useUniqueId';
 
 const Caret = styled.span`
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px dashed;
   display: inline-block;
-  width: 0;
   height: 0;
   margin-left: 5px;
   vertical-align: middle;
-  border-top: 4px dashed;
-  border-right: 4px solid transparent;
-  border-left: 4px solid transparent;
+  width: 0;
 `;
 
 const ButtonPanel = styled.div`
+  background-color: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.gray3};
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  z-index: 2;
   margin-top: 3px;
   position: relative;
-  border: 1px solid ${props => props.theme.colors.gray3};
-  background-color: ${props => props.theme.colors.white};
+  z-index: 999;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     position: absolute;
@@ -34,14 +36,18 @@ const ButtonPanelChildrenContainer = styled.div`
   flex-direction: column;
 `;
 
-const StyledButtonLink = styled(Button)`
-  padding: 10px 20px;
+const StyledButtonLink = styled(LinkButton)`
   color: black;
-  text-decoration: none;
-  text-align: left;
   margin-bottom: 0px;
+  text-align: left;
+  text-decoration: none;
+  padding: 10px 20px;
+
+  &:active,
+  &:focus,
   &:hover {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.primary};
+    color: white;
   }
 `;
 
@@ -84,7 +90,7 @@ function focusTrap(node) {
 
   node.addEventListener('keydown', handleTabFocus);
 
-  return () => {
+  return function removeKeydownListener() {
     node.removeEventListener('keydown', handleTabFocus);
   };
 }
@@ -120,110 +126,105 @@ function arrowMovement(node) {
 
   node.addEventListener('keydown', handleArrowMovementKeys);
 
-  return () => {
+  return function removeArrowMovementListener() {
     node.removeEventListener('keydown', handleArrowMovementKeys);
   };
 }
 
-export class DropdownButton extends React.Component {
-  constructor(props) {
-    super();
+function DropdownButton(props) {
+  const [buttonValue, setButtonValue] = useState(props.buttonValue);
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.state = {
-      buttonValue: props.buttonValue,
-      isOpen: false
-    };
-  }
+  const buttonDropdown = useRef();
+  const triggerButton = useRef();
+  const panelId = useUniqueId();
 
-  componentDidMount() {
-    this.removeFocusTrapListener = focusTrap(this.buttonDropdown);
-    this.removeArrowMovementListener = arrowMovement(this.buttonDropdown);
-  }
+  useEffect(
+    () => {
+      const removeFocusTrapListener = focusTrap(buttonDropdown.current);
+      const removeArrowMovementListener = arrowMovement(buttonDropdown.current);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.isOpen !== this.state.isOpen) {
-      this.triggerButton.focus();
+      return function removeListeners() {
+        removeFocusTrapListener();
+        removeArrowMovementListener();
+      };
+    },
+    [isOpen]
+  );
+
+  useEffect(
+    () => {
+      triggerButton.current.focus();
+    },
+    [isOpen]
+  );
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  function closeDropdown() {
+    if (isOpen) {
+      setIsOpen(false);
     }
   }
 
-  componentWillUnmount() {
-    this.removeFocusTrapListener();
-    this.removeArrowMovementListener();
-  }
-
-  setTriggerButton = ref => {
-    this.triggerButton = ref;
-  };
-
-  setButtonDropdownRef = ref => {
-    this.buttonDropdown = ref;
-  };
-
-  toggleDropdown = () => {
-    this.setState(previousState => ({ isOpen: !previousState.isOpen }));
-  };
-
-  closeDropdown = () => {
-    if (this.state.isOpen) {
-      this.setState({ isOpen: false });
-    }
-  };
-
-  handleDropdownItemClick = buttonProps => {
-    const { shouldCloseOnButtonClick, shouldUpdateButtonValue } = this.props;
+  function handleDropdownItemClick(buttonProps) {
+    const { shouldCloseOnButtonClick, shouldUpdateButtonValue } = props;
 
     return event => {
       if (shouldUpdateButtonValue) {
-        this.setState({ buttonValue: buttonProps.children });
+        setButtonValue(buttonProps.children);
       }
       if (shouldCloseOnButtonClick) {
-        this.closeDropdown();
+        closeDropdown();
       }
 
-      buttonProps.handleOnClick(event, buttonProps.name);
+      buttonProps.onClick(event, buttonProps.name);
     };
-  };
-
-  render() {
-    const { rootClose, children, className, manualButtonValue } = this.props;
-    const panelId = generateAlphaName();
-    return (
-      <RootCloseWrapper onRootClose={this.closeDropdown} disabled={!rootClose}>
-        <div
-          ref={this.setButtonDropdownRef}
-          className={className}
-          role="combobox"
-          aria-controls={panelId}
-          aria-expanded={this.state.isOpen}
-          aria-haspopup="listbox"
-        >
-          <Button
-            handleOnClick={this.toggleDropdown}
-            aria-haspopup="true"
-            aria-pressed={this.state.isOpen}
-            innerRef={this.setTriggerButton}
-          >
-            {manualButtonValue || this.state.buttonValue}
-            <Caret />
-          </Button>
-          <ButtonPanel isOpen={this.state.isOpen} id={panelId}>
-            <ButtonPanelChildrenContainer>
-              {Children.map(children, child => {
-                const onClickHandler = this.handleDropdownItemClick(
-                  child.props
-                );
-                const newProps = {
-                  handleOnClick: onClickHandler,
-                  role: 'option'
-                };
-                return React.cloneElement(child, newProps);
-              })}
-            </ButtonPanelChildrenContainer>
-          </ButtonPanel>
-        </div>
-      </RootCloseWrapper>
-    );
   }
+
+  const {
+    rootClose,
+    children,
+    manualButtonValue,
+    styleType,
+    ...otherProps
+  } = props;
+
+  return (
+    <RootCloseWrapper onRootClose={closeDropdown} disabled={!rootClose}>
+      <div
+        ref={buttonDropdown}
+        role="combobox"
+        aria-controls={panelId}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+      >
+        <Button
+          {...otherProps}
+          onClick={toggleDropdown}
+          aria-haspopup="true"
+          aria-pressed={isOpen}
+          ref={triggerButton}
+          styleType={styleType}
+        >
+          {manualButtonValue || buttonValue}
+          <Caret />
+        </Button>
+        <ButtonPanel isOpen={isOpen} id={panelId}>
+          <ButtonPanelChildrenContainer>
+            {Children.map(children, child => {
+              const onClickHandler = handleDropdownItemClick(child.props);
+              const newProps = {
+                onClick: onClickHandler,
+                role: 'option'
+              };
+              return React.cloneElement(child, newProps);
+            })}
+          </ButtonPanelChildrenContainer>
+        </ButtonPanel>
+      </div>
+    </RootCloseWrapper>
+  );
 }
 
 DropdownButton.Button = StyledButtonLink;
@@ -246,12 +247,12 @@ DropdownButton.propTypes = {
   /** Defines if the dropdown should close when any child button is clicked */
   shouldCloseOnButtonClick: PropTypes.bool,
   /**
-   * Defines weather the dropdown will close when any other element on the page is clicked.
+   * Defines whether the dropdown will close when any other element on the page is clicked.
    * Uses RootCloseWrapper from React-Overlay
    */
   rootClose: PropTypes.bool,
-  /** The classes to be applied to the div surrounding the button */
-  className: PropTypes.string
+  /** Select the color style of the button, types come from theme */
+  styleType: PropTypes.string
 };
 
 DropdownButton.defaultProps = {
@@ -259,8 +260,8 @@ DropdownButton.defaultProps = {
   manualButtonValue: undefined,
   shouldUpdateButtonValue: false,
   shouldCloseOnButtonClick: false,
-  rootClose: false,
-  className: undefined
+  styleType: 'default',
+  rootClose: false
 };
 
 export default DropdownButton;

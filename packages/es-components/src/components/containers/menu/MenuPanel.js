@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
+import { InlineContext } from './InlineContext';
 
 const StyledPanel = styled.div`
   background-color: ${props => props.theme.colors.gray2};
@@ -19,10 +20,10 @@ const Header = styled.header`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: ${props => (props.hasHeaderContent ? '10px' : '0')}
+  padding-bottom: ${props => (props.hasHeaderContent ? '10px' : '0')};
   padding-left: 11px;
   padding-right: 5px;
-  padding-top: ${props => (props.hasHeaderContent ? '5px' : '0')}
+  padding-top: ${props => (props.hasHeaderContent ? '5px' : '0')};
 `;
 
 const StyledChildrenContainer = styled.div`
@@ -31,37 +32,37 @@ const StyledChildrenContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-class MenuPanel extends React.Component {
-  componentDidMount = () => {
-    document.addEventListener('keydown', this.onEscape);
-  };
-
-  componentWillUnmount = () => {
-    document.removeEventListener('keydown', this.onEscape);
-  };
-
-  onEscape = ({ keyCode }) => {
+function MenuPanel(props) {
+  function onEscape({ keyCode }) {
     if (keyCode === 27) {
-      this.props.onClose();
+      props.onClose();
     }
-  };
-
-  render() {
-    const { children, headerContent, isOpen, onClose } = this.props;
-    const hasHeaderContent = !!headerContent;
-
-    return (
-      <StyledPanel isOpen={isOpen} className="es-menu__panel">
-        <Header hasHeaderContent={hasHeaderContent}>
-          {hasHeaderContent && <span>{headerContent}</span>}
-          <StyledDismissButton onClick={onClose} />
-        </Header>
-        <StyledChildrenContainer inline={this.context.inline}>
-          {children}
-        </StyledChildrenContainer>
-      </StyledPanel>
-    );
   }
+
+  useEffect(() => {
+    document.addEventListener('keydown', onEscape);
+
+    return function removeKeydownListener() {
+      document.removeEventListener('keydown', onEscape);
+    };
+  });
+
+  const { children, headerContent, isOpen, onClose, ...other } = props;
+  const hasHeaderContent = !!headerContent;
+
+  const inline = useContext(InlineContext);
+
+  return (
+    <StyledPanel isOpen={isOpen} {...other}>
+      <Header hasHeaderContent={hasHeaderContent}>
+        {hasHeaderContent && <span>{headerContent}</span>}
+        <StyledDismissButton onClick={onClose} />
+      </Header>
+      <StyledChildrenContainer inline={inline}>
+        {children}
+      </StyledChildrenContainer>
+    </StyledPanel>
+  );
 }
 
 MenuPanel.propTypes = {
@@ -74,10 +75,6 @@ MenuPanel.propTypes = {
 MenuPanel.defaultProps = {
   headerContent: null,
   isOpen: false
-};
-
-MenuPanel.contextTypes = {
-  inline: PropTypes.bool
 };
 
 export default MenuPanel;

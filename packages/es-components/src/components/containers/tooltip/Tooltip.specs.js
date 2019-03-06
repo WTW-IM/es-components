@@ -1,15 +1,18 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent, cleanup } from 'react-testing-library';
+import { fireEvent, cleanup, wait } from 'react-testing-library';
 
 import Tooltip from './Tooltip';
 import { renderWithTheme } from '../../util/test-utils';
 
 beforeEach(cleanup);
 
-const getTooltip = ({ queryAllByText }, text) =>
-  queryAllByText(text).find(node => node.hasAttribute('aria-hidden')) || null;
+function getTooltip({ queryAllByText }, text) {
+  return (
+    queryAllByText(text).find(node => node.hasAttribute('aria-hidden')) || null
+  );
+}
 
 it('displays when the mouse enters the target and hides when the mouse leaves the target', () => {
   const instance = renderWithTheme(
@@ -21,13 +24,16 @@ it('displays when the mouse enters the target and hides when the mouse leaves th
 
   const target = queryByText('this is the target');
   fireEvent.mouseEnter(target);
-
   const toolTip = getTooltip(instance, 'this is the tooltip');
 
-  expect(toolTip).toBeVisible();
+  wait(() => {
+    expect(toolTip).toBeVisible();
+  });
 
   fireEvent.mouseLeave(target);
-  expect(toolTip).not.toBeVisible();
+  wait(() => {
+    expect(toolTip).not.toBeVisible();
+  });
 });
 
 it('is displayed on mouseDown if disableHover is true', () => {
@@ -42,15 +48,19 @@ it('is displayed on mouseDown if disableHover is true', () => {
   const target = queryByText('this is the target');
 
   fireEvent.mouseEnter(target);
-
-  expect(getTooltip(instance, 'this is the tooltip')).toBeNull();
+  wait(() => {
+    expect(getTooltip(instance, 'this is the tooltip')).toBeNull();
+  });
 
   fireEvent.mouseDown(target);
+  wait(() => {
+    expect(getTooltip(instance, 'this is the tooltip')).toBeVisible();
+  });
 
-  expect(getTooltip(instance, 'this is the tooltip')).toBeVisible();
   fireEvent.mouseDown(target);
-
-  expect(getTooltip(instance, 'this is the tooltip')).not.toBeVisible();
+  wait(() => {
+    expect(getTooltip(instance, 'this is the tooltip')).not.toBeVisible();
+  });
 });
 
 it('is displayed/hidden on focus/blur of target', () => {
@@ -66,10 +76,14 @@ it('is displayed/hidden on focus/blur of target', () => {
   fireEvent.focus(target);
 
   const toolTip = getTooltip(instance, 'this is the tooltip');
-  expect(toolTip).toBeVisible();
+  wait(() => {
+    expect(toolTip).toBeVisible();
+  });
 
   fireEvent.blur(target);
-  expect(toolTip).not.toBeVisible();
+  wait(() => {
+    expect(toolTip).not.toBeVisible();
+  });
 });
 
 it('is hidden when ESC is pressed', () => {
@@ -84,9 +98,12 @@ it('is hidden when ESC is pressed', () => {
   fireEvent.mouseDown(target);
 
   const toolTip = getTooltip(instance, 'this is the tooltip');
-  expect(toolTip).toBeVisible();
+  wait(() => {
+    expect(toolTip).toBeVisible();
+  });
 
   fireEvent.keyDown(target, { keyCode: 27 });
-
-  expect(toolTip).not.toBeVisible();
+  wait(() => {
+    expect(toolTip).not.toBeVisible();
+  });
 });

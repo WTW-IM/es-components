@@ -1,9 +1,9 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, fireEvent, getByRole } from 'react-testing-library';
+import { cleanup, fireEvent, getByRole, wait } from 'react-testing-library';
 
-import { DropdownButton } from './DropdownButton';
+import DropdownButton from './DropdownButton';
 import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
@@ -13,9 +13,7 @@ beforeEach(cleanup);
 it('opens/closes dropdown on click', () => {
   const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button">
-      <DropdownButton.Button handleOnClick={onClick}>
-        Inner
-      </DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Inner</DropdownButton.Button>
     </DropdownButton>
   );
 
@@ -33,7 +31,7 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
   const innerContents = 'Inner';
   const { container, getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
-      <DropdownButton.Button handleOnClick={onClick}>
+      <DropdownButton.Button onClick={onClick}>
         {innerContents}
       </DropdownButton.Button>
     </DropdownButton>
@@ -48,9 +46,7 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
 it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
   const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
-      <DropdownButton.Button handleOnClick={onClick}>
-        Content
-      </DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Content</DropdownButton.Button>
     </DropdownButton>
   );
 
@@ -62,16 +58,12 @@ it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
 it('allows arrow movement and traps focus when dropdown is opened', () => {
   const { container, getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
-      <DropdownButton.Button handleOnClick={onClick}>
-        Item 1
-      </DropdownButton.Button>
-      <DropdownButton.Button handleOnClick={onClick}>
-        Item 2
-      </DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Item 1</DropdownButton.Button>
+      <DropdownButton.Button onClick={onClick}>Item 2</DropdownButton.Button>
     </DropdownButton>
   );
 
-  const firstButton = getByText('Button');
+  const firstButton = getByText('Button').closest('button');
   firstButton.click();
   expect(firstButton).toHaveFocus();
 
@@ -82,7 +74,9 @@ it('allows arrow movement and traps focus when dropdown is opened', () => {
 
   function verifyFocusAfterKeydown(key, button) {
     pressArrowKey(key);
-    expect(button).toHaveFocus();
+    wait(() => {
+      expect(button).toHaveFocus();
+    });
   }
 
   const firstItemButton = getByText('Item 1');

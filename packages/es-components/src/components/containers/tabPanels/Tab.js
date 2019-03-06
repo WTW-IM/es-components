@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 
-/* eslint-disable no-confusing-arrow */
 const TabButton = styled.button`
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.gray2};
@@ -20,7 +19,7 @@ const TabButton = styled.button`
   z-index: 1;
 
   &:focus {
-    outline: 1px dotted ${props => props.theme.colors.gray4};
+    outline: none;
   }
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
@@ -53,8 +52,6 @@ const AriaAnnouncer = styled.p`
   top: auto;
   width: 1px;
 `;
-
-/* eslint-enable */
 
 function Tab({
   name,

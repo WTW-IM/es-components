@@ -431,7 +431,7 @@ const theme = {
     success: 'ok-circle',
     info: 'info-circle',
     warning: 'exclamation-sign',
-    danger: 'remove-circle',
+    danger: 'exclamation-circle',
     advisor: 'agent'
   },
   validationTextColor: {

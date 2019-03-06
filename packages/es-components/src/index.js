@@ -51,4 +51,5 @@ export Spinner from './components/base/spinner/Spinner';
 
 export generateAlphaName from './components/util/generateAlphaName';
 export { useWindowWidth } from './components/util/useWindowWidth';
+export StyleReset from './components/util/StyleReset';
 export { useTheme } from './components/util/useTheme';

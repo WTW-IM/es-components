@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { noop, isNumber } from 'lodash';
 import styled from 'styled-components';
@@ -19,37 +19,52 @@ const IncrementerTextbox = styled(InputBase)`
   width: 60px;
 `;
 
+function determineIsDisabled(threshold, newValue) {
+  return isNumber(threshold) && newValue === threshold;
+}
+
+function updateCountReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {
+        count: state.count + action.amount
+      };
+    case 'decrement':
+      return {
+        count: state.count - action.amount
+      };
+    default:
+  }
+  return null;
+}
+
 const ScreenReaderButtonText = screenReaderOnly('span');
 
 function Incrementer(props) {
   const theme = useTheme();
-  const [value, setValue] = useState(props.startingValue);
 
-  function determineIsDisabled(threshold, newValue) {
-    return isNumber(threshold) && newValue === threshold;
-  }
+  const [state, dispatch] = React.useReducer(updateCountReducer, {
+    count: props.startingValue
+  });
+  const isIncrementDisabled = determineIsDisabled(
+    props.upperThreshold,
+    state.count
+  );
+  const isDecrementDisabled = determineIsDisabled(
+    props.lowerThreshold,
+    state.count
+  );
 
-  const [isIncrementDisabled, setIsIncrementDisabled] = useState(
-    determineIsDisabled(props.upperThreshold, value)
-  );
-  const [isDecrementDisabled, setIsDecrementDisabled] = useState(
-    determineIsDisabled(props.lowerThreshold, value)
-  );
+  React.useEffect(() => {
+    props.onValueUpdated(state.count);
+  });
 
   function decrementValue() {
-    const newValue = value - props.decrementAmount;
-    setValue(newValue);
-    props.onValueUpdated(newValue);
-    setIsDecrementDisabled(determineIsDisabled(props.lowerThreshold, newValue));
-    setIsIncrementDisabled(determineIsDisabled(props.upperThreshold, newValue));
+    dispatch({ type: 'decrement', amount: props.decrementAmount });
   }
 
   function incrementValue() {
-    const newValue = value + props.incrementAmount;
-    setValue(newValue);
-    props.onValueUpdated(newValue);
-    setIsDecrementDisabled(determineIsDisabled(props.lowerThreshold, newValue));
-    setIsIncrementDisabled(determineIsDisabled(props.upperThreshold, newValue));
+    dispatch({ type: 'increment', amount: props.incrementAmount });
   }
 
   return (
@@ -68,7 +83,7 @@ function Incrementer(props) {
       <IncrementerTextbox
         {...theme.validationInputColor.default}
         type="text"
-        value={value}
+        value={state.count}
         readOnly
       />
       <Button

@@ -2,6 +2,7 @@
 import React from 'react';
 import viaTheme from 'es-components-via-theme';
 
+import { wait } from 'react-testing-library';
 import Incrementer from './Incrementer';
 import { renderWithTheme } from '../../util/test-utils';
 
@@ -24,8 +25,10 @@ it('when decrement button is clicked the displayed value is decreased by decreme
     })
   );
   container.querySelectorAll('button')[0].click();
-  expect(queryByValue('-5')).not.toBeNull();
-  expect(valueUpdated).toHaveBeenCalledWith(-5);
+  wait(() => {
+    expect(queryByValue('-5')).not.toBeNull();
+    expect(valueUpdated).toHaveBeenCalledWith(-5);
+  });
 });
 
 it('when increment button is clicked, the displayed value is increased by incrementAmount', () => {
@@ -35,8 +38,10 @@ it('when increment button is clicked, the displayed value is increased by increm
     })
   );
   container.querySelectorAll('button')[1].click();
-  expect(queryByValue('2')).not.toBeNull();
-  expect(valueUpdated).toHaveBeenCalledWith(2);
+  wait(() => {
+    expect(queryByValue('2')).not.toBeNull();
+    expect(valueUpdated).toHaveBeenCalledWith(2);
+  });
 });
 
 it('disables decrementation button when current value equals lowerThreshold', () => {

@@ -1,7 +1,10 @@
 A `Heading` component can be used for various heading levels. Wrap secondary text in `<small>` tags.
 
 ```
+const StyleReset = require('../../util/StyleReset').default;
+
 <div>
+  <StyleReset />
   <Heading level={1}>h1. Heading <small>Secondary Text</small></Heading>
   <Heading level={2}>h2. Heading <small>Secondary Text</small></Heading>
   <Heading level={3}>h3. Heading <small>Secondary Text</small></Heading>

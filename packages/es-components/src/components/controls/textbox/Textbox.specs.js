@@ -51,35 +51,3 @@ it('renders addons when provided', () => {
     getNumberOfIcons({ prependIconName: 'prepend', appendIconName: 'append' })
   ).toBe(2);
 });
-
-it('applies mask to changed value', () => {
-  const props = {
-    maskType: 'ssnum'
-  };
-  const { getByLabelText } = renderWithTheme(buildTextbox(props));
-
-  fireEvent.change(getByLabelText('Text'), {
-    target: {
-      value: '123452323'
-    }
-  });
-
-  expect(getByLabelText('Text').value).toBe('123-45-2323');
-});
-
-it('updates mask properly', () => {
-  const props = {
-    maskType: 'ssnum'
-  };
-  const { getByLabelText } = renderWithTheme(buildTextbox(props));
-
-  fireEvent.change(getByLabelText('Text'), {
-    target: {
-      value: '8'
-    }
-  });
-
-  expect(getByLabelText('Text').value).toBe(
-    '8\u2000\u2000-\u2000\u2000-\u2000\u2000\u2000\u2000'
-  );
-});

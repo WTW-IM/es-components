@@ -9,3 +9,36 @@ The examples below use the `Control` component to demonstrate these various opti
 ## AdditionalHelp
 
 An `AdditionalHelp` component can be used to provide more context for a control. It will inherit text color from its parent `Control` component.
+
+## Composed Example
+
+Here is an example of a composed form using the elements above.
+
+```jsx
+const React = require('react');
+const Control = require('./Control').default;
+const Label = require('./label/Label').default;
+const Textbox = require('./textbox/Textbox').default;
+const AdditionalHelp = require('./AdditionalHelp').default;
+
+function FormExample() {
+  const [name, setName] = React.useState();
+
+  function handleNameChange(event) {
+    setName(event.target.value);
+  }
+
+  return (
+    <>
+      <Control>
+        <Label htmlFor="my-form-example">First Name</Label>
+        <Textbox id="my-form-example" onBlur={handleNameChange} />
+        <AdditionalHelp>The name below will update when the textbox loses focus.</AdditionalHelp>
+      </Control>
+      <div>Name: {name}</div>
+    </>
+  );
+};
+
+<FormExample />
+```

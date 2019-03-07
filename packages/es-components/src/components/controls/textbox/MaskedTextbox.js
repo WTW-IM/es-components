@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { omit, noop } from 'lodash';
 import MaskedInput from 'react-text-mask';
 
 import Icon from '../../base/icons/Icon';
-import InputBase from './InputText';
 import inputMaskType from './inputMaskType';
+import {
+  ValidationIconWrapper,
+  ValidationIcon,
+  Prepend,
+  Append,
+  InputWrapper,
+  TextboxBase
+} from './TextAddons';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
-const defaultBorderRadius = '2px';
-
 // apply styles to masked input, but remove props it doesn't use
-const StyledMaskInput = styled(props => (
+const StyledMask = styled(props => (
   <MaskedInput
     {...omit(props, [
       'borderColor',
@@ -25,74 +30,7 @@ const StyledMaskInput = styled(props => (
       'initialValue'
     ])}
   />
-))`
-  border-bottom-left-radius: ${props =>
-    props.hasPrepend ? '0' : defaultBorderRadius};
-  border-bottom-right-radius: ${props =>
-    props.hasAppend ? '0' : defaultBorderRadius};
-  border-top-left-radius: ${props =>
-    props.hasPrepend ? '0' : defaultBorderRadius};
-  border-top-right-radius: ${props =>
-    props.hasAppend ? '0' : defaultBorderRadius};
-  box-sizing: border-box;
-  color: inherit;
-  display: table-cell;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
-  padding-right: 2em;
-  -webkit-appearance: none;
-`;
-
-const StyledMask = props => <InputBase as={StyledMaskInput} {...props} />;
-
-const ValidationIconWrapper = styled.span`
-  height: 0;
-  position: relative;
-  width: 0;
-`;
-
-const ValidationIcon = styled(Icon)`
-  height: 20px;
-  pointer-events: none;
-  position: absolute;
-  right: 11px;
-  top: 10px;
-`;
-
-const AddOn = css`
-  background-color: ${props => props.addOnBgColor};
-  border: 1px solid
-    ${props =>
-      props.addOnBgColor === props.theme.colors.gray3
-        ? props.theme.colors.gray5
-        : props.addOnBgColor};
-  border-radius: ${defaultBorderRadius};
-  box-sizing: border-box;
-  color: ${props => props.addOnTextColor};
-  display: table-cell;
-  height: 39px;
-  line-height: 1.2;
-  padding: 6px 11px;
-  i {
-    line-height: 1;
-    vertical-align: middle;
-  }
-`;
-
-const Prepend = styled.span`
-  ${AddOn} border-bottom-right-radius: 0;
-  border-right: none;
-  border-top-right-radius: 0;
-`;
-
-const Append = styled.span`
-  ${AddOn} border-bottom-left-radius: 0;
-  border-left: none;
-  border-top-left-radius: 0;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-`;
+))``;
 
 function MaskedTextbox(props) {
   const {
@@ -135,7 +73,8 @@ function MaskedTextbox(props) {
           <Icon aria-hidden="true" name={prependIconName} size={18} />
         </Prepend>
       )}
-      <StyledMask
+      <TextboxBase
+        as={StyledMask}
         hasAppend={hasAppend}
         hasPrepend={hasPrepend}
         type="text"
@@ -184,7 +123,7 @@ MaskedTextbox.propTypes = {
     pipe: PropTypes.func,
     showMask: PropTypes.bool
   }),
-  /** Callback function to get inner mask input ref */
+  /** Callback function to get inner mask ref */
   inputRef: PropTypes.func
 };
 

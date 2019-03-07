@@ -35,6 +35,34 @@ const Control = require('../Control').default;
 </>
 ```
 
+```
+const Control = require('../Control').default
+
+function MaskExample() {
+  const [value, setValue] = React.useState('')
+
+  function handleOnTextChange(event) {
+    console.log(event.target.value)
+    setValue(event.target.value)
+  }
+
+  return (
+    <Control>
+      <Label htmlFor="controlled-example">Controlled Example</Label>
+      <MaskedTextbox
+        id="controlled-example"
+        maskType="ssnum"
+        value={value}
+        onChange={handleOnTextChange}
+        appendIconName="girl"
+      />
+    </Control>
+  )
+};
+
+<MaskExample />
+```
+
 ### Custom masks
 
 Create your own text mask using the structure documented [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#text-mask-documentation).

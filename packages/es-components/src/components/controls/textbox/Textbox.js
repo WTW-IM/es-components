@@ -9,7 +9,7 @@ import ValidationContext from '../ValidationContext';
 
 const defaultBorderRadius = '2px';
 
-const CommonInputStyles = css`
+const Input = styled(InputBase)`
   border-bottom-left-radius: ${props =>
     props.hasPrepend ? '0' : defaultBorderRadius};
   border-bottom-right-radius: ${props =>
@@ -24,10 +24,6 @@ const CommonInputStyles = css`
   line-height: ${props => props.theme.sizes.baseLineHeight};
   padding-right: 2em;
   -webkit-appearance: none;
-`;
-
-const Input = styled(InputBase)`
-  ${CommonInputStyles};
 `;
 
 const ValidationIconWrapper = styled.span`

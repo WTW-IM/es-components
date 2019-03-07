@@ -17,8 +17,10 @@ const WindowSizeComponent = () => {
 
 const triggerResize = () => {
   const resizeEvent = global.document.createEvent('Event');
-  resizeEvent.initEvent('resize', true, true);
-  global.window.dispatchEvent(resizeEvent);
+  act(() => {
+    resizeEvent.initEvent('resize', true, true);
+    global.window.dispatchEvent(resizeEvent);
+  });
 };
 
 Object.defineProperty(global.document.body, 'clientWidth', {

@@ -9,6 +9,7 @@ import { useWindowWidth } from '../../util/useWindowWidth';
 
 import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
+import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
 
 const BlockContainer = styled.div`
   display: inline-block;
@@ -31,17 +32,16 @@ const getVerifiedDate = selectedDate => {
 
 // required for react-datepicker 2.0.0 to properly set focus
 class DateTextbox extends React.Component {
-  constructor() {
-    super();
-    this.inputRef = React.createRef();
-  }
+  setRef = ref => {
+    this.inputElement = ref;
+  };
 
   focus() {
-    this.inputRef.current.focus();
+    this.inputElement.focus();
   }
 
   render() {
-    return <Textbox ref={this.inputRef} {...this.props} />;
+    return <MaskedTextbox inputRef={this.setRef} {...this.props} />;
   }
 }
 
@@ -92,7 +92,12 @@ function DatePicker(props) {
   const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
-    <DateTextbox name={name} prependIconName="calendar" {...textboxProps} />
+    <DateTextbox
+      maskType="date"
+      name={name}
+      prependIconName="calendar"
+      {...textboxProps}
+    />
   );
 
   const mobileDatePicker = (

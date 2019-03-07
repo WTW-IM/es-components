@@ -19,6 +19,14 @@ const StyleReset = createGlobalStyle`
     vertical-align: baseline;
   }
 
+  sub {
+    vertical-align: sub;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+
   input, button {
     font: inherit;
   }

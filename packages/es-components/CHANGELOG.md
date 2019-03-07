@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.2 (2019-03-07)</small>
+
+* Merge branch 'master' into master ([e9630c5](https://github.com/wtw-im/es-components/commit/e9630c5))
+* Fix: reset for sub and sup tags ([f00a3f5](https://github.com/wtw-im/es-components/commit/f00a3f5))
+
+
+
+
+
 ## <small>19.0.1 (2019-03-07)</small>
 
 * Build: reduce use of defineProperty for performance ([37ffd2c](https://github.com/wtw-im/es-components/commit/37ffd2c))

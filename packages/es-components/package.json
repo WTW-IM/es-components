@@ -25,7 +25,9 @@
     "setupFiles": [
       "./config/jest-shims.js"
     ],
-    "setupFilesAfterEnv": [ "<rootDir>/config/import-matchers.js" ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/import-matchers.js"
+    ],
     "testPathIgnorePatterns": [
       "es6",
       "lib"

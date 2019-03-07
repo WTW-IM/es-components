@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render, cleanup } from 'react-testing-library';
+import { act } from 'react-dom/test-utils';
 import { useWindowWidth } from './useWindowWidth';
 
 const WindowSizeComponent = () => {
@@ -20,26 +21,24 @@ const triggerResize = () => {
   global.window.dispatchEvent(resizeEvent);
 };
 
-beforeEach(() => {
-  Object.defineProperty(global.document.body, 'clientWidth', {
-    value: 500,
-    writable: true
-  });
-
-  const { body } = global.document;
-  if (body.firstChild) body.removeChild(body.firstChild);
+Object.defineProperty(global.document.body, 'clientWidth', {
+  value: 500,
+  writable: true
 });
 
-it('uses document clientWidth', () => {
+beforeEach(() => {
   global.document.body.clientWidth = 500;
+});
+
+afterEach(cleanup);
+
+it('uses document clientWidth', () => {
   const { getByTestId } = render(React.cloneElement(<WindowSizeComponent />));
   expect(getByTestId('window-width').textContent).toBe('500');
 });
 
 it('adjusts the size based on resize', () => {
   // Initial size
-
-  global.document.body.clientWidth = 500;
 
   const { getByTestId } = render(<WindowSizeComponent />);
   const windowWidthElement = getByTestId('window-width');
@@ -48,8 +47,10 @@ it('adjusts the size based on resize', () => {
 
   // Resize
 
-  global.document.body.clientWidth = 1000;
-  triggerResize();
+  act(() => {
+    global.document.body.clientWidth = 1000;
+    triggerResize();
+  });
 
   expect(windowWidthElement.textContent).toBe('1000');
 });

@@ -10,11 +10,12 @@ import { renderWithTheme } from '../../util/test-utils';
 
 const phoneWidth = parseInt(viaTheme.screenSize.phone, 10);
 
+Object.defineProperty(window.document.body, 'clientWidth', {
+  writable: true
+});
+
 function setScreenWidth(size) {
-  Object.defineProperty(window.document.body, 'clientWidth', {
-    value: size,
-    writable: true
-  });
+  global.document.body.clientWidth = size;
 }
 
 afterEach(cleanup);

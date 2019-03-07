@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.1 (2019-03-07)</small>
+
+* Build: reduce use of defineProperty for performance ([37ffd2c](https://github.com/wtw-im/es-components/commit/37ffd2c))
+* Build: update jest-util to work with latest node ([7070d3d](https://github.com/wtw-im/es-components/commit/7070d3d))
+* Build: use latest react-testing-library ([c4567c9](https://github.com/wtw-im/es-components/commit/c4567c9))
+* Upgrade: address security vulnerabilities from github/npm audit ([da1a4b5](https://github.com/wtw-im/es-components/commit/da1a4b5))
+
+
+
+
+
 ## 19.0.0 (2019-03-06)
 
 * Update: added aria-pressed to toggleButton, minor code refactoring ([787de8b](https://github.com/wtw-im/es-components/commit/787de8b))

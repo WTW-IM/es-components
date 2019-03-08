@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.6 (2019-03-08)</small>
+
+* Fix: turns out auto does not work for display ([68c6e85](https://github.com/wtw-im/es-components/commit/68c6e85))
+
+
+
+
+
 ## <small>19.0.5 (2019-03-08)</small>
 
 * Merge pull request #303 from jrios/fix-popover-button-pos ([cd1f926](https://github.com/wtw-im/es-components/commit/cd1f926)), closes [#303](https://github.com/wtw-im/es-components/issues/303)

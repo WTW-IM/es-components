@@ -50,7 +50,7 @@ const PopoverContent = styled.div`
 `;
 
 const PopoverCloseButton = styled(Button)`
-  display: auto;
+  display: inline-block;
   width: auto;
 `;
 

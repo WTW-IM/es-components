@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.4 (2019-03-08)</small>
+
+* Fix: update packages with vulnerabilities ([f83594d](https://github.com/wtw-im/es-components/commit/f83594d))
+* Update: use "as" for navigation items ([0799029](https://github.com/wtw-im/es-components/commit/0799029))
+
+
+
+
+
 ## <small>19.0.3 (2019-03-08)</small>
 
 * Update: refactored common textbox and maskedtextbox elements ([fa53104](https://github.com/wtw-im/es-components/commit/fa53104))

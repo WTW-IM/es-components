@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "19.0.3",
+  "version": "19.0.4",
   "description": "React components built for Exchange Solutions products",
   "repository": "https://github.com/wtw-im/es-components",
   "module": "lib/index.js",

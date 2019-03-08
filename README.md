@@ -14,7 +14,7 @@
 
 ## Contributing
 
-Commit messages should follow the [eslint conventional commit](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-eslint)
+Commit messages should follow the [eslint conventional commit](https://www.npmjs.com/package/conventional-changelog-eslint)
 structure. References to github issues are not required.
 
 Submit a pull request when you're ready to have your code reviewed and apply the ``ready for review`` label.

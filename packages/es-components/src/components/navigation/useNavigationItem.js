@@ -113,6 +113,21 @@ const NavIcon = styled(Icon)`
   align-self: flex-end;
 `;
 
+const NavigationAnchor = styled.a`
+  align-content: center;
+  background-color: inherit;
+  border: 0;
+  color: inherit;
+  cursor: inherit;
+  display: flex;
+  font-size: inherit;
+  height: 100%;
+  justify-content: ${props => props.isVertical ? 'space-between' : 'center'};
+  padding: 0;
+  text-decoration: none;
+  width: 100%;
+`;
+
 export function useNavigationItem(orientation) {
   function NavItem(props) {
     const { highlightedId, id, isDisabled, useAltStyle, children } = props;
@@ -122,30 +137,13 @@ export function useNavigationItem(orientation) {
     const isVertical = orientation === 'vertical';
 
     const child = React.Children.only(children);
-    const StyledChild = React.memo(() => {
-      const Styled = styled(child.type)`
-        align-content: center;
-        background-color: inherit;
-        border: 0;
-        color: inherit;
-        cursor: inherit;
-        display: flex;
-        font-size: inherit;
-        height: 100%;
-        justify-content: ${isVertical ? 'space-between' : 'center'};
-        padding: 0;
-        text-decoration: none;
-        width: 100%;
-      `;
-      const { children: grandChild, ...rest } = child.props;
-
-      return (
-        <Styled {...rest}>
-          <span>{grandChild}</span>
-          {isVertical ? <NavIcon name="chevron-right" /> : null}
-        </Styled>
-      );
-    });
+    const { children: grandChildren, ...rest} = child.props;
+    const styledChild = (
+      <NavigationAnchor as={child.type} isVertical={isVertical} {...rest}>
+        <span>{grandChildren}</span>
+        {isVertical ? <NavIcon name="chevron-right" /> : null}
+      </NavigationAnchor>
+    );
 
     return (
       <Wrapper
@@ -154,7 +152,7 @@ export function useNavigationItem(orientation) {
         isDisabled={isDisabled}
         isVertical={isVertical}
       >
-        <StyledChild />
+        {styledChild}
       </Wrapper>
     );
   }

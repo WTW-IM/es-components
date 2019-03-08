@@ -4,6 +4,7 @@ import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
 
 const NotificationIcon = styled(Icon)`
+  align-self: start;
   display: none;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
@@ -13,14 +14,24 @@ const NotificationIcon = styled(Icon)`
 `;
 
 const DismissButton = styled.button`
+  align-self: start;
   background-color: transparent;
   border: 0;
-  color: ${props => props.theme.colors.white};
+  color: ${props => props.color.textColor};
   cursor: pointer;
+  opacity: 0.8;
+`;
+
+const ContentWrapper = styled.div`
+  align-self: center;
+  flex-grow: 1;
 `;
 
 const NotificationContent = React.forwardRef(
-  ({ includeIcon, isDismissable, onDismiss, children, iconName }, ref) => {
+  (
+    { includeIcon, isDismissable, onDismiss, children, iconName, color },
+    ref
+  ) => {
     const [isDismissed, setIsDismissed] = useState(false);
 
     useEffect(
@@ -40,9 +51,9 @@ const NotificationContent = React.forwardRef(
     return (
       <>
         {includeIcon ? <NotificationIcon name={iconName} size={28} /> : null}
-        {children}
+        <ContentWrapper>{children}</ContentWrapper>
         {isDismissable ? (
-          <DismissButton onClick={dismissNotification}>
+          <DismissButton onClick={dismissNotification} color={color}>
             <Icon name="remove" size={27} />
           </DismissButton>
         ) : null}
@@ -57,13 +68,8 @@ const Notification = styled.div`
   border-radius: 2px;
   color: ${props => props.variant.textColor};
   display: flex;
-  flex-wrap: wrap;
   margin-bottom: 25px;
   padding: 15px;
-
-  > :not(i):not(button) {
-    flex-grow: 1;
-  }
 
   a {
     color: ${props => props.variant.textColor};
@@ -85,7 +91,7 @@ export function useNotification(styleType = 'base') {
     const notificationRef = useRef(null);
     const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
-    const notificationContentProps = { iconName, type, ...rest };
+    const notificationContentProps = { color, iconName, ...rest };
 
     return (
       <Notification ref={notificationRef} role={role} variant={color}>

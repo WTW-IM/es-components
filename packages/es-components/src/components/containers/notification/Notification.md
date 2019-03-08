@@ -64,7 +64,7 @@ If the screen size is less than `768px`, it will not be displayed.
 
 ```jsx
 <Notification type="success" includeIcon>
-  <p>Congrats! You did it!</p>
+  <span>Congrats! You did it!</span>
 </Notification>
 ```
 
@@ -87,7 +87,7 @@ function NotificationApp() {
         isDismissable
         onDismiss={notificationDismissed}
       >
-        <p>Try dismissing this notification!</p>
+        <span>Try dismissing this notification!</span>
       </Notification>
       <p>{message}</p>
     </>

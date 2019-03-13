@@ -1,4 +1,6 @@
-Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalNav.Item` will render with the same styling. A `HorizontalNav.Item` only accepts one child component and will typically be a `a`, `button`, or client side routing `Link`-type component.```
+Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalNav.Item` will render with the same styling. A `HorizontalNav.Item` only accepts one child component and will typically be a `a`, `button`, or client side routing `Link`-type component.
+
+```
 <>
   <h3>Standard</h3>
   <HorizontalNav selected="home">
@@ -43,7 +45,7 @@ Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalN
 Change the `selected` prop that is passed to `HorizontalNav` to change when an item is clicked.
 
 ```
-function Link({ className, children, ...rest }) {
+function Link({ className, children, isVertical, ...rest }) {
   return <a className={className} href="#" {...rest}>{children}</a>;
 }
 

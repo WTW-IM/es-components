@@ -64,6 +64,7 @@ it('allows arrow movement and traps focus when dropdown is opened', () => {
   );
 
   const firstButton = getByText('Button').closest('button');
+  firstButton.focus();
   firstButton.click();
   expect(firstButton).toHaveFocus();
 

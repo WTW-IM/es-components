@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.7 (2019-03-13)</small>
+
+* Update: notification mobile style improvements ([f2e0eaa](https://github.com/wtw-im/es-components/commit/f2e0eaa))
+
+
+
+
+
 ## <small>19.0.6 (2019-03-08)</small>
 
 * Fix: turns out auto does not work for display ([68c6e85](https://github.com/wtw-im/es-components/commit/68c6e85))

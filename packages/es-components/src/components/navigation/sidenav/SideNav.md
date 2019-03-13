@@ -45,7 +45,7 @@ Use `SideNav` to create an uncontrolled navigation menu. Each `SideNav.Item` wil
 Change the `selected` prop that is passed to `SideNav` to change when an item is clicked.
 
 ```
-function Link({ className, children, ...rest }) {
+function Link({ className, children, isVertical, ...rest }) {
   return <a className={className} href="#" {...rest}>{children}</a>;
 }
 

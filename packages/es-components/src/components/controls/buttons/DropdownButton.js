@@ -135,6 +135,7 @@ function DropdownButton(props) {
   const [buttonValue, setButtonValue] = useState(props.buttonValue);
   const [isOpen, setIsOpen] = useState(false);
 
+  const initialRender = useRef(true);
   const buttonDropdown = useRef();
   const triggerButton = useRef();
   const panelId = useUniqueId();
@@ -154,7 +155,10 @@ function DropdownButton(props) {
 
   useEffect(
     () => {
-      triggerButton.current.focus();
+      if (!initialRender.current) {
+        triggerButton.current.focus();
+      }
+      initialRender.current = false;
     },
     [isOpen]
   );

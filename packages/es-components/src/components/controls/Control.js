@@ -9,8 +9,11 @@ const FlexControl = styled.div`
   color: ${props => props.textColor};
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
   flex-direction: column;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    margin-bottom: 20px;
+  }
 
   select {
     border-color: ${props => props.borderColor};

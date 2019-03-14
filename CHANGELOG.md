@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.8 (2019-03-14)</small>
+
+* Fix: remove bottom margin on Control in mobile ([6f55eaa](https://github.com/wtw-im/es-components/commit/6f55eaa))
+
+
+
+
+
 ## <small>19.0.7 (2019-03-13)</small>
 
 * Update: notification mobile style improvements ([f2e0eaa](https://github.com/wtw-im/es-components/commit/f2e0eaa))

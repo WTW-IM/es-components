@@ -3,7 +3,6 @@ Group `AnswerButton` components together using a `AnswerGroup`. Any additional p
 ```
 const AnswerButton = require('./AnswerButton').default
 
-
 function AnswerGroupExample() {
   const [answer, setAnswer] = React.useState('nothing')
 
@@ -39,7 +38,7 @@ function AnswerGroupExample() {
 
   return (
     <>
-      <AnswerGroup name="household-type" size="sm" styleType="warning" selectedType="success" itemWidth="200px" onChange={handleRadioChange} selectedValue={answer}>
+      <AnswerGroup name="household-type" size="sm" styleType="default" selectedType="info" itemWidth="200px" onChange={handleRadioChange} selectedValue={answer}>
         <AnswerButton value="single">Single</AnswerButton>
         <AnswerButton value="married">Married</AnswerButton>
         <AnswerButton value="head">Head of Household</AnswerButton>
@@ -73,6 +72,45 @@ function AnswerGroupExample() {
       </AnswerGroup>
       <p>You've selected: {answer}</p>
     </>
+  )
+};
+
+<AnswerGroupExample />
+```
+
+### Validation states
+
+```
+const Control = require('../Control').default;
+const AnswerButton = require('./AnswerButton').default
+
+function AnswerGroupExample() {
+  return (
+    <>
+    <Control validationState="success">
+      <Label htmlFor="success-question">Success</Label>
+      <AnswerGroup name="success-question" isOutline onChange={()=>{}}>
+        <AnswerButton value="yes">Yes</AnswerButton>
+        <AnswerButton value="no">No</AnswerButton>
+      </AnswerGroup>
+    </Control>
+
+    <Control validationState="warning">
+      <Label htmlFor="warning-question">Warning</Label>
+      <AnswerGroup name="warning-question" isOutline onChange={()=>{}}>
+        <AnswerButton value="yes">Yes</AnswerButton>
+        <AnswerButton value="no">No</AnswerButton>
+      </AnswerGroup>
+    </Control>
+
+    <Control validationState="danger">
+      <Label htmlFor="danger-question">Danger</Label>
+      <AnswerGroup name="danger-question" isOutline onChange={()=>{}}>
+        <AnswerButton value="yes">Yes</AnswerButton>
+        <AnswerButton value="no">No</AnswerButton>
+      </AnswerGroup>
+    </Control>
+</>
   )
 };
 

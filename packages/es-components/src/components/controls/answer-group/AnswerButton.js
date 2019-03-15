@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import useUniqueId from '../../util/useUniqueId';
 import { useTheme } from '../../util/useTheme';
+import ValidationContext from '../ValidationContext';
 
 const AnswerLabel = styled.label`
   flex-grow: 1;
@@ -100,11 +101,17 @@ function AnswerButton({
   const id = useUniqueId(radioProps.id);
   const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
+  const validationState = React.useContext(ValidationContext);
   const buttonStyle = isOutline ? 'outlineButton' : 'button';
   const buttonSize = theme.buttonStyles[buttonStyle].size[size];
+
+  let displayType = styleType;
+  if (validationState !== 'default') {
+    displayType = validationState;
+  }
   const style = isChecked
     ? theme.buttonStyles[buttonStyle].variant[selectedType]
-    : theme.buttonStyles[buttonStyle].variant[styleType];
+    : theme.buttonStyles[buttonStyle].variant[displayType];
 
   const buttonProps = {
     disabled: radioProps.disabled,
@@ -113,10 +120,17 @@ function AnswerButton({
     buttonSize
   };
 
+  const labelProps = {
+    disabled: radioProps.disabled,
+    itemWidth,
+    htmlFor: id,
+    validationState
+  };
+
   const Display = isOutline ? OutlineAnswerDisplay : AnswerDisplay;
 
   return (
-    <AnswerLabel itemWidth={itemWidth} htmlFor={id}>
+    <AnswerLabel {...labelProps}>
       <AnswerInput
         type="radio"
         name={name}

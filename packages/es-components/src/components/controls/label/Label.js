@@ -6,10 +6,13 @@ const Label = styled.label`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: 700;
   margin-bottom: 5px;
-  margin-right: 20px;
 
   &[disabled] {
     cursor: not-allowed;
+  }
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    margin-right: 20px;
   }
 `;
 

@@ -10,10 +10,7 @@ const FlexControl = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin-bottom: 20px;
-  }
+  margin-bottom: 15px;
 
   select {
     border-color: ${props => props.borderColor};

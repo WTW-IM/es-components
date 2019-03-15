@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.11 (2019-03-15)</small>
+
+* Fix: set spacing for labels properly ([ee1b325](https://github.com/wtw-im/es-components/commit/ee1b325))
+
+
+
+
+
 ## <small>19.0.10 (2019-03-15)</small>
 
 * Fix: prevent dropdownbutton auto focus on initial render ([39effdb](https://github.com/wtw-im/es-components/commit/39effdb))

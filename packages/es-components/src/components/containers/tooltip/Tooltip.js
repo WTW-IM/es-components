@@ -190,8 +190,7 @@ function Tooltip(props) {
   }
 
   const tooltipTarget = React.createRef();
-  const idHash = useUniqueId();
-  const descriptionId = `${idHash}-description`;
+  const descriptionId = `${useUniqueId(other.id)}-description`;
 
   return (
     <>

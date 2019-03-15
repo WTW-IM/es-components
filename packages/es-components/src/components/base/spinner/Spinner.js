@@ -56,10 +56,8 @@ const SpinnerCircle = styled.circle`
 `;
 
 const Spinner = ({ title, description, ...props }) => {
-  const titleUnique = useUniqueId();
-  const descUnique = useUniqueId();
-  const titleId = title && titleUnique;
-  const descId = description && descUnique;
+  const titleId = title && `${useUniqueId(props.id)}-title`;
+  const descId = description && `${useUniqueId(props.id)}-desc`;
 
   return (
     <SpinnerSvg

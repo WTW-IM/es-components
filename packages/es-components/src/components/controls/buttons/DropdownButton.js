@@ -137,7 +137,7 @@ function DropdownButton(props) {
 
   const buttonDropdown = useRef();
   const triggerButton = useRef();
-  const panelId = useUniqueId();
+  const panelId = useUniqueId(props.id);
 
   useEffect(
     () => {

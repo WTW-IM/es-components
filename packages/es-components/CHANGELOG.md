@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.10 (2019-03-15)</small>
+
+* Fix: prevent dropdownbutton auto focus on initial render ([39effdb](https://github.com/wtw-im/es-components/commit/39effdb))
+* Update: attempt to use id from props using useUniqueId ([6fbe00b](https://github.com/wtw-im/es-components/commit/6fbe00b))
+
+
+
+
+
 ## <small>19.0.9 (2019-03-15)</small>
 
 * Fix: set spacing according to UX guidelines ([2035b9f](https://github.com/wtw-im/es-components/commit/2035b9f))

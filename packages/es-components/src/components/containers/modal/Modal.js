@@ -107,7 +107,7 @@ function Modal(props) {
 
   const ModalDialog = getModalBySize(size);
 
-  const ariaId = useUniqueId();
+  const ariaId = useUniqueId(other.id);
 
   return (
     <ModalContext.Provider value={{ onHide, ariaId }}>

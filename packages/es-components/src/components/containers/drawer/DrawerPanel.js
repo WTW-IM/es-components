@@ -60,8 +60,8 @@ const DrawerPanel = props => {
     ...other
   } = props;
 
-  const headingAriaId = useUniqueId();
-  const regionAriaId = useUniqueId();
+  const headingAriaId = `${useUniqueId(other.id)}-heading`;
+  const regionAriaId = `${useUniqueId(other.id)}-region`;
   const aside = titleAside && <aside>{titleAside}</aside>;
 
   return (

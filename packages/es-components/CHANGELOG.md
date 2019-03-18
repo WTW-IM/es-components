@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.12 (2019-03-18)</small>
+
+* Merge pull request #308 from Darrken/answergroup-validationstate ([0f06c6b](https://github.com/wtw-im/es-components/commit/0f06c6b)), closes [#308](https://github.com/wtw-im/es-components/issues/308)
+* Update: add validationState to AnswerGroup ([bbb3db2](https://github.com/wtw-im/es-components/commit/bbb3db2))
+
+
+
+
+
 ## <small>19.0.11 (2019-03-15)</small>
 
 * Fix: set spacing for labels properly ([ee1b325](https://github.com/wtw-im/es-components/commit/ee1b325))

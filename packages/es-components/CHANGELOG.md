@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.13 (2019-03-18)</small>
+
+* Update: wrap DatePicker in React.memo ([22a3a98](https://github.com/wtw-im/es-components/commit/22a3a98))
+
+
+
+
+
 ## <small>19.0.12 (2019-03-18)</small>
 
 * Merge pull request #308 from Darrken/answergroup-validationstate ([0f06c6b](https://github.com/wtw-im/es-components/commit/0f06c6b)), closes [#308](https://github.com/wtw-im/es-components/issues/308)

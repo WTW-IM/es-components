@@ -66,7 +66,7 @@ function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   );
 }
 
-function DatePicker(props) {
+const DatePicker = React.memo(function DatePicker(props) {
   /* eslint-disable no-unused-vars */
   const {
     children,
@@ -137,7 +137,7 @@ function DatePicker(props) {
       <BlockContainer>{datePicker}</BlockContainer>
     </>
   );
-}
+});
 
 DatePicker.propTypes = {
   /** Content to display within and below the calendar */

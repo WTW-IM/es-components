@@ -98,6 +98,7 @@ const StyledButton = styled(LinkButton)`
   :focus {
     color: ${props => props.theme.colors.primary};
     text-decoration: none;
+    border-bottom: 1px solid;
   }
 `;
 
@@ -200,9 +201,8 @@ function Tooltip(props) {
         onFocus={!disableFocus ? showTooltip : undefined}
         onMouseEnter={!disableHover ? showTooltip : undefined}
         onMouseLeave={!disableHover ? hideTooltip : undefined}
-        onMouseDown={toggleShow}
         onKeyDown={closeOnEscape}
-        onClick={() => {}}
+        onClick={toggleShow}
         aria-describedby={descriptionId}
       >
         {children}
@@ -215,6 +215,8 @@ function Tooltip(props) {
         container={document.body}
         target={() => tooltipTarget.current}
         transition={FadeTransition}
+        rootClose
+        onHide={hideTooltip}
       >
         <Popup position={position} name={name} {...other}>
           {content}

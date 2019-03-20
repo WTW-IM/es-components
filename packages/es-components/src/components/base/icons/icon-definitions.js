@@ -195,7 +195,9 @@ const regular = {
   'im-icon-woman': '6c1',
   'im-icon-wrench': '6c2',
   'im-icon-zoom-in': '6c3',
-  'im-icon-zoom-out': '6c4'
+  'im-icon-zoom-out': '6c4',
+  'im-icon-keyhole-shield': '6c5',
+  'im-icon-security-checked': '6c6'
 };
 
 export { regular };

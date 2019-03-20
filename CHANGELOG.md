@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.15 (2019-03-20)</small>
+
+* Update: allows for alternate button styling in incrementer ([114b773](https://github.com/wtw-im/es-components/commit/114b773))
+* New: security icons ([015f4bb](https://github.com/wtw-im/es-components/commit/015f4bb))
+
+
+
+
+
 ## <small>19.0.14 (2019-03-19)</small>
 
 * Fix: tooltip underlines and close behavior ([2a1efd5](https://github.com/wtw-im/es-components/commit/2a1efd5))

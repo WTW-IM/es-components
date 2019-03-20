@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
+import OutlineButton from '../../controls/buttons/OutlineButton';
 import InputBase from '../../controls/textbox/InputText';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import { useTheme } from '../../util/useTheme';
@@ -67,9 +68,11 @@ function Incrementer(props) {
     dispatch({ type: 'increment', amount: props.incrementAmount });
   }
 
+  const RenderedButton = props.useOutlineButton ? OutlineButton : Button;
+
   return (
     <IncrementerWrapper>
-      <Button
+      <RenderedButton
         styleType="primary"
         onClick={decrementValue}
         disabled={isDecrementDisabled}
@@ -79,14 +82,14 @@ function Incrementer(props) {
           {props.decrementAmount}
         </ScreenReaderButtonText>
         <Icon name="minus" />
-      </Button>
+      </RenderedButton>
       <IncrementerTextbox
         {...theme.validationInputColor.default}
         type="text"
         value={state.count}
         readOnly
       />
-      <Button
+      <RenderedButton
         styleType="primary"
         onClick={incrementValue}
         disabled={isIncrementDisabled}
@@ -96,7 +99,7 @@ function Incrementer(props) {
           {props.incrementAmount}
         </ScreenReaderButtonText>
         <Icon name="add" />
-      </Button>
+      </RenderedButton>
     </IncrementerWrapper>
   );
 }
@@ -112,6 +115,8 @@ Incrementer.propTypes = {
   upperThreshold: PropTypes.number,
   /** The lowest value the incrementer can be decremented to */
   lowerThreshold: PropTypes.number,
+  /** Use outline button styles */
+  useOutlineButton: PropTypes.bool,
   /** Function to execute with the new value */
   onValueUpdated: PropTypes.func
 };
@@ -122,7 +127,8 @@ Incrementer.defaultProps = {
   decrementAmount: 1,
   onValueUpdated: noop,
   upperThreshold: null,
-  lowerThreshold: null
+  lowerThreshold: null,
+  useOutlineButton: false
 };
 
 export default Incrementer;

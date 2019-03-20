@@ -52,6 +52,11 @@ const StyledButton = styled.button`
       pointer-events: none;
     }
   }
+
+  &[disabled]:hover {
+    color: ${props => props.variant.textColor};
+    background-color: ${props => props.variant.bgColor};
+  }
 `;
 
 const OutlineButton = React.forwardRef((props, ref) => {

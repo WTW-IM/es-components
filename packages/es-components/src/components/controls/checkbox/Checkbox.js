@@ -19,9 +19,10 @@ const CheckboxLabel = styled(Label)`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
   line-height: ${props => props.theme.sizes.baseLineHeight};
+  margin-bottom: 0;
   margin-left: -10px;
   min-height: 25px;
-  padding: 10px 0 10px 42px;
+  padding: 0 0 0 42px;
   position: relative;
   flex: 1 0 auto;
 
@@ -84,7 +85,6 @@ const CheckboxDisplay = styled.span`
   height: 25px;
   left: 10px;
   position: absolute;
-  top: 0.55em;
   transition: all 0.25s linear;
   width: 25px;
 

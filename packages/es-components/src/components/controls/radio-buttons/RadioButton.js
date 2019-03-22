@@ -32,7 +32,7 @@ const RadioLabel = styled(Label)`
   margin-right: 15px;
   margin-bottom: 10px;
   position: relative;
-  padding: 10px 0 10px 10px;
+  padding: 0;
   text-transform: none;
 
   &:hover .es-radio__fill:before {

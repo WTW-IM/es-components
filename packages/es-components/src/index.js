@@ -49,6 +49,7 @@ export Action from './components/patterns/callToAction/Action';
 
 export Spinner from './components/base/spinner/Spinner';
 
+export Fade from './components/util/Fade';
 export generateAlphaName from './components/util/generateAlphaName';
 export { useWindowWidth } from './components/util/useWindowWidth';
 export withWindowSize from './components/util/withWindowSize';

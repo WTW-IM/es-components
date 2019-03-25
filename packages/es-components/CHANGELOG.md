@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.16 (2019-03-25)</small>
+
+* New: expose Fade component ([9d186c1](https://github.com/wtw-im/es-components/commit/9d186c1))
+
+
+
+
+
 ## <small>19.0.15 (2019-03-20)</small>
 
 * Merge pull request #312 from Darrken/security-icons ([591bfa6](https://github.com/wtw-im/es-components/commit/591bfa6)), closes [#312](https://github.com/wtw-im/es-components/issues/312)

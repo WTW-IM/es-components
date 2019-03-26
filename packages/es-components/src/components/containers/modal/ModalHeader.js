@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
+import Heading from '../heading/Heading';
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
@@ -15,7 +16,7 @@ const Header = styled.div`
   padding: 15px;
 `;
 
-const Title = styled.h4`
+const Title = styled(Heading)`
   font-size: 24px;
   font-weight: 500;
   margin: 0;
@@ -33,12 +34,14 @@ const DismissModal = styled(DismissButton)`
 `;
 
 function ModalHeader(props) {
-  const { hideCloseButton, children, ...otherProps } = props;
+  const { hideCloseButton, children, level, ...otherProps } = props;
   const { onHide, ariaId } = useContext(ModalContext);
 
   return (
     <Header {...otherProps}>
-      <Title id={ariaId}>{children}</Title>
+      <Title id={ariaId} level={level}>
+        {children}
+      </Title>
 
       {!hideCloseButton && <DismissModal onClick={onHide} />}
     </Header>
@@ -48,12 +51,14 @@ function ModalHeader(props) {
 ModalHeader.propTypes = {
   /** Specify whether the modal header should contain a close button */
   hideCloseButton: PropTypes.bool,
-  children: PropTypes.any
+  children: PropTypes.any,
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6])
 };
 
 ModalHeader.defaultProps = {
   hideCloseButton: false,
-  children: undefined
+  children: undefined,
+  level: 4
 };
 
 ModalHeader.contextTypes = {

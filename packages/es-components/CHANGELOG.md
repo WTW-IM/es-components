@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.17 (2019-03-26)</small>
+
+* Fix: modal header level accessibility ([53c21b9](https://github.com/wtw-im/es-components/commit/53c21b9))
+
+
+
+
+
 ## <small>19.0.16 (2019-03-25)</small>
 
 * New: expose Fade component ([9d186c1](https://github.com/wtw-im/es-components/commit/9d186c1))

@@ -26,14 +26,18 @@ Thresholds can be set that will set a range for values that the incrementer will
 Passing a function to `onValueUpdated` will execute that function with the new value.
 
 ```
+const Control = require('../../controls/Control').default;
+const AdditionalHelp = require('../../controls/AdditionalHelp').default;
+
 function printNewValue(value) {
   console.log(`The new value is ${value}`);
 }
 
-<div>
-  <p>This incrementer will print the new value to the console.</p>
-  <Incrementer
+<Control>
+  <Label htmlFor="example-inc">Example</Label>
+  <Incrementer id="example-inc" aria-describedby="example-help" useOutlineButton
     onValueUpdated={printNewValue}
   />
-</div>
+  <AdditionalHelp id="example-help">This incrementer will print the new value to the console.</AdditionalHelp>
+</Control>
 ```

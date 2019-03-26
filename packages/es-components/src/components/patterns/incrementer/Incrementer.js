@@ -11,6 +11,7 @@ import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import { useTheme } from '../../util/useTheme';
 
 const IncrementerWrapper = styled.div`
+  align-items: flex-start;
   display: flex;
 `;
 
@@ -30,6 +31,11 @@ const IncrementerTextbox = styled(InputBase)`
   &::-ms-clear {
     display: none;
   }
+`;
+
+const IncrementerButton = styled(Button)`
+  display: inline-block;
+  width: auto;
 `;
 
 function determineIsDisabled(threshold, newValue) {
@@ -88,7 +94,8 @@ function Incrementer({
   upperThreshold,
   lowerThreshold,
   useOutlineButton,
-  onValueUpdated
+  onValueUpdated,
+  ...other
 }) {
   const theme = useTheme();
 
@@ -135,11 +142,22 @@ function Incrementer({
     }
   }
 
+  function shortcutKeys(event) {
+    if (upperThreshold && event.keyCode === 35) {
+      dispatch({ type: 'set', amount: upperThreshold });
+    }
+
+    if (lowerThreshold && event.keyCode === 36) {
+      dispatch({ type: 'set', amount: lowerThreshold });
+    }
+  }
+
   const RenderedButton = useOutlineButton ? OutlineButton : Button;
 
   return (
     <IncrementerWrapper>
-      <RenderedButton
+      <IncrementerButton
+        as={RenderedButton}
         styleType="primary"
         onClick={decrementValue}
         disabled={isDecrementDisabled}
@@ -149,18 +167,25 @@ function Incrementer({
           {decrementAmount}
         </ScreenReaderButtonText>
         <Icon name="minus" />
-      </RenderedButton>
+      </IncrementerButton>
       <IncrementerTextbox
         {...theme.validationInputColor.default}
+        {...other}
         type="number"
+        role="spinbutton"
         max={upperThreshold}
         min={lowerThreshold}
         step={incrementAmount}
         value={state.count}
+        aria-valuemin={lowerThreshold}
+        aria-valuemax={upperThreshold}
+        aria-valuenow={state.count}
+        onKeyDown={shortcutKeys}
         onChange={setValue}
         onBlur={handleOnBlur}
       />
-      <RenderedButton
+      <IncrementerButton
+        as={RenderedButton}
         styleType="primary"
         onClick={incrementValue}
         disabled={isIncrementDisabled}
@@ -170,7 +195,7 @@ function Incrementer({
           {incrementAmount}
         </ScreenReaderButtonText>
         <Icon name="add" />
-      </RenderedButton>
+      </IncrementerButton>
     </IncrementerWrapper>
   );
 }

@@ -5,6 +5,7 @@ Default incrementers will start at 0 and increase and decrease by 1 with no uppe
 ```
 
 Setting the increment and decrement amounts will increase and decrease by those amounts. This incrementer will increase and decrease by 2.
+
 ```
 <Incrementer
   incrementAmount={2}
@@ -12,12 +13,13 @@ Setting the increment and decrement amounts will increase and decrease by those 
 />
 ```
 
-Thresholds can be set that will set a range for values that the incrementer will respect.
+Thresholds can be set that will set a range for values that the incrementer will respect. Make sure to set a `startingValue` that respects your `lowerThreshold`.
 
 ```
 <Incrementer
-  lowerThreshold={0}
-  upperThreshold={5}
+  lowerThreshold={5}
+  upperThreshold={12}
+  startingValue={5}
 />
 ```
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop, isNumber } from 'lodash';
+import { noop, isFinite, parseInt } from 'lodash';
 import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
@@ -16,23 +16,63 @@ const IncrementerWrapper = styled.div`
 
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
+  padding-right: 12px;
   text-align: center;
   width: 60px;
+
+  /* Hides browser-specific number controls */
+  -moz-appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &::-ms-clear {
+    display: none;
+  }
 `;
 
 function determineIsDisabled(threshold, newValue) {
-  return isNumber(threshold) && newValue === threshold;
+  return isFinite(threshold) && newValue === threshold;
+}
+
+function sanitizeValue(val, lower, upper) {
+  const enteredValue = parseInt(val);
+
+  if (isFinite(enteredValue)) {
+    if (upper && enteredValue > upper) {
+      return upper;
+    }
+    if (lower && enteredValue < lower) {
+      return lower;
+    }
+    return enteredValue;
+  }
+
+  return lower > 0 ? lower : 0;
 }
 
 function updateCountReducer(state, action) {
   switch (action.type) {
     case 'increment':
       return {
-        count: state.count + action.amount
+        count: sanitizeValue(
+          parseInt(state.count) + parseInt(action.amount),
+          action.lower,
+          action.upper
+        )
       };
     case 'decrement':
       return {
-        count: state.count - action.amount
+        count: sanitizeValue(
+          parseInt(state.count) - parseInt(action.amount),
+          action.lower,
+          action.upper
+        )
+      };
+    case 'set':
+      return {
+        count: action.amount
       };
     default:
   }
@@ -41,34 +81,61 @@ function updateCountReducer(state, action) {
 
 const ScreenReaderButtonText = screenReaderOnly('span');
 
-function Incrementer(props) {
+function Incrementer({
+  startingValue,
+  incrementAmount,
+  decrementAmount,
+  upperThreshold,
+  lowerThreshold,
+  useOutlineButton,
+  onValueUpdated
+}) {
   const theme = useTheme();
 
   const [state, dispatch] = React.useReducer(updateCountReducer, {
-    count: props.startingValue
+    count: startingValue
   });
-  const isIncrementDisabled = determineIsDisabled(
-    props.upperThreshold,
-    state.count
-  );
-  const isDecrementDisabled = determineIsDisabled(
-    props.lowerThreshold,
-    state.count
-  );
+  const isIncrementDisabled = determineIsDisabled(upperThreshold, state.count);
+  const isDecrementDisabled = determineIsDisabled(lowerThreshold, state.count);
 
   React.useEffect(() => {
-    props.onValueUpdated(state.count);
+    onValueUpdated(state.count);
   });
 
-  function decrementValue() {
-    dispatch({ type: 'decrement', amount: props.decrementAmount });
+  function setValue(event) {
+    dispatch({ type: 'set', amount: event.target.value });
+  }
+
+  function decrementValue(event) {
+    dispatch({
+      type: 'decrement',
+      amount: decrementAmount,
+      lower: lowerThreshold,
+      upper: upperThreshold
+    });
   }
 
   function incrementValue() {
-    dispatch({ type: 'increment', amount: props.incrementAmount });
+    dispatch({
+      type: 'increment',
+      amount: incrementAmount,
+      lower: lowerThreshold,
+      upper: upperThreshold
+    });
   }
 
-  const RenderedButton = props.useOutlineButton ? OutlineButton : Button;
+  function handleOnBlur(event) {
+    const sanitizedValue = sanitizeValue(
+      event.target.value,
+      lowerThreshold,
+      upperThreshold
+    );
+    if (event.target.value !== sanitizedValue) {
+      dispatch({ type: 'set', amount: sanitizedValue });
+    }
+  }
+
+  const RenderedButton = useOutlineButton ? OutlineButton : Button;
 
   return (
     <IncrementerWrapper>
@@ -79,15 +146,19 @@ function Incrementer(props) {
       >
         <ScreenReaderButtonText>
           Decrement value by
-          {props.decrementAmount}
+          {decrementAmount}
         </ScreenReaderButtonText>
         <Icon name="minus" />
       </RenderedButton>
       <IncrementerTextbox
         {...theme.validationInputColor.default}
-        type="text"
+        type="number"
+        max={upperThreshold}
+        min={lowerThreshold}
+        step={incrementAmount}
         value={state.count}
-        readOnly
+        onChange={setValue}
+        onBlur={handleOnBlur}
       />
       <RenderedButton
         styleType="primary"
@@ -96,7 +167,7 @@ function Incrementer(props) {
       >
         <ScreenReaderButtonText>
           Increment value by
-          {props.incrementAmount}
+          {incrementAmount}
         </ScreenReaderButtonText>
         <Icon name="add" />
       </RenderedButton>
@@ -105,7 +176,7 @@ function Incrementer(props) {
 }
 
 Incrementer.propTypes = {
-  /** The value to start the incrementer at */
+  /** The starting value */
   startingValue: PropTypes.number,
   /** The amount to increment the value by */
   incrementAmount: PropTypes.number,

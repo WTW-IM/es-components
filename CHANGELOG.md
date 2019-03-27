@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.18 (2019-03-27)</small>
+
+* Fix: adds min width to incrementer text box for IE ([1c9000e](https://github.com/wtw-im/es-components/commit/1c9000e))
+* Update: added role spinbutton to incrementer, shortcut keys ([59c2adb](https://github.com/wtw-im/es-components/commit/59c2adb))
+* Update: incrememter allows manual input ([fcdda47](https://github.com/wtw-im/es-components/commit/fcdda47))
+
+
+
+
+
 ## <small>19.0.17 (2019-03-26)</small>
 
 * Fix: modal header level accessibility ([53c21b9](https://github.com/wtw-im/es-components/commit/53c21b9))

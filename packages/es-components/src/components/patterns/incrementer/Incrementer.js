@@ -17,6 +17,7 @@ const IncrementerWrapper = styled.div`
 
 const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
+  min-width: 60px;
   padding-right: 12px;
   text-align: center;
   width: 60px;

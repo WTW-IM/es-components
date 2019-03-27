@@ -18,6 +18,7 @@ const IncrementerTextbox = styled(InputBase)`
   margin: 0 10px;
   text-align: center;
   width: 60px;
+  min-width: 60px;
 `;
 
 function determineIsDisabled(threshold, newValue) {

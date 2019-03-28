@@ -53,7 +53,7 @@
     "babel-plugin-styled-components": "^1.8.0",
     "babel-preset-wtw-im": "^2.3.1",
     "copy-webpack-plugin": "^4.5.1",
-    "css-loader": "^0.28.11",
+    "css-loader": "^2.1.1",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^5.15.1",
     "eslint-config-airbnb": "^17.1.0",

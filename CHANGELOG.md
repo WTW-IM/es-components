@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.20 (2019-03-29)</small>
+
+* Update: lightNotification icon color, control spacing ([e161c30](https://github.com/wtw-im/es-components/commit/e161c30))
+
+
+
+
+
 ## <small>19.0.19 (2019-03-28)</small>
 
 * Update: get rid of vulnerable packages ([9173e16](https://github.com/wtw-im/es-components/commit/9173e16))

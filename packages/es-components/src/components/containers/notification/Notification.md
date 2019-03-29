@@ -31,7 +31,7 @@ const InlineMessage = require('./Message').InlineMessage;
 
   <Notification type="advisor">
     <div style={{ flexBasis: '100%' }}>
-      <h3>This is an advisor alert!</h3>
+      <h3 style={{ 'margin-top': '0' }}>This is an advisor alert!</h3>
       <div>
         Children are rendered in a flex container and{' '}
         <a href="#notification">links</a> render with underlined text, but

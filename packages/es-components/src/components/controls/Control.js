@@ -10,7 +10,7 @@ const FlexControl = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 
   select {
     border-color: ${props => props.borderColor};

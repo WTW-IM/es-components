@@ -5,11 +5,12 @@ import { useTheme } from '../../util/useTheme';
 
 const NotificationIcon = styled(Icon)`
   align-self: start;
+  color: ${props => props.iconColor};
   display: none;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     display: initial;
-    margin-right: 5px;
+    margin-right: 8px;
   }
 `;
 
@@ -20,6 +21,7 @@ const DismissButton = styled.button`
   color: ${props => props.color.textColor};
   cursor: pointer;
   opacity: 0.8;
+  padding: 0;
 `;
 
 const ContentWrapper = styled.div`
@@ -27,40 +29,46 @@ const ContentWrapper = styled.div`
   flex-grow: 1;
 `;
 
-const NotificationContent = React.forwardRef(
-  (
-    { includeIcon, isDismissable, onDismiss, children, iconName, color },
-    ref
-  ) => {
-    const [isDismissed, setIsDismissed] = useState(false);
+const NotificationContent = React.forwardRef((props, ref) => {
+  const {
+    includeIcon,
+    isDismissable,
+    onDismiss,
+    children,
+    iconName,
+    iconColor,
+    color
+  } = props;
+  const [isDismissed, setIsDismissed] = useState(false);
 
-    useEffect(
-      function removeNotification() {
-        if (isDismissed) {
-          ref.current.remove();
-        }
-      },
-      [isDismissed]
-    );
+  useEffect(
+    function removeNotification() {
+      if (isDismissed) {
+        ref.current.remove();
+      }
+    },
+    [isDismissed]
+  );
 
-    function dismissNotification() {
-      onDismiss();
-      setIsDismissed(true);
-    }
-
-    return (
-      <>
-        {includeIcon ? <NotificationIcon name={iconName} size={28} /> : null}
-        <ContentWrapper>{children}</ContentWrapper>
-        {isDismissable ? (
-          <DismissButton onClick={dismissNotification} color={color}>
-            <Icon name="remove" size={27} />
-          </DismissButton>
-        ) : null}
-      </>
-    );
+  function dismissNotification() {
+    onDismiss();
+    setIsDismissed(true);
   }
-);
+
+  return (
+    <>
+      {includeIcon && (
+        <NotificationIcon name={iconName} iconColor={iconColor} size={28} />
+      )}
+      <ContentWrapper>{children}</ContentWrapper>
+      {isDismissable && (
+        <DismissButton onClick={dismissNotification} color={color}>
+          <Icon name="remove" size={27} />
+        </DismissButton>
+      )}
+    </>
+  );
+});
 
 const Notification = styled.div`
   align-items: center;
@@ -91,7 +99,9 @@ export function useNotification(styleType = 'base') {
     const notificationRef = useRef(null);
     const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
-    const notificationContentProps = { color, iconName, ...rest };
+    const iconColor =
+      styleType === 'light' ? theme.colors[type] : theme.colors.white;
+    const notificationContentProps = { color, iconName, iconColor, ...rest };
 
     return (
       <Notification ref={notificationRef} role={role} variant={color}>

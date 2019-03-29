@@ -5,25 +5,25 @@ These notifications are rendered with a lighter background.
   <LightNotification
     type="success"
   >
-    <p>This is a successful notification!</p>
+    <span>This is a successful notification!</span>
   </LightNotification>
 
   <LightNotification
     type="info"
   >
-    <p>This is an informational notification!</p>
+    <span>This is an informational notification!</span>
   </LightNotification>
 
   <LightNotification
     type="warning"
   >
-    <p>This is a warning notification!</p>
+    <span>This is a warning notification!</span>
   </LightNotification>
 
   <LightNotification
     type="danger"
   >
-    <p>This is a danger notification!</p>
+    <span>This is a danger notification!</span>
   </LightNotification>
 </div>
 ```

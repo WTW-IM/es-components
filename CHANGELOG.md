@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.21 (2019-04-02)</small>
+
+* Update: changes Tooltip/Popover links to use text-decoration-style ([a044cbd](https://github.com/wtw-im/es-components/commit/a044cbd))
+
+
+
+
+
 ## <small>19.0.20 (2019-03-29)</small>
 
 * Update: lightNotification icon color, control spacing ([e161c30](https://github.com/wtw-im/es-components/commit/e161c30))

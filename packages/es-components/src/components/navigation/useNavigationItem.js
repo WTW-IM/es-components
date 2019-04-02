@@ -65,7 +65,7 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
   ${props => css`
     &:hover {
       border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-    props.theme.colors.info
+    props.theme.colors.primary
   };
       padding-left: ${props.isVertical ? '6px' : '10px'};
       padding-bottom: ${props.isVertical ? '10px' : '6px'};
@@ -79,7 +79,7 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
       border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
       props.theme.brandColors.vbMagenta
     };
-      color: ${props.theme.brandColors.vbMagenta};
+      color: ${props.theme.colors.black};
       padding-left: ${props.isVertical ? '6px' : '10px'};
       padding-bottom: ${props.isVertical ? '10px' : '6px'};
 
@@ -92,7 +92,7 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
         border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
       props.theme.brandColors.vbMagenta
     };
-        color: ${props.theme.brandColors.vbMagenta};
+        color: ${props.theme.colors.black};
 
 
         > i {
@@ -122,7 +122,7 @@ const NavigationAnchor = styled.a`
   display: flex;
   font-size: inherit;
   height: 100%;
-  justify-content: ${props => props.isVertical ? 'space-between' : 'center'};
+  justify-content: ${props => (props.isVertical ? 'space-between' : 'center')};
   padding: 0;
   text-decoration: none;
   width: 100%;
@@ -137,7 +137,7 @@ export function useNavigationItem(orientation) {
     const isVertical = orientation === 'vertical';
 
     const child = React.Children.only(children);
-    const { children: grandChildren, ...rest} = child.props;
+    const { children: grandChildren, ...rest } = child.props;
     const styledChild = (
       <NavigationAnchor as={child.type} isVertical={isVertical} {...rest}>
         <span>{grandChildren}</span>

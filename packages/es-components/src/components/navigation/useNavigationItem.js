@@ -63,6 +63,9 @@ const NavItemWrapper = styled.li`
 
 const AltNavItemWrapper = styled(NavItemWrapper)`
   ${props => css`
+    border-bottom: ${props.isVertical ? 'none' : '2px solid'} ${
+    props.theme.colors.gray5
+  };
     &:hover {
       border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
     props.theme.colors.primary

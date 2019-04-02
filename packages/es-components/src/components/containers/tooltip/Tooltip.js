@@ -87,18 +87,17 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 `;
 
 const StyledButton = styled(LinkButton)`
-  border-bottom: 1px dashed;
   border-radius: 0;
   color: ${props => props.theme.colors.primary};
   line-height: initial;
   margin-bottom: 3px;
-  text-decoration: none;
+  text-decoration-style: dashed;
+  text-underline-position: under;
 
   &:hover,
   :focus {
     color: ${props => props.theme.colors.primary};
-    text-decoration: none;
-    border-bottom: 1px solid;
+    text-decoration: underline;
   }
 `;
 

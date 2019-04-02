@@ -5,15 +5,14 @@ import LinkButton from './LinkButton';
 import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled(LinkButton)`
-  border-bottom-width: 1px;
-  border-bottom-style: dashed;
-  border-bottom-color: ${props =>
-    props.suppressUnderline ? 'transparent' : 'initial'};
   margin-bottom: 2px;
-  text-decoration: none;
+  text-decoration-style: ${props =>
+    props.suppressUnderline ? 'none' : 'dashed'};
+  text-underline-position: under;
 
-  &:hover {
-    border-bottom-style: solid;
+  &:hover,
+  :focus {
+    text-decoration: underline;
   }
 `;
 

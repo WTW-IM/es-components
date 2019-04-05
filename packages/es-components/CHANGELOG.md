@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.22 (2019-04-05)</small>
+
+* Fix: ie11 doesn't like the initial display value ([5e9da22](https://github.com/wtw-im/es-components/commit/5e9da22))
+
+
+
+
+
 ## <small>19.0.21 (2019-04-02)</small>
 
 * Update: changes Tooltip/Popover links to use text-decoration-style ([a044cbd](https://github.com/wtw-im/es-components/commit/a044cbd))

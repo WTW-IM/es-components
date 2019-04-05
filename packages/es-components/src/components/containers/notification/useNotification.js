@@ -9,7 +9,7 @@ const NotificationIcon = styled(Icon)`
   display: none;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    display: initial;
+    display: inline;
     margin-right: 8px;
   }
 `;

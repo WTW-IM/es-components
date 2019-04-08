@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.23 (2019-04-08)</small>
+
+* Merge branch 'master' into navigation-tweak ([6853c45](https://github.com/wtw-im/es-components/commit/6853c45))
+* Fix: adds missed border to inactive nav items ([9e7ba43](https://github.com/wtw-im/es-components/commit/9e7ba43))
+* Fix: tweaks nagivationItem styling to align with design ([5c03e7d](https://github.com/wtw-im/es-components/commit/5c03e7d))
+
+
+
+
+
 ## <small>19.0.22 (2019-04-05)</small>
 
 * Fix: ie11 doesn't like the initial display value ([5e9da22](https://github.com/wtw-im/es-components/commit/5e9da22))

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.24 (2019-04-08)</small>
+
+* Fix: button box shadows cut off in IE11 ([55b60ea](https://github.com/wtw-im/es-components/commit/55b60ea))
+
+
+
+
+
 ## <small>19.0.23 (2019-04-08)</small>
 
 * Merge branch 'master' into navigation-tweak ([6853c45](https://github.com/wtw-im/es-components/commit/6853c45))

@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   display: block;
+  overflow: visible;
   padding: 0;
   width: 100%;
 

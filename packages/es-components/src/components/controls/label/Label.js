@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Label = styled.label`
   color: inherit;
   cursor: pointer;
-  display: flex;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: 700;
   margin-bottom: 5px;

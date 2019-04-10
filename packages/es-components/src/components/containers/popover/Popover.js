@@ -102,7 +102,10 @@ function Popover(props) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  function toggleShow() {
+  function toggleShow(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     setTimeout(() => {
       if (contentRef.current) {
         const focusableContent = contentRef.current.querySelector('a, button');

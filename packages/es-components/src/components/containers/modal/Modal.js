@@ -41,8 +41,6 @@ const ModalDialogMedium = styled.div`
 `;
 
 const ModalDialogSmall = styled(ModalDialogMedium)`
-  width: 100%;
-
   @media (min-width: ${props => props.theme.screenSize.phone}) {
     margin: 30px auto;
     width: ${modalSize.small};
@@ -50,8 +48,6 @@ const ModalDialogSmall = styled(ModalDialogMedium)`
 `;
 
 const ModalDialogLarge = styled(ModalDialogMedium)`
-  width: 100%;
-
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     width: ${modalSize.large};
   }
@@ -62,9 +58,12 @@ const ModalContent = styled.div`
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   font-size: ${props => props.theme.sizes.baseFontSize};
+  max-height: 100vh;
   outline: 0;
+  overflow-y: auto;
   position: relative;
   text-align: left;
+  -webkit-overflow-scrolling: touch;
 `;
 
 function getModalBySize(size) {

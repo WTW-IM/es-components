@@ -23,7 +23,6 @@ const CheckboxLabel = styled(Label)`
   min-height: 25px;
   padding: 10px 0 10px 42px;
   position: relative;
-  flex: 1 0 auto;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     margin-left: 0;

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.25 (2019-04-10)</small>
+
+* Fix: modal scrolling ([aa80fbe](https://github.com/wtw-im/es-components/commit/aa80fbe))
+* Fix: popovers in labels should properly activate cross-browsers ([8784195](https://github.com/wtw-im/es-components/commit/8784195))
+* Fix: removed unused flex from Label ([f72e709](https://github.com/wtw-im/es-components/commit/f72e709))
+
+
+
+
+
 ## <small>19.0.24 (2019-04-08)</small>
 
 * Fix: button box shadows cut off in IE11 ([55b60ea](https://github.com/wtw-im/es-components/commit/55b60ea))

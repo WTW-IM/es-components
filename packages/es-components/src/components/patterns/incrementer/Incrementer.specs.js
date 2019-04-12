@@ -1,7 +1,5 @@
 /* eslint-env jest */
 import React from 'react';
-import viaTheme from 'es-components-via-theme';
-
 import { fireEvent } from 'react-testing-library';
 import Incrementer from './Incrementer';
 import { renderWithTheme } from '../../util/test-utils';
@@ -13,9 +11,7 @@ beforeAll(() =>
 afterAll(() => React.useEffect.mockRestore());
 
 function createIncrementer(props) {
-  return (
-    <Incrementer {...props} onValueUpdated={valueUpdated} theme={viaTheme} />
-  );
+  return <Incrementer {...props} onValueUpdated={valueUpdated} />;
 }
 
 it('when decrement button is clicked the displayed value is decreased by decrementAmount', () => {

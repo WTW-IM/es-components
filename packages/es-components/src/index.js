@@ -40,6 +40,7 @@ export Checkbox from './components/controls/checkbox/Checkbox';
 export SideNav from './components/navigation/sidenav/SideNav';
 export HorizontalNav from './components/navigation/horizontalnav/HorizontalNav';
 
+export DateOfBirth from './components/patterns/dateOfBirth/DateOfBirth';
 export DatePicker from './components/patterns/datepicker/DatePicker';
 export Incrementer from './components/patterns/incrementer/Incrementer';
 export screenReaderOnly from './components/patterns/screenReaderOnly/screenReaderOnly';

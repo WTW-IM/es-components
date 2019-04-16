@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.27 (2019-04-16)</small>
+
+* Update: heading styles, added isKnockoutStyle and underlineColor props ([c5b7654](https://github.com/wtw-im/es-components/commit/c5b7654))
+
+
+
+
+
 ## <small>19.0.26 (2019-04-15)</small>
 
 * Fix: modal close button in Safari ([0f52501](https://github.com/wtw-im/es-components/commit/0f52501))

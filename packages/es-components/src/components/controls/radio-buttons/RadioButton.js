@@ -27,7 +27,7 @@ const RadioLabel = styled(Label)`
   cursor: pointer;
   display: flex;
   font-size: ${props => props.theme.sizes.baseFontSize};
-  font-weight: bold;
+  font-weight: normal;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   margin-right: 15px;
   margin-bottom: 10px;
@@ -60,7 +60,7 @@ const RadioDisplay = styled.span`
   box-sizing: border-box;
   height: 25px;
   margin-right: 8px;
-  width: 25px;
+  min-width: 25px;
 
   &:before {
     ${props => radioFill(props.fill)};

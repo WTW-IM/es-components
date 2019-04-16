@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const StyleReset = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   a, big, cite, code, del, dfn, em, img, ins, kbd,
-  q, s, samp, strike, sub, sup, tt, var,
+  q, s, samp, strike, tt, var,
   b, u, i, center, dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend
   table, caption, tbody, tfoot, thead, tr, th, td,
@@ -17,14 +17,6 @@ const StyleReset = createGlobalStyle`
     margin: 0;
     padding: 0;
     vertical-align: baseline;
-  }
-
-  sub {
-    vertical-align: sub;
-  }
-
-  sup {
-    vertical-align: super;
   }
 
   input, button {
@@ -45,7 +37,8 @@ const StyleReset = createGlobalStyle`
     font: inherit;
     font-weight: 300;
     line-height: 1.1;
-    margin: 25px 0 12.5px;
+    margin-bottom: 0.45em;
+    margin-top: 0;
   }
 
   h1 {

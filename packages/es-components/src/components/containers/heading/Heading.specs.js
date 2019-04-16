@@ -26,3 +26,16 @@ it('renders heading level with another size', () => {
 
   expect(container).toMatchSnapshot();
 });
+
+it('renders knockout heading with different class', () => {
+  const { container } = renderWithTheme(
+    <div>
+      <Heading level={1}>Heading level 1</Heading>
+      <Heading level={1} isKnockoutStyle>
+        Knockout Heading level 1
+      </Heading>
+    </div>
+  );
+
+  expect(container).toMatchSnapshot();
+});

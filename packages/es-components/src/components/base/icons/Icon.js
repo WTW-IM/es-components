@@ -11,13 +11,13 @@ const StyledIcon = styled.i`
   font-style: normal;
   font-weight: inherit;
   font-variant: normal;
+  line-height: 1;
   speak: none;
   text-decoration: none;
   text-transform: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   vertical-align: text-bottom;
-  line-height: 1;
 
   &:before {
     content: "\\e${props => props.content}";

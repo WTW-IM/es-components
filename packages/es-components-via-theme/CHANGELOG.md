@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.28 (2019-04-17)</small>
+
+* Fix: (chpink) Change danger icon; fix icon centering ([6c19230](https://github.com/WTW-IM/es-components/commit/6c19230))
+
+
+
+
+
 ## 19.0.0 (2019-03-06)
 
 * Update: change notification danger icon ([20ea50e](https://github.com/WTW-IM/es-components/commit/20ea50e))

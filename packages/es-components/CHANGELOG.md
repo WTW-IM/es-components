@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.28 (2019-04-17)</small>
+
+* Fix: (chpink) Change danger icon; fix icon centering ([6c19230](https://github.com/wtw-im/es-components/commit/6c19230))
+* Fix: Move line-height property to correct location ([376759e](https://github.com/wtw-im/es-components/commit/376759e))
+
+
+
+
+
 ## <small>19.0.27 (2019-04-16)</small>
 
 * Update: heading styles, added isKnockoutStyle and underlineColor props ([c5b7654](https://github.com/wtw-im/es-components/commit/c5b7654))

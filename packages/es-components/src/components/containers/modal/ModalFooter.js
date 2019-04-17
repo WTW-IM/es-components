@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ModalFooter = styled.div`
   align-items: baseline;
   display: flex;
-  padding: 15px 15px 45px;
+  padding: 15px 15px 55px;
   text-align: right;
 
   button {

@@ -19,30 +19,33 @@ const modalSize = {
 };
 
 const DialogWrapper = styled(BaseModal)`
-  height: 100%;
+  bottom: 0;
   left: 0;
+  outline: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: fixed;
+  right: 0;
   text-align: center;
   top: 0;
-  width: 100%;
+
   z-index: 1040;
 `;
 
 const ModalDialogMedium = styled.div`
   cursor: default;
   display: inline-block;
-  top: 2em;
   width: 100%;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin: 30px auto;
+    margin: 20vh auto;
     width: ${modalSize.medium};
   }
 `;
 
 const ModalDialogSmall = styled(ModalDialogMedium)`
   @media (min-width: ${props => props.theme.screenSize.phone}) {
-    margin: 30px auto;
+    margin: 20vh auto;
     width: ${modalSize.small};
   }
 `;
@@ -58,9 +61,7 @@ const ModalContent = styled.div`
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   font-size: ${props => props.theme.sizes.baseFontSize};
-  max-height: 100vh;
   outline: 0;
-  overflow-y: auto;
   position: relative;
   text-align: left;
   -webkit-overflow-scrolling: touch;
@@ -109,7 +110,7 @@ function Modal(props) {
   const ariaId = useUniqueId(other.id);
 
   return (
-    <ModalContext.Provider value={{ onHide, ariaId }}>
+    <ModalContext.Provider value={{ onHide, ariaId }} role="dialog">
       <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}

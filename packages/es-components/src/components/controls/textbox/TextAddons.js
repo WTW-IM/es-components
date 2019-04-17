@@ -32,7 +32,7 @@ const ValidationIcon = styled(Icon)`
   pointer-events: none;
   position: absolute;
   right: 11px;
-  top: 10px;
+  top: 11px;
 `;
 
 const AddOn = css`

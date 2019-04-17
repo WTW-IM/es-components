@@ -17,6 +17,7 @@ const StyledIcon = styled.i`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   vertical-align: text-bottom;
+  line-height: 1;
 
   &:before {
     content: "\\e${props => props.content}";

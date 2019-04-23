@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 const Dropdown = styled.select`
   background-color: ${props => props.theme.colors.white};
-  border: 1px solid;
-  border-color: inherit;
+  border: 1px solid ${props => props.theme.colors.gray5};
   border-radius: 2px;
+  box-shadow: ${props => props.boxShadow};
   box-sizing: border-box;
-  color: inherit;
+  color: ${props => props.theme.colors.black};
   flex-basis: auto;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
@@ -15,6 +15,8 @@ const Dropdown = styled.select`
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 
   &:focus {
+    border-color: ${props => props.focusBorderColor};
+    box-shadow: ${props => props.focusBoxShadow};
     outline: 0;
   }
 

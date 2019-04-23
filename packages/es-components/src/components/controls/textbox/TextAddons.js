@@ -13,10 +13,8 @@ const TextboxBase = styled(InputBase)`
     props.hasPrepend ? '0' : defaultBorderRadius};
   border-top-right-radius: ${props =>
     props.hasAppend ? '0' : defaultBorderRadius};
-  box-sizing: border-box;
   color: inherit;
   display: table-cell;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding-right: 2em;
   -webkit-appearance: none;
 `;

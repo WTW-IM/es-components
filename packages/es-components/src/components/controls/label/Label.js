@@ -6,6 +6,7 @@ const Label = styled.label`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: 700;
   margin-bottom: 5px;
+  display: inline-block;
 
   &[disabled] {
     cursor: not-allowed;

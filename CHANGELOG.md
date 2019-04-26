@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.30 (2019-04-26)</small>
+
+* Fix: ensuring all layout spacing takes effect for labels ([d69d79b](https://github.com/wtw-im/es-components/commit/d69d79b))
+
+
+
+
+
 ## <small>19.0.29 (2019-04-17)</small>
 
 * Fix: modal display to better match BDA toolkit, safari fix again ([fbd7e87](https://github.com/wtw-im/es-components/commit/fbd7e87))

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.31 (2019-04-30)</small>
+
+* Fix: Add react-datepicker propTypes manually ([a5fb670](https://github.com/wtw-im/es-components/commit/a5fb670))
+
+
+
+
+
 ## <small>19.0.30 (2019-04-26)</small>
 
 * Fix: ensuring all layout spacing takes effect for labels ([d69d79b](https://github.com/wtw-im/es-components/commit/d69d79b))

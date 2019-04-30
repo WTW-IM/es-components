@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { parse, format, isValid } from 'date-fns';
 import { useTheme } from '../../util/useTheme';
 import { useWindowWidth } from '../../util/useWindowWidth';
+import ReactDatePickerPropTypes from './ReactDatePickerPropTypes';
 
 import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
@@ -85,9 +86,9 @@ const DatePicker = React.memo(function DatePicker(props) {
   /* eslint-disable react/forbid-foreign-prop-types */
   const datepickerProps = pick(
     otherProps,
-    Object.keys(ReactDatePicker.propTypes)
+    Object.keys(ReactDatePickerPropTypes)
   );
-  const textboxProps = omit(otherProps, Object.keys(ReactDatePicker.propTypes));
+  const textboxProps = omit(otherProps, Object.keys(ReactDatePickerPropTypes));
   /* eslint-enable */
   const verifiedDate = getVerifiedDate(selectedDate);
 

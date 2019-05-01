@@ -29,7 +29,10 @@ const ContentWrapper = styled.div`
   flex-grow: 1;
 `;
 
-const NotificationContent = React.forwardRef((props, ref) => {
+const NotificationContent = React.forwardRef(function NotificationContent(
+  props,
+  ref
+) {
   const {
     includeIcon,
     isDismissable,

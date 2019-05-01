@@ -31,7 +31,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const LinkButton = React.forwardRef((props, ref) => {
+const LinkButton = React.forwardRef(function LinkButton(props, ref) {
   const { children, styleType, ...other } = props;
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];

@@ -59,7 +59,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const OutlineButton = React.forwardRef((props, ref) => {
+const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
   const { children, styleType, size, block, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];

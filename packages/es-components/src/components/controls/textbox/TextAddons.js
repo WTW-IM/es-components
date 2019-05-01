@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import InputBase from './InputText';
 
@@ -35,7 +35,7 @@ const ValidationIcon = styled(Icon)`
   top: 11px;
 `;
 
-const AddOn = css`
+const AddOn = styled.button`
   background-color: ${props => props.addOnBgColor};
   border: 1px solid
     ${props =>
@@ -48,6 +48,7 @@ const AddOn = css`
   display: table-cell;
   height: 39px;
   line-height: 1.2;
+  outline: 0;
   padding: 6px 11px;
 
   i {
@@ -56,14 +57,14 @@ const AddOn = css`
   }
 `;
 
-const Prepend = styled.span`
-  ${AddOn} border-bottom-right-radius: 0;
+const Prepend = styled(AddOn)`
+  border-bottom-right-radius: 0;
   border-right: none;
   border-top-right-radius: 0;
 `;
 
-const Append = styled.span`
-  ${AddOn} border-bottom-left-radius: 0;
+const Append = styled(AddOn)`
+  border-bottom-left-radius: 0;
   border-left: none;
   border-top-left-radius: 0;
 `;

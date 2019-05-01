@@ -74,7 +74,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = React.forwardRef((props, ref) => {
+const Button = React.forwardRef(function Button(props, ref) {
   const { children, styleType, size, block, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];

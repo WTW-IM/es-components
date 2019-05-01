@@ -16,7 +16,7 @@ const StyledButton = styled(LinkButton)`
   }
 `;
 
-const PopoverLink = React.forwardRef((props, ref) => {
+const PopoverLink = React.forwardRef(function PopoverLink(props, ref) {
   const { children, styleType, suppressUnderline, ...other } = props;
   const theme = useTheme();
   const variant = theme.buttonStyles.button.variant[styleType];

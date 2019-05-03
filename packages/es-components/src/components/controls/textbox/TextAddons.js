@@ -45,7 +45,7 @@ const AddOn = styled.button`
   color: ${props => props.addOnTextColor};
   display: table-cell;
   height: 39px;
-  line-height: 1.2;
+  line-height: 1;
   outline: 0;
   padding: 6px 11px;
 

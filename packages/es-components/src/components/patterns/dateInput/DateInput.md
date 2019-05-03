@@ -10,7 +10,7 @@ Using the `onChange` callback returns an object:
 The `value` is a Date created from the combined inputs. The `value` is `undefined` when the date is invalid.
 `isInRange` is provided for validation help.
 
-`DateInput` also accepts an array of month names for localization support.
+`DateInput.Month` also accepts an array of month names for localization support.
 
 ```
 const Control = require('../../controls/Control').default;
@@ -33,7 +33,11 @@ function DateInputExample() {
   return (
     <Control validationState={validation}>
       <Label htmlFor="someDate">Enter a Date</Label>
-      <DateInput id="someDate" name="someDate" onChange={handleChange} onBlur={handleOnBlur} />
+      <DateInput id="someDate" name="someDate" onChange={handleChange} onBlur={handleOnBlur}>
+        <DateInput.Month />
+        <DateInput.Day />
+        <DateInput.Year />
+      </DateInput>
       <AdditionalHelp>
         <span>{myDate && `You entered: ${myDate.toLocaleDateString("en-US", options)}`}</span>
       </AdditionalHelp>
@@ -47,7 +51,11 @@ function DateInputExample() {
 You can set the value of the component with `defaultValue`.
 
 ```
-<DateInput defaultValue={new Date()} onChange={()=>{}} />
+<DateInput defaultValue={new Date()} onChange={()=>{}}>
+  <DateInput.Month name="month" />
+  <DateInput.Day name="day" />
+  <DateInput.Year name="year" />
+</DateInput>
 ```
 
 ### Min and Max dates
@@ -80,7 +88,11 @@ function DateInputExample() {
         onBlur={handleOnBlur}
         minDate={new Date('1900/1/1')}
         maxDate={new Date('2020/1/1')}
-      />
+      >
+        <DateInput.Month />
+        <DateInput.Day />
+        <DateInput.Year />
+      </DateInput>
       <AdditionalHelp>
         <span>{myDate &&
                 (myDate.isInRange
@@ -96,19 +108,26 @@ function DateInputExample() {
 
 ### Display
 
-Use `includeDay` to toggle the Day portion of the date input.
+You may omit Month and/or Day, but Year is required.
 
 ```
-<DateInput id="anotherDate" includeDay={false} onChange={()=>{}} />
+<DateInput id="anotherDate" onChange={()=>{}}>
+  <DateInput.Month />
+  <DateInput.Year />
+</DateInput>
 ```
 
-You can rearrange the inputs by providing a `dateOrder` prop with a "mdy" string.
+Year, Month, and Day will display in the order you provide them.
 
 ```
 const Control = require('../../controls/Control').default;
 
 <Control>
   <Label htmlFor="orderDate">Enter a Date</Label>
-  <DateInput id="orderDate" defaultValue={new Date()} dateOrder="dmy" onChange={()=>{}} />
+  <DateInput id="orderDate" defaultValue={new Date()} onChange={()=>{}}>
+    <DateInput.Year />
+    <DateInput.Month />
+    <DateInput.Day />
+  </DateInput>
 </Control>
 ```

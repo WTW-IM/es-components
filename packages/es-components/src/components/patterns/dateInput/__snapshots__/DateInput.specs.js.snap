@@ -12,14 +12,14 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
       Text
     </label>
     <div
-      class="sc-EHOje jjhiOz"
+      class="sc-htoDjs fUvPJw"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-ifAKCX sc-dnqmqq gcnggO"
+        class="sc-EHOje sc-bZQynM cGFoae"
         id="test"
-        name="test-month"
+        name="month"
       >
         <option
           value="1"
@@ -38,8 +38,17 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
-        class="sc-bxivhb sc-bZQynM sc-htoDjs dpPqPU"
-        name="test-year"
+        class="sc-bxivhb sc-ifAKCX bWuNpv"
+        max="31"
+        min="1"
+        name="day"
+        placeholder="Day"
+        type="number"
+        value=""
+      />
+      <input
+        class="sc-bxivhb sc-gzVnrw bfZYjR"
+        name="year"
         placeholder="Year"
         type="number"
         value=""
@@ -49,7 +58,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
 </div>
 `;
 
-exports[`hides the Day input when includeDay is false 1`] = `
+exports[`hides the Day input when Day is excluded 1`] = `
 <div>
   <div
     class="sc-bdVaJa foSRAY"
@@ -61,14 +70,13 @@ exports[`hides the Day input when includeDay is false 1`] = `
       Text
     </label>
     <div
-      class="sc-EHOje jjhiOz"
+      class="sc-htoDjs fUvPJw"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-ifAKCX sc-dnqmqq gcnggO"
+        class="sc-EHOje sc-bZQynM cGFoae"
         id="test"
-        name="test-month"
       >
         <option
           value="1"
@@ -132,8 +140,7 @@ exports[`hides the Day input when includeDay is false 1`] = `
         </option>
       </select>
       <input
-        class="sc-bxivhb sc-bZQynM sc-htoDjs dpPqPU"
-        name="test-year"
+        class="sc-bxivhb sc-gzVnrw bfZYjR"
         placeholder="Year"
         type="number"
         value=""

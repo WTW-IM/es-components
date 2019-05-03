@@ -12,13 +12,14 @@ beforeEach(cleanup);
 const buildDateInput = props => (
   <Control>
     <Label htmlFor="test">Text</Label>
-    <DateInput id="test" name="test" {...props} data-testid="dateinput" />
+    <DateInput id="test" {...props} data-testid="dateinput" />
   </Control>
 );
 
 it('executes the onChange function when text is changed', () => {
   const props = {
-    onChange: jest.fn()
+    onChange: jest.fn(),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
   const { getByLabelText } = renderWithTheme(buildDateInput(props));
 
@@ -31,7 +32,8 @@ it('executes the onChange function when text is changed', () => {
 it('executes handleOnBlur when focus is lost', async () => {
   const props = {
     onBlur: jest.fn(),
-    onChange: jest.fn()
+    onChange: jest.fn(),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
   const { getByTestId } = renderWithTheme(buildDateInput(props));
 
@@ -44,7 +46,8 @@ it('executes handleOnBlur when focus is lost', async () => {
 it('displays the value properly when defaultValue is set', () => {
   const props = {
     onChange: jest.fn(),
-    defaultValue: new Date(2019, 2, 1)
+    defaultValue: new Date(2019, 2, 1),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
   const { getByDisplayValue } = renderWithTheme(buildDateInput(props));
 
@@ -53,10 +56,11 @@ it('displays the value properly when defaultValue is set', () => {
   expect(getByDisplayValue('2019')).not.toBeNull();
 });
 
-it('hides the Day input when includeDay is false', () => {
+it('hides the Day input when Day is excluded', () => {
   const props = {
     onChange: jest.fn(),
-    includeDay: false
+    includeDay: false,
+    children: [<DateInput.Month />, <DateInput.Year />]
   };
   const { container } = renderWithTheme(buildDateInput(props));
 
@@ -66,8 +70,8 @@ it('hides the Day input when includeDay is false', () => {
 it('orders the inputs using the dateOrder prop', () => {
   const props = {
     onChange: jest.fn(),
-    dateOrder: 'dmy',
-    defaultValue: new Date(2019, 5, 1)
+    defaultValue: new Date(2019, 5, 1),
+    children: [<DateInput.Day />, <DateInput.Month />, <DateInput.Year />]
   };
   const { getByLabelText } = renderWithTheme(buildDateInput(props));
 
@@ -78,7 +82,11 @@ it('displays monthNames provided by the monthNames prop', () => {
   const props = {
     onChange: jest.fn(),
     includeDay: false,
-    monthNames: ['Jan', 'Feb', 'Mar']
+    children: [
+      <DateInput.Month name="month" monthNames={['Jan', 'Feb', 'Mar']} />,
+      <DateInput.Day name="day" />,
+      <DateInput.Year name="year" />
+    ]
   };
   const { container } = renderWithTheme(buildDateInput(props));
 
@@ -89,7 +97,8 @@ it('sets date invalid when before minDate', () => {
   const props = {
     onChange: jest.fn(),
     defaultValue: new Date(2019, 2, 1),
-    minDate: new Date(2000, 1, 1)
+    minDate: new Date(2000, 1, 1),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
   const { getByDisplayValue } = renderWithTheme(buildDateInput(props));
 
@@ -108,7 +117,8 @@ it('sets date invalid when after maxDate', () => {
   const props = {
     onChange: jest.fn(),
     defaultValue: new Date(2019, 2, 1),
-    maxDate: new Date(2000, 1, 1)
+    maxDate: new Date(2000, 1, 1),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
   const { getByDisplayValue } = renderWithTheme(buildDateInput(props));
 
@@ -126,6 +136,7 @@ it('sets date invalid when after maxDate', () => {
 it('returns undefined when bad date is entered', () => {
   const props = {
     onChange: jest.fn(),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />],
     defaultValue: new Date(2019, 1, 15) // feb
   };
   const { getByDisplayValue } = renderWithTheme(buildDateInput(props));
@@ -144,6 +155,7 @@ it('returns undefined when bad date is entered', () => {
 it('returns a date when valid', () => {
   const props = {
     onChange: jest.fn(),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />],
     minDate: new Date(2000, 1, 1),
     maxDate: new Date(2020, 1, 1),
     defaultValue: new Date(2019, 1, 15) // feb

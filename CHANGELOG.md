@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.32 (2019-05-03)</small>
+
+* Update: textbox appends focus on click, MaskedTextbox cleanup ([d24871c](https://github.com/wtw-im/es-components/commit/d24871c))
+
+
+
+
+
 ## <small>19.0.31 (2019-04-30)</small>
 
 * Fix: Add react-datepicker propTypes manually ([a5fb670](https://github.com/wtw-im/es-components/commit/a5fb670))

@@ -13,11 +13,13 @@ import {
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
-const Textbox = React.forwardRef((props, ref) => {
+const Textbox = React.forwardRef(function Textbox(props, ref) {
   const { prependIconName, appendIconName, ...additionalTextProps } = props;
   const theme = useTheme();
-
   const validationState = React.useContext(ValidationContext);
+
+  const inputRef = React.useRef();
+  React.useImperativeHandle(ref, () => inputRef.current);
 
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
@@ -30,17 +32,26 @@ const Textbox = React.forwardRef((props, ref) => {
     ? theme.validationTextColor[validationState]
     : theme.colors.gray3;
 
+  function focusInput() {
+    inputRef.current.focus();
+  }
+
   return (
     <InputWrapper>
       {hasPrepend && (
-        <Prepend addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
+        <Prepend
+          addOnTextColor={addOnTextColor}
+          addOnBgColor={addOnBgColor}
+          aria-hidden="true"
+          onClick={focusInput}
+        >
           <Icon aria-hidden="true" name={prependIconName} size={18} />
         </Prepend>
       )}
       <TextboxBase
         hasAppend={hasAppend}
         hasPrepend={hasPrepend}
-        ref={ref}
+        ref={inputRef}
         {...additionalTextProps}
         {...theme.validationInputColor[validationState]}
       />
@@ -54,7 +65,12 @@ const Textbox = React.forwardRef((props, ref) => {
         </ValidationIconWrapper>
       )}
       {hasAppend && (
-        <Append addOnTextColor={addOnTextColor} addOnBgColor={addOnBgColor}>
+        <Append
+          addOnTextColor={addOnTextColor}
+          addOnBgColor={addOnBgColor}
+          aria-hidden="true"
+          onClick={focusInput}
+        >
           <Icon aria-hidden="true" name={appendIconName} size={18} />
         </Append>
       )}

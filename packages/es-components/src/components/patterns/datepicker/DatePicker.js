@@ -32,19 +32,16 @@ const getVerifiedDate = selectedDate => {
 };
 
 // required for react-datepicker 2.0.0 to properly set focus
-class DateTextbox extends React.Component {
-  setRef = ref => {
-    this.inputElement = ref;
-  };
+const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
+  const inputRef = React.useRef();
+  React.useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.focus();
+    }
+  }));
 
-  focus() {
-    this.inputElement.focus();
-  }
-
-  render() {
-    return <MaskedTextbox inputRef={this.setRef} {...this.props} />;
-  }
-}
+  return <MaskedTextbox ref={inputRef} {...props} />;
+});
 
 function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   const onChangeIntercept = event => {

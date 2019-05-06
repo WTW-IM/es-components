@@ -13,10 +13,8 @@ const TextboxBase = styled(InputBase)`
     props.hasPrepend ? '0' : defaultBorderRadius};
   border-top-right-radius: ${props =>
     props.hasAppend ? '0' : defaultBorderRadius};
-  box-sizing: border-box;
   color: inherit;
   display: table-cell;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding-right: 2em;
   -webkit-appearance: none;
 `;
@@ -47,7 +45,7 @@ const AddOn = styled.button`
   color: ${props => props.addOnTextColor};
   display: table-cell;
   height: 39px;
-  line-height: 1.2;
+  line-height: 1;
   outline: 0;
   padding: 6px 11px;
 

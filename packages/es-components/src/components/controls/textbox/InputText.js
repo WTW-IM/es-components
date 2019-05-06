@@ -5,10 +5,11 @@ export default styled.input`
   border-radius: 2px;
   box-shadow: ${props => props.boxShadow};
   box-sizing: border-box;
-  color: ${props => props.theme.colors.gray9};
+  color: ${props => props.theme.colors.black};
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   height: 39px;
+  line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   width: 100%;

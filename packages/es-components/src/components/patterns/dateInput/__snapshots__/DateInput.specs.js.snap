@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`displays monthNames provided by the monthNames prop 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa foSRAY"
+  >
+    <label
+      class="sc-htpNat bbbtWm"
+      for="test"
+    >
+      Text
+    </label>
+    <div
+      class="sc-htoDjs fUvPJw"
+      data-testid="dateinput"
+      tabindex="-1"
+    >
+      <select
+        class="sc-EHOje sc-bZQynM cGFoae"
+        id="test"
+        name="month"
+      >
+        <option
+          value="1"
+        >
+          Jan
+        </option>
+        <option
+          value="2"
+        >
+          Feb
+        </option>
+        <option
+          value="3"
+        >
+          Mar
+        </option>
+      </select>
+      <input
+        class="sc-bxivhb sc-ifAKCX bWuNpv"
+        max="31"
+        min="1"
+        name="day"
+        placeholder="Day"
+        type="number"
+        value=""
+      />
+      <input
+        class="sc-bxivhb sc-gzVnrw bfZYjR"
+        name="year"
+        placeholder="Year"
+        type="number"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`hides the Day input when Day is excluded 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa foSRAY"
+  >
+    <label
+      class="sc-htpNat bbbtWm"
+      for="test"
+    >
+      Text
+    </label>
+    <div
+      class="sc-htoDjs fUvPJw"
+      data-testid="dateinput"
+      tabindex="-1"
+    >
+      <select
+        class="sc-EHOje sc-bZQynM cGFoae"
+        id="test"
+      >
+        <option
+          value="1"
+        >
+          January
+        </option>
+        <option
+          value="2"
+        >
+          February
+        </option>
+        <option
+          value="3"
+        >
+          March
+        </option>
+        <option
+          value="4"
+        >
+          April
+        </option>
+        <option
+          value="5"
+        >
+          May
+        </option>
+        <option
+          value="6"
+        >
+          June
+        </option>
+        <option
+          value="7"
+        >
+          July
+        </option>
+        <option
+          value="8"
+        >
+          August
+        </option>
+        <option
+          value="9"
+        >
+          September
+        </option>
+        <option
+          value="10"
+        >
+          October
+        </option>
+        <option
+          value="11"
+        >
+          November
+        </option>
+        <option
+          value="12"
+        >
+          December
+        </option>
+      </select>
+      <input
+        class="sc-bxivhb sc-gzVnrw bfZYjR"
+        placeholder="Year"
+        type="number"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -41,6 +41,7 @@ export SideNav from './components/navigation/sidenav/SideNav';
 export HorizontalNav from './components/navigation/horizontalnav/HorizontalNav';
 
 export DatePicker from './components/patterns/datepicker/DatePicker';
+export DateInput from './components/patterns/dateInput/DateInput';
 export Incrementer from './components/patterns/incrementer/Incrementer';
 export screenReaderOnly from './components/patterns/screenReaderOnly/screenReaderOnly';
 export CallToAction from './components/patterns/callToAction/CallToAction';

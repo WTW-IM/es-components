@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
+import DismissButton from '../../controls/DismissButton';
 
 const NotificationIcon = styled(Icon)`
   align-self: start;
@@ -14,14 +15,15 @@ const NotificationIcon = styled(Icon)`
   }
 `;
 
-const DismissButton = styled.button`
+const Dismiss = styled(DismissButton)`
   align-self: start;
-  background-color: transparent;
-  border: 0;
   color: ${props => props.color.textColor};
-  cursor: pointer;
+  font-weight: normal;
   opacity: 0.8;
-  padding: 0;
+
+  i {
+    font-size: 27px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -64,11 +66,7 @@ const NotificationContent = React.forwardRef(function NotificationContent(
         <NotificationIcon name={iconName} iconColor={iconColor} size={28} />
       )}
       <ContentWrapper>{children}</ContentWrapper>
-      {isDismissable && (
-        <DismissButton onClick={dismissNotification} color={color}>
-          <Icon name="remove" size={27} />
-        </DismissButton>
-      )}
+      {isDismissable && <Dismiss onClick={dismissNotification} color={color} />}
     </>
   );
 });

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import DismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
 import Heading from '../heading/Heading';
@@ -18,20 +19,13 @@ const Header = styled.div`
 `;
 
 const Title = styled(Heading)`
-  font-size: 24px;
-  font-weight: 500;
   margin: 0;
 `;
 
 const DismissModal = styled(DismissButton)`
+  align-self: center;
   color: ${props => props.theme.colors.black};
-  line-height: 1;
-  opacity: 0.2;
-  text-shadow: 0 1px 0 ${props => props.theme.colors.white};
-
-  &:hover {
-    opacity: 0.5;
-  }
+  font-size: 18px;
 `;
 
 function ModalHeader(props) {

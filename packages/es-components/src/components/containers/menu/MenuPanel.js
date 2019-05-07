@@ -13,6 +13,7 @@ const StyledPanel = styled.div`
 
 const StyledDismissButton = styled(DismissButton)`
   margin-left: auto;
+  margin-right: 4px;
 `;
 
 const Header = styled.header`

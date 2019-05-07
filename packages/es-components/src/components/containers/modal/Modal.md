@@ -18,7 +18,7 @@ the level passed in.
     show={state.show}
     onHide={() => setState({show: false})}
   >
-    <Modal.Header level={2} hideCloseButton={state.hideCloseButton}>This is the header.</Modal.Header>
+    <Modal.Header level={4} hideCloseButton={state.hideCloseButton}>This is the header.</Modal.Header>
     <Modal.Body>Body Content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</Modal.Body>
     <Modal.Footer>
       <span style={{ flexGrow: 1, marginRight: '10px' }}>

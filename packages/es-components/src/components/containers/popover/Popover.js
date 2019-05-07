@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Icon from '../../base/icons/Icon';
+import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
 
@@ -29,13 +29,14 @@ const PopoverHeader = styled.div`
 `;
 
 const TitleBar = styled.h3`
+  flex: 1 1;
   font-size: 18px;
   margin: 0;
   padding: 8px 14px;
 `;
 
 const PopoverBody = styled.div`
-  color: ${props => props.theme.colors.gray8};
+  color: ${props => props.theme.colors.gray9};
   font-size: 18px;
   font-weight: normal;
   line-height: ${props => props.theme.sizes.baseLineHeight};
@@ -54,23 +55,18 @@ const PopoverCloseButton = styled(Button)`
   width: auto;
 `;
 
-const AlternateCloseButton = styled(PopoverCloseButton)`
-  background: transparent;
-  border: none;
-  box-shadow: none;
+const AltCloseButton = styled(DismissButton)`
   color: ${props =>
-    props.hasTitle ? props.theme.colors.white : props.theme.colors.grayDark};
-  margin: 0;
-  margin-left: auto;
-  padding: 0 8px;
+    props.hasTitle ? props.theme.colors.white : props.theme.colors.black};
 
-  &:hover {
-    background: transparent;
-  }
+  flex: 0 1;
+  margin-left: auto;
+  padding: 8px;
 `;
 
 const CloseHelpText = styled.span`
   color: transparent;
+  flex: none;
   height: 1px;
   outline: 0;
   width: 1px;
@@ -138,14 +134,12 @@ function Popover(props) {
   );
 
   const altCloseButton = (
-    <AlternateCloseButton
+    <AltCloseButton
       aria-label="Close"
       hasTitle={hasTitle}
       onClick={toggleShow}
       ref={closeBtnRef}
-    >
-      <Icon name="remove" />
-    </AlternateCloseButton>
+    />
   );
 
   function hidePopOnScroll() {
@@ -222,7 +216,7 @@ Popover.propTypes = {
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
   /** The text displayed in the popover title section */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   /** The content displayed in the popover body */
   content: PropTypes.node.isRequired,
   /** The placement of the popover in relation to the link */
@@ -247,7 +241,8 @@ Popover.defaultProps = {
   disableRootClose: false,
   hasCloseButton: false,
   hasAltCloseButton: false,
-  disableFlipping: false
+  disableFlipping: false,
+  title: undefined
 };
 
 export default Popover;

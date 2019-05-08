@@ -31,7 +31,7 @@ const StyledButton = styled.button`
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     display: ${props => (props.block ? 'block' : 'inline-block')};
-    width: ${props => (props.block ? '100%' : 'initial')};
+    width: ${props => (props.block ? '100%' : 'auto')};
   }
 
   &:hover {

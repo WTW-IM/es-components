@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.36 (2019-05-08)</small>
+
+* Fix: really fixing the radio this time ([4886af5](https://github.com/wtw-im/es-components/commit/4886af5))
+
+
+
+
+
 ## <small>19.0.35 (2019-05-08)</small>
 
 * Fix: radio button margin on desktop ([db974df](https://github.com/wtw-im/es-components/commit/db974df))

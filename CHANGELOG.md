@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.35 (2019-05-08)</small>
+
+* Fix: radio button margin on desktop ([db974df](https://github.com/wtw-im/es-components/commit/db974df))
+
+
+
+
+
 ## <small>19.0.34 (2019-05-08)</small>
 
 * Fix: outlineButton IE width fix (initial to auto) ([54b8f52](https://github.com/wtw-im/es-components/commit/54b8f52))

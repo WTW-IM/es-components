@@ -23,7 +23,7 @@ function radioFill(color) {
 }
 
 const RadioLabel = styled(Label)`
-  align-items: flex-start;
+  align-self: flex-start;
   color: ${props => (props.disabled ? props.theme.colors.gray7 : 'inherit')};
   cursor: pointer;
   display: flex;

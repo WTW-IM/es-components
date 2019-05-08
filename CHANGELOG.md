@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.34 (2019-05-08)</small>
+
+* Fix: outlineButton IE width fix (initial to auto) ([54b8f52](https://github.com/wtw-im/es-components/commit/54b8f52))
+* Update: dismissButton styles, Popover title not required ([432aa8e](https://github.com/wtw-im/es-components/commit/432aa8e))
+
+
+
+
+
 ## <small>19.0.33 (2019-05-06)</small>
 
 * Update: dateInput split into subcomponents ([0bc3ea8](https://github.com/wtw-im/es-components/commit/0bc3ea8))

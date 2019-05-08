@@ -10,6 +10,10 @@ const MonthDropdown = styled(Dropdown)`
   flex: 3 1;
   order: ${props => props.monthPos};
   width: 100%;
+
+  & + span {
+    display: none;
+  }
 `;
 
 function Month({ onChange, monthNames, date, ...props }) {

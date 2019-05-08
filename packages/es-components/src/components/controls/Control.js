@@ -14,6 +14,7 @@ const FlexControl = styled.div`
 
   select {
     border-color: ${props => props.borderColor};
+    box-shadow: ${props => props.boxShadow};
   }
 
   input:focus,

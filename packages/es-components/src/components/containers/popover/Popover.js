@@ -10,14 +10,6 @@ const Container = styled.div`
   display: inline-block;
 `;
 
-const PopoverContainer = styled.div`
-  background: ${props => props.theme.colors.white};
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  min-width: 270px;
-`;
-
 const PopoverHeader = styled.div`
   background-color: ${props =>
     props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
@@ -33,9 +25,11 @@ const TitleBar = styled.h3`
   font-size: 18px;
   margin: 0;
   padding: 8px 14px;
+  text-align: left;
 `;
 
 const PopoverBody = styled.div`
+  background: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.gray9};
   font-size: 18px;
   font-weight: normal;
@@ -52,6 +46,7 @@ const PopoverContent = styled.div`
 
 const PopoverCloseButton = styled(Button)`
   display: inline-block;
+  margin: 5px 0;
   width: auto;
 `;
 
@@ -116,6 +111,8 @@ function Popover(props) {
       triggerBtnRef.current.focus();
     }
     setIsOpen(!isOpen);
+
+    setIsOpen(!isOpen);
   }
 
   function hidePopover(event) {
@@ -126,21 +123,6 @@ function Popover(props) {
       setIsOpen(false);
     }
   }
-
-  const closeButton = (
-    <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
-      Close
-    </PopoverCloseButton>
-  );
-
-  const altCloseButton = (
-    <AltCloseButton
-      aria-label="Close"
-      hasTitle={hasTitle}
-      onClick={toggleShow}
-      ref={closeBtnRef}
-    />
-  );
 
   function hidePopOnScroll() {
     setInterval(() => {
@@ -173,12 +155,27 @@ function Popover(props) {
     [isOpen]
   );
 
+  const closeButton = (
+    <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
+      Close
+    </PopoverCloseButton>
+  );
+
+  const altCloseButton = (
+    <AltCloseButton
+      aria-label="Close"
+      hasTitle={hasTitle}
+      onClick={toggleShow}
+      ref={closeBtnRef}
+    />
+  );
+
   return (
     <Container>
       <Popup
         name={name}
         trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
-        placement={placement}
+        position={placement}
         arrowSize={arrowSize}
         onHide={hidePopover}
         transitionIn={isOpen}
@@ -189,7 +186,7 @@ function Popover(props) {
           popperRef.current = elem;
         }}
       >
-        <PopoverContainer role="dialog" ref={contentRef}>
+        <div role="dialog" ref={contentRef}>
           <PopoverHeader hasTitle={hasTitle}>
             {hasTitle && <TitleBar>{title}</TitleBar>}
             {hasAltCloseButton && altCloseButton}
@@ -206,7 +203,7 @@ function Popover(props) {
             </PopoverContent>
             {showCloseButton && closeButton}
           </PopoverBody>
-        </PopoverContainer>
+        </div>
       </Popup>
     </Container>
   );

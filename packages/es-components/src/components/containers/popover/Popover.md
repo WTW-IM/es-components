@@ -91,9 +91,8 @@ const styles = {
 Here's an example of a
 <Popover
     name="popEx"
-    title="Popover"
     content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-    hasCloseButton
+    hasAltCloseButton
     renderTrigger={({ ref, toggleShow, isOpen }) => (
       <PopoverLink
         onClick={toggleShow}

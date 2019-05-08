@@ -10,7 +10,7 @@ Using the `onChange` callback returns an object:
 The `value` is a Date created from the combined inputs. The `value` is `undefined` when the date is invalid.
 `isInRange` is provided for validation help.
 
-`DateInput.Month` also accepts an array of month names for localization support.
+`DateInput.Month` also accepts an array of month names (`monthName` prop) for localization support.
 
 ```
 const Control = require('../../controls/Control').default;
@@ -34,7 +34,7 @@ function DateInputExample() {
     <Control validationState={validation}>
       <Label htmlFor="someDate">Enter a Date</Label>
       <DateInput id="someDate" name="someDate" onChange={handleChange} onBlur={handleOnBlur}>
-        <DateInput.Month />
+        <DateInput.Month monthNames={['01 - Jan', '02 - Feb', '03 - Mar']} />
         <DateInput.Day />
         <DateInput.Year />
       </DateInput>

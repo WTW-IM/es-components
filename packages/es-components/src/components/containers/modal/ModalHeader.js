@@ -56,11 +56,4 @@ ModalHeader.defaultProps = {
   level: 4
 };
 
-ModalHeader.contextTypes = {
-  modal: PropTypes.shape({
-    onHide: PropTypes.func,
-    ariaId: PropTypes.string
-  })
-};
-
 export default ModalHeader;

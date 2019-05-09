@@ -28,7 +28,6 @@ const DialogWrapper = styled(BaseModal)`
   right: 0;
   text-align: center;
   top: 0;
-
   z-index: 1040;
 `;
 
@@ -110,7 +109,7 @@ function Modal(props) {
   const ariaId = useUniqueId(other.id);
 
   return (
-    <ModalContext.Provider value={{ onHide, ariaId }} role="dialog">
+    <ModalContext.Provider value={{ onHide, ariaId }}>
       <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}

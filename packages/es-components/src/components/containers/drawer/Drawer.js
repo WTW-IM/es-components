@@ -2,20 +2,8 @@ import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { DrawerContext } from './DrawerContext';
 import DrawerPanel from './DrawerPanel';
-
-function drawerPanelPropType(props, propName, componentName) {
-  const value = props[propName];
-  const errMsg = `${componentName} ${propName} contains an element that is not a Drawer.Panel.`;
-
-  if (Array.isArray(value) && value.some(({ type }) => type !== DrawerPanel)) {
-    return new Error(errMsg);
-  }
-  if (!Array.isArray(value) && value.type !== DrawerPanel) {
-    return new Error(errMsg);
-  }
-  return null;
-}
 
 const StyledDrawer = styled.div`
   background-color: ${props => props.theme.colors.white};
@@ -24,7 +12,7 @@ const StyledDrawer = styled.div`
   margin-bottom: 25px;
 `;
 
-export const Drawer = props => {
+function Drawer(props) {
   const {
     activeKeys,
     children,
@@ -35,7 +23,7 @@ export const Drawer = props => {
     ...other
   } = props;
 
-  const onItemClick = key => {
+  function onItemClick(key) {
     let nextActiveKeys = [...activeKeys];
 
     if (isAccordion) {
@@ -52,39 +40,35 @@ export const Drawer = props => {
     }
 
     onActiveKeysChanged(nextActiveKeys);
-  };
+  }
 
-  const getPanels = () =>
-    Children.map(children, (child, index) => {
-      // If there is no key provided, use the panel order as default key
-      const key = child.key || String(index + 1);
-      const { title, titleAside } = child.props;
-      const noPadding = child.props.noPadding || false;
+  return (
+    <DrawerContext.Provider value={{ openedIconName, closedIconName }}>
+      <StyledDrawer {...other}>
+        {Children.map(children, (child, index) => {
+          // If there is no key provided, use the panel order as default key
+          const key = child.key || String(index + 1);
 
-      let isOpen = false;
-      if (isAccordion) {
-        isOpen = activeKeys[0] === key;
-      } else {
-        isOpen = activeKeys.indexOf(key) > -1;
-      }
+          let isOpen = false;
+          if (isAccordion) {
+            isOpen = activeKeys[0] === key;
+          } else {
+            isOpen = activeKeys.indexOf(key) > -1;
+          }
 
-      const childProps = {
-        key,
-        title,
-        titleAside,
-        noPadding,
-        isOpen,
-        children: child.props.children,
-        onItemClick: () => onItemClick(key),
-        closedIconName,
-        openedIconName
-      };
+          const childProps = {
+            ...child.props,
+            key,
+            isOpen,
+            onItemClick: () => onItemClick(key)
+          };
 
-      return React.cloneElement(child, childProps);
-    });
-
-  return <StyledDrawer {...other}>{getPanels()}</StyledDrawer>;
-};
+          return React.cloneElement(child, childProps);
+        })}
+      </StyledDrawer>
+    </DrawerContext.Provider>
+  );
+}
 
 Drawer.propTypes = {
   /** Set which panels are open */
@@ -92,8 +76,8 @@ Drawer.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  /** Should only contain one or more Drawer.Panel elements */
-  children: drawerPanelPropType,
+  /** Usually only one or more Drawer.Panel elements */
+  children: PropTypes.node,
   /** Override the default plus icon with another OE icon name */
   closedIconName: PropTypes.string,
   /** Only allows one DrawerPanel to be open at a time */

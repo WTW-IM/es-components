@@ -12,7 +12,9 @@ const Container = styled.div`
 
 const PopoverHeader = styled.div`
   background-color: ${props =>
-    props.hasTitle ? props.theme.colors.popoverHeader : 'none'};
+    props.hasTitle
+      ? props.theme.colors.popoverHeader
+      : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
@@ -85,11 +87,11 @@ function Popover(props) {
   const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
   const showCloseButton = hasCloseButton && !hasAltCloseButton;
 
-  const closeBtnRef = useRef(null);
   const triggerBtnRef = useRef(null);
   const popperRef = useRef(null);
   const contentRef = useRef(null);
   const headerRef = useRef(null);
+  const closeBtnRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -106,7 +108,7 @@ function Popover(props) {
           headerRef.current.focus();
         }
       }
-    }, 200);
+    }, 350);
     if (closeBtnRef.current) {
       triggerBtnRef.current.focus();
     }
@@ -129,15 +131,9 @@ function Popover(props) {
       if (popperRef.current) {
         const bounds = popperRef.current.getBoundingClientRect();
         const inViewport =
-          bounds.top >= 90 &&
-          bounds.left >= 0 &&
-          bounds.right <=
-            (window.innerWidth || document.documentElement.clientWidth) &&
-          bounds.bottom <=
-            (window.innerHeight || document.documentElement.clientHeight);
+          bounds.top >= 0 && bounds.bottom <= window.innerHeight;
 
         if (!inViewport && isOpen) {
-          triggerBtnRef.current.focus();
           setIsOpen(false);
         }
       }

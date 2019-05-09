@@ -197,10 +197,9 @@ function Popup(props) {
               placement={position}
               modifiers={{
                 preventOverflow: { boundariesElement: document.body },
-                hide: { enabled: true },
                 flip: {
                   enabled: !disableFlipping,
-                  behavior: ['left', 'right', 'top', 'bottom']
+                  behavior: ['left', 'right', 'top', 'bottom', 'top']
                 }
               }}
               innerRef={popperRef}
@@ -249,7 +248,8 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  placement: 'bottom'
+  placement: 'bottom',
+  transitionTimeout: 300
 };
 
 export default Popup;

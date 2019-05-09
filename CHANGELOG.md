@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.37 (2019-05-09)</small>
+
+* Update: refactors scrolling event and adds ref to DismissButton ([0118a79](https://github.com/wtw-im/es-components/commit/0118a79))
+* Update: upgrades react-popper to latest and fixes Popovers ([849170d](https://github.com/wtw-im/es-components/commit/849170d))
+
+
+
+
+
 ## <small>19.0.36 (2019-05-08)</small>
 
 * Fix: really fixing the radio this time ([4886af5](https://github.com/wtw-im/es-components/commit/4886af5))

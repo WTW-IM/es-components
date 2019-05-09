@@ -26,7 +26,7 @@ const buttonStyle = {
 
 ## Button sizes
 
-Including a size will set buttons to a specific size
+Including a `size` will set buttons to a specific size. Use `hasMinWidth` to apply a preset minimum width to buttons (note the small buttons in this example).
 
 ```
 const wrapperStyle = {
@@ -51,9 +51,9 @@ const buttonStyle = {
   </div>
 
   <div style={wrapperStyle}>
-    <Button size="sm" style={buttonStyle} styleType="primary">Small</Button>
-    <Button size="sm" style={buttonStyle}>Small</Button>
-    <OutlineButton size="sm" style={buttonStyle} styleType="magenta">Small</OutlineButton>
+    <Button size="sm" hasMinWidth style={buttonStyle} styleType="primary">Small</Button>
+    <Button size="sm" hasMinWidth style={buttonStyle}>Small</Button>
+    <OutlineButton size="sm" hasMinWidth style={buttonStyle} styleType="magenta">Small</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>

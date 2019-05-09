@@ -7,7 +7,7 @@ const styles = {
     margin: '10px'
 };
 
-<div>
+<>
     <div style={styles}>
     <Popover
       name="topEx"
@@ -83,16 +83,15 @@ const styles = {
       />
     </div>
 
-</div>
+</>
 ```
 
 ```
-<div>
+<>
 Here's an example of a
 <Popover
     name="popEx"
     content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
-    hasAltCloseButton
     renderTrigger={({ ref, toggleShow, isOpen }) => (
       <PopoverLink
         onClick={toggleShow}
@@ -105,17 +104,19 @@ Here's an example of a
     )}
   />
 styled like a link.
-</div>
+</>
 ```
 
 Popovers can include Icons or other components. Keep accessibility in mind and provide aria labels where appropriate.
 
 ```
-<div>
+<>
 Click the icon for some help text.
 <Popover
     name="iconEx"
     title="Icon Popover"
+    disableRootClose
+    hasAltCloseButton
     content="Here's some help text!"
     suppressUnderline
     ariaLabel="Icon"
@@ -127,12 +128,12 @@ Click the icon for some help text.
         suppressUnderline
         styleType="primary"
       >
-        <span aria-hidden="true"><Icon name='question-circle' /></span>
+        <span aria-hidden="true"><Icon name='question-circle' size={22} /></span>
         <span style={{ fontSize: '0', height: '1px', display: 'block', overflow: 'hidden' }}>Icon</span>
       </PopoverLink>
     )}
 />
-</div>
+</>
 ```
 
 ```

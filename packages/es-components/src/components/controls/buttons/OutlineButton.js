@@ -17,6 +17,7 @@ const StyledButton = styled.button`
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   line-height: ${props =>
     props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
+  min-width: ${props => (props.hasMinWidth ? '100px' : '0')};
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};
   padding-right: ${props => props.buttonSize.paddingSides};
@@ -25,7 +26,6 @@ const StyledButton = styled.button`
   text-transform: ${props =>
     props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
   transition: background-color 250ms linear, color 250ms linear;
-  vertical-align: middle;
   white-space: nowrap;
   width: 100%;
 
@@ -60,7 +60,7 @@ const StyledButton = styled.button`
 `;
 
 const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
-  const { children, styleType, size, block, ...other } = props;
+  const { children, styleType, size, block, hasMinWidth, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];
   const variant = theme.buttonStyles.outlineButton.variant[styleType];
@@ -72,6 +72,7 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
       buttonSize={buttonSize}
       variant={variant}
       type="button"
+      hasMinWidth={hasMinWidth}
       {...other}
     >
       {children}
@@ -85,13 +86,16 @@ OutlineButton.propTypes = {
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool
+  block: PropTypes.bool,
+  /** Applies a preset min-width to the button for consistency */
+  hasMinWidth: PropTypes.bool
 };
 
 OutlineButton.defaultProps = {
   styleType: 'default',
   block: false,
-  size: 'default'
+  size: 'default',
+  hasMinWidth: false
 };
 
 export default OutlineButton;

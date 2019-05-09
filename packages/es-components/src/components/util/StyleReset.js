@@ -4,8 +4,7 @@ const StyleReset = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   a, big, cite, code, del, dfn, em, img, ins, kbd,
   q, s, samp, strike, tt, var,
-  b, u, i, center, dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend
+  b, u, i, center, fieldset, form, label, legend
   table, caption, tbody, tfoot, thead, tr, th, td,
   article, aside, canvas, details, embed,
   figure, figcaption, footer, header, hgroup,
@@ -21,10 +20,6 @@ const StyleReset = createGlobalStyle`
 
   input, button {
     font: inherit;
-  }
-
-  ol, ul {
-    list-style: none;
   }
 
   table {

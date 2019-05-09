@@ -1,39 +1,184 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Manager, Target, Popper, Arrow } from 'react-popper';
+import styled from 'styled-components';
+import { Manager, Reference, Popper } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
 import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
-import { ArrowStyles } from './popoverStyles';
+const PopperBox = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  margin: ${props => props.arrowSize.marginSize}px;
+  max-width: 350px;
+  min-width: 270px;
+  position: absolute;
+  text-align: center;
+  z-index: 5;
+`;
+
+const Arrow = styled.div`
+  position: absolute;
+  &::before,
+  &::after {
+    border: solid transparent;
+    content: '';
+    position: absolute;
+  }
+  &[data-placement*='bottom'] {
+    top: 0;
+    left: 0;
+    margin-top: -${props => props.arrowSize.size}px;
+    &::before {
+      border-width: ${props => props.arrowSize.bottomBorderWidth};
+      border-color: transparent;
+      border-bottom-color: ${props => props.arrowSize.borderColor};
+      margin-left: -${props => props.arrowSize.borderSize}px;
+    }
+    &::after {
+      border-width: ${props => props.arrowSize.bottomWidth};
+      border-color: transparent;
+      border-bottom-color: ${props =>
+        props.hasTitle
+          ? props.theme.colors.popoverHeader
+          : props.theme.colors.white};
+      margin-left: -${props => props.arrowSize.size}px;
+    }
+  }
+  &[data-placement*='top'] {
+    &::before {
+      border-width: ${props => props.arrowSize.borderSize}px;
+      border-color: transparent;
+      border-top-color: ${props => props.arrowSize.borderColor};
+      margin-left: -${props => props.arrowSize.borderSize}px;
+    }
+    &::after {
+      border-width: ${props => props.arrowSize.size}px;
+      border-color: transparent;
+      border-top-color: ${props => props.theme.colors.white};
+      margin-left: -${props => props.arrowSize.size}px;
+    }
+  }
+  &[data-placement*='right'] {
+    margin-left: -${props => props.arrowSize.size}px;
+    &::before {
+      border-width: ${props => props.arrowSize.rightBorderWidth};
+      border-color: transparent;
+      border-right-color: ${props => props.arrowSize.borderColor};
+      margin-top: -${props => props.arrowSize.borderSize}px;
+    }
+    &::after {
+      border-width: ${props => props.arrowSize.rightWidth};
+      border-color: transparent;
+      border-right-color: ${props => props.theme.colors.white};
+      margin-top: -${props => props.arrowSize.size}px;
+    }
+  }
+  &[data-placement*='left'] {
+    right: 0;
+    &::before {
+      border-width: ${props => props.arrowSize.borderSize}px;
+      border-color: transparent;
+      border-left-color: ${props => props.arrowSize.borderColor};
+      margin-top: -${props => props.arrowSize.borderSize}px;
+    }
+    &::after {
+      border-width: ${props => props.arrowSize.size}px;
+      border-color: transparent;
+      border-left-color: ${props => props.theme.colors.white};
+      margin-top: -${props => props.arrowSize.size}px;
+    }
+  }
+`;
 
 const defaultStyle = {
-  transition: 'opacity 0.2s ease-in-out',
-  opacity: 0,
-  zIndex: 5
+  transition: `opacity 300ms ease-in-out`,
+  opacity: 0
 };
 const transitionStyles = {
   entering: { opacity: 0 },
-  entered: { opacity: 1 }
+  entered: { opacity: 1 },
+  exiting: { opacity: 0 },
+  exited: { opacity: 0 }
 };
 
-function Popup({
-  name,
-  trigger,
-  children,
-  placement,
-  arrowSize,
-  onHide,
-  hasTitle,
-  transitionIn,
-  transitionTimeout,
-  disableFlipping,
-  disableRootClose,
-  popperRef
-}) {
+const arrowSizes = {
+  sm: {
+    size: '5',
+    borderSize: '6',
+    marginSize: '10',
+    bottomWidth: '0 5px 5px',
+    bottomBorderWidth: '0 6px 5px',
+    rightWidth: '5px 5px 5px 0',
+    rightBorderWidth: '6px 5px 6px 0',
+    borderColor: 'rgba(0, 0, 0, 0.3)'
+  },
+  md: {
+    size: '10',
+    borderSize: '11',
+    marginSize: '15',
+    bottomWidth: '0 10px 10px',
+    bottomBorderWidth: '0 11px 10px',
+    rightWidth: '10px 10px 10px 0',
+    rightBorderWidth: '11px 10px 11px 0',
+    borderColor: 'rgba(0, 0, 0, 0.3)'
+  },
+  lg: {
+    size: '20',
+    borderSize: '21',
+    marginSize: '30',
+    bottomWidth: '0 20px 20px',
+    bottomBorderWidth: '0 21px 20px',
+    rightWidth: '20px 20px 20px 0',
+    rightBorderWidth: '21px 20px 21px 0',
+    borderColor: 'rgba(0, 0, 0, 0.3)'
+  },
+  none: {
+    size: '0',
+    borderSize: '0',
+    marginSize: '10'
+  }
+};
+
+function getArrowValues(size) {
+  switch (size) {
+    case 'sm':
+      return arrowSizes.sm;
+    case 'lg':
+      return arrowSizes.lg;
+    case 'none':
+      return arrowSizes.none;
+    default:
+      return arrowSizes.md;
+  }
+}
+
+function Popup(props) {
+  const {
+    name,
+    trigger,
+    children,
+    position,
+    arrowSize,
+    onHide,
+    hasTitle,
+    transitionIn,
+    transitionTimeout,
+    disableFlipping,
+    disableRootClose,
+    popperRef
+  } = props;
+  const arrowValues = getArrowValues(arrowSize);
+
   const popperObj = (
     <Manager>
-      <ArrowStyles name={name} arrowSize={arrowSize} hasTitle={hasTitle} />
-      <Target>{trigger}</Target>
+      <Reference>
+        {({ ref }) => (
+          <div className={`${name}-popper__trigger`} ref={ref}>
+            {trigger}
+          </div>
+        )}
+      </Reference>
       <Transition
         in={transitionIn}
         timeout={transitionTimeout}
@@ -41,27 +186,38 @@ function Popup({
         unmountOnExit
       >
         {state => (
-          <Popper
-            className={`${name}-popper`}
-            placement={placement}
-            eventsEnabled={transitionIn}
-            modifiers={{
-              preventOverflow: { boundariesElement: document.body },
-              hide: { enabled: true },
-              flip: {
-                enabled: !disableFlipping,
-                behavior: ['left', 'right', 'top', 'bottom']
-              }
-            }}
+          <div
             style={{
               ...defaultStyle,
               ...transitionStyles[state]
             }}
-            innerRef={popperRef}
           >
-            {children}
-            <Arrow className={`${name}-popper__arrow`} />
-          </Popper>
+            <Popper
+              className={`${name}-popper`}
+              placement={position}
+              modifiers={{
+                preventOverflow: { boundariesElement: document.body },
+                flip: {
+                  enabled: !disableFlipping,
+                  behavior: ['left', 'right', 'top', 'bottom', 'top']
+                }
+              }}
+              innerRef={popperRef}
+            >
+              {({ ref, style, placement, arrowProps }) => (
+                <PopperBox ref={ref} style={style} arrowSize={arrowValues}>
+                  {children}
+                  <Arrow
+                    ref={arrowProps.ref}
+                    data-placement={placement}
+                    style={arrowProps.style}
+                    arrowSize={arrowValues}
+                    hasTitle={hasTitle}
+                  />
+                </PopperBox>
+              )}
+            </Popper>
+          </div>
         )}
       </Transition>
     </Manager>
@@ -81,7 +237,7 @@ Popup.propTypes = {
   trigger: PropTypes.node,
   children: PropTypes.node,
   onHide: PropTypes.func,
-  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
   transitionIn: PropTypes.bool,
   transitionTimeout: PropTypes.number,
@@ -92,8 +248,8 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  transitionTimeout: 100,
-  placement: 'bottom'
+  placement: 'bottom',
+  transitionTimeout: 300
 };
 
 export default Popup;

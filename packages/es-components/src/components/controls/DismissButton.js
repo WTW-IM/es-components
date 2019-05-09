@@ -22,7 +22,7 @@ const ScreenReaderText = screenReaderOnly('span');
 
 const DismissButton = React.forwardRef(function DismissButton(props, ref) {
   return (
-    <DismissButtonBase aria-label="Close" type="button" {...props}>
+    <DismissButtonBase aria-label="Close" type="button" {...props} ref={ref}>
       <Icon name="remove" />
       <ScreenReaderText>Close</ScreenReaderText>
     </DismissButtonBase>

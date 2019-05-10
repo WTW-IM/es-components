@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
 
+import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
+
 const TabButton = styled.button`
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.gray2};
@@ -44,14 +46,7 @@ const TabButton = styled.button`
   }
 `;
 
-const AriaAnnouncer = styled.p`
-  height: 1px;
-  left: -10000px;
-  overflow: hidden;
-  position: absolute;
-  top: auto;
-  width: 1px;
-`;
+const AriaAnnouncer = screenReaderOnly('div');
 
 function Tab({
   name,
@@ -67,7 +62,8 @@ function Tab({
       onClick={() => action(name, children, simpleName, announcerText)}
       selected={selected}
       aria-label={`${simpleName || name} tab`}
-      aria-expanded={selected}
+      aria-selected={selected}
+      role="tab"
       {...props}
     >
       {selected &&

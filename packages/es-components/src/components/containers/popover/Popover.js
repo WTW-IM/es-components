@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
@@ -166,17 +167,15 @@ function Popover(props) {
     />
   );
 
-  return (
+  const popover = (
     <Container>
       <Popup
         name={name}
         trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
         position={placement}
         arrowSize={arrowSize}
-        onHide={hidePopover}
         transitionIn={isOpen}
         hasTitle={hasTitle}
-        disableRootClose={disableRootClose}
         disableFlipping={disableFlipping}
         popperRef={elem => {
           popperRef.current = elem;
@@ -203,6 +202,14 @@ function Popover(props) {
       </Popup>
     </Container>
   );
+
+  if (!disableRootClose) {
+    return (
+      <RootCloseWrapper onRootClose={hidePopover}>{popover}</RootCloseWrapper>
+    );
+  }
+
+  return popover;
 }
 
 Popover.propTypes = {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Manager, Reference, Popper } from 'react-popper';
 import Transition from 'react-transition-group/Transition';
-import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
 
 const PopperBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -160,17 +159,15 @@ function Popup(props) {
     children,
     position,
     arrowSize,
-    onHide,
     hasTitle,
     transitionIn,
     transitionTimeout,
     disableFlipping,
-    disableRootClose,
     popperRef
   } = props;
   const arrowValues = getArrowValues(arrowSize);
 
-  const popperObj = (
+  return (
     <Manager>
       <Reference>
         {({ ref }) => (
@@ -222,34 +219,32 @@ function Popup(props) {
       </Transition>
     </Manager>
   );
-
-  if (!disableRootClose) {
-    return (
-      <RootCloseWrapper onRootClose={onHide}>{popperObj}</RootCloseWrapper>
-    );
-  }
-
-  return popperObj;
 }
 
 Popup.propTypes = {
   name: PropTypes.string,
   trigger: PropTypes.node,
   children: PropTypes.node,
-  onHide: PropTypes.func,
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
   transitionIn: PropTypes.bool,
   transitionTimeout: PropTypes.number,
   hasTitle: PropTypes.bool,
-  disableRootClose: PropTypes.bool,
   disableFlipping: PropTypes.bool,
   popperRef: PropTypes.func
 };
 
 Popup.defaultProps = {
-  placement: 'bottom',
-  transitionTimeout: 300
+  name: '',
+  trigger: undefined,
+  children: undefined,
+  position: 'bottom',
+  arrowSize: 'default',
+  transitionIn: false,
+  transitionTimeout: 300,
+  hasTitle: false,
+  disableFlipping: false,
+  popperRef: undefined
 };
 
 export default Popup;

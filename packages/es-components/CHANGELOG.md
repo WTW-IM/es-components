@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.38 (2019-05-13)</small>
+
+* Fix: fixes popover close behavior after clicking inside element ([ef84868](https://github.com/wtw-im/es-components/commit/ef84868))
+
+
+
+
+
 ## <small>19.0.37 (2019-05-09)</small>
 
 * Update: refactors scrolling event and adds ref to DismissButton ([0118a79](https://github.com/wtw-im/es-components/commit/0118a79))

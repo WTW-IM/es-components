@@ -18,6 +18,16 @@ const StyleReset = createGlobalStyle`
     vertical-align: baseline;
   }
 
+  ul, ol {
+    margin: 0 1em;
+    padding: 5px 1em 7px;
+    list-style-position: outside;
+  }
+
+  li {
+    padding: 0 0 8px 0;
+  }
+
   input, button {
     font: inherit;
   }

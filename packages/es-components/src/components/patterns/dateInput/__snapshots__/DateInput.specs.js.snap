@@ -20,7 +20,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         class="sc-gqjmRU hUvjwf"
       >
         <select
-          class="sc-fjdhpX bYZnWV sc-jTzLTM kBWEYU"
+          class="sc-fjdhpX bYZnWV sc-jTzLTM cKHXDX"
           id="test"
           name="month"
         >
@@ -82,7 +82,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         class="sc-gqjmRU hUvjwf"
       >
         <select
-          class="sc-fjdhpX bYZnWV sc-jTzLTM kBWEYU"
+          class="sc-fjdhpX bYZnWV sc-jTzLTM cKHXDX"
           id="test"
         >
           <option

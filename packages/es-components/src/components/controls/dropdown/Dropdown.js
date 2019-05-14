@@ -20,7 +20,7 @@ const DropdownBase = styled.select`
   box-shadow: ${props => props.boxShadow};
   box-sizing: border-box;
   color: ${props => props.theme.colors.black};
-  flex-basis: auto;
+  flex: auto;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   height: 39px;

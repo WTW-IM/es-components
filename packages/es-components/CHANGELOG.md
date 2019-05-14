@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.40 (2019-05-14)</small>
+
+* Fix: dropdown not full width ([8c8ca72](https://github.com/wtw-im/es-components/commit/8c8ca72))
+
+
+
+
+
 ## <small>19.0.39 (2019-05-14)</small>
 
 * Update: added aria roles to tabPanel ([dd41373](https://github.com/wtw-im/es-components/commit/dd41373))

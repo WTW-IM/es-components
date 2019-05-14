@@ -26,7 +26,7 @@ const buttonStyle = {
 
 ## Button sizes
 
-Including a size will set buttons to a specific size
+Including a `size` will set buttons to a specific size.
 
 ```
 const wrapperStyle = {

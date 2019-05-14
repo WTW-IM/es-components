@@ -4,10 +4,8 @@ import Overlay from 'react-overlays/lib/Overlay';
 import styled from 'styled-components';
 
 import Fade from '../../util/Fade';
-import LinkButton from '../../controls/buttons/LinkButton';
-
+import PopoverLink from '../../controls/buttons/PopoverLink';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
-
 import useUniqueId from '../../util/useUniqueId';
 
 const TooltipBase = styled.div`
@@ -19,6 +17,7 @@ const TooltipInner = styled.div`
   background-color: ${props => props.theme.colors.primary};
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
+  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: 15px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   max-width: 250px;
@@ -84,21 +83,6 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   margin-top: -5px;
   right: 0;
   top: 50%;
-`;
-
-const StyledButton = styled(LinkButton)`
-  border-radius: 0;
-  color: ${props => props.theme.colors.primary};
-  line-height: initial;
-  margin-bottom: 3px;
-  text-decoration-style: dashed;
-  text-underline-position: under;
-
-  &:hover,
-  :focus {
-    color: ${props => props.theme.colors.primary};
-    text-decoration: underline;
-  }
 `;
 
 const FadeTransition = props => (
@@ -194,7 +178,7 @@ function Tooltip(props) {
 
   return (
     <>
-      <StyledButton
+      <PopoverLink
         ref={tooltipTarget}
         onBlur={hideTooltip}
         onFocus={!disableFocus ? showTooltip : undefined}
@@ -205,7 +189,7 @@ function Tooltip(props) {
         aria-describedby={descriptionId}
       >
         {children}
-      </StyledButton>
+      </PopoverLink>
       <SrContentContainer id={descriptionId}>{content}</SrContentContainer>
 
       <Overlay

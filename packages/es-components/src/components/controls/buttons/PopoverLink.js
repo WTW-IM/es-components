@@ -5,14 +5,15 @@ import LinkButton from './LinkButton';
 import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled(LinkButton)`
-  margin-bottom: 2px;
-  text-decoration-style: ${props =>
-    props.suppressUnderline ? 'none' : 'dashed'};
-  text-underline-position: under;
+  border-bottom: ${props =>
+    !props.suppressUnderline && `1px dashed ${props.variant.bgColor}`};
+  line-height: 1;
+  text-decoration: none;
 
   &:hover,
   :focus {
-    text-decoration: underline;
+    border-bottom: ${props =>
+      !props.suppressUnderline && `1px solid ${props.variant.bgColor}`};
   }
 `;
 
@@ -42,7 +43,7 @@ PopoverLink.propTypes = {
 };
 
 PopoverLink.defaultProps = {
-  styleType: 'default',
+  styleType: 'primary',
   suppressUnderline: false
 };
 

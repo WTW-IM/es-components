@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
 import { noop } from 'lodash';
-import Icon from '../../base/icons/Icon';
 
+import { DrawerContext } from './DrawerContext';
+import Icon from '../../base/icons/Icon';
 import useUniqueId from '../../util/useUniqueId';
 
-// Note: DrawerPanel relies on a parent (Drawer) with ThemeProvider wrapping it
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.gray3};
 `;
@@ -47,22 +47,20 @@ const PanelBody = styled(({ noPadding, ...rest }) => (
   }
 `;
 
-const DrawerPanel = props => {
+function DrawerPanel(props) {
   const {
     children,
-    closedIconName,
     isOpen,
     noPadding,
     onItemClick,
-    openedIconName,
     title,
     titleAside,
     ...other
   } = props;
 
+  const { openedIconName, closedIconName } = React.useContext(DrawerContext);
   const headingAriaId = `${useUniqueId(other.id)}-heading`;
   const regionAriaId = `${useUniqueId(other.id)}-region`;
-  const aside = titleAside && <aside>{titleAside}</aside>;
 
   return (
     <PanelWrapper {...other}>
@@ -76,7 +74,7 @@ const DrawerPanel = props => {
             <PanelIcon name={isOpen ? openedIconName : closedIconName} />
             {title}
           </span>
-          {aside}
+          {titleAside && <aside>{titleAside}</aside>}
         </PanelButton>
       </div>
       <PanelBody
@@ -91,12 +89,10 @@ const DrawerPanel = props => {
       </PanelBody>
     </PanelWrapper>
   );
-};
+}
 
 DrawerPanel.propTypes = {
   children: PropTypes.any.isRequired,
-  /** @ignore */
-  closedIconName: PropTypes.string,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.oneOfType([
     PropTypes.string,
@@ -110,18 +106,14 @@ DrawerPanel.propTypes = {
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   /** @ignore */
-  onItemClick: PropTypes.func,
-  /** @ignore */
-  openedIconName: PropTypes.string
+  onItemClick: PropTypes.func
 };
 
 DrawerPanel.defaultProps = {
   isOpen: false,
   noPadding: false,
-  closedIconName: 'minus',
   titleAside: undefined,
-  onItemClick: noop,
-  openedIconName: 'add'
+  onItemClick: noop
 };
 
 export default DrawerPanel;

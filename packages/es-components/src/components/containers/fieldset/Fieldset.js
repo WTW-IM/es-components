@@ -2,6 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const StyledFieldset = styled.fieldset`
+  border: 0;
+  margin-bottom: 25px;
+  padding: 0;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 const Legend = styled.legend`
   border: 0;
   border-bottom: 1px solid ${props => props.theme.colors.gray6};
@@ -9,15 +19,9 @@ const Legend = styled.legend`
   display: block;
   font-size: 21.6px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  margin: 0 0 25px 0;
+  margin: 0 0 18px 0;
   padding: 0;
   width: 100%;
-`;
-
-const StyledFieldset = styled.fieldset`
-  border: 0;
-  margin: 0;
-  padding: 0;
 `;
 
 function Fieldset(props) {

@@ -58,7 +58,7 @@ AnswerGroup.defaultProps = {
   styleType: 'default',
   selectedType: 'success',
   size: 'default',
-  itemWidth: '75px',
+  itemWidth: '100px',
   isOutline: false,
   disableAllOptions: false,
   selectedValue: undefined

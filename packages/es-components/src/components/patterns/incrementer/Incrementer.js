@@ -36,7 +36,12 @@ const IncrementerTextbox = styled(InputBase)`
 
 const IncrementerButton = styled(Button)`
   display: inline-block;
+  min-width: 0;
   width: auto;
+
+  .es-button__display {
+    min-width: 0;
+  }
 `;
 
 function determineIsDisabled(threshold, newValue) {
@@ -167,7 +172,7 @@ function Incrementer({
           Decrement value by
           {decrementAmount}
         </ScreenReaderButtonText>
-        <Icon name="minus" />
+        <Icon name="minus" size={22} />
       </IncrementerButton>
       <IncrementerTextbox
         {...theme.validationInputColor.default}
@@ -195,7 +200,7 @@ function Incrementer({
           Increment value by
           {incrementAmount}
         </ScreenReaderButtonText>
-        <Icon name="add" />
+        <Icon name="add" size={22} />
       </IncrementerButton>
     </IncrementerWrapper>
   );

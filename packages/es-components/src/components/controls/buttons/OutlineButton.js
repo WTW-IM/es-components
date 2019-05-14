@@ -17,6 +17,7 @@ const StyledButton = styled.button`
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   line-height: ${props =>
     props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
+  min-width: 100px;
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};
   padding-right: ${props => props.buttonSize.paddingSides};
@@ -25,7 +26,6 @@ const StyledButton = styled.button`
   text-transform: ${props =>
     props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
   transition: background-color 250ms linear, color 250ms linear;
-  vertical-align: middle;
   white-space: nowrap;
   width: 100%;
 

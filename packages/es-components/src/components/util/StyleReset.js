@@ -4,8 +4,7 @@ const StyleReset = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
   a, big, cite, code, del, dfn, em, img, ins, kbd,
   q, s, samp, strike, tt, var,
-  b, u, i, center, dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend
+  b, u, i, center, fieldset, form, label, legend
   table, caption, tbody, tfoot, thead, tr, th, td,
   article, aside, canvas, details, embed,
   figure, figcaption, footer, header, hgroup,
@@ -19,12 +18,18 @@ const StyleReset = createGlobalStyle`
     vertical-align: baseline;
   }
 
-  input, button {
-    font: inherit;
+  ul, ol {
+    margin: 0 1em;
+    padding: 5px 1em 7px;
+    list-style-position: outside;
   }
 
-  ol, ul {
-    list-style: none;
+  li {
+    padding: 0 0 8px 0;
+  }
+
+  input, button {
+    font: inherit;
   }
 
   table {

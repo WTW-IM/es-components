@@ -28,7 +28,6 @@ const DialogWrapper = styled(BaseModal)`
   right: 0;
   text-align: center;
   top: 0;
-
   z-index: 1040;
 `;
 
@@ -60,6 +59,7 @@ const ModalContent = styled.div`
   background-clip: padding-box;
   background-color: ${props => props.theme.colors.white};
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.sizes.baseFontSize};
   outline: 0;
   position: relative;
@@ -110,7 +110,7 @@ function Modal(props) {
   const ariaId = useUniqueId(other.id);
 
   return (
-    <ModalContext.Provider value={{ onHide, ariaId }} role="dialog">
+    <ModalContext.Provider value={{ onHide, ariaId }}>
       <DialogWrapper
         backdrop={backdrop}
         backdropStyle={backdropStyle}

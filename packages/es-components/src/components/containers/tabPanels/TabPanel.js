@@ -4,11 +4,7 @@ import styled from 'styled-components';
 import { noop, findIndex } from 'lodash';
 import Tab from './Tab';
 
-const TabWrapper = styled.div`
-  display: flex;
-`;
-
-const TabFormatter = styled.div`
+const TabList = styled.div`
   display: flex;
   flex-direction: column;
   font-size: inherit;
@@ -32,20 +28,20 @@ function TabPanel(props) {
   const { children, selectedKey, tabChanged } = props;
   const [value, setValue] = useState(selectedKey);
 
-  let displayIndex = findIndex(React.Children.toArray(children), child => {
+  let selectedIndex = findIndex(React.Children.toArray(children), child => {
     const key = selectedKey || value || value.key;
     return child.props.name.key
       ? child.props.name.key === key
       : child.props.name === key;
   });
 
-  if (displayIndex < 0) {
-    displayIndex = 0;
+  if (selectedIndex < 0) {
+    selectedIndex = 0;
   }
 
   const elements = React.Children.map(children, (child, index) =>
     React.cloneElement(child, {
-      selected: index === displayIndex,
+      selected: index === selectedIndex,
       action: header => {
         setValue(header);
         tabChanged(header);
@@ -55,10 +51,10 @@ function TabPanel(props) {
 
   return (
     <>
-      <TabWrapper>
-        <TabFormatter>{elements}</TabFormatter>
-      </TabWrapper>
-      <TabContent>{elements[displayIndex].props.children}</TabContent>
+      <TabList role="tablist">{elements}</TabList>
+      <TabContent role="tabpanel">
+        {elements[selectedIndex].props.children}
+      </TabContent>
     </>
   );
 }
@@ -82,7 +78,7 @@ function childrenRule(props, propName, component) {
 
 TabPanel.propTypes = {
   /**
-   * Makes sure immediate children are Tab or Tab List, as we cannot render anything else in the tab heading.
+   * Makes sure immediate children are Tabs, as we cannot render anything else in the tab heading.
    */
   children: childrenRule,
   selectedKey: PropTypes.any,
@@ -93,7 +89,7 @@ TabPanel.propTypes = {
 };
 
 TabPanel.defaultProps = {
-  children: [],
+  children: undefined,
   selectedKey: '',
   tabChanged: noop
 };

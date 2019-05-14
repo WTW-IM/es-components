@@ -24,6 +24,7 @@ const StyledButton = styled.button`
     border-color: transparent;
     box-shadow: 0 4px 0 0 ${props => props.variant.boxShadowColor};
     border-radius: ${props => props.buttonSize.borderRadius};
+    box-sizing: border-box;
     color: ${props => props.variant.textColor};
     cursor: pointer;
     font-family: inherit;
@@ -33,6 +34,7 @@ const StyledButton = styled.button`
       props.buttonSize.lineHeight
         ? props.buttonSize.lineHeight
         : props.theme.sizes.baseLineHeight};
+    min-width: 100px;
     padding-bottom: ${props => props.buttonSize.paddingBottom};
     padding-left: ${props => props.buttonSize.paddingSides};
     padding-right: ${props => props.buttonSize.paddingSides};

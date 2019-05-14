@@ -7,7 +7,7 @@ Tab Panels allow us to store lots more data on the screen and only show the amou
       HELLO WORLD!!!!
     </p>
   </TabPanel.Tab>
-  <TabPanel.Tab simpleName="interesting" name={<div><Icon name="certificate" />Interesting 5 plans</div>}>
+  <TabPanel.Tab simpleName="interesting" name={<div><Icon name="certificate" size={22} />Interesting 5 plans</div>}>
     <div>
       <p>
         Nesting is fun
@@ -49,7 +49,7 @@ function tabChanged(name) {
       HELLO WORLD!!!!
     </p>
   </TabPanel.Tab>
-  <TabPanel.Tab simpleName="interesting" name={<div key="foobar"><Icon name="certificate" />Interesting 5 plans</div>}>
+  <TabPanel.Tab simpleName="interesting" name={<div key="foobar"><Icon name="certificate" size={22} />Interesting 5 plans</div>}>
     <div>
       <p>
         Nesting is fun

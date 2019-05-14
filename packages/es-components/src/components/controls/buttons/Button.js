@@ -34,7 +34,7 @@ const StyledButton = styled.button`
       props.buttonSize.lineHeight
         ? props.buttonSize.lineHeight
         : props.theme.sizes.baseLineHeight};
-    min-width: ${props => (props.hasMinWidth ? '100px' : '0')};
+    min-width: 100px;
     padding-bottom: ${props => props.buttonSize.paddingBottom};
     padding-left: ${props => props.buttonSize.paddingSides};
     padding-right: ${props => props.buttonSize.paddingSides};
@@ -77,7 +77,7 @@ const StyledButton = styled.button`
 `;
 
 const Button = React.forwardRef(function Button(props, ref) {
-  const { children, styleType, size, block, hasMinWidth, ...other } = props;
+  const { children, styleType, size, block, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
@@ -89,7 +89,6 @@ const Button = React.forwardRef(function Button(props, ref) {
       buttonSize={buttonSize}
       variant={variant}
       ref={ref}
-      hasMinWidth={hasMinWidth}
       {...other}
     >
       <div className="es-button__display">{children}</div>
@@ -103,9 +102,7 @@ Button.propTypes = {
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool,
-  /** Applies a preset min-width to the button for consistency */
-  hasMinWidth: PropTypes.bool
+  block: PropTypes.bool
 };
 
 Button.defaultProps = {

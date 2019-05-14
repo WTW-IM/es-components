@@ -10,6 +10,7 @@ export default styled.input`
   font-weight: normal;
   height: 39px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
+  min-width: 0;
   padding: 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   width: 100%;

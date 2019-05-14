@@ -42,7 +42,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </select>
       </div>
       <input
-        class="sc-bxivhb sc-ifAKCX bWuNpv"
+        class="sc-bxivhb sc-ifAKCX kxRgi"
         max="31"
         min="1"
         name="day"
@@ -51,7 +51,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
-        class="sc-bxivhb sc-jzJRlG glVXvh"
+        class="sc-bxivhb sc-jzJRlG cvICJI"
         name="year"
         placeholder="Year"
         type="number"
@@ -148,7 +148,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </select>
       </div>
       <input
-        class="sc-bxivhb sc-jzJRlG glVXvh"
+        class="sc-bxivhb sc-jzJRlG cvICJI"
         placeholder="Year"
         type="number"
         value=""

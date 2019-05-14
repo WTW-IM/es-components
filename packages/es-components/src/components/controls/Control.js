@@ -25,12 +25,12 @@ const FlexControl = styled.div`
 `;
 
 const InlineControl = styled(FlexControl)`
-  align-items: center;
-  flex-direction: row;
+  align-items: flex-start;
+  flex-direction: column;
 
-  @media (max-width: ${props => props.theme.screenSize.tablet}) {
-    align-items: flex-start;
-    flex-direction: column;
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    align-items: baseline;
+    flex-direction: row;
   }
 `;
 

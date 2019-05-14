@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.39 (2019-05-14)</small>
+
+* Update: added aria roles to tabPanel ([dd41373](https://github.com/wtw-im/es-components/commit/dd41373))
+* Update: added some default list styles ([acfa1d4](https://github.com/wtw-im/es-components/commit/acfa1d4))
+* Update: fieldset bottom margin, ul/ol removed from StyleReset ([6687f5f](https://github.com/wtw-im/es-components/commit/6687f5f))
+* Update: minWidth set on buttons, added font to portal components ([1997f61](https://github.com/wtw-im/es-components/commit/1997f61))
+* Update: modal and drawer minor code cleanup ([bb7687c](https://github.com/wtw-im/es-components/commit/bb7687c))
+* Update: swapped control media queries to mobile-first ([e481829](https://github.com/wtw-im/es-components/commit/e481829))
+* New: hasMinWidth prop to Button and OutlineButton ([73a2bb0](https://github.com/wtw-im/es-components/commit/73a2bb0))
+* Fix: dropdown validation inner glow and icon missing ([af675a7](https://github.com/wtw-im/es-components/commit/af675a7))
+* Fix: popoverLink underline style ([335be4b](https://github.com/wtw-im/es-components/commit/335be4b))
+
+
+
+
+
 ## <small>19.0.38 (2019-05-13)</small>
 
 * Fix: fixes popover close behavior after clicking inside element ([ef84868](https://github.com/wtw-im/es-components/commit/ef84868))

@@ -7,7 +7,7 @@ import ValidationContext from '../ValidationContext';
 const AnswerLabel = styled.label`
   flex-grow: 1;
 
-  @media (min-width: ${props => props.theme.screenSize.desktop}) {
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
     flex-grow: 0;
     min-width: ${props => props.itemWidth};
   }

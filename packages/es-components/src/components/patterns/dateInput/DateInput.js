@@ -21,6 +21,14 @@ const Wrapper = styled.div`
   }
 `;
 
+function cleanZeroes(day) {
+  let cleanDay = day;
+  while (cleanDay.charAt(0) === '0') {
+    cleanDay = cleanDay.substr(1);
+  }
+  return cleanDay;
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case 'day_updated':
@@ -51,10 +59,11 @@ function DateInput({
   });
 
   function createDate(year, month, day) {
-    const date = new Date(`${year}/${month}/${day}`);
+    const cleanDay = day ? cleanZeroes(day.toString()) : day;
+    const date = new Date(`${year}/${month}/${cleanDay}`);
     const dateIsValid =
       year.length === 4 &&
-      (day ? date.getDate().toString() === day.toString() : true) &&
+      (day ? date.getDate().toString() === cleanDay : true) &&
       (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&
       date.getFullYear().toString() === year.toString();
     const isInRange =

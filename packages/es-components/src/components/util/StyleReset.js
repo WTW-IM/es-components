@@ -19,13 +19,9 @@ const StyleReset = createGlobalStyle`
   }
 
   ul, ol {
-    margin: 0 1em;
-    padding: 5px 1em 7px;
+    margin: 0 1em 25px;
+    padding-left: 1em;
     list-style-position: outside;
-  }
-
-  li {
-    padding: 0 0 8px 0;
   }
 
   input, button {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.42 (2019-05-22)</small>
+
+* Fix: dateInput allows 0x for day ([d944a79](https://github.com/wtw-im/es-components/commit/d944a79))
+
+
+
+
+
 ## <small>19.0.41 (2019-05-17)</small>
 
 * Fix: answerGroup media query update ([78da8f9](https://github.com/wtw-im/es-components/commit/78da8f9))

@@ -10,7 +10,7 @@ import {
 } from '../textbox/TextAddons';
 
 const DropdownValidationIcon = styled(ValidationIcon)`
-  right: 20px;
+  right: 24px;
 `;
 
 const DropdownBase = styled.select`
@@ -24,6 +24,7 @@ const DropdownBase = styled.select`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   height: 39px;
+  min-width: 100px;
   padding: 6px 48px 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 

@@ -46,6 +46,7 @@ const AddOn = styled.button`
   display: table-cell;
   height: 39px;
   line-height: 1;
+  margin: 0;
   outline: 0;
   padding: 6px 11px;
 

@@ -29,3 +29,28 @@ the level passed in.
   </Modal>
 </div>
 ```
+
+`ModalButtonContainer` is a provided wrapper to give consistent styling to buttons and their layout inside of `Modal`s.
+
+```jsx
+const ModalButtonContainer = require('./ModalButtonContainer').default;
+
+<div>
+  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Modal</Button>
+
+  <Modal
+    size="medium"
+    show={state.show}
+    onHide={() => setState({show: false})}
+  >
+    <Modal.Header level={4} hideCloseButton={state.hideCloseButton}>This is the header.</Modal.Header>
+    <Modal.Body>Body Content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</Modal.Body>
+    <Modal.Footer>
+      <ModalButtonContainer>
+        <Button onClick={()=> setState({show: false})} style={{margin: '15px 0 0 15px'}}>Cancel</Button>
+        <Button onClick={()=> setState({show: false})} styleType="primary" style={{margin: '15px 0 0 15px'}}>Ok</Button>
+      </ModalButtonContainer>
+    </Modal.Footer>
+  </Modal>
+</div>
+```

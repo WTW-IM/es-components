@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.43 (2019-05-30)</small>
+
+* Fix: modal buttons should expand the width of the modal on mobile ([c97de85](https://github.com/wtw-im/es-components/commit/c97de85))
+
+
+
+
+
 ## <small>19.0.42 (2019-05-22)</small>
 
 * Fix: dateInput allows 0x for day ([d944a79](https://github.com/wtw-im/es-components/commit/d944a79))

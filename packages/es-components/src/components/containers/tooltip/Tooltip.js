@@ -73,8 +73,6 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
   right: 0;
 `;
 
-const FadeTransition = props => <Fade duration={400} {...props} />;
-
 const ScreenReaderContent = screenReaderOnly('div');
 
 function Tooltip(props) {
@@ -155,7 +153,7 @@ function Tooltip(props) {
 
       <Popper placement={position}>
         {({ ref, style, placement, arrowProps }) => (
-          <FadeTransition in={show} mountOnEnter unmountOnExit>
+          <Fade in={show} mountOnEnter unmountOnExit>
             <TooltipStyled
               ref={ref}
               role="tooltip"
@@ -167,7 +165,7 @@ function Tooltip(props) {
               <TooltipArrow ref={arrowProps.ref} style={arrowProps.style} />
               <TooltipInner>{content}</TooltipInner>
             </TooltipStyled>
-          </FadeTransition>
+          </Fade>
         )}
       </Popper>
     </Manager>

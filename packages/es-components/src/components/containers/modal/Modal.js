@@ -75,7 +75,7 @@ const ModalContent = styled.div`
   -webkit-overflow-scrolling: touch;
 `;
 
-const BackdropFade = props => <Fade duration={150} opacity={0.5} {...props} />;
+const BackdropFade = props => <Fade opacity={0.5} {...props} />;
 
 const DialogDropIn = props => <DropIn {...props} />;
 

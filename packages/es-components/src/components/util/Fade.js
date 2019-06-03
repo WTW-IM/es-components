@@ -4,7 +4,7 @@ import Transition from 'react-transition-group/Transition';
 
 const Fade = ({ children, duration, opacity, ...otherProps }) => {
   const transitionStyles = {
-    transition: `opacity ${duration}ms ease-in-out`,
+    transition: `opacity ${duration}ms linear`,
     opacity: 0
   };
 
@@ -36,7 +36,7 @@ Fade.propTypes = {
 };
 
 Fade.defaultProps = {
-  duration: 300,
+  duration: 150,
   opacity: 1
 };
 

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Manager, Reference, Popper } from 'react-popper';
-import Transition from 'react-transition-group/Transition';
+
+import Fade from '../../util/Fade';
 
 const PopperBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -90,17 +91,6 @@ const Arrow = styled.div`
   }
 `;
 
-const defaultStyle = {
-  transition: `opacity 300ms ease-in-out`,
-  opacity: 0
-};
-const transitionStyles = {
-  entering: { opacity: 0 },
-  entered: { opacity: 1 },
-  exiting: { opacity: 0 },
-  exited: { opacity: 0 }
-};
-
 const arrowSizes = {
   sm: {
     size: '5',
@@ -176,47 +166,40 @@ function Popup(props) {
           </div>
         )}
       </Reference>
-      <Transition
+      <Fade
         in={transitionIn}
-        timeout={transitionTimeout}
+        duration={transitionTimeout}
         mountOnEnter
         unmountOnExit
       >
-        {state => (
-          <div
-            style={{
-              ...defaultStyle,
-              ...transitionStyles[state]
+        <div>
+          <Popper
+            className={`${name}-popper`}
+            placement={position}
+            modifiers={{
+              preventOverflow: { boundariesElement: document.body },
+              flip: {
+                enabled: !disableFlipping,
+                behavior: ['left', 'right', 'top', 'bottom', 'top']
+              }
             }}
+            innerRef={popperRef}
           >
-            <Popper
-              className={`${name}-popper`}
-              placement={position}
-              modifiers={{
-                preventOverflow: { boundariesElement: document.body },
-                flip: {
-                  enabled: !disableFlipping,
-                  behavior: ['left', 'right', 'top', 'bottom', 'top']
-                }
-              }}
-              innerRef={popperRef}
-            >
-              {({ ref, style, placement, arrowProps }) => (
-                <PopperBox ref={ref} style={style} arrowSize={arrowValues}>
-                  {children}
-                  <Arrow
-                    ref={arrowProps.ref}
-                    data-placement={placement}
-                    style={arrowProps.style}
-                    arrowSize={arrowValues}
-                    hasTitle={hasTitle}
-                  />
-                </PopperBox>
-              )}
-            </Popper>
-          </div>
-        )}
-      </Transition>
+            {({ ref, style, placement, arrowProps }) => (
+              <PopperBox ref={ref} style={style} arrowSize={arrowValues}>
+                {children}
+                <Arrow
+                  ref={arrowProps.ref}
+                  data-placement={placement}
+                  style={arrowProps.style}
+                  arrowSize={arrowValues}
+                  hasTitle={hasTitle}
+                />
+              </PopperBox>
+            )}
+          </Popper>
+        </div>
+      </Fade>
     </Manager>
   );
 }
@@ -241,7 +224,7 @@ Popup.defaultProps = {
   position: 'bottom',
   arrowSize: 'default',
   transitionIn: false,
-  transitionTimeout: 300,
+  transitionTimeout: 150,
   hasTitle: false,
   disableFlipping: false,
   popperRef: undefined

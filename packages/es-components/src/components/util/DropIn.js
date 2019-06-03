@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Transition from 'react-transition-group/Transition';
 
-const Fade = ({ children, duration, opacity, ...otherProps }) => {
+const DropIn = ({ children, duration, ...otherProps }) => {
   const transitionStyles = {
-    transition: `opacity ${duration}ms ease-in-out`,
-    opacity: 0
+    opacity: 0,
+    transform: `translate(0, -25%)`,
+    transition: `transform ${duration}ms ease-out, opacity ${duration}ms linear`
   };
 
   const stateStyles = {
-    entering: { opacity },
-    entered: { opacity }
+    entering: { opacity: 1, transform: `translate(0, 0)` },
+    entered: { opacity: 1, transform: `translate(0, 0)` }
   };
 
   return (
@@ -29,15 +30,13 @@ const Fade = ({ children, duration, opacity, ...otherProps }) => {
   );
 };
 
-Fade.propTypes = {
+DropIn.propTypes = {
   children: PropTypes.any.isRequired,
-  duration: PropTypes.number,
-  opacity: PropTypes.number
+  duration: PropTypes.number
 };
 
-Fade.defaultProps = {
-  duration: 300,
-  opacity: 1
+DropIn.defaultProps = {
+  duration: 300
 };
 
-export default Fade;
+export default DropIn;

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
+import { RootCloseWrapper } from 'react-overlays';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
@@ -167,49 +167,43 @@ function Popover(props) {
     />
   );
 
-  const popover = (
+  return (
     <Container>
-      <Popup
-        name={name}
-        trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
-        position={placement}
-        arrowSize={arrowSize}
-        transitionIn={isOpen}
-        hasTitle={hasTitle}
-        disableFlipping={disableFlipping}
-        popperRef={elem => {
-          popperRef.current = elem;
-        }}
-      >
-        <div role="dialog" ref={contentRef}>
-          <PopoverHeader hasTitle={hasTitle}>
-            {hasTitle && <TitleBar>{title}</TitleBar>}
-            {hasAltCloseButton && altCloseButton}
-            <CloseHelpText
-              tabIndex={-1}
-              ref={headerRef}
-              aria-label="Press escape to close the Popover"
-            />
-          </PopoverHeader>
+      <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
+        <Popup
+          name={name}
+          trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
+          position={placement}
+          arrowSize={arrowSize}
+          transitionIn={isOpen}
+          hasTitle={hasTitle}
+          disableFlipping={disableFlipping}
+          popperRef={elem => {
+            popperRef.current = elem;
+          }}
+        >
+          <div role="dialog" ref={contentRef}>
+            <PopoverHeader hasTitle={hasTitle}>
+              {hasTitle && <TitleBar>{title}</TitleBar>}
+              {hasAltCloseButton && altCloseButton}
+              <CloseHelpText
+                tabIndex={-1}
+                ref={headerRef}
+                aria-label="Press escape to close the Popover"
+              />
+            </PopoverHeader>
 
-          <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
-            <PopoverContent showCloseButton={showCloseButton}>
-              {content}
-            </PopoverContent>
-            {showCloseButton && closeButton}
-          </PopoverBody>
-        </div>
-      </Popup>
+            <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
+              <PopoverContent showCloseButton={showCloseButton}>
+                {content}
+              </PopoverContent>
+              {showCloseButton && closeButton}
+            </PopoverBody>
+          </div>
+        </Popup>
+      </RootCloseWrapper>
     </Container>
   );
-
-  if (!disableRootClose) {
-    return (
-      <RootCloseWrapper onRootClose={hidePopover}>{popover}</RootCloseWrapper>
-    );
-  }
-
-  return popover;
 }
 
 Popover.propTypes = {

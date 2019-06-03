@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
+import { RootCloseWrapper } from 'react-overlays';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';

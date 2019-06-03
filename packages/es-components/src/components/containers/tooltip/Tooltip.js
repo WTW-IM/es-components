@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Overlay from 'react-overlays/lib/Overlay';
+import { Manager, Reference, Popper } from 'react-popper';
 import styled from 'styled-components';
 
 import Fade from '../../util/Fade';
@@ -14,7 +14,7 @@ const TooltipBase = styled.div`
 `;
 
 const TooltipInner = styled.div`
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.softwareBlue};
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
@@ -34,63 +34,61 @@ const TooltipArrowBase = styled.div`
 `;
 
 const TooltipTop = styled(TooltipBase)`
-  margin-top: -5px;
   padding: 5px 0;
 `;
 
 const TooltipRight = styled(TooltipBase)`
-  margin-right: 5px;
   padding: 0 5px;
 `;
 
 const TooltipBottom = styled(TooltipBase)`
-  margin-bottom: 5px;
   padding: 5px 0;
 `;
 
 const TooltipLeft = styled(TooltipBase)`
-  margin-left: -5px;
   padding: 0 5px;
 `;
 
 const TooltipArrowTop = styled(TooltipArrowBase)`
-  border-top-color: ${props => props.theme.colors.primary};
+  border-top-color: ${props => props.theme.colors.softwareBlue};
   border-width: 5px 5px 0;
   bottom: 0;
-  left: 50%;
-  margin-left: -5px;
 `;
 
 const TooltipArrowRight = styled(TooltipArrowBase)`
-  border-right-color: ${props => props.theme.colors.primary};
+  border-right-color: ${props => props.theme.colors.softwareBlue};
   border-width: 5px 5px 5px 0;
   left: 0;
-  margin-top: -5px;
-  top: 50%;
 `;
 
 const TooltipArrowBottom = styled(TooltipArrowBase)`
-  border-bottom-color: ${props => props.theme.colors.primary};
+  border-bottom-color: ${props => props.theme.colors.softwareBlue};
   border-width: 0 5px 5px;
-  left: 50%;
-  margin-left: -5px;
   top: 0;
 `;
 
 const TooltipArrowLeft = styled(TooltipArrowBase)`
-  border-left-color: ${props => props.theme.colors.primary};
+  border-left-color: ${props => props.theme.colors.softwareBlue};
   border-width: 5px 0 5px 5px;
-  margin-top: -5px;
   right: 0;
-  top: 50%;
 `;
 
-const FadeTransition = props => (
-  <Fade duration={200} opacity={1} withWrapper {...props} />
-);
+const FadeTransition = props => <Fade duration={400} {...props} />;
 
-const Popup = props => {
-  const { name, children, position, style, ...other } = props;
+const ScreenReaderContent = screenReaderOnly('div');
+
+function Tooltip(props) {
+  const [show, setShow] = useState(false);
+  const {
+    name,
+    disableHover,
+    disableFocus,
+    position,
+    content,
+    children,
+    ...other
+  } = props;
+
   let TooltipStyled;
   let TooltipArrow;
   const tooltipId = name ? `es-tooltip__${name}` : undefined;
@@ -114,47 +112,6 @@ const Popup = props => {
       break;
   }
 
-  return (
-    <TooltipStyled
-      role="tooltip"
-      id={tooltipId}
-      style={style}
-      aria-live="polite"
-      {...other}
-    >
-      <TooltipArrow />
-      <TooltipInner>{children}</TooltipInner>
-    </TooltipStyled>
-  );
-};
-
-Popup.propTypes = {
-  name: PropTypes.string,
-  children: PropTypes.any.isRequired,
-  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  style: PropTypes.object
-};
-
-Popup.defaultProps = {
-  name: undefined,
-  position: 'top',
-  style: {}
-};
-
-const SrContentContainer = screenReaderOnly('div');
-
-function Tooltip(props) {
-  const [show, setShow] = useState(false);
-  const {
-    name,
-    disableHover,
-    disableFocus,
-    position,
-    content,
-    children,
-    ...other
-  } = props;
-
   function showTooltip() {
     setShow(true);
   }
@@ -173,39 +130,47 @@ function Tooltip(props) {
     }
   }
 
-  const tooltipTarget = React.createRef();
   const descriptionId = `${useUniqueId(other.id)}-description`;
 
   return (
-    <>
-      <PopoverLink
-        ref={tooltipTarget}
-        onBlur={hideTooltip}
-        onFocus={!disableFocus ? showTooltip : undefined}
-        onMouseEnter={!disableHover ? showTooltip : undefined}
-        onMouseLeave={!disableHover ? hideTooltip : undefined}
-        onKeyDown={closeOnEscape}
-        onClick={toggleShow}
-        aria-describedby={descriptionId}
-      >
-        {children}
-      </PopoverLink>
-      <SrContentContainer id={descriptionId}>{content}</SrContentContainer>
+    <Manager>
+      <Reference>
+        {({ ref }) => (
+          <PopoverLink
+            ref={ref}
+            onBlur={hideTooltip}
+            onFocus={!disableFocus ? showTooltip : undefined}
+            onMouseEnter={!disableHover ? showTooltip : undefined}
+            onMouseLeave={!disableHover ? hideTooltip : undefined}
+            onKeyDown={closeOnEscape}
+            onClick={toggleShow}
+            aria-describedby={descriptionId}
+          >
+            {children}
+          </PopoverLink>
+        )}
+      </Reference>
 
-      <Overlay
-        show={show}
-        placement={position}
-        container={document.body}
-        target={() => tooltipTarget.current}
-        transition={FadeTransition}
-        rootClose
-        onHide={hideTooltip}
-      >
-        <Popup position={position} name={name} {...other}>
-          {content}
-        </Popup>
-      </Overlay>
-    </>
+      <ScreenReaderContent id={descriptionId}>{content}</ScreenReaderContent>
+
+      <Popper placement={position}>
+        {({ ref, style, placement, arrowProps }) => (
+          <FadeTransition in={show} mountOnEnter unmountOnExit>
+            <TooltipStyled
+              ref={ref}
+              role="tooltip"
+              id={tooltipId}
+              style={style}
+              aria-live="polite"
+              {...other}
+            >
+              <TooltipArrow ref={arrowProps.ref} style={arrowProps.style} />
+              <TooltipInner>{content}</TooltipInner>
+            </TooltipStyled>
+          </FadeTransition>
+        )}
+      </Popper>
+    </Manager>
   );
 }
 

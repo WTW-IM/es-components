@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
-import RootCloseWrapper from 'react-overlays/lib/RootCloseWrapper';
+import { RootCloseWrapper } from 'react-overlays';
 import styled from 'styled-components';
 
 import Button from './Button';

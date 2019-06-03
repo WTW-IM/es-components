@@ -20,7 +20,7 @@ Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalN
       <a href="#disabled">Disabled</a>
     </HorizontalNav.Item>
   </HorizontalNav>
-
+  <br />
   <h3>Alternate Style</h3>
   <HorizontalNav useAltStyle selected="home">
     <HorizontalNav.Item id="home">

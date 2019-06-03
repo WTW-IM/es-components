@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    width: 325px;
+    max-width: 350px;
   }
 `;
 

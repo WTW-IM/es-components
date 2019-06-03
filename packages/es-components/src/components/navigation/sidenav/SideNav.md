@@ -20,7 +20,7 @@ Use `SideNav` to create an uncontrolled navigation menu. Each `SideNav.Item` wil
       <a href="#disabled">Disabled</a>
     </SideNav.Item>
   </SideNav>
-
+  <br />
   <h3>Alternate Style</h3>
   <SideNav useAltStyle selected="home">
     <SideNav.Item id="home">

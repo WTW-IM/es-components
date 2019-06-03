@@ -7,8 +7,7 @@ import InputBase from '../../controls/textbox/InputText';
 
 const DayInput = styled(InputBase)`
   appearance: textfield;
-  flex: 1 1;
-  margin: 0;
+  flex: 1 0 35px;
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {

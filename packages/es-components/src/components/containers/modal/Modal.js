@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
-import BaseModal from 'react-overlays/lib/Modal';
+import { Modal as BaseModal, RootCloseWrapper } from 'react-overlays';
 
 import useUniqueId from '../../util/useUniqueId';
-import { useTheme } from '../../util/useTheme';
+import DropIn from '../../util/DropIn';
 import Fade from '../../util/Fade';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
@@ -18,22 +18,30 @@ const modalSize = {
   large: '900px'
 };
 
-const DialogWrapper = styled(BaseModal)`
+const modalStyle = {
+  bottom: 0,
+  left: 0,
+  outline: 0,
+  overflowX: 'hidden',
+  overflowY: 'auto',
+  position: 'fixed',
+  right: 0,
+  top: 0,
+  zIndex: 1040
+};
+
+const Backdrop = styled.div`
+  background-color: ${props => props.theme.colors.black};
   bottom: 0;
   left: 0;
-  outline: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
   position: fixed;
   right: 0;
-  text-align: center;
   top: 0;
-  z-index: 1040;
+  z-index: 1030;
 `;
 
 const ModalDialogMedium = styled.div`
-  cursor: default;
-  display: inline-block;
+  position: relative;
   width: 100%;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
@@ -58,14 +66,18 @@ const ModalDialogLarge = styled(ModalDialogMedium)`
 const ModalContent = styled.div`
   background-clip: padding-box;
   background-color: ${props => props.theme.colors.white};
+  border-radius: 3px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.sizes.baseFontSize};
   outline: 0;
   position: relative;
-  text-align: left;
   -webkit-overflow-scrolling: touch;
 `;
+
+const BackdropFade = props => <Fade opacity={0.5} {...props} />;
+
+const DialogDropIn = props => <DropIn {...props} />;
 
 function getModalBySize(size) {
   switch (size) {
@@ -92,45 +104,36 @@ function Modal(props) {
     ...other
   } = props;
 
-  const theme = useTheme();
-  const backdropStyle = {
-    backgroundColor: theme.colors.black,
-    bottom: 0,
-    cursor: backdrop === 'static' ? 'auto' : 'pointer',
-    left: 0,
-    opacity: 0.5,
-    position: 'fixed',
-    right: 0,
-    top: 0,
-    zIndex: 'auto'
-  };
-
   const ModalDialog = getModalBySize(size);
-
   const ariaId = useUniqueId(other.id);
 
   return (
     <ModalContext.Provider value={{ onHide, ariaId }}>
-      <DialogWrapper
+      <BaseModal
+        aria-labelledby={ariaId}
         backdrop={backdrop}
-        backdropStyle={backdropStyle}
+        renderBackdrop={backdropProps => <Backdrop {...backdropProps} />}
+        backdropTransition={animation ? BackdropFade : undefined}
         keyboard={escapeExits}
         onEnter={onEnter}
         onExit={onExit}
         onHide={onHide}
         show={show}
-        transition={animation ? Fade : undefined}
+        style={modalStyle}
+        transition={animation ? DialogDropIn : undefined}
       >
-        <ModalDialog size={size} aria-labelledby={ariaId} {...other}>
-          <ModalContent>{children}</ModalContent>
-        </ModalDialog>
-      </DialogWrapper>
+        <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
+          <ModalDialog size={size} {...other}>
+            <ModalContent>{children}</ModalContent>
+          </ModalDialog>
+        </RootCloseWrapper>
+      </BaseModal>
     </ModalContext.Provider>
   );
 }
 
 Modal.propTypes = {
-  /** Open and close the Modal with a fade animation. */
+  /** Open and close the Modal with transitions. */
   animation: PropTypes.bool,
   /**
    * Include a backdrop component. Specify 'static' for a backdrop that doesn't

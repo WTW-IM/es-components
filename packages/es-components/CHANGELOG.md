@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.44 (2019-06-04)</small>
+
+* Update: popover uses Fade for transition ([6d00475](https://github.com/wtw-im/es-components/commit/6d00475))
+* Update: tooltip uses popper, modal transitions, react-overlay version ([50f4db9](https://github.com/wtw-im/es-components/commit/50f4db9))
+
+
+
+
+
 ## <small>19.0.43 (2019-05-30)</small>
 
 * Fix: modal buttons should expand the width of the modal on mobile ([c97de85](https://github.com/wtw-im/es-components/commit/c97de85))

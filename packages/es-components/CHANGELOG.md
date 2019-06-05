@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.46 (2019-06-05)</small>
+
+* Update: added word break to notifications to handle long text ([b530650](https://github.com/wtw-im/es-components/commit/b530650))
+* Fix: dateinput widths in mobile/desktop ([4f1daa2](https://github.com/wtw-im/es-components/commit/4f1daa2))
+
+
+
+
+
 ## <small>19.0.45 (2019-06-05)</small>
 
 * New: add inherited button style type ([19e33c2](https://github.com/wtw-im/es-components/commit/19e33c2))

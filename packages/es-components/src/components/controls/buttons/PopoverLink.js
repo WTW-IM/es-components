@@ -5,8 +5,9 @@ import LinkButton from './LinkButton';
 import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled(LinkButton)`
-  border-bottom: ${props =>
-    !props.suppressUnderline && `1px dashed ${props.variant.bgColor}`};
+  border-bottom: ${props => !props.suppressUnderline && `1px dashed`};
+  border-bottom-color: ${props =>
+    !props.suppressUnderline && props.variant.bgColor}
   line-height: 1;
   text-decoration: none;
 
@@ -14,6 +15,8 @@ const StyledButton = styled(LinkButton)`
   :focus {
     border-bottom: ${props =>
       !props.suppressUnderline && `1px solid ${props.variant.bgColor}`};
+      border-bottom-color: ${props =>
+        !props.suppressUnderline && props.variant.bgColor};
   }
 `;
 

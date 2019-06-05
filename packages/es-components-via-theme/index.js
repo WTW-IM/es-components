@@ -265,6 +265,15 @@ const theme = {
           activeBgColor: dangerHover,
           activeTextColor: white,
           boxShadowColor: dangerHover
+        },
+        inherited: {
+          bgColor: 'inherit',
+          textColor: 'inherit',
+          hoverBgColor: 'inherit',
+          hoverTextColor: 'inherit',
+          activeBgColor: 'inherit',
+          activeTextColor: 'inherit',
+          boxShadowColor: 'inherit'
         }
       },
       // size should always have default, lg, sm, xs
@@ -388,6 +397,15 @@ const theme = {
           activeBgColor: '#4d1659',
           activeTextColor: white,
           borderColor: '#702082'
+        },
+        inherited: {
+          bgColor: 'inherit',
+          textColor: 'inherit',
+          hoverBgColor: 'inherit',
+          hoverTextColor: 'inherit',
+          activeBgColor: 'inherit',
+          activeTextColor: 'inherit',
+          boxShadowColor: 'inherit'
         }
       },
       size: {

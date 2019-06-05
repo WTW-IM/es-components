@@ -7,16 +7,15 @@ import { useTheme } from '../../util/useTheme';
 const StyledButton = styled(LinkButton)`
   border-bottom: ${props => !props.suppressUnderline && `1px dashed`};
   border-bottom-color: ${props =>
-    !props.suppressUnderline && props.variant.bgColor}
+    !props.suppressUnderline && props.variant.textColor};
   line-height: 1;
   text-decoration: none;
 
   &:hover,
   :focus {
-    border-bottom: ${props =>
-      !props.suppressUnderline && `1px solid ${props.variant.bgColor}`};
-      border-bottom-color: ${props =>
-        !props.suppressUnderline && props.variant.bgColor};
+    border-bottom: ${props => !props.suppressUnderline && `1px solid`};
+    border-bottom-color: ${props =>
+      !props.suppressUnderline && props.variant.textColor};
   }
 `;
 

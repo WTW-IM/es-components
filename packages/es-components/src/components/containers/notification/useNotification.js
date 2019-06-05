@@ -29,6 +29,7 @@ const Dismiss = styled(DismissButton)`
 const ContentWrapper = styled.div`
   align-self: center;
   flex-grow: 1;
+  word-break: break-word;
 `;
 
 const NotificationContent = React.forwardRef(function NotificationContent(

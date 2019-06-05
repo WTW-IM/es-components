@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.45 (2019-06-05)</small>
+
+* New: add inherited button style type ([19e33c2](https://github.com/WTW-IM/es-components/commit/19e33c2))
+
+
+
+
+
 ## <small>19.0.28 (2019-04-17)</small>
 
 * Fix: (chpink) Change danger icon; fix icon centering ([6c19230](https://github.com/WTW-IM/es-components/commit/6c19230))

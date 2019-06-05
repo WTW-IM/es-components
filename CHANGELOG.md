@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.45 (2019-06-05)</small>
+
+* New: add inherited button style type ([19e33c2](https://github.com/wtw-im/es-components/commit/19e33c2))
+
+
+
+
+
 ## <small>19.0.44 (2019-06-04)</small>
 
 * Update: popover uses Fade for transition ([6d00475](https://github.com/wtw-im/es-components/commit/6d00475))

@@ -7,8 +7,7 @@ import InputBase from '../../controls/textbox/InputText';
 
 const YearInput = styled(InputBase)`
   appearance: textfield;
-  flex: 2 1;
-  margin: 0;
+  flex: 2 0 40px;
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {

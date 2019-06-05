@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.48 (2019-06-05)</small>
+
+* Fix: add missing semi-colon ([6de4fbe](https://github.com/wtw-im/es-components/commit/6de4fbe))
+
+
+
+
+
 ## <small>19.0.47 (2019-06-05)</small>
 
 * Fix: set border-color separate from style ([e96c73f](https://github.com/wtw-im/es-components/commit/e96c73f))

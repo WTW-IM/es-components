@@ -1,18 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ValidationContext from '../ValidationContext';
-import { useTheme } from '../../util/useTheme';
-import {
-  ValidationIconWrapper,
-  ValidationIcon,
-  InputWrapper
-} from '../textbox/TextAddons';
-
-const DropdownValidationIcon = styled(ValidationIcon)`
-  right: 24px;
-`;
-
 const DropdownBase = styled.select`
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.gray5};
@@ -25,7 +13,7 @@ const DropdownBase = styled.select`
   font-weight: normal;
   height: 39px;
   min-width: 100px;
-  padding: 6px 48px 6px 12px;
+  padding: 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 
   &:focus {
@@ -41,24 +29,7 @@ const DropdownBase = styled.select`
 `;
 
 function Dropdown(props) {
-  const validationState = React.useContext(ValidationContext);
-  const hasValidationIcon = validationState !== 'default';
-  const theme = useTheme();
-
-  return (
-    <InputWrapper>
-      <DropdownBase {...props} />
-      {hasValidationIcon && (
-        <ValidationIconWrapper>
-          <DropdownValidationIcon
-            aria-hidden="true"
-            name={theme.validationIconName[validationState]}
-            size={18}
-          />
-        </ValidationIconWrapper>
-      )}
-    </InputWrapper>
-  );
+  return <DropdownBase {...props} />;
 }
 
 export default Dropdown;

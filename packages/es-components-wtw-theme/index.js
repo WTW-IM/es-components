@@ -453,7 +453,7 @@ const theme = {
     success: 'ok-circle',
     info: 'info-circle',
     warning: 'exclamation-sign',
-    danger: 'exclamation-circle',
+    danger: 'exclamation-sign',
     advisor: 'agent'
   },
   validationTextColor: {
@@ -492,7 +492,7 @@ const theme = {
     baseLineHeight: 1.428
   },
   screenSize: {
-    retina: '320px',
+    retina: '360px',
     phone: '480px',
     tablet: '768px',
     desktop: '900px',

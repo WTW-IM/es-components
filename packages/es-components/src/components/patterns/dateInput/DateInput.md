@@ -39,7 +39,7 @@ function DateInputExample() {
         <DateInput.Year />
       </DateInput>
       <AdditionalHelp>
-        <span>{myDate && `You entered: ${myDate.toLocaleDateString("en-US", options)}`}</span>
+        {myDate && <span>You entered: {myDate.toLocaleDateString("en-US", options)}</span>}
       </AdditionalHelp>
     </Control>
   );

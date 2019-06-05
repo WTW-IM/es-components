@@ -6,18 +6,18 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
     class="sc-bdVaJa jJHNwS"
   >
     <label
-      class="sc-htpNat bbbtWm"
+      class="sc-htpNat hABoEw"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-htoDjs kynBUD"
+      class="sc-htoDjs fAgFfR"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-EHOje sc-bZQynM dGyILk"
+        class="sc-bZQynM jKLCap sc-EHOje hFNESI"
         id="test"
         name="month"
       >
@@ -64,18 +64,18 @@ exports[`hides the Day input when Day is excluded 1`] = `
     class="sc-bdVaJa jJHNwS"
   >
     <label
-      class="sc-htpNat bbbtWm"
+      class="sc-htpNat hABoEw"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-htoDjs kynBUD"
+      class="sc-htoDjs fAgFfR"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-EHOje sc-bZQynM dGyILk"
+        class="sc-bZQynM jKLCap sc-EHOje hFNESI"
         id="test"
       >
         <option

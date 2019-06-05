@@ -20,14 +20,14 @@ const primaryHover = '#005874';
 const info = '#069';
 const infoHover = '#004466';
 const infoLight = '#b8e4f9';
-const success = '#298544';
-const successHover = '#1d5e30';
+const success = '#006400';
+const successHover = '#004B00';
 const successLight = '#d9eedf';
 const warning = '#c25400';
 const warningHover = '#8f3e00';
 const warningLight = '#fcebde';
-const danger = '#c00';
-const dangerHover = '#990000';
+const danger = '#EE0700';
+const dangerHover = '#BB0000';
 const dangerLight = '#fde7e7';
 const advisor = warning;
 const advisorLight = warningLight;
@@ -483,12 +483,12 @@ const theme = {
     success: 'ok-circle',
     info: 'info-circle',
     warning: 'exclamation-sign',
-    danger: 'remove-circle',
+    danger: 'exclamation-sign',
     advisor: 'agent'
   },
   validationTextColor: {
     success: success,
-    warning: warningHover,
+    warning: warning,
     danger: danger
   },
   validationInputColor: {
@@ -522,7 +522,7 @@ const theme = {
     baseLineHeight: 1.428
   },
   screenSize: {
-    retina: '320px',
+    retina: '360px',
     phone: '480px',
     tablet: '768px',
     desktop: '900px',

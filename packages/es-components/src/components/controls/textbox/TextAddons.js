@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
-import InputBase from './InputText';
+import InputBase from './InputBase';
 
 const defaultBorderRadius = '2px';
 
@@ -15,22 +15,13 @@ const TextboxBase = styled(InputBase)`
     props.hasAppend ? '0' : defaultBorderRadius};
   color: inherit;
   display: table-cell;
-  padding-right: 2em;
   -webkit-appearance: none;
 `;
 
-const ValidationIconWrapper = styled.span`
-  height: 0;
-  position: relative;
-  width: 0;
-`;
-
 const ValidationIcon = styled(Icon)`
-  height: 20px;
-  pointer-events: none;
-  position: absolute;
-  right: 11px;
-  top: 11px;
+  align-self: flex-start;
+  font-size: 35px;
+  margin-right: 5px;
 `;
 
 const AddOn = styled.button`
@@ -43,17 +34,14 @@ const AddOn = styled.button`
   border-radius: ${defaultBorderRadius};
   box-sizing: border-box;
   color: ${props => props.addOnTextColor};
-  display: table-cell;
+  display: flex;
+  flex-direction: column;
   height: 39px;
+  justify-content: center;
   line-height: 1;
   margin: 0;
   outline: 0;
   padding: 6px 11px;
-
-  i {
-    line-height: 1;
-    vertical-align: middle;
-  }
 `;
 
 const Prepend = styled(AddOn)`
@@ -72,11 +60,4 @@ const InputWrapper = styled.div`
   display: flex;
 `;
 
-export {
-  ValidationIconWrapper,
-  ValidationIcon,
-  Prepend,
-  Append,
-  InputWrapper,
-  TextboxBase
-};
+export { ValidationIcon, Prepend, Append, InputWrapper, TextboxBase };

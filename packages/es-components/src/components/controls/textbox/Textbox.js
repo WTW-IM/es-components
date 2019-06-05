@@ -2,14 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from '../../base/icons/Icon';
-import {
-  ValidationIconWrapper,
-  ValidationIcon,
-  Prepend,
-  Append,
-  InputWrapper,
-  TextboxBase
-} from './TextAddons';
+import { Prepend, Append, InputWrapper, TextboxBase } from './TextAddons';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
@@ -23,12 +16,12 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
 
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
-  const hasValidationIcon = validationState !== 'default';
+  const hasValidationState = validationState !== 'default';
 
-  const addOnTextColor = hasValidationIcon
+  const addOnTextColor = hasValidationState
     ? theme.colors.white
     : theme.colors.gray8;
-  const addOnBgColor = hasValidationIcon
+  const addOnBgColor = hasValidationState
     ? theme.validationTextColor[validationState]
     : theme.colors.gray3;
 
@@ -55,15 +48,6 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         {...additionalTextProps}
         {...theme.validationInputColor[validationState]}
       />
-      {hasValidationIcon && (
-        <ValidationIconWrapper>
-          <ValidationIcon
-            aria-hidden="true"
-            name={theme.validationIconName[validationState]}
-            size={18}
-          />
-        </ValidationIconWrapper>
-      )}
       {hasAppend && (
         <Append
           addOnTextColor={addOnTextColor}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Label = styled.label`
-  color: inherit;
+  color: ${props => props.theme.colors.gray9};
   cursor: pointer;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: 700;

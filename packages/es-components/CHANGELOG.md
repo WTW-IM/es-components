@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.50 (2019-06-06)</small>
+
+* Merge branch 'master' into add-link-button-to-theme ([afcc521](https://github.com/wtw-im/es-components/commit/afcc521))
+* New: create a new button style object for link buttons ([adbaf13](https://github.com/wtw-im/es-components/commit/adbaf13))
+
+
+
+
+
 ## <small>19.0.49 (2019-06-06)</small>
 
 * Fix: use yyyy instead of YYYY ([0df056a](https://github.com/wtw-im/es-components/commit/0df056a))

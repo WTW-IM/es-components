@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.51 (2019-06-06)</small>
+
+* New: add styleType to tooltip ([3115f05](https://github.com/wtw-im/es-components/commit/3115f05))
+
+
+
+
+
 ## <small>19.0.50 (2019-06-06)</small>
 
 * New: create a new button style object for link buttons ([adbaf13](https://github.com/wtw-im/es-components/commit/adbaf13))

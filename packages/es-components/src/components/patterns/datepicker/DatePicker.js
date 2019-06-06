@@ -24,8 +24,8 @@ const getVerifiedDate = selectedDate => {
   if (typeof selectedDate === 'string') {
     const newDate = getParsedDate(selectedDate);
     const isFullDate =
-      (selectedDate && format(newDate, 'MM/DD/YYYY') === selectedDate) ||
-      format(newDate, 'YYYY-MM-DD') === selectedDate;
+      (selectedDate && format(newDate, 'MM/DD/yyyy') === selectedDate) ||
+      format(newDate, 'yyyy-MM-DD') === selectedDate;
     verifiedDate = isFullDate ? newDate : undefined;
   }
   return verifiedDate;
@@ -49,7 +49,7 @@ function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
   };
   const dateValue =
     !!selectedDate && isValid(selectedDate)
-      ? format(selectedDate, 'YYYY-MM-DD')
+      ? format(selectedDate, 'yyyy-MM-DD')
       : '';
 
   return (

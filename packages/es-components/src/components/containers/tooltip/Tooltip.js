@@ -83,6 +83,7 @@ function Tooltip(props) {
     disableFocus,
     position,
     content,
+    styleType,
     children,
     ...other
   } = props;
@@ -143,6 +144,7 @@ function Tooltip(props) {
             onKeyDown={closeOnEscape}
             onClick={toggleShow}
             aria-describedby={descriptionId}
+            styleType={styleType}
           >
             {children}
           </PopoverLink>

@@ -413,6 +413,38 @@ const theme = {
           textTransform: 'uppercase'
         }
       }
+    },
+    linkButton: {
+      variant: {
+        default: {
+          textColor: defaultColor,
+          hoverTextColor: defaultHover
+        },
+        primary: {
+          textColor: primary,
+          hoverTextColor: primaryHover
+        },
+        success: {
+          textColor: success,
+          hoverTextColor: successHover
+        },
+        information: {
+          textColor: info,
+          hoverTextColor: infoHover,
+        },
+        danger: {
+          textColor: danger,
+          hoverTextColor: dangerHover
+        },
+        warning: {
+          textColor: warning,
+          hoverTextColor: warningHover
+        },
+        inherited: {
+          textColor: 'inherit',
+          hoverTextColor: 'inherit'
+        }
+      }
     }
   },
   validationIconName: {

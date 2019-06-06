@@ -8,7 +8,7 @@ const StyledButton = styled.button`
   border: none;
   box-shadow: none;
   cursor: pointer;
-  color: ${props => props.variant.bgColor};
+  color: ${props => props.variant.textColor};
   font-size: inherit;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   padding: 0;
@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   &:hover,
   &:focus,
   &:active {
-    color: ${props => props.variant.hoverBgColor};
+    color: ${props => props.variant.hoverTextColor};
     text-decoration: none;
   }
 
@@ -26,7 +26,7 @@ const StyledButton = styled.button`
   }
 
   &[disabled]:hover {
-    color: ${props => props.variant.bgColor};
+    color: ${props => props.variant.textColor};
     text-decoration: underline;
   }
 `;
@@ -34,7 +34,7 @@ const StyledButton = styled.button`
 const LinkButton = React.forwardRef(function LinkButton(props, ref) {
   const { children, styleType, ...other } = props;
   const theme = useTheme();
-  const variant = theme.buttonStyles.button.variant[styleType];
+  const variant = theme.buttonStyles.linkButton.variant[styleType];
 
   return (
     <StyledButton ref={ref} variant={variant} type="button" {...other}>

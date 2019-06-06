@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.49 (2019-06-06)</small>
+
+* Fix: use yyyy instead of YYYY ([0df056a](https://github.com/wtw-im/es-components/commit/0df056a))
+
+
+
+
+
 ## <small>19.0.48 (2019-06-05)</small>
 
 * Fix: add missing semi-colon ([6de4fbe](https://github.com/wtw-im/es-components/commit/6de4fbe))

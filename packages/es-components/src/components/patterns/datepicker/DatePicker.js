@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { format, isValid } from 'date-fns';
 import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
-import styled from 'styled-components';
-import { parse, format, isValid } from 'date-fns';
-import { useTheme } from '../../util/useTheme';
-import { useWindowWidth } from '../../util/useWindowWidth';
-import ReactDatePickerPropTypes from './ReactDatePickerPropTypes';
 
-import { DatepickerStyles } from './datePickerStyles';
 import Textbox from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
+import { useWindowWidth } from '../../util/useWindowWidth';
+import { useTheme } from '../../util/useTheme';
+import { DatepickerStyles } from './datePickerStyles';
+import ReactDatePickerPropTypes from './ReactDatePickerPropTypes';
 
-const BlockContainer = styled.div`
-  display: inline-block;
-`;
+const STRING_FORMAT = 'yyyy-MM-dd';
 
-// without this extra time string, js Date can get weird
-const getParsedDate = selectedDate => parse(`${selectedDate}T01:00:00`);
-
-const getVerifiedDate = selectedDate => {
-  let verifiedDate = selectedDate;
-  if (typeof selectedDate === 'string') {
-    const newDate = getParsedDate(selectedDate);
-    const isFullDate =
-      (selectedDate && format(newDate, 'MM/DD/yyyy') === selectedDate) ||
-      format(newDate, 'yyyy-MM-DD') === selectedDate;
-    verifiedDate = isFullDate ? newDate : undefined;
+function normalizeDateString(date, stringFormat = STRING_FORMAT) {
+  if (typeof date === 'string') {
+    const parsedDate = new Date(date);
+    return isValid(parsedDate) ? format(parsedDate, stringFormat) : '';
   }
-  return verifiedDate;
-};
+  return isValid(date) ? format(date, stringFormat) : '';
+}
 
-// required for react-datepicker 2.0.0 to properly set focus
+function normalizeDate(date) {
+  if (typeof date === 'string') {
+    const parsedDate = new Date(date);
+    return isValid(parsedDate) ? parsedDate : null;
+  }
+  return isValid(date) ? date : null;
+}
+
+function NativeDatePicker(props) {
+  return (
+    <Textbox
+      prependIconName="calendar"
+      type="date"
+      value={normalizeDateString(props.selectedDate)}
+      {...props}
+    />
+  );
+}
+
 const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   const inputRef = React.useRef();
   React.useImperativeHandle(ref, () => ({
@@ -40,159 +48,85 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
     }
   }));
 
-  return <MaskedTextbox ref={inputRef} {...props} />;
-});
-
-function NativeDatePicker({ selectedDate, name, onChange, ...props }) {
-  const onChangeIntercept = event => {
-    onChange(getParsedDate(event.target.value));
-  };
-  const dateValue =
-    !!selectedDate && isValid(selectedDate)
-      ? format(selectedDate, 'yyyy-MM-DD')
-      : '';
-
-  return (
-    <Textbox
-      name={name}
-      prependIconName="calendar"
-      type="date"
-      value={dateValue}
-      {...props}
-      onChange={onChangeIntercept}
-    />
-  );
-}
-
-const DatePicker = React.memo(function DatePicker(props) {
-  /* eslint-disable no-unused-vars */
-  const {
-    children,
-    name,
-    onChange,
-    onBlur,
-    placeholder,
-    selectedDate,
-    allowNativeDatepickerOnMobile,
-    ...otherProps
-  } = props;
-
-  const theme = useTheme();
-  const windowWidth = useWindowWidth();
-
   /* eslint-disable react/forbid-foreign-prop-types */
-  const datepickerProps = pick(
-    otherProps,
-    Object.keys(ReactDatePickerPropTypes)
-  );
-  const textboxProps = omit(otherProps, Object.keys(ReactDatePickerPropTypes));
+  const datepickerProps = pick(props, Object.keys(ReactDatePickerPropTypes));
+  const textboxProps = omit(props, Object.keys(ReactDatePickerPropTypes));
   /* eslint-enable */
-  const verifiedDate = getVerifiedDate(selectedDate);
 
   const textbox = (
-    <DateTextbox
+    <MaskedTextbox
       maskType="date"
-      name={name}
       prependIconName="calendar"
+      ref={inputRef}
       {...textboxProps}
     />
   );
-
-  const mobileDatePicker = (
-    <NativeDatePicker
-      selectedDate={verifiedDate}
-      onChange={onChange}
-      onBlur={onBlur}
-      name={name}
-      id={otherProps.id}
-      {...textboxProps}
-    />
-  );
-
-  const nonMobileDatePicker = (
-    <ReactDatePicker
-      customInput={textbox}
-      onChange={onChange}
-      onBlur={onBlur}
-      placeholderText={placeholder}
-      selected={verifiedDate}
-      id={otherProps.id}
-      {...datepickerProps}
-    >
-      {children}
-    </ReactDatePicker>
-  );
-
-  const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
-  const datePicker =
-    allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
-      ? mobileDatePicker
-      : nonMobileDatePicker;
 
   return (
     <>
       <DatepickerStyles />
-      <BlockContainer>{datePicker}</BlockContainer>
+      <ReactDatePicker
+        customInput={textbox}
+        placeholderText={props.placeholder}
+        selected={normalizeDate(props.selectedDate)}
+        {...datepickerProps}
+      />
     </>
   );
 });
 
-DatePicker.propTypes = {
-  /** Content to display within and below the calendar */
-  children: PropTypes.node,
-  /** Callback fired when a valid date is entered */
-  onChange: PropTypes.func.isRequired,
-  /** Callback fired when input value is changed */
-  onChangeRaw: PropTypes.func,
-  /** Callback fired when datepicker loses focus */
-  onBlur: PropTypes.func,
-  /** input field placeholder */
-  placeholder: PropTypes.string,
-  /** Date object or string representing the selected date */
-  selectedDate: PropTypes.oneOfType([
-    PropTypes.instanceOf(Date),
-    PropTypes.string
-  ]),
-  /** Array of moment objects to exclude from the calendar */
-  excludeDates: PropTypes.array,
-  /** Array of Date objects to highlight on the calendar */
-  highlightDates: PropTypes.array,
-  /** Array of Date objects to whitelist on calendar */
-  includeDates: PropTypes.array,
-  /** Function used to filter calendar dates */
-  filterDate: PropTypes.func,
-  /** Sets the datepicker as the Start input of a data range */
-  selectsStart: PropTypes.bool,
-  /** Sets the datepicker as the End input of a date range */
-  selectsEnd: PropTypes.bool,
-  /** Sets the start date in a range */
-  startDate: PropTypes.instanceOf(Date),
-  /** Sets the end date in a range */
-  endDate: PropTypes.instanceOf(Date),
-  /**
-   * Determines whether to use the native datepicker instead of the React datepicker on mobile devices.
-   * For complicated scenarios like date ranges and such, it is recommended to disable this.
-   * Defaults to true.
-   */
-  allowNativeDatepickerOnMobile: PropTypes.bool
+const DatePickerV2 = React.memo(function DatePickerV2(props) {
+  const [selectedDate, setSelectedDate] = useState(
+    normalizeDate(props.selectedDate)
+  );
+
+  function dateSelected(dateOrEvent) {
+    if (isValid(dateOrEvent)) {
+      setSelectedDate(dateOrEvent);
+    } else {
+      const normalizedDate = normalizeDate(dateOrEvent.target.value);
+      setSelectedDate(normalizedDate);
+    }
+  }
+
+  useEffect(
+    () => {
+      if (
+        normalizeDateString(selectedDate) !==
+        normalizeDateString(props.selectedDate)
+      ) {
+        props.onChange(selectedDate);
+      }
+    },
+    [selectedDate]
+  );
+
+  const windowWidth = useWindowWidth();
+  const theme = useTheme();
+  const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
+
+  const DatePicker =
+    props.allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
+      ? NativeDatePicker
+      : DateTextbox;
+
+  const actualProps = {
+    ...props,
+    selectedDate,
+    onChange: props.onChange ? dateSelected : noop,
+    onBlur: props.onBlur ? dateSelected : noop
+  };
+
+  return <DatePicker {...actualProps} />;
+});
+
+DatePickerV2.propTypes = {
+  allowNativeDatepickerOnMobile: PropTypes.bool,
+  selectedDate: PropTypes.oneOf([PropTypes.Date, PropTypes.string])
 };
 
-DatePicker.defaultProps = {
-  children: undefined,
-  name: undefined,
-  onBlur: noop,
-  onChangeRaw: noop,
-  placeholder: 'mm/dd/yyyy',
-  selectedDate: undefined,
-  excludeDates: undefined,
-  highlightDates: undefined,
-  includeDates: undefined,
-  filterDate: undefined,
-  selectsStart: false,
-  selectsEnd: false,
-  startDate: undefined,
-  endDate: undefined,
+DatePickerV2.defaultProps = {
   allowNativeDatepickerOnMobile: true
 };
 
-export default DatePicker;
+export default DatePickerV2;

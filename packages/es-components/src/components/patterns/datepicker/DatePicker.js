@@ -75,7 +75,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   );
 });
 
-const DatePickerV2 = React.memo(function DatePickerV2(props) {
+const DatePicker = React.memo(function DatePickerV2(props) {
   const [selectedDate, setSelectedDate] = useState(
     normalizeDate(props.selectedDate)
   );
@@ -105,7 +105,7 @@ const DatePickerV2 = React.memo(function DatePickerV2(props) {
   const theme = useTheme();
   const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
 
-  const DatePicker =
+  const DatePickerInput =
     props.allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
       ? NativeDatePicker
       : DateTextbox;
@@ -117,16 +117,16 @@ const DatePickerV2 = React.memo(function DatePickerV2(props) {
     onBlur: props.onBlur ? dateSelected : noop
   };
 
-  return <DatePicker {...actualProps} />;
+  return <DatePickerInput {...actualProps} />;
 });
 
-DatePickerV2.propTypes = {
+DatePicker.propTypes = {
   allowNativeDatepickerOnMobile: PropTypes.bool,
-  selectedDate: PropTypes.oneOf([PropTypes.Date, PropTypes.string])
+  selectedDate: PropTypes.oneOfType([PropTypes.date, PropTypes.string])
 };
 
-DatePickerV2.defaultProps = {
+DatePicker.defaultProps = {
   allowNativeDatepickerOnMobile: true
 };
 
-export default DatePickerV2;
+export default DatePicker;

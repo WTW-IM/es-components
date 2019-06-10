@@ -1,6 +1,6 @@
 Based on <a href="https://hacker0x01.github.io/react-datepicker" target="blank">React-Datepicker</a> and supports most of the props documented there.
 
-Passes props through to the TextBox component for additional functionality (for example: validationState).
+Props are passed props through to the TextBox component unless they belong to the set of React Datepicker props.
 
 **Keyboard support**
 
@@ -13,11 +13,6 @@ Passes props through to the TextBox component for additional functionality (for 
 - Home: Move to the previous year
 - End: Move to the next year
 - Enter/Esc/Tab: Close the calendar
-
-### Events
-
-The `DatePicker` component supports event handlers for `onChange`, `onBlur`, and `onChangeRaw`. The `onChange` event will return a Date object representing the selected date, and only fires when a valid date is selected. The `onBlur` and `onChangeRaw` events will return an event with the raw value of the input.
-
 ```
 const Control = require('../../controls/Control').default;
 const AdditionalHelp = require('../../controls/AdditionalHelp').default;
@@ -63,8 +58,8 @@ function DatePickerExample() {
 ### Date Ranges
 
 ```
-const addDays = require('date-fns/add_days');
-const isAfter = require('date-fns/is_after');
+const addDays = require('date-fns').addDays;
+const isAfter = require('date-fns').isAfter;
 
 const Control = require('../../controls/Control').default;
 
@@ -160,12 +155,13 @@ function DatePickerExample() {
 <DatePickerExample />
 ```
 
+
 ### Filter Dates
 
 The `filterDate` prop accepts a function used to filter the available dates.
 
 ```
-const getDay = require('date-fns/get_day');
+const getDay = require('date-fns').getDay;
 const Control = require('../../controls/Control').default;
 
 function DatePickerExample() {
@@ -200,7 +196,7 @@ function DatePickerExample() {
 ### Include Dates (whitelist)
 
 ```
-const addDays = require('date-fns/add_days');
+const addDays = require('date-fns').addDays;
 const Control = require('../../controls/Control').default;
 
 function DatePickerExample() {
@@ -230,7 +226,7 @@ function DatePickerExample() {
 ### Exclude Dates (blacklist)
 
 ```
-const addDays = require('date-fns/add_days');
+const addDays = require('date-fns').addDays;
 const Control = require('../../controls/Control').default;
 
 function DatePickerExample() {

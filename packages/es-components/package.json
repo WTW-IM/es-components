@@ -85,7 +85,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.3.4",
-    "date-fns": "^1.29.0",
+    "date-fns": "^2.0.0-alpha.31",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react-animate-height": "^2.0.9",

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { format, isValid } from 'date-fns';
+import { format, parse, isValid } from 'date-fns';
 import { noop, pick, omit } from 'lodash';
 import ReactDatePicker from 'react-datepicker';
 
@@ -15,7 +15,7 @@ const STRING_FORMAT = 'yyyy-MM-dd';
 
 function normalizeDateString(date, stringFormat = STRING_FORMAT) {
   if (typeof date === 'string') {
-    const parsedDate = new Date(date);
+    const parsedDate = parse(date, stringFormat, new Date());
     return isValid(parsedDate) ? format(parsedDate, stringFormat) : '';
   }
   return isValid(date) ? format(date, stringFormat) : '';
@@ -23,7 +23,7 @@ function normalizeDateString(date, stringFormat = STRING_FORMAT) {
 
 function normalizeDate(date) {
   if (typeof date === 'string') {
-    const parsedDate = new Date(date);
+    const parsedDate = parse(date, STRING_FORMAT, new Date());
     return isValid(parsedDate) ? parsedDate : null;
   }
   return isValid(date) ? date : null;
@@ -75,7 +75,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   );
 });
 
-const DatePicker = React.memo(function DatePickerV2(props) {
+const DatePicker = function DatePicker(props) {
   const [selectedDate, setSelectedDate] = useState(
     normalizeDate(props.selectedDate)
   );
@@ -113,20 +113,23 @@ const DatePicker = React.memo(function DatePickerV2(props) {
   const actualProps = {
     ...props,
     selectedDate,
-    onChange: props.onChange ? dateSelected : noop,
-    onBlur: props.onBlur ? dateSelected : noop
+    onChange: props.onChange ? dateSelected : noop
   };
 
   return <DatePickerInput {...actualProps} />;
-});
+};
 
 DatePicker.propTypes = {
   allowNativeDatepickerOnMobile: PropTypes.bool,
-  selectedDate: PropTypes.oneOfType([PropTypes.date, PropTypes.string])
+  selectedDate: PropTypes.oneOfType([
+    PropTypes.instanceOf(Date),
+    PropTypes.string
+  ])
 };
 
 DatePicker.defaultProps = {
-  allowNativeDatepickerOnMobile: true
+  allowNativeDatepickerOnMobile: true,
+  selectedDate: ''
 };
 
 export default DatePicker;

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.52 (2019-06-10)</small>
+
+* Merge branch 'master' into datepicker-update-date-fns ([ed180cf](https://github.com/wtw-im/es-components/commit/ed180cf))
+* Upgrade: use date-fns@next in DatePicker ([ba798fc](https://github.com/wtw-im/es-components/commit/ba798fc))
+
+
+
+
+
 ## <small>19.0.51 (2019-06-06)</small>
 
 * New: add styleType to tooltip ([3115f05](https://github.com/wtw-im/es-components/commit/3115f05))

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.54 (2019-06-10)</small>
+
+* Fix: parse date properly ([65bceea](https://github.com/wtw-im/es-components/commit/65bceea))
+
+
+
+
+
 ## <small>19.0.53 (2019-06-10)</small>
 
 * Fix: update proptypes ([0256512](https://github.com/wtw-im/es-components/commit/0256512))

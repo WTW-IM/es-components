@@ -76,16 +76,21 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
 });
 
 const DatePicker = function DatePicker(props) {
-  const [selectedDate, setSelectedDate] = useState(
-    normalizeDate(props.selectedDate)
-  );
+  const normalizedDateFromProps = props.selectedDate
+    ? normalizeDate(props.selectedDate)
+    : null;
+  const [selectedDate, setSelectedDate] = useState(normalizedDateFromProps);
 
   function dateSelected(dateOrEvent) {
-    if (isValid(dateOrEvent)) {
-      setSelectedDate(dateOrEvent);
+    if (dateOrEvent) {
+      if (isValid(dateOrEvent)) {
+        setSelectedDate(dateOrEvent);
+      } else {
+        const normalizedDate = normalizeDate(dateOrEvent.target.value);
+        setSelectedDate(normalizedDate);
+      }
     } else {
-      const normalizedDate = normalizeDate(dateOrEvent.target.value);
-      setSelectedDate(normalizedDate);
+      setSelectedDate(null);
     }
   }
 

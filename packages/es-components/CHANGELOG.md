@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.56 (2019-06-11)</small>
+
+* Docs: re-add datepicker docs ([5ec85a7](https://github.com/wtw-im/es-components/commit/5ec85a7))
+
+
+
+
+
 ## <small>19.0.55 (2019-06-11)</small>
 
 * Fix: make sure dateOrEvent is not falsy ([33b1c66](https://github.com/wtw-im/es-components/commit/33b1c66))

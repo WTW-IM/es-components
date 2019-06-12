@@ -33,3 +33,17 @@ it('displays content for tab when corresponding button is clicked', () => {
   expect(queryByText('Tab number 1')).toBeNull();
   expect(getByText('Tab number 2')).toBeVisible();
 });
+
+it('tab does not change when canTabChange returns false', () => {
+  const { getByText, queryByText } = renderWithTheme(
+    <TabPanel canTabChange={() => false}>
+      <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
+      <TabPanel.Tab name="tab 2">Tab number 2</TabPanel.Tab>
+    </TabPanel>
+  );
+
+  getByText('tab 2').click();
+
+  expect(queryByText('Tab number 2')).toBeNull();
+  expect(getByText('Tab number 1')).toBeVisible();
+});

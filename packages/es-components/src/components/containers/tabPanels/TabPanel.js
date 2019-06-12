@@ -25,7 +25,7 @@ const TabContent = styled.div`
 `;
 
 function TabPanel(props) {
-  const { children, selectedKey, tabChanged } = props;
+  const { children, selectedKey, tabChanged, canTabChange } = props;
   const [value, setValue] = useState(selectedKey);
 
   let selectedIndex = findIndex(React.Children.toArray(children), child => {
@@ -43,8 +43,11 @@ function TabPanel(props) {
     React.cloneElement(child, {
       selected: index === selectedIndex,
       action: header => {
-        setValue(header);
-        tabChanged(header);
+        const canChange = canTabChange(header);
+        if (canChange) {
+          setValue(header);
+          tabChanged(header);
+        }
       }
     })
   );
@@ -83,6 +86,10 @@ TabPanel.propTypes = {
   children: childrenRule,
   selectedKey: PropTypes.any,
   /**
+   * Callback run before the selected tab has changed. The callback is given the name of the tab that is active and returns whether the tab change event should fire.
+   */
+  canTabChange: PropTypes.func,
+  /**
    * Callback when the selected tab has changed. The callback is given the name of the tab that is active
    */
   tabChanged: PropTypes.func
@@ -91,7 +98,8 @@ TabPanel.propTypes = {
 TabPanel.defaultProps = {
   children: undefined,
   selectedKey: '',
-  tabChanged: noop
+  tabChanged: noop,
+  canTabChange: () => true
 };
 
 TabPanel.Tab = Tab;

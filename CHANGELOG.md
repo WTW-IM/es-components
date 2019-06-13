@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.57 (2019-06-13)</small>
+
+* Update: adds ability to check if the tab panel can switch tabs ([dc1fb5e](https://github.com/wtw-im/es-components/commit/dc1fb5e))
+
+
+
+
+
 ## <small>19.0.56 (2019-06-11)</small>
 
 * Docs: re-add datepicker docs ([5ec85a7](https://github.com/wtw-im/es-components/commit/5ec85a7))

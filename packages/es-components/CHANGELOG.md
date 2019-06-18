@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.58 (2019-06-18)</small>
+
+* Fix: notification dismiss utilizes state instead of DOM ([87ea356](https://github.com/wtw-im/es-components/commit/87ea356))
+
+
+
+
+
 ## <small>19.0.57 (2019-06-13)</small>
 
 * Update: adds ability to check if the tab panel can switch tabs ([dc1fb5e](https://github.com/wtw-im/es-components/commit/dc1fb5e))

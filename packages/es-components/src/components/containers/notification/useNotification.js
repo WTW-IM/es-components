@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
@@ -32,10 +32,7 @@ const ContentWrapper = styled.div`
   word-break: break-word;
 `;
 
-const NotificationContent = React.forwardRef(function NotificationContent(
-  props,
-  ref
-) {
+function NotificationContent(props) {
   const {
     includeIcon,
     isDismissable,
@@ -43,22 +40,13 @@ const NotificationContent = React.forwardRef(function NotificationContent(
     children,
     iconName,
     iconColor,
-    color
+    color,
+    dismissNotification
   } = props;
-  const [isDismissed, setIsDismissed] = useState(false);
 
-  useEffect(
-    function removeNotification() {
-      if (isDismissed) {
-        ref.current.remove();
-      }
-    },
-    [isDismissed]
-  );
-
-  function dismissNotification() {
+  function dismiss() {
     onDismiss();
-    setIsDismissed(true);
+    dismissNotification();
   }
 
   return (
@@ -67,10 +55,10 @@ const NotificationContent = React.forwardRef(function NotificationContent(
         <NotificationIcon name={iconName} iconColor={iconColor} size={28} />
       )}
       <ContentWrapper>{children}</ContentWrapper>
-      {isDismissable && <Dismiss onClick={dismissNotification} color={color} />}
+      {isDismissable && <Dismiss onClick={dismiss} color={color} />}
     </>
   );
-});
+}
 
 const Notification = styled.div`
   align-items: center;
@@ -98,22 +86,28 @@ const Notification = styled.div`
 export function useNotification(styleType = 'base') {
   return function BaseNotification({ role, type, children, ...rest }) {
     const theme = useTheme();
-    const notificationRef = useRef(null);
     const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
     const iconColor =
       styleType === 'light' ? theme.colors[type] : theme.colors.white;
     const notificationContentProps = { color, iconName, iconColor, ...rest };
+    const [isDismissed, setIsDismissed] = useState(false);
+
+    function dismissNotification() {
+      setIsDismissed(true);
+    }
 
     return (
-      <Notification ref={notificationRef} role={role} variant={color}>
-        <NotificationContent
-          ref={notificationRef}
-          {...notificationContentProps}
-        >
-          {children}
-        </NotificationContent>
-      </Notification>
+      !isDismissed && (
+        <Notification role={role} variant={color}>
+          <NotificationContent
+            dismissNotification={dismissNotification}
+            {...notificationContentProps}
+          >
+            {children}
+          </NotificationContent>
+        </Notification>
+      )
     );
   };
 }

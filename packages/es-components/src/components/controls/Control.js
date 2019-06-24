@@ -1,11 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
 
+const DangerBorder = css`
+  ${props =>
+    props.useDangerBorder &&
+    props.validationState === 'danger' &&
+    css`
+      border-bottom: 2px solid ${props.theme.colors.gray4};
+      box-shadow: inset 0 7px 6px -6px ${props.theme.colors.danger};
+      padding: 15px;
+      margin-left: -15px;
+      margin-right: -15px;
+    `}
+  }
+`;
+
 const FlexControl = styled.div`
+  ${DangerBorder}
   color: ${props => props.textColor};
   display: flex;
   flex-wrap: wrap;
@@ -25,6 +40,8 @@ const FlexControl = styled.div`
 `;
 
 const InlineControl = styled(FlexControl)`
+  ${DangerBorder}
+
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     align-items: baseline;
     flex-direction: row;
@@ -32,7 +49,7 @@ const InlineControl = styled(FlexControl)`
 `;
 
 function Control(props) {
-  const { validationState, orientation, children } = props;
+  const { validationState, orientation, useDangerBorder, children } = props;
   const ControlWrapper = orientation === 'inline' ? InlineControl : FlexControl;
 
   const theme = useTheme();
@@ -41,6 +58,8 @@ function Control(props) {
   return (
     <ControlWrapper
       textColor={textColor}
+      useDangerBorder={useDangerBorder}
+      validationState={validationState}
       {...theme.validationInputColor[validationState]}
       className={props.className}
     >
@@ -54,13 +73,15 @@ function Control(props) {
 Control.propTypes = {
   orientation: PropTypes.oneOf(['stacked', 'inline']),
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
-  children: PropTypes.node
+  children: PropTypes.node,
+  useDangerBorder: PropTypes.bool
 };
 
 Control.defaultProps = {
   orientation: 'stacked',
   validationState: 'default',
-  children: null
+  children: null,
+  useDangerBorder: false
 };
 
 export default Control;

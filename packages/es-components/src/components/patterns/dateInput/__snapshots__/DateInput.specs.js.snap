@@ -3,7 +3,7 @@
 exports[`displays monthNames provided by the monthNames prop 1`] = `
 <div>
   <div
-    class="sc-bdVaJa jJHNwS"
+    class="sc-bdVaJa kqqmsX"
   >
     <label
       class="sc-htpNat hABoEw"
@@ -61,7 +61,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
 exports[`hides the Day input when Day is excluded 1`] = `
 <div>
   <div
-    class="sc-bdVaJa jJHNwS"
+    class="sc-bdVaJa kqqmsX"
   >
     <label
       class="sc-htpNat hABoEw"

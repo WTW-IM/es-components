@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Icon from '../../base/icons/Icon';
 import InputBase from './InputBase';
 
 const defaultBorderRadius = '2px';
@@ -16,12 +15,6 @@ const TextboxBase = styled(InputBase)`
   color: inherit;
   display: table-cell;
   -webkit-appearance: none;
-`;
-
-const ValidationIcon = styled(Icon)`
-  align-self: flex-start;
-  font-size: 35px;
-  margin-right: 5px;
 `;
 
 const AddOn = styled.button`
@@ -60,4 +53,4 @@ const InputWrapper = styled.div`
   display: flex;
 `;
 
-export { ValidationIcon, Prepend, Append, InputWrapper, TextboxBase };
+export { Prepend, Append, InputWrapper, TextboxBase };

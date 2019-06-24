@@ -4,7 +4,13 @@ import styled from 'styled-components';
 
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
-import { ValidationIcon } from './textbox/TextAddons';
+import Icon from '../base/icons/Icon';
+
+const ValidationIcon = styled(Icon)`
+  align-self: flex-start;
+  font-size: 35px;
+  margin-right: 5px;
+`;
 
 const HelpText = styled.div`
   align-items: center;

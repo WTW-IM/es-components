@@ -69,11 +69,12 @@ const AdditionalHelp = require('../../controls/AdditionalHelp').default;
 function DateInputExample() {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const [myDate, setMyDate] = React.useState();
-  const [validation, setValidation] = React.useState();
+  const [validation, setValidation] = React.useState('default');
 
   function handleChange(date) {
     console.log(date);
     setMyDate(date);
+    setValidation('default');
   }
 
   function handleOnBlur() {
@@ -94,10 +95,9 @@ function DateInputExample() {
         <DateInput.Year />
       </DateInput>
       <AdditionalHelp>
-        <span>{myDate &&
-                (myDate.isInRange
+        <span>{myDate && myDate.isInRange
                   ? `You entered: ${myDate.value.toLocaleDateString("en-US", options)}`
-                  : validation && 'The date you entered is outside the valid range.')}</span>
+                  : validation !== 'default' && 'The date you entered is outside the valid range.'}</span>
       </AdditionalHelp>
     </Control>
   );

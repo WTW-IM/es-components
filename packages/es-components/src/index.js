@@ -9,6 +9,7 @@ export {
 } from './components/containers/notification/Message';
 export Drawer from './components/containers/drawer/Drawer';
 export Fieldset from './components/containers/fieldset/Fieldset';
+export Legend from './components/containers/fieldset/Legend';
 export Tooltip from './components/containers/tooltip/Tooltip';
 export Popover from './components/containers/popover/Popover';
 export Modal from './components/containers/modal/Modal';

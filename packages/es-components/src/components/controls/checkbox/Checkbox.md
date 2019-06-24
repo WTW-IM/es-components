@@ -40,44 +40,31 @@ class CheckboxExample extends React.Component {
   }
 
   render() {
-    const wrapperStyle = {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-      width: '350px'
-    };
-
     return (
-      <div style={wrapperStyle}>
-        <Control>
-          <Checkbox
-            value="Apple"
-            checked={this.state.isAppleChecked}
-            onChange={this.toggleCheckbox('isAppleChecked')}
-          >
-            Apple
-          </Checkbox>
-        </Control>
-        <Control>
-          <Checkbox
-            value="Banana"
-            checked={this.state.isBananaChecked}
-            onChange={this.toggleCheckbox('isBananaChecked')}
-          >
-            Banana
-          </Checkbox>
-        </Control>
-        <Control>
-          <Checkbox
-            value="Strawberry"
-            checked={this.state.isStrawberryChecked}
-            onChange={this.toggleCheckbox('isStrawberryChecked')}
-            disabled
-          >
-            Strawberry
-          </Checkbox>
-        </Control>
-      </div>
+      <Control orientation="inline">
+        <Checkbox
+          value="Apple"
+          checked={this.state.isAppleChecked}
+          onChange={this.toggleCheckbox('isAppleChecked')}
+        >
+          Apple
+        </Checkbox>
+        <Checkbox
+          value="Banana"
+          checked={this.state.isBananaChecked}
+          onChange={this.toggleCheckbox('isBananaChecked')}
+        >
+          Banana
+        </Checkbox>
+        <Checkbox
+          value="Strawberry"
+          checked={this.state.isStrawberryChecked}
+          onChange={this.toggleCheckbox('isStrawberryChecked')}
+          disabled
+        >
+          Strawberry
+        </Checkbox>
+      </Control>
     );
   }
 }
@@ -90,6 +77,8 @@ class CheckboxExample extends React.Component {
 ```
 const Control = require('../Control').default;
 const AdditionalHelp = require('../AdditionalHelp').default;
+const Fieldset = require('../../containers/fieldset/Fieldset').default;
+const Legend = require('../../containers/fieldset/Legend').default;
 
 class CheckboxExample extends React.Component {
   constructor() {
@@ -110,44 +99,95 @@ class CheckboxExample extends React.Component {
 
   render() {
     return (
-      <div>
-        <Control validationState="success">
-          <Checkbox
-            value="Apple"
-            checked={this.state.isAppleChecked}
-            onChange={this.toggleCheckbox('isAppleChecked')}
-          >
-            Apple
-          </Checkbox>
-          <AdditionalHelp>
-            When validation state is set to success.
-          </AdditionalHelp>
-        </Control>
-        <Control validationState="warning">
-          <Checkbox
-            value="Banana"
-            checked={this.state.isBananaChecked}
-            onChange={this.toggleCheckbox('isBananaChecked')}
-          >
-            Banana
-          </Checkbox>
-          <AdditionalHelp>
-            When validation state is set to warning.
-          </AdditionalHelp>
-        </Control>
-        <Control validationState="danger">
-          <Checkbox
-            value="Strawberry"
-            checked={this.state.isStrawberryChecked}
-            onChange={this.toggleCheckbox('isStrawberryChecked')}
-          >
-            Strawberry
-          </Checkbox>
-          <AdditionalHelp>
-            When validation state is set to danger.
-          </AdditionalHelp>
-        </Control>
-      </div>
+      <>
+        <Fieldset legendContent="Fruits">
+          <Control validationState="success">
+            <Checkbox
+              value="Apple"
+              checked={this.state.isAppleChecked}
+              onChange={this.toggleCheckbox('isAppleChecked')}
+            >
+              Apple
+            </Checkbox>
+            <Checkbox
+              value="Strawberry"
+              checked={this.state.isStrawberryChecked}
+              onChange={this.toggleCheckbox('isStrawberryChecked')}
+            >
+              Strawberry
+            </Checkbox>
+            <Checkbox
+              value="Banana"
+              checked={this.state.isBananaChecked}
+              onChange={this.toggleCheckbox('isBananaChecked')}
+            >
+              Banana
+            </Checkbox>
+            <AdditionalHelp>
+              When validation state is set to success.
+            </AdditionalHelp>
+          </Control>
+        </Fieldset>
+
+        <Fieldset legendContent="Fruits">
+          <Control validationState="warning">
+            <Checkbox
+              value="Apple"
+              checked={this.state.isAppleChecked}
+              onChange={this.toggleCheckbox('isAppleChecked')}
+            >
+              Apple
+            </Checkbox>
+            <Checkbox
+              value="Strawberry"
+              checked={this.state.isStrawberryChecked}
+              onChange={this.toggleCheckbox('isStrawberryChecked')}
+            >
+              Strawberry
+            </Checkbox>
+            <Checkbox
+              value="Banana"
+              checked={this.state.isBananaChecked}
+              onChange={this.toggleCheckbox('isBananaChecked')}
+            >
+              Banana
+            </Checkbox>
+            <AdditionalHelp>
+              When validation state is set to warning.
+            </AdditionalHelp>
+          </Control>
+        </Fieldset>
+
+        <Fieldset>
+          <Control validationState="danger" useDangerBorder>
+            <Legend>Fruits</Legend>
+            <Checkbox
+              value="Apple"
+              checked={this.state.isAppleChecked}
+              onChange={this.toggleCheckbox('isAppleChecked')}
+            >
+              Apple
+            </Checkbox>
+            <Checkbox
+              value="Strawberry"
+              checked={this.state.isStrawberryChecked}
+              onChange={this.toggleCheckbox('isStrawberryChecked')}
+            >
+              Strawberry
+            </Checkbox>
+            <Checkbox
+              value="Banana"
+              checked={this.state.isBananaChecked}
+              onChange={this.toggleCheckbox('isBananaChecked')}
+            >
+              Banana
+            </Checkbox>
+            <AdditionalHelp>
+              When validation state is set to danger.
+            </AdditionalHelp>
+          </Control>
+        </Fieldset>
+      </>
     );
   }
 }

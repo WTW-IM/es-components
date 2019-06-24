@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Legend from './Legend';
 
 const StyledFieldset = styled.fieldset`
   border: 0;
@@ -10,18 +11,6 @@ const StyledFieldset = styled.fieldset`
   > *:last-child {
     margin-bottom: 0;
   }
-`;
-
-const Legend = styled.legend`
-  border: 0;
-  border-bottom: 1px solid ${props => props.theme.colors.gray6};
-  color: ${props => props.theme.colors.black};
-  display: block;
-  font-size: 21.6px;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
-  margin: 0 0 18px 0;
-  padding: 0;
-  width: 100%;
 `;
 
 function Fieldset(props) {

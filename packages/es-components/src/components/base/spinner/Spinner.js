@@ -28,18 +28,18 @@ const dashAnimation = keyframes`
   }
 `;
 
-const colorsAnimation = keyframes`
+const colorsAnimation = props => keyframes`
   0% {
-    stroke: #00a0d2;
+    stroke: ${props.theme.brandColors.vbBlue};
   }
   40% {
-    stroke: #00c389;
+    stroke: ${props.theme.brandColors.vbGreen};
   }
   80% {
-    stroke: #c110a0;
+    stroke: ${props.theme.brandColors.vbMagenta};
   }
   100% {
-    stroke: #00a0d2;
+    stroke: ${props.theme.brandColors.vbBlue};
   }
 `;
 

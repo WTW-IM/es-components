@@ -12,9 +12,9 @@ const DangerBorder = css`
     css`
       border-bottom: 2px solid ${props.theme.colors.gray4};
       box-shadow: inset 0 7px 6px -6px ${props.theme.colors.danger};
-      padding: 15px;
-      margin-left: -15px;
-      margin-right: -15px;
+      padding: 15px ${props.borderOffset};
+      margin-left: -${props.borderOffset};
+      margin-right: -${props.borderOffset};
     `}
   }
 `;
@@ -49,7 +49,13 @@ const InlineControl = styled(FlexControl)`
 `;
 
 function Control(props) {
-  const { validationState, orientation, useDangerBorder, children } = props;
+  const {
+    validationState,
+    orientation,
+    useDangerBorder,
+    borderOffset,
+    children
+  } = props;
   const ControlWrapper = orientation === 'inline' ? InlineControl : FlexControl;
 
   const theme = useTheme();
@@ -59,6 +65,7 @@ function Control(props) {
     <ControlWrapper
       textColor={textColor}
       useDangerBorder={useDangerBorder}
+      borderOffset={borderOffset}
       validationState={validationState}
       {...theme.validationInputColor[validationState]}
       className={props.className}
@@ -74,14 +81,18 @@ Control.propTypes = {
   orientation: PropTypes.oneOf(['stacked', 'inline']),
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   children: PropTypes.node,
-  useDangerBorder: PropTypes.bool
+  /** Apply a top/bottom danger border to a control (usually checkbox/radios)  */
+  useDangerBorder: PropTypes.bool,
+  /** Set the border offset to match container padding */
+  borderOffset: PropTypes.string
 };
 
 Control.defaultProps = {
   orientation: 'stacked',
   validationState: 'default',
   children: null,
-  useDangerBorder: false
+  useDangerBorder: false,
+  borderOffset: '15px'
 };
 
 export default Control;

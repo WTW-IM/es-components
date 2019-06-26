@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.59 (2019-06-26)</small>
+
+* New: responsiveTable and table options ([dd5cc7e](https://github.com/wtw-im/es-components/commit/dd5cc7e))
+* Update: table responsive option ([d75b60d](https://github.com/wtw-im/es-components/commit/d75b60d))
+
+
+
+
+
 ## <small>19.0.58 (2019-06-18)</small>
 
 * Fix: notification dismiss utilizes state instead of DOM ([87ea356](https://github.com/wtw-im/es-components/commit/87ea356))

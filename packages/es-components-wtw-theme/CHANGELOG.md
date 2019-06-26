@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.59 (2019-06-26)</small>
+
+* New: responsiveTable and table options ([dd5cc7e](https://github.com/WTW-IM/es-components/commit/dd5cc7e))
+
+
+
+
+
 ## <small>19.0.50 (2019-06-06)</small>
 
 * New: create a new button style object for link buttons ([adbaf13](https://github.com/WTW-IM/es-components/commit/adbaf13))

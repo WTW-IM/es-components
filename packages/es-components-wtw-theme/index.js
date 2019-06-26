@@ -1,4 +1,5 @@
 const white = '#fff';
+const gray0 = '#f9f9f9';
 const gray1 = '#f4f4f4';
 const gray2 = '#ecedee';
 const gray3 = '#e4e4e4';
@@ -63,6 +64,7 @@ const highlightHover = '#32be3f';
 const theme = {
   colors: {
     black: black,
+    gray0: gray0,
     gray1: gray1,
     gray2: gray2,
     gray3: gray3,

@@ -18,6 +18,7 @@ export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
 export Heading from './components/containers/heading/Heading';
 export Table from './components/containers/table/Table';
+export ResponsiveTable from './components/containers/table/ResponsiveTable';
 
 export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';

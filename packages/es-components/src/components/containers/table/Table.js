@@ -10,87 +10,84 @@ const TableBase = styled.table`
   padding: 0;
   width: 100%;
 
-  ${props =>
-    props.isResponsive &&
-    css`
-      &&& {
-        @media (max-width: ${props.theme.screenSize.phone}) {
-          thead {
-            border: none;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            margin: -1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute;
-            width: 1px;
-          }
+  caption {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: ${props => props.theme.colors.gray8};
+    text-align: left;
+  }
 
-          tr {
-            background-color: ${props.theme.colors.gray1};
-            border: 1px solid ${props.theme.colors.gray4};
-            border-bottom: 3px solid ${props.theme.colors.gray4};
-            display: block;
-            margin-bottom: 0.625em;
-            padding: 0.35em;
-          }
+  th {
+    border-bottom: 2px solid ${props => props.theme.colors.gray4};
+    font-weight: bold;
+    line-height: ${props => props.theme.sizes.baseLineHeight};
+    padding: ${props => props.cellPadding};
+    text-align: left;
+    vertical-align: bottom;
+  }
 
-          td {
-            border-bottom: 1px solid ${props.theme.colors.gray4};
-            display: block;
-            font-size: 0.8em;
-            padding: 0.625em;
-            text-align: right;
+  td {
+    border-top: 1px solid ${props => props.theme.colors.gray4};
+    line-height: ${props => props.theme.sizes.baseLineHeight};
+    padding: ${props => props.cellPadding};
+    vertical-align: top;
+  }
 
-            &:before {
-              content: attr(data-label);
-              float: left;
-              font-weight: bold;
-            }
-
-            &:last-child {
-              border-bottom: 0;
-            }
-          }
+  tbody {
+    ${props =>
+      props.hasStripes &&
+      css`
+        tr:nth-of-type(odd) {
+          background-color: ${props.theme.colors.gray0};
         }
-      }
-    `};
-`;
+      `};
+  }
 
-const TableRow = styled.tr`
-  &:last-of-type td {
-    border: 0;
+  && tbody {
+    ${props =>
+      props.hasHover &&
+      css`
+        tr:hover {
+          background-color: ${props.theme.colors.gray1};
+        }
+      `};
   }
 `;
 
-const TableBodyCell = styled.td`
-  border-bottom: 1px solid ${props => props.theme.colors.gray4};
-  padding: 8px;
-  text-align: left;
-`;
-
-const TableHeaderCell = styled.th`
-  border-bottom: 2px solid ${props => props.theme.colors.gray4};
-  font-weight: bold;
-  padding: 8px;
-  text-align: left;
-`;
-
 function Table(props) {
-  return <TableBase {...props} />;
+  const { isCondensed, isRoomy, ...rest } = props;
+  let cellPadding = '8px';
+  cellPadding = isCondensed ? '5px' : cellPadding;
+  cellPadding = isRoomy ? '12px' : cellPadding;
+
+  return <TableBase cellPadding={cellPadding} {...rest} />;
 }
+
+// kept to preserve backward-compatibility for now
+const TableRow = styled.tr``;
+const TableBodyCell = styled.td``;
+const TableHeaderCell = styled.th``;
 
 Table.Row = TableRow;
 Table.Cell = TableBodyCell;
 Table.HeaderCell = TableHeaderCell;
 
 Table.propTypes = {
-  /** Render a responsive table that changes layout on mobile devices */
-  isResponsive: PropTypes.bool
+  /** adds a darker background to every other row */
+  hasStripes: PropTypes.bool,
+  /** adds a hover effect to rows */
+  hasHover: PropTypes.bool,
+  /** reduce cell padding for a smaller footprint */
+  isCondensed: PropTypes.bool,
+  /** increase cell padding for more white space */
+  isRoomy: PropTypes.bool
 };
 
 Table.defaultProps = {
-  isResponsive: false
+  hasStripes: false,
+  hasHover: false,
+  isCondensed: false,
+  isRoomy: false
 };
 
 export default Table;

@@ -26,7 +26,7 @@ const TableBase = styled(Table)`
       }
 
       td {
-        border-bottom: 1px solid ${props => props.theme.colors.gray4};
+        border-top: 1px solid ${props => props.theme.colors.gray4};
         display: block;
         font-size: 0.8em;
         padding: 0.625em;

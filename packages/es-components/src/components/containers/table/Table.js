@@ -17,8 +17,18 @@ const TableBase = styled.table`
     text-align: left;
   }
 
-  th {
+  thead th {
     border-bottom: 2px solid ${props => props.theme.colors.gray4};
+  }
+
+  tbody tr:not(:first-child) {
+    th,
+    td {
+      border-top: 1px solid ${props => props.theme.colors.gray4};
+    }
+  }
+
+  th {
     font-weight: bold;
     line-height: ${props => props.theme.sizes.baseLineHeight};
     padding: ${props => props.cellPadding};
@@ -27,7 +37,6 @@ const TableBase = styled.table`
   }
 
   td {
-    border-top: 1px solid ${props => props.theme.colors.gray4};
     line-height: ${props => props.theme.sizes.baseLineHeight};
     padding: ${props => props.cellPadding};
     vertical-align: top;

@@ -1,42 +1,45 @@
-`ResponsiveTable` will adapt its layout for smaller screens. You'll also need to add `data-label='[column name]'` on table cells to associate them with column names. Accepts all `Table` props.
+`ResponsiveTable` will adapt a column-based table layout for smaller screens. You'll also need to add `data-label='[column name]'` on table cells to associate them with column names. Accepts all `Table` props.
+
+Due to the way ResponsiveTable hides the normal `thead` on small screens and displays each column in its own block,
+row-based table headings don't work well with this component.
 
 ### Responsive Table
 
 ```
 <ResponsiveTable hasStripes>
   <thead>
-    <Table.Row>
-      <Table.HeaderCell scope="col">Name</Table.HeaderCell>
-      <Table.HeaderCell scope="col">Age</Table.HeaderCell>
-      <Table.HeaderCell scope="col">Height</Table.HeaderCell>
-    </Table.Row>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Height</th>
+    </tr>
   </thead>
   <tbody>
-    <Table.Row>
-      <Table.Cell scope="row" data-label="Name">Bill</Table.Cell>
-      <Table.Cell data-label="Age">33</Table.Cell>
-      <Table.Cell data-label="Height">5'4"</Table.Cell>
-    </Table.Row>
-    <Table.Row>
-      <Table.Cell scope="row" data-label="Name">Robin</Table.Cell>
-      <Table.Cell data-label="Age">20</Table.Cell>
-      <Table.Cell data-label="Height">5'9"</Table.Cell>
-    </Table.Row>
-    <Table.Row>
-      <Table.Cell scope="row" data-label="Name">Thomas</Table.Cell>
-      <Table.Cell data-label="Age">45</Table.Cell>
-      <Table.Cell data-label="Height">5'11"</Table.Cell>
-    </Table.Row>
-    <Table.Row>
-      <Table.Cell scope="row" data-label="Name">Michael</Table.Cell>
-      <Table.Cell data-label="Age">40</Table.Cell>
-      <Table.Cell data-label="Height">6'</Table.Cell>
-    </Table.Row>
-    <Table.Row>
-      <Table.Cell scope="row" data-label="Name">Noah</Table.Cell>
-      <Table.Cell data-label="Age">24</Table.Cell>
-      <Table.Cell data-label="Height">5'7"</Table.Cell>
-    </Table.Row>
+    <tr>
+      <td scope="row" data-label="Name">Bill</td>
+      <td data-label="Age">33</td>
+      <td data-label="Height">5'4"</td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Name">Robin</td>
+      <td data-label="Age">20</td>
+      <td data-label="Height">5'9"</td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Name">Thomas</td>
+      <td data-label="Age">45</td>
+      <td data-label="Height">5'11"</td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Name">Michael</td>
+      <td data-label="Age">40</td>
+      <td data-label="Height">6'</td>
+    </tr>
+    <tr>
+      <td scope="row" data-label="Name">Noah</td>
+      <td data-label="Age">24</td>
+      <td data-label="Height">5'7"</td>
+    </tr>
   </tbody>
 </ResponsiveTable>
 ```

@@ -33,6 +33,26 @@
 </Table>
 ```
 
+```
+<Table>
+  <caption>Row-based table headings</caption>
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td>Rufus</td>
+    </tr>
+    <tr>
+      <th scope="row">Age</th>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th scope="row">Height</th>
+      <td>5'11"</td>
+    </tr>
+  </tbody>
+</Table>
+```
+
 ### Other Options
 
 ```

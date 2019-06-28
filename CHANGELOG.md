@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.60 (2019-06-28)</small>
+
+* Update: table supports row-based headings ([dc9903e](https://github.com/wtw-im/es-components/commit/dc9903e))
+
+
+
+
+
 ## <small>19.0.59 (2019-06-26)</small>
 
 * New: responsiveTable and table options ([dd5cc7e](https://github.com/wtw-im/es-components/commit/dd5cc7e))

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.61 (2019-07-01)</small>
+
+* Update: spinner uses theme for colors ([d7c7bbe](https://github.com/wtw-im/es-components/commit/d7c7bbe))
+
+
+
+
+
 ## <small>19.0.60 (2019-06-28)</small>
 
 * Update: table supports row-based headings ([dc9903e](https://github.com/wtw-im/es-components/commit/dc9903e))

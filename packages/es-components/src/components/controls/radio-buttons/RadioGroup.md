@@ -13,16 +13,16 @@ function RadioGroupExample() {
 
   return (
     <>
-      <Fieldset legendContent="Recreational Activities">
-        <Control orientation="inline" validationState="success">
+      <Control orientation="inline" validationState="success">
+        <Fieldset legendContent="Recreational Activities">
           <RadioGroup name="recreational-activities" onChange={handleRadioChange} selectedValue={activity}>
             <RadioButton value="hiking">Hiking</RadioButton>
             <RadioButton value="biking" disabled>Biking</RadioButton>
             <RadioButton value="kayaking">Kayaking</RadioButton>
             <RadioButton value="camping">Camping</RadioButton>
           </RadioGroup>
-        </Control>
-      </Fieldset>
+        </Fieldset>
+      </Control>
       <p>You've selected: {activity}</p>
     </>
   )
@@ -63,28 +63,28 @@ const options = [
 ];
 
 <div>
-  <Fieldset legendContent="Success">
-    <Control validationState="success">
+  <Control validationState="success">
+    <Fieldset legendContent="Success">
       <RadioGroup name="success">
         {options}
       </RadioGroup>
-    </Control>
-  </Fieldset>
+    </Fieldset>
+  </Control>
 
-  <Fieldset legendContent="Warning">
-    <Control validationState="warning">
+  <Control validationState="warning">
+    <Fieldset legendContent="Warning">
       <RadioGroup name="warning">
         {options}
       </RadioGroup>
-    </Control>
-  </Fieldset>
+    </Fieldset>
+  </Control>
 
-  <Fieldset legendContent="Danger">
-    <Control validationState="danger" orientation="inline">
+  <Control validationState="danger" orientation="inline" hasValidationBorder>
+    <Fieldset legendContent="Danger">
       <RadioGroup name="danger">
         {options}
       </RadioGroup>
-    </Control>
-  </Fieldset>
+    </Fieldset>
+  </Control>
 </div>
 ```

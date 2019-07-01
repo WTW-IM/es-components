@@ -78,7 +78,6 @@ class CheckboxExample extends React.Component {
 const Control = require('../Control').default;
 const AdditionalHelp = require('../AdditionalHelp').default;
 const Fieldset = require('../../containers/fieldset/Fieldset').default;
-const Legend = require('../../containers/fieldset/Legend').default;
 
 class CheckboxExample extends React.Component {
   constructor() {
@@ -100,37 +99,12 @@ class CheckboxExample extends React.Component {
   render() {
     return (
       <>
-        <Fieldset legendContent="Fruits">
-          <Control validationState="success">
-            <Checkbox
-              value="Apple"
-              checked={this.state.isAppleChecked}
-              onChange={this.toggleCheckbox('isAppleChecked')}
-            >
-              Apple
-            </Checkbox>
-            <Checkbox
-              value="Strawberry"
-              checked={this.state.isStrawberryChecked}
-              onChange={this.toggleCheckbox('isStrawberryChecked')}
-            >
-              Strawberry
-            </Checkbox>
-            <Checkbox
-              value="Banana"
-              checked={this.state.isBananaChecked}
-              onChange={this.toggleCheckbox('isBananaChecked')}
-            >
-              Banana
-            </Checkbox>
-            <AdditionalHelp>
-              When validation state is set to success.
-            </AdditionalHelp>
-          </Control>
-        </Fieldset>
+        <Control validationState="success" hasValidationBorder>
+          <AdditionalHelp>
+            When validation state is set to success.
+          </AdditionalHelp>
 
-        <Fieldset legendContent="Fruits">
-          <Control validationState="warning">
+          <Fieldset legendContent="Fruits">
             <Checkbox
               value="Apple"
               checked={this.state.isAppleChecked}
@@ -152,15 +126,15 @@ class CheckboxExample extends React.Component {
             >
               Banana
             </Checkbox>
-            <AdditionalHelp>
-              When validation state is set to warning.
-            </AdditionalHelp>
-          </Control>
-        </Fieldset>
+          </Fieldset>
+        </Control>
 
-        <Fieldset>
-          <Control validationState="danger" useDangerBorder>
-            <Legend>Fruits</Legend>
+        <Control validationState="warning" hasValidationBorder>
+          <AdditionalHelp>
+            When validation state is set to warning.
+          </AdditionalHelp>
+
+          <Fieldset legendContent="Fruits">
             <Checkbox
               value="Apple"
               checked={this.state.isAppleChecked}
@@ -182,11 +156,38 @@ class CheckboxExample extends React.Component {
             >
               Banana
             </Checkbox>
-            <AdditionalHelp>
-              When validation state is set to danger.
-            </AdditionalHelp>
-          </Control>
-        </Fieldset>
+          </Fieldset>
+        </Control>
+
+        <Control validationState="danger" hasValidationBorder>
+          <AdditionalHelp>
+            When validation state is set to danger.
+          </AdditionalHelp>
+
+          <Fieldset legendContent="Fruits">
+            <Checkbox
+              value="Apple"
+              checked={this.state.isAppleChecked}
+              onChange={this.toggleCheckbox('isAppleChecked')}
+            >
+              Apple
+            </Checkbox>
+            <Checkbox
+              value="Strawberry"
+              checked={this.state.isStrawberryChecked}
+              onChange={this.toggleCheckbox('isStrawberryChecked')}
+            >
+              Strawberry
+            </Checkbox>
+            <Checkbox
+              value="Banana"
+              checked={this.state.isBananaChecked}
+              onChange={this.toggleCheckbox('isBananaChecked')}
+            >
+              Banana
+            </Checkbox>
+          </Fieldset>
+        </Control>
       </>
     );
   }

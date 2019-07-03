@@ -32,6 +32,7 @@ const Legend = styled.div`
   font-size: 21.6px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   margin: 0 0 10px 0;
+  width: 100%;
 `;
 
 function Fieldset(props) {

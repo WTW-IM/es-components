@@ -28,7 +28,7 @@ const FieldsetBase = styled.div`
 
 const Legend = styled.div`
   color: ${props => props.theme.colors.black};
-  flex: 0 0 100%;
+  flex: 0 0 auto;
   font-size: 21.6px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   margin: 0 0 10px 0;

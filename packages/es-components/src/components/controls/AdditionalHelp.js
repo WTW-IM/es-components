@@ -18,7 +18,7 @@ const HelpText = styled.div`
   display: inline-flex;
   margin-top: 5px;
   margin-bottom: 10px;
-  flex-basis: 100%;
+  width: 100%;
 `;
 
 function AdditionalHelp({ children, hasValidationIcon, ...props }) {
@@ -41,11 +41,13 @@ function AdditionalHelp({ children, hasValidationIcon, ...props }) {
 }
 
 AdditionalHelp.propTypes = {
+  children: PropTypes.any,
   /** use to show or hide an associated validation icon */
   hasValidationIcon: PropTypes.bool
 };
 
 AdditionalHelp.defaultProps = {
+  children: undefined,
   hasValidationIcon: true
 };
 

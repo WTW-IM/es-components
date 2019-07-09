@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.62 (2019-07-09)</small>
+
+* Update: responsiveTable handles larger amounts of text ([2244cd0](https://github.com/wtw-im/es-components/commit/2244cd0))
+
+
+
+
+
 ## <small>19.0.61 (2019-07-01)</small>
 
 * Update: spinner uses theme for colors ([d7c7bbe](https://github.com/wtw-im/es-components/commit/d7c7bbe))

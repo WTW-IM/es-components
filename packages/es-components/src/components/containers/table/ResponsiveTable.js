@@ -27,15 +27,18 @@ const TableBase = styled(Table)`
 
       td {
         border-top: 1px solid ${props => props.theme.colors.gray4};
-        display: block;
+        display: flex;
         font-size: 0.8em;
+        justify-content: space-between;
         padding: 0.625em;
         text-align: right;
 
         &:before {
           content: attr(data-label);
-          float: left;
           font-weight: bold;
+          margin-right: 2em;
+          max-width: 25%;
+          text-align: left;
         }
 
         &:first-child {

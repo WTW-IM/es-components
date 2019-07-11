@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.63 (2019-07-11)</small>
+
+* Fix: fieldset firefox layout issue ([28f7fa1](https://github.com/wtw-im/es-components/commit/28f7fa1))
+* Fix: ie flexbox issues in fieldset ([1279c10](https://github.com/wtw-im/es-components/commit/1279c10))
+* Update: fieldset can be wrapped with Control for more flexibility ([5a9f57b](https://github.com/wtw-im/es-components/commit/5a9f57b))
+* Update: moved validation icons to AdditionalHelp ([702877c](https://github.com/wtw-im/es-components/commit/702877c))
+* New: borderOffset added to Control for custom padding ([ce441ca](https://github.com/wtw-im/es-components/commit/ce441ca))
+* New: legend exported, control hasDangerBorder ([5813bc9](https://github.com/wtw-im/es-components/commit/5813bc9))
+
+
+
+
+
 ## <small>19.0.62 (2019-07-09)</small>
 
 * Update: responsiveTable handles larger amounts of text ([2244cd0](https://github.com/wtw-im/es-components/commit/2244cd0))

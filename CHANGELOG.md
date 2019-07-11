@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.64 (2019-07-11)</small>
+
+* Fix: minor popover focus issue ([41087df](https://github.com/wtw-im/es-components/commit/41087df))
+
+
+
+
+
 ## <small>19.0.63 (2019-07-11)</small>
 
 * Fix: fieldset firefox layout issue ([28f7fa1](https://github.com/wtw-im/es-components/commit/28f7fa1))

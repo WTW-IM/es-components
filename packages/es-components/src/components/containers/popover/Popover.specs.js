@@ -26,7 +26,7 @@ function buildPopover(props) {
           ref={ref}
           styleType="primary"
         >
-          Popover Text
+          Popover Trigger Button
         </Button>
       )}
     />
@@ -35,7 +35,7 @@ function buildPopover(props) {
 
 it('can be toggled by clicking the button', async () => {
   const { getByText, queryByText } = renderWithTheme(buildPopover());
-  const trigger = getByText('Popover Text');
+  const trigger = getByText('Popover Trigger Button');
 
   trigger.click();
   const popoverContent = queryByText('This is the popover content.');
@@ -47,7 +47,7 @@ it('can be toggled by clicking the button', async () => {
 
 it('renders the title when provided', async () => {
   const { getByText, queryByText } = renderWithTheme(buildPopover());
-  getByText('Popover Text').click();
+  getByText('Popover Trigger Button').click();
   await waitForElement(() => getByText('Popover Title'));
   expect(queryByText('Popover Title')).not.toBeNull();
 });
@@ -56,7 +56,7 @@ it('can be closed using the close button', async () => {
   const { getByText, queryByText } = renderWithTheme(
     buildPopover({ hasCloseButton: true })
   );
-  getByText('Popover Text').click();
+  getByText('Popover Trigger Button').click();
 
   const popoverContent = () => queryByText('This is the popover content.');
   popoverContent()
@@ -71,7 +71,7 @@ it('can be closed using the alternative close button', async () => {
   const { getByText, queryByText } = renderWithTheme(
     buildPopover({ hasAltCloseButton: true })
   );
-  getByText('Popover Text').click();
+  getByText('Popover Trigger Button').click();
   getByText('Popover Title')
     .parentElement.querySelector('button')
     .click();
@@ -85,11 +85,11 @@ it('can be closed using the alternative close button', async () => {
 it('sets focus on a focusable element within the content', () => {
   jest.useFakeTimers();
   const popoverContent = <a href="#test">Test link</a>;
-  const { getByText } = renderWithTheme(
+  const { getByText, getByLabelText } = renderWithTheme(
     buildPopover({ content: popoverContent })
   );
-  getByText('Popover Text').click();
+  getByText('Popover Trigger Button').click();
   jest.runOnlyPendingTimers();
 
-  expect(getByText('Test link')).toHaveFocus();
+  expect(getByLabelText('Press escape to close the Popover')).toHaveFocus();
 });

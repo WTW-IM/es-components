@@ -91,29 +91,15 @@ function Popover(props) {
   const triggerBtnRef = useRef(null);
   const popperRef = useRef(null);
   const contentRef = useRef(null);
-  const headerRef = useRef(null);
+  const escMsgRef = useRef(null);
   const closeBtnRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleShow(event) {
     event.preventDefault();
     event.stopPropagation();
-
-    setTimeout(() => {
-      if (contentRef.current) {
-        const focusableContent = contentRef.current.querySelector('a, button');
-        if (focusableContent) {
-          focusableContent.focus();
-        } else {
-          headerRef.current.focus();
-        }
-      }
-    }, 350);
-    if (closeBtnRef.current) {
-      triggerBtnRef.current.focus();
-    }
-    setIsOpen(!isOpen);
 
     setIsOpen(!isOpen);
   }
@@ -143,9 +129,21 @@ function Popover(props) {
 
   useEffect(
     () => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current);
+      }
+
       if (isOpen) {
+        timeoutRef.current = setTimeout(() => {
+          if (closeBtnRef.current) {
+            closeBtnRef.current.focus();
+          } else if (escMsgRef.current) {
+            escMsgRef.current.focus();
+          }
+        }, 100);
         window.addEventListener('scroll', hidePopOnScroll);
       } else {
+        triggerBtnRef.current.focus();
         window.removeEventListener('scroll', hidePopOnScroll);
       }
     },
@@ -188,7 +186,7 @@ function Popover(props) {
               {hasAltCloseButton && altCloseButton}
               <CloseHelpText
                 tabIndex={-1}
-                ref={headerRef}
+                ref={escMsgRef}
                 aria-label="Press escape to close the Popover"
               />
             </PopoverHeader>

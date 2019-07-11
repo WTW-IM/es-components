@@ -2,10 +2,7 @@ A `Heading` component can be used for various heading levels. Wrap secondary tex
 Larger headings will resize appropriately in mobile viewports.
 
 ```
-const StyleReset = require('../../util/StyleReset').default;
-
 <div>
-  <StyleReset />
   <Heading level={1} underlineColor="#00a0d2">h1. Heading <small>Secondary Text</small></Heading>
   <Heading level={2} underlineColor="#979797">h2. Heading <small>Secondary Text</small></Heading>
   <Heading level={3}>h3. Heading <small>Secondary Text</small></Heading>

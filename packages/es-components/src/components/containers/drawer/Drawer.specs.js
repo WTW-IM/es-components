@@ -57,7 +57,6 @@ describe('accordion', () => {
   const isAccordion = true;
 
   it('should only allow one drawer to be opened at a time', () => {
-    jest.useFakeTimers();
     const onActiveKeysChanged = jest.fn();
     const { getByText } = renderWithTheme(
       buildDrawer({ isAccordion, onActiveKeysChanged, activeKeys: ['1', '2'] })

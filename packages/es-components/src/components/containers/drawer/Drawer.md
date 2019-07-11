@@ -92,6 +92,8 @@ Use the `titleAside` property to display text or other content on the right side
 You can customize the `key` property of each Panel; if not specified a default key value will be assigned matching the Panel's numeric position.
 
 ```
+import Icon from '../../base/icons/Icon';
+
 class DrawerExample extends React.Component {
   constructor() {
     this.state = { activeKeys: ["second","3"] };

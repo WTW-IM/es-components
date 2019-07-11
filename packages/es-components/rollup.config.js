@@ -1,0 +1,70 @@
+import babel from 'rollup-plugin-babel';
+import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import { uglify } from 'rollup-plugin-uglify';
+import pkg from './package.json';
+
+export default [
+  {
+    input: 'src/index.js',
+    output: [
+      {
+        file: pkg.main,
+        format: 'cjs'
+      },
+      {
+        file: pkg.module,
+        format: 'esm'
+      }
+    ],
+    external: [
+      'date-fns',
+      'prop-types',
+      'react',
+      'react-animate-height',
+      'react-datepicker',
+      'react-overlays',
+      'react-popper',
+      'react-text-mask',
+      'react-transition-group/Transition',
+      'styled-components'
+    ],
+    plugins: [
+      wildcardExternal([
+        '@babel/**',
+        'lodash/**',
+        'core-js/**',
+        'text-mask-addons/**'
+      ]),
+      babel({
+        exclude: ['node_modules/**'],
+        runtimeHelpers: true
+      })
+    ]
+  },
+  {
+    input: 'src/index.js',
+    output: {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'es-components',
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'prop-types': 'PropTypes',
+        'styled-components': 'styled'
+      }
+    },
+    external: ['react', 'react-dom', 'prop-types', 'styled-components'],
+    plugins: [
+      resolve(),
+      commonjs({ include: /node_modules/ }),
+      babel({
+        exclude: /node_modules/,
+        runtimeHelpers: true
+      }),
+      uglify()
+    ]
+  }
+];

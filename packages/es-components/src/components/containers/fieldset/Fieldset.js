@@ -1,37 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const StyledFieldset = styled.fieldset`
-  border: 0;
+import OrientationContext from '../../controls/OrientationContext';
+import genName from '../../util/generateAlphaName';
+
+const FieldsetBase = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   margin-bottom: 25px;
-  padding: 0;
+  width: 100%;
 
   > *:last-child {
     margin-bottom: 0;
   }
+
+  ${props =>
+    props.orientation === 'inline' &&
+    css`
+      @media (min-width: ${props.theme.screenSize.tablet}) {
+        align-items: baseline;
+        flex-direction: row;
+      }
+    `};
 `;
 
-const Legend = styled.legend`
-  border: 0;
-  border-bottom: 1px solid ${props => props.theme.colors.gray6};
+const Legend = styled.div`
   color: ${props => props.theme.colors.black};
-  display: block;
+  flex: 0 0 auto;
   font-size: 21.6px;
   line-height: ${props => props.theme.sizes.baseLineHeight};
-  margin: 0 0 18px 0;
-  padding: 0;
+  margin: 0 0 10px 0;
   width: 100%;
 `;
 
 function Fieldset(props) {
   const { legendContent, children, ...other } = props;
+  const legendId = legendContent ? genName() : undefined;
+  const orientation = React.useContext(OrientationContext);
 
   return (
-    <StyledFieldset {...other}>
-      {legendContent && <Legend>{legendContent}</Legend>}
+    <FieldsetBase
+      role="group"
+      aria-labelledby={legendId}
+      orientation={orientation}
+      {...other}
+    >
+      {legendContent && <Legend id={legendId}>{legendContent}</Legend>}
       {children}
-    </StyledFieldset>
+    </FieldsetBase>
   );
 }
 
@@ -45,5 +63,7 @@ Fieldset.defaultProps = {
   legendContent: null,
   children: undefined
 };
+
+Fieldset.Legend = Legend;
 
 export default Fieldset;

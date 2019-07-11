@@ -3,21 +3,21 @@
 exports[`displays monthNames provided by the monthNames prop 1`] = `
 <div>
   <div
-    class="sc-bdVaJa jJHNwS"
+    class="sc-bdVaJa cGXwXX"
   >
     <label
-      class="sc-htpNat bbbtWm"
+      class="sc-bwzfXH erYDxf"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-htoDjs kynBUD"
+      class="sc-gzVnrw gJnKRL"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-EHOje sc-bZQynM dGyILk"
+        class="sc-EHOje fMaGOM sc-ifAKCX iaznAR"
         id="test"
         name="month"
       >
@@ -38,7 +38,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
-        class="sc-bxivhb sc-ifAKCX bdsIV"
+        class="sc-htpNat sc-bxivhb kenmim"
         max="31"
         min="1"
         name="day"
@@ -47,7 +47,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
-        class="sc-bxivhb sc-gzVnrw gznzKX"
+        class="sc-htpNat sc-bZQynM dkwEsv"
         name="year"
         placeholder="Year"
         type="number"
@@ -61,21 +61,21 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
 exports[`hides the Day input when Day is excluded 1`] = `
 <div>
   <div
-    class="sc-bdVaJa jJHNwS"
+    class="sc-bdVaJa cGXwXX"
   >
     <label
-      class="sc-htpNat bbbtWm"
+      class="sc-bwzfXH erYDxf"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-htoDjs kynBUD"
+      class="sc-gzVnrw gJnKRL"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-EHOje sc-bZQynM dGyILk"
+        class="sc-EHOje fMaGOM sc-ifAKCX iaznAR"
         id="test"
       >
         <option
@@ -140,7 +140,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </option>
       </select>
       <input
-        class="sc-bxivhb sc-gzVnrw gznzKX"
+        class="sc-htpNat sc-bZQynM dkwEsv"
         placeholder="Year"
         type="number"
         value=""

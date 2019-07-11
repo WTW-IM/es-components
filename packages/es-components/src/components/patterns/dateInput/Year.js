@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
-import InputBase from '../../controls/textbox/InputText';
+import InputBase from '../../controls/textbox/InputBase';
 
 const YearInput = styled(InputBase)`
   appearance: textfield;

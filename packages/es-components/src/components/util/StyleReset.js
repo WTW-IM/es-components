@@ -33,6 +33,10 @@ const StyleReset = createGlobalStyle`
     border-spacing: 0;
   }
 
+  small {
+    font-size: 85%;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: inherit;
     font: inherit;

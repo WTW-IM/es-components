@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 
   && > * {
     margin-right: 2px;
-    min-width: 0;
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {

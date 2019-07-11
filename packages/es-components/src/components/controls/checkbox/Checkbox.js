@@ -84,7 +84,7 @@ const CheckboxDisplay = styled.span`
   left: 10px;
   position: absolute;
   top: 0.55em;
-  transition: all 0.25s linear;
+  transition: all 0.25s linear, box-shadow 0.15s linear;
   width: 25px;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {

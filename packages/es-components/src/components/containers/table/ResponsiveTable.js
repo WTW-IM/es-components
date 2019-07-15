@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import Table from './Table';
 
 const TableBase = styled(Table)`
+  tbody {
+    th {
+      font-weight: normal;
+    }
+  }
+
   &&& {
     @media (max-width: ${props => props.theme.screenSize.phone}) {
       thead {
@@ -25,7 +31,8 @@ const TableBase = styled(Table)`
         padding: 0.35em;
       }
 
-      td {
+      td,
+      tbody th {
         border-top: 1px solid ${props => props.theme.colors.gray4};
         display: flex;
         font-size: 0.8em;

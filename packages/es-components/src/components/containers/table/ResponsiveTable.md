@@ -1,6 +1,6 @@
-`ResponsiveTable` will adapt a column-based table layout for smaller screens. You'll also need to add `data-label='[column name]'` on table cells to associate them with column names. Accepts all `Table` props.
+`ResponsiveTable` will adapt a column-based table layout for smaller screens. You'll also need to add `data-label='[column name]'` on a `th` in each row to associate them with column names. Accepts all `Table` props.
 
-Due to the way ResponsiveTable hides the normal `thead` on small screens and displays each column in its own block,
+Due to the way ResponsiveTable hides the normal `thead` on small screens and displays each row in its own block,
 row-based table headings don't work well with this component.
 
 ### Responsive Table
@@ -16,27 +16,27 @@ row-based table headings don't work well with this component.
   </thead>
   <tbody>
     <tr>
-      <td scope="row" data-label="Name">Bill</td>
+      <th scope="row" data-label="Name">Bill</th>
       <td data-label="Age">33</td>
       <td data-label="Height">5'4"</td>
     </tr>
     <tr>
-      <td scope="row" data-label="Name">Robin</td>
+      <th scope="row" data-label="Name">Robin</th>
       <td data-label="Age">20</td>
       <td data-label="Height">5'9"</td>
     </tr>
     <tr>
-      <td scope="row" data-label="Name">Thomas</td>
+      <th scope="row" data-label="Name">Thomas</th>
       <td data-label="Age">45</td>
       <td data-label="Height">5'11"</td>
     </tr>
     <tr>
-      <td scope="row" data-label="Name">Michael</td>
+      <th scope="row" data-label="Name">Michael</th>
       <td data-label="Age">40</td>
       <td data-label="Height">6'</td>
     </tr>
     <tr>
-      <td scope="row" data-label="Name">Noah</td>
+      <th scope="row" data-label="Name">Noah</th>
       <td data-label="Age">24</td>
       <td data-label="Height">5'7"</td>
     </tr>

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.65 (2019-07-16)</small>
+
+* Update: responsiveTable row th styling ([fcbc197](https://github.com/wtw-im/es-components/commit/fcbc197))
+
+
+
+
+
 ## <small>19.0.64 (2019-07-11)</small>
 
 * Fix: minor popover focus issue ([41087df](https://github.com/wtw-im/es-components/commit/41087df))

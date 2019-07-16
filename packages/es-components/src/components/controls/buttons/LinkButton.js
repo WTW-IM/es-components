@@ -45,7 +45,7 @@ const LinkButton = React.forwardRef(function LinkButton(props, ref) {
 
 LinkButton.propTypes = {
   children: PropTypes.node.isRequired,
-  /** Select the color style of the button, types come from theme */
+  /** Select the color style of the button, types come from theme buttonStyles.linkButton */
   styleType: PropTypes.string
 };
 

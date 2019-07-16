@@ -1,6 +1,6 @@
 Additional props supplied to the LinkButton component will be passed to the underlying button element.
 
-## LinkButton Style Types
+### LinkButton Style Types
 
 ```
 <p>
@@ -11,9 +11,6 @@ Additional props supplied to the LinkButton component will be passed to the unde
   <LinkButton styleType="danger">Danger</LinkButton><br />
 </p>
 ```
-
-
-
 
 Use the `inherited` styleType in order to inherit colors from the parent.
 

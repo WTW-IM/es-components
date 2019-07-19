@@ -43,20 +43,21 @@ const StyledButton = styled.button`
     text-align: center;
     text-transform: ${props =>
       props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
-    transition: background-color 250ms linear;
+    transition: background-color 150ms linear, color 150ms linear;
     vertical-align: middle;
     white-space: nowrap;
   }
 
   &:hover .es-button__display {
     background-color: ${props => props.variant.hoverBgColor};
+    color: ${props => props.variant.hoverTextColor};
   }
 
   &:active {
     outline: none;
   }
 
-  &:active .es-button__display {
+  &&:active .es-button__display {
     box-shadow: 0 0 0 0 transparent;
     top: 4px;
   }
@@ -98,7 +99,7 @@ const Button = React.forwardRef(function Button(props, ref) {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  /** Select the color style of the button, types come from theme */
+  /** Select the color style of the button, types come from theme buttonStyles.button */
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */

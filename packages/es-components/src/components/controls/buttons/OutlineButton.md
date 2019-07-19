@@ -1,6 +1,6 @@
 Additional props supplied to the OutlineButton component will be passed to the underlying button element.
 
-## OutlineButton Style Types
+### OutlineButton Style Types
 
 ```
 const buttonStyle = {

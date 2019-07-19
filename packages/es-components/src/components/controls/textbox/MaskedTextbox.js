@@ -21,9 +21,10 @@ const MaskedTextbox = React.forwardRef(function MaskedTextbox(props, ref) {
           maskRef(inputElement);
           inputRef.current = inputElement;
         };
-        return <Textbox ref={setRef} {...textboxProps} type="text" />;
+        return <Textbox ref={setRef} {...textboxProps} />;
       }}
       {...maskArgs}
+      type="text"
       {...additionalTextProps}
     />
   );

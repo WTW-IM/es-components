@@ -87,6 +87,7 @@ function Popover(props) {
   const hasTitle = title !== undefined;
   const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
   const showCloseButton = hasCloseButton && !hasAltCloseButton;
+  const isFirstRun = useRef(true);
 
   const triggerBtnRef = useRef(null);
   const popperRef = useRef(null);
@@ -129,6 +130,11 @@ function Popover(props) {
 
   useEffect(
     () => {
+      if (isFirstRun.current) {
+        isFirstRun.current = false;
+        return;
+      }
+
       if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
       }

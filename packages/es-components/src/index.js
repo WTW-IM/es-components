@@ -24,6 +24,7 @@ export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';
 export Label from './components/controls/label/Label';
 export Textbox from './components/controls/textbox/Textbox';
+export Textarea from './components/controls/textbox/Textarea';
 export MaskedTextbox from './components/controls/textbox/MaskedTextbox';
 export Button from './components/controls/buttons/Button';
 export ActionButton from './components/controls/buttons/ActionButton';

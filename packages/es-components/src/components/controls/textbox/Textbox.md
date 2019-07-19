@@ -67,7 +67,7 @@ function handleOnBlur(event) {
 
 ### Validation states
 
-Validation states are driven from the `Control` component. This is what they look like htmlFor Textboxes.
+Validation states are driven from the `Control` component.
 
 ```
 const Control = require('../Control').default;

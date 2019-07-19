@@ -1,10 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
-import { Prepend, Append, InputWrapper, TextboxBase } from './TextAddons';
+import InputBase from './InputBase';
+import { Prepend, Append, InputWrapper } from './TextAddons';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
+
+const defaultBorderRadius = '2px';
+
+const TextboxBase = styled(InputBase)`
+  border-bottom-left-radius: ${props =>
+    props.hasPrepend ? '0' : defaultBorderRadius};
+  border-bottom-right-radius: ${props =>
+    props.hasAppend ? '0' : defaultBorderRadius};
+  border-top-left-radius: ${props =>
+    props.hasPrepend ? '0' : defaultBorderRadius};
+  border-top-right-radius: ${props =>
+    props.hasAppend ? '0' : defaultBorderRadius};
+  color: inherit;
+  display: table-cell;
+  -webkit-appearance: none;
+`;
 
 const Textbox = React.forwardRef(function Textbox(props, ref) {
   const { prependIconName, appendIconName, ...additionalTextProps } = props;

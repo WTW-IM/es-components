@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.66 (2019-07-19)</small>
+
+* New: actionButton component ([b151bac](https://github.com/wtw-im/es-components/commit/b151bac))
+
+
+
+
+
 ## <small>19.0.65 (2019-07-16)</small>
 
 * Update: responsiveTable row th styling ([fcbc197](https://github.com/wtw-im/es-components/commit/fcbc197))

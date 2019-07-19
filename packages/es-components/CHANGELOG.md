@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.67 (2019-07-19)</small>
+
+* Update: maskedTextbox supports more input types ([80011df](https://github.com/wtw-im/es-components/commit/80011df))
+* Fix: popover link shouldn't hog focus ([5dbec39](https://github.com/wtw-im/es-components/commit/5dbec39))
+
+
+
+
+
 ## <small>19.0.66 (2019-07-19)</small>
 
 * New: actionButton component ([b151bac](https://github.com/wtw-im/es-components/commit/b151bac))

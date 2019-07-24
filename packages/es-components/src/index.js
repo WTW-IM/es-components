@@ -26,6 +26,7 @@ export Label from './components/controls/label/Label';
 export Textbox from './components/controls/textbox/Textbox';
 export MaskedTextbox from './components/controls/textbox/MaskedTextbox';
 export Button from './components/controls/buttons/Button';
+export ActionButton from './components/controls/buttons/ActionButton';
 export ToggleButton from './components/controls/buttons/ToggleButton';
 export DropdownButton from './components/controls/buttons/DropdownButton';
 export OutlineButton from './components/controls/buttons/OutlineButton';

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.69 (2019-07-25)</small>
+
+* Update: added selectOptionText prop to DateInput ([089499e](https://github.com/wtw-im/es-components/commit/089499e))
+
+
+
+
+
 ## <small>19.0.68 (2019-07-24)</small>
 
 * Fix: added missing ActionButton from exports ([c3591d3](https://github.com/wtw-im/es-components/commit/c3591d3))

@@ -10,7 +10,8 @@ Using the `onChange` callback returns an object:
 The `value` is a Date created from the combined inputs. The `value` is `undefined` when the date is invalid.
 `isInRange` is provided for validation help.
 
-`DateInput.Month` also accepts an array of month names (`monthName` prop) for localization support.
+`DateInput.Month` also accepts an array of month names (`monthName` prop) for localization support. You may also
+provide `selectOptionText` to define a default "Please select a Month"-style option.
 
 ```
 const Control = require('../../controls/Control').default;
@@ -19,11 +20,12 @@ const AdditionalHelp = require('../../controls/AdditionalHelp').default;
 function DateInputExample() {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const [myDate, setMyDate] = React.useState();
-  const [validation, setValidation] = React.useState();
+  const [validation, setValidation] = React.useState('default');
 
   function handleChange(date) {
     console.log(date);
     setMyDate(date.value);
+    setValidation('default');
   }
 
   function handleOnBlur() {
@@ -34,7 +36,7 @@ function DateInputExample() {
     <Control validationState={validation}>
       <Label htmlFor="someDate">Enter a Date</Label>
       <DateInput id="someDate" name="someDate" onChange={handleChange} onBlur={handleOnBlur}>
-        <DateInput.Month monthNames={['01 - Jan', '02 - Feb', '03 - Mar']} />
+        <DateInput.Month monthNames={['01 - Jan', '02 - Feb', '03 - Mar']} selectOptionText="Select a month" />
         <DateInput.Day />
         <DateInput.Year />
       </DateInput>

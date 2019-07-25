@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { isBefore, isAfter } from 'date-fns';
@@ -57,10 +57,21 @@ function DateInput({
     year: defaultValue ? defaultValue.getFullYear().toString() : ''
   });
 
+  useEffect(() => {
+    React.Children.forEach(children, child => {
+      if (child.type.name === 'Month') {
+        if (child.props.selectOptionText) {
+          dispatch({ type: 'month_updated', value: 'none' });
+        }
+      }
+    });
+  }, []);
+
   function createDate(year, month, day) {
     const cleanDay = day ? cleanZeroes(day.toString()) : day;
     const date = new Date(`${year}/${month}/${cleanDay}`);
     const dateIsValid =
+      month !== 'none' &&
       year.length === 4 &&
       (day ? date.getDate().toString() === cleanDay : true) &&
       (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&

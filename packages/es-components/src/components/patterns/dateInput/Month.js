@@ -10,7 +10,7 @@ const MonthDropdown = styled(Dropdown)`
   flex: 3 1 100px;
 `;
 
-function Month({ onChange, monthNames, date, ...props }) {
+function Month({ onChange, monthNames, selectOptionText, date, ...props }) {
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
   const [month, setMonth] = React.useState(date ? date.getMonth() + 1 : '');
@@ -27,6 +27,7 @@ function Month({ onChange, monthNames, date, ...props }) {
       value={month}
       {...props}
     >
+      {selectOptionText && <option value="none">{selectOptionText}</option>}
       {monthNames.map((value, index) => (
         <option value={index + 1} key={value}>
           {value}
@@ -38,7 +39,9 @@ function Month({ onChange, monthNames, date, ...props }) {
 
 Month.propTypes = {
   /** array of month names */
-  monthNames: PropTypes.array
+  monthNames: PropTypes.array,
+  /** adds an unselected option at the top */
+  selectOptionText: PropTypes.string
 };
 
 Month.defaultProps = {
@@ -55,7 +58,8 @@ Month.defaultProps = {
     'October',
     'November',
     'December'
-  ]
+  ],
+  selectOptionText: undefined
 };
 
 export default Month;

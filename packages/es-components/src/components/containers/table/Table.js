@@ -14,6 +14,8 @@ const TableBase = styled.table`
     padding-top: 8px;
     padding-bottom: 8px;
     color: ${props => props.theme.colors.gray8};
+    font-size: 1.3em;
+    margin: 0.5em 0;
     text-align: left;
   }
 
@@ -42,7 +44,7 @@ const TableBase = styled.table`
     vertical-align: top;
   }
 
-  tbody {
+  && tbody {
     ${props =>
       props.hasStripes &&
       css`
@@ -50,6 +52,10 @@ const TableBase = styled.table`
           background-color: ${props.theme.colors.gray0};
         }
       `};
+
+    th {
+      vertical-align: top;
+    }
   }
 
   && tbody {

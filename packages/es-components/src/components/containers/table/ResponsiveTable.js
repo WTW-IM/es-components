@@ -11,6 +11,8 @@ const TableBase = styled(Table)`
 
   &&& {
     @media (max-width: ${props => props.theme.screenSize.phone}) {
+      background-color: ${props => props.theme.colors.gray2};
+
       thead {
         border: none;
         clip: rect(0 0 0 0);
@@ -23,11 +25,10 @@ const TableBase = styled(Table)`
       }
 
       tr {
-        background-color: ${props => props.theme.colors.gray1};
-        border: 1px solid ${props => props.theme.colors.gray4};
-        border-bottom: 3px solid ${props => props.theme.colors.gray4};
+        background-color: ${props => props.theme.colors.white};
+        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
         display: block;
-        margin-bottom: 0.625em;
+        margin: 0.625em;
         padding: 0.35em;
       }
 
@@ -35,7 +36,6 @@ const TableBase = styled(Table)`
       tbody th {
         border-top: 1px solid ${props => props.theme.colors.gray4};
         display: flex;
-        font-size: 0.8em;
         justify-content: space-between;
         padding: 0.625em;
         text-align: right;

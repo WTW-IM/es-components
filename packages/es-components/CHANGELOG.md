@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.70 (2019-07-26)</small>
+
+* Update: responsiveTable style changes (card treatment) ([a97f7dc](https://github.com/wtw-im/es-components/commit/a97f7dc))
+
+
+
+
+
 ## <small>19.0.69 (2019-07-25)</small>
 
 * Update: added selectOptionText prop to DateInput ([089499e](https://github.com/wtw-im/es-components/commit/089499e))

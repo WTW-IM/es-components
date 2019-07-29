@@ -1,4 +1,4 @@
-Default incrementers will start at 0 and increase and decrease by 1 with no upper and lower limits.
+Default incrementers will start at 0 and increase and decrease by 1 with no upper and lower limits. The `startingValue` may be set to `null` to start with a blank input.
 
 ```
 <Incrementer />

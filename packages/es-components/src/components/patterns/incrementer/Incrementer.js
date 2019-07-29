@@ -106,7 +106,7 @@ function Incrementer({
   const theme = useTheme();
 
   const [state, dispatch] = React.useReducer(updateCountReducer, {
-    count: startingValue
+    count: startingValue === null ? '' : startingValue
   });
   const isIncrementDisabled = determineIsDisabled(upperThreshold, state.count);
   const isDecrementDisabled = determineIsDisabled(lowerThreshold, state.count);
@@ -207,7 +207,7 @@ function Incrementer({
 }
 
 Incrementer.propTypes = {
-  /** The starting value */
+  /** The starting value, 'null' is allowed for a blank value */
   startingValue: PropTypes.number,
   /** The amount to increment the value by */
   incrementAmount: PropTypes.number,

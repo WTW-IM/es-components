@@ -1,21 +1,6 @@
 import styled from 'styled-components';
-import InputBase from './InputBase';
 
 const defaultBorderRadius = '2px';
-
-const TextboxBase = styled(InputBase)`
-  border-bottom-left-radius: ${props =>
-    props.hasPrepend ? '0' : defaultBorderRadius};
-  border-bottom-right-radius: ${props =>
-    props.hasAppend ? '0' : defaultBorderRadius};
-  border-top-left-radius: ${props =>
-    props.hasPrepend ? '0' : defaultBorderRadius};
-  border-top-right-radius: ${props =>
-    props.hasAppend ? '0' : defaultBorderRadius};
-  color: inherit;
-  display: table-cell;
-  -webkit-appearance: none;
-`;
 
 const AddOn = styled.button`
   background-color: ${props => props.addOnBgColor};
@@ -53,4 +38,4 @@ const InputWrapper = styled.div`
   display: flex;
 `;
 
-export { Prepend, Append, InputWrapper, TextboxBase };
+export { Prepend, Append, InputWrapper };

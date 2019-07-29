@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.72 (2019-07-29)</small>
+
+* New: textarea component ([012f530](https://github.com/wtw-im/es-components/commit/012f530))
+
+
+
+
+
 ## <small>19.0.71 (2019-07-29)</small>
 
 * Update: incrementer supports null startingValue ([57bef2a](https://github.com/wtw-im/es-components/commit/57bef2a))

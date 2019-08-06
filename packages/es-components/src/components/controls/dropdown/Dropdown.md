@@ -1,7 +1,8 @@
 A `Dropdown` component works exactly like a native `<select>` tag with style attached. It supports any HTML attributes that a native `<select>` tag supports.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 <Control>
   <Label htmlFor="dropdown-1">Select an operating system</Label>
@@ -20,8 +21,9 @@ const Control = require('../Control').default;
 Wrap the dropdown in a `Control` with `inline` passed htmlFor the `orientation` prop to render the label and input horizontally.
 
 ```
-const Control = require('../Control').default;
-const AdditionalHelp = require('../AdditionalHelp').default;
+import Control from '../Control';
+import Label from '../label/Label';
+import AdditionalHelp from '../AdditionalHelp';
 
 <Control orientation="inline" validationState="danger">
   <Label htmlFor="dropdown-2">Choose your favorite vehicle</Label>

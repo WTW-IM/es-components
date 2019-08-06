@@ -45,6 +45,9 @@ Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalN
 Change the `selected` prop that is passed to `HorizontalNav` to change when an item is clicked.
 
 ```
+import Icon from '../../base/icons/Icon';
+import Button from '../../controls/buttons/Button';
+
 function Link({ className, children, isVertical, ...rest }) {
   return <a className={className} href="#" {...rest}>{children}</a>;
 }

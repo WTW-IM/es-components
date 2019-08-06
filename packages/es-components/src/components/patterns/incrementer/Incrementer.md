@@ -26,8 +26,9 @@ Thresholds can be set that will set a range for values that the incrementer will
 Passing a function to `onValueUpdated` will execute that function with the new value.
 
 ```
-const Control = require('../../controls/Control').default;
-const AdditionalHelp = require('../../controls/AdditionalHelp').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function printNewValue(value) {
   console.log(`The new value is ${value}`);

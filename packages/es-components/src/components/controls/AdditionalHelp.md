@@ -4,8 +4,9 @@ Used within a `Control`, it will recieve validation state styling and display an
 Don't forget to use `aria-describedby` on your input to associate it with your `AdditionalHelp` text!
 
 ```
-const Control = require('./Control').default;
-const AdditionalHelp = require('./AdditionalHelp').default;
+import Control from './Control';
+import Label from './label/Label';
+import Textbox from './textbox/Textbox';
 
 <>
   <Control validationState="success">

@@ -98,13 +98,20 @@ module.exports = {
             path.join(__dirname, 'node_modules', 'react-dev-utils'),
             path.join(__dirname, 'node_modules', 'chalk'),
             path.join(__dirname, 'node_modules', 'regexpu-core'),
-            path.join( __dirname, 'node_modules', 'unicode-match-property-ecmascript'),
-            path.join(__dirname, 'node_modules', 'unicode-match-property-value-ecmascript'),
+            path.join(
+              __dirname,
+              'node_modules',
+              'unicode-match-property-ecmascript'
+            ),
+            path.join(
+              __dirname,
+              'node_modules',
+              'unicode-match-property-value-ecmascript'
+            ),
             path.join(__dirname, 'node_modules', 'acorn-jsx'),
             path.join(__dirname, 'node_modules', 'estree-walker'),
             path.join(__dirname, 'src')
           ],
-          // exclude: /node_modules\/(?!(ansi-styles|strip-ansi|ansi-regex|react-dev-utils|chalk|regexpu-core|unicode-match-property-ecmascript|unicode-match-property-value-ecmascript|acorn-jsx)\/).*/,
           loader: 'babel-loader'
         }
       ]

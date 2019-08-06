@@ -1,5 +1,5 @@
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
 
 <>
   <Control>
@@ -20,7 +20,7 @@ const Control = require('../Control').default;
 Passing a function will execute with the current selection status of the Checkbox.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
 
 class CheckboxExample extends React.Component {
   constructor() {
@@ -75,9 +75,9 @@ class CheckboxExample extends React.Component {
 ### Validation States
 
 ```
-const Control = require('../Control').default;
-const AdditionalHelp = require('../AdditionalHelp').default;
-const Fieldset = require('../../containers/fieldset/Fieldset').default;
+import Control from '../Control';
+import AdditionalHelp from '../AdditionalHelp';
+import Fieldset from '../../containers/fieldset/Fieldset';
 
 class CheckboxExample extends React.Component {
   constructor() {

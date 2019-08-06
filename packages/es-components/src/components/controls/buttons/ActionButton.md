@@ -3,6 +3,8 @@ An `ActionButton` is a `Button` that uses the Default style as the base and the 
 ### ActionButton Style Types
 
 ```
+import Icon from '../../base/icons/Icon';
+
 const buttonStyle = {
   margin: '10px 15px 0 0'
 };

@@ -1,8 +1,9 @@
 Group `RadioButton` components together using a `RadioGroup`. Any additional props passed to `RadioGroup` will propagate to each individual `RadioButton`.
 
 ```
-const RadioButton = require('./RadioButton').default
-const Control = require('../Control').default
+import RadioButton from './RadioButton';
+import Control from '../Control';
+import Fieldset from '../../containers/fieldset/Fieldset';
 
 function RadioGroupExample() {
   const [activity, setActivity] = React.useState('nothing')
@@ -34,8 +35,8 @@ function RadioGroupExample() {
 Each radio is disabled when the `disableAllOptions` prop is true.
 
 ```
-const RadioButton = require('./RadioButton').default;
-const Control = require('../Control').default;
+import RadioButton from './RadioButton';
+import Control from '../Control';
 
 <Control>
   <RadioGroup
@@ -53,8 +54,9 @@ const Control = require('../Control').default;
 ### Validation States
 
 ```
-const RadioButton = require('./RadioButton').default;
-const Control = require('../Control').default;
+import RadioButton from './RadioButton';
+import Control from '../Control';
+import Fieldset from '../../containers/fieldset/Fieldset';
 
 const options = [
   <RadioButton key="1" value="planes">Planes</RadioButton>,

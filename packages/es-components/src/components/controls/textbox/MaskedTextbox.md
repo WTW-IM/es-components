@@ -1,7 +1,8 @@
 The MaskedTextbox component accepts all `Textbox` props, as well as `maskType` and `customMask`.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 <>
   <Control>
@@ -36,7 +37,8 @@ const Control = require('../Control').default;
 ```
 
 ```
-const Control = require('../Control').default
+import Control from '../Control';
+import Label from '../label/Label';
 
 function MaskExample() {
   const [value, setValue] = React.useState('')
@@ -68,7 +70,8 @@ function MaskExample() {
 Create your own text mask using the structure documented [here](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#text-mask-documentation).
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 const mask = {
     mask: [/[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/, '-', /[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/],

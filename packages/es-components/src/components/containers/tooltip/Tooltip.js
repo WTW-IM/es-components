@@ -184,13 +184,16 @@ Tooltip.propTypes = {
   /** Disables the default show onHover functionality */
   disableHover: PropTypes.bool,
   /** Disables the default show onFocus functionality */
-  disableFocus: PropTypes.bool
+  disableFocus: PropTypes.bool,
+  /** Select the color style of the button, types come from theme */
+  styleType: PropTypes.string
 };
 
 Tooltip.defaultProps = {
   position: 'top',
   disableHover: false,
-  disableFocus: false
+  disableFocus: false,
+  styleType: undefined
 };
 
 export default Tooltip;

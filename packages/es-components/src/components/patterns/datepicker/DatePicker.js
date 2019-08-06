@@ -29,6 +29,7 @@ function normalizeDate(date) {
   return isValid(date) ? date : null;
 }
 
+/* eslint-disable react/prop-types */
 function NativeDatePicker(props) {
   return (
     <Textbox
@@ -51,7 +52,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   /* eslint-disable react/forbid-foreign-prop-types */
   const datepickerProps = pick(props, Object.keys(ReactDatePickerPropTypes));
   const textboxProps = omit(props, Object.keys(ReactDatePickerPropTypes));
-  /* eslint-enable */
+  /* eslint-enable react/forbid-foreign-prop-types */
 
   const textbox = (
     <MaskedTextbox
@@ -74,6 +75,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
     </>
   );
 });
+/* eslint-enable react/prop-types */
 
 const DatePicker = function DatePicker(props) {
   const normalizedDateFromProps = props.selectedDate
@@ -129,12 +131,14 @@ DatePicker.propTypes = {
   selectedDate: PropTypes.oneOfType([
     PropTypes.instanceOf(Date),
     PropTypes.string
-  ])
+  ]),
+  onChange: PropTypes.func
 };
 
 DatePicker.defaultProps = {
   allowNativeDatepickerOnMobile: true,
-  selectedDate: ''
+  selectedDate: '',
+  onChange: undefined
 };
 
 export default DatePicker;

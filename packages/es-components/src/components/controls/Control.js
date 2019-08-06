@@ -56,7 +56,8 @@ function Control(props) {
     hasValidationBorder,
     orientation,
     borderOffset,
-    children
+    children,
+    ...other
   } = props;
   const theme = useTheme();
   const textColor = theme.validationTextColor[validationState];
@@ -68,9 +69,9 @@ function Control(props) {
         borderOffset={borderOffset}
         validationState={validationState}
         {...theme.validationInputColor[validationState]}
-        className={props.className}
         layoutOrientation={orientation}
         hasValidationBorder={hasValidationBorder}
+        {...other}
       >
         <ValidationContext.Provider value={validationState}>
           {children}

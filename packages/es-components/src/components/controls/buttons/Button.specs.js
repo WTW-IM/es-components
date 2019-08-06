@@ -1,5 +1,5 @@
 /* eslint-env jest */
-
+/* eslint react/prop-types: 0 */
 import React from 'react';
 
 import Button from './Button';

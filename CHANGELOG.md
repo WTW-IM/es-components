@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.74 (2019-08-08)</small>
+
+* Fix: incrementer no onValueUpdated first render, mobile styles ([f298149](https://github.com/wtw-im/es-components/commit/f298149))
+
+
+
+
+
 ## <small>19.0.73 (2019-08-05)</small>
 
 * Update: update packages to clear out vulnerability warnings ([f029b85](https://github.com/wtw-im/es-components/commit/f029b85))

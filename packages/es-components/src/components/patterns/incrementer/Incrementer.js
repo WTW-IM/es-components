@@ -53,10 +53,10 @@ function sanitizeValue(val, lower, upper) {
   const enteredValue = parseInt(val);
 
   if (isFinite(enteredValue)) {
-    if (upper && enteredValue > upper) {
+    if (upper !== null && enteredValue > upper) {
       return upper;
     }
-    if (lower && enteredValue < lower) {
+    if (lower !== null && enteredValue < lower) {
       return lower;
     }
     return enteredValue;

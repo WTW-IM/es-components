@@ -161,3 +161,20 @@ it('when a value is entered that exceeds the lowerThreshold, it resets to lowerT
   expect(queryByValue('3')).not.toBeNull();
   expect(valueUpdated).toHaveBeenCalledWith(3);
 });
+
+it('when the lowerThreshold is 0, negative numbers should reset to 0', () => {
+  const { queryByValue } = renderWithTheme(
+    createIncrementer({
+      lowerThreshold: 0,
+      startingValue: 5
+    })
+  );
+
+  const input = queryByValue('5');
+  input.value = '-1';
+  fireEvent.change(input);
+  fireEvent.blur(input);
+
+  expect(queryByValue('0')).not.toBeNull();
+  expect(valueUpdated).toHaveBeenCalledWith(0);
+});

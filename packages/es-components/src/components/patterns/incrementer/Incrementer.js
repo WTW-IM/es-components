@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { noop, isFinite, parseInt } from 'lodash';
 import styled from 'styled-components';
@@ -20,7 +20,10 @@ const IncrementerTextbox = styled(InputBase)`
   min-width: 60px;
   padding-right: 12px;
   text-align: center;
-  width: 60px;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    width: 60px;
+  }
 
   /* Hides browser-specific number controls */
   -moz-appearance: textfield;
@@ -35,9 +38,7 @@ const IncrementerTextbox = styled(InputBase)`
 `;
 
 const IncrementerButton = styled(Button)`
-  display: inline-block;
   min-width: 0;
-  width: auto;
 
   .es-button__display {
     min-width: 0;
@@ -104,6 +105,7 @@ function Incrementer({
   ...other
 }) {
   const theme = useTheme();
+  const initialRender = useRef(true);
 
   const [state, dispatch] = React.useReducer(updateCountReducer, {
     count: startingValue === null ? '' : startingValue
@@ -112,7 +114,10 @@ function Incrementer({
   const isDecrementDisabled = determineIsDisabled(lowerThreshold, state.count);
 
   React.useEffect(() => {
-    onValueUpdated(state.count);
+    if (!initialRender.current) {
+      onValueUpdated(state.count);
+    }
+    initialRender.current = false;
   });
 
   function setValue(event) {

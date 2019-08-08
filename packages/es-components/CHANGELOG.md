@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.75 (2019-08-08)</small>
+
+* Fix: incrementer useEffect only runs on state change ([1e8d082](https://github.com/wtw-im/es-components/commit/1e8d082))
+
+
+
+
+
 ## <small>19.0.74 (2019-08-08)</small>
 
 * Fix: incrementer no onValueUpdated first render, mobile styles ([f298149](https://github.com/wtw-im/es-components/commit/f298149))

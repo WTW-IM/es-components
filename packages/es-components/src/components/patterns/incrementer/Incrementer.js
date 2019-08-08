@@ -113,18 +113,21 @@ function Incrementer({
   const isIncrementDisabled = determineIsDisabled(upperThreshold, state.count);
   const isDecrementDisabled = determineIsDisabled(lowerThreshold, state.count);
 
-  React.useEffect(() => {
-    if (!initialRender.current) {
-      onValueUpdated(state.count);
-    }
-    initialRender.current = false;
-  });
+  React.useEffect(
+    () => {
+      if (!initialRender.current) {
+        onValueUpdated(state.count);
+      }
+      initialRender.current = false;
+    },
+    [state.count]
+  );
 
   function setValue(event) {
     dispatch({ type: 'set', amount: event.target.value });
   }
 
-  function decrementValue(event) {
+  function decrementValue() {
     dispatch({
       type: 'decrement',
       amount: decrementAmount,

@@ -85,6 +85,18 @@ module.exports = {
     dateFormat: 'date-fns/format'
   },
   webpackConfig: {
+    optimization: {
+      splitChunks: {
+        maxSize: 500000,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            chunks: 'all',
+            priority: 1
+          }
+        }
+      }
+    },
     module: {
       rules: [
         {
@@ -117,7 +129,6 @@ module.exports = {
       ]
     }
   },
-  require: ['core-js'],
   styles: {
     Playground: {
       preview: {

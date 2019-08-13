@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { isBefore, isAfter } from 'date-fns';
@@ -57,12 +57,17 @@ function DateInput({
     year: defaultValue ? defaultValue.getFullYear().toString() : ''
   });
 
+  const hasDayElement = useRef(false);
+
   useEffect(() => {
     React.Children.forEach(children, child => {
       if (child.type.name === 'Month') {
         if (child.props.selectOptionText) {
           dispatch({ type: 'month_updated', value: 'none' });
         }
+      }
+      if (child.type.name === 'Day') {
+        hasDayElement.current = true;
       }
     });
   }, []);
@@ -73,7 +78,7 @@ function DateInput({
     const dateIsValid =
       month !== 'none' &&
       year.length === 4 &&
-      (day ? date.getDate().toString() === cleanDay : true) &&
+      (hasDayElement.current ? date.getDate().toString() === cleanDay : true) &&
       (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&
       date.getFullYear().toString() === year.toString();
     const isInRange =

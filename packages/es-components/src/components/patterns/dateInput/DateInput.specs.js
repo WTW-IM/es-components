@@ -172,3 +172,44 @@ it('returns a date when valid', () => {
     value: new Date(2019, 1, 16)
   });
 });
+
+it('returns undefined when Day is present but not defined', () => {
+  const props = {
+    onChange: jest.fn(),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
+  };
+  const { getByPlaceholderText } = renderWithTheme(buildDateInput(props));
+
+  fireEvent.change(getByPlaceholderText('Year'), {
+    target: {
+      value: '1983'
+    }
+  });
+  expect(props.onChange).toHaveBeenCalledWith({
+    isInRange: false,
+    value: undefined
+  });
+});
+
+it('returns date when Day is padded with 0', () => {
+  const props = {
+    onChange: jest.fn(),
+    children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
+  };
+  const { getByPlaceholderText } = renderWithTheme(buildDateInput(props));
+
+  fireEvent.change(getByPlaceholderText('Day'), {
+    target: {
+      value: '02'
+    }
+  });
+  fireEvent.change(getByPlaceholderText('Year'), {
+    target: {
+      value: '1983'
+    }
+  });
+  expect(props.onChange).toHaveBeenCalledWith({
+    isInRange: true,
+    value: new Date(1983, 0, 2)
+  });
+});

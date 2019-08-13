@@ -2,6 +2,8 @@ Popover utilizes a [render prop](https://reactjs.org/docs/render-props.html) to 
 This function will require `ref`, `toggleShow`, and `isOpen` parameters to function properly.
 
 ```
+import Button from '../../controls/buttons/Button';
+
 const styles = {
     display: 'inline-block',
     margin: '10px'
@@ -87,6 +89,8 @@ const styles = {
 ```
 
 ```
+import PopoverLink from '../../controls/buttons/PopoverLink';
+
 <>
 Here's an example of a
 <Popover
@@ -110,6 +114,9 @@ styled like a link.
 Popovers can include Icons or other components. Keep accessibility in mind and provide aria labels where appropriate.
 
 ```
+import PopoverLink from '../../controls/buttons/PopoverLink';
+import Icon from '../../base/icons/Icon';
+
 <>
 Click the icon for some help text.
 <Popover
@@ -137,6 +144,8 @@ Click the icon for some help text.
 ```
 
 ```
+import OutlineButton from '../../controls/buttons/OutlineButton';
+
 const styles = {
     display: 'inline-block',
     margin: '0 10px'

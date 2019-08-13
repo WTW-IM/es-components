@@ -1,9 +1,6 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-
 const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
-
 const baseComponentDir = styleguidePaths.baseComponentDir;
 
 module.exports = {
@@ -28,7 +25,7 @@ module.exports = {
         input, button, select, textarea {
           font-family: inherit;
         }
-        
+
         code {
           white-space: pre-wrap !important;
           word-break: break-word !important;
@@ -37,7 +34,8 @@ module.exports = {
       <link rel="stylesheet" href="https://wtw-bdaim-cdn.azureedge.net/es-assets/es-assets-master/font.css">
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
       <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
-    `}
+    `
+    }
   },
   ribbon: {
     url: 'https://github.com/WTW-IM/es-components',
@@ -86,7 +84,51 @@ module.exports = {
   context: {
     dateFormat: 'date-fns/format'
   },
-  webpackConfig: require('./config/webpack.config.js'),
+  webpackConfig: {
+    optimization: {
+      splitChunks: {
+        maxSize: 500000,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            chunks: 'all',
+            priority: 1
+          }
+        }
+      }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          include: [
+            path.join(__dirname, 'node_modules', 'react-overlays'),
+            path.join(__dirname, 'node_modules', 'react-context-toolbox'),
+            path.join(__dirname, 'node_modules', 'ansi-styles'),
+            path.join(__dirname, 'node_modules', 'strip-ansi'),
+            path.join(__dirname, 'node_modules', 'ansi-regex'),
+            path.join(__dirname, 'node_modules', 'react-dev-utils'),
+            path.join(__dirname, 'node_modules', 'chalk'),
+            path.join(__dirname, 'node_modules', 'regexpu-core'),
+            path.join(
+              __dirname,
+              'node_modules',
+              'unicode-match-property-ecmascript'
+            ),
+            path.join(
+              __dirname,
+              'node_modules',
+              'unicode-match-property-value-ecmascript'
+            ),
+            path.join(__dirname, 'node_modules', 'acorn-jsx'),
+            path.join(__dirname, 'node_modules', 'estree-walker'),
+            path.join(__dirname, 'src')
+          ],
+          loader: 'babel-loader'
+        }
+      ]
+    }
+  },
   styles: {
     Playground: {
       preview: {

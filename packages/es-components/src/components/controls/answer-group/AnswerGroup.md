@@ -1,7 +1,7 @@
 Group `AnswerButton` components together using a `AnswerGroup`. Any additional props passed to `AnswerGroup` will propagate to each individual `AnswerButton`.
 
 ```
-const AnswerButton = require('./AnswerButton').default
+import AnswerButton from './AnswerButton';
 
 function AnswerGroupExample() {
   const [answer, setAnswer] = React.useState('nothing')
@@ -27,7 +27,7 @@ function AnswerGroupExample() {
 You can apply different button styles using the `styleType`, `size`, and `selectedType` props
 
 ```
-const AnswerButton = require('./AnswerButton').default
+import AnswerButton from './AnswerButton';
 
 function AnswerGroupExample() {
   const [answer, setAnswer] = React.useState('nothing')
@@ -54,7 +54,7 @@ function AnswerGroupExample() {
 Setting the `isOutline` property will apply a flat style to each `AnswerButton`
 
 ```
-const AnswerButton = require('./AnswerButton').default
+import AnswerButton from './AnswerButton';
 
 function AnswerGroupExample() {
   const [answer, setAnswer] = React.useState('nothing')
@@ -81,8 +81,9 @@ function AnswerGroupExample() {
 ### Validation states
 
 ```
-const Control = require('../Control').default;
-const AnswerButton = require('./AnswerButton').default
+import Control from '../Control';
+import Label from '../label/Label';
+import AnswerButton from './AnswerButton';
 
 function AnswerGroupExample() {
   return (

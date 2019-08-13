@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import LightNotification from '../../containers/notification/LightNotification';
 
@@ -25,5 +26,13 @@ function LightCallToAction({ children, ...rest }) {
     </LightNotification>
   );
 }
+
+LightCallToAction.propTypes = {
+  children: PropTypes.any
+};
+
+LightCallToAction.defaultProps = {
+  children: undefined
+};
 
 export default LightCallToAction;

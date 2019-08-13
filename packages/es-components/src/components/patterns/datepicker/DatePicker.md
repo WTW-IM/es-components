@@ -13,9 +13,11 @@ Props are passed props through to the TextBox component unless they belong to th
 - Home: Move to the previous year
 - End: Move to the next year
 - Enter/Esc/Tab: Close the calendar
+
 ```
-const Control = require('../../controls/Control').default;
-const AdditionalHelp = require('../../controls/AdditionalHelp').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
@@ -57,9 +59,10 @@ function DatePickerExample() {
 ### Date Ranges
 
 ```
-const addDays = require('date-fns').addDays;
-const isAfter = require('date-fns').isAfter;
-const Control = require('../../controls/Control').default;
+import { addDays, isAfter } from 'date-fns';
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
 function RangeExample() {
   const currentDate = new Date();
   const [range, setRange] = React.useState({ startDate: addDays(currentDate, -5), endDate: currentDate });
@@ -117,8 +120,10 @@ The `allowNativeDatepickerOnMobile` prop allows for the substitution of the Reac
 native one on mobile devices. This defaults to `true`.
 
 ```
-const Control = require('../../controls/Control').default;
-const AdditionalHelp = require('../../controls/AdditionalHelp').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import AdditionalHelp from '../../controls/AdditionalHelp';
+
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
   function handleOnChange(date) {
@@ -141,14 +146,15 @@ function DatePickerExample() {
 <DatePickerExample />
 ```
 
-
 ### Filter Dates
 
 The `filterDate` prop accepts a function used to filter the available dates.
 
 ```
-const getDay = require('date-fns').getDay;
-const Control = require('../../controls/Control').default;
+import { getDay } from 'date-fns';
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
   function handleOnChange(date) {
@@ -177,8 +183,10 @@ function DatePickerExample() {
 ### Include Dates (whitelist)
 
 ```
-const addDays = require('date-fns').addDays;
-const Control = require('../../controls/Control').default;
+import { addDays } from 'date-fns';
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
   function handleOnChange(date) {
@@ -203,8 +211,10 @@ function DatePickerExample() {
 ### Exclude Dates (blacklist)
 
 ```
-const addDays = require('date-fns').addDays;
-const Control = require('../../controls/Control').default;
+import { addDays } from 'date-fns';
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
   function handleOnChange(date) {
@@ -228,7 +238,9 @@ function DatePickerExample() {
 ### Child Content
 
 ```
-const Control = require('../../controls/Control').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
   function handleOnChange(date) {

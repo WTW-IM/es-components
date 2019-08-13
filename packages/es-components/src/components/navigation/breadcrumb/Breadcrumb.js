@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
+import genName from '../../util/generateAlphaName';
 
 function darkenPrimary(primary) {
   return tinycolor(primary)
@@ -59,7 +60,7 @@ function Breadcrumb({ children, ...props }) {
   return (
     <OrderedList {...props}>
       {React.Children.map(children, (child, index) => (
-        <Crumb key={index}>{child}</Crumb>
+        <Crumb key={genName()}>{child}</Crumb>
       ))}
     </OrderedList>
   );

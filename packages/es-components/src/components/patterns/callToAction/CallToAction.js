@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Notification from '../../containers/notification/Notification';
 
@@ -25,5 +26,13 @@ function CallToAction({ children, ...rest }) {
     </>
   );
 }
+
+CallToAction.propTypes = {
+  children: PropTypes.any
+};
+
+CallToAction.defaultProps = {
+  children: undefined
+};
 
 export default CallToAction;

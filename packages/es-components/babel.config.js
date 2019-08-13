@@ -1,11 +1,26 @@
-const wtwConfig = {
-  extractFormatMessage: false,
-  transformFormatMessage: false
-};
+module.exports = function(api) {
+  const modules = api.env('test') ? 'auto' : false;
 
-module.exports = {
-  presets: [['wtw-im', wtwConfig]],
-  plugins: [
+  const presets = [
+    [
+      'wtw-im',
+      {
+        extractFormatMessage: false,
+        transformFormatMessage: false,
+        env: { corejs: 3 }
+      }
+    ]
+  ];
+
+  const plugins = [
+    ['@babel/plugin-transform-runtime', { corejs: 3 }],
     '@babel/plugin-proposal-export-default-from'
-  ]
+  ];
+
+  return {
+    ignore: [/[\/\\]core-js/, /@babel[\/\\]runtime/],
+    sourceType: 'unambiguous',
+    presets,
+    plugins
+  };
 };

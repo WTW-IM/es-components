@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Label from '../label/Label';
@@ -68,7 +69,7 @@ const RadioDisplay = styled.span`
   }
 `;
 
-export function RadioButton({ name, children, ...radioProps }) {
+export function RadioButton({ children, ...radioProps }) {
   const id = useUniqueId(radioProps.id);
   const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
@@ -91,7 +92,7 @@ export function RadioButton({ name, children, ...radioProps }) {
 
   return (
     <RadioLabel {...labelProps}>
-      <RadioInput type="radio" name={name} id={id} {...radioProps} />
+      <RadioInput type="radio" id={id} {...radioProps} />
       <RadioDisplay
         className="es-radio__fill"
         borderColor={fill}
@@ -101,5 +102,13 @@ export function RadioButton({ name, children, ...radioProps }) {
     </RadioLabel>
   );
 }
+
+RadioButton.propTypes = {
+  children: PropTypes.any
+};
+
+RadioButton.defaultProps = {
+  children: undefined
+};
 
 export default RadioButton;

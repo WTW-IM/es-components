@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';

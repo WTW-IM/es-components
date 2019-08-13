@@ -55,9 +55,9 @@ const SpinnerCircle = styled.circle`
     ${colorsAnimation} 3.5s ease-in-out infinite;
 `;
 
-const Spinner = ({ title, description, ...props }) => {
-  const titleId = title && `${useUniqueId(props.id)}-title`;
-  const descId = description && `${useUniqueId(props.id)}-desc`;
+const Spinner = ({ title, description, ...other }) => {
+  const titleId = title && `${useUniqueId(other.id)}-title`;
+  const descId = description && `${useUniqueId(other.id)}-desc`;
 
   return (
     <SpinnerSvg
@@ -65,7 +65,7 @@ const Spinner = ({ title, description, ...props }) => {
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-labelledby={`${titleId} ${descId}`.trim()}
-      {...props}
+      {...other}
     >
       {title && <title id={titleId}>{title}</title>}
       {description && <desc id={descId}>{description}</desc>}

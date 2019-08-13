@@ -6,6 +6,8 @@ a level prop to the `Modal.Header` to prevent skipping heading levels. The style
 the level passed in.
 
 ```
+import Button from '../../controls/buttons/Button';
+
 <div>
   <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
 
@@ -32,8 +34,9 @@ the level passed in.
 
 `ModalButtonContainer` is a provided wrapper to give consistent styling to buttons and their layout inside of `Modal`s.
 
-```jsx
-const ModalButtonContainer = require('./ModalButtonContainer').default;
+```
+import ModalButtonContainer from './ModalButtonContainer';
+import Button from '../../controls/buttons/Button';
 
 <div>
   <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Modal</Button>

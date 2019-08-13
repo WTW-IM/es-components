@@ -1,6 +1,8 @@
 Tab Panels allow us to store lots more data on the screen and only show the amount we want, when we want. This works by having a TabPanel.Tab which provides a quick peek into what information will be display in the content area when clicked. The TabPanel.Tab has a name, which is a string or JSX to be displayed, and an optional simpleName, which is a string that will be read by a screen reader. The TabPanel.Tab can have children inside of it that will be rendered inside of the TabPanel's content area.
 
 ```
+import Icon from '../../base/icons/Icon';
+
 <TabPanel>
   <TabPanel.Tab name="Hi there">
     <p>
@@ -33,6 +35,8 @@ Tab Panels allow us to store lots more data on the screen and only show the amou
 It is possible to control the displayed tab directly using the `selectedKey` prop.
 
 ```
+import Icon from '../../base/icons/Icon';
+
 initialState = { selectedKey : 'dolor sit' };
 
 function tabChanged(name) {

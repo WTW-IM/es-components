@@ -101,7 +101,6 @@ function Popover(props) {
   function toggleShow(event) {
     event.preventDefault();
     event.stopPropagation();
-
     setIsOpen(!isOpen);
   }
 
@@ -147,11 +146,19 @@ function Popover(props) {
             escMsgRef.current.focus();
           }
         }, 100);
-        window.addEventListener('scroll', hidePopOnScroll);
       } else {
         triggerBtnRef.current.focus();
-        window.removeEventListener('scroll', hidePopOnScroll);
       }
+    },
+    [isOpen]
+  );
+
+  useEffect(
+    () => {
+      if (isOpen) {
+        window.addEventListener('scroll', hidePopOnScroll);
+      }
+      return () => window.removeEventListener('scroll', hidePopOnScroll);
     },
     [isOpen]
   );

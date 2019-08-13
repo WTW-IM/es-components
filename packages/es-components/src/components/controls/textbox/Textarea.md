@@ -2,7 +2,8 @@ The Textarea component will accept typical textarea attributes as props such as 
 The `rows` prop will work normally but `cols` does not when using the default stacked orientation (due to flexbox). Simply set the width by styling if required.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 <>
   <Control>
@@ -22,8 +23,9 @@ const Control = require('../Control').default;
 Validation states are driven from the `Control` component.
 
 ```
-const Control = require('../Control').default;
-const AdditionalHelp = require('../AdditionalHelp').default;
+import Control from '../Control';
+import Label from '../label/Label';
+import AdditionalHelp from '../AdditionalHelp';
 
 <>
   <Control validationState="success">

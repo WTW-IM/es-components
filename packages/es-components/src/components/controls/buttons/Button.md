@@ -29,6 +29,8 @@ const buttonStyle = {
 Including a `size` will set buttons to a specific size.
 
 ```
+import OutlineButton from './OutlineButton';
+
 const wrapperStyle = {
   marginBottom: '15px'
 };

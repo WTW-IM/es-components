@@ -3,7 +3,9 @@ Use a `Fieldset` component to group related fields.
 ### Fieldset example without a legend:
 
 ```
-const Control = require('../../controls/Control').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import Textbox from '../../controls/textbox/Textbox';
 
 <Fieldset>
   <Control>
@@ -26,7 +28,9 @@ const Control = require('../../controls/Control').default;
 ### Fieldset with a legend
 
 ```
-const Control = require('../../controls/Control').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import Textbox from '../../controls/textbox/Textbox';
 
 <Fieldset legendContent="Please enter your name">
   <Control>
@@ -52,9 +56,9 @@ You can wrap a `Fieldset` in a `Control` when you want to apply validation state
 to a more complex element with a legend, like a `RadioGroup`.
 
 ```
-const Control = require('../../controls/Control').default;
-const RadioButton = require('../../controls/radio-buttons/RadioButton').default;
-const RadioGroup = require('../../controls/radio-buttons/RadioGroup').default;
+import Control from '../../controls/Control';
+import RadioButton from '../../controls/radio-buttons/RadioButton';
+import RadioGroup from '../../controls/radio-buttons/RadioGroup';
 
 <Control validationState="danger" hasValidationBorder>
   <Fieldset legendContent="Please select your preference">

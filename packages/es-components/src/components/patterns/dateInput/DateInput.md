@@ -14,8 +14,9 @@ The `value` is a Date created from the combined inputs. The `value` is `undefine
 provide `selectOptionText` to define a default "Please select a Month"-style option.
 
 ```
-const Control = require('../../controls/Control').default;
-const AdditionalHelp = require('../../controls/AdditionalHelp').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DateInputExample() {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -65,8 +66,9 @@ You can set the value of the component with `defaultValue`.
 Use `minDate` and `maxDate` to set restrictions on valid dates.
 
 ```
-const Control = require('../../controls/Control').default;
-const AdditionalHelp = require('../../controls/AdditionalHelp').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DateInputExample() {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -122,7 +124,8 @@ You may omit Month and/or Day, but Year is required.
 Year, Month, and Day will display in the order you provide them.
 
 ```
-const Control = require('../../controls/Control').default;
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
 
 <Control>
   <Label htmlFor="orderDate">Enter a Date</Label>

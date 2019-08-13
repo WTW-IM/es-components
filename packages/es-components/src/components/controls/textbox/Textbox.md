@@ -1,7 +1,8 @@
 The Textbox component will accept typical input attributes as props such as onChange, onBlur, value, placeholder, etc.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 <>
   <Control>
@@ -19,7 +20,8 @@ const Control = require('../Control').default;
 Pass an `onChange` function to execute any time the input box value changes. This function will have the current value of the input box passed to it. The following is a simple controlled example, where state is handled outside the component. (See [Controlled Components](https://facebook.github.io/react/docs/htmlForms.html#controlled-components) and [Uncontrolled Components](https://facebook.github.io/react/docs/uncontrolled-components.html).)
 
 ```
-const Control = require('../Control').default
+import Control from '../Control';
+import Label from '../label/Label';
 
 function TextboxExample() {
   const [value, setValue] = React.useState('')
@@ -47,7 +49,8 @@ function TextboxExample() {
 Pass an `onBlur` function to execute when the text box loses focus. This function will have the current value of the input passed to it. To provide a default value in an uncontrolled `Textbox` component, use `defaultValue`.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 function handleOnBlur(event) {
   if(event.target.value.length > 0) {
@@ -70,8 +73,9 @@ function handleOnBlur(event) {
 Validation states are driven from the `Control` component.
 
 ```
-const Control = require('../Control').default;
-const AdditionalHelp = require('../AdditionalHelp').default;
+import Control from '../Control';
+import Label from '../label/Label';
+import AdditionalHelp from '../AdditionalHelp';
 
 <>
   <Control validationState="success">
@@ -99,7 +103,8 @@ const AdditionalHelp = require('../AdditionalHelp').default;
 Provide an `appendText` or `prependText` prop htmlFor appending and prepending inputs. Validation state colorings will also be applied.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 <>
   <Control>
@@ -159,7 +164,8 @@ const Control = require('../Control').default;
 Other typical input attributes passed to `Textbox` are allowed. The react `autoFocus` property is also accepted.
 
 ```
-const Control = require('../Control').default;
+import Control from '../Control';
+import Label from '../label/Label';
 
 <>
   <Control>

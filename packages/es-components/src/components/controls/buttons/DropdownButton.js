@@ -256,7 +256,8 @@ DropdownButton.propTypes = {
    */
   rootClose: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string
+  styleType: PropTypes.string,
+  id: PropTypes.string
 };
 
 DropdownButton.defaultProps = {
@@ -265,7 +266,8 @@ DropdownButton.defaultProps = {
   shouldUpdateButtonValue: false,
   shouldCloseOnButtonClick: false,
   styleType: 'default',
-  rootClose: false
+  rootClose: false,
+  id: undefined
 };
 
 export default DropdownButton;

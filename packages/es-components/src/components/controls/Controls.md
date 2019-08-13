@@ -15,11 +15,10 @@ An `AdditionalHelp` component can be used to provide more context for a control.
 Here is an example of a composed form using the elements above.
 
 ```jsx
-const React = require('react');
-const Control = require('./Control').default;
-const Label = require('./label/Label').default;
-const Textbox = require('./textbox/Textbox').default;
-const AdditionalHelp = require('./AdditionalHelp').default;
+import Control from './Control';
+import Label from './label/Label';
+import Textbox from './textbox/Textbox';
+import AdditionalHelp from './AdditionalHelp';
 
 function FormExample() {
   const [name, setName] = React.useState();
@@ -33,12 +32,14 @@ function FormExample() {
       <Control>
         <Label htmlFor="my-form-example">First Name</Label>
         <Textbox id="my-form-example" onBlur={handleNameChange} />
-        <AdditionalHelp>The name below will update when the textbox loses focus.</AdditionalHelp>
+        <AdditionalHelp>
+          The name below will update when the textbox loses focus.
+        </AdditionalHelp>
       </Control>
       <div>Name: {name}</div>
     </>
   );
-};
+}
 
-<FormExample />
+<FormExample />;
 ```

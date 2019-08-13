@@ -3,8 +3,9 @@ Notifications are static containers that will render any children passed to it. 
 There are two additional components `InlineMessage` and `Message` that can be used to display text in a `Notification`.
 
 ```jsx
-const Message = require('./Message').Message;
-const InlineMessage = require('./Message').InlineMessage;
+import { Message, InlineMessage } from './Message';
+import Popover from '../popover/Popover';
+import PopoverLink from '../../controls/buttons/PopoverLink';
 
 <div>
   <Notification type="success">

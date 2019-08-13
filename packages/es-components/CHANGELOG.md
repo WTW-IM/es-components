@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.78 (2019-08-13)</small>
+
+* Fix: dateInput properly validates empty Day ([c3e66f2](https://github.com/wtw-im/es-components/commit/c3e66f2))
+
+
+
+
+
 ## <small>19.0.77 (2019-08-13)</small>
 
 * Build: include estree-walker in webpack config ([4f09b9f](https://github.com/wtw-im/es-components/commit/4f09b9f))

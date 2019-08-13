@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.77 (2019-08-13)</small>
+
+* Build: include estree-walker in webpack config ([4f09b9f](https://github.com/wtw-im/es-components/commit/4f09b9f))
+* Build: removed duplicate babel packages ([e89e28e](https://github.com/wtw-im/es-components/commit/e89e28e))
+* Build: switched back to babel-preset-wtw-im ([9295a4f](https://github.com/wtw-im/es-components/commit/9295a4f))
+* Build: using rollup for all builds, styleguide working in IE11 ([25d27ad](https://github.com/wtw-im/es-components/commit/25d27ad))
+* Fix: newer eslint version errors ([029f839](https://github.com/wtw-im/es-components/commit/029f839))
+* Docs: updated require statements to import ([3dee6a5](https://github.com/wtw-im/es-components/commit/3dee6a5))
+
+
+
+
+
 ## <small>19.0.76 (2019-08-08)</small>
 
 * Fix: incrementer issue when thresholds were set to 0 ([13e5d3c](https://github.com/wtw-im/es-components/commit/13e5d3c))

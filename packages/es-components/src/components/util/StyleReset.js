@@ -11,7 +11,7 @@ const StyleReset = createGlobalStyle`
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
     border: 0;
-    font: inherit;
+    font-family: 'SourceSansPro-Regular', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -37,10 +37,14 @@ const StyleReset = createGlobalStyle`
     font-size: 85%;
   }
 
+  strong, b {
+    font-family: 'SourceSansPro-Bold', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: inherit;
     font: inherit;
-    font-weight: 300;
+    font-family: 'SourceSansPro-Light', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
     line-height: 1.1;
     margin-bottom: 0.45em;
     margin-top: 0;

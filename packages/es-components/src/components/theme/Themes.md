@@ -7,14 +7,15 @@ import { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
 
 ...
+
 render(
-	<ThemeProvider theme={viaTheme}>
-		<MyComponentOrApp />
-	</ThemeProvider>
+  <ThemeProvider theme={viaTheme}>
+    <MyComponentOrApp />
+  </ThemeProvider>
 );
 ```
 
-The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) is applied to all the components in this styleguide. To create your own theme, [copy the theme here](https://github.com/WTW-IM/es-components/blob/a05ccfacd68da862413f4bf38a804aa4c607eb48/packages/es-components-via-theme/index.js), modify the values, and supply that object to the `ThemeProvider`.
+The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) is applied to all the components in this styleguide. To create your own theme, [copy the theme here](https://github.com/WTW-IM/es-components/blob/master/packages/es-components-via-theme/index.js), modify the values, and supply that object to the `ThemeProvider`.
 
 ### Theme colors
 
@@ -47,14 +48,10 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
 
 ### Fonts
 
-Apart from the icon set, this library does not have a specific typography and should work with whatever font you have defined in your project. Our UX team's font of choice for
-our applications is `Source Sans Pro`. You can use the font in your project either by getting it from the UX team, or linking to [google's CDN](https://fonts.google.com/specimen/Source+Sans+Pro):
+Our web app font of choice is *Source Sans Pro*. Import it by adding the following to your application:
 
 ```html
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
-	rel="stylesheet"
->
+<link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css" />
 ```
 
 ### Styles
@@ -67,6 +64,7 @@ element anywhere in your app.
 import StyleReset from 'es-components';
 
 ...
+
 render(
   <>
     <StyleReset />

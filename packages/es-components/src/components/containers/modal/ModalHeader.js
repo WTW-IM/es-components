@@ -13,7 +13,6 @@ const Header = styled.div`
   color: ${props => props.theme.colors.gray9};
   display: flex;
   font-size: 26px;
-  font-weight: 500;
   justify-content: space-between;
   padding: 15px;
 `;

@@ -6,7 +6,7 @@ import { regular } from './icon-definitions';
 
 const StyledIcon = styled.i`
   display: inline-block;
-  font-family: ${props => props.fontFamily} !important;
+  font-family: indv-mkt-icons !important;
   font-size: ${props => props.fontSize};
   font-style: normal;
   font-weight: inherit;
@@ -29,7 +29,6 @@ function Icon({ name, size, ...other }) {
 
   const styledIconProps = {
     content: regular[iconName],
-    fontFamily: 'indv-mkt-icons',
     fontSize: size !== undefined ? `${size}px` : 'inherit'
   };
 

@@ -31,8 +31,8 @@ module.exports = {
           word-break: break-word !important;
         }
       </style>
-      <link rel="stylesheet" href="https://wtw-bdaim-cdn.azureedge.net/es-assets/es-assets-master/font.css">
-      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+      <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css">
+      <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css">
       <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
     `
     }

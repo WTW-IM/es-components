@@ -15,10 +15,10 @@ const AnswerLabel = styled.label`
 `;
 
 const AnswerDisplay = styled.div`
-  background-color: ${props => props.style.bgColor};
+  background-color: ${props => props.buttonStyle.bgColor};
   border-color: transparent;
-  box-shadow: 0 4px 0 0 ${props => props.style.boxShadowColor};
-  color: ${props => props.style.textColor};
+  box-shadow: 0 4px 0 0 ${props => props.buttonStyle.boxShadowColor};
+  color: ${props => props.buttonStyle.textColor};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   font-size: ${props => props.buttonSize.fontSize};
   line-height: ${props => props.buttonSize.lineHeight};
@@ -35,16 +35,16 @@ const AnswerDisplay = styled.div`
   user-select: none;
 
   &:active {
-    background-color: ${props => props.style.activeBgColor};
+    background-color: ${props => props.buttonStyle.activeBgColor};
     box-shadow: 0 0 0 0 transparent;
-    color: ${props => props.style.activeTextColor};
+    color: ${props => props.buttonStyle.activeTextColor};
     margin-bottom: 0;
     margin-top: 4px;
   }
 
   &:hover {
-    background-color: ${props => props.style.hoverBgColor};
-    color: ${props => props.style.hoverTextColor};
+    background-color: ${props => props.buttonStyle.hoverBgColor};
+    color: ${props => props.buttonStyle.hoverTextColor};
   }
 
   &[disabled] {
@@ -59,13 +59,17 @@ const AnswerDisplay = styled.div`
 
 const OutlineAnswerDisplay = styled(AnswerDisplay)`
   background-color: ${props =>
-    props.isChecked ? props.style.hoverBgColor : props.style.bgColor};
-  border: 2px solid ${props => props.style.borderColor};
+    props.isChecked
+      ? props.buttonStyle.hoverBgColor
+      : props.buttonStyle.bgColor};
+  border: 2px solid ${props => props.buttonStyle.borderColor};
   box-shadow: ${props => (props.isChecked ? '0 0 0 0' : 'none')}
-    ${props => props.isChecked && props.style.boxShadowColor};
+    ${props => props.isChecked && props.buttonStyle.boxShadowColor};
   box-sizing: border-box;
   color: ${props =>
-    props.isChecked ? props.style.hoverTextColor : props.style.textColor};
+    props.isChecked
+      ? props.buttonStyle.hoverTextColor
+      : props.buttonStyle.textColor};
   margin: 0;
 
   &:active {
@@ -83,8 +87,8 @@ const AnswerInput = styled.input`
   width: 1px;
 
   &:focus + div {
-    background-color: ${props => props.style.activeBgColor};
-    color: ${props => props.style.activeTextColor};
+    background-color: ${props => props.buttonStyle.activeBgColor};
+    color: ${props => props.buttonStyle.activeTextColor};
   }
 `;
 
@@ -103,21 +107,28 @@ function AnswerButton({
   const isChecked = radioProps.checked || radioProps.defaultChecked;
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
-  const buttonStyle = isOutline ? 'outlineButton' : 'button';
-  const buttonSize = theme.buttonStyles[buttonStyle].size[size];
+  const buttonType = isOutline ? 'outlineButton' : 'button';
+  const buttonSize = theme.buttonStyles[buttonType].size[size];
 
-  let displayType = styleType;
-  if (validationState !== 'default') {
-    displayType = validationState;
+  const variant =
+    validationState !== 'default' && !isOutline ? validationState : styleType;
+  const validationBorder =
+    theme.buttonStyles[buttonType].variant[validationState].borderColor;
+
+  let selectedStyles = theme.buttonStyles[buttonType].variant[selectedType];
+  let unSelectedStyles = theme.buttonStyles[buttonType].variant[variant];
+
+  if (isOutline && validationState !== 'default') {
+    selectedStyles = { ...selectedStyles, borderColor: validationBorder };
+    unSelectedStyles = { ...unSelectedStyles, borderColor: validationBorder };
   }
-  const style = isChecked
-    ? theme.buttonStyles[buttonStyle].variant[selectedType]
-    : theme.buttonStyles[buttonStyle].variant[displayType];
+
+  const buttonStyle = isChecked ? selectedStyles : unSelectedStyles;
 
   const buttonProps = {
     disabled: radioProps.disabled,
     isChecked,
-    style,
+    buttonStyle,
     buttonSize
   };
 
@@ -136,7 +147,7 @@ function AnswerButton({
         type="radio"
         name={name}
         id={id}
-        style={style}
+        buttonStyle={buttonStyle}
         {...radioProps}
       />
       <Display {...buttonProps}>{children}</Display>

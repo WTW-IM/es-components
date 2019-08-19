@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.79 (2019-08-19)</small>
+
+* Update: answerGroup button validation styles ([2fbeee9](https://github.com/wtw-im/es-components/commit/2fbeee9))
+* Update: CDN links, font references ([7ae51b4](https://github.com/wtw-im/es-components/commit/7ae51b4))
+* Update: checkbox/radio validation styles ([ecf83de](https://github.com/wtw-im/es-components/commit/ecf83de))
+* Update: textbox validation style ([a7387de](https://github.com/wtw-im/es-components/commit/a7387de))
+* New: isValidEmail validator function ([1846b04](https://github.com/wtw-im/es-components/commit/1846b04))
+
+
+
+
+
 ## <small>19.0.78 (2019-08-13)</small>
 
 * Fix: dateInput properly validates empty Day ([c3e66f2](https://github.com/wtw-im/es-components/commit/c3e66f2))

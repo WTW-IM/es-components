@@ -16,7 +16,6 @@ const backgroundColorSelect = (checked, theme, validationState) => {
 };
 
 const CheckboxLabel = styled(Label)`
-  color: inherit;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   line-height: ${props => props.theme.sizes.baseLineHeight};

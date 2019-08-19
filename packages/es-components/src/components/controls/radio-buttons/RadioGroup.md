@@ -14,7 +14,7 @@ function RadioGroupExample() {
 
   return (
     <>
-      <Control orientation="inline" validationState="success">
+      <Control orientation="inline">
         <Fieldset legendContent="Recreational Activities">
           <RadioGroup name="recreational-activities" onChange={handleRadioChange} selectedValue={activity}>
             <RadioButton value="hiking">Hiking</RadioButton>

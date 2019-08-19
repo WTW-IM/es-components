@@ -65,7 +65,7 @@ function AnswerGroupExample() {
 
   return (
     <>
-      <AnswerGroup name="position" styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} isOutline selectedValue={answer}>
+      <AnswerGroup name="position" isOutline styleType="primary" selectedType="primary" itemWidth="200px" onChange={handleRadioChange} selectedValue={answer}>
         <AnswerButton value="left">Left</AnswerButton>
         <AnswerButton value="middle">Middle</AnswerButton>
         <AnswerButton value="right">Right</AnswerButton>
@@ -90,7 +90,7 @@ function AnswerGroupExample() {
     <>
     <Control validationState="success">
       <Label htmlFor="success-question">Success</Label>
-      <AnswerGroup name="success-question" isOutline onChange={()=>{}}>
+      <AnswerGroup name="success-question" isOutline styleType="primary" selectedType="primary" onChange={()=>{}}>
         <AnswerButton value="yes">Yes</AnswerButton>
         <AnswerButton value="no">No</AnswerButton>
       </AnswerGroup>
@@ -98,7 +98,7 @@ function AnswerGroupExample() {
 
     <Control validationState="warning">
       <Label htmlFor="warning-question">Warning</Label>
-      <AnswerGroup name="warning-question" isOutline onChange={()=>{}}>
+      <AnswerGroup name="warning-question" isOutline styleType="primary" selectedType="primary" onChange={()=>{}}>
         <AnswerButton value="yes">Yes</AnswerButton>
         <AnswerButton value="no">No</AnswerButton>
       </AnswerGroup>
@@ -106,7 +106,7 @@ function AnswerGroupExample() {
 
     <Control validationState="danger">
       <Label htmlFor="danger-question">Danger</Label>
-      <AnswerGroup name="danger-question" isOutline onChange={()=>{}}>
+      <AnswerGroup name="danger-question" isOutline styleType="primary" selectedType="primary" onChange={()=>{}}>
         <AnswerButton value="yes">Yes</AnswerButton>
         <AnswerButton value="no">No</AnswerButton>
       </AnswerGroup>

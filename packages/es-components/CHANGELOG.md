@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.80 (2019-08-20)</small>
+
+* Fix: dateInput month/day check logic ([7d41875](https://github.com/wtw-im/es-components/commit/7d41875))
+
+
+
+
+
 ## <small>19.0.79 (2019-08-19)</small>
 
 * Merge remote-tracking branch 'origin/validation-updates' ([0a8dd7a](https://github.com/wtw-im/es-components/commit/0a8dd7a))

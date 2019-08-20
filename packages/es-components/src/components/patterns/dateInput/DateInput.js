@@ -61,12 +61,12 @@ function DateInput({
 
   useEffect(() => {
     React.Children.forEach(children, child => {
-      if (child.type.name === 'Month') {
+      if (child.type === Month) {
         if (child.props.selectOptionText) {
           dispatch({ type: 'month_updated', value: 'none' });
         }
       }
-      if (child.type.name === 'Day') {
+      if (child.type === Day) {
         hasDayElement.current = true;
       }
     });

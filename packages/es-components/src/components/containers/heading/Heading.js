@@ -8,8 +8,8 @@ const HeadingBase = styled.h1`
   border-bottom: ${props =>
     props.underlineColor && `2px solid ${props.underlineColor};`};
   color: ${props => (props.isKnockoutStyle ? 'white' : 'inherit')};
-  font-family: 'SourceSansPro-Light', 'Segoe UI', Segoe, Calibri, Tahoma,
-    sans-serif;
+  font-family: 'SourceSansPro-Light', 'Source Sans Pro', 'Segoe UI', Segoe,
+    Calibri, Tahoma, sans-serif;
   font-size: ${props =>
     props.adjustedSize > 2
       ? props.theme.headingSize[props.adjustedSize]

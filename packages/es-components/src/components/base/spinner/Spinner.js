@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import useUniqueId from '../../util/useUniqueId';
 
@@ -81,11 +80,13 @@ const Spinner = ({ title, description, ...other }) => {
   );
 };
 
-const descriptionTitleProp = (props, ...otherParams) => {
+// eslint-disable-next-line consistent-return
+const descriptionTitleProp = (props, propName, componentName) => {
   if (!props.title && !props.description) {
-    return new Error('You must provide a title, description, or both.');
+    return new Error(
+      `You must provide a title, description, or both to ${componentName}.`
+    );
   }
-  return PropTypes.string(props, ...otherParams);
 };
 
 Spinner.propTypes = {

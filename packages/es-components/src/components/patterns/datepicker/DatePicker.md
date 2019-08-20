@@ -153,7 +153,6 @@ The `suppressDatepicker` prop allows for the suppression of the React DatePicker
 ```
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
-import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DatePickerExample() {
   const [selectedValue, setSelectedValue] = React.useState(null);
@@ -162,12 +161,13 @@ function DatePickerExample() {
   }
   return (
     <Control>
-      <Label htmlFor="pick-a-date">Pick a Date</Label>
+      <Label htmlFor="pick-a-date">Enter a Date</Label>
       <DatePicker
         id="pick-a-date"
         onChange={handleOnChange}
         selectedDate={selectedValue}
         suppressDatepicker
+        placeholder="mm/dd/yyyy"
       />
     </Control>
   )

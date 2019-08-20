@@ -146,6 +146,35 @@ function DatePickerExample() {
 <DatePickerExample />
 ```
 
+### Suppress Date Picker
+
+The `suppressDatepicker` prop allows for the suppression of the React DatePicker on desktop and Android mobile devices. This defaults to `false`.
+
+```
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+  return (
+    <Control>
+      <Label htmlFor="pick-a-date">Enter a Date</Label>
+      <DatePicker
+        id="pick-a-date"
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+        suppressDatepicker
+        placeholder="mm/dd/yyyy"
+      />
+    </Control>
+  )
+}
+<DatePickerExample />
+```
+
 ### Filter Dates
 
 The `filterDate` prop accepts a function used to filter the available dates.

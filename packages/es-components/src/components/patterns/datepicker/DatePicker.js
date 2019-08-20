@@ -56,7 +56,11 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
 
   const textbox = (
     <MaskedTextbox
+      css="
+        max-width: 265px;
+      "
       maskType="date"
+      placeholder={props.placeholder}
       prependIconName="calendar"
       ref={inputRef}
       {...textboxProps}
@@ -66,12 +70,16 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   return (
     <>
       <DatepickerStyles />
-      <ReactDatePicker
-        customInput={textbox}
-        placeholderText={props.placeholder}
-        selected={normalizeDate(props.selectedDate)}
-        {...datepickerProps}
-      />
+      {props.suppressDatepicker ? (
+        textbox
+      ) : (
+        <ReactDatePicker
+          customInput={textbox}
+          placeholderText={props.placeholder}
+          selected={normalizeDate(props.selectedDate)}
+          {...datepickerProps}
+        />
+      )}
     </>
   );
 });
@@ -112,8 +120,13 @@ const DatePicker = function DatePicker(props) {
   const theme = useTheme();
   const phoneWidth = parseInt(theme.screenSize.phone, 10) || 0;
 
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isAndroid = userAgent.indexOf('android') > -1;
+
   const DatePickerInput =
-    props.allowNativeDatepickerOnMobile && windowWidth <= phoneWidth
+    props.allowNativeDatepickerOnMobile &&
+    windowWidth <= phoneWidth &&
+    !isAndroid
       ? NativeDatePicker
       : DateTextbox;
 
@@ -127,6 +140,7 @@ const DatePicker = function DatePicker(props) {
 };
 
 DatePicker.propTypes = {
+  suppressDatepicker: PropTypes.bool,
   allowNativeDatepickerOnMobile: PropTypes.bool,
   selectedDate: PropTypes.oneOfType([
     PropTypes.instanceOf(Date),
@@ -136,6 +150,7 @@ DatePicker.propTypes = {
 };
 
 DatePicker.defaultProps = {
+  suppressDatepicker: false,
   allowNativeDatepickerOnMobile: true,
   selectedDate: '',
   onChange: undefined

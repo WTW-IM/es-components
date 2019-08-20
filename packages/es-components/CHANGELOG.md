@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.81 (2019-08-20)</small>
+
+* Update: adds ability to suppress datepicker with prop ([ddf4d21](https://github.com/wtw-im/es-components/commit/ddf4d21))
+* Update: minor fix to datepicker markdown and css ([56f1503](https://github.com/wtw-im/es-components/commit/56f1503))
+
+
+
+
+
 ## <small>19.0.80 (2019-08-20)</small>
 
 * Fix: dateInput month/day check logic ([7d41875](https://github.com/wtw-im/es-components/commit/7d41875))

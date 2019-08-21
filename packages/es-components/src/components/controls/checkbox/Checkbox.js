@@ -17,6 +17,9 @@ const backgroundColorSelect = (checked, theme, validationState) => {
 
 const CheckboxLabel = styled(Label)`
   font-size: ${props => props.theme.sizes.baseFontSize};
+  font-family: 'SourceSansPro-Regular', 'Source Sans Pro', 'Segoe UI', Segoe,
+    Calibri, Tahoma, sans-serif;
+  font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   margin-left: -10px;

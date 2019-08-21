@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.82 (2019-08-21)</small>
+
+* Update: providing fallback to sourcesanspro font ([1d22f0a](https://github.com/wtw-im/es-components/commit/1d22f0a))
+
+
+
+
+
 ## <small>19.0.81 (2019-08-20)</small>
 
 * Update: adds ability to suppress datepicker with prop ([ddf4d21](https://github.com/wtw-im/es-components/commit/ddf4d21))

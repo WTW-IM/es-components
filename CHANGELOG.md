@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.83 (2019-08-21)</small>
+
+* Fix: checkbox/radio label weight ([5857d68](https://github.com/wtw-im/es-components/commit/5857d68))
+
+
+
+
+
 ## <small>19.0.82 (2019-08-21)</small>
 
 * Update: providing fallback to sourcesanspro font ([1d22f0a](https://github.com/wtw-im/es-components/commit/1d22f0a))

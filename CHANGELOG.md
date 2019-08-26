@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.84 (2019-08-26)</small>
+
+* Fix: sidenav test ([5d6cbcf](https://github.com/wtw-im/es-components/commit/5d6cbcf))
+* Fix: styles - firefox double-bold, ie sidenav ([36f4cf8](https://github.com/wtw-im/es-components/commit/36f4cf8))
+
+
+
+
+
 ## <small>19.0.83 (2019-08-21)</small>
 
 * Fix: checkbox/radio label weight ([5857d68](https://github.com/wtw-im/es-components/commit/5857d68))

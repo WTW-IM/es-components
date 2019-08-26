@@ -11,6 +11,10 @@ const Label = styled.label`
   margin-bottom: 5px;
   display: inline-block;
 
+  @-moz-document url-prefix() {
+    font-weight: lighter !important;
+  }
+
   &[disabled] {
     cursor: not-allowed;
   }

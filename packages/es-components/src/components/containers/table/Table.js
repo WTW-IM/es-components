@@ -31,11 +31,17 @@ const TableBase = styled.table`
   }
 
   th {
+    font-family: 'SourceSansPro-Bold', 'Source Sans Pro', 'Segoe UI', Segoe,
+      Calibri, Tahoma, sans-serif;
     font-weight: bold;
     line-height: ${props => props.theme.sizes.baseLineHeight};
     padding: ${props => props.cellPadding};
     text-align: left;
     vertical-align: bottom;
+
+    @-moz-document url-prefix() {
+      font-weight: lighter !important;
+    }
   }
 
   td {

@@ -118,7 +118,7 @@ const NavIcon = styled(Icon)`
 
 const NavigationAnchor = styled.a`
   align-content: center;
-  background-color: inherit;
+  background-color: transparent;
   border: 0;
   color: inherit;
   cursor: inherit;

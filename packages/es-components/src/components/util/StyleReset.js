@@ -41,6 +41,12 @@ const StyleReset = createGlobalStyle`
     font-family: 'SourceSansPro-Bold', 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   }
 
+  @-moz-document url-prefix() {
+    strong, b {
+      font-weight: lighter !important;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: inherit;
     font: inherit;

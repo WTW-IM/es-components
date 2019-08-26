@@ -10,7 +10,7 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem sc-bxivhb fZrkkg"
       >
         <button
-          class="sc-bZQynM cBoIkp"
+          class="sc-bZQynM cihicv"
           type="button"
         >
           <span>
@@ -22,7 +22,7 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem sc-bxivhb bhVqaQ"
       >
         <button
-          class="sc-bZQynM cBoIkp"
+          class="sc-bZQynM cihicv"
           type="button"
         >
           <span>
@@ -34,7 +34,7 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem sc-bxivhb bhVqaQ"
       >
         <a
-          class="sc-bZQynM cBoIkp"
+          class="sc-bZQynM cihicv"
           href="https://google.com"
         >
           <span>
@@ -46,7 +46,7 @@ exports[`renders as expected 1`] = `
         class="es-sidenav__navitem sc-bxivhb jkBINK"
       >
         <button
-          class="sc-bZQynM cBoIkp"
+          class="sc-bZQynM cihicv"
           type="button"
         >
           <span>

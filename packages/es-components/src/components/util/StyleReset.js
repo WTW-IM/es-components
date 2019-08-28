@@ -11,7 +11,7 @@ const StyleReset = createGlobalStyle`
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
     border: 0;
-    font-family: 'SourceSansPro-Regular', 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
     font-size: 100%;
     margin: 0;
     padding: 0;
@@ -38,19 +38,15 @@ const StyleReset = createGlobalStyle`
   }
 
   strong, b {
-    font-family: 'SourceSansPro-Bold', 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  }
-
-  @-moz-document url-prefix() {
-    strong, b {
-      font-weight: lighter !important;
-    }
+    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    font-weight: bold;
   }
 
   h1, h2, h3, h4, h5, h6 {
     color: inherit;
     font: inherit;
-    font-family: 'SourceSansPro-Light', 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    font-weight: 300;
     line-height: 1.1;
     margin-bottom: 0.45em;
     margin-top: 0;

@@ -3,17 +3,12 @@ import styled from 'styled-components';
 const Label = styled.label`
   color: ${props => props.theme.colors.gray9};
   cursor: pointer;
-  font-family: 'SourceSansPro-Bold', 'Source Sans Pro', 'Segoe UI', Segoe,
-    Calibri, Tahoma, sans-serif;
+  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: bold;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   margin-bottom: 5px;
   display: inline-block;
-
-  @-moz-document url-prefix() {
-    font-weight: lighter !important;
-  }
 
   &[disabled] {
     cursor: not-allowed;

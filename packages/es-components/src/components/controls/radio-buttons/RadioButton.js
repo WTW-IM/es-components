@@ -27,8 +27,7 @@ const RadioLabel = styled(Label)`
   align-self: flex-start;
   cursor: pointer;
   display: flex;
-  font-family: 'SourceSansPro-Regular', 'Source Sans Pro', 'Segoe UI', Segoe,
-    Calibri, Tahoma, sans-serif;
+  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-weight: normal;
   line-height: ${props => props.theme.sizes.baseLineHeight};

@@ -5,8 +5,8 @@ import Table from './Table';
 const TableBase = styled(Table)`
   tbody {
     th {
-      font-family: 'SourceSansPro-Regular', 'Source Sans Pro', 'Segoe UI', Segoe,
-        Calibri, Tahoma, sans-serif;
+      font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
+        sans-serif;
       font-weight: normal;
     }
   }
@@ -44,16 +44,12 @@ const TableBase = styled(Table)`
 
         &:before {
           content: attr(data-label);
-          font-family: 'SourceSansPro-Bold', 'Source Sans Pro', 'Segoe UI',
-            Segoe, Calibri, Tahoma, sans-serif;
+          font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
+            sans-serif;
           font-weight: bold;
           margin-right: 2em;
           max-width: 25%;
           text-align: left;
-
-          @-moz-document url-prefix() {
-            font-weight: lighter !important;
-          }
         }
 
         &:first-child {

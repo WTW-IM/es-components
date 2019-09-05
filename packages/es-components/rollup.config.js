@@ -46,7 +46,7 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      file: pkg.browser,
+      file: 'bundle/main.min.js',
       format: 'umd',
       name: 'es-components',
       globals: {

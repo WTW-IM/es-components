@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.86 (2019-09-06)</small>
+
+* Fix: allow null to be used for Drawer children ([5c72a9b](https://github.com/wtw-im/es-components/commit/5c72a9b))
+
+
+
+
+
 ## <small>19.0.85 (2019-08-29)</small>
 
 * Fix: source sans pro family from CDN ([67ec14b](https://github.com/wtw-im/es-components/commit/67ec14b))

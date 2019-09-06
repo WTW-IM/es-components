@@ -46,24 +46,27 @@ function Drawer(props) {
     <DrawerContext.Provider value={{ openedIconName, closedIconName }}>
       <StyledDrawer {...other}>
         {Children.map(children, (child, index) => {
-          // If there is no key provided, use the panel order as default key
-          const key = child.key || String(index + 1);
+          if (child) {
+            // If there is no key provided, use the panel order as default key
+            const key = (child && child.key) || String(index + 1);
 
-          let isOpen = false;
-          if (isAccordion) {
-            isOpen = activeKeys[0] === key;
-          } else {
-            isOpen = activeKeys.indexOf(key) > -1;
+            let isOpen = false;
+            if (isAccordion) {
+              isOpen = activeKeys[0] === key;
+            } else {
+              isOpen = activeKeys.indexOf(key) > -1;
+            }
+
+            const childProps = {
+              ...child.props,
+              key,
+              isOpen,
+              onItemClick: () => onItemClick(key)
+            };
+
+            return React.cloneElement(child, childProps);
           }
-
-          const childProps = {
-            ...child.props,
-            key,
-            isOpen,
-            onItemClick: () => onItemClick(key)
-          };
-
-          return React.cloneElement(child, childProps);
+          return null;
         })}
       </StyledDrawer>
     </DrawerContext.Provider>

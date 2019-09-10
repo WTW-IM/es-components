@@ -5,7 +5,6 @@
   "repository": "https://github.com/wtw-im/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
-  "browser": "bundle/main.min.js",
   "sideEffects": false,
   "scripts": {
     "build": "npm run rollup",

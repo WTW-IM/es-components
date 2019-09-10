@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.87 (2019-09-10)</small>
+
+* Build: removed browser field in package.json ([3380c07](https://github.com/wtw-im/es-components/commit/3380c07))
+
+
+
+
+
 ## <small>19.0.86 (2019-09-06)</small>
 
 * Fix: allow null to be used for Drawer children ([5c72a9b](https://github.com/wtw-im/es-components/commit/5c72a9b))

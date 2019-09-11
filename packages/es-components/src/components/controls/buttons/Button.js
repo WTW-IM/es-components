@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   display: block;
   overflow: visible;
   padding: 0;
+  text-decoration: none;
   width: 100%;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {

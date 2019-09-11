@@ -23,6 +23,7 @@ const StyledButton = styled.button`
   padding-right: ${props => props.buttonSize.paddingSides};
   padding-top: ${props => props.buttonSize.paddingTop};
   text-align: center;
+  text-decoration: none;
   text-transform: ${props =>
     props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
   transition: background-color 150ms linear, color 150ms linear;

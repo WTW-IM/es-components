@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.89 (2019-09-17)</small>
+
+* Update: tooltips attach to doc body instead of sibling element ([1001c7f](https://github.com/wtw-im/es-components/commit/1001c7f))
+
+
+
+
+
 ## <small>19.0.88 (2019-09-11)</small>
 
 * Fix: set text-decoration on Button ([8441da8](https://github.com/wtw-im/es-components/commit/8441da8))

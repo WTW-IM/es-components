@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Manager, Reference, Popper } from 'react-popper';
 import styled from 'styled-components';
@@ -153,23 +154,26 @@ function Tooltip(props) {
 
       <ScreenReaderContent id={descriptionId}>{content}</ScreenReaderContent>
 
-      <Popper placement={position}>
-        {({ ref, style, placement, arrowProps }) => (
-          <Fade in={show} mountOnEnter unmountOnExit>
-            <TooltipStyled
-              ref={ref}
-              role="tooltip"
-              id={tooltipId}
-              style={style}
-              aria-live="polite"
-              {...other}
-            >
-              <TooltipArrow ref={arrowProps.ref} style={arrowProps.style} />
-              <TooltipInner>{content}</TooltipInner>
-            </TooltipStyled>
-          </Fade>
-        )}
-      </Popper>
+      {ReactDOM.createPortal(
+        <Popper placement={position}>
+          {({ ref, style, placement, arrowProps }) => (
+            <Fade in={show} mountOnEnter unmountOnExit>
+              <TooltipStyled
+                ref={ref}
+                role="tooltip"
+                id={tooltipId}
+                style={style}
+                aria-live="polite"
+                {...other}
+              >
+                <TooltipArrow ref={arrowProps.ref} style={arrowProps.style} />
+                <TooltipInner>{content}</TooltipInner>
+              </TooltipStyled>
+            </Fade>
+          )}
+        </Popper>,
+        document.querySelector('body')
+      )}
     </Manager>
   );
 }

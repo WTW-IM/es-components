@@ -180,19 +180,19 @@ function Popover(props) {
 
   return (
     <Container>
-      <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
-        <Popup
-          name={name}
-          trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
-          position={placement}
-          arrowSize={arrowSize}
-          transitionIn={isOpen}
-          hasTitle={hasTitle}
-          disableFlipping={disableFlipping}
-          popperRef={elem => {
-            popperRef.current = elem;
-          }}
-        >
+      <Popup
+        name={name}
+        trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
+        position={placement}
+        arrowSize={arrowSize}
+        transitionIn={isOpen}
+        hasTitle={hasTitle}
+        disableFlipping={disableFlipping}
+        popperRef={elem => {
+          popperRef.current = elem;
+        }}
+      >
+        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
           <div role="dialog" ref={contentRef}>
             <PopoverHeader hasTitle={hasTitle}>
               {hasTitle && <TitleBar>{title}</TitleBar>}
@@ -211,8 +211,8 @@ function Popover(props) {
               {showCloseButton && closeButton}
             </PopoverBody>
           </div>
-        </Popup>
-      </RootCloseWrapper>
+        </RootCloseWrapper>
+      </Popup>
     </Container>
   );
 }

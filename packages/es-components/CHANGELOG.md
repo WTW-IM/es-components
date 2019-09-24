@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.91 (2019-09-24)</small>
+
+* Update: restrict resize event firing ([a3a1abc](https://github.com/wtw-im/es-components/commit/a3a1abc))
+
+
+
+
+
 ## <small>19.0.90 (2019-09-18)</small>
 
 * Fix: moves RootCloseWrapper in Popover ([dec7f21](https://github.com/wtw-im/es-components/commit/dec7f21))

@@ -30,7 +30,14 @@ export default function withWindowSize(ComponentClass) {
       window.removeEventListener('resize', this.handleResize);
     }
 
-    handleResize = () => this.setState(getWindowSize());
+    handleResize = () => {
+      const activeTag = document.activeElement.tagName.toLocaleLowerCase();
+      if (activeTag === 'input' || activeTag === 'select') {
+        return;
+      }
+
+      this.setState(getWindowSize());
+    };
 
     render() {
       return (

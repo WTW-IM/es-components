@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.92 (2019-09-30)</small>
+
+* added inputmode and pattern to Day and Year input components ([84174ad](https://github.com/wtw-im/es-components/commit/84174ad))
+* Updated DateInput snapshot ([648588d](https://github.com/wtw-im/es-components/commit/648588d))
+
+
+
+
+
 ## <small>19.0.91 (2019-09-24)</small>
 
 * Update: restrict resize event firing ([a3a1abc](https://github.com/wtw-im/es-components/commit/a3a1abc))

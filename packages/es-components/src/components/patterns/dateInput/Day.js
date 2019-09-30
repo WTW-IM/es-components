@@ -32,6 +32,8 @@ function Day({ onChange, date, ...props }) {
   return (
     <DayInput
       type="number"
+      inputmode="numeric"
+      pattern="[0-9]*"
       min="1"
       max="31"
       onChange={onDayChange}

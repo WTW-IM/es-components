@@ -6,7 +6,7 @@ import inputMaskType from './inputMaskType';
 import Textbox from './Textbox';
 
 const MaskedTextbox = React.forwardRef(function MaskedTextbox(props, ref) {
-  const { maskType, customMask, ...additionalTextProps } = props;
+  const { maskType, customMask, inputMode, pattern, ...additionalTextProps } = props;
   const inputRef = React.useRef();
   React.useImperativeHandle(ref, () => inputRef.current);
 
@@ -25,6 +25,8 @@ const MaskedTextbox = React.forwardRef(function MaskedTextbox(props, ref) {
       }}
       {...maskArgs}
       type="text"
+      inputmode={inputMode}
+      pattern={pattern}
       {...additionalTextProps}
     />
   );
@@ -40,6 +42,8 @@ MaskedTextbox.propTypes = {
     'zip',
     'custom'
   ]).isRequired,
+  inputMode: PropTypes.string,
+  pattern: PropTypes.string,
   /** Provide a custom mask */
   customMask: PropTypes.shape({
     mask: PropTypes.oneOfType([PropTypes.array, PropTypes.func]).isRequired,
@@ -52,7 +56,9 @@ MaskedTextbox.propTypes = {
 };
 
 MaskedTextbox.defaultProps = {
-  customMask: undefined
+  customMask: undefined,
+  inputMode: undefined,
+  pattern: undefined
 };
 
 export default MaskedTextbox;

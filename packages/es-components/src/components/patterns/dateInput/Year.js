@@ -32,6 +32,8 @@ function Year({ onChange, date, ...props }) {
   return (
     <YearInput
       type="number"
+      inputmode="numeric"
+      pattern="[0-9]*"
       onChange={onYearChange}
       placeholder="Year"
       value={value}

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.93 (2019-10-01)</small>
+
+* Fix: IE11 spinner ([f896e2f](https://github.com/wtw-im/es-components/commit/f896e2f))
+
+
+
+
+
 ## <small>19.0.92 (2019-09-30)</small>
 
 * added inputmode and pattern to Day and Year input components ([84174ad](https://github.com/wtw-im/es-components/commit/84174ad))

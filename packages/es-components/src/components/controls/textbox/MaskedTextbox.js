@@ -57,8 +57,8 @@ MaskedTextbox.propTypes = {
 
 MaskedTextbox.defaultProps = {
   customMask: undefined,
-  inputMode: undefined,
-  pattern: undefined
+  inputMode: 'text',
+  pattern: ''
 };
 
 export default MaskedTextbox;

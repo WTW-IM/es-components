@@ -11,6 +11,15 @@ const rotatorAnimation = keyframes`
   }
 `;
 
+const ieAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 const dashAnimation = keyframes`
   0% {
     stroke-dashoffset: 187;
@@ -44,11 +53,16 @@ const colorsAnimation = props => keyframes`
 
 const SpinnerSvg = styled.svg`
   animation: ${rotatorAnimation} 1.4s linear infinite;
+
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    animation: ${ieAnimation} 1.4s linear infinite;
+  }
 `;
 
 const SpinnerCircle = styled.circle`
+  stroke: ${props => props.theme.colors.violet};
   stroke-dasharray: 187;
-  stroke-dashoffset: 0;
+  stroke-dashoffset: 37.4;
   transform-origin: center;
   animation: ${dashAnimation} 1.4s ease-in-out infinite,
     ${colorsAnimation} 3.5s ease-in-out infinite;

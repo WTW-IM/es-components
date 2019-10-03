@@ -191,6 +191,7 @@ function DropdownButton(props) {
     children,
     manualButtonValue,
     styleType,
+    inline,
     ...otherProps
   } = props;
 
@@ -202,6 +203,11 @@ function DropdownButton(props) {
         aria-controls={panelId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
+        css={`
+          display: ${inline ? 'inline-flex' : 'block'};
+          flex-direction: column;
+          position: relative;
+        `}
       >
         <Button
           {...otherProps}
@@ -214,18 +220,20 @@ function DropdownButton(props) {
           {manualButtonValue || buttonValue}
           <Caret />
         </Button>
-        <ButtonPanel isOpen={isOpen} id={panelId}>
-          <ButtonPanelChildrenContainer>
-            {Children.map(children, child => {
-              const onClickHandler = handleDropdownItemClick(child.props);
-              const newProps = {
-                onClick: onClickHandler,
-                role: 'option'
-              };
-              return React.cloneElement(child, newProps);
-            })}
-          </ButtonPanelChildrenContainer>
-        </ButtonPanel>
+        <div css="position: relative;">
+          <ButtonPanel isOpen={isOpen} id={panelId}>
+            <ButtonPanelChildrenContainer>
+              {Children.map(children, child => {
+                const onClickHandler = handleDropdownItemClick(child.props);
+                const newProps = {
+                  onClick: onClickHandler,
+                  role: 'option'
+                };
+                return React.cloneElement(child, newProps);
+              })}
+            </ButtonPanelChildrenContainer>
+          </ButtonPanel>
+        </div>
       </div>
     </RootCloseWrapper>
   );
@@ -257,6 +265,8 @@ DropdownButton.propTypes = {
   rootClose: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
+  /** Display the dropdown button inline */
+  inline: PropTypes.bool,
   id: PropTypes.string
 };
 
@@ -267,6 +277,7 @@ DropdownButton.defaultProps = {
   shouldCloseOnButtonClick: false,
   styleType: 'default',
   rootClose: false,
+  inline: false,
   id: undefined
 };
 

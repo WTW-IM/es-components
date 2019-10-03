@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.95 (2019-10-03)</small>
+
+* Update: fixes dateInput clearing itself ([061d804](https://github.com/wtw-im/es-components/commit/061d804))
+
+
+
+
+
 ## <small>19.0.94 (2019-10-03)</small>
 
 * Update: allow inline DropdownButton components ([507ab6a](https://github.com/wtw-im/es-components/commit/507ab6a))

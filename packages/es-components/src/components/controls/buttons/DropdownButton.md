@@ -41,3 +41,30 @@ const alertButtonValues = (event, name) => {
     onClick={alertButtonValues}>Third Button</DropdownButton.Button>
 </DropdownButton>
 ```
+
+```
+const logValue = (event, name) => {
+  alert("Button Key is: " + name);
+}
+
+<p>
+  Putting it inline will work
+  <DropdownButton
+    buttonValue='Dropdown'
+    shouldUpdateButtonValue
+    shouldCloseOnButtonClick
+    inline
+  >
+    <DropdownButton.Button
+      name="first"
+      onClick={logValue}>First Button</DropdownButton.Button>
+    <DropdownButton.Button
+      name="second"
+      onClick={logValue}>Second Button</DropdownButton.Button>
+    <DropdownButton.Button
+      name="third"
+      onClick={logValue}>Third Button</DropdownButton.Button>
+  </DropdownButton>
+  as well.
+</p>
+```

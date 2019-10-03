@@ -61,7 +61,7 @@ function DateInput({
 
   useEffect(() => {
     React.Children.forEach(children, child => {
-      if (child.type === Month) {
+      if (child.type === Month && !state.month) {
         if (child.props.selectOptionText) {
           dispatch({ type: 'month_updated', value: 'none' });
         }
@@ -81,6 +81,7 @@ function DateInput({
       (hasDayElement.current ? date.getDate().toString() === cleanDay : true) &&
       (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&
       date.getFullYear().toString() === year.toString();
+
     const isInRange =
       dateIsValid &&
       (minDate ? isAfter(date, minDate) : true) &&

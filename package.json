@@ -1,7 +1,7 @@
 {
   "name": "es-components",
-  "description": "React components built for Exchange Solutions products",
-  "repository": "https://github.com/wtw-im/es-components",
+  "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "sh build.sh",
     "ci": "sh build.sh && sh ci.sh",
@@ -12,7 +12,7 @@
     "start": "npm start --prefix packages/es-components"
   },
   "lint-staged": {
-    "packages/es-components/src/**/*.js": [
+    "*.js": [
       "prettier --single-quote --write",
       "eslint --fix",
       "git add"
@@ -24,8 +24,6 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "author": "Willis Towers Watson - Individual Marketplace",
-  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",

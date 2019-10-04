@@ -12,7 +12,7 @@
     "start": "npm start --prefix packages/es-components"
   },
   "lint-staged": {
-    "*.js": [
+    "packages/es-components/src/**/*.js": [
       "prettier --single-quote --write",
       "eslint --fix",
       "git add"
@@ -32,15 +32,14 @@
     "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-exchange-solutions": "^7.0.0",
-    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-prettier": "^3.6.0",
     "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
     "husky": "^3.0.2",
-    "jest": "^24.1.0",
     "lerna": "^3.4.3",
     "lint-staged": "^7.3.0",
-    "prettier": "^1.14.3"
+    "prettier": "^1.18.2"
   }
 }

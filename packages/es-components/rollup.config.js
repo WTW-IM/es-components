@@ -24,6 +24,7 @@ export default [
       'react',
       'react-animate-height',
       'react-datepicker',
+      'react-dom',
       'react-overlays',
       'react-popper',
       'react-text-mask',

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Manager, Reference, Popper } from 'react-popper';
@@ -166,26 +167,27 @@ function Popup(props) {
           </div>
         )}
       </Reference>
-      <Fade
-        in={transitionIn}
-        duration={transitionTimeout}
-        mountOnEnter
-        unmountOnExit
-      >
-        <div>
-          <Popper
-            className={`${name}-popper`}
-            placement={position}
-            modifiers={{
-              preventOverflow: { boundariesElement: document.body },
-              flip: {
-                enabled: !disableFlipping,
-                behavior: ['left', 'right', 'top', 'bottom', 'top']
-              }
-            }}
-            innerRef={popperRef}
-          >
-            {({ ref, style, placement, arrowProps }) => (
+
+      {ReactDOM.createPortal(
+        <Popper
+          className={`${name}-popper`}
+          placement={position}
+          modifiers={{
+            preventOverflow: { boundariesElement: document.body },
+            flip: {
+              enabled: !disableFlipping,
+              behavior: ['left', 'right', 'top', 'bottom', 'top']
+            }
+          }}
+          innerRef={popperRef}
+        >
+          {({ ref, style, placement, arrowProps }) => (
+            <Fade
+              in={transitionIn}
+              duration={transitionTimeout}
+              mountOnEnter
+              unmountOnExit
+            >
               <PopperBox ref={ref} style={style} arrowSize={arrowValues}>
                 {children}
                 <Arrow
@@ -196,10 +198,11 @@ function Popup(props) {
                   hasTitle={hasTitle}
                 />
               </PopperBox>
-            )}
-          </Popper>
-        </div>
-      </Fade>
+            </Fade>
+          )}
+        </Popper>,
+        document.querySelector('body')
+      )}
     </Manager>
   );
 }

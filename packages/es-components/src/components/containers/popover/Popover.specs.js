@@ -39,7 +39,7 @@ it('can be toggled by clicking the button', () => {
 
   trigger.click();
   const popoverContent = queryByText('This is the popover content.');
-  expect(popoverContent).not.toBeVisible();
+  expect(popoverContent).toBeVisible();
 
   trigger.click();
   expect(popoverContent).not.toBeVisible();

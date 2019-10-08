@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.96 (2019-10-08)</small>
+
+* Build: cleaning up some unused dependencies ([e195b30](https://github.com/wtw-im/es-components/commit/e195b30))
+* Upgrade: date-fns & react-datepicker ([498610f](https://github.com/wtw-im/es-components/commit/498610f))
+
+
+
+
+
 ## <small>19.0.95 (2019-10-03)</small>
 
 * Update: fixes dateInput clearing itself ([061d804](https://github.com/wtw-im/es-components/commit/061d804))

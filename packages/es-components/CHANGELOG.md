@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.97 (2019-10-08)</small>
+
+* Update: popovers created on body element ([060fafc](https://github.com/wtw-im/es-components/commit/060fafc))
+
+
+
+
+
 ## <small>19.0.96 (2019-10-08)</small>
 
 * Build: cleaning up some unused dependencies ([e195b30](https://github.com/wtw-im/es-components/commit/e195b30))

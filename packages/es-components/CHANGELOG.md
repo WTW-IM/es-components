@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.99 (2019-10-14)</small>
+
+* Update: converted some slidingPane styles to styled components ([46c92bb](https://github.com/wtw-im/es-components/commit/46c92bb))
+
+
+
+
+
 ## <small>19.0.98 (2019-10-14)</small>
 
 * New: moving the SlidingPane component from internal repo ([676e1e0](https://github.com/wtw-im/es-components/commit/676e1e0))

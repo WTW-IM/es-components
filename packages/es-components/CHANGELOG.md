@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.98 (2019-10-14)</small>
+
+* New: moving the SlidingPane component from internal repo ([676e1e0](https://github.com/wtw-im/es-components/commit/676e1e0))
+
+
+
+
+
 ## <small>19.0.97 (2019-10-08)</small>
 
 * Update: popovers created on body element ([060fafc](https://github.com/wtw-im/es-components/commit/060fafc))

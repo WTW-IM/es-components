@@ -13,6 +13,7 @@ export Tooltip from './components/containers/tooltip/Tooltip';
 export Popover from './components/containers/popover/Popover';
 export Modal from './components/containers/modal/Modal';
 export ModalButtonContainer from './components/containers/modal/ModalButtonContainer';
+export SlidingPane from './components/containers/sliding-pane/SlidingPane';
 export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';

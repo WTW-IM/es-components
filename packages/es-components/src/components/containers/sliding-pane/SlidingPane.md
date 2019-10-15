@@ -23,3 +23,31 @@ function SlidingPaneExample() {
 
 <SlidingPaneExample />
 ```
+
+Custom styling for the overlay and content can also be provided.
+
+```
+import Button from '../../controls/buttons/Button';
+
+function SlidingPaneExample() {
+
+  const [show, setShow] = React.useState(false);
+
+  return (
+    <>
+      <Button aria-haspopup='dialog' onClick={() => setShow(true)}>Open Custom Sliding Pane</Button>
+
+      <SlidingPane
+            isOpen={show}
+            title="Custom Sliding Pane Example"
+            onRequestClose={() => setShow(false)}
+            overlayStyles={{marginTop: '100px'}}
+            contentStyles={{marginRight: 'auto'}}>
+        You can see the styling applied
+      </SlidingPane>
+    </>
+    );
+}
+
+<SlidingPaneExample />
+```

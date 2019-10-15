@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.100 (2019-10-15)</small>
+
+* Update: adding ability to customize styles in SlidingPane ([1306efc](https://github.com/wtw-im/es-components/commit/1306efc))
+* Update: sliding pane refactoring ([8f61da4](https://github.com/wtw-im/es-components/commit/8f61da4))
+
+
+
+
+
 ## <small>19.0.99 (2019-10-14)</small>
 
 * Update: converted some slidingPane styles to styled components ([46c92bb](https://github.com/wtw-im/es-components/commit/46c92bb))

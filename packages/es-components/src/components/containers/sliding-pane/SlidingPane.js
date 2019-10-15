@@ -110,7 +110,7 @@ const Content = styled.div`
   position: relative;
 `;
 
-const overlayStyles = {
+const defaultStyles = {
   overlay: {
     backgroundColor: 'rgba(0,0,0,0)',
     top: '0',
@@ -120,7 +120,8 @@ const overlayStyles = {
     position: 'fixed',
     zIndex: '1000',
     transition: 'background-color 0.5s'
-  }
+  },
+  content: {}
 };
 
 const GlobalPaneStyles = createGlobalStyle`
@@ -161,10 +162,16 @@ export default function SlidingPane({
   headingLevel,
   headingSize,
   closeTimeout,
+  overlayStyles,
+  contentStyles,
   appElement,
   ...rest
 }) {
   const Pane = getPane(from);
+  const styles = {
+    overlay: { ...defaultStyles.overlay, ...overlayStyles },
+    content: { ...defaultStyles.content, ...contentStyles }
+  };
 
   if (appElement) {
     Pane.setAppElement(appElement);
@@ -176,7 +183,7 @@ export default function SlidingPane({
     <>
       <GlobalPaneStyles />
       <Pane
-        style={overlayStyles}
+        style={styles}
         closeTimeoutMS={closeTimeout}
         isOpen={isOpen}
         onAfterOpen={onAfterOpen}
@@ -215,8 +222,10 @@ SlidingPane.propTypes = {
   headingLevel: Heading.propTypes.level,
   headingSize: Heading.propTypes.size,
   closeTimeout: PropTypes.number,
+  overlayStyles: PropTypes.object,
+  contentStyles: PropTypes.object,
   /** selector of application element (e.g. #root), for hiding of
-    main content for screenreaders when pane is open */
+   main content for screenreaders when pane is open */
   appElement: PropTypes.string
 };
 
@@ -232,5 +241,7 @@ SlidingPane.defaultProps = {
   onRequestClose: _noop,
   onAfterOpen: _noop,
   closeIcon: undefined,
+  overlayStyles: {},
+  contentStyles: {},
   appElement: undefined
 };

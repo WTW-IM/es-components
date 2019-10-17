@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`builds a ProgressTracker 1`] = `
+<ol
+  class="sc-bdVaJa cMKOYT"
+  data-testid="progress-tracker"
+>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH sc-ifAKCX dvNLPO"
+      disabled=""
+    >
+      <span>
+        step 1
+      </span>
+    </button>
+  </li>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH fZOxh"
+      disabled=""
+    >
+      <span>
+        step 2
+      </span>
+    </button>
+  </li>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH fZOxh"
+      disabled=""
+    >
+      <span>
+        step 3
+      </span>
+    </button>
+  </li>
+</ol>
+`;
+
+exports[`builds a ProgressTracker 2`] = `
+<ol
+  class="sc-bdVaJa cMKOYT"
+  data-testid="progress-tracker"
+>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH sc-ifAKCX dvNLPO"
+      disabled=""
+    >
+      <span>
+        step 1
+      </span>
+    </button>
+  </li>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH fZOxh"
+      disabled=""
+    >
+      <span>
+        step 2
+      </span>
+    </button>
+  </li>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH fZOxh"
+      disabled=""
+    >
+      <span>
+        step 3
+      </span>
+    </button>
+  </li>
+</ol>
+`;
+
+exports[`builds a ProgressTracker 3`] = `
+<ol
+  class="sc-bdVaJa cMKOYT"
+  data-testid="progress-tracker"
+>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH sc-ifAKCX dvNLPO"
+      disabled=""
+    >
+      <span>
+        step 1
+      </span>
+    </button>
+  </li>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH fZOxh"
+      disabled=""
+    >
+      <span>
+        step 2
+      </span>
+    </button>
+  </li>
+  <li
+    class="sc-EHOje cyIStD"
+  >
+    <button
+      class="sc-bwzfXH fZOxh"
+      disabled=""
+    >
+      <span>
+        step 3
+      </span>
+    </button>
+  </li>
+</ol>
+`;

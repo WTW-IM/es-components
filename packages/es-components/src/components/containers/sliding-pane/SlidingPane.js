@@ -5,6 +5,7 @@ import _noop from 'lodash/noop';
 import styled, { createGlobalStyle } from 'styled-components';
 import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
+import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import Icon from '../../base/icons/Icon';
 
 const PaneBase = styled(Modal)`
@@ -110,6 +111,8 @@ const Content = styled.div`
   position: relative;
 `;
 
+const ScreenReaderText = screenReaderOnly('span');
+
 const defaultStyles = {
   overlay: {
     backgroundColor: 'rgba(0,0,0,0)',
@@ -158,6 +161,7 @@ export default function SlidingPane({
   onAfterOpen,
   children,
   closeIcon,
+  closeIconScreenReaderText,
   from,
   headingLevel,
   headingSize,
@@ -195,6 +199,7 @@ export default function SlidingPane({
         <Header>
           <CloseLink onClick={onRequestClose}>
             {closeIcon || <Icon name="remove" size={34} />}
+            <ScreenReaderText>{closeIconScreenReaderText}</ScreenReaderText>
           </CloseLink>
           <TitleWrapper>
             <TitleText level={headingLevel} size={headingSize}>
@@ -219,6 +224,7 @@ SlidingPane.propTypes = {
   children: PropTypes.any.isRequired,
   from: PropTypes.oneOf(['left', 'right', 'bottom']),
   closeIcon: PropTypes.any,
+  closeIconScreenReaderText: PropTypes.string,
   headingLevel: Heading.propTypes.level,
   headingSize: Heading.propTypes.size,
   closeTimeout: PropTypes.number,
@@ -241,6 +247,7 @@ SlidingPane.defaultProps = {
   onRequestClose: _noop,
   onAfterOpen: _noop,
   closeIcon: undefined,
+  closeIconScreenReaderText: 'Close',
   overlayStyles: {},
   contentStyles: {},
   appElement: undefined

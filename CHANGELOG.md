@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.102 (2019-10-22)</small>
+
+* New: add progress tracker ([83982e1](https://github.com/WTW-IM/es-components/commit/83982e1))
+
+
+
+
+
 ## <small>19.0.101 (2019-10-18)</small>
 
 * Fix: fix SlidingPane close button accessibility ([2dcc6ee](https://github.com/WTW-IM/es-components/commit/2dcc6ee))

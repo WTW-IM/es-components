@@ -7,9 +7,11 @@ import { useTheme } from '../../util/useTheme';
 const StyledButton = styled.button`
   background: none;
   border: none;
+  border-radius: ${props => props.buttonSize.borderRadius};
   box-sizing: border-box;
   cursor: pointer;
   display: block;
+  outline: none;
   overflow: visible;
   padding: 0;
   text-decoration: none;
@@ -36,6 +38,7 @@ const StyledButton = styled.button`
         ? props.buttonSize.lineHeight
         : props.theme.sizes.baseLineHeight};
     min-width: 100px;
+    outline: none;
     padding-bottom: ${props => props.buttonSize.paddingBottom};
     padding-left: ${props => props.buttonSize.paddingSides};
     padding-right: ${props => props.buttonSize.paddingSides};
@@ -54,8 +57,13 @@ const StyledButton = styled.button`
     color: ${props => props.variant.hoverTextColor};
   }
 
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 2px 4px 4px ${props => props.theme.colors.inputFocus};
+  }
+
   &:active {
-    outline: none;
+    box-shadow: none;
   }
 
   &&:active .es-button__display {

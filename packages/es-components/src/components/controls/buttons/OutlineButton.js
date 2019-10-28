@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   line-height: ${props =>
     props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
   min-width: 100px;
+  outline: none;
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};
   padding-right: ${props => props.buttonSize.paddingSides};
@@ -33,6 +34,11 @@ const StyledButton = styled.button`
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     display: ${props => (props.block ? 'block' : 'inline-block')};
     width: ${props => (props.block ? '100%' : 'auto')};
+  }
+
+  &:focus,
+  &:focus-within {
+    box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
   }
 
   &:hover {

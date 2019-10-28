@@ -52,6 +52,7 @@ export CallToAction from './components/patterns/callToAction/CallToAction';
 export LightCallToAction from './components/patterns/callToAction/LightCallToAction';
 export Action from './components/patterns/callToAction/Action';
 export ProgressTracker from './components/patterns/progress-tracker/ProgressTracker';
+export StarRating from './components/patterns/starRating/StarRating';
 
 export Spinner from './components/base/spinner/Spinner';
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.103 (2019-10-28)</small>
+
+* Update: buttong focus outline styles ([9f7b6b4](https://github.com/wtw-im/es-components/commit/9f7b6b4))
+
+
+
+
+
 ## <small>19.0.102 (2019-10-22)</small>
 
 * Merge branch 'master' into progress-tracker ([28cc1bd](https://github.com/wtw-im/es-components/commit/28cc1bd))

@@ -82,6 +82,7 @@
     "@babel/runtime": "^7.5.0",
     "core-js": "^3.1.4",
     "date-fns": "^2.4.1",
+    "format-message": "^6.2.3",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react-animate-height": "^2.0.15",

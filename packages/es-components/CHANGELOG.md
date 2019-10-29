@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.104 (2019-10-29)</small>
+
+* New: add StarRating component to Patterns ([b16519c](https://github.com/wtw-im/es-components/commit/b16519c))
+
+
+
+
+
 ## <small>19.0.103 (2019-10-28)</small>
 
 * Update: buttong focus outline styles ([9f7b6b4](https://github.com/wtw-im/es-components/commit/9f7b6b4))

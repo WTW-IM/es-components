@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.107 (2019-12-12)</small>
+
+* Update: warning sign uses circle instead of triangle ([8d60802](https://github.com/WTW-IM/es-components/commit/8d60802))
+
+
+
+
+
 ## <small>19.0.106 (2019-12-04)</small>
 
 * Update: exports Star Rating Explaination component ([348ba58](https://github.com/WTW-IM/es-components/commit/348ba58))

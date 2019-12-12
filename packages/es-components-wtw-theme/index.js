@@ -452,7 +452,7 @@ const theme = {
   validationIconName: {
     success: 'ok-circle',
     info: 'info-circle',
-    warning: 'exclamation-sign',
+    warning: 'exclamation-circle',
     danger: 'exclamation-sign',
     advisor: 'agent'
   },

@@ -54,6 +54,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
           addOnBgColor={addOnBgColor}
           aria-hidden="true"
           onClick={focusInput}
+          type="button"
         >
           <Icon aria-hidden="true" name={prependIconName} size={18} />
         </Prepend>
@@ -71,6 +72,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
           addOnBgColor={addOnBgColor}
           aria-hidden="true"
           onClick={focusInput}
+          type="button"
         >
           <Icon aria-hidden="true" name={appendIconName} size={18} />
         </Append>

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.107 (2019-12-12)</small>
+
+* Update: warning sign uses circle instead of triangle ([8d60802](https://github.com/WTW-IM/es-components/commit/8d60802))
+
+
+
+
+
+## <small>19.0.106 (2019-12-04)</small>
+
+* Update: exports Star Rating Explaination component ([348ba58](https://github.com/WTW-IM/es-components/commit/348ba58))
+
+
+
+
+
+## <small>19.0.105 (2019-12-02)</small>
+
+* Fix: textbox append/prepend buttons no longer fire submit ([596cf55](https://github.com/WTW-IM/es-components/commit/596cf55))
+
+
+
+
+
 ## <small>19.0.104 (2019-10-29)</small>
 
 * New: add StarRating component to Patterns ([b16519c](https://github.com/WTW-IM/es-components/commit/b16519c))

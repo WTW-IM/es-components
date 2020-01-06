@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.107 (2019-12-12)</small>
+
+* Update: warning sign uses circle instead of triangle ([8d60802](https://github.com/WTW-IM/es-components/commit/8d60802))
+
+
+
+
+
 ## <small>19.0.63 (2019-07-11)</small>
 
 * Update: moved validation icons to AdditionalHelp ([702877c](https://github.com/WTW-IM/es-components/commit/702877c))

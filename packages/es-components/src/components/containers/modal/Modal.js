@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
@@ -123,13 +123,11 @@ function Modal(props) {
         style={modalStyle}
         transition={animation ? DialogDropIn : undefined}
       >
-
-          <ModalDialog size={size} {...other}>
-            <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
+        <ModalDialog size={size} {...other}>
+          <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
             <ModalContent>{children}</ModalContent>
-            </RootCloseWrapper>
-          </ModalDialog>
-
+          </RootCloseWrapper>
+        </ModalDialog>
       </BaseModal>
     </ModalContext.Provider>
   );

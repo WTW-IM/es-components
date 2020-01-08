@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { RootCloseWrapper } from 'react-overlays';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
+import RootCloseWrapper from "../../util/RootCloseWrapper";
 
 const Container = styled.div`
   display: inline-block;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
-import { Modal as BaseModal, RootCloseWrapper } from 'react-overlays';
+import { Modal as BaseModal } from 'react-overlays';
 
 import useUniqueId from '../../util/useUniqueId';
 import DropIn from '../../util/DropIn';
@@ -11,6 +11,7 @@ import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
+import RootCloseWrapper from "../../util/RootCloseWrapper";
 
 const modalSize = {
   small: '300px',
@@ -122,11 +123,11 @@ function Modal(props) {
         style={modalStyle}
         transition={animation ? DialogDropIn : undefined}
       >
-        <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
-          <ModalDialog size={size} {...other}>
+        <ModalDialog size={size} {...other}>
+          <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
             <ModalContent>{children}</ModalContent>
-          </ModalDialog>
-        </RootCloseWrapper>
+          </RootCloseWrapper>
+        </ModalDialog>
       </BaseModal>
     </ModalContext.Provider>
   );

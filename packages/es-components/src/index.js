@@ -40,6 +40,7 @@ export RadioGroup from './components/controls/radio-buttons/RadioGroup';
 export RadioButton from './components/controls/radio-buttons/RadioButton';
 export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
+export CheckboxGroup from './components/controls/checkbox/CheckboxGroup';
 
 export SideNav from './components/navigation/sidenav/SideNav';
 export HorizontalNav from './components/navigation/horizontalnav/HorizontalNav';

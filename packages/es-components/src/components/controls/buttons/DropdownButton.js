@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
-import { RootCloseWrapper } from 'react-overlays';
 import styled from 'styled-components';
 
 import Button from './Button';
 import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
+import RootCloseWrapper from "../../util/RootCloseWrapper";
 
 const Caret = styled.span`
   border-left: 4px solid transparent;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { RootCloseWrapper } from 'react-overlays';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
 import MenuSection from './MenuSection';
 import { InlineContext } from './InlineContext';
+import RootCloseWrapper from "../../util/RootCloseWrapper";
 
 const Backdrop = styled.div`
   background-color: black;

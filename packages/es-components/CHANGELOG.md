@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.108 (2020-01-08)</small>
+
+* Code cleanup ([546635f](https://github.com/wtw-im/es-components/commit/546635f))
+* Updated react-overlays to 2.1.0 ([53723e0](https://github.com/wtw-im/es-components/commit/53723e0))
+
+
+
+
+
 ## <small>19.0.107 (2019-12-12)</small>
 
 **Note:** Version bump only for package es-components

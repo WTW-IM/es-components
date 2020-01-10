@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.109 (2020-01-10)</small>
+
+* New: checkboxGroup ([bc76cb1](https://github.com/WTW-IM/es-components/commit/bc76cb1))
+
+
+
+
+
 ## <small>19.0.108 (2020-01-08)</small>
 
 * Code cleanup ([546635f](https://github.com/WTW-IM/es-components/commit/546635f))

@@ -15,7 +15,7 @@ const PopperBox = styled.div`
   min-width: 270px;
   position: absolute;
   text-align: center;
-  z-index: 5;
+  z-index: 99999;
 `;
 
 const Arrow = styled.div`

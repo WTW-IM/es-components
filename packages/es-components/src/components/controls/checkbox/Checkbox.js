@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Label from '../label/Label';
-import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
 const backgroundColorSelect = (checked, theme, validationState) => {
@@ -15,7 +14,7 @@ const backgroundColorSelect = (checked, theme, validationState) => {
   return theme.colors.white;
 };
 
-const CheckboxLabel = styled(Label)`
+export const CheckboxLabel = styled(Label)`
   font-size: ${props => props.theme.sizes.baseFontSize};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.sizes.baseFontSize};
@@ -31,7 +30,7 @@ const CheckboxLabel = styled(Label)`
     padding: 5px 0 5px 32px;
   }
 
-  > .es-checkbox__fill {
+  .es-checkbox__fill {
     background-color: ${({ checked, theme, validationState }) =>
       backgroundColorSelect(checked, theme, validationState)};
     border-color: ${({ checked, theme, validationState }) =>
@@ -44,12 +43,12 @@ const CheckboxLabel = styled(Label)`
     }
   }
 
-  &:hover > .es-checkbox__fill:after {
+  &:hover .es-checkbox__fill:after {
     border-color: ${({ checked, theme }) =>
       checked ? theme.colors.white : theme.colors.gray3};
   }
 
-  &[disabled] > .es-checkbox__fill {
+  &[disabled] .es-checkbox__fill {
     background-color: ${({ checked, theme }) =>
       checked ? theme.colors.gray5 : theme.colors.white};
     border-color: ${props => props.theme.colors.gray5};
@@ -62,7 +61,7 @@ const CheckboxLabel = styled(Label)`
   }
 `;
 
-const CheckboxInput = styled.input`
+export const CheckboxInput = styled.input`
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
   position: absolute;
@@ -76,7 +75,7 @@ const CheckboxInput = styled.input`
   }
 `;
 
-const CheckboxDisplay = styled.span`
+export const CheckboxDisplay = styled.span`
   background: ${props => props.theme.colors.white};
   border: 3px solid ${props => props.theme.colors.gray8};
   border-radius: 4px;
@@ -111,7 +110,6 @@ const CheckboxDisplay = styled.span`
 `;
 
 function Checkbox({ children, ...checkboxProps }) {
-  const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
 
   return (
@@ -120,11 +118,7 @@ function Checkbox({ children, ...checkboxProps }) {
       checked={checkboxProps.checked}
       disabled={checkboxProps.disabled}
     >
-      <CheckboxInput
-        type="checkbox"
-        focusBorderColor={theme.colors.inputFocus}
-        {...checkboxProps}
-      />
+      <CheckboxInput type="checkbox" {...checkboxProps} />
       <CheckboxDisplay className="es-checkbox__fill" />
       {children}
     </CheckboxLabel>

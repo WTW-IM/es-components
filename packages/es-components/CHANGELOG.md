@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.110 (2020-01-14)</small>
+
+* Update: give popover a higher z-index ([2ab1947](https://github.com/wtw-im/es-components/commit/2ab1947))
+
+
+
+
+
 ## <small>19.0.109 (2020-01-10)</small>
 
 * New: checkboxGroup ([bc76cb1](https://github.com/wtw-im/es-components/commit/bc76cb1))

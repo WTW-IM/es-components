@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.111 (2020-01-17)</small>
+
+* pass additional props to Notification components ([4840a64](https://github.com/WTW-IM/es-components/commit/4840a64))
+
+
+
+
+
 ## <small>19.0.110 (2020-01-14)</small>
 
 * Update: give popover a higher z-index ([2ab1947](https://github.com/WTW-IM/es-components/commit/2ab1947))

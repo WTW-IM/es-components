@@ -42,7 +42,8 @@ function NotificationContent(props) {
     iconName,
     iconColor,
     color,
-    dismissNotification
+    dismissNotification,
+    ...rest
   } = props;
 
   function dismiss() {
@@ -55,7 +56,7 @@ function NotificationContent(props) {
       {includeIcon && (
         <NotificationIcon name={iconName} iconColor={iconColor} size={28} />
       )}
-      <ContentWrapper>{children}</ContentWrapper>
+      <ContentWrapper {...rest}>{children}</ContentWrapper>
       {isDismissable && <Dismiss onClick={dismiss} color={color} />}
     </>
   );
@@ -91,7 +92,13 @@ export function useNotification(styleType = 'base') {
     const iconName = theme.validationIconName[type];
     const iconColor =
       styleType === 'light' ? theme.colors[type] : theme.colors.white;
-    const notificationContentProps = { color, iconName, iconColor, ...rest };
+    const notificationContentProps = {
+      color,
+      iconName,
+      iconColor,
+      role,
+      ...rest
+    };
     const [isDismissed, setIsDismissed] = useState(false);
 
     function dismissNotification() {
@@ -100,7 +107,7 @@ export function useNotification(styleType = 'base') {
 
     return (
       !isDismissed && (
-        <Notification role={role} variant={color}>
+        <Notification variant={color}>
           <NotificationContent
             dismissNotification={dismissNotification}
             {...notificationContentProps}

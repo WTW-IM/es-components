@@ -6,7 +6,7 @@ import {
   ProgressItem
 } from './progress-tracker-subcomponents';
 
-const getMappedSteps = (steps, onPastStepClicked, onFutureStepClicked) => {
+const getMappedSteps = (steps, onPastStepClicked, onFutureStepClicked, showNav) => {
   let isPastStep = true;
   return steps.map((step, index) => {
     isPastStep = !(step.active || !isPastStep);
@@ -24,6 +24,7 @@ const getMappedSteps = (steps, onPastStepClicked, onFutureStepClicked) => {
         }
         onFutureStepClicked={() => onFutureStepClicked(index)}
         label={step.label}
+        showNav={showNav}
       />
     );
   });
@@ -31,14 +32,14 @@ const getMappedSteps = (steps, onPastStepClicked, onFutureStepClicked) => {
 
 const getIndexOfActiveStep = steps => steps.findIndex(step => step.active);
 
-function ProgressTracker({ steps, onPastStepClicked, onFutureStepClicked }) {
+function ProgressTracker({ steps, onPastStepClicked, onFutureStepClicked, showNav }) {
   return (
     <ProgressContainer
       data-testid="progress-tracker"
       activeStepIndex={getIndexOfActiveStep(steps)}
       numberOfSteps={steps.length}
     >
-      {getMappedSteps(steps, onPastStepClicked, onFutureStepClicked)}
+      {getMappedSteps(steps, onPastStepClicked, onFutureStepClicked, showNav)}
     </ProgressContainer>
   );
 }
@@ -51,13 +52,15 @@ ProgressTracker.propTypes = {
     })
   ),
   onPastStepClicked: PropTypes.func,
-  onFutureStepClicked: PropTypes.func
+  onFutureStepClicked: PropTypes.func,
+  showNav: PropTypes.bool
 };
 
 ProgressTracker.defaultProps = {
   steps: [],
   onPastStepClicked() {},
-  onFutureStepClicked: null
+  onFutureStepClicked: null,
+  showNav: true
 };
 
 export default withTheme(ProgressTracker);

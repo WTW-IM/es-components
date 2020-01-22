@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.112 (2020-01-22)</small>
+
+* WE-4504 Add option to ProgressTracker to disable nav styles. ([75b4765](https://github.com/wtw-im/es-components/commit/75b4765))
+* WE-4505 Add script for interactive test mode to package.json. Update failing snapshots. ([fee26ea](https://github.com/wtw-im/es-components/commit/fee26ea))
+
+
+
+
+
 ## <small>19.0.111 (2020-01-17)</small>
 
 * pass additional props to Notification components ([4840a64](https://github.com/wtw-im/es-components/commit/4840a64))

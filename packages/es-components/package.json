@@ -16,7 +16,8 @@
     "rollup": "rollup -c rollup.config.js",
     "styleguide-build": "styleguidist build",
     "start": "styleguidist server",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "jest": {
     "setupFiles": [

@@ -6,10 +6,10 @@ exports[`builds a ProgressTracker 1`] = `
   data-testid="progress-tracker"
 >
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
-      class="sc-bwzfXH sc-ifAKCX dvNLPO"
+      class="sc-bwzfXH sc-EHOje enaMrX"
       disabled=""
     >
       <span>
@@ -18,7 +18,7 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
       class="sc-bwzfXH fZOxh"
@@ -30,7 +30,7 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
       class="sc-bwzfXH fZOxh"
@@ -50,10 +50,10 @@ exports[`builds a ProgressTracker 2`] = `
   data-testid="progress-tracker"
 >
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
-      class="sc-bwzfXH sc-ifAKCX dvNLPO"
+      class="sc-bwzfXH sc-EHOje enaMrX"
       disabled=""
     >
       <span>
@@ -62,7 +62,7 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
       class="sc-bwzfXH fZOxh"
@@ -74,7 +74,7 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
       class="sc-bwzfXH fZOxh"
@@ -94,10 +94,10 @@ exports[`builds a ProgressTracker 3`] = `
   data-testid="progress-tracker"
 >
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
-      class="sc-bwzfXH sc-ifAKCX dvNLPO"
+      class="sc-bwzfXH sc-EHOje enaMrX"
       disabled=""
     >
       <span>
@@ -106,7 +106,7 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
       class="sc-bwzfXH fZOxh"
@@ -118,7 +118,7 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-EHOje cyIStD"
+    class="sc-bZQynM fRYQzq"
   >
     <button
       class="sc-bwzfXH fZOxh"

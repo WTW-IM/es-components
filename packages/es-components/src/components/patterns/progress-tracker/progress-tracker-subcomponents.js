@@ -187,6 +187,23 @@ const PastProgressButton = styled(BasicProgressButton)`
   }
 `;
 
+const NonNavigablePastProgressButton = styled(BasicProgressButton)`
+  &::before {
+    border-color: ${props => props.theme.colors.gray9};
+    @media (min-width: ${props => props.theme.screenSize.tablet}) {
+      border-width: 5px;
+      font-weight: bold;
+      line-height: 1.5em;
+    }
+  }
+
+  span {
+    @media (min-width: ${props => props.theme.screenSize.tablet}) {
+      font-weight: bold;
+    }
+  }
+`;
+
 const ActiveProgressButton = styled(BasicProgressButton)`
   margin-top: 0;
 
@@ -256,14 +273,14 @@ const ProgressLi = styled.li`
   }
 `;
 
-function getProgressItemType(itemType) {
+function getProgressItemType(itemType, showNav) {
   switch (itemType) {
     case stepStates.active:
       return ActiveProgressButton;
     case stepStates.pastStep:
-      return PastProgressButton;
+      return showNav ? PastProgressButton : NonNavigablePastProgressButton;
     case stepStates.clickableFutureStep:
-      return FutureProgressButton;
+      return showNav ? FutureProgressButton : BasicProgressButton;
     default:
       return BasicProgressButton;
   }
@@ -291,13 +308,14 @@ export function ProgressItem({
   numberOfSteps,
   onPastStepClicked,
   canClickFutureStep,
-  label
+  label,
+  showNav
 }) {
   let itemType;
   if (isPastStep || active || canClickFutureStep) {
     itemType = getStepState(active, isPastStep, canClickFutureStep);
   }
-  const ProgressItemType = getProgressItemType(itemType);
+  const ProgressItemType = getProgressItemType(itemType, showNav);
 
   const listItemProps = {
     numberOfSteps,
@@ -320,11 +338,13 @@ ProgressItem.propTypes = {
   numberOfSteps: PropTypes.number.isRequired,
   onPastStepClicked: PropTypes.func,
   label: PropTypes.string,
-  canClickFutureStep: PropTypes.bool
+  canClickFutureStep: PropTypes.bool,
+  showNav: PropTypes.bool
 };
 
 ProgressItem.defaultProps = {
   onPastStepClicked() {},
   label: '',
-  canClickFutureStep: false
+  canClickFutureStep: false,
+  showNav: true
 };

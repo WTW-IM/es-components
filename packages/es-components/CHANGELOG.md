@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.113 (2020-01-22)</small>
+
+* Update: add icon definitions with new icons ([c2a7d7b](https://github.com/wtw-im/es-components/commit/c2a7d7b))
+
+
+
+
+
 ## <small>19.0.112 (2020-01-22)</small>
 
 * WE-4504 Add option to ProgressTracker to disable nav styles. ([75b4765](https://github.com/wtw-im/es-components/commit/75b4765))

@@ -197,7 +197,32 @@ const regular = {
   'im-icon-zoom-in': '6c3',
   'im-icon-zoom-out': '6c4',
   'im-icon-keyhole-shield': '6c5',
-  'im-icon-security-checked': '6c6'
+  'im-icon-security-checked': '6c6',
+  'im-icon-underline': '6c7',
+  'im-icon-header': '6c8',
+  'im-icon-hyperlink': 'e6c9',
+  'im-icon-money': 'e6ca',
+  'im-icon-profit': 'e6cb',
+  'im-icon-cash-in-hand': 'e6cc',
+  'im-icon-paycheque': 'e6cd',
+  'im-icon-rod-of-asclepius': 'e6ce',
+  'im-icon-tooth': 'e6cf',
+  'im-icon-speech-bubble': 'e6d0',
+  'im-icon-phone-analog': 'e6d1',
+  'im-icon-map-with-marker': 'e6d2',
+  'im-icon-sms': 'e6d3',
+  'im-icon-mailbox-closed-flag-down': 'e6d4',
+  'im-icon-moleskine': 'e6d5',
+  'im-icon-alarm-clock': 'e6d6',
+  'im-icon-stethoscope': 'e6d7',
+  'im-icon-compass': 'e6d8',
+  'im-icon-exit': 'e6d9',
+  'im-icon-logout-rounded-left': 'e6da',
+  'im-icon-bot': 'e6db',
+  'im-icon-calculator': 'e6dc',
+  'im-icon-divide': 'e6dd',
+  'im-icon-clinic': 'e6de',
+  'im-icon-hospital-3': 'e6df'
 };
 
 export { regular };

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.114 (2020-01-30)</small>
+
+* Fix: move prepended e from new icon definitions ([d0212e3](https://github.com/wtw-im/es-components/commit/d0212e3))
+
+
+
+
+
 ## <small>19.0.113 (2020-01-22)</small>
 
 * Update: add icon definitions with new icons ([c2a7d7b](https://github.com/wtw-im/es-components/commit/c2a7d7b))

@@ -50,9 +50,9 @@ function MaskExample() {
 
   return (
     <Control>
-      <Label htmlFor="controlled-example">Controlled Example</Label>
+      <Label htmlFor="controlled-mask-example">Controlled Example</Label>
       <MaskedTextbox
-        id="controlled-example"
+        id="controlled-mask-example"
         maskType="ssnum"
         value={value}
         onChange={handleOnTextChange}

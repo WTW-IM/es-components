@@ -9,18 +9,18 @@ import Textbox from '../../controls/textbox/Textbox';
 
 <Fieldset>
   <Control>
-    <Label htmlFor="firstName">First name</Label>
-    <Textbox id="firstName" />
+    <Label htmlFor="first-name-1">First name</Label>
+    <Textbox id="first-name-1" />
   </Control>
 
   <Control>
-    <Label htmlFor="middleInitial">Middle initial</Label>
-    <Textbox id="middleInitial" />
+    <Label htmlFor="middle-initial-1">Middle initial</Label>
+    <Textbox id="middle-initial-1" />
   </Control>
 
   <Control>
-    <Label htmlFor="lastName">Last name</Label>
-    <Textbox id="lastName" />
+    <Label htmlFor="last-name-1">Last name</Label>
+    <Textbox id="last-name-1" />
   </Control>
 </Fieldset>
 ```
@@ -34,18 +34,18 @@ import Textbox from '../../controls/textbox/Textbox';
 
 <Fieldset legendContent="Please enter your name">
   <Control>
-    <Label htmlFor="firstName">First name</Label>
-    <Textbox id="firstName" />
+    <Label htmlFor="first-name-2">First name</Label>
+    <Textbox id="first-name-2" />
   </Control>
 
   <Control>
-    <Label htmlFor="middleInitial">Middle initial</Label>
-    <Textbox id="middleInitial" />
+    <Label htmlFor="middle-initial-2">Middle initial</Label>
+    <Textbox id="middle-initial-2" />
   </Control>
 
   <Control>
-    <Label htmlFor="lastName">Last name</Label>
-    <Textbox id="lastName" />
+    <Label htmlFor="last-name-2">Last name</Label>
+    <Textbox id="last-name-2" />
   </Control>
 </Fieldset>
 ```

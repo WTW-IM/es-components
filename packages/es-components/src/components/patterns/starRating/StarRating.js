@@ -5,6 +5,8 @@ import formatMessage from 'format-message';
 import LinkButton from '../../controls/buttons/LinkButton';
 import StarRatingExplanation from './StarRatingExplanation';
 
+formatMessage.setup({ missingTranslation: 'ignore' });
+
 const StarContainer = styled.div`
   background-color: ${props =>
     !props.isPoorPerformer ? props.theme.colors.gray5 : 'transparent'};

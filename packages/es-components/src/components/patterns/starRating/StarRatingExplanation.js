@@ -3,11 +3,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import formatMessage from 'format-message';
-import { formatChildren } from 'format-message/react';
 import Modal from '../../containers/modal/Modal';
 import ModalButtonContainer from '../../containers/modal/ModalButtonContainer';
 import Button from '../../controls/buttons/Button';
 import Table from '../../containers/table/Table';
+
+formatMessage.setup({ missingTranslation: 'ignore' });
 
 const HelpContent = styled(Modal.Body)`
   ul {
@@ -98,103 +99,103 @@ export default function StarRatingExplanation(props) {
         <strong>{formatMessage('What is being measured?')}</strong>
         <ul>
           <li>
-            {formatChildren(
-              formatMessage(
-                '<0>For plans covering health services</0>, the overall score for quality of those services covers <0>36 different topics in 5 categories:</0>'
-              ),
-              [<strong key="bold" />]
+            {formatMessage.rich(
+              '<s>For plans covering health services</s>, the overall score for quality of those services covers <s>36 different topics in 5 categories:</s>',
+              {
+                s: ({ children }) => <strong key="bold">{children}</strong>
+              }
             )}
             <ul>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Staying healthy: screenings, tests, and vaccines:</0> Includes how often members got various screening tests, vaccines, and other check-ups that help them stay healthy.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Staying healthy: screenings, tests, and vaccines:</s> Includes how often members got various screening tests, vaccines, and other check-ups that help them stay healthy.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Managing chronic (long-term) conditions:</0> Includes how often members with different conditions got certain tests and treatments that help them manage their condition.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Managing chronic (long-term) conditions:</s> Includes how often members with different conditions got certain tests and treatments that help them manage their condition.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Ratings of health plan responsiveness and care:</0> Includes ratings of member satisfaction with the plan.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Ratings of health plan responsiveness and care:</s> Includes ratings of member satisfaction with the plan.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Member complaints, problems getting services, and choosing to leave the plan:</0> Includes how often members filed complaints against the plan and how often members choose to leave the plan. Includes how often Medicare found problems with the plan.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Member complaints, problems getting services, and choosing to leave the plan:</s> Includes how often members filed complaints against the plan and how often members choose to leave the plan. Includes how often Medicare found problems with the plan.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Health plan customer service:</0> Includes how well the plan handles calls and makes decisions about member appeals for health coverage.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Health plan customer service:</s> Includes how well the plan handles calls and makes decisions about member appeals for health coverage.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
             </ul>
           </li>
           <li>
-            {formatChildren(
-              formatMessage(
-                '<0>For plans covering drug services,</0> the overall score for quality of those services covers <0>17 different topics in 4 categories:</0>'
-              ),
-              [<strong key="bold" />]
+            {formatMessage.rich(
+              '<s>For plans covering drug services,</s> the overall score for quality of those services covers <s>17 different topics in 4 categories:</s>',
+              {
+                s: ({ children }) => <strong key="bold">{children}</strong>
+              }
             )}
             <ul>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Drug plan customer service:</0> Includes how well the plan handles calls and makes decisions about member appeals for drug coverage.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Drug plan customer service:</s> Includes how well the plan handles calls and makes decisions about member appeals for drug coverage.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Member complaints, problems getting services, and choosing to leave the plan:</0>  Includes how often members filed complaints about the plan and how often members choose to leave the plan. Includes how often Medicare found problems with the plan.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Member complaints, problems getting services, and choosing to leave the plan:</s>  Includes how often members filed complaints about the plan and how often members choose to leave the plan. Includes how often Medicare found problems with the plan.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    "<0>Member experience with plan's drug services:</0> Includes ratings of member satisfaction with the plan."
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  `<s>Member experience with plan's drug services:</s> Includes ratings of member satisfaction with the plan.`,
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
               <li>
-                {formatChildren(
-                  formatMessage(
-                    '<0>Drug pricing and patient safety:</0> Includes how well the plan prices prescriptions and provides updated and accurate pricing information for the Medicare website. Includes information on how often members with certain medical conditions get prescription drugs that are considered safer and clinically recommended for their condition. Includes information on whether members are taking certain medications as directed.'
-                  ),
-                  [<strong key="bold" />]
+                {formatMessage.rich(
+                  '<s>Drug pricing and patient safety:</s> Includes how well the plan prices prescriptions and provides updated and accurate pricing information for the Medicare website. Includes information on how often members with certain medical conditions get prescription drugs that are considered safer and clinically recommended for their condition. Includes information on whether members are taking certain medications as directed.',
+                  {
+                    s: ({ children }) => <strong key="bold">{children}</strong>
+                  }
                 )}
               </li>
             </ul>
           </li>
           <li>
-            {formatChildren(
-              formatMessage(
-                '<0>For plans covering both health and drug services,</0> the overall score for quality of those services covers <0>all of the 53 topics listed above.</0>'
-              ),
-              [<strong key="bold" />]
+            {formatMessage.rich(
+              '<s>For plans covering both health and drug services,</s> the overall score for quality of those services covers <s>all of the 53 topics listed above.</s>',
+              {
+                s: ({ children }) => <strong key="bold">{children}</strong>
+              }
             )}
           </li>
         </ul>
@@ -207,11 +208,11 @@ export default function StarRatingExplanation(props) {
         </p>
         <ul>
           <li>
-            {formatChildren(
-              formatMessage(
-                'For quality of <0>health services</0>, the information comes from sources that include:'
-              ),
-              [<strong key="bold" />]
+            {formatMessage.rich(
+              'For quality of <s>health services</s>, the information comes from sources that include:',
+              {
+                s: ({ children }) => <strong key="bold">{children}</strong>
+              }
             )}
             <ul>
               <li>{formatMessage('Member surveys done by Medicare')}</li>
@@ -225,11 +226,11 @@ export default function StarRatingExplanation(props) {
             </ul>
           </li>
           <li>
-            {formatChildren(
-              formatMessage(
-                'For quality of <0>drug services</0>, the information comes from sources that include:'
-              ),
-              [<strong key="bold" />]
+            {formatMessage.rich(
+              'For quality of <s>drug services</s>, the information comes from sources that include:',
+              {
+                s: ({ children }) => <strong key="bold">{children}</strong>
+              }
             )}
             <ul>
               <li>{formatMessage('Member surveys done by Medicare')}</li>

@@ -10,7 +10,7 @@ const NavItemWrapper = styled.li`
   cursor: pointer;
   line-height: ${props => props.theme.sizes.baseLineHeight};
   min-width: 75px;
-  padding: 10px;
+  padding: 0;
 
   &:hover {
     background-color: ${props => props.theme.colors.gray2};
@@ -62,18 +62,17 @@ const NavItemWrapper = styled.li`
 `;
 
 const AltNavItemWrapper = styled(NavItemWrapper)`
-  ${props => css`
-    border-bottom: ${props.isVertical ? 'none' : '2px solid'} ${
-    props.theme.colors.gray5
-  };
-    &:hover {
-      border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-    props.theme.colors.primary
-  };
-      padding-left: ${props.isVertical ? '6px' : '10px'};
-      padding-bottom: ${props.isVertical ? '10px' : '6px'};
-    }
-  `}
+  border-bottom: ${props =>
+    props.isVertical ? 'none' : '2px solid'} ${props =>
+  props.theme.colors.gray5};
+  padding-left: ${props => (props.isVertical ? '4px' : '0')};
+
+  &:hover {
+    border-${props =>
+      props.isVertical ? 'left' : 'bottom'}: 4px solid ${props =>
+  props.theme.colors.primary};
+    padding-left: 0;
+  }
 
   ${props =>
     props.isActive &&
@@ -83,8 +82,7 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
       props.theme.brandColors.vbMagenta
     };
       color: ${props.theme.colors.black};
-      padding-left: ${props.isVertical ? '6px' : '10px'};
-      padding-bottom: ${props.isVertical ? '10px' : '6px'};
+      padding-left: 0;
 
       > i {
         color: ${props.theme.brandColors.vbMagenta};
@@ -97,7 +95,6 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
     };
         color: ${props.theme.colors.black};
 
-
         > i {
           color: ${props.theme.brandColors.vbMagenta};
         }
@@ -105,9 +102,10 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
     `} ${props =>
   props.isDisabled &&
   css`
+    padding-left: 0;
+
     &:hover {
       border-left: none;
-      padding-left: 10px;
     }
   `};
 `;
@@ -119,13 +117,14 @@ const NavIcon = styled(Icon)`
 const NavigationAnchor = styled.a`
   align-content: center;
   background-color: transparent;
+  box-sizing: border-box;
   border: 0;
   color: inherit;
   cursor: inherit;
   display: flex;
   font-size: inherit;
   height: 100%;
-  padding: 0;
+  padding: 10px;
   text-decoration: none;
   width: 100%;
 `;

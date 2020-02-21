@@ -7,10 +7,11 @@ exports[`renders as expected 1`] = `
   >
     <ul>
       <li
-        class="es-sidenav__navitem sc-bxivhb fZrkkg"
+        class="es-sidenav__navitem sc-bxivhb kwHXTD"
       >
         <button
-          class="sc-bZQynM cihicv"
+          class="sc-bZQynM fIiSIF"
+          style="justify-content: center;"
           type="button"
         >
           <span>
@@ -19,10 +20,11 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb bhVqaQ"
+        class="es-sidenav__navitem sc-bxivhb eAIggX"
       >
         <button
-          class="sc-bZQynM cihicv"
+          class="sc-bZQynM fIiSIF"
+          style="justify-content: center;"
           type="button"
         >
           <span>
@@ -31,11 +33,12 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb bhVqaQ"
+        class="es-sidenav__navitem sc-bxivhb eAIggX"
       >
         <a
-          class="sc-bZQynM cihicv"
+          class="sc-bZQynM fIiSIF"
           href="https://google.com"
+          style="justify-content: center;"
         >
           <span>
             External Link
@@ -43,10 +46,11 @@ exports[`renders as expected 1`] = `
         </a>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb jkBINK"
+        class="es-sidenav__navitem sc-bxivhb huEdRf"
       >
         <button
-          class="sc-bZQynM cihicv"
+          class="sc-bZQynM fIiSIF"
+          style="justify-content: center;"
           type="button"
         >
           <span>

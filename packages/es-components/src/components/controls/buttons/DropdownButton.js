@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
+import RootCloseWrapper from '../../util/RootCloseWrapper';
 
 const Caret = styled.span`
   border-left: 4px solid transparent;
@@ -140,28 +140,22 @@ function DropdownButton(props) {
   const triggerButton = useRef();
   const panelId = useUniqueId(props.id);
 
-  useEffect(
-    () => {
-      const removeFocusTrapListener = focusTrap(buttonDropdown.current);
-      const removeArrowMovementListener = arrowMovement(buttonDropdown.current);
+  useEffect(() => {
+    const removeFocusTrapListener = focusTrap(buttonDropdown.current);
+    const removeArrowMovementListener = arrowMovement(buttonDropdown.current);
 
-      return function removeListeners() {
-        removeFocusTrapListener();
-        removeArrowMovementListener();
-      };
-    },
-    [isOpen]
-  );
+    return function removeListeners() {
+      removeFocusTrapListener();
+      removeArrowMovementListener();
+    };
+  }, [isOpen]);
 
-  useEffect(
-    () => {
-      if (!initialRender.current) {
-        triggerButton.current.focus();
-      }
-      initialRender.current = false;
-    },
-    [isOpen]
-  );
+  useEffect(() => {
+    if (!initialRender.current) {
+      triggerButton.current.focus();
+    }
+    initialRender.current = false;
+  }, [isOpen]);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -196,18 +190,21 @@ function DropdownButton(props) {
   } = props;
 
   return (
-    <RootCloseWrapper onRootClose={closeDropdown} disabled={!rootClose}>
+    <RootCloseWrapper
+      onRootClose={closeDropdown}
+      disabled={!rootClose}
+      css={`
+        display: ${inline ? 'inline-flex' : 'block'};
+        flex-direction: column;
+        position: relative;
+      `}
+    >
       <div
         ref={buttonDropdown}
         role="combobox"
         aria-controls={panelId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
-        css={`
-          display: ${inline ? 'inline-flex' : 'block'};
-          flex-direction: column;
-          position: relative;
-        `}
       >
         <Button
           {...otherProps}

@@ -125,7 +125,6 @@ const NavigationAnchor = styled.a`
   display: flex;
   font-size: inherit;
   height: 100%;
-  justify-content: ${props => (props.isVertical ? 'space-between' : 'center')};
   padding: 0;
   text-decoration: none;
   width: 100%;
@@ -142,7 +141,11 @@ export function useNavigationItem(orientation) {
     const child = React.Children.only(children);
     const { children: grandChildren, ...rest } = child.props;
     const styledChild = (
-      <NavigationAnchor as={child.type} isVertical={isVertical} {...rest}>
+      <NavigationAnchor
+        as={child.type}
+        style={{ justifyContent: isVertical ? 'space-between' : 'center' }}
+        {...rest}
+      >
         <span>{grandChildren}</span>
         {isVertical ? <NavIcon name="chevron-right" /> : null}
       </NavigationAnchor>

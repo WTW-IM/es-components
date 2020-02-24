@@ -15,18 +15,18 @@ const darkBlue = '#006685';
 const defaultColor = '#d8d8d8';
 const defaultHover = '#bfbfbf';
 const defaultBtnText = black;
-const primary = '#007fa7';
+const primary = '#0073b6';
 const primaryHover = '#005874';
 const info = '#069';
 const infoHover = '#004466';
 const infoLight = '#b8e4f9';
-const success = '#006400';
+const success = '#298544';
 const successHover = '#004B00';
 const successLight = '#d9eedf';
 const warning = '#c25400';
 const warningHover = '#8f3e00';
 const warningLight = '#fcebde';
-const danger = '#EE0700';
+const danger = '#cc0000';
 const dangerHover = '#BB0000';
 const dangerLight = '#fde7e7';
 const advisor = warning;
@@ -222,79 +222,28 @@ const theme = {
       variant: {
         // default is required
         primary: {
-          bgColor: primary,
-          textColor: white,
-          borderColor: primary,
-          hoverBgColor: primaryHover,
-          hoverTextColor: white,
-          hoverBorderColor: primaryHover,
-          activeBgColor: primaryHover,
-          activeTextColor: white,
-          activeBorderColor: primaryHover,
-          boxShadowColor: primaryHover
+          bgColor: primary
         },
         default: {
-          bgColor: defaultColor,
-          textColor: black,
-          hoverBgColor: defaultHover,
-          hoverTextColor: black,
-          activeBgColor: defaultHover,
-          activeTextColor: black,
-          boxShadowColor: defaultHover
+          bgColor: defaultColor
         },
         darkDefault: {
-          bgColor: gray7,
-          textColor: white,
-          hoverBgColor: gray8,
-          hoverTextColor: white,
-          activeBgColor: gray8,
-          activeTextColor: white,
-          boxShadowColor: gray8
+          bgColor: gray8
         },
         success: {
-          bgColor: success,
-          textColor: white,
-          hoverBgColor: successHover,
-          hoverTextColor: white,
-          activeBgColor: successHover,
-          activeTextColor: white,
-          boxShadowColor: successHover
+          bgColor: success
         },
         info: {
-          bgColor: info,
-          textColor: white,
-          hoverBgColor: infoHover,
-          hoverTextColor: white,
-          activeBgColor: infoHover,
-          activeTextColor: white,
-          boxShadowColor: infoHover
+          bgColor: info
         },
         warning: {
-          bgColor: warning,
-          textColor: white,
-          hoverBgColor: warningHover,
-          hoverTextColor: white,
-          activeBgColor: warningHover,
-          activeTextColor: white,
-          boxShadowColor: warningHover
+          bgColor: warning
         },
         danger: {
-          bgColor: danger,
-          textColor: white,
-          hoverBgColor: dangerHover,
-          hoverTextColor: white,
-          activeBgColor: dangerHover,
-          activeTextColor: white,
-          boxShadowColor: dangerHover
+          bgColor: danger
         },
         inherited: {
-          bgColor: 'inherit',
-          textColor: 'inherit',
-          hoverBgColor: 'inherit',
-          hoverTextColor: 'inherit',
-          activeBgColor: 'inherit',
-          activeTextColor: 'inherit',
-          boxShadowColor: 'inherit'
+          bgColor: 'inherit'
         }
       },
       // size should always have default, lg, sm, xs
@@ -302,36 +251,36 @@ const theme = {
       // fontWeight, lineHeight, textTransform are optional
       size: {
         lg: {
-          borderRadius: '5px',
-          fontSize: '26px',
-          lineHeight: '1.333',
-          paddingTop: '8px',
-          paddingSides: '20px',
-          paddingBottom: '5px'
+          borderRadius: '0.3rem',
+          fontSize: '1.4375rem',
+          lineHeight: '2',
+          paddingTop: '0.125rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.125rem'
         },
         default: {
           borderRadius: '0.25rem',
           fontSize: '1.15rem',
+          lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem',
-          lineHeight: '1.5'
+          paddingBottom: '0.25rem'
         },
         sm: {
-          borderRadius: '3px',
-          fontSize: '17px',
-          lineHeight: '1.5',
-          paddingTop: '4px',
-          paddingSides: '10px',
-          paddingBottom: '3px'
+          borderRadius: '0.2rem',
+          fontSize: '1.00625rem',
+          lineHeight: '1.25',
+          paddingTop: '0.25rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.25rem'
         },
         xs: {
-          borderRadius: '3px',
-          fontSize: '15px',
+          borderRadius: '0.25rem',
+          fontSize: '0.8855rem',
           lineHeight: '1.5',
-          paddingTop: '3px',
-          paddingSides: '10px',
-          paddingBottom: '2px',
+          paddingTop: '0.1rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.1rem',
           textTransform: 'uppercase'
         }
       }
@@ -431,12 +380,13 @@ const theme = {
       },
       size: {
         lg: {
-          borderRadius: '5px',
-          fontSize: '125%',
+          borderRadius: '0.3rem',
+          fontSize: '1.4375rem',
           fontWeight: 'bold',
-          paddingTop: '8px',
-          paddingSides: '25px',
-          paddingBottom: '8px'
+          lineHeight: '2',
+          paddingTop: '0.125rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.125rem'
         },
         default: {
           borderRadius: '4px',

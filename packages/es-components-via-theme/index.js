@@ -224,10 +224,13 @@ const theme = {
         primary: {
           bgColor: primary,
           textColor: white,
+          borderColor: primary,
           hoverBgColor: primaryHover,
           hoverTextColor: white,
+          hoverBorderColor: primaryHover,
           activeBgColor: primaryHover,
           activeTextColor: white,
+          activeBorderColor: primaryHover,
           boxShadowColor: primaryHover
         },
         default: {
@@ -307,12 +310,12 @@ const theme = {
           paddingBottom: '5px'
         },
         default: {
-          borderRadius: '4px',
-          fontSize: '18px',
-          paddingTop: '5px',
-          paddingSides: '15px',
-          paddingBottom: '4px',
-          lineHeight: '1.43'
+          borderRadius: '0.25rem',
+          fontSize: '1.15rem',
+          paddingTop: '0.25rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.25rem',
+          lineHeight: '1.5'
         },
         sm: {
           borderRadius: '3px',

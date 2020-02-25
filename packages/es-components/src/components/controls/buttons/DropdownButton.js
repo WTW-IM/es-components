@@ -213,6 +213,7 @@ function DropdownButton(props) {
           onClick={toggleDropdown}
           aria-haspopup="true"
           aria-pressed={isOpen}
+          className={isOpen ? 'pressed' : undefined}
           ref={triggerButton}
           styleType={styleType}
         >

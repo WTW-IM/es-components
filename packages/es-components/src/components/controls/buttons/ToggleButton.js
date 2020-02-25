@@ -1,27 +1,9 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 
 import Button from './Button';
 import OutlineButton from './OutlineButton';
 import { useTheme } from '../../util/useTheme';
-
-const buttonMixin = css`
-  background-color: ${props =>
-    props.isPressed ? props.variant.hoverBgColor : props.variant.bgColor};
-  color: ${props =>
-    props.isPressed ? props.variant.activeTextColor : props.variant.textColor};
-`;
-
-const StyledButton = styled(Button)`
-  .es-button__display {
-    ${buttonMixin};
-  }
-`;
-
-const StyledOutlineButton = styled(OutlineButton)`
-  ${buttonMixin};
-`;
 
 function ToggleButton(props) {
   const theme = useTheme();
@@ -39,7 +21,7 @@ function ToggleButton(props) {
   }
 
   const { styleType, size, block, isOutline, ...buttonProps } = props;
-  const ToggleButtonType = isOutline ? StyledOutlineButton : StyledButton;
+  const ToggleButtonType = isOutline ? OutlineButton : Button;
   const styles = isOutline
     ? theme.buttonStyles.outlineButton
     : theme.buttonStyles.button;
@@ -52,7 +34,7 @@ function ToggleButton(props) {
       size={size}
       block={block}
       isOutline={isOutline}
-      isPressed={isPressed}
+      className={isPressed ? 'pressed' : undefined}
       variant={styles.variant[styleType]}
       aria-pressed={isPressed}
     >

@@ -64,10 +64,15 @@ const StyledButton = styled.button`
     outline: 0;
   }
 
-  &:active {
+  &:active,
+  &.pressed {
     color: ${props => props.colors.activeTextColor};
     background-color: ${props => props.colors.activeBgColor};
     border-color: ${props => props.colors.activeBorderColor};
+  }
+
+  &.pressed {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
   }
 
   &:active:focus {

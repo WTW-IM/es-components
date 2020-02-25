@@ -49,9 +49,14 @@ const StyledButton = styled.button`
     color: ${props => props.colors.hoverTextColor};
   }
 
-  &:active {
+  &:active,
+  &.pressed {
     background-color: ${props => props.colors.textColor};
     color: ${props => props.colors.hoverTextColor};
+  }
+
+  &.pressed {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
   }
 
   &:active:focus {

@@ -87,14 +87,14 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
   const isInheritedStyle = styleType === 'inherited';
 
   const focusBoxShadowColor = tinycolor.mix(
-    variant.textColor,
+    variant.bgColor,
     theme.colors.black,
     14
   );
   focusBoxShadowColor.setAlpha(0.5);
 
   const buttonColors = {
-    textColor: isInheritedStyle ? 'inherited' : variant.textColor,
+    textColor: isInheritedStyle ? 'inherited' : variant.bgColor,
     bgColor: isInheritedStyle ? 'inherited' : theme.colors.white,
     hoverTextColor: isInheritedStyle ? 'inherited' : theme.colors.white,
     focusBoxShadowColor: isInheritedStyle

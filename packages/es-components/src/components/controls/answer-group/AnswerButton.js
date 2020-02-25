@@ -1,6 +1,8 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
 import styled from 'styled-components';
+
+import { darken, getTextColor } from '../../util/colors';
 import useUniqueId from '../../util/useUniqueId';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
@@ -17,8 +19,8 @@ const AnswerLabel = styled.label`
 const AnswerDisplay = styled.div`
   background-color: ${props => props.buttonStyle.bgColor};
   border-color: transparent;
-  box-shadow: 0 4px 0 0 ${props => props.buttonStyle.boxShadowColor};
-  color: ${props => props.buttonStyle.textColor};
+  box-shadow: 0 4px 0 0 ${props => darken(props.buttonStyle.bgColor, 10)};
+  color: ${props => getTextColor(props.buttonStyle.bgColor)};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   font-size: ${props => props.buttonSize.fontSize};
   line-height: ${props => props.buttonSize.lineHeight};
@@ -35,16 +37,16 @@ const AnswerDisplay = styled.div`
   user-select: none;
 
   &:active {
-    background-color: ${props => props.buttonStyle.activeBgColor};
+    background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
     box-shadow: 0 0 0 0 transparent;
-    color: ${props => props.buttonStyle.activeTextColor};
+    color: ${props => getTextColor(props.buttonStyle.bgColor)};
     margin-bottom: 0;
     margin-top: 4px;
   }
 
   &:hover {
-    background-color: ${props => props.buttonStyle.hoverBgColor};
-    color: ${props => props.buttonStyle.hoverTextColor};
+    background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
+    color: ${props => getTextColor(props.buttonStyle.bgColor)};
   }
 
   &[disabled] {
@@ -59,17 +61,13 @@ const AnswerDisplay = styled.div`
 
 const OutlineAnswerDisplay = styled(AnswerDisplay)`
   background-color: ${props =>
-    props.isChecked
-      ? props.buttonStyle.hoverBgColor
-      : props.buttonStyle.bgColor};
-  border: 2px solid ${props => props.buttonStyle.borderColor};
-  box-shadow: ${props => (props.isChecked ? '0 0 0 0' : 'none')}
-    ${props => props.isChecked && props.buttonStyle.boxShadowColor};
+    props.isChecked ? props.buttonStyle.bgColor : props.theme.colors.white};
+  border: 2px solid
+    ${props => props.buttonStyle.borderColor || props.buttonStyle.bgColor};
+  box-shadow: none;
   box-sizing: border-box;
   color: ${props =>
-    props.isChecked
-      ? props.buttonStyle.hoverTextColor
-      : props.buttonStyle.textColor};
+    props.isChecked ? props.theme.colors.white : props.buttonStyle.bgColor};
   margin: 0;
 
   &:active {
@@ -87,8 +85,8 @@ const AnswerInput = styled.input`
   width: 1px;
 
   &:focus + div {
-    background-color: ${props => props.buttonStyle.activeBgColor};
-    color: ${props => props.buttonStyle.activeTextColor};
+    background-color: ${props => props.buttonStyle.bgColor};
+    color: ${props => props.theme.colors.white};
   }
 `;
 
@@ -113,7 +111,7 @@ function AnswerButton({
   const variant =
     validationState !== 'default' && !isOutline ? validationState : styleType;
   const validationBorder =
-    theme.buttonStyles[buttonType].variant[validationState].borderColor;
+    theme.buttonStyles[buttonType].variant[validationState].bgColor;
 
   let selectedStyles = theme.buttonStyles[buttonType].variant[selectedType];
   let unSelectedStyles = theme.buttonStyles[buttonType].variant[variant];

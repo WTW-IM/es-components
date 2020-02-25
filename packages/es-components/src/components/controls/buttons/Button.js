@@ -4,12 +4,7 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 
 import { useTheme } from '../../util/useTheme';
-
-function darken(color, percent) {
-  return tinycolor(color)
-    .darken(percent)
-    .toHexString();
-}
+import { darken, getTextColor } from '../../util/colors';
 
 const StyledButton = styled.button`
   background-color: ${props => props.colors.bgColor};
@@ -69,6 +64,7 @@ const StyledButton = styled.button`
     color: ${props => props.colors.activeTextColor};
     background-color: ${props => props.colors.activeBgColor};
     border-color: ${props => props.colors.activeBorderColor};
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
   }
 
   &.pressed {
@@ -96,12 +92,6 @@ const Button = React.forwardRef(function Button(props, ref) {
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
   const isInheritedStyle = styleType === 'inherited';
-
-  function getTextColor(bgColor) {
-    return tinycolor.readability(theme.colors.black, bgColor) > 10
-      ? theme.colors.black
-      : theme.colors.white;
-  }
 
   const focusBoxShadowColor = tinycolor.mix(
     variant.bgColor,

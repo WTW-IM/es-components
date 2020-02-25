@@ -286,31 +286,31 @@ const theme = {
     outlineButton: {
       variant: {
         primary: {
-          textColor: primary
+          bgColor: primary
         },
         default: {
-          textColor: gray8
+          bgColor: gray8
         },
         success: {
-          textColor: success
+          bgColor: success
         },
         info: {
-          textColor: info
+          bgColor: info
         },
         warning: {
-          textColor: warning
+          bgColor: warning
         },
         danger: {
-          textColor: danger
+          bgColor: danger
         },
         gray: {
-          textColor: wtwGray
+          bgColor: wtwGray
         },
         magenta: {
-          textColor: vbMagenta
+          bgColor: vbMagenta
         },
         violet: {
-          textColor: '#702082'
+          bgColor: '#702082'
         },
         inherited: {}
       },

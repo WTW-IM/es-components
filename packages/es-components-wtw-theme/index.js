@@ -13,29 +13,22 @@ const black = '#000';
 const darkBlue = '#00607d';
 
 const defaultColor = gray9;
-const defaultHover = black;
-const defaultBtnText = white;
 const primary = '#702082';
-const primaryHover = '#3e084d';
-const info = '#1b6284';
-const infoHover = '#144962';
+const info = '#006699';
 const infoLight = '#227ba6';
-const success = '#009865';
-const successHover = '#007d50';
+const success = '#006400';
 const successLight = '#f3fffb';
-const warning = '#de7400';
-const warningHover = '#c26100';
+const warning = '#c25400';
 const warningLight = '#fff6ee';
-const danger = '#a31e22';
-const dangerHover = '#8c1515';
+const danger = '#ee0700';
 const dangerLight = '#fff5f5';
 const advisor = '#ebaf00';
 const advisorLight = '#ffedb8';
 const popoverHeader = darkBlue;
 
-const vbBlue = primaryHover;
+const vbBlue = '#3e084d';
 const vbGreen = '#00c389';
-const vbMagenta = primaryHover;
+const vbMagenta = '#3e084d';
 const wtwGray = '#63666a';
 
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
@@ -76,21 +69,14 @@ const theme = {
     gray9: gray9,
     white: white,
     defaultColor: defaultColor,
-    defaultHover: defaultHover,
-    defaultBtnText: defaultBtnText,
     primary: primary,
-    primaryHover: primaryHover,
     success: success,
-    successHover: successHover,
     successLight: successLight,
     info: info,
-    infoHover: infoHover,
     infoLight: infoLight,
     warning: warning,
-    warningHover: warningHover,
     warningLight: warningLight,
     danger: danger,
-    dangerHover: dangerHover,
     dangerLight: dangerLight,
     advisor: advisor,
     advisorLight: advisorLight,
@@ -220,112 +206,63 @@ const theme = {
       variant: {
         // default is required
         primary: {
-          bgColor: primary,
-          textColor: white,
-          hoverBgColor: primaryHover,
-          hoverTextColor: white,
-          activeBgColor: primaryHover,
-          activeTextColor: white,
-          boxShadowColor: primaryHover
+          bgColor: primary
         },
         default: {
-          bgColor: '#d8d8d8',
-          textColor: black,
-          hoverBgColor: '#bfbfbf',
-          hoverTextColor: black,
-          activeBgColor: '#bfbfbf',
-          activeTextColor: black,
-          boxShadowColor: '#bfbfbf'
+          bgColor: '#d8d8d8'
         },
         darkDefault: {
-          bgColor: defaultColor,
-          textColor: white,
-          hoverBgColor: defaultHover,
-          hoverTextColor: white,
-          activeBgColor: defaultHover,
-          activeTextColor: white,
-          boxShadowColor: defaultHover
+          bgColor: defaultColor
         },
         success: {
-          bgColor: success,
-          textColor: white,
-          hoverBgColor: successHover,
-          hoverTextColor: white,
-          activeBgColor: successHover,
-          activeTextColor: white,
-          boxShadowColor: successHover
+          bgColor: success
         },
         info: {
-          bgColor: info,
-          textColor: white,
-          hoverBgColor: infoHover,
-          hoverTextColor: white,
-          activeBgColor: infoHover,
-          activeTextColor: white,
-          boxShadowColor: infoHover
+          bgColor: info
         },
         warning: {
-          bgColor: warning,
-          textColor: white,
-          hoverBgColor: warningHover,
-          hoverTextColor: white,
-          activeBgColor: warningHover,
-          activeTextColor: white,
-          boxShadowColor: warningHover
+          bgColor: warning
         },
         danger: {
-          bgColor: danger,
-          textColor: white,
-          hoverBgColor: dangerHover,
-          hoverTextColor: white,
-          activeBgColor: dangerHover,
-          activeTextColor: white,
-          boxShadowColor: dangerHover
+          bgColor: danger
         },
-        inherited: {
-          bgColor: 'inherit',
-          textColor: 'inherit',
-          hoverBgColor: 'inherit',
-          hoverTextColor: 'inherit',
-          activeBgColor: 'inherit',
-          activeTextColor: 'inherit',
-          boxShadowColor: 'inherit'
-        }
+        inherited: {}
       },
       // size should always have default, lg, sm, xs
       // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
       // fontWeight, lineHeight, textTransform are optional
       size: {
         lg: {
-          borderRadius: '5px',
-          fontSize: '26px',
-          lineHeight: '1.333',
-          paddingTop: '8px',
-          paddingSides: '20px',
-          paddingBottom: '5px'
+          borderRadius: '0.3rem',
+          fontSize: '1.4375rem',
+          lineHeight: '2',
+          paddingTop: '0.125rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.125rem'
         },
         default: {
-          borderRadius: '4px',
-          fontSize: '18px',
-          paddingTop: '5px',
-          paddingSides: '15px',
-          paddingBottom: '4px'
+          borderRadius: '0.25rem',
+          fontSize: '1.15rem',
+          lineHeight: '1.5',
+          paddingTop: '0.25rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.25rem'
         },
         sm: {
-          borderRadius: '3px',
-          fontSize: '17px',
-          lineHeight: '1.5',
-          paddingTop: '4px',
-          paddingSides: '10px',
-          paddingBottom: '3px'
+          borderRadius: '0.2rem',
+          fontSize: '1.00625rem',
+          lineHeight: '1.25',
+          paddingTop: '0.25rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.25rem'
         },
         xs: {
-          borderRadius: '3px',
-          fontSize: '15px',
+          borderRadius: '0.25rem',
+          fontSize: '0.8855rem',
           lineHeight: '1.5',
-          paddingTop: '3px',
-          paddingSides: '10px',
-          paddingBottom: '2px',
+          paddingTop: '0.1rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.1rem',
           textTransform: 'uppercase'
         }
       }
@@ -333,101 +270,61 @@ const theme = {
     outlineButton: {
       variant: {
         primary: {
-          bgColor: white,
-          textColor: primary,
-          hoverBgColor: primary,
-          hoverTextColor: white,
-          activeBgColor: primaryHover,
-          activeTextColor: white,
-          borderColor: primary
+          bgColor: primary
         },
         default: {
-          bgColor: white,
-          textColor: defaultColor,
-          hoverBgColor: defaultColor,
-          hoverTextColor: white,
-          activeBgColor: defaultHover,
-          activeTextColor: white,
-          borderColor: defaultColor
+          bgColor: defaultColor
         },
         success: {
-          bgColor: white,
-          textColor: success,
-          hoverBgColor: success,
-          hoverTextColor: white,
-          activeBgColor: successHover,
-          activeTextColor: white,
-          borderColor: success
+          bgColor: success
         },
         info: {
-          bgColor: white,
-          textColor: info,
-          hoverBgColor: info,
-          hoverTextColor: white,
-          activeBgColor: infoHover,
-          activeTextColor: white,
-          borderColor: info
+          bgColor: info
         },
         warning: {
-          bgColor: white,
-          textColor: warning,
-          hoverBgColor: warning,
-          hoverTextColor: white,
-          activeBgColor: warningHover,
-          activeTextColor: white,
-          borderColor: warning
+          bgColor: warning
         },
         danger: {
-          bgColor: white,
-          textColor: danger,
-          hoverBgColor: danger,
-          hoverTextColor: white,
-          activeBgColor: dangerHover,
-          activeTextColor: white,
-          borderColor: danger
+          bgColor: danger
         },
-        inherited: {
-          bgColor: 'inherit',
-          textColor: 'inherit',
-          hoverBgColor: 'inherit',
-          hoverTextColor: 'inherit',
-          activeBgColor: 'inherit',
-          activeTextColor: 'inherit',
-          boxShadowColor: 'inherit'
-        }
+        inherited: {}
       },
       size: {
         lg: {
-          borderRadius: '5px',
-          fontSize: '125%',
+          borderRadius: '0.3rem',
+          fontSize: '1.4375rem',
           fontWeight: 'bold',
-          paddingTop: '8px',
-          paddingSides: '25px',
-          paddingBottom: '8px'
+          lineHeight: '2',
+          paddingTop: '0.125rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.125rem'
         },
         default: {
-          borderRadius: '4px',
-          fontSize: '18px',
+          borderRadius: '0.25rem',
+          fontSize: '1.15rem',
           fontWeight: 'bold',
-          paddingTop: '5px',
-          paddingSides: '15px',
-          paddingBottom: '5px'
+          lineHeight: '1.5',
+          paddingTop: '0.25rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.25rem'
         },
         sm: {
-          borderRadius: '3px',
-          fontSize: '75%',
+          borderRadius: '0.2rem',
+          fontSize: '1.00625rem',
           fontWeight: 'bold',
-          paddingTop: '4px',
-          paddingSides: '10px',
-          paddingBottom: '4px'
+          lineHeight: '1.25',
+          paddingTop: '0.25rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.25rem'
         },
         xs: {
-          borderRadius: '3px',
-          fontSize: '60%',
+          borderRadius: '0.25rem',
+          fontSize: '0.8855rem',
           fontWeight: 'bold',
-          paddingTop: '4px',
-          paddingSides: '8px',
-          paddingBottom: '4px',
+          lineHeight: '1.5',
+          paddingTop: '0.1rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.1rem',
           textTransform: 'uppercase'
         }
       }
@@ -435,32 +332,25 @@ const theme = {
     linkButton: {
       variant: {
         default: {
-          textColor: defaultColor,
-          hoverTextColor: defaultHover
+          textColor: defaultColor
         },
         primary: {
-          textColor: primary,
-          hoverTextColor: primaryHover
+          textColor: primary
         },
         success: {
-          textColor: success,
-          hoverTextColor: successHover
+          textColor: success
         },
         information: {
-          textColor: info,
-          hoverTextColor: infoHover,
+          textColor: info
         },
         danger: {
-          textColor: danger,
-          hoverTextColor: dangerHover
+          textColor: danger
         },
         warning: {
-          textColor: warning,
-          hoverTextColor: warningHover
+          textColor: warning
         },
         inherited: {
-          textColor: 'inherit',
-          hoverTextColor: 'inherit'
+          textColor: 'inherit'
         }
       }
     }
@@ -474,7 +364,7 @@ const theme = {
   },
   validationTextColor: {
     success: success,
-    warning: warningHover,
+    warning: warning,
     danger: danger
   },
   validationInputColor: {

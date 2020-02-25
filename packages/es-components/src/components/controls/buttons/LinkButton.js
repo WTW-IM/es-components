@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 
+import { darken } from '../../util/colors';
+
 const StyledButton = styled.button`
   background-color: transparent;
   border: none;
@@ -17,7 +19,7 @@ const StyledButton = styled.button`
   &:hover,
   &:focus,
   &:active {
-    color: ${props => props.variant.hoverTextColor};
+    color: ${props => darken(props.variant.textColor, 10)};
     text-decoration: none;
   }
 

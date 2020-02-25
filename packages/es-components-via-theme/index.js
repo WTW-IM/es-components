@@ -13,21 +13,14 @@ const black = '#000';
 const darkBlue = '#006685';
 
 const defaultColor = '#d8d8d8';
-const defaultHover = '#bfbfbf';
-const defaultBtnText = black;
 const primary = '#0073b6';
-const primaryHover = '#005874';
 const info = '#069';
-const infoHover = '#004466';
 const infoLight = '#b8e4f9';
 const success = '#298544';
-const successHover = '#004B00';
 const successLight = '#d9eedf';
 const warning = '#c25400';
-const warningHover = '#8f3e00';
 const warningLight = '#fcebde';
 const danger = '#cc0000';
-const dangerHover = '#BB0000';
 const dangerLight = '#fde7e7';
 const advisor = warning;
 const advisorLight = warningLight;
@@ -76,21 +69,14 @@ const theme = {
     gray9: gray9,
     white: white,
     defaultColor: defaultColor,
-    defaultHover: defaultHover,
-    defaultBtnText: defaultBtnText,
     primary: primary,
-    primaryHover: primaryHover,
     success: success,
-    successHover: successHover,
     successLight: successLight,
     info: info,
-    infoHover: infoHover,
     infoLight: infoLight,
     warning: warning,
-    warningHover: warningHover,
     warningLight: warningLight,
     danger: danger,
-    dangerHover: dangerHover,
     dangerLight: dangerLight,
     advisor: advisor,
     advisorLight: advisorLight,
@@ -357,32 +343,25 @@ const theme = {
     linkButton: {
       variant: {
         default: {
-          textColor: defaultColor,
-          hoverTextColor: defaultHover
+          textColor: defaultColor
         },
         primary: {
-          textColor: primary,
-          hoverTextColor: primaryHover
+          textColor: primary
         },
         success: {
-          textColor: success,
-          hoverTextColor: successHover
+          textColor: success
         },
         information: {
-          textColor: info,
-          hoverTextColor: infoHover
+          textColor: info
         },
         danger: {
-          textColor: danger,
-          hoverTextColor: dangerHover
+          textColor: danger
         },
         warning: {
-          textColor: warning,
-          hoverTextColor: warningHover
+          textColor: warning
         },
         inherited: {
-          textColor: 'inherit',
-          hoverTextColor: 'inherit'
+          textColor: 'inherit'
         }
       }
     }

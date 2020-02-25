@@ -242,9 +242,7 @@ const theme = {
         danger: {
           bgColor: danger
         },
-        inherited: {
-          bgColor: 'inherit'
-        }
+        inherited: {}
       },
       // size should always have default, lg, sm, xs
       // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
@@ -288,95 +286,33 @@ const theme = {
     outlineButton: {
       variant: {
         primary: {
-          bgColor: white,
-          textColor: primary,
-          hoverBgColor: primary,
-          hoverTextColor: white,
-          activeBgColor: primaryHover,
-          activeTextColor: white,
-          borderColor: primary
+          textColor: primary
         },
         default: {
-          bgColor: white,
-          textColor: gray7,
-          hoverBgColor: gray7,
-          hoverTextColor: white,
-          activeBgColor: gray8,
-          activeTextColor: white,
-          borderColor: gray7
+          textColor: gray8
         },
         success: {
-          bgColor: white,
-          textColor: success,
-          hoverBgColor: success,
-          hoverTextColor: white,
-          activeBgColor: successHover,
-          activeTextColor: white,
-          borderColor: success
+          textColor: success
         },
         info: {
-          bgColor: white,
-          textColor: info,
-          hoverBgColor: info,
-          hoverTextColor: white,
-          activeBgColor: infoHover,
-          activeTextColor: white,
-          borderColor: info
+          textColor: info
         },
         warning: {
-          bgColor: white,
-          textColor: warning,
-          hoverBgColor: warning,
-          hoverTextColor: white,
-          activeBgColor: warningHover,
-          activeTextColor: white,
-          borderColor: warning
+          textColor: warning
         },
         danger: {
-          bgColor: white,
-          textColor: danger,
-          hoverBgColor: danger,
-          hoverTextColor: white,
-          activeBgColor: dangerHover,
-          activeTextColor: white,
-          borderColor: danger
+          textColor: danger
         },
         gray: {
-          bgColor: white,
-          textColor: wtwGray,
-          hoverBgColor: wtwGray,
-          hoverTextColor: white,
-          activeBgColor: '#4a4d50',
-          activeTextColor: white,
-          borderColor: wtwGray
+          textColor: wtwGray
         },
         magenta: {
-          bgColor: white,
-          textColor: vbMagenta,
-          hoverBgColor: vbMagenta,
-          hoverTextColor: white,
-          activeBgColor: '#920C79',
-          activeTextColor: white,
-          borderColor: vbMagenta
+          textColor: vbMagenta
         },
         violet: {
-          bgColor: white,
-          textColor: '#702082',
-          hoverBgColor: '#702082',
-          hoverTextColor: white,
-          activeBgColor: '#4d1659',
-          activeTextColor: white,
-          borderColor: '#702082'
+          textColor: '#702082'
         },
-        inherited: {
-          bgColor: 'inherit',
-          textColor: 'inherit',
-          hoverBgColor: 'inherit',
-          hoverTextColor: 'inherit',
-          activeBgColor: 'inherit',
-          activeTextColor: 'inherit',
-          boxShadowColor: 'inherit'
-        }
+        inherited: {}
       },
       size: {
         lg: {
@@ -389,28 +325,31 @@ const theme = {
           paddingBottom: '0.125rem'
         },
         default: {
-          borderRadius: '4px',
-          fontSize: '18px',
+          borderRadius: '0.25rem',
+          fontSize: '1.15rem',
           fontWeight: 'bold',
-          paddingTop: '5px',
-          paddingSides: '15px',
-          paddingBottom: '5px'
+          lineHeight: '1.5',
+          paddingTop: '0.25rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.25rem'
         },
         sm: {
-          borderRadius: '3px',
-          fontSize: '75%',
+          borderRadius: '0.2rem',
+          fontSize: '1.00625rem',
           fontWeight: 'bold',
-          paddingTop: '4px',
-          paddingSides: '10px',
-          paddingBottom: '4px'
+          lineHeight: '1.25',
+          paddingTop: '0.25rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.25rem'
         },
         xs: {
-          borderRadius: '3px',
-          fontSize: '60%',
+          borderRadius: '0.25rem',
+          fontSize: '0.8855rem',
           fontWeight: 'bold',
-          paddingTop: '4px',
-          paddingSides: '8px',
-          paddingBottom: '4px',
+          lineHeight: '1.5',
+          paddingTop: '0.1rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.1rem',
           textTransform: 'uppercase'
         }
       }
@@ -431,7 +370,7 @@ const theme = {
         },
         information: {
           textColor: info,
-          hoverTextColor: infoHover,
+          hoverTextColor: infoHover
         },
         danger: {
           textColor: danger,

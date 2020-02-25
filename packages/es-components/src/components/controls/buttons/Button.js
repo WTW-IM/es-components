@@ -59,10 +59,8 @@ const StyledButton = styled.button`
     color: ${props => props.colors.hoverTextColor};
     background-color: ${props => props.colors.hoverBgColor};
     border-color: ${props => props.colors.hoverBorderColor};
-    box-shadow: inset 0 0 0 rgba(255, 255, 255, 0.15),
-      0 1px 1px rgba(0, 0, 0, 0.075),
-      0 0 0 0.2rem
-        ${props => props.colors.focusBoxShadowColor || props.theme.colors.gray4};
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
     outline: 0;
   }
 
@@ -74,8 +72,7 @@ const StyledButton = styled.button`
 
   &:active:focus {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25),
-      0 0 0 0.2rem
-        ${props => props.colors.focusBoxShadowColor || props.theme.colors.gray4};
+      0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }
 
   &[disabled] {
@@ -93,56 +90,51 @@ const Button = React.forwardRef(function Button(props, ref) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
+  const isInheritedStyle = styleType === 'inherited';
 
-  function textColor(bgColor) {
+  function getTextColor(bgColor) {
     return tinycolor.readability(theme.colors.black, bgColor) > 10
       ? theme.colors.black
       : theme.colors.white;
   }
 
-  let buttonColors = {
-    bgColor: 'inherit',
-    textColor: 'inherit',
-    borderColor: 'inherit',
-    hoverBgColor: 'inherit',
-    hoverTextColor: 'inherit',
-    hoverBorderColor: 'inherit',
-    activeBgColor: 'inherit',
-    activeTextColor: 'inherit',
-    activeBorderColor: 'inherit'
+  const focusBoxShadowColor = tinycolor.mix(
+    variant.bgColor,
+    theme.colors.black,
+    14
+  );
+  focusBoxShadowColor.setAlpha(0.5);
+
+  const buttonColors = {
+    bgColor: isInheritedStyle ? 'inherited' : variant.bgColor,
+    textColor: isInheritedStyle ? 'inherited' : getTextColor(variant.bgColor),
+    borderColor: isInheritedStyle ? 'inherited' : variant.bgColor,
+    hoverBgColor: isInheritedStyle ? 'inherited' : darken(variant.bgColor, 7.5),
+    hoverBorderColor: isInheritedStyle
+      ? 'inherited'
+      : darken(variant.bgColor, 9.9),
+    focusBoxShadowColor: isInheritedStyle
+      ? theme.colors.gray4
+      : focusBoxShadowColor.toRgbString()
   };
-
-  if (styleType !== 'inherited') {
-    const focusBoxShadowColor = tinycolor.mix(
-      variant.bgColor,
-      textColor(variant.bgColor),
-      14
-    );
-    focusBoxShadowColor.setAlpha(0.5);
-
-    buttonColors = {
-      bgColor: variant.bgColor,
-      textColor: textColor(variant.bgColor),
-      borderColor: variant.bgColor,
-
-      hoverBgColor: darken(variant.bgColor, 7.5),
-      hoverBorderColor: darken(variant.bgColor, 9.9)
-    };
-
-    buttonColors.activeBgColor = darken(buttonColors.hoverBgColor, 2.5);
-    buttonColors.activeTextColor = textColor(buttonColors.activeBgColor);
-    buttonColors.activeBorderColor = darken(buttonColors.hoverBgColor, 5);
-
-    buttonColors.hoverTextColor = textColor(buttonColors.hoverBgColor);
-    buttonColors.focusBoxShadowColor = focusBoxShadowColor.toRgbString();
-  }
+  buttonColors.activeBgColor = isInheritedStyle
+    ? 'inherited'
+    : darken(buttonColors.hoverBgColor, 2.5);
+  buttonColors.activeTextColor = isInheritedStyle
+    ? 'inherited'
+    : getTextColor(buttonColors.activeBgColor);
+  buttonColors.activeBorderColor = isInheritedStyle
+    ? 'inherited'
+    : darken(buttonColors.hoverBgColor, 5);
+  buttonColors.hoverTextColor = isInheritedStyle
+    ? 'inherited'
+    : getTextColor(buttonColors.hoverBgColor);
 
   return (
     <StyledButton
       type="button"
       block={block}
       buttonSize={buttonSize}
-      variant={variant}
       colors={buttonColors}
       ref={ref}
       {...other}

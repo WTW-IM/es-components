@@ -42,6 +42,7 @@ export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
 export CheckboxGroup from './components/controls/checkbox/CheckboxGroup';
 
+export Anchor from './components/navigation/Anchor';
 export SideNav from './components/navigation/sidenav/SideNav';
 export HorizontalNav from './components/navigation/horizontalnav/HorizontalNav';
 

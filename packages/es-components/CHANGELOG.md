@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.115 (2020-02-21)</small>
+
+* Update: sidenav padding on child element instead of li ([e5fad24](https://github.com/wtw-im/es-components/commit/e5fad24))
+* Fix: dropdownButton inline ([17c2ec4](https://github.com/wtw-im/es-components/commit/17c2ec4))
+* Fix: sideNav usage of isVertical prop ([6cdf3e1](https://github.com/wtw-im/es-components/commit/6cdf3e1))
+* Fix: various console warnings ([5dd6b66](https://github.com/wtw-im/es-components/commit/5dd6b66))
+
+
+
+
+
 ## <small>19.0.114 (2020-01-30)</small>
 
 * Fix: move prepended e from new icon definitions ([d0212e3](https://github.com/wtw-im/es-components/commit/d0212e3))

@@ -59,9 +59,9 @@ function handleOnBlur(event) {
 }
 
 <Control>
-  <Label htmlFor="firstName">First name</Label>
+  <Label htmlFor="first-name">First name</Label>
   <Textbox
-    id="firstName"
+    id="first-name"
     defaultValue="Default"
     onBlur={handleOnBlur}
   />
@@ -133,25 +133,25 @@ import Label from '../label/Label';
   </Control>
 
   <Control validationState="success">
-    <Label htmlFor="appended">Appended</Label>
+    <Label htmlFor="state-appended">Appended</Label>
     <Textbox
-      id="appended"
+      id="state-appended"
       appendIconName="calendar"
     />
   </Control>
 
   <Control validationState="warning">
-    <Label htmlFor="prepended">Prepended</Label>
+    <Label htmlFor="state-prepended">Prepended</Label>
     <Textbox
-      id="prepended"
+      id="state-prepended"
       prependIconName="phone"
     />
   </Control>
 
   <Control validationState="danger">
-    <Label htmlFor="both">Appended and prepended</Label>
+    <Label htmlFor="state-both">Appended and prepended</Label>
     <Textbox
-      id="both"
+      id="state-both"
       appendIconName="user"
       prependIconName="phone"
     />

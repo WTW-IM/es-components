@@ -222,7 +222,8 @@ const regular = {
   'im-icon-calculator': '6dc',
   'im-icon-divide': '6dd',
   'im-icon-clinic': '6de',
-  'im-icon-hospital-3': '6df'
+  'im-icon-hospital-3': '6df',
+  'im-icon-trust': '6e0'
 };
 
 export { regular };

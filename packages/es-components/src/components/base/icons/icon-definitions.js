@@ -223,6 +223,8 @@ const regular = {
   'im-icon-divide': '6dd',
   'im-icon-clinic': '6de',
   'im-icon-hospital-3': '6df'
+  'trust': '6e0',
+  'clear-filters': '6e1'
 };
 
 export { regular };

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.116 (2020-02-26)</small>
+
+* UPDATE: adding 'trust' icon ([fe0f494](https://github.com/WTW-IM/es-components/commit/fe0f494))
+
+
+
+
+
 ## <small>19.0.115 (2020-02-21)</small>
 
 * Update: sidenav padding on child element instead of li ([e5fad24](https://github.com/WTW-IM/es-components/commit/e5fad24))

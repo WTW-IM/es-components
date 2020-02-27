@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.117 (2020-02-26)</small>
+
+* New: anchor component ([8b86a48](https://github.com/wtw-im/es-components/commit/8b86a48))
+
+
+
+
+
 ## <small>19.0.116 (2020-02-26)</small>
 
 * Merge branch 'master' into add-trust-icon ([43cdf7d](https://github.com/wtw-im/es-components/commit/43cdf7d))

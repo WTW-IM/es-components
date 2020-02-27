@@ -79,24 +79,24 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
     css`
       background-color: ${props.theme.colors.gray1};
       border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-      props.theme.brandColors.vbMagenta
+      props.theme.brandColors.primary3
     };
       color: ${props.theme.colors.black};
       padding-left: 0;
 
       > i {
-        color: ${props.theme.brandColors.vbMagenta};
+        color: ${props.theme.brandColors.primary3};
       }
 
       &:hover {
         background-color: ${props.theme.colors.gray1};
         border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-      props.theme.brandColors.vbMagenta
+      props.theme.brandColors.primary3
     };
         color: ${props.theme.colors.black};
 
         > i {
-          color: ${props.theme.brandColors.vbMagenta};
+          color: ${props.theme.brandColors.primary3};
         }
       }
     `} ${props =>

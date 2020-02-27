@@ -13,9 +13,7 @@ const Container = styled.div`
 
 const PopoverHeader = styled.div`
   background-color: ${props =>
-    props.hasTitle
-      ? props.theme.colors.popoverHeader
-      : props.theme.colors.white};
+    props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;

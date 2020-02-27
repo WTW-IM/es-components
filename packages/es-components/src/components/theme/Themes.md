@@ -21,28 +21,48 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
 
 <table style="margin-bottom: 1.5em">
 	<tbody>
-		<tr><th colspan="3" style="text-align: left">Via</th></tr>
+		<tr><th colspan="4" style="text-align: left">Via</th></tr>
 		<tr>
-			<td>Primary <div style="background-color: #007fa7; padding: 1em; width: 50px"></div></td>
-			<td>Default <div style="background-color: #d8d8d8; padding: 1em; width: 50px"></div></td>
-			<td>Info <div style="background-color: #069; padding: 1em; width: 50px"></div></td>
+			<td>colors.primary <div style="background-color: #0073b6; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors.primary1 <div style="background-color: #00a0d2; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors.primary2 <div style="background-color: #00c389; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors.primary3 <div style="background-color: #c110a0; padding: 1em; width: 50px; height: 50px"></div></td>
+    </tr>
+    <tr>
+			<td>brandColors.secondary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors.secondary2 <div style="background-color: #717171; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td></td>
+      <td></td>
 		</tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+		<tr><th colspan="4" style="text-align: left">WTW</th></tr>
 		<tr>
-			<td>Success <div style="background-color: #298544; padding: 1em; width: 50px"></div></td>
-			<td>Warning <div style="background-color: #b35f00; padding: 1em; width: 50px"></div></td>
-			<td>Danger <div style="background-color: #c00; padding: 1em; width: 50px"></div></td>
+			<td>colors.primary <div style="background-color: #702082; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors.primary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors.primary2 <div style="background-color: #63666a; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors.primary3 <div style="background-color: #c110a0; padding: 1em; width: 50px; height: 50px"></div></td>
+    </tr>
+    <tr>
+      <td>brandColors.secondary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors.secondary2 <div style="background-color: #63666a; padding: 1em; width: 50px; height: 50px"></div></td>
 		</tr>
-		<tr><th colspan="3" style="text-align: left">WTW</th></tr>
-		<tr>
-			<td>Primary <div style="background-color: #702082; padding: 1em; width: 50px"></div></td>
-			<td>Default <div style="background-color: #444; padding: 1em; width: 50px"></div></td>
-			<td>Info <div style="background-color: #1b6284; padding: 1em; width: 50px"></div></td>
-		</tr>
-		<tr>
-			<td>Success <div style="background-color: #009865; padding: 1em; width: 50px"></div></td>
-			<td>Warning <div style="background-color: #de7400; padding: 1em; width: 50px"></div></td>
-			<td>Danger <div style="background-color: #a31e22; padding: 1em; width: 50px"></div></td>
-		</tr>
+  </tbody>
+</table>
+<table>
+  <tbody>
+    <tr><th colspan="4" style="text-align: left">Shared</th></tr>
+    <tr>
+      <td>colors.info <div style="background-color: #006699; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>colors.success <div style="background-color: #006000; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>colors.warning <div style="background-color: #de7400; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>colors.danger <div style="background-color: #e60700; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>colors.advisor <div style="background-color: #ff6310; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td></td>
+      <td></td>
+    </tr>
 	</tbody>
 </table>
 

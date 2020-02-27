@@ -1,4 +1,4 @@
-const white = '#fff';
+// legacy grayscale
 const gray0 = '#f9f9f9';
 const gray1 = '#f4f4f4';
 const gray2 = '#ecedee';
@@ -9,39 +9,81 @@ const gray6 = '#979797';
 const gray7 = '#707070';
 const gray8 = '#585858';
 const gray9 = '#444';
+
+// new grayscale
+const white = '#fff';
+const gray50 = '#f9f9f9';
+const gray100 =	'#cccccc';
+const gray300 =	'#9f9f9f';
+const gray500 =	'#717171';
+const gray700 =	'#444444';
+const gray900 =	'#171717';
 const black = '#000';
-const darkBlue = '#00607d';
 
-const defaultColor = gray9;
-const primary = '#702082';
+// tints/shades
+const blue50 = '#e0f4fa';
+const blue100 = '#b3e3f2';
+const blue300 = '#4dbde0';
+const blue500 = '#00a0d2';
+const blue700 = '#008ec7';
+const blue900 = '#0073b6';
+const green50 = '#e0f8f1';
+const green100 = '#b3eddc';
+const green300 = '#4dd5ac';
+const green500 = '#00c389';
+const green700 = '#00b576';
+const green900 = '#00a159';
+const magenta50 = '#f8e2f4';
+const magenta100 = '#ecb7e3';
+const magenta300 = '#d458bd';
+const magenta500 = '#c110a0';
+const magenta700 = '#b30c8e';
+const magenta900 = '#9e0573';
+const violet50 = '#ebe2ee';
+const violet100 = '#ceb6d4';
+const violet300 = '#8c559a';
+const violet500 = '#5a0c6f';
+const violet700 = '#48085c';
+const violet900 = '#2e0340';
+const yellow50 = '#fff6e4';
+const yellow100 = '#ffeabb';
+const yellow300 = '#ffcd60';
+const yellow500 = '#ffb81c';
+const yellow700 = '#ffa814';
+const yellow900 = '#ff9109';
+
+// functional
+const primary = '#5a0c6f';
+const primaryHover = '#3c084a';
+const primaryLight = '#ebcff3';
+
+// semantic
 const info = '#006699';
-const infoLight = '#227ba6';
-const success = '#006400';
-const successLight = '#f3fffb';
-const warning = '#c25400';
-const warningLight = '#fff6ee';
-const danger = '#ee0700';
-const dangerLight = '#fff5f5';
-const advisor = '#ebaf00';
-const advisorLight = '#ffedb8';
-const popoverHeader = darkBlue;
+const infoHover = '#004466';
+const infoLight = '#c0ebff';
+const success = '#006000';
+const successHover = '#004000';
+const successLight = '#d2e9d2';
+const warning = '#de7400';
+const warningHover = '#a65600';
+const warningLight = '#f6e0ca';
+const danger = '#e60700';
+const dangerHover = '#970500';
+const dangerLight = '#ffc2c0';
+const advisor = '#ff6310';
+const advisorLight = '#fee7de';
 
-const vbBlue = '#3e084d';
-const vbGreen = '#00c389';
-const vbMagenta = '#3e084d';
-const wtwGray = '#63666a';
+// brand colors
+const primary1 = '#5a0c6f';
+const primary2 = '#63666a';
+const primary3 = '#c110a0';
+const secondary1 = primary1;
+const secondary2 = primary2;
 
+// misc
+const inputFocus = '#66afe9';
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
-
-const inputBorder = gray4;
-const inputFocus = '#66afe9';
-const inputBoxShadow = 'rgba(102, 175, 233, 0.6)';
-
-const violet = '#5a0c6f';
-const blueLighter = '#d2f4ff';
-const greenLighter = '#c3ffed';
-const violetLighter = '#eac9f2';
 
 // Datepicker colors
 const dpBackground = '#006685';
@@ -56,46 +98,84 @@ const highlightHover = '#32be3f';
 
 const theme = {
   colors: {
-    black: black,
-    gray0: gray0,
-    gray1: gray1,
-    gray2: gray2,
-    gray3: gray3,
-    gray4: gray4,
-    gray5: gray5,
-    gray6: gray6,
-    gray7: gray7,
-    gray8: gray8,
-    gray9: gray9,
-    white: white,
-    defaultColor: defaultColor,
-    primary: primary,
-    success: success,
-    successLight: successLight,
-    info: info,
-    infoLight: infoLight,
-    warning: warning,
-    warningLight: warningLight,
-    danger: danger,
-    dangerLight: dangerLight,
-    advisor: advisor,
-    advisorLight: advisorLight,
-    boxShadowLight: boxShadowLight,
-    boxShadowDark: boxShadowDark,
-    inputFocus: inputFocus,
-    popoverHeader: popoverHeader,
-    greenLighter: greenLighter,
-    violetLighter: violetLighter,
-    blueLighter: blueLighter,
-    violet: violet
+    black,
+    gray0,
+    gray1,
+    gray2,
+    gray3,
+    gray4,
+    gray5,
+    gray6,
+    gray7,
+    gray8,
+    gray9,
+    gray50,
+    gray100,
+    gray300,
+    gray500,
+    gray700,
+    gray900,
+    white,
+    blue50,
+    blue100,
+    blue300,
+    blue500,
+    blue700,
+    blue900,
+    green50,
+    green100,
+    green300,
+    green500,
+    green700,
+    green900,
+    magenta50,
+    magenta100,
+    magenta300,
+    magenta500,
+    magenta700,
+    magenta900,
+    violet50,
+    violet100,
+    violet300,
+    violet500,
+    violet700,
+    violet900,
+    yellow50,
+    yellow100,
+    yellow300,
+    yellow500,
+    yellow700,
+    yellow900,
+    primary,
+    primaryHover,
+    primaryLight,
+    success,
+    successHover,
+    successLight,
+    info,
+    infoHover,
+    infoLight,
+    warning,
+    warningHover,
+    warningLight,
+    danger,
+    dangerHover,
+    dangerLight,
+    advisor,
+    advisorLight,
+    boxShadowLight,
+    boxShadowDark,
+    inputFocus
   },
   brandColors: {
-    vbBlue: vbBlue,
-    vbGreen: vbGreen,
-    vbMagenta: vbMagenta,
-    wtwGray: wtwGray
+    primary1,
+    primary2,
+    primary3,
+    secondary1,
+    secondary2
   },
   datepickerColors: {
+    dpBackground,
     navArrow,
     navArrowHover,
     selected,
@@ -106,8 +186,8 @@ const theme = {
     highlightHover
   },
   headingSize: {
-    1: '44.78976px',
-    2: '37.3248px',
+    1: '31.104px',
+    2: '31.104px',
     3: '31.104px',
     4: '25.92px',
     5: '21.6px',
@@ -137,7 +217,7 @@ const theme = {
       },
       light: {
         bgColor: successLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -151,7 +231,7 @@ const theme = {
       },
       light: {
         bgColor: infoLight,
-        textColor: white
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -165,7 +245,7 @@ const theme = {
       },
       light: {
         bgColor: warningLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -179,7 +259,7 @@ const theme = {
       },
       light: {
         bgColor: dangerLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -193,7 +273,7 @@ const theme = {
       },
       light: {
         bgColor: advisorLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -209,10 +289,10 @@ const theme = {
           bgColor: primary
         },
         default: {
-          bgColor: '#d8d8d8'
+          bgColor: gray100
         },
         darkDefault: {
-          bgColor: defaultColor
+          bgColor: gray9
         },
         success: {
           bgColor: success
@@ -273,7 +353,7 @@ const theme = {
           bgColor: primary
         },
         default: {
-          bgColor: defaultColor
+          bgColor: gray9
         },
         success: {
           bgColor: success
@@ -286,6 +366,12 @@ const theme = {
         },
         danger: {
           bgColor: danger
+        },
+        magenta: {
+          bgColor: primary3
+        },
+        violet: {
+          bgColor: primary1
         },
         inherited: {}
       },
@@ -332,7 +418,7 @@ const theme = {
     linkButton: {
       variant: {
         default: {
-          textColor: defaultColor
+          textColor: gray9
         },
         primary: {
           textColor: primary
@@ -363,9 +449,9 @@ const theme = {
     advisor: 'agent'
   },
   validationTextColor: {
-    success: success,
-    warning: warning,
-    danger: danger
+    success,
+    warning,
+    danger
   },
   validationInputColor: {
     success: {
@@ -387,10 +473,10 @@ const theme = {
       focusBoxShadow: '0 0 6px ' + danger
     },
     default: {
-      borderColor: inputBorder,
+      borderColor: gray4,
       boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
-      focusBoxShadow: '0 0 8px ' + inputBoxShadow
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)'
     }
   },
   sizes: {

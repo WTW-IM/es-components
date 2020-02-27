@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const HeadingBase = styled.h1`
   background-color: ${props =>
-    props.isKnockoutStyle && props.theme.colors.softwareBlue};
+    props.isKnockoutStyle && props.theme.colors.primary};
   border-bottom: ${props =>
     props.underlineColor && `2px solid ${props.underlineColor};`};
   color: ${props => (props.isKnockoutStyle ? 'white' : 'inherit')};

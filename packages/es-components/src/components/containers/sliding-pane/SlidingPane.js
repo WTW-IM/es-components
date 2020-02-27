@@ -70,7 +70,7 @@ const PaneBottom = styled(PaneBase)`
 
 const Header = styled.div`
   align-items: center;
-  background-color: ${props => props.theme.colors.popoverHeader};
+  background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
   display: flex;
   flex: 0 0 64px;

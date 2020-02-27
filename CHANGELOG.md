@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>19.0.118 (2020-02-27)</small>
+
+* Adding 'clear-filters' icon. ([9526275](https://github.com/WTW-IM/es-components/commit/9526275))
+* Update icon-definitions.js ([1092a11](https://github.com/WTW-IM/es-components/commit/1092a11))
+* UPDATE: Adding 'clear-filters' icon. ([095b82f](https://github.com/WTW-IM/es-components/commit/095b82f))
+
+
+
+
+
 ## <small>19.0.117 (2020-02-26)</small>
 
 * New: anchor component ([8b86a48](https://github.com/WTW-IM/es-components/commit/8b86a48))

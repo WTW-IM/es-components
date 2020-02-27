@@ -65,17 +65,20 @@ const StyledButton = styled.button`
   }
 
   &[disabled] {
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+    color: #ccc;
     cursor: not-allowed;
-    opacity: 0.65;
+
+    &:hover {
+      background-color: #e6e6e6;
+      border-color: #e6e6e6;
+      color: #ccc;
+    }
 
     > * {
       pointer-events: none;
     }
-  }
-
-  &[disabled]:hover {
-    color: ${props => props.colors.textColor};
-    background-color: ${props => props.colors.hoverTextColor};
   }
 `;
 

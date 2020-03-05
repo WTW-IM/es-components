@@ -13,11 +13,11 @@ const gray9 = '#444';
 // new grayscale
 const white = '#fff';
 const gray50 = '#f9f9f9';
-const gray100 =	'#cccccc';
-const gray300 =	'#9f9f9f';
-const gray500 =	'#717171';
-const gray700 =	'#444444';
-const gray900 =	'#171717';
+const gray100 = '#cccccc';
+const gray300 = '#9f9f9f';
+const gray500 = '#717171';
+const gray700 = '#444444';
+const gray900 = '#171717';
 const black = '#000';
 
 // tints/shades

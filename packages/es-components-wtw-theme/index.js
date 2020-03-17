@@ -1,13 +1,13 @@
 // legacy grayscale
 const gray0 = '#f9f9f9';
 const gray1 = '#f4f4f4';
-const gray2 = '#ecedee';
-const gray3 = '#e4e4e4';
-const gray4 = '#d8d8d8';
+const gray2 = '#f0f0f0';
+const gray3 = '#e8e8e8';
+const gray4 = '#e0e0e0';
 const gray5 = '#c5c5c5';
-const gray6 = '#979797';
-const gray7 = '#707070';
-const gray8 = '#585858';
+const gray6 = '#919191';
+const gray7 = '#787878';
+const gray8 = '#5e5e5e';
 const gray9 = '#444';
 
 // new grayscale

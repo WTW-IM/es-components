@@ -23,14 +23,14 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
 	<tbody>
 		<tr><th colspan="4" style="text-align: left">Via</th></tr>
 		<tr>
-			<td>colors.primary <div style="background-color: #0073b6; padding: 1em; width: 50px; height: 50px"></div></td>
-			<td>brandColors.primary1 <div style="background-color: #00a0d2; padding: 1em; width: 50px; height: 50px"></div></td>
-			<td>brandColors.primary2 <div style="background-color: #00c389; padding: 1em; width: 50px; height: 50px"></div></td>
-			<td>brandColors.primary3 <div style="background-color: #c110a0; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>colors<br/>.primary <div style="background-color: #0073b6; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors<br/>.primary1 <div style="background-color: #00a0d2; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors<br/>.primary2 <div style="background-color: #00c389; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors<br/>.primary3 <div style="background-color: #c110a0; padding: 1em; width: 50px; height: 50px"></div></td>
     </tr>
     <tr>
-			<td>brandColors.secondary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
-			<td>brandColors.secondary2 <div style="background-color: #717171; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors<br/>.secondary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>brandColors<br/>.secondary2 <div style="background-color: #717171; padding: 1em; width: 50px; height: 50px"></div></td>
       <td></td>
       <td></td>
 		</tr>
@@ -40,14 +40,14 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
   <tbody>
 		<tr><th colspan="4" style="text-align: left">WTW</th></tr>
 		<tr>
-			<td>colors.primary <div style="background-color: #702082; padding: 1em; width: 50px; height: 50px"></div></td>
-      <td>brandColors.primary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
-      <td>brandColors.primary2 <div style="background-color: #63666a; padding: 1em; width: 50px; height: 50px"></div></td>
-      <td>brandColors.primary3 <div style="background-color: #c110a0; padding: 1em; width: 50px; height: 50px"></div></td>
+			<td>colors<br/>.primary <div style="background-color: #702082; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors<br/>.primary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors<br/>.primary2 <div style="background-color: #63666a; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors<br/>.primary3 <div style="background-color: #c110a0; padding: 1em; width: 50px; height: 50px"></div></td>
     </tr>
     <tr>
-      <td>brandColors.secondary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
-      <td>brandColors.secondary2 <div style="background-color: #63666a; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors<br/>.secondary1 <div style="background-color: #5a0c6f; padding: 1em; width: 50px; height: 50px"></div></td>
+      <td>brandColors<br/>.secondary2 <div style="background-color: #63666a; padding: 1em; width: 50px; height: 50px"></div></td>
 		</tr>
   </tbody>
 </table>

@@ -8,7 +8,7 @@ const NavItemWrapper = styled.li`
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
   cursor: pointer;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   min-width: 75px;
   padding: 0;
 

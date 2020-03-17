@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   color: ${props => props.variant.textColor};
   font-size: inherit;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   padding: 0;
   text-decoration: underline;
 

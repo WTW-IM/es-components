@@ -11,7 +11,7 @@ import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
+import RootCloseWrapper from '../../util/RootCloseWrapper';
 
 const modalSize = {
   small: '300px',
@@ -70,7 +70,7 @@ const ModalContent = styled.div`
   border-radius: 3px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-size: ${props => props.theme.font.baseFontSize};
   outline: 0;
   position: relative;
   -webkit-overflow-scrolling: touch;
@@ -124,7 +124,10 @@ function Modal(props) {
         transition={animation ? DialogDropIn : undefined}
       >
         <ModalDialog size={size} {...other}>
-          <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
+          <RootCloseWrapper
+            onRootClose={onHide}
+            disabled={backdrop === 'static'}
+          >
             <ModalContent>{children}</ModalContent>
           </RootCloseWrapper>
         </ModalDialog>

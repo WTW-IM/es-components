@@ -14,7 +14,9 @@
 
 ## Theme Changes
 
-- H1, H2, and H3 now use the same font size to avoid "heading fatigue"
+- `theme.size` has been renamed to `theme.font`
+- `headingSize` has been moved to `theme.font.headingDesktop`
+- added `theme.font.headingMobile`
 
 - Brand colors have been renamed so they are not tied semantically to a specific color name:
   - `brandColors.vbBlue` -> `brandColors.primary1`

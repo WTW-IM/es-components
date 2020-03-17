@@ -4,9 +4,9 @@ const Label = styled.label`
   color: ${props => props.theme.colors.gray9};
   cursor: pointer;
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-size: ${props => props.theme.font.baseFontSize};
   font-weight: bold;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   margin-bottom: 5px;
   display: inline-block;
 

@@ -21,7 +21,7 @@ const TooltipInner = styled.div`
   color: ${props => props.theme.colors.white};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: 15px;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   max-width: 250px;
   padding: 3px 8px;
   text-align: left;

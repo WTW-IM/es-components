@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   font-size: ${props => props.buttonSize.fontSize};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   line-height: ${props =>
-    props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
+    props.buttonSize.lineHeight || props.theme.font.baseLineHeight};
   min-width: 100px;
   outline: none;
   padding-bottom: ${props => props.buttonSize.paddingBottom};

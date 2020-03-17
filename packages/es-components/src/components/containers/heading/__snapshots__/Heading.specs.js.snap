@@ -4,7 +4,7 @@ exports[`renders heading level with another size 1`] = `
 <div>
   <div>
     <h1
-      class="sc-bdVaJa jpAFlF"
+      class="sc-bdVaJa fBcbFy"
     >
       Heading level 1
     </h1>
@@ -14,7 +14,7 @@ exports[`renders heading level with another size 1`] = `
       Heading level 3
     </h3>
     <h3
-      class="sc-bdVaJa jpAFlF"
+      class="sc-bdVaJa fBcbFy"
     >
       Heading level 3 size 1
     </h3>
@@ -26,12 +26,12 @@ exports[`renders knockout heading with different class 1`] = `
 <div>
   <div>
     <h1
-      class="sc-bdVaJa jpAFlF"
+      class="sc-bdVaJa fBcbFy"
     >
       Heading level 1
     </h1>
     <h1
-      class="sc-bdVaJa doWdSc"
+      class="sc-bdVaJa eJcsoP"
     >
       Knockout Heading level 1
     </h1>

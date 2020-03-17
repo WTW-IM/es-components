@@ -185,14 +185,6 @@ const theme = {
     highlight,
     highlightHover
   },
-  headingSize: {
-    1: '31.104px',
-    2: '31.104px',
-    3: '31.104px',
-    4: '25.92px',
-    5: '21.6px',
-    6: '18px'
-  },
   promptStyles: {
     readAloud: {
       bgColor: '#FDE8DE',
@@ -479,9 +471,25 @@ const theme = {
       focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)'
     }
   },
-  sizes: {
+  font: {
     baseFontSize: '18px',
-    baseLineHeight: 1.428
+    baseLineHeight: 1.428,
+    headingDesktop: {
+      1: '44.78976px',
+      2: '37.3248px',
+      3: '31.104px',
+      4: '25.92px',
+      5: '21.6px',
+      6: '18px'
+    },
+    headingMobile: {
+      1: '31.104px',
+      2: '31.104px',
+      3: '31.104px',
+      4: '25.92px',
+      5: '21.6px',
+      6: '18px'
+    }
   },
   screenSize: {
     retina: '360px',

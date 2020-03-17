@@ -21,7 +21,7 @@ const StyledButton = styled.button`
   line-height: ${props =>
     props.buttonSize.lineHeight
       ? props.buttonSize.lineHeight
-      : props.theme.sizes.baseLineHeight};
+      : props.theme.font.baseLineHeight};
   min-width: 100px;
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};

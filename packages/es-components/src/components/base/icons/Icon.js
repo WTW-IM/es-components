@@ -6,7 +6,7 @@ import { regular } from './icon-definitions';
 
 const StyledIcon = styled.i`
   display: inline-block;
-  font-family: indv-mkt-icons !important;
+  font-family: bds-func-icons !important;
   font-size: ${props => props.fontSize};
   font-style: normal;
   font-weight: inherit;

@@ -17,7 +17,7 @@ const containerStyle = {
 </div>
 ```
 
-**Note:** Icons require the `indv-mkt-icons` font. Use the following link to include the required font in your project:
+**Note:** Icons require the `bds-func-icons` font. Use the following link to include the required font in your project:
 
 ```html
 <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" />

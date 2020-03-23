@@ -6,7 +6,6 @@ import Control from '../../controls/Control';
 import Fieldset from '../fieldset/Fieldset';
 import RadioGroup from '../../controls/radio-buttons/RadioGroup';
 import RadioButton from '../../controls/radio-buttons/RadioButton';
-import Label from '../../controls/label/Label';
 import { PromptType } from './PromptType';
 import Prompt from './Prompt';
 
@@ -24,7 +23,7 @@ const getDate = () => {
 }
 
 <React.Fragment>
-  <Prompt type={PromptType.readAloud}>
+  <Prompt type={PromptType.ReadAloud}>
     <Control orientation='inline'>
       <Fieldset legendContent={`My name is Mr/Mrs. Agent. Today is ${getDate()}. This call will be recorded. Do I have your permission to record this conversation to confirm your enrollment?`}>
         <RadioGroup
@@ -38,8 +37,8 @@ const getDate = () => {
       </Fieldset>
     </Control>
   </Prompt>
-  <Prompt type={PromptType.doNotReadAloud}>
-    <div>Here is just a statement to the agent that does not need to be read aloud.</div>
+  <Prompt type={PromptType.DoNotReadAloud}>
+    <span>Statement to the agent that does not need to be read aloud.</span>
   </Prompt>
 </React.Fragment>
 ```

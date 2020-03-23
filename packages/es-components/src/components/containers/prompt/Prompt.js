@@ -36,17 +36,28 @@ const Content = styled.div`
   word-break: break-word;
 `;
 
+const ReadAloudLabel = styled(Label)`
+  letter-spacing: 0.5px;
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+`;
+
+const DoNotReadAloudLabel = styled(Label)`
+  font-weight: semi-bold;
+  font-size: 18px;
+  color: black;
+`;
+
 const Prompt = props => {
   const { type, children } = props;
   const theme = useTheme();
   const promptStyles = theme.promptStyles[type];
   const inlineIconText =
-    type === PromptType.readAloud ? (
-      <Label>
-        <strong>Read Aloud</strong>
-      </Label>
+    type === PromptType.ReadAloud ? (
+      <ReadAloudLabel>Read Aloud</ReadAloudLabel>
     ) : (
-      <Label>Do Not Read Aloud</Label>
+      <DoNotReadAloudLabel>Do Not Read Aloud</DoNotReadAloudLabel>
     );
   return (
     <React.Fragment>
@@ -73,7 +84,7 @@ Prompt.defaultProps = {
 };
 
 Prompt.propTypes = {
-  type: PropTypes.oneOf([PromptType.readAloud, PromptType.doNotReadAloud])
+  type: PropTypes.oneOf([PromptType.ReadAloud, PromptType.DoNotReadAloud])
     .isRequired,
   children: PropTypes.node
 };

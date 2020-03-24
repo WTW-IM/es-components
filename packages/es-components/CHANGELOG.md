@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.119](https://github.com/wtw-im/es-components/compare/v19.0.118...v19.0.119) (2020-03-24)
+
+
+### Fix
+
+* updated icon fontfamily reference ([2fa2f471df2d7d1d4bffaa28007ca79aa1ed0af3](https://github.com/wtw-im/es-components/commit/2fa2f471df2d7d1d4bffaa28007ca79aa1ed0af3))
+
+### Update
+
+* audit vulnerability updates ([84a550043576f5acc6443d515366ac6364d1dc45](https://github.com/wtw-im/es-components/commit/84a550043576f5acc6443d515366ac6364d1dc45))
+
+### Upgrade
+
+* Bump acorn from 5.7.3 to 5.7.4 in /packages/es-components ([df4b8ef341609bd7d294b624019a7b56e2e993fc](https://github.com/wtw-im/es-components/commit/df4b8ef341609bd7d294b624019a7b56e2e993fc))
+
+
+
+
+
 ## <small>19.0.118 (2020-02-27)</small>
 
 * Merge branch 'master' into add-clear-filters ([c189d37](https://github.com/wtw-im/es-components/commit/c189d37))

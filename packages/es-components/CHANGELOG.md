@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.120](https://github.com/wtw-im/es-components/compare/v19.0.119...v19.0.120) (2020-03-25)
+
+
+### Fix
+
+* stop default month from being set in DateInput ([a1a97ce82706bc708eaa9a1b13a9929b4ef03e91](https://github.com/wtw-im/es-components/commit/a1a97ce82706bc708eaa9a1b13a9929b4ef03e91))
+* stop default month from being set in DateInput ([d3e978390996640da9efd06d2f9cdb8a3b54e449](https://github.com/wtw-im/es-components/commit/d3e978390996640da9efd06d2f9cdb8a3b54e449))
+* stop default month from being set in DateInput ([dba240660d53c64972dfaa6579b0a0d830df7024](https://github.com/wtw-im/es-components/commit/dba240660d53c64972dfaa6579b0a0d830df7024))
+* stop default month from being set in DateInput ([8b58b63dadee2e1c37410db11fc33016eae21c3b](https://github.com/wtw-im/es-components/commit/8b58b63dadee2e1c37410db11fc33016eae21c3b))
+
+
+
+
+
+## [19.0.119](https://github.com/wtw-im/es-components/compare/v19.0.118...v19.0.119) (2020-03-24)
+
+
+### Fix
+
+* updated icon fontfamily reference ([2fa2f471df2d7d1d4bffaa28007ca79aa1ed0af3](https://github.com/wtw-im/es-components/commit/2fa2f471df2d7d1d4bffaa28007ca79aa1ed0af3))
+
+### Update
+
+* audit vulnerability updates ([84a550043576f5acc6443d515366ac6364d1dc45](https://github.com/wtw-im/es-components/commit/84a550043576f5acc6443d515366ac6364d1dc45))
+
+### Upgrade
+
+* Bump acorn from 5.7.3 to 5.7.4 in /packages/es-components ([df4b8ef341609bd7d294b624019a7b56e2e993fc](https://github.com/wtw-im/es-components/commit/df4b8ef341609bd7d294b624019a7b56e2e993fc))
+
+
+
+
+
 ## <small>19.0.118 (2020-02-27)</small>
 
 * Merge branch 'master' into add-clear-filters ([c189d37](https://github.com/wtw-im/es-components/commit/c189d37))

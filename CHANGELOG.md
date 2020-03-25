@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.120](https://github.com/WTW-IM/es-components/compare/v19.0.119...v19.0.120) (2020-03-25)
+
+
+### Fix
+
+* stop default month from being set in DateInput ([a1a97ce82706bc708eaa9a1b13a9929b4ef03e91](https://github.com/WTW-IM/es-components/commit/a1a97ce82706bc708eaa9a1b13a9929b4ef03e91))
+* stop default month from being set in DateInput ([dba240660d53c64972dfaa6579b0a0d830df7024](https://github.com/WTW-IM/es-components/commit/dba240660d53c64972dfaa6579b0a0d830df7024))
+* stop default month from being set in DateInput ([8b58b63dadee2e1c37410db11fc33016eae21c3b](https://github.com/WTW-IM/es-components/commit/8b58b63dadee2e1c37410db11fc33016eae21c3b))
+
+
+
+
+
+## [19.0.119](https://github.com/WTW-IM/es-components/compare/v19.0.118...v19.0.119) (2020-03-24)
+
+
+### Build
+
+* fix conventional commits ([b51a521847365a32b95a1d80aef5b12ed456b493](https://github.com/WTW-IM/es-components/commit/b51a521847365a32b95a1d80aef5b12ed456b493))
+* update lerna ([6bad30b969d2feb7422ca6bdeaaf8f1d63de524c](https://github.com/WTW-IM/es-components/commit/6bad30b969d2feb7422ca6bdeaaf8f1d63de524c))
+
+### Fix
+
+* updated icon fontfamily reference ([2fa2f471df2d7d1d4bffaa28007ca79aa1ed0af3](https://github.com/WTW-IM/es-components/commit/2fa2f471df2d7d1d4bffaa28007ca79aa1ed0af3))
+
+### Update
+
+* audit vulnerability updates ([84a550043576f5acc6443d515366ac6364d1dc45](https://github.com/WTW-IM/es-components/commit/84a550043576f5acc6443d515366ac6364d1dc45))
+
+### Upgrade
+
+* Bump acorn from 5.5.3 to 5.7.4 ([4d2a74602da4b42dc9f9a913f357eecea54f91fb](https://github.com/WTW-IM/es-components/commit/4d2a74602da4b42dc9f9a913f357eecea54f91fb))
+* Bump acorn from 5.7.3 to 5.7.4 in /packages/es-components ([df4b8ef341609bd7d294b624019a7b56e2e993fc](https://github.com/WTW-IM/es-components/commit/df4b8ef341609bd7d294b624019a7b56e2e993fc))
+* Bump lodash.template from 4.4.0 to 4.5.0 ([cdb3db4eaab15770cbc6341cbd97284f1065c193](https://github.com/WTW-IM/es-components/commit/cdb3db4eaab15770cbc6341cbd97284f1065c193))
+
+
+
+
+
 ## <small>19.0.118 (2020-02-27)</small>
 
 * Adding 'clear-filters' icon. ([9526275](https://github.com/WTW-IM/es-components/commit/9526275))

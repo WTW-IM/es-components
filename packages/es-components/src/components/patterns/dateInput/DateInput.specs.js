@@ -10,10 +10,10 @@ import DateInput from './DateInput';
 beforeEach(cleanup);
 
 const buildDateInput = props => (
-    <Control>
-      <Label htmlFor="test">Text</Label>
-      <DateInput id="test" {...props} data-testid="dateinput" />
-    </Control>
+  <Control>
+    <Label htmlFor="test">Text</Label>
+    <DateInput id="test" {...props} data-testid="dateinput" />
+  </Control>
 );
 
 it('executes the onChange function when text is changed', () => {

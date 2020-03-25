@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.121](https://github.com/wtw-im/es-components/compare/v19.0.120...v19.0.121) (2020-03-25)
+
+
+### UPDATE
+
+* Renaming typreface, adding 'glasses' icon to set. ([ef6033f0bd514f4c7d547d2f3b51428fd3470b87](https://github.com/wtw-im/es-components/commit/ef6033f0bd514f4c7d547d2f3b51428fd3470b87))
+
+
+
+
+
 ## [19.0.120](https://github.com/wtw-im/es-components/compare/v19.0.119...v19.0.120) (2020-03-25)
 
 

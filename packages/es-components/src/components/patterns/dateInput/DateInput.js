@@ -42,18 +42,18 @@ function reducer(state, action) {
 }
 
 function DateInput({
-  children,
-  defaultValue,
-  id,
-  maxDate,
-  minDate,
-  onBlur,
-  onChange,
-  ...props
-}) {
+                     children,
+                     defaultValue,
+                     id,
+                     maxDate,
+                     minDate,
+                     onBlur,
+                     onChange,
+                     ...props
+                   }) {
   const [state, dispatch] = useReducer(reducer, {
     day: defaultValue ? defaultValue.getDate() : '',
-    month: defaultValue ? defaultValue.getMonth() + 1 : 1,
+    month: defaultValue ? defaultValue.getMonth() + 1 : '',
     year: defaultValue ? defaultValue.getFullYear().toString() : ''
   });
 
@@ -76,16 +76,16 @@ function DateInput({
     const cleanDay = day ? cleanZeroes(day.toString()) : day;
     const date = new Date(`${year}/${month}/${cleanDay}`);
     const dateIsValid =
-      month !== 'none' &&
-      year.length === 4 &&
-      (hasDayElement.current ? date.getDate().toString() === cleanDay : true) &&
-      (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&
-      date.getFullYear().toString() === year.toString();
+        month !== 'none' &&
+        year.length === 4 &&
+        (hasDayElement.current ? date.getDate().toString() === cleanDay : true) &&
+        (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&
+        date.getFullYear().toString() === year.toString();
 
     const isInRange =
-      dateIsValid &&
-      (minDate ? isAfter(date, minDate) : true) &&
-      (maxDate ? isBefore(date, maxDate) : true);
+        dateIsValid &&
+        (minDate ? isAfter(date, minDate) : true) &&
+        (maxDate ? isBefore(date, maxDate) : true);
     return {
       value: dateIsValid ? date : undefined,
       isInRange
@@ -127,22 +127,22 @@ function DateInput({
   }
 
   return (
-    <Wrapper tabIndex="-1" {...props} onBlur={onBlurComponent}>
-      {React.Children.map(
-        children,
-        (child, index) =>
-          index === 0
-            ? React.cloneElement(child, {
-                id,
-                onChange: onChangeDatePart,
-                date: createDate(state.year, state.month, state.day).value
-              })
-            : React.cloneElement(child, {
-                onChange: onChangeDatePart,
-                date: createDate(state.year, state.month, state.day).value
-              })
-      )}
-    </Wrapper>
+      <Wrapper tabIndex="-1" {...props} onBlur={onBlurComponent}>
+        {React.Children.map(
+            children,
+            (child, index) =>
+                index === 0
+                    ? React.cloneElement(child, {
+                      id,
+                      onChange: onChangeDatePart,
+                      date: createDate(state.year, state.month, state.day).value
+                    })
+                    : React.cloneElement(child, {
+                      onChange: onChangeDatePart,
+                      date: createDate(state.year, state.month, state.day).value
+                    })
+        )}
+      </Wrapper>
   );
 }
 

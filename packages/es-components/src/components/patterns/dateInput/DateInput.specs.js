@@ -10,10 +10,10 @@ import DateInput from './DateInput';
 beforeEach(cleanup);
 
 const buildDateInput = props => (
-  <Control>
-    <Label htmlFor="test">Text</Label>
-    <DateInput id="test" {...props} data-testid="dateinput" />
-  </Control>
+    <Control>
+      <Label htmlFor="test">Text</Label>
+      <DateInput id="test" {...props} data-testid="dateinput" />
+    </Control>
 );
 
 it('executes the onChange function when text is changed', () => {
@@ -178,6 +178,7 @@ it('returns undefined when Day is present but not defined', () => {
     onChange: jest.fn(),
     children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
+
   const { getByPlaceholderText } = renderWithTheme(buildDateInput(props));
 
   fireEvent.change(getByPlaceholderText('Year'), {
@@ -185,6 +186,7 @@ it('returns undefined when Day is present but not defined', () => {
       value: '1983'
     }
   });
+
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: false,
     value: undefined
@@ -194,6 +196,7 @@ it('returns undefined when Day is present but not defined', () => {
 it('returns date when Day is padded with 0', () => {
   const props = {
     onChange: jest.fn(),
+    defaultValue: new Date(2019, 0, 1),
     children: [<DateInput.Month />, <DateInput.Day />, <DateInput.Year />]
   };
   const { getByPlaceholderText } = renderWithTheme(buildDateInput(props));

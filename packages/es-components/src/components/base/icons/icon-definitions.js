@@ -224,7 +224,10 @@ const regular = {
   'im-icon-clinic': '6de',
   'im-icon-hospital-3': '6df',
   'im-icon-trust': '6e0',
-  'im-icon-clear-filters': '6e1'
+  'im-icon-clear-filters': '6e1',
+  'im-icon-glasses': '6e2',
+  'im-icon-purchase-order': '6e3',
+  'im-icon-urgent-message': '6e4'
 };
 
 export { regular };

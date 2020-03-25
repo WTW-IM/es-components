@@ -112,13 +112,57 @@ function DateInputExample() {
 
 ### Display
 
-You may omit Month and/or Day, but Year is required.
+You may omit Day, but Month and Year is required.
 
 ```
 <DateInput id="anotherDate" onChange={()=>{}}>
   <DateInput.Month />
   <DateInput.Year />
 </DateInput>
+```
+
+Month and Year validated with no default selected.
+
+```
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+import AdditionalHelp from '../../controls/AdditionalHelp';
+
+function DateInputExample() {
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const [myDate, setMyDate] = React.useState();
+  const [validation, setValidation] = React.useState('default');
+
+  function handleChange(date) {
+    console.log(date);
+    setMyDate(date);
+    setValidation('default');
+  }
+
+  function handleOnBlur() {
+    setValidation(myDate && myDate.value ? 'success' : 'danger');
+  }
+
+  return (
+    <Control validationState={validation}>
+      <DateInput id="demoDate"
+        onChange={handleChange}
+        onBlur={handleOnBlur}
+        minDate={new Date('2000/1/1')}
+        maxDate={new Date('2040/1/1')}
+      >
+        <DateInput.Month selectOptionText="Select a month" />
+        <DateInput.Year />
+      </DateInput>
+      <AdditionalHelp>
+        <span>{myDate && myDate.isInRange
+                  ? `You entered: ${myDate.value.toLocaleDateString("en-US", options)}`
+                  : validation !== 'default' && 'Please enter a valid date.'}</span>
+      </AdditionalHelp>
+    </Control>
+  );
+}
+<DateInputExample />
 ```
 
 Year, Month, and Day will display in the order you provide them.
@@ -136,3 +180,4 @@ import Label from '../../controls/label/Label';
   </DateInput>
 </Control>
 ```
+

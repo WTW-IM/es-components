@@ -1,4 +1,4 @@
-# Migration Guide: v1 to v2:
+# Migration Guide: v19 to v20:
 
 ## Component Changes
 

@@ -101,51 +101,55 @@ const Button = React.forwardRef(function Button(props, ref) {
   const variant = theme.buttonStyles.button.variant[styleType];
   const isInheritedStyle = styleType === 'inherited';
 
-  const focusBoxShadowColor = tinycolor.mix(
-    variant.bgColor,
-    theme.colors.black,
-    14
-  );
-  focusBoxShadowColor.setAlpha(0.5);
+  function getButtonColors() {
+    if (isInheritedStyle) {
+      return {
+        bgColor: 'inherited',
+        textColor: 'inherited',
+        borderColor: 'inherited',
+        hoverBgColor: 'inherited',
+        focusBoxShadowColor: theme.colors.gray4,
+        activeBgColor: 'inherited',
+        activeTextColor: 'inherited',
+        activeBorderColor: 'inherited',
+        hoverTextColor: 'inherited'
+      };
+    }
 
-  const inheritedButtonColors = {
-    bgColor: 'inherited',
-    textColor: 'inherited',
-    borderColor: 'inherited',
-    hoverBgColor: 'inherited',
-    focusBoxShadowColor: theme.colors.gray4,
-    activeBgColor: 'inherited',
-    activeTextColor: 'inherited',
-    activeBorderColor: 'inherited',
-    hoverTextColor: 'inherited'
-  };
+    const focusBoxShadowColor = tinycolor.mix(
+      variant.bgColor,
+      theme.colors.black,
+      14
+    );
+    focusBoxShadowColor.setAlpha(0.5);
 
-  const calculatedButtonColors = {
-    bgColor: variant.bgColor,
-    textColor: getTextColor(variant.bgColor),
-    borderColor: variant.bgColor,
-    hoverBgColor: darken(variant.bgColor, 7.5),
-    hoverBorderColor: darken(variant.bgColor, 9.9),
-    focusBoxShadowColor: focusBoxShadowColor.toRgbString()
-  };
-  calculatedButtonColors.activeBgColor = darken(
-    calculatedButtonColors.hoverBgColor,
-    2.5
-  );
-  calculatedButtonColors.activeTextColor = getTextColor(
-    calculatedButtonColors.activeBgColor
-  );
-  calculatedButtonColors.activeBorderColor = darken(
-    calculatedButtonColors.hoverBgColor,
-    5
-  );
-  calculatedButtonColors.hoverTextColor = getTextColor(
-    calculatedButtonColors.hoverBgColor
-  );
+    const calculatedButtonColors = {
+      bgColor: variant.bgColor,
+      textColor: getTextColor(variant.bgColor),
+      borderColor: variant.bgColor,
+      hoverBgColor: darken(variant.bgColor, 7.5),
+      hoverBorderColor: darken(variant.bgColor, 9.9),
+      focusBoxShadowColor: focusBoxShadowColor.toRgbString()
+    };
+    calculatedButtonColors.activeBgColor = darken(
+      calculatedButtonColors.hoverBgColor,
+      2.5
+    );
+    calculatedButtonColors.activeTextColor = getTextColor(
+      calculatedButtonColors.activeBgColor
+    );
+    calculatedButtonColors.activeBorderColor = darken(
+      calculatedButtonColors.hoverBgColor,
+      5
+    );
+    calculatedButtonColors.hoverTextColor = getTextColor(
+      calculatedButtonColors.hoverBgColor
+    );
 
-  const buttonColors = isInheritedStyle
-    ? inheritedButtonColors
-    : calculatedButtonColors;
+    return calculatedButtonColors;
+  }
+
+  const buttonColors = getButtonColors();
 
   return (
     <StyledButton

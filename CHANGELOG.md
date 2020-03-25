@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.0.120](https://github.com/WTW-IM/es-components/compare/v19.0.119...v19.0.120) (2020-03-25)
+
+
+### Fix
+
+* stop default month from being set in DateInput ([a1a97ce82706bc708eaa9a1b13a9929b4ef03e91](https://github.com/WTW-IM/es-components/commit/a1a97ce82706bc708eaa9a1b13a9929b4ef03e91))
+* stop default month from being set in DateInput ([dba240660d53c64972dfaa6579b0a0d830df7024](https://github.com/WTW-IM/es-components/commit/dba240660d53c64972dfaa6579b0a0d830df7024))
+* stop default month from being set in DateInput ([8b58b63dadee2e1c37410db11fc33016eae21c3b](https://github.com/WTW-IM/es-components/commit/8b58b63dadee2e1c37410db11fc33016eae21c3b))
+
+
+
+
+
 ## [19.0.119](https://github.com/WTW-IM/es-components/compare/v19.0.118...v19.0.119) (2020-03-24)
 
 

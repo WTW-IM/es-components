@@ -14,16 +14,16 @@ const radioOnChange = target => {
   setStateForQuestion(target.currentTarget.value);
 };
 
-const getDate = () => {
+function getDate() {
   const today = new Date();
-  const day = today.getDate();
   var month = today.getMonth() + 1;
+  const day = today.getDate();
   var year = today.getFullYear();
-  return `${day}/${month}/${year}`;
+  return `${month}/${day}/${year}`;
 }
 
 <React.Fragment>
-  <Prompt type={PromptType.ReadAloud}>
+  <Prompt isContentReadAloud={true}>
     <Control orientation='inline'>
       <Fieldset legendContent={`My name is Mr/Mrs. Agent. Today is ${getDate()}. This call will be recorded. Do I have your permission to record this conversation to confirm your enrollment?`}>
         <RadioGroup
@@ -37,8 +37,11 @@ const getDate = () => {
       </Fieldset>
     </Control>
   </Prompt>
-  <Prompt type={PromptType.DoNotReadAloud}>
+  <Prompt isContentReadAloud={false}>
     <span>Statement to the agent that does not need to be read aloud.</span>
+  </Prompt>
+  <Prompt>
+    <span>Not passing <strong>isContentReadAloud</strong> defaults to 'Read Aloud'</span>
   </Prompt>
 </React.Fragment>
 ```

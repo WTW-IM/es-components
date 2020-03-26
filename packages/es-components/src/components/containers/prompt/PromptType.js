@@ -1,4 +1,4 @@
 export const PromptType = {
-  ReadAloud: 'readAloud',
-  DoNotReadAloud: 'doNotReadAloud'
+  readAloud: 'readAloud',
+  doNotReadAloud: 'doNotReadAloud'
 };

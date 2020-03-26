@@ -8,17 +8,13 @@ import { PromptType } from './PromptType';
 
 const IconWrapper = styled.div`
   background-color: ${promptProps => promptProps.bannerBgColor};
-  padding: 6px 0px 0px 6px;
+  padding: 6px 0 0 6px;
 `;
 
 const StyledIcon = styled(Icon)`
   name: ${promptProps => promptProps.iconName};
   color: ${promptProps => promptProps.iconColor};
   padding-right: 5px;
-  @media (min-width: 768) {
-    display: inline;
-    margin-right: 8px;
-  }
 `;
 
 const ContentWrapper = styled.div`
@@ -50,18 +46,19 @@ const DoNotReadAloudLabel = styled(Label)`
 `;
 
 const Prompt = props => {
-  const { type, children } = props;
+  const { isContentReadAloud, children } = props;
   const theme = useTheme();
-  const promptStyles = theme.promptStyles[type];
-  const inlineIconText =
-    type === PromptType.ReadAloud ? (
-      <ReadAloudLabel>Read Aloud</ReadAloudLabel>
-    ) : (
-      <DoNotReadAloudLabel>Do Not Read Aloud</DoNotReadAloudLabel>
-    );
+  const promptStyles = isContentReadAloud
+    ? theme.promptStyles[PromptType.readAloud]
+    : theme.promptStyles[PromptType.doNotReadAloud];
+  const inlineIconText = isContentReadAloud ? (
+    <ReadAloudLabel>Read Aloud</ReadAloudLabel>
+  ) : (
+    <DoNotReadAloudLabel>Do Not Read Aloud</DoNotReadAloudLabel>
+  );
   return (
     <React.Fragment>
-      <IconWrapper type={type} bannerBgColor={promptStyles.bannerBgColor}>
+      <IconWrapper bannerBgColor={promptStyles.bannerBgColor}>
         <StyledIcon
           name={promptStyles.iconName}
           iconColor={promptStyles.iconColor}
@@ -80,12 +77,12 @@ const Prompt = props => {
 };
 
 Prompt.defaultProps = {
+  isContentReadAloud: true,
   children: null
 };
 
 Prompt.propTypes = {
-  type: PropTypes.oneOf([PromptType.ReadAloud, PromptType.DoNotReadAloud])
-    .isRequired,
+  isContentReadAloud: PropTypes.bool,
   children: PropTypes.node
 };
 

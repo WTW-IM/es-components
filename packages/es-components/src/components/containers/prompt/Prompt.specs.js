@@ -3,7 +3,6 @@
 import React from 'react';
 import { cleanup } from 'react-testing-library';
 import Prompt from './Prompt';
-import { PromptType } from './PromptType';
 import { renderWithTheme } from '../../util/test-utils';
 
 describe('Prompt', () => {
@@ -11,7 +10,7 @@ describe('Prompt', () => {
 
   it('renders read aloud type', () => {
     const { getByText, queryByText } = renderWithTheme(
-      <Prompt type={PromptType.ReadAloud} />
+      <Prompt isContentReadAloud />
     );
     expect(getByText('Read Aloud')).not.toBeNull();
     expect(queryByText('Do Not Read Aloud')).toBeNull();
@@ -19,16 +18,14 @@ describe('Prompt', () => {
 
   it('renders do not read aloud type', () => {
     const { getByText, queryByText } = renderWithTheme(
-      <Prompt type={PromptType.DoNotReadAloud} />
+      <Prompt isContentReadAloud={false} />
     );
     expect(getByText('Do Not Read Aloud')).not.toBeNull();
     expect(queryByText('Read Aloud')).toBeNull();
   });
 
   it('renders icon for "read aloud" type', () => {
-    const { container } = renderWithTheme(
-      <Prompt type={PromptType.ReadAloud} />
-    );
+    const { container } = renderWithTheme(<Prompt />);
     const hasAriaHiddenAttribute = container
       .querySelector('i')
       .getAttribute('aria-hidden');
@@ -37,7 +34,7 @@ describe('Prompt', () => {
 
   it('renders icon for "do not read aloud" type', () => {
     const { container } = renderWithTheme(
-      <Prompt type={PromptType.DoNotReadAloud} />
+      <Prompt isContentReadAloud={false} />
     );
     const hasAriaHiddenAttribute = container
       .querySelector('i')
@@ -47,7 +44,7 @@ describe('Prompt', () => {
 
   it('renders children', () => {
     const { getByText } = renderWithTheme(
-      <Prompt type={PromptType.DoNotReadAloud}>
+      <Prompt>
         <div>some stuff in here</div>
       </Prompt>
     );

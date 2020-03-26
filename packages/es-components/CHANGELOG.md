@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0](https://github.com/wtw-im/es-components/compare/v19.0.121...v19.1.0) (2020-03-26)
+
+
+### New
+
+* adding tests for prompt. (refs TW-56968) ([10c81f785d036da01da0cd932968543c1c4e6110](https://github.com/wtw-im/es-components/commit/10c81f785d036da01da0cd932968543c1c4e6110))
+* prompt for read aloud and do not read aloud text. (refs TW-56968) ([cc2692d8113406b1495b3b1873067272f9b62311](https://github.com/wtw-im/es-components/commit/cc2692d8113406b1495b3b1873067272f9b62311))
+* remove media query and update prop (refs TW-56968) ([e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff](https://github.com/wtw-im/es-components/commit/e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff))
+
+
+
+
+
 ## [19.0.121](https://github.com/wtw-im/es-components/compare/v19.0.120...v19.0.121) (2020-03-25)
 
 

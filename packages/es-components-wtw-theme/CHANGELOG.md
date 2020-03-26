@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0](https://github.com/WTW-IM/es-components/compare/v19.0.121...v19.1.0) (2020-03-26)
+
+
+### New
+
+* remove media query and update prop (refs TW-56968) ([e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff](https://github.com/WTW-IM/es-components/commit/e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff))
+
+
+
+
+
 ## <small>19.0.107 (2019-12-12)</small>
 
 * Update: warning sign uses circle instead of triangle ([8d60802](https://github.com/WTW-IM/es-components/commit/8d60802))

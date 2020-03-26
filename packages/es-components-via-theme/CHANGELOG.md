@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0](https://github.com/WTW-IM/es-components/compare/v19.0.121...v19.1.0) (2020-03-26)
+
+
+### New
+
+* prompt for read aloud and do not read aloud text. (refs TW-56968) ([cc2692d8113406b1495b3b1873067272f9b62311](https://github.com/WTW-IM/es-components/commit/cc2692d8113406b1495b3b1873067272f9b62311))
+
+
+
+
+
 ## <small>19.0.107 (2019-12-12)</small>
 
 * Update: warning sign uses circle instead of triangle ([8d60802](https://github.com/WTW-IM/es-components/commit/8d60802))

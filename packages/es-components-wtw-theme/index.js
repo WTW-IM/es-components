@@ -127,6 +127,22 @@ const theme = {
     5: '21.6px',
     6: '18px'
   },
+  promptStyles: {
+    readAloud: {
+      bgColor: '#FDE8DE',
+      bannerBgColor: '#FF6310',
+      textColor: black,
+      iconColor: black,
+      iconName: 'agent'
+    },
+    doNotReadAloud: {
+      bgColor: gray1,
+      bannerBgColor: gray1,
+      textColor: black,
+      iconColor: black,
+      iconName: 'no-symbol'
+    }
+  },
   notificationStyles: {
     success: {
       base: {

@@ -90,9 +90,14 @@ export function RadioButton({ children, ...radioProps }) {
     checked: isChecked
   };
 
+  const inputProps = {
+    ...radioProps,
+    checked: isChecked
+  };
+
   return (
     <RadioLabel {...labelProps}>
-      <RadioInput type="radio" id={id} {...radioProps} />
+      <RadioInput type="radio" id={id} {...inputProps} />
       <RadioDisplay
         className="es-radio__fill"
         borderColor={fill}

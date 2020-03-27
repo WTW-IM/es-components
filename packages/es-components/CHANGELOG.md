@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.1](https://github.com/wtw-im/es-components/compare/v19.1.0...v19.1.1) (2020-03-27)
+
+
+### Fix
+
+* pass checked attributed to input element ([64fc660ed5300bfea1505b15f8dc2d5e87e43860](https://github.com/wtw-im/es-components/commit/64fc660ed5300bfea1505b15f8dc2d5e87e43860))
+
+
+
+
+
 # [19.1.0](https://github.com/wtw-im/es-components/compare/v19.0.121...v19.1.0) (2020-03-26)
 
 

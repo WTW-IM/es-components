@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Manager, Reference, Popper } from 'react-popper';
 
 import Fade from '../../util/Fade';
-import useOwnerDocument from '../../util/useOwnerDocument';
+import useRootNode from '../../util/useRootNode';
 
 const PopperBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -158,7 +158,7 @@ function Popup(props) {
     popperRef
   } = props;
   const arrowValues = getArrowValues(arrowSize);
-  const [ownerDocument, ownerDocumentRef] = useOwnerDocument(document.body);
+  const [rootNode, rootNodeRef] = useRootNode(document.body);
 
   return (
     <Manager>
@@ -168,7 +168,7 @@ function Popup(props) {
             className={`${name}-popper__trigger`}
             ref={el => {
               ref(el);
-              ownerDocumentRef(el);
+              rootNodeRef(el);
             }}
           >
             {trigger}
@@ -209,7 +209,7 @@ function Popup(props) {
             </Fade>
           )}
         </Popper>,
-        ownerDocument
+        rootNode
       )}
     </Manager>
   );

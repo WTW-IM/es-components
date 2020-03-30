@@ -68,7 +68,8 @@ function getFocusables(node) {
 }
 
 function isCurrentlyActive(node) {
-  return document.activeElement === node;
+  const rootNode = node.getRootNode();
+  return rootNode.activeElement === node;
 }
 
 function focusTrap(node) {
@@ -100,6 +101,7 @@ function arrowMovement(node) {
     node
   );
   const focusables = [...focusableElements];
+  const rootNode = node.getRootNode();
 
   function handleArrowMovementKeys(event) {
     if (event.keyCode === UP_ARROW_CODE) {
@@ -107,7 +109,7 @@ function arrowMovement(node) {
         lastFocusable.focus();
         event.preventDefault();
       } else {
-        const index = focusables.indexOf(document.activeElement);
+        const index = focusables.indexOf(rootNode.activeElement);
         focusables[index - 1].focus();
         event.preventDefault();
       }
@@ -117,7 +119,7 @@ function arrowMovement(node) {
         firstFocusable.focus();
         event.preventDefault();
       } else {
-        const index = focusables.indexOf(document.activeElement);
+        const index = focusables.indexOf(rootNode.activeElement);
         focusableElements[index + 1].focus();
         event.preventDefault();
       }

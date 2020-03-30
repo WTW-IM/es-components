@@ -120,7 +120,7 @@ function DateInput({
   function onBlurComponent(event) {
     const target = event.currentTarget;
     setTimeout(() => {
-      if (!target.contains(document.activeElement)) {
+      if (!target.contains(target.getRootNode().activeElement)) {
         onBlur(event);
       }
     }, 0);
@@ -128,19 +128,17 @@ function DateInput({
 
   return (
     <Wrapper tabIndex="-1" {...props} onBlur={onBlurComponent}>
-      {React.Children.map(
-        children,
-        (child, index) =>
-          index === 0
-            ? React.cloneElement(child, {
-                id,
-                onChange: onChangeDatePart,
-                date: createDate(state.year, state.month, state.day).value
-              })
-            : React.cloneElement(child, {
-                onChange: onChangeDatePart,
-                date: createDate(state.year, state.month, state.day).value
-              })
+      {React.Children.map(children, (child, index) =>
+        index === 0
+          ? React.cloneElement(child, {
+              id,
+              onChange: onChangeDatePart,
+              date: createDate(state.year, state.month, state.day).value
+            })
+          : React.cloneElement(child, {
+              onChange: onChangeDatePart,
+              date: createDate(state.year, state.month, state.day).value
+            })
       )}
     </Wrapper>
   );

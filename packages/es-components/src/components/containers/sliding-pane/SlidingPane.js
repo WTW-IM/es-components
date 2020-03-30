@@ -169,6 +169,7 @@ export default function SlidingPane({
   overlayStyles,
   contentStyles,
   appElement,
+  parentSelector,
   ...rest
 }) {
   const Pane = getPane(from);
@@ -194,6 +195,7 @@ export default function SlidingPane({
         onRequestClose={onRequestClose}
         shouldCloseOnEsc={shouldCloseOnEsc}
         contentLabel={`Modal "${title}"`}
+        parentSelector={parentSelector}
         {...rest}
       >
         <Header>
@@ -232,7 +234,8 @@ SlidingPane.propTypes = {
   contentStyles: PropTypes.object,
   /** selector of application element (e.g. #root), for hiding of
    main content for screenreaders when pane is open */
-  appElement: PropTypes.string
+  appElement: PropTypes.string,
+  parentSelector: PropTypes.func
 };
 
 SlidingPane.defaultProps = {
@@ -250,5 +253,6 @@ SlidingPane.defaultProps = {
   closeIconScreenReaderText: 'Close',
   overlayStyles: {},
   contentStyles: {},
-  appElement: undefined
+  appElement: undefined,
+  parentSelector: () => document.body
 };

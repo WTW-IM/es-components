@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.2](https://github.com/WTW-IM/es-components/compare/v19.1.1...v19.1.2) (2020-03-30)
+
+
+### Update
+
+* allowing a parentSelector func on SlidingPane ([bcbe10dfb514a0c85c09a84ffee9cfb06008d5fd](https://github.com/WTW-IM/es-components/commit/bcbe10dfb514a0c85c09a84ffee9cfb06008d5fd))
+* changing useOwnerDocument to useRootNode ([391f280f0b2cb955c9c9adfc4570e7cc19f7eacb](https://github.com/WTW-IM/es-components/commit/391f280f0b2cb955c9c9adfc4570e7cc19f7eacb))
+* creating the useOwnerDocument hook ([2876b88090fe1c9c22dd2863466f96ab0cdad41e](https://github.com/WTW-IM/es-components/commit/2876b88090fe1c9c22dd2863466f96ab0cdad41e))
+* setting popover contaienr to ownerDocument when necessary ([0c3211fee7d29cbb3056efac5f8b5b7936438ee8](https://github.com/WTW-IM/es-components/commit/0c3211fee7d29cbb3056efac5f8b5b7936438ee8))
+* using getRootNode in DropdownButton ([b3e3b61211909cacffb8bd37e467e7c4b5c2b093](https://github.com/WTW-IM/es-components/commit/b3e3b61211909cacffb8bd37e467e7c4b5c2b093))
+* using rootNode in DateInput ([40a6eef270e7dbd75750d9aaf368d5d8ab6d2ea1](https://github.com/WTW-IM/es-components/commit/40a6eef270e7dbd75750d9aaf368d5d8ab6d2ea1))
+* using useRootNode in Tooltip ([dfe5d644712bfd0b64cf05aa617f3dfe22b88e1b](https://github.com/WTW-IM/es-components/commit/dfe5d644712bfd0b64cf05aa617f3dfe22b88e1b))
+
+
+
+
+
 ## [19.1.1](https://github.com/WTW-IM/es-components/compare/v19.1.0...v19.1.1) (2020-03-27)
 
 

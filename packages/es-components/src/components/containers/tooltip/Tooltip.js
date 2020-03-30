@@ -8,6 +8,7 @@ import Fade from '../../util/Fade';
 import PopoverLink from '../../controls/buttons/PopoverLink';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
+import useRootNode from '../../util/useRootNode';
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -92,6 +93,7 @@ function Tooltip(props) {
   let TooltipStyled;
   let TooltipArrow;
   const tooltipId = name ? `es-tooltip__${name}` : undefined;
+  const [rootNode, rootNodeRef] = useRootNode(document.body);
 
   switch (position) {
     case 'right':
@@ -137,7 +139,10 @@ function Tooltip(props) {
       <Reference>
         {({ ref }) => (
           <PopoverLink
-            ref={ref}
+            ref={el => {
+              ref(el);
+              rootNodeRef(el);
+            }}
             onBlur={hideTooltip}
             onFocus={!disableFocus ? showTooltip : undefined}
             onMouseEnter={!disableHover ? showTooltip : undefined}
@@ -172,7 +177,7 @@ function Tooltip(props) {
             </Fade>
           )}
         </Popper>,
-        document.querySelector('body')
+        rootNode
       )}
     </Manager>
   );

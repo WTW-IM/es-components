@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.3](https://github.com/WTW-IM/es-components/compare/v19.1.2...v19.1.3) (2020-04-02)
+
+
+### Fix
+
+* remove warnings about controlled inputs for radio buttons ([38cf5ac2e22b9f727ffc7bf0aadf0a0c0b895ac6](https://github.com/WTW-IM/es-components/commit/38cf5ac2e22b9f727ffc7bf0aadf0a0c0b895ac6))
+
+
+
+
+
 ## [19.1.2](https://github.com/WTW-IM/es-components/compare/v19.1.1...v19.1.2) (2020-03-30)
 
 

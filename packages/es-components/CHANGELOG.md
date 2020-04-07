@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.4](https://github.com/wtw-im/es-components/compare/v19.1.3...v19.1.4) (2020-04-07)
+
+
+### Fix
+
+* ensuring the ES Components UMD bundle works ([084fc3d4ce46141b1476c28c85e0d0d3c0b6ffa4](https://github.com/wtw-im/es-components/commit/084fc3d4ce46141b1476c28c85e0d0d3c0b6ffa4))
+
+
+
+
+
 ## [19.1.3](https://github.com/wtw-im/es-components/compare/v19.1.2...v19.1.3) (2020-04-02)
 
 

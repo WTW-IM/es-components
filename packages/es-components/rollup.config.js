@@ -2,6 +2,7 @@ import babel from 'rollup-plugin-babel';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 import { uglify } from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
@@ -49,7 +50,7 @@ export default [
     output: {
       file: 'bundle/main.min.js',
       format: 'umd',
-      name: 'es-components',
+      name: 'ESComponents',
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
@@ -64,6 +65,9 @@ export default [
       babel({
         exclude: /node_modules/,
         runtimeHelpers: true
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
       uglify()
     ]

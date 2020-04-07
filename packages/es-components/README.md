@@ -25,6 +25,8 @@ import { Component } from 'es-components/lib';
 
 ### Using The UMD Bundle
 
+Because ES Components needs a reference to `document.body` on startup, you must either include the `defer` attribute, or place the `<script>` tag somwhere within the `body` of your html page. Here we're showing it using the `defer` attribute.
+
 ```html
 <!DOCTYPE html>
 <head>
@@ -33,11 +35,12 @@ import { Component } from 'es-components/lib';
   <!-- These fonts are used in the Icon sets, and in general font styles. -->
   <link rel="stylesheet" href="https://cdn.rawgit.com/WTW-IM/es-assets/8fbaf85d/font.css" />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet" />
-  <!-- You must include React and Styled Components. ES Components depends on those packages. -->
+  <!-- You must include React, ReactDOM, PropTypes and Styled Components. ES Components depends on those packages. -->
   <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/prop-types@15/prop-types.js"></script>
   <script crossorigin src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
-  <script crossorigin src="https://unpkg.com/es-components/bundle/main.min.js"></script>
+  <script crossorigin defer src="https://unpkg.com/es-components/bundle/main.min.js"></script>
 </head>
 <body>
   <!-- My ES Components Site Body -->

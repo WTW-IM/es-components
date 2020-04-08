@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.5](https://github.com/wtw-im/es-components/compare/v19.1.4...v19.1.5) (2020-04-08)
+
+
+### Docs
+
+* updated font references in readme ([0753cfc67b22b2d12fb069c8c9f7eb10cd320483](https://github.com/wtw-im/es-components/commit/0753cfc67b22b2d12fb069c8c9f7eb10cd320483))
+
+
+
+
+
 ## [19.1.4](https://github.com/wtw-im/es-components/compare/v19.1.3...v19.1.4) (2020-04-07)
 
 

@@ -7,7 +7,7 @@ exports[`renders as expected 1`] = `
   >
     <ul>
       <li
-        class="es-sidenav__navitem sc-bxivhb iZeuHO"
+        class="es-sidenav__navitem sc-bxivhb esxltg"
       >
         <button
           class="sc-bZQynM fIiSIF"
@@ -20,7 +20,7 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb edRgYc"
+        class="es-sidenav__navitem sc-bxivhb fLNLmR"
       >
         <button
           class="sc-bZQynM fIiSIF"
@@ -33,7 +33,7 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb edRgYc"
+        class="es-sidenav__navitem sc-bxivhb fLNLmR"
       >
         <a
           class="sc-bZQynM fIiSIF"
@@ -46,7 +46,7 @@ exports[`renders as expected 1`] = `
         </a>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb XuCTj"
+        class="es-sidenav__navitem sc-bxivhb eaAGyO"
       >
         <button
           class="sc-bZQynM fIiSIF"

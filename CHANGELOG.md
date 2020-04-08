@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.6](https://github.com/WTW-IM/es-components/compare/v19.1.5...v19.1.6) (2020-04-08)
+
+
+### Update
+
+* add parentNode prop to Popover ([e191bdf547f793463a3a0bbf0beb1d6f9c54555d](https://github.com/WTW-IM/es-components/commit/e191bdf547f793463a3a0bbf0beb1d6f9c54555d))
+
+
+
+
+
 ## [19.1.5](https://github.com/WTW-IM/es-components/compare/v19.1.4...v19.1.5) (2020-04-08)
 
 

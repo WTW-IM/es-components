@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
+import RootCloseWrapper from '../../util/RootCloseWrapper';
 
 const Container = styled.div`
   display: inline-block;
@@ -81,7 +81,8 @@ function Popover(props) {
     hasCloseButton,
     hasAltCloseButton,
     disableRootClose,
-    disableFlipping
+    disableFlipping,
+    parentNode
   } = props;
 
   const hasTitle = title !== undefined;
@@ -127,41 +128,35 @@ function Popover(props) {
     }, 100);
   }
 
-  useEffect(
-    () => {
-      if (isFirstRun.current) {
-        isFirstRun.current = false;
-        return;
-      }
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
 
-      if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current);
-      }
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
 
-      if (isOpen) {
-        timeoutRef.current = setTimeout(() => {
-          if (closeBtnRef.current) {
-            closeBtnRef.current.focus();
-          } else if (escMsgRef.current) {
-            escMsgRef.current.focus();
-          }
-        }, 100);
-      } else {
-        triggerBtnRef.current.focus();
-      }
-    },
-    [isOpen]
-  );
+    if (isOpen) {
+      timeoutRef.current = setTimeout(() => {
+        if (closeBtnRef.current) {
+          closeBtnRef.current.focus();
+        } else if (escMsgRef.current) {
+          escMsgRef.current.focus();
+        }
+      }, 100);
+    } else {
+      triggerBtnRef.current.focus();
+    }
+  }, [isOpen]);
 
-  useEffect(
-    () => {
-      if (isOpen) {
-        window.addEventListener('scroll', hidePopOnScroll);
-      }
-      return () => window.removeEventListener('scroll', hidePopOnScroll);
-    },
-    [isOpen]
-  );
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('scroll', hidePopOnScroll);
+    }
+    return () => window.removeEventListener('scroll', hidePopOnScroll);
+  }, [isOpen]);
 
   const closeButton = (
     <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
@@ -191,6 +186,7 @@ function Popover(props) {
         popperRef={elem => {
           popperRef.current = elem;
         }}
+        parentNode={parentNode}
       >
         <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
           <div role="dialog" ref={contentRef}>
@@ -237,7 +233,9 @@ Popover.propTypes = {
   /** Function returning a button component to be used as the popover trigger */
   renderTrigger: PropTypes.func.isRequired,
   /** Disables popovers ability to change position to stay in viewport */
-  disableFlipping: PropTypes.bool
+  disableFlipping: PropTypes.bool,
+  /** DOM node to render the popover content in */
+  parentNode: PropTypes.element
 };
 
 Popover.defaultProps = {
@@ -247,7 +245,8 @@ Popover.defaultProps = {
   hasCloseButton: false,
   hasAltCloseButton: false,
   disableFlipping: false,
-  title: undefined
+  title: undefined,
+  parentNode: document.body
 };
 
 export default Popover;

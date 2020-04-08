@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.7](https://github.com/WTW-IM/es-components/compare/v19.1.6...v19.1.7) (2020-04-08)
+
+
+### Fix
+
+* update proptypes in popover components ([936cb0e2cf8877bf237edb77d9e2083aada0396f](https://github.com/WTW-IM/es-components/commit/936cb0e2cf8877bf237edb77d9e2083aada0396f))
+
+
+
+
+
 ## [19.1.6](https://github.com/WTW-IM/es-components/compare/v19.1.5...v19.1.6) (2020-04-08)
 
 

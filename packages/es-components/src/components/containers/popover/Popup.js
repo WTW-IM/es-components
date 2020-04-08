@@ -227,7 +227,7 @@ Popup.propTypes = {
   hasTitle: PropTypes.bool,
   disableFlipping: PropTypes.bool,
   popperRef: PropTypes.func,
-  parentNode: PropTypes.element
+  parentNode: PropTypes.instanceOf(Element)
 };
 
 Popup.defaultProps = {

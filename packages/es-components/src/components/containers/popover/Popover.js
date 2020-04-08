@@ -235,7 +235,7 @@ Popover.propTypes = {
   /** Disables popovers ability to change position to stay in viewport */
   disableFlipping: PropTypes.bool,
   /** DOM node to render the popover content in */
-  parentNode: PropTypes.element
+  parentNode: PropTypes.instanceOf(Element)
 };
 
 Popover.defaultProps = {

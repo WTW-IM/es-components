@@ -155,10 +155,11 @@ function Popup(props) {
     transitionIn,
     transitionTimeout,
     disableFlipping,
-    popperRef
+    popperRef,
+    parentNode = document.body
   } = props;
   const arrowValues = getArrowValues(arrowSize);
-  const [rootNode, rootNodeRef] = useRootNode(document.body);
+  const rootNodeRef = useRootNode(parentNode)[1];
 
   return (
     <Manager>
@@ -181,7 +182,7 @@ function Popup(props) {
           className={`${name}-popper`}
           placement={position}
           modifiers={{
-            preventOverflow: { boundariesElement: document.body },
+            preventOverflow: { boundariesElement: parentNode },
             flip: {
               enabled: !disableFlipping,
               behavior: ['left', 'right', 'top', 'bottom', 'top']
@@ -209,7 +210,7 @@ function Popup(props) {
             </Fade>
           )}
         </Popper>,
-        rootNode
+        parentNode
       )}
     </Manager>
   );
@@ -225,7 +226,8 @@ Popup.propTypes = {
   transitionTimeout: PropTypes.number,
   hasTitle: PropTypes.bool,
   disableFlipping: PropTypes.bool,
-  popperRef: PropTypes.func
+  popperRef: PropTypes.func,
+  parentNode: PropTypes.element
 };
 
 Popup.defaultProps = {
@@ -238,7 +240,8 @@ Popup.defaultProps = {
   transitionTimeout: 150,
   hasTitle: false,
   disableFlipping: false,
-  popperRef: undefined
+  popperRef: undefined,
+  parentNode: document.body
 };
 
 export default Popup;

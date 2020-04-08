@@ -1,23 +1,15 @@
-// legacy grayscale
+// grayscale
+const white = '#fff';
 const gray0 = '#f9f9f9';
 const gray1 = '#f4f4f4';
-const gray2 = '#ecedee';
+const gray2 = '#ededed';
 const gray3 = '#e4e4e4';
 const gray4 = '#d8d8d8';
 const gray5 = '#c5c5c5';
-const gray6 = '#979797';
-const gray7 = '#707070';
-const gray8 = '#585858';
+const gray6 = '#919191';
+const gray7 = '#787878';
+const gray8 = '#5e5e5e';
 const gray9 = '#444';
-
-// new grayscale
-const white = '#fff';
-const gray50 = '#f9f9f9';
-const gray100 = '#cccccc';
-const gray300 = '#9f9f9f';
-const gray500 = '#717171';
-const gray700 = '#444444';
-const gray900 = '#171717';
 const black = '#000';
 
 // tints/shades
@@ -78,7 +70,7 @@ const primary1 = '#00a0d2'; // used by: spinner, drawerPanel
 const primary2 = '#00c389'; // used by: spinner
 const primary3 = '#c110a0'; // used by: spinner, modalHeader, breadcrumb, Nav, progressTracker
 const secondary1 = '#5a0c6f'; // used by spinner, outlineButton
-const secondary2 = gray500;
+const secondary2 = '#717171';
 
 // misc
 const inputFocus = '#83bffc';
@@ -109,12 +101,6 @@ const theme = {
     gray7,
     gray8,
     gray9,
-    gray50,
-    gray100,
-    gray300,
-    gray500,
-    gray700,
-    gray900,
     white,
     blue50,
     blue100,
@@ -281,7 +267,7 @@ const theme = {
           bgColor: primary
         },
         default: {
-          bgColor: gray100
+          bgColor: '#ccc'
         },
         darkDefault: {
           bgColor: gray8
@@ -410,7 +396,7 @@ const theme = {
     linkButton: {
       variant: {
         default: {
-          textColor: gray100
+          textColor: '#ccc'
         },
         primary: {
           textColor: primary
@@ -483,8 +469,8 @@ const theme = {
       6: '18px'
     },
     headingMobile: {
-      1: '31.104px',
-      2: '31.104px',
+      1: '38.7898px;',
+      2: '31.3248px',
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',

@@ -14,7 +14,7 @@
 
 ## Theme Changes
 
-- `theme.size` has been renamed to `theme.font`
+- `theme.size` object has been renamed to `theme.font`
 - `headingSize` has been moved to `theme.font.headingDesktop`
 - added `theme.font.headingMobile`
 
@@ -35,7 +35,6 @@
   - removed -> `colors.popoverHeader`
 
 - New colors have been added from the [BDA UI Toolkit](https://wtw-im.github.io/bda-des-sys/base.html#colors-tints-shades):
-  - new grayscale colors added with the intent to eventually replace the existing `gray0` - `gray9` -> `gray50`, `gray100`, `gray300`, `gray500`, `gray700`, `gray900`
   - new -> `blue50`, `blue300`, `blue500`, `blue700`, `blue900`
   - new -> `green50`, `green300`, `green500`, `green700`, `green900`
   - new -> `magenta50`, `magenta300`, `magenta500`, `magenta700`, `magenta900`

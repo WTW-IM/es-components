@@ -9,10 +9,7 @@ const HeadingBase = styled.h1`
     props.underlineColor && `2px solid ${props.underlineColor};`};
   color: ${props => (props.isKnockoutStyle ? 'white' : 'inherit')};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props =>
-    props.adjustedSize > 2
-      ? props.theme.font.headingDesktop[props.adjustedSize]
-      : `calc(${props.theme.font.headingDesktop[props.adjustedSize]} - 6px);`};
+  font-size: ${props => props.theme.font.headingMobile[props.adjustedSize]};
   font-weight: 300;
   line-height: 1.1;
   margin-bottom: 0.45em;

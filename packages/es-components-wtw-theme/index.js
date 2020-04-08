@@ -1,23 +1,15 @@
-// legacy grayscale
+// grayscale
+const white = '#fff';
 const gray0 = '#f9f9f9';
 const gray1 = '#f4f4f4';
-const gray2 = '#f0f0f0';
-const gray3 = '#e8e8e8';
-const gray4 = '#e0e0e0';
+const gray2 = '#ededed';
+const gray3 = '#e4e4e4';
+const gray4 = '#d8d8d8';
 const gray5 = '#c5c5c5';
 const gray6 = '#919191';
 const gray7 = '#787878';
 const gray8 = '#5e5e5e';
 const gray9 = '#444';
-
-// new grayscale
-const white = '#fff';
-const gray50 = '#f9f9f9';
-const gray100 = '#cccccc';
-const gray300 = '#9f9f9f';
-const gray500 = '#717171';
-const gray700 = '#444444';
-const gray900 = '#171717';
 const black = '#000';
 
 // tints/shades
@@ -109,12 +101,6 @@ const theme = {
     gray7,
     gray8,
     gray9,
-    gray50,
-    gray100,
-    gray300,
-    gray500,
-    gray700,
-    gray900,
     white,
     blue50,
     blue100,
@@ -281,7 +267,7 @@ const theme = {
           bgColor: primary
         },
         default: {
-          bgColor: gray100
+          bgColor: '#ccc'
         },
         darkDefault: {
           bgColor: gray9

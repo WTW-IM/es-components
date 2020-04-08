@@ -85,8 +85,8 @@ const AnswerInput = styled.input`
   width: 1px;
 
   &:focus + div {
-    background-color: ${props => props.buttonStyle.bgColor};
-    color: ${props => props.theme.colors.white};
+    background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
+    color: ${props => getTextColor(props.buttonStyle.bgColor)};
   }
 `;
 

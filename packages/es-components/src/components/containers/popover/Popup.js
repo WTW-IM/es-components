@@ -41,9 +41,7 @@ const Arrow = styled.div`
       border-width: ${props => props.arrowSize.bottomWidth};
       border-color: transparent;
       border-bottom-color: ${props =>
-        props.hasTitle
-          ? props.theme.colors.popoverHeader
-          : props.theme.colors.white};
+        props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
       margin-left: -${props => props.arrowSize.size}px;
     }
   }

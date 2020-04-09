@@ -34,14 +34,14 @@ const TableBase = styled.table`
     font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
       sans-serif;
     font-weight: bold;
-    line-height: ${props => props.theme.sizes.baseLineHeight};
+    line-height: ${props => props.theme.font.baseLineHeight};
     padding: ${props => props.cellPadding};
     text-align: left;
     vertical-align: bottom;
   }
 
   td {
-    line-height: ${props => props.theme.sizes.baseLineHeight};
+    line-height: ${props => props.theme.font.baseLineHeight};
     padding: ${props => props.cellPadding};
     vertical-align: top;
   }

@@ -28,9 +28,9 @@ const RadioLabel = styled(Label)`
   cursor: pointer;
   display: flex;
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-size: ${props => props.theme.font.baseFontSize};
   font-weight: normal;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   margin-right: 15px;
   margin-bottom: 10px;
   position: relative;

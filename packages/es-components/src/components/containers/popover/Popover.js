@@ -13,13 +13,11 @@ const Container = styled.div`
 
 const PopoverHeader = styled.div`
   background-color: ${props =>
-    props.hasTitle
-      ? props.theme.colors.popoverHeader
-      : props.theme.colors.white};
+    props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   outline: none;
 `;
 
@@ -36,7 +34,7 @@ const PopoverBody = styled.div`
   color: ${props => props.theme.colors.gray9};
   font-size: 18px;
   font-weight: normal;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   padding: ${props =>
     props.hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   text-align: right;

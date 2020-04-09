@@ -8,7 +8,7 @@ const NavItemWrapper = styled.li`
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.black};
   cursor: pointer;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   min-width: 75px;
   padding: 0;
 
@@ -79,24 +79,24 @@ const AltNavItemWrapper = styled(NavItemWrapper)`
     css`
       background-color: ${props.theme.colors.gray1};
       border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-      props.theme.brandColors.vbMagenta
+      props.theme.brandColors.primary3
     };
       color: ${props.theme.colors.black};
       padding-left: 0;
 
       > i {
-        color: ${props.theme.brandColors.vbMagenta};
+        color: ${props.theme.brandColors.primary3};
       }
 
       &:hover {
         background-color: ${props.theme.colors.gray1};
         border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-      props.theme.brandColors.vbMagenta
+      props.theme.brandColors.primary3
     };
         color: ${props.theme.colors.black};
 
         > i {
-          color: ${props.theme.brandColors.vbMagenta};
+          color: ${props.theme.brandColors.primary3};
         }
       }
     `} ${props =>

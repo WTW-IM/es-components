@@ -5,17 +5,13 @@ import { useTheme } from '../../util/useTheme';
 import Button from './Button';
 
 const StyledButton = styled(Button)`
-  .es-button__display {
-    background-color: ${props => props.defaultStyle.bgColor};
-    box-shadow: 0 4px 0 0 ${props => props.defaultStyle.boxShadowColor};
-    color: ${props => props.defaultStyle.textColor};
-    transition: background-color 120ms linear, color 120ms linear;
-  }
+  background-color: ${props => props.defaultStyle.bgColor};
+  border-color: ${props => props.defaultStyle.bgColor};
+  color: ${props => props.theme.colors.black};
 
-  &:hover .es-button__display {
+  &:hover {
     background-color: ${props => props.hoverStyle.bgColor};
-    box-shadow: 0 4px 0 0 ${props => props.hoverStyle.hoverBgColor};
-    color: ${props => props.hoverStyle.textColor};
+    border-color: ${props => props.hoverStyle.bgColor};
   }
 `;
 

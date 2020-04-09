@@ -208,9 +208,9 @@ const ActiveProgressButton = styled(BasicProgressButton)`
   margin-top: 0;
 
   &::before {
-    border: 5px solid ${props => props.theme.brandColors.vbMagenta};
+    border: 5px solid ${props => props.theme.brandColors.primary3};
     border-radius: ${ACTIVE}px;
-    color: ${props => props.theme.brandColors.vbMagenta};
+    color: ${props => props.theme.brandColors.primary3};
     font-size: ${ACTIVE * 0.488}px;
     font-weight: bold;
     height: ${ACTIVE}px;
@@ -227,7 +227,7 @@ const ActiveProgressButton = styled(BasicProgressButton)`
   }
 
   span {
-    color: ${props => props.theme.brandColors.vbMagenta};
+    color: ${props => props.theme.brandColors.primary3};
     display: inline;
     font-weight: bold;
 

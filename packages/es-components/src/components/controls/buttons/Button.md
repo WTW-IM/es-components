@@ -43,25 +43,25 @@ const buttonStyle = {
   <div style={wrapperStyle}>
     <Button size="lg" style={buttonStyle} styleType="primary">Large</Button>
     <Button size="lg" style={buttonStyle}>Large</Button>
-    <OutlineButton size="lg" style={buttonStyle} styleType="magenta">Large</OutlineButton>
+    <OutlineButton size="lg" style={buttonStyle} styleType="primary">Large</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
     <Button style={buttonStyle} styleType="primary">Default</Button>
     <Button style={buttonStyle}>Default</Button>
-    <OutlineButton style={buttonStyle} styleType="magenta">Default</OutlineButton>
+    <OutlineButton style={buttonStyle} styleType="primary">Default</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
     <Button size="sm" style={buttonStyle} styleType="primary">Small</Button>
     <Button size="sm" style={buttonStyle}>Small</Button>
-    <OutlineButton size="sm" style={buttonStyle} styleType="magenta">Small</OutlineButton>
+    <OutlineButton size="sm" style={buttonStyle} styleType="primary">Small</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
     <Button size="xs" style={buttonStyle} styleType="primary">Extra Small</Button>
     <Button size="xs" style={buttonStyle}>Extra Small</Button>
-    <OutlineButton size="xs" style={buttonStyle} styleType="magenta">Extra Small</OutlineButton>
+    <OutlineButton size="xs" style={buttonStyle} styleType="primary">Extra Small</OutlineButton>
   </div>
 </div>
 ```

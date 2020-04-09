@@ -16,12 +16,12 @@ const TooltipBase = styled.div`
 `;
 
 const TooltipInner = styled.div`
-  background-color: ${props => props.theme.colors.softwareBlue};
+  background-color: ${props => props.theme.colors.primary};
   border-radius: 2px;
   color: ${props => props.theme.colors.white};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: 15px;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   max-width: 250px;
   padding: 3px 8px;
   text-align: left;
@@ -52,25 +52,25 @@ const TooltipLeft = styled(TooltipBase)`
 `;
 
 const TooltipArrowTop = styled(TooltipArrowBase)`
-  border-top-color: ${props => props.theme.colors.softwareBlue};
+  border-top-color: ${props => props.theme.colors.primary};
   border-width: 5px 5px 0;
   bottom: 0;
 `;
 
 const TooltipArrowRight = styled(TooltipArrowBase)`
-  border-right-color: ${props => props.theme.colors.softwareBlue};
+  border-right-color: ${props => props.theme.colors.primary};
   border-width: 5px 5px 5px 0;
   left: 0;
 `;
 
 const TooltipArrowBottom = styled(TooltipArrowBase)`
-  border-bottom-color: ${props => props.theme.colors.softwareBlue};
+  border-bottom-color: ${props => props.theme.colors.primary};
   border-width: 0 5px 5px;
   top: 0;
 `;
 
 const TooltipArrowLeft = styled(TooltipArrowBase)`
-  border-left-color: ${props => props.theme.colors.softwareBlue};
+  border-left-color: ${props => props.theme.colors.primary};
   border-width: 5px 0 5px 5px;
   right: 0;
 `;

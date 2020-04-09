@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.0.0](https://github.com/wtw-im/es-components/compare/v19.1.7...v20.0.0) (2020-04-09)
+
+
+### Breaking
+
+* extensive theme color changes, renaming of brand colors ([679011e866fd793e48fe428d5fc43758c8c81bcf](https://github.com/wtw-im/es-components/commit/679011e866fd793e48fe428d5fc43758c8c81bcf))
+* theme.size -> theme.font, headingSizes moved ([c7b98fef009590378649177b4620450d8efff4ae](https://github.com/wtw-im/es-components/commit/c7b98fef009590378649177b4620450d8efff4ae))
+
+### Docs
+
+* theme and migration updates ([57c300e73dfb7c882ce67554046bdebcbfef38ce](https://github.com/wtw-im/es-components/commit/57c300e73dfb7c882ce67554046bdebcbfef38ce))
+
+### Fix
+
+* dropdown passes className to button ([174d8e80fee3e7f2a1c5748385a812f8ed214e0d](https://github.com/wtw-im/es-components/commit/174d8e80fee3e7f2a1c5748385a812f8ed214e0d))
+
+### New
+
+* migration from v1 to v2 guide ([7c3c16b2f3769efc5b8ce847cad528f2e7c350e6](https://github.com/wtw-im/es-components/commit/7c3c16b2f3769efc5b8ce847cad528f2e7c350e6))
+
+### Update
+
+* answerButton to coordinate with button changes ([0b3761155900e8642da0cc034e32d2b4f783525f](https://github.com/wtw-im/es-components/commit/0b3761155900e8642da0cc034e32d2b4f783525f))
+* answerGroup focus color, heading theme use ([63163943938d7486ed34e6d39c2e00906170daa2](https://github.com/wtw-im/es-components/commit/63163943938d7486ed34e6d39c2e00906170daa2))
+* button color function refactor ([f26d0d9efbe3529e6815bf49c41f7cb77bdf862f](https://github.com/wtw-im/es-components/commit/f26d0d9efbe3529e6815bf49c41f7cb77bdf862f))
+* disabled button styles ([42e2d258569be66e9204d0f532a0a1406ecb4eee](https://github.com/wtw-im/es-components/commit/42e2d258569be66e9204d0f532a0a1406ecb4eee))
+* finishing base Button changes ([33571bbbc8902b03f6a91e5683cd037fb7254ebc](https://github.com/wtw-im/es-components/commit/33571bbbc8902b03f6a91e5683cd037fb7254ebc))
+* linkButton calcs hover color, removed hover colors from theme ([07da1e1d60c459071d99efaa3223a576d40001fe](https://github.com/wtw-im/es-components/commit/07da1e1d60c459071d99efaa3223a576d40001fe))
+* outlineButton styles ([ac7cbb1f5da08ec0a2f56855af25a31bed6f016b](https://github.com/wtw-im/es-components/commit/ac7cbb1f5da08ec0a2f56855af25a31bed6f016b))
+* starting new button styles ([4151e7a7bc5e3f683df618953d9d07e53cb87c81](https://github.com/wtw-im/es-components/commit/4151e7a7bc5e3f683df618953d9d07e53cb87c81))
+* toggleButton, dropdownButton, actionButton ([850560dd4bc6bf9bbfed683a41e7694f9ec0b52e](https://github.com/wtw-im/es-components/commit/850560dd4bc6bf9bbfed683a41e7694f9ec0b52e))
+
+### Upgrade
+
+* dependency vulnerability updates ([8a64db436fbaa28a81d883146741b6dbd182f7df](https://github.com/wtw-im/es-components/commit/8a64db436fbaa28a81d883146741b6dbd182f7df))
+
+
+
+
+
 ## [19.1.7](https://github.com/wtw-im/es-components/compare/v19.1.6...v19.1.7) (2020-04-08)
 
 

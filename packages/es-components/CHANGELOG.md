@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.0.0](https://github.com/wtw-im/es-components/compare/v20.0.0...v21.0.0) (2020-04-09)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
 # [20.0.0](https://github.com/wtw-im/es-components/compare/v19.1.7...v20.0.0) (2020-04-09)
 
 

@@ -90,7 +90,7 @@ const highlightHover = '#007653';
 
 const theme = {
   colors: {
-    black,
+    white,
     gray0,
     gray1,
     gray2,
@@ -101,7 +101,7 @@ const theme = {
     gray7,
     gray8,
     gray9,
-    white,
+    black,
     blue50,
     blue100,
     blue300,

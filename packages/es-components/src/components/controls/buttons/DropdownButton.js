@@ -1,3 +1,4 @@
+import 'get-root-node-polyfill/implement';
 import React, { useState, useEffect, useRef, Children } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';

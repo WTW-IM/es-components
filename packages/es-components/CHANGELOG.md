@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.1](https://github.com/wtw-im/es-components/compare/v21.0.0...v21.0.1) (2020-04-14)
+
+
+### Build
+
+* ensuring styleguidist works in IE ([9a30821d70cad4f7d4fe95989848bea83cd21e7d](https://github.com/wtw-im/es-components/commit/9a30821d70cad4f7d4fe95989848bea83cd21e7d))
+
+### Fix
+
+* implementing getRootNode polyfill; resolves #414 ([6cce983969fddda386b5efe336b68fa60d82502c](https://github.com/wtw-im/es-components/commit/6cce983969fddda386b5efe336b68fa60d82502c)), closes [#414](https://github.com/wtw-im/es-components/issues/414)
+
+
+
+
+
 # [21.0.0](https://github.com/wtw-im/es-components/compare/v20.0.0...v21.0.0) (2020-04-09)
 
 **Note:** Version bump only for package es-components

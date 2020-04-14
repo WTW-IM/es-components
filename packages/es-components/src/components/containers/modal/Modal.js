@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { noop } from 'lodash';
-import { Modal as BaseModal } from 'react-overlays';
+import ReactModal from 'react-modal';
+import tinycolor from 'tinycolor2';
 
 import useUniqueId from '../../util/useUniqueId';
-import DropIn from '../../util/DropIn';
-import Fade from '../../util/Fade';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
 
 const modalSize = {
   small: '300px',
@@ -19,77 +17,90 @@ const modalSize = {
   large: '900px'
 };
 
-const modalStyle = {
-  bottom: 0,
-  left: 0,
-  outline: 0,
-  overflowX: 'hidden',
-  overflowY: 'auto',
-  position: 'fixed',
-  right: 0,
-  top: 0,
-  zIndex: 1040
-};
+const ModalStyles = createGlobalStyle`
+  .background-overlay {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1030;
+    transition: background-color 150ms linear;
 
-const Backdrop = styled.div`
-  background-color: ${props => props.theme.colors.black};
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1030;
-`;
+    &.ReactModal__Overlay--after-open {
+        background-color: ${props => {
+          if (props.showBackdrop) {
+            const color = tinycolor(props.theme.colors.black);
+            color.setAlpha(0.5);
+            return color.toRgbString();
+          }
+          return 'transparent';
+        }} !important;
+    }
+  }
 
-const ModalDialogMedium = styled.div`
-  position: relative;
-  width: 100%;
+  .ReactModal__Content {
+    background-clip: padding-box;
+    background-color: ${props => props.theme.colors.white};
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    font-size: ${props => props.theme.sizes.baseFontSize};
+    outline: 0;
+    position: relative;
+    width: 100%;
+    ${props =>
+      props.showAnimation
+        ? `
+    opacity: 0;
+    transform: translateY(-25%);
+    transition: transform 300ms ease-out, opacity 300ms linear;
+    -webkit-overflow-scrolling: touch;
+    `
+        : ''};
+  }
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin: 20vh auto;
-    width: ${modalSize.medium};
+  .ReactModal__Content--after-open {
+    ${props =>
+      props.showAnimation
+        ? `
+      opacity: 1;
+      transform: translateY(0);
+    `
+        : ''};
+  }
+
+  .ReactModal__Content--before-close {
+    ${props =>
+      props.showAnimation
+        ? `
+        opacity: 0;
+      transform: translateY(-25%);
+    `
+        : ''};
+  }
+
+  .small {
+    @media (min-width: ${props => props.theme.screenSize.phone}) {
+      margin: 20vh auto;
+      width: ${modalSize.small};
+    }
+  }
+
+  .medium {
+    @media (min-width: ${props => props.theme.screenSize.tablet}) {
+      margin: 20vh auto;
+      width: ${modalSize.medium};
+    }
+  }
+
+  .large {
+    @media (min-width: ${props => props.theme.screenSize.desktop}) {
+      margin: 20vh auto;
+      width: ${modalSize.large};
+    }
   }
 `;
-
-const ModalDialogSmall = styled(ModalDialogMedium)`
-  @media (min-width: ${props => props.theme.screenSize.phone}) {
-    margin: 20vh auto;
-    width: ${modalSize.small};
-  }
-`;
-
-const ModalDialogLarge = styled(ModalDialogMedium)`
-  @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    width: ${modalSize.large};
-  }
-`;
-
-const ModalContent = styled.div`
-  background-clip: padding-box;
-  background-color: ${props => props.theme.colors.white};
-  border-radius: 3px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.sizes.baseFontSize};
-  outline: 0;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-`;
-
-const BackdropFade = props => <Fade opacity={0.5} {...props} />;
-
-const DialogDropIn = props => <DropIn {...props} />;
-
-function getModalBySize(size) {
-  switch (size) {
-    case 'small':
-      return ModalDialogSmall;
-    case 'large':
-      return ModalDialogLarge;
-    default:
-      return ModalDialogMedium;
-  }
-}
 
 function Modal(props) {
   const {
@@ -105,31 +116,33 @@ function Modal(props) {
     ...other
   } = props;
 
-  const ModalDialog = getModalBySize(size);
   const ariaId = useUniqueId(other.id);
 
+  const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
+
   return (
-    <ModalContext.Provider value={{ onHide, ariaId }}>
-      <BaseModal
-        aria-labelledby={ariaId}
-        backdrop={backdrop}
-        renderBackdrop={backdropProps => <Backdrop {...backdropProps} />}
-        backdropTransition={animation ? BackdropFade : undefined}
-        keyboard={escapeExits}
-        onEnter={onEnter}
-        onExit={onExit}
-        onHide={onHide}
-        show={show}
-        style={modalStyle}
-        transition={animation ? DialogDropIn : undefined}
-      >
-        <ModalDialog size={size} {...other}>
-          <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
-            <ModalContent>{children}</ModalContent>
-          </RootCloseWrapper>
-        </ModalDialog>
-      </BaseModal>
-    </ModalContext.Provider>
+    <>
+      <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
+      <ModalContext.Provider value={{ onHide, ariaId }}>
+        <ReactModal
+          overlayClassName="background-overlay"
+          closeTimeoutMS={animation ? 150 : null}
+          isOpen={show}
+          aria={{
+            labelledby: ariaId
+          }}
+          shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+          onRequestClose={onHide}
+          onAfterOpen={onEnter}
+          onAfterClose={onExit}
+          className={size}
+          shouldCloseOnEsc={escapeExits}
+          {...other}
+        >
+          {children}
+        </ReactModal>
+      </ModalContext.Provider>
+    </>
   );
 }
 
@@ -142,7 +155,7 @@ Modal.propTypes = {
    */
   backdrop: PropTypes.oneOf(['static', true, false]),
   /**
-   * Usually contains a Modal.Title, Modal.Body, and Modal.Footer
+   * Usually contains a Modal.Header, Modal.Body, and Modal.Footer
    * but can contain any content
    */
   children: PropTypes.any,

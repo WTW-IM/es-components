@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent, cleanup } from 'react-testing-library';
+import { fireEvent, cleanup, wait } from 'react-testing-library';
 
 import Modal from './Modal';
 import ModalHeader from './ModalHeader';
@@ -67,7 +67,9 @@ describe('when ESC is pressed', () => {
     const { container } = renderModal({ onEnter: jest.fn(), onHide });
 
     fireEvent.keyDown(container, { keyCode: 27 });
-    expect(onHide).toHaveBeenCalled();
+    wait(() => {
+      expect(onHide).toHaveBeenCalled();
+    });
   });
 
   it('does not invoke onHide when escapeExits is false', () => {
@@ -75,6 +77,8 @@ describe('when ESC is pressed', () => {
     const { container } = renderModal({ onHide, escapeExits: false });
 
     fireEvent.keyDown(container, { keyCode: 27 });
-    expect(onHide).not.toHaveBeenCalled();
+    wait(() => {
+      expect(onHide).not.toHaveBeenCalled();
+    });
   });
 });

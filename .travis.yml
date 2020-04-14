@@ -8,7 +8,7 @@ script: npm run ci
 stages:
   - test
   - name: publish
-    if: branch = master && type != pull_request
+    if: branch in (master, v19) && type != pull_request
 
 jobs:
   include:

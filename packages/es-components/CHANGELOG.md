@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.8](https://github.com/wtw-im/es-components/compare/v19.1.7...v19.1.8) (2020-04-14)
+
+
+### Update
+
+* switch underlying Modal implementation ([3c5a4bf8459a11ed2d158c4c6b97737044658b1a](https://github.com/wtw-im/es-components/commit/3c5a4bf8459a11ed2d158c4c6b97737044658b1a))
+
+
+
+
+
 ## [19.1.7](https://github.com/wtw-im/es-components/compare/v19.1.6...v19.1.7) (2020-04-08)
 
 

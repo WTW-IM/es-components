@@ -53,7 +53,7 @@ const ModalStyles = createGlobalStyle`
       props.showAnimation
         ? `
     opacity: 0;
-    transform: translateY(-25%);
+    transform: translateY(-100%);
     transition: transform 300ms ease-out, opacity 300ms linear;
     -webkit-overflow-scrolling: touch;
     `
@@ -75,7 +75,7 @@ const ModalStyles = createGlobalStyle`
       props.showAnimation
         ? `
         opacity: 0;
-      transform: translateY(-25%);
+      transform: translateY(-100%);
     `
         : ''};
   }

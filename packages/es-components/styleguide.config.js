@@ -110,6 +110,7 @@ module.exports = {
             path.join(__dirname, 'node_modules', 'react-dev-utils'),
             path.join(__dirname, 'node_modules', 'chalk'),
             path.join(__dirname, 'node_modules', 'regexpu-core'),
+            path.join(__dirname, '../', 'es-components-via-theme'),
             path.join(
               __dirname,
               'node_modules',

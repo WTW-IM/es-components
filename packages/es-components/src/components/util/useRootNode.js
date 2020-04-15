@@ -1,3 +1,4 @@
+import 'get-root-node-polyfill/implement';
 import { useState, useCallback } from 'react';
 
 export default function useRootNode(initialRoot) {

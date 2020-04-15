@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.9](https://github.com/WTW-IM/es-components/compare/v19.1.8...v19.1.9) (2020-04-15)
+
+
+### Update
+
+* making parentNode unnecessary in Popovers ([cd601cc6474005b622f2a627ce912849dd2ca1ed](https://github.com/WTW-IM/es-components/commit/cd601cc6474005b622f2a627ce912849dd2ca1ed))
+
+
+
+
+
 ## [19.1.8](https://github.com/WTW-IM/es-components/compare/v19.1.7...v19.1.8) (2020-04-14)
 
 

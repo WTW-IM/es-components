@@ -133,7 +133,7 @@ const GlobalPaneStyles = createGlobalStyle`
   }
 
   .ReactModal__Overlay--after-open {
-    background-color: rgba(0,0,0,0.3) !important;
+    background-color: rgba(0,0,0,0.5) !important;
   }
 
   .ReactModal__Overlay--before-close {

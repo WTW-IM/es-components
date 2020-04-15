@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.3](https://github.com/WTW-IM/es-components/compare/v21.0.2...v21.0.3) (2020-04-15)
+
+
+### Update
+
+* switch underlying Modal implementation ([ec5e848fbab5641b4e2a3db251cf1d295790e08a](https://github.com/WTW-IM/es-components/commit/ec5e848fbab5641b4e2a3db251cf1d295790e08a))
+
+
+
+
+
 ## [21.0.2](https://github.com/WTW-IM/es-components/compare/v21.0.1...v21.0.2) (2020-04-15)
 
 

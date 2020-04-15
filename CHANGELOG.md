@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.10](https://github.com/WTW-IM/es-components/compare/v19.1.9...v19.1.10) (2020-04-15)
+
+
+### Build
+
+* ensuring styleguidist works in IE ([9dddcc048cbe96d8bc707eade29cf5888d33c834](https://github.com/WTW-IM/es-components/commit/9dddcc048cbe96d8bc707eade29cf5888d33c834))
+* updating package-lock for getRootNode polyfill ([74dcfcba8f961c07cb79127749adbf6c2d7b6fa0](https://github.com/WTW-IM/es-components/commit/74dcfcba8f961c07cb79127749adbf6c2d7b6fa0))
+
+### Fix
+
+* implementing getRootNode polyfill; resolves #414 ([99c5c981540cbfb4dfcd6258bd209a996beafe72](https://github.com/WTW-IM/es-components/commit/99c5c981540cbfb4dfcd6258bd209a996beafe72)), closes [#414](https://github.com/WTW-IM/es-components/issues/414)
+
+
+
+
+
 ## [19.1.9](https://github.com/WTW-IM/es-components/compare/v19.1.8...v19.1.9) (2020-04-15)
 
 

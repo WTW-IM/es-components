@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.1.11](https://github.com/wtw-im/es-components/compare/v19.1.10...v19.1.11) (2020-04-16)
+
+
+### Fix
+
+* nest styles to prevent css collisions ([5b7c44d305b18d5d7dc9ec67297e5439010190d1](https://github.com/wtw-im/es-components/commit/5b7c44d305b18d5d7dc9ec67297e5439010190d1))
+
+
+
+
+
 ## [19.1.10](https://github.com/wtw-im/es-components/compare/v19.1.9...v19.1.10) (2020-04-15)
 
 

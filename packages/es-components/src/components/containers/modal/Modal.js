@@ -26,20 +26,20 @@ const ModalStyles = createGlobalStyle`
     top: 0;
     z-index: 1030;
     transition: background-color 150ms linear;
-
-    &.ReactModal__Overlay--after-open {
-        background-color: ${props => {
-          if (props.showBackdrop) {
-            const color = tinycolor(props.theme.colors.black);
-            color.setAlpha(0.5);
-            return color.toRgbString();
-          }
-          return 'transparent';
-        }} !important;
-    }
   }
 
-  .ReactModal__Content {
+  .background-overlay--after-open {
+      background-color: ${props => {
+        if (props.showBackdrop) {
+          const color = tinycolor(props.theme.colors.black);
+          color.setAlpha(0.5);
+          return color.toRgbString();
+        }
+        return 'transparent';
+      }} !important;
+  }
+
+  .modal-content {
     background-clip: padding-box;
     background-color: ${props => props.theme.colors.white};
     border-radius: 3px;
@@ -60,7 +60,7 @@ const ModalStyles = createGlobalStyle`
         : ''};
   }
 
-  .ReactModal__Content--after-open {
+  .modal-content--after-open {
     ${props =>
       props.showAnimation
         ? `
@@ -70,7 +70,7 @@ const ModalStyles = createGlobalStyle`
         : ''};
   }
 
-  .ReactModal__Content--before-close {
+  .modal-content--before-close {
     ${props =>
       props.showAnimation
         ? `
@@ -125,7 +125,16 @@ function Modal(props) {
       <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
       <ModalContext.Provider value={{ onHide, ariaId }}>
         <ReactModal
-          overlayClassName="background-overlay"
+          className={{
+            base: `modal-content  ${size}`,
+            afterOpen: 'modal-content--after-open',
+            beforeClose: 'modal-content--before-close'
+          }}
+          overlayClassName={{
+            base: 'background-overlay',
+            afterOpen: 'background-overlay--after-open',
+            beforeClose: 'background-overlay--before-close'
+          }}
           closeTimeoutMS={animation ? 150 : null}
           isOpen={show}
           aria={{
@@ -135,7 +144,6 @@ function Modal(props) {
           onRequestClose={onHide}
           onAfterOpen={onEnter}
           onAfterClose={onExit}
-          className={size}
           shouldCloseOnEsc={escapeExits}
           {...other}
         >

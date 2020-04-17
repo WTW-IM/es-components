@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.4](https://github.com/WTW-IM/es-components/compare/v21.0.3...v21.0.4) (2020-04-17)
+
+
+### Docs
+
+* added some missing colors to v20 migration doc ([c0c7def317a5bdcd1cb25edc2073e2f851166516](https://github.com/WTW-IM/es-components/commit/c0c7def317a5bdcd1cb25edc2073e2f851166516))
+
+### Fix
+
+* reverting to longhand prop assignement in themes to fix IE ([e3b1d799a4b9fa700bfd27a81391a50c48ec8d59](https://github.com/WTW-IM/es-components/commit/e3b1d799a4b9fa700bfd27a81391a50c48ec8d59))
+
+
+
+
+
 ## [21.0.3](https://github.com/WTW-IM/es-components/compare/v21.0.2...v21.0.3) (2020-04-15)
 
 

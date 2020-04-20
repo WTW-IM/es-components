@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.5](https://github.com/WTW-IM/es-components/compare/v21.0.4...v21.0.5) (2020-04-20)
+
+
+### Fix
+
+* utilizing upstream styles and classes in Notifications ([c31c24deab6e4ad1bf53812b00cabb5a7b215881](https://github.com/WTW-IM/es-components/commit/c31c24deab6e4ad1bf53812b00cabb5a7b215881))
+
+### Update
+
+* adding some tests around Notification styles and classes ([c928915db0b6c8a1f2ab9ebf8e0cca76d0623de7](https://github.com/WTW-IM/es-components/commit/c928915db0b6c8a1f2ab9ebf8e0cca76d0623de7))
+
+
+
+
+
 ## [21.0.4](https://github.com/WTW-IM/es-components/compare/v21.0.3...v21.0.4) (2020-04-17)
 
 

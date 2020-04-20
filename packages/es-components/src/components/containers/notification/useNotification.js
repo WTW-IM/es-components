@@ -86,7 +86,14 @@ const Notification = styled.div`
 `;
 
 export function useNotification(styleType = 'base') {
-  return function BaseNotification({ role, type, children, ...rest }) {
+  return function BaseNotification({
+    role,
+    type,
+    children,
+    className,
+    style,
+    ...rest
+  }) {
     const theme = useTheme();
     const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
@@ -107,7 +114,7 @@ export function useNotification(styleType = 'base') {
 
     return (
       !isDismissed && (
-        <Notification variant={color}>
+        <Notification variant={color} className={className} style={style}>
           <NotificationContent
             dismissNotification={dismissNotification}
             {...notificationContentProps}

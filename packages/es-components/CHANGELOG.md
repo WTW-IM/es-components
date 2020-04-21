@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.6](https://github.com/wtw-im/es-components/compare/v21.0.5...v21.0.6) (2020-04-21)
+
+
+### Update
+
+* add prop to popover for enabling/disabling events ([b454550e909a1e0f570cc1189778744d5a44e782](https://github.com/wtw-im/es-components/commit/b454550e909a1e0f570cc1189778744d5a44e782))
+* allow popover to be fixed position ([e4a57f31d409ccdc33b955283457b4e98108b4ed](https://github.com/wtw-im/es-components/commit/e4a57f31d409ccdc33b955283457b4e98108b4ed))
+
+
+
+
+
 ## [21.0.5](https://github.com/wtw-im/es-components/compare/v21.0.4...v21.0.5) (2020-04-20)
 
 

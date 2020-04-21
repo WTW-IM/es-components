@@ -22,6 +22,16 @@ module.exports = function(api) {
     ignore: [/[\/\\]core-js/, /@babel[\/\\]runtime/],
     sourceType: 'unambiguous',
     presets,
-    plugins
+    plugins,
+    env: {
+      production: {
+        plugins: [
+          [
+            'babel-plugin-transform-react-remove-prop-types',
+            { removeImport: true }
+          ]
+        ]
+      }
+    }
   };
 };

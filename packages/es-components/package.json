@@ -53,6 +53,7 @@
     "babel-eslint": "^9.0.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-wtw-im": "^2.4.1",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^5.16.0",

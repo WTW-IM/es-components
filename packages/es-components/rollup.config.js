@@ -54,16 +54,16 @@ export default [
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'prop-types': 'PropTypes',
         'styled-components': 'styled'
       }
     },
-    external: ['react', 'react-dom', 'prop-types', 'styled-components'],
+    external: ['react', 'react-dom', 'styled-components'],
     plugins: [
       resolve(),
       commonjs({ include: /node_modules/ }),
       babel({
         exclude: /node_modules/,
+        envName: 'production',
         runtimeHelpers: true
       }),
       replace({

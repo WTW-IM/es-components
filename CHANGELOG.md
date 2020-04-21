@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.7](https://github.com/WTW-IM/es-components/compare/v21.0.6...v21.0.7) (2020-04-21)
+
+
+### Update
+
+* removing PropTypes as global dependency ([7f57a29c4c03785e3447e92392456f7e392f2e8f](https://github.com/WTW-IM/es-components/commit/7f57a29c4c03785e3447e92392456f7e392f2e8f))
+
+
+
+
+
 ## [21.0.6](https://github.com/WTW-IM/es-components/compare/v21.0.5...v21.0.6) (2020-04-21)
 
 

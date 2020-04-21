@@ -80,7 +80,8 @@ function Popover(props) {
     hasAltCloseButton,
     disableRootClose,
     disableFlipping,
-    enableEvents
+    enableEvents,
+    strategy
   } = props;
 
   const hasTitle = title !== undefined;
@@ -185,6 +186,7 @@ function Popover(props) {
           popperRef.current = elem;
         }}
         enableEvents={enableEvents}
+        strategy={strategy}
       >
         <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
           <div role="dialog" ref={contentRef}>
@@ -233,7 +235,9 @@ Popover.propTypes = {
   /** Disables popovers ability to change position to stay in viewport */
   disableFlipping: PropTypes.bool,
   /** Enable event handlers provided by Popper.js */
-  enableEvents: PropTypes.bool
+  enableEvents: PropTypes.bool,
+  /** Sets the strategy for positioning the popover in Popper.js */
+  strategy: PropTypes.oneOf(['absolute', 'fixed'])
 };
 
 Popover.defaultProps = {
@@ -244,7 +248,8 @@ Popover.defaultProps = {
   hasAltCloseButton: false,
   disableFlipping: false,
   title: undefined,
-  enableEvents: true
+  enableEvents: true,
+  strategy: 'absolute'
 };
 
 export default Popover;

@@ -154,7 +154,8 @@ function Popup(props) {
     transitionTimeout,
     disableFlipping,
     popperRef,
-    enableEvents
+    enableEvents,
+    strategy
   } = props;
   const arrowValues = getArrowValues(arrowSize);
   const [rootNode, rootNodeRef] = useRootNode(document.body);
@@ -188,6 +189,7 @@ function Popup(props) {
           }}
           innerRef={popperRef}
           eventsEnabled={enableEvents}
+          positionFixed={strategy === 'fixed'}
         >
           {({ ref, style, placement, arrowProps }) => (
             <Fade
@@ -226,7 +228,8 @@ Popup.propTypes = {
   hasTitle: PropTypes.bool,
   disableFlipping: PropTypes.bool,
   popperRef: PropTypes.func,
-  enableEvents: PropTypes.bool
+  enableEvents: PropTypes.bool,
+  strategy: PropTypes.oneOf(['absolute', 'fixed'])
 };
 
 Popup.defaultProps = {
@@ -240,7 +243,8 @@ Popup.defaultProps = {
   hasTitle: false,
   disableFlipping: false,
   popperRef: undefined,
-  enableEvents: true
+  enableEvents: true,
+  strategy: 'absolute'
 };
 
 export default Popup;

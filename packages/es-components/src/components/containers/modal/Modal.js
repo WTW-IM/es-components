@@ -120,7 +120,7 @@ function Modal(props) {
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
-  return (
+  return show ? (
     <>
       <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
       <ModalContext.Provider value={{ onHide, ariaId }}>
@@ -151,7 +151,7 @@ function Modal(props) {
         </ReactModal>
       </ModalContext.Provider>
     </>
-  );
+  ) : null;
 }
 
 Modal.propTypes = {

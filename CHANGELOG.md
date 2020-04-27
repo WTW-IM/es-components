@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.9](https://github.com/WTW-IM/es-components/compare/v21.0.8...v21.0.9) (2020-04-27)
+
+
+### Update
+
+* only render modal if it should show ([432933ac13803c5d83938e7c25210ddc2dfc508f](https://github.com/WTW-IM/es-components/commit/432933ac13803c5d83938e7c25210ddc2dfc508f))
+
+
+
+
+
 ## [21.0.8](https://github.com/WTW-IM/es-components/compare/v21.0.7...v21.0.8) (2020-04-23)
 
 

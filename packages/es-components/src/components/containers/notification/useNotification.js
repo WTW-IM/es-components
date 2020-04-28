@@ -71,14 +71,19 @@ const Notification = styled.div`
   margin-bottom: 25px;
   padding: 15px;
 
-  a {
-    color: ${props => props.variant.textColor};
-    text-decoration: underline;
+  ${props =>
+    props.restyleAnchors
+      ? `
+    a {
+      color: ${props.variant.textColor};
+      text-decoration: underline;
 
-    &:hover {
-      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
     }
-  }
+  `
+      : ``}
 
   button[aria-expanded] {
     color: ${props => props.variant.textColor};
@@ -92,6 +97,7 @@ export function useNotification(styleType = 'base') {
     children,
     className,
     style,
+    restyleAnchors = true,
     ...rest
   }) {
     const theme = useTheme();
@@ -114,7 +120,12 @@ export function useNotification(styleType = 'base') {
 
     return (
       !isDismissed && (
-        <Notification variant={color} className={className} style={style}>
+        <Notification
+          variant={color}
+          className={className}
+          style={style}
+          restyleAnchors={restyleAnchors}
+        >
           <NotificationContent
             dismissNotification={dismissNotification}
             {...notificationContentProps}

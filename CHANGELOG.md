@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.10](https://github.com/WTW-IM/es-components/compare/v21.0.9...v21.0.10) (2020-04-28)
+
+
+### Update
+
+* adding restyleAnchors to allow users to stop anchor restyling ([058f4a3d09856330609442f7e7b290d27b1afcbe](https://github.com/WTW-IM/es-components/commit/058f4a3d09856330609442f7e7b290d27b1afcbe))
+
+
+
+
+
 ## [21.0.9](https://github.com/WTW-IM/es-components/compare/v21.0.8...v21.0.9) (2020-04-27)
 
 

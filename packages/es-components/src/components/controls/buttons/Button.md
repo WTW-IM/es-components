@@ -105,3 +105,49 @@ const buttonStyle = {
   <Button styleType="primary" isLinkButton disabled style={buttonStyle}>Link</Button>
 </div>
 ```
+
+### SplitButtonDropdown
+
+You can achieve a split button dropdown style by supplying the `flatLeftEdge` and
+`flatRightEdge` props to `Button` and `DropdownButton`.
+
+```
+import DropdownButton from './DropdownButton';
+
+<>
+  <div>
+    <Button styleType="primary" flatRightEdge>Split Button Dropdown</Button>
+    <DropdownButton
+      shouldCloseOnButtonClick
+      inline
+      rootClose
+      flatLeftEdge
+      styleType="primary"
+    >
+      <DropdownButton.Button
+        name="first" style={{whiteSpace: 'nowrap'}}>First Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="second" style={{whiteSpace: 'nowrap'}}>Second Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="third" style={{whiteSpace: 'nowrap'}}>Third Button</DropdownButton.Button>
+    </DropdownButton>
+  </div>
+  <br />
+  <div>
+    <DropdownButton
+      shouldCloseOnButtonClick
+      inline
+      rootClose
+      flatRightEdge
+      styleType="primary"
+    >
+      <DropdownButton.Button
+        name="first" style={{whiteSpace: 'nowrap'}}>First Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="second" style={{whiteSpace: 'nowrap'}}>Second Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="third" style={{whiteSpace: 'nowrap'}}>Third Button</DropdownButton.Button>
+    </DropdownButton>
+    <Button styleType="primary" flatLeftEdge>Left Split Button Dropdown</Button>
+  </div>
+</>

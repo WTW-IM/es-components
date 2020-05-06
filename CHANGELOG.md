@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.11](https://github.com/WTW-IM/es-components/compare/v21.0.10...v21.0.11) (2020-05-06)
+
+
+### Update
+
+* added flatLeftEdge & flatRightEdge to Button ([3cca3c4cdd710fb5c80e4dda11a379045b6f948e](https://github.com/WTW-IM/es-components/commit/3cca3c4cdd710fb5c80e4dda11a379045b6f948e))
+
+
+
+
+
 ## [21.0.10](https://github.com/WTW-IM/es-components/compare/v21.0.9...v21.0.10) (2020-04-28)
 
 

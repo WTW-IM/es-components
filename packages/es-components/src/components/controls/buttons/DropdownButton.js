@@ -8,6 +8,28 @@ import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
 
+const SplitButton = styled(Button)`
+  ${props =>
+    props.flatLeftEdge &&
+    `
+    border-left: solid 1px ${props.theme.colors.gray9};
+  `}
+
+  ${props =>
+    props.flatRightEdge &&
+    `
+    border-right: solid 1px ${props.theme.colors.gray9};
+  `}
+
+  min-width: 10px;
+  padding-left: 8px;
+  padding-right: 6px;
+
+  span {
+    margin-left: 0;
+  }
+`;
+
 const Caret = styled.span`
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
@@ -39,10 +61,10 @@ const ButtonPanelChildrenContainer = styled.div`
 
 const StyledButtonLink = styled(LinkButton)`
   color: black;
-  margin-bottom: 0px;
+  margin-bottom: 0;
+  padding: 10px 20px;
   text-align: left;
   text-decoration: none;
-  padding: 10px 20px;
 
   &:active,
   &:focus,
@@ -134,14 +156,29 @@ function arrowMovement(node) {
   };
 }
 
-function DropdownButton(props) {
-  const [buttonValue, setButtonValue] = useState(props.buttonValue);
+function DropdownButton({
+  id,
+  rootClose,
+  children,
+  buttonValue,
+  manualButtonValue,
+  shouldCloseOnButtonClick,
+  shouldUpdateButtonValue,
+  styleType,
+  inline,
+  flatLeftEdge,
+  flatRightEdge,
+  ...otherProps
+}) {
+  const ActivationButton = flatLeftEdge || flatRightEdge ? SplitButton : Button;
+
+  const [buttonStateValue, setButtonStateValue] = useState(buttonValue);
   const [isOpen, setIsOpen] = useState(false);
 
   const initialRender = useRef(true);
   const buttonDropdown = useRef();
   const triggerButton = useRef();
-  const panelId = useUniqueId(props.id);
+  const panelId = useUniqueId(id);
 
   useEffect(() => {
     const removeFocusTrapListener = focusTrap(buttonDropdown.current);
@@ -169,11 +206,9 @@ function DropdownButton(props) {
   }
 
   function handleDropdownItemClick(buttonProps) {
-    const { shouldCloseOnButtonClick, shouldUpdateButtonValue } = props;
-
     return event => {
       if (shouldUpdateButtonValue) {
-        setButtonValue(buttonProps.children);
+        setButtonStateValue(buttonProps.children);
       }
       if (shouldCloseOnButtonClick) {
         closeDropdown();
@@ -182,15 +217,6 @@ function DropdownButton(props) {
       buttonProps.onClick(event, buttonProps.name);
     };
   }
-
-  const {
-    rootClose,
-    children,
-    manualButtonValue,
-    styleType,
-    inline,
-    ...otherProps
-  } = props;
 
   return (
     <RootCloseWrapper
@@ -209,8 +235,10 @@ function DropdownButton(props) {
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
-        <Button
+        <ActivationButton
           {...otherProps}
+          flatLeftEdge={flatLeftEdge}
+          flatRightEdge={flatRightEdge}
           onClick={toggleDropdown}
           aria-haspopup="true"
           aria-pressed={isOpen}
@@ -222,9 +250,9 @@ function DropdownButton(props) {
           ref={triggerButton}
           styleType={styleType}
         >
-          {manualButtonValue || buttonValue}
+          {manualButtonValue || buttonStateValue}
           <Caret />
-        </Button>
+        </ActivationButton>
         <div css="position: relative;">
           <ButtonPanel isOpen={isOpen} id={panelId}>
             <ButtonPanelChildrenContainer>
@@ -272,7 +300,11 @@ DropdownButton.propTypes = {
   styleType: PropTypes.string,
   /** Display the dropdown button inline */
   inline: PropTypes.bool,
-  id: PropTypes.string
+  id: PropTypes.string,
+  /** Styles the Button with a flat left edge */
+  flatLeftEdge: PropTypes.bool,
+  /** Styles the Button with a flat right edge */
+  flatRightEdge: PropTypes.bool
 };
 
 DropdownButton.defaultProps = {
@@ -283,7 +315,9 @@ DropdownButton.defaultProps = {
   styleType: 'default',
   rootClose: false,
   inline: false,
-  id: undefined
+  id: undefined,
+  flatLeftEdge: false,
+  flatRightEdge: false
 };
 
 export default DropdownButton;

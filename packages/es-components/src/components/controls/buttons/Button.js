@@ -10,7 +10,10 @@ const StyledButton = styled.button`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid transparent;
   border-color: ${props => props.colors.bgColor};
-  border-radius: ${props => props.buttonSize.borderRadius};
+  border-bottom-left-radius: ${props => props.borderRadii.bottomLeft};
+  border-bottom-right-radius: ${props => props.borderRadii.bottomRight};
+  border-top-left-radius: ${props => props.borderRadii.topLeft};
+  border-top-right-radius: ${props => props.borderRadii.topRight};
   box-sizing: border-box;
   color: ${props => props.colors.textColor};
   cursor: pointer;
@@ -94,12 +97,22 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = React.forwardRef(function Button(props, ref) {
-  const { children, styleType, size, block, ...other } = props;
+const Button = React.forwardRef(function Button(
+  { children, styleType, size, block, flatLeftEdge, flatRightEdge, ...other },
+  ref
+) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
   const isInheritedStyle = styleType === 'inherited';
+
+  const defaultRadius = buttonSize.borderRadius;
+  const borderRadii = {
+    topLeft: flatLeftEdge ? 0 : defaultRadius,
+    topRight: flatRightEdge ? 0 : defaultRadius,
+    bottomRight: flatRightEdge ? 0 : defaultRadius,
+    bottomLeft: flatLeftEdge ? 0 : defaultRadius
+  };
 
   function getButtonColors() {
     if (isInheritedStyle) {
@@ -158,6 +171,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       buttonSize={buttonSize}
       colors={buttonColors}
       ref={ref}
+      borderRadii={borderRadii}
       {...other}
     >
       {children}
@@ -171,13 +185,19 @@ Button.propTypes = {
   styleType: PropTypes.string,
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool
+  block: PropTypes.bool,
+  /** Styles the Button with a flat left edge */
+  flatLeftEdge: PropTypes.bool,
+  /** Styles the Button with a flat right edge */
+  flatRightEdge: PropTypes.bool
 };
 
 Button.defaultProps = {
   styleType: 'default',
   block: false,
-  size: 'default'
+  size: 'default',
+  flatLeftEdge: false,
+  flatRightEdge: false
 };
 
 export default Button;

@@ -95,7 +95,8 @@ module.exports = {
             priority: 1
           }
         }
-      }
+      },
+      usedExports: true
     },
     module: {
       rules: [
@@ -126,6 +127,10 @@ module.exports = {
             path.join(__dirname, 'src')
           ],
           loader: 'babel-loader'
+        },
+        {
+          test: /\.svg$/,
+          loader: 'svg-inline-loader'
         }
       ]
     }

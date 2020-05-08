@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 export default function FullColorIcon({ name, size }) {
   return (
     <div css={{ width: size, height: size }}>
-      <img src={`http://127.0.0.1:8081/${name}.svg`} alt={`${name} icon `} />
+      <img
+        src={`https://bdaim-webexcdn-p.azureedge.net/es-assets/images/full-color-icons/${name}.svg`}
+        alt={`${name} icon `}
+      />
     </div>
   );
 }

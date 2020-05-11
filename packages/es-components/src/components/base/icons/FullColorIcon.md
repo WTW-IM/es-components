@@ -1,4 +1,4 @@
-Icons will inherit their size unless otherwise specified. <a href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icon-demo.html" target="blank">This page</a> displays all the available icons.
+Icons will inherit their size unless otherwise specified. <a href="./full-color-icons.html" target="blank">This page</a> displays all the available icons.
 
 ```
 const containerStyle = {

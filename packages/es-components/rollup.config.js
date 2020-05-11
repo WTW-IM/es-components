@@ -5,6 +5,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { uglify } from 'rollup-plugin-uglify';
 import pkg from './package.json';
+import htmlTemplate from 'rollup-plugin-generate-html-template';
 
 export default [
   {
@@ -70,6 +71,30 @@ export default [
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
       uglify()
+    ]
+  },
+  {
+    input: 'src/full-color-icons.js',
+    output: {
+      file: 'docs/full-color-icons.js',
+      format: 'iife'
+    },
+    plugins: [
+      resolve(),
+      commonjs({ include: /node_modules/ }),
+      babel({
+        exclude: /node_modules/,
+        envName: 'production',
+        runtimeHelpers: true
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
+      uglify(),
+      htmlTemplate({
+        template: 'src/full-color-icons.html',
+        target: 'docs/full-color-icons.html'
+      })
     ]
   }
 ];

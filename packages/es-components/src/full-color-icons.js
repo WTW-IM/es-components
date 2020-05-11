@@ -16,16 +16,15 @@ const OuterContainer = styled.div`
 `;
 
 const IconsContainer = styled.div`
-  margin: 0 auto;
   display: grid;
-  justify-items: center;
   justify-content: center;
-  max-width: 1200px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
-  grid-auto-rows: max-content;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  justify-items: center;
+  margin: 0 auto;
   margin-bottom: 40px;
+  max-width: 1200px;
+  grid-auto-rows: max-content;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
 `;
 
 const IconContainer = styled.div`

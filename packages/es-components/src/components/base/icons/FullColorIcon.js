@@ -6,9 +6,9 @@ export default function FullColorIcon({ name, size, ...props }) {
     <div css={{ width: size, height: size, textAlign: 'center' }} {...props}>
       <img
         css={{
-          maxWidth: '100%',
           height: 'auto',
           margin: '0 auto',
+          maxWidth: '100%',
           position: 'relative',
           top: '50%',
           transform: 'translateY(-50%)'

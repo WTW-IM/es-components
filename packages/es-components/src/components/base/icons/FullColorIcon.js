@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 
 export default function FullColorIcon({ name, size, ...props }) {
   return (
-    <div css={{ width: size, height: size, textAlign: 'center' }} {...props}>
+    <div
+      css={{
+        alignItems: 'center',
+        display: 'flex',
+        height: size,
+        justifyContent: 'center',
+        width: size
+      }}
+      {...props}
+    >
       <img
         css={{
           height: 'auto',
-          margin: '0 auto',
-          maxWidth: '100%',
-          position: 'relative',
-          top: '50%',
-          transform: 'translateY(-50%)'
+          maxWidth: '100%'
         }}
         src={`https://bdaim-webexcdn-p.azureedge.net/es-assets/images/full-color-icons/${name}.svg`}
         alt={`${name} icon`}

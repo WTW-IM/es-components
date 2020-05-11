@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import formatMessage from 'format-message';
 import LinkButton from '../../controls/buttons/LinkButton';
 import StarRatingExplanation from './StarRatingExplanation';
+import useRootNode from '../../util/useRootNode';
 
 formatMessage.setup({ missingTranslation: 'ignore' });
 
@@ -82,11 +83,13 @@ function getAriaText(isPoorPerformer, rating) {
 
 function StarRating({ rating, isPoorPerformer, onExplanationOpen }) {
   const [showHelp, updateShowHelp] = useState(false);
+  const [rootNode, rootNodeRef] = useRootNode(document.body);
   const ariaText = getAriaText(isPoorPerformer, rating);
 
   return (
     <>
       <StarRatingLink
+        ref={rootNodeRef}
         onClick={() => {
           if (onExplanationOpen) {
             onExplanationOpen();
@@ -118,6 +121,7 @@ function StarRating({ rating, isPoorPerformer, onExplanationOpen }) {
       <StarRatingExplanation
         show={showHelp}
         closeModal={() => updateShowHelp(false)}
+        parentNode={rootNode}
       />
     </>
   );

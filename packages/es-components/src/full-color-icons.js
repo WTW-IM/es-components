@@ -16,19 +16,19 @@ const OuterContainer = styled.div`
 `;
 
 const IconsContainer = styled.div`
-  text-align: center;
   margin: 0 auto;
   display: grid;
   justify-items: center;
+  justify-content: center;
   max-width: 1200px;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
   grid-auto-rows: max-content;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  margin-bottom: 40px;
 `;
 
 const IconContainer = styled.div`
-  justify-self: center;
   text-align: center;
 `;
 
@@ -54,7 +54,8 @@ function FullColorIconsApp() {
   const [icons, setIcons] = useState([]);
   useEffect(() => {
     const getIcons = async () => {
-      const iconsText = await (await fetch(iconsListUrl)).text();
+      const iconsResponse = await fetch(iconsListUrl);
+      const iconsText = await iconsResponse.text();
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(iconsText, 'text/xml');
       const foundIcons = [...xmlDoc.getElementsByTagName('Blob')]

@@ -25,6 +25,7 @@ export default [
       builtins(),
       commonjs({
         include: /node_modules/,
+        exclude: 'src/**',
         namedExports: {
           react: Object.keys(React),
           'react-dom': Object.keys(ReactDOM),
@@ -32,14 +33,14 @@ export default [
         }
       }),
       babel({
-        exclude: /node_modules/,
+        exclude: /node_modules\/?!(es-components-via-theme)/,
         envName: 'production',
         runtimeHelpers: true
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      //uglify(),
+      uglify(),
       htmlTemplate({
         template: 'src/full-color-icons.html',
         target: 'docs/full-color-icons.html'

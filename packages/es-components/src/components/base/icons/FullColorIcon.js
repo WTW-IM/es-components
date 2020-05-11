@@ -14,7 +14,7 @@ export default function FullColorIcon({ name, size, ...props }) {
           transform: 'translateY(-50%)'
         }}
         src={`https://bdaim-webexcdn-p.azureedge.net/es-assets/images/full-color-icons/${name}.svg`}
-        alt={`${name} icon `}
+        alt={`${name} icon`}
       />
     </div>
   );

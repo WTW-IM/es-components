@@ -15,7 +15,7 @@
     "prepublishOnly": "npm run build",
     "rollup": "rollup -c rollup.config.js",
     "styleguide-build": "styleguidist build && rollup -c docs-rollup.config.js",
-    "start": "concurrently --kill-others \"mkdir -p docs && rollup -w -c docs-rollup.config.js\" \"styleguidist server\"",
+    "start": "concurrently --kill-others \"mkdir -p docs && rollup -c docs-rollup.config.js -w\" \"styleguidist server\"",
     "test": "jest",
     "test:watch": "jest --watch"
   },

@@ -17,14 +17,14 @@ const OuterContainer = styled.div`
 
 const IconsContainer = styled.div`
   display: grid;
+  grid-auto-rows: max-content;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
   justify-content: center;
   justify-items: center;
   margin: 0 auto;
   margin-bottom: 40px;
   max-width: 1200px;
-  grid-auto-rows: max-content;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 180px));
 `;
 
 const IconContainer = styled.div`

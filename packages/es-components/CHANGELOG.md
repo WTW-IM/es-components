@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.1](https://github.com/wtw-im/es-components/compare/v21.1.0...v21.1.1) (2020-05-12)
+
+
+### Build
+
+* ensuring that the docs folder exists when styleguide build runs ([9b11c8240d71360ff6f54ab441324f727276f41d](https://github.com/wtw-im/es-components/commit/9b11c8240d71360ff6f54ab441324f727276f41d))
+
+
+
+
+
 # [21.1.0](https://github.com/wtw-im/es-components/compare/v21.0.11...v21.1.0) (2020-05-12)
 
 

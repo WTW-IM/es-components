@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.1.0](https://github.com/wtw-im/es-components/compare/v21.0.11...v21.1.0) (2020-05-12)
+
+
+### Build
+
+* removing full-color-icons from the base rollup config ([02d9f1de8f03338c817becb6a3a664b14d9f3a3a](https://github.com/wtw-im/es-components/commit/02d9f1de8f03338c817becb6a3a664b14d9f3a3a))
+* removing unused dependencies ([dfa202c1f8fad64dceb8d0b871345b8035a41c00](https://github.com/wtw-im/es-components/commit/dfa202c1f8fad64dceb8d0b871345b8035a41c00))
+
+### Docs
+
+* adding filtering to the icons ([21bc657f954192ee2eb19db5d9e8ac92d696ca78](https://github.com/wtw-im/es-components/commit/21bc657f954192ee2eb19db5d9e8ac92d696ca78))
+* ensuring we don't add the docs folder in git ([f1c6db34b5e7b1b00fc37cec2412be7b43a6ba0e](https://github.com/wtw-im/es-components/commit/f1c6db34b5e7b1b00fc37cec2412be7b43a6ba0e))
+* finishing alphabetizing Full Color Icons page styles ([0715e51afa9735c41a01c827c6b5721d87c6e632](https://github.com/wtw-im/es-components/commit/0715e51afa9735c41a01c827c6b5721d87c6e632))
+* getting rollup to work appropriately for Full Color Icons ([4c1217afbc90fdd9a79e811a64c5ecf5d9de31e9](https://github.com/wtw-im/es-components/commit/4c1217afbc90fdd9a79e811a64c5ecf5d9de31e9))
+
+### New
+
+* initial pass at FullColorIcon ([51e01e963de3863dbabc12ef7be3aaff05a26a96](https://github.com/wtw-im/es-components/commit/51e01e963de3863dbabc12ef7be3aaff05a26a96))
+
+### Update
+
+* adding a Full Color Icons page ([6ff21de5f32164782bc3d6fb8f372102b87a7659](https://github.com/wtw-im/es-components/commit/6ff21de5f32164782bc3d6fb8f372102b87a7659))
+* ordering styles alphabetically in Full Color Icon ([3b915bc80902f6607f2ba1ae0131d998b361c50d](https://github.com/wtw-im/es-components/commit/3b915bc80902f6607f2ba1ae0131d998b361c50d))
+* refactor around icons retrieval for simplicity ([addc6d37e290d16292a4e34d4e376b153e21fc8a](https://github.com/wtw-im/es-components/commit/addc6d37e290d16292a4e34d4e376b153e21fc8a))
+* using flex for FullColorIcon ([ccb77e33ee19f1a8b358af67604c1008ed71f18e](https://github.com/wtw-im/es-components/commit/ccb77e33ee19f1a8b358af67604c1008ed71f18e))
+* utilizing CDN resources for FullColorIcon ([4b00647d50d8ba5ad1f76621140e6173611c10f3](https://github.com/wtw-im/es-components/commit/4b00647d50d8ba5ad1f76621140e6173611c10f3))
+
+
+
+
+
 ## [21.0.11](https://github.com/wtw-im/es-components/compare/v21.0.10...v21.0.11) (2020-05-06)
 
 

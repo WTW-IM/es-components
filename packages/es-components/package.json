@@ -14,7 +14,7 @@
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
     "rollup": "rollup -c rollup.config.js",
-    "styleguide-build": "styleguidist build && rollup -c docs-rollup.config.js",
+    "styleguide-build": "mkdir -p docs && styleguidist build && rollup -c docs-rollup.config.js",
     "start": "concurrently --kill-others \"mkdir -p docs && rollup -c docs-rollup.config.js -w\" \"styleguidist server\"",
     "test": "jest",
     "test:watch": "jest --watch"

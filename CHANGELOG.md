@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.2](https://github.com/WTW-IM/es-components/compare/v21.1.1...v21.1.2) (2020-05-12)
+
+
+### Update
+
+* adds ability to pass a parent node to Star Ratings ([535d61bcd843304d2ad67b64f2d88754cda40664](https://github.com/WTW-IM/es-components/commit/535d61bcd843304d2ad67b64f2d88754cda40664))
+
+
+
+
+
 ## [21.1.1](https://github.com/WTW-IM/es-components/compare/v21.1.0...v21.1.1) (2020-05-12)
 
 

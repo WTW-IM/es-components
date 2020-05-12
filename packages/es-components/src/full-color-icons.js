@@ -107,15 +107,9 @@ function FullColorIconsApp() {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(iconsText, 'text/xml');
       const foundIcons = [...xmlDoc.getElementsByTagName('Blob')]
-        .filter(blob => {
-          const nameTag = blob.getElementsByTagName('Name');
-          const name = nameTag[0].textContent;
-          return name.includes('full-color-icons');
-        })
-        .map(blob => {
-          const fullName = blob.getElementsByTagName('Name')[0].textContent;
-          return fullName.match(/full-color-icons\/(.*)\.svg/)[1];
-        });
+        .map(blob => blob.getElementsByTagName('Name')[0].textContent)
+        .filter(name => name.includes('full-color-icons'))
+        .map(fullName => fullName.match(/full-color-icons\/(.*)\.svg/)[1]);
       setIcons(foundIcons);
     };
     getIcons();

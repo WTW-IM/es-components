@@ -84,6 +84,7 @@ module.exports = {
   context: {
     dateFormat: 'date-fns/format'
   },
+  assetsDir: path.join(__dirname, 'docs'),
   webpackConfig: {
     optimization: {
       splitChunks: {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.3](https://github.com/WTW-IM/es-components/compare/v21.1.2...v21.1.3) (2020-05-13)
+
+
+### Fix
+
+* exporting FullColorIcon from index ([87694e040e30aafa858993163aa55e22b95203ad](https://github.com/WTW-IM/es-components/commit/87694e040e30aafa858993163aa55e22b95203ad))
+
+
+
+
+
 ## [21.1.2](https://github.com/WTW-IM/es-components/compare/v21.1.1...v21.1.2) (2020-05-12)
 
 

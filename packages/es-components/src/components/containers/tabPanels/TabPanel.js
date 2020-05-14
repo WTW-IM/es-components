@@ -43,11 +43,19 @@ function TabPanel(props) {
     React.cloneElement(child, {
       selected: index === selectedIndex,
       action: header => {
-        const canChange = canTabChange(header);
-        if (canChange) {
-          setValue(header);
-          tabChanged(header);
+        const handleCanChange = (canChange) => {
+          if (canChange) {
+            setValue(header);
+            tabChanged(header);
+          }
+        };
+
+        const returnValue = canTabChange(header);
+        if (returnValue instanceof Promise) {
+          returnValue.then(handleCanChange);
+          return;
         }
+        handleCanChange(returnValue);
       }
     })
   );

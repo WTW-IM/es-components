@@ -6,6 +6,13 @@ import { cleanup, wait } from 'react-testing-library';
 import TabPanel from './TabPanel';
 import { renderWithTheme } from '../../util/test-utils';
 
+/*
+  The addition of async support has introduced a strange log message in the tests...
+    "When testing, code that causes React state updates should be wrapped into act(...):"
+  I was unable to resolve this, but this is where my research led me...
+    https://github.com/testing-library/react-testing-library/issues/535#issuecomment-576816390
+*/
+
 beforeEach(cleanup);
 
 it('displays first tab when rendered', () => {

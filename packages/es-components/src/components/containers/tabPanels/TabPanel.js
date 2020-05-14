@@ -43,6 +43,12 @@ function TabPanel(props) {
     React.cloneElement(child, {
       selected: index === selectedIndex,
       action: async header => {
+        /*
+        We may want to display some interstitial UI to show that we're waiting to determine if we can get to the next tab.
+        Being the first implementation of async support, this is fine for now.
+        But were async support to grow and spread to other components, concerns like the above should definately be addressed for consistency.
+        */
+
         const canChange = await canTabChange(header);
         if (canChange) {
           setValue(header);

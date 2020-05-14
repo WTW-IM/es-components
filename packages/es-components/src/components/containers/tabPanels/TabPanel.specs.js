@@ -20,7 +20,7 @@ it('displays first tab when rendered', () => {
   expect(queryByText('Tab number 2')).toBeNull();
 });
 
-it('displays content for tab when corresponding button is clicked', () => {
+it('displays content for tab when corresponding button is clicked', async () => {
   const { getByText, queryByText } = renderWithTheme(
     <TabPanel>
       <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
@@ -30,13 +30,13 @@ it('displays content for tab when corresponding button is clicked', () => {
 
   getByText('tab 2').click();
 
-  wait(() => {
+  await wait(() => {
     expect(queryByText('Tab number 1')).toBeNull();
     expect(getByText('Tab number 2')).toBeVisible();
   });
 });
 
-it('tab does not change when canTabChange returns false', () => {
+it('tab does not change when canTabChange returns false', async () => {
   const { getByText, queryByText } = renderWithTheme(
     <TabPanel canTabChange={() => false}>
       <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
@@ -46,13 +46,13 @@ it('tab does not change when canTabChange returns false', () => {
 
   getByText('tab 2').click();
 
-  wait(() => {
+  await wait(() => {
     expect(queryByText('Tab number 2')).toBeNull();
     expect(getByText('Tab number 1')).toBeVisible();
   });
 });
 
-it('tab does not change when canTabChange returns Promise of false', () => {
+it('tab does not change when canTabChange returns Promise of false', async () => {
   const { getByText, queryByText } = renderWithTheme(
     <TabPanel canTabChange={() => Promise.resolve(false)}>
       <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
@@ -62,13 +62,13 @@ it('tab does not change when canTabChange returns Promise of false', () => {
 
   getByText('tab 2').click();
 
-  wait(() => {
+  await wait(() => {
     expect(queryByText('Tab number 2')).toBeNull();
     expect(getByText('Tab number 1')).toBeVisible();
   });
 });
 
-it('tab does change when canTabChange returns Promise of true', () => {
+it('tab does change when canTabChange returns Promise of true', async () => {
   const { getByText, queryByText } = renderWithTheme(
     <TabPanel canTabChange={() => Promise.resolve(true)}>
       <TabPanel.Tab name="tab 1">Tab number 1</TabPanel.Tab>
@@ -78,8 +78,8 @@ it('tab does change when canTabChange returns Promise of true', () => {
 
   getByText('tab 2').click();
 
-  wait(() => {
-    expect(getByText('Tab number 1')).toBeNull();
-    expect(queryByText('Tab number 2')).toBeVisible();
+  await wait(() => {
+    expect(queryByText('Tab number 1')).toBeNull();
+    expect(getByText('Tab number 2')).toBeVisible();
   });
 });

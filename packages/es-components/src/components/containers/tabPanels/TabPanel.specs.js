@@ -30,8 +30,10 @@ it('displays content for tab when corresponding button is clicked', () => {
 
   getByText('tab 2').click();
 
-  expect(queryByText('Tab number 1')).toBeNull();
-  expect(getByText('Tab number 2')).toBeVisible();
+  wait(() => {
+    expect(queryByText('Tab number 1')).toBeNull();
+    expect(getByText('Tab number 2')).toBeVisible();
+  });
 });
 
 it('tab does not change when canTabChange returns false', () => {
@@ -44,8 +46,10 @@ it('tab does not change when canTabChange returns false', () => {
 
   getByText('tab 2').click();
 
-  expect(queryByText('Tab number 2')).toBeNull();
-  expect(getByText('Tab number 1')).toBeVisible();
+  wait(() => {
+    expect(queryByText('Tab number 2')).toBeNull();
+    expect(getByText('Tab number 1')).toBeVisible();
+  });
 });
 
 it('tab does not change when canTabChange returns Promise of false', () => {

@@ -1,5 +1,5 @@
 import 'get-root-node-polyfill/implement';
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 export default function useRootNode(initialRoot) {
   const [rootNode, setRootNode] = useState(initialRoot);
@@ -8,6 +8,15 @@ export default function useRootNode(initialRoot) {
     const foundRoot = node.getRootNode();
     const targetNode = foundRoot.body || foundRoot;
     if (initialRoot !== targetNode) setRootNode(targetNode);
-  });
+  }, []);
   return [rootNode, nodeRef];
+}
+
+export function useRootNodeLocator(initialRoot) {
+  const [rootNode, rootNodeRef] = useRootNode(initialRoot);
+  const RootNodeInput = useCallback(
+    () => <input type="hidden" ref={rootNodeRef} />,
+    []
+  );
+  return [rootNode, RootNodeInput];
 }

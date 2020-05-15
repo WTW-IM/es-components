@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import _noop from 'lodash/noop';
@@ -7,6 +7,7 @@ import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import Icon from '../../base/icons/Icon';
+import { useRootNodeLocator } from '../../util/useRootNode';
 
 const PaneBase = styled(Modal)`
   background: ${props => props.theme.colors.white};
@@ -172,6 +173,9 @@ export default function SlidingPane({
   parentSelector,
   ...rest
 }) {
+  const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
+  const modalParentSelector =
+    parentSelector || useCallback(() => rootNode, [rootNode]);
   const Pane = getPane(from);
   const styles = {
     overlay: { ...defaultStyles.overlay, ...overlayStyles },
@@ -187,6 +191,7 @@ export default function SlidingPane({
   return (
     <>
       <GlobalPaneStyles />
+      <RootNodeLocator />
       <Pane
         style={styles}
         closeTimeoutMS={closeTimeout}
@@ -195,7 +200,7 @@ export default function SlidingPane({
         onRequestClose={onRequestClose}
         shouldCloseOnEsc={shouldCloseOnEsc}
         contentLabel={`Modal "${title}"`}
-        parentSelector={parentSelector}
+        parentSelector={modalParentSelector}
         {...rest}
       >
         <Header>
@@ -254,5 +259,5 @@ SlidingPane.defaultProps = {
   overlayStyles: {},
   contentStyles: {},
   appElement: undefined,
-  parentSelector: () => document.body
+  parentSelector: null
 };

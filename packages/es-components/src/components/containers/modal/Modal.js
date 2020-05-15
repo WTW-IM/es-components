@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle } from 'styled-components';
 import { noop } from 'lodash';
@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
 
 import useUniqueId from '../../util/useUniqueId';
+import { useRootNodeLocator } from '../../util/useRootNode';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
@@ -102,56 +103,64 @@ const ModalStyles = createGlobalStyle`
   }
 `;
 
-function Modal(props) {
-  const {
-    animation,
-    backdrop,
-    children,
-    escapeExits,
-    onEnter,
-    onExit,
-    onHide,
-    show,
-    size,
-    ...other
-  } = props;
-
+function Modal({
+  animation,
+  backdrop,
+  children,
+  escapeExits,
+  onEnter,
+  onExit,
+  onHide,
+  show,
+  size,
+  parentSelector,
+  ...other
+}) {
   const ariaId = useUniqueId(other.id);
+  const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
+  const modalParentSelector =
+    parentSelector || useCallback(() => rootNode, [rootNode]);
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
-  return show ? (
+  return (
     <>
-      <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
-      <ModalContext.Provider value={{ onHide, ariaId }}>
-        <ReactModal
-          className={{
-            base: `modal-content  ${size}`,
-            afterOpen: 'modal-content--after-open',
-            beforeClose: 'modal-content--before-close'
-          }}
-          overlayClassName={{
-            base: 'background-overlay',
-            afterOpen: 'background-overlay--after-open',
-            beforeClose: 'background-overlay--before-close'
-          }}
-          closeTimeoutMS={animation ? 150 : null}
-          isOpen={show}
-          aria={{
-            labelledby: ariaId
-          }}
-          shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-          onRequestClose={onHide}
-          onAfterOpen={onEnter}
-          onAfterClose={onExit}
-          shouldCloseOnEsc={escapeExits}
-          {...other}
-        >
-          {children}
-        </ReactModal>
-      </ModalContext.Provider>
+      <RootNodeLocator />
+      {show ? (
+        <>
+          <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
+          <ModalContext.Provider value={{ onHide, ariaId }}>
+            <ReactModal
+              className={{
+                base: `modal-content  ${size}`,
+                afterOpen: 'modal-content--after-open',
+                beforeClose: 'modal-content--before-close'
+              }}
+              overlayClassName={{
+                base: 'background-overlay',
+                afterOpen: 'background-overlay--after-open',
+                beforeClose: 'background-overlay--before-close'
+              }}
+              closeTimeoutMS={animation ? 150 : null}
+              isOpen={show}
+              aria={{
+                labelledby: ariaId
+              }}
+              shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+              onRequestClose={onHide}
+              onAfterOpen={onEnter}
+              onAfterClose={onExit}
+              shouldCloseOnEsc={escapeExits}
+              parentSelector={modalParentSelector}
+              {...other}
+            >
+              {children}
+            </ReactModal>
+          </ModalContext.Provider>
+        </>
+      ) : null}
     </>
-  ) : null;
+  );
 }
 
 Modal.propTypes = {
@@ -181,7 +190,9 @@ Modal.propTypes = {
   /** When `true` The modal will show itself. */
   show: PropTypes.bool,
   /** Sets the size of the modal */
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /** Selects the parent */
+  parentSelector: PropTypes.func
 };
 
 Modal.defaultProps = {
@@ -193,7 +204,8 @@ Modal.defaultProps = {
   onHide: noop,
   show: false,
   size: 'medium',
-  children: undefined
+  children: undefined,
+  parentSelector: null
 };
 
 Modal.Header = Header;

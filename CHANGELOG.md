@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.4](https://github.com/WTW-IM/es-components/compare/v21.1.3...v21.1.4) (2020-05-15)
+
+
+### Docs
+
+* interstitial UI and markdown code blocks ([fa3304e1558d2487f1eeb37e47e1e4dd8966d945](https://github.com/WTW-IM/es-components/commit/fa3304e1558d2487f1eeb37e47e1e4dd8966d945))
+
+### Update
+
+* npm v6.14.4 install lock file updates ([63141037f45bd7828551c1ce26190c83c033a232](https://github.com/WTW-IM/es-components/commit/63141037f45bd7828551c1ce26190c83c033a232))
+* used await for Promise and non-Promise values ([a32f8620505e8bb74ecf8115ac723c4735aec1c5](https://github.com/WTW-IM/es-components/commit/a32f8620505e8bb74ecf8115ac723c4735aec1c5))
+
+
+
+
+
 ## [21.1.3](https://github.com/WTW-IM/es-components/compare/v21.1.2...v21.1.3) (2020-05-13)
 
 

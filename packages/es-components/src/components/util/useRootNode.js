@@ -8,7 +8,7 @@ export default function useRootNode(initialRoot) {
     const foundRoot = node.getRootNode();
     const targetNode = foundRoot.body || foundRoot;
     if (initialRoot !== targetNode) setRootNode(targetNode);
-  });
+  }, []);
   return [rootNode, nodeRef];
 }
 

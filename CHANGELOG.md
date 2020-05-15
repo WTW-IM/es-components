@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.5](https://github.com/WTW-IM/es-components/compare/v21.1.4...v21.1.5) (2020-05-15)
+
+
+### Update
+
+* allow Modals to be used in Web Components without an extra ref ([fa6bc54cdf9dda17611485679086fb3017715538](https://github.com/WTW-IM/es-components/commit/fa6bc54cdf9dda17611485679086fb3017715538))
+* using empty dependency array for useRootNode ref ([604ecd12103a1ceafcb41fe9ca0c5c5253e2cc40](https://github.com/WTW-IM/es-components/commit/604ecd12103a1ceafcb41fe9ca0c5c5253e2cc40))
+
+
+
+
+
 ## [21.1.4](https://github.com/WTW-IM/es-components/compare/v21.1.3...v21.1.4) (2020-05-15)
 
 

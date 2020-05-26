@@ -24,13 +24,19 @@ const TextboxBase = styled(InputBase)`
 `;
 
 const Textbox = React.forwardRef(function Textbox(props, ref) {
-  const { prependIconName, appendIconName, ...additionalTextProps } = props;
+  const {
+    prependIconName,
+    appendIconName,
+    type,
+    ...additionalTextProps
+  } = props;
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
 
   const inputRef = React.useRef();
   React.useImperativeHandle(ref, () => inputRef.current);
 
+  const finalType = type || 'text';
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
   const hasValidationState = validationState !== 'default';
@@ -63,6 +69,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         hasAppend={hasAppend}
         hasPrepend={hasPrepend}
         ref={inputRef}
+        type={finalType}
         {...additionalTextProps}
         {...theme.validationInputColor[validationState]}
       />
@@ -85,12 +92,15 @@ Textbox.propTypes = {
   /** Content to prepend input box with */
   prependIconName: PropTypes.string,
   /** Content to append to input box */
-  appendIconName: PropTypes.string
+  appendIconName: PropTypes.string,
+  /** The type attribute for the textboxa */
+  type: PropTypes.string
 };
 
 Textbox.defaultProps = {
   prependIconName: undefined,
-  appendIconName: undefined
+  appendIconName: undefined,
+  type: 'text'
 };
 
 export default Textbox;

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.6](https://github.com/WTW-IM/es-components/compare/v21.1.5...v21.1.6) (2020-05-27)
+
+
+### Update
+
+* adding a default type for Textbox ([b57a8123a73f56615c02770e0905e8f1fd671975](https://github.com/WTW-IM/es-components/commit/b57a8123a73f56615c02770e0905e8f1fd671975))
+* using default prop over manually setting type prop in Textbox ([8be6e9281d1dbed54682a790ffe75dcde36a8a7b](https://github.com/WTW-IM/es-components/commit/8be6e9281d1dbed54682a790ffe75dcde36a8a7b))
+
+
+
+
+
 ## [21.1.5](https://github.com/WTW-IM/es-components/compare/v21.1.4...v21.1.5) (2020-05-15)
 
 

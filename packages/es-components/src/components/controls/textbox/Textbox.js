@@ -36,7 +36,6 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
   const inputRef = React.useRef();
   React.useImperativeHandle(ref, () => inputRef.current);
 
-  const finalType = type || 'text';
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
   const hasValidationState = validationState !== 'default';
@@ -69,7 +68,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         hasAppend={hasAppend}
         hasPrepend={hasPrepend}
         ref={inputRef}
-        type={finalType}
+        type={type}
         {...additionalTextProps}
         {...theme.validationInputColor[validationState]}
       />

@@ -25,7 +25,7 @@ const PanelButton = styled.button`
 
   &:hover {
     background-color: ${props => props.theme.colors.gray2};
-    color: ${props => props.theme.brandColors.vbBlue};
+    color: ${props => props.theme.brandColors.brandPrimary1};
   }
 `;
 

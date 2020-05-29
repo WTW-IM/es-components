@@ -28,9 +28,9 @@ const RadioLabel = styled(Label)`
   cursor: pointer;
   display: flex;
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-size: ${props => props.theme.font.baseFontSize};
   font-weight: normal;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   margin-right: 15px;
   margin-bottom: 10px;
   position: relative;
@@ -71,7 +71,7 @@ const RadioDisplay = styled.span`
 
 export function RadioButton({ children, ...radioProps }) {
   const id = useUniqueId(radioProps.id);
-  const isChecked = radioProps.checked || radioProps.defaultChecked;
+  const isChecked = radioProps.checked;
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
   const { hover, fill } = getRadioFillVariables(
@@ -90,9 +90,14 @@ export function RadioButton({ children, ...radioProps }) {
     checked: isChecked
   };
 
+  const inputProps = {
+    ...radioProps,
+    checked: isChecked
+  };
+
   return (
     <RadioLabel {...labelProps}>
-      <RadioInput type="radio" id={id} {...radioProps} />
+      <RadioInput type="radio" id={id} {...inputProps} />
       <RadioDisplay
         className="es-radio__fill"
         borderColor={fill}

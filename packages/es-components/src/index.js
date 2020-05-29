@@ -1,4 +1,5 @@
 export Icon from './components/base/icons/Icon';
+export FullColorIcon from './components/base/icons/FullColorIcon';
 
 export Notification from './components/containers/notification/Notification';
 export LightNotification from './components/containers/notification/LightNotification';
@@ -17,6 +18,7 @@ export SlidingPane from './components/containers/sliding-pane/SlidingPane';
 export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
+export Prompt from './components/containers/prompt/Prompt';
 export Heading from './components/containers/heading/Heading';
 export Table from './components/containers/table/Table';
 export ResponsiveTable from './components/containers/table/ResponsiveTable';

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
+import RootCloseWrapper from '../../util/RootCloseWrapper';
 
 const Container = styled.div`
   display: inline-block;
@@ -13,13 +13,11 @@ const Container = styled.div`
 
 const PopoverHeader = styled.div`
   background-color: ${props =>
-    props.hasTitle
-      ? props.theme.colors.popoverHeader
-      : props.theme.colors.white};
+    props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   outline: none;
 `;
 
@@ -36,7 +34,7 @@ const PopoverBody = styled.div`
   color: ${props => props.theme.colors.gray9};
   font-size: 18px;
   font-weight: normal;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   padding: ${props =>
     props.hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   text-align: right;
@@ -81,7 +79,9 @@ function Popover(props) {
     hasCloseButton,
     hasAltCloseButton,
     disableRootClose,
-    disableFlipping
+    disableFlipping,
+    enableEvents,
+    strategy
   } = props;
 
   const hasTitle = title !== undefined;
@@ -127,41 +127,35 @@ function Popover(props) {
     }, 100);
   }
 
-  useEffect(
-    () => {
-      if (isFirstRun.current) {
-        isFirstRun.current = false;
-        return;
-      }
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
 
-      if (timeoutRef.current !== null) {
-        clearTimeout(timeoutRef.current);
-      }
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
 
-      if (isOpen) {
-        timeoutRef.current = setTimeout(() => {
-          if (closeBtnRef.current) {
-            closeBtnRef.current.focus();
-          } else if (escMsgRef.current) {
-            escMsgRef.current.focus();
-          }
-        }, 100);
-      } else {
-        triggerBtnRef.current.focus();
-      }
-    },
-    [isOpen]
-  );
+    if (isOpen) {
+      timeoutRef.current = setTimeout(() => {
+        if (closeBtnRef.current) {
+          closeBtnRef.current.focus();
+        } else if (escMsgRef.current) {
+          escMsgRef.current.focus();
+        }
+      }, 100);
+    } else {
+      triggerBtnRef.current.focus();
+    }
+  }, [isOpen]);
 
-  useEffect(
-    () => {
-      if (isOpen) {
-        window.addEventListener('scroll', hidePopOnScroll);
-      }
-      return () => window.removeEventListener('scroll', hidePopOnScroll);
-    },
-    [isOpen]
-  );
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('scroll', hidePopOnScroll);
+    }
+    return () => window.removeEventListener('scroll', hidePopOnScroll);
+  }, [isOpen]);
 
   const closeButton = (
     <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
@@ -191,6 +185,8 @@ function Popover(props) {
         popperRef={elem => {
           popperRef.current = elem;
         }}
+        enableEvents={enableEvents}
+        strategy={strategy}
       >
         <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
           <div role="dialog" ref={contentRef}>
@@ -237,7 +233,11 @@ Popover.propTypes = {
   /** Function returning a button component to be used as the popover trigger */
   renderTrigger: PropTypes.func.isRequired,
   /** Disables popovers ability to change position to stay in viewport */
-  disableFlipping: PropTypes.bool
+  disableFlipping: PropTypes.bool,
+  /** Enable event handlers provided by Popper.js */
+  enableEvents: PropTypes.bool,
+  /** Sets the strategy for positioning the popover in Popper.js */
+  strategy: PropTypes.oneOf(['absolute', 'fixed'])
 };
 
 Popover.defaultProps = {
@@ -247,7 +247,9 @@ Popover.defaultProps = {
   hasCloseButton: false,
   hasAltCloseButton: false,
   disableFlipping: false,
-  title: undefined
+  title: undefined,
+  enableEvents: true,
+  strategy: 'absolute'
 };
 
 export default Popover;

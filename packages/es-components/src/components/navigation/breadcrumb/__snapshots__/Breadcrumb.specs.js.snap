@@ -6,7 +6,7 @@ exports[`renders as expected 1`] = `
     class="sc-bdVaJa dCMrdy"
   >
     <li
-      class="sc-bwzfXH ifLTcf"
+      class="sc-bwzfXH hykBOk"
     >
       <a
         href="/test"
@@ -15,7 +15,7 @@ exports[`renders as expected 1`] = `
       </a>
     </li>
     <li
-      class="sc-bwzfXH ifLTcf"
+      class="sc-bwzfXH hykBOk"
     >
       <a
         href="/test-2"
@@ -24,7 +24,7 @@ exports[`renders as expected 1`] = `
       </a>
     </li>
     <li
-      class="sc-bwzfXH ifLTcf"
+      class="sc-bwzfXH hykBOk"
     >
       <a
         href="/test-3"

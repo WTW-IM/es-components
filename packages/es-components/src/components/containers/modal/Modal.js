@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { noop } from 'lodash';
-import { Modal as BaseModal } from 'react-overlays';
+import ReactModal from 'react-modal';
+import tinycolor from 'tinycolor2';
 
 import useUniqueId from '../../util/useUniqueId';
-import DropIn from '../../util/DropIn';
-import Fade from '../../util/Fade';
+import { useRootNodeLocator } from '../../util/useRootNode';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
 
 const modalSize = {
   small: '300px',
@@ -19,117 +18,148 @@ const modalSize = {
   large: '900px'
 };
 
-const modalStyle = {
-  bottom: 0,
-  left: 0,
-  outline: 0,
-  overflowX: 'hidden',
-  overflowY: 'auto',
-  position: 'fixed',
-  right: 0,
-  top: 0,
-  zIndex: 1040
-};
+const ModalStyles = createGlobalStyle`
+  .background-overlay {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1030;
+    transition: background-color 150ms linear;
+  }
 
-const Backdrop = styled.div`
-  background-color: ${props => props.theme.colors.black};
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1030;
-`;
+  .background-overlay--after-open {
+      background-color: ${props => {
+        if (props.showBackdrop) {
+          const color = tinycolor(props.theme.colors.black);
+          color.setAlpha(0.5);
+          return color.toRgbString();
+        }
+        return 'transparent';
+      }} !important;
+  }
 
-const ModalDialogMedium = styled.div`
-  position: relative;
-  width: 100%;
+  .modal-content {
+    background-clip: padding-box;
+    background-color: ${props => props.theme.colors.white};
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    font-size: ${props => props.theme.font.baseFontSize};
+    outline: 0;
+    position: relative;
+    width: 100%;
+    ${props =>
+      props.showAnimation
+        ? `
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 300ms ease-out, opacity 300ms linear;
+    -webkit-overflow-scrolling: touch;
+    `
+        : ''};
+  }
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin: 20vh auto;
-    width: ${modalSize.medium};
+  .modal-content--after-open {
+    ${props =>
+      props.showAnimation
+        ? `
+      opacity: 1;
+      transform: translateY(0);
+    `
+        : ''};
+  }
+
+  .modal-content--before-close {
+    ${props =>
+      props.showAnimation
+        ? `
+        opacity: 0;
+      transform: translateY(-100%);
+    `
+        : ''};
+  }
+
+  .small {
+    @media (min-width: ${props => props.theme.screenSize.phone}) {
+      margin: 20vh auto;
+      width: ${modalSize.small};
+    }
+  }
+
+  .medium {
+    @media (min-width: ${props => props.theme.screenSize.tablet}) {
+      margin: 20vh auto;
+      width: ${modalSize.medium};
+    }
+  }
+
+  .large {
+    @media (min-width: ${props => props.theme.screenSize.desktop}) {
+      margin: 20vh auto;
+      width: ${modalSize.large};
+    }
   }
 `;
 
-const ModalDialogSmall = styled(ModalDialogMedium)`
-  @media (min-width: ${props => props.theme.screenSize.phone}) {
-    margin: 20vh auto;
-    width: ${modalSize.small};
-  }
-`;
-
-const ModalDialogLarge = styled(ModalDialogMedium)`
-  @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    width: ${modalSize.large};
-  }
-`;
-
-const ModalContent = styled.div`
-  background-clip: padding-box;
-  background-color: ${props => props.theme.colors.white};
-  border-radius: 3px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.sizes.baseFontSize};
-  outline: 0;
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-`;
-
-const BackdropFade = props => <Fade opacity={0.5} {...props} />;
-
-const DialogDropIn = props => <DropIn {...props} />;
-
-function getModalBySize(size) {
-  switch (size) {
-    case 'small':
-      return ModalDialogSmall;
-    case 'large':
-      return ModalDialogLarge;
-    default:
-      return ModalDialogMedium;
-  }
-}
-
-function Modal(props) {
-  const {
-    animation,
-    backdrop,
-    children,
-    escapeExits,
-    onEnter,
-    onExit,
-    onHide,
-    show,
-    size,
-    ...other
-  } = props;
-
-  const ModalDialog = getModalBySize(size);
+function Modal({
+  animation,
+  backdrop,
+  children,
+  escapeExits,
+  onEnter,
+  onExit,
+  onHide,
+  show,
+  size,
+  parentSelector,
+  ...other
+}) {
   const ariaId = useUniqueId(other.id);
+  const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
+  const modalParentSelector =
+    parentSelector || useCallback(() => rootNode, [rootNode]);
+
+  const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
   return (
-    <ModalContext.Provider value={{ onHide, ariaId }}>
-      <BaseModal
-        aria-labelledby={ariaId}
-        backdrop={backdrop}
-        renderBackdrop={backdropProps => <Backdrop {...backdropProps} />}
-        backdropTransition={animation ? BackdropFade : undefined}
-        keyboard={escapeExits}
-        onEnter={onEnter}
-        onExit={onExit}
-        onHide={onHide}
-        show={show}
-        style={modalStyle}
-        transition={animation ? DialogDropIn : undefined}
-      >
-        <ModalDialog size={size} {...other}>
-          <RootCloseWrapper onRootClose={onHide} disabled={backdrop === 'static'}>
-            <ModalContent>{children}</ModalContent>
-          </RootCloseWrapper>
-        </ModalDialog>
-      </BaseModal>
-    </ModalContext.Provider>
+    <>
+      <RootNodeLocator />
+      {show ? (
+        <>
+          <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
+          <ModalContext.Provider value={{ onHide, ariaId }}>
+            <ReactModal
+              className={{
+                base: `modal-content  ${size}`,
+                afterOpen: 'modal-content--after-open',
+                beforeClose: 'modal-content--before-close'
+              }}
+              overlayClassName={{
+                base: 'background-overlay',
+                afterOpen: 'background-overlay--after-open',
+                beforeClose: 'background-overlay--before-close'
+              }}
+              closeTimeoutMS={animation ? 150 : null}
+              isOpen={show}
+              aria={{
+                labelledby: ariaId
+              }}
+              shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+              onRequestClose={onHide}
+              onAfterOpen={onEnter}
+              onAfterClose={onExit}
+              shouldCloseOnEsc={escapeExits}
+              parentSelector={modalParentSelector}
+              {...other}
+            >
+              {children}
+            </ReactModal>
+          </ModalContext.Provider>
+        </>
+      ) : null}
+    </>
   );
 }
 
@@ -142,7 +172,7 @@ Modal.propTypes = {
    */
   backdrop: PropTypes.oneOf(['static', true, false]),
   /**
-   * Usually contains a Modal.Title, Modal.Body, and Modal.Footer
+   * Usually contains a Modal.Header, Modal.Body, and Modal.Footer
    * but can contain any content
    */
   children: PropTypes.any,
@@ -160,7 +190,9 @@ Modal.propTypes = {
   /** When `true` The modal will show itself. */
   show: PropTypes.bool,
   /** Sets the size of the modal */
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /** Selects the parent */
+  parentSelector: PropTypes.func
 };
 
 Modal.defaultProps = {
@@ -172,7 +204,8 @@ Modal.defaultProps = {
   onHide: noop,
   show: false,
   size: 'medium',
-  children: undefined
+  children: undefined,
+  parentSelector: null
 };
 
 Modal.Header = Header;

@@ -14,13 +14,24 @@ module.exports = function(api) {
 
   const plugins = [
     ['@babel/plugin-transform-runtime', { corejs: 3 }],
-    '@babel/plugin-proposal-export-default-from'
+    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-optional-chaining'
   ];
 
   return {
     ignore: [/[\/\\]core-js/, /@babel[\/\\]runtime/],
     sourceType: 'unambiguous',
     presets,
-    plugins
+    plugins,
+    env: {
+      production: {
+        plugins: [
+          [
+            'babel-plugin-transform-react-remove-prop-types',
+            { removeImport: true }
+          ]
+        ]
+      }
+    }
   };
 };

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.0.4](https://github.com/WTW-IM/es-components/compare/v21.0.3...v21.0.4) (2020-04-17)
+
+
+### Fix
+
+* reverting to longhand prop assignement in themes to fix IE ([e3b1d799a4b9fa700bfd27a81391a50c48ec8d59](https://github.com/WTW-IM/es-components/commit/e3b1d799a4b9fa700bfd27a81391a50c48ec8d59))
+
+
+
+
+
+# [21.0.0](https://github.com/WTW-IM/es-components/compare/v20.0.0...v21.0.0) (2020-04-09)
+
+
+### Breaking
+
+* version bumping themes ([3e0a863164b37facb3fc33041c99018a97798f0a](https://github.com/WTW-IM/es-components/commit/3e0a863164b37facb3fc33041c99018a97798f0a))
+
+
+
+
+
+# [20.0.0](https://github.com/WTW-IM/es-components/compare/v19.1.7...v20.0.0) (2020-04-09)
+
+
+### Breaking
+
+* extensive theme color changes, renaming of brand colors ([679011e866fd793e48fe428d5fc43758c8c81bcf](https://github.com/WTW-IM/es-components/commit/679011e866fd793e48fe428d5fc43758c8c81bcf))
+* theme.size -> theme.font, headingSizes moved ([c7b98fef009590378649177b4620450d8efff4ae](https://github.com/WTW-IM/es-components/commit/c7b98fef009590378649177b4620450d8efff4ae))
+
+### New
+
+* migration from v1 to v2 guide ([7c3c16b2f3769efc5b8ce847cad528f2e7c350e6](https://github.com/WTW-IM/es-components/commit/7c3c16b2f3769efc5b8ce847cad528f2e7c350e6))
+
+### Update
+
+* answerGroup focus color, heading theme use ([63163943938d7486ed34e6d39c2e00906170daa2](https://github.com/WTW-IM/es-components/commit/63163943938d7486ed34e6d39c2e00906170daa2))
+* linkButton calcs hover color, removed hover colors from theme ([07da1e1d60c459071d99efaa3223a576d40001fe](https://github.com/WTW-IM/es-components/commit/07da1e1d60c459071d99efaa3223a576d40001fe))
+* wtw-theme grays ([bf76600c0c42dc1f9c56f596c868c4fc79be398f](https://github.com/WTW-IM/es-components/commit/bf76600c0c42dc1f9c56f596c868c4fc79be398f))
+
+
+
+
+
+# [19.1.0](https://github.com/WTW-IM/es-components/compare/v19.0.121...v19.1.0) (2020-03-26)
+
+
+### New
+
+* remove media query and update prop (refs TW-56968) ([e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff](https://github.com/WTW-IM/es-components/commit/e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff))
+
+
+
+
+
 ## <small>19.0.107 (2019-12-12)</small>
 
 * Update: warning sign uses circle instead of triangle ([8d60802](https://github.com/WTW-IM/es-components/commit/8d60802))

@@ -11,6 +11,8 @@ import Table from '../../containers/table/Table';
 formatMessage.setup({ missingTranslation: 'ignore' });
 
 const HelpContent = styled(Modal.Body)`
+  max-height: 750px;
+  overflow-y: scroll;
   ul {
     display: block;
     list-style-type: disc;
@@ -57,7 +59,12 @@ const RatingTable = styled(Table)`
 
 export default function StarRatingExplanation(props) {
   return (
-    <Modal show={props.show} size="large" onHide={props.closeModal}>
+    <Modal
+      show={props.show}
+      size="large"
+      onHide={props.closeModal}
+      parentSelector={() => props.parentNode}
+    >
       <Modal.Header>{formatMessage('Plan Ratings')}</Modal.Header>
       <HelpContent>
         <p>

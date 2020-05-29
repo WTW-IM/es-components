@@ -19,7 +19,7 @@ const alertButtonValues = (event, key) => {
 </DropdownButton>
 ```
 
-In some cases you may want to update the the text on the drop down with the last clicked button in the panel if this is the case pass the `shouldUpdateButtonValue` prop.
+In some cases you may want to update the text on the drop down with the last clicked button in the panel if this is the case pass the `shouldUpdateButtonValue` prop.
 
 ```
 const alertButtonValues = (event, name) => {

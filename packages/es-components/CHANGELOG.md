@@ -3,6 +3,405 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.6](https://github.com/wtw-im/es-components/compare/v21.1.5...v21.1.6) (2020-05-27)
+
+
+### Update
+
+* adding a default type for Textbox ([b57a8123a73f56615c02770e0905e8f1fd671975](https://github.com/wtw-im/es-components/commit/b57a8123a73f56615c02770e0905e8f1fd671975))
+* using default prop over manually setting type prop in Textbox ([8be6e9281d1dbed54682a790ffe75dcde36a8a7b](https://github.com/wtw-im/es-components/commit/8be6e9281d1dbed54682a790ffe75dcde36a8a7b))
+
+
+
+
+
+## [21.1.5](https://github.com/wtw-im/es-components/compare/v21.1.4...v21.1.5) (2020-05-15)
+
+
+### Update
+
+* allow Modals to be used in Web Components without an extra ref ([fa6bc54cdf9dda17611485679086fb3017715538](https://github.com/wtw-im/es-components/commit/fa6bc54cdf9dda17611485679086fb3017715538))
+* using empty dependency array for useRootNode ref ([604ecd12103a1ceafcb41fe9ca0c5c5253e2cc40](https://github.com/wtw-im/es-components/commit/604ecd12103a1ceafcb41fe9ca0c5c5253e2cc40))
+
+
+
+
+
+## [21.1.4](https://github.com/wtw-im/es-components/compare/v21.1.3...v21.1.4) (2020-05-15)
+
+
+### Docs
+
+* interstitial UI and markdown code blocks ([fa3304e1558d2487f1eeb37e47e1e4dd8966d945](https://github.com/wtw-im/es-components/commit/fa3304e1558d2487f1eeb37e47e1e4dd8966d945))
+
+### Update
+
+* used await for Promise and non-Promise values ([a32f8620505e8bb74ecf8115ac723c4735aec1c5](https://github.com/wtw-im/es-components/commit/a32f8620505e8bb74ecf8115ac723c4735aec1c5))
+
+
+
+
+
+## [21.1.3](https://github.com/wtw-im/es-components/compare/v21.1.2...v21.1.3) (2020-05-13)
+
+
+### Fix
+
+* exporting FullColorIcon from index ([87694e040e30aafa858993163aa55e22b95203ad](https://github.com/wtw-im/es-components/commit/87694e040e30aafa858993163aa55e22b95203ad))
+
+
+
+
+
+## [21.1.2](https://github.com/wtw-im/es-components/compare/v21.1.1...v21.1.2) (2020-05-12)
+
+
+### Update
+
+* adds ability to pass a parent node to Star Ratings ([535d61bcd843304d2ad67b64f2d88754cda40664](https://github.com/wtw-im/es-components/commit/535d61bcd843304d2ad67b64f2d88754cda40664))
+
+
+
+
+
+## [21.1.1](https://github.com/wtw-im/es-components/compare/v21.1.0...v21.1.1) (2020-05-12)
+
+
+### Build
+
+* ensuring that the docs folder exists when styleguide build runs ([9b11c8240d71360ff6f54ab441324f727276f41d](https://github.com/wtw-im/es-components/commit/9b11c8240d71360ff6f54ab441324f727276f41d))
+
+
+
+
+
+# [21.1.0](https://github.com/wtw-im/es-components/compare/v21.0.11...v21.1.0) (2020-05-12)
+
+
+### Build
+
+* removing full-color-icons from the base rollup config ([02d9f1de8f03338c817becb6a3a664b14d9f3a3a](https://github.com/wtw-im/es-components/commit/02d9f1de8f03338c817becb6a3a664b14d9f3a3a))
+* removing unused dependencies ([dfa202c1f8fad64dceb8d0b871345b8035a41c00](https://github.com/wtw-im/es-components/commit/dfa202c1f8fad64dceb8d0b871345b8035a41c00))
+
+### Docs
+
+* adding filtering to the icons ([21bc657f954192ee2eb19db5d9e8ac92d696ca78](https://github.com/wtw-im/es-components/commit/21bc657f954192ee2eb19db5d9e8ac92d696ca78))
+* ensuring we don't add the docs folder in git ([f1c6db34b5e7b1b00fc37cec2412be7b43a6ba0e](https://github.com/wtw-im/es-components/commit/f1c6db34b5e7b1b00fc37cec2412be7b43a6ba0e))
+* finishing alphabetizing Full Color Icons page styles ([0715e51afa9735c41a01c827c6b5721d87c6e632](https://github.com/wtw-im/es-components/commit/0715e51afa9735c41a01c827c6b5721d87c6e632))
+* getting rollup to work appropriately for Full Color Icons ([4c1217afbc90fdd9a79e811a64c5ecf5d9de31e9](https://github.com/wtw-im/es-components/commit/4c1217afbc90fdd9a79e811a64c5ecf5d9de31e9))
+
+### New
+
+* initial pass at FullColorIcon ([51e01e963de3863dbabc12ef7be3aaff05a26a96](https://github.com/wtw-im/es-components/commit/51e01e963de3863dbabc12ef7be3aaff05a26a96))
+
+### Update
+
+* adding a Full Color Icons page ([6ff21de5f32164782bc3d6fb8f372102b87a7659](https://github.com/wtw-im/es-components/commit/6ff21de5f32164782bc3d6fb8f372102b87a7659))
+* ordering styles alphabetically in Full Color Icon ([3b915bc80902f6607f2ba1ae0131d998b361c50d](https://github.com/wtw-im/es-components/commit/3b915bc80902f6607f2ba1ae0131d998b361c50d))
+* refactor around icons retrieval for simplicity ([addc6d37e290d16292a4e34d4e376b153e21fc8a](https://github.com/wtw-im/es-components/commit/addc6d37e290d16292a4e34d4e376b153e21fc8a))
+* using flex for FullColorIcon ([ccb77e33ee19f1a8b358af67604c1008ed71f18e](https://github.com/wtw-im/es-components/commit/ccb77e33ee19f1a8b358af67604c1008ed71f18e))
+* utilizing CDN resources for FullColorIcon ([4b00647d50d8ba5ad1f76621140e6173611c10f3](https://github.com/wtw-im/es-components/commit/4b00647d50d8ba5ad1f76621140e6173611c10f3))
+
+
+
+
+
+## [21.0.11](https://github.com/wtw-im/es-components/compare/v21.0.10...v21.0.11) (2020-05-06)
+
+
+### Update
+
+* added flatLeftEdge & flatRightEdge to Button ([3cca3c4cdd710fb5c80e4dda11a379045b6f948e](https://github.com/wtw-im/es-components/commit/3cca3c4cdd710fb5c80e4dda11a379045b6f948e))
+
+
+
+
+
+## [21.0.10](https://github.com/wtw-im/es-components/compare/v21.0.9...v21.0.10) (2020-04-28)
+
+
+### Update
+
+* adding restyleAnchors to allow users to stop anchor restyling ([058f4a3d09856330609442f7e7b290d27b1afcbe](https://github.com/wtw-im/es-components/commit/058f4a3d09856330609442f7e7b290d27b1afcbe))
+
+
+
+
+
+## [21.0.9](https://github.com/wtw-im/es-components/compare/v21.0.8...v21.0.9) (2020-04-27)
+
+
+### Update
+
+* only render modal if it should show ([432933ac13803c5d83938e7c25210ddc2dfc508f](https://github.com/wtw-im/es-components/commit/432933ac13803c5d83938e7c25210ddc2dfc508f))
+
+
+
+
+
+## [21.0.8](https://github.com/wtw-im/es-components/compare/v21.0.7...v21.0.8) (2020-04-23)
+
+
+### Fix
+
+* nest styles to prevent css collisions ([da37693dab5080cf4f3d45692515ff9fdd0b491b](https://github.com/wtw-im/es-components/commit/da37693dab5080cf4f3d45692515ff9fdd0b491b))
+
+
+
+
+
+## [21.0.7](https://github.com/wtw-im/es-components/compare/v21.0.6...v21.0.7) (2020-04-21)
+
+
+### Update
+
+* removing PropTypes as global dependency ([7f57a29c4c03785e3447e92392456f7e392f2e8f](https://github.com/wtw-im/es-components/commit/7f57a29c4c03785e3447e92392456f7e392f2e8f))
+
+
+
+
+
+## [21.0.6](https://github.com/wtw-im/es-components/compare/v21.0.5...v21.0.6) (2020-04-21)
+
+
+### Update
+
+* add prop to popover for enabling/disabling events ([b454550e909a1e0f570cc1189778744d5a44e782](https://github.com/wtw-im/es-components/commit/b454550e909a1e0f570cc1189778744d5a44e782))
+* allow popover to be fixed position ([e4a57f31d409ccdc33b955283457b4e98108b4ed](https://github.com/wtw-im/es-components/commit/e4a57f31d409ccdc33b955283457b4e98108b4ed))
+
+
+
+
+
+## [21.0.5](https://github.com/wtw-im/es-components/compare/v21.0.4...v21.0.5) (2020-04-20)
+
+
+### Fix
+
+* utilizing upstream styles and classes in Notifications ([c31c24deab6e4ad1bf53812b00cabb5a7b215881](https://github.com/wtw-im/es-components/commit/c31c24deab6e4ad1bf53812b00cabb5a7b215881))
+
+### Update
+
+* adding some tests around Notification styles and classes ([c928915db0b6c8a1f2ab9ebf8e0cca76d0623de7](https://github.com/wtw-im/es-components/commit/c928915db0b6c8a1f2ab9ebf8e0cca76d0623de7))
+
+
+
+
+
+## [21.0.4](https://github.com/wtw-im/es-components/compare/v21.0.3...v21.0.4) (2020-04-17)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
+## [21.0.3](https://github.com/wtw-im/es-components/compare/v21.0.2...v21.0.3) (2020-04-15)
+
+
+### Update
+
+* switch underlying Modal implementation ([ec5e848fbab5641b4e2a3db251cf1d295790e08a](https://github.com/wtw-im/es-components/commit/ec5e848fbab5641b4e2a3db251cf1d295790e08a))
+
+
+
+
+
+## [21.0.2](https://github.com/wtw-im/es-components/compare/v21.0.1...v21.0.2) (2020-04-15)
+
+
+### Update
+
+* making parentNode unnecessary in Popovers ([7ee1e19a6ff74b83b0c8043d87e3d667a8570227](https://github.com/wtw-im/es-components/commit/7ee1e19a6ff74b83b0c8043d87e3d667a8570227))
+
+
+
+
+
+## [21.0.1](https://github.com/wtw-im/es-components/compare/v21.0.0...v21.0.1) (2020-04-14)
+
+
+### Build
+
+* ensuring styleguidist works in IE ([9a30821d70cad4f7d4fe95989848bea83cd21e7d](https://github.com/wtw-im/es-components/commit/9a30821d70cad4f7d4fe95989848bea83cd21e7d))
+
+### Fix
+
+* implementing getRootNode polyfill; resolves #414 ([6cce983969fddda386b5efe336b68fa60d82502c](https://github.com/wtw-im/es-components/commit/6cce983969fddda386b5efe336b68fa60d82502c)), closes [#414](https://github.com/wtw-im/es-components/issues/414)
+
+
+
+
+
+# [21.0.0](https://github.com/wtw-im/es-components/compare/v20.0.0...v21.0.0) (2020-04-09)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
+# [20.0.0](https://github.com/wtw-im/es-components/compare/v19.1.7...v20.0.0) (2020-04-09)
+
+
+### Breaking
+
+* extensive theme color changes, renaming of brand colors ([679011e866fd793e48fe428d5fc43758c8c81bcf](https://github.com/wtw-im/es-components/commit/679011e866fd793e48fe428d5fc43758c8c81bcf))
+* theme.size -> theme.font, headingSizes moved ([c7b98fef009590378649177b4620450d8efff4ae](https://github.com/wtw-im/es-components/commit/c7b98fef009590378649177b4620450d8efff4ae))
+
+### Docs
+
+* theme and migration updates ([57c300e73dfb7c882ce67554046bdebcbfef38ce](https://github.com/wtw-im/es-components/commit/57c300e73dfb7c882ce67554046bdebcbfef38ce))
+
+### Fix
+
+* dropdown passes className to button ([174d8e80fee3e7f2a1c5748385a812f8ed214e0d](https://github.com/wtw-im/es-components/commit/174d8e80fee3e7f2a1c5748385a812f8ed214e0d))
+
+### New
+
+* migration from v1 to v2 guide ([7c3c16b2f3769efc5b8ce847cad528f2e7c350e6](https://github.com/wtw-im/es-components/commit/7c3c16b2f3769efc5b8ce847cad528f2e7c350e6))
+
+### Update
+
+* answerButton to coordinate with button changes ([0b3761155900e8642da0cc034e32d2b4f783525f](https://github.com/wtw-im/es-components/commit/0b3761155900e8642da0cc034e32d2b4f783525f))
+* answerGroup focus color, heading theme use ([63163943938d7486ed34e6d39c2e00906170daa2](https://github.com/wtw-im/es-components/commit/63163943938d7486ed34e6d39c2e00906170daa2))
+* button color function refactor ([f26d0d9efbe3529e6815bf49c41f7cb77bdf862f](https://github.com/wtw-im/es-components/commit/f26d0d9efbe3529e6815bf49c41f7cb77bdf862f))
+* disabled button styles ([42e2d258569be66e9204d0f532a0a1406ecb4eee](https://github.com/wtw-im/es-components/commit/42e2d258569be66e9204d0f532a0a1406ecb4eee))
+* finishing base Button changes ([33571bbbc8902b03f6a91e5683cd037fb7254ebc](https://github.com/wtw-im/es-components/commit/33571bbbc8902b03f6a91e5683cd037fb7254ebc))
+* linkButton calcs hover color, removed hover colors from theme ([07da1e1d60c459071d99efaa3223a576d40001fe](https://github.com/wtw-im/es-components/commit/07da1e1d60c459071d99efaa3223a576d40001fe))
+* outlineButton styles ([ac7cbb1f5da08ec0a2f56855af25a31bed6f016b](https://github.com/wtw-im/es-components/commit/ac7cbb1f5da08ec0a2f56855af25a31bed6f016b))
+* starting new button styles ([4151e7a7bc5e3f683df618953d9d07e53cb87c81](https://github.com/wtw-im/es-components/commit/4151e7a7bc5e3f683df618953d9d07e53cb87c81))
+* toggleButton, dropdownButton, actionButton ([850560dd4bc6bf9bbfed683a41e7694f9ec0b52e](https://github.com/wtw-im/es-components/commit/850560dd4bc6bf9bbfed683a41e7694f9ec0b52e))
+
+### Upgrade
+
+* dependency vulnerability updates ([8a64db436fbaa28a81d883146741b6dbd182f7df](https://github.com/wtw-im/es-components/commit/8a64db436fbaa28a81d883146741b6dbd182f7df))
+
+
+
+
+
+## [19.1.7](https://github.com/wtw-im/es-components/compare/v19.1.6...v19.1.7) (2020-04-08)
+
+
+### Fix
+
+* update proptypes in popover components ([936cb0e2cf8877bf237edb77d9e2083aada0396f](https://github.com/wtw-im/es-components/commit/936cb0e2cf8877bf237edb77d9e2083aada0396f))
+
+
+
+
+
+## [19.1.6](https://github.com/wtw-im/es-components/compare/v19.1.5...v19.1.6) (2020-04-08)
+
+
+### Update
+
+* add parentNode prop to Popover ([e191bdf547f793463a3a0bbf0beb1d6f9c54555d](https://github.com/wtw-im/es-components/commit/e191bdf547f793463a3a0bbf0beb1d6f9c54555d))
+
+
+
+
+
+## [19.1.5](https://github.com/wtw-im/es-components/compare/v19.1.4...v19.1.5) (2020-04-08)
+
+
+### Docs
+
+* updated font references in readme ([0753cfc67b22b2d12fb069c8c9f7eb10cd320483](https://github.com/wtw-im/es-components/commit/0753cfc67b22b2d12fb069c8c9f7eb10cd320483))
+
+
+
+
+
+## [19.1.4](https://github.com/wtw-im/es-components/compare/v19.1.3...v19.1.4) (2020-04-07)
+
+
+### Fix
+
+* ensuring the ES Components UMD bundle works ([084fc3d4ce46141b1476c28c85e0d0d3c0b6ffa4](https://github.com/wtw-im/es-components/commit/084fc3d4ce46141b1476c28c85e0d0d3c0b6ffa4))
+
+
+
+
+
+## [19.1.3](https://github.com/wtw-im/es-components/compare/v19.1.2...v19.1.3) (2020-04-02)
+
+
+### Fix
+
+* remove warnings about controlled inputs for radio buttons ([38cf5ac2e22b9f727ffc7bf0aadf0a0c0b895ac6](https://github.com/wtw-im/es-components/commit/38cf5ac2e22b9f727ffc7bf0aadf0a0c0b895ac6))
+
+
+
+
+
+## [19.1.2](https://github.com/wtw-im/es-components/compare/v19.1.1...v19.1.2) (2020-03-30)
+
+
+### Update
+
+* allowing a parentSelector func on SlidingPane ([bcbe10dfb514a0c85c09a84ffee9cfb06008d5fd](https://github.com/wtw-im/es-components/commit/bcbe10dfb514a0c85c09a84ffee9cfb06008d5fd))
+* changing useOwnerDocument to useRootNode ([391f280f0b2cb955c9c9adfc4570e7cc19f7eacb](https://github.com/wtw-im/es-components/commit/391f280f0b2cb955c9c9adfc4570e7cc19f7eacb))
+* creating the useOwnerDocument hook ([2876b88090fe1c9c22dd2863466f96ab0cdad41e](https://github.com/wtw-im/es-components/commit/2876b88090fe1c9c22dd2863466f96ab0cdad41e))
+* setting popover contaienr to ownerDocument when necessary ([0c3211fee7d29cbb3056efac5f8b5b7936438ee8](https://github.com/wtw-im/es-components/commit/0c3211fee7d29cbb3056efac5f8b5b7936438ee8))
+* using getRootNode in DropdownButton ([b3e3b61211909cacffb8bd37e467e7c4b5c2b093](https://github.com/wtw-im/es-components/commit/b3e3b61211909cacffb8bd37e467e7c4b5c2b093))
+* using rootNode in DateInput ([40a6eef270e7dbd75750d9aaf368d5d8ab6d2ea1](https://github.com/wtw-im/es-components/commit/40a6eef270e7dbd75750d9aaf368d5d8ab6d2ea1))
+* using useRootNode in Tooltip ([dfe5d644712bfd0b64cf05aa617f3dfe22b88e1b](https://github.com/wtw-im/es-components/commit/dfe5d644712bfd0b64cf05aa617f3dfe22b88e1b))
+
+
+
+
+
+## [19.1.1](https://github.com/wtw-im/es-components/compare/v19.1.0...v19.1.1) (2020-03-27)
+
+
+### Fix
+
+* pass checked attributed to input element ([64fc660ed5300bfea1505b15f8dc2d5e87e43860](https://github.com/wtw-im/es-components/commit/64fc660ed5300bfea1505b15f8dc2d5e87e43860))
+
+
+
+
+
+# [19.1.0](https://github.com/wtw-im/es-components/compare/v19.0.121...v19.1.0) (2020-03-26)
+
+
+### New
+
+* adding tests for prompt. (refs TW-56968) ([10c81f785d036da01da0cd932968543c1c4e6110](https://github.com/wtw-im/es-components/commit/10c81f785d036da01da0cd932968543c1c4e6110))
+* prompt for read aloud and do not read aloud text. (refs TW-56968) ([cc2692d8113406b1495b3b1873067272f9b62311](https://github.com/wtw-im/es-components/commit/cc2692d8113406b1495b3b1873067272f9b62311))
+* remove media query and update prop (refs TW-56968) ([e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff](https://github.com/wtw-im/es-components/commit/e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff))
+
+
+
+
+
+## [19.0.121](https://github.com/wtw-im/es-components/compare/v19.0.120...v19.0.121) (2020-03-25)
+
+
+### UPDATE
+
+* Renaming typreface, adding 'glasses' icon to set. ([ef6033f0bd514f4c7d547d2f3b51428fd3470b87](https://github.com/wtw-im/es-components/commit/ef6033f0bd514f4c7d547d2f3b51428fd3470b87))
+
+
+
+
+
+## [19.0.120](https://github.com/wtw-im/es-components/compare/v19.0.119...v19.0.120) (2020-03-25)
+
+
+### Fix
+
+* stop default month from being set in DateInput ([a1a97ce82706bc708eaa9a1b13a9929b4ef03e91](https://github.com/wtw-im/es-components/commit/a1a97ce82706bc708eaa9a1b13a9929b4ef03e91))
+* stop default month from being set in DateInput ([d3e978390996640da9efd06d2f9cdb8a3b54e449](https://github.com/wtw-im/es-components/commit/d3e978390996640da9efd06d2f9cdb8a3b54e449))
+* stop default month from being set in DateInput ([dba240660d53c64972dfaa6579b0a0d830df7024](https://github.com/wtw-im/es-components/commit/dba240660d53c64972dfaa6579b0a0d830df7024))
+* stop default month from being set in DateInput ([8b58b63dadee2e1c37410db11fc33016eae21c3b](https://github.com/wtw-im/es-components/commit/8b58b63dadee2e1c37410db11fc33016eae21c3b))
+
+
+
+
+
 ## [19.0.119](https://github.com/wtw-im/es-components/compare/v19.0.118...v19.0.119) (2020-03-24)
 
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { noop } from 'lodash';
 
 function RadioGroup({
   name,
   disableAllOptions,
   selectedValue,
   children,
+  onChange,
   ...rest
 }) {
   return React.Children.map(children, (child, index) => {
@@ -16,7 +18,8 @@ function RadioGroup({
       key,
       name,
       disabled,
-      defaultChecked: checked,
+      checked,
+      onChange,
       ...rest
     });
   });
@@ -28,12 +31,15 @@ RadioGroup.propTypes = {
   /** Selected option for the radio group */
   selectedValue: PropTypes.any,
   /** Disable all radio buttons */
-  disableAllOptions: PropTypes.bool
+  disableAllOptions: PropTypes.bool,
+  /** Function to change selected value */
+  onChange: PropTypes.func
 };
 
 RadioGroup.defaultProps = {
   selectedValue: undefined,
-  disableAllOptions: false
+  disableAllOptions: false,
+  onChange: noop
 };
 
 /** @component */

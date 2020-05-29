@@ -38,16 +38,16 @@ const dashAnimation = keyframes`
 
 const colorsAnimation = props => keyframes`
   0% {
-    stroke: ${props.theme.brandColors.vbBlue};
+    stroke: ${props.theme.brandColors.primary1};
   }
   40% {
-    stroke: ${props.theme.brandColors.vbGreen};
+    stroke: ${props.theme.brandColors.primary2};
   }
   80% {
-    stroke: ${props.theme.brandColors.vbMagenta};
+    stroke: ${props.theme.brandColors.primary3};
   }
   100% {
-    stroke: ${props.theme.brandColors.vbBlue};
+    stroke: ${props.theme.brandColors.primary1};
   }
 `;
 
@@ -60,7 +60,7 @@ const SpinnerSvg = styled.svg`
 `;
 
 const SpinnerCircle = styled.circle`
-  stroke: ${props => props.theme.colors.violet};
+  stroke: ${props => props.theme.brandColors.secondary1};
   stroke-dasharray: 187;
   stroke-dashoffset: 37.4;
   transform-origin: center;

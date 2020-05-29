@@ -43,25 +43,25 @@ const buttonStyle = {
   <div style={wrapperStyle}>
     <Button size="lg" style={buttonStyle} styleType="primary">Large</Button>
     <Button size="lg" style={buttonStyle}>Large</Button>
-    <OutlineButton size="lg" style={buttonStyle} styleType="magenta">Large</OutlineButton>
+    <OutlineButton size="lg" style={buttonStyle} styleType="primary">Large</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
     <Button style={buttonStyle} styleType="primary">Default</Button>
     <Button style={buttonStyle}>Default</Button>
-    <OutlineButton style={buttonStyle} styleType="magenta">Default</OutlineButton>
+    <OutlineButton style={buttonStyle} styleType="primary">Default</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
     <Button size="sm" style={buttonStyle} styleType="primary">Small</Button>
     <Button size="sm" style={buttonStyle}>Small</Button>
-    <OutlineButton size="sm" style={buttonStyle} styleType="magenta">Small</OutlineButton>
+    <OutlineButton size="sm" style={buttonStyle} styleType="primary">Small</OutlineButton>
   </div>
 
   <div style={wrapperStyle}>
     <Button size="xs" style={buttonStyle} styleType="primary">Extra Small</Button>
     <Button size="xs" style={buttonStyle}>Extra Small</Button>
-    <OutlineButton size="xs" style={buttonStyle} styleType="magenta">Extra Small</OutlineButton>
+    <OutlineButton size="xs" style={buttonStyle} styleType="primary">Extra Small</OutlineButton>
   </div>
 </div>
 ```
@@ -105,3 +105,49 @@ const buttonStyle = {
   <Button styleType="primary" isLinkButton disabled style={buttonStyle}>Link</Button>
 </div>
 ```
+
+### SplitButtonDropdown
+
+You can achieve a split button dropdown style by supplying the `flatLeftEdge` and
+`flatRightEdge` props to `Button` and `DropdownButton`.
+
+```
+import DropdownButton from './DropdownButton';
+
+<>
+  <div>
+    <Button styleType="primary" flatRightEdge>Split Button Dropdown</Button>
+    <DropdownButton
+      shouldCloseOnButtonClick
+      inline
+      rootClose
+      flatLeftEdge
+      styleType="primary"
+    >
+      <DropdownButton.Button
+        name="first" style={{whiteSpace: 'nowrap'}}>First Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="second" style={{whiteSpace: 'nowrap'}}>Second Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="third" style={{whiteSpace: 'nowrap'}}>Third Button</DropdownButton.Button>
+    </DropdownButton>
+  </div>
+  <br />
+  <div>
+    <DropdownButton
+      shouldCloseOnButtonClick
+      inline
+      rootClose
+      flatRightEdge
+      styleType="primary"
+    >
+      <DropdownButton.Button
+        name="first" style={{whiteSpace: 'nowrap'}}>First Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="second" style={{whiteSpace: 'nowrap'}}>Second Button</DropdownButton.Button>
+      <DropdownButton.Button
+        name="third" style={{whiteSpace: 'nowrap'}}>Third Button</DropdownButton.Button>
+    </DropdownButton>
+    <Button styleType="primary" flatLeftEdge>Left Split Button Dropdown</Button>
+  </div>
+</>

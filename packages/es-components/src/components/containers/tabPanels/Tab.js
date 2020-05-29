@@ -15,7 +15,7 @@ const TabButton = styled.button`
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
   display: inline-block;
   font-size: inherit;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   padding: 10px;
   text-align: left;
   z-index: 1;
@@ -66,12 +66,11 @@ function Tab({
       role="tab"
       {...props}
     >
-      {selected &&
-        (simpleName.length > 0 || announcerText.length > 0) && (
-          <AriaAnnouncer id="announcer" aria-live="assertive">
-            {`${simpleName} ${announcerText}`}
-          </AriaAnnouncer>
-        )}
+      {selected && (simpleName.length > 0 || announcerText.length > 0) && (
+        <AriaAnnouncer id="announcer" aria-live="assertive">
+          {`${simpleName} ${announcerText}`}
+        </AriaAnnouncer>
+      )}
       {name}
     </TabButton>
   );
@@ -99,8 +98,8 @@ Tab.propTypes = {
    */
   simpleName: PropTypes.string,
   /*
-  * Additional text to be read after the simple name
-  */
+   * Additional text to be read after the simple name
+   */
   announcerText: PropTypes.string
 };
 

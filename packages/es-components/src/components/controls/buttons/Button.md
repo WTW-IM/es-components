@@ -36,6 +36,7 @@ const wrapperStyle = {
 };
 
 const buttonStyle = {
+  marginBottom: '15px',
   marginRight: '15px'
 };
 

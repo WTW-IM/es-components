@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   box-sizing: border-box;
   color: ${props => props.colors.textColor};
   cursor: pointer;
-  display: inline-block;
+  display: block;
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
@@ -40,6 +40,7 @@ const StyledButton = styled.button`
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+  width: 100%;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     display: ${props => (props.block ? 'block' : 'inline-block')};

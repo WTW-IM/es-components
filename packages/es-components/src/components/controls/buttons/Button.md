@@ -67,7 +67,7 @@ const buttonStyle = {
 </div>
 ```
 
-Setting the `block` property will force the button to expand to the width of it's parent container. Buttons will default to `block` at the mobile breakpoint.
+Setting the `block` property will force the button to expand to the width of it's parent container. Buttons will default to `block` at the mobile breakpoint. The `mobileBlock` prop can be used to override this default.
 
 ```
 const buttonContainerStyle = {

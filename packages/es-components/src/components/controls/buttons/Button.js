@@ -41,6 +41,22 @@ const StyledButton = styled.button`
   vertical-align: middle;
   white-space: nowrap;
 
+  @media (max-width: ${(props) => props.theme.screenSize.phone}) {
+    .es-button__display {
+      background-color: #fff;
+      box-shadow: none;
+      padding-left: 5px;
+      padding-right: 5px;
+      min-width: 0;
+    }
+
+    &:hover .es-button__display,
+    &:active .es-button__display {
+      background-color: #fff;
+      box-shadow: none;
+    }
+  }
+    
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     display: ${props => (props.block ? 'block' : 'inline-block')};
     width: ${props => (props.block ? '100%' : 'auto')};

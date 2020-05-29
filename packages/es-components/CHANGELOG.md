@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.1.7](https://github.com/wtw-im/es-components/compare/v21.1.6...v21.1.7) (2020-05-29)
+
+
+### UPDATE
+
+* Adding defs for 'desktop', 'confusion', 'idea', and 'spouse' icons. ([20bc461844b8a1590638101b050365f1f48d7e11](https://github.com/wtw-im/es-components/commit/20bc461844b8a1590638101b050365f1f48d7e11))
+
+
+
+
+
 ## [21.1.6](https://github.com/wtw-im/es-components/compare/v21.1.5...v21.1.6) (2020-05-27)
 
 

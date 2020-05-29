@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusTracker should display the first step with the active class 1`] = `
+<div>
+  <ol
+    class="sc-AxjAm eQZSpv"
+  >
+    <li
+      class="sc-AxirZ bOKRcd active"
+    >
+      <span
+        class="status-text"
+      >
+        step 1
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd"
+    >
+      <span
+        class="status-text"
+      >
+        step 2
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd"
+    >
+      <span
+        class="status-text"
+      >
+        step 3
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd"
+    >
+      <span
+        class="status-text"
+      >
+        step 4
+      </span>
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`StatusTracker should display the last step with the active class 1`] = `
+<div>
+  <ol
+    class="sc-AxjAm eQZSpv"
+  >
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 1
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 2
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 3
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd active"
+    >
+      <span
+        class="status-text"
+      >
+        step 4
+      </span>
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`StatusTracker should display the last step with the error class when isErrorState is true 1`] = `
+<div>
+  <ol
+    class="sc-AxjAm eQZSpv"
+  >
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 1
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 2
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 3
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd error"
+    >
+      <span
+        class="status-text"
+      >
+        step 4
+      </span>
+    </li>
+  </ol>
+</div>
+`;
+
+exports[`StatusTracker should display the third step with the active class 1`] = `
+<div>
+  <ol
+    class="sc-AxjAm eQZSpv"
+  >
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 1
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd done"
+    >
+      <span
+        class="status-text"
+      >
+        step 2
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd active"
+    >
+      <span
+        class="status-text"
+      >
+        step 3
+      </span>
+    </li>
+    <li
+      class="sc-AxirZ bOKRcd"
+    >
+      <span
+        class="status-text"
+      >
+        step 4
+      </span>
+    </li>
+  </ol>
+</div>
+`;

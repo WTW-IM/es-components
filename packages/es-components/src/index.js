@@ -62,6 +62,7 @@ export Action from './components/patterns/callToAction/Action';
 export ProgressTracker from './components/patterns/progress-tracker/ProgressTracker';
 export StarRating from './components/patterns/starRating/StarRating';
 export StarRatingExplanation from './components/patterns/starRating/StarRatingExplanation';
+export StatusTracker from './components/patterns/statusTracker/StatusTracker';
 
 export Spinner from './components/base/spinner/Spinner';
 

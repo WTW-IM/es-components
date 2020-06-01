@@ -110,7 +110,8 @@ const buttonStyle = {
 ### SplitButtonDropdown
 
 You can achieve a split button dropdown style by supplying the `flatLeftEdge` and
-`flatRightEdge` props to `Button` and `DropdownButton`.
+`flatRightEdge` props to `Button` and `DropdownButton`. There may be some wrapping/positional
+issues present in small viewports that need to be addressed in implementation.
 
 ```
 import DropdownButton from './DropdownButton';

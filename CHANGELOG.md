@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.2.0](https://github.com/WTW-IM/es-components/compare/v21.1.7...v21.2.0) (2020-06-01)
+
+
+### Build
+
+* ensuring we skip creation of docs dir on build when not needed ([e38ecd13beede60ff09301095eca45966a191f2e](https://github.com/WTW-IM/es-components/commit/e38ecd13beede60ff09301095eca45966a191f2e))
+
+### Docs
+
+* added splitbuttondropdown disclaimer ([eeadfdb14e2aef2bc473c919f5899e9520f3aadc](https://github.com/WTW-IM/es-components/commit/eeadfdb14e2aef2bc473c919f5899e9520f3aadc))
+
+### Fix
+
+* button block property and default mobile style ([6932f0fffc931884acf8b7babd4ce5739ed6ef5d](https://github.com/WTW-IM/es-components/commit/6932f0fffc931884acf8b7babd4ce5739ed6ef5d))
+
+### New
+
+* mobileBlock prop added to Button ([fd4e85ae9329851f8b88cb58046177c186b7fa1c](https://github.com/WTW-IM/es-components/commit/fd4e85ae9329851f8b88cb58046177c186b7fa1c))
+
+
+
+
+
 ## [21.1.7](https://github.com/WTW-IM/es-components/compare/v21.1.6...v21.1.7) (2020-05-29)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.2.1](https://github.com/WTW-IM/es-components/compare/v21.2.0...v21.2.1) (2020-06-02)
+
+
+### Fix
+
+* classNames properly applied to ToggleButton ([414e6d0801de557027b968c25d4274d0152b8a6f](https://github.com/WTW-IM/es-components/commit/414e6d0801de557027b968c25d4274d0152b8a6f))
+
+
+
+
+
 # [21.2.0](https://github.com/WTW-IM/es-components/compare/v21.1.7...v21.2.0) (2020-06-01)
 
 

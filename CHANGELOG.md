@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.2.2](https://github.com/WTW-IM/es-components/compare/v21.2.1...v21.2.2) (2020-06-03)
+
+
+### Update
+
+* Adding defs for 'play', 'pause', and 'skip-to-start' icons. ([23421d3b4406a40dca67f6590f25dbc2ad54771c](https://github.com/WTW-IM/es-components/commit/23421d3b4406a40dca67f6590f25dbc2ad54771c))
+
+
+
+
+
 ## [21.2.1](https://github.com/WTW-IM/es-components/compare/v21.2.0...v21.2.1) (2020-06-02)
 
 

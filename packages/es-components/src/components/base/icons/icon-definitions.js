@@ -231,7 +231,10 @@ const regular = {
   'im-icon-desktop': '6e5',
   'im-icon-confusion': '6e6',
   'im-icon-idea': '6e7',
-  'im-icon-spouse': '6e8'
+  'im-icon-spouse': '6e8',
+  'im-icon-play': '6e9',
+  'im-icon-pause': '6ea',
+  'im-icon-skip-to-start': '6eb'
 };
 
 export { regular };

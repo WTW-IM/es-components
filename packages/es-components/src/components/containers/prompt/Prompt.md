@@ -24,18 +24,19 @@ function getDate() {
 
 <React.Fragment>
   <Prompt isContentReadAloud={true}>
-    <Control orientation='inline'>
-      <Fieldset legendContent={`My name is Mr/Mrs. Agent. Today is ${getDate()}. This call will be recorded. Do I have your permission to record this conversation to confirm your enrollment?`}>
-        <RadioGroup
-          name='recordConversation'
-          onChange={radioOnChange}
-          selectedValue={recordConversation}
-        >
-        <RadioButton value='recordConversationYes'>Yes</RadioButton>
-        <RadioButton value='recordConversationNo'>No</RadioButton>
-        </RadioGroup>
-      </Fieldset>
-    </Control>
+    <div>
+      {`My name is Mr/Mrs. Agent. Today is ${getDate()}. This call will be recorded. Do I have your permission to record this conversation to confirm your enrollment?`}
+    </div>
+    <div style={{'display': 'inline-flex', 'padding': '5px 0 0 5px'}}>
+      <RadioGroup
+        name='recordConversation'
+        onChange={radioOnChange}
+        selectedValue={recordConversation}
+      >
+      <RadioButton value='recordConversationYes'>Yes</RadioButton>
+      <RadioButton value='recordConversationNo'>No</RadioButton>
+      </RadioGroup>
+    </div>
   </Prompt>
   <Prompt isContentReadAloud={false}>
     <span>Statement to the agent that does not need to be read aloud.</span>

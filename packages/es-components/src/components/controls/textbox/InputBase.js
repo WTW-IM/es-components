@@ -6,10 +6,10 @@ export default styled.input`
   box-shadow: ${props => props.boxShadow};
   box-sizing: border-box;
   color: ${props => props.theme.colors.black};
-  font-size: ${props => props.theme.sizes.baseFontSize};
+  font-size: ${props => props.theme.font.baseFontSize};
   font-weight: normal;
   height: 39px;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   min-width: 0;
   padding: 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;

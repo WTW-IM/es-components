@@ -30,7 +30,7 @@ const Legend = styled.div`
   color: ${props => props.theme.colors.black};
   flex: 0 0 auto;
   font-size: 21.6px;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   margin: 0 0 10px 0;
   width: 100%;
 `;

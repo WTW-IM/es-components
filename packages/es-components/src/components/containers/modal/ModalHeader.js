@@ -9,7 +9,7 @@ import Heading from '../heading/Heading';
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
   align-items: baseline;
-  border-bottom: 2px solid ${props => props.theme.brandColors.vbMagenta};
+  border-bottom: 2px solid ${props => props.theme.brandColors.primary3};
   color: ${props => props.theme.colors.gray9};
   display: flex;
   font-size: 26px;

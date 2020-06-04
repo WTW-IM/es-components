@@ -97,3 +97,25 @@ function NotificationApp() {
 
 <NotificationApp />;
 ```
+
+By default, Anchor tags will receive some new styling within a Notification:
+
+```jsx
+import Anchor from '../../navigation/Anchor';
+<Notification type="warning">
+  <p>
+    <Anchor href="#">This anchor</Anchor> has overwritten anchor styles.
+  </p>
+</Notification>;
+```
+
+You can disable these overwritten styles setting the `restyleAnchors` prop to `false`;
+
+```jsx
+import Anchor from '../../navigation/Anchor';
+<Notification type="warning" restyleAnchors={false}>
+  <p>
+    <Anchor href="#">This anchor</Anchor> has the regular styling.
+  </p>
+</Notification>;
+```

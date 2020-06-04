@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Manager, Reference, Popper } from 'react-popper';
 
 import Fade from '../../util/Fade';
+import useRootNode from '../../util/useRootNode';
 
 const PopperBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -40,9 +41,7 @@ const Arrow = styled.div`
       border-width: ${props => props.arrowSize.bottomWidth};
       border-color: transparent;
       border-bottom-color: ${props =>
-        props.hasTitle
-          ? props.theme.colors.popoverHeader
-          : props.theme.colors.white};
+        props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
       margin-left: -${props => props.arrowSize.size}px;
     }
   }
@@ -154,15 +153,24 @@ function Popup(props) {
     transitionIn,
     transitionTimeout,
     disableFlipping,
-    popperRef
+    popperRef,
+    enableEvents,
+    strategy
   } = props;
   const arrowValues = getArrowValues(arrowSize);
+  const [rootNode, rootNodeRef] = useRootNode(document.body);
 
   return (
     <Manager>
       <Reference>
         {({ ref }) => (
-          <div className={`${name}-popper__trigger`} ref={ref}>
+          <div
+            className={`${name}-popper__trigger`}
+            ref={el => {
+              ref(el);
+              rootNodeRef(el);
+            }}
+          >
             {trigger}
           </div>
         )}
@@ -180,6 +188,8 @@ function Popup(props) {
             }
           }}
           innerRef={popperRef}
+          eventsEnabled={enableEvents}
+          positionFixed={strategy === 'fixed'}
         >
           {({ ref, style, placement, arrowProps }) => (
             <Fade
@@ -201,7 +211,7 @@ function Popup(props) {
             </Fade>
           )}
         </Popper>,
-        document.querySelector('body')
+        rootNode
       )}
     </Manager>
   );
@@ -217,7 +227,9 @@ Popup.propTypes = {
   transitionTimeout: PropTypes.number,
   hasTitle: PropTypes.bool,
   disableFlipping: PropTypes.bool,
-  popperRef: PropTypes.func
+  popperRef: PropTypes.func,
+  enableEvents: PropTypes.bool,
+  strategy: PropTypes.oneOf(['absolute', 'fixed'])
 };
 
 Popup.defaultProps = {
@@ -230,7 +242,9 @@ Popup.defaultProps = {
   transitionTimeout: 150,
   hasTitle: false,
   disableFlipping: false,
-  popperRef: undefined
+  popperRef: undefined,
+  enableEvents: true,
+  strategy: 'absolute'
 };
 
 export default Popup;

@@ -1,4 +1,5 @@
 export Icon from './components/base/icons/Icon';
+export FullColorIcon from './components/base/icons/FullColorIcon';
 
 export Notification from './components/containers/notification/Notification';
 export LightNotification from './components/containers/notification/LightNotification';

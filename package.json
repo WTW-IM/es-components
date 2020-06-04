@@ -9,7 +9,8 @@
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
     "link": "lerna link --force-local",
-    "start": "npm start --prefix packages/es-components"
+    "start": "npm start --prefix packages/es-components",
+    "commit": "commit"
   },
   "lint-staged": {
     "packages/es-components/src/**/*.js": [
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
+    "@commitlint/prompt-cli": "^8.3.5",
     "babel-eslint": "^9.0.0",
     "conventional-changelog-eslint": "^3.0.1",
     "eslint": "^5.6.0",

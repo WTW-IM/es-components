@@ -3,6 +3,7 @@ lib/
 es6/
 cjs/
 bundle/
+docs/
 node_modules
 npm-debug.log
 *.tgz

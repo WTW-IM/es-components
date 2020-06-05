@@ -5,7 +5,7 @@ Additional props supplied to the OutlineButton component will be passed to the u
 ```
 const buttonStyle = {
   display: 'inline-block',
-  margin: '0 15px 15px 0'
+  margin: '0 5px 15px 0'
 };
 
 function noop() { }
@@ -22,5 +22,9 @@ function noop() { }
   <div style={buttonStyle}><OutlineButton onClick={noop} styleType="warning">Warning</OutlineButton></div>
 
   <div style={buttonStyle}><OutlineButton onClick={noop} styleType="danger">Danger</OutlineButton></div>
+
+  <div style={buttonStyle}><OutlineButton onClick={noop} styleType="magenta">Magenta</OutlineButton></div>
+
+  <div style={buttonStyle}><OutlineButton onClick={noop} styleType="violet">Violet</OutlineButton></div>
 </div>
 ```

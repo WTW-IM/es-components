@@ -71,14 +71,19 @@ const Notification = styled.div`
   margin-bottom: 25px;
   padding: 15px;
 
-  a {
-    color: ${props => props.variant.textColor};
-    text-decoration: underline;
+  ${props =>
+    props.restyleAnchors
+      ? `
+    a {
+      color: ${props.variant.textColor};
+      text-decoration: underline;
 
-    &:hover {
-      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
     }
-  }
+  `
+      : ``}
 
   button[aria-expanded] {
     color: ${props => props.variant.textColor};
@@ -86,7 +91,15 @@ const Notification = styled.div`
 `;
 
 export function useNotification(styleType = 'base') {
-  return function BaseNotification({ role, type, children, ...rest }) {
+  return function BaseNotification({
+    role,
+    type,
+    children,
+    className,
+    style,
+    restyleAnchors = true,
+    ...rest
+  }) {
     const theme = useTheme();
     const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
@@ -107,7 +120,12 @@ export function useNotification(styleType = 'base') {
 
     return (
       !isDismissed && (
-        <Notification variant={color}>
+        <Notification
+          variant={color}
+          className={className}
+          style={style}
+          restyleAnchors={restyleAnchors}
+        >
           <NotificationContent
             dismissNotification={dismissNotification}
             {...notificationContentProps}

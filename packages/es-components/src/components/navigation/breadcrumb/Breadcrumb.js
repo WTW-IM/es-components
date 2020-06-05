@@ -13,7 +13,7 @@ function darkenPrimary(primary) {
 const OrderedList = styled.ol`
   background-color: ${props => props.theme.colors.gray1};
   border-radius: 2px;
-  line-height: ${props => props.theme.sizes.baseLineHeight};
+  line-height: ${props => props.theme.font.baseLineHeight};
   list-style: none;
   margin-bottom: 25px;
   margin-top: 0;
@@ -40,7 +40,7 @@ const OrderedList = styled.ol`
 `;
 
 const Crumb = styled.li`
-  color: ${props => props.theme.brandColors.vbMagenta};
+  color: ${props => props.theme.brandColors.primary3};
   display: inline-block;
   margin-right: 2px;
   position: relative;

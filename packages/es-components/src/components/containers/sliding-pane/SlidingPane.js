@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import _noop from 'lodash/noop';
@@ -7,6 +7,7 @@ import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import Icon from '../../base/icons/Icon';
+import { useRootNodeLocator } from '../../util/useRootNode';
 
 const PaneBase = styled(Modal)`
   background: ${props => props.theme.colors.white};
@@ -70,7 +71,7 @@ const PaneBottom = styled(PaneBase)`
 
 const Header = styled.div`
   align-items: center;
-  background-color: ${props => props.theme.colors.popoverHeader};
+  background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
   display: flex;
   flex: 0 0 64px;
@@ -133,7 +134,7 @@ const GlobalPaneStyles = createGlobalStyle`
   }
 
   .ReactModal__Overlay--after-open {
-    background-color: rgba(0,0,0,0.3) !important;
+    background-color: rgba(0,0,0,0.5) !important;
   }
 
   .ReactModal__Overlay--before-close {
@@ -169,8 +170,12 @@ export default function SlidingPane({
   overlayStyles,
   contentStyles,
   appElement,
+  parentSelector,
   ...rest
 }) {
+  const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
+  const modalParentSelector =
+    parentSelector || useCallback(() => rootNode, [rootNode]);
   const Pane = getPane(from);
   const styles = {
     overlay: { ...defaultStyles.overlay, ...overlayStyles },
@@ -186,6 +191,7 @@ export default function SlidingPane({
   return (
     <>
       <GlobalPaneStyles />
+      <RootNodeLocator />
       <Pane
         style={styles}
         closeTimeoutMS={closeTimeout}
@@ -194,6 +200,7 @@ export default function SlidingPane({
         onRequestClose={onRequestClose}
         shouldCloseOnEsc={shouldCloseOnEsc}
         contentLabel={`Modal "${title}"`}
+        parentSelector={modalParentSelector}
         {...rest}
       >
         <Header>
@@ -232,7 +239,8 @@ SlidingPane.propTypes = {
   contentStyles: PropTypes.object,
   /** selector of application element (e.g. #root), for hiding of
    main content for screenreaders when pane is open */
-  appElement: PropTypes.string
+  appElement: PropTypes.string,
+  parentSelector: PropTypes.func
 };
 
 SlidingPane.defaultProps = {
@@ -250,5 +258,6 @@ SlidingPane.defaultProps = {
   closeIconScreenReaderText: 'Close',
   overlayStyles: {},
   contentStyles: {},
-  appElement: undefined
+  appElement: undefined,
+  parentSelector: null
 };

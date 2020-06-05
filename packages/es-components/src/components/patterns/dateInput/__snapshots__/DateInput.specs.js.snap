@@ -17,7 +17,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
       tabindex="-1"
     >
       <select
-        class="sc-EHOje fMaGOM sc-ifAKCX iaznAR"
+        class="sc-EHOje fMaGOM sc-ifAKCX gSULKo"
         id="test"
         name="month"
       >
@@ -38,7 +38,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
-        class="sc-htpNat sc-bxivhb kenmim"
+        class="sc-htpNat sc-bxivhb LlNxE"
         max="31"
         min="1"
         name="day"
@@ -48,7 +48,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
-        class="sc-htpNat sc-bZQynM dkwEsv"
+        class="sc-htpNat sc-bZQynM dnLTFo"
         name="year"
         pattern="[0-9]*"
         placeholder="Year"
@@ -77,7 +77,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
       tabindex="-1"
     >
       <select
-        class="sc-EHOje fMaGOM sc-ifAKCX iaznAR"
+        class="sc-EHOje fMaGOM sc-ifAKCX gSULKo"
         id="test"
       >
         <option
@@ -142,7 +142,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </option>
       </select>
       <input
-        class="sc-htpNat sc-bZQynM dkwEsv"
+        class="sc-htpNat sc-bZQynM dnLTFo"
         pattern="[0-9]*"
         placeholder="Year"
         type="number"

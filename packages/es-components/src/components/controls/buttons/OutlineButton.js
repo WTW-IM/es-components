@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import tinycolor from 'tinycolor2';
 
 import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled.button`
-  background-color: ${props => props.variant.bgColor};
-  border: 2px solid ${props => props.variant.borderColor};
+  background-color: ${props => props.colors.bgColor};
+  border: 2px solid ${props => props.colors.textColor};
   border-radius: ${props => props.buttonSize.borderRadius};
   box-sizing: border-box;
-  color: ${props => props.variant.textColor};
+  color: ${props => props.colors.textColor};
   cursor: pointer;
   display: block;
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
   line-height: ${props =>
-    props.buttonSize.lineHeight || props.theme.sizes.baseLineHeight};
+    props.buttonSize.lineHeight || props.theme.font.baseLineHeight};
   min-width: 100px;
   outline: none;
   padding-bottom: ${props => props.buttonSize.paddingBottom};
@@ -27,7 +28,10 @@ const StyledButton = styled.button`
   text-decoration: none;
   text-transform: ${props =>
     props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
-  transition: background-color 150ms linear, color 150ms linear;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  user-select: none;
+  vertical-align: middle;
   white-space: nowrap;
   width: 100%;
 
@@ -36,33 +40,45 @@ const StyledButton = styled.button`
     width: ${props => (props.block ? '100%' : 'auto')};
   }
 
-  &:focus,
-  &:focus-within {
-    box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
+  &:focus {
+    box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }
 
   &:hover {
-    background-color: ${props => props.variant.hoverBgColor};
-    color: ${props => props.variant.hoverTextColor};
+    background-color: ${props => props.colors.textColor};
+    color: ${props => props.colors.hoverTextColor};
   }
 
-  &:active {
-    background-color: ${props => props.variant.activeBgColor};
-    color: ${props => props.variant.activeTextColor};
+  &:active,
+  &.pressed {
+    background-color: ${props => props.colors.textColor};
+    color: ${props => props.colors.hoverTextColor};
+  }
+
+  &.pressed {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active:focus {
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25),
+      0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }
 
   &[disabled] {
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+    color: #ccc;
     cursor: not-allowed;
-    opacity: 0.65;
+
+    &:hover {
+      background-color: #e6e6e6;
+      border-color: #e6e6e6;
+      color: #ccc;
+    }
 
     > * {
       pointer-events: none;
     }
-  }
-
-  &[disabled]:hover {
-    color: ${props => props.variant.textColor};
-    background-color: ${props => props.variant.bgColor};
   }
 `;
 
@@ -71,13 +87,30 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];
   const variant = theme.buttonStyles.outlineButton.variant[styleType];
+  const isInheritedStyle = styleType === 'inherited';
+
+  const focusBoxShadowColor = tinycolor.mix(
+    variant.bgColor,
+    theme.colors.black,
+    14
+  );
+  focusBoxShadowColor.setAlpha(0.5);
+
+  const buttonColors = {
+    textColor: isInheritedStyle ? 'inherited' : variant.bgColor,
+    bgColor: isInheritedStyle ? 'inherited' : theme.colors.white,
+    hoverTextColor: isInheritedStyle ? 'inherited' : theme.colors.white,
+    focusBoxShadowColor: isInheritedStyle
+      ? theme.colors.gray4
+      : focusBoxShadowColor.toRgbString()
+  };
 
   return (
     <StyledButton
       ref={ref}
       block={block}
       buttonSize={buttonSize}
-      variant={variant}
+      colors={buttonColors}
       type="button"
       {...other}
     >

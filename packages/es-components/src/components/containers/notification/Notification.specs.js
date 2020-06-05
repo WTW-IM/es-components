@@ -26,6 +26,22 @@ it('notification prepends icon when includeIcon is true', () => {
   expect(container.querySelector('i')).not.toBeNull();
 });
 
+it('can take an extra className', () => {
+  const { container } = renderWithTheme(
+    <Notification type="success" className="my-success" />
+  );
+  expect(container.querySelector('.my-success')).not.toBeNull();
+});
+
+it('can take styles', () => {
+  const { container } = renderWithTheme(
+    <Notification type="success" style={{ color: 'blue' }} />
+  );
+  const notificationDiv = container.querySelector('div');
+  const styles = window.getComputedStyle(notificationDiv);
+  expect(styles.color).toEqual('blue');
+});
+
 describe('dismissable notifications', () => {
   it('removes notification when dismiss button is clicked', () => {
     const { container, getByText } = renderWithTheme(

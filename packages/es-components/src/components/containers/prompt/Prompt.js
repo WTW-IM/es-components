@@ -20,29 +20,24 @@ const StyledIcon = styled(Icon)`
 const ContentWrapper = styled.div`
   align-items: center;
   background-color: ${promptProps => promptProps.bgColor};
+  color: black;
   border-radius: 2px;
-  color: ${promptProps => promptProps.textColor};
   display: block;
   margin-bottom: 25px;
   padding: 15px;
 `;
 
 const Content = styled.div`
+  font-size: 18px;
   align-self: center;
   word-break: break-word;
 `;
 
-const ReadAloudLabel = styled(Label)`
+const BannerLabel = styled(Label)`
   letter-spacing: 0.5px;
   font-size: 20px;
   font-weight: 500;
-  color: black;
-`;
-
-const DoNotReadAloudLabel = styled(Label)`
-  font-weight: semi-bold;
-  font-size: 18px;
-  color: black;
+  color: ${promptProps => promptProps.bannerTextColor};
 `;
 
 const Prompt = props => {
@@ -52,13 +47,20 @@ const Prompt = props => {
     ? theme.promptStyles[PromptType.readAloud]
     : theme.promptStyles[PromptType.doNotReadAloud];
   const inlineIconText = isContentReadAloud ? (
-    <ReadAloudLabel>Read Aloud</ReadAloudLabel>
+    <BannerLabel bannerTextColor={promptStyles.bannerTextColor}>
+      Read Aloud
+    </BannerLabel>
   ) : (
-    <DoNotReadAloudLabel>Do Not Read Aloud</DoNotReadAloudLabel>
+    <BannerLabel bannerTextColor={promptStyles.bannerTextColor}>
+      Do Not Read Aloud
+    </BannerLabel>
   );
   return (
     <React.Fragment>
-      <IconWrapper bannerBgColor={promptStyles.bannerBgColor}>
+      <IconWrapper
+        bannerBgColor={promptStyles.bannerBgColor}
+        textColor={promptStyles.textColor}
+      >
         <StyledIcon
           name={promptStyles.iconName}
           iconColor={promptStyles.iconColor}
@@ -66,10 +68,7 @@ const Prompt = props => {
         />
         {inlineIconText}
       </IconWrapper>
-      <ContentWrapper
-        bgColor={promptStyles.bgColor}
-        color={promptStyles.textColor}
-      >
+      <ContentWrapper bgColor={promptStyles.bgColor}>
         <Content>{children}</Content>
       </ContentWrapper>
     </React.Fragment>

@@ -175,15 +175,17 @@ const theme = {
     readAloud: {
       bgColor: '#FDE8DE',
       bannerBgColor: '#FF6310',
-      textColor: black,
-      iconColor: black,
+      bannerTextColor: white,
+      textColor: white,
+      iconColor: white,
       iconName: 'agent'
     },
     doNotReadAloud: {
-      bgColor: gray1,
-      bannerBgColor: gray1,
-      textColor: black,
-      iconColor: black,
+      bgColor: '#E0F4F4',
+      bannerBgColor: '#0073B6',
+      bannerTextColor: white,
+      textColor: white,
+      iconColor: white,
       iconName: 'no-symbol'
     }
   },

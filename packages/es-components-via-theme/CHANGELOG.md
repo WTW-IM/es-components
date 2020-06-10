@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.4.0](https://github.com/WTW-IM/es-components/compare/v21.3.1...v21.4.0) (2020-06-10)
+
+
+### New
+
+* adding the IconButton component ([95ff055f3669cc96fa4f45665ea503f03c5e50cf](https://github.com/WTW-IM/es-components/commit/95ff055f3669cc96fa4f45665ea503f03c5e50cf))
+
+
+
+
+
 # [21.3.0](https://github.com/WTW-IM/es-components/compare/v21.2.2...v21.3.0) (2020-06-05)
 
 

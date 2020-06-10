@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.3.1](https://github.com/wtw-im/es-components/compare/v21.3.0...v21.3.1) (2020-06-10)
+
+
+### Fix
+
+* logic uses white for base only notifications ([4cac7041c8d9f11764f4950a29942f143ed74fbd](https://github.com/wtw-im/es-components/commit/4cac7041c8d9f11764f4950a29942f143ed74fbd))
+
+
+
+
+
 # [21.3.0](https://github.com/wtw-im/es-components/compare/v21.2.2...v21.3.0) (2020-06-05)
 
 

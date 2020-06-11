@@ -326,9 +326,9 @@ export function ProgressItem({
 
   return (
     <ProgressLi numberOfSteps={numberOfSteps}>
-        <ProgressItemType {...listItemProps}>
-          <span>{label}</span>
-        </ProgressItemType>
+      <ProgressItemType {...listItemProps}>
+        <span>{label}</span>
+      </ProgressItemType>
     </ProgressLi>
   );
 }

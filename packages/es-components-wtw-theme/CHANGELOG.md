@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.3.0](https://github.com/WTW-IM/es-components/compare/v21.2.2...v21.3.0) (2020-06-05)
+
+
+### New
+
+* remove media query and update prop (refs TW-56968) ([e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff](https://github.com/WTW-IM/es-components/commit/e02e359cd41f9d384ee8a5e7ed0cce3ba3f6e2ff))
+
+### Update
+
+* update Prompt colors (refs: TW-56968) ([a2e59c522b96e5c7d48b03a0ef82ea69cd27c6d6](https://github.com/WTW-IM/es-components/commit/a2e59c522b96e5c7d48b03a0ef82ea69cd27c6d6))
+
+
+
+## [19.0.107](https://github.com/WTW-IM/es-components/compare/v19.0.106...v19.0.107) (2019-12-12)
+
+
+### Update
+
+* warning sign uses circle instead of triangle ([8d608022771d51474c66221d9a57b18a8269c80e](https://github.com/WTW-IM/es-components/commit/8d608022771d51474c66221d9a57b18a8269c80e))
+
+
+
+
+
 ## [21.0.4](https://github.com/WTW-IM/es-components/compare/v21.0.3...v21.0.4) (2020-04-17)
 
 

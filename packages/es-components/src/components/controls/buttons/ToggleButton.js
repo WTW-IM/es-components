@@ -34,7 +34,11 @@ function ToggleButton(props) {
       size={size}
       block={block}
       isOutline={isOutline}
-      className={isPressed ? 'pressed' : undefined}
+      className={
+        isPressed
+          ? `${buttonProps.className || ''} pressed`
+          : buttonProps.className
+      }
       variant={styles.variant[styleType]}
       aria-pressed={isPressed}
     >

@@ -6,10 +6,10 @@ exports[`builds a ProgressTracker 1`] = `
   data-testid="progress-tracker"
 >
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH sc-EHOje enaMrX"
+      class="sc-bwzfXH sc-EHOje jpSqsf"
       disabled=""
     >
       <span>
@@ -18,10 +18,10 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fZOxh"
+      class="sc-bwzfXH fthbAe"
       disabled=""
     >
       <span>
@@ -30,10 +30,10 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fZOxh"
+      class="sc-bwzfXH fthbAe"
       disabled=""
     >
       <span>
@@ -50,10 +50,10 @@ exports[`builds a ProgressTracker 2`] = `
   data-testid="progress-tracker"
 >
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH sc-EHOje enaMrX"
+      class="sc-bwzfXH sc-EHOje jpSqsf"
       disabled=""
     >
       <span>
@@ -62,10 +62,10 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fZOxh"
+      class="sc-bwzfXH fthbAe"
       disabled=""
     >
       <span>
@@ -74,10 +74,10 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fZOxh"
+      class="sc-bwzfXH fthbAe"
       disabled=""
     >
       <span>
@@ -94,10 +94,10 @@ exports[`builds a ProgressTracker 3`] = `
   data-testid="progress-tracker"
 >
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH sc-EHOje enaMrX"
+      class="sc-bwzfXH sc-EHOje jpSqsf"
       disabled=""
     >
       <span>
@@ -106,10 +106,10 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fZOxh"
+      class="sc-bwzfXH fthbAe"
       disabled=""
     >
       <span>
@@ -118,10 +118,10 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-bZQynM fRYQzq"
+    class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fZOxh"
+      class="sc-bwzfXH fthbAe"
       disabled=""
     >
       <span>

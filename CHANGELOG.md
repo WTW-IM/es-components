@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.4.2](https://github.com/WTW-IM/es-components/compare/v21.4.1...v21.4.2) (2020-06-11)
+
+
+### Fix
+
+* Progress tracker Steps mobile styling (fixes: WE-8779) ([5c6b3a6e1766eb83a7f41714c5e168929bf4a07f](https://github.com/WTW-IM/es-components/commit/5c6b3a6e1766eb83a7f41714c5e168929bf4a07f))
+* Progress tracker Steps mobile styling (fixes: WE-8779) ([fb32e672d17570652cdb2d7de9a0d52a2dabc4ea](https://github.com/WTW-IM/es-components/commit/fb32e672d17570652cdb2d7de9a0d52a2dabc4ea))
+
+
+
+
+
 ## [21.4.1](https://github.com/WTW-IM/es-components/compare/v21.4.0...v21.4.1) (2020-06-11)
 
 

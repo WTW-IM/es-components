@@ -9,7 +9,7 @@ exports[`builds a ProgressTracker 1`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH sc-EHOje jpSqsf"
+      class="sc-bwzfXH sc-EHOje gfUYPG"
       disabled=""
     >
       <span>
@@ -21,7 +21,7 @@ exports[`builds a ProgressTracker 1`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fthbAe"
+      class="sc-bwzfXH bVGfsV"
       disabled=""
     >
       <span>
@@ -33,7 +33,7 @@ exports[`builds a ProgressTracker 1`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fthbAe"
+      class="sc-bwzfXH bVGfsV"
       disabled=""
     >
       <span>
@@ -53,7 +53,7 @@ exports[`builds a ProgressTracker 2`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH sc-EHOje jpSqsf"
+      class="sc-bwzfXH sc-EHOje gfUYPG"
       disabled=""
     >
       <span>
@@ -65,7 +65,7 @@ exports[`builds a ProgressTracker 2`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fthbAe"
+      class="sc-bwzfXH bVGfsV"
       disabled=""
     >
       <span>
@@ -77,7 +77,7 @@ exports[`builds a ProgressTracker 2`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fthbAe"
+      class="sc-bwzfXH bVGfsV"
       disabled=""
     >
       <span>
@@ -97,7 +97,7 @@ exports[`builds a ProgressTracker 3`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH sc-EHOje jpSqsf"
+      class="sc-bwzfXH sc-EHOje gfUYPG"
       disabled=""
     >
       <span>
@@ -109,7 +109,7 @@ exports[`builds a ProgressTracker 3`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fthbAe"
+      class="sc-bwzfXH bVGfsV"
       disabled=""
     >
       <span>
@@ -121,7 +121,7 @@ exports[`builds a ProgressTracker 3`] = `
     class="sc-bZQynM hGLGWN"
   >
     <button
-      class="sc-bwzfXH fthbAe"
+      class="sc-bwzfXH bVGfsV"
       disabled=""
     >
       <span>

@@ -74,7 +74,6 @@ const BasicProgressButton = styled.button`
   margin-top: ${() => getCenterTopPosition(ACTIVE, INACTIVE)}px;
   padding: 0;
   text-align: center;
-  margin: 0 auto;
   
   &:active,
   &:hover,
@@ -85,6 +84,7 @@ const BasicProgressButton = styled.button`
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     font-size: 18px;
     margin-top: 0;
+    margin: 0 auto;
   }
 
   span {

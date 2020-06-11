@@ -8,6 +8,7 @@ import RadioGroup from '../../controls/radio-buttons/RadioGroup';
 import RadioButton from '../../controls/radio-buttons/RadioButton';
 import { PromptType } from './PromptType';
 import Prompt from './Prompt';
+import formatMessage from 'format-message';
 
 const [recordConversation, setStateForQuestion] = useState('');
 const radioOnChange = target => {
@@ -24,24 +25,31 @@ function getDate() {
 
 <React.Fragment>
   <Prompt isContentReadAloud={true}>
-    <Control orientation='inline'>
-      <Fieldset legendContent={`My name is Mr/Mrs. Agent. Today is ${getDate()}. This call will be recorded. Do I have your permission to record this conversation to confirm your enrollment?`}>
-        <RadioGroup
-          name='recordConversation'
-          onChange={radioOnChange}
-          selectedValue={recordConversation}
-        >
-        <RadioButton value='recordConversationYes'>Yes</RadioButton>
-        <RadioButton value='recordConversationNo'>No</RadioButton>
-        </RadioGroup>
-      </Fieldset>
-    </Control>
+    <div>
+      {formatMessage(`My name is Mr/Mrs. Agent. Today is {today}. This call will be recorded. Do I have your permission to record this conversation to confirm your enrollment?`, { today: getDate() })}
+    </div>
+    <div style={{'display': 'inline-flex', 'padding': '5px 0 0 5px'}}>
+      <RadioGroup
+        name='recordConversation'
+        onChange={radioOnChange}
+        selectedValue={recordConversation}
+      >
+      <RadioButton value='recordConversationYes'>{formatMessage('Yes')}</RadioButton>
+      <RadioButton value='recordConversationNo'>{formatMessage('No')}</RadioButton>
+      </RadioGroup>
+    </div>
   </Prompt>
   <Prompt isContentReadAloud={false}>
-    <span>Statement to the agent that does not need to be read aloud.</span>
+    <span>{formatMessage('Statement to the agent that does not need to be read aloud.')}</span>
   </Prompt>
   <Prompt>
-    <span>Not passing <strong>isContentReadAloud</strong> defaults to 'Read Aloud'</span>
+     <span>
+      {formatMessage.rich("Not passing <s>isContentReadAloud</s> defaults to 'Read Aloud'",
+        {
+          s: ({ children }) => <strong key="bold">{children}</strong>
+        })
+      }
+    </span>
   </Prompt>
 </React.Fragment>
 ```

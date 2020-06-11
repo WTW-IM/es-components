@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.4.0](https://github.com/WTW-IM/es-components/compare/v21.3.1...v21.4.0) (2020-06-10)
+
+
+### New
+
+* adding the IconButton component ([95ff055f3669cc96fa4f45665ea503f03c5e50cf](https://github.com/WTW-IM/es-components/commit/95ff055f3669cc96fa4f45665ea503f03c5e50cf))
+
+
+
+
+
+# [21.3.0](https://github.com/WTW-IM/es-components/compare/v21.2.2...v21.3.0) (2020-06-05)
+
+
+### New
+
+* prompt for read aloud and do not read aloud text. (refs TW-56968) ([cc2692d8113406b1495b3b1873067272f9b62311](https://github.com/WTW-IM/es-components/commit/cc2692d8113406b1495b3b1873067272f9b62311))
+
+### Update
+
+* update Prompt colors (refs: TW-56968) ([a2e59c522b96e5c7d48b03a0ef82ea69cd27c6d6](https://github.com/WTW-IM/es-components/commit/a2e59c522b96e5c7d48b03a0ef82ea69cd27c6d6))
+
+
+
+## [19.0.107](https://github.com/WTW-IM/es-components/compare/v19.0.106...v19.0.107) (2019-12-12)
+
+
+### Update
+
+* warning sign uses circle instead of triangle ([8d608022771d51474c66221d9a57b18a8269c80e](https://github.com/WTW-IM/es-components/commit/8d608022771d51474c66221d9a57b18a8269c80e))
+
+
+
+
+
 ## [21.0.4](https://github.com/WTW-IM/es-components/compare/v21.0.3...v21.0.4) (2020-04-17)
 
 

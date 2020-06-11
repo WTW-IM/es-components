@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   box-sizing: border-box;
   color: ${props => props.colors.textColor};
   cursor: pointer;
-  display: inline-block;
+  display: ${props => (props.mobileBlock ? 'block' : 'inline-block')};
   font-family: inherit;
   font-size: ${props => props.buttonSize.fontSize};
   font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
@@ -40,6 +40,7 @@ const StyledButton = styled.button`
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+  width: ${props => (props.mobileBlock ? '100%' : 'auto')};
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     display: ${props => (props.block ? 'block' : 'inline-block')};
@@ -98,13 +99,24 @@ const StyledButton = styled.button`
 `;
 
 const Button = React.forwardRef(function Button(
-  { children, styleType, size, block, flatLeftEdge, flatRightEdge, ...other },
+  {
+    children,
+    styleType,
+    size,
+    block,
+    mobileBlock,
+    flatLeftEdge,
+    flatRightEdge,
+    ...other
+  },
   ref
 ) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
   const variant = theme.buttonStyles.button.variant[styleType];
   const isInheritedStyle = styleType === 'inherited';
+  const mobileBlockSetting =
+    flatLeftEdge || flatRightEdge ? false : mobileBlock;
 
   const defaultRadius = buttonSize.borderRadius;
   const borderRadii = {
@@ -168,6 +180,7 @@ const Button = React.forwardRef(function Button(
     <StyledButton
       type="button"
       block={block}
+      mobileBlock={mobileBlockSetting}
       buttonSize={buttonSize}
       colors={buttonColors}
       ref={ref}
@@ -186,6 +199,8 @@ Button.propTypes = {
   size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,
+  /** Override the default block mobile style */
+  mobileBlock: PropTypes.bool,
   /** Styles the Button with a flat left edge */
   flatLeftEdge: PropTypes.bool,
   /** Styles the Button with a flat right edge */
@@ -195,6 +210,7 @@ Button.propTypes = {
 Button.defaultProps = {
   styleType: 'default',
   block: false,
+  mobileBlock: true,
   size: 'default',
   flatLeftEdge: false,
   flatRightEdge: false

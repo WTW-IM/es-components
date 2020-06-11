@@ -227,7 +227,14 @@ const regular = {
   'im-icon-clear-filters': '6e1',
   'im-icon-glasses': '6e2',
   'im-icon-purchase-order': '6e3',
-  'im-icon-urgent-message': '6e4'
+  'im-icon-urgent-message': '6e4',
+  'im-icon-desktop': '6e5',
+  'im-icon-confusion': '6e6',
+  'im-icon-idea': '6e7',
+  'im-icon-spouse': '6e8',
+  'im-icon-play': '6e9',
+  'im-icon-pause': '6ea',
+  'im-icon-skip-to-start': '6eb'
 };
 
 export { regular };

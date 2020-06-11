@@ -68,7 +68,7 @@ const advisorLight = '#fee7de';
 // brand colors
 const primary1 = '#00a0d2'; // used by: spinner, drawerPanel
 const primary2 = '#00c389'; // used by: spinner
-const primary3 = '#c110a0'; // used by: spinner, modalHeader, breadcrumb, Nav, progressTracker
+const primary3 = '#c110a0'; // used by: spinner, modalHeader, breadcrumb, Nav, progressTracker, IconButton
 const secondary1 = '#5a0c6f'; // used by spinner, outlineButton
 const secondary2 = '#717171';
 
@@ -175,15 +175,17 @@ const theme = {
     readAloud: {
       bgColor: '#FDE8DE',
       bannerBgColor: '#FF6310',
-      textColor: black,
-      iconColor: black,
+      bannerTextColor: white,
+      textColor: white,
+      iconColor: white,
       iconName: 'agent'
     },
     doNotReadAloud: {
-      bgColor: gray1,
-      bannerBgColor: gray1,
-      textColor: black,
-      iconColor: black,
+      bgColor: '#E0F4F4',
+      bannerBgColor: '#0073B6',
+      bannerTextColor: white,
+      textColor: white,
+      iconColor: white,
       iconName: 'no-symbol'
     }
   },

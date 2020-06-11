@@ -35,6 +35,7 @@ export ToggleButton from './components/controls/buttons/ToggleButton';
 export DropdownButton from './components/controls/buttons/DropdownButton';
 export OutlineButton from './components/controls/buttons/OutlineButton';
 export LinkButton from './components/controls/buttons/LinkButton';
+export IconButton from './components/controls/buttons/IconButton';
 export PopoverLink from './components/controls/buttons/PopoverLink';
 export AnswerButton from './components/controls/answer-group/AnswerButton';
 export AnswerGroup from './components/controls/answer-group/AnswerGroup';

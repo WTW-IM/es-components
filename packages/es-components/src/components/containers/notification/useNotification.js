@@ -104,7 +104,7 @@ export function useNotification(styleType = 'base') {
     const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
     const iconColor =
-      styleType === 'light' ? theme.colors[type] : theme.colors.white;
+      styleType === 'base' ? theme.colors.white : theme.colors[type];
     const notificationContentProps = {
       color,
       iconName,

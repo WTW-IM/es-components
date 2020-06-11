@@ -304,14 +304,14 @@ function getStepState(isActiveStep, isPastStep, canClickFutureStep) {
 }
 
 export function ProgressItem({
-                               active,
-                               isPastStep,
-                               numberOfSteps,
-                               onPastStepClicked,
-                               canClickFutureStep,
-                               label,
-                               showNav
-                             }) {
+   active,
+   isPastStep,
+   numberOfSteps,
+   onPastStepClicked,
+   canClickFutureStep,
+   label,
+   showNav
+ }) {
   let itemType;
   if (isPastStep || active || canClickFutureStep) {
     itemType = getStepState(active, isPastStep, canClickFutureStep);
@@ -325,11 +325,11 @@ export function ProgressItem({
   };
 
   return (
-      <ProgressLi numberOfSteps={numberOfSteps}>
+    <ProgressLi numberOfSteps={numberOfSteps}>
         <ProgressItemType {...listItemProps}>
           <span>{label}</span>
         </ProgressItemType>
-      </ProgressLi>
+    </ProgressLi>
   );
 }
 

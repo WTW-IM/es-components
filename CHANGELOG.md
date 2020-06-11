@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.4.1](https://github.com/WTW-IM/es-components/compare/v21.4.0...v21.4.1) (2020-06-11)
+
+
+### Fix
+
+* ProgressTracker step widths too big (fixes: WE-8779) ([ae5995d616bd21ff311895bb3e889d0798f948c8](https://github.com/WTW-IM/es-components/commit/ae5995d616bd21ff311895bb3e889d0798f948c8))
+* ProgressTracker step widths too big (fixes: WE-8779) ([75fde9f599ef7c8c6697dfc19b23ea3349687cb3](https://github.com/WTW-IM/es-components/commit/75fde9f599ef7c8c6697dfc19b23ea3349687cb3))
+* ProgressTracker step widths too big (fixes: WE-8779) ([5dcf83c3a643dfdc34d1e34854150d20d8fff3e7](https://github.com/WTW-IM/es-components/commit/5dcf83c3a643dfdc34d1e34854150d20d8fff3e7))
+
+
+
+
+
 # [21.4.0](https://github.com/WTW-IM/es-components/compare/v21.3.1...v21.4.0) (2020-06-10)
 
 

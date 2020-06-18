@@ -2,69 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
+import OutlineButton from './OutlineButton';
+import { useTheme } from '../../util/useTheme';
+import genName from '../../util/generateAlphaName';
 
-const IconWithBorder = styled(Icon)`
-  background-color: ${props => props.theme.colors.white};
-  border: 2px solid;
-  border-color: ${props => props.theme.brandColors.primary3};
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: ${props => props.maxWidth};
+`;
+
+const StyledIconButton = styled(OutlineButton)`
+  background-color: ${props => props.isHighlighted && props.activeColor};
   border-radius: 50%;
-  color: ${props => props.theme.brandColors.primary3};
-  padding: 5px;
-`;
-const HighlightedIconWithBorder = styled(IconWithBorder)`
-  background-color: ${props => props.theme.brandColors.primary3};
-  color: ${props => props.theme.colors.white};
-`;
-const ChildrenSpan = styled.span`
-  color: ${props => props.theme.colors.gray9};
-  font-size: ${props => props.fontSize}px;
+  border-width: 3px;
+  color: ${props => props.isHighlighted && props.theme.colors.white};
+  display: inline-block;
   font-weight: normal;
+  min-width: 0;
+  padding: 13px 14px;
+  width: auto;
+`;
+
+const IncompleteButton = styled(StyledIconButton)`
+  background-color: ${props =>
+    props.isHighlighted ? props.theme.colors.gray5 : props.theme.colors.white};
+  border-left: 3px dashed ${props => props.theme.colors.gray5};
+  color: ${props =>
+    props.isHighlighted ? props.theme.colors.white : props.theme.colors.gray5};
+  transform: rotate(45deg);
+
+  &:hover,
+  &:active {
+    background-color: ${props => props.theme.colors.gray6};
+    color: ${props => props.theme.colors.white};
+  }
+
+  & i {
+    transform: rotate(-45deg) translate(-1px, 1px);
+  }
+`;
+
+const IconText = styled.span`
+  font-size: ${props => props.fontSize}px;
+  font-weight: ${props => (props.isHighlighted ? 'bold' : 'normal')};
+  margin-top: 6px;
   max-width: ${props => props.maxWidth};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-const HighlightedChildrenSpan = styled(ChildrenSpan)`
-  font-weight: bold;
-`;
-const ContainerButton = styled.button`
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  border-bottom-left-radius: ${props => props.borderRadii};
-  border-bottom-right-radius: ${props => props.borderRadii};
-  border-top-left-radius: ${props => props.borderRadii};
-  border-top-right-radius: ${props => props.borderRadii};
-  box-shadow: none;
-  cursor: ${props => (props.disabled ? '' : 'pointer')};
-  display: flex;
-  flex-direction: column;
-  font-family: inherit;
-  position: relative;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-  &:hover:enabled:not(:focus),
-  &:focus:enabled {
-    box-shadow: 0 0 0 0.2rem ${props => props.theme.brandColors.primary3};
-    outline: 0;
-  }
-
-  &:active:enabled ${IconWithBorder} {
-    background-color: ${props => props.theme.brandColors.primary3};
-    color: ${props => props.theme.colors.white};
-  }
-  &:active:enabled ${HighlightedIconWithBorder} {
-    background-color: ${props => props.theme.colors.white};
-    color: ${props => props.theme.brandColors.primary3};
-  }
-
-  &:active:enabled ${ChildrenSpan} {
-    font-weight: bold;
-  }
-  &:active:enabled ${HighlightedChildrenSpan} {
-    font-weight: normal;
-  }
 `;
 
 function IconButton({
@@ -72,63 +59,76 @@ function IconButton({
   iconSize,
   childrenFontSize,
   isHighlighted,
+  isIncomplete,
   disabled,
   maxWidth,
   onClick,
-  borderRadiiSize,
+  styleType,
   children,
   ...otherProps
 }) {
-  const CurrentIcon = isHighlighted
-    ? HighlightedIconWithBorder
-    : IconWithBorder;
-  const CurrentSpan = isHighlighted ? HighlightedChildrenSpan : ChildrenSpan;
+  const CurrentButton = isIncomplete ? IncompleteButton : StyledIconButton;
+  const theme = useTheme();
+  const textId = genName();
+  const buttonStyle = theme.buttonStyles.outlineButton.variant[styleType];
 
   return (
-    <ContainerButton
-      onClick={onClick}
-      isHighlighted={isHighlighted}
-      disabled={disabled}
-      borderRadii={borderRadiiSize}
-      {...otherProps}
-    >
-      <CurrentIcon
-        name={iconName}
-        size={iconSize}
+    <Container maxWidth={maxWidth} {...otherProps}>
+      <CurrentButton
+        onClick={onClick}
+        styleType={styleType}
         isHighlighted={isHighlighted}
-      />
-      <CurrentSpan
+        disabled={disabled}
+        activeColor={buttonStyle.bgColor}
+        aria-describedby={textId}
+      >
+        <Icon name={iconName} size={iconSize} />
+      </CurrentButton>
+      <IconText
+        id={textId}
         isHighlighted={isHighlighted}
         maxWidth={maxWidth}
         fontSize={childrenFontSize}
       >
         {children}
-      </CurrentSpan>
-    </ContainerButton>
+      </IconText>
+    </Container>
   );
 }
 
 IconButton.propTypes = {
+  /** Used to specify the icon used within the button */
   iconName: PropTypes.string.isRequired,
+  /** The font size of the inner icon */
   iconSize: PropTypes.number,
+  /** The font size of the text displayed below the icon */
   childrenFontSize: PropTypes.number,
+  /** Determines whether the icon is shown with a solid background by default */
   isHighlighted: PropTypes.bool,
+  /** Displays the icon with a style representing an incomplete state */
+  isIncomplete: PropTypes.bool,
+  /** Disables the click event on the button */
   disabled: PropTypes.bool,
+  /** Sets the max width for the button, affects text ellipsis */
   maxWidth: PropTypes.string,
-  borderRadiiSize: PropTypes.string,
+  /** Onclick function used by the button */
   onClick: PropTypes.func,
+  /** OutlineButton styleType (from theme) used for the icon */
+  styleType: PropTypes.string,
+  /** Content to be displayed below the icon */
   children: PropTypes.node
 };
 
 IconButton.defaultProps = {
   isHighlighted: false,
-  iconSize: 32,
-  childrenFontSize: 15,
+  isIncomplete: false,
+  iconSize: 45,
+  childrenFontSize: 18,
   disabled: false,
-  maxWidth: '',
-  borderRadiiSize: '.25rem',
+  maxWidth: undefined,
   onClick: () => {},
-  children: null
+  styleType: 'magenta',
+  children: undefined
 };
 
 export default IconButton;

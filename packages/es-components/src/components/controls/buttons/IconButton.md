@@ -7,22 +7,16 @@ function IconButtonExample() {
     const [isHighlighted, setIsHighlighted] = React.useState(false);
 
     return (
-        <IconButton iconName="man" isHighlighted={isHighlighted} onClick={() => setIsHighlighted(!isHighlighted)}>Text</IconButton>
+      <div style={{width:'20%'}}>
+        <IconButton iconName="man" isHighlighted={isHighlighted} onClick={() => setIsHighlighted(!isHighlighted)}>Toggle Me</IconButton>
+      </div>
     );
 }
 
 <IconButtonExample/>
 ```
 
-You can highlight the IconButton to invert the colors and bold the text.
-
-```
-<div>
-  <IconButton iconName="woman" isHighlighted={true}>Text</IconButton>
-</div>
-```
-
-Disabling the button will prevent the onChange function from firing and remove some of the styling around clicking and hover.
+Using the `isIncomplete` prop will apply a style representing an incomplete state.
 
 ```
 import IconButton from './IconButton';
@@ -31,7 +25,9 @@ function IconButtonExample() {
     const [isHighlighted, setIsHighlighted] = React.useState(false);
 
     return (
-        <IconButton iconName="man" disabled isHighlighted={isHighlighted} onClick={() => setIsHighlighted(!isHighlighted)}>Text</IconButton>
+      <div style={{width:'20%'}}>
+        <IconButton iconName="man" isIncomplete isHighlighted={isHighlighted} onClick={() => setIsHighlighted(!isHighlighted)}>Text</IconButton>
+      </div>
     );
 }
 
@@ -41,10 +37,9 @@ function IconButtonExample() {
 Restricting the height will result in the the overflow getting cut off by ellipsis.
 
 ```
-<div>
+<div style={{display:'flex',justifyContent:'space-between',width:'50%'}}>
   <IconButton iconName="user" maxWidth="175px">Loooooooooooooooooooooooooooooooooooooooooooooooooooooong Texttttttttttttttttttttttttttttttttttttttttttttttttttttttt</IconButton>
-</div>
-<div>
+
   <IconButton iconName="user" isHighlighted={true} maxWidth="175px">Loooooooooooooooooooooooooooooooooooooooooooooooooooooong Texttttttttttttttttttttttttttttttttttttttttttttttttttttttt</IconButton>
 </div>
 ```
@@ -73,12 +68,30 @@ function IconButtonExample() {
     }
 
     return (
-      <>
-        <IconButton iconName="man" disabled={highlighted["one"]} isHighlighted={highlighted["one"]} onClick={() => changeHighlightedButton("one")}>One</IconButton>
-        <IconButton iconName="man" disabled={highlighted["two"]} isHighlighted={highlighted["two"]} onClick={() => changeHighlightedButton("two")}>Two</IconButton>
-        <IconButton iconName="man" disabled={highlighted["three"]} isHighlighted={highlighted["three"]} onClick={() => changeHighlightedButton("three")}>Three</IconButton>
-        <IconButton iconName="man" disabled={highlighted["four"]} isHighlighted={highlighted["four"]} onClick={() => changeHighlightedButton("four")}>Four</IconButton>
-      </>
+      <div style={{display:'flex',justifyContent:'space-between',width:'50%'}}>
+        <IconButton iconName="man" isHighlighted={highlighted["one"]} onClick={() => changeHighlightedButton("one")}>One</IconButton>
+        <IconButton iconName="man" isHighlighted={highlighted["two"]} onClick={() => changeHighlightedButton("two")}>Two</IconButton>
+        <IconButton isIncomplete iconName="man" isHighlighted={highlighted["three"]} onClick={() => changeHighlightedButton("three")}>Three</IconButton>
+        <IconButton iconName="man" isHighlighted={highlighted["four"]} onClick={() => changeHighlightedButton("four")}>Four</IconButton>
+      </div>
+    );
+}
+
+<IconButtonExample/>
+```
+
+Disabling the button will prevent the onChange function from firing and remove some of the styling around clicking and hover.
+
+```
+import IconButton from './IconButton';
+
+function IconButtonExample() {
+    const [isHighlighted, setIsHighlighted] = React.useState(false);
+
+    return (
+      <div style={{width:'20%'}}>
+        <IconButton disabled iconName="man" isHighlighted={isHighlighted} onClick={() => setIsHighlighted(!isHighlighted)}>Text</IconButton>
+      </div>
     );
 }
 

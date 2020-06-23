@@ -8,14 +8,15 @@ const MenuWrapper = styled.div`
   overflow: hidden;
   position: relative;
 `;
+
 const Menu = styled.div`
   alignitems: center;
   display: flex;
   height: 100%;
   position: relative;
   transition: transform 0.3s ease-in-out;
-  whitespace: noWrap;
-  zindex: 0;
+  white-space: nowrap;
+  z-index: 0;
 `;
 
 const ScrollIcon = styled.div`
@@ -26,14 +27,15 @@ const ScrollIcon = styled.div`
   outline: 0;
   position: absolute;
   top: 0;
-  zindex: 1;
+  z-index: 1;
 `;
+
 const ArrowContainer = styled.div`
   align-items: center;
-  background-color: white;
+  background-color: ${props => props.theme.colors.white};
   border-radius: 50%;
   box-shadow: 0 1px 1px ${props => props.theme.colors.boxShadowDark};
-  color: #444;
+  color: ${props => props.theme.colors.gray9};
   display: flex;
   padding: 0.5em;
 `;
@@ -44,6 +46,7 @@ const generateOnArrowKeyDownHandler = onKeyDown => event => {
     onKeyDown();
   }
 };
+
 const ArrowLeft = ({ onClick }) => (
   <ScrollIcon
     role="button"
@@ -57,9 +60,11 @@ const ArrowLeft = ({ onClick }) => (
     </ArrowContainer>
   </ScrollIcon>
 );
+
 ArrowLeft.propTypes = {
   onClick: PropTypes.func.isRequired
 };
+
 const ArrowRight = ({ onClick }) => (
   <ScrollIcon
     role="button"
@@ -73,11 +78,12 @@ const ArrowRight = ({ onClick }) => (
     </ArrowContainer>
   </ScrollIcon>
 );
+
 ArrowRight.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-function HorizontalScrollMenu({ windowWidth, children }) {
+function HorizontalScrollMenu({ windowWidth, children, slideAmount }) {
   const rootRef = useRef(null);
   const menuRef = useRef(null);
   const [rootWidth, setRootWidth] = useState(0);
@@ -122,6 +128,7 @@ function HorizontalScrollMenu({ windowWidth, children }) {
     setCursorXPosition(cursorX);
     setIsDragging(true);
   };
+
   const handleMoveEvent = moveEvent => {
     if (!hasOverflow || !isDragging) return;
 
@@ -145,29 +152,30 @@ function HorizontalScrollMenu({ windowWidth, children }) {
 
     setXPosition(newXPosition);
   };
+
   const handleUpEvent = () => {
     if (!hasOverflow || !isDragging) return;
 
     setIsDragging(false);
   };
 
-  const clickPositionChangeAmount = 100;
   const handleLeftClick = event => {
     event.stopPropagation();
     event.preventDefault();
 
-    let newXPosition = xPosition + clickPositionChangeAmount;
+    let newXPosition = xPosition + slideAmount;
     if (newXPosition > 0) {
       newXPosition = 0;
     }
 
     setXPosition(newXPosition);
   };
+
   const handleRightClick = event => {
     event.stopPropagation();
     event.preventDefault();
 
-    let newXPosition = xPosition - 100;
+    let newXPosition = xPosition - slideAmount;
     if (-newXPosition > menuWidth - rootWidth) {
       newXPosition = -(menuWidth - rootWidth);
     }
@@ -202,12 +210,16 @@ function HorizontalScrollMenu({ windowWidth, children }) {
 }
 
 HorizontalScrollMenu.propTypes = {
-  windowWidth: PropTypes.number.isRequired,
-  children: PropTypes.node
+  windowWidth: PropTypes.number,
+  children: PropTypes.node,
+  /** Set the number of pixels the contents will move when clicking left/right arrows */
+  slideAmount: PropTypes.number
 };
 
 HorizontalScrollMenu.defaultProps = {
-  children: null
+  windowWidth: undefined,
+  children: null,
+  slideAmount: 300
 };
 
 export default withWindowSize(HorizontalScrollMenu);

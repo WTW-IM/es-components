@@ -1,7 +1,7 @@
 ```
 import IconButton from '../../controls/buttons/IconButton';
 
-<HorizontalScrollMenu>
+<HorizontalScrollWrapper>
   <IconButton iconName="man" style={{width:'100px',margin:'1em'}} />
   <IconButton iconName="woman" style={{width:'100px',margin:'1em'}} />
   <IconButton iconName="man" style={{width:'100px',margin:'1em'}} />
@@ -14,5 +14,5 @@ import IconButton from '../../controls/buttons/IconButton';
   <IconButton iconName="woman" style={{width:'100px',margin:'1em'}} />
   <IconButton iconName="man" style={{width:'100px',margin:'1em'}} />
   <IconButton iconName="woman" style={{width:'100px',margin:'1em'}} />
-</HorizontalScrollMenu>
+</HorizontalScrollWrapper>
 ```

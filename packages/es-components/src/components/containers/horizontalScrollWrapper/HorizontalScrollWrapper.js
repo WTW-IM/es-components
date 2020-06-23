@@ -4,12 +4,12 @@ import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import withWindowSize from '../../util/withWindowSize';
 
-const MenuWrapper = styled.div`
+const OuterWrapper = styled.div`
   overflow: hidden;
   position: relative;
 `;
 
-const Menu = styled.div`
+const InnerWrapper = styled.div`
   alignitems: center;
   display: flex;
   height: 100%;
@@ -83,7 +83,7 @@ ArrowRight.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-function HorizontalScrollMenu({ windowWidth, children, slideAmount }) {
+function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
   const rootRef = useRef(null);
   const menuRef = useRef(null);
   const [rootWidth, setRootWidth] = useState(0);
@@ -184,8 +184,8 @@ function HorizontalScrollMenu({ windowWidth, children, slideAmount }) {
   };
 
   return (
-    <MenuWrapper ref={rootRef}>
-      <Menu
+    <OuterWrapper ref={rootRef}>
+      <InnerWrapper
         ref={menuRef}
         role="presentation"
         onMouseDown={handleDownEvent}
@@ -200,26 +200,26 @@ function HorizontalScrollMenu({ windowWidth, children, slideAmount }) {
         }}
       >
         {children}
-      </Menu>
+      </InnerWrapper>
       {hasOverflow && xPosition < 0 && <ArrowLeft onClick={handleLeftClick} />}
       {hasOverflow && -xPosition < menuWidth - rootWidth && (
         <ArrowRight onClick={handleRightClick} />
       )}
-    </MenuWrapper>
+    </OuterWrapper>
   );
 }
 
-HorizontalScrollMenu.propTypes = {
+HorizontalScrollWrapper.propTypes = {
   windowWidth: PropTypes.number,
   children: PropTypes.node,
   /** Set the number of pixels the contents will move when clicking left/right arrows */
   slideAmount: PropTypes.number
 };
 
-HorizontalScrollMenu.defaultProps = {
+HorizontalScrollWrapper.defaultProps = {
   windowWidth: undefined,
   children: null,
   slideAmount: 300
 };
 
-export default withWindowSize(HorizontalScrollMenu);
+export default withWindowSize(HorizontalScrollWrapper);

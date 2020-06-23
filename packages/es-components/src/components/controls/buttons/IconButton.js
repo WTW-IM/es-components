@@ -23,6 +23,7 @@ const StyledIconButton = styled(OutlineButton)`
   min-width: 0;
   padding: 13px 14px;
   width: auto;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const IncompleteButton = styled(StyledIconButton)`

@@ -34,7 +34,7 @@ function IconButtonExample() {
 <IconButtonExample/>
 ```
 
-Restricting the height will result in the the overflow getting cut off by ellipsis.
+Restricting the width will result in text overflow displayed by an ellipsis.
 
 ```
 <div style={{display:'flex',justifyContent:'space-between',width:'50%'}}>
@@ -44,7 +44,7 @@ Restricting the height will result in the the overflow getting cut off by ellips
 </div>
 ```
 
-Here's an example of having multiple buttons together and toggling between them.
+Here's an example of multiple buttons together and toggling between them.
 
 ```
 import IconButton from './IconButton';
@@ -80,7 +80,7 @@ function IconButtonExample() {
 <IconButtonExample/>
 ```
 
-Disabling the button will prevent the onChange function from firing and remove some of the styling around clicking and hover.
+Disabling the button will prevent the `onChange` function from firing and will remove the styling around clicking and hover.
 
 ```
 import IconButton from './IconButton';

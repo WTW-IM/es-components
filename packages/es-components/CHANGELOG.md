@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.4.5](https://github.com/wtw-im/es-components/compare/v21.4.4...v21.4.5) (2020-06-23)
+
+
+### Update
+
+* minor change to iconButton to remove a Chrome effect ([d45e2e4aea0295bb64014167bdb955060d903850](https://github.com/wtw-im/es-components/commit/d45e2e4aea0295bb64014167bdb955060d903850))
+
+
+
+
+
 ## [21.4.4](https://github.com/wtw-im/es-components/compare/v21.4.3...v21.4.4) (2020-06-23)
 
 

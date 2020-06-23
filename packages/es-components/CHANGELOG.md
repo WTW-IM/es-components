@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.4.4](https://github.com/wtw-im/es-components/compare/v21.4.3...v21.4.4) (2020-06-23)
+
+
+### Fix
+
+* pass class names through to modal ([90e8c8c2432121b12e382013930806b5a7d6adc2](https://github.com/wtw-im/es-components/commit/90e8c8c2432121b12e382013930806b5a7d6adc2))
+
+
+
+
+
 ## [21.4.3](https://github.com/wtw-im/es-components/compare/v21.4.2...v21.4.3) (2020-06-19)
 
 

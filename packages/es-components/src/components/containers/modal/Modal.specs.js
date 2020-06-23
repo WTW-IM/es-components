@@ -61,6 +61,12 @@ it('hides dismiss button when hideCloseButton is true', () => {
   expect(getByText('Header').parentElement.querySelector('button')).toBeNull();
 });
 
+it('passes through class names', () => {
+  const { container } = renderModal({ className: 'myclass' });
+  const element = container.parentElement.querySelector('.myclass');
+  expect(element).not.toBeNull();
+});
+
 describe('when ESC is pressed', () => {
   it('invokes onHide by default', () => {
     const onHide = jest.fn();

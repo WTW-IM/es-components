@@ -114,6 +114,7 @@ function Modal({
   show,
   size,
   parentSelector,
+  className,
   ...other
 }) {
   const ariaId = useUniqueId(other.id);
@@ -132,9 +133,9 @@ function Modal({
           <ModalContext.Provider value={{ onHide, ariaId }}>
             <ReactModal
               className={{
-                base: `modal-content  ${size}`,
-                afterOpen: 'modal-content--after-open',
-                beforeClose: 'modal-content--before-close'
+                base: `modal-content ${size} ${className || ''}`,
+                afterOpen: `modal-content--after-open ${className || ''}`,
+                beforeClose: `modal-content--before-close ${className || ''}`
               }}
               overlayClassName={{
                 base: 'background-overlay',
@@ -192,7 +193,8 @@ Modal.propTypes = {
   /** Sets the size of the modal */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /** Selects the parent */
-  parentSelector: PropTypes.func
+  parentSelector: PropTypes.func,
+  className: PropTypes.string
 };
 
 Modal.defaultProps = {
@@ -205,7 +207,8 @@ Modal.defaultProps = {
   show: false,
   size: 'medium',
   children: undefined,
-  parentSelector: null
+  parentSelector: null,
+  className: null
 };
 
 Modal.Header = Header;

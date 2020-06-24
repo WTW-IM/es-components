@@ -14,7 +14,6 @@ const InnerWrapper = styled.div`
   display: flex;
   height: 100%;
   position: relative;
-  transition: transform 0.3s ease-in-out;
   white-space: nowrap;
   z-index: 0;
 `;
@@ -196,7 +195,8 @@ function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
         onTouchMove={handleMoveEvent}
         onTouchEnd={handleUpEvent}
         style={{
-          transform: `translate3d(${xPosition}px, 0, 0)`
+          transform: `translate3d(${xPosition}px, 0, 0)`,
+          transition: `${isDragging ? '' : 'transform 0.3s ease-in-out'}`
         }}
       >
         {children}

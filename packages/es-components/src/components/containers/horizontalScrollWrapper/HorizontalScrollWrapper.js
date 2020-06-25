@@ -41,7 +41,7 @@ const ArrowContainer = styled.div`
 
 const generateOnArrowKeyDownHandler = onKeyDown => event => {
   const code = event.code.toLowerCase();
-  if (code === 'Enter' || code === 'Space') {
+  if (code === 'enter' || code === 'space') {
     onKeyDown();
   }
 };
@@ -169,7 +169,6 @@ function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
 
     setXPosition(newXPosition);
   };
-
   const handleRightClick = event => {
     event.stopPropagation();
     event.preventDefault();
@@ -180,6 +179,33 @@ function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
     }
 
     setXPosition(newXPosition);
+  };
+
+  const handleKeyEvent = event => {
+    const code = event.key.toLowerCase();
+    if (code !== 'tab') return;
+
+    const element = document.activeElement.parentElement;
+    const style = window.getComputedStyle
+      ? getComputedStyle(element, null)
+      : element.currentStyle;
+    const marginLeft = parseInt(style.marginLeft, 10) || 0;
+    const marginRight = parseInt(style.marginRight, 10) || 0;
+    const tabSlide = element.offsetWidth + marginLeft + marginRight;
+
+    if (event.shiftKey) {
+      let newXPosition = xPosition + tabSlide;
+      if (newXPosition > 0) {
+        newXPosition = 0;
+      }
+      setXPosition(newXPosition);
+    } else {
+      let newXPosition = xPosition - tabSlide;
+      if (-newXPosition > menuWidth - rootWidth) {
+        newXPosition = -(menuWidth - rootWidth);
+      }
+      setXPosition(newXPosition);
+    }
   };
 
   return (
@@ -194,6 +220,7 @@ function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
         onTouchStart={handleDownEvent}
         onTouchMove={handleMoveEvent}
         onTouchEnd={handleUpEvent}
+        onKeyUp={handleKeyEvent}
         style={{
           transform: `translate3d(${xPosition}px, 0, 0)`,
           transition: `${isDragging ? '' : 'transform 0.3s ease-in-out'}`

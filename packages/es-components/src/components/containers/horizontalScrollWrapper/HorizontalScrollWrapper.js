@@ -50,7 +50,7 @@ const ArrowLeft = ({ onClick }) => (
   <ScrollIcon
     role="button"
     tabIndex={0}
-    style={{ left: '0', textAlign: 'left' }}
+    css="left: 0; text-align: left;"
     onClick={onClick}
     onKeyDown={generateOnArrowKeyDownHandler(onClick)}
   >
@@ -68,7 +68,7 @@ const ArrowRight = ({ onClick }) => (
   <ScrollIcon
     role="button"
     tabIndex={0}
-    style={{ right: '0', textAlign: 'right' }}
+    css="right: 0; text-align: right;"
     onClick={onClick}
     onKeyDown={generateOnArrowKeyDownHandler(onClick)}
   >

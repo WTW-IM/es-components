@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.5.1](https://github.com/WTW-IM/es-components/compare/v21.5.0...v21.5.1) (2020-06-26)
+
+
+### Docs
+
+* detailed DateInput defaultValue usage ([336b6ba8c5d57419cfc66ad9cb6c347900474604](https://github.com/WTW-IM/es-components/commit/336b6ba8c5d57419cfc66ad9cb6c347900474604))
+
+### Update
+
+* allow additional props to pass through HorizontalScrollWrapper ([0828738f989a9a0238f0097d21d9f968da15e0a6](https://github.com/WTW-IM/es-components/commit/0828738f989a9a0238f0097d21d9f968da15e0a6))
+
+### Upgrade
+
+* Bump websocket-extensions in /packages/es-components ([422510e2ae7c84b027cce1162fed4bf7f3170df6](https://github.com/WTW-IM/es-components/commit/422510e2ae7c84b027cce1162fed4bf7f3170df6))
+
+
+
+
+
 # [21.5.0](https://github.com/WTW-IM/es-components/compare/v21.4.5...v21.5.0) (2020-06-26)
 
 

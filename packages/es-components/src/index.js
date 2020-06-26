@@ -22,6 +22,7 @@ export Prompt from './components/containers/prompt/Prompt';
 export Heading from './components/containers/heading/Heading';
 export Table from './components/containers/table/Table';
 export ResponsiveTable from './components/containers/table/ResponsiveTable';
+export HorizontalScrollWrapper from './components/containers/horizontalScrollWrapper/HorizontalScrollWrapper';
 
 export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';

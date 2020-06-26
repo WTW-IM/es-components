@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.5.0](https://github.com/WTW-IM/es-components/compare/v21.4.5...v21.5.0) (2020-06-26)
+
+
+### Docs
+
+* added some padding to horizontalScrollWrapper demo ([00b33103b3e53ab891136beffac9839db348765a](https://github.com/WTW-IM/es-components/commit/00b33103b3e53ab891136beffac9839db348765a))
+
+### New
+
+* adding a scrollable horizontal menu ([383b4a3e6a26408dfe545c865d22938e596affb5](https://github.com/WTW-IM/es-components/commit/383b4a3e6a26408dfe545c865d22938e596affb5))
+
+### Update
+
+* added slideAmount prop to horizontalscrollmenu ([eca32f5950322d1b69f2748d20aacc7fcb5102af](https://github.com/WTW-IM/es-components/commit/eca32f5950322d1b69f2748d20aacc7fcb5102af))
+* export new component ([c4bef0497117eaab034646137c4f6743a280261a](https://github.com/WTW-IM/es-components/commit/c4bef0497117eaab034646137c4f6743a280261a))
+* handle tabbing through contents ([9fa94938e335e3967476611c8aaddb240b494c5d](https://github.com/WTW-IM/es-components/commit/9fa94938e335e3967476611c8aaddb240b494c5d))
+* making the scrolling when dragging smoother ([9764e7fd682141f1288420cd899bdf48f62bb370](https://github.com/WTW-IM/es-components/commit/9764e7fd682141f1288420cd899bdf48f62bb370))
+* moved horizontalscrollmenu to horizontalscrollwrapper ([b2658696a8d356c6ab1e99f7b4dc6d054d34ce62](https://github.com/WTW-IM/es-components/commit/b2658696a8d356c6ab1e99f7b4dc6d054d34ce62))
+* use styled component's css prop instead of style ([f3c8e085f30e6073dcbbf4f28ceb7ffb7732eaea](https://github.com/WTW-IM/es-components/commit/f3c8e085f30e6073dcbbf4f28ceb7ffb7732eaea))
+
+
+
+
+
 ## [21.4.5](https://github.com/WTW-IM/es-components/compare/v21.4.4...v21.4.5) (2020-06-23)
 
 

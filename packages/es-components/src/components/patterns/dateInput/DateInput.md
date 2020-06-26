@@ -51,7 +51,10 @@ function DateInputExample() {
 <DateInputExample />
 ```
 
-You can set the value of the component with `defaultValue`.
+You can set the value of the component with `defaultValue`. When populating this value from
+an API call or other source via a `useEffect`, the `defaultValue` may not update correctly.
+In this case, provide `DateInput` with a `key` prop that changes along with the `defaultValue`
+to force the component to re-render with the new value.
 
 ```
 <DateInput defaultValue={new Date()} onChange={()=>{}}>
@@ -180,4 +183,3 @@ import Label from '../../controls/label/Label';
   </DateInput>
 </Control>
 ```
-

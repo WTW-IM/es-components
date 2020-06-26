@@ -82,7 +82,12 @@ ArrowRight.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
+function HorizontalScrollWrapper({
+  windowWidth,
+  children,
+  slideAmount,
+  ...otherProps
+}) {
   const rootRef = useRef(null);
   const menuRef = useRef(null);
   const [rootWidth, setRootWidth] = useState(0);
@@ -209,7 +214,7 @@ function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
   };
 
   return (
-    <OuterWrapper ref={rootRef}>
+    <OuterWrapper ref={rootRef} {...otherProps}>
       <InnerWrapper
         ref={menuRef}
         role="presentation"
@@ -237,6 +242,7 @@ function HorizontalScrollWrapper({ windowWidth, children, slideAmount }) {
 }
 
 HorizontalScrollWrapper.propTypes = {
+  /** @ignore */
   windowWidth: PropTypes.number,
   children: PropTypes.node,
   /** Set the number of pixels the contents will move when clicking left/right arrows */

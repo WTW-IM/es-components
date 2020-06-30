@@ -44,9 +44,11 @@ const AnswerDisplay = styled.div`
     margin-top: 4px;
   }
 
-  &:hover {
-    background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
-    color: ${props => getTextColor(props.buttonStyle.bgColor)};
+  @media (hover: hover), (-ms-high-contrast: none) {
+    &:hover {
+      background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
+      color: ${props => getTextColor(props.buttonStyle.bgColor)};
+    }
   }
 
   &[disabled] {

@@ -9,9 +9,11 @@ const StyledButton = styled(Button)`
   border-color: ${props => props.defaultStyle.bgColor};
   color: ${props => props.theme.colors.black};
 
-  &:hover {
-    background-color: ${props => props.hoverStyle.bgColor};
-    border-color: ${props => props.hoverStyle.bgColor};
+  @media (hover: hover), (-ms-high-contrast: none) {
+    &:hover {
+      background-color: ${props => props.hoverStyle.bgColor};
+      border-color: ${props => props.hoverStyle.bgColor};
+    }
   }
 `;
 

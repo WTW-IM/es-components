@@ -44,9 +44,11 @@ const StyledButton = styled.button`
     box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }
 
-  &:hover {
-    background-color: ${props => props.colors.textColor};
-    color: ${props => props.colors.hoverTextColor};
+  @media (hover: hover), (-ms-high-contrast: none) {
+    &:hover {
+      background-color: ${props => props.colors.textColor};
+      color: ${props => props.colors.hoverTextColor};
+    }
   }
 
   &:active,
@@ -59,7 +61,8 @@ const StyledButton = styled.button`
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
   }
 
-  &:active:focus {
+  &:active:focus,
+  &.pressed:focus {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25),
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }

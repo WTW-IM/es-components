@@ -47,11 +47,13 @@ const StyledButton = styled.button`
     width: ${props => (props.block ? '100%' : 'auto')};
   }
 
-  &:hover {
-    color: ${props => props.colors.hoverTextColor};
-    background-color: ${props => props.colors.hoverBgColor};
-    border-color: ${props => props.colors.hoverBorderColor};
-    text-decoration: none;
+  @media (hover: hover), (-ms-high-contrast: none) {
+    &:hover {
+      color: ${props => props.colors.hoverTextColor};
+      background-color: ${props => props.colors.hoverBgColor};
+      border-color: ${props => props.colors.hoverBorderColor};
+      text-decoration: none;
+    }
   }
 
   &:focus {
@@ -71,11 +73,8 @@ const StyledButton = styled.button`
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
   }
 
-  &.pressed {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
-  }
-
-  &:active:focus {
+  &:active:focus,
+  &.pressed:focus {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25),
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }

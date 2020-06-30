@@ -23,9 +23,11 @@ const PanelButton = styled.button`
   padding: 10px 15px;
   width: 100%;
 
-  &:hover {
-    background-color: ${props => props.theme.colors.gray2};
-    color: ${props => props.theme.brandColors.brandPrimary1};
+  @media (hover: hover), (-ms-high-contrast: none) {
+    &:hover {
+      background-color: ${props => props.theme.colors.gray2};
+      color: ${props => props.theme.brandColors.brandPrimary1};
+    }
   }
 `;
 

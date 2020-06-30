@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.5.2](https://github.com/WTW-IM/es-components/compare/v21.5.1...v21.5.2) (2020-06-30)
+
+
+### Fix
+
+* removed sticky hover effect on mobile buttons ([0aac507a539c69098ed2b5be3d586d4b55cd8ba3](https://github.com/WTW-IM/es-components/commit/0aac507a539c69098ed2b5be3d586d4b55cd8ba3))
+
+
+
+
+
 ## [21.5.1](https://github.com/WTW-IM/es-components/compare/v21.5.0...v21.5.1) (2020-06-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.5.3](https://github.com/WTW-IM/es-components/compare/v21.5.2...v21.5.3) (2020-07-15)
+
+
+### Update
+
+* updating build dependencies and styled components ([55ef668997ceee5c8df830c257a705cd3ab65bd2](https://github.com/WTW-IM/es-components/commit/55ef668997ceee5c8df830c257a705cd3ab65bd2))
+
+
+
+
+
 ## [21.5.2](https://github.com/WTW-IM/es-components/compare/v21.5.1...v21.5.2) (2020-06-30)
 
 

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup } from 'react-testing-library';
+import { cleanup } from '@testing-library/react';
 
 import Checkbox from './Checkbox';
 import { renderWithTheme } from '../../util/test-utils';

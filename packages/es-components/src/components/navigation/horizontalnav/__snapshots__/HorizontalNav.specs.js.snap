@@ -3,14 +3,14 @@
 exports[`renders as expected 1`] = `
 <div>
   <nav
-    class="es-sidenav sc-bwzfXH fOrtDJ"
+    class="sc-AxirZ bbVOgU es-sidenav"
   >
     <ul>
       <li
-        class="es-sidenav__navitem sc-bxivhb esxltg"
+        class="sc-AxhCb gJzBoB es-sidenav__navitem"
       >
         <button
-          class="sc-bZQynM fIiSIF"
+          class="sc-AxheI dKivAk"
           style="justify-content: center;"
           type="button"
         >
@@ -20,10 +20,10 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb fLNLmR"
+        class="sc-AxhCb XiKyx es-sidenav__navitem"
       >
         <button
-          class="sc-bZQynM fIiSIF"
+          class="sc-AxheI dKivAk"
           style="justify-content: center;"
           type="button"
         >
@@ -33,10 +33,10 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb fLNLmR"
+        class="sc-AxhCb XiKyx es-sidenav__navitem"
       >
         <a
-          class="sc-bZQynM fIiSIF"
+          class="sc-AxheI dKivAk"
           href="https://google.com"
           style="justify-content: center;"
         >
@@ -46,10 +46,10 @@ exports[`renders as expected 1`] = `
         </a>
       </li>
       <li
-        class="es-sidenav__navitem sc-bxivhb eaAGyO"
+        class="sc-AxhCb ikuWmg es-sidenav__navitem"
       >
         <button
-          class="sc-bZQynM fIiSIF"
+          class="sc-AxheI dKivAk"
           style="justify-content: center;"
           type="button"
         >

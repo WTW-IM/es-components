@@ -1,109 +1,98 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent, cleanup, wait } from 'react-testing-library';
+import { fireEvent, waitFor } from '@testing-library/react';
 
 import Tooltip from './Tooltip';
 import { renderWithTheme } from '../../util/test-utils';
 
-beforeEach(cleanup);
-
-function getTooltip({ queryAllByText }, text) {
-  return (
-    queryAllByText(text).find(node => node.hasAttribute('aria-hidden')) || null
-  );
-}
-
-it('displays when the mouse enters the target and hides when the mouse leaves the target', () => {
+it('displays when the mouse enters the target and hides when the mouse leaves the target', async () => {
   const instance = renderWithTheme(
     <Tooltip name="test" content="this is the tooltip">
       this is the target
     </Tooltip>
   );
-  const { queryByText } = instance;
+  const { queryByText, queryByRole } = instance;
 
   const target = queryByText('this is the target');
   fireEvent.mouseEnter(target);
-  const toolTip = getTooltip(instance, 'this is the tooltip');
+  const toolTip = queryByRole('tooltip');
 
-  wait(() => {
+  await waitFor(() => {
     expect(toolTip).toBeVisible();
   });
 
   fireEvent.mouseLeave(target);
-  wait(() => {
-    expect(toolTip).not.toBeVisible();
+  await waitFor(() => {
+    expect(toolTip).not.toBeInTheDocument();
   });
 });
 
-it('is displayed on mouseDown if disableHover is true', () => {
-  const instance = renderWithTheme(
+it('is displayed on mouseDown if disableHover is true', async () => {
+  const { getByText, queryByRole } = renderWithTheme(
     <Tooltip name="test" content="this is the tooltip" disableHover>
       this is the target
     </Tooltip>
   );
 
-  const { queryByText } = instance;
-
-  const target = queryByText('this is the target');
+  const target = getByText('this is the target');
 
   fireEvent.mouseEnter(target);
-  wait(() => {
-    expect(getTooltip(instance, 'this is the tooltip')).toBeNull();
+  await waitFor(() => {
+    expect(queryByRole('tooltip')).not.toBeInTheDocument();
   });
 
-  fireEvent.mouseDown(target);
-  wait(() => {
-    expect(getTooltip(instance, 'this is the tooltip')).toBeVisible();
+  fireEvent.click(target);
+  await waitFor(() => {
+    expect(queryByRole('tooltip')).toBeInTheDocument();
   });
 
-  fireEvent.mouseDown(target);
-  wait(() => {
-    expect(getTooltip(instance, 'this is the tooltip')).not.toBeVisible();
+  fireEvent.click(target);
+  await waitFor(() => {
+    expect(queryByRole('tooltip')).not.toBeInTheDocument();
   });
 });
 
-it('is displayed/hidden on focus/blur of target', () => {
+it('is displayed/hidden on focus/blur of target', async () => {
   const instance = renderWithTheme(
     <Tooltip name="test" content="this is the tooltip" disableHover>
       this is the target
     </Tooltip>
   );
-  const { getByText } = instance;
+  const { getByText, queryByRole } = instance;
 
   const target = getByText('this is the target');
 
   fireEvent.focus(target);
 
-  const toolTip = getTooltip(instance, 'this is the tooltip');
-  wait(() => {
+  const toolTip = queryByRole('tooltip');
+  await waitFor(() => {
     expect(toolTip).toBeVisible();
   });
 
   fireEvent.blur(target);
-  wait(() => {
-    expect(toolTip).not.toBeVisible();
+  await waitFor(() => {
+    expect(toolTip).not.toBeInTheDocument();
   });
 });
 
-it('is hidden when ESC is pressed', () => {
-  const instance = renderWithTheme(
+it('is hidden when ESC is pressed', async () => {
+  const { getByText, queryByRole } = renderWithTheme(
     <Tooltip name="test" content="this is the tooltip" disableHover>
       this is the target
     </Tooltip>
   );
-  const { getByText } = instance;
 
   const target = getByText('this is the target');
-  fireEvent.mouseDown(target);
+  fireEvent.click(target);
 
-  const toolTip = getTooltip(instance, 'this is the tooltip');
-  wait(() => {
+  const toolTip = queryByRole('tooltip');
+  await waitFor(() => {
     expect(toolTip).toBeVisible();
   });
 
   fireEvent.keyDown(target, { keyCode: 27 });
-  wait(() => {
-    expect(toolTip).not.toBeVisible();
+  await waitFor(() => {
+    expect(toolTip).not.toBeInTheDocument();
   });
 });

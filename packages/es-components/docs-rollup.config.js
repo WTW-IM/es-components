@@ -1,9 +1,9 @@
 import resolve from 'rollup-plugin-node-resolve';
 import builtins from 'rollup-plugin-node-builtins';
 import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -35,12 +35,12 @@ export default [
       babel({
         exclude: /node_modules\/?!(es-components-via-theme)/,
         envName: 'production',
-        runtimeHelpers: true
+        babelHelpers: 'runtime'
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      uglify(),
+      terser(),
       htmlTemplate({
         template: 'src/full-color-icons.html',
         target: 'docs/full-color-icons.html'

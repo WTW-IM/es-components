@@ -3,21 +3,21 @@
 exports[`displays monthNames provided by the monthNames prop 1`] = `
 <div>
   <div
-    class="sc-bdVaJa cGXwXX"
+    class="sc-AxjAm aIanW"
   >
     <label
-      class="sc-bwzfXH kAShKy"
+      class="sc-AxirZ cTqtRF"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-gzVnrw gJnKRL"
+      class="sc-Axmtr kuBuKw"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-EHOje fMaGOM sc-ifAKCX gSULKo"
+        class="sc-AxhUy eAZLnY sc-AxgMl gA-DKIY"
         id="test"
         name="month"
       >
@@ -38,7 +38,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
-        class="sc-htpNat sc-bxivhb LlNxE"
+        class="sc-AxiKw sc-AxhCb Wfa-dH"
         max="31"
         min="1"
         name="day"
@@ -48,7 +48,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
-        class="sc-htpNat sc-bZQynM dnLTFo"
+        class="sc-AxiKw sc-AxheI gIbUlv"
         name="year"
         pattern="[0-9]*"
         placeholder="Year"
@@ -63,21 +63,21 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
 exports[`hides the Day input when Day is excluded 1`] = `
 <div>
   <div
-    class="sc-bdVaJa cGXwXX"
+    class="sc-AxjAm aIanW"
   >
     <label
-      class="sc-bwzfXH kAShKy"
+      class="sc-AxirZ cTqtRF"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-gzVnrw gJnKRL"
+      class="sc-Axmtr kuBuKw"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-EHOje fMaGOM sc-ifAKCX gSULKo"
+        class="sc-AxhUy eAZLnY sc-AxgMl gA-DKIY"
         id="test"
       >
         <option
@@ -142,7 +142,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </option>
       </select>
       <input
-        class="sc-htpNat sc-bZQynM dnLTFo"
+        class="sc-AxiKw sc-AxheI gIbUlv"
         pattern="[0-9]*"
         placeholder="Year"
         type="number"

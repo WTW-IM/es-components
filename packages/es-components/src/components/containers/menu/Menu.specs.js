@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent } from 'react-testing-library';
+import { fireEvent } from '@testing-library/react';
 import Menu from './Menu';
 
 import { renderWithTheme } from '../../util/test-utils';

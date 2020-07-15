@@ -2,14 +2,14 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, wait } from 'react-testing-library';
+import { cleanup, waitFor } from '@testing-library/react';
 
 import TabPanel from './TabPanel';
 import { renderWithTheme } from '../../util/test-utils';
 
 // this is just a little hack to silence a warning that we'll get until we
 // upgrade to 16.9: https://github.com/facebook/react/pull/14853
-// see https://github.com/testing-library/react-testing-library/tree/644673975a1c2c375518c5ad804e65e651aeedca#suppressing-unnecessary-warnings-on-react-dom-168
+// see https://github.com/testing-library/@testing-library/react/tree/644673975a1c2c375518c5ad804e65e651aeedca#suppressing-unnecessary-warnings-on-react-dom-168
 const originalError = console.error;
 beforeAll(() => {
   console.error = (...args) => {
@@ -48,7 +48,7 @@ it('displays content for tab when corresponding button is clicked', async () => 
 
   getByText('tab 2').click();
 
-  await wait(() => {
+  await waitFor(() => {
     expect(queryByText('Tab number 1')).toBeNull();
     expect(getByText('Tab number 2')).toBeVisible();
   });
@@ -64,7 +64,7 @@ it('tab does not change when canTabChange returns false', async () => {
 
   getByText('tab 2').click();
 
-  await wait(() => {
+  await waitFor(() => {
     expect(queryByText('Tab number 2')).toBeNull();
     expect(getByText('Tab number 1')).toBeVisible();
   });
@@ -80,7 +80,7 @@ it('tab does not change when canTabChange returns Promise of false', async () =>
 
   getByText('tab 2').click();
 
-  await wait(() => {
+  await waitFor(() => {
     expect(queryByText('Tab number 2')).toBeNull();
     expect(getByText('Tab number 1')).toBeVisible();
   });
@@ -96,7 +96,7 @@ it('tab does change when canTabChange returns Promise of true', async () => {
 
   getByText('tab 2').click();
 
-  await wait(() => {
+  await waitFor(() => {
     expect(queryByText('Tab number 1')).toBeNull();
     expect(getByText('Tab number 2')).toBeVisible();
   });

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, fireEvent } from 'react-testing-library';
+import { cleanup, fireEvent } from '@testing-library/react';
 import { range } from 'lodash';
 
 import RadioGroup from './RadioGroup';

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent, cleanup, wait } from 'react-testing-library';
+import { fireEvent, waitFor } from '@testing-library/react';
 
 import Modal from './Modal';
 import ModalHeader from './ModalHeader';
@@ -11,15 +11,22 @@ import { renderWithTheme } from '../../util/test-utils';
 
 jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
 
-beforeEach(cleanup);
-
-function renderModal(modalProps) {
+function renderModal(modalProps, children) {
   return renderWithTheme(
-    <Modal show {...modalProps}>
+    <Modal ariaHideApp={false} show {...modalProps}>
+      {children}
+    </Modal>
+  );
+}
+
+function renderBasicModal(modalProps) {
+  return renderModal(
+    modalProps,
+    <>
       <ModalHeader>Header</ModalHeader>
       <ModalBody>Body</ModalBody>
       <ModalFooter>Footer</ModalFooter>
-    </Modal>
+    </>
   );
 }
 
@@ -27,7 +34,7 @@ it('invokes functions when triggered', () => {
   const onEnter = jest.fn();
   const onHide = jest.fn();
 
-  const { getByText } = renderModal({ onEnter, onHide });
+  const { getByText } = renderBasicModal({ onEnter, onHide });
 
   expect(onEnter).toHaveBeenCalled();
 
@@ -41,7 +48,7 @@ it('renders different modal sections', () => {
   const onEnter = jest.fn();
   const onHide = jest.fn();
 
-  const { getByText } = renderModal({ onEnter, onHide });
+  const { getByText } = renderBasicModal({ onEnter, onHide });
 
   expect(onEnter).toHaveBeenCalled();
 
@@ -51,18 +58,19 @@ it('renders different modal sections', () => {
 });
 
 it('hides dismiss button when hideCloseButton is true', () => {
-  const { getByText } = renderWithTheme(
-    <Modal show>
+  const { getByText } = renderModal(
+    {},
+    <>
       <ModalHeader hideCloseButton>Header</ModalHeader>
       <ModalBody>Body</ModalBody>
       <ModalFooter>Footer</ModalFooter>
-    </Modal>
+    </>
   );
   expect(getByText('Header').parentElement.querySelector('button')).toBeNull();
 });
 
 it('passes through class names', () => {
-  const { container } = renderModal({ className: 'myclass' });
+  const { container } = renderBasicModal({ className: 'myclass' });
   const element = container.parentElement.querySelector('.myclass');
   expect(element).not.toBeNull();
 });
@@ -70,20 +78,20 @@ it('passes through class names', () => {
 describe('when ESC is pressed', () => {
   it('invokes onHide by default', () => {
     const onHide = jest.fn();
-    const { container } = renderModal({ onEnter: jest.fn(), onHide });
+    const { container } = renderBasicModal({ onEnter: jest.fn(), onHide });
 
     fireEvent.keyDown(container, { keyCode: 27 });
-    wait(() => {
+    waitFor(() => {
       expect(onHide).toHaveBeenCalled();
     });
   });
 
   it('does not invoke onHide when escapeExits is false', () => {
     const onHide = jest.fn();
-    const { container } = renderModal({ onHide, escapeExits: false });
+    const { container } = renderBasicModal({ onHide, escapeExits: false });
 
     fireEvent.keyDown(container, { keyCode: 27 });
-    wait(() => {
+    waitFor(() => {
       expect(onHide).not.toHaveBeenCalled();
     });
   });

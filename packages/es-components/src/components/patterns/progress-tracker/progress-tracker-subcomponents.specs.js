@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { wait } from 'react-testing-library';
+import { waitFor, cleanup } from '@testing-library/react';
 import viaTheme from 'es-components-via-theme';
 import 'jest-styled-components';
 
@@ -25,6 +25,9 @@ it('breaks the background line at the expected point in ProgressContainer', () =
     { numberOfSteps: 4, percentage: (1 / 3) * 100 },
     { numberOfSteps: 5, percentage: 25 }
   ];
+
+  const { gray9, gray5 } = viaTheme.colors;
+
   expectedPercentages.forEach(({ numberOfSteps, percentage }) => {
     const { getByTestId } = getInstance(ProgressContainer, {
       'data-testid': 'progress-tracker',
@@ -32,14 +35,11 @@ it('breaks the background line at the expected point in ProgressContainer', () =
       numberOfSteps
     });
 
-    wait(() => {
-      const { gray9, gray5 } = viaTheme.colors;
-
-      expect(getByTestId('progress-tracker')).toHaveStyleRule(
-        'background-image',
-        `linear-gradient( to right,${gray9} 0%,${gray9} ${percentage}%,${gray5} ${percentage}%,${gray5} 100% )`
-      );
-    });
+    expect(getByTestId('progress-tracker')).toHaveStyleRule(
+      'background-image',
+      `linear-gradient( to right,${gray9} 0%,${gray9} ${percentage}%,${gray5} ${percentage}%,${gray5} 100% )`
+    );
+    cleanup();
   });
 });
 
@@ -52,7 +52,7 @@ it('sets the appropriate margin-top when inactive', () => {
   const topMargin = ACTIVE / 2 - INACTIVE / 2;
 
   const instance = container.querySelector('button');
-  wait(() => {
+  waitFor(() => {
     expect(instance).toHaveStyleRule('margin-top', `${topMargin}px`);
     expect(instance).not.toHaveStyleRule('margin-top', '0');
     expect(instance).toHaveStyleRule('margin-top', '0', {
@@ -70,7 +70,7 @@ it('sets the appropriate margin-top when active', () => {
 
   const instance = container.querySelector('button');
 
-  wait(() => {
+  waitFor(() => {
     expect(instance).toHaveStyleRule('margin-top', '0');
     expect(instance).toHaveStyleRule('margin-top', '0', {
       media: `(min-width:${viaTheme.screenSize.tablet})`
@@ -87,7 +87,7 @@ it('sets the appropriate styles for isPastStep', () => {
 
   const instance = container.querySelector('button');
 
-  wait(() => {
+  waitFor(() => {
     expect(instance).toMatchSnapshot();
   });
 });
@@ -103,7 +103,7 @@ it('cannot be clicked when not isPastStep', () => {
   const instance = container.querySelector('button');
 
   instance.click();
-  wait(() => {
+  waitFor(() => {
     expect(clicked).not.toHaveBeenCalled();
   });
 });
@@ -119,7 +119,7 @@ it('can be clicked when isPastStep', () => {
 
   const instance = container.querySelector('button');
   instance.click();
-  wait(() => {
+  waitFor(() => {
     expect(clicked).toHaveBeenCalled();
   });
 });

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { cleanup, fireEvent, wait } from 'react-testing-library';
+import { cleanup, fireEvent, waitFor } from '@testing-library/react';
 
 import { renderWithTheme } from '../../util/test-utils';
 import Control from '../../controls/Control';
@@ -38,7 +38,7 @@ it('executes handleOnBlur when focus is lost', async () => {
   const { getByTestId } = renderWithTheme(buildDateInput(props));
 
   fireEvent.blur(getByTestId('dateinput'));
-  await wait(() => {
+  await waitFor(() => {
     expect(props.onBlur).toHaveBeenCalled();
   });
 });

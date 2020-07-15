@@ -1,9 +1,9 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from '@rollup/plugin-replace';
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 export default [
@@ -41,7 +41,7 @@ export default [
       ]),
       babel({
         exclude: ['node_modules/**'],
-        runtimeHelpers: true
+        babelHelpers: 'runtime'
       })
     ]
   },
@@ -64,12 +64,12 @@ export default [
       babel({
         exclude: /node_modules/,
         envName: 'production',
-        runtimeHelpers: true
+        babelHelpers: 'runtime'
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      uglify()
+      terser()
     ]
   }
 ];

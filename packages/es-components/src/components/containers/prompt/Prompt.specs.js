@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup } from 'react-testing-library';
+import { cleanup } from '@testing-library/react';
 import Prompt from './Prompt';
 import { renderWithTheme } from '../../util/test-utils';
 

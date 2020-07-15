@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent, cleanup } from 'react-testing-library';
+import { fireEvent, cleanup } from '@testing-library/react';
 import { renderWithTheme } from '../../util/test-utils';
 
 import Control from '../Control';

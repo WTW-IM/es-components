@@ -1,6 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
+import { cleanup } from '@testing-library/react';
 
 import { renderWithTheme } from '../../util/test-utils';
 import ProgressTracker from './ProgressTracker';
@@ -30,5 +31,6 @@ it('builds a ProgressTracker', () => {
   stepsToTest.forEach(steps => {
     const { getByTestId } = getInstance({ steps });
     expect(getByTestId('progress-tracker')).toMatchSnapshot();
+    cleanup();
   });
 });

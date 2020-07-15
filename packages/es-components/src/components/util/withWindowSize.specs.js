@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import withWindowSize from './withWindowSize';
 
 const InnerComponent = ({ windowWidth, windowHeight }) => (

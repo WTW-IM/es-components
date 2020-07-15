@@ -2,7 +2,7 @@
 import React from 'react';
 import viaTheme from 'es-components-via-theme';
 
-import { cleanup, fireEvent } from 'react-testing-library';
+import { cleanup, fireEvent } from '@testing-library/react';
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import DatePicker from './DatePicker';

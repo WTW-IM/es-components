@@ -1,7 +1,7 @@
 /* eslint-env jest */
-
 import React from 'react';
 import viaTheme from 'es-components-via-theme';
+import { darken, getTextColor } from '../../util/colors';
 
 import ToggleButton from './ToggleButton';
 import { renderWithTheme } from '../../util/test-utils';
@@ -16,16 +16,20 @@ it('sets isPressed state on click', () => {
   button.click();
 
   const themeValues = viaTheme.buttonStyles.button.variant.default;
+  const clickedBg = darken(darken(themeValues.bgColor, 7.5), 2.5);
+  const clickedText = getTextColor(clickedBg);
+  const unclickedBg = themeValues.bgColor;
+  const unclickedText = getTextColor(unclickedBg);
 
   expect(button).toHaveStyle(`
-    background-color: ${themeValues.hoverBgColor};
-    color: ${themeValues.activeTextColor};
+    background-color: ${clickedBg};
+    color: ${clickedText};
   `);
 
   button.click();
 
   expect(button).toHaveStyle(`
-    background-color: ${themeValues.bgColor};
-    color: ${themeValues.textColor};
+    background-color: ${unclickedBg};
+    color: ${unclickedText};
   `);
 });

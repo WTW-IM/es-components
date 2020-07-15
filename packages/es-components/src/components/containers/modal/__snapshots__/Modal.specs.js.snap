@@ -2,7 +2,7 @@
 
 exports[`renders different modal sections 1`] = `
 <h4
-  class="sc-EHOje cgkaxn sc-bxivhb flpGBz"
+  class="sc-AxhCb dVLHrv sc-AxgMl ebnCtC"
   id="abcdef"
 >
   Header
@@ -11,7 +11,7 @@ exports[`renders different modal sections 1`] = `
 
 exports[`renders different modal sections 2`] = `
 <div
-  class="sc-gzVnrw NNeXF"
+  class="sc-Axmtr hLfbbQ"
 >
   Body
 </div>
@@ -19,7 +19,7 @@ exports[`renders different modal sections 2`] = `
 
 exports[`renders different modal sections 3`] = `
 <div
-  class="sc-htoDjs hiiqld"
+  class="sc-AxmLO eIBJSj"
 >
   Footer
 </div>

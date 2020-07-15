@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import { useWindowWidth } from './useWindowWidth';
 
@@ -16,18 +16,17 @@ const WindowSizeComponent = () => {
 };
 
 const triggerResize = () => {
-  const resizeEvent = global.document.createEvent('Event');
+  const resizeEvent = document.createEvent('Event');
   resizeEvent.initEvent('resize', true, true);
-  global.window.dispatchEvent(resizeEvent);
+  window.dispatchEvent(resizeEvent);
 };
 
-Object.defineProperty(global.document.body, 'clientWidth', {
-  value: 500,
-  writable: true
-});
-
 beforeEach(() => {
-  global.document.body.clientWidth = 500;
+  Object.defineProperty(document.body, 'clientWidth', {
+    value: 500,
+    writable: true
+  });
+  document.body.clientWidth = 500;
 });
 
 afterEach(cleanup);
@@ -48,7 +47,7 @@ it('adjusts the size based on resize', () => {
   // Resize
 
   act(() => {
-    global.document.body.clientWidth = 1000;
+    document.body.clientWidth = 1000;
     triggerResize();
   });
 

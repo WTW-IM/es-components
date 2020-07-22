@@ -46,17 +46,55 @@ const ButtonPlaceholder = styled.div`
   margin-top: 10px;
 `;
 
+const LoadingLight = styled.div`
+  &::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) 45%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 55%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: loading 2.5s linear infinite;
+  }
+
+  @keyframes loading {
+    from {
+      background-position: -150% 0;
+    }
+    to {
+      background-position: 250% 0;
+    }
+  }
+`;
+
+const TileContainer = styled.div`
+  overflow: auto;
+  position: relative;
+`;
+
 function SkeletonTile() {
   return (
-    <TileFlex>
-      <HeaderFlex>
-        <IconPlaceholder />
-        <TitlePlaceholder />
-      </HeaderFlex>
-      <DescriptionPlaceholder />
-      <DescriptionPlaceholder />
-      <ButtonPlaceholder />
-    </TileFlex>
+    <TileContainer>
+      <LoadingLight />
+
+      <TileFlex>
+        <HeaderFlex>
+          <IconPlaceholder />
+          <TitlePlaceholder />
+        </HeaderFlex>
+        <DescriptionPlaceholder />
+        <DescriptionPlaceholder />
+        <ButtonPlaceholder />
+      </TileFlex>
+    </TileContainer>
   );
 }
 

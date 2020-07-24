@@ -18,6 +18,19 @@ Use `isKnockoutStyle` to display a special page-level heading style.
 <Heading level={1} isKnockoutStyle>Knockout Heading</Heading>
 ```
 
+Many pages use this style as a page-level Heading, so for simplicity, we're also
+exporting a `PageHeading` component:
+
+```
+import { PageHeading } from './Heading';
+<div>
+  <div style={{ backgroundColor: 'lightgray', padding: 15, marginBottom: 10 }} >
+    <pre style={{ margin: 0 }}>{`<PageHeading>Welcome to the Page!</PageHeading>`}</pre>
+  </div>
+  <PageHeading>Welcome to the Page!</PageHeading>
+</div>
+```
+
 The font size may be overridden by that of another level by providing the `size` prop.
 
 ```

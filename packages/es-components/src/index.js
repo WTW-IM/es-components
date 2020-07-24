@@ -19,7 +19,7 @@ export Menu from './components/containers/menu/Menu';
 export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
 export Prompt from './components/containers/prompt/Prompt';
-export Heading from './components/containers/heading/Heading';
+export Heading, { PageHeading } from './components/containers/heading/Heading';
 export Table from './components/containers/table/Table';
 export ResponsiveTable from './components/containers/table/ResponsiveTable';
 export HorizontalScrollWrapper from './components/containers/horizontalScrollWrapper/HorizontalScrollWrapper';

@@ -71,3 +71,7 @@ Heading.defaultProps = {
 };
 
 export default Heading;
+
+export const PageHeading = props => (
+  <Heading isKnockoutStyle level={1} {...props} />
+);

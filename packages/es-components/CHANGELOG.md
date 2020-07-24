@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.5.4](https://github.com/wtw-im/es-components/compare/v21.5.3...v21.5.4) (2020-07-24)
+
+
+### Update
+
+* adding PageHeading component ([f9f8579871785bbf13f08309fc3ddb5c7d8a1fbb](https://github.com/wtw-im/es-components/commit/f9f8579871785bbf13f08309fc3ddb5c7d8a1fbb))
+
+
+
+
+
 ## [21.5.3](https://github.com/wtw-im/es-components/compare/v21.5.2...v21.5.3) (2020-07-15)
 
 

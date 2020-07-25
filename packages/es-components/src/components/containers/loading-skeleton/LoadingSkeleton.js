@@ -1,71 +1,55 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import styled, { ThemeProvider } from 'styled-components';
+import tinycolor from 'tinycolor2';
+import { useTheme } from '../../util/useTheme';
 
-const TileFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 17px 24px 0 14px;
-`;
+const SkeletonContainer = styled.div`
+  position: relative;
+  background-color: ${({ theme: { skeleton } }) => skeleton.shimmerColor};
 
-const HeaderFlex = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-`;
-
-const IconPlaceholder = styled.div`
-  height: 65px;
-  width: 65px;
-  flex-grow: 0;
-  background-color: ${props => props.theme.colors.gray3};
-  margin-right: 40px;
-`;
-
-const TitlePlaceholder = styled.div`
-  height: 26px;
-  flex-grow: 1;
-  align-self: center;
-  background-color: ${props => props.theme.colors.gray3};
-`;
-
-const DescriptionPlaceholder = styled.div`
-  height: 15px;
-  background-color: ${props => props.theme.colors.gray3};
-  margin-bottom: 9px;
-`;
-
-const ButtonPlaceholder = styled.div`
-  height: 17px;
-  width: 158px;
-  padding: 9px 10px;
-  background-color: ${props => props.theme.colors.gray3};
-  background-clip: content-box;
-  border: 1px solid ${props => props.theme.colors.gray5};
-  border-radius: 1px;
-  align-self: flex-end;
-  margin-top: 10px;
-`;
-
-const LoadingLight = styled.div`
   &::after {
-    content: '';
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    animation: loading-keyframes 1.5s linear infinite;
     background-size: 50%;
     background-repeat: no-repeat;
     background-image: linear-gradient(
-      -45deg,
-      rgba(255, 255, 255, 0) 0,
-      rgba(255, 255, 255, 0) 45%,
-      rgba(255, 255, 255, 0.8) 50%,
-      rgba(255, 255, 255, 0) 55%,
-      rgba(255, 255, 255, 0) 100%
+      -60deg,
+      ${({ theme: { skeleton } }) =>
+          tinycolor(skeleton.shimmerColor)
+            .setAlpha(0)
+            .toRgbString()}
+        0,
+      ${({ theme: { skeleton } }) =>
+          tinycolor(skeleton.shimmerColor)
+            .setAlpha(0)
+            .toRgbString()}
+        40%,
+      ${({ theme: { skeleton } }) =>
+          tinycolor(skeleton.shimmerColor)
+            .setAlpha(0.8)
+            .toRgbString()}
+        50%,
+      ${({ theme: { skeleton } }) =>
+          tinycolor(skeleton.shimmerColor)
+            .setAlpha(0)
+            .toRgbString()}
+        60%,
+      ${({ theme: { skeleton } }) =>
+          tinycolor(skeleton.shimmerColor)
+            .setAlpha(0)
+            .toRgbString()}
+        100%
     );
-    animation: loading 2.5s linear infinite;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 
-  @keyframes loading {
+  @keyframes loading-keyframes {
     from {
       background-position: -150% 0;
     }
@@ -75,27 +59,35 @@ const LoadingLight = styled.div`
   }
 `;
 
-const TileContainer = styled.div`
-  overflow: auto;
-  position: relative;
+const SkeletonShape = styled.div`
+  background-color: ${({ theme: { skeleton } }) => skeleton.shapeColor};
 `;
 
-function SkeletonTile() {
+const LoadingSkeleton = ({ shapeColor, shimmerColor, children, ...props }) => {
+  const theme = useTheme();
+  const { colors } = theme;
+  const shimmer = shimmerColor || colors.white;
+  const shape = shapeColor || colors.gray3;
+  const skeleton = { shimmerColor: shimmer, shapeColor: shape };
   return (
-    <TileContainer>
-      <LoadingLight />
-
-      <TileFlex>
-        <HeaderFlex>
-          <IconPlaceholder />
-          <TitlePlaceholder />
-        </HeaderFlex>
-        <DescriptionPlaceholder />
-        <DescriptionPlaceholder />
-        <ButtonPlaceholder />
-      </TileFlex>
-    </TileContainer>
+    <ThemeProvider theme={{ skeleton }}>
+      <SkeletonContainer {...props}>{children}</SkeletonContainer>
+    </ThemeProvider>
   );
-}
+};
 
-export default SkeletonTile;
+LoadingSkeleton.propTypes = {
+  shapeColor: PropTypes.string,
+  shimmerColor: PropTypes.string,
+  children: PropTypes.node
+};
+
+LoadingSkeleton.defaultProps = {
+  shapeColor: null,
+  shimmerColor: null,
+  children: null
+};
+
+LoadingSkeleton.Shape = SkeletonShape;
+
+export default LoadingSkeleton;

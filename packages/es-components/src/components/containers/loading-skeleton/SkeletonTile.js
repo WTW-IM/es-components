@@ -17,16 +17,16 @@ const HeaderFlex = styled.div`
 `;
 
 const IconPlaceholder = styled(Shape)`
-  height: 65px;
-  width: 65px;
   flex-grow: 0;
+  height: 65px;
   margin-right: 40px;
+  width: 65px;
 `;
 
 const TitlePlaceholder = styled(Shape)`
-  height: 26px;
-  flex-grow: 1;
   align-self: center;
+  flex-grow: 1;
+  height: 26px;
 `;
 
 const DescriptionPlaceholder = styled(Shape)`
@@ -35,14 +35,14 @@ const DescriptionPlaceholder = styled(Shape)`
 `;
 
 const ButtonPlaceholder = styled(Shape)`
-  height: 17px;
-  width: 158px;
-  padding: 9px 10px;
+  align-self: flex-end;
   background-clip: content-box;
   border: 1px solid ${({ theme: { skeleton } }) => skeleton.shapeColor};
   border-radius: 1px;
-  align-self: flex-end;
+  height: 17px;
   margin-top: 10px;
+  padding: 9px 10px;
+  width: 158px;
 `;
 
 export default function SkeletonTile() {

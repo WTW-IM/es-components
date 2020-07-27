@@ -9,7 +9,7 @@ const SkeletonContainer = styled.div`
   background-color: ${({ theme: { skeleton } }) => skeleton.shimmerColor};
 
   &::after {
-    animation: loading-keyframes 1.5s linear infinite;
+    animation: loading-keyframes 2s linear infinite;
     background-size: 50%;
     background-repeat: no-repeat;
     background-image: linear-gradient(
@@ -50,10 +50,13 @@ const SkeletonContainer = styled.div`
   }
 
   @keyframes loading-keyframes {
-    from {
+    0% {
       background-position: -150% 0;
     }
-    to {
+    75% {
+      background-position: 250% 0;
+    }
+    100% {
       background-position: 250% 0;
     }
   }

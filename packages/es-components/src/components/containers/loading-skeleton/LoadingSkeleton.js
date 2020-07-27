@@ -63,7 +63,7 @@ const SkeletonShape = styled.div`
   background-color: ${({ theme: { skeleton } }) => skeleton.shapeColor};
 `;
 
-const LoadingSkeleton = ({ shapeColor, shimmerColor, children, ...props }) => {
+const LoadingSkeleton = ({ shapeColor, shimmerColor, ...props }) => {
   const theme = useTheme();
   const { colors } = theme;
   const shimmer = shimmerColor || colors.white;
@@ -71,21 +71,19 @@ const LoadingSkeleton = ({ shapeColor, shimmerColor, children, ...props }) => {
   const skeleton = { shimmerColor: shimmer, shapeColor: shape };
   return (
     <ThemeProvider theme={{ skeleton }}>
-      <SkeletonContainer {...props}>{children}</SkeletonContainer>
+      <SkeletonContainer {...props} />
     </ThemeProvider>
   );
 };
 
 LoadingSkeleton.propTypes = {
   shapeColor: PropTypes.string,
-  shimmerColor: PropTypes.string,
-  children: PropTypes.node
+  shimmerColor: PropTypes.string
 };
 
 LoadingSkeleton.defaultProps = {
   shapeColor: null,
-  shimmerColor: null,
-  children: null
+  shimmerColor: null
 };
 
 LoadingSkeleton.Shape = SkeletonShape;

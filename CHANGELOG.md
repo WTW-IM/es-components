@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.6.0](https://github.com/WTW-IM/es-components/compare/v21.5.4...v21.6.0) (2020-07-28)
+
+
+### Build
+
+* ensuring we can build everything on npm start ([9161afa8e07207c22775ccdd3d817f7db32decf8](https://github.com/WTW-IM/es-components/commit/9161afa8e07207c22775ccdd3d817f7db32decf8))
+
+### New
+
+* finished skeleton tile, cleaned up dev mess ([ca0fb460dbcaeea0208d858d7356f3ac51a1a2c1](https://github.com/WTW-IM/es-components/commit/ca0fb460dbcaeea0208d858d7356f3ac51a1a2c1))
+* skeleton tile basic shape ([0c23a730119d272b08aa1740a067d9307fdb1dba](https://github.com/WTW-IM/es-components/commit/0c23a730119d272b08aa1740a067d9307fdb1dba))
+
+### Update
+
+* implementing LoadingSkeleton and LoadingSkeleton.Shape ([1e7dadeabc7f0e233e39f31ed415919d70600117](https://github.com/WTW-IM/es-components/commit/1e7dadeabc7f0e233e39f31ed415919d70600117))
+* removing unnecessary 'children' declaration for LoadingSkeleton ([a9d4d5e572dc978ab49f6359c21c6b6b7a749d5f](https://github.com/WTW-IM/es-components/commit/a9d4d5e572dc978ab49f6359c21c6b6b7a749d5f))
+* renaming SkeletonTile to LoadingSkeleton ([54b4763976170fe9cbb4d77937a477d8f21f7455](https://github.com/WTW-IM/es-components/commit/54b4763976170fe9cbb4d77937a477d8f21f7455))
+* reordering styles, increasing animation length ([4695d6cf2054c0145a67a4aa4f8e06e8904a33d2](https://github.com/WTW-IM/es-components/commit/4695d6cf2054c0145a67a4aa4f8e06e8904a33d2))
+
+
+
+
+
 ## [21.5.4](https://github.com/WTW-IM/es-components/compare/v21.5.3...v21.5.4) (2020-07-24)
 
 

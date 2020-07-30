@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.5"></a>
+## <small>21.6.5 (2020-07-30)</small>
+
+* Initial commit ([77516c4](https://github.com/wtw-im/es-components/commit/77516c4))
+* Merge branch 'master' of https://github.com/WTW-IM/es-components into slidingpane-mobile-support ([4eef530](https://github.com/wtw-im/es-components/commit/4eef530))
+* Removed some un-needed css. ([b070b71](https://github.com/wtw-im/es-components/commit/b070b71))
+
+
+
+
 <a name="21.6.4"></a>
 ## <small>21.6.4 (2020-07-30)</small>
 

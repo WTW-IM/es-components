@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.1](https://github.com/WTW-IM/es-components/compare/v21.6.0...v21.6.1) (2020-07-30)
+
+
+### Upgrade
+
+* Bump elliptic from 6.5.0 to 6.5.3 in /packages/es-components ([562a22e883f7ca177af4e2e37b4f210b60fbf50b](https://github.com/WTW-IM/es-components/commit/562a22e883f7ca177af4e2e37b4f210b60fbf50b))
+
+
+
+
+
 # [21.6.0](https://github.com/WTW-IM/es-components/compare/v21.5.4...v21.6.0) (2020-07-28)
 
 

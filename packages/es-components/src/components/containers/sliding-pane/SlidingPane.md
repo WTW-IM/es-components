@@ -2,6 +2,14 @@ For accessbility, make sure to include the attribute `aria-haspopup='dialog'` on
 
 ```
 import Button from '../../controls/buttons/Button';
+import styled from 'styled-components';
+
+const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+`;
 
 function SlidingPaneExample() {
 
@@ -16,6 +24,9 @@ function SlidingPaneExample() {
             title="Sliding Pane Example"
             onRequestClose={() => setShow(false)}>
         Some body content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+        <Footer>
+          <Button onClick={() => setShow(false)}>Close</Button>
+        </Footer>
       </SlidingPane>
     </>
     );

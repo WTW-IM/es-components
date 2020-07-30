@@ -25,7 +25,10 @@ const PaneBase = styled(Modal)`
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    width: 900px;
+    width: ${props => props.theme.screenSize.tablet};
+  }
+  @media (max-width: ${props => props.theme.screenSize.tablet}) {
+    width: 100%;
   }
 `;
 

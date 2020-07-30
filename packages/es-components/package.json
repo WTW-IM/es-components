@@ -57,7 +57,7 @@
     "@testing-library/react": "^10.4.6",
     "babel-eslint": "^9.0.0",
     "babel-jest": "^24.8.0",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-wtw-im": "^2.5.0",
     "concurrently": "^5.2.0",
@@ -80,7 +80,7 @@
     "react-docgen": "^5.3.0",
     "react-docgen-displayname-handler": "^3.0.1",
     "react-dom": "^16.13.1",
-    "react-styleguidist": "^9.1.11",
+    "react-styleguidist": "^11.0.8",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^6.1.2",
     "rollup": "^2.21.0",
@@ -90,7 +90,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^6.1.0",
     "styled-components": "^5.1.1",
-    "webpack": "^4.34.0"
+    "webpack": "^4.44.1"
   },
   "dependencies": {
     "@babel/helpers": "^7.5.0",

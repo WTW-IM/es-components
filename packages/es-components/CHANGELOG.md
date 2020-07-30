@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.4"></a>
+## <small>21.6.4 (2020-07-30)</small>
+
+* Build: updating lerna version ([22e3647](https://github.com/wtw-im/es-components/commit/22e3647))
+* Build: updating lerna version in lerna.config ([ddc4d27](https://github.com/wtw-im/es-components/commit/ddc4d27))
+* Upgrade: upgrading packages for npm security ([3a25277](https://github.com/wtw-im/es-components/commit/3a25277))
+
+
+
+
 <a name="21.6.3"></a>
 ## <small>21.6.3 (2020-07-30)</small>
 

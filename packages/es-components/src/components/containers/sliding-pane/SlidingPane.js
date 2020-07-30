@@ -27,9 +27,6 @@ const PaneBase = styled(Modal)`
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     width: ${props => props.theme.screenSize.tablet};
   }
-  @media (max-width: ${props => props.theme.screenSize.tablet}) {
-    width: 100%;
-  }
 `;
 
 const PaneRight = styled(PaneBase)`

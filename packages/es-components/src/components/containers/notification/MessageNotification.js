@@ -11,17 +11,19 @@ function MessageNotification(props) {
 }
 
 MessageNotification.propTypes = {
-  /* The type of notification to render */
+  /** The type of notification to render */
   type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
     .isRequired,
-  /* Display an icon in the notification on a screen >= 768px */
+  /** Display an icon in the notification on a screen >= 768px */
   includeIcon: PropTypes.bool,
-  /* Display a dismiss button that will close the notification */
+  /** Display a dismiss button that will close the notification */
   isDismissable: PropTypes.bool,
   role: PropTypes.oneOf(['dialog', 'alert']),
-  /* Function to execute when the dialog is closed */
+  /** Function to execute when the dialog is closed */
   onDismiss: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
+  /** Allows the icon to display at all resolutions */
+  alwaysShowIcon: PropTypes.bool
 };
 
 MessageNotification.defaultProps = {
@@ -29,7 +31,8 @@ MessageNotification.defaultProps = {
   isDismissable: false,
   children: null,
   role: 'dialog',
-  onDismiss: noop
+  onDismiss: noop,
+  alwaysShowIcon: false
 };
 
 export default MessageNotification;

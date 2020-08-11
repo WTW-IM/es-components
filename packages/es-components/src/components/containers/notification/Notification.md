@@ -69,6 +69,14 @@ If the screen size is less than `768px`, it will not be displayed.
 </Notification>
 ```
 
+Alternatively, you can set the `alwaysShowIcon` prop to true and it will render the icon that will show all all screen resolutions.
+
+```jsx
+<Notification type="success" includeIcon alwaysShowIcon>
+  <span>Congrats! You did it!</span>
+</Notification>
+```
+
 Setting the `isDismissable` prop to `true` will add a button to remove the `Notification`. If an `onDismiss` prop is passed, it will be invoked when the `Notification` is removed.
 
 ```jsx

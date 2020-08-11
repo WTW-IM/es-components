@@ -10,7 +10,7 @@ const NotificationIcon = styled(Icon)`
   color: ${props => props.iconColor};
   display: none;
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+  @media (min-width: ${props => props.alwaysShowIcon ? 0 : props.theme.screenSize.tablet}) {
     display: inline;
     margin-right: 8px;
   }
@@ -43,6 +43,7 @@ function NotificationContent(props) {
     iconColor,
     color,
     dismissNotification,
+    alwaysShowIcon,
     ...rest
   } = props;
 
@@ -54,7 +55,7 @@ function NotificationContent(props) {
   return (
     <>
       {includeIcon && (
-        <NotificationIcon name={iconName} iconColor={iconColor} size={28} />
+        <NotificationIcon name={iconName} iconColor={iconColor} size={28} alwaysShowIcon={alwaysShowIcon} />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
       {isDismissable && <Dismiss onClick={dismiss} color={color} />}

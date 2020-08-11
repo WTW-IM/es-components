@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.6"></a>
+## <small>21.6.6 (2020-08-11)</small>
+
+* Update: Adding optional alwaysShowIcon to notification ([11d3763](https://github.com/wtw-im/es-components/commit/11d3763))
+
+
+
+
 <a name="21.6.5"></a>
 ## <small>21.6.5 (2020-07-30)</small>
 

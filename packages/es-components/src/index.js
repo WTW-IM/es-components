@@ -46,6 +46,7 @@ export RadioButton from './components/controls/radio-buttons/RadioButton';
 export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
 export CheckboxGroup from './components/controls/checkbox/CheckboxGroup';
+export Switch from './components/controls/switch/Switch';
 
 export Anchor from './components/navigation/Anchor';
 export SideNav from './components/navigation/sidenav/SideNav';

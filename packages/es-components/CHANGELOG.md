@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.8"></a>
+## <small>21.6.8 (2020-08-18)</small>
+
+* Build: updating useWindowWidth tests ([90c8734](https://github.com/wtw-im/es-components/commit/90c8734))
+* Fix: correctly calculating window width; resolves #467 ([280513a](https://github.com/wtw-im/es-components/commit/280513a)), closes [#467](https://github.com/wtw-im/es-components/issues/467)
+
+
+
+
 <a name="21.6.7"></a>
 ## <small>21.6.7 (2020-08-17)</small>
 

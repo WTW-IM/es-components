@@ -22,11 +22,11 @@ const triggerResize = () => {
 };
 
 beforeEach(() => {
-  Object.defineProperty(document.body, 'clientWidth', {
+  Object.defineProperty(window, 'innerWidth', {
     value: 500,
     writable: true
   });
-  document.body.clientWidth = 500;
+  window.innerWidth = 500;
 });
 
 afterEach(cleanup);
@@ -47,7 +47,7 @@ it('adjusts the size based on resize', () => {
   // Resize
 
   act(() => {
-    document.body.clientWidth = 1000;
+    window.innerWidth = 1000;
     triggerResize();
   });
 

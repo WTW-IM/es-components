@@ -1,16 +1,15 @@
 import React from 'react';
 
 export function useWindowWidth() {
-  const [width, setWidth] = React.useState(document.body.clientWidth);
+  const getMediaWidth = () =>
+    // https://stackoverflow.com/a/6850319
+    window.innerWidth > 0 ? window.innerWidth : window.screen.width;
+  const [width, setWidth] = React.useState(getMediaWidth());
 
   React.useEffect(() => {
-    const handleResize = () => {
-      setWidth(document.body.clientWidth);
-    };
+    const handleResize = () => setWidth(getMediaWidth());
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return width;

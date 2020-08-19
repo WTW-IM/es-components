@@ -234,7 +234,8 @@ const regular = {
   'im-icon-spouse': '6e8',
   'im-icon-play': '6e9',
   'im-icon-pause': '6ea',
-  'im-icon-skip-to-start': '6eb'
+  'im-icon-skip-to-start': '6eb',
+  'im-icon-reply-arrow': '6ec'
 };
 
 export { regular };

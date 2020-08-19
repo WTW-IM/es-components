@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.9"></a>
+## <small>21.6.9 (2020-08-19)</small>
+
+* Adding icon definition for reply-arrow. ([e0378ac](https://github.com/wtw-im/es-components/commit/e0378ac))
+
+
+
+
 <a name="21.6.8"></a>
 ## <small>21.6.8 (2020-08-18)</small>
 

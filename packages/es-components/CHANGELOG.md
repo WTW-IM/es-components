@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.12"></a>
+## <small>21.6.12 (2020-08-25)</small>
+
+* Fix: use text-decoration for PopoverLink ([b6bfb2c](https://github.com/wtw-im/es-components/commit/b6bfb2c))
+
+
+
+
 <a name="21.6.11"></a>
 ## <small>21.6.11 (2020-08-25)</small>
 

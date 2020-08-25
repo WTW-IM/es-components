@@ -60,7 +60,7 @@ this example, we've provided a "Reset" button to allow you to set the component
 to its original state.
 ```javascript
 
-let steps=[
+const initialSteps = [
   { active: false, label: "Item One" },
   { active: false, label: "Item Two" },
   { active: false, label: "Item Three" },
@@ -70,15 +70,15 @@ let steps=[
   { active: true, label: "Item Seven" },
   { active: false, label: "Item Eight" },
 ];
-initialState = { steps };
+const [steps, setSteps] = React.useState(initialSteps);
 
 <div>
   <ProgressTracker
-    steps={state.steps}
-    onPastStepClicked={(newIndex) => setState({
-      steps: steps.map((step, index) => ({ ...step, active: index === newIndex }))
-    })}
+    steps={steps}
+    onPastStepClicked={(newIndex) => setSteps(
+       steps.map((step, index) => ({ ...step, active: index === newIndex }))
+    )}
   />
-  <button onClick={() => setState({steps})}>Reset</button>
+  <button onClick={() => setSteps(initialSteps)}>Reset</button>
 </div>
 ```

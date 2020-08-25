@@ -37,17 +37,17 @@ It is possible to control the displayed tab directly using the `selectedKey` pro
 ```js
 import Icon from '../../base/icons/Icon';
 
-initialState = { selectedKey : 'dolor sit' };
+const [selectedKey, setSelectedKey] = React.useState('dolor sit');
 
 function tabChanged(name) {
   let selectedKey = name;
   if (name.key) {
     selectedKey = name.key;
   }
-  setState({ selectedKey });
+  setSelectedKey(selectedKey);
 }
 
-<TabPanel selectedKey={state.selectedKey} tabChanged={tabChanged}>
+<TabPanel selectedKey={selectedKey} tabChanged={tabChanged}>
   <TabPanel.Tab name="Hi there">
     <p>
       HELLO WORLD!!!!

@@ -8,6 +8,8 @@ the level passed in.
 ```
 import Button from '../../controls/buttons/Button';
 
+const [state, setState] = React.useState({show: false});
+
 <div>
   <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
 
@@ -37,6 +39,8 @@ import Button from '../../controls/buttons/Button';
 ```
 import ModalButtonContainer from './ModalButtonContainer';
 import Button from '../../controls/buttons/Button';
+
+const [state, setState] = React.useState({show: false});
 
 <div>
   <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Modal</Button>

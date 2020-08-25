@@ -41,7 +41,7 @@
   "peerDependencies": {
     "react": ">=16.8",
     "react-dom": ">=16.8",
-    "styled-components": ">=4.0.0"
+    "styled-components": ">=4 <=5"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

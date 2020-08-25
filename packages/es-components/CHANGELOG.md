@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.11"></a>
+## <small>21.6.11 (2020-08-25)</small>
+
+* Upgrade: Bump prismjs from 1.20.0 to 1.21.0 in /packages/es-components ([f9bd373](https://github.com/wtw-im/es-components/commit/f9bd373))
+
+
+
+
 <a name="21.6.10"></a>
 ## <small>21.6.10 (2020-08-25)</small>
 

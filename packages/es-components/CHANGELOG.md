@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.10"></a>
+## <small>21.6.10 (2020-08-25)</small>
+
+* perf: updating styled-components dependency range ([516c0ed](https://github.com/wtw-im/es-components/commit/516c0ed))
+
+
+
+
 <a name="21.6.9"></a>
 ## <small>21.6.9 (2020-08-19)</small>
 

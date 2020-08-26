@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.13"></a>
+## <small>21.6.13 (2020-08-26)</small>
+
+* Fix: address state issues in some component's md files ([5652fd5](https://github.com/wtw-im/es-components/commit/5652fd5))
+
+
+
+
 <a name="21.6.12"></a>
 ## <small>21.6.12 (2020-08-25)</small>
 

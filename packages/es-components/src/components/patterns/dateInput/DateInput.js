@@ -45,6 +45,7 @@ function reducer(state, action) {
 function DateInput({
   children,
   defaultValue,
+  defaultDay,
   id,
   maxDate,
   minDate,
@@ -53,7 +54,7 @@ function DateInput({
   ...props
 }) {
   const [state, dispatch] = useReducer(reducer, {
-    day: defaultValue ? defaultValue.getDate() : '',
+    day: defaultValue ? defaultValue.getDate() : defaultDay,
     month: defaultValue ? defaultValue.getMonth() + 1 : '',
     year: defaultValue ? defaultValue.getFullYear().toString() : ''
   });
@@ -156,7 +157,9 @@ DateInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   /** set the Date value of the component */
-  defaultValue: PropTypes.instanceOf(Date)
+  defaultValue: PropTypes.instanceOf(Date),
+  /** Set the default day of the month */
+  defaultDay: PropTypes.string
 };
 
 DateInput.defaultProps = {
@@ -164,6 +167,7 @@ DateInput.defaultProps = {
   maxDate: undefined,
   minDate: undefined,
   defaultValue: undefined,
+  defaultDay: '',
   onBlur: noop
 };
 

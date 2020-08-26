@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { noop, debounce } from 'lodash';
@@ -32,15 +32,18 @@ const ModalStyles = createGlobalStyle`
 
     .background-overlay {
       bottom: 0;
-      left: 0;
-      position: fixed;
-      right: 0;
-      top: 0;
       background-color: ${props => {
         const color = tinycolor(props.theme.colors.black);
         color.setAlpha(0);
         return color.toRgbString();
       }};
+
+      left: 0;
+      max-height: 100%;
+      overflow-y: auto;
+      position: fixed;
+      right: 0;
+      top: 0;
       transition: background-color ${() => animationTimeMs}ms linear;
       z-index: 1030;
 
@@ -72,14 +75,12 @@ const ModalStyles = createGlobalStyle`
       font-size: ${props => props.theme.font.baseFontSize};
       outline: 0;
       opacity: 0;
-      overflow-y: auto;
       position: relative;
       transition:
         top ${() => animationTimeMs}ms ease-out,
         opacity ${() => animationTimeMs}ms linear;
       -webkit-overflow-scrolling: touch;
       width: 100%;
-      max-height: 100%;
       ${props =>
         props.showAnimation
           ? `
@@ -146,6 +147,7 @@ function Modal({
   size,
   parentSelector,
   className,
+  overlayRef,
   contentRef,
   ...other
 }) {
@@ -155,18 +157,30 @@ function Modal({
   const [modalHeight, setModalHeight] = useState(300);
   const [shouldShow, setShouldShow] = useState(show);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-
-  const modalHeightRef = useCallback(modalElement => {
-    if (contentRef) {
-      if (typeof contentRef === 'function') {
-        contentRef(modalElement);
+  const innerContentRef = useRef(null);
+  const callRef = (ref, element) => {
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(element);
       } else {
         // eslint-disable-next-line no-param-reassign
-        contentRef.current = modalElement;
+        ref.current = element;
       }
     }
+  };
+  const setContentRef = useCallback(contentElement => {
+    callRef(contentRef, contentElement);
+    innerContentRef.current = contentElement;
+  });
 
-    setModalHeight(modalElement?.offsetHeight || 0);
+  const modalHeightRef = useCallback(modalElement => {
+    callRef(overlayRef, modalElement);
+    let newHeight = modalElement?.offsetHeight || 0;
+    if (innerContentRef.current) {
+      const contRefHeight = innerContentRef.current.offsetHeight;
+      if (contRefHeight < newHeight) newHeight = contRefHeight;
+    }
+    setModalHeight(newHeight);
   });
   const modalParentSelector =
     parentSelector || useCallback(() => rootNode, [rootNode]);
@@ -221,7 +235,8 @@ function Modal({
           onAfterClose={onExit}
           shouldCloseOnEsc={escapeExits}
           parentSelector={modalParentSelector}
-          contentRef={modalHeightRef}
+          contentRef={setContentRef}
+          overlayRef={modalHeightRef}
           {...other}
         >
           {children}
@@ -262,6 +277,10 @@ Modal.propTypes = {
   /** Selects the parent */
   parentSelector: PropTypes.func,
   className: PropTypes.string,
+  overlayRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ]),
   contentRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any })
@@ -280,6 +299,7 @@ Modal.defaultProps = {
   children: undefined,
   parentSelector: null,
   className: null,
+  overlayRef: null,
   contentRef: null
 };
 

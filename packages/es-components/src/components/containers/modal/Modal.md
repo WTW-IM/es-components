@@ -8,27 +8,34 @@ the level passed in.
 ```
 import Button from '../../controls/buttons/Button';
 
-const [state, setState] = React.useState({show: false});
+const [show, setShow] = React.useState(false);
+const [size, setSize] = React.useState('medium');
+const [hideCloseButton, setHideCloseButton] = React.useState('medium');
+const setInitialState = ({show: newShow, size: newSize, hideCloseButton: newHideClose}) => {
+  setShow(newShow);
+  setSize(newSize);
+  setHideCloseButton(newHideClose);
+}
 
 <div>
-  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setInitialState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
 
-  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setInitialState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
 
-  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'large', hideCloseButton: false})}>Open Large Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setInitialState({show: true, size: 'large', hideCloseButton: false})}>Open Large Modal</Button>
 
   <Modal
-    size={state.size}
-    show={state.show}
-    onHide={() => setState({show: false})}
+    size={size}
+    show={show}
+    onHide={() => setShow(false)}
   >
-    <Modal.Header level={4} hideCloseButton={state.hideCloseButton}>This is the header.</Modal.Header>
+    <Modal.Header level={4} hideCloseButton={hideCloseButton}>This is the header.</Modal.Header>
     <Modal.Body>Body Content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</Modal.Body>
     <Modal.Footer>
       <span style={{ flexGrow: 1, marginRight: '10px' }}>
         This is the footer.
       </span>
-      <Button onClick={()=> setState({show: false})} style={{margin:0}}>Ok</Button>
+      <Button onClick={() => setShow(false)} style={{margin:0}}>Ok</Button>
     </Modal.Footer>
   </Modal>
 </div>
@@ -40,22 +47,22 @@ const [state, setState] = React.useState({show: false});
 import ModalButtonContainer from './ModalButtonContainer';
 import Button from '../../controls/buttons/Button';
 
-const [state, setState] = React.useState({show: false});
+const [show, setShow] = React.useState(false);
 
 <div>
-  <Button aria-haspopup='dialog' onClick={() => setState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Modal</Button>
+  <Button aria-haspopup='dialog' onClick={() => setShow(true)} style={{marginRight:'15px'}}>Open Modal</Button>
 
   <Modal
     size="medium"
-    show={state.show}
-    onHide={() => setState({show: false})}
+    show={show}
+    onHide={() => setShow(false)}
   >
-    <Modal.Header level={4} hideCloseButton={state.hideCloseButton}>This is the header.</Modal.Header>
+    <Modal.Header level={4} hideCloseButton={false}>This is the header.</Modal.Header>
     <Modal.Body>Body Content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</Modal.Body>
     <Modal.Footer>
       <ModalButtonContainer>
-        <Button onClick={()=> setState({show: false})} style={{margin: '15px 0 0 15px'}}>Cancel</Button>
-        <Button onClick={()=> setState({show: false})} styleType="primary" style={{margin: '15px 0 0 15px'}}>Ok</Button>
+        <Button onClick={() => setShow(false)} style={{margin: '15px 0 0 15px'}}>Cancel</Button>
+        <Button onClick={() => setShow(false)} styleType="primary" style={{margin: '15px 0 0 15px'}}>Ok</Button>
       </ModalButtonContainer>
     </Modal.Footer>
   </Modal>

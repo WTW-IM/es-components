@@ -72,7 +72,7 @@ const ModalStyles = createGlobalStyle`
       font-size: ${props => props.theme.font.baseFontSize};
       outline: 0;
       opacity: 0;
-      overflow: scroll;
+      overflow-y: auto;
       position: relative;
       transition:
         top ${() => animationTimeMs}ms ease-out,

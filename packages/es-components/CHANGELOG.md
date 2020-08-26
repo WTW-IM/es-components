@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.14"></a>
+## <small>21.6.14 (2020-08-26)</small>
+
+* Update: add default day prop when day input is not included ([c2989a7](https://github.com/wtw-im/es-components/commit/c2989a7))
+
+
+
+
 <a name="21.6.13"></a>
 ## <small>21.6.13 (2020-08-26)</small>
 

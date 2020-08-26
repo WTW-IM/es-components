@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const defaultBorderRadius = '2px';
 
-const AddOn = styled.button`
+const AddOn = styled.div`
   background-color: ${props => props.addOnBgColor};
   border: 1px solid
     ${props =>

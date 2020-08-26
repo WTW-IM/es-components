@@ -29,6 +29,7 @@ const getModalMargin = (windowHeight, modalHeight) => {
 const ModalStyles = createGlobalStyle`
   body.modal-open {
     overflow: hidden;
+
     .background-overlay {
       bottom: 0;
       left: 0;
@@ -42,6 +43,7 @@ const ModalStyles = createGlobalStyle`
       }};
       transition: background-color ${() => animationTimeMs}ms linear;
       z-index: 1030;
+
       &.ReactModal__Overlay--after-open {
         ${props => {
           if (!props.showBackdrop) return '';
@@ -60,7 +62,6 @@ const ModalStyles = createGlobalStyle`
         }
       }
     }
-
 
     .modal-content {
       background-clip: padding-box;
@@ -85,6 +86,7 @@ const ModalStyles = createGlobalStyle`
             top: -100%;
           `
           : ''};
+
       &.ReactModal__Content--after-open {
         ${props =>
           props.showAnimation

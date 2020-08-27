@@ -46,6 +46,7 @@ const ModalStyles = createGlobalStyle`
       top: 0;
       transition: background-color ${() => animationTimeMs / 2}ms linear;
       z-index: 1030;
+      -webkit-overflow-scrolling: touch;
 
       &.ReactModal__Overlay--after-open {
         ${props => {
@@ -73,21 +74,41 @@ const ModalStyles = createGlobalStyle`
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
       font-size: ${props => props.theme.font.baseFontSize};
+      margin: 0.5rem;
       outline: 0;
       opacity: 0;
       position: absolute;
-      transform: none;
       left: 0;
+      transform: translateY(0);
       transition:
-        transform ${() => animationTimeMs}ms ease-out,
-        opacity ${() => animationTimeMs}ms ease-out;
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
+        transform ${() => animationTimeMs}ms ease-out ${() =>
+  animationTimeMs / 4}ms,
+        opacity ${() => animationTimeMs}ms ease-out ${() =>
+  animationTimeMs / 4}ms;
+      ${props =>
+        props.showAnimation
+          ? `
+            transform: translateY(-50px);
+          `
+          : ''};
 
       &.ReactModal__Content--after-open {
         opacity: 1;
+        ${props =>
+          props.showAnimation
+            ? `
+              transform: translateY(0);
+            `
+            : ''};
+
         &.ReactModal__Content--before-close {
           opacity: 0;
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
         }
       }
 
@@ -97,30 +118,6 @@ const ModalStyles = createGlobalStyle`
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.small};
-          ${props =>
-            props.showAnimation
-              ? `
-                transform: translateY(-50px);
-              `
-              : ''};
-
-          &.ReactModal__Content--after-open {
-            ${props =>
-              props.showAnimation
-                ? `
-                  transform: translateY(0);
-                `
-                : ''};
-
-            &.ReactModal__Content--before-close {
-              ${props =>
-                props.showAnimation
-                  ? `
-                    transform: translateY(-50px);
-                  `
-                  : ''};
-            }
-          }
         }
       }
 
@@ -130,30 +127,6 @@ const ModalStyles = createGlobalStyle`
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.medium};
-          ${props =>
-            props.showAnimation
-              ? `
-                transform: translateY(-50px);
-              `
-              : ''};
-
-          &.ReactModal__Content--after-open {
-            ${props =>
-              props.showAnimation
-                ? `
-                  transform: translateY(0);
-                `
-                : ''};
-
-            &.ReactModal__Content--before-close {
-              ${props =>
-                props.showAnimation
-                  ? `
-                    transform: translateY(-50px);
-                  `
-                  : ''};
-            }
-          }
         }
       }
 
@@ -163,33 +136,6 @@ const ModalStyles = createGlobalStyle`
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.large};
-          ${props =>
-            props.showAnimation
-              ? `
-                transform: translateY(-50px);
-              `
-              : ''};
-
-          &.ReactModal__Content--after-open {
-            ${props =>
-              props.showAnimation
-                ? `
-                  transform: translateY(0);
-                `
-                : ''};
-
-            &.ReactModal__Content--before-close {
-              ${props =>
-                props.showAnimation
-                  ? `
-                    transition:
-                      top ${animationTimeMs}ms ease-out,
-                      opacity ${animationTimeMs}ms ease-out;
-                    transform: translateY(-50px);
-                  `
-                  : ''};
-            }
-          }
         }
       }
     }
@@ -214,7 +160,6 @@ function Modal({
 }) {
   const ariaId = useUniqueId(other.id);
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
-  const [headerHeight, setHeaderHeight] = useState(60);
   const [modalHeight, setModalHeight] = useState(300);
   const [shouldShow, setShouldShow] = useState(show);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -285,9 +230,7 @@ function Modal({
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
   return (
-    <ThemeProvider
-      theme={{ headerHeight, setHeaderHeight, modalHeight, windowHeight }}
-    >
+    <ThemeProvider theme={{ modalHeight, windowHeight }}>
       <RootNodeLocator />
       {shouldShow ? (
         <ModalStyles showAnimation={animation} showBackdrop={backdrop} />

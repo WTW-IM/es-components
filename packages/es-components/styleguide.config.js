@@ -84,6 +84,7 @@ module.exports = {
   context: {
     dateFormat: 'date-fns/format'
   },
+  require: [path.join(__dirname, 'config', 'styleguidist-page-scripts')],
   assetsDir: path.join(__dirname, 'docs'),
   webpackConfig: {
     optimization: {

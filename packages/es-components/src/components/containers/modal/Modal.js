@@ -23,7 +23,7 @@ const animationTimeMs = 300;
 const getModalMargin = (windowHeight, modalHeight) => {
   const fullMargin = windowHeight - modalHeight;
   const thirdTopMargin = fullMargin / 3;
-  return Math.max(thirdTopMargin, 0);
+  return Math.max(thirdTopMargin, 50);
 };
 
 const ModalStyles = createGlobalStyle`
@@ -44,7 +44,7 @@ const ModalStyles = createGlobalStyle`
       position: fixed;
       right: 0;
       top: 0;
-      transition: background-color ${() => animationTimeMs}ms linear;
+      transition: background-color ${() => animationTimeMs / 2}ms linear;
       z-index: 1030;
 
       &.ReactModal__Overlay--after-open {
@@ -75,16 +75,18 @@ const ModalStyles = createGlobalStyle`
       font-size: ${props => props.theme.font.baseFontSize};
       outline: 0;
       opacity: 0;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       transition:
-        top ${() => animationTimeMs}ms ease-out,
-        opacity ${() => animationTimeMs}ms linear;
+        top ${() => animationTimeMs}ms ease-in,
+        opacity ${() => animationTimeMs}ms ease-in;
       -webkit-overflow-scrolling: touch;
       width: 100%;
       ${props =>
         props.showAnimation
           ? `
-            top: -100%;
+            top: -50px;
           `
           : ''};
 
@@ -101,8 +103,11 @@ const ModalStyles = createGlobalStyle`
           ${props =>
             props.showAnimation
               ? `
+              transition:
+                top ${animationTimeMs}ms ease-out,
+                opacity ${animationTimeMs}ms ease-out;
                 opacity: 0;
-                top: -100%
+                top: -50px;
               `
               : ''};
         }
@@ -110,6 +115,7 @@ const ModalStyles = createGlobalStyle`
 
       &.small {
         @media (min-width: ${props => props.theme.screenSize.phone}) {
+          position: relative;
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.small};
@@ -118,6 +124,7 @@ const ModalStyles = createGlobalStyle`
 
       &.medium {
         @media (min-width: ${props => props.theme.screenSize.tablet}) {
+          position: relative;
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.medium};
@@ -126,6 +133,7 @@ const ModalStyles = createGlobalStyle`
 
       &.large {
         @media (min-width: ${props => props.theme.screenSize.desktop}) {
+          position: relative;
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.large};
@@ -157,6 +165,7 @@ function Modal({
   const [modalHeight, setModalHeight] = useState(300);
   const [shouldShow, setShouldShow] = useState(show);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const modalRef = useRef(null);
   const innerContentRef = useRef(null);
   const callRef = (ref, element) => {
     if (ref) {
@@ -175,13 +184,18 @@ function Modal({
 
   const modalHeightRef = useCallback(modalElement => {
     callRef(overlayRef, modalElement);
-    let newHeight = modalElement?.offsetHeight || 0;
+    let newHeight = 0;
+    if (modalElement) {
+      modalRef.current = modalElement;
+      newHeight = modalElement.offsetHeight;
+    }
     if (innerContentRef.current) {
       const contRefHeight = innerContentRef.current.offsetHeight;
       if (contRefHeight < newHeight) newHeight = contRefHeight;
     }
     setModalHeight(newHeight);
   });
+
   const modalParentSelector =
     parentSelector || useCallback(() => rootNode, [rootNode]);
 
@@ -208,6 +222,12 @@ function Modal({
     window.addEventListener('resize', setHeight);
     return () => window.removeEventListener('resize', setHeight);
   }, []);
+
+  useEffect(() => {
+    if (modalRef.current && modalRef.current.scroll) {
+      modalRef.current.scroll(0, 0);
+    }
+  }, [modalRef.current]);
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 

@@ -10,7 +10,7 @@ import Button from '../../controls/buttons/Button';
 
 const [show, setShow] = React.useState(false);
 const [size, setSize] = React.useState('medium');
-const [hideCloseButton, setHideCloseButton] = React.useState('medium');
+const [hideCloseButton, setHideCloseButton] = React.useState(false);
 const setInitialState = ({show: newShow, size: newSize, hideCloseButton: newHideClose}) => {
   setShow(newShow);
   setSize(newSize);

@@ -1,9 +1,7 @@
-import React, { useContext, useRef, useCallback, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { debounce } from 'lodash';
 
-import { useTheme } from '../../util/useTheme';
 import DismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
 import Heading from '../heading/Heading';
@@ -19,8 +17,6 @@ const Header = styled.div`
   font-size: 26px;
   justify-content: space-between;
   padding: 15px;
-  position: fixed;
-  width: 100%;
 
   .small & {
     @media (min-width: ${props => props.theme.screenSize.phone}) {
@@ -55,40 +51,11 @@ const DismissModal = styled(DismissButton)`
 `;
 
 function ModalHeader(props) {
-  const { hideCloseButton, children, level, ref, ...otherProps } = props;
+  const { hideCloseButton, children, level, ...otherProps } = props;
   const { onHide, ariaId } = useContext(ModalContext);
-  const { setHeaderHeight } = useTheme();
-  const headerRef = useRef(null);
-  const setHeight = useCallback(
-    headerElement => {
-      if (ref) {
-        if (typeof ref === 'function') {
-          ref(headerRef);
-        } else {
-          ref.current = headerRef;
-        }
-      }
-      headerRef.current = headerElement;
-      if (!headerElement) return;
-
-      setHeaderHeight(headerElement.offsetHeight);
-    },
-    [ref]
-  );
-
-  useEffect(() => {
-    const resizeSetHeaderHeight = debounce(() => {
-      if (!headerRef.current) return;
-      setHeaderHeight(headerRef.current.offsetHeight);
-    }, 100);
-
-    window.addEventListener('resize', resizeSetHeaderHeight);
-
-    return () => window.removeEventListener('resize', resizeSetHeaderHeight);
-  }, []);
 
   return (
-    <Header ref={setHeight} {...otherProps}>
+    <Header {...otherProps}>
       <Title id={ariaId} level={level}>
         {children}
       </Title>

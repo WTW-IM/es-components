@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { debounce } from 'lodash';
 
+import { useTheme } from '../../util/useTheme';
 import DismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
 import Heading from '../heading/Heading';
@@ -9,12 +11,37 @@ import Heading from '../heading/Heading';
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
   align-items: baseline;
+  background-color: ${props => props.theme.colors.white};
   border-bottom: 2px solid ${props => props.theme.brandColors.primary3};
+  box-sizing: border-box;
   color: ${props => props.theme.colors.gray9};
   display: flex;
   font-size: 26px;
   justify-content: space-between;
   padding: 15px;
+  position: fixed;
+  width: 100%;
+
+  .small & {
+    @media (min-width: ${props => props.theme.screenSize.phone}) {
+      position: static;
+      width: unset;
+    }
+  }
+
+  .medium & {
+    @media (min-width: ${props => props.theme.screenSize.tablet}) {
+      position: static;
+      width: unset;
+    }
+  }
+
+  .large & {
+    @media (min-width: ${props => props.theme.screenSize.desktop}) {
+      position: static;
+      width: unset;
+    }
+  }
 `;
 
 const Title = styled(Heading)`
@@ -28,11 +55,40 @@ const DismissModal = styled(DismissButton)`
 `;
 
 function ModalHeader(props) {
-  const { hideCloseButton, children, level, ...otherProps } = props;
+  const { hideCloseButton, children, level, ref, ...otherProps } = props;
   const { onHide, ariaId } = useContext(ModalContext);
+  const { setHeaderHeight } = useTheme();
+  const headerRef = useRef(null);
+  const setHeight = useCallback(
+    headerElement => {
+      if (ref) {
+        if (typeof ref === 'function') {
+          ref(headerRef);
+        } else {
+          ref.current = headerRef;
+        }
+      }
+      headerRef.current = headerElement;
+      if (!headerElement) return;
+
+      setHeaderHeight(headerElement.offsetHeight);
+    },
+    [ref]
+  );
+
+  useEffect(() => {
+    const resizeSetHeaderHeight = debounce(() => {
+      if (!headerRef.current) return;
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }, 100);
+
+    window.addEventListener('resize', resizeSetHeaderHeight);
+
+    return () => window.removeEventListener('resize', resizeSetHeaderHeight);
+  }, []);
 
   return (
-    <Header {...otherProps}>
+    <Header ref={setHeight} {...otherProps}>
       <Title id={ariaId} level={level}>
         {children}
       </Title>
@@ -46,13 +102,18 @@ ModalHeader.propTypes = {
   /** Specify whether the modal header should contain a close button */
   hideCloseButton: PropTypes.bool,
   children: PropTypes.any,
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6])
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  ref: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ])
 };
 
 ModalHeader.defaultProps = {
   hideCloseButton: false,
   children: undefined,
-  level: 4
+  level: 4,
+  ref: null
 };
 
 export default ModalHeader;

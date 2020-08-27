@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { createGlobalStyle } from 'styled-components';
-import { noop } from 'lodash';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { noop, debounce } from 'lodash';
 import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
 
@@ -18,87 +18,180 @@ const modalSize = {
   large: '900px'
 };
 
+const animationTimeMs = 300;
+
+const getModalMargin = (windowHeight, modalHeight) => {
+  const fullMargin = windowHeight - modalHeight;
+  const thirdTopMargin = fullMargin / 3;
+  return Math.max(thirdTopMargin, 50);
+};
+
 const ModalStyles = createGlobalStyle`
-  .background-overlay {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 1030;
-    transition: background-color 150ms linear;
-  }
+  body.modal-open {
+    overflow: hidden;
 
-  .background-overlay--after-open {
+    .background-overlay {
+      bottom: 0;
       background-color: ${props => {
-        if (props.showBackdrop) {
-          const color = tinycolor(props.theme.colors.black);
+        const color = tinycolor(props.theme.colors.gray9);
+        color.setAlpha(0);
+        return color.toRgbString();
+      }};
+
+      left: 0;
+      max-height: 100%;
+      overflow-y: auto;
+      position: fixed;
+      right: 0;
+      top: 0;
+      transition: background-color ${() => animationTimeMs / 2}ms linear;
+      z-index: 1030;
+
+      &.ReactModal__Overlay--after-open {
+        ${props => {
+          if (!props.showBackdrop) return '';
+
+          const color = tinycolor(props.theme.colors.gray9);
           color.setAlpha(0.5);
-          return color.toRgbString();
+          return `background-color: ${color.toRgbString()};`;
+        }}
+
+        &.ReactModal__Overlay--before-close {
+          background-color: ${props => {
+            const color = tinycolor(props.theme.colors.gray9);
+            color.setAlpha(0);
+            return color.toRgbString();
+          }};
         }
-        return 'transparent';
-      }} !important;
-  }
-
-  .modal-content {
-    background-clip: padding-box;
-    background-color: ${props => props.theme.colors.white};
-    border-radius: 3px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-    font-size: ${props => props.theme.font.baseFontSize};
-    outline: 0;
-    position: relative;
-    width: 100%;
-    ${props =>
-      props.showAnimation
-        ? `
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: transform 300ms ease-out, opacity 300ms linear;
-    -webkit-overflow-scrolling: touch;
-    `
-        : ''};
-  }
-
-  .modal-content--after-open {
-    ${props =>
-      props.showAnimation
-        ? `
-      opacity: 1;
-      transform: translateY(0);
-    `
-        : ''};
-  }
-
-  .modal-content--before-close {
-    ${props =>
-      props.showAnimation
-        ? `
-        opacity: 0;
-      transform: translateY(-100%);
-    `
-        : ''};
-  }
-
-  .small {
-    @media (min-width: ${props => props.theme.screenSize.phone}) {
-      margin: 20vh auto;
-      width: ${modalSize.small};
+      }
     }
-  }
 
-  .medium {
-    @media (min-width: ${props => props.theme.screenSize.tablet}) {
-      margin: 20vh auto;
-      width: ${modalSize.medium};
-    }
-  }
+    .modal-content {
+      background-clip: padding-box;
+      background-color: ${props => props.theme.colors.white};
+      border-radius: 3px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+      font-size: ${props => props.theme.font.baseFontSize};
+      outline: 0;
+      opacity: 0;
+      position: absolute;
+      transform: none;
+      left: 0;
+      transition:
+        transform ${() => animationTimeMs}ms ease-out,
+        opacity ${() => animationTimeMs}ms ease-out;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
 
-  .large {
-    @media (min-width: ${props => props.theme.screenSize.desktop}) {
-      margin: 20vh auto;
-      width: ${modalSize.large};
+      &.ReactModal__Content--after-open {
+        opacity: 1;
+        &.ReactModal__Content--before-close {
+          opacity: 0;
+        }
+      }
+
+      &.small {
+        @media (min-width: ${props => props.theme.screenSize.phone}) {
+          position: relative;
+          margin: ${({ theme }) =>
+            getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
+          width: ${modalSize.small};
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
+
+          &.ReactModal__Content--after-open {
+            ${props =>
+              props.showAnimation
+                ? `
+                  transform: translateY(0);
+                `
+                : ''};
+
+            &.ReactModal__Content--before-close {
+              ${props =>
+                props.showAnimation
+                  ? `
+                    transform: translateY(-50px);
+                  `
+                  : ''};
+            }
+          }
+        }
+      }
+
+      &.medium {
+        @media (min-width: ${props => props.theme.screenSize.tablet}) {
+          position: relative;
+          margin: ${({ theme }) =>
+            getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
+          width: ${modalSize.medium};
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
+
+          &.ReactModal__Content--after-open {
+            ${props =>
+              props.showAnimation
+                ? `
+                  transform: translateY(0);
+                `
+                : ''};
+
+            &.ReactModal__Content--before-close {
+              ${props =>
+                props.showAnimation
+                  ? `
+                    transform: translateY(-50px);
+                  `
+                  : ''};
+            }
+          }
+        }
+      }
+
+      &.large {
+        @media (min-width: ${props => props.theme.screenSize.desktop}) {
+          position: relative;
+          margin: ${({ theme }) =>
+            getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
+          width: ${modalSize.large};
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
+
+          &.ReactModal__Content--after-open {
+            ${props =>
+              props.showAnimation
+                ? `
+                  transform: translateY(0);
+                `
+                : ''};
+
+            &.ReactModal__Content--before-close {
+              ${props =>
+                props.showAnimation
+                  ? `
+                    transition:
+                      top ${animationTimeMs}ms ease-out,
+                      opacity ${animationTimeMs}ms ease-out;
+                    transform: translateY(-50px);
+                  `
+                  : ''};
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -115,52 +208,114 @@ function Modal({
   size,
   parentSelector,
   className,
+  overlayRef,
+  contentRef,
   ...other
 }) {
   const ariaId = useUniqueId(other.id);
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
+  const [headerHeight, setHeaderHeight] = useState(60);
+  const [modalHeight, setModalHeight] = useState(300);
+  const [shouldShow, setShouldShow] = useState(show);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const modalRef = useRef(null);
+  const innerContentRef = useRef(null);
+  const callRef = (ref, element) => {
+    if (ref) {
+      if (typeof ref === 'function') {
+        ref(element);
+      } else {
+        // eslint-disable-next-line no-param-reassign
+        ref.current = element;
+      }
+    }
+  };
+  const setContentRef = useCallback(contentElement => {
+    callRef(contentRef, contentElement);
+    innerContentRef.current = contentElement;
+  });
+
+  const modalHeightRef = useCallback(modalElement => {
+    callRef(overlayRef, modalElement);
+    let newHeight = 0;
+    if (modalElement) {
+      modalRef.current = modalElement;
+      newHeight = modalElement.offsetHeight;
+    }
+    if (innerContentRef.current) {
+      const contRefHeight = innerContentRef.current.offsetHeight;
+      if (contRefHeight < newHeight) newHeight = contRefHeight;
+    }
+    setModalHeight(newHeight);
+  });
+
   const modalParentSelector =
     parentSelector || useCallback(() => rootNode, [rootNode]);
+
+  useEffect(() => {
+    if (!animation || show) {
+      setShouldShow(show);
+      return noop;
+    }
+
+    let mounted = true;
+    setTimeout(() => {
+      if (!mounted) return;
+
+      setShouldShow(false);
+    }, animationTimeMs);
+
+    return () => {
+      mounted = false;
+    };
+  }, [show, animation]);
+
+  useEffect(() => {
+    const setHeight = debounce(() => setWindowHeight(window.innerHeight), 100);
+    window.addEventListener('resize', setHeight);
+    return () => window.removeEventListener('resize', setHeight);
+  }, []);
+
+  useEffect(() => {
+    if (modalRef.current && modalRef.current.scroll) {
+      modalRef.current.scroll(0, 0);
+    }
+  }, [modalRef.current]);
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
   return (
-    <>
+    <ThemeProvider
+      theme={{ headerHeight, setHeaderHeight, modalHeight, windowHeight }}
+    >
       <RootNodeLocator />
-      {show ? (
-        <>
-          <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
-          <ModalContext.Provider value={{ onHide, ariaId }}>
-            <ReactModal
-              className={{
-                base: `modal-content ${size} ${className || ''}`,
-                afterOpen: `modal-content--after-open ${className || ''}`,
-                beforeClose: `modal-content--before-close ${className || ''}`
-              }}
-              overlayClassName={{
-                base: 'background-overlay',
-                afterOpen: 'background-overlay--after-open',
-                beforeClose: 'background-overlay--before-close'
-              }}
-              closeTimeoutMS={animation ? 150 : null}
-              isOpen={show}
-              aria={{
-                labelledby: ariaId
-              }}
-              shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-              onRequestClose={onHide}
-              onAfterOpen={onEnter}
-              onAfterClose={onExit}
-              shouldCloseOnEsc={escapeExits}
-              parentSelector={modalParentSelector}
-              {...other}
-            >
-              {children}
-            </ReactModal>
-          </ModalContext.Provider>
-        </>
+      {shouldShow ? (
+        <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
       ) : null}
-    </>
+      <ModalContext.Provider value={{ onHide, ariaId }}>
+        <ReactModal
+          bodyOpenClassName="modal-open"
+          className={`${className} ${size} modal-content`}
+          overlayClassName="background-overlay"
+          closeTimeoutMS={animation ? animationTimeMs : null}
+          isOpen={show}
+          aria={{
+            labelledby: ariaId
+          }}
+          shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+          onRequestClose={onHide}
+          onAfterOpen={onEnter}
+          onAfterClose={onExit}
+          shouldCloseOnEsc={escapeExits}
+          parentSelector={modalParentSelector}
+          contentRef={setContentRef}
+          overlayRef={modalHeightRef}
+          {...other}
+        >
+          {children}
+        </ReactModal>
+      </ModalContext.Provider>
+    </ThemeProvider>
   );
 }
 
@@ -194,7 +349,15 @@ Modal.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /** Selects the parent */
   parentSelector: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  overlayRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ]),
+  contentRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ])
 };
 
 Modal.defaultProps = {
@@ -208,7 +371,9 @@ Modal.defaultProps = {
   size: 'medium',
   children: undefined,
   parentSelector: null,
-  className: null
+  className: null,
+  overlayRef: null,
+  contentRef: null
 };
 
 Modal.Header = Header;

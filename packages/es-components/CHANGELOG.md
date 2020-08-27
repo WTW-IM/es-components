@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.15"></a>
+## <small>21.6.15 (2020-08-27)</small>
+
+* Fix: matching bda-design modal animations ([275d5f2](https://github.com/wtw-im/es-components/commit/275d5f2))
+* Fix: moving scrolling to whole modal rather than inner content ([16be25e](https://github.com/wtw-im/es-components/commit/16be25e))
+* Fix: not using buttons for text addons ([0401004](https://github.com/wtw-im/es-components/commit/0401004))
+* Fix: not using overflow: scroll when we're not at 100% height ([f0654bf](https://github.com/wtw-im/es-components/commit/f0654bf))
+* Fix: using transform instead of top for fade-in ([0dd009b](https://github.com/wtw-im/es-components/commit/0dd009b))
+* Build: updating snapshots for mobile tests ([50e0b8d](https://github.com/wtw-im/es-components/commit/50e0b8d))
+* Update: reworking modals so they scroll in mobile view ([ffc16df](https://github.com/wtw-im/es-components/commit/ffc16df))
+
+
+
+
 <a name="21.6.14"></a>
 ## <small>21.6.14 (2020-08-26)</small>
 

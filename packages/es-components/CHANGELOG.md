@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.16"></a>
+## <small>21.6.16 (2020-08-27)</small>
+
+* Update: matching bda-design-system animation and mobile styles ([a30b0f1](https://github.com/wtw-im/es-components/commit/a30b0f1))
+
+
+
+
 <a name="21.6.15"></a>
 ## <small>21.6.15 (2020-08-27)</small>
 

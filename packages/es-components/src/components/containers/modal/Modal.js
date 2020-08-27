@@ -33,7 +33,7 @@ const ModalStyles = createGlobalStyle`
     .background-overlay {
       bottom: 0;
       background-color: ${props => {
-        const color = tinycolor(props.theme.colors.black);
+        const color = tinycolor(props.theme.colors.gray9);
         color.setAlpha(0);
         return color.toRgbString();
       }};
@@ -51,14 +51,14 @@ const ModalStyles = createGlobalStyle`
         ${props => {
           if (!props.showBackdrop) return '';
 
-          const color = tinycolor(props.theme.colors.black);
+          const color = tinycolor(props.theme.colors.gray9);
           color.setAlpha(0.5);
           return `background-color: ${color.toRgbString()};`;
         }}
 
         &.ReactModal__Overlay--before-close {
           background-color: ${props => {
-            const color = tinycolor(props.theme.colors.black);
+            const color = tinycolor(props.theme.colors.gray9);
             color.setAlpha(0);
             return color.toRgbString();
           }};
@@ -76,40 +76,18 @@ const ModalStyles = createGlobalStyle`
       outline: 0;
       opacity: 0;
       position: absolute;
-      top: 0;
+      transform: none;
       left: 0;
       transition:
-        top ${() => animationTimeMs}ms ease-in,
-        opacity ${() => animationTimeMs}ms ease-in;
+        transform ${() => animationTimeMs}ms ease-out,
+        opacity ${() => animationTimeMs}ms ease-out;
       -webkit-overflow-scrolling: touch;
       width: 100%;
-      ${props =>
-        props.showAnimation
-          ? `
-            top: -50px;
-          `
-          : ''};
 
       &.ReactModal__Content--after-open {
-        ${props =>
-          props.showAnimation
-            ? `
-              opacity: 1;
-              top: 0;
-            `
-            : ''};
-
+        opacity: 1;
         &.ReactModal__Content--before-close {
-          ${props =>
-            props.showAnimation
-              ? `
-              transition:
-                top ${animationTimeMs}ms ease-out,
-                opacity ${animationTimeMs}ms ease-out;
-                opacity: 0;
-                top: -50px;
-              `
-              : ''};
+          opacity: 0;
         }
       }
 
@@ -119,6 +97,30 @@ const ModalStyles = createGlobalStyle`
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.small};
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
+
+          &.ReactModal__Content--after-open {
+            ${props =>
+              props.showAnimation
+                ? `
+                  transform: translateY(0);
+                `
+                : ''};
+
+            &.ReactModal__Content--before-close {
+              ${props =>
+                props.showAnimation
+                  ? `
+                    transform: translateY(-50px);
+                  `
+                  : ''};
+            }
+          }
         }
       }
 
@@ -128,6 +130,30 @@ const ModalStyles = createGlobalStyle`
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.medium};
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
+
+          &.ReactModal__Content--after-open {
+            ${props =>
+              props.showAnimation
+                ? `
+                  transform: translateY(0);
+                `
+                : ''};
+
+            &.ReactModal__Content--before-close {
+              ${props =>
+                props.showAnimation
+                  ? `
+                    transform: translateY(-50px);
+                  `
+                  : ''};
+            }
+          }
         }
       }
 
@@ -137,6 +163,33 @@ const ModalStyles = createGlobalStyle`
           margin: ${({ theme }) =>
             getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
           width: ${modalSize.large};
+          ${props =>
+            props.showAnimation
+              ? `
+                transform: translateY(-50px);
+              `
+              : ''};
+
+          &.ReactModal__Content--after-open {
+            ${props =>
+              props.showAnimation
+                ? `
+                  transform: translateY(0);
+                `
+                : ''};
+
+            &.ReactModal__Content--before-close {
+              ${props =>
+                props.showAnimation
+                  ? `
+                    transition:
+                      top ${animationTimeMs}ms ease-out,
+                      opacity ${animationTimeMs}ms ease-out;
+                    transform: translateY(-50px);
+                  `
+                  : ''};
+            }
+          }
         }
       }
     }

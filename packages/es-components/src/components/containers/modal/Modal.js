@@ -26,12 +26,8 @@ const getModalMargin = (windowHeight, modalHeight) => {
   return Math.max(thirdTopMargin, 50);
 };
 
-const openClass = 'modal-open';
-
 const ModalStyles = createGlobalStyle`
-  .${openClass} {
-    overflow: hidden;
-
+  .${({ theme }) => theme.portalClassName} {
     .background-overlay {
       bottom: 0;
       background-color: ${props => {
@@ -161,6 +157,7 @@ function Modal({
   ...other
 }) {
   const ariaId = useUniqueId(other.id);
+  const portalClassName = `ReactModalPortal-${useUniqueId()}`;
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
   const [modalHeight, setModalHeight] = useState(300);
   const [shouldShow, setShouldShow] = useState(show);
@@ -230,28 +227,26 @@ function Modal({
   }, [modalRef.current]);
 
   useEffect(() => {
-    if (rootNode === document.body) return;
-
-    const targetNode = rootNode.querySelector(':host > *');
-
+    const newStyle = 'overflow: hidden;';
+    const currentStyle = document.body.getAttribute('style');
     if (shouldShow) {
-      targetNode.className += openClass;
+      document.body.setAttribute('style', `${currentStyle} ${newStyle}`);
     } else {
-      targetNode.className = targetNode.className.replace(openClass, '');
+      document.body.setAttribute('style', currentStyle.replace(newStyle, ''));
     }
-  }, [shouldShow, rootNode]);
+  }, [shouldShow]);
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
   return (
-    <ThemeProvider theme={{ modalHeight, windowHeight }}>
+    <ThemeProvider theme={{ modalHeight, windowHeight, portalClassName }}>
       <RootNodeLocator />
       {shouldShow ? (
         <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
       ) : null}
       <ModalContext.Provider value={{ onHide, ariaId }}>
         <ReactModal
-          bodyOpenClassName={openClass}
+          portalClassName={portalClassName}
           className={`${className} ${size} modal-content`}
           overlayClassName="background-overlay"
           closeTimeoutMS={animation ? animationTimeMs : null}

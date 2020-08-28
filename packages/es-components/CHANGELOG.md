@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.17"></a>
+## <small>21.6.17 (2020-08-28)</small>
+
+* Fix: fixing Modals for Web Components ([0470c40](https://github.com/wtw-im/es-components/commit/0470c40))
+
+
+
+
 <a name="21.6.16"></a>
 ## <small>21.6.16 (2020-08-27)</small>
 

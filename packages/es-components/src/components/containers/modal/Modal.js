@@ -26,8 +26,10 @@ const getModalMargin = (windowHeight, modalHeight) => {
   return Math.max(thirdTopMargin, 50);
 };
 
+const openClass = 'modal-open';
+
 const ModalStyles = createGlobalStyle`
-  body.modal-open {
+  .${openClass} {
     overflow: hidden;
 
     .background-overlay {
@@ -227,6 +229,18 @@ function Modal({
     }
   }, [modalRef.current]);
 
+  useEffect(() => {
+    if (rootNode === document.body) return;
+
+    const targetNode = rootNode.querySelector(':host > *');
+
+    if (shouldShow) {
+      targetNode.className += openClass;
+    } else {
+      targetNode.className = targetNode.className.replace(openClass, '');
+    }
+  }, [shouldShow, rootNode]);
+
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 
   return (
@@ -237,7 +251,7 @@ function Modal({
       ) : null}
       <ModalContext.Provider value={{ onHide, ariaId }}>
         <ReactModal
-          bodyOpenClassName="modal-open"
+          bodyOpenClassName={openClass}
           className={`${className} ${size} modal-content`}
           overlayClassName="background-overlay"
           closeTimeoutMS={animation ? animationTimeMs : null}

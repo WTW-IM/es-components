@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.18"></a>
+## <small>21.6.18 (2020-08-28)</small>
+
+* Merge pull request #479 from WTW-IM/modal-web-components-fix ([878d524](https://github.com/wtw-im/es-components/commit/878d524)), closes [#479](https://github.com/wtw-im/es-components/issues/479)
+* Fix: really fixing modals for Web Components ([c7e6118](https://github.com/wtw-im/es-components/commit/c7e6118))
+
+
+
+
 <a name="21.6.17"></a>
 ## <small>21.6.17 (2020-08-28)</small>
 

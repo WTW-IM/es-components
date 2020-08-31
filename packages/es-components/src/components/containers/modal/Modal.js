@@ -228,7 +228,7 @@ function Modal({
 
   useEffect(() => {
     const newStyle = 'overflow: hidden;';
-    const currentStyle = document.body.getAttribute('style');
+    const currentStyle = document.body.getAttribute('style') || '';
     if (shouldShow) {
       document.body.setAttribute('style', `${currentStyle} ${newStyle}`);
     } else {

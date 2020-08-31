@@ -228,13 +228,23 @@ function Modal({
 
   useEffect(() => {
     const newStyle = 'overflow: hidden;';
-    const currentStyle = document.body.getAttribute('style') || '';
-    if (shouldShow) {
-      document.body.setAttribute('style', `${currentStyle} ${newStyle}`);
+    const getCurrentStyle = () => document.body.getAttribute('style') || '';
+    const disableScroll = () =>
+      document.body.setAttribute('style', `${getCurrentStyle()} ${newStyle}`);
+    const enableScroll = () =>
+      document.body.setAttribute(
+        'style',
+        getCurrentStyle().replace(newStyle, '')
+      );
+
+    if (show) {
+      disableScroll();
     } else {
-      document.body.setAttribute('style', currentStyle.replace(newStyle, ''));
+      enableScroll();
     }
-  }, [shouldShow]);
+
+    return enableScroll;
+  }, [show]);
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 

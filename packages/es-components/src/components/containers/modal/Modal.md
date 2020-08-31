@@ -18,11 +18,29 @@ const setInitialState = ({show: newShow, size: newSize, hideCloseButton: newHide
 }
 
 <div>
-  <Button aria-haspopup='dialog' onClick={() => setInitialState({show: true, size: 'small', hideCloseButton: true})} style={{marginRight:'15px'}}>Open Small Modal</Button>
+  <Button
+    aria-haspopup='dialog'
+    onClick={() => setInitialState({show: true, size: 'small', hideCloseButton: true})}
+    style={{margin: '0 15px 15px 0'}}
+  >
+    Open Small Modal
+  </Button>
 
-  <Button aria-haspopup='dialog' onClick={() => setInitialState({show: true, size: 'medium', hideCloseButton: false})} style={{marginRight:'15px'}}>Open Medium Modal</Button>
+  <Button
+    aria-haspopup='dialog'
+    onClick={() => setInitialState({show: true, size: 'medium', hideCloseButton: false})}
+    style={{margin: '0 15px 15px 0'}}
+  >
+    Open Medium Modal
+  </Button>
 
-  <Button aria-haspopup='dialog' onClick={() => setInitialState({show: true, size: 'large', hideCloseButton: false})}>Open Large Modal</Button>
+  <Button
+    aria-haspopup='dialog'
+    onClick={() => setInitialState({show: true, size: 'large', hideCloseButton: false})}
+    style={{margin: '0 15px 15px 0'}}
+  >
+    Open Large Modal
+  </Button>
 
   <Modal
     size={size}
@@ -61,8 +79,8 @@ const [show, setShow] = React.useState(false);
     <Modal.Body>Body Content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.This is the popover's content. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</Modal.Body>
     <Modal.Footer>
       <ModalButtonContainer>
-        <Button onClick={() => setShow(false)} style={{margin: '15px 0 0 15px'}}>Cancel</Button>
-        <Button onClick={() => setShow(false)} styleType="primary" style={{margin: '15px 0 0 15px'}}>Ok</Button>
+        <Button onClick={() => setShow(false)} style={{marginTope: 15}}>Cancel</Button>
+        <Button onClick={() => setShow(false)} styleType="primary" style={{marginTop: 15}}>Ok</Button>
       </ModalButtonContainer>
     </Modal.Footer>
   </Modal>

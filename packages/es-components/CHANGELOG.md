@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.19"></a>
+## <small>21.6.19 (2020-08-31)</small>
+
+* Fix: ensuring we can always run without a body style ([6028817](https://github.com/wtw-im/es-components/commit/6028817))
+
+
+
+
 <a name="21.6.18"></a>
 ## <small>21.6.18 (2020-08-28)</small>
 

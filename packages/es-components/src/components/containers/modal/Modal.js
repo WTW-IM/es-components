@@ -269,8 +269,9 @@ function Modal({
       <ModalContext.Provider value={{ onHide, ariaId }}>
         <ReactModal
           portalClassName={portalClassName}
-          className={`${className} ${size} ${contentClassName}`}
-          overlayClassName={backdropClassName}
+          className={`${className || ''} ${size} ${contentClassName}`}
+          overlayClassName={`${other.backdropClassName ||
+            ''} ${backdropClassName}`}
           closeTimeoutMS={animation ? animationTimeMs : null}
           isOpen={show}
           aria={{
@@ -323,11 +324,16 @@ Modal.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /** Selects the parent */
   parentSelector: PropTypes.func,
+  /** Classes for the Modal content */
   className: PropTypes.string,
+  /** Classes for the Modal backdrop */
+  backdropClassName: PropTypes.string,
+  /** A ref to the overlay */
   overlayRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any })
   ]),
+  /** A ref to the content */
   contentRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any })
@@ -347,7 +353,8 @@ Modal.defaultProps = {
   parentSelector: null,
   className: null,
   overlayRef: null,
-  contentRef: null
+  contentRef: null,
+  backdropClassName: undefined
 };
 
 Modal.Header = Header;

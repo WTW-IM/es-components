@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.20"></a>
+## <small>21.6.20 (2020-08-31)</small>
+
+* Fix: ensuring you can always continue scrolling after Modal hide/close ([1adc71b](https://github.com/wtw-im/es-components/commit/1adc71b))
+
+
+
+
 <a name="21.6.19"></a>
 ## <small>21.6.19 (2020-08-31)</small>
 

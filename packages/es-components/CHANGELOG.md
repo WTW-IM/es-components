@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.21"></a>
+## <small>21.6.21 (2020-09-03)</small>
+
+* New: add heading level to Drawer ([5125e28](https://github.com/wtw-im/es-components/commit/5125e28))
+
+
+
+
 <a name="21.6.20"></a>
 ## <small>21.6.20 (2020-08-31)</small>
 

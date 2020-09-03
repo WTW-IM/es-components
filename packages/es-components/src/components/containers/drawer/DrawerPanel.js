@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
 import { noop } from 'lodash';
 
+import Heading from '../heading/Heading';
 import { DrawerContext } from './DrawerContext';
 import Icon from '../../base/icons/Icon';
 import useUniqueId from '../../util/useUniqueId';
@@ -57,6 +58,7 @@ function DrawerPanel(props) {
     onItemClick,
     title,
     titleAside,
+    headingLevel,
     ...other
   } = props;
 
@@ -66,7 +68,7 @@ function DrawerPanel(props) {
 
   return (
     <PanelWrapper {...other}>
-      <div id={headingAriaId} role="heading">
+      <div id={headingAriaId} role="heading" aria-level={headingLevel}>
         <PanelButton
           aria-expanded={isOpen}
           aria-controls={regionAriaId}
@@ -107,6 +109,8 @@ DrawerPanel.propTypes = {
   isOpen: PropTypes.bool,
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
+  /** Set desired aria-level for heading */
+  headingLevel: Heading.propTypes.level,
   /** @ignore */
   onItemClick: PropTypes.func
 };
@@ -115,6 +119,7 @@ DrawerPanel.defaultProps = {
   isOpen: false,
   noPadding: false,
   titleAside: undefined,
+  headingLevel: 2,
   onItemClick: noop
 };
 

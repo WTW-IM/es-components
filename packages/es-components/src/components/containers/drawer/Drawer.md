@@ -89,6 +89,7 @@ class DrawerExample extends React.Component {
 
 Use the `noPadding` property to remove default padding within a panel (useful for lists and tables).
 Use the `titleAside` property to display text or other content on the right side of the panel header.
+Use the `headingLevel` property to change default level of heading.
 You can customize the `key` property of each Panel; if not specified a default key value will be assigned matching the Panel's numeric position.
 
 ```
@@ -116,7 +117,7 @@ class DrawerExample extends React.Component {
             <li>Another Item</li>
           </ul>
         </Drawer.Panel>
-        <Drawer.Panel title="Panel Three" className="alt-color">
+        <Drawer.Panel title="Panel Three" className="alt-color" headingLevel={3}>
           <div>
             More content. Anim pariatur cliche reprehenderit, enim eiusmod
             high life accusamus terry richardson ad squid.

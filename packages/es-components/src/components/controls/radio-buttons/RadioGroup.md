@@ -1,5 +1,7 @@
 Group `RadioButton` components together using a `RadioGroup`. Any additional props passed to `RadioGroup` will propagate to each individual `RadioButton`.
 
+`RadioButton` supports a `className` prop for flexibility and styled-component usage. Any classes added will be applied to the wrapping `label` surrounding the display elements.
+
 ```
 import RadioButton from './RadioButton';
 import Control from '../Control';

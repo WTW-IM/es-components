@@ -69,7 +69,7 @@ const RadioDisplay = styled.span`
   }
 `;
 
-export function RadioButton({ children, ...radioProps }) {
+export function RadioButton({ children, className, ...radioProps }) {
   const id = useUniqueId(radioProps.id);
   const isChecked = radioProps.checked;
   const theme = useTheme();
@@ -96,7 +96,7 @@ export function RadioButton({ children, ...radioProps }) {
   };
 
   return (
-    <RadioLabel {...labelProps}>
+    <RadioLabel className={className} {...labelProps}>
       <RadioInput type="radio" id={id} {...inputProps} />
       <RadioDisplay
         className="es-radio__fill"
@@ -109,10 +109,13 @@ export function RadioButton({ children, ...radioProps }) {
 }
 
 RadioButton.propTypes = {
+  /** supports styled-component usage, applies to the wrapping Label */
+  className: PropTypes.string,
   children: PropTypes.any
 };
 
 RadioButton.defaultProps = {
+  className: undefined,
   children: undefined
 };
 

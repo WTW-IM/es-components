@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.22"></a>
+## <small>21.6.22 (2020-09-15)</small>
+
+* Update: added className prop to RadioButton ([4483b22](https://github.com/wtw-im/es-components/commit/4483b22))
+
+
+
+
 <a name="21.6.21"></a>
 ## <small>21.6.21 (2020-09-03)</small>
 

@@ -7,6 +7,7 @@ import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import Icon from '../../base/icons/Icon';
+import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
 import { useRootNodeLocator } from '../../util/useRootNode';
 
 const PaneBase = styled(Modal)`
@@ -129,10 +130,6 @@ const defaultStyles = {
 };
 
 const GlobalPaneStyles = createGlobalStyle`
-  .ReactModal__Body--open {
-    overflow-y: hidden;
-  }
-
   .ReactModal__Overlay--after-open {
     background-color: rgba(0,0,0,0.5) !important;
   }
@@ -174,6 +171,7 @@ export default function SlidingPane({
   ...rest
 }) {
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
+  useDisableBodyScroll(isOpen);
   const modalParentSelector =
     parentSelector || useCallback(() => rootNode, [rootNode]);
   const Pane = getPane(from);

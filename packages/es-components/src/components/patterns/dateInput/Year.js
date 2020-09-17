@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
 import InputBase from '../../controls/textbox/InputBase';
+import onNonNumericHandler from './onNonNumericHandler';
 
 const YearInput = styled(InputBase)`
   appearance: textfield;
@@ -35,6 +36,7 @@ function Year({ onChange, date, ...props }) {
       inputmode="numeric"
       pattern="[0-9]*"
       onChange={onYearChange}
+      onKeyDown={onNonNumericHandler}
       placeholder="Year"
       value={value}
       {...theme.validationInputColor[validationState]}

@@ -4,13 +4,20 @@ export const useDisableBodyScroll = shouldDisableScroll => {
   useEffect(() => {
     const newStyle = 'overflow: hidden;';
     const getCurrentStyle = () => document.body.getAttribute('style') || '';
-    const disableScroll = () =>
+    let scrollDisabled = false;
+    const disableScroll = () => {
+      scrollDisabled = true;
       document.body.setAttribute('style', `${getCurrentStyle()} ${newStyle}`);
-    const enableScroll = () =>
+    };
+    const enableScroll = () => {
+      if (!scrollDisabled) return;
+      scrollDisabled = false;
       document.body.setAttribute(
         'style',
+        // this will only replace one instance of newStyle, which is what we want.
         getCurrentStyle().replace(newStyle, '')
       );
+    };
 
     if (shouldDisableScroll) {
       disableScroll();

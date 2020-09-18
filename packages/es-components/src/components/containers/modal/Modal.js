@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
 
 import useUniqueId from '../../util/useUniqueId';
+import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
@@ -226,25 +227,7 @@ function Modal({
     }
   }, [modalRef.current]);
 
-  useEffect(() => {
-    const newStyle = 'overflow: hidden;';
-    const getCurrentStyle = () => document.body.getAttribute('style') || '';
-    const disableScroll = () =>
-      document.body.setAttribute('style', `${getCurrentStyle()} ${newStyle}`);
-    const enableScroll = () =>
-      document.body.setAttribute(
-        'style',
-        getCurrentStyle().replace(newStyle, '')
-      );
-
-    if (show) {
-      disableScroll();
-    } else {
-      enableScroll();
-    }
-
-    return enableScroll;
-  }, [show]);
+  useDisableBodyScroll(show);
 
   const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
 

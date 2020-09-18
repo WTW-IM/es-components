@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.24"></a>
+## <small>21.6.24 (2020-09-18)</small>
+
+* Fix: prevent unnecessary hook action ([fb9f146](https://github.com/wtw-im/es-components/commit/fb9f146))
+* Update: extract and reuse useDisableBodyScroll ([4d0b352](https://github.com/wtw-im/es-components/commit/4d0b352))
+
+
+
+
 <a name="21.6.23"></a>
 ## <small>21.6.23 (2020-09-15)</small>
 

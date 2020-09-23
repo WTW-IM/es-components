@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.25"></a>
+## <small>21.6.25 (2020-09-23)</small>
+
+* Fix: prevent non-numeric input for Day and Year ([4f0ff73](https://github.com/wtw-im/es-components/commit/4f0ff73))
+
+
+
+
 <a name="21.6.24"></a>
 ## <small>21.6.24 (2020-09-18)</small>
 

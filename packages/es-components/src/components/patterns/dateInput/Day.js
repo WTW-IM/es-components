@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
 import InputBase from '../../controls/textbox/InputBase';
+import onNonNumericHandler from './onNonNumericHandler';
 
 const DayInput = styled(InputBase)`
   appearance: textfield;
@@ -36,6 +37,7 @@ function Day({ onChange, date, ...props }) {
       pattern="[0-9]*"
       min="1"
       max="31"
+      onKeyDown={onNonNumericHandler}
       onChange={onDayChange}
       placeholder="Day"
       value={value}

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.26"></a>
+## <small>21.6.26 (2020-09-25)</small>
+
+* New: statusTracker component ([cb38fa8](https://github.com/wtw-im/es-components/commit/cb38fa8))
+
+
+
+
 <a name="21.6.25"></a>
 ## <small>21.6.25 (2020-09-23)</small>
 

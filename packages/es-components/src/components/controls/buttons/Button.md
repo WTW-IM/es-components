@@ -7,6 +7,8 @@ const buttonStyle = {
   margin: '10px 15px 0 0'
 };
 
+const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
+
 <div>
   <Button style={buttonStyle}>Default</Button>
 
@@ -21,6 +23,10 @@ const buttonStyle = {
   <Button styleType="warning" style={buttonStyle}>Warning</Button>
 
   <Button styleType="danger" style={buttonStyle}>Danger</Button>
+
+  <Button styleType="primary" style={buttonStyle} onClick={wait} showWhileRunning="Running...">
+    Run A Task
+  </Button>
 </div>
 ```
 
@@ -153,3 +159,4 @@ import DropdownButton from './DropdownButton';
     <Button styleType="primary" flatLeftEdge>Left Split Button Dropdown</Button>
   </div>
 </>
+```

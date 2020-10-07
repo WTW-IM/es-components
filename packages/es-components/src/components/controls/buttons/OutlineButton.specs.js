@@ -53,8 +53,8 @@ it('can show loading-state content instead of child while onClick is in-flight',
 
   expect(getByText('Test')).not.toBeDisabled();
   getByText('Test').click();
-  expect(getByText('Running...')).toBeDisabled();
+  getByText('Running...').click();
   await findByText('Test');
 
-  expect(onClick).toHaveBeenCalled();
+  expect(onClick).toHaveBeenCalledTimes(1);
 });

@@ -43,18 +43,20 @@ it('executes the onClick function passed', () => {
 });
 
 it('can show loading-state content instead of child while onClick is in-flight', async () => {
+  const asyncOnClick = jest.fn(() => Promise.resolve());
   const { getByText, findByText } = renderWithTheme(
     buildButton({
       children: 'Test',
       showWhileRunning: 'Running...',
-      onClick: () => Promise.resolve()
+      onClick: asyncOnClick
     })
   );
 
-  expect(getByText('Test')).not.toBeDisabled();
-  getByText('Test').click();
-  expect(getByText('Running...')).toBeDisabled();
+  const button = getByText('Test');
+  button.click();
+  expect(getByText('Running...')).toBe(button);
+  button.click();
   await findByText('Test');
 
-  expect(onClick).toHaveBeenCalled();
+  expect(onClick).toHaveBeenCalledTimes(1);
 });

@@ -1,49 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { useLoadingState } from '../../../../hooks/useLoadingState';
 
 export const withDisabledContentWhileRunning = ButtonComponent => {
+  const StyledButton = styled(ButtonComponent)`
+    ${({ running }) =>
+      running &&
+      `
+      :hover{
+        background: grey;
+        color: white;
+      }
+      :focus{
+        box-shadow: 0 1px 1px grey, 0 0 0 0.2rem grey;
+        color: lightgrey;
+        background-color: grey;
+        border-color: grey;
+      }
+      color: lightgrey;
+      background-color: grey;
+      cursor: not-allowed;
+      border-color: grey;
+    `}
+  `;
+
   const ButtonWithLoadingState = React.forwardRef(
     (
-      {
-        showWhileRunning: runningContent,
-        disabled,
-        children,
-        onClick,
-        ...otherProps
-      },
+      { showWhileRunning: runningContent, children, onClick, ...otherProps },
       ref
     ) => {
       const [isRunning, showRunningWhile] = useLoadingState();
-
       const runOperation = (...params) =>
         runningContent
-          ? showRunningWhile(onClick(...params))
+          ? !isRunning && showRunningWhile(onClick(...params))
           : onClick(...params);
 
       return (
-        <ButtonComponent
+        <StyledButton
           {...otherProps}
-          disabled={runningContent ? isRunning : disabled}
+          running={isRunning}
           onClick={runOperation}
           ref={ref}
         >
           {runningContent && isRunning ? runningContent : children}
-        </ButtonComponent>
+        </StyledButton>
       );
     }
   );
 
   ButtonWithLoadingState.propTypes = {
     showWhileRunning: PropTypes.any,
-    disabled: PropTypes.bool,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func
   };
 
   ButtonWithLoadingState.defaultProps = {
     showWhileRunning: undefined,
-    disabled: undefined,
     onClick: undefined
   };
 

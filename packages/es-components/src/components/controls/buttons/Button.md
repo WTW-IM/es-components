@@ -9,7 +9,7 @@ const buttonStyle = {
 
 const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
 
-<div>
+<div aria-live="polite">
   <Button style={buttonStyle}>Default</Button>
 
   <Button styleType="darkDefault" style={buttonStyle}>Dark Default</Button>

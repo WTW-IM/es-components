@@ -16,7 +16,7 @@ const iconStyle = {
 
 const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
 
-<p style={{ display: 'flex' }}>
+<p style={{ display: 'flex' }} aria-live="polite">
   <ActionButton styleType="info" style={buttonStyle}><Icon name="edit" style={iconStyle} /> Edit</ActionButton>
   <ActionButton styleType="success" style={buttonStyle}><Icon name="add" style={iconStyle} /> Add</ActionButton>
   <ActionButton styleType="danger" style={buttonStyle}><Icon name="remove" style={iconStyle} /> Remove</ActionButton>

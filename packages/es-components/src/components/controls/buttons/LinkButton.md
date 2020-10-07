@@ -5,7 +5,7 @@ Additional props supplied to the LinkButton component will be passed to the unde
 ```
 const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
 
-<p>
+<p aria-live="polite">
   <LinkButton styleType="primary">Primary</LinkButton><br />
   <LinkButton styleType="success">Success</LinkButton><br />
   <LinkButton styleType="information">Info</LinkButton><br />

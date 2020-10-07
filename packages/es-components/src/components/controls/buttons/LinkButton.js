@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
-import { withLoadingStateWhileRunning } from './features/withDisabledLoadingStateContent';
+import { withLoadingStateWhileRunning } from './features/withLoadingStateWhileRunning';
 
 const StyledButton = styled.button`
   background-color: transparent;

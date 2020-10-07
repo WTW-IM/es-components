@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
-import { withLoadingStateWhileRunning } from './features/withDisabledLoadingStateContent';
+import { withLoadingStateWhileRunning } from './features/withLoadingStateWhileRunning';
 
 const StyledButton = styled.button`
   background-color: ${props => props.colors.bgColor};

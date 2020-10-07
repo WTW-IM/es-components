@@ -8,8 +8,8 @@ export const withLoadingStateWhileRunning = (
   options = { useDisabledStyling: true }
 ) => {
   const StyledButton = styled(ButtonComponent)`
-    ${({ running }) =>
-      running &&
+    ${({ displayAsRunning }) =>
+      displayAsRunning &&
       `
       :hover{
         color: white;
@@ -41,7 +41,7 @@ export const withLoadingStateWhileRunning = (
       return (
         <StyledButton
           {...otherProps}
-          running={options.useDisabledStyling && isRunning}
+          displayAsRunning={options.useDisabledStyling && isRunning}
           onClick={runOperation}
           ref={ref}
         >

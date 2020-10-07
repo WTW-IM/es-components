@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useLoadingState } from '../../../../hooks/useLoadingState';
 
-export const withDisabledContentWhileRunning = ButtonComponent => {
+export const withLoadingStateWhileRunning = (
+  ButtonComponent,
+  options = { useDisabledStyling: true }
+) => {
   const StyledButton = styled(ButtonComponent)`
     ${({ running }) =>
       running &&
       `
       :hover{
-        background: grey;
         color: white;
       }
       :focus{
@@ -39,7 +41,7 @@ export const withDisabledContentWhileRunning = ButtonComponent => {
       return (
         <StyledButton
           {...otherProps}
-          running={isRunning}
+          running={options.useDisabledStyling && isRunning}
           onClick={runOperation}
           ref={ref}
         >

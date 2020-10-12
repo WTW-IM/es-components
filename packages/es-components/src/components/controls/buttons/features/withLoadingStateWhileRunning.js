@@ -29,7 +29,13 @@ export const withLoadingStateWhileRunning = (
 
   const ButtonWithLoadingState = React.forwardRef(
     (
-      { showWhileRunning: runningContent, children, onClick, ...otherProps },
+      {
+        showWhileRunning: runningContent,
+        children,
+        onClick,
+        styleType,
+        ...otherProps
+      },
       ref
     ) => {
       const [isRunning, showRunningWhile] = useLoadingState();
@@ -41,6 +47,7 @@ export const withLoadingStateWhileRunning = (
       return (
         <StyledButton
           {...otherProps}
+          styleType={runningContent && isRunning ? undefined : styleType}
           displayAsRunning={options.useDisabledStyling && isRunning}
           onClick={runOperation}
           ref={ref}
@@ -54,10 +61,12 @@ export const withLoadingStateWhileRunning = (
   ButtonWithLoadingState.propTypes = {
     showWhileRunning: PropTypes.any,
     children: PropTypes.node.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    styleType: PropTypes.string
   };
 
   ButtonWithLoadingState.defaultProps = {
+    styleType: 'default',
     showWhileRunning: undefined,
     onClick: undefined
   };

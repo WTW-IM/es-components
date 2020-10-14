@@ -55,7 +55,7 @@ function DateInput({
 }) {
   const [state, dispatch] = useReducer(reducer, {
     day: defaultValue ? defaultValue.getDate() : defaultDay,
-    month: defaultValue ? defaultValue.getMonth() + 1 : '',
+    month: defaultValue ? defaultValue.getMonth() + 1 : 1,
     year: defaultValue ? defaultValue.getFullYear().toString() : ''
   });
 

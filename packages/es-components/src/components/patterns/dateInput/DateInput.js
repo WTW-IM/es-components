@@ -90,7 +90,12 @@ function DateInput({
       (maxDate ? isBefore(date, maxDate) : true);
     return {
       value: dateIsValid ? date : undefined,
-      isInRange
+      isInRange,
+      rawValues: {
+        year: year.toString(),
+        month: month === 'none' ? '' : month.toString(),
+        day: day.toString()
+      }
     };
   }
 

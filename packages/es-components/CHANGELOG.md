@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.27"></a>
+## <small>21.6.27 (2020-10-15)</small>
+
+* Update: added rawValues to DateInput return object ([390d238](https://github.com/wtw-im/es-components/commit/390d238))
+
+
+
+
 <a name="21.6.26"></a>
 ## <small>21.6.26 (2020-09-25)</small>
 

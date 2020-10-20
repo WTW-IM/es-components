@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
@@ -50,7 +50,7 @@ const PanelBody = styled(({ noPadding, ...rest }) => (
   }
 `;
 
-function DrawerPanel(props) {
+const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   const {
     children,
     isOpen,
@@ -62,6 +62,10 @@ function DrawerPanel(props) {
     ...other
   } = props;
 
+  const buttonRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focusHeaderButton: () => buttonRef.current.focus()
+  }));
   const { openedIconName, closedIconName } = React.useContext(DrawerContext);
   const headingAriaId = `${useUniqueId(other.id)}-heading`;
   const regionAriaId = `${useUniqueId(other.id)}-region`;
@@ -72,6 +76,7 @@ function DrawerPanel(props) {
         <PanelButton
           aria-expanded={isOpen}
           aria-controls={regionAriaId}
+          ref={buttonRef}
           onClick={() => onItemClick()}
         >
           <span>
@@ -93,7 +98,7 @@ function DrawerPanel(props) {
       </PanelBody>
     </PanelWrapper>
   );
-}
+});
 
 DrawerPanel.propTypes = {
   children: PropTypes.any.isRequired,

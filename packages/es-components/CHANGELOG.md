@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.28"></a>
+## <small>21.6.28 (2020-10-22)</small>
+
+* Adding definition for new paycheck icon. ([d2badab](https://github.com/wtw-im/es-components/commit/d2badab))
+
+
+
+
 <a name="21.6.27"></a>
 ## <small>21.6.27 (2020-10-15)</small>
 

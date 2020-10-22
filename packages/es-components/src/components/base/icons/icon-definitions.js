@@ -235,7 +235,8 @@ const regular = {
   'im-icon-play': '6e9',
   'im-icon-pause': '6ea',
   'im-icon-skip-to-start': '6eb',
-  'im-icon-reply-arrow': '6ec'
+  'im-icon-reply-arrow': '6ec',
+  'im-icon-paycheck': '6ed'
 };
 
 export { regular };

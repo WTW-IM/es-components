@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.29"></a>
+## <small>21.6.29 (2020-10-23)</small>
+
+* Merge branch 'master' into drawer-ref ([0b05ae1](https://github.com/wtw-im/es-components/commit/0b05ae1))
+* Update: expose ref for Drawer header button ([2ec4618](https://github.com/wtw-im/es-components/commit/2ec4618))
+
+
+
+
 <a name="21.6.28"></a>
 ## <small>21.6.28 (2020-10-22)</small>
 

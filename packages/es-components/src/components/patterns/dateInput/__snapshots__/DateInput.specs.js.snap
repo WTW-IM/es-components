@@ -17,7 +17,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
       tabindex="-1"
     >
       <select
-        class="sc-AxhUy eAZLnY sc-AxgMl gA-DKIY"
+        class="sc-AxhUy sc-AxgMl lkgPPR"
         id="test"
         name="month"
       >
@@ -77,7 +77,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
       tabindex="-1"
     >
       <select
-        class="sc-AxhUy eAZLnY sc-AxgMl gA-DKIY"
+        class="sc-AxhUy sc-AxgMl lkgPPR"
         id="test"
       >
         <option

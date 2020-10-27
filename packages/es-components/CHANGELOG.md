@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.30"></a>
+## <small>21.6.30 (2020-10-27)</small>
+
+* Update: removing unnecessary Dropwdown wrapper ([1f1da84](https://github.com/wtw-im/es-components/commit/1f1da84))
+
+
+
+
 <a name="21.6.29"></a>
 ## <small>21.6.29 (2020-10-23)</small>
 

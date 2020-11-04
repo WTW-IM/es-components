@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.31"></a>
+## <small>21.6.31 (2020-11-04)</small>
+
+* Update: added noRatingText prop to StarRating ([2c93ebe](https://github.com/wtw-im/es-components/commit/2c93ebe))
+* Update: added noRatingText prop to StarRating ([006a32c](https://github.com/wtw-im/es-components/commit/006a32c))
+
+
+
+
 <a name="21.6.30"></a>
 ## <small>21.6.30 (2020-10-27)</small>
 

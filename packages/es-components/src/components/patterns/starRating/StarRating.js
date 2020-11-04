@@ -81,7 +81,7 @@ function getAriaText(isPoorPerformer, rating) {
   return '';
 }
 
-function StarRating({ rating, isPoorPerformer, onExplanationOpen }) {
+function StarRating({ rating, isPoorPerformer, onExplanationOpen, noRatingText }) {
   const [showHelp, updateShowHelp] = useState(false);
   const [rootNode, rootNodeRef] = useRootNode(document.body);
   const ariaText = getAriaText(isPoorPerformer, rating);
@@ -98,7 +98,7 @@ function StarRating({ rating, isPoorPerformer, onExplanationOpen }) {
         }}
       >
         {rating === null && (
-          <span>{formatMessage('Star Rating not available')}</span>
+          <span>{formatMessage(noRatingText)}</span>
         )}
         {rating !== null && (
           <StarContainer
@@ -107,6 +107,7 @@ function StarRating({ rating, isPoorPerformer, onExplanationOpen }) {
           >
             {!isPoorPerformer ? (
               <div>
+                  2021
                 <StarFill fillWidth={getStarRatingBackgroundWidth(rating)} />
                 <StarOverlay />
               </div>
@@ -130,12 +131,14 @@ function StarRating({ rating, isPoorPerformer, onExplanationOpen }) {
 StarRating.propTypes = {
   rating: PropTypes.number.isRequired,
   isPoorPerformer: PropTypes.bool,
-  onExplanationOpen: PropTypes.func
+  onExplanationOpen: PropTypes.func,
+  noRatingText: PropTypes.string
 };
 
 StarRating.defaultProps = {
   isPoorPerformer: false,
-  onExplanationOpen: () => {}
+  onExplanationOpen: () => {},
+  noRatingText: 'Star Rating not available'
 };
 
 export default StarRating;

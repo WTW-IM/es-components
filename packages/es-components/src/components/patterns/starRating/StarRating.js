@@ -107,7 +107,6 @@ function StarRating({ rating, isPoorPerformer, onExplanationOpen, noRatingText }
           >
             {!isPoorPerformer ? (
               <div>
-                  2021
                 <StarFill fillWidth={getStarRatingBackgroundWidth(rating)} />
                 <StarOverlay />
               </div>

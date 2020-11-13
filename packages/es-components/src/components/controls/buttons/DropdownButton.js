@@ -230,7 +230,6 @@ function DropdownButton({
     >
       <div
         ref={buttonDropdown}
-        role="combobox"
         aria-controls={panelId}
         aria-expanded={isOpen}
         aria-haspopup="listbox"

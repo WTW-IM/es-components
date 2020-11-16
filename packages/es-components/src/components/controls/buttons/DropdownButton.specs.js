@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, fireEvent, getByRole, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, waitFor } from '@testing-library/react';
 
 import DropdownButton from './DropdownButton';
 import { renderWithTheme } from '../../util/test-utils';
@@ -56,7 +56,7 @@ it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
 });
 
 it('allows arrow movement and traps focus when dropdown is opened', () => {
-  const { container, getByText } = renderWithTheme(
+  const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
       <DropdownButton.Button onClick={onClick}>Item 1</DropdownButton.Button>
       <DropdownButton.Button onClick={onClick}>Item 2</DropdownButton.Button>
@@ -69,7 +69,7 @@ it('allows arrow movement and traps focus when dropdown is opened', () => {
   expect(firstButton).toHaveFocus();
 
   const pressArrowKey = key =>
-    fireEvent.keyDown(getByRole(container, 'combobox'), {
+    fireEvent.keyDown(getByText('Button'), {
       keyCode: key
     });
 

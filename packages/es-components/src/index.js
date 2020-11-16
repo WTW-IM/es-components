@@ -73,3 +73,4 @@ export withWindowSize from './components/util/withWindowSize';
 export StyleReset from './components/util/StyleReset';
 export { useTheme } from './components/util/useTheme';
 export { isValidEmail } from './components/util/isValidEmail';
+export useRootNode, { useRootNodeLocator } from './components/util/useRootNode';

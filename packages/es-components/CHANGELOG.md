@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.32"></a>
+## <small>21.6.32 (2020-11-12)</small>
+
+* Update: exporting useRootNode and useRootNodeLocator ([0415f96](https://github.com/wtw-im/es-components/commit/0415f96))
+
+
+
+
 <a name="21.6.31"></a>
 ## <small>21.6.31 (2020-11-04)</small>
 

@@ -10,7 +10,8 @@
     "publish": "lerna publish",
     "link": "lerna link --force-local",
     "start": "npm start --prefix packages/es-components",
-    "commit": "commit"
+    "commit": "commit",
+    "postinstall": "echo '\\033[0;32mInstalling npm dependencies for sub-packages\\033[0m' && lerna exec npm install"
   },
   "lint-staged": {
     "packages/es-components/src/**/*.js": [

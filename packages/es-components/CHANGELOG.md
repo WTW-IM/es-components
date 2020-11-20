@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.33"></a>
+## <small>21.6.33 (2020-11-20)</small>
+
+* Build: adding a postinstall to ensure all subpackages have their npm dependencies installed ([84876ca](https://github.com/wtw-im/es-components/commit/84876ca))
+
+
+
+
 <a name="21.6.32"></a>
 ## <small>21.6.32 (2020-11-12)</small>
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.34"></a>
+## <small>21.6.34 (2020-11-23)</small>
+
+* Merge branch 'master' into WE-11421-dropdown-button-focus ([a1b917b](https://github.com/wtw-im/es-components/commit/a1b917b))
+* Update: (WE-11421) add border to button in focus ([4ee05c3](https://github.com/wtw-im/es-components/commit/4ee05c3))
+
+
+
+
 <a name="21.6.33"></a>
 ## <small>21.6.33 (2020-11-20)</small>
 

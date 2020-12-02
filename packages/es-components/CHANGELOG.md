@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.35"></a>
+## <small>21.6.35 (2020-12-02)</small>
+
+* Update: correcting accessibility on IconButton and HorizontalScrollWrapper buttons ([5d217d3](https://github.com/wtw-im/es-components/commit/5d217d3))
+
+
+
+
 <a name="21.6.34"></a>
 ## <small>21.6.34 (2020-11-23)</small>
 

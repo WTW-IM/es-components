@@ -16,6 +16,10 @@ const StarContainer = styled.div`
   height: 21px;
   margin-top: 3px;
   width: 133px;
+
+  @media print {
+    display: block;
+  }
 `;
 
 const StarRatingLink = styled(LinkButton)`

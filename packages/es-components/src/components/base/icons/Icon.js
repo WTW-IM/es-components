@@ -12,8 +12,8 @@ const StyledIcon = styled.i`
 function Icon({ name, size, className, ...other }) {
   return (
     <StyledIcon
-      className={`bds-icon bds-${name}${className ? ` ${className}` : ''}`}
-      size={size ? `${size}px` : 'inherit'}
+      className={`bds-icon bds-${name} ${className || ''}`.trim()}
+      size={/^\d+$/.test(size) ? `${size}px` : size || 'inherit'}
       aria-hidden
       {...other}
     />

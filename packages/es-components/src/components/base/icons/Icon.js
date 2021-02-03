@@ -24,7 +24,7 @@ Icon.propTypes = {
   /** Name of the icon to display */
   name: PropTypes.string.isRequired,
   /** Specify icon size in pixels */
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Additional classes to include */
   className: PropTypes.string
 };

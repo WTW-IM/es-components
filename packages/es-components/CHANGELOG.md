@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.37"></a>
+## <small>21.6.37 (2021-02-03)</small>
+
+* Upgrade: Bump ini from 1.3.5 to 1.3.8 in /packages/es-components ([3d91c00](https://github.com/wtw-im/es-components/commit/3d91c00))
+
+
+
+
 <a name="21.6.36"></a>
 ## <small>21.6.36 (2021-02-03)</small>
 

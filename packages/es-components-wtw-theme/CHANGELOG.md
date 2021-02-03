@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.36"></a>
+## <small>21.6.36 (2021-02-03)</small>
+
+
+
+
+
+**Note:** Version bump only for package es-components-wtw-theme
+
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [21.3.0](https://github.com/WTW-IM/es-components/compare/v21.2.2...v21.3.0) (2020-06-05)
 
 

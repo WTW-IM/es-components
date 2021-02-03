@@ -27,13 +27,13 @@ import Popover from '../../containers/popover/Popover';
 import PopoverLink from '../../controls/buttons/PopoverLink';
 
 const planStates = [
-  <span><Anchor href="javascript:void(0)">A Simple Link</Anchor></span>,
+  <span><Anchor href="#" onClick={e => e.preventDefault()}>A Simple Link</Anchor></span>,
   <span>
     <Icon name="cog" size={22} style={{fontWeight:'normal'}} />
     <Popover
       name="notification-popover"
       title="Detailed Instructions"
-      content={<span>More content found <Anchor href="javascript:void(0)">here</Anchor></span>}
+      content={<span>More content found <Anchor href="#" onClick={e => e.preventDefault()}>here</Anchor></span>}
       placement="top"
       renderTrigger={({ ref, toggleShow, isOpen }) => (
         <PopoverLink onClick={toggleShow} aria-expanded={isOpen} ref={ref}>

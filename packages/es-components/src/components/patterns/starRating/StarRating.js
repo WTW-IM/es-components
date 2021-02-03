@@ -16,6 +16,10 @@ const StarContainer = styled.div`
   height: 21px;
   margin-top: 3px;
   width: 133px;
+
+  @media print {
+    display: block;
+  }
 `;
 
 const StarRatingLink = styled(LinkButton)`
@@ -81,7 +85,12 @@ function getAriaText(isPoorPerformer, rating) {
   return '';
 }
 
-function StarRating({ rating, isPoorPerformer, onExplanationOpen, noRatingText }) {
+function StarRating({
+  rating,
+  isPoorPerformer,
+  onExplanationOpen,
+  noRatingText
+}) {
   const [showHelp, updateShowHelp] = useState(false);
   const [rootNode, rootNodeRef] = useRootNode(document.body);
   const ariaText = getAriaText(isPoorPerformer, rating);
@@ -97,9 +106,7 @@ function StarRating({ rating, isPoorPerformer, onExplanationOpen, noRatingText }
           updateShowHelp(true);
         }}
       >
-        {rating === null && (
-          <span>{formatMessage(noRatingText)}</span>
-        )}
+        {rating === null && <span>{formatMessage(noRatingText)}</span>}
         {rating !== null && (
           <StarContainer
             aria-label={ariaText}

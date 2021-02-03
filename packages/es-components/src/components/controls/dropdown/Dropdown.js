@@ -27,4 +27,5 @@ const Dropdown = styled.select`
   }
 `;
 
+/** @component */
 export default Dropdown;

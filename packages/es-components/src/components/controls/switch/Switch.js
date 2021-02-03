@@ -4,37 +4,37 @@ import styled from 'styled-components';
 import { noop } from 'lodash';
 
 const Directions = {
-  'top': 'column-reverse',
-  'bottom': 'column',
-  'right': 'row',
-  'left': 'row-reverse'
-}
+  top: 'column-reverse',
+  bottom: 'column',
+  right: 'row',
+  left: 'row-reverse'
+};
 
 const Padding = {
-  'top': '0 0 0.5rem',
-  'bottom': '2.25rem 0 0',
-  'right': '0 0 0.5rem',
-  'left': '0 1rem 0 0'
-}
+  top: '0 0 0.5rem',
+  bottom: '2.25rem 0 0',
+  right: '0 0 0.5rem',
+  left: '0 1rem 0 0'
+};
 
-const primary = "#0073b6";
-const primaryLight = "#ededed";
-const success = "#298544";
-const successLight = "#69aa7c";
-const warning = "#c25400";
-const warningLight = "#d4874d";
-const danger = "#cc0000";
-const dangerLight = "#db4d4d";
+const primary = '#0073b6';
+const primaryLight = '#ededed';
+const success = '#298544';
+const successLight = '#69aa7c';
+const warning = '#c25400';
+const warningLight = '#d4874d';
+const danger = '#cc0000';
+const dangerLight = '#db4d4d';
 
 function Type(type, light) {
   switch (type) {
-    case "primary":
+    case 'primary':
       return light ? primaryLight : primary;
-    case "success":
+    case 'success':
       return light ? successLight : success;
-    case "warning":
+    case 'warning':
       return light ? warningLight : warning;
-    case "danger":
+    case 'danger':
       return light ? dangerLight : danger;
     default:
       return light ? primaryLight : primary;
@@ -48,9 +48,13 @@ const SwitchBase = styled.div`
 
 const SwitchLabel = styled.label`
   flex-direction: ${props => Directions[props.direction]};
-  text-align: ${props => props.direction === 'top' || props.direction === 'bottom' ? 'center' : 'left'};
-  justify-content: ${props => props.direction === 'left' ? 'flex-end' : 'normal'};
-  cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
+  text-align: ${props =>
+    props.direction === 'top' || props.direction === 'bottom'
+      ? 'center'
+      : 'left'};
+  justify-content: ${props =>
+    props.direction === 'left' ? 'flex-end' : 'normal'};
+  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
   position: relative:
   padding: 5px 0;
@@ -59,12 +63,14 @@ const SwitchLabel = styled.label`
   &:hover {
     span {
       &::before {
-        box-shadow: ${props => props.isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.4)'};
+        box-shadow: ${props =>
+          props.isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.4)'};
       }
     }
 
     input[type="checkbox"]:checked ~ span::before {
-      box-shadow: ${props => props.isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.7)'};
+      box-shadow: ${props =>
+        props.isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.7)'};
     }
   }
 `;
@@ -76,7 +82,7 @@ const SwitchInput = styled.input`
   font-size: inherit;
   line-height: inherit;
   position: absolute;
-  clip: rect(0,0,0,0);
+  clip: rect(0, 0, 0, 0);
   pointer-events: none;
   box-sizing: border-box;
   padding: 0;
@@ -100,7 +106,8 @@ const SwitchInput = styled.input`
 const SwitchLabelText = styled.span`
   padding: ${props => Padding[props.direction]};
   flex-grow: 1;
-  color: ${props => props.type === 'primary' ? '#000' : Type(props.type, false)};
+  color: ${props =>
+    props.type === 'primary' ? '#000' : Type(props.type, false)};
 `;
 
 const SwitchCheck = styled.span`
@@ -111,45 +118,48 @@ const SwitchCheck = styled.span`
   &::before {
     background: ${props => Type(props.type, true)};
     border-radius: 11px;
-    content: "";
+    content: '';
     display: block;
     height: 25px;
     left: 3px;
     outline: none;
     position: absolute;
-    top: .2rem;
+    top: 0.2rem;
     width: 54px;
     z-index: 5;
-    transition: background-color .25s linear,border .25s linear,box-shadow .25s linear;
+    transition: background-color 0.25s linear, border 0.25s linear,
+      box-shadow 0.25s linear;
   }
-  
+
   &::after {
     background: #f4f4f4;
     box-shadow: 0 2px 6px #444;
     display: block;
     position: absolute;
-    content: "";
+    content: '';
     border-radius: 100%;
     height: 30px;
     width: 30px;
     top: 0;
     left: 0;
-    transform: all .18s linear;
+    transform: all 0.18s linear;
     z-index: 7;
   }
 `;
 
 const SwitchOffText = styled.span`
-  order: ${props => props.direction === 'left' || props.direction === 'top' ? '-1' : '-3'};
-  padding: ${props => props.offText === '' ? '0' : '0 1rem 0 1rem'};;
+  order: ${props =>
+    props.direction === 'left' || props.direction === 'top' ? '-1' : '-3'};
+  padding: ${props => (props.textOff === '' ? '0' : '0 1rem 0 1rem')};
   vertical-align: middle;
-`
+`;
 
 const SwitchOnText = styled.span`
-  order: ${props => props.direction === 'left' || props.direction === 'top' ? '-3' : '-1'};
-  padding: ${props => props.onText === '' ? '0' : '0 1rem 0 0.75rem'};
+  order: ${props =>
+    props.direction === 'left' || props.direction === 'top' ? '-3' : '-1'};
+  padding: ${props => (props.textOn === '' ? '0' : '0 1rem 0 0.75rem')};
   vertical-align: middle;
-`
+`;
 
 function Switch({
   type,
@@ -171,16 +181,29 @@ function Switch({
   }
 
   return (
-    <SwitchBase
-      type={type}
-      {...switchProps}
-    >
-      <SwitchLabel isDisabled={disabled} direction={direction} onChange={handleToggle}>
-        <SwitchInput disabled={disabled} styleType={type} type="checkbox" checked={isToggled} aria-label={ariaLabel} />
-        <SwitchLabelText direction={direction} type={type}>{label}</SwitchLabelText>
-        <SwitchOffText direction={direction} offText={offText}>{offText}</SwitchOffText>
+    <SwitchBase type={type} {...switchProps}>
+      <SwitchLabel
+        isDisabled={disabled}
+        direction={direction}
+        onChange={handleToggle}
+      >
+        <SwitchInput
+          disabled={disabled}
+          styleType={type}
+          type="checkbox"
+          defaultChecked={isToggled}
+          aria-label={ariaLabel}
+        />
+        <SwitchLabelText direction={direction} type={type}>
+          {label}
+        </SwitchLabelText>
+        <SwitchOffText direction={direction} textOff={offText}>
+          {offText}
+        </SwitchOffText>
         <SwitchCheck type={type} />
-        <SwitchOnText direction={direction} onText={onText}>{onText}</SwitchOnText>
+        <SwitchOnText direction={direction} textOn={onText}>
+          {onText}
+        </SwitchOnText>
       </SwitchLabel>
     </SwitchBase>
   );

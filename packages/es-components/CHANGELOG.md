@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.38"></a>
+## <small>21.6.38 (2021-02-03)</small>
+
+* Build: mocking fetch in jest ([a5e1bfe](https://github.com/wtw-im/es-components/commit/a5e1bfe))
+* Fix: ensuring we have the correct styles for icons in the root node ([d572d09](https://github.com/wtw-im/es-components/commit/d572d09))
+
+
+
+
 <a name="21.6.37"></a>
 ## <small>21.6.37 (2021-02-03)</small>
 

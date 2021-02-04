@@ -32,6 +32,7 @@ export Textbox from './components/controls/textbox/Textbox';
 export Textarea from './components/controls/textbox/Textarea';
 export MaskedTextbox from './components/controls/textbox/MaskedTextbox';
 export Button from './components/controls/buttons/Button';
+export SpinnerButton from './components/controls/buttons/SpinnerButton';
 export ActionButton from './components/controls/buttons/ActionButton';
 export ToggleButton from './components/controls/buttons/ToggleButton';
 export DropdownButton from './components/controls/buttons/DropdownButton';

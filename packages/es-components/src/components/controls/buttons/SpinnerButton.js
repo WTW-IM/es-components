@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
 import Button from './Button';
 import Spinner from '../../base/spinner';
@@ -11,12 +10,25 @@ const DISPLAY_TYPES = {
 
 function SpinnerButton({
     children,
+    onClick,
+    styleType,
+    size,
+    block,
+    mobileBlock,
+    flatLeftEdge,
+    flatRightEdge,
     title,
-    text
+    ...other
 }) {
     const [displaySpinner, setDisplay] = useState(DISPLAY_TYPES.none);
 
-    const loadSpinner = () => {
+    const defaultStyleSize = {
+        maxWidth: 100, 
+        height: 40
+    };
+
+    const loadSpinnerTriggerOnClick = () => {
+        onClick();
         setDisplay(DISPLAY_TYPES.inline);
 
         setTimeout(() => {
@@ -25,13 +37,21 @@ function SpinnerButton({
     }
 
     return (
-        <Button onClick={loadSpinner} style={{ maxWidth: 100, height: 40}}>    
+        <Button
+        size={size}
+        block={block}
+        mobileBlock={mobileBlock}
+        flatLeftEdge={flatLeftEdge}
+        flatRightEdge={flatRightEdge}
+        onClick={loadSpinnerTriggerOnClick}
+        styleType={styleType}
+        {...other}
+        >
             {
                 displaySpinner === 'inline' ? 
                     <Spinner height="70%" width="70%" title={title}/>
-                    : <p> {text} </p>
+                    : children
             }
-            {children}
         </Button>
     )
 }

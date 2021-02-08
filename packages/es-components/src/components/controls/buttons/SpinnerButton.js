@@ -29,12 +29,14 @@ function SpinnerButton({
   };
 
   const loadSpinnerTriggerOnClick = () => {
-    onClick();
     setDisplay(DISPLAY_TYPES.inline);
+    const onClickPromise = new Promise(onClick);
 
-    setTimeout(() => {
-      setDisplay(DISPLAY_TYPES.none);
-    }, 2000);
+    onClickPromise.then(
+      setTimeout(() => {
+        setDisplay(DISPLAY_TYPES.none);
+      }, 500)
+    );
   };
 
   return (

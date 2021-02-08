@@ -22,10 +22,10 @@ function SpinnerButton({
 }) {
     const [displaySpinner, setDisplay] = useState(DISPLAY_TYPES.none);
 
-    const defaultStyleSize = {
+    const defaultDimensions = {
         maxWidth: 100, 
-        height: 40
-    };
+        height: 40,
+    }
 
     const loadSpinnerTriggerOnClick = () => {
         onClick();
@@ -33,19 +33,20 @@ function SpinnerButton({
 
         setTimeout(() => {
             setDisplay(DISPLAY_TYPES.none);
-        }, 3500);
+        }, 2000);
     }
 
     return (
         <Button
-        size={size}
-        block={block}
-        mobileBlock={mobileBlock}
-        flatLeftEdge={flatLeftEdge}
-        flatRightEdge={flatRightEdge}
-        onClick={loadSpinnerTriggerOnClick}
-        styleType={styleType}
-        {...other}
+            size={size}
+            block={block}
+            mobileBlock={mobileBlock}
+            flatLeftEdge={flatLeftEdge}
+            flatRightEdge={flatRightEdge}
+            onClick={loadSpinnerTriggerOnClick}
+            styleType={styleType}
+            style={defaultDimensions}
+            {...other}
         >
             {
                 displaySpinner === 'inline' ? 

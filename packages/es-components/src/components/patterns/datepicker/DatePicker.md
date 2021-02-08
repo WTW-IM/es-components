@@ -240,7 +240,7 @@ function DatePickerExample() {
 ### Exclude Dates (blacklist)
 
 ```
-import { addDays } from 'date-fns';
+import { subDays } from 'date-fns';
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 
@@ -256,7 +256,7 @@ function DatePickerExample() {
         id="not-today-nor-tomorrow"
         onChange={handleOnChange}
         selectedDate={selectedValue}
-        excludeDates={[new Date(), addDays(new Date(), -1)]}
+        excludeDates={[new Date(), subDays(new Date(), 1)]}
         allowNativeDatepickerOnMobile={false} />
     </Control>
   )
@@ -285,6 +285,32 @@ function DatePickerExample() {
       >
         <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
       </DatePicker>
+    </Control>
+  )
+}
+<DatePickerExample />
+```
+
+### Inline (no textbox)
+
+```
+import Control from '../../controls/Control';
+import Label from '../../controls/label/Label';
+
+function DatePickerExample() {
+  const [selectedValue, setSelectedValue] = React.useState(null);
+  function handleOnChange(date) {
+    setSelectedValue(date);
+  }
+  return (
+    <Control>
+      <Label>Inline Calendar</Label>
+      <DatePicker
+        inline
+        onChange={handleOnChange}
+        selectedDate={selectedValue}
+        allowNativeDatepickerOnMobile={false}
+      />
     </Control>
   )
 }

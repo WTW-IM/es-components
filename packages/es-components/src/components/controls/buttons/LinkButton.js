@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
-
 import { darken } from '../../util/colors';
+import { withDisabledContentWhileRunning } from './features/withDisabledLoadingStateContent';
 
 const StyledButton = styled.button`
   background-color: transparent;
@@ -55,4 +55,4 @@ LinkButton.defaultProps = {
   styleType: 'default'
 };
 
-export default LinkButton;
+export default withDisabledContentWhileRunning(LinkButton);

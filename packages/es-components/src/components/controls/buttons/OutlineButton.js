@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
-
 import { useTheme } from '../../util/useTheme';
+import { withDisabledContentWhileRunning } from './features/withDisabledLoadingStateContent';
 
 const StyledButton = styled.button`
   background-color: ${props => props.colors.bgColor};
@@ -137,4 +137,4 @@ OutlineButton.defaultProps = {
   size: 'default'
 };
 
-export default OutlineButton;
+export default withDisabledContentWhileRunning(OutlineButton);

@@ -10,6 +10,8 @@ const buttonStyle = {
 
 function noop() { }
 
+const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
+
 <div>
   <div style={buttonStyle}><OutlineButton onClick={noop}>Default</OutlineButton></div>
 
@@ -26,5 +28,11 @@ function noop() { }
   <div style={buttonStyle}><OutlineButton onClick={noop} styleType="magenta">Magenta</OutlineButton></div>
 
   <div style={buttonStyle}><OutlineButton onClick={noop} styleType="violet">Violet</OutlineButton></div>
+
+  <div style={buttonStyle}>
+    <OutlineButton onClick={noop} styleType="primary" onClick={wait} showWhileRunning="Running...">
+      Run A Task
+    </OutlineButton>
+  </div>
 </div>
 ```

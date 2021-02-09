@@ -29,8 +29,11 @@ const TextareaBase = styled.textarea`
   }
 
   &:read-only {
-    background-color: ${props => props.theme.colors.gray2};
-    cursor: text;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
   }
 `;
 

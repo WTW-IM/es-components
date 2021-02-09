@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import formatMessage from 'format-message';
 import Icon from '../../base/icons/Icon';
 import withWindowSize from '../../util/withWindowSize';
 
@@ -16,17 +17,6 @@ const InnerWrapper = styled.div`
   position: relative;
   white-space: nowrap;
   z-index: 0;
-`;
-
-const ScrollIcon = styled.div`
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  height: 100%;
-  outline: 0;
-  position: absolute;
-  top: 0;
-  z-index: 1;
 `;
 
 const ArrowContainer = styled.div`
@@ -46,41 +36,51 @@ const generateOnArrowKeyDownHandler = onKeyDown => event => {
   }
 };
 
-const ArrowLeft = ({ onClick }) => (
-  <ScrollIcon
+const ScrollIcon = styled(({ onClick, iconName, ...props }) => (
+  <div
     role="button"
     tabIndex={0}
-    css="left: 0; text-align: left;"
     onClick={onClick}
     onKeyDown={generateOnArrowKeyDownHandler(onClick)}
+    {...props}
   >
     <ArrowContainer>
-      <Icon name="chevron-left" />
+      <Icon name={iconName} />
     </ArrowContainer>
-  </ScrollIcon>
-);
+  </div>
+))`
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: 100%;
+  outline: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+`;
 
-ArrowLeft.propTypes = {
-  onClick: PropTypes.func.isRequired
+ScrollIcon.propTypes = {
+  iconName: PropTypes.string.isRequired
 };
 
-const ArrowRight = ({ onClick }) => (
-  <ScrollIcon
-    role="button"
-    tabIndex={0}
-    css="right: 0; text-align: right;"
-    onClick={onClick}
-    onKeyDown={generateOnArrowKeyDownHandler(onClick)}
-  >
-    <ArrowContainer>
-      <Icon name="chevron-right" />
-    </ArrowContainer>
-  </ScrollIcon>
-);
+const ArrowLeft = styled(props => (
+  <ScrollIcon iconName="chevron-left" {...props} />
+))`
+  left: 0;
+  text-align: left;
+`;
+
+const ArrowRight = styled(props => (
+  <ScrollIcon iconName="chevron-right" {...props} />
+))`
+  right: 0;
+  text-align: right;
+`;
 
 ArrowRight.propTypes = {
   onClick: PropTypes.func.isRequired
 };
+ArrowLeft.propTypes = ArrowRight.propTypes;
 
 function HorizontalScrollWrapper({
   windowWidth,
@@ -233,9 +233,17 @@ function HorizontalScrollWrapper({
       >
         {children}
       </InnerWrapper>
-      {hasOverflow && xPosition < 0 && <ArrowLeft onClick={handleLeftClick} />}
+      {hasOverflow && xPosition < 0 && (
+        <ArrowLeft
+          onClick={handleLeftClick}
+          aria-label={formatMessage(`See previous`)}
+        />
+      )}
       {hasOverflow && -xPosition < menuWidth - rootWidth && (
-        <ArrowRight onClick={handleRightClick} />
+        <ArrowRight
+          onClick={handleRightClick}
+          aria-label={formatMessage(`See next`)}
+        />
       )}
     </OuterWrapper>
   );

@@ -47,6 +47,10 @@ module.exports = {
       content: path.join(baseComponentDir, 'theme/Themes.md')
     },
     {
+      name: 'Grid',
+      content: path.join(baseComponentDir, 'grid/Grid.md')
+    },
+    {
       name: 'Base',
       components: path.join(baseComponentDir, 'base/**/*.js')
     },

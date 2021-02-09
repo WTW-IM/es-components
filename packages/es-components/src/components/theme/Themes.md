@@ -69,6 +69,8 @@ A small style reset is available to use in your project. This sets a baseline fo
 and allows headings and inputs to properly inherit fonts. To use it, import `StyleReset` and include the
 element anywhere in your app.
 
+*note: if you are using im-screens or the page-chrome web component, you do not need to include this*
+
 ```html
 import StyleReset from 'es-components';
 

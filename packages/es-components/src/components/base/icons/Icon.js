@@ -1,49 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import { regular } from './icon-definitions';
+import { useRootNodeLocator } from '../../util/useRootNode';
 
 const StyledIcon = styled.i`
   display: inline-block;
-  font-family: bds-func-icons !important;
-  font-size: ${props => props.fontSize};
-  font-style: normal;
-  font-weight: inherit;
-  font-variant: normal;
-  line-height: 1;
-  speak: none;
+  font-size: ${props => props.size};
   text-decoration: none;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   vertical-align: text-bottom;
-
-  &:before {
-    content: "\\e${props => props.content}";
-  }
 `;
 
-function Icon({ name, size, ...other }) {
-  const iconName = `im-icon-${name}`;
+let stylesAdded = false;
 
-  const styledIconProps = {
-    content: regular[iconName],
-    fontSize: size !== undefined ? `${size}px` : 'inherit'
-  };
+function Icon({ name, size, className, ...other }) {
+  const [rootNode, RootNodeInput] = useRootNodeLocator();
+  useEffect(() => {
+    if (stylesAdded || !rootNode) return;
 
-  return <StyledIcon aria-hidden {...styledIconProps} {...other} />;
+    const addStyles = async () => {
+      stylesAdded = true;
+      const styles = await fetch(
+        'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
+      );
+      if (!styles.ok) {
+        console.error('Failed to load icon styles', styles.error);
+        stylesAdded = false;
+        return;
+      }
+      const styleTag = document.createElement('style');
+      styleTag.innerHTML = await styles.text();
+      rootNode.prepend(styleTag);
+    };
+    addStyles();
+  }, [rootNode]);
+  return (
+    <>
+      <RootNodeInput />
+      <StyledIcon
+        className={`bds-icon bds-${name} ${className || ''}`.trim()}
+        size={/^\d+$/.test(size) ? `${size}px` : size || 'inherit'}
+        aria-hidden
+        {...other}
+      />
+    </>
+  );
 }
 
 Icon.propTypes = {
   /** Name of the icon to display */
   name: PropTypes.string.isRequired,
   /** Specify icon size in pixels */
-  size: PropTypes.number
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Additional classes to include */
+  className: PropTypes.string
 };
 
 Icon.defaultProps = {
-  size: undefined
+  size: undefined,
+  className: undefined
 };
 
 export default Icon;

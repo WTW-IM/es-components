@@ -109,6 +109,11 @@ it('sets date invalid when before minDate', () => {
   });
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: false,
+    rawValues: {
+      day: '1',
+      month: '3',
+      year: '1875'
+    },
     value: new Date(1875, 2, 1)
   });
 });
@@ -129,6 +134,11 @@ it('sets date invalid when after maxDate', () => {
   });
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: false,
+    rawValues: {
+      day: '1',
+      month: '3',
+      year: '2001'
+    },
     value: new Date(2001, 2, 1)
   });
 });
@@ -148,6 +158,11 @@ it('returns undefined when bad date is entered', () => {
   });
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: false,
+    rawValues: {
+      day: '31',
+      month: '2',
+      year: '2019'
+    },
     value: undefined
   });
 });
@@ -169,6 +184,11 @@ it('returns a date when valid', () => {
   });
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: true,
+    rawValues: {
+      day: '16',
+      month: '2',
+      year: '2019'
+    },
     value: new Date(2019, 1, 16)
   });
 });
@@ -189,6 +209,11 @@ it('returns undefined when Day is present but not defined', () => {
 
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: false,
+    rawValues: {
+      day: '',
+      month: '',
+      year: '1983'
+    },
     value: undefined
   });
 });
@@ -213,6 +238,11 @@ it('returns date when Day is padded with 0', () => {
   });
   expect(props.onChange).toHaveBeenCalledWith({
     isInRange: true,
+    rawValues: {
+      day: '02',
+      month: '1',
+      year: '1983'
+    },
     value: new Date(1983, 0, 2)
   });
 });

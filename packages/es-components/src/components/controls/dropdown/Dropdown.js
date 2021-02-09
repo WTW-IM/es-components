@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const DropdownBase = styled.select`
+const Dropdown = styled.select`
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.gray5};
   border-radius: 2px;
@@ -28,8 +27,5 @@ const DropdownBase = styled.select`
   }
 `;
 
-function Dropdown(props) {
-  return <DropdownBase {...props} />;
-}
-
+/** @component */
 export default Dropdown;

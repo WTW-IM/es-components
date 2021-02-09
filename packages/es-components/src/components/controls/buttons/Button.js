@@ -59,6 +59,7 @@ const StyledButton = styled.button`
   &:focus {
     color: ${props => props.colors.hoverTextColor};
     background-color: ${props => props.colors.hoverBgColor};
+    border: 1px solid;
     border-color: ${props => props.colors.hoverBorderColor};
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075),
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};

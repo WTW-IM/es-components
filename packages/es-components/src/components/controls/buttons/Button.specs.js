@@ -60,3 +60,21 @@ it('can show loading-state content instead of child while onClick is in-flight',
 
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+
+it('should appear to be disabled when isWaiting is enabled', async () => {
+  const asyncOnClick = jest.fn(() => Promise.resolve());
+  const { getByText } = renderWithTheme(
+    buildButton({
+      children: 'Test',
+      showWhileRunning: 'Running...',
+      isWaiting: true,
+      onClick: asyncOnClick
+    })
+  );
+
+  const button = getByText('Test');
+  button.click();
+  expect(getByText('Test')).toBe(button);
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+});

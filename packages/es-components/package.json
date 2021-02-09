@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.6.38",
+  "version": "21.6.41",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -103,7 +103,7 @@
     "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
     "react-animate-height": "^2.0.15",
-    "react-datepicker": "^2.9.6",
+    "react-datepicker": "^3.4.1",
     "react-modal": "^3.11.2",
     "react-overlays": "^2.1.0",
     "react-popper": "^1.3.3",

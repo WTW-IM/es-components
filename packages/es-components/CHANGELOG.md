@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.41"></a>
+## <small>21.6.41 (2021-02-08)</small>
+
+
+
+
+
+**Note:** Version bump only for package es-components
+
+<a name="21.6.40"></a>
+## <small>21.6.40 (2021-02-08)</small>
+
+* Update: newest react-datepicker, updated styles ([06dc789](https://github.com/wtw-im/es-components/commit/06dc789))
+
+
+
+
+<a name="21.6.39"></a>
+## <small>21.6.39 (2021-02-04)</small>
+
+* Docs: updated grid docs, added util link ([5ac392d](https://github.com/wtw-im/es-components/commit/5ac392d))
+
+
+
+
 <a name="21.6.38"></a>
 ## <small>21.6.38 (2021-02-03)</small>
 

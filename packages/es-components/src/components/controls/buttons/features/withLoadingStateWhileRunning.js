@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useLoadingState } from '../../../../hooks/useLoadingState';
 
-export const withLoadingStateWhileRunning = (
-  ButtonComponent,
-  options = { useDisabledStyling: true }
-) => {
+export const withLoadingStateWhileRunning = ButtonComponent => {
   const StyledButton = styled(ButtonComponent)`
     ${({ displayAsRunning }) =>
       displayAsRunning &&
@@ -31,6 +28,7 @@ export const withLoadingStateWhileRunning = (
     (
       {
         showWhileRunning: runningContent,
+        isWaiting,
         children,
         onClick,
         styleType,
@@ -41,14 +39,14 @@ export const withLoadingStateWhileRunning = (
       const [isRunning, showRunningWhile] = useLoadingState();
       const runOperation = (...params) =>
         runningContent
-          ? !isRunning && showRunningWhile(onClick(...params))
+          ? !isRunning && !isWaiting && showRunningWhile(onClick(...params))
           : onClick(...params);
 
       return (
         <StyledButton
           {...otherProps}
           styleType={runningContent && isRunning ? undefined : styleType}
-          displayAsRunning={options.useDisabledStyling && isRunning}
+          displayAsRunning={isWaiting || isRunning}
           onClick={runOperation}
           ref={ref}
         >
@@ -60,6 +58,7 @@ export const withLoadingStateWhileRunning = (
 
   ButtonWithLoadingState.propTypes = {
     showWhileRunning: PropTypes.any,
+    isWaiting: PropTypes.bool,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
     styleType: PropTypes.string
@@ -67,6 +66,7 @@ export const withLoadingStateWhileRunning = (
 
   ButtonWithLoadingState.defaultProps = {
     styleType: 'default',
+    isWaiting: false,
     showWhileRunning: undefined,
     onClick: undefined
   };

@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRootNodeLocator } from '../../util/useRootNode';
 
-let { fetch } = window;
 const getFetch = async () => {
-  if (fetch) return;
+  if (window.fetch) return window.fetch;
 
   await import('whatwg-fetch');
-  const { fetch: newFetch } = window;
-  fetch = newFetch;
+  return window.fetch;
 };
-getFetch();
 
 const StyledIcon = styled.i`
   display: inline-block;
@@ -20,29 +17,62 @@ const StyledIcon = styled.i`
   vertical-align: text-bottom;
 `;
 
-let stylesAdded = false;
+const iconStyleAttribute = 'data-es-icon-styles';
+const getStyleTag = async (node, global) =>
+  node.querySelector(`[${iconStyleAttribute}]`) ||
+  (async () => {
+    const styleTag = document.createElement('style');
+    const loadStyles = async () => {
+      const styles = await (await getFetch())(
+        'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
+      );
+      if (!styles.ok) {
+        styleTag.remove();
+        throw new Error(styles.error);
+      }
+      return styles.text();
+    };
+    styleTag.setAttribute(iconStyleAttribute, '');
+    node.prepend(styleTag);
+
+    if (!global) return styleTag;
+
+    styleTag.innerHTML = await loadStyles();
+    return styleTag.innerHTML;
+  })();
+
+const waitForStyleText = async tag =>
+  new Promise(resolve => {
+    const checkForText = () =>
+      tag.innerHTML
+        ? resolve(tag.innerHTML)
+        : window.requestAnimationFrame(checkForText);
+    checkForText();
+  });
+
+const applyStyles = async rootNode => {
+  try {
+    const globalStyleTag = getStyleTag(document.body, true);
+    const styleText = await waitForStyleText(globalStyleTag);
+
+    const nodeStyleTag = getStyleTag(rootNode);
+
+    // if we're not inside a Web Component, innerHTML will already be correct.
+    if (nodeStyleTag === globalStyleTag) return;
+
+    nodeStyleTag.innerHTML = styleText;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to load icon styles', err);
+  }
+};
 
 function Icon({ name, size, className, ...other }) {
   const [rootNode, RootNodeInput] = useRootNodeLocator();
   useEffect(() => {
-    if (stylesAdded || !rootNode) return;
+    if (!rootNode) return;
 
-    const addStyles = async () => {
-      stylesAdded = true;
-      const styles = await fetch(
-        'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
-      );
-      if (!styles.ok) {
-        // eslint-disable-next-line no-console
-        console.error('Failed to load icon styles', styles.error);
-        stylesAdded = false;
-        return;
-      }
-      const styleTag = document.createElement('style');
-      styleTag.innerHTML = await styles.text();
-      rootNode.prepend(styleTag);
-    };
-    addStyles();
+    applyStyles(rootNode);
   }, [rootNode]);
   return (
     <>

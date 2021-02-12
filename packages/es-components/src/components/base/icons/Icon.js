@@ -3,6 +3,16 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRootNodeLocator } from '../../util/useRootNode';
 
+let { fetch } = window;
+const getFetch = async () => {
+  if (fetch) return;
+
+  await import('whatwg-fetch');
+  const { fetch: newFetch } = window;
+  fetch = newFetch;
+};
+getFetch();
+
 const StyledIcon = styled.i`
   display: inline-block;
   font-size: ${props => props.size};
@@ -23,6 +33,7 @@ function Icon({ name, size, className, ...other }) {
         'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
       );
       if (!styles.ok) {
+        // eslint-disable-next-line no-console
         console.error('Failed to load icon styles', styles.error);
         stylesAdded = false;
         return;

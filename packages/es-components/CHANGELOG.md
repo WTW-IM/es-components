@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.42"></a>
+## <small>21.6.42 (2021-02-12)</small>
+
+* Fix: ensuring we always have fetch ([2dbddba](https://github.com/wtw-im/es-components/commit/2dbddba))
+* Fix: inlining dynamic imports in umd ([0ac6cf9](https://github.com/wtw-im/es-components/commit/0ac6cf9))
+
+
+
+
 <a name="21.6.41"></a>
 ## <small>21.6.41 (2021-02-08)</small>
 

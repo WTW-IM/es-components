@@ -30,7 +30,13 @@ export default [
       'react-popper',
       'react-text-mask',
       'react-transition-group/Transition',
-      'styled-components'
+      'styled-components',
+      'whatwg-fetch',
+      'regenerator-runtime/runtime',
+      'react-modal',
+      'tinycolor2',
+      'get-root-node-polyfill/implement',
+      'format-message'
     ],
     plugins: [
       wildcardExternal([
@@ -49,6 +55,7 @@ export default [
     input: 'src/index.js',
     output: {
       file: 'bundle/main.min.js',
+      inlineDynamicImports: true,
       format: 'umd',
       name: 'ESComponents',
       globals: {
@@ -57,6 +64,7 @@ export default [
         'styled-components': 'styled'
       }
     },
+    context: 'window',
     external: ['react', 'react-dom', 'styled-components'],
     plugins: [
       resolve(),

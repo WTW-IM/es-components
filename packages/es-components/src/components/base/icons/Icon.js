@@ -22,6 +22,12 @@ const getStyleTag = async (node, global) =>
   node.querySelector(`[${iconStyleAttribute}]`) ||
   (async () => {
     const styleTag = document.createElement('style');
+
+    const addStyleTag = () =>
+      node === document
+        ? document.head.append(styleTag)
+        : node.prepend(styleTag);
+
     const loadStyles = async () => {
       const styles = await (await getFetch())(
         'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
@@ -32,13 +38,14 @@ const getStyleTag = async (node, global) =>
       }
       return styles.text();
     };
+
     styleTag.setAttribute(iconStyleAttribute, '');
-    node.prepend(styleTag);
+    addStyleTag(node, styleTag);
 
     if (!global) return styleTag;
 
     styleTag.innerHTML = await loadStyles();
-    return styleTag.innerHTML;
+    return styleTag;
   })();
 
 const waitForStyleText = async tag =>
@@ -52,10 +59,10 @@ const waitForStyleText = async tag =>
 
 const applyStyles = async rootNode => {
   try {
-    const globalStyleTag = getStyleTag(document.body, true);
+    const globalStyleTag = await getStyleTag(document, true);
     const styleText = await waitForStyleText(globalStyleTag);
 
-    const nodeStyleTag = getStyleTag(rootNode);
+    const nodeStyleTag = await getStyleTag(rootNode);
 
     // if we're not inside a Web Component, innerHTML will already be correct.
     if (nodeStyleTag === globalStyleTag) return;

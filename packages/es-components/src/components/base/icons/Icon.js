@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRootNodeLocator } from '../../util/useRootNode';
 
-const getFetch = async () => {
-  if (window.fetch) return window.fetch;
-
-  await import('whatwg-fetch');
-  return window.fetch;
-};
-
 const StyledIcon = styled.i`
   display: inline-block;
   font-size: ${props => props.size};
@@ -18,56 +11,39 @@ const StyledIcon = styled.i`
 `;
 
 const iconStyleAttribute = 'data-es-icon-styles';
-const getStyleTag = async (node, global) =>
-  node.querySelector(`[${iconStyleAttribute}]`) ||
-  (async () => {
-    const styleTag = document.createElement('style');
 
-    const addStyleTag = () =>
-      node === document
-        ? document.head.append(styleTag)
-        : node.prepend(styleTag);
+const getExistingStyleTag = node =>
+  node.querySelector(`[${iconStyleAttribute}]`);
 
-    const loadStyles = async () => {
-      const styles = await (await getFetch())(
-        'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
-      );
-      if (!styles.ok) {
-        styleTag.remove();
-        throw new Error(styles.error);
-      }
-      return styles.text();
-    };
+const createStyleTag = () => {
+  const styleTag = document.createElement('link');
+  styleTag.setAttribute(iconStyleAttribute, '');
+  styleTag.setAttribute('rel', 'stylesheet');
+  styleTag.setAttribute(
+    'href',
+    'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
+  );
+  return styleTag;
+};
 
-    styleTag.setAttribute(iconStyleAttribute, '');
-    addStyleTag(node, styleTag);
-
-    if (!global) return styleTag;
-
-    styleTag.innerHTML = await loadStyles();
-    return styleTag;
+const setupGlobalStyleTag = () =>
+  getExistingStyleTag(document) ||
+  (() => {
+    document.head.append(createStyleTag());
   })();
 
-const waitForStyleText = async tag =>
-  new Promise(resolve => {
-    const checkForText = () =>
-      tag.innerHTML
-        ? resolve(tag.innerHTML)
-        : window.requestAnimationFrame(checkForText);
-    checkForText();
-  });
+const setupNodeStyleTag = node =>
+  getExistingStyleTag(node) ||
+  (() => {
+    node.prepend(createStyleTag());
+  })();
+
+const setupStyleTag = node =>
+  node === document.body ? setupGlobalStyleTag() : setupNodeStyleTag(node);
 
 const applyStyles = async rootNode => {
   try {
-    const globalStyleTag = await getStyleTag(document, true);
-    const styleText = await waitForStyleText(globalStyleTag);
-
-    const nodeStyleTag = await getStyleTag(rootNode);
-
-    // if we're not inside a Web Component, innerHTML will already be correct.
-    if (nodeStyleTag === globalStyleTag) return;
-
-    nodeStyleTag.innerHTML = styleText;
+    setupStyleTag(rootNode);
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error('Failed to load icon styles', err);
@@ -76,11 +52,13 @@ const applyStyles = async rootNode => {
 
 function Icon({ name, size, className, ...other }) {
   const [rootNode, RootNodeInput] = useRootNodeLocator();
+
   useEffect(() => {
     if (!rootNode) return;
 
     applyStyles(rootNode);
   }, [rootNode]);
+
   return (
     <>
       <RootNodeInput />

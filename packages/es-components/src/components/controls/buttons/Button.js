@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
-import { withLoadingStateWhileRunning } from './features/withLoadingStateWhileRunning';
 
 const StyledButton = styled.button`
   background-color: ${props => props.colors.bgColor};
@@ -216,4 +215,4 @@ Button.defaultProps = {
   flatRightEdge: false
 };
 
-export default withLoadingStateWhileRunning(Button);
+export default Button;

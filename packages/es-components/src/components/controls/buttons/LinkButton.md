@@ -11,7 +11,6 @@ const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
   <LinkButton styleType="information">Info</LinkButton><br />
   <LinkButton styleType="warning">Warning</LinkButton><br />
   <LinkButton styleType="danger">Danger</LinkButton><br />
-  <LinkButton styleType="danger" onClick={wait} showWhileRunning="Running...">Run A Task</LinkButton><br />
 </p>
 ```
 

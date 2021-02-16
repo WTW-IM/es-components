@@ -23,13 +23,6 @@ const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
   <Button styleType="warning" style={buttonStyle}>Warning</Button>
 
   <Button styleType="danger" style={buttonStyle}>Danger</Button>
-
-  <Button styleType="primary" style={buttonStyle} onClick={wait} isWaiting={true} showWhileRunning="Running...">
-    Run A Task
-  </Button>
-  <Button styleType="primary" style={buttonStyle} onClick={wait} isWaiting={false} showWhileRunning="Running...">
-    Run A Task
-  </Button>
 </div>
 ```
 

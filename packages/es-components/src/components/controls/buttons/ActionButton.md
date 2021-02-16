@@ -20,17 +20,5 @@ const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
   <ActionButton styleType="info" style={buttonStyle}><Icon name="edit" style={iconStyle} /> Edit</ActionButton>
   <ActionButton styleType="success" style={buttonStyle}><Icon name="add" style={iconStyle} /> Add</ActionButton>
   <ActionButton styleType="danger" style={buttonStyle}><Icon name="remove" style={iconStyle} /> Remove</ActionButton>
-  <ActionButton
-    styleType="success"
-    style={buttonStyle}
-    onClick={wait}
-    showWhileRunning={
-      <>
-        <Icon name="no-symbol" style={iconStyle} /> Running...
-      </>
-    }
-  >
-    <Icon name="ok" style={iconStyle} /> Run A Task
-  </ActionButton>
 </p>;
 ```

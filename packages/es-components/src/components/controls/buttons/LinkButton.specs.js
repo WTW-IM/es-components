@@ -41,19 +41,3 @@ it('executes the onClick function passed', () => {
 
   expect(onClick).toHaveBeenCalled();
 });
-
-it('can show loading-state content instead of child while onClick is in-flight', async () => {
-  const { getByText, findByText } = renderWithTheme(
-    buildButton({
-      children: 'Test',
-      showWhileRunning: 'Running...',
-      onClick: () => Promise.resolve()
-    })
-  );
-
-  getByText('Test').click();
-  getByText('Running...').click();
-  await findByText('Test');
-
-  expect(onClick).toHaveBeenCalledTimes(1);
-});

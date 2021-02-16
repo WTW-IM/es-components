@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import Button from './Button';
-import { withLoadingStateWhileRunning } from './features/withLoadingStateWhileRunning';
 
 const StyledButton = styled(Button)`
   background-color: ${props => props.defaultStyle.bgColor};
@@ -48,4 +47,4 @@ ActionButton.defaultProps = {
   styleType: 'primary'
 };
 
-export default withLoadingStateWhileRunning(ActionButton);
+export default ActionButton;

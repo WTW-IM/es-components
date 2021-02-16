@@ -10,29 +10,55 @@ const StyledIcon = styled.i`
   vertical-align: text-bottom;
 `;
 
-let stylesAdded = false;
+const iconStyleAttribute = 'data-es-icon-styles';
+
+const getExistingStyleTag = node =>
+  node.querySelector(`[${iconStyleAttribute}]`);
+
+const createStyleTag = () => {
+  const styleTag = document.createElement('link');
+  styleTag.setAttribute(iconStyleAttribute, '');
+  styleTag.setAttribute('rel', 'stylesheet');
+  styleTag.setAttribute(
+    'href',
+    'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
+  );
+  return styleTag;
+};
+
+const setupGlobalStyleTag = () =>
+  getExistingStyleTag(document) ||
+  (() => {
+    document.head.append(createStyleTag());
+  })();
+
+const setupNodeStyleTag = node =>
+  getExistingStyleTag(node) ||
+  (() => {
+    node.prepend(createStyleTag());
+  })();
+
+const setupStyleTag = node =>
+  node === document.body ? setupGlobalStyleTag() : setupNodeStyleTag(node);
+
+const applyStyles = async rootNode => {
+  try {
+    setupStyleTag(rootNode);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to load icon styles', err);
+  }
+};
 
 function Icon({ name, size, className, ...other }) {
   const [rootNode, RootNodeInput] = useRootNodeLocator();
-  useEffect(() => {
-    if (stylesAdded || !rootNode) return;
 
-    const addStyles = async () => {
-      stylesAdded = true;
-      const styles = await fetch(
-        'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css'
-      );
-      if (!styles.ok) {
-        console.error('Failed to load icon styles', styles.error);
-        stylesAdded = false;
-        return;
-      }
-      const styleTag = document.createElement('style');
-      styleTag.innerHTML = await styles.text();
-      rootNode.prepend(styleTag);
-    };
-    addStyles();
+  useEffect(() => {
+    if (!rootNode) return;
+
+    applyStyles(rootNode);
   }, [rootNode]);
+
   return (
     <>
       <RootNodeInput />

@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.6.41",
+  "version": "21.6.43",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -73,7 +73,6 @@
     "http-server": "^0.12.3",
     "jest": "^26.6.3",
     "jest-cli": "^26.1.0",
-    "jest-fetch-mock": "^3.0.3",
     "jest-styled-components": "^7.0.2",
     "mkdirp": "^1.0.4",
     "prettier": "^1.18.2",

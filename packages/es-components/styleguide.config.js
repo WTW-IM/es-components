@@ -31,7 +31,7 @@ module.exports = {
           word-break: break-word !important;
         }
       </style>
-      <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css">
+      <link rel="preload" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" as="style">
       <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css">
       <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
     `

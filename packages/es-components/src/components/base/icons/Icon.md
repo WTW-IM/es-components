@@ -17,8 +17,12 @@ const containerStyle = {
 </div>
 ```
 
-**Note:** Icons require the `bds-func-icons-v2` font. Use the following link to include the required font and classes in your project:
+**Note:** Icons require the `bds-func-icons-v2` font. Icons will load the font automatically, but you can use the following `link` to preload the required font and classes in your project:
 
 ```html
-<link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" />
+<link
+  rel="preload"
+  href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css"
+  as="style"
+/>
 ```

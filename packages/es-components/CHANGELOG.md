@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.43"></a>
+## <small>21.6.43 (2021-02-16)</small>
+
+* Build: removing whatwg-fetch as it's no longer needed ([1bf34bb](https://github.com/wtw-im/es-components/commit/1bf34bb))
+* Update: ensuring we only load icon styles over the wire once ([da498e0](https://github.com/wtw-im/es-components/commit/da498e0))
+* Update: moving styles to head instead of body ([d2203fc](https://github.com/wtw-im/es-components/commit/d2203fc))
+* Update: using link tags instead of manually loading fonts ([7c9b458](https://github.com/wtw-im/es-components/commit/7c9b458))
+* Merge branch 'master' into load-styles-once ([c7a54a0](https://github.com/wtw-im/es-components/commit/c7a54a0))
+
+
+
+
+<a name="21.6.42"></a>
+## <small>21.6.42 (2021-02-12)</small>
+
+* Fix: ensuring we always have fetch ([2dbddba](https://github.com/wtw-im/es-components/commit/2dbddba))
+* Fix: inlining dynamic imports in umd ([0ac6cf9](https://github.com/wtw-im/es-components/commit/0ac6cf9))
+
+
+
+
 <a name="21.6.41"></a>
 ## <small>21.6.41 (2021-02-08)</small>
 

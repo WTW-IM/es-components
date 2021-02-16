@@ -3,8 +3,6 @@ Additional props supplied to the LinkButton component will be passed to the unde
 ### LinkButton Style Types
 
 ```
-const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
-
 <p aria-live="polite">
   <LinkButton styleType="primary">Primary</LinkButton><br />
   <LinkButton styleType="success">Success</LinkButton><br />

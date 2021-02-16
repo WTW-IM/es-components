@@ -10,8 +10,6 @@ const buttonStyle = {
 
 function noop() { }
 
-const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
-
 <div aria-live="polite">
   <div style={buttonStyle}><OutlineButton onClick={noop}>Default</OutlineButton></div>
 

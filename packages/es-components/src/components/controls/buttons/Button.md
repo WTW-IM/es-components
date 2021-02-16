@@ -7,8 +7,6 @@ const buttonStyle = {
   margin: '10px 15px 0 0'
 };
 
-const wait = () => new Promise(resolve => setTimeout(resolve, 2000));
-
 <div aria-live="polite">
   <Button style={buttonStyle}>Default</Button>
 

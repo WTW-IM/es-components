@@ -31,7 +31,6 @@ export default [
       'react-text-mask',
       'react-transition-group/Transition',
       'styled-components',
-      'whatwg-fetch',
       'regenerator-runtime/runtime',
       'react-modal',
       'tinycolor2',

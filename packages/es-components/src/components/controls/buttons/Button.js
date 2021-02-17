@@ -81,19 +81,22 @@ const StyledButton = styled(ButtonBase)`
   }
 
   &[disabled],
-  &[data-waiting],
-  &[data-waiting]:active,
-  &[data-waiting].pressed,
-  &[data-waiting].pressed {
+  &[data-waiting]
+  {
     color: #ccc;
     cursor: not-allowed;
     background-color: #e6e6e6;
     border-color: #e6e6e6;
 
-    &:hover {
+    &:hover,
+    &:active
+    &.pressed,
       background-color: #e6e6e6;
       border-color: #e6e6e6;
       color: #ccc;
+      &:focus {
+        box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+      }
     }
 
     > * {

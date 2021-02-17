@@ -154,3 +154,33 @@ import DropdownButton from './DropdownButton';
   </div>
 </>
 ```
+
+## LoaderButton
+
+`Button`, `OutlineButton`, `LinkButton`, and `ActionButton` all have alternate
+`LoaderButton`s, its extra props are:
+
+<table>
+  <tr>
+    <th>Prop Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>`showWhileRunning`</td>
+    <td>Content to display while waiting.</td>
+  </tr>
+  <tr>
+    <td>`onClick`</td>
+    <td>onClick _must_ return a Promise with `LoaderButtons`</td>
+  </tr>
+</table>
+
+```
+import { withLoadingStateWhileRunning } from './features/withLoadingStateWhileRunning';
+const LoaderButton = withLoadingStateWhileRunning(Button);
+
+const runPromise = () => new Promise((res) => setTimeout(res, 1000));
+<LoaderButton showWhileRunning="Loading..." onClick={runPromise}>
+  Click me to load!
+</LoaderButton>
+```

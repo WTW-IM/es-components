@@ -77,10 +77,15 @@ const StyledButton = styled(ButtonBase)`
     color: #ccc;
     cursor: not-allowed;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &.pressed,
       background-color: #e6e6e6;
       border-color: #e6e6e6;
       color: #ccc;
+      &:focus {
+        box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+      }
     }
 
     > * {

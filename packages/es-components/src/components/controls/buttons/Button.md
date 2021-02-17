@@ -21,6 +21,9 @@ const buttonStyle = {
   <Button styleType="warning" style={buttonStyle}>Warning</Button>
 
   <Button styleType="danger" style={buttonStyle}>Danger</Button>
+
+  <Button style={buttonStyle} waiting>Waiting</Button>
+
 </div>
 ```
 

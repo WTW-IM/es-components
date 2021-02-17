@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
+import ButtonBase from './ButtonBase';
 
-const StyledButton = styled.button`
+const StyledButton = styled(ButtonBase)`
   background-color: transparent;
   border: none;
   box-shadow: none;
@@ -26,7 +27,9 @@ const StyledButton = styled.button`
     box-shadow: none;
   }
 
-  &[disabled]:hover {
+  &[disabled],
+  &[data-waiting],
+  &[data-waiting]:active {
     color: ${props => props.variant.textColor};
     text-decoration: underline;
   }

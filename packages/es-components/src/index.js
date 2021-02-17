@@ -1,3 +1,10 @@
+/** Imports */
+import Button from './components/controls/buttons/Button';
+import OutlineButton from './components/controls/buttons/OutlineButton';
+import LinkButton from './components/controls/buttons/LinkButton';
+import ActionButton from './components/controls/buttons/ActionButton';
+import { withLoadingStateWhileRunning } from './components/controls/buttons/features/withLoadingStateWhileRunning';
+
 export Icon from './components/base/icons/Icon';
 export FullColorIcon from './components/base/icons/FullColorIcon';
 
@@ -37,6 +44,12 @@ export ToggleButton from './components/controls/buttons/ToggleButton';
 export DropdownButton from './components/controls/buttons/DropdownButton';
 export OutlineButton from './components/controls/buttons/OutlineButton';
 export LinkButton from './components/controls/buttons/LinkButton';
+
+export const LoaderButton = withLoadingStateWhileRunning(Button);
+export const LoaderOutlineButton = withLoadingStateWhileRunning(OutlineButton);
+export const LoaderLinkButton = withLoadingStateWhileRunning(LinkButton);
+export const LoaderActionButton = withLoadingStateWhileRunning(ActionButton);
+
 export IconButton from './components/controls/buttons/IconButton';
 export PopoverLink from './components/controls/buttons/PopoverLink';
 export AnswerButton from './components/controls/answer-group/AnswerButton';
@@ -74,3 +87,5 @@ export StyleReset from './components/util/StyleReset';
 export { useTheme } from './components/util/useTheme';
 export { isValidEmail } from './components/util/isValidEmail';
 export useRootNode, { useRootNodeLocator } from './components/util/useRootNode';
+export { useLoadingState } from './hooks/useLoadingState';
+export { useMountedOnlyState } from './hooks/useMountedOnlyState';

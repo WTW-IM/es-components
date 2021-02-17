@@ -14,9 +14,9 @@ const iconStyle = {
   top: '-2px'
 };
 
-<p style={{display: 'flex'}}>
+<p style={{ display: 'flex' }} aria-live="polite">
   <ActionButton styleType="info" style={buttonStyle}><Icon name="edit" style={iconStyle} /> Edit</ActionButton>
   <ActionButton styleType="success" style={buttonStyle}><Icon name="add" style={iconStyle} /> Add</ActionButton>
   <ActionButton styleType="danger" style={buttonStyle}><Icon name="remove" style={iconStyle} /> Remove</ActionButton>
-</p>
+</p>;
 ```

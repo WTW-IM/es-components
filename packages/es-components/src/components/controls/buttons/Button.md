@@ -7,7 +7,7 @@ const buttonStyle = {
   margin: '10px 15px 0 0'
 };
 
-<div>
+<div aria-live="polite">
   <Button style={buttonStyle}>Default</Button>
 
   <Button styleType="darkDefault" style={buttonStyle}>Dark Default</Button>
@@ -21,6 +21,9 @@ const buttonStyle = {
   <Button styleType="warning" style={buttonStyle}>Warning</Button>
 
   <Button styleType="danger" style={buttonStyle}>Danger</Button>
+
+  <Button style={buttonStyle} waiting>Waiting</Button>
+
 </div>
 ```
 
@@ -153,3 +156,34 @@ import DropdownButton from './DropdownButton';
     <Button styleType="primary" flatLeftEdge>Left Split Button Dropdown</Button>
   </div>
 </>
+```
+
+## LoaderButton
+
+`Button`, `OutlineButton`, `LinkButton`, and `ActionButton` all have alternate
+`LoaderButton`s, its extra props are:
+
+<table>
+  <tr>
+    <th>Prop Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>`showWhileRunning`</td>
+    <td>Content to display while waiting.</td>
+  </tr>
+  <tr>
+    <td>`onClick`</td>
+    <td>onClick _must_ return a Promise with `LoaderButtons`</td>
+  </tr>
+</table>
+
+```
+import { withLoadingStateWhileRunning } from './features/withLoadingStateWhileRunning';
+const LoaderButton = withLoadingStateWhileRunning(Button);
+
+const runPromise = () => new Promise((res) => setTimeout(res, 1000));
+<LoaderButton showWhileRunning="Loading..." onClick={runPromise}>
+  Click me to load!
+</LoaderButton>
+```

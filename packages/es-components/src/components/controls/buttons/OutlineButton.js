@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
-
+import ButtonBase from './ButtonBase';
 import { useTheme } from '../../util/useTheme';
 
-const StyledButton = styled.button`
+const StyledButton = styled(ButtonBase)`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid ${props => props.colors.textColor};
   border-radius: ${props => props.buttonSize.borderRadius};
@@ -67,7 +67,11 @@ const StyledButton = styled.button`
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }
 
-  &[disabled] {
+  &[disabled],
+  &[data-waiting],
+  &[data-waiting]:active,
+  &[data-waiting].pressed,
+  &[data-waiting].pressed {
     background-color: #e6e6e6;
     border-color: #e6e6e6;
     color: #ccc;

@@ -10,7 +10,7 @@ const buttonStyle = {
 
 function noop() { }
 
-<div>
+<div aria-live="polite">
   <div style={buttonStyle}><OutlineButton onClick={noop}>Default</OutlineButton></div>
 
   <div style={buttonStyle}><OutlineButton onClick={noop} styleType="primary">Primary</OutlineButton></div>

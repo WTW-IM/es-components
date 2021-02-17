@@ -3,7 +3,7 @@ Additional props supplied to the LinkButton component will be passed to the unde
 ### LinkButton Style Types
 
 ```
-<p>
+<p aria-live="polite">
   <LinkButton styleType="primary">Primary</LinkButton><br />
   <LinkButton styleType="success">Success</LinkButton><br />
   <LinkButton styleType="information">Info</LinkButton><br />

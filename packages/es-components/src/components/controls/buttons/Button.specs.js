@@ -1,43 +1,64 @@
 /* eslint-env jest */
-/* eslint react/prop-types: 0 */
 import React from 'react';
 
 import Button from './Button';
 import { renderWithTheme } from '../../util/test-utils';
 
-const onClick = jest.fn();
-
-function buildButton(props) {
-  const { children, ...otherProps } = props;
-  const defaultProps = {
-    onClick
-  };
-  const mergedProps = Object.assign({}, defaultProps, otherProps);
-
-  return <Button {...mergedProps}>{children}</Button>;
-}
-
 it('renders child text inside of button', () => {
-  const { queryByText } = renderWithTheme(
-    buildButton({ children: 'Test button' })
-  );
-  const button = queryByText('Test button');
+  const innerText = 'Hello';
+  const { queryByText } = renderWithTheme(<Button>{innerText}</Button>);
+  const button = queryByText(innerText);
   expect(button).not.toBeNull();
 });
 
 it('renders child nodes inside of button', () => {
-  const child = <span>Hello</span>;
+  const innerText = 'Hello';
+  const { getByText } = renderWithTheme(
+    <Button>
+      <span>{innerText}</span>
+    </Button>
+  );
 
-  const { getByText } = renderWithTheme(buildButton({ children: child }));
-
-  const foundChild = getByText('Hello');
+  const foundChild = getByText(innerText);
   expect(foundChild.nodeName).toBe('SPAN');
 });
 
 it('executes the onClick function passed', () => {
-  const { getByText } = renderWithTheme(buildButton({ children: 'Test' }));
+  const onClick = jest.fn();
+  const innerText = 'Hello';
+  const { getByText } = renderWithTheme(
+    <Button onClick={onClick}>{innerText}</Button>
+  );
 
-  getByText('Test').click();
+  getByText(innerText).click();
 
   expect(onClick).toHaveBeenCalled();
+});
+
+it('blocks click while waiting', () => {
+  const onClick = jest.fn();
+  const innerText = 'Hello';
+  const { getByText } = renderWithTheme(
+    <Button onClick={onClick} waiting>
+      {innerText}
+    </Button>
+  );
+
+  getByText(innerText).click();
+
+  expect(onClick).not.toHaveBeenCalled();
+});
+
+it('blocks click while waiting', () => {
+  const onClick = jest.fn();
+  const innerText = 'Hello';
+  const { getByText } = renderWithTheme(
+    <Button onClick={onClick} waiting>
+      {innerText}
+    </Button>
+  );
+
+  getByText(innerText).click();
+
+  expect(onClick).not.toHaveBeenCalled();
 });

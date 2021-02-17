@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
-
 import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
+import ButtonBase from './ButtonBase';
 
-const StyledButton = styled.button`
+const StyledButton = styled(ButtonBase)`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid transparent;
   border-color: ${props => props.colors.bgColor};
@@ -80,16 +80,23 @@ const StyledButton = styled.button`
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
   }
 
-  &[disabled] {
+  &[disabled],
+  &[data-waiting]
+  {
     color: #ccc;
     cursor: not-allowed;
     background-color: #e6e6e6;
     border-color: #e6e6e6;
 
-    &:hover {
+    &:hover,
+    &:active
+    &.pressed,
       background-color: #e6e6e6;
       border-color: #e6e6e6;
       color: #ccc;
+      &:focus {
+        box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+      }
     }
 
     > * {
@@ -193,6 +200,8 @@ const Button = React.forwardRef(function Button(
 });
 
 Button.propTypes = {
+  ...ButtonBase.propTypes,
+  waiting: PropTypes.bool,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
   styleType: PropTypes.string,
@@ -208,6 +217,8 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  ...ButtonBase.defaultProps,
+  waiting: false,
   styleType: 'default',
   block: false,
   mobileBlock: true,

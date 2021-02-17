@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.44"></a>
+## <small>21.6.44 (2021-02-17)</small>
+
+* Update: (WE-10763) add isWating attribute to appear disabled ([518514c](https://github.com/wtw-im/es-components/commit/518514c))
+* Update: (WE-10763) add spec test for isWaiting attribute ([c988537](https://github.com/wtw-im/es-components/commit/c988537))
+* Update: (WE-10763) added aria to md demo code ([363293c](https://github.com/wtw-im/es-components/commit/363293c))
+* Update: (WE-10763) better tests ([adceb90](https://github.com/wtw-im/es-components/commit/adceb90))
+* Update: (WE-10763) don't disable running buttons, maintain focus ([4715a2e](https://github.com/wtw-im/es-components/commit/4715a2e))
+* Update: (WE-10763) edit running-state styling ([4f311bb](https://github.com/wtw-im/es-components/commit/4f311bb))
+* Update: (WE-10763) Forgot to rename the HOC feature ([481f3f9](https://github.com/wtw-im/es-components/commit/481f3f9))
+* Update: (WE-10763) LinkButton styling should not change while action is in-flight ([3041950](https://github.com/wtw-im/es-components/commit/3041950))
+* Update: (WE-10763) readability rename ([ef96ff0](https://github.com/wtw-im/es-components/commit/ef96ff0))
+* Update: (WE-10763) remove timeout in button docs ([30148bf](https://github.com/wtw-im/es-components/commit/30148bf))
+* Update: (WE-10763) seperate loader logic from button components ([9169ad3](https://github.com/wtw-im/es-components/commit/9169ad3))
+* Update: show example of waiting attribute ([f9eba61](https://github.com/wtw-im/es-components/commit/f9eba61))
+* Update: utilized waiting prop in withLoadingStateWhileRunning and added tests ([32faa9c](https://github.com/wtw-im/es-components/commit/32faa9c))
+* Fix: fixing styling for active waiting states ([8fba207](https://github.com/wtw-im/es-components/commit/8fba207))
+* Docs: adding documentation around LoaderButtons ([4a22269](https://github.com/wtw-im/es-components/commit/4a22269))
+* New: (WE-10763) loading state for buttons ([a8e7a81](https://github.com/wtw-im/es-components/commit/a8e7a81))
+* New: added waiting prop to Buttons and created shared BaseButton ([35c4fc8](https://github.com/wtw-im/es-components/commit/35c4fc8))
+* add spinner button ([517c952](https://github.com/wtw-im/es-components/commit/517c952))
+* Merge branch 'master' into WE-10763-opt-in-loading-state-buttons-no-disable ([1a1ae64](https://github.com/wtw-im/es-components/commit/1a1ae64))
+* Merge branch 'master' into WE-10763-opt-in-loading-state-buttons-no-disable ([4fac121](https://github.com/wtw-im/es-components/commit/4fac121))
+* Merge branch 'master' of github.com:dabraham5/es-components into WE-10763-opt-in-loading-state-butto ([2874ec9](https://github.com/wtw-im/es-components/commit/2874ec9))
+
+
+
+
 <a name="21.6.43"></a>
 ## <small>21.6.43 (2021-02-16)</small>
 

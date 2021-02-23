@@ -17,12 +17,21 @@ const containerStyle = {
 </div>
 ```
 
-**Note:** Icons require the `bds-func-icons-v2` font. Icons will load the font automatically, but you can use the following `link` to preload the required font and classes in your project:
+**Note:** Icons require the `bds-func-icons-v2` font. Icons will load the font
+automatically, but you can use the following `link` tags to preload the required font
+and classes in your project. To ensure that fonts load on the global scope
+([@font-face won't work inside a Shadow Root unless they are](https://github.com/stevematney/writing/blob/master/web-components/micro-frontend-composition-with-web-components.md#fonts)),
+you can also add the same script as a preload `<link>` with `as="font"`.
 
 ```html
 <link
   rel="preload"
   href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css"
   as="style"
+/>
+<link
+  rel="preload"
+  href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css"
+  as="font"
 />
 ```

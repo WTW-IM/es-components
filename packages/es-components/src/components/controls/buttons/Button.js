@@ -200,7 +200,7 @@ const Button = React.forwardRef(function Button(
 });
 
 Button.propTypes = {
-  ...ButtonBase.propTypes,
+  ...(ButtonBase.propTypes || {}),
   waiting: PropTypes.bool,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
@@ -217,7 +217,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  ...ButtonBase.defaultProps,
+  ...(ButtonBase.defaultProps || {}),
   waiting: false,
   styleType: 'default',
   block: false,

@@ -16,8 +16,12 @@ const Dropdown = styled.select`
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 
   &:focus {
-    border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props => props.focusBoxShadow};
+    border-color: ${props =>
+      props.focusBorderColor ||
+      props.theme.validationInputColor.default.focusBorderColor};
+    box-shadow: ${props =>
+      props.focusBoxShadow ||
+      props.theme.validationInputColor.default.focusBoxShadow};
     outline: 0;
   }
 

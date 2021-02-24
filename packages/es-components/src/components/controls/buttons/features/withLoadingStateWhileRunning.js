@@ -34,14 +34,14 @@ export const withLoadingStateWhileRunning = ButtonComponent => {
   );
 
   ButtonWithLoadingState.propTypes = {
-    ...ButtonComponent.propTypes,
+    ...(ButtonComponent.propTypes || {}),
     showWhileRunning: PropTypes.any,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func
   };
 
   ButtonWithLoadingState.defaultProps = {
-    ...ButtonComponent.defaultProps,
+    ...(ButtonComponent.defaultProps || {}),
     showWhileRunning: undefined,
     onClick: undefined
   };

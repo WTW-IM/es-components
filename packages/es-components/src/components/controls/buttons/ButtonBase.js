@@ -26,7 +26,7 @@ const ButtonBase = React.forwardRef(function ButtonBaseInner(
 });
 
 ButtonBase.propTypes = {
-  ...styled.button.propTypes,
+  ...(styled.button.propTypes || {}),
   /** Styles the Button with the "disabled" state and prevents click action */
   waiting: PropTypes.bool
 };

@@ -2,15 +2,19 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const noop = () => {
+  // noop
+};
+
 const UnstyledButton = styled.button``;
 const ButtonBase = React.forwardRef(function ButtonBaseInner(
   { waiting, onClick, ...props },
   ref
 ) {
-  const innerClick = useCallback((...args) => !waiting && onClick(...args), [
-    waiting,
-    onClick
-  ]);
+  const innerClick = useCallback(
+    (...args) => !waiting && (onClick || noop)(...args),
+    [waiting, onClick]
+  );
   const computedProps = {
     ...props,
     ...(waiting ? { 'data-waiting': waiting } : {})

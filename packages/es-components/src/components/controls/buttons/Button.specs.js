@@ -35,6 +35,13 @@ it('executes the onClick function passed', () => {
   expect(onClick).toHaveBeenCalled();
 });
 
+it('works with no onClick', () => {
+  const innerText = 'Hello';
+  const { getByText } = renderWithTheme(<Button>{innerText}</Button>);
+
+  expect(() => getByText(innerText).click()).not.toThrow();
+});
+
 it('blocks click while waiting', () => {
   const onClick = jest.fn();
   const innerText = 'Hello';

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.46"></a>
+## <small>21.6.46 (2021-02-24)</small>
+
+* Docs: adding info about Web Components and @font-face ([c644b6c](https://github.com/wtw-im/es-components/commit/c644b6c))
+
+
+
+
 <a name="21.6.45"></a>
 ## <small>21.6.45 (2021-02-17)</small>
 

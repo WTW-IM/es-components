@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.48"></a>
+## <small>21.6.48 (2021-02-24)</small>
+
+* Fix: ensuring we don't throw if no onClick is given ([38f7e37](https://github.com/wtw-im/es-components/commit/38f7e37))
+
+
+
+
 <a name="21.6.47"></a>
 ## <small>21.6.47 (2021-02-24)</small>
 

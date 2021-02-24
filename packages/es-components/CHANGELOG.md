@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.47"></a>
+## <small>21.6.47 (2021-02-24)</small>
+
+* Fix: ensuring we don't spread over potentially undefined propTypes ([93cbfe2](https://github.com/wtw-im/es-components/commit/93cbfe2))
+
+
+
+
 <a name="21.6.46"></a>
 ## <small>21.6.46 (2021-02-24)</small>
 

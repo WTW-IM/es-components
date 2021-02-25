@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.49"></a>
+## <small>21.6.49 (2021-02-25)</small>
+
+* Fix: set Dropdown focus values if validation context not available ([99b9add](https://github.com/wtw-im/es-components/commit/99b9add))
+
+
+
+
 <a name="21.6.48"></a>
 ## <small>21.6.48 (2021-02-24)</small>
 

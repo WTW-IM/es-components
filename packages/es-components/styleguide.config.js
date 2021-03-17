@@ -51,6 +51,13 @@ module.exports = {
       content: path.join(baseComponentDir, 'grid/Grid.md')
     },
     {
+      name: 'General Styling Guidelines',
+      content: path.join(
+        baseComponentDir,
+        'general-styling-guidelines/GeneralStylingGuidelines.md'
+      )
+    },
+    {
       name: 'Base',
       components: path.join(baseComponentDir, 'base/**/*.js')
     },

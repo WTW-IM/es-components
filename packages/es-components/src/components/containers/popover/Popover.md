@@ -231,3 +231,32 @@ const styles = {
     </div>
 </div>
 ```
+
+Extra props will be passed through to the popup container, allowing you to override default styling.
+
+```
+import Button from '../../controls/buttons/Button';
+import styled from 'styled-components';
+
+const StyledPopover = styled(Popover)`
+  min-width: 100px;
+  max-width: 200px;
+`;
+
+<StyledPopover
+  name="customStylingExample"
+  title="Custom Styling"
+  content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
+  placement="bottom"
+  renderTrigger={({ ref, toggleShow, isOpen }) => (
+    <Button
+      onClick={toggleShow}
+      aria-expanded={isOpen}
+      ref={ref}
+      styleType="primary"
+    >
+      Popover with custom styling
+    </Button>
+  )}
+/>
+```

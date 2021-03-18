@@ -155,7 +155,8 @@ function Popup(props) {
     disableFlipping,
     popperRef,
     enableEvents,
-    strategy
+    strategy,
+    ...otherProps
   } = props;
   const arrowValues = getArrowValues(arrowSize);
   const [rootNode, rootNodeRef] = useRootNode(document.body);
@@ -198,7 +199,12 @@ function Popup(props) {
               mountOnEnter
               unmountOnExit
             >
-              <PopperBox ref={ref} style={style} arrowSize={arrowValues}>
+              <PopperBox
+                ref={ref}
+                style={style}
+                arrowSize={arrowValues}
+                {...otherProps}
+              >
                 {children}
                 <Arrow
                   ref={arrowProps.ref}

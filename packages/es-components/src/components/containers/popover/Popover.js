@@ -81,7 +81,8 @@ function Popover(props) {
     disableRootClose,
     disableFlipping,
     enableEvents,
-    strategy
+    strategy,
+    ...otherProps
   } = props;
 
   const hasTitle = title !== undefined;
@@ -187,6 +188,7 @@ function Popover(props) {
         }}
         enableEvents={enableEvents}
         strategy={strategy}
+        {...otherProps}
       >
         <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
           <div role="dialog" ref={contentRef}>

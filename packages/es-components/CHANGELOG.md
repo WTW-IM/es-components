@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.51"></a>
+## <small>21.6.51 (2021-03-18)</small>
+
+* Update: allow popovers to have default styling overridden ([17d84bd](https://github.com/wtw-im/es-components/commit/17d84bd))
+
+
+
+
 <a name="21.6.50"></a>
 ## <small>21.6.50 (2021-03-18)</small>
 

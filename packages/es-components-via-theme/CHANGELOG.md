@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.50"></a>
+## <small>21.6.50 (2021-03-18)</small>
+
+* Build: updating version in package-lock files ([5d5ed3a](https://github.com/WTW-IM/es-components/commit/5d5ed3a))
+
+
+
+
 <a name="21.6.49"></a>
 ## <small>21.6.49 (2021-02-25)</small>
 

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.50"></a>
+## <small>21.6.50 (2021-03-18)</small>
+
+* Docs: adding General Styling Guidelines section ([9f3a68b](https://github.com/wtw-im/es-components/commit/9f3a68b))
+* Build: updating version in package-lock files ([5d5ed3a](https://github.com/wtw-im/es-components/commit/5d5ed3a))
+
+
+
+
 <a name="21.6.49"></a>
 ## <small>21.6.49 (2021-02-25)</small>
 

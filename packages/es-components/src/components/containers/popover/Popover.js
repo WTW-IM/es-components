@@ -101,7 +101,6 @@ function Popover(props) {
 
   function toggleShow(event) {
     event.preventDefault();
-    event.stopPropagation();
     setIsOpen(!isOpen);
   }
 

@@ -123,15 +123,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 <button
-  class="sc-AxirZ c0"
->
-  <span />
-</button>
-`;
-
-exports[`sets the appropriate styles for isPastStep 2`] = `
-<button
-  class="sc-AxirZ sc-AxhCb dPcXKC"
+  class="c0"
 >
   <span />
 </button>

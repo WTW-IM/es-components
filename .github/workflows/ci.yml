@@ -1,0 +1,59 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+    pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12, 14, 16]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node Version
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install Dependencies
+        run: |
+          cd packages/es-components/
+          npm ci
+          cd ../..
+      - name: Run Tests
+        run: |
+          cd packages/es-components/
+          npm run ci
+          cd ../..
+  publish:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: |
+          cd packages/es-components
+          npm ci
+          cd ../..
+      - name: Lerna Publish
+        run: |
+          echo "//registry.npmjs.com/:_authToken=${{NPM_TOKEN}}" > ~/.npmrc
+          npx lerna publish --conventional-commits --changelog-preset conventional-changelog-eslint --yes
+      - name: Rebuild docs
+        run: |
+          cd packages/es-components
+          npm run styleguide-build
+          cd ../..
+      - name: Publish docs to github pages
+        run: |
+          git checkout gh-pages
+          mv ./packages/es-components/docs/* .
+          git config user.name "ES-Components Bot"
+          git config user.email "es-components-bot@wtw.org"
+          git add index.html full-color-icons.html full-color-icons.js build
+          git commit -m "Deploy es-component docs to gh-pages"
+          git push origin gh-pages

@@ -3,7 +3,7 @@ on:
   pullRequest:
   push:
     tags-ignore:
-      - *
+      - v*
 jobs:
   test:
     runs-on: ubuntu-latest

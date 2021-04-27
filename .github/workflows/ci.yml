@@ -30,16 +30,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
       - name: Install Dependencies
         run: |
           npm ci
           cd packages/es-components
           npm ci
           cd ../..
-      - name: Set Commitbot Identity
-        run: |
-          git config user.name "ES-Components Bot"
-          git config user.email "es-components-bot@wtw.org"
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc

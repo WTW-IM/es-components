@@ -6,6 +6,7 @@ on:
       - master
 jobs:
   test:
+    name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,9 +28,10 @@ jobs:
           cd packages/es-components/
           npm run ci
           cd ../..
-  publish:
+  npm:
     if: ${{ github.ref == 'refs/heads/master' }}
     needs: test
+    name: Publish To NPM
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,11 +48,42 @@ jobs:
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
-          git remote set-url origin https://${{secrets.IM_PIPELINE_BOT_TOKEN}}@github.com/WTW-IM/es-components.git
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset conventional-changelog-eslint --yes
+      - name: Rebuild docs
+        run: |
+          cd packages/es-components
+          npm run styleguide-build
+          cd ../..
+      - name: Publish docs to github pages
+        run: |
+          git checkout gh-pages
+          mv ./packages/es-components/docs/* .
+          git add index.html full-color-icons.html full-color-icons.js build
+          git commit -m "Deploy es-component docs to gh-pages"
+          git push origin gh-pages
+  docs:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    needs: test
+    name: Publish Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+          fetch-depth: 0
+      - name: Install Dependencies
+        run: |
+          cd packages/es-components
+          npm ci
+          cd ../..
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Lerna Publish Bot"
+          git config user.email "es-components-bot@wtw.org"
       - name: Rebuild docs
         run: |
           cd packages/es-components

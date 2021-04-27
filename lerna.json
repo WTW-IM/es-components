@@ -6,7 +6,7 @@
   "version": "21.6.55",
   "command": {
     "publish": {
-      "message": "[SKIP CI] %s"
+      "message": "[skip ci] %s"
     }
   }
 }

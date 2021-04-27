@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.54"></a>
+## <small>21.6.54 (2021-04-27)</small>
+
+* Build: allow lerna and docs deploy to push ([a8c6e66](https://github.com/WTW-IM/es-components/commit/a8c6e66))
+
+
+
+
 <a name="21.6.52"></a>
 ## <small>21.6.52 (2021-04-27)</small>
 

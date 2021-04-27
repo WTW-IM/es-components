@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.58"></a>
+## <small>21.6.58 (2021-04-27)</small>
+
+
+
+
+
+**Note:** Version bump only for package es-components
+
 <a name="21.6.57"></a>
 ## <small>21.6.57 (2021-04-27)</small>
 

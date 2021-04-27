@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.55"></a>
+## <small>21.6.55 (2021-04-27)</small>
+
+* Build: restrict branches runs to master ([b082d15](https://github.com/WTW-IM/es-components/commit/b082d15))
+
+
+
+
 <a name="21.6.52"></a>
 ## <small>21.6.52 (2021-04-27)</small>
 

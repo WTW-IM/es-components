@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.59"></a>
+## <small>21.6.59 (2021-04-27)</small>
+
+* Build: fix broken ci syntax ([a6cd0e0](https://github.com/wtw-im/es-components/commit/a6cd0e0))
+
+
+
+
 <a name="21.6.58"></a>
 ## <small>21.6.58 (2021-04-27)</small>
 

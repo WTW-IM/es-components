@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.60"></a>
+## <small>21.6.60 (2021-04-27)</small>
+
+* Merge pull request #536 from aabenoja/popover-content-render-func ([bbc229a](https://github.com/wtw-im/es-components/commit/bbc229a)), closes [#536](https://github.com/wtw-im/es-components/issues/536)
+
+
+
+
 <a name="21.6.59"></a>
 ## <small>21.6.59 (2021-04-27)</small>
 

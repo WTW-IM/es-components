@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.53"></a>
+## <small>21.6.53 (2021-04-27)</small>
+
+* Build: roll back credentials and add missing lerna changes ([6f9852d](https://github.com/wtw-im/es-components/commit/6f9852d))
+
+
+
+
 <a name="21.6.52"></a>
 ## <small>21.6.52 (2021-04-27)</small>
 

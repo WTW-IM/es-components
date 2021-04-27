@@ -38,6 +38,10 @@ jobs:
           cd packages/es-components
           npm ci
           cd ../..
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Lerna Publish Bot"
+          git config user.email "es-components-bot@wtw.org"
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc

@@ -156,6 +156,7 @@ function Popup(props) {
     popperRef,
     enableEvents,
     strategy,
+    enableKeepTogether,
     ...otherProps
   } = props;
   const arrowValues = getArrowValues(arrowSize);
@@ -186,6 +187,9 @@ function Popup(props) {
             flip: {
               enabled: !disableFlipping,
               behavior: ['left', 'right', 'top', 'bottom', 'top']
+            },
+            keepTogether: {
+              enabled: enableKeepTogether
             }
           }}
           innerRef={popperRef}
@@ -235,7 +239,8 @@ Popup.propTypes = {
   disableFlipping: PropTypes.bool,
   popperRef: PropTypes.func,
   enableEvents: PropTypes.bool,
-  strategy: PropTypes.oneOf(['absolute', 'fixed'])
+  strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  enableKeepTogether: PropTypes.bool
 };
 
 Popup.defaultProps = {
@@ -250,7 +255,8 @@ Popup.defaultProps = {
   disableFlipping: false,
   popperRef: undefined,
   enableEvents: true,
-  strategy: 'absolute'
+  strategy: 'absolute',
+  enableKeepTogether: false
 };
 
 export default Popup;

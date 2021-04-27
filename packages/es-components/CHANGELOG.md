@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.57"></a>
+## <small>21.6.57 (2021-04-27)</small>
+
+* Build: fix docs commit process ([4b9e976](https://github.com/wtw-im/es-components/commit/4b9e976))
+
+
+
+
 <a name="21.6.56"></a>
 ## <small>21.6.56 (2021-04-27)</small>
 

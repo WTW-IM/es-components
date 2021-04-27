@@ -42,7 +42,7 @@ jobs:
           git config user.email "es-components-bot@wtw.org"
       - name: Lerna Publish
         run: |
-          echo "//registry.npmjs.com/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset conventional-changelog-eslint --yes
       - name: Rebuild docs
         run: |

@@ -156,7 +156,7 @@ function Popup(props) {
     popperRef,
     enableEvents,
     strategy,
-    enableKeepTogether,
+    keepTogether,
     ...otherProps
   } = props;
   const arrowValues = getArrowValues(arrowSize);
@@ -189,7 +189,7 @@ function Popup(props) {
               behavior: ['left', 'right', 'top', 'bottom', 'top']
             },
             keepTogether: {
-              enabled: enableKeepTogether
+              enabled: keepTogether
             }
           }}
           innerRef={popperRef}
@@ -240,7 +240,7 @@ Popup.propTypes = {
   popperRef: PropTypes.func,
   enableEvents: PropTypes.bool,
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
-  enableKeepTogether: PropTypes.bool
+  keepTogether: PropTypes.bool
 };
 
 Popup.defaultProps = {
@@ -256,7 +256,7 @@ Popup.defaultProps = {
   popperRef: undefined,
   enableEvents: true,
   strategy: 'absolute',
-  enableKeepTogether: false
+  keepTogether: false
 };
 
 export default Popup;

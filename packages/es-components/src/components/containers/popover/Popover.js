@@ -82,7 +82,7 @@ function Popover(props) {
     disableRootClose,
     disableFlipping,
     enableEvents,
-    enableKeepTogether,
+    keepTogether,
     strategy,
     ...otherProps
   } = props;
@@ -190,7 +190,7 @@ function Popover(props) {
         }}
         enableEvents={enableEvents}
         strategy={strategy}
-        enableKeepTogether={enableKeepTogether}
+        keepTogether={keepTogether}
         {...otherProps}
       >
         <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
@@ -257,7 +257,7 @@ Popover.propTypes = {
   /** Sets the strategy for positioning the popover in Popper.js */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
   /** When using a React portal, such as sliding pane, this helps the arrow to stay aligned with the trigger */
-  enableKeepTogether: PropTypes.bool
+  keepTogether: PropTypes.bool
 };
 
 Popover.defaultProps = {
@@ -270,7 +270,7 @@ Popover.defaultProps = {
   title: undefined,
   enableEvents: true,
   strategy: 'absolute',
-  enableKeepTogether: false
+  keepTogether: false
 };
 
 export default Popover;

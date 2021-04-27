@@ -57,6 +57,7 @@ jobs:
     needs: npm
     name: Publish Docs to GH Pages
     runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:

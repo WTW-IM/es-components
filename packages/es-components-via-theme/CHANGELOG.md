@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.56"></a>
+## <small>21.6.56 (2021-04-27)</small>
+
+* Build: parallize docs and npm publish and skip ci ([c801e45](https://github.com/WTW-IM/es-components/commit/c801e45))
+
+
+
+
 <a name="21.6.55"></a>
 ## <small>21.6.55 (2021-04-27)</small>
 

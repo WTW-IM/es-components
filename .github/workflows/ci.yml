@@ -1,6 +1,6 @@
 name: CI
 on:
-  pullRequest:
+  pull_request:
   push:
     tags-ignore:
       - v*

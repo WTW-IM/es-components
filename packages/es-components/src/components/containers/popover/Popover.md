@@ -260,3 +260,34 @@ const StyledPopover = styled(Popover)`
   )}
 />
 ```
+
+A render prop is also available for the content body in the form of `renderContent`. The render function provides access to the `toggleShow` function. This allows
+popover content to control the visibility, such as with a custom close button;
+
+```
+import Button from '../../controls/buttons/Button';
+
+<Popover
+  name="customStylingExample"
+  title="Custom Styling"
+  renderContent={({ toggleShow }) => {
+    return (
+      <>
+        <p>This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+        <Button onClick={toggleShow}>Close</Button>
+      </>
+    )
+  }}
+  placement="bottom"
+  renderTrigger={({ ref, toggleShow, isOpen }) => (
+    <Button
+      onClick={toggleShow}
+      aria-expanded={isOpen}
+      ref={ref}
+      styleType="primary"
+    >
+      Popover with Closable Content
+    </Button>
+  )}
+/>
+```

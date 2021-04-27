@@ -73,6 +73,7 @@ function Popover(props) {
     name,
     title,
     content,
+    renderContent,
     placement,
     arrowSize,
     renderTrigger,
@@ -204,7 +205,7 @@ function Popover(props) {
 
             <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
               <PopoverContent showCloseButton={showCloseButton}>
-                {content}
+                {renderContent ? renderContent({ toggleShow }) : content}
               </PopoverContent>
               {showCloseButton && closeButton}
             </PopoverBody>
@@ -215,13 +216,26 @@ function Popover(props) {
   );
 }
 
+function contentRequired(expectedType) {
+  return (props, propName, componentName) => {
+    const isContentProvided = props.content || props.renderContent;
+    return isContentProvided
+      ? expectedType(props, propName, componentName)
+      : new Error('Neither content nor renderContent were provided to Popover');
+  };
+}
+
 Popover.propTypes = {
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
   /** The text displayed in the popover title section */
   title: PropTypes.string,
-  /** The content displayed in the popover body */
-  content: PropTypes.node.isRequired,
+  /** The content displayed in the popover body. This is required if renderContent is not used */
+  // eslint-disable-next-line react/require-default-props
+  content: contentRequired(PropTypes.node),
+  /** Function returning the content to be displayed in the popover body. This is required if content is not used */
+  // eslint-disable-next-line react/require-default-props
+  renderContent: contentRequired(PropTypes.func),
   /** The placement of the popover in relation to the link */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** The size of the arrow on the popover box */

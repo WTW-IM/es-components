@@ -42,6 +42,7 @@ jobs:
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
+          git remote set-url origin https://${{secrets.IM_PIPELINE_BOT_TOKEN}}@github.com/WTW-IM/es-components.git
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc

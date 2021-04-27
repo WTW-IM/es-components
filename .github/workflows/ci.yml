@@ -92,6 +92,7 @@ jobs:
       - name: Publish docs to github pages
         run: |
           git checkout gh-pages
+          rm -rf build/
           mv ./packages/es-components/docs/* .
           git add index.html full-color-icons.html full-color-icons.js build
           git commit -m "Deploy es-component docs to gh-pages"

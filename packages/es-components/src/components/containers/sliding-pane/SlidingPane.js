@@ -168,6 +168,7 @@ export default function SlidingPane({
   contentStyles,
   appElement,
   parentSelector,
+  hideHeader,
   ...rest
 }) {
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
@@ -201,18 +202,22 @@ export default function SlidingPane({
         parentSelector={modalParentSelector}
         {...rest}
       >
-        <Header>
-          <CloseLink onClick={onRequestClose}>
-            {closeIcon || <Icon name="remove" size={34} />}
-            <ScreenReaderText>{closeIconScreenReaderText}</ScreenReaderText>
-          </CloseLink>
-          <TitleWrapper>
-            <TitleText level={headingLevel} size={headingSize}>
-              {title}
-            </TitleText>
-            <SubTitle>{subTitle}</SubTitle>
-          </TitleWrapper>
-        </Header>
+        {hideHeader ? (
+          <></>
+        ) : (
+          <Header>
+            <CloseLink onClick={onRequestClose}>
+              {closeIcon || <Icon name="remove" size={34} />}
+              <ScreenReaderText>{closeIconScreenReaderText}</ScreenReaderText>
+            </CloseLink>
+            <TitleWrapper>
+              <TitleText level={headingLevel} size={headingSize}>
+                {title}
+              </TitleText>
+              <SubTitle>{subTitle}</SubTitle>
+            </TitleWrapper>
+          </Header>
+        )}
         <Content>{children}</Content>
       </Pane>
     </>
@@ -238,7 +243,8 @@ SlidingPane.propTypes = {
   /** selector of application element (e.g. #root), for hiding of
    main content for screenreaders when pane is open */
   appElement: PropTypes.string,
-  parentSelector: PropTypes.func
+  parentSelector: PropTypes.func,
+  hideHeader: PropTypes.bool
 };
 
 SlidingPane.defaultProps = {
@@ -257,5 +263,6 @@ SlidingPane.defaultProps = {
   overlayStyles: {},
   contentStyles: {},
   appElement: undefined,
-  parentSelector: null
+  parentSelector: null,
+  hideHeader: false
 };

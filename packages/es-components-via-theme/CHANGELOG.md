@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.62"></a>
+## <small>21.6.62 (2021-04-28)</small>
+
+* Merge pull request #540 from WTW-IM/fix-keep-together-default ([012953d](https://github.com/WTW-IM/es-components/commit/012953d)), closes [#540](https://github.com/WTW-IM/es-components/issues/540)
+
+
+
+
 <a name="21.6.61"></a>
 ## <small>21.6.61 (2021-04-28)</small>
 

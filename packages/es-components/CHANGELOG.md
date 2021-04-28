@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.61"></a>
+## <small>21.6.61 (2021-04-28)</small>
+
+* Merge pull request #538 from WTW-IM/sliding-pane-customization ([f147c0e](https://github.com/wtw-im/es-components/commit/f147c0e)), closes [#538](https://github.com/wtw-im/es-components/issues/538)
+
+
+
+
 <a name="21.6.60"></a>
 ## <small>21.6.60 (2021-04-27)</small>
 

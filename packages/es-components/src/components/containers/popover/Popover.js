@@ -270,7 +270,7 @@ Popover.defaultProps = {
   title: undefined,
   enableEvents: true,
   strategy: 'absolute',
-  keepTogether: false
+  keepTogether: true
 };
 
 export default Popover;

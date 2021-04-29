@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.63"></a>
+## <small>21.6.63 (2021-04-29)</small>
+
+* Merge pull request #541 from aabenoja/popover-proptypes-fix ([7be8bcb](https://github.com/WTW-IM/es-components/commit/7be8bcb)), closes [#541](https://github.com/WTW-IM/es-components/issues/541)
+
+
+
+
 <a name="21.6.62"></a>
 ## <small>21.6.62 (2021-04-28)</small>
 

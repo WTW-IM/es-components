@@ -218,13 +218,19 @@ function Popover(props) {
   );
 }
 
-function contentRequired(expectedType) {
-  return (props, propName, componentName) => {
-    const isContentProvided = props.content || props.renderContent;
-    return isContentProvided
-      ? expectedType(props, propName, componentName)
-      : new Error('Neither content nor renderContent were provided to Popover');
-  };
+function contentRequired(props, propName, componentName) {
+  const isContentProvided = props.content || props.renderContent;
+  return isContentProvided
+    ? PropTypes.checkPropTypes(
+        {
+          content: PropTypes.node,
+          renderContent: PropTypes.func
+        },
+        props,
+        propName,
+        componentName
+      )
+    : new Error('Neither content nor renderContent were provided to Popover');
 }
 
 Popover.propTypes = {
@@ -234,10 +240,10 @@ Popover.propTypes = {
   title: PropTypes.string,
   /** The content displayed in the popover body. This is required if renderContent is not used */
   // eslint-disable-next-line react/require-default-props
-  content: contentRequired(PropTypes.node),
+  content: contentRequired,
   /** Function returning the content to be displayed in the popover body. This is required if content is not used */
   // eslint-disable-next-line react/require-default-props
-  renderContent: contentRequired(PropTypes.func),
+  renderContent: contentRequired,
   /** The placement of the popover in relation to the link */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** The size of the arrow on the popover box */

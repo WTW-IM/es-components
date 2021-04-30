@@ -39,8 +39,8 @@
     "singleQuote": true
   },
   "peerDependencies": {
-    "react": ">=17.0",
-    "react-dom": ">=17.0",
+    "react": ">=16.8",
+    "react-dom": ">=16.8",
     "styled-components": "^5"
   },
   "devDependencies": {

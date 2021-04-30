@@ -96,11 +96,15 @@ function Popover(props) {
   const escMsgRef = useRef(null);
   const closeBtnRef = useRef(null);
   const timeoutRef = useRef(null);
+  const reactMajorVersion = useRef();
 
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleShow(event) {
     event.preventDefault();
+    if (reactMajorVersion.current <= 16) {
+      event.stopPropagation();
+    }
     setIsOpen(!isOpen);
   }
 
@@ -126,6 +130,11 @@ function Popover(props) {
       }
     }, 100);
   }
+
+  useEffect(() => {
+    const versionString = React.version.match(/\d+/)?.[0] || '0';
+    reactMajorVersion.current = parseInt(versionString, 10);
+  }, []);
 
   useEffect(() => {
     if (isFirstRun.current) {

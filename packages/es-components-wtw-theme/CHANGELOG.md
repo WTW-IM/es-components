@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.63"></a>
+## <small>21.6.63 (2021-04-29)</small>
+
+* Merge pull request #541 from aabenoja/popover-proptypes-fix ([7be8bcb](https://github.com/WTW-IM/es-components/commit/7be8bcb)), closes [#541](https://github.com/WTW-IM/es-components/issues/541)
+
+
+
+
+<a name="21.6.62"></a>
+## <small>21.6.62 (2021-04-28)</small>
+
+* Merge pull request #540 from WTW-IM/fix-keep-together-default ([012953d](https://github.com/WTW-IM/es-components/commit/012953d)), closes [#540](https://github.com/WTW-IM/es-components/issues/540)
+
+
+
+
+<a name="21.6.61"></a>
+## <small>21.6.61 (2021-04-28)</small>
+
+* Merge pull request #538 from WTW-IM/sliding-pane-customization ([f147c0e](https://github.com/WTW-IM/es-components/commit/f147c0e)), closes [#538](https://github.com/WTW-IM/es-components/issues/538)
+
+
+
+
+<a name="21.6.60"></a>
+## <small>21.6.60 (2021-04-27)</small>
+
+* Merge pull request #536 from aabenoja/popover-content-render-func ([bbc229a](https://github.com/WTW-IM/es-components/commit/bbc229a)), closes [#536](https://github.com/WTW-IM/es-components/issues/536)
+
+
+
+
+<a name="21.6.59"></a>
+## <small>21.6.59 (2021-04-27)</small>
+
+* Build: fix broken ci syntax ([a6cd0e0](https://github.com/WTW-IM/es-components/commit/a6cd0e0))
+
+
+
+
+<a name="21.6.58"></a>
+## <small>21.6.58 (2021-04-27)</small>
+
+
+
+
+
+**Note:** Version bump only for package es-components-wtw-theme
+
+<a name="21.6.57"></a>
+## <small>21.6.57 (2021-04-27)</small>
+
+* Build: fix docs commit process ([4b9e976](https://github.com/WTW-IM/es-components/commit/4b9e976))
+
+
+
+
+<a name="21.6.56"></a>
+## <small>21.6.56 (2021-04-27)</small>
+
+* Build: parallize docs and npm publish and skip ci ([c801e45](https://github.com/WTW-IM/es-components/commit/c801e45))
+
+
+
+
+<a name="21.6.55"></a>
+## <small>21.6.55 (2021-04-27)</small>
+
+* Build: restrict branches runs to master ([b082d15](https://github.com/WTW-IM/es-components/commit/b082d15))
+
+
+
+
+<a name="21.6.52"></a>
+## <small>21.6.52 (2021-04-27)</small>
+
+
+
+
+
+**Note:** Version bump only for package es-components-wtw-theme
+
 <a name="21.6.51"></a>
 ## <small>21.6.51 (2021-03-18)</small>
 

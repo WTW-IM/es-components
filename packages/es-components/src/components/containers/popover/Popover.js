@@ -73,6 +73,7 @@ function Popover(props) {
     name,
     title,
     content,
+    renderContent,
     placement,
     arrowSize,
     renderTrigger,
@@ -81,6 +82,7 @@ function Popover(props) {
     disableRootClose,
     disableFlipping,
     enableEvents,
+    keepTogether,
     strategy,
     ...otherProps
   } = props;
@@ -196,6 +198,7 @@ function Popover(props) {
         }}
         enableEvents={enableEvents}
         strategy={strategy}
+        keepTogether={keepTogether}
         {...otherProps}
       >
         <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
@@ -212,7 +215,7 @@ function Popover(props) {
 
             <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
               <PopoverContent showCloseButton={showCloseButton}>
-                {content}
+                {renderContent ? renderContent({ toggleShow }) : content}
               </PopoverContent>
               {showCloseButton && closeButton}
             </PopoverBody>
@@ -223,13 +226,32 @@ function Popover(props) {
   );
 }
 
+function contentRequired(props, propName, componentName) {
+  const isContentProvided = props.content || props.renderContent;
+  return isContentProvided
+    ? PropTypes.checkPropTypes(
+        {
+          content: PropTypes.node,
+          renderContent: PropTypes.func
+        },
+        props,
+        propName,
+        componentName
+      )
+    : new Error('Neither content nor renderContent were provided to Popover');
+}
+
 Popover.propTypes = {
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
   /** The text displayed in the popover title section */
   title: PropTypes.string,
-  /** The content displayed in the popover body */
-  content: PropTypes.node.isRequired,
+  /** The content displayed in the popover body. This is required if renderContent is not used */
+  // eslint-disable-next-line react/require-default-props
+  content: contentRequired,
+  /** Function returning the content to be displayed in the popover body. This is required if content is not used */
+  // eslint-disable-next-line react/require-default-props
+  renderContent: contentRequired,
   /** The placement of the popover in relation to the link */
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** The size of the arrow on the popover box */
@@ -247,7 +269,9 @@ Popover.propTypes = {
   /** Enable event handlers provided by Popper.js */
   enableEvents: PropTypes.bool,
   /** Sets the strategy for positioning the popover in Popper.js */
-  strategy: PropTypes.oneOf(['absolute', 'fixed'])
+  strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  /** When using a React portal, such as sliding pane, this helps the arrow to stay aligned with the trigger */
+  keepTogether: PropTypes.bool
 };
 
 Popover.defaultProps = {
@@ -259,7 +283,8 @@ Popover.defaultProps = {
   disableFlipping: false,
   title: undefined,
   enableEvents: true,
-  strategy: 'absolute'
+  strategy: 'absolute',
+  keepTogether: true
 };
 
 export default Popover;

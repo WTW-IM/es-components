@@ -155,6 +155,7 @@ function Popup(props) {
     popperRef,
     enableEvents,
     strategy,
+    keepTogether,
     ...otherProps
   } = props;
   const arrowValues = getArrowValues(arrowSize);
@@ -184,7 +185,8 @@ function Popup(props) {
             {
               name: 'preventOverflow',
               options: {
-                boundariesElement: document.body
+                boundariesElement: document.body,
+                tether: keepTogether
               }
             },
             {
@@ -248,7 +250,8 @@ Popup.propTypes = {
   disableFlipping: PropTypes.bool,
   popperRef: PropTypes.func,
   enableEvents: PropTypes.bool,
-  strategy: PropTypes.oneOf(['absolute', 'fixed'])
+  strategy: PropTypes.oneOf(['absolute', 'fixed']),
+  keepTogether: PropTypes.bool
 };
 
 Popup.defaultProps = {
@@ -263,7 +266,8 @@ Popup.defaultProps = {
   disableFlipping: false,
   popperRef: undefined,
   enableEvents: true,
-  strategy: 'absolute'
+  strategy: 'absolute',
+  keepTogether: true
 };
 
 export default Popup;

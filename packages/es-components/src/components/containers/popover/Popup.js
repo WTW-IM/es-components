@@ -193,7 +193,7 @@ function Popup(props) {
               name: 'flip',
               options: {
                 enabled: !disableFlipping,
-                behavior: ['left', 'right', 'top', 'bottom', 'top']
+                fallbackPlacements: ['left', 'right', 'top', 'bottom']
               }
             },
             {

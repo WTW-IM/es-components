@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.65"></a>
+## <small>21.6.65 (2021-05-14)</small>
+
+* Merge pull request #549 from WTW-IM/revert-react-update ([30aa35c](https://github.com/WTW-IM/es-components/commit/30aa35c)), closes [#549](https://github.com/WTW-IM/es-components/issues/549) [#535](https://github.com/WTW-IM/es-components/issues/535)
+
+
+
+
 <a name="21.6.64"></a>
 ## <small>21.6.64 (2021-05-14)</small>
 

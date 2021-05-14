@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="21.6.64"></a>
+## <small>21.6.64 (2021-05-14)</small>
+
+* Merge pull request #535 from WTW-IM/react17 ([32600da](https://github.com/WTW-IM/es-components/commit/32600da)), closes [#535](https://github.com/WTW-IM/es-components/issues/535)
+
+
+
+
 <a name="21.6.63"></a>
 ## <small>21.6.63 (2021-04-29)</small>
 

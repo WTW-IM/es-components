@@ -7,6 +7,9 @@ import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
 
+const reactVersionString = React.version.match(/\d+/)?.[0] || '0';
+const REACT_MAJOR_VERSION = parseInt(reactVersionString, 10);
+
 const Container = styled.div`
   display: inline-block;
 `;
@@ -98,13 +101,12 @@ function Popover(props) {
   const escMsgRef = useRef(null);
   const closeBtnRef = useRef(null);
   const timeoutRef = useRef(null);
-  const reactMajorVersion = useRef();
 
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleShow(event) {
     event.preventDefault();
-    if (reactMajorVersion.current <= 16) {
+    if (REACT_MAJOR_VERSION <= 16) {
       event.stopPropagation();
     }
     setIsOpen(!isOpen);
@@ -132,11 +134,6 @@ function Popover(props) {
       }
     }, 100);
   }
-
-  useEffect(() => {
-    const versionString = React.version.match(/\d+/)?.[0] || '0';
-    reactMajorVersion.current = parseInt(versionString, 10);
-  }, []);
 
   useEffect(() => {
     if (isFirstRun.current) {

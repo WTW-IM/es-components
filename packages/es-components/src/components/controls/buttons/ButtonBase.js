@@ -6,7 +6,8 @@ const noop = () => {
   // noop
 };
 
-const UnstyledButton = styled(props => <button type="button" {...props} />)``;
+// const UnstyledButton = styled(props => <button type="button" {...props} />)``;
+const UnstyledButton = styled.button``;
 const ButtonBase = React.forwardRef(function ButtonBaseInner(
   { waiting, onClick, ...props },
   ref
@@ -19,7 +20,14 @@ const ButtonBase = React.forwardRef(function ButtonBaseInner(
     ...props,
     ...(waiting ? { 'data-waiting': waiting } : {})
   };
-  return <UnstyledButton onClick={innerClick} {...computedProps} ref={ref} />;
+  return (
+    <UnstyledButton
+      type="button"
+      onClick={innerClick}
+      {...computedProps}
+      ref={ref}
+    />
+  );
 });
 
 ButtonBase.propTypes = {

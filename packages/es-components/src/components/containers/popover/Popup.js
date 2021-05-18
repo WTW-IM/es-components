@@ -11,6 +11,7 @@ const PopperBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   border-radius: 2px;
+  margin: ${props => props.arrowSize.marginSize}px;
   max-width: 350px;
   min-width: 270px;
   position: absolute;
@@ -181,28 +182,16 @@ function Popup(props) {
         <Popper
           className={`${name}-popper`}
           placement={position}
-          modifiers={[
-            {
-              name: 'preventOverflow',
-              options: {
-                boundariesElement: document.body,
-                tether: keepTogether
-              }
+          modifiers={{
+            preventOverflow: { boundariesElement: document.body },
+            flip: {
+              enabled: !disableFlipping,
+              behavior: ['left', 'right', 'top', 'bottom', 'top']
             },
-            {
-              name: 'flip',
-              options: {
-                enabled: !disableFlipping,
-                fallbackPlacements: ['left', 'right', 'top', 'bottom']
-              }
-            },
-            {
-              name: 'offset',
-              options: {
-                offset: [0, arrowValues.marginSize]
-              }
+            keepTogether: {
+              enabled: keepTogether
             }
-          ]}
+          }}
           innerRef={popperRef}
           eventsEnabled={enableEvents}
           positionFixed={strategy === 'fixed'}

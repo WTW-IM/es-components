@@ -76,12 +76,12 @@ it('passes through class names', () => {
 });
 
 describe('when ESC is pressed', () => {
-  it('invokes onHide by default', async () => {
+  it('invokes onHide by default', () => {
     const onHide = jest.fn();
-    const { queryByText } = renderBasicModal({ onEnter: jest.fn(), onHide });
+    const { container } = renderBasicModal({ onEnter: jest.fn(), onHide });
 
-    fireEvent.keyDown(queryByText('Header'), { keyCode: 27 });
-    await waitFor(() => {
+    fireEvent.keyDown(container, { keyCode: 27 });
+    waitFor(() => {
       expect(onHide).toHaveBeenCalled();
     });
   });

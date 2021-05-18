@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, fireEvent, waitFor } from '@testing-library/react';
+import { cleanup, waitFor } from '@testing-library/react';
 
 import Popover from './Popover';
 import Button from '../../controls/buttons/Button';
@@ -33,12 +33,12 @@ function buildPopover(props) {
   );
 }
 
-it('can be toggled by clicking the button', async () => {
-  const { getByText, findByText } = renderWithTheme(buildPopover());
+it('can be toggled by clicking the button', () => {
+  const { getByText, queryByText } = renderWithTheme(buildPopover());
   const trigger = getByText('Popover Trigger Button');
 
-  fireEvent.click(trigger);
-  const popoverContent = await findByText('This is the popover content.');
+  trigger.click();
+  const popoverContent = queryByText('This is the popover content.');
   expect(popoverContent).toBeVisible();
 
   trigger.click();
@@ -46,20 +46,16 @@ it('can be toggled by clicking the button', async () => {
 });
 
 it('renders the title when provided', async () => {
-  const { getByText, queryByText, findByText } = renderWithTheme(
-    buildPopover()
-  );
-  fireEvent.click(getByText('Popover Trigger Button'));
-  await findByText('This is the popover content.');
+  const { getByText, queryByText } = renderWithTheme(buildPopover());
+  getByText('Popover Trigger Button').click();
   await waitFor(() => expect(queryByText('Popover Title')).not.toBeNull());
 });
 
 it('can be closed using the close button', async () => {
-  const { getByText, queryByText, findByText } = renderWithTheme(
+  const { getByText, queryByText } = renderWithTheme(
     buildPopover({ hasCloseButton: true })
   );
-  fireEvent.click(getByText('Popover Trigger Button'));
-  await findByText('This is the popover content.');
+  getByText('Popover Trigger Button').click();
 
   const popoverContent = () => queryByText('This is the popover content.');
   popoverContent()
@@ -73,10 +69,11 @@ it('can be closed using the alternative close button', async () => {
   const { getByText, queryByText } = renderWithTheme(
     buildPopover({ hasAltCloseButton: true })
   );
-  fireEvent.click(getByText('Popover Trigger Button'));
-  fireEvent.click(
-    getByText('Popover Title').parentElement.querySelector('button')
-  );
+  getByText('Popover Trigger Button').click();
+  getByText('Popover Title')
+    .parentElement.querySelector('button')
+    .click();
+
   await waitFor(() =>
     expect(queryByText('This is the popover content.')).toBeNull()
   );
@@ -87,7 +84,7 @@ it('sets focus on a focusable element within the content', async () => {
   const { getByText, getByLabelText } = renderWithTheme(
     buildPopover({ content: popoverContent })
   );
-  fireEvent.click(getByText('Popover Trigger Button'));
+  getByText('Popover Trigger Button').click();
 
   await waitFor(() =>
     expect(getByLabelText('Press escape to close the Popover')).toHaveFocus()

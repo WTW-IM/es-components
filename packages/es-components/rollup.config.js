@@ -12,12 +12,12 @@ export default [
     output: [
       {
         file: pkg.main,
-        format: 'cjs',
+        format: 'cjs'
       },
       {
         file: pkg.module,
-        format: 'esm',
-      },
+        format: 'esm'
+      }
     ],
     external: [
       'date-fns',
@@ -35,34 +35,33 @@ export default [
       'react-modal',
       'tinycolor2',
       'get-root-node-polyfill/implement',
-      'format-message',
+      'format-message'
     ],
     plugins: [
       wildcardExternal([
         '@babel/**',
         'lodash/**',
         'core-js/**',
-        'text-mask-addons/**',
+        'text-mask-addons/**'
       ]),
       babel({
         exclude: ['node_modules/**'],
-        babelHelpers: 'runtime',
-      }),
-    ],
+        babelHelpers: 'runtime'
+      })
+    ]
   },
   {
     input: 'src/index.js',
     output: {
       file: 'bundle/main.min.js',
-      banner: 'var globalThis = self || globalThis;',
       inlineDynamicImports: true,
       format: 'umd',
       name: 'ESComponents',
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styled-components': 'styled',
-      },
+        'styled-components': 'styled'
+      }
     },
     context: 'window',
     external: ['react', 'react-dom', 'styled-components'],
@@ -72,13 +71,12 @@ export default [
       babel({
         exclude: /node_modules/,
         envName: 'production',
-        babelHelpers: 'runtime',
+        babelHelpers: 'runtime'
       }),
       replace({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
-      terser(),
-    ],
-  },
+      terser()
+    ]
+  }
 ];

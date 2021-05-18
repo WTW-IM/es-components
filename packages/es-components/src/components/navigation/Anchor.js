@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const StyledAnchor = styled.a`
@@ -13,8 +12,4 @@ const StyledAnchor = styled.a`
   }
 `;
 
-function Anchor({ ...props }) {
-  return <StyledAnchor {...props} />;
-}
-
-export default Anchor;
+export default StyledAnchor;

@@ -7,6 +7,7 @@ jobs:
   deploy_canary:
     name: Build And Deploy Canary Release
     runs-on: ubuntu-latest
+    environment: canary
     steps:
       - name: Checkout
         uses: actions/checkout@v2

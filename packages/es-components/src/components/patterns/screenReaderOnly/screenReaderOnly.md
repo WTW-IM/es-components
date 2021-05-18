@@ -2,7 +2,7 @@ This higher-order component allows components to be hidden from the user while b
 accessible to screen readers.
 
 ```
-const Hidden = ScreenReaderOnly('p');
+const Hidden = screenReaderOnly('p');
 
 <div>
   <p>I have hidden text below</p>

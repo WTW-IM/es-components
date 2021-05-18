@@ -15,12 +15,12 @@ export default [
     output: {
       file: 'docs/full-color-icons.js',
       format: 'iife',
-      intro: 'var global = typeof self !== undefined ? self : this;',
+      intro: 'var global = typeof self !== undefined ? self : this;'
     },
     preserveSymlinks: true,
     plugins: [
       resolve({
-        preferBuiltins: true,
+        preferBuiltins: true
       }),
       builtins(),
       commonjs({
@@ -29,23 +29,22 @@ export default [
         namedExports: {
           react: Object.keys(React),
           'react-dom': Object.keys(ReactDOM),
-          'react-is': Object.keys(ReactIs),
-        },
+          'react-is': Object.keys(ReactIs)
+        }
       }),
       babel({
         exclude: /node_modules\/?!(es-components-via-theme)/,
         envName: 'production',
-        babelHelpers: 'runtime',
+        babelHelpers: 'runtime'
       }),
       replace({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        preventAssignment: true,
+        'process.env.NODE_ENV': JSON.stringify('production')
       }),
       terser(),
       htmlTemplate({
         template: 'src/full-color-icons.html',
-        target: 'docs/full-color-icons.html',
-      }),
-    ],
-  },
+        target: 'docs/full-color-icons.html'
+      })
+    ]
+  }
 ];

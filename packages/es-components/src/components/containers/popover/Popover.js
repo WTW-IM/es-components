@@ -7,9 +7,6 @@ import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
 
-const reactVersionString = React.version.match(/\d+/)?.[0] || '0';
-const REACT_MAJOR_VERSION = parseInt(reactVersionString, 10);
-
 const Container = styled.div`
   display: inline-block;
 `;
@@ -106,9 +103,7 @@ function Popover(props) {
 
   function toggleShow(event) {
     event.preventDefault();
-    if (REACT_MAJOR_VERSION <= 16) {
-      event.stopPropagation();
-    }
+    event.stopPropagation();
     setIsOpen(!isOpen);
   }
 

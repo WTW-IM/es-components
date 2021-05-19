@@ -20,7 +20,6 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
   margin-top: 12.5px;
   padding: 0;
   text-align: center;
-  cursor: pointer;
 }
 
 .c0:active,
@@ -54,26 +53,30 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
   position: relative;
 }
 
-.c0:hover::before {
+.c1 {
+  cursor: pointer;
+}
+
+.c1:hover::before {
   box-shadow: rgba(0,0,0,0.35) 0 0 3px 1px;
 }
 
-.c0:active span,
-.c0:hover span,
-.c0:focus span {
+.c1:active span,
+.c1:hover span,
+.c1:focus span {
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c0:focus::before {
+.c1:focus::before {
   box-shadow: #83bffc 0 0 4px 2px;
 }
 
-.c0:focus span {
+.c1:focus span {
   outline: 1px dotted #83bffc;
 }
 
-.c0::before {
+.c1::before {
   border-color: #444;
 }
 
@@ -105,7 +108,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 @media (min-width:768px) {
-  .c0::before {
+  .c1::before {
     border-width: 5px;
     font-weight: bold;
     line-height: 1.5em;
@@ -113,7 +116,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 @media (min-width:768px) {
-  .c0 span {
+  .c1 span {
     font-weight: bold;
   }
 }
@@ -123,7 +126,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 <button
-  class="c0"
+  class="c0 c1"
 >
   <span />
 </button>

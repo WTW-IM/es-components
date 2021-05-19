@@ -2,14 +2,14 @@
 
 exports[`builds a ProgressTracker 1`] = `
 <ol
-  class="sc-AxjAm hFlQAN"
+  class="sc-bdnxRM grIqln"
   data-testid="progress-tracker"
 >
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ sc-AxgMl kaeNwZ"
+      class="sc-gtsrHT sc-jSFjdj hDrWzO gokOAP"
       disabled=""
     >
       <span>
@@ -18,10 +18,10 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ eVQxSC"
+      class="sc-gtsrHT hDrWzO"
       disabled=""
     >
       <span>
@@ -30,10 +30,10 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ eVQxSC"
+      class="sc-gtsrHT hDrWzO"
       disabled=""
     >
       <span>
@@ -46,14 +46,14 @@ exports[`builds a ProgressTracker 1`] = `
 
 exports[`builds a ProgressTracker 2`] = `
 <ol
-  class="sc-AxjAm bgQiJZ"
+  class="sc-bdnxRM ikhgOj"
   data-testid="progress-tracker"
 >
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ sc-AxhCb dPcXKC"
+      class="sc-gtsrHT sc-hKFxyN hDrWzO gIPuvl"
     >
       <span>
         step 1
@@ -61,10 +61,10 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ sc-AxgMl kaeNwZ"
+      class="sc-gtsrHT sc-jSFjdj hDrWzO gokOAP"
       disabled=""
     >
       <span>
@@ -73,10 +73,10 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ eVQxSC"
+      class="sc-gtsrHT hDrWzO"
       disabled=""
     >
       <span>
@@ -89,14 +89,14 @@ exports[`builds a ProgressTracker 2`] = `
 
 exports[`builds a ProgressTracker 3`] = `
 <ol
-  class="sc-AxjAm hlqBBd"
+  class="sc-bdnxRM jhafRD"
   data-testid="progress-tracker"
 >
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ sc-AxhCb dPcXKC"
+      class="sc-gtsrHT sc-hKFxyN hDrWzO gIPuvl"
     >
       <span>
         step 1
@@ -104,10 +104,10 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ sc-AxhCb dPcXKC"
+      class="sc-gtsrHT sc-hKFxyN hDrWzO gIPuvl"
     >
       <span>
         step 2
@@ -115,10 +115,10 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-AxheI fxTPsE"
+    class="sc-gKAaRy cUjoIY"
   >
     <button
-      class="sc-AxirZ sc-AxgMl kaeNwZ"
+      class="sc-gtsrHT sc-jSFjdj hDrWzO gokOAP"
       disabled=""
     >
       <span>

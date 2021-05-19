@@ -54,7 +54,8 @@ export default [
     input: 'src/index.js',
     output: {
       file: 'bundle/main.min.js',
-      banner: 'var globalThis = self || globalThis;',
+      banner:
+        'var self = this.styled ? this : self; var globalThis = self || globalThis;',
       inlineDynamicImports: true,
       format: 'umd',
       name: 'ESComponents',

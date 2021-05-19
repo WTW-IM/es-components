@@ -1,0 +1,28 @@
+name: Generate Pre-Prod PR Against Master
+on:
+  push:
+    branches:
+      - pre-prod
+env:
+  PACKAGE_VERSION:
+    $(cat packages/es-components/package.json | grep \"version\" | sed
+    's/[\",]//g' | awk -F':' '{print $2}')
+jobs:
+  generate_pr:
+    name: Generate the Pull Request
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Pipeline Bot"
+          git config user.email "es-components-bot@wtw.org"
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3.9.2
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+          branch: master
+          title: Pre-Prod ${{ env.PACKAGE_VERSION }} to Master

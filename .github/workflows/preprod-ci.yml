@@ -1,0 +1,53 @@
+name: Preproduction Release
+on:
+  push:
+    branches:
+      - pre-prod
+jobs:
+  test:
+    name: Test with Node v${{matrix.node}}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [12, 14, 16]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node Version
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install Dependencies
+        run: |
+          cd packages/es-components/
+          npm ci
+          cd ../..
+      - name: Run Tests
+        run: |
+          cd packages/es-components/
+          npm run ci
+          cd ../..
+  npm:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    needs: test
+    name: Publish Pre-Prod NPM Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+      - name: Install Dependencies
+        run: |
+          npm ci
+          cd packages/es-components
+          npm ci
+          cd ../..
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Lerna Publish Bot"
+          git config user.email "es-components-bot@wtw.org"
+      - name: Lerna Publish
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
+          npx lerna publish --conventional-commits --changelog-preset conventional-changelog-eslint --canary --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes

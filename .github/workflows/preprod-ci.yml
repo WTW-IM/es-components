@@ -28,7 +28,7 @@ jobs:
           npm run ci
           cd ../..
   npm:
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/pre-prod' }}
     needs: test
     name: Publish Pre-Prod NPM Packages
     runs-on: ubuntu-latest

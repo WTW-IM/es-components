@@ -6,7 +6,8 @@
   "version": "21.6.67",
   "command": {
     "publish": {
-      "message": "[skip ci] %s"
+      "message": "[skip ci] %s",
+      "verifyAccess": false
     }
   }
 }

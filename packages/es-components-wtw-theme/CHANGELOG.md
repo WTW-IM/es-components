@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.68-pre-prod.0 (2021-05-20)</small>
+
+* Build: migrate adapter to npm package ([a93e869](https://github.com/WTW-IM/es-components/commit/a93e869))
+
+
+
+
+
 <a name="21.6.67"></a>
 ## <small>21.6.67 (2021-05-18)</small>
 

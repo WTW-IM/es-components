@@ -6,7 +6,11 @@ const noop = () => {
   // noop
 };
 
-const UnstyledButton = styled.button``;
+// Using this because React does not like many of our upstream props.
+// This allows that to flow without issue.
+const UnstyledButton = styled.button`
+  // noop
+`;
 const ButtonBase = React.forwardRef(function ButtonBaseInner(
   { waiting, onClick, ...props },
   ref

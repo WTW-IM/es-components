@@ -3,10 +3,10 @@
 exports[`renders as expected 1`] = `
 <div>
   <ol
-    class="sc-AxjAm bOMimJ"
+    class="sc-bdnxRM ddeiIT"
   >
     <li
-      class="sc-AxirZ kjtjMa"
+      class="sc-gtsrHT iOA-dFm"
     >
       <a
         href="/test"
@@ -15,7 +15,7 @@ exports[`renders as expected 1`] = `
       </a>
     </li>
     <li
-      class="sc-AxirZ kjtjMa"
+      class="sc-gtsrHT iOA-dFm"
     >
       <a
         href="/test-2"
@@ -24,7 +24,7 @@ exports[`renders as expected 1`] = `
       </a>
     </li>
     <li
-      class="sc-AxirZ kjtjMa"
+      class="sc-gtsrHT iOA-dFm"
     >
       <a
         href="/test-3"

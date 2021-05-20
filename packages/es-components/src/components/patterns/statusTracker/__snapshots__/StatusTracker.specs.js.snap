@@ -3,10 +3,10 @@
 exports[`StatusTracker should display the first step with the active class 1`] = `
 <div>
   <ol
-    class="sc-AxjAm eQZSpv"
+    class="sc-bdnxRM jpaYiN"
   >
     <li
-      class="sc-AxirZ bOKRcd active"
+      class="sc-gtsrHT hBAeel active"
     >
       <span
         class="status-text"
@@ -15,7 +15,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd"
+      class="sc-gtsrHT hBAeel"
     >
       <span
         class="status-text"
@@ -24,7 +24,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd"
+      class="sc-gtsrHT hBAeel"
     >
       <span
         class="status-text"
@@ -33,7 +33,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd"
+      class="sc-gtsrHT hBAeel"
     >
       <span
         class="status-text"
@@ -48,10 +48,10 @@ exports[`StatusTracker should display the first step with the active class 1`] =
 exports[`StatusTracker should display the last step with the active class 1`] = `
 <div>
   <ol
-    class="sc-AxjAm eQZSpv"
+    class="sc-bdnxRM jpaYiN"
   >
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -60,7 +60,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -69,7 +69,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -78,7 +78,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd active"
+      class="sc-gtsrHT hBAeel active"
     >
       <span
         class="status-text"
@@ -93,10 +93,10 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
 exports[`StatusTracker should display the last step with the error class when isErrorState is true 1`] = `
 <div>
   <ol
-    class="sc-AxjAm eQZSpv"
+    class="sc-bdnxRM jpaYiN"
   >
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -105,7 +105,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -114,7 +114,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -123,7 +123,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd error"
+      class="sc-gtsrHT hBAeel error"
     >
       <span
         class="status-text"
@@ -138,10 +138,10 @@ exports[`StatusTracker should display the last step with the error class when is
 exports[`StatusTracker should display the third step with the active class 1`] = `
 <div>
   <ol
-    class="sc-AxjAm eQZSpv"
+    class="sc-bdnxRM jpaYiN"
   >
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -150,7 +150,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd done"
+      class="sc-gtsrHT hBAeel done"
     >
       <span
         class="status-text"
@@ -159,7 +159,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd active"
+      class="sc-gtsrHT hBAeel active"
     >
       <span
         class="status-text"
@@ -168,7 +168,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-AxirZ bOKRcd"
+      class="sc-gtsrHT hBAeel"
     >
       <span
         class="status-text"

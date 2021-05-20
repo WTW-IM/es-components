@@ -25,4 +25,5 @@ jobs:
         with:
           token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
           branch: pre-prod
+          base: master
           title: Pre-Prod ${{ env.PACKAGE_VERSION }} to Master

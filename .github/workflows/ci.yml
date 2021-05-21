@@ -58,7 +58,7 @@ jobs:
       - name: Lerna Publish Pre-Prod
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --canary --dist-tag pre-prod --preid pre-prod --force-publish --allow-branch master --yes
+          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch master --yes
   docs:
     if: ${{ github.ref == 'refs/heads/master' }}
     needs: npm

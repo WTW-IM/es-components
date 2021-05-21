@@ -7,33 +7,28 @@ jobs:
   test:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
     strategy:
       matrix:
         node: [12, 14, 16]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        env:
-          message: ${{ github.event.head_commit.message }}
-          shouldRun: ${{ github.ref == 'refs/heads/pre-prod' && !contains(env.message, '[skip-release]') }}
       - name: Use Node Version
-        if: ${{ env.shouldRun }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: Install Dependencies
-        if: ${{ env.shouldRun }}
         run: |
           npm ci
           npx lerna bootstrap --ci
       - name: Run Tests
-        if: ${{ env.shouldRun }}
         run: |
           cd packages/es-components/
           npm run ci
           cd ../..
   npm:
-    if: ${{ env.shouldRun }}
+    if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
     needs: test
     name: Publish Pre-Prod NPM Packages
     runs-on: ubuntu-latest

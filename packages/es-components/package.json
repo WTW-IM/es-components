@@ -12,7 +12,7 @@
     "build": "npm run rollup",
     "ci": "npm run lint && npm test",
     "lint": "eslint src",
-    "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\"",
+    "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\" && touch docs/temp ",
     "prepublishOnly": "npm run build",
     "rollup": "rollup -c rollup.config.js",
     "styleguide-build": "npm run mkdocsdir && styleguidist build && rollup -c docs-rollup.config.js",

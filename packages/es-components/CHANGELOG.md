@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.68-pre-prod.4 (2021-05-21)</small>
+
+* Merge pull request #555 from WTW-IM/pre-prod ([8517c87](https://github.com/wtw-im/es-components/commit/8517c87)), closes [#555](https://github.com/wtw-im/es-components/issues/555)
+
+
+
+
+
 ## <small>21.6.68-pre-prod.3 (2021-05-21)</small>
 
 * Build: ensuring our package-lock includes local dependencies ([5f51a64](https://github.com/wtw-im/es-components/commit/5f51a64))

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.68-pre-prod.2 (2021-05-21)</small>
+
+* Build: remove preprod to master pr workflow ([d20638c](https://github.com/wtw-im/es-components/commit/d20638c))
+
+
+
+
+
 ## <small>21.6.68-pre-prod.1 (2021-05-20)</small>
 
 * Build: set pr target to master ([05949e3](https://github.com/wtw-im/es-components/commit/05949e3))

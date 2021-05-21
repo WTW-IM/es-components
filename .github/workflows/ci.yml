@@ -81,9 +81,7 @@ jobs:
           git config user.email "es-components-bot@wtw.org"
       - name: Rebuild docs
         run: |
-          cd packages/es-components
-          npm run styleguide-build
-          cd ../..
+          npm run --prefix ./packages/es-components styleguide-build
       - name: Publish docs to github pages
         run: |
           git checkout gh-pages

@@ -51,7 +51,7 @@ jobs:
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset conventional-changelog-eslint --yes
+          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --yes
 
           # This is so that we always update the pre-prod dist tag with master when we merge.
           # (Pre-prod can be ahead of master, but never behind.)

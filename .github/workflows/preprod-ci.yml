@@ -7,6 +7,7 @@ jobs:
   test:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
     strategy:
       matrix:
         node: [12, 14, 16]
@@ -19,16 +20,15 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install Dependencies
         run: |
-          cd packages/es-components/
           npm ci
-          cd ../..
+          npx lerna bootstrap --ci
       - name: Run Tests
         run: |
           cd packages/es-components/
           npm run ci
           cd ../..
   npm:
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
     needs: test
     name: Publish Pre-Prod NPM Packages
     runs-on: ubuntu-latest
@@ -40,9 +40,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci
-          cd packages/es-components
-          npm ci
-          cd ../..
+          npx lerna bootstrap --ci
       - name: Set Commitbot Identity
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
@@ -50,4 +48,4 @@ jobs:
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset conventional-changelog-eslint --canary --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
+          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes

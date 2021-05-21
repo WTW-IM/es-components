@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.68-pre-prod.3 (2021-05-21)</small>
+
+* Build: ensuring our package-lock includes local dependencies ([5f51a64](https://github.com/WTW-IM/es-components/commit/5f51a64))
+
+
+
+
+
 ## <small>21.6.68-pre-prod.2 (2021-05-21)</small>
 
 * Build: remove preprod to master pr workflow ([d20638c](https://github.com/WTW-IM/es-components/commit/d20638c))

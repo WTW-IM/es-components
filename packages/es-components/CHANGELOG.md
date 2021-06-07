@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.69-pre-prod.1 (2021-06-07)</small>
+
+* Build: ensuring we release pre-prod before main ([a41d587](https://github.com/wtw-im/es-components/commit/a41d587))
+
+
+
+
+
 ## <small>21.6.69-pre-prod.0 (2021-06-02)</small>
 
 * Merge pull request #558 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/dns-packet-1.3.4 ([9c54a7e](https://github.com/wtw-im/es-components/commit/9c54a7e)), closes [#558](https://github.com/wtw-im/es-components/issues/558)

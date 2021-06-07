@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import _noop from 'lodash/noop';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, useTheme } from 'styled-components';
 import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
@@ -25,8 +25,8 @@ const PaneBase = styled(Modal)`
     outline-style: none;
   }
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    width: ${props => props.theme.screenSize.tablet};
+  @media (min-width: ${props => props.paneWidth}) {
+    width: ${props => props.paneWidth};
   }
 `;
 
@@ -169,6 +169,7 @@ export default function SlidingPane({
   appElement,
   parentSelector,
   hideHeader,
+  paneWidth,
   ...rest
 }) {
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
@@ -187,6 +188,8 @@ export default function SlidingPane({
     Object.assign(rest, { ariaHideApp: false });
   }
 
+  const theme = useTheme();
+
   return (
     <>
       <GlobalPaneStyles />
@@ -200,6 +203,7 @@ export default function SlidingPane({
         shouldCloseOnEsc={shouldCloseOnEsc}
         contentLabel={`Modal "${title}"`}
         parentSelector={modalParentSelector}
+        paneWidth={paneWidth || theme.screenSize.tablet}
         {...rest}
       >
         {hideHeader ? (
@@ -244,7 +248,9 @@ SlidingPane.propTypes = {
    main content for screenreaders when pane is open */
   appElement: PropTypes.string,
   parentSelector: PropTypes.func,
-  hideHeader: PropTypes.bool
+  hideHeader: PropTypes.bool,
+  /** The width size in pixels of the sliding pane. This defaults to the tablet size.  */
+  paneWidth: PropTypes.string
 };
 
 SlidingPane.defaultProps = {
@@ -264,5 +270,6 @@ SlidingPane.defaultProps = {
   contentStyles: {},
   appElement: undefined,
   parentSelector: null,
-  hideHeader: false
+  hideHeader: false,
+  paneWidth: null
 };

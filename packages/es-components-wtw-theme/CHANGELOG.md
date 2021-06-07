@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.69-pre-prod.3 (2021-06-07)</small>
+
+* Build: checking out pre-prod in preprod checkout step ([053f30d](https://github.com/WTW-IM/es-components/commit/053f30d))
+
+
+
+
+
 ## <small>21.6.69-pre-prod.2 (2021-06-07)</small>
 
 * Build: ensuring we wait for test AND prerelease for main release ([b8c85e0](https://github.com/WTW-IM/es-components/commit/b8c85e0))

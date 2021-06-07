@@ -3,9 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.69-pre-prod.4 (2021-06-07)</small>
+## <small>21.6.69 (2021-06-07)</small>
 
-* Update: allow width passed to sliding pane ([c081af1](https://github.com/WTW-IM/es-components/commit/c081af1))
+* Merge remote-tracking branch 'origin/pre-prod' ([68711d8](https://github.com/WTW-IM/es-components/commit/68711d8))
 
 
 

@@ -65,7 +65,7 @@ jobs:
 
   npm:
     if: ${{ github.ref == 'refs/heads/master' }}
-    needs: test
+    needs: [test, npm_prerelease]
     name: Publish NPM Packages
     runs-on: ubuntu-latest
     steps:

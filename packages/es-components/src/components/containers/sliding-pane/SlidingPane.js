@@ -2,13 +2,14 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import _noop from 'lodash/noop';
-import styled, { createGlobalStyle, useTheme } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import Icon from '../../base/icons/Icon';
 import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
 import { useRootNodeLocator } from '../../util/useRootNode';
+import { useTheme } from '../../util/useTheme';
 
 const PaneBase = styled(Modal)`
   background: ${props => props.theme.colors.white};

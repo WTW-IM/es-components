@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.69-pre-prod.4 (2021-06-07)</small>
+
+* Merge pull request #557 from WTW-IM/pre-prod ([b35c6b6](https://github.com/wtw-im/es-components/commit/b35c6b6)), closes [#557](https://github.com/wtw-im/es-components/issues/557)
+* Merge remote-tracking branch 'origin/pre-prod' ([68711d8](https://github.com/wtw-im/es-components/commit/68711d8))
+* Merge remote-tracking branch 'origin/pre-prod' ([fb0ba18](https://github.com/wtw-im/es-components/commit/fb0ba18))
+* Update: allow width passed to sliding pane ([c081af1](https://github.com/wtw-im/es-components/commit/c081af1))
+
+
+
+
+
 ## <small>21.6.69-pre-prod.3 (2021-06-07)</small>
 
 * Build: checking out pre-prod in preprod checkout step ([053f30d](https://github.com/wtw-im/es-components/commit/053f30d))

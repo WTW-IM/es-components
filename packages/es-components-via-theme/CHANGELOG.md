@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.69-pre-prod.4 (2021-06-07)</small>
+
+**Note:** Version bump only for package es-components-via-theme
+
+
+
+
+
 ## <small>21.6.69-pre-prod.3 (2021-06-07)</small>
 
 * Build: checking out pre-prod in preprod checkout step ([053f30d](https://github.com/WTW-IM/es-components/commit/053f30d))

@@ -28,6 +28,41 @@ jobs:
           cd packages/es-components/
           npm run ci
           cd ../..
+
+  npm_prerelease:
+    if: ${{ github.ref == 'refs/heads/master' }}
+    needs: test
+    name: Pre-Prod Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+      - name: Install Dependencies
+        run: |
+          npm ci
+          cd packages/es-components
+          npm ci
+          cd ../..
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Lerna Publish Bot"
+          git config user.email "es-components-bot@wtw.org"
+      - name: Merge master to pre-prod
+        run: |
+          git checkout pre-prod
+          git merge --no-verify -Xtheirs --commit origin/master -m "Merging master into pre-prod [skip-release]"
+          # abort if failed merge
+          git merge --abort || true
+          git push origin pre-prod
+      # This is so that we always update the pre-prod dist tag with master when we merge.
+      # (Pre-prod can be ahead of master, but never behind.)
+      - name: Lerna Publish Pre-Prod
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
+          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
+
   npm:
     if: ${{ github.ref == 'refs/heads/master' }}
     needs: test
@@ -53,12 +88,6 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-graduate --yes
 
-      # This is so that we always update the pre-prod dist tag with master when we merge.
-      # (Pre-prod can be ahead of master, but never behind.)
-      - name: Lerna Publish Pre-Prod
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch master --yes
   docs:
     if: ${{ github.ref == 'refs/heads/master' }}
     needs: npm

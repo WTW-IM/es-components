@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.71 (2021-06-09)</small>
+
+* Update: exporting just the Heading styled component ([a611b13](https://github.com/WTW-IM/es-components/commit/a611b13))
+
+
+
+
+
 ## <small>21.6.70 (2021-06-07)</small>
 
 * Build: loading all git context with publish step ([c3daede](https://github.com/WTW-IM/es-components/commit/c3daede))

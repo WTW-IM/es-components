@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.70-pre-prod.0 (2021-06-07)</small>
+## <small>21.6.70 (2021-06-07)</small>
 
 * Fix: import local useTheme instead of from styled-components ([6ecb998](https://github.com/wtw-im/es-components/commit/6ecb998))
 

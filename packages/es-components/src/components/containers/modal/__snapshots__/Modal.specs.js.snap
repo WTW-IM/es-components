@@ -2,7 +2,7 @@
 
 exports[`renders different modal sections 1`] = `
 <h4
-  class="sc-eCApnc OGHvr sc-gKAaRy bDORPs"
+  class="sc-eCApnc sc-gKAaRy OGHvr bDORPs"
   id="abcdef"
 >
   Header

@@ -2,14 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const HeadingBase = styled.h1`
+const Heading = styled.h1.attrs(({ size, level = 1 }) => ({
+  as: `h${level}`,
+  adjustedSize: size || level
+}))`
   background-color: ${props =>
     props.isKnockoutStyle && props.theme.colors.primary};
   border-bottom: ${props =>
     props.underlineColor && `2px solid ${props.underlineColor};`};
   color: ${props => (props.isKnockoutStyle ? 'white' : 'inherit')};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.font.headingMobile[props.adjustedSize]};
+  font-size: ${({ theme, adjustedSize }) =>
+    theme.font.headingMobile[adjustedSize]};
   font-weight: 300;
   line-height: 1.1;
   margin-bottom: 0.45em;
@@ -18,38 +22,15 @@ const HeadingBase = styled.h1`
   padding: ${props => props.isKnockoutStyle && '20px 15px'};
 
   small {
-    font-size: ${props => (props.adjustedSize > 3 ? '75%' : '65%')};
+    font-size: ${({ adjustedSize }) => (adjustedSize > 3 ? '75%' : '65%')};
     line-height: 1;
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    font-size: ${props => props.theme.font.headingDesktop[props.adjustedSize]};
+    font-size: ${({ adjustedSize, theme }) =>
+      theme.font.headingDesktop[adjustedSize]};
   }
 `;
-
-function Heading({
-  children,
-  level,
-  size,
-  isKnockoutStyle,
-  underlineColor,
-  ...other
-}) {
-  const adjustedSize = size || level;
-  const hLevel = `h${level}`;
-
-  return (
-    <HeadingBase
-      as={hLevel}
-      adjustedSize={adjustedSize}
-      isKnockoutStyle={isKnockoutStyle}
-      underlineColor={underlineColor}
-      {...other}
-    >
-      {children}
-    </HeadingBase>
-  );
-}
 
 Heading.propTypes = {
   children: PropTypes.node,
@@ -70,6 +51,7 @@ Heading.defaultProps = {
   underlineColor: null
 };
 
+/** @component */
 export default Heading;
 
 export const PageHeading = props => (

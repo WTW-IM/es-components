@@ -1,23 +1,198 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`displays monthNames provided by the monthNames prop 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.c0 >[role="group"] {
+  margin-bottom: 0;
+}
+
+.c0 select {
+  border-color: #c5c5c5;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+
+.c0 input:focus,
+.c0 select:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+}
+
+.c1 {
+  color: #444;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.428;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.c1[disabled] {
+  cursor: not-allowed;
+}
+
+.c5 {
+  border: 1px solid #c5c5c5;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-sizing: border-box;
+  color: #000;
+  font-size: 18px;
+  font-weight: normal;
+  height: 39px;
+  line-height: 1.428;
+  min-width: 0;
+  padding: 6px 12px;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  width: 100%;
+}
+
+.c5:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c5:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c5:-moz-read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c5:read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c6 {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  -webkit-flex: 1 0 35px;
+  -ms-flex: 1 0 35px;
+  flex: 1 0 35px;
+}
+
+.c6::-webkit-inner-spin-button,
+.c6::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.c3 {
+  background-color: #fff;
+  border: 1px solid #c5c5c5;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-sizing: border-box;
+  color: #000;
+  -webkit-flex: auto;
+  -ms-flex: auto;
+  flex: auto;
+  font-size: 18px;
+  font-weight: normal;
+  height: 39px;
+  min-width: 100px;
+  padding: 6px 12px;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+}
+
+.c3:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c3:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c4 {
+  -webkit-flex: 3 1 100px;
+  -ms-flex: 3 1 100px;
+  flex: 3 1 100px;
+}
+
+.c7 {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  -webkit-flex: 2 0 40px;
+  -ms-flex: 2 0 40px;
+  flex: 2 0 40px;
+}
+
+.c7::-webkit-inner-spin-button,
+.c7::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2.c2 > * {
+  margin-right: 2px;
+}
+
+@media (min-width:768px) {
+  .c1 {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 {
+    max-width: 350px;
+  }
+}
+
 <div>
   <div
-    class="sc-bdnxRM myPjU"
+    class="c0"
   >
     <label
-      class="sc-gtsrHT bKdXOB"
+      class="c1"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-iCoGMd fpOhmj"
+      class="c2"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-eCApnc sc-jSFjdj fLQhUV bXFkJm"
+        class="c3 c4"
         id="test"
         name="month"
       >
@@ -38,7 +213,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
-        class="sc-dlnjwi sc-hKFxyN ijfopJ fhbAMI"
+        class="c5 c6"
         max="31"
         min="1"
         name="day"
@@ -48,7 +223,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
-        class="sc-dlnjwi sc-gKAaRy ijfopJ efMWzI"
+        class="c5 c7"
         name="year"
         pattern="[0-9]*"
         placeholder="Year"
@@ -61,23 +236,181 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
 `;
 
 exports[`hides the Day input when Day is excluded 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.c0 >[role="group"] {
+  margin-bottom: 0;
+}
+
+.c0 select {
+  border-color: #c5c5c5;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+
+.c0 input:focus,
+.c0 select:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+}
+
+.c1 {
+  color: #444;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.428;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.c1[disabled] {
+  cursor: not-allowed;
+}
+
+.c5 {
+  border: 1px solid #c5c5c5;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-sizing: border-box;
+  color: #000;
+  font-size: 18px;
+  font-weight: normal;
+  height: 39px;
+  line-height: 1.428;
+  min-width: 0;
+  padding: 6px 12px;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  width: 100%;
+}
+
+.c5:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c5:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c5:-moz-read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c5:read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c3 {
+  background-color: #fff;
+  border: 1px solid #c5c5c5;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-sizing: border-box;
+  color: #000;
+  -webkit-flex: auto;
+  -ms-flex: auto;
+  flex: auto;
+  font-size: 18px;
+  font-weight: normal;
+  height: 39px;
+  min-width: 100px;
+  padding: 6px 12px;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+}
+
+.c3:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c3:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c4 {
+  -webkit-flex: 3 1 100px;
+  -ms-flex: 3 1 100px;
+  flex: 3 1 100px;
+}
+
+.c6 {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  -webkit-flex: 2 0 40px;
+  -ms-flex: 2 0 40px;
+  flex: 2 0 40px;
+}
+
+.c6::-webkit-inner-spin-button,
+.c6::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c2.c2 > * {
+  margin-right: 2px;
+}
+
+@media (min-width:768px) {
+  .c1 {
+    margin-right: 20px;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 {
+    max-width: 350px;
+  }
+}
+
 <div>
   <div
-    class="sc-bdnxRM myPjU"
+    class="c0"
   >
     <label
-      class="sc-gtsrHT bKdXOB"
+      class="c1"
       for="test"
     >
       Text
     </label>
     <div
-      class="sc-iCoGMd fpOhmj"
+      class="c2"
       data-testid="dateinput"
       tabindex="-1"
     >
       <select
-        class="sc-eCApnc sc-jSFjdj fLQhUV bXFkJm"
+        class="c3 c4"
         id="test"
       >
         <option
@@ -142,7 +475,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </option>
       </select>
       <input
-        class="sc-dlnjwi sc-gKAaRy ijfopJ efMWzI"
+        class="c5 c6"
         pattern="[0-9]*"
         placeholder="Year"
         type="number"

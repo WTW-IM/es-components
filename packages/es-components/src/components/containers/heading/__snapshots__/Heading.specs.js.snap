@@ -1,20 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders heading level with another size 1`] = `
+.c0 {
+  color: inherit;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
+  font-size: 38.7898px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.45em;
+  margin-top: 0;
+}
+
+.c0 small {
+  font-size: 65%;
+  line-height: 1;
+}
+
+.c1 {
+  color: inherit;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
+  font-size: 31.104px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.45em;
+  margin-top: 0;
+}
+
+.c1 small {
+  font-size: 65%;
+  line-height: 1;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    font-size: 44.78976px;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    font-size: 31.104px;
+  }
+}
+
 <div>
   <div>
     <h1
-      class="sc-bdnxRM kNsTdS"
+      class="c0"
     >
       Heading level 1
     </h1>
     <h3
-      class="sc-bdnxRM glWVdL"
+      class="c1"
     >
       Heading level 3
     </h3>
     <h3
-      class="sc-bdnxRM kNsTdS"
+      class="c0"
       size="1"
     >
       Heading level 3 size 1
@@ -24,15 +66,63 @@ exports[`renders heading level with another size 1`] = `
 `;
 
 exports[`renders knockout heading with different class 1`] = `
+.c0 {
+  color: inherit;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
+  font-size: 38.7898px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.45em;
+  margin-top: 0;
+}
+
+.c0 small {
+  font-size: 65%;
+  line-height: 1;
+}
+
+.c1 {
+  color: inherit;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
+  font-size: 38.7898px;
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.45em;
+  margin-top: 0;
+}
+
+.c1.c1 {
+  background-color: #0073b6;
+  color: white;
+  padding: 20px 15px;
+}
+
+.c1 small {
+  font-size: 65%;
+  line-height: 1;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    font-size: 44.78976px;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    font-size: 44.78976px;
+  }
+}
+
 <div>
   <div>
     <h1
-      class="sc-bdnxRM kNsTdS"
+      class="c0"
     >
       Heading level 1
     </h1>
     <h1
-      class="sc-bdnxRM iNiVqF"
+      class="c1"
     >
       Knockout Heading level 1
     </h1>

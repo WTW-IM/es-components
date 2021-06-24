@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.72 (2021-06-24)</small>
+
+* [skip-ci] [skip-release] Merge remote-tracking branch 'origin/master' into pre-prod ([ab4ab09](https://github.com/wtw-im/es-components/commit/ab4ab09))
+
+
+
+## <small>21.6.71 (2021-06-09)</small>
+
+* [skip ci] v21.6.71 ([dcd5461](https://github.com/wtw-im/es-components/commit/dcd5461))
+
+
+
+
+
 ## <small>21.6.71 (2021-06-09)</small>
 
 * Update: exporting just the Heading styled component ([a611b13](https://github.com/wtw-im/es-components/commit/a611b13))

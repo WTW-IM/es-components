@@ -1,15 +1,212 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`builds a ProgressTracker 1`] = `
+.c0 {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  background-image: linear-gradient( to right,#444 0%,#444 0%,#c5c5c5 0%,#c5c5c5 100% );
+  background-size: 100% 3px;
+  background-position: 0 21px;
+  background-repeat: no-repeat;
+  counter-reset: progress-tracker-counter;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%;
+}
+
+.c2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: none;
+  border: none;
+  counter-increment: progress-tracker-counter;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  font-family: 'Source Sans Pro',sans-serif;
+  margin-top: 12.5px;
+  padding: 0;
+  text-align: center;
+}
+
+.c2:active,
+.c2:hover,
+.c2:focus {
+  outline: none;
+}
+
+.c2 span {
+  color: #444;
+  display: none;
+  font-size: 18px;
+  line-height: 1.1em;
+}
+
+.c2::before {
+  background-color: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 20px;
+  box-shadow: 0 0 0 3px white;
+  box-sizing: border-box;
+  color: #444;
+  content: counter(progress-tracker-counter);
+  display: block;
+  font-size: 16px;
+  height: 20px;
+  line-height: 1em;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 20px;
+  position: relative;
+}
+
+.c3 {
+  margin-top: 0;
+}
+
+.c3::before {
+  border: 5px solid #c110a0;
+  border-radius: 45px;
+  color: #c110a0;
+  font-size: 21.96px;
+  font-weight: bold;
+  height: 45px;
+  line-height: 1.5em;
+  width: 45px;
+}
+
+.c3 span {
+  color: #c110a0;
+  display: inline;
+  font-weight: bold;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  max-width: 50%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:first-child,
+.c1:first-child button {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.c1:last-child,
+.c1:last-child button {
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+@media (min-width:768px) {
+  .c0 {
+    background-position: center 19px;
+    background-size: 66.66666666666667% 3px;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 span {
+    display: inline;
+    font-weight: normal;
+  }
+}
+
+@media (min-width:768px) {
+  .c2::before {
+    border-radius: 41px;
+    border-width: 3px;
+    font-size: 20.008px;
+    font-weight: normal;
+    height: 41px;
+    line-height: 1.7em;
+    width: 41px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3::before {
+    border-width: 5px;
+    font-size: 20.008px;
+    height: 41px;
+    line-height: 1.5em;
+    width: 41px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 span {
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    width: 33.33333333333333%;
+  }
+
+  .c1:first-child,
+  .c1:last-child,
+  .c1:first-child button,
+  .c1:last-child button {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 <ol
-  class="sc-bdnxRM grIqln"
+  class="c0"
   data-testid="progress-tracker"
 >
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT sc-jSFjdj hDrWzO gokOAP"
+      class="c2 c3"
       disabled=""
     >
       <span>
@@ -18,10 +215,10 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT hDrWzO"
+      class="c2"
       disabled=""
     >
       <span>
@@ -30,10 +227,10 @@ exports[`builds a ProgressTracker 1`] = `
     </button>
   </li>
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT hDrWzO"
+      class="c2"
       disabled=""
     >
       <span>
@@ -45,15 +242,257 @@ exports[`builds a ProgressTracker 1`] = `
 `;
 
 exports[`builds a ProgressTracker 2`] = `
+.c0 {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  background-image: linear-gradient( to right,#444 0%,#444 50%,#c5c5c5 50%,#c5c5c5 100% );
+  background-size: 100% 3px;
+  background-position: 0 21px;
+  background-repeat: no-repeat;
+  counter-reset: progress-tracker-counter;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%;
+}
+
+.c2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: none;
+  border: none;
+  counter-increment: progress-tracker-counter;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  font-family: 'Source Sans Pro',sans-serif;
+  margin-top: 12.5px;
+  padding: 0;
+  text-align: center;
+}
+
+.c2:active,
+.c2:hover,
+.c2:focus {
+  outline: none;
+}
+
+.c2 span {
+  color: #444;
+  display: none;
+  font-size: 18px;
+  line-height: 1.1em;
+}
+
+.c2::before {
+  background-color: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 20px;
+  box-shadow: 0 0 0 3px white;
+  box-sizing: border-box;
+  color: #444;
+  content: counter(progress-tracker-counter);
+  display: block;
+  font-size: 16px;
+  height: 20px;
+  line-height: 1em;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 20px;
+  position: relative;
+}
+
+.c3 {
+  cursor: pointer;
+}
+
+.c3:hover::before {
+  box-shadow: rgba(0,0,0,0.35) 0 0 3px 1px;
+}
+
+.c3:active span,
+.c3:hover span,
+.c3:focus span {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c3:focus::before {
+  box-shadow: #83bffc 0 0 4px 2px;
+}
+
+.c3:focus span {
+  outline: 1px dotted #83bffc;
+}
+
+.c3::before {
+  border-color: #444;
+}
+
+.c4 {
+  margin-top: 0;
+}
+
+.c4::before {
+  border: 5px solid #c110a0;
+  border-radius: 45px;
+  color: #c110a0;
+  font-size: 21.96px;
+  font-weight: bold;
+  height: 45px;
+  line-height: 1.5em;
+  width: 45px;
+}
+
+.c4 span {
+  color: #c110a0;
+  display: inline;
+  font-weight: bold;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  max-width: 50%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:first-child,
+.c1:first-child button {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.c1:last-child,
+.c1:last-child button {
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+  .c0 {
+    background-position: center 19px;
+    background-size: 66.66666666666667% 3px;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 span {
+    display: inline;
+    font-weight: normal;
+  }
+}
+
+@media (min-width:768px) {
+  .c2::before {
+    border-radius: 41px;
+    border-width: 3px;
+    font-size: 20.008px;
+    font-weight: normal;
+    height: 41px;
+    line-height: 1.7em;
+    width: 41px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3::before {
+    border-width: 5px;
+    font-weight: bold;
+    line-height: 1.5em;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 span {
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) {
+  .c4::before {
+    border-width: 5px;
+    font-size: 20.008px;
+    height: 41px;
+    line-height: 1.5em;
+    width: 41px;
+  }
+}
+
+@media (min-width:768px) {
+  .c4 span {
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    width: 33.33333333333333%;
+  }
+
+  .c1:first-child,
+  .c1:last-child,
+  .c1:first-child button,
+  .c1:last-child button {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 <ol
-  class="sc-bdnxRM ikhgOj"
+  class="c0"
   data-testid="progress-tracker"
 >
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT sc-hKFxyN hDrWzO gIPuvl"
+      class="c2 c3"
     >
       <span>
         step 1
@@ -61,10 +500,10 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT sc-jSFjdj hDrWzO gokOAP"
+      class="c2 c4"
       disabled=""
     >
       <span>
@@ -73,10 +512,10 @@ exports[`builds a ProgressTracker 2`] = `
     </button>
   </li>
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT hDrWzO"
+      class="c2"
       disabled=""
     >
       <span>
@@ -88,15 +527,261 @@ exports[`builds a ProgressTracker 2`] = `
 `;
 
 exports[`builds a ProgressTracker 3`] = `
+.c0 {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  background-image: linear-gradient( to right,#444 0%,#444 100%,#c5c5c5 100%,#c5c5c5 100% );
+  background-size: 100% 3px;
+  background-position: 0 21px;
+  background-repeat: no-repeat;
+  counter-reset: progress-tracker-counter;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-left: 0;
+  padding-left: 0;
+  width: 100%;
+}
+
+.c2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: none;
+  border: none;
+  counter-increment: progress-tracker-counter;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  font-family: 'Source Sans Pro',sans-serif;
+  margin-top: 12.5px;
+  padding: 0;
+  text-align: center;
+}
+
+.c2:active,
+.c2:hover,
+.c2:focus {
+  outline: none;
+}
+
+.c2 span {
+  color: #444;
+  display: none;
+  font-size: 18px;
+  line-height: 1.1em;
+}
+
+.c2::before {
+  background-color: white;
+  border: 1px solid #c5c5c5;
+  border-radius: 20px;
+  box-shadow: 0 0 0 3px white;
+  box-sizing: border-box;
+  color: #444;
+  content: counter(progress-tracker-counter);
+  display: block;
+  font-size: 16px;
+  height: 20px;
+  line-height: 1em;
+  margin-bottom: 5px;
+  text-align: center;
+  width: 20px;
+  position: relative;
+}
+
+.c3 {
+  cursor: pointer;
+}
+
+.c3:hover::before {
+  box-shadow: rgba(0,0,0,0.35) 0 0 3px 1px;
+}
+
+.c3:active span,
+.c3:hover span,
+.c3:focus span {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c3:focus::before {
+  box-shadow: #83bffc 0 0 4px 2px;
+}
+
+.c3:focus span {
+  outline: 1px dotted #83bffc;
+}
+
+.c3::before {
+  border-color: #444;
+}
+
+.c4 {
+  margin-top: 0;
+}
+
+.c4::before {
+  border: 5px solid #c110a0;
+  border-radius: 45px;
+  color: #c110a0;
+  font-size: 21.96px;
+  font-weight: bold;
+  height: 45px;
+  line-height: 1.5em;
+  width: 45px;
+}
+
+.c4 span {
+  color: #c110a0;
+  display: inline;
+  font-weight: bold;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  max-width: 50%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:first-child,
+.c1:first-child button {
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.c1:last-child,
+.c1:last-child button {
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  text-align: right;
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+  .c0 {
+    background-position: center 19px;
+    background-size: 66.66666666666667% 3px;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 {
+    font-size: 18px;
+    margin-top: 0;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width:768px) {
+  .c2 span {
+    display: inline;
+    font-weight: normal;
+  }
+}
+
+@media (min-width:768px) {
+  .c2::before {
+    border-radius: 41px;
+    border-width: 3px;
+    font-size: 20.008px;
+    font-weight: normal;
+    height: 41px;
+    line-height: 1.7em;
+    width: 41px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3::before {
+    border-width: 5px;
+    font-weight: bold;
+    line-height: 1.5em;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 span {
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) {
+  .c4::before {
+    border-width: 5px;
+    font-size: 20.008px;
+    height: 41px;
+    line-height: 1.5em;
+    width: 41px;
+  }
+}
+
+@media (min-width:768px) {
+  .c4 span {
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) {
+  .c1 {
+    width: 33.33333333333333%;
+  }
+
+  .c1:first-child,
+  .c1:last-child,
+  .c1:first-child button,
+  .c1:last-child button {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 <ol
-  class="sc-bdnxRM jhafRD"
+  class="c0"
   data-testid="progress-tracker"
 >
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT sc-hKFxyN hDrWzO gIPuvl"
+      class="c2 c3"
     >
       <span>
         step 1
@@ -104,10 +789,10 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT sc-hKFxyN hDrWzO gIPuvl"
+      class="c2 c3"
     >
       <span>
         step 2
@@ -115,10 +800,10 @@ exports[`builds a ProgressTracker 3`] = `
     </button>
   </li>
   <li
-    class="sc-gKAaRy cUjoIY"
+    class="c1"
   >
     <button
-      class="sc-gtsrHT sc-jSFjdj hDrWzO gokOAP"
+      class="c2 c4"
       disabled=""
     >
       <span>

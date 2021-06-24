@@ -1,12 +1,132 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StatusTracker should display the first step with the active class 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.c1 {
+  color: #919191;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+  width: 25%;
+}
+
+.c1 .status-text {
+  display: none;
+}
+
+.c1.done > .status-text {
+  color: #00a0d2;
+}
+
+.c1.active > .status-text,
+.c1.error > .status-text {
+  color: #00a0d2;
+  display: inherit;
+  font-weight: bold;
+}
+
+.c1:before {
+  background-color: white;
+  border: 3px solid #c5c5c5;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px auto 15px auto;
+  text-align: center;
+  width: 20px;
+}
+
+.c1:after {
+  background-color: #c5c5c5;
+  content: '';
+  height: 4px;
+  left: -50%;
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  z-index: -1;
+}
+
+.c1:first-child:after {
+  content: none;
+}
+
+.c1.done:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.c1.active:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 22px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.error:before {
+  border-color: #e60700;
+  color: #e60700;
+  content: '\\e68e';
+  font-family: 'bds-func-icons';
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.active:after,
+.c1.done:after,
+.c1.error:after {
+  background-color: #00a0d2;
+}
+
+@media (min-width:768px) {
+  .c1 .status-text {
+    display: inherit;
+  }
+
+  .c1.active:before,
+  .c1.done:before {
+    content: '\\e67b';
+    font-family: 'bds-func-icons';
+    font-size: 22px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto 10px auto;
+    width: 30px;
+  }
+}
+
 <div>
   <ol
-    class="sc-bdnxRM jpaYiN"
+    class="c0"
   >
     <li
-      class="sc-gtsrHT hBAeel active"
+      class="c1 active"
     >
       <span
         class="status-text"
@@ -15,7 +135,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel"
+      class="c1"
     >
       <span
         class="status-text"
@@ -24,7 +144,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel"
+      class="c1"
     >
       <span
         class="status-text"
@@ -33,7 +153,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel"
+      class="c1"
     >
       <span
         class="status-text"
@@ -46,12 +166,132 @@ exports[`StatusTracker should display the first step with the active class 1`] =
 `;
 
 exports[`StatusTracker should display the last step with the active class 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.c1 {
+  color: #919191;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+  width: 25%;
+}
+
+.c1 .status-text {
+  display: none;
+}
+
+.c1.done > .status-text {
+  color: #00a0d2;
+}
+
+.c1.active > .status-text,
+.c1.error > .status-text {
+  color: #00a0d2;
+  display: inherit;
+  font-weight: bold;
+}
+
+.c1:before {
+  background-color: white;
+  border: 3px solid #c5c5c5;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px auto 15px auto;
+  text-align: center;
+  width: 20px;
+}
+
+.c1:after {
+  background-color: #c5c5c5;
+  content: '';
+  height: 4px;
+  left: -50%;
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  z-index: -1;
+}
+
+.c1:first-child:after {
+  content: none;
+}
+
+.c1.done:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.c1.active:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 22px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.error:before {
+  border-color: #e60700;
+  color: #e60700;
+  content: '\\e68e';
+  font-family: 'bds-func-icons';
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.active:after,
+.c1.done:after,
+.c1.error:after {
+  background-color: #00a0d2;
+}
+
+@media (min-width:768px) {
+  .c1 .status-text {
+    display: inherit;
+  }
+
+  .c1.active:before,
+  .c1.done:before {
+    content: '\\e67b';
+    font-family: 'bds-func-icons';
+    font-size: 22px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto 10px auto;
+    width: 30px;
+  }
+}
+
 <div>
   <ol
-    class="sc-bdnxRM jpaYiN"
+    class="c0"
   >
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -60,7 +300,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -69,7 +309,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -78,7 +318,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel active"
+      class="c1 active"
     >
       <span
         class="status-text"
@@ -91,12 +331,132 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
 `;
 
 exports[`StatusTracker should display the last step with the error class when isErrorState is true 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.c1 {
+  color: #919191;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+  width: 25%;
+}
+
+.c1 .status-text {
+  display: none;
+}
+
+.c1.done > .status-text {
+  color: #00a0d2;
+}
+
+.c1.active > .status-text,
+.c1.error > .status-text {
+  color: #00a0d2;
+  display: inherit;
+  font-weight: bold;
+}
+
+.c1:before {
+  background-color: white;
+  border: 3px solid #c5c5c5;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px auto 15px auto;
+  text-align: center;
+  width: 20px;
+}
+
+.c1:after {
+  background-color: #c5c5c5;
+  content: '';
+  height: 4px;
+  left: -50%;
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  z-index: -1;
+}
+
+.c1:first-child:after {
+  content: none;
+}
+
+.c1.done:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.c1.active:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 22px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.error:before {
+  border-color: #e60700;
+  color: #e60700;
+  content: '\\e68e';
+  font-family: 'bds-func-icons';
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.active:after,
+.c1.done:after,
+.c1.error:after {
+  background-color: #00a0d2;
+}
+
+@media (min-width:768px) {
+  .c1 .status-text {
+    display: inherit;
+  }
+
+  .c1.active:before,
+  .c1.done:before {
+    content: '\\e67b';
+    font-family: 'bds-func-icons';
+    font-size: 22px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto 10px auto;
+    width: 30px;
+  }
+}
+
 <div>
   <ol
-    class="sc-bdnxRM jpaYiN"
+    class="c0"
   >
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -105,7 +465,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -114,7 +474,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -123,7 +483,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel error"
+      class="c1 error"
     >
       <span
         class="status-text"
@@ -136,12 +496,132 @@ exports[`StatusTracker should display the last step with the error class when is
 `;
 
 exports[`StatusTracker should display the third step with the active class 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.c1 {
+  color: #919191;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+  width: 25%;
+}
+
+.c1 .status-text {
+  display: none;
+}
+
+.c1.done > .status-text {
+  color: #00a0d2;
+}
+
+.c1.active > .status-text,
+.c1.error > .status-text {
+  color: #00a0d2;
+  display: inherit;
+  font-weight: bold;
+}
+
+.c1:before {
+  background-color: white;
+  border: 3px solid #c5c5c5;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px auto 15px auto;
+  text-align: center;
+  width: 20px;
+}
+
+.c1:after {
+  background-color: #c5c5c5;
+  content: '';
+  height: 4px;
+  left: -50%;
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  z-index: -1;
+}
+
+.c1:first-child:after {
+  content: none;
+}
+
+.c1.done:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.c1.active:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+  content: '\\e67b';
+  font-family: 'bds-func-icons';
+  font-size: 22px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.error:before {
+  border-color: #e60700;
+  color: #e60700;
+  content: '\\e68e';
+  font-family: 'bds-func-icons';
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.c1.active:after,
+.c1.done:after,
+.c1.error:after {
+  background-color: #00a0d2;
+}
+
+@media (min-width:768px) {
+  .c1 .status-text {
+    display: inherit;
+  }
+
+  .c1.active:before,
+  .c1.done:before {
+    content: '\\e67b';
+    font-family: 'bds-func-icons';
+    font-size: 22px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto 10px auto;
+    width: 30px;
+  }
+}
+
 <div>
   <ol
-    class="sc-bdnxRM jpaYiN"
+    class="c0"
   >
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -150,7 +630,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel done"
+      class="c1 done"
     >
       <span
         class="status-text"
@@ -159,7 +639,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel active"
+      class="c1 active"
     >
       <span
         class="status-text"
@@ -168,7 +648,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="sc-gtsrHT hBAeel"
+      class="c1"
     >
       <span
         class="status-text"

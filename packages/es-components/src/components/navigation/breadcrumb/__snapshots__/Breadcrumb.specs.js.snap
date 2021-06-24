@@ -1,12 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders as expected 1`] = `
+.c0 {
+  background-color: #f4f4f4;
+  border-radius: 2px;
+  line-height: 1.428;
+  list-style: none;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 8px 15px;
+}
+
+.c0 > li + li {
+  padding-left: 24px;
+}
+
+.c0 > li + li::before {
+  border-color: #c5c5c5;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  height: 13px;
+  left: 0px;
+  position: absolute;
+  top: 20%;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  width: 13px;
+}
+
+.c1 {
+  color: #c110a0;
+  display: inline-block;
+  margin-right: 2px;
+  position: relative;
+}
+
+.c1 > a {
+  color: #0073b6;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c1 > a:hover {
+  color: rgb(0,67,105);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
 <div>
   <ol
-    class="sc-bdnxRM ddeiIT"
+    class="c0"
   >
     <li
-      class="sc-gtsrHT iOA-dFm"
+      class="c1"
     >
       <a
         href="/test"
@@ -15,7 +65,7 @@ exports[`renders as expected 1`] = `
       </a>
     </li>
     <li
-      class="sc-gtsrHT iOA-dFm"
+      class="c1"
     >
       <a
         href="/test-2"
@@ -24,7 +74,7 @@ exports[`renders as expected 1`] = `
       </a>
     </li>
     <li
-      class="sc-gtsrHT iOA-dFm"
+      class="c1"
     >
       <a
         href="/test-3"

@@ -1,9 +1,7 @@
 {
   "lerna": "2.11.0",
-  "packages": [
-    "packages/*"
-  ],
-  "version": "21.6.71-pre-prod.1",
+  "packages": ["packages/*"],
+  "version": "21.6.71",
   "command": {
     "publish": {
       "message": "[skip ci] %s",

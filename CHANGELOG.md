@@ -3,29 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.71-pre-prod.1 (2021-06-24)</small>
-
-* Merge pull request #565 from WTW-IM/heading-fixes ([9bb6717](https://github.com/WTW-IM/es-components/commit/9bb6717)), closes [#565](https://github.com/WTW-IM/es-components/issues/565)
-
-
-
-
-
-## <small>21.6.71-pre-prod.0 (2021-06-09)</small>
+## <small>21.6.71 (2021-06-09)</small>
 
 * Update: exporting just the Heading styled component ([a611b13](https://github.com/WTW-IM/es-components/commit/a611b13))
-
-
-
-## <small>21.6.70-pre-prod.0 (2021-06-07)</small>
-
-* [skip ci] v21.6.70-pre-prod.0 ([3d5dac2](https://github.com/WTW-IM/es-components/commit/3d5dac2))
-
-
-
-## <small>21.6.69-pre-prod.4 (2021-06-07)</small>
-
-* [skip ci] v21.6.69-pre-prod.4 ([3971584](https://github.com/WTW-IM/es-components/commit/3971584))
 
 
 

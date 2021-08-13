@@ -191,6 +191,8 @@ function HorizontalScrollWrapper({
     if (code !== 'tab') return;
 
     const element = document.activeElement.parentElement;
+    if (!element) return;
+
     const style = window.getComputedStyle
       ? getComputedStyle(element, null)
       : element.currentStyle;

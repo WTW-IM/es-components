@@ -41,34 +41,38 @@ const addTag = (node, func) => {
   }
 };
 
-const documentAppend = tag => document.head.append(tag);
 const defaultIconContext = {
-  initializedNodes: [],
-  setup: node => {
-    if (!node) return;
-
-    const { initializedNodes } = defaultIconContext;
-
-    if (initializedNodes.some(initializedNode => initializedNode === node))
-      return;
-
-    const isBody = node === document.body;
-
-    if (isBody && getExistingStyleTag(document.head)) {
-      initializedNodes.push(node);
-      return;
-    }
-
-    if (!isBody) {
-      // body must always be set up
-      defaultIconContext.setup(document.body);
-    }
-
-    const tagFunc = isBody ? documentAppend : tag => node.prepend(tag);
-
-    (() => addTag(node, tagFunc) && initializedNodes.push(node))();
-  }
+  initializedNodes: []
 };
-const IconContext = createContext(defaultIconContext);
+
+const documentAppend = tag => document.head.append(tag);
+const initializeBody = node => {
+  if (getExistingStyleTag(document.head)) return node;
+
+  return addTag(node, documentAppend);
+};
+
+const initializeNode = node => {
+  // body must always be set up
+  setup(document.body); // eslint-disable-line no-use-before-define
+  addTag(node, tag => node.prepend(tag));
+};
+
+const setup = node => {
+  if (!node) return;
+
+  const { initializedNodes } = defaultIconContext;
+
+  if (initializedNodes.some(initializedNode => initializedNode === node))
+    return;
+
+  const isBody = node === document.body;
+
+  (() =>
+    (isBody ? initializeBody : initializeNode)(node) &&
+    initializedNodes.push(node))();
+};
+
+const IconContext = createContext({ ...defaultIconContext, setup });
 
 export default IconContext;

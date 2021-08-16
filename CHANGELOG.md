@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.73-pre-prod.1 (2021-08-16)</small>
+
+* Merge pull request #573 from WTW-IM/ensure-icons-in-window ([1efa8c6](https://github.com/WTW-IM/es-components/commit/1efa8c6)), closes [#573](https://github.com/WTW-IM/es-components/issues/573)
+
+
+
+
+
 ## <small>21.6.73-pre-prod.0 (2021-08-13)</small>
 
 

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.73-pre-prod.3 (2021-08-16)</small>
+
+* Merge remote-tracking branch 'origin/master' into pre-prod ([16b25c5](https://github.com/WTW-IM/es-components/commit/16b25c5))
+
+
+
+## <small>21.6.73 (2021-08-13)</small>
+
+* [skip ci] v21.6.73 ([a078d03](https://github.com/WTW-IM/es-components/commit/a078d03))
+
+
+
+
+
 ## <small>21.6.73-pre-prod.2 (2021-08-16)</small>
 
 * Merge pull request #575 from WTW-IM/icons-fix ([b198dd6](https://github.com/WTW-IM/es-components/commit/b198dd6)), closes [#575](https://github.com/WTW-IM/es-components/issues/575)

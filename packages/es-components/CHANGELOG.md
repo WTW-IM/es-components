@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.73-pre-prod.2 (2021-08-16)</small>
+
+* Merge pull request #575 from WTW-IM/icons-fix ([b198dd6](https://github.com/wtw-im/es-components/commit/b198dd6)), closes [#575](https://github.com/wtw-im/es-components/issues/575)
+
+
+
+
+
+## <small>21.6.73-pre-prod.1 (2021-08-16)</small>
+
+* Merge pull request #573 from WTW-IM/ensure-icons-in-window ([1efa8c6](https://github.com/wtw-im/es-components/commit/1efa8c6)), closes [#573](https://github.com/wtw-im/es-components/issues/573)
+
+
+
+
+
+## <small>21.6.73-pre-prod.0 (2021-08-13)</small>
+
+
+
+
+
 ## <small>21.6.73 (2021-08-13)</small>
 
 * [skip-ci] [skip-release] Merge branch 'pre-prod' of github.com:WTW-IM/es-components ([600adfd](https://github.com/wtw-im/es-components/commit/600adfd))

@@ -21,6 +21,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## <small>21.6.73-pre-prod.0 (2021-08-13)</small>
 
+
+
+
+
+## <small>21.6.73 (2021-08-13)</small>
+
 * [skip-ci] [skip-release] Merge branch 'pre-prod' of github.com:WTW-IM/es-components ([600adfd](https://github.com/wtw-im/es-components/commit/600adfd))
 
 

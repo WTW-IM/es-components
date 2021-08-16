@@ -55,7 +55,7 @@ const initializeBody = node => {
 const initializeNode = node => {
   // body must always be set up
   setup(document.body); // eslint-disable-line no-use-before-define
-  addTag(node, tag => node.prepend(tag));
+  return addTag(node, tag => node.prepend(tag));
 };
 
 const setup = node => {

@@ -157,7 +157,9 @@ function Tooltip(props) {
         )}
       </Reference>
 
-      <ScreenReaderContent id={descriptionId}>{content}</ScreenReaderContent>
+      {show && (
+        <ScreenReaderContent id={descriptionId}>{content}</ScreenReaderContent>
+      )}
 
       {ReactDOM.createPortal(
         <Popper placement={position}>

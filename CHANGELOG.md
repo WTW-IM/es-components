@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.75-pre-prod.0 (2021-08-18)</small>
+
+* Build: [skip ci] [skip-release] updating for correct lerna version ([726f8f0](https://github.com/WTW-IM/es-components/commit/726f8f0))
+
+
+
+
+
 ## <small>21.6.74-pre-prod.0 (2021-08-17)</small>
 
 * Merge pull request #577 from WTW-IM/WE-13501-screenreader-read-tooltip-when-opened ([8e0edbc](https://github.com/WTW-IM/es-components/commit/8e0edbc)), closes [#577](https://github.com/WTW-IM/es-components/issues/577)

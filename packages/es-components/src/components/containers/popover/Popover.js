@@ -15,8 +15,7 @@ const Container = styled.div`
 `;
 
 const PopoverHeader = styled.div`
-  background-color: ${props =>
-    props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
+  background-color: ${props => props.hasTitle ? props.theme.colors[props.styleType] : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
@@ -87,6 +86,8 @@ function Popover(props) {
     enableEvents,
     keepTogether,
     strategy,
+    popoverWrapperClassName,
+    styleType,
     ...otherProps
   } = props;
 
@@ -198,18 +199,13 @@ function Popover(props) {
         keepTogether={keepTogether}
         {...otherProps}
       >
-        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
+        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose} className={popoverWrapperClassName}>
           <div role="dialog" ref={contentRef}>
-            <PopoverHeader hasTitle={hasTitle}>
+            <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
               {hasTitle && <TitleBar>{title}</TitleBar>}
               {hasAltCloseButton && altCloseButton}
-              <CloseHelpText
-                tabIndex={-1}
-                ref={escMsgRef}
-                aria-label="Press escape to close the Popover"
-              />
+              <CloseHelpText tabIndex={-1} ref={escMsgRef} aria-label="Press escape to close the Popover" />
             </PopoverHeader>
-
             <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
               <PopoverContent showCloseButton={showCloseButton}>
                 {renderContent ? renderContent({ toggleShow }) : content}
@@ -268,7 +264,11 @@ Popover.propTypes = {
   /** Sets the strategy for positioning the popover in Popper.js */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
   /** When using a React portal, such as sliding pane, this helps the arrow to stay aligned with the trigger */
-  keepTogether: PropTypes.bool
+  keepTogether: PropTypes.bool,
+  /** Pass a className to the wrapper of the popover content */
+  popoverWrapperClassName: PropTypes.string,
+  /** Specify the background color of the popover header (similar to Button style types) */
+  styleType: PropTypes.oneOf(['primary', 'info', 'success', 'warning', 'danger'])
 };
 
 Popover.defaultProps = {
@@ -281,7 +281,9 @@ Popover.defaultProps = {
   title: undefined,
   enableEvents: true,
   strategy: 'absolute',
-  keepTogether: true
+  keepTogether: true,
+  styleType: 'primary',
+  popoverWrapperClassName: 'popover--active'
 };
 
 export default Popover;

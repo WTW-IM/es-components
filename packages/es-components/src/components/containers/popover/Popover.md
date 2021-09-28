@@ -261,6 +261,30 @@ const StyledPopover = styled(Popover)`
 />
 ```
 
+Alternatively, you can pass a styleType prop to the Popover just like you can with Button
+
+```
+import Button from '../../controls/buttons/Button';
+
+<Popover
+  name="styleTypeExample"
+  title="style typing"
+  styleType="primary" // match button style
+  content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
+  placement="bottom"
+  renderTrigger={({ ref, toggleShow, isOpen }) => (
+    <Button
+      onClick={toggleShow}
+      aria-expanded={isOpen}
+      ref={ref}
+      styleType="primary"
+    >
+      Popover with custom styling
+    </Button>
+  )}
+/>
+```
+
 A render prop is also available for the content body in the form of `renderContent`. The render function provides access to the `toggleShow` function. This allows
 popover content to control the visibility, such as with a custom close button;
 
@@ -290,4 +314,30 @@ import Button from '../../controls/buttons/Button';
     </Button>
   )}
 />
+```
+If the popover elements ever need to be detected or queried as part of the DOM you can pass a popoverWrapperClassName to check for in your javascript
+
+```
+import Button from '../../controls/buttons/Button';
+
+<Popover
+  name="wrapperClassName"
+  popoverWrapperClassName="classForAncestorOfPopoverContentAndHeader"
+  title="Class One"
+  content="This is the popover's content. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch."
+  placement="bottom"
+  renderTrigger={({ ref, toggleShow, isOpen }) => (
+    <Button
+      onClick={toggleShow}
+      aria-expanded={isOpen}
+      ref={ref}
+      styleType="primary"
+    >
+      Pop Me
+    </Button>
+  )}
+/>
+
+// Get currently active (Popovers that have been inserted into the DOM via the render trigger) Popover nodes
+const popoverNodes = document.getElementsByClassName("classForAncestorOfPopoverContentAndHeader");
 ```

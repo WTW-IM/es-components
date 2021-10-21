@@ -86,8 +86,8 @@ exports[`StatusTracker should display the first step with the active class 1`] =
 }
 
 .c1.error:before {
-  border-color: #e60700;
-  color: #e60700;
+  border-color: #cc0000;
+  color: #cc0000;
   content: '\\e68e';
   font-family: 'bds-func-icons';
   font-size: 18px;
@@ -251,8 +251,8 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
 }
 
 .c1.error:before {
-  border-color: #e60700;
-  color: #e60700;
+  border-color: #cc0000;
+  color: #cc0000;
   content: '\\e68e';
   font-family: 'bds-func-icons';
   font-size: 18px;
@@ -416,8 +416,8 @@ exports[`StatusTracker should display the last step with the error class when is
 }
 
 .c1.error:before {
-  border-color: #e60700;
-  color: #e60700;
+  border-color: #cc0000;
+  color: #cc0000;
   content: '\\e68e';
   font-family: 'bds-func-icons';
   font-size: 18px;
@@ -581,8 +581,8 @@ exports[`StatusTracker should display the third step with the active class 1`] =
 }
 
 .c1.error:before {
-  border-color: #e60700;
-  color: #e60700;
+  border-color: #cc0000;
+  color: #cc0000;
   content: '\\e68e';
   font-family: 'bds-func-icons';
   font-size: 18px;

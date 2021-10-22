@@ -13,9 +13,7 @@ jest.mock('../../util/generateAlphaName', () => () => 'abcdef');
 
 function renderModal(modalProps, children) {
   return renderWithTheme(
-    <Modal ariaHideApp={false} show {...modalProps}>
-      {children}
-    </Modal>
+    <Modal ariaHideApp={false} show {...{ ...modalProps, children }} />
   );
 }
 
@@ -30,27 +28,33 @@ function renderBasicModal(modalProps) {
   );
 }
 
-it('invokes functions when triggered', () => {
+it('invokes functions when triggered', async () => {
   const onEnter = jest.fn();
   const onHide = jest.fn();
 
-  const { getByText } = renderBasicModal({ onEnter, onHide });
+  const { findByRole } = renderBasicModal({
+    onEnter,
+    onHide
+  });
 
-  expect(onEnter).toHaveBeenCalled();
+  await waitFor(() => {
+    expect(onEnter).toHaveBeenCalled();
+  });
 
-  getByText('Header')
-    .parentElement.querySelector('button')
-    .click();
+  fireEvent.click(await findByRole('button', { name: 'Close', exact: false }));
+
   expect(onHide).toHaveBeenCalled();
 });
 
-it('renders different modal sections', () => {
+it('renders different modal sections', async () => {
   const onEnter = jest.fn();
   const onHide = jest.fn();
 
   const { getByText } = renderBasicModal({ onEnter, onHide });
 
-  expect(onEnter).toHaveBeenCalled();
+  await waitFor(() => {
+    expect(onEnter).toHaveBeenCalled();
+  });
 
   expect(getByText('Header')).toMatchSnapshot();
   expect(getByText('Body')).toMatchSnapshot();

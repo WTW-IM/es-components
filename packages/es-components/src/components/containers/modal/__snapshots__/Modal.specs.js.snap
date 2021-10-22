@@ -54,18 +54,6 @@ exports[`renders different modal sections 1`] = `
 
 }
 
-@media (min-width:480px) {
-
-}
-
-@media (min-width:768px) {
-
-}
-
-@media (min-width:900px) {
-
-}
-
 <h4
   class="c0 c1"
   id="abcdef"
@@ -115,18 +103,6 @@ exports[`renders different modal sections 2`] = `
 }
 
 @media (min-width:768px) {
-
-}
-
-@media (min-width:480px) {
-
-}
-
-@media (min-width:768px) {
-
-}
-
-@media (min-width:900px) {
 
 }
 
@@ -187,18 +163,6 @@ exports[`renders different modal sections 3`] = `
   .c0 {
     padding: 15px 15px 19px;
   }
-}
-
-@media (min-width:480px) {
-
-}
-
-@media (min-width:768px) {
-
-}
-
-@media (min-width:900px) {
-
 }
 
 <div

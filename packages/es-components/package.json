@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.6.76",
+  "version": "21.6.76-pre-prod.2",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "test:watch": "jest --watch"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "setupFiles": [
       "./config/jest-shims.js"
     ],
@@ -57,7 +58,7 @@
     "@testing-library/react": "^11.2.6",
     "ast-types": "^0.14.2",
     "babel-eslint": "^9.0.0",
-    "babel-jest": "^26.6.3",
+    "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-wtw-im": "^2.5.0",
@@ -73,9 +74,9 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.2",
     "http-server": "^0.12.3",
-    "jest": "^26.6.3",
-    "jest-cli": "^26.6.3",
-    "jest-styled-components": "^7.0.4",
+    "jest": "^27.3.1",
+    "jest-cli": "^27.3.1",
+    "jest-styled-components": "^7.0.5",
     "mkdirp": "^1.0.4",
     "prettier": "^2.2.1",
     "react": "^17.0.2",
@@ -107,7 +108,7 @@
     "prop-types": "^15.7.2",
     "react-animate-height": "^2.0.23",
     "react-datepicker": "^3.8.0",
-    "react-modal": "^3.13.1",
+    "react-modal": "^3.14.3",
     "react-overlays": "^5.0.0",
     "react-popper": "^2.2.5",
     "react-text-mask": "^5.4.3",

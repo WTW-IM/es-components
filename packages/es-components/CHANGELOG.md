@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.76-pre-prod.2 (2021-10-22)</small>
+
+* Build: updating to latest jest and ensuring passing tests ([be636e8](https://github.com/wtw-im/es-components/commit/be636e8))
+
+
+
+
+
+## <small>21.6.76-pre-prod.1 (2021-10-22)</small>
+
+* Merge pull request #587 from WTW-IM/update-semantic-colors ([f6b34b0](https://github.com/wtw-im/es-components/commit/f6b34b0)), closes [#587](https://github.com/wtw-im/es-components/issues/587)
+
+
+
+
+
+## <small>21.6.76-pre-prod.0 (2021-09-28)</small>
+
+* Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/wtw-im/es-components/commit/126f171))
+
+
+
+
+
 ## <small>21.6.76 (2021-09-28)</small>
 
 * Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/wtw-im/es-components/commit/126f171))

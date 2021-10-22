@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.77 (2021-10-22)</small>
+
+* Build: bumping prerelease version to unreleased minor ([33d2637](https://github.com/WTW-IM/es-components/commit/33d2637))
+* Build: empty commit - forcing deploy ([81aca5c](https://github.com/WTW-IM/es-components/commit/81aca5c))
+
+
+
+
+
 ## <small>21.6.76-pre-prod.2 (2021-10-22)</small>
 
 * Build: updating to latest jest and ensuring passing tests ([be636e8](https://github.com/WTW-IM/es-components/commit/be636e8))

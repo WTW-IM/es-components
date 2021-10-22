@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.76-pre-prod.3 (2021-10-22)</small>
+
+**Note:** Version bump only for package es-components-wtw-theme
+
+
+
+
+
 ## <small>21.6.76-pre-prod.2 (2021-10-22)</small>
 
 * Build: updating to latest jest and ensuring passing tests ([be636e8](https://github.com/WTW-IM/es-components/commit/be636e8))

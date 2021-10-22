@@ -19,6 +19,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## <small>21.6.76 (2021-09-28)</small>
+
+* Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/wtw-im/es-components/commit/126f171))
+
+
+
+
+
 ## <small>21.6.75 (2021-08-18)</small>
 
 **Note:** Version bump only for package es-components

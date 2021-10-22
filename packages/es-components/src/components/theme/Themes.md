@@ -48,9 +48,9 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
 <details>
   <summary markdown="span">Click to expand</summary>
   <div style="background-color: #006699; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.info</span></div>
-  <div style="background-color: #006000; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.success</span></div>
-  <div style="background-color: #de7400; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.warning</span></div>
-  <div style="background-color: #e60700; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.danger</span></div>
+  <div style="background-color: #298544; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.success</span></div>
+  <div style="background-color: #c25400; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.warning</span></div>
+  <div style="background-color: #cc0000; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.danger</span></div>
   <div style="background-color: #ff6310; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.advisor</span></div>
 </details>
 

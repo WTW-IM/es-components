@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.77-pre-prod.1 (2021-10-22)</small>
+
+* Merging master into pre-prod [skip-release] ([ca0b6a6](https://github.com/WTW-IM/es-components/commit/ca0b6a6))
+* Build: bumping prerelease version to unreleased minor ([33d2637](https://github.com/WTW-IM/es-components/commit/33d2637))
+
+
+
+
+
 ## <small>21.6.76-pre-prod.3 (2021-10-22)</small>
 
 **Note:** Version bump only for package es-components-wtw-theme

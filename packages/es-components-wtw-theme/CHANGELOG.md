@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.77-pre-prod.2 (2021-11-03)</small>
+
+* Merge pull request #589 from WTW-IM/accessibility-audit-items ([d9a8579](https://github.com/WTW-IM/es-components/commit/d9a8579)), closes [#589](https://github.com/WTW-IM/es-components/issues/589)
+
+
+
+
+
 ## <small>21.6.77-pre-prod.1 (2021-10-22)</small>
 
 * Merging master into pre-prod [skip-release] ([ca0b6a6](https://github.com/WTW-IM/es-components/commit/ca0b6a6))

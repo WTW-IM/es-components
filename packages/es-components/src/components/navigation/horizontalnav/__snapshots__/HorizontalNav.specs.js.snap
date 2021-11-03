@@ -116,6 +116,7 @@ exports[`renders as expected 1`] = `
   font-size: inherit;
   height: 100%;
   padding: 10px;
+  position: relative;
   -webkit-text-decoration: none;
   text-decoration: none;
   width: 100%;

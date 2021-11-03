@@ -23,6 +23,7 @@ function Month({ onChange, monthNames, selectOptionText, date, ...props }) {
 
   return (
     <MonthDropdown
+      aria-label="Select Month"
       onChange={onMonthChange}
       {...theme.validationInputColor[validationState]}
       value={month}

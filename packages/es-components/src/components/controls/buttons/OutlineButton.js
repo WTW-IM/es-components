@@ -19,7 +19,6 @@ const StyledButton = styled(ButtonBase)`
   line-height: ${props =>
     props.buttonSize.lineHeight || props.theme.font.baseLineHeight};
   min-width: 100px;
-  outline: none;
   padding-bottom: ${props => props.buttonSize.paddingBottom};
   padding-left: ${props => props.buttonSize.paddingSides};
   padding-right: ${props => props.buttonSize.paddingSides};
@@ -42,6 +41,7 @@ const StyledButton = styled(ButtonBase)`
 
   &:focus {
     box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+    outline: none;
   }
 
   @media (hover: hover), (-ms-high-contrast: none) {

@@ -45,7 +45,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   border: 1px solid #c5c5c5;
   border-radius: 2px;
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
@@ -60,30 +60,6 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
   width: 100%;
-}
-
-.c5:focus {
-  border-color: #83bffc;
-  box-shadow: 0 0 8px rgba(102,175,233,0.6);
-  outline: 0;
-}
-
-.c5:disabled {
-  background-color: #ededed;
-  cursor: not-allowed;
-}
-
-.c5:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
-}
-
-.c5:read-only {
-  background-color: #ededed;
-  cursor: text;
-}
-
-.c6 {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
@@ -92,8 +68,29 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   flex: 1 0 35px;
 }
 
-.c6::-webkit-inner-spin-button,
-.c6::-webkit-outer-spin-button {
+.c4:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c4:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c4:-moz-read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c4:read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c4::-webkit-inner-spin-button,
+.c4::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -117,6 +114,9 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   padding: 6px 12px;
   -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -webkit-flex: 3 1 100px;
+  -ms-flex: 3 1 100px;
+  flex: 3 1 100px;
 }
 
 .c3:focus {
@@ -130,13 +130,21 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-flex: 3 1 100px;
-  -ms-flex: 3 1 100px;
-  flex: 3 1 100px;
-}
-
-.c7 {
+.c5 {
+  border: 1px solid #c5c5c5;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-sizing: border-box;
+  color: #000;
+  font-size: 18px;
+  font-weight: normal;
+  height: 39px;
+  line-height: 1.428;
+  min-width: 0;
+  padding: 6px 12px;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  width: 100%;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
@@ -145,8 +153,29 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   flex: 2 0 40px;
 }
 
-.c7::-webkit-inner-spin-button,
-.c7::-webkit-outer-spin-button {
+.c5:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c5:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c5:-moz-read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c5:read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c5::-webkit-inner-spin-button,
+.c5::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -192,7 +221,8 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
       tabindex="-1"
     >
       <select
-        class="c3 c4"
+        aria-label="Select Month"
+        class="c3"
         id="test"
         name="month"
       >
@@ -213,7 +243,8 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
-        class="c5 c6"
+        aria-label="Day"
+        class="c4"
         max="31"
         min="1"
         name="day"
@@ -223,7 +254,8 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
-        class="c5 c7"
+        aria-label="Year"
+        class="c5"
         name="year"
         pattern="[0-9]*"
         placeholder="Year"
@@ -280,44 +312,6 @@ exports[`hides the Day input when Day is excluded 1`] = `
   cursor: not-allowed;
 }
 
-.c5 {
-  border: 1px solid #c5c5c5;
-  border-radius: 2px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-  box-sizing: border-box;
-  color: #000;
-  font-size: 18px;
-  font-weight: normal;
-  height: 39px;
-  line-height: 1.428;
-  min-width: 0;
-  padding: 6px 12px;
-  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
-  width: 100%;
-}
-
-.c5:focus {
-  border-color: #83bffc;
-  box-shadow: 0 0 8px rgba(102,175,233,0.6);
-  outline: 0;
-}
-
-.c5:disabled {
-  background-color: #ededed;
-  cursor: not-allowed;
-}
-
-.c5:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
-}
-
-.c5:read-only {
-  background-color: #ededed;
-  cursor: text;
-}
-
 .c3 {
   background-color: #fff;
   border: 1px solid #c5c5c5;
@@ -335,6 +329,9 @@ exports[`hides the Day input when Day is excluded 1`] = `
   padding: 6px 12px;
   -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  -webkit-flex: 3 1 100px;
+  -ms-flex: 3 1 100px;
+  flex: 3 1 100px;
 }
 
 .c3:focus {
@@ -349,12 +346,20 @@ exports[`hides the Day input when Day is excluded 1`] = `
 }
 
 .c4 {
-  -webkit-flex: 3 1 100px;
-  -ms-flex: 3 1 100px;
-  flex: 3 1 100px;
-}
-
-.c6 {
+  border: 1px solid #c5c5c5;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-sizing: border-box;
+  color: #000;
+  font-size: 18px;
+  font-weight: normal;
+  height: 39px;
+  line-height: 1.428;
+  min-width: 0;
+  padding: 6px 12px;
+  -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+  width: 100%;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
@@ -363,8 +368,29 @@ exports[`hides the Day input when Day is excluded 1`] = `
   flex: 2 0 40px;
 }
 
-.c6::-webkit-inner-spin-button,
-.c6::-webkit-outer-spin-button {
+.c4:focus {
+  border-color: #83bffc;
+  box-shadow: 0 0 8px rgba(102,175,233,0.6);
+  outline: 0;
+}
+
+.c4:disabled {
+  background-color: #ededed;
+  cursor: not-allowed;
+}
+
+.c4:-moz-read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c4:read-only {
+  background-color: #ededed;
+  cursor: text;
+}
+
+.c4::-webkit-inner-spin-button,
+.c4::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -410,7 +436,8 @@ exports[`hides the Day input when Day is excluded 1`] = `
       tabindex="-1"
     >
       <select
-        class="c3 c4"
+        aria-label="Select Month"
+        class="c3"
         id="test"
       >
         <option
@@ -475,7 +502,8 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </option>
       </select>
       <input
-        class="c5 c6"
+        aria-label="Year"
+        class="c4"
         pattern="[0-9]*"
         placeholder="Year"
         type="number"

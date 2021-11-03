@@ -18,6 +18,11 @@ const StyleReset = createGlobalStyle`
     vertical-align: baseline;
   }
 
+  *:focus, input:focus, select:focus, button:focus {
+    outline: 3px solid #3dbbdb;
+    overflow: clip;
+  }
+
   ul, ol {
     margin: 0 1em 25px;
     padding-left: 1em;

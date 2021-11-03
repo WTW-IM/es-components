@@ -9,6 +9,7 @@ exports[`renders different modal sections 1`] = `
   line-height: 1.1;
   margin-bottom: 0.45em;
   margin-top: 0;
+  margin: 0;
 }
 
 .c0 small {
@@ -16,8 +17,16 @@ exports[`renders different modal sections 1`] = `
   line-height: 1;
 }
 
-.c1 {
-  margin: 0;
+@media (min-width:480px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:900px) {
+
 }
 
 @media (min-width:768px) {
@@ -38,6 +47,10 @@ exports[`renders different modal sections 1`] = `
 
 }
 
+@media (min-width:768px) {
+
+}
+
 @media (min-width:480px) {
 
 }
@@ -50,12 +63,8 @@ exports[`renders different modal sections 1`] = `
 
 }
 
-@media (min-width:768px) {
-
-}
-
 <h4
-  class="c0 c1"
+  class="c0"
   id="abcdef"
 >
   Header
@@ -63,13 +72,9 @@ exports[`renders different modal sections 1`] = `
 `;
 
 exports[`renders different modal sections 2`] = `
-.c1 {
+.c0 {
   color: #444;
   padding: 15px;
-}
-
-@media (min-width:768px) {
-
 }
 
 @media (min-width:480px) {
@@ -81,6 +86,10 @@ exports[`renders different modal sections 2`] = `
 }
 
 @media (min-width:900px) {
+
+}
+
+@media (min-width:768px) {
 
 }
 
@@ -106,8 +115,20 @@ exports[`renders different modal sections 2`] = `
 
 }
 
+@media (min-width:480px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:900px) {
+
+}
+
 <div
-  class="c0 c1"
+  class="c0"
 >
   Body
 </div>
@@ -131,10 +152,6 @@ exports[`renders different modal sections 3`] = `
   width: auto;
 }
 
-@media (min-width:768px) {
-
-}
-
 @media (min-width:480px) {
 
 }
@@ -144,6 +161,10 @@ exports[`renders different modal sections 3`] = `
 }
 
 @media (min-width:900px) {
+
+}
+
+@media (min-width:768px) {
 
 }
 
@@ -163,6 +184,18 @@ exports[`renders different modal sections 3`] = `
   .c0 {
     padding: 15px 15px 19px;
   }
+}
+
+@media (min-width:480px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:900px) {
+
 }
 
 <div

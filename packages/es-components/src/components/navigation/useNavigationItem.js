@@ -125,6 +125,7 @@ const NavigationAnchor = styled.a`
   font-size: inherit;
   height: 100%;
   padding: 10px;
+  position: relative;
   text-decoration: none;
   width: 100%;
 `;

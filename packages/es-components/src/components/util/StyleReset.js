@@ -20,7 +20,6 @@ const StyleReset = createGlobalStyle`
 
   *:focus, input:focus, select:focus, button:focus {
     outline: 3px solid #3dbbdb;
-    overflow: clip;
   }
 
   ul, ol {

@@ -33,7 +33,6 @@ module.exports = {
 
         *:focus, input:focus, select:focus, button:focus {
           outline: 3px solid #3dbbdb;
-          overflow: clip;
         }
       </style>
       <link rel="preload" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" as="style">

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.77-pre-prod.3 (2021-11-03)</small>
+
+* Merge pull request #590 from WTW-IM/fix-focus-outline ([69d2920](https://github.com/wtw-im/es-components/commit/69d2920)), closes [#590](https://github.com/wtw-im/es-components/issues/590)
+
+
+
+
+
 ## <small>21.6.77-pre-prod.2 (2021-11-03)</small>
 
 * Merge pull request #589 from WTW-IM/accessibility-audit-items ([d9a8579](https://github.com/wtw-im/es-components/commit/d9a8579)), closes [#589](https://github.com/wtw-im/es-components/issues/589)

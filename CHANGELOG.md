@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.77-pre-prod.4 (2021-11-11)</small>
+
+* Merge pull request #591 from WTW-IM/WE-15333-safari-sliding-pane-focus ([4962f45](https://github.com/WTW-IM/es-components/commit/4962f45)), closes [#591](https://github.com/WTW-IM/es-components/issues/591)
+
+
+
+
+
 ## <small>21.6.77-pre-prod.3 (2021-11-03)</small>
 
 * Merge pull request #590 from WTW-IM/fix-focus-outline ([69d2920](https://github.com/WTW-IM/es-components/commit/69d2920)), closes [#590](https://github.com/WTW-IM/es-components/issues/590)

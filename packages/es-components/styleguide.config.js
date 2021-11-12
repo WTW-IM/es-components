@@ -30,6 +30,10 @@ module.exports = {
           white-space: pre-wrap !important;
           word-break: break-word !important;
         }
+
+        *:focus, input:focus, select:focus, button:focus {
+          outline: 3px solid #3dbbdb;
+        }
       </style>
       <link rel="preload" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" as="style">
       <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css">

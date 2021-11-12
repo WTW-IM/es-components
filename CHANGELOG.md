@@ -3,81 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.77-pre-prod.4 (2021-11-11)</small>
+
+- Merge pull request #591 from WTW-IM/WE-15333-safari-sliding-pane-focus ([4962f45](https://github.com/WTW-IM/es-components/commit/4962f45)), closes [#591](https://github.com/WTW-IM/es-components/issues/591)
+
+## <small>21.6.77-pre-prod.3 (2021-11-03)</small>
+
+- Merge pull request #590 from WTW-IM/fix-focus-outline ([69d2920](https://github.com/WTW-IM/es-components/commit/69d2920)), closes [#590](https://github.com/WTW-IM/es-components/issues/590)
+
+## <small>21.6.77-pre-prod.2 (2021-11-03)</small>
+
+- Merge pull request #589 from WTW-IM/accessibility-audit-items ([d9a8579](https://github.com/WTW-IM/es-components/commit/d9a8579)), closes [#589](https://github.com/WTW-IM/es-components/issues/589)
+
+## <small>21.6.77-pre-prod.1 (2021-10-22)</small>
+
+- Build: bumping prerelease version to unreleased minor ([33d2637](https://github.com/WTW-IM/es-components/commit/33d2637))
+
 ## <small>21.6.77 (2021-10-22)</small>
 
-* Build: bumping prerelease version to unreleased minor ([33d2637](https://github.com/WTW-IM/es-components/commit/33d2637))
-* Build: empty commit - forcing deploy ([81aca5c](https://github.com/WTW-IM/es-components/commit/81aca5c))
-
-
-
-
+- Build: bumping prerelease version to unreleased minor ([33d2637](https://github.com/WTW-IM/es-components/commit/33d2637))
+- Build: empty commit - forcing deploy ([81aca5c](https://github.com/WTW-IM/es-components/commit/81aca5c))
 
 ## <small>21.6.76-pre-prod.2 (2021-10-22)</small>
 
-* Build: updating to latest jest and ensuring passing tests ([be636e8](https://github.com/WTW-IM/es-components/commit/be636e8))
-
-
-
-
+- Build: updating to latest jest and ensuring passing tests ([be636e8](https://github.com/WTW-IM/es-components/commit/be636e8))
 
 ## <small>21.6.76-pre-prod.1 (2021-10-22)</small>
 
-* Merge pull request #587 from WTW-IM/update-semantic-colors ([f6b34b0](https://github.com/WTW-IM/es-components/commit/f6b34b0)), closes [#587](https://github.com/WTW-IM/es-components/issues/587)
-
-
-
-
+- Merge pull request #587 from WTW-IM/update-semantic-colors ([f6b34b0](https://github.com/WTW-IM/es-components/commit/f6b34b0)), closes [#587](https://github.com/WTW-IM/es-components/issues/587)
 
 ## <small>21.6.76-pre-prod.0 (2021-09-28)</small>
 
-* Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/WTW-IM/es-components/commit/126f171))
-
-
-
-
+- Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/WTW-IM/es-components/commit/126f171))
 
 ## <small>21.6.76 (2021-09-28)</small>
 
-* Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/WTW-IM/es-components/commit/126f171))
-
-
+- Update: added styleType and popoverWrapperClassName to popover ([126f171](https://github.com/WTW-IM/es-components/commit/126f171))
 
 ## <small>21.6.75-pre-prod.0 (2021-08-18)</small>
 
-* [skip ci] v21.6.75-pre-prod.0 ([74e3d18](https://github.com/WTW-IM/es-components/commit/74e3d18))
-
-
-
-
+- [skip ci] v21.6.75-pre-prod.0 ([74e3d18](https://github.com/WTW-IM/es-components/commit/74e3d18))
 
 ## <small>21.6.75 (2021-08-18)</small>
 
-* Build: [skip ci] [skip-release] updating for correct lerna version ([726f8f0](https://github.com/WTW-IM/es-components/commit/726f8f0))
-
-
-
-
+- Build: [skip ci][skip-release] updating for correct lerna version ([726f8f0](https://github.com/WTW-IM/es-components/commit/726f8f0))
 
 ## <small>21.6.74-pre-prod.0 (2021-08-17)</small>
 
-* Merge pull request #577 from WTW-IM/WE-13501-screenreader-read-tooltip-when-opened ([8e0edbc](https://github.com/WTW-IM/es-components/commit/8e0edbc)), closes [#577](https://github.com/WTW-IM/es-components/issues/577)
-
-
-
-
+- Merge pull request #577 from WTW-IM/WE-13501-screenreader-read-tooltip-when-opened ([8e0edbc](https://github.com/WTW-IM/es-components/commit/8e0edbc)), closes [#577](https://github.com/WTW-IM/es-components/issues/577)
 
 ## <small>21.6.73-pre-prod.3 (2021-08-16)</small>
 
-
-
-
 ## <small>21.6.73 (2021-08-13)</small>
 
-* [skip ci] v21.6.73 ([a078d03](https://github.com/WTW-IM/es-components/commit/a078d03))
-
-
-
-
+- [skip ci] v21.6.73 ([a078d03](https://github.com/WTW-IM/es-components/commit/a078d03))
 
 ## <small>21.6.73-pre-prod.2 (2021-08-16)</small>
 

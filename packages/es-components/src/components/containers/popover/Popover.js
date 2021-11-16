@@ -169,7 +169,7 @@ function Popover(props) {
       window.addEventListener('scroll', hidePopOnScroll);
     }
     return () => window.removeEventListener('scroll', hidePopOnScroll);
-  }, [isOpen]);
+  }, [isOpen, disableCloseOnScroll]);
 
   const closeButton = (
     <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>

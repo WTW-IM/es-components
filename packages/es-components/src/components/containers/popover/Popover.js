@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { noop } from 'lodash';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
@@ -162,7 +163,7 @@ function Popover(props) {
 
   useEffect(() => {
     if (disableCloseOnScroll) {
-      return;
+      return noop;
     }
 
     if (isOpen) {

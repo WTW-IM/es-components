@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.78 (2021-11-12)</small>
+## <small>21.6.78-pre-prod.5 (2021-11-12)</small>
 
 * Merge remote-tracking branch 'origin/master' into pre-prod ([db3a00e](https://github.com/WTW-IM/es-components/commit/db3a00e))
 

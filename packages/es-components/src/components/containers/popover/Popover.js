@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { noop } from 'lodash';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
@@ -81,6 +82,7 @@ function Popover(props) {
     renderTrigger,
     hasCloseButton,
     hasAltCloseButton,
+    disableCloseOnScroll,
     disableRootClose,
     disableFlipping,
     enableEvents,
@@ -160,11 +162,15 @@ function Popover(props) {
   }, [isOpen]);
 
   useEffect(() => {
+    if (disableCloseOnScroll) {
+      return noop;
+    }
+
     if (isOpen) {
       window.addEventListener('scroll', hidePopOnScroll);
     }
     return () => window.removeEventListener('scroll', hidePopOnScroll);
-  }, [isOpen]);
+  }, [isOpen, disableCloseOnScroll]);
 
   const closeButton = (
     <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
@@ -249,6 +255,10 @@ Popover.propTypes = {
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** The size of the arrow on the popover box */
   arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
+  /** Disables popover's ability to close when the user scrolls  */
+  disableCloseOnScroll: PropTypes.bool,
+  /** Disables popover's ability to change position to stay in viewport */
+  disableFlipping: PropTypes.bool,
   /** Prevents popover from closing when clicked outside of it */
   disableRootClose: PropTypes.bool,
   /** Display a close button in the bottom right of the popover body */
@@ -257,8 +267,6 @@ Popover.propTypes = {
   hasAltCloseButton: PropTypes.bool,
   /** Function returning a button component to be used as the popover trigger */
   renderTrigger: PropTypes.func.isRequired,
-  /** Disables popovers ability to change position to stay in viewport */
-  disableFlipping: PropTypes.bool,
   /** Enable event handlers provided by Popper.js */
   enableEvents: PropTypes.bool,
   /** Sets the strategy for positioning the popover in Popper.js */
@@ -278,6 +286,7 @@ Popover.defaultProps = {
   hasCloseButton: false,
   hasAltCloseButton: false,
   disableFlipping: false,
+  disableCloseOnScroll: false,
   title: undefined,
   enableEvents: true,
   strategy: 'absolute',

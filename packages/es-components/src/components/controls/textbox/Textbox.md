@@ -72,6 +72,8 @@ function handleOnBlur(event) {
 
 Validation states are driven from the `Control` component.
 
+<a href="https://8lf1uv.axshare.com/#id=mjvdz7&p=incomplete_fields&dp=0&g=1" target="blank"><div style="color:#cc0000;text-transform:uppercase;margin-bottom:1em;">View Error Pattern Examples</div></a>
+
 ```
 import Control from '../Control';
 import Label from '../label/Label';

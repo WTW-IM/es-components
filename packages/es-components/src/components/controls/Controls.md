@@ -1,5 +1,7 @@
 Control components are used to manage form inputs. There are several components for composing controls with the same look and feel.
 
+<a href="https://8lf1uv.axshare.com/#id=mjvdz7&p=incomplete_fields&dp=0&g=1" target="blank"><div style="color:#cc0000;text-transform:uppercase;margin:1em 0;">View Error Pattern Examples</div></a>
+
 ## Control
 
 A `Control` should be used to wrap individual form controls. The `orientation` prop has two possible values (`stacked` and `inline`) to control how to display the label in correlation to the control. This does not affect `Checkbox` and `RadioButton` controls individually because those labels should always appear next to their respective control. The `validationState` prop affects the coloring of elements within the `Control`. The possible values for `validationState` are `default`, `success`, `danger`, and `warning`.

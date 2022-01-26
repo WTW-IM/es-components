@@ -20,6 +20,8 @@ import Label from '../label/Label';
 
 Wrap the dropdown in a `Control` with `inline` passed htmlFor the `orientation` prop to render the label and input horizontally.
 
+<a href="https://8lf1uv.axshare.com/#id=mjvdz7&p=incomplete_fields&dp=0&g=1" target="blank"><div style="color:#cc0000;text-transform:uppercase;margin:1em 0;">View Error Pattern Examples</div></a>
+
 ```
 import Control from '../Control';
 import Label from '../label/Label';

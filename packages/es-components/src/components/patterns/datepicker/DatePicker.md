@@ -1,3 +1,5 @@
+<a href="https://8lf1uv.axshare.com/#id=mjvdz7&p=incomplete_fields&dp=0&g=1" target="blank"><div style="color:#cc0000;text-transform:uppercase;margin-bottom:1em;">View Error Pattern Examples</div></a>
+
 Based on <a href="https://hacker0x01.github.io/react-datepicker" target="blank">React-Datepicker</a> and supports most of the props documented there.
 
 Props are passed props through to the TextBox component unless they belong to the set of React Datepicker props.

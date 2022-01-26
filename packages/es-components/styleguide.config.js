@@ -62,6 +62,13 @@ module.exports = {
       )
     },
     {
+      name: 'Validation Guidelines',
+      content: path.join(
+        baseComponentDir,
+        'validation-guidelines/ValidationGuidelines.md'
+      )
+    },
+    {
       name: 'Base',
       components: path.join(baseComponentDir, 'base/**/*.js')
     },

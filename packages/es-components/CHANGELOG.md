@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.80-pre-prod.0 (2022-01-26)</small>
+
+* Merging master into pre-prod [skip-release] ([bfee85f](https://github.com/wtw-im/es-components/commit/bfee85f))
+
+
+
+## <small>21.6.78-pre-prod.7 (2022-01-26)</small>
+
+* [skip ci] v21.6.78-pre-prod.7 ([e61ef35](https://github.com/wtw-im/es-components/commit/e61ef35))
+* Merging master into pre-prod [skip-release] ([1401dc4](https://github.com/wtw-im/es-components/commit/1401dc4))
+
+
+
+## <small>21.6.78-pre-prod.6 (2021-11-18)</small>
+
+* [skip ci] v21.6.78-pre-prod.6 ([6e31f4e](https://github.com/wtw-im/es-components/commit/6e31f4e))
+* Added disableCloseOnScroll prop to Popover ([bb387db](https://github.com/wtw-im/es-components/commit/bb387db))
+* Added disbleScrollOnClose to useEffect deps ([5a6fccc](https://github.com/wtw-im/es-components/commit/5a6fccc))
+* Merged in proper base branch ([e62f77f](https://github.com/wtw-im/es-components/commit/e62f77f))
+* Returning noop instead of undefined when disableCloseOnScroll ([23f4a82](https://github.com/wtw-im/es-components/commit/23f4a82))
+
+
+
+## <small>21.6.78-pre-prod.5 (2021-11-12)</small>
+
+* [skip ci] v21.6.78-pre-prod.5 ([c719ba2](https://github.com/wtw-im/es-components/commit/c719ba2))
+
+
+
+
+
 ## <small>21.6.79 (2022-01-26)</small>
 
 * Docs: include links to UX validation patterns ([44d7252](https://github.com/wtw-im/es-components/commit/44d7252))

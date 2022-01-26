@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.78-pre-prod.7 (2022-01-26)</small>
+
+* Merging master into pre-prod [skip-release] ([1401dc4](https://github.com/wtw-im/es-components/commit/1401dc4))
+* Docs: include links to UX validation patterns ([44d7252](https://github.com/wtw-im/es-components/commit/44d7252))
+
+
+
+
+
 ## <small>21.6.78-pre-prod.6 (2021-11-18)</small>
 
 * Merge pull request #593 from matneyx/disable-close-on-scroll ([b723713](https://github.com/wtw-im/es-components/commit/b723713)), closes [#593](https://github.com/wtw-im/es-components/issues/593)

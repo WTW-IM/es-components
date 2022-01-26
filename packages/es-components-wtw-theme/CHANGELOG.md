@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.81-pre-prod.0 (2022-01-26)</small>
+
+**Note:** Version bump only for package es-components-wtw-theme
+
+
+
+
+
 ## <small>21.6.80 (2022-01-26)</small>
 
 * Fix: corrects wtw theme danger/warning icons. ([f84fdaa](https://github.com/WTW-IM/es-components/commit/f84fdaa))

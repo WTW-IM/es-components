@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.81-pre-prod.0 (2022-01-26)</small>
+
+* Fix: corrects via theme danger/warning icons. ([49322f1](https://github.com/WTW-IM/es-components/commit/49322f1))
+
+
+
+## <small>21.6.80-pre-prod.0 (2022-01-26)</small>
+
+* [skip ci] v21.6.80-pre-prod.0 ([58ac744](https://github.com/WTW-IM/es-components/commit/58ac744))
+
+
+
+## <small>21.6.78-pre-prod.7 (2022-01-26)</small>
+
+* [skip ci] v21.6.78-pre-prod.7 ([e61ef35](https://github.com/WTW-IM/es-components/commit/e61ef35))
+
+
+
+## <small>21.6.78-pre-prod.6 (2021-11-18)</small>
+
+* [skip ci] v21.6.78-pre-prod.6 ([6e31f4e](https://github.com/WTW-IM/es-components/commit/6e31f4e))
+* Added disableCloseOnScroll prop to Popover ([bb387db](https://github.com/WTW-IM/es-components/commit/bb387db))
+* Added disbleScrollOnClose to useEffect deps ([5a6fccc](https://github.com/WTW-IM/es-components/commit/5a6fccc))
+* Returning noop instead of undefined when disableCloseOnScroll ([23f4a82](https://github.com/WTW-IM/es-components/commit/23f4a82))
+
+
+
+## <small>21.6.78-pre-prod.5 (2021-11-12)</small>
+
+* [skip ci] v21.6.78-pre-prod.5 ([c719ba2](https://github.com/WTW-IM/es-components/commit/c719ba2))
+
+
+
+
+
 ## <small>21.6.80 (2022-01-26)</small>
 
 * Fix: corrects wtw theme danger/warning icons. ([f84fdaa](https://github.com/WTW-IM/es-components/commit/f84fdaa))

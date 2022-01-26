@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.81 (2022-01-26)</small>
+
+* Fix: corrects via theme danger/warning icons. ([49322f1](https://github.com/WTW-IM/es-components/commit/49322f1))
+
+
+
+
+
 ## <small>21.6.78 (2021-11-12)</small>
 
 * Merge remote-tracking branch 'origin/master' into pre-prod ([db3a00e](https://github.com/WTW-IM/es-components/commit/db3a00e))

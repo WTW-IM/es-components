@@ -29,8 +29,8 @@ function TabPanel(props) {
   const [value, setValue] = useState(selectedKey);
 
   let selectedIndex = findIndex(React.Children.toArray(children), child => {
-    const key = selectedKey || value || value.key;
-    return child.props.name.key
+    const key = selectedKey || value;
+    return child.props.name && child.props.name.key
       ? child.props.name.key === key
       : child.props.name === key;
   });

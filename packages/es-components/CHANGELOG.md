@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.81-pre-prod.2 (2022-01-31)</small>
+
+* Merge pull request #598 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([86b4b58](https://github.com/wtw-im/es-components/commit/86b4b58)), closes [#598](https://github.com/wtw-im/es-components/issues/598)
+
+
+
+
+
 ## <small>21.6.81-pre-prod.1 (2022-01-31)</small>
 
 * Merge pull request #600 from WTW-IM/tab-panel-null-check ([fa065c8](https://github.com/wtw-im/es-components/commit/fa065c8)), closes [#600](https://github.com/wtw-im/es-components/issues/600)

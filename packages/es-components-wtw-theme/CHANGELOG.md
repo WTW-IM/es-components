@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.81-pre-prod.1 (2022-01-31)</small>
+
+* Merge pull request #600 from WTW-IM/tab-panel-null-check ([fa065c8](https://github.com/WTW-IM/es-components/commit/fa065c8)), closes [#600](https://github.com/WTW-IM/es-components/issues/600)
+
+
+
+
+
 ## <small>21.6.81-pre-prod.0 (2022-01-26)</small>
 
 **Note:** Version bump only for package es-components-wtw-theme

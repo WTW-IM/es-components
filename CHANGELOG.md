@@ -3,42 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.81 (2022-01-26)</small>
+## <small>21.6.82-pre-prod.0 (2022-01-31)</small>
 
-* Fix: corrects via theme danger/warning icons. ([49322f1](https://github.com/WTW-IM/es-components/commit/49322f1))
-
-
+* Merge pull request #602 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([5d1291d](https://github.com/WTW-IM/es-components/commit/5d1291d)), closes [#602](https://github.com/WTW-IM/es-components/issues/602)
 
 
+
+
+
+## <small>21.6.81 (2022-01-26) & 21.6.81-pre-prod.0 (2022-01-26)</small>
+
+- Fix: corrects via theme danger/warning icons. ([49322f1](https://github.com/WTW-IM/es-components/commit/49322f1))
+
+## <small>21.6.81-pre-prod.2 (2022-01-31)</small>
+
+- Merge pull request #598 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([86b4b58](https://github.com/WTW-IM/es-components/commit/86b4b58)), closes [#598](https://github.com/WTW-IM/es-components/issues/598)
+
+## <small>21.6.81-pre-prod.1 (2022-01-31)</small>
+
+- Merge pull request #600 from WTW-IM/tab-panel-null-check ([fa065c8](https://github.com/WTW-IM/es-components/commit/fa065c8)), closes [#600](https://github.com/WTW-IM/es-components/issues/600)
+
+## <small>21.6.80-pre-prod.0 (2022-01-26)</small>
+
+- [skip ci] v21.6.80-pre-prod.0 ([58ac744](https://github.com/WTW-IM/es-components/commit/58ac744))
+
+## <small>21.6.78-pre-prod.7 (2022-01-26)</small>
+
+- [skip ci] v21.6.78-pre-prod.7 ([e61ef35](https://github.com/WTW-IM/es-components/commit/e61ef35))
+
+## <small>21.6.78-pre-prod.6 (2021-11-18)</small>
+
+- [skip ci] v21.6.78-pre-prod.6 ([6e31f4e](https://github.com/WTW-IM/es-components/commit/6e31f4e))
+- Added disableCloseOnScroll prop to Popover ([bb387db](https://github.com/WTW-IM/es-components/commit/bb387db))
+- Added disbleScrollOnClose to useEffect deps ([5a6fccc](https://github.com/WTW-IM/es-components/commit/5a6fccc))
+- Returning noop instead of undefined when disableCloseOnScroll ([23f4a82](https://github.com/WTW-IM/es-components/commit/23f4a82))
+
+## <small>21.6.78-pre-prod.5 (2021-11-12)</small>
+
+- [skip ci] v21.6.78-pre-prod.5 ([c719ba2](https://github.com/WTW-IM/es-components/commit/c719ba2))
 
 ## <small>21.6.80 (2022-01-26)</small>
 
-* Fix: corrects wtw theme danger/warning icons. ([f84fdaa](https://github.com/WTW-IM/es-components/commit/f84fdaa))
-
-
-
-
+- Fix: corrects wtw theme danger/warning icons. ([f84fdaa](https://github.com/WTW-IM/es-components/commit/f84fdaa))
 
 ## <small>21.6.79 (2022-01-26)</small>
 
-* Docs: include links to UX validation patterns ([44d7252](https://github.com/WTW-IM/es-components/commit/44d7252))
-
-
-
-
+- Docs: include links to UX validation patterns ([44d7252](https://github.com/WTW-IM/es-components/commit/44d7252))
 
 ## <small>21.6.78 (2021-11-12)</small>
 
-
-
-
 ## <small>21.6.77 (2021-10-22)</small>
 
-* [skip ci] v21.6.77 ([4e07bf1](https://github.com/WTW-IM/es-components/commit/4e07bf1))
-
-
-
-
+- [skip ci] v21.6.77 ([4e07bf1](https://github.com/WTW-IM/es-components/commit/4e07bf1))
 
 ## <small>21.6.77-pre-prod.4 (2021-11-11)</small>
 

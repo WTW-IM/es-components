@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.82 (2022-01-31)</small>
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
 ## <small>21.6.82-pre-prod.0 (2022-01-31)</small>
 
 * Merge pull request #602 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([5d1291d](https://github.com/WTW-IM/es-components/commit/5d1291d)), closes [#602](https://github.com/WTW-IM/es-components/issues/602)

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -15,9 +15,12 @@ const StyledDrawer = styled.div`
 
 const UnstyledDrawer = styled.div``;
 
+const simpleSetsEqual = (set1, set2) =>
+  set1.size === set2.size && [...set1].every(item => set2.has(item));
+
 function Drawer(props) {
   const {
-    activeKeys,
+    activeKeys: activeKeysProp,
     children,
     closedIconName,
     isAccordion,
@@ -27,21 +30,35 @@ function Drawer(props) {
     ...other
   } = props;
 
+  const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
+
   const setActiveKey = useCallback(
     key => {
-      const isOpen = Boolean(activeKeys.find(k => k === key));
+      const isOpen = activeKeys.includes(key);
+      let newKeys = isOpen
+        ? activeKeys.filter(k => k !== key)
+        : [...activeKeys, key];
 
-      if (isAccordion) {
-        onActiveKeysChanged(isOpen ? [] : [key]);
-        return;
-      }
+      if (isAccordion) newKeys = isOpen ? [] : [key];
 
-      onActiveKeysChanged(
-        isOpen ? activeKeys.filter(k => k !== key) : [...activeKeys, key]
-      );
+      setActiveKeys(Array.from(new Set(newKeys)));
     },
     [isAccordion, activeKeys]
   );
+
+  useEffect(() => {
+    setActiveKeys(oldActiveKeys => {
+      const oldKeysSet = new Set(oldActiveKeys);
+      const newKeysSet = new Set(activeKeysProp);
+      return simpleSetsEqual(oldKeysSet, newKeysSet)
+        ? oldActiveKeys
+        : Array.from(newKeysSet);
+    });
+  }, [activeKeysProp]);
+
+  useEffect(() => {
+    onActiveKeysChanged(activeKeys);
+  }, [onActiveKeysChanged, activeKeys]);
 
   const DrawerContainer = defaultStyles ? StyledDrawer : UnstyledDrawer;
 
@@ -75,7 +92,7 @@ Drawer.propTypes = {
 };
 
 Drawer.defaultProps = {
-  activeKeys: [],
+  activeKeys: undefined,
   isAccordion: false,
   closedIconName: 'add',
   openedIconName: 'minus',

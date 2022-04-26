@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Heading from '../heading/Heading';
 import { DrawerContext } from './DrawerContext';
@@ -46,15 +46,30 @@ const PanelIcon = styled(props => {
   top: -2px;
 `;
 
-const PanelBody = styled(DrawerItemBody)`
-  background-color: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.gray9};
+const styledDrawerItemBody = () => {
+  const panelBodyStyle = css`
+    background-color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.gray9};
 
-  > div {
-    border-bottom: 4px solid ${props => props.theme.colors.gray3};
-    padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
-  }
-`;
+    > div {
+      border-bottom: 4px solid ${props => props.theme.colors.gray3};
+      padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
+    }
+  `;
+  const styledBody = styled(DrawerItemBody);
+
+  // handle styled-components v5
+  if (styledBody.withConfig)
+    return styled(DrawerItemBody).withConfig({
+      shouldForwardProp: prop => prop !== 'noPadding'
+    })`
+      ${panelBodyStyle}
+    `;
+
+  return styledBody`${panelBodyStyle}`;
+};
+
+const PanelBody = styledDrawerItemBody();
 
 const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   const {
@@ -108,16 +123,13 @@ DrawerPanel.propTypes = {
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   /** Set desired aria-level for heading */
-  headingLevel: Heading.propTypes.level,
-  /* @ignore@ */
-  panelKey: PropTypes.string
+  headingLevel: Heading.propTypes.level
 };
 
 DrawerPanel.defaultProps = {
   noPadding: false,
   titleAside: undefined,
-  headingLevel: 2,
-  panelKey: undefined
+  headingLevel: 2
 };
 
 export default DrawerPanel;

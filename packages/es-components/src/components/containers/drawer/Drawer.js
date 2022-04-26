@@ -1,8 +1,9 @@
-import React, { Children, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { DrawerContext } from './DrawerContext';
+import { DrawerItem, DrawerItemBody, DrawerItemOpener } from './DrawerItem';
 import DrawerPanel from './DrawerPanel';
 
 const StyledDrawer = styled.div`
@@ -12,6 +13,8 @@ const StyledDrawer = styled.div`
   margin-bottom: 25px;
 `;
 
+const UnstyledDrawer = styled.div``;
+
 function Drawer(props) {
   const {
     activeKeys,
@@ -20,48 +23,33 @@ function Drawer(props) {
     isAccordion,
     onActiveKeysChanged,
     openedIconName,
+    defaultStyles,
     ...other
   } = props;
 
   const setActiveKey = useCallback(
-    panelKey => {
-      const isOpen = Boolean(activeKeys.find(k => k === panelKey));
+    key => {
+      const isOpen = Boolean(activeKeys.find(k => k === key));
 
       if (isAccordion) {
-        onActiveKeysChanged(isOpen ? [] : [panelKey]);
+        onActiveKeysChanged(isOpen ? [] : [key]);
         return;
       }
 
       onActiveKeysChanged(
-        isOpen
-          ? activeKeys.filter(k => k !== panelKey)
-          : [...activeKeys, panelKey]
+        isOpen ? activeKeys.filter(k => k !== key) : [...activeKeys, key]
       );
     },
     [isAccordion, activeKeys]
   );
 
+  const DrawerContainer = defaultStyles ? StyledDrawer : UnstyledDrawer;
+
   return (
     <DrawerContext.Provider
       value={{ openedIconName, closedIconName, activeKeys, setActiveKey }}
     >
-      <StyledDrawer {...other}>
-        {Children.map(children, (child, index) => {
-          if (child) {
-            // If there is no key provided, use the panel order as default key
-            const key = (child && child.key) || String(index + 1);
-
-            const childProps = {
-              ...child.props,
-              panelKey: key,
-              key
-            };
-
-            return React.cloneElement(child, childProps);
-          }
-          return null;
-        })}
-      </StyledDrawer>
+      <DrawerContainer {...other}>{children}</DrawerContainer>
     </DrawerContext.Provider>
   );
 }
@@ -81,7 +69,9 @@ Drawer.propTypes = {
   /** Function called when changing active keys */
   onActiveKeysChanged: PropTypes.func.isRequired,
   /** Override the default minus icon with another OE icon name */
-  openedIconName: PropTypes.string
+  openedIconName: PropTypes.string,
+  /** Include default container styles */
+  defaultStyles: PropTypes.bool
 };
 
 Drawer.defaultProps = {
@@ -89,9 +79,13 @@ Drawer.defaultProps = {
   isAccordion: false,
   closedIconName: 'add',
   openedIconName: 'minus',
-  children: undefined
+  children: undefined,
+  defaultStyles: true
 };
 
 Drawer.Panel = DrawerPanel;
+Drawer.Item = DrawerItem;
+Drawer.ItemOpener = DrawerItemOpener;
+Drawer.ItemBody = DrawerItemBody;
 
 export default Drawer;

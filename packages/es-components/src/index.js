@@ -15,7 +15,13 @@ export {
   InlineMessage,
   Message
 } from './components/containers/notification/Message';
+
 export Drawer from './components/containers/drawer/Drawer';
+export {
+  useDrawerItemContext,
+  DrawerItemContext
+} from './components/containers/drawer/DrawerItem';
+
 export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';
 export Popover from './components/containers/popover/Popover';

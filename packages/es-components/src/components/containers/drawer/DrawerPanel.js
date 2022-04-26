@@ -1,15 +1,15 @@
-import React, {
-  useImperativeHandle,
-  useRef,
-  useContext,
-  useCallback
-} from 'react';
+import React, { useImperativeHandle, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AnimateHeight from 'react-animate-height';
 
 import Heading from '../heading/Heading';
 import { DrawerContext } from './DrawerContext';
+import {
+  useDrawerItemContext,
+  DrawerItem,
+  DrawerItemBody,
+  DrawerItemOpener
+} from './DrawerItem';
 import Icon from '../../base/icons/Icon';
 import useUniqueId from '../../util/useUniqueId';
 
@@ -36,15 +36,17 @@ const PanelButton = styled.button`
   }
 `;
 
-const PanelIcon = styled(Icon)`
+const PanelIcon = styled(props => {
+  const { open } = useDrawerItemContext();
+  const { openedIconName, closedIconName } = useContext(DrawerContext);
+  return <Icon name={open ? openedIconName : closedIconName} {...props} />;
+})`
   margin-right: 0.4em;
   position: relative;
   top: -2px;
 `;
 
-const PanelBody = styled(({ noPadding, ...rest }) => (
-  <AnimateHeight {...rest} />
-))`
+const PanelBody = styled(DrawerItemBody)`
   background-color: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.gray9};
 
@@ -61,7 +63,6 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
     title,
     titleAside,
     headingLevel,
-    panelKey,
     ...other
   } = props;
 
@@ -69,47 +70,28 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   useImperativeHandle(ref, () => ({
     focusHeaderButton: () => buttonRef.current.focus()
   }));
-  const {
-    openedIconName,
-    closedIconName,
-    activeKeys,
-    setActiveKey
-  } = useContext(DrawerContext);
-  const openerClicked = useCallback(() => setActiveKey(panelKey), [
-    setActiveKey,
-    panelKey
-  ]);
-  const headingAriaId = `${useUniqueId(other.id)}-heading`;
-  const regionAriaId = `${useUniqueId(other.id)}-region`;
-  const opened = Boolean(activeKeys.find(activeKey => activeKey === panelKey));
+  const panelId = useUniqueId(other.id);
+  const headingAriaId = `${panelId}-heading`;
 
   return (
-    <PanelWrapper {...other}>
-      <div id={headingAriaId} role="heading" aria-level={headingLevel}>
-        <PanelButton
-          aria-expanded={opened}
-          aria-controls={regionAriaId}
-          ref={buttonRef}
-          onClick={openerClicked}
-        >
-          <span>
-            <PanelIcon name={opened ? openedIconName : closedIconName} />
-            {title}
-          </span>
-          {titleAside && <aside>{titleAside}</aside>}
-        </PanelButton>
-      </div>
-      <PanelBody
-        aria-labelledby={headingAriaId}
-        duration={300}
-        height={opened ? 'auto' : 0}
-        id={regionAriaId}
-        noPadding={noPadding}
-        role="region"
-      >
-        {children}
-      </PanelBody>
-    </PanelWrapper>
+    <DrawerItem id={panelId}>
+      <PanelWrapper {...other}>
+        <div id={headingAriaId} role="heading" aria-level={headingLevel}>
+          <DrawerItemOpener>
+            <PanelButton ref={buttonRef}>
+              <span>
+                <PanelIcon />
+                {title}
+              </span>
+              {titleAside && <aside>{titleAside}</aside>}
+            </PanelButton>
+          </DrawerItemOpener>
+        </div>
+        <PanelBody aria-labelledby={headingAriaId} noPadding={noPadding}>
+          {children}
+        </PanelBody>
+      </PanelWrapper>
+    </DrawerItem>
   );
 });
 

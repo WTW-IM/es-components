@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { Children, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -23,45 +23,38 @@ function Drawer(props) {
     ...other
   } = props;
 
-  function onItemClick(key) {
-    let nextActiveKeys = [...activeKeys];
+  const setActiveKey = useCallback(
+    panelKey => {
+      const isOpen = Boolean(activeKeys.find(k => k === panelKey));
 
-    if (isAccordion) {
-      nextActiveKeys = nextActiveKeys[0] === key ? [] : [key];
-    } else {
-      const index = nextActiveKeys.indexOf(key);
-      const isOpen = index > -1;
-
-      if (isOpen) {
-        nextActiveKeys.splice(index, 1);
-      } else {
-        nextActiveKeys.push(key);
+      if (isAccordion) {
+        onActiveKeysChanged(isOpen ? [] : [panelKey]);
+        return;
       }
-    }
 
-    onActiveKeysChanged(nextActiveKeys);
-  }
+      onActiveKeysChanged(
+        isOpen
+          ? activeKeys.filter(k => k !== panelKey)
+          : [...activeKeys, panelKey]
+      );
+    },
+    [isAccordion, activeKeys]
+  );
 
   return (
-    <DrawerContext.Provider value={{ openedIconName, closedIconName }}>
+    <DrawerContext.Provider
+      value={{ openedIconName, closedIconName, activeKeys, setActiveKey }}
+    >
       <StyledDrawer {...other}>
         {Children.map(children, (child, index) => {
           if (child) {
             // If there is no key provided, use the panel order as default key
             const key = (child && child.key) || String(index + 1);
 
-            let isOpen = false;
-            if (isAccordion) {
-              isOpen = activeKeys[0] === key;
-            } else {
-              isOpen = activeKeys.indexOf(key) > -1;
-            }
-
             const childProps = {
               ...child.props,
-              key,
-              isOpen,
-              onItemClick: () => onItemClick(key)
+              panelKey: key,
+              key
             };
 
             return React.cloneElement(child, childProps);

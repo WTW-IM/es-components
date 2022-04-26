@@ -1,8 +1,12 @@
-import React, { useImperativeHandle, useRef } from 'react';
+import React, {
+  useImperativeHandle,
+  useRef,
+  useContext,
+  useCallback
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AnimateHeight from 'react-animate-height';
-import { noop } from 'lodash';
 
 import Heading from '../heading/Heading';
 import { DrawerContext } from './DrawerContext';
@@ -53,12 +57,11 @@ const PanelBody = styled(({ noPadding, ...rest }) => (
 const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   const {
     children,
-    isOpen,
     noPadding,
-    onItemClick,
     title,
     titleAside,
     headingLevel,
+    panelKey,
     ...other
   } = props;
 
@@ -66,21 +69,31 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   useImperativeHandle(ref, () => ({
     focusHeaderButton: () => buttonRef.current.focus()
   }));
-  const { openedIconName, closedIconName } = React.useContext(DrawerContext);
+  const {
+    openedIconName,
+    closedIconName,
+    activeKeys,
+    setActiveKey
+  } = useContext(DrawerContext);
+  const openerClicked = useCallback(() => setActiveKey(panelKey), [
+    setActiveKey,
+    panelKey
+  ]);
   const headingAriaId = `${useUniqueId(other.id)}-heading`;
   const regionAriaId = `${useUniqueId(other.id)}-region`;
+  const opened = Boolean(activeKeys.find(activeKey => activeKey === panelKey));
 
   return (
     <PanelWrapper {...other}>
       <div id={headingAriaId} role="heading" aria-level={headingLevel}>
         <PanelButton
-          aria-expanded={isOpen}
+          aria-expanded={opened}
           aria-controls={regionAriaId}
           ref={buttonRef}
-          onClick={() => onItemClick()}
+          onClick={openerClicked}
         >
           <span>
-            <PanelIcon name={isOpen ? openedIconName : closedIconName} />
+            <PanelIcon name={opened ? openedIconName : closedIconName} />
             {title}
           </span>
           {titleAside && <aside>{titleAside}</aside>}
@@ -89,7 +102,7 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
       <PanelBody
         aria-labelledby={headingAriaId}
         duration={300}
-        height={isOpen ? 'auto' : 0}
+        height={opened ? 'auto' : 0}
         id={regionAriaId}
         noPadding={noPadding}
         role="region"
@@ -110,22 +123,19 @@ DrawerPanel.propTypes = {
   ]).isRequired,
   /** Aside text/content displayed on the right side of the panel title */
   titleAside: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  /** @ignore */
-  isOpen: PropTypes.bool,
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   /** Set desired aria-level for heading */
   headingLevel: Heading.propTypes.level,
-  /** @ignore */
-  onItemClick: PropTypes.func
+  /* @ignore@ */
+  panelKey: PropTypes.string
 };
 
 DrawerPanel.defaultProps = {
-  isOpen: false,
   noPadding: false,
   titleAside: undefined,
   headingLevel: 2,
-  onItemClick: noop
+  panelKey: undefined
 };
 
 export default DrawerPanel;

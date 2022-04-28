@@ -16,11 +16,11 @@ export {
   Message
 } from './components/containers/notification/Message';
 
-export Drawer from './components/containers/drawer/Drawer';
 export {
+  Drawer,
   useDrawerItemContext,
   DrawerItemContext
-} from './components/containers/drawer/DrawerItem';
+} from './components/containers/drawer/Drawer';
 
 export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';

@@ -20,29 +20,50 @@ export const DrawerItemContext = createContext({
 
 export const useDrawerItemContext = () => useContext(DrawerItemContext);
 
-export const DrawerItem = ({ id, open: openProp, ...props }) => {
-  const { activeKeys, setActiveKey } = useContext(DrawerContext);
+export const DrawerItem = ({ id, notifyKey, open: openProp, ...props }) => {
+  const {
+    activeKeys,
+    toggleActiveKey,
+    setActiveKey,
+    unsetActiveKey
+  } = useContext(DrawerContext);
   const itemId = useUniqueId(id);
-  const toggleOpen = useCallback(() => setActiveKey(itemId), [
+  const toggleOpen = useCallback(() => toggleActiveKey(itemId), [
     itemId,
-    setActiveKey
+    toggleActiveKey
   ]);
   const [open, setOpen] = useState(activeKeys.includes(itemId));
   const [itemContext, setItemContext] = useState({ open, itemId, toggleOpen });
 
-  useEffect(() => {
-    const newOpen = activeKeys.includes(itemId);
-    setOpen(newOpen);
-  }, [activeKeys]);
+  useEffect(
+    function setOpenFromActiveKeys() {
+      const newOpen = activeKeys.includes(itemId);
+      setOpen(newOpen);
+    },
+    [activeKeys]
+  );
 
-  useEffect(() => {
-    if (openProp === open) return;
-    setActiveKey(itemId);
-  }, [openProp]);
+  useEffect(
+    function setOpenFromOpenProp() {
+      (openProp ? setActiveKey : unsetActiveKey)(itemId);
+    },
+    [openProp]
+  );
 
-  useEffect(() => {
-    setItemContext({ open, itemId, toggleOpen });
-  }, [open, itemId, toggleOpen]);
+  useEffect(
+    function notifyParent() {
+      if (!notifyKey) return;
+      notifyKey(itemId);
+    },
+    [notifyKey]
+  );
+
+  useEffect(
+    function setChangedContext() {
+      setItemContext({ open, itemId, toggleOpen });
+    },
+    [open, itemId, toggleOpen]
+  );
 
   return <DrawerItemContext.Provider {...props} value={itemContext} />;
 };
@@ -50,13 +71,18 @@ export const DrawerItem = ({ id, open: openProp, ...props }) => {
 DrawerItem.propTypes = {
   /** Set the drawer to open or closed (true/false) */
   open: PropTypes.bool,
+
+  // INTERNAL PROPS
   /** @ignore@ */
-  id: PropTypes.string
+  id: PropTypes.string,
+  /** @ignore */
+  notifyKey: PropTypes.func
 };
 
 DrawerItem.defaultProps = {
   open: false,
-  id: undefined
+  id: undefined,
+  notifyKey: undefined
 };
 
 export const DrawerItemBody = props => {

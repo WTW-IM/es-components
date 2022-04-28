@@ -61,7 +61,10 @@ const styledDrawerItemBody = () => {
   // handle styled-components v5
   if (styledBody.withConfig)
     return styled(DrawerItemBody).withConfig({
-      shouldForwardProp: prop => prop !== 'noPadding'
+      shouldForwardProp: prop =>
+        !['noPadding', 'notifyKey'].some(
+          disallowedProp => prop === disallowedProp
+        )
     })`
       ${panelBodyStyle}
     `;
@@ -78,6 +81,9 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
     title,
     titleAside,
     headingLevel,
+    panelKey,
+    open,
+    notifyKey,
     ...other
   } = props;
 
@@ -85,11 +91,17 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   useImperativeHandle(ref, () => ({
     focusHeaderButton: () => buttonRef.current.focus()
   }));
-  const panelId = useUniqueId(other.id);
+  const panelId = useUniqueId(panelKey || other.id);
   const headingAriaId = `${panelId}-heading`;
 
+  const itemProps = {
+    id: panelId,
+    open,
+    notifyKey
+  };
+
   return (
-    <DrawerItem id={panelId}>
+    <DrawerItem {...itemProps}>
       <PanelWrapper {...other}>
         <div id={headingAriaId} role="heading" aria-level={headingLevel}>
           <DrawerItemOpener>
@@ -123,13 +135,23 @@ DrawerPanel.propTypes = {
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   /** Set desired aria-level for heading */
-  headingLevel: Heading.propTypes.level
+  headingLevel: Heading.propTypes.level,
+  open: PropTypes.bool,
+
+  // INTERNAL PROPS
+  /** @ignore */
+  panelKey: PropTypes.string,
+  /** @ignore */
+  notifyKey: PropTypes.func
 };
 
 DrawerPanel.defaultProps = {
   noPadding: false,
   titleAside: undefined,
-  headingLevel: 2
+  headingLevel: 2,
+  panelKey: undefined,
+  notifyKey: undefined,
+  open: false
 };
 
 export default DrawerPanel;

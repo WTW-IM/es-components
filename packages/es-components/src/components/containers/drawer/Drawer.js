@@ -49,7 +49,7 @@ export function Drawer(props) {
     ...other
   } = props;
 
-  const [activeKeys, setActiveKeys] = useState([]);
+  const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
 
   const setActiveKey = useCallback(
     key =>
@@ -75,8 +75,6 @@ export function Drawer(props) {
     [isAccordion]
   );
 
-  const [possibleKeys, setPossibleKeys] = useState({});
-
   const [drawerState, setDrawerState] = useState({
     openedIconName,
     closedIconName,
@@ -85,32 +83,17 @@ export function Drawer(props) {
     unsetActiveKey,
     toggleActiveKey
   });
-  const [activeKeysPropState, setActiveKeysPropState] = useState(
-    activeKeysProp || []
-  );
 
   useEffect(() => {
-    setActiveKeysPropState(oldPropState => {
-      const newProp = isAccordion
+    if (!activeKeysProp) return;
+
+    setActiveKeys(oldKeys => {
+      const newKeys = isAccordion
         ? activeKeysProp?.slice(0, 1)
         : activeKeysProp;
-      return simpleArraysEqual(oldPropState, newProp) ? oldPropState : newProp;
+      return simpleArraysEqual(oldKeys, newKeys) ? oldKeys : newKeys;
     });
   }, [activeKeysProp, isAccordion]);
-
-  useEffect(
-    function processActiveKeysProp() {
-      (activeKeysPropState || [])
-        .map(
-          key =>
-            possibleKeys[key] ||
-            Object.values(possibleKeys).find(val => val === key)
-        )
-        .filter(Boolean)
-        .forEach(setActiveKey);
-    },
-    [possibleKeys, activeKeysPropState, setActiveKey]
-  );
 
   useEffect(() => {
     onActiveKeysChanged(activeKeys);
@@ -140,27 +123,13 @@ export function Drawer(props) {
     <DrawerContext.Provider value={drawerState}>
       <DrawerContainer {...other}>
         {React.Children.map(children, (child, ind) => {
-          if (!child) return child;
+          if (!child || child.type !== DrawerPanel) return child;
 
-          const newChildProps = { ...child.props };
           const childKey = child.key;
           const activeIndex = `${ind + 1}`;
-          const activateKey = childKey || activeIndex;
-          const needsActivated =
-            activeKeysPropState?.includes(activateKey) &&
-            !possibleKeys[activateKey];
+          const panelKey = childKey || activeIndex;
 
-          if (childKey) {
-            newChildProps.panelKey = childKey;
-          }
-
-          if (needsActivated) {
-            newChildProps.notifyKey = id => {
-              setPossibleKeys(oldKeys => ({ ...oldKeys, [activateKey]: id }));
-            };
-          }
-
-          return React.cloneElement(child, newChildProps);
+          return React.cloneElement(child, { ...child.props, panelKey });
         })}
       </DrawerContainer>
     </DrawerContext.Provider>

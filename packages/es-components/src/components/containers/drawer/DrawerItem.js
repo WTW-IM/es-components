@@ -20,7 +20,7 @@ export const DrawerItemContext = createContext({
 
 export const useDrawerItemContext = () => useContext(DrawerItemContext);
 
-export const DrawerItem = ({ id, notifyKey, open: openProp, ...props }) => {
+export const DrawerItem = ({ id, panelKey, open: openProp, ...props }) => {
   const {
     activeKeys,
     toggleActiveKey,
@@ -28,16 +28,17 @@ export const DrawerItem = ({ id, notifyKey, open: openProp, ...props }) => {
     unsetActiveKey
   } = useContext(DrawerContext);
   const itemId = useUniqueId(id);
-  const toggleOpen = useCallback(() => toggleActiveKey(itemId), [
-    itemId,
+  const itemKey = useUniqueId(panelKey);
+  const toggleOpen = useCallback(() => toggleActiveKey(itemKey), [
+    itemKey,
     toggleActiveKey
   ]);
-  const [open, setOpen] = useState(activeKeys.includes(itemId));
-  const [itemContext, setItemContext] = useState({ open, itemId, toggleOpen });
+  const [open, setOpen] = useState(activeKeys.includes(itemKey));
+  const [itemContext, setItemContext] = useState({ open, itemKey, toggleOpen });
 
   useEffect(
     function setOpenFromActiveKeys() {
-      const newOpen = activeKeys.includes(itemId);
+      const newOpen = activeKeys.includes(itemKey);
       setOpen(newOpen);
     },
     [activeKeys]
@@ -45,17 +46,11 @@ export const DrawerItem = ({ id, notifyKey, open: openProp, ...props }) => {
 
   useEffect(
     function setOpenFromOpenProp() {
-      (openProp ? setActiveKey : unsetActiveKey)(itemId);
+      if (openProp === undefined) return;
+
+      (openProp ? setActiveKey : unsetActiveKey)(itemKey);
     },
     [openProp]
-  );
-
-  useEffect(
-    function notifyParent() {
-      if (!notifyKey) return;
-      notifyKey(itemId);
-    },
-    [notifyKey]
   );
 
   useEffect(
@@ -76,13 +71,13 @@ DrawerItem.propTypes = {
   /** @ignore@ */
   id: PropTypes.string,
   /** @ignore */
-  notifyKey: PropTypes.func
+  panelKey: PropTypes.string
 };
 
 DrawerItem.defaultProps = {
-  open: false,
+  open: undefined,
   id: undefined,
-  notifyKey: undefined
+  panelKey: undefined
 };
 
 export const DrawerItemBody = props => {

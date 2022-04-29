@@ -160,8 +160,8 @@ configuration you need. The primary requirement for this setup is that
 everything is contained within `Drawer.Item`. You can manually set a drawer item
 to be open or closed using the `open` prop.
 
-> | ⚠️ WARNING: the `activeKeys` prop does not work reliably with Free-Form Drawers! Use the `open` prop instead. |
-> | ------------------------------------------------------------------------------------------------------------- |
+> | ⚠️WARNING! | The `activeKeys` prop does not work with Free-Form Drawers! It only works with Drawer.Panel drawers. Use the `open` prop instead. |
+> | ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
 
 #### **Drawer.ItemOpener**
 
@@ -193,13 +193,19 @@ const buttonOptions = ['hello', 'world', 'one', 'more', 'time'];
 const FreeformExample = () => {
   const [currentValue, setCurrentValue] = React.useState(0);
   const [backwardsValue, setBackwardsValue] = React.useState(0);
-  const [activeKeys, setActiveKeys] = React.useState([]);
+  const [drawerOneOpen, setDrawerOneOpen] = React.useState(false);
+  const [drawerTwoOpen, setDrawerTwoOpen] = React.useState(true);
   const onButtonClick = () => {
     let newValue = currentValue + 1;
     if (newValue >= buttonOptions.length) {
       newValue = 0;
     }
-    setActiveKeys((oldKeys) => (oldKeys.length ? [] : ['2']));
+    setDrawerOneOpen((oldOpen) => {
+      const newOpen = !oldOpen;
+      setDrawerTwoOpen(newOpen);
+      return newOpen;
+    });
+
     setCurrentValue(newValue);
   };
 
@@ -208,11 +214,12 @@ const FreeformExample = () => {
     if (newValue < 0) {
       newValue = buttonOptions.length - 1;
     }
+    setDrawerTwoOpen((oldOpen) => !oldOpen);
     setBackwardsValue(newValue);
   };
 
   return (
-    <Drawer isAccordion={true} useDefaultStyles={false}>
+    <Drawer useDefaultStyles={false}>
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -223,7 +230,7 @@ const FreeformExample = () => {
       `,
         }}
       ></style>
-      <h2>This is a drawer, and it has the "isAccordion" prop set!</h2>
+      <h2>This is a drawer!</h2>
       <Drawer.Item>
         <h3>This is a single Drawer Item!</h3>
         <table className="drawer-table">
@@ -237,7 +244,7 @@ const FreeformExample = () => {
                     id="first-opener"
                     onClick={onButtonClick}
                   >
-                    Click here to open and close the drawer!
+                    Click here to open and close both drawers!
                   </button>
                 </Drawer.ItemOpener>
               </td>
@@ -253,6 +260,31 @@ const FreeformExample = () => {
                 >
                   <p>Hello and welcome to the revealed Drawer content!</p>
                   <p>We hope it is everything you dreamed of and more!</p>
+                  <Drawer isAccordion>
+                    <h4>Hello! I'm another drawer! I'm an accordion!</h4>
+                    <div>
+                      <Drawer.Item>
+                        <Drawer.ItemOpener>
+                          <p style={{ color: 'blue' }}>Click me to see more!</p>
+                        </Drawer.ItemOpener>
+                        <Drawer.ItemBody>
+                          <p>Hello! I'm more!</p>
+                        </Drawer.ItemBody>
+                      </Drawer.Item>
+                    </div>
+                    <div>
+                      <Drawer.Item>
+                        <Drawer.ItemOpener>
+                          <p style={{ color: 'blue' }}>
+                            Click me to see something else!
+                          </p>
+                        </Drawer.ItemOpener>
+                        <Drawer.ItemBody>
+                          <p>Hello! I'm sure something else!</p>
+                        </Drawer.ItemBody>
+                      </Drawer.Item>
+                    </div>
+                  </Drawer>
                 </Drawer.ItemBody>
               </td>
               <td>
@@ -262,7 +294,7 @@ const FreeformExample = () => {
           </tbody>
         </table>
       </Drawer.Item>
-      <Drawer.Item open>
+      <Drawer.Item open={drawerTwoOpen}>
         <h3>This is another Drawer Item!</h3>
         <table className="drawer-table">
           <tbody>

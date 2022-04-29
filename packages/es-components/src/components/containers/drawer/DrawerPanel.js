@@ -62,7 +62,7 @@ const styledDrawerItemBody = () => {
   if (styledBody.withConfig)
     return styled(DrawerItemBody).withConfig({
       shouldForwardProp: prop =>
-        !['noPadding', 'notifyKey'].some(
+        !['noPadding', 'panelKey'].some(
           disallowedProp => prop === disallowedProp
         )
     })`
@@ -83,7 +83,6 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
     headingLevel,
     panelKey,
     open,
-    notifyKey,
     ...other
   } = props;
 
@@ -91,13 +90,13 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   useImperativeHandle(ref, () => ({
     focusHeaderButton: () => buttonRef.current.focus()
   }));
-  const panelId = useUniqueId(panelKey || other.id);
+  const panelId = useUniqueId(other.id);
   const headingAriaId = `${panelId}-heading`;
 
   const itemProps = {
     id: panelId,
-    open,
-    notifyKey
+    panelKey,
+    open
   };
 
   return (
@@ -140,9 +139,7 @@ DrawerPanel.propTypes = {
 
   // INTERNAL PROPS
   /** @ignore */
-  panelKey: PropTypes.string,
-  /** @ignore */
-  notifyKey: PropTypes.func
+  panelKey: PropTypes.string
 };
 
 DrawerPanel.defaultProps = {
@@ -150,8 +147,7 @@ DrawerPanel.defaultProps = {
   titleAside: undefined,
   headingLevel: 2,
   panelKey: undefined,
-  notifyKey: undefined,
-  open: false
+  open: undefined
 };
 
 export default DrawerPanel;

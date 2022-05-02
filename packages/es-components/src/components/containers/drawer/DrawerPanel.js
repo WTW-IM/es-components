@@ -59,17 +59,14 @@ const styledDrawerItemBody = () => {
   const styledBody = styled(DrawerItemBody);
 
   // handle styled-components v5
-  if (styledBody.withConfig)
-    return styled(DrawerItemBody).withConfig({
-      shouldForwardProp: prop =>
-        !['noPadding', 'panelKey'].some(
-          disallowedProp => prop === disallowedProp
-        )
-    })`
+  styledBody.withConfig = styledBody.withConfig || (() => styledBody);
+
+  return styledBody.withConfig({
+    shouldForwardProp: prop =>
+      !['noPadding', 'panelKey'].some(disallowedProp => prop === disallowedProp)
+  })`
       ${panelBodyStyle}
     `;
-
-  return styledBody`${panelBodyStyle}`;
 };
 
 const PanelBody = styledDrawerItemBody();

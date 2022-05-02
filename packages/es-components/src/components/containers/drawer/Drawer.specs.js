@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup } from '@testing-library/react';
+import { cleanup, waitFor } from '@testing-library/react';
 import { renderWithTheme } from '../../util/test-utils';
 
 import { Drawer } from './Drawer';
@@ -56,13 +56,17 @@ describe('drawer', () => {
 describe('accordion', () => {
   const isAccordion = true;
 
-  it('should only allow one drawer to be opened at a time', () => {
+  it('should only allow one drawer to be opened at a time', async () => {
     const onActiveKeysChanged = jest.fn();
     const { getByText } = renderWithTheme(
       buildDrawer({ isAccordion, onActiveKeysChanged, activeKeys: ['1', '2'] })
     );
 
-    expect(getByText('first')).toBeVisible();
-    expect(getByText('second')).not.toBeVisible();
+    await waitFor(() => {
+      expect(getByText('first')).toBeVisible();
+    });
+    await waitFor(() => {
+      expect(getByText('second')).not.toBeVisible();
+    });
   });
 });

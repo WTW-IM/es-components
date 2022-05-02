@@ -20,20 +20,17 @@ const UnstyledDrawer = styled.div``;
 const simpleArraysEqual = (arr1, arr2) =>
   arr1?.length === arr2?.length && arr1?.every(item => arr2?.includes(item));
 
-const addKey = (key, isAccordion, keysList) => {
+const addKey = (key, keysList) => {
   if (keysList?.includes(key)) return keysList;
 
-  const newKeys = isAccordion
-    ? [key]
-    : [...keysList?.filter(k => k !== key), key];
-
+  const newKeys = [...new Set([key, ...keysList])];
   return newKeys;
 };
 
-const removeKey = (key, isAccordion, keysList) => {
+const removeKey = (key, keysList) => {
   if (!keysList?.includes(key)) return keysList;
 
-  const newKeys = isAccordion ? [] : keysList?.filter(k => k !== key);
+  const newKeys = keysList?.filter(k => k !== key);
   return newKeys;
 };
 
@@ -50,29 +47,34 @@ export function Drawer(props) {
   } = props;
 
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
-
-  const setActiveKey = useCallback(
-    key =>
-      setActiveKeys(oldActiveKeys => addKey(key, isAccordion, oldActiveKeys)),
+  const resetActiveKeys = useCallback(
+    keymaker =>
+      setActiveKeys(oldKeys => {
+        const keys = keymaker(oldKeys);
+        const newKeys = keys.length && isAccordion ? [keys[0]] : keys;
+        return simpleArraysEqual(oldKeys, newKeys) ? oldKeys : newKeys;
+      }),
     [isAccordion]
   );
 
+  const setActiveKey = useCallback(
+    key => resetActiveKeys(oldActiveKeys => addKey(key, oldActiveKeys)),
+    [resetActiveKeys]
+  );
+
   const unsetActiveKey = useCallback(
-    key =>
-      setActiveKeys(oldActiveKeys =>
-        removeKey(key, isAccordion, oldActiveKeys)
-      ),
-    [isAccordion]
+    key => resetActiveKeys(oldActiveKeys => removeKey(key, oldActiveKeys)),
+    [resetActiveKeys]
   );
 
   const toggleActiveKey = useCallback(
     key => {
-      setActiveKeys(oldActiveKeys => {
+      resetActiveKeys(oldActiveKeys => {
         const isOpen = oldActiveKeys.includes(key);
-        return (isOpen ? removeKey : addKey)(key, isAccordion, oldActiveKeys);
+        return (isOpen ? removeKey : addKey)(key, oldActiveKeys);
       });
     },
-    [isAccordion]
+    [resetActiveKeys]
   );
 
   const [drawerState, setDrawerState] = useState({
@@ -87,13 +89,10 @@ export function Drawer(props) {
   useEffect(() => {
     if (!activeKeysProp) return;
 
-    setActiveKeys(oldKeys => {
-      const newKeys = isAccordion
-        ? activeKeysProp?.slice(0, 1)
-        : activeKeysProp;
-      return simpleArraysEqual(oldKeys, newKeys) ? oldKeys : newKeys;
-    });
-  }, [activeKeysProp, isAccordion]);
+    resetActiveKeys(oldKeys =>
+      simpleArraysEqual(oldKeys, activeKeysProp) ? oldKeys : activeKeysProp
+    );
+  }, [activeKeysProp, resetActiveKeys]);
 
   useEffect(() => {
     onActiveKeysChanged(activeKeys);

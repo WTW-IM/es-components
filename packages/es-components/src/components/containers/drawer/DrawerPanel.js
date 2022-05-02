@@ -1,9 +1,8 @@
-import React, { useImperativeHandle, useRef, useContext } from 'react';
+import React, { useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import Heading from '../heading/Heading';
-import { DrawerContext } from './DrawerContext';
 import {
   useDrawerItemContext,
   DrawerItem,
@@ -36,9 +35,8 @@ const PanelButton = styled.button`
   }
 `;
 
-const PanelIcon = styled(props => {
+const PanelIcon = styled(({ openedIconName, closedIconName, ...props }) => {
   const { open } = useDrawerItemContext();
-  const { openedIconName, closedIconName } = useContext(DrawerContext);
   return <Icon name={open ? openedIconName : closedIconName} {...props} />;
 })`
   margin-right: 0.4em;
@@ -80,6 +78,8 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
     headingLevel,
     panelKey,
     open,
+    openedIconName,
+    closedIconName,
     ...other
   } = props;
 
@@ -103,7 +103,10 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
           <DrawerItemOpener>
             <PanelButton ref={buttonRef}>
               <span>
-                <PanelIcon />
+                <PanelIcon
+                  closedIconName={closedIconName}
+                  openedIconName={openedIconName}
+                />
                 {title}
               </span>
               {titleAside && <aside>{titleAside}</aside>}
@@ -136,6 +139,10 @@ DrawerPanel.propTypes = {
 
   // INTERNAL PROPS
   /** @ignore */
+  closedIconName: PropTypes.string,
+  /** @ignore */
+  openedIconName: PropTypes.string,
+  /** @ignore */
   panelKey: PropTypes.string
 };
 
@@ -144,7 +151,9 @@ DrawerPanel.defaultProps = {
   titleAside: undefined,
   headingLevel: 2,
   panelKey: undefined,
-  open: undefined
+  open: undefined,
+  closedIconName: 'add',
+  openedIconName: 'minus'
 };
 
 export default DrawerPanel;

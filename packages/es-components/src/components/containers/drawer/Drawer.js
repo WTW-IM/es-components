@@ -100,21 +100,12 @@ export function Drawer(props) {
 
   useEffect(() => {
     setDrawerState({
-      openedIconName,
-      closedIconName,
       activeKeys,
       setActiveKey,
       unsetActiveKey,
       toggleActiveKey
     });
-  }, [
-    openedIconName,
-    closedIconName,
-    activeKeys,
-    setActiveKey,
-    unsetActiveKey,
-    toggleActiveKey
-  ]);
+  }, [activeKeys, setActiveKey, unsetActiveKey, toggleActiveKey]);
 
   const DrawerContainer = useDefaultStyles ? StyledDrawer : UnstyledDrawer;
 
@@ -128,7 +119,12 @@ export function Drawer(props) {
           const activeIndex = `${ind + 1}`;
           const panelKey = childKey || activeIndex;
 
-          return React.cloneElement(child, { ...child.props, panelKey });
+          return React.cloneElement(child, {
+            ...child.props,
+            openedIconName,
+            closedIconName,
+            panelKey
+          });
         })}
       </DrawerContainer>
     </DrawerContext.Provider>

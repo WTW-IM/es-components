@@ -94,14 +94,14 @@ export const DrawerItemBody = props => {
   );
 };
 
+const noop = () => {
+  // noop
+};
+
 export const DrawerItemOpener = ({ children }) => {
   try {
     const child = React.Children.only(children);
-    const childClick =
-      child?.props?.onClick ||
-      (() => {
-        /* noop */
-      });
+    const childClick = child?.props?.onClick || noop; // do not recreate noop every render
     const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
     const onClick = useCallback(
       ev => {

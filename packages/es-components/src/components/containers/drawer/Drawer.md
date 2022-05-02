@@ -173,8 +173,13 @@ it an `onClick` prop.
 #### **Drawer.ItemBody**
 
 `Drawer.ItemBody` is the sub-component that designates what is to be hidden. (If
-you're separating these values, remember to set `aria-labelledby` on
-`Drawer.ItemBody` to the ID of the element inside your `Drawer.ItemOpener`)
+it's appropriate, remember to set `aria-labelledby` on `Drawer.ItemBody` to the
+ID of the element inside your `Drawer.ItemOpener`. Creating that labeling
+relationship is built in to `Drawer.Panel`, but will likely need to be manually
+established using the free-form Drawer components.
+
+This comes from the `aria-controls`/`aria-labelledby` relationship as
+exemplified by [the `aria-controls` MDN article](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-controls#example).
 
 #### **useDrawerItemContext**
 

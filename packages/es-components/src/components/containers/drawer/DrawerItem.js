@@ -67,6 +67,8 @@ DrawerItem.propTypes = {
   /** Set the drawer to open or closed (true/false) */
   open: PropTypes.bool,
 
+  /** Respond when the item opens or closes */
+
   // INTERNAL PROPS
   /** @ignore@ */
   id: PropTypes.string,

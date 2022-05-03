@@ -3,7 +3,6 @@
 import React from 'react';
 import { waitFor, cleanup } from '@testing-library/react';
 import viaTheme from 'es-components-via-theme';
-import 'jest-styled-components';
 
 import {
   ProgressContainer,

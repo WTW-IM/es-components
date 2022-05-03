@@ -5,7 +5,7 @@ Use `Drawer` and `Drawer.Panel` components to wrap content in collapsable panels
 ```javascript
 class DrawerExample extends React.Component {
   constructor() {
-    this.state = { activeKeys: ['1'] };
+    this.state = { activeKeys: ["1"] };
     this.onActiveKeysChanged = this.onActiveKeysChanged.bind(this);
   }
 
@@ -47,7 +47,7 @@ style, where only one panel can be opened at a time.
 ```javascript
 class DrawerExample extends React.Component {
   constructor() {
-    this.state = { activeKeys: ['1'] };
+    this.state = { activeKeys: ["1"] };
     this.onActiveKeysChanged = this.onActiveKeysChanged.bind(this);
   }
 
@@ -93,11 +93,11 @@ Use the `headingLevel` property to change default level of heading.
 You can customize the `key` property of each Panel; if not specified a default key value will be assigned matching the Panel's numeric position.
 
 ```javascript
-import Icon from '../../base/icons/Icon';
+import Icon from "../../base/icons/Icon";
 
 class DrawerExample extends React.Component {
   constructor() {
-    this.state = { activeKeys: ['second', '3'] };
+    this.state = { activeKeys: ["second", "3"] };
     this.onActiveKeysChanged = this.onActiveKeysChanged.bind(this);
   }
 
@@ -187,14 +187,14 @@ Within `Drawer.Item`, you can use `useDrawerItemContext` to react when the
 drawer is opened and closed.
 
 ```javascript
-import { useDrawerItemContext } from './Drawer.js';
+import { useDrawerItemContext } from "./Drawer.js";
 const DrawerTracker = () => {
   const { open } = useDrawerItemContext();
 
-  return <p>Drawer is {open ? 'open' : 'closed'}!</p>;
+  return <p>Drawer is {open ? "open" : "closed"}!</p>;
 };
 
-const buttonOptions = ['hello', 'world', 'one', 'more', 'time'];
+const buttonOptions = ["hello", "world", "one", "more", "time"];
 const FreeformExample = () => {
   const [currentValue, setCurrentValue] = React.useState(0);
   const [backwardsValue, setBackwardsValue] = React.useState(0);
@@ -260,7 +260,7 @@ const FreeformExample = () => {
                 <Drawer.ItemBody
                   aria-labelledby="first-opener"
                   style={{
-                    boxSizing: 'border-box',
+                    boxSizing: "border-box",
                   }}
                 >
                   <p>Hello and welcome to the revealed Drawer content!</p>
@@ -270,7 +270,7 @@ const FreeformExample = () => {
                     <div>
                       <Drawer.Item>
                         <Drawer.ItemOpener>
-                          <p style={{ color: 'blue' }}>Click me to see more!</p>
+                          <p style={{ color: "blue" }}>Click me to see more!</p>
                         </Drawer.ItemOpener>
                         <Drawer.ItemBody>
                           <p>Hello! I'm more!</p>
@@ -280,7 +280,7 @@ const FreeformExample = () => {
                     <div>
                       <Drawer.Item>
                         <Drawer.ItemOpener>
-                          <p style={{ color: 'blue' }}>
+                          <p style={{ color: "blue" }}>
                             Click me to see something else!
                           </p>
                         </Drawer.ItemOpener>
@@ -317,7 +317,7 @@ const FreeformExample = () => {
               </td>
               <td>
                 A backwards dynamic value:
-                {buttonOptions[backwardsValue].split('').reverse().join('')}
+                {buttonOptions[backwardsValue].split("").reverse().join("")}
               </td>
             </tr>
             <tr>
@@ -331,7 +331,7 @@ const FreeformExample = () => {
                 <Drawer.ItemBody
                   aria-labelledby="second-opener"
                   style={{
-                    boxSizing: 'border-box',
+                    boxSizing: "border-box",
                   }}
                 >
                   <p>Hello and welcome to the other revealed Drawer content!</p>

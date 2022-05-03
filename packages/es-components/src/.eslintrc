@@ -1,7 +1,7 @@
 {
-  "extends": ["exchange-solutions", "plugin:jsx-a11y/recommended", "prettier"],
+  "extends": ["plugin:jsx-a11y/recommended", "prettier"],
   "parser": "babel-eslint",
-  "plugins": ["react", "babel", "jsx-a11y"],
+  "plugins": ["import", "react", "babel", "jsx-a11y"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,

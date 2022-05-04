@@ -1,0 +1,54 @@
+name: Cypress CI
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+  workflow_dispatch:
+env:
+  ES_COMPONENTS_DIR: packages/es-components
+defaults:
+  run:
+    working-directory: packages/es-components
+
+jobs:
+  run-cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          npm ci
+          npx cypress install
+          npm start &
+          npm run wait-for-start
+      - name: Generate Cypress Config
+        run: |
+          echo "$( \
+            jq -s '.[0] * .[1]' cypress.json cypress-ci.json \
+          )" > cypress-ci.json
+
+      - uses: cypress-io/github-action@v2
+        with:
+          working-directory: ${{ env.ES_COMPONENTS_DIR }}
+          config-file: cypress-ci.json
+          install: false
+
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - run: npm run cypressreport
+
+      - name: Create Status check based on merged cypress results
+        if: always()
+        id: process-cypress
+        uses: im-open/process-cypress-test-results@v2.0.5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          results-file: ${{ env.ES_COMPONENTS_DIR }}/raw-results.json
+          report-name: "Cypress ${{ github.run_number }}"
+          create-status-check: true
+          create-pr-comment: true
+          update-comment-if-one-exists: true
+          ignore-test-failures: false
+          timezone: "america/denver"

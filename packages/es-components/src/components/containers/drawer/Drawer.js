@@ -78,8 +78,6 @@ export function Drawer(props) {
   );
 
   const [drawerState, setDrawerState] = useState({
-    openedIconName,
-    closedIconName,
     activeKeys,
     setActiveKey,
     unsetActiveKey,

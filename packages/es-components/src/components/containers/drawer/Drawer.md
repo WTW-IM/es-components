@@ -241,7 +241,12 @@ const FreeformExample = () => {
         <table className="drawer-table">
           <tbody>
             <tr>
-              <td>A dynamic value: {buttonOptions[currentValue]}</td>
+              <td id="first-dynamic-value">
+                A dynamic value:
+                <span style={{ fontWeight: "bold" }}>
+                  {buttonOptions[currentValue]}
+                </span>
+              </td>
               <td>
                 <Drawer.ItemOpener>
                   <button
@@ -259,37 +264,13 @@ const FreeformExample = () => {
                 <p>Click the button to reveal some hidden content below!</p>
                 <Drawer.ItemBody
                   aria-labelledby="first-opener"
+                  id="first-body"
                   style={{
                     boxSizing: "border-box",
                   }}
                 >
                   <p>Hello and welcome to the revealed Drawer content!</p>
                   <p>We hope it is everything you dreamed of and more!</p>
-                  <Drawer isAccordion>
-                    <h4>Hello! I'm another drawer! I'm an accordion!</h4>
-                    <div>
-                      <Drawer.Item>
-                        <Drawer.ItemOpener>
-                          <p style={{ color: "blue" }}>Click me to see more!</p>
-                        </Drawer.ItemOpener>
-                        <Drawer.ItemBody>
-                          <p>Hello! I'm more!</p>
-                        </Drawer.ItemBody>
-                      </Drawer.Item>
-                    </div>
-                    <div>
-                      <Drawer.Item>
-                        <Drawer.ItemOpener>
-                          <p style={{ color: "blue" }}>
-                            Click me to see something else!
-                          </p>
-                        </Drawer.ItemOpener>
-                        <Drawer.ItemBody>
-                          <p>Hello! I'm sure something else!</p>
-                        </Drawer.ItemBody>
-                      </Drawer.Item>
-                    </div>
-                  </Drawer>
                 </Drawer.ItemBody>
               </td>
               <td>
@@ -315,9 +296,11 @@ const FreeformExample = () => {
                   </button>
                 </Drawer.ItemOpener>
               </td>
-              <td>
+              <td id="second-dynamic-value">
                 A backwards dynamic value:
-                {buttonOptions[backwardsValue].split("").reverse().join("")}
+                <span style={{ fontWeight: "bold" }}>
+                  {buttonOptions[backwardsValue].split("").reverse().join("")}
+                </span>
               </td>
             </tr>
             <tr>
@@ -330,6 +313,7 @@ const FreeformExample = () => {
                 </p>
                 <Drawer.ItemBody
                   aria-labelledby="second-opener"
+                  id="second-body"
                   style={{
                     boxSizing: "border-box",
                   }}

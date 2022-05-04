@@ -65,6 +65,7 @@
     "babel-preset-wtw-im": "^2.5.0",
     "bl": "^1.2.3",
     "concurrently": "^6.0.2",
+    "cypress": "^9.6.0",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",

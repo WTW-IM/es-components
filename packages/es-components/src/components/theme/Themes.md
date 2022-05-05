@@ -3,19 +3,15 @@ To apply a theme wrap your root react app component in a `<ThemeProvider theme='
 Example:
 
 ```html
-import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
-
-...
-
-render(
-  <ThemeProvider theme={viaTheme}>
-    <MyComponentOrApp />
-  </ThemeProvider>
+import { ThemeProvider } from 'styled-components'; import viaTheme from
+'es-components-via-theme'; ... render(
+<ThemeProvider theme="{viaTheme}">
+  <MyComponentOrApp />
+</ThemeProvider>
 );
 ```
 
-The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) is applied to all the components in this styleguide. To create your own theme, [copy the theme here](https://github.com/WTW-IM/es-components/blob/master/packages/es-components-via-theme/index.js), modify the values, and supply that object to the `ThemeProvider`.
+The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) is applied to all the components in this styleguide. To create your own theme, [copy the theme here](https://github.com/WTW-IM/es-components/blob/main/packages/es-components-via-theme/index.js), modify the values, and supply that object to the `ThemeProvider`.
 
 ### Theme Colors
 
@@ -54,13 +50,15 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
   <div style="background-color: #ff6310; padding: 1em; margin: .5em; width: 50%"><span style="color:white">colors.advisor</span></div>
 </details>
 
-
 ### Fonts
 
-Our web app font of choice is *Source Sans Pro*. Import it by adding the following to your application:
+Our web app font of choice is _Source Sans Pro_. Import it by adding the following to your application:
 
 ```html
-<link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css" />
+<link
+  rel="stylesheet"
+  href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css"
+/>
 ```
 
 ### Styles
@@ -69,7 +67,7 @@ A small style reset is available to use in your project. This sets a baseline fo
 and allows headings and inputs to properly inherit fonts. To use it, import `StyleReset` and include the
 element anywhere in your app.
 
-*note: if you are using im-screens or the page-chrome web component, you do not need to include this*
+_note: if you are using im-screens or the page-chrome web component, you do not need to include this_
 
 ```html
 import StyleReset from 'es-components';

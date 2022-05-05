@@ -1,9 +1,12 @@
-import React, { Children } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { DrawerContext } from './DrawerContext';
+import { DrawerItem, DrawerItemBody, DrawerItemOpener } from './DrawerItem';
 import DrawerPanel from './DrawerPanel';
+
+export { useDrawerItemContext, DrawerItemContext } from './DrawerItem';
 
 const StyledDrawer = styled.div`
   background-color: ${props => props.theme.colors.white};
@@ -12,63 +15,116 @@ const StyledDrawer = styled.div`
   margin-bottom: 25px;
 `;
 
-function Drawer(props) {
+const UnstyledDrawer = styled.div``;
+
+const simpleArraysEqual = (arr1, arr2) =>
+  arr1?.length === arr2?.length && arr1?.every(item => arr2?.includes(item));
+
+const addKey = (key, keysList) => {
+  if (keysList?.includes(key)) return keysList;
+
+  const newKeys = [...new Set([key, ...keysList])];
+  return newKeys;
+};
+
+const removeKey = (key, keysList) => {
+  if (!keysList?.includes(key)) return keysList;
+
+  const newKeys = keysList?.filter(k => k !== key);
+  return newKeys;
+};
+
+export function Drawer(props) {
   const {
-    activeKeys,
+    activeKeys: activeKeysProp,
     children,
     closedIconName,
     isAccordion,
     onActiveKeysChanged,
     openedIconName,
+    useDefaultStyles,
     ...other
   } = props;
 
-  function onItemClick(key) {
-    let nextActiveKeys = [...activeKeys];
+  const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
+  const resetActiveKeys = useCallback(
+    keymaker =>
+      setActiveKeys(oldKeys => {
+        const keys = keymaker(oldKeys);
+        const newKeys = keys.length && isAccordion ? [keys[0]] : keys;
+        return simpleArraysEqual(oldKeys, newKeys) ? oldKeys : newKeys;
+      }),
+    [isAccordion]
+  );
 
-    if (isAccordion) {
-      nextActiveKeys = nextActiveKeys[0] === key ? [] : [key];
-    } else {
-      const index = nextActiveKeys.indexOf(key);
-      const isOpen = index > -1;
+  const setActiveKey = useCallback(
+    key => resetActiveKeys(oldActiveKeys => addKey(key, oldActiveKeys)),
+    [resetActiveKeys]
+  );
 
-      if (isOpen) {
-        nextActiveKeys.splice(index, 1);
-      } else {
-        nextActiveKeys.push(key);
-      }
-    }
+  const unsetActiveKey = useCallback(
+    key => resetActiveKeys(oldActiveKeys => removeKey(key, oldActiveKeys)),
+    [resetActiveKeys]
+  );
 
-    onActiveKeysChanged(nextActiveKeys);
-  }
+  const toggleActiveKey = useCallback(
+    key => {
+      resetActiveKeys(oldActiveKeys => {
+        const isOpen = oldActiveKeys.includes(key);
+        return (isOpen ? removeKey : addKey)(key, oldActiveKeys);
+      });
+    },
+    [resetActiveKeys]
+  );
+
+  const [drawerState, setDrawerState] = useState({
+    activeKeys,
+    setActiveKey,
+    unsetActiveKey,
+    toggleActiveKey
+  });
+
+  useEffect(() => {
+    if (!activeKeysProp) return;
+
+    resetActiveKeys(oldKeys =>
+      simpleArraysEqual(oldKeys, activeKeysProp) ? oldKeys : activeKeysProp
+    );
+  }, [activeKeysProp, resetActiveKeys]);
+
+  useEffect(() => {
+    onActiveKeysChanged(activeKeys);
+  }, [onActiveKeysChanged, activeKeys]);
+
+  useEffect(() => {
+    setDrawerState({
+      activeKeys,
+      setActiveKey,
+      unsetActiveKey,
+      toggleActiveKey
+    });
+  }, [activeKeys, setActiveKey, unsetActiveKey, toggleActiveKey]);
+
+  const DrawerContainer = useDefaultStyles ? StyledDrawer : UnstyledDrawer;
 
   return (
-    <DrawerContext.Provider value={{ openedIconName, closedIconName }}>
-      <StyledDrawer {...other}>
-        {Children.map(children, (child, index) => {
-          if (child) {
-            // If there is no key provided, use the panel order as default key
-            const key = (child && child.key) || String(index + 1);
+    <DrawerContext.Provider value={drawerState}>
+      <DrawerContainer {...other}>
+        {React.Children.map(children, (child, ind) => {
+          if (!child || child.type !== DrawerPanel) return child;
 
-            let isOpen = false;
-            if (isAccordion) {
-              isOpen = activeKeys[0] === key;
-            } else {
-              isOpen = activeKeys.indexOf(key) > -1;
-            }
+          const childKey = child.key;
+          const activeIndex = `${ind + 1}`;
+          const panelKey = childKey || activeIndex;
 
-            const childProps = {
-              ...child.props,
-              key,
-              isOpen,
-              onItemClick: () => onItemClick(key)
-            };
-
-            return React.cloneElement(child, childProps);
-          }
-          return null;
+          return React.cloneElement(child, {
+            ...child.props,
+            openedIconName,
+            closedIconName,
+            panelKey
+          });
         })}
-      </StyledDrawer>
+      </DrawerContainer>
     </DrawerContext.Provider>
   );
 }
@@ -86,19 +142,26 @@ Drawer.propTypes = {
   /** Only allows one DrawerPanel to be open at a time */
   isAccordion: PropTypes.bool,
   /** Function called when changing active keys */
-  onActiveKeysChanged: PropTypes.func.isRequired,
+  onActiveKeysChanged: PropTypes.func,
   /** Override the default minus icon with another OE icon name */
-  openedIconName: PropTypes.string
+  openedIconName: PropTypes.string,
+  /** Include default container styles */
+  useDefaultStyles: PropTypes.bool
 };
 
 Drawer.defaultProps = {
-  activeKeys: [],
+  activeKeys: undefined,
   isAccordion: false,
   closedIconName: 'add',
   openedIconName: 'minus',
-  children: undefined
+  children: undefined,
+  useDefaultStyles: true,
+  onActiveKeysChanged: () => {
+    // noop
+  }
 };
 
 Drawer.Panel = DrawerPanel;
-
-export default Drawer;
+Drawer.Item = DrawerItem;
+Drawer.ItemOpener = DrawerItemOpener;
+Drawer.ItemBody = DrawerItemBody;

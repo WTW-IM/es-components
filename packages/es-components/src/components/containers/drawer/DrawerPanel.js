@@ -1,11 +1,14 @@
 import React, { useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import AnimateHeight from 'react-animate-height';
-import { noop } from 'lodash';
+import styled, { css } from 'styled-components';
 
 import Heading from '../heading/Heading';
-import { DrawerContext } from './DrawerContext';
+import {
+  useDrawerItemContext,
+  DrawerItem,
+  DrawerItemBody,
+  DrawerItemOpener
+} from './DrawerItem';
 import Icon from '../../base/icons/Icon';
 import useUniqueId from '../../util/useUniqueId';
 
@@ -32,33 +35,51 @@ const PanelButton = styled.button`
   }
 `;
 
-const PanelIcon = styled(Icon)`
+const PanelIcon = styled(({ openedIconName, closedIconName, ...props }) => {
+  const { open } = useDrawerItemContext();
+  return <Icon name={open ? openedIconName : closedIconName} {...props} />;
+})`
   margin-right: 0.4em;
   position: relative;
   top: -2px;
 `;
 
-const PanelBody = styled(({ noPadding, ...rest }) => (
-  <AnimateHeight {...rest} />
-))`
-  background-color: ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.gray9};
+const styledDrawerItemBody = () => {
+  const panelBodyStyle = css`
+    background-color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.gray9};
 
-  > div {
-    border-bottom: 4px solid ${props => props.theme.colors.gray3};
-    padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
-  }
-`;
+    > div {
+      border-bottom: 4px solid ${props => props.theme.colors.gray3};
+      padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
+    }
+  `;
+  const styledBody = styled(DrawerItemBody);
+
+  // handle styled-components v5
+  styledBody.withConfig = styledBody.withConfig || (() => styledBody);
+
+  return styledBody.withConfig({
+    shouldForwardProp: prop =>
+      !['noPadding', 'panelKey'].some(disallowedProp => prop === disallowedProp)
+  })`
+      ${panelBodyStyle}
+    `;
+};
+
+const PanelBody = styledDrawerItemBody();
 
 const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   const {
     children,
-    isOpen,
     noPadding,
-    onItemClick,
     title,
     titleAside,
     headingLevel,
+    panelKey,
+    open,
+    openedIconName,
+    closedIconName,
     ...other
   } = props;
 
@@ -66,37 +87,37 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   useImperativeHandle(ref, () => ({
     focusHeaderButton: () => buttonRef.current.focus()
   }));
-  const { openedIconName, closedIconName } = React.useContext(DrawerContext);
-  const headingAriaId = `${useUniqueId(other.id)}-heading`;
-  const regionAriaId = `${useUniqueId(other.id)}-region`;
+  const panelId = useUniqueId(other.id);
+  const headingAriaId = `${panelId}-heading`;
+
+  const itemProps = {
+    id: panelId,
+    panelKey,
+    open
+  };
 
   return (
-    <PanelWrapper {...other}>
-      <div id={headingAriaId} role="heading" aria-level={headingLevel}>
-        <PanelButton
-          aria-expanded={isOpen}
-          aria-controls={regionAriaId}
-          ref={buttonRef}
-          onClick={() => onItemClick()}
-        >
-          <span>
-            <PanelIcon name={isOpen ? openedIconName : closedIconName} />
-            {title}
-          </span>
-          {titleAside && <aside>{titleAside}</aside>}
-        </PanelButton>
-      </div>
-      <PanelBody
-        aria-labelledby={headingAriaId}
-        duration={300}
-        height={isOpen ? 'auto' : 0}
-        id={regionAriaId}
-        noPadding={noPadding}
-        role="region"
-      >
-        {children}
-      </PanelBody>
-    </PanelWrapper>
+    <DrawerItem {...itemProps}>
+      <PanelWrapper {...other}>
+        <div id={headingAriaId} role="heading" aria-level={headingLevel}>
+          <DrawerItemOpener>
+            <PanelButton ref={buttonRef}>
+              <span>
+                <PanelIcon
+                  closedIconName={closedIconName}
+                  openedIconName={openedIconName}
+                />
+                {title}
+              </span>
+              {titleAside && <aside>{titleAside}</aside>}
+            </PanelButton>
+          </DrawerItemOpener>
+        </div>
+        <PanelBody aria-labelledby={headingAriaId} noPadding={noPadding}>
+          {children}
+        </PanelBody>
+      </PanelWrapper>
+    </DrawerItem>
   );
 });
 
@@ -110,22 +131,29 @@ DrawerPanel.propTypes = {
   ]).isRequired,
   /** Aside text/content displayed on the right side of the panel title */
   titleAside: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  /** @ignore */
-  isOpen: PropTypes.bool,
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   /** Set desired aria-level for heading */
   headingLevel: Heading.propTypes.level,
+  open: PropTypes.bool,
+
+  // INTERNAL PROPS
   /** @ignore */
-  onItemClick: PropTypes.func
+  closedIconName: PropTypes.string,
+  /** @ignore */
+  openedIconName: PropTypes.string,
+  /** @ignore */
+  panelKey: PropTypes.string
 };
 
 DrawerPanel.defaultProps = {
-  isOpen: false,
   noPadding: false,
   titleAside: undefined,
   headingLevel: 2,
-  onItemClick: noop
+  panelKey: undefined,
+  open: undefined,
+  closedIconName: 'add',
+  openedIconName: 'minus'
 };
 
 export default DrawerPanel;

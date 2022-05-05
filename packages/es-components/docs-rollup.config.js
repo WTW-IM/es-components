@@ -1,5 +1,4 @@
 import resolve from 'rollup-plugin-node-resolve';
-import builtins from 'rollup-plugin-node-builtins';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
@@ -22,7 +21,6 @@ export default [
       resolve({
         preferBuiltins: true,
       }),
-      builtins(),
       commonjs({
         include: /node_modules/,
         exclude: 'src/**',

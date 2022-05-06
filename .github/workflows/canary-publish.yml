@@ -2,7 +2,7 @@ name: Deploy a Canary Build
 on:
   workflow_dispatch:
     branches-ignore:
-      - master
+      - main
 jobs:
   deploy_canary:
     name: Build And Deploy Canary Release

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.82-pre-prod.4 (2022-05-09)</small>
+
+* Merge pull request #613 from WTW-IM/drawers-fix ([54d58d8](https://github.com/wtw-im/es-components/commit/54d58d8)), closes [#613](https://github.com/wtw-im/es-components/issues/613)
+
+
+
+
+
 ## <small>21.6.82-pre-prod.3 (2022-05-06)</small>
 
 * Merge pull request #611 from WTW-IM/replace-master-with-main ([d32a212](https://github.com/wtw-im/es-components/commit/d32a212)), closes [#611](https://github.com/wtw-im/es-components/issues/611)

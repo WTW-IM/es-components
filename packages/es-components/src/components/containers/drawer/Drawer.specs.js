@@ -2,28 +2,36 @@
 /* eslint-disable react/prop-types */
 
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { render, cleanup, waitFor, screen } from '@testing-library/react';
-import { renderWithTheme, ThemeComponent } from '../../util/test-utils';
+import { ThemeComponent } from '../../util/test-utils';
 
 import { Drawer, useDrawerItemContext } from './Drawer';
 
-const buildDrawer = props => (
-  <Drawer className="important" {...props}>
-    <Drawer.Panel
-      title="collapse 1"
-      key="1"
-      className="first"
-      titleAside="side text"
-    >
-      first
-    </Drawer.Panel>
-    <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
-      second
-    </Drawer.Panel>
-    <Drawer.Panel title="collapse 3" key="3" className="third">
-      third
-    </Drawer.Panel>
-  </Drawer>
+// Ensure styled panels always work
+const StyledFirstPanel = styled(Drawer.Panel)`
+  background-color: blue;
+`;
+
+const PanelDrawer = props => (
+  <ThemeComponent>
+    <Drawer className="important" {...props}>
+      <StyledFirstPanel
+        title="collapse 1"
+        key="1"
+        className="first"
+        titleAside="side text"
+      >
+        first
+      </StyledFirstPanel>
+      <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
+        second
+      </Drawer.Panel>
+      <Drawer.Panel title="collapse 3" key="3" className="third">
+        third
+      </Drawer.Panel>
+    </Drawer>
+  </ThemeComponent>
 );
 
 beforeEach(cleanup);
@@ -31,8 +39,11 @@ beforeEach(cleanup);
 describe('drawer', () => {
   it('active panel is opened', () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = renderWithTheme(
-      buildDrawer({ onActiveKeysChanged, activeKeys: ['1'] })
+    const { getByText } = render(
+      <PanelDrawer
+        onActiveKeysChanged={onActiveKeysChanged}
+        activeKeys={['1']}
+      />
     );
 
     expect(getByText('first')).toBeVisible();
@@ -42,8 +53,11 @@ describe('drawer', () => {
 
   it('allows multiple panels to be opened at the same time', () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = renderWithTheme(
-      buildDrawer({ onActiveKeysChanged, activeKeys: ['1', '3'] })
+    const { getByText } = render(
+      <PanelDrawer
+        onActiveKeysChanged={onActiveKeysChanged}
+        activeKeys={['1', '3']}
+      />
     );
 
     expect(getByText('first')).toBeVisible();
@@ -53,13 +67,29 @@ describe('drawer', () => {
 });
 
 describe('accordion', () => {
-  const isAccordion = true;
-
   it('should only allow one drawer to be opened at a time', async () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = renderWithTheme(
-      buildDrawer({ isAccordion, onActiveKeysChanged, activeKeys: ['1', '2'] })
+    let theRerender = () => ({});
+    onActiveKeysChanged.mockImplementation(
+      newActiveKeys => (
+        console.log('rerendering!', newActiveKeys),
+        theRerender(
+          <PanelDrawer
+            isAccordion
+            onActiveKeysChanged={onActiveKeysChanged}
+            activeKeys={newActiveKeys}
+          />
+        )
+      )
     );
+    const { getByText, rerender } = render(
+      <PanelDrawer
+        isAccordion
+        onActiveKeysChanged={onActiveKeysChanged}
+        activeKeys={['1', '2']}
+      />
+    );
+    theRerender = rerender;
 
     await waitFor(() => {
       expect(getByText('first')).toBeVisible();

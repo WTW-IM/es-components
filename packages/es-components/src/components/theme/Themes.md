@@ -2,12 +2,16 @@ To apply a theme wrap your root react app component in a `<ThemeProvider theme='
 
 Example:
 
-```html
-import { ThemeProvider } from 'styled-components'; import viaTheme from
-'es-components-via-theme'; ... render(
-<ThemeProvider theme="{viaTheme}">
-  <MyComponentOrApp />
-</ThemeProvider>
+```javascript static
+import { ThemeProvider } from "styled-components";
+import viaTheme from "es-components-via-theme";
+
+// ...
+
+render(
+  <ThemeProvider theme="{viaTheme}">
+    <MyComponentOrApp />
+  </ThemeProvider>
 );
 ```
 
@@ -69,10 +73,10 @@ element anywhere in your app.
 
 _note: if you are using im-screens or the page-chrome web component, you do not need to include this_
 
-```html
-import StyleReset from 'es-components';
+```javascript static
+import StyleReset from "es-components";
 
-...
+// ...
 
 render(
   <>

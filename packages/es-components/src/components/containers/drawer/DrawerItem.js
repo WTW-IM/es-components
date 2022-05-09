@@ -46,7 +46,7 @@ export const DrawerItem = ({ id, panelKey, open: openProp, ...props }) => {
 
   useEffect(
     function setOpenFromOpenProp() {
-      if (openProp === undefined) return;
+      if (typeof openProp === 'undefined') return;
 
       (openProp ? setActiveKey : unsetActiveKey)(itemKey);
     },

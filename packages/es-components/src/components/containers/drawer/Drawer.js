@@ -111,7 +111,12 @@ export function Drawer(props) {
     <DrawerContext.Provider value={drawerState}>
       <DrawerContainer {...other}>
         {React.Children.map(children, (child, ind) => {
-          if (!child || child.type !== DrawerPanel) return child;
+          if (!child) return child;
+
+          const isDrawerPanel =
+            child.type === DrawerPanel ||
+            /*Handle styled-component*/ child.type.target === DrawerPanel;
+          if (!isDrawerPanel) return child;
 
           const childKey = child.key;
           const activeIndex = `${ind + 1}`;

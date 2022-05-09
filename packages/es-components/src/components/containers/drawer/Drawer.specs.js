@@ -2,21 +2,27 @@
 /* eslint-disable react/prop-types */
 
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { render, cleanup, waitFor, screen } from '@testing-library/react';
 import { renderWithTheme, ThemeComponent } from '../../util/test-utils';
 
 import { Drawer, useDrawerItemContext } from './Drawer';
 
+// Ensure styled panels always work
+const StyledFirstPanel = styled(Drawer.Panel)`
+  background-color: blue;
+`;
+
 const buildDrawer = props => (
   <Drawer className="important" {...props}>
-    <Drawer.Panel
+    <StyledFirstPanel
       title="collapse 1"
       key="1"
       className="first"
       titleAside="side text"
     >
       first
-    </Drawer.Panel>
+    </StyledFirstPanel>
     <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
       second
     </Drawer.Panel>

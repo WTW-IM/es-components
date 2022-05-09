@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -46,6 +46,8 @@ export function Drawer(props) {
     ...other
   } = props;
 
+  const keysChangedCallback = useRef(onActiveKeysChanged);
+  keysChangedCallback.current = onActiveKeysChanged;
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
   const resetActiveKeys = useCallback(
     keymaker =>
@@ -93,8 +95,8 @@ export function Drawer(props) {
   }, [activeKeysProp, resetActiveKeys]);
 
   useEffect(() => {
-    onActiveKeysChanged(activeKeys);
-  }, [onActiveKeysChanged, activeKeys]);
+    keysChangedCallback.current(activeKeys);
+  }, [activeKeys]);
 
   useEffect(() => {
     setDrawerState({

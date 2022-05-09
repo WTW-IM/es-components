@@ -96,10 +96,12 @@ export function Drawer(props) {
   useEffect(() => {
     if (!activeKeysProp) return;
 
+    if (simpleArraysEqual(activeKeysProp, activeKeys)) return;
+
     resetActiveKeysCallback.current(oldKeys =>
       simpleArraysEqual(oldKeys, activeKeysProp) ? oldKeys : activeKeysProp
     );
-  }, [activeKeysProp]);
+  }, [activeKeysProp, activeKeys]);
 
   useEffect(() => {
     keysChangedCallback.current(activeKeys);

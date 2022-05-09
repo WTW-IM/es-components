@@ -48,7 +48,9 @@ export function Drawer(props) {
 
   const keysChangedCallback = useRef(onActiveKeysChanged);
   keysChangedCallback.current = onActiveKeysChanged;
+
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
+
   const resetActiveKeys = useCallback(
     keymaker =>
       setActiveKeys(oldKeys => {
@@ -58,26 +60,31 @@ export function Drawer(props) {
       }),
     [isAccordion]
   );
+  const resetActiveKeysCallback = useRef(resetActiveKeys);
+  resetActiveKeysCallback.current = resetActiveKeys;
 
   const setActiveKey = useCallback(
-    key => resetActiveKeys(oldActiveKeys => addKey(key, oldActiveKeys)),
-    [resetActiveKeys]
+    key =>
+      resetActiveKeysCallback.current(oldActiveKeys =>
+        addKey(key, oldActiveKeys)
+      ),
+    []
   );
 
   const unsetActiveKey = useCallback(
-    key => resetActiveKeys(oldActiveKeys => removeKey(key, oldActiveKeys)),
-    [resetActiveKeys]
+    key =>
+      resetActiveKeysCallback.current(oldActiveKeys =>
+        removeKey(key, oldActiveKeys)
+      ),
+    []
   );
 
-  const toggleActiveKey = useCallback(
-    key => {
-      resetActiveKeys(oldActiveKeys => {
-        const isOpen = oldActiveKeys.includes(key);
-        return (isOpen ? removeKey : addKey)(key, oldActiveKeys);
-      });
-    },
-    [resetActiveKeys]
-  );
+  const toggleActiveKey = useCallback(key => {
+    resetActiveKeysCallback.current(oldActiveKeys => {
+      const isOpen = oldActiveKeys.includes(key);
+      return (isOpen ? removeKey : addKey)(key, oldActiveKeys);
+    });
+  }, []);
 
   const [drawerState, setDrawerState] = useState({
     activeKeys,
@@ -89,10 +96,10 @@ export function Drawer(props) {
   useEffect(() => {
     if (!activeKeysProp) return;
 
-    resetActiveKeys(oldKeys =>
+    resetActiveKeysCallback.current(oldKeys =>
       simpleArraysEqual(oldKeys, activeKeysProp) ? oldKeys : activeKeysProp
     );
-  }, [activeKeysProp, resetActiveKeys]);
+  }, [activeKeysProp]);
 
   useEffect(() => {
     keysChangedCallback.current(activeKeys);

@@ -16,14 +16,19 @@ jobs:
         node: [12, 14, 16]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
       - name: Use Node Version
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
       - name: Install Dependencies
         run: |
           npm ci
+
       - name: Run Tests
         run: |
           npm run ci-run
@@ -35,27 +40,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
           ref: pre-prod
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
       - name: Install Dependencies
         run: |
           npm ci
-          cd packages/es-components
-          npm ci
-          cd ../..
+
       - name: Set Commitbot Identity
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
+
       - name: Merge main to pre-prod
         run: |
           git merge --no-verify -Xtheirs --commit origin/main -m "Merging main into pre-prod [skip-release]"
           # abort if failed merge
           git merge --abort || true
           git push origin pre-prod
+
       # This is so that we always update the pre-prod dist tag with main when we merge.
       # (Pre-prod can be ahead of main, but never behind.)
       - name: Lerna Publish Pre-Prod
@@ -70,21 +82,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
           ref: main
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
       - name: Install Dependencies
         run: |
           npm ci
-          cd packages/es-components
-          npm ci
-          cd ../..
+
       - name: Set Commitbot Identity
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
+
       - name: Lerna Publish Latest
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
@@ -97,23 +115,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
           ref: main
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
       - name: Install Dependencies
         run: |
-          cd packages/es-components
           npm ci
-          cd ../..
+
       - name: Set Commitbot Identity
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
+
       - name: Rebuild docs
+        working-directory: packages/es-components
         run: |
-          npm run --prefix ./packages/es-components styleguide-build
+          npm run styleguide-build
+
       - name: Publish docs to github pages
         run: |
           git checkout gh-pages

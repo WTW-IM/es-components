@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "sh build.sh",
-    "ci": "sh build.sh && sh ci.sh",
+    "ci-run": "sh ci.sh",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",

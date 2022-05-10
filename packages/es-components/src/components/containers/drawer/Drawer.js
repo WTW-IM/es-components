@@ -100,8 +100,10 @@ export function Drawer(props) {
   }, [activeKeysProp]);
 
   useEffect(() => {
+    if (simpleArraysEqual(activeKeys, activeKeysProp)) return;
+
     keysChangedCallback.current(activeKeys);
-  }, [activeKeys]);
+  }, [activeKeys, activeKeysProp]);
 
   useEffect(() => {
     setDrawerState({

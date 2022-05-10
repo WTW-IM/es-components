@@ -3,140 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.82-pre-prod.5 (2022-05-10)</small>
-
-* Merge pull request #614 from WTW-IM/drawers-fix ([8b99aa7](https://github.com/wtw-im/es-components/commit/8b99aa7)), closes [#614](https://github.com/wtw-im/es-components/issues/614)
-
-
-
-
-
-## <small>21.6.82-pre-prod.4 (2022-05-09)</small>
-
-* Merge pull request #613 from WTW-IM/drawers-fix ([54d58d8](https://github.com/wtw-im/es-components/commit/54d58d8)), closes [#613](https://github.com/wtw-im/es-components/issues/613)
-
-
-
-
-
-## <small>21.6.82-pre-prod.3 (2022-05-06)</small>
-
-* Merge pull request #611 from WTW-IM/replace-master-with-main ([d32a212](https://github.com/wtw-im/es-components/commit/d32a212)), closes [#611](https://github.com/wtw-im/es-components/issues/611)
-
-
-
-
-
-## <small>21.6.82-pre-prod.2 (2022-05-05)</small>
-
-* Merge pull request #612 from WTW-IM/more-flexible-drawers ([b3f8136](https://github.com/wtw-im/es-components/commit/b3f8136)), closes [#612](https://github.com/wtw-im/es-components/issues/612)
-
-
-
-
-
-## <small>21.6.82-pre-prod.1 (2022-01-31)</small>
+## <small>21.6.82 (2022-01-31)</small> & <small>21.6.82-pre-prod.1 (2022-01-31)</small>
 
 **Note:** Version bump only for package es-components
 
+## <small>21.6.82-pre-prod.5 (2022-05-10)</small>
 
+- Merge pull request #614 from WTW-IM/drawers-fix ([8b99aa7](https://github.com/wtw-im/es-components/commit/8b99aa7)), closes [#614](https://github.com/wtw-im/es-components/issues/614)
 
+## <small>21.6.82-pre-prod.4 (2022-05-09)</small>
 
+- Merge pull request #613 from WTW-IM/drawers-fix ([54d58d8](https://github.com/wtw-im/es-components/commit/54d58d8)), closes [#613](https://github.com/wtw-im/es-components/issues/613)
+
+## <small>21.6.82-pre-prod.3 (2022-05-06)</small>
+
+- Merge pull request #611 from WTW-IM/replace-master-with-main ([d32a212](https://github.com/wtw-im/es-components/commit/d32a212)), closes [#611](https://github.com/wtw-im/es-components/issues/611)
+
+## <small>21.6.82-pre-prod.2 (2022-05-05)</small>
+
+- Merge pull request #612 from WTW-IM/more-flexible-drawers ([b3f8136](https://github.com/wtw-im/es-components/commit/b3f8136)), closes [#612](https://github.com/wtw-im/es-components/issues/612)
 
 ## <small>21.6.82-pre-prod.0 (2022-01-31)</small>
 
-* Merge pull request #602 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([5d1291d](https://github.com/wtw-im/es-components/commit/5d1291d)), closes [#602](https://github.com/wtw-im/es-components/issues/602)
-
-
-
-
+- Merge pull request #602 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([5d1291d](https://github.com/wtw-im/es-components/commit/5d1291d)), closes [#602](https://github.com/wtw-im/es-components/issues/602)
 
 ## <small>21.6.81 (2022-01-26)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
 ## <small>21.6.81-pre-prod.2 (2022-01-31)</small>
 
-* Merge pull request #598 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([86b4b58](https://github.com/wtw-im/es-components/commit/86b4b58)), closes [#598](https://github.com/wtw-im/es-components/issues/598)
-
-
-
-
+- Merge pull request #598 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([86b4b58](https://github.com/wtw-im/es-components/commit/86b4b58)), closes [#598](https://github.com/wtw-im/es-components/issues/598)
 
 ## <small>21.6.81-pre-prod.1 (2022-01-31)</small>
 
-* Merge pull request #600 from WTW-IM/tab-panel-null-check ([fa065c8](https://github.com/wtw-im/es-components/commit/fa065c8)), closes [#600](https://github.com/wtw-im/es-components/issues/600)
-
-
-
-
+- Merge pull request #600 from WTW-IM/tab-panel-null-check ([fa065c8](https://github.com/wtw-im/es-components/commit/fa065c8)), closes [#600](https://github.com/wtw-im/es-components/issues/600)
 
 ## <small>21.6.81-pre-prod.0 (2022-01-26)</small>
 
+## <small>21.6.80-pre-prod.0 (2022-01-26)</small>
 
-
+- Merging master into pre-prod [skip-release] ([bfee85f](https://github.com/wtw-im/es-components/commit/bfee85f))
 
 ## <small>21.6.80-pre-prod.0 (2022-01-26)</small>
 
-* Merging master into pre-prod [skip-release] ([bfee85f](https://github.com/wtw-im/es-components/commit/bfee85f))
-
-
-
-
-## <small>21.6.80-pre-prod.0 (2022-01-26)</small>
-
-* [skip ci] v21.6.80-pre-prod.0 ([58ac744](https://github.com/wtw-im/es-components/commit/58ac744))
-* Merging master into pre-prod [skip-release] ([bfee85f](https://github.com/wtw-im/es-components/commit/bfee85f))
-
-
-
-
+- [skip ci] v21.6.80-pre-prod.0 ([58ac744](https://github.com/wtw-im/es-components/commit/58ac744))
+- Merging master into pre-prod [skip-release] ([bfee85f](https://github.com/wtw-im/es-components/commit/bfee85f))
 
 ## <small>21.6.79 (2022-01-26)</small>
 
-* Docs: include links to UX validation patterns ([44d7252](https://github.com/wtw-im/es-components/commit/44d7252))
-
-
-
-
+- Docs: include links to UX validation patterns ([44d7252](https://github.com/wtw-im/es-components/commit/44d7252))
 
 ## <small>21.6.78 (2021-11-12)</small>
 
-* Merge remote-tracking branch 'origin/master' into pre-prod ([db3a00e](https://github.com/wtw-im/es-components/commit/db3a00e))
-
-
+- Merge remote-tracking branch 'origin/master' into pre-prod ([db3a00e](https://github.com/wtw-im/es-components/commit/db3a00e))
 
 ## <small>21.6.78-pre-prod.7 (2022-01-26)</small>
 
-* [skip ci] v21.6.78-pre-prod.7 ([e61ef35](https://github.com/wtw-im/es-components/commit/e61ef35))
-* Merging master into pre-prod [skip-release] ([1401dc4](https://github.com/wtw-im/es-components/commit/1401dc4))
-
-
+- [skip ci] v21.6.78-pre-prod.7 ([e61ef35](https://github.com/wtw-im/es-components/commit/e61ef35))
+- Merging master into pre-prod [skip-release] ([1401dc4](https://github.com/wtw-im/es-components/commit/1401dc4))
 
 ## <small>21.6.78-pre-prod.6 (2021-11-18)</small>
 
-* [skip ci] v21.6.78-pre-prod.6 ([6e31f4e](https://github.com/wtw-im/es-components/commit/6e31f4e))
-* Added disableCloseOnScroll prop to Popover ([bb387db](https://github.com/wtw-im/es-components/commit/bb387db))
-* Added disbleScrollOnClose to useEffect deps ([5a6fccc](https://github.com/wtw-im/es-components/commit/5a6fccc))
-* Merged in proper base branch ([e62f77f](https://github.com/wtw-im/es-components/commit/e62f77f))
-* Returning noop instead of undefined when disableCloseOnScroll ([23f4a82](https://github.com/wtw-im/es-components/commit/23f4a82))
-
+- [skip ci] v21.6.78-pre-prod.6 ([6e31f4e](https://github.com/wtw-im/es-components/commit/6e31f4e))
+- Added disableCloseOnScroll prop to Popover ([bb387db](https://github.com/wtw-im/es-components/commit/bb387db))
+- Added disbleScrollOnClose to useEffect deps ([5a6fccc](https://github.com/wtw-im/es-components/commit/5a6fccc))
+- Merged in proper base branch ([e62f77f](https://github.com/wtw-im/es-components/commit/e62f77f))
+- Returning noop instead of undefined when disableCloseOnScroll ([23f4a82](https://github.com/wtw-im/es-components/commit/23f4a82))
 
 ## <small>21.6.78-pre-prod.5 (2021-11-12)</small>
 
-* [skip ci] v21.6.78-pre-prod.5 ([c719ba2](https://github.com/wtw-im/es-components/commit/c719ba2))
-
-
+- [skip ci] v21.6.78-pre-prod.5 ([c719ba2](https://github.com/wtw-im/es-components/commit/c719ba2))
 
 ## <small>21.6.77 (2021-10-22)</small>
 
-* [skip ci] v21.6.77 ([4e07bf1](https://github.com/wtw-im/es-components/commit/4e07bf1))
-
-
-
-
+- [skip ci] v21.6.77 ([4e07bf1](https://github.com/wtw-im/es-components/commit/4e07bf1))
 
 ## <small>21.6.77-pre-prod.4 (2021-11-11)</small>
 

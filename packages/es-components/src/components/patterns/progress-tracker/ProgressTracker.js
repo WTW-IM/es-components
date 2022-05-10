@@ -6,7 +6,12 @@ import {
   ProgressItem
 } from './progress-tracker-subcomponents';
 
-const getMappedSteps = (steps, onPastStepClicked, onFutureStepClicked, showNav) => {
+const getMappedSteps = (
+  steps,
+  onPastStepClicked,
+  onFutureStepClicked,
+  showNav
+) => {
   let isPastStep = true;
   return steps.map((step, index) => {
     isPastStep = !(step.active || !isPastStep);
@@ -32,7 +37,12 @@ const getMappedSteps = (steps, onPastStepClicked, onFutureStepClicked, showNav) 
 
 const getIndexOfActiveStep = steps => steps.findIndex(step => step.active);
 
-function ProgressTracker({ steps, onPastStepClicked, onFutureStepClicked, showNav }) {
+function ProgressTracker({
+  steps,
+  onPastStepClicked,
+  onFutureStepClicked,
+  showNav
+}) {
   return (
     <ProgressContainer
       data-testid="progress-tracker"

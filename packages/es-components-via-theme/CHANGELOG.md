@@ -3,21 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## <small>21.6.82 (2022-01-31)</small>
+## <small>21.6.82-pre-prod.1 (2022-01-31)</small> & <small>21.6.82 (2022-01-31)</small>
 
 **Note:** Version bump only for package es-components-via-theme
 
+## <small>21.6.82-pre-prod.5 (2022-05-10)</small>
 
+- Merge pull request #614 from WTW-IM/drawers-fix ([8b99aa7](https://github.com/WTW-IM/es-components/commit/8b99aa7)), closes [#614](https://github.com/WTW-IM/es-components/issues/614)
 
+## <small>21.6.82-pre-prod.4 (2022-05-09)</small>
 
+- Merge pull request #613 from WTW-IM/drawers-fix ([54d58d8](https://github.com/WTW-IM/es-components/commit/54d58d8)), closes [#613](https://github.com/WTW-IM/es-components/issues/613)
+
+## <small>21.6.82-pre-prod.3 (2022-05-06)</small>
+
+- Merge pull request #611 from WTW-IM/replace-master-with-main ([d32a212](https://github.com/WTW-IM/es-components/commit/d32a212)), closes [#611](https://github.com/WTW-IM/es-components/issues/611)
+
+## <small>21.6.82-pre-prod.2 (2022-05-05)</small>
+
+- Merge pull request #612 from WTW-IM/more-flexible-drawers ([b3f8136](https://github.com/WTW-IM/es-components/commit/b3f8136)), closes [#612](https://github.com/WTW-IM/es-components/issues/612)
 
 ## <small>21.6.82-pre-prod.0 (2022-01-31)</small>
 
-* Merge pull request #602 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([5d1291d](https://github.com/WTW-IM/es-components/commit/5d1291d)), closes [#602](https://github.com/WTW-IM/es-components/issues/602)
-
-
-
-
+- Merge pull request #602 from WTW-IM/dependabot/npm_and_yarn/packages/es-components/follow-redirects- ([5d1291d](https://github.com/WTW-IM/es-components/commit/5d1291d)), closes [#602](https://github.com/WTW-IM/es-components/issues/602)
 
 ## <small>21.6.81 (2022-01-26)</small>
 

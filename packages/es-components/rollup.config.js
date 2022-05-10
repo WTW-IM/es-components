@@ -79,7 +79,12 @@ export default [
         'process.env.NODE_ENV': JSON.stringify('production'),
         preventAssignment: true,
       }),
-      terser(),
+      terser({
+        compress: {
+          if_return: false,
+          typeofs: false,
+        },
+      }),
     ],
   },
 ];

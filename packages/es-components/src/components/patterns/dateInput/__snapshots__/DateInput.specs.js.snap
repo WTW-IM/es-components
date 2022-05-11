@@ -52,6 +52,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   box-sizing: border-box;
   color: #000;
   font-size: 18px;
+  font-face: Source Sans Pro;
   font-weight: normal;
   height: 39px;
   line-height: 1.428;
@@ -290,6 +291,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
   box-sizing: border-box;
   color: #000;
   font-size: 18px;
+  font-face: Source Sans Pro;
   font-weight: normal;
   height: 39px;
   line-height: 1.428;

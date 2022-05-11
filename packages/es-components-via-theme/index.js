@@ -184,6 +184,9 @@ const theme = {
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus
   },
+  spacing: {
+    defaultMargin: '1.875rem'
+  },
   brandColors: {
     primary1: primary1,
     primary2: primary2,

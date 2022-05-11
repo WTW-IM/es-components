@@ -11,6 +11,7 @@ const TextareaBase = styled.textarea`
   box-sizing: border-box;
   color: ${props => props.theme.colors.black};
   font-size: ${props => props.theme.font.baseFontSize};
+  font-face: ${props => props.theme.font.baseFontFace};
   font-weight: normal;
   line-height: ${props => props.theme.font.baseLineHeight};
   min-width: 0;

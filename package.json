@@ -37,7 +37,6 @@
     "es-components-via-theme": "file:packages/es-components-via-theme",
     "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-exchange-solutions": "^7.0.0",
     "eslint-config-prettier": "^3.6.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-import": "^2.17.3",

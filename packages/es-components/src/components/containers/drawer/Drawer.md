@@ -5,7 +5,7 @@ Use `Drawer` and `Drawer.Panel` components to wrap content in collapsable panels
 ```javascript
 class DrawerExample extends React.Component {
   constructor() {
-    this.state = { activeKeys: ["1"] };
+    this.state = { activeKeys: ['1'] };
     this.onActiveKeysChanged = this.onActiveKeysChanged.bind(this);
   }
 
@@ -47,7 +47,7 @@ style, where only one panel can be opened at a time.
 ```javascript
 class DrawerExample extends React.Component {
   constructor() {
-    this.state = { activeKeys: ["1"] };
+    this.state = { activeKeys: ['1'] };
     this.onActiveKeysChanged = this.onActiveKeysChanged.bind(this);
   }
 
@@ -93,11 +93,11 @@ Use the `headingLevel` property to change default level of heading.
 You can customize the `key` property of each Panel; if not specified a default key value will be assigned matching the Panel's numeric position.
 
 ```javascript
-import Icon from "../../base/icons/Icon";
+import Icon from '../../base/icons/Icon';
 
 class DrawerExample extends React.Component {
   constructor() {
-    this.state = { activeKeys: ["second", "3"] };
+    this.state = { activeKeys: ['second', '3'] };
     this.onActiveKeysChanged = this.onActiveKeysChanged.bind(this);
   }
 
@@ -158,10 +158,11 @@ class DrawerExample extends React.Component {
 Drawers have a few sub-components that make it so you can build drawers in any
 configuration you need. The primary requirement for this setup is that
 everything is contained within `Drawer.Item`. You can manually set a drawer item
-to be open or closed using the `open` prop.
+to be open or closed using the `open` prop. You can track the open state using the `onChange` prop,
+which can take a function that will receive the current boolean `open` value for the Item.
 
-> | ⚠️WARNING! | The `activeKeys` prop does not work with Free-Form Drawers! It only works with Drawer.Panel drawers. Use the `open` prop instead. |
-> | ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
+> | ⚠️WARNING! | The `activeKeys` prop does not work with Free-Form Drawers! It only works with Drawer.Panel drawers. The `open` prop is not required, but you can use it to manually manage the open/close state of an item. |
+> | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 #### **Drawer.ItemOpener**
 
@@ -187,29 +188,33 @@ Within `Drawer.Item`, you can use `useDrawerItemContext` to react when the
 drawer is opened and closed.
 
 ```javascript
-import { useDrawerItemContext } from "./Drawer.js";
+import { useDrawerItemContext } from './Drawer.js';
 const DrawerTracker = () => {
   const { open } = useDrawerItemContext();
 
-  return <p>Drawer is {open ? "open" : "closed"}!</p>;
+  return <p>Drawer is {open ? 'open' : 'closed'}!</p>;
 };
 
-const buttonOptions = ["hello", "world", "one", "more", "time"];
+const buttonOptions = ['hello', 'world', 'one', 'more', 'time'];
 const FreeformExample = () => {
   const [currentValue, setCurrentValue] = React.useState(0);
   const [backwardsValue, setBackwardsValue] = React.useState(0);
   const [drawerOneOpen, setDrawerOneOpen] = React.useState(false);
   const [drawerTwoOpen, setDrawerTwoOpen] = React.useState(true);
+  const onDrawerOneChange = (open) => {
+    setDrawerOneOpen(open);
+    setDrawerTwoOpen(open);
+  };
+
+  const onDrawerTwoChange = (open) => {
+    setDrawerTwoOpen(open);
+  };
+
   const onButtonClick = () => {
     let newValue = currentValue + 1;
     if (newValue >= buttonOptions.length) {
       newValue = 0;
     }
-    setDrawerOneOpen((oldOpen) => {
-      const newOpen = !oldOpen;
-      setDrawerTwoOpen(newOpen);
-      return newOpen;
-    });
 
     setCurrentValue(newValue);
   };
@@ -219,7 +224,6 @@ const FreeformExample = () => {
     if (newValue < 0) {
       newValue = buttonOptions.length - 1;
     }
-    setDrawerTwoOpen((oldOpen) => !oldOpen);
     setBackwardsValue(newValue);
   };
 
@@ -236,14 +240,14 @@ const FreeformExample = () => {
         }}
       ></style>
       <h2>This is a drawer!</h2>
-      <Drawer.Item>
+      <Drawer.Item onChange={onDrawerOneChange}>
         <h3>This is a single Drawer Item!</h3>
         <table className="drawer-table">
           <tbody>
             <tr>
               <td id="first-dynamic-value">
                 A dynamic value:
-                <span style={{ fontWeight: "bold" }}>
+                <span style={{ fontWeight: 'bold' }}>
                   {buttonOptions[currentValue]}
                 </span>
               </td>
@@ -266,7 +270,7 @@ const FreeformExample = () => {
                   aria-labelledby="first-opener"
                   id="first-body"
                   style={{
-                    boxSizing: "border-box",
+                    boxSizing: 'border-box',
                   }}
                 >
                   <p>Hello and welcome to the revealed Drawer content!</p>
@@ -280,7 +284,7 @@ const FreeformExample = () => {
           </tbody>
         </table>
       </Drawer.Item>
-      <Drawer.Item open={drawerTwoOpen}>
+      <Drawer.Item open={drawerTwoOpen} onChange={onDrawerTwoChange}>
         <h3>This is another Drawer Item!</h3>
         <table className="drawer-table">
           <tbody>
@@ -298,8 +302,8 @@ const FreeformExample = () => {
               </td>
               <td id="second-dynamic-value">
                 A backwards dynamic value:
-                <span style={{ fontWeight: "bold" }}>
-                  {buttonOptions[backwardsValue].split("").reverse().join("")}
+                <span style={{ fontWeight: 'bold' }}>
+                  {buttonOptions[backwardsValue].split('').reverse().join('')}
                 </span>
               </td>
             </tr>
@@ -315,7 +319,7 @@ const FreeformExample = () => {
                   aria-labelledby="second-opener"
                   id="second-body"
                   style={{
-                    boxSizing: "border-box",
+                    boxSizing: 'border-box',
                   }}
                 >
                   <p>Hello and welcome to the other revealed Drawer content!</p>

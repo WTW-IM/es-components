@@ -3,12 +3,17 @@ import React, {
   useContext,
   useCallback,
   useEffect,
-  useState
+  useState,
+  useRef
 } from 'react';
 import PropTypes from 'prop-types';
 import AnimateHeight from 'react-animate-height';
 import { DrawerContext } from './DrawerContext';
 import useUniqueId from '../../util/useUniqueId';
+
+const noop = () => {
+  // noop
+};
 
 export const DrawerItemContext = createContext({
   open: false,
@@ -20,7 +25,13 @@ export const DrawerItemContext = createContext({
 
 export const useDrawerItemContext = () => useContext(DrawerItemContext);
 
-export const DrawerItem = ({ id, panelKey, open: openProp, ...props }) => {
+export const DrawerItem = ({
+  id,
+  panelKey,
+  open: openProp,
+  onChange: onChangeProp,
+  ...props
+}) => {
   const {
     activeKeys,
     toggleActiveKey,
@@ -33,6 +44,9 @@ export const DrawerItem = ({ id, panelKey, open: openProp, ...props }) => {
     itemKey,
     toggleActiveKey
   ]);
+  const onChange = useRef(onChangeProp);
+  onChange.current = onChangeProp;
+  const afterInitialRender = useRef(false);
   const [open, setOpen] = useState(activeKeys.includes(itemKey));
   const [itemContext, setItemContext] = useState({ open, itemKey, toggleOpen });
 
@@ -54,11 +68,26 @@ export const DrawerItem = ({ id, panelKey, open: openProp, ...props }) => {
   );
 
   useEffect(
+    function callOnChangeWhenOpenChanges() {
+      if (!afterInitialRender.current) {
+        return;
+      }
+
+      (onChange.current || noop)(open);
+    },
+    [open]
+  );
+
+  useEffect(
     function setChangedContext() {
       setItemContext({ open, itemId, toggleOpen });
     },
     [open, itemId, toggleOpen]
   );
+
+  useEffect(() => {
+    afterInitialRender.current = true;
+  }, []);
 
   return <DrawerItemContext.Provider {...props} value={itemContext} />;
 };
@@ -66,8 +95,8 @@ export const DrawerItem = ({ id, panelKey, open: openProp, ...props }) => {
 DrawerItem.propTypes = {
   /** Set the drawer to open or closed (true/false) */
   open: PropTypes.bool,
-
-  /** Respond when the item opens or closes */
+  /** React when drawer opens or closes */
+  onChange: PropTypes.func,
 
   // INTERNAL PROPS
   /** @ignore@ */
@@ -94,10 +123,6 @@ export const DrawerItemBody = props => {
       {...props}
     />
   );
-};
-
-const noop = () => {
-  // noop
 };
 
 export const DrawerItemOpener = ({ children }) => {

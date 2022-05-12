@@ -33,9 +33,42 @@ jobs:
         run: |
           npm run ci-run
 
+  npm:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [test]
+    name: Publish NPM Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Install Dependencies
+        run: |
+          npm ci
+
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Lerna Publish Bot"
+          git config user.email "es-components-bot@wtw.org"
+
+      - name: Lerna Publish Latest
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
+          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-graduate --yes
+
   npm_prerelease:
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: test
+    needs: [test, npm]
     name: Pre-Prod Publish
     runs-on: ubuntu-latest
     steps:
@@ -74,39 +107,6 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
-
-  npm:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [test, npm_prerelease]
-    name: Publish NPM Packages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
-          ref: main
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
-
-      - name: Install Dependencies
-        run: |
-          npm ci
-
-      - name: Set Commitbot Identity
-        run: |
-          git config user.name "ES-Components Lerna Publish Bot"
-          git config user.email "es-components-bot@wtw.org"
-
-      - name: Lerna Publish Latest
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-graduate --yes
 
   docs:
     if: ${{ github.ref == 'refs/heads/main' }}

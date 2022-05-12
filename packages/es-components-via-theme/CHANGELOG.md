@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.85 (2022-05-12)</small>
+
+**Note:** Version bump only for package es-components-via-theme
+
+
+
+
+
 ## <small>21.6.85-pre-prod.0 (2022-05-12)</small>
 
 * Merge pull request #620 from WTW-IM/drawers-effect-fix ([2440656](https://github.com/WTW-IM/es-components/commit/2440656)), closes [#620](https://github.com/WTW-IM/es-components/issues/620)

@@ -48,6 +48,8 @@ export function Drawer(props) {
 
   const keysChangedCallback = useRef(onActiveKeysChanged);
   keysChangedCallback.current = onActiveKeysChanged;
+  const currentActiveKeysProp = useRef(activeKeysProp);
+  currentActiveKeysProp.current = activeKeysProp;
 
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
 
@@ -94,16 +96,18 @@ export function Drawer(props) {
   });
 
   useEffect(() => {
-    if (!activeKeysProp) return;
-
-    resetActiveKeysCallback.current(() => activeKeysProp);
-  }, [activeKeysProp]);
-
-  useEffect(() => {
-    if (simpleArraysEqual(activeKeys, activeKeysProp)) return;
+    if (simpleArraysEqual(activeKeys, currentActiveKeysProp.current)) return;
 
     keysChangedCallback.current(activeKeys);
-  }, [activeKeys, activeKeysProp]);
+  }, [activeKeys]);
+
+  useEffect(() => {
+    if (!activeKeysProp) return;
+
+    resetActiveKeysCallback.current(oldKeys =>
+      simpleArraysEqual(oldKeys, activeKeysProp) ? oldKeys : activeKeysProp
+    );
+  }, [activeKeysProp]);
 
   useEffect(() => {
     setDrawerState({

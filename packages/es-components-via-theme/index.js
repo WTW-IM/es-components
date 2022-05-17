@@ -184,6 +184,9 @@ const theme = {
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus
   },
+  spacing: {
+    defaultMargin: '1.875rem'
+  },
   brandColors: {
     primary1: primary1,
     primary2: primary2,
@@ -493,6 +496,7 @@ const theme = {
   font: {
     baseFontSize: '18px',
     baseLineHeight: 1.428,
+    baseFontFace: '"Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
     headingDesktop: {
       1: '44.78976px',
       2: '37.3248px',

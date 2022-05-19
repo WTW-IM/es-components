@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.86 (2022-05-19)</small>
+
+**Note:** Version bump only for package es-components-wtw-theme
+
+
+
+
+
 ## <small>21.6.86-pre-prod.0 (2022-05-17)</small>
 
 * Merge pull request #618 from WTW-IM/WE-16644-design-consistency ([7c38006](https://github.com/WTW-IM/es-components/commit/7c38006)), closes [#618](https://github.com/WTW-IM/es-components/issues/618)

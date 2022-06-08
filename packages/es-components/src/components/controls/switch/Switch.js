@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { noop } from 'lodash';
@@ -175,6 +175,10 @@ function Switch({
 }) {
   const [isToggled, setIsToggled] = useState(checked);
 
+  useEffect(() => {
+    setIsToggled(checked);
+  }, [checked]);
+
   function handleToggle(event) {
     setIsToggled(!isToggled);
     onChange(event);
@@ -191,7 +195,8 @@ function Switch({
           disabled={disabled}
           styleType={type}
           type="checkbox"
-          defaultChecked={isToggled}
+          checked={isToggled}
+          onChange={noop}
           aria-label={ariaLabel}
         />
         <SwitchLabelText direction={direction} type={type}>

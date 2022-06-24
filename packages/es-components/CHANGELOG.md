@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.87 (2022-06-24)</small>
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
 ## <small>21.6.87-pre-prod.0 (2022-06-17)</small>
 
 * Merge pull request #624 from WTW-IM/switch-checked-bugfix ([d023b00](https://github.com/wtw-im/es-components/commit/d023b00)), closes [#624](https://github.com/wtw-im/es-components/issues/624)

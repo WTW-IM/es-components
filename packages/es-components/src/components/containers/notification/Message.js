@@ -10,11 +10,10 @@ const defaultProps = {
   emphasizedText: undefined
 };
 
-export function InlineMessage({ emphasizedText, text }) {
+export function InlineMessage({ emphasizedText, text, ...rest }) {
   return (
-    <span>
-      {emphasizedText !== undefined ? <strong>{emphasizedText}</strong> : null}
-      {' '}
+    <span {...rest}>
+      {emphasizedText !== undefined ? <strong>{emphasizedText}</strong> : null}{' '}
       {text}
     </span>
   );
@@ -23,9 +22,9 @@ export function InlineMessage({ emphasizedText, text }) {
 InlineMessage.propTypes = propTypes;
 InlineMessage.defaultProps = defaultProps;
 
-export function Message({ emphasizedText, text }) {
+export function Message({ emphasizedText, text, ...rest }) {
   return (
-    <span>
+    <span {...rest}>
       {emphasizedText !== undefined ? (
         <>
           <strong>{emphasizedText}</strong>

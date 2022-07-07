@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import OrientationContext from '../../controls/OrientationContext';
-import genName from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
 const FieldsetBase = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const Legend = styled.div`
 
 function Fieldset(props) {
   const { legendContent, children, ...other } = props;
-  const legendId = legendContent ? genName() : undefined;
+  const legendId = useUniqueId();
   const orientation = React.useContext(OrientationContext);
 
   return (

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.88 (2022-07-11)</small>
+
+**Note:** Version bump only for package es-components-via-theme
+
+
+
+
+
 ## <small>21.6.88-pre-prod.1 (2022-07-07)</small>
 
 * Merge pull request #631 from WTW-IM/prevent-fieldset-rerender ([babb501](https://github.com/WTW-IM/es-components/commit/babb501)), closes [#631](https://github.com/WTW-IM/es-components/issues/631)

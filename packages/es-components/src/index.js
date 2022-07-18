@@ -95,3 +95,4 @@ export { isValidEmail } from './components/util/isValidEmail';
 export useRootNode, { useRootNodeLocator } from './components/util/useRootNode';
 export { useLoadingState } from './hooks/useLoadingState';
 export { useMountedOnlyState } from './hooks/useMountedOnlyState';
+export useUniqueId from './components/util/useUniqueId';

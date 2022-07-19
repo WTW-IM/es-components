@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.89-pre-prod.0 (2022-07-18)</small>
+
+* Merge pull request #628 from WTW-IM/WE-17039-add-role-to-notification ([fcddbff](https://github.com/WTW-IM/es-components/commit/fcddbff)), closes [#628](https://github.com/WTW-IM/es-components/issues/628)
+
+
+
+
+
 ## <small>21.6.88 (2022-07-11)</small>
 
 **Note:** Version bump only for package es-components-via-theme

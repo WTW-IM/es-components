@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.90-pre-prod.0 (2022-07-21)</small>
+
+* Merge pull request #635 from WTW-IM/fix-full-color-icons-page ([ee3d98e](https://github.com/wtw-im/es-components/commit/ee3d98e)), closes [#635](https://github.com/wtw-im/es-components/issues/635)
+
+
+
+
+
 ## <small>21.6.89 (2022-07-19)</small>
 
 **Note:** Version bump only for package es-components

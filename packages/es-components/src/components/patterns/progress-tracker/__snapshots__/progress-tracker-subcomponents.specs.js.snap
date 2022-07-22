@@ -126,6 +126,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 <button
+  id=""
   class="c0 c1"
 >
   <span />

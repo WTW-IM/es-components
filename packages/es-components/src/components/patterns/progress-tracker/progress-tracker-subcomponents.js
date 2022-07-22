@@ -6,12 +6,12 @@ import sizes from './pt-sizes';
 const { ACTIVE, INACTIVE, DESKTOP, TRACKING_LINE_HEIGHT } = sizes;
 
 const getProgressLineBreakPercentage = (activeStepIndex, numberOfSteps) =>
-    (activeStepIndex / (numberOfSteps - 1)) * 100;
+  (activeStepIndex / (numberOfSteps - 1)) * 100;
 
 const getProgressItemWidthPercentage = baseAmount => (1 / baseAmount) * 100;
 
 const getCenterTopPosition = (containerHeight, itemHeight) =>
-    containerHeight / 2 - itemHeight / 2;
+  containerHeight / 2 - itemHeight / 2;
 
 const stepStates = {
   active: 'active',
@@ -26,16 +26,16 @@ export const ProgressContainer = styled.ol`
     ${props => props.theme.colors.gray9} 0%,
     ${props => props.theme.colors.gray9}
       ${props =>
-    getProgressLineBreakPercentage(
-        props.activeStepIndex,
-        props.numberOfSteps
-    )}%,
+        getProgressLineBreakPercentage(
+          props.activeStepIndex,
+          props.numberOfSteps
+        )}%,
     ${props => props.theme.colors.gray5}
       ${props =>
-    getProgressLineBreakPercentage(
-        props.activeStepIndex,
-        props.numberOfSteps
-    )}%,
+        getProgressLineBreakPercentage(
+          props.activeStepIndex,
+          props.numberOfSteps
+        )}%,
     ${props => props.theme.colors.gray5} 100%
   );
   background-size: 100% ${() => TRACKING_LINE_HEIGHT}px;
@@ -54,7 +54,7 @@ export const ProgressContainer = styled.ol`
     background-position: center
       ${() => getCenterTopPosition(DESKTOP, TRACKING_LINE_HEIGHT)}px;
     background-size: ${props =>
-    100 - getProgressItemWidthPercentage(props.numberOfSteps)}%
+        100 - getProgressItemWidthPercentage(props.numberOfSteps)}%
       ${() => TRACKING_LINE_HEIGHT}px;
   }
 `;
@@ -74,7 +74,7 @@ const BasicProgressButton = styled.button`
   margin-top: ${() => getCenterTopPosition(ACTIVE, INACTIVE)}px;
   padding: 0;
   text-align: center;
-  
+
   &:active,
   &:hover,
   &:focus {
@@ -304,14 +304,14 @@ function getStepState(isActiveStep, isPastStep, canClickFutureStep) {
 }
 
 export function ProgressItem({
-   active,
-   isPastStep,
-   numberOfSteps,
-   onPastStepClicked,
-   canClickFutureStep,
-   label,
-   showNav
- }) {
+  active,
+  isPastStep,
+  numberOfSteps,
+  onPastStepClicked,
+  canClickFutureStep,
+  label,
+  showNav
+}) {
   let itemType;
   if (isPastStep || active || canClickFutureStep) {
     itemType = getStepState(active, isPastStep, canClickFutureStep);
@@ -326,8 +326,8 @@ export function ProgressItem({
 
   return (
     <ProgressLi numberOfSteps={numberOfSteps}>
-      <ProgressItemType {...listItemProps}>
-        <span>{label}</span>
+      <ProgressItemType {...listItemProps} id={label}>
+        {label}
       </ProgressItemType>
     </ProgressLi>
   );

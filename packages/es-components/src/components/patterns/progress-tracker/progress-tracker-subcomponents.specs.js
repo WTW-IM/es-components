@@ -81,7 +81,8 @@ it('sets the appropriate styles for isPastStep', () => {
   const { container } = getInstance(ProgressItem, {
     active: false,
     isPastStep: true,
-    numberOfSteps: 2
+    numberOfSteps: 2,
+    id: ''
   });
 
   const instance = container.querySelector('button');

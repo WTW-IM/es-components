@@ -18,7 +18,7 @@ LightNotification.propTypes = {
   includeIcon: PropTypes.bool,
   /** Display a dismiss button that will close the notification */
   isDismissable: PropTypes.bool,
-  role: PropTypes.oneOf(['dialog', 'alert', 'text']),
+  role: PropTypes.oneOf(['dialog', 'alert', 'text', 'region']),
   /** Function to execute when the dialog is closed */
   onDismiss: PropTypes.func,
   children: PropTypes.node,

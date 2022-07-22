@@ -206,6 +206,7 @@ exports[`builds a ProgressTracker 1`] = `
     class="c1"
   >
     <button
+      id="step 1"
       class="c2 c3"
       disabled=""
     >
@@ -218,6 +219,7 @@ exports[`builds a ProgressTracker 1`] = `
     class="c1"
   >
     <button
+      id="step 2"
       class="c2"
       disabled=""
     >
@@ -230,6 +232,7 @@ exports[`builds a ProgressTracker 1`] = `
     class="c1"
   >
     <button
+      id="step 3"
       class="c2"
       disabled=""
     >
@@ -492,6 +495,7 @@ exports[`builds a ProgressTracker 2`] = `
     class="c1"
   >
     <button
+      id="step 1"
       class="c2 c3"
     >
       <span>
@@ -503,6 +507,7 @@ exports[`builds a ProgressTracker 2`] = `
     class="c1"
   >
     <button
+      id="step 2"
       class="c2 c4"
       disabled=""
     >
@@ -515,6 +520,7 @@ exports[`builds a ProgressTracker 2`] = `
     class="c1"
   >
     <button
+      id="step 3"
       class="c2"
       disabled=""
     >
@@ -781,6 +787,7 @@ exports[`builds a ProgressTracker 3`] = `
     class="c1"
   >
     <button
+      id="step 1"
       class="c2 c3"
     >
       <span>
@@ -792,6 +799,7 @@ exports[`builds a ProgressTracker 3`] = `
     class="c1"
   >
     <button
+      id="step 2"
       class="c2 c3"
     >
       <span>
@@ -803,6 +811,7 @@ exports[`builds a ProgressTracker 3`] = `
     class="c1"
   >
     <button
+      id="step 3"
       class="c2 c4"
       disabled=""
     >

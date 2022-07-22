@@ -210,7 +210,7 @@ exports[`builds a ProgressTracker 1`] = `
       disabled=""
       id="step 1"
     >
-        step 1
+      step 1
     </button>
   </li>
   <li
@@ -221,7 +221,7 @@ exports[`builds a ProgressTracker 1`] = `
       disabled=""
       id="step 2"
     >
-        step 2
+      step 2
     </button>
   </li>
   <li
@@ -232,7 +232,7 @@ exports[`builds a ProgressTracker 1`] = `
       disabled=""
       id="step 3"
     >
-        step 3
+      step 3
     </button>
   </li>
 </ol>
@@ -492,7 +492,7 @@ exports[`builds a ProgressTracker 2`] = `
       class="c2 c3"
       id="step 1"
     >
-        step 1
+      step 1
     </button>
   </li>
   <li
@@ -503,7 +503,7 @@ exports[`builds a ProgressTracker 2`] = `
       disabled=""
       id="step 2"
     >
-        step 2
+      step 2
     </button>
   </li>
   <li
@@ -514,7 +514,7 @@ exports[`builds a ProgressTracker 2`] = `
       disabled=""
       id="step 3"
     >
-        step 3
+      step 3
     </button>
   </li>
 </ol>
@@ -778,7 +778,7 @@ exports[`builds a ProgressTracker 3`] = `
       class="c2 c3"
       id="step 1"
     >
-        step 1
+      step 1
     </button>
   </li>
   <li
@@ -788,7 +788,7 @@ exports[`builds a ProgressTracker 3`] = `
       class="c2 c3"
       id="step 2"
     >
-        step 2
+      step 2
     </button>
   </li>
   <li
@@ -799,7 +799,7 @@ exports[`builds a ProgressTracker 3`] = `
       disabled=""
       id="step 3"
     >
-        step 3
+      step 3
     </button>
   </li>
 </ol>

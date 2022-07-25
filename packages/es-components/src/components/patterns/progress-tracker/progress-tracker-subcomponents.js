@@ -326,8 +326,12 @@ export function ProgressItem({
 
   return (
     <ProgressLi numberOfSteps={numberOfSteps}>
-      <ProgressItemType {...listItemProps} id={label}>
-        {label}
+      <ProgressItemType
+        {...listItemProps}
+        id={label}
+        aria-labelledby={`${label}-span`}
+      >
+        <span id={`${label}-span`}>{label}</span>
       </ProgressItemType>
     </ProgressLi>
   );

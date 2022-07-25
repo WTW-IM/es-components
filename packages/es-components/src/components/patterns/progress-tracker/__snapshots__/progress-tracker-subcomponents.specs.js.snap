@@ -128,5 +128,8 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 <button
   class="c0 c1"
   id=""
-/>
+  aria-labelledby="-span"
+>
+<span id= "-span" />
+</>
 `;

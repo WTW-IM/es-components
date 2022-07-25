@@ -209,8 +209,11 @@ exports[`builds a ProgressTracker 1`] = `
       class="c2 c3"
       disabled=""
       id="step 1"
+      aria-labelledby="step 1-span"
     >
-      step 1
+      <span id="step 1-span">
+        step 1
+      </span>
     </button>
   </li>
   <li
@@ -220,8 +223,11 @@ exports[`builds a ProgressTracker 1`] = `
       class="c2"
       disabled=""
       id="step 2"
+      aria-labelledby="step 2-span"
     >
-      step 2
+      <span id="step 2-span">
+        step 2
+      </span>
     </button>
   </li>
   <li
@@ -231,8 +237,11 @@ exports[`builds a ProgressTracker 1`] = `
       class="c2"
       disabled=""
       id="step 3"
+      aria-labelledby="step 3-span"
     >
-      step 3
+      <span id="step 3-span">
+        step 3
+      </span>
     </button>
   </li>
 </ol>
@@ -491,8 +500,11 @@ exports[`builds a ProgressTracker 2`] = `
     <button
       class="c2 c3"
       id="step 1"
+      aria-labelledby="step 1-span"
     >
-      step 1
+      <span id="step 1-span">
+        step 1
+      </span>
     </button>
   </li>
   <li
@@ -502,8 +514,11 @@ exports[`builds a ProgressTracker 2`] = `
       class="c2 c4"
       disabled=""
       id="step 2"
+      aria-labelledby="step 2-span"
     >
-      step 2
+      <span id="step 2-span">
+        step 2
+      </span>
     </button>
   </li>
   <li
@@ -513,8 +528,11 @@ exports[`builds a ProgressTracker 2`] = `
       class="c2"
       disabled=""
       id="step 3"
+      aria-labelledby="step 3-span"
     >
-      step 3
+      <span id="step 3-span">
+        step 3
+      </span>
     </button>
   </li>
 </ol>
@@ -777,8 +795,11 @@ exports[`builds a ProgressTracker 3`] = `
     <button
       class="c2 c3"
       id="step 1"
+      aria-labelledby="step 1-span"
     >
-      step 1
+      <span id="step 1-span">
+        step 1
+      </span>
     </button>
   </li>
   <li
@@ -787,8 +808,11 @@ exports[`builds a ProgressTracker 3`] = `
     <button
       class="c2 c3"
       id="step 2"
+      aria-labelledby="step 2-span"
     >
-      step 2
+      <span id="step 2-span">
+        step 2
+      </span>
     </button>
   </li>
   <li
@@ -798,8 +822,11 @@ exports[`builds a ProgressTracker 3`] = `
       class="c2 c4"
       disabled=""
       id="step 3"
+      aria-labelledby="step 3-span"
     >
-      step 3
+      <span id="step 3-span">
+        step 3
+      </span>
     </button>
   </li>
 </ol>

@@ -132,7 +132,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 
 >
 <span 
-  id= "-span" 
+  id="-span" 
 />
 </>
 `;

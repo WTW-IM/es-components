@@ -131,8 +131,8 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
   id=""
 
 >
-<span
-  id="-span"
-/>
-</>
+  <span
+    id="-span"
+  />
+</button>
 `;

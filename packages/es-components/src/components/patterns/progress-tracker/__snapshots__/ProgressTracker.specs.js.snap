@@ -223,7 +223,7 @@ exports[`builds a ProgressTracker 1`] = `
   >
     <button
       aria-labelledby="step 2-span"
-      class="c2
+      class="c2"
       disabled=""
       id="step 2"
     >

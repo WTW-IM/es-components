@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import sizes from './pt-sizes';
+import useUniqueId from '../../util/useUniqueId';
 
 const { ACTIVE, INACTIVE, DESKTOP, TRACKING_LINE_HEIGHT } = sizes;
 
@@ -317,6 +318,7 @@ export function ProgressItem({
     itemType = getStepState(active, isPastStep, canClickFutureStep);
   }
   const ProgressItemType = getProgressItemType(itemType, showNav);
+  const itemId = useUniqueId();
 
   const listItemProps = {
     numberOfSteps,
@@ -328,10 +330,10 @@ export function ProgressItem({
     <ProgressLi numberOfSteps={numberOfSteps}>
       <ProgressItemType
         {...listItemProps}
-        id={label}
-        aria-labelledby={`${label}-span`}
+        id={itemId}
+        aria-labelledby={`${itemId}-span`}
       >
-        <span id={`${label}-span`}>{label}</span>
+        <span id={`${itemId}-span`}>{label}</span>
       </ProgressItemType>
     </ProgressLi>
   );

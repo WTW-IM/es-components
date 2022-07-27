@@ -13,17 +13,12 @@ function getInstance(props) {
   return renderWithTheme(<ProgressTracker {...props} />);
 }
 
-beforeEach(async () => {
+async function doMocks() {
   await useUniqueId.mockImplementationOnce(() => '1');
   await useUniqueId.mockImplementationOnce(() => '2');
   await useUniqueId.mockImplementationOnce(() => '3');
-  await useUniqueId.mockImplementationOnce(() => '1');
-  await useUniqueId.mockImplementationOnce(() => '2');
-  await useUniqueId.mockImplementationOnce(() => '3');
-  await useUniqueId.mockImplementationOnce(() => '1');
-  await useUniqueId.mockImplementationOnce(() => '2');
-  await useUniqueId.mockImplementationOnce(() => '3');
-});
+}
+
 it('builds a ProgressTracker', () => {
   const stepsToTest = [
     [
@@ -42,7 +37,8 @@ it('builds a ProgressTracker', () => {
       { label: 'step 3', active: true }
     ]
   ];
-  stepsToTest.forEach(steps => {
+  stepsToTest.forEach(async steps => {
+    await doMocks();
     const { getByTestId } = getInstance({ steps });
     expect(getByTestId('progress-tracker')).toMatchSnapshot();
     cleanup();

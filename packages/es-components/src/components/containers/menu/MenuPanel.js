@@ -34,21 +34,25 @@ const StyledChildrenContainer = styled.div`
 `;
 
 function MenuPanel(props) {
-  function onEscape({ keyCode }) {
-    if (keyCode === 27) {
-      props.onClose();
-    }
-  }
+  const { children, headerContent, isOpen, onClose, ...other } = props;
 
   useEffect(() => {
-    document.addEventListener('keydown', onEscape);
+    if (!isOpen) {
+      return;
+    }
+
+    function onEscape({ key }) {
+      if (key === 'Escape') {
+        onClose();
+      }
+    }
+    window.addEventListener('keydown', onEscape);
 
     return function removeKeydownListener() {
-      document.removeEventListener('keydown', onEscape);
+      window.removeEventListener('keydown', onEscape);
     };
-  });
+  }, [isOpen, onClose]);
 
-  const { children, headerContent, isOpen, onClose, ...other } = props;
   const hasHeaderContent = !!headerContent;
 
   const inline = useContext(InlineContext);

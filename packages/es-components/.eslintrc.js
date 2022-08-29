@@ -1,15 +1,24 @@
+const plugins = ['import', '@babel'];
+const exts = [
+  'eslint:recommended',
+  'plugin:jsx-a11y/recommended',
+  'plugin:react/recommended',
+  'plugin:react-hooks/recommended'
+];
 module.exports = {
-  extends: ['plugin:jsx-a11y/recommended', 'prettier'],
-  parser: 'babel-eslint',
-  plugins: ['import', 'react', 'babel', 'jsx-a11y'],
+  extends: exts,
+  parser: '@babel/eslint-parser',
+  plugins,
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
       destructuring: true,
-      experimentalObjectRestSpread: true
+      experimentalObjectRestSpread: true,
+      ecmaVersion: 'latest'
     }
   },
   rules: {
+    'no-unused-vars': ['warn'],
     'max-len': 0,
     'jsx-a11y/img-uses-alt': 0,
     'jsx-a11y/redundant-alt': 0,
@@ -35,6 +44,22 @@ module.exports = {
     'prefer-arrow-callback': 0,
     'id-length': 0
   },
+  overrides: [
+    {
+      files: ['.eslintrc*', '*.config.js', '**/config/*'],
+      env: {
+        node: true
+      }
+    },
+    {
+      files: ['*.specs.*'],
+      extends: [
+        ...exts,
+        'plugin:jest/recommended',
+        'plugin:testing-library/react'
+      ]
+    }
+  ],
   env: {
     browser: true
   }

@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Button from '../Button';
 import { renderWithTheme } from '../../../util/test-utils';
@@ -30,9 +31,10 @@ const generateLoaderButton = (onClick = load) =>
   );
 
 it('renders a loading state while running', async () => {
+  const user = userEvent.setup();
   generateLoaderButton();
 
-  screen.getByText(defaultContent).click();
+  await user.click(screen.getByText(defaultContent));
 
   const loadingElement = await screen.findByText(loadingContent);
   expect(loadingElement.hasAttribute('data-waiting')).toBe(true);
@@ -44,6 +46,7 @@ it('renders a loading state while running', async () => {
 });
 
 it('renders the default state after rejection', async () => {
+  const user = userEvent.setup();
   const rejectedLoad = () =>
     new Promise((res, rej) => {
       reject = rej;
@@ -55,7 +58,7 @@ it('renders the default state after rejection', async () => {
     );
   generateLoaderButton(rejectedLoad);
 
-  screen.getByText(defaultContent).click();
+  await user.click(screen.getByText(defaultContent));
 
   reject();
 

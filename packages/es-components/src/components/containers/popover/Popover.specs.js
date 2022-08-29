@@ -1,7 +1,8 @@
 /* eslint-env jest */
-
 import React from 'react';
-import { cleanup, fireEvent, waitFor } from '@testing-library/react';
+
+import { cleanup, fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Popover from './Popover';
 import Button from '../../controls/buttons/Button';
@@ -34,14 +35,17 @@ function buildPopover(props) {
 }
 
 it('can be toggled by clicking the button', async () => {
-  const { getByText, findByText } = renderWithTheme(buildPopover());
-  const trigger = getByText('Popover Trigger Button');
+  const user = userEvent.setup();
+  renderWithTheme(buildPopover());
+  const trigger = await screen.findByText('Popover Trigger Button');
 
-  fireEvent.click(trigger);
-  const popoverContent = await findByText('This is the popover content.');
+  await userEvent.click(trigger);
+  const popoverContent = await screen.findByText(
+    'This is the popover content.'
+  );
   expect(popoverContent).toBeVisible();
 
-  trigger.click();
+  await user.click(trigger);
   expect(popoverContent).not.toBeVisible();
 });
 
@@ -55,18 +59,16 @@ it('renders the title when provided', async () => {
 });
 
 it('can be closed using the close button', async () => {
-  const { getByText, queryByText, findByText } = renderWithTheme(
-    buildPopover({ hasCloseButton: true })
+  const user = userEvent.setup();
+  renderWithTheme(buildPopover({ hasCloseButton: true }));
+  await user.click(await screen.getByText('Popover Trigger Button'));
+  const popoverContent = await screen.findByText(
+    'This is the popover content.'
   );
-  fireEvent.click(getByText('Popover Trigger Button'));
-  await findByText('This is the popover content.');
 
-  const popoverContent = () => queryByText('This is the popover content.');
-  popoverContent()
-    .parentElement.querySelector('button')
-    .click();
+  await user.click(await screen.findByRole('button', { name: /Close/ }));
 
-  await waitFor(() => expect(popoverContent()).toBeNull());
+  await waitFor(() => expect(popoverContent).not.toBeInTheDocument());
 });
 
 it('can be closed using the alternative close button', async () => {

@@ -1,35 +1,36 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { cleanup, fireEvent, getByRole, waitFor } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import DropdownButton from './DropdownButton';
 import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
 
-beforeEach(cleanup);
-
-it('opens/closes dropdown on click', () => {
+it('opens/closes dropdown on click', async () => {
+  const user = userEvent.setup();
   const { getByText } = renderWithTheme(
     <DropdownButton buttonValue="Button">
       <DropdownButton.Button onClick={onClick}>Inner</DropdownButton.Button>
     </DropdownButton>
   );
 
-  const button = getByText('Button');
+  const button = await screen.findByRole('button', { name: /Button/ });
   expect(getByText('Inner')).not.toBeVisible();
 
-  button.click();
+  await user.click(button);
   expect(getByText('Inner')).toBeVisible();
 
-  button.click();
+  await user.click(button);
   expect(getByText('Inner')).not.toBeVisible();
 });
 
-it('updates buttonValue on child click when shouldUpdateButtonValue is true', () => {
+it('updates buttonValue on child click when shouldUpdateButtonValue is true', async () => {
+  const user = userEvent.setup();
   const innerContents = 'Inner';
-  const { container, getByText } = renderWithTheme(
+  renderWithTheme(
     <DropdownButton buttonValue="Button" shouldUpdateButtonValue>
       <DropdownButton.Button onClick={onClick}>
         {innerContents}
@@ -37,58 +38,57 @@ it('updates buttonValue on child click when shouldUpdateButtonValue is true', ()
     </DropdownButton>
   );
 
-  getByText('Button').click();
-  getByText('Inner').click();
+  await user.click(await screen.findByRole('button', { name: /Button/ }));
+  await user.click(await screen.findByRole('option', { name: /Inner/ }));
 
-  expect(container.querySelectorAll('button')[0]).toHaveTextContent('Inner');
+  expect(
+    await screen.findByRole('button', { name: /Inner/ })
+  ).toBeInTheDocument();
 });
 
-it('closes dropdown on child click when shouldCloseOnButtonClick', () => {
-  const { getByText } = renderWithTheme(
+it('closes dropdown on child click when shouldCloseOnButtonClick', async () => {
+  const user = userEvent.setup();
+  renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
       <DropdownButton.Button onClick={onClick}>Content</DropdownButton.Button>
     </DropdownButton>
   );
 
-  getByText('Button').click();
-  getByText('Content').click();
-  expect(getByText('Content')).not.toBeVisible();
+  await user.click(await screen.findByRole('button', { name: /Button/ }));
+  const contentOption = await screen.findByRole('option', { name: /Content/ });
+  await user.click(contentOption);
+  expect(contentOption).not.toBeVisible();
 });
 
-it('allows arrow movement and traps focus when dropdown is opened', () => {
-  const { container, getByText } = renderWithTheme(
+it('allows arrow movement and traps focus when dropdown is opened', async () => {
+  const user = userEvent.setup();
+  renderWithTheme(
     <DropdownButton buttonValue="Button" shouldCloseOnButtonClick>
       <DropdownButton.Button onClick={onClick}>Item 1</DropdownButton.Button>
       <DropdownButton.Button onClick={onClick}>Item 2</DropdownButton.Button>
     </DropdownButton>
   );
 
-  const firstButton = getByText('Button').closest('button');
-  firstButton.focus();
-  firstButton.click();
+  const firstButton = await screen.findByRole('button', 'Button');
+  await user.click(firstButton);
   expect(firstButton).toHaveFocus();
 
-  const pressArrowKey = key =>
-    fireEvent.keyDown(getByRole(container, 'combobox'), {
-      keyCode: key
-    });
+  const verifyFocusAfterKeydown = async (key, itemName) => {
+    await user.keyboard(key);
+    waitFor(async () =>
+      expect(
+        await screen.findByRole('button', { name: itemName })
+      ).toHaveFocus()
+    );
+  };
 
-  function verifyFocusAfterKeydown(key, button) {
-    pressArrowKey(key);
-    waitFor(() => {
-      expect(button).toHaveFocus();
-    });
-  }
+  const firstItemName = /Item 1/;
+  const secondItemName = /Item 2/;
 
-  const firstItemButton = getByText('Item 1');
-  const secondItemButton = getByText('Item 2');
-
-  const downArrow = 40;
-  const upArrow = 38;
-  verifyFocusAfterKeydown(downArrow, firstItemButton);
-  verifyFocusAfterKeydown(downArrow, secondItemButton);
-  verifyFocusAfterKeydown(downArrow, firstButton);
+  verifyFocusAfterKeydown('[ArrowDown]', firstItemName);
+  verifyFocusAfterKeydown('[ArrowDown]', secondItemName);
+  verifyFocusAfterKeydown('[ArrowDown]', firstItemName);
   // pressing the up arrow key while focused on the first button
   // will verify focus trap is working as expected
-  verifyFocusAfterKeydown(upArrow, secondItemButton);
+  verifyFocusAfterKeydown('[ArrowUp]', secondItemName);
 });

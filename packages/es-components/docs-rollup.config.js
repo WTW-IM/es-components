@@ -1,5 +1,5 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
@@ -14,12 +14,12 @@ export default [
     output: {
       file: 'docs/full-color-icons.js',
       format: 'iife',
-      intro: 'var global = typeof self !== undefined ? self : this;',
+      intro: 'var global = typeof self !== undefined ? self : this;'
     },
     preserveSymlinks: true,
     plugins: [
       resolve({
-        preferBuiltins: true,
+        preferBuiltins: true
       }),
       commonjs({
         include: /node_modules/,
@@ -27,23 +27,23 @@ export default [
         namedExports: {
           react: Object.keys(React),
           'react-dom': Object.keys(ReactDOM),
-          'react-is': Object.keys(ReactIs),
-        },
+          'react-is': Object.keys(ReactIs)
+        }
       }),
       babel({
         exclude: /node_modules\/?!(es-components-via-theme)/,
         envName: 'production',
-        babelHelpers: 'runtime',
+        babelHelpers: 'runtime'
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
-        preventAssignment: true,
+        preventAssignment: true
       }),
       terser(),
       htmlTemplate({
         template: 'src/full-color-icons.html',
-        target: 'docs/full-color-icons.html',
-      }),
-    ],
-  },
+        target: 'docs/full-color-icons.html'
+      })
+    ]
+  }
 ];

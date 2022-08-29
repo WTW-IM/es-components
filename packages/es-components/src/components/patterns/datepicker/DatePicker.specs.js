@@ -2,7 +2,8 @@
 import React from 'react';
 import viaTheme from 'es-components-via-theme';
 
-import { cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import DatePicker from './DatePicker';
@@ -20,8 +21,9 @@ function setScreenWidth(size) {
 
 afterEach(cleanup);
 
-it('renders DatePicker when textbox is focused', () => {
-  const { getByLabelText, queryByText } = renderWithTheme(
+it('renders DatePicker when textbox is focused', async () => {
+  const user = userEvent.setup();
+  renderWithTheme(
     <Control>
       <Label htmlFor="test-date">Test date</Label>
       <DatePicker
@@ -32,8 +34,8 @@ it('renders DatePicker when textbox is focused', () => {
       />
     </Control>
   );
-  getByLabelText('Test date').focus();
-  expect(queryByText('November 2018')).not.toBeNull();
+  await user.click(await screen.findByLabelText('Test date'));
+  expect(await screen.findByText('November 2018')).toBeInTheDocument();
 });
 
 it('renders DatePicker when textbox is clicked on', () => {

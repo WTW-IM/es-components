@@ -10,7 +10,6 @@
   "sideEffects": false,
   "scripts": {
     "build": "npm run rollup",
-    "ci-run": "npm run lint && npm test",
     "lint": "eslint src",
     "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\" && touch docs/temp ",
     "prepublishOnly": "npm run build",

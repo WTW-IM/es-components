@@ -111,84 +111,84 @@ it('disables incrementation button when current value equals upperThreshold', as
 });
 
 it('when a non-numeric value is entered the incrementer resets to 0', () => {
-  const { queryByDisplayValue } = renderWithTheme(
+  renderWithTheme(
     createIncrementer({
       startingValue: 6
     })
   );
 
-  const input = queryByDisplayValue('6');
+  const input = screen.queryByDisplayValue('6');
   input.value = 'hi';
   fireEvent.change(input);
   fireEvent.blur(input);
 
-  expect(queryByDisplayValue('0')).not.toBeNull();
+  expect(screen.getByDisplayValue('0')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(0);
 });
 
 it('when a non-numeric value is entered the incrementer resets to lowerThreshold when available', () => {
-  const { queryByDisplayValue } = renderWithTheme(
+  renderWithTheme(
     createIncrementer({
       startingValue: 6,
       lowerThreshold: 3
     })
   );
 
-  const input = queryByDisplayValue('6');
+  const input = screen.queryByDisplayValue('6');
   input.value = 'hi';
   fireEvent.change(input);
   fireEvent.blur(input);
 
-  expect(queryByDisplayValue('3')).not.toBeNull();
+  expect(screen.getByDisplayValue('3')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(3);
 });
 
 it('when a value is entered that exceeds the upperThreshold, it resets to upperThreshold', () => {
-  const { queryByDisplayValue } = renderWithTheme(
+  renderWithTheme(
     createIncrementer({
       upperThreshold: 10
     })
   );
 
-  const input = queryByDisplayValue('0');
+  const input = screen.queryByDisplayValue('0');
   input.value = '25';
   fireEvent.change(input);
   fireEvent.blur(input);
 
-  expect(queryByDisplayValue('10')).not.toBeNull();
+  expect(screen.getByDisplayValue('10')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(10);
 });
 
 it('when a value is entered that exceeds the lowerThreshold, it resets to lowerThreshold', () => {
-  const { queryByDisplayValue } = renderWithTheme(
+  renderWithTheme(
     createIncrementer({
       lowerThreshold: 3,
       startingValue: 5
     })
   );
 
-  const input = queryByDisplayValue('5');
+  const input = screen.queryByDisplayValue('5');
   input.value = '1';
   fireEvent.change(input);
   fireEvent.blur(input);
 
-  expect(queryByDisplayValue('3')).not.toBeNull();
+  expect(screen.getByDisplayValue('3')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(3);
 });
 
 it('when the lowerThreshold is 0, negative numbers should reset to 0', () => {
-  const { queryByDisplayValue } = renderWithTheme(
+  renderWithTheme(
     createIncrementer({
       lowerThreshold: 0,
       startingValue: 5
     })
   );
 
-  const input = queryByDisplayValue('5');
+  const input = screen.queryByDisplayValue('5');
   input.value = '-1';
   fireEvent.change(input);
   fireEvent.blur(input);
 
-  expect(queryByDisplayValue('0')).not.toBeNull();
+  expect(screen.getByDisplayValue('0')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(0);
 });

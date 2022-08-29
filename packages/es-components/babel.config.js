@@ -1,5 +1,4 @@
-module.exports = function(api) {
-  const modules = api.env('test') ? 'auto' : false;
+module.exports = function (api) {
   const inProd = api.env('production');
 
   const presets = [
@@ -24,7 +23,7 @@ module.exports = function(api) {
   ].concat(inProd ? [removePropTypesPlugin] : []);
 
   return {
-    ignore: [/[\/\\]core-js/, /@babel[\/\\]runtime/],
+    ignore: [/[/\\]core-js/, /@babel[/\\]runtime/],
     sourceType: 'unambiguous',
     presets,
     plugins

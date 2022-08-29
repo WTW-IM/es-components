@@ -49,10 +49,21 @@ module.exports = {
       files: ['.eslintrc*', '*.config.js', '**/config/*'],
       env: {
         node: true
+      },
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'error',
+          {
+            devDependencies: true
+          }
+        ]
       }
     },
     {
       files: ['*.specs.*'],
+      env: {
+        es2021: true
+      },
       extends: [
         ...exts,
         'plugin:jest/recommended',

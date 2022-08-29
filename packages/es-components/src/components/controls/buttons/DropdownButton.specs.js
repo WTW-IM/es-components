@@ -11,20 +11,20 @@ const onClick = jest.fn();
 
 it('opens/closes dropdown on click', async () => {
   const user = userEvent.setup();
-  const { getByText } = renderWithTheme(
+  renderWithTheme(
     <DropdownButton buttonValue="Button">
       <DropdownButton.Button onClick={onClick}>Inner</DropdownButton.Button>
     </DropdownButton>
   );
 
   const button = await screen.findByRole('button', { name: /Button/ });
-  expect(getByText('Inner')).not.toBeVisible();
+  expect(screen.getByText('Inner')).not.toBeVisible();
 
   await user.click(button);
-  expect(getByText('Inner')).toBeVisible();
+  expect(screen.getByText('Inner')).toBeVisible();
 
   await user.click(button);
-  expect(getByText('Inner')).not.toBeVisible();
+  expect(screen.getByText('Inner')).not.toBeVisible();
 });
 
 it('updates buttonValue on child click when shouldUpdateButtonValue is true', async () => {
@@ -75,7 +75,7 @@ it('allows arrow movement and traps focus when dropdown is opened', async () => 
 
   const verifyFocusAfterKeydown = async (key, itemName) => {
     await user.keyboard(key);
-    waitFor(async () =>
+    await waitFor(async () =>
       expect(
         await screen.findByRole('button', { name: itemName })
       ).toHaveFocus()

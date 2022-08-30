@@ -8,6 +8,9 @@ jobs:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
+    defaults:
+      run:
+        working-directory: packages/es-components
     strategy:
       matrix:
         node: [12, 14, 16]
@@ -26,10 +29,23 @@ jobs:
         run: |
           npm ci
 
-      - name: Run Tests
-        working-directory: packages/es-components
+      - name: Run Lint
+        if: ${{ matrix.node == 16 }}
+        continue-on-error: true
         run: |
-          npm run ci-run
+          npx eslint --output-file eslint_report.json --format json .
+
+      - name: Annotate JS Linting Results
+        if: ${{ matrix.node == 16 }}
+        uses: ataylorme/eslint-annotate-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          report-json: packages/es-components/eslint_report.json
+
+      - name: Run Tests
+        run: |
+          npm test
+
 
   npm:
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}

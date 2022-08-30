@@ -1,7 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
@@ -12,12 +12,12 @@ export default [
     output: [
       {
         file: pkg.main,
-        format: 'cjs',
+        format: 'cjs'
       },
       {
         file: pkg.module,
-        format: 'esm',
-      },
+        format: 'esm'
+      }
     ],
     external: [
       'date-fns',
@@ -35,20 +35,20 @@ export default [
       'react-modal',
       'tinycolor2',
       'get-root-node-polyfill/implement',
-      'format-message',
+      'format-message'
     ],
     plugins: [
       wildcardExternal([
         '@babel/**',
         'lodash/**',
         'core-js/**',
-        'text-mask-addons/**',
+        'text-mask-addons/**'
       ]),
       babel({
         exclude: ['node_modules/**'],
-        babelHelpers: 'runtime',
-      }),
-    ],
+        babelHelpers: 'runtime'
+      })
+    ]
   },
   {
     input: 'src/index.js',
@@ -62,8 +62,8 @@ export default [
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
-        'styled-components': 'styled',
-      },
+        'styled-components': 'styled'
+      }
     },
     context: 'window',
     external: ['react', 'react-dom', 'styled-components'],
@@ -73,18 +73,18 @@ export default [
       babel({
         exclude: /node_modules/,
         envName: 'production',
-        babelHelpers: 'runtime',
+        babelHelpers: 'runtime'
       }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
-        preventAssignment: true,
+        preventAssignment: true
       }),
       terser({
         compress: {
           if_return: false,
-          typeofs: false,
-        },
-      }),
-    ],
-  },
+          typeofs: false
+        }
+      })
+    ]
+  }
 ];

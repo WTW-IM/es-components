@@ -1,5 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
+import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 import viaTheme from 'es-components-via-theme';
 import { darken, getTextColor } from '../../util/colors';
 
@@ -8,28 +10,35 @@ import { renderWithTheme } from '../../util/test-utils';
 
 const onClick = jest.fn();
 
-it('sets isPressed state on click', () => {
-  const { getByText } = renderWithTheme(
-    <ToggleButton onClick={onClick}>test</ToggleButton>
-  );
-  const button = getByText('test');
-  button.click();
-
-  const themeValues = viaTheme.buttonStyles.button.variant.default;
-  const clickedBg = darken(darken(themeValues.bgColor, 7.5), 2.5);
+it('sets isPressed state on click', async () => {
+  const {
+    buttonStyles: {
+      button: {
+        variant: {
+          default: { bgColor }
+        }
+      }
+    }
+  } = viaTheme;
+  const clickedBg = darken(darken(bgColor, 7.5), 2.5);
   const clickedText = getTextColor(clickedBg);
-  const unclickedBg = themeValues.bgColor;
-  const unclickedText = getTextColor(unclickedBg);
+  const unclickedText = getTextColor(bgColor);
+
+  const user = userEvent.setup();
+  renderWithTheme(<ToggleButton onClick={onClick}>test</ToggleButton>);
+
+  const button = await screen.findByRole('button', { name: /test/ });
+  await user.click(button);
 
   expect(button).toHaveStyle(`
     background-color: ${clickedBg};
     color: ${clickedText};
   `);
 
-  button.click();
+  await user.click(button);
 
   expect(button).toHaveStyle(`
-    background-color: ${unclickedBg};
+    background-color: ${bgColor};
     color: ${unclickedText};
   `);
 });

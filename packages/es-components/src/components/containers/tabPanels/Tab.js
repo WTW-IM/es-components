@@ -33,8 +33,6 @@ const TabButton = styled.button`
     border-bottom-color: ${props =>
       props.selected ? ' transparent' : `${props.theme.colors.gray4}`};
     box-shadow: none;
-    color: ${props =>
-      props.selected ? props.theme.colors.black : props.theme.colors.primary};
     padding: 10px 15px;
     margin: 0 2px 0px 0;
 
@@ -59,6 +57,7 @@ function Tab({
 }) {
   return (
     <TabButton
+      className='tab-button'
       onClick={() => action(name, children, simpleName, announcerText)}
       selected={selected}
       aria-label={`${simpleName || name} tab`}

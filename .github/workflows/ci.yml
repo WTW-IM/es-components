@@ -30,13 +30,19 @@ jobs:
           npm ci
 
       - name: Run Lint
-        if: ${{ matrix.node == 16 }}
+        if: ${{ matrix.node == 16 &&
+          github.ref != 'refs/heads/main' &&
+          github.ref != 'refs/heads/pre-prod'
+        }}
         continue-on-error: true
         run: |
           npx eslint --output-file eslint_report.json --format json .
 
       - name: Annotate JS Linting Results
-        if: ${{ matrix.node == 16 }}
+        if: ${{ matrix.node == 16 &&
+          github.ref != 'refs/heads/main' &&
+          github.ref != 'refs/heads/pre-prod'
+        }}
         uses: ataylorme/eslint-annotate-action@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

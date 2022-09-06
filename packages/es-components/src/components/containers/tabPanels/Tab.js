@@ -8,7 +8,6 @@ import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 const TabButton = styled.button`
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.gray2};
-  border: 1px solid ${props => props.theme.colors.gray4};
   box-shadow: ${props =>
     props.selected ? '0 6px 12px rgba(0, 0, 0, 0.175)' : 'none'};
   color: ${props =>
@@ -23,7 +22,10 @@ const TabButton = styled.button`
   &:focus {
     outline: none;
   }
-
+  @media (max-width: ${props => props.theme.screenSize.desktop}) {
+  border: 1px solid ${props => props.theme.colors.gray4};
+  }
+  
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
     background-color: ${props => props.theme.colors.white};
     border: ${props =>
@@ -33,8 +35,6 @@ const TabButton = styled.button`
     border-bottom-color: ${props =>
       props.selected ? ' transparent' : `${props.theme.colors.gray4}`};
     box-shadow: none;
-    color: ${props =>
-      props.selected ? props.theme.colors.black : props.theme.colors.primary};
     padding: 10px 15px;
     margin: 0 2px 0px 0;
 
@@ -59,6 +59,7 @@ function Tab({
 }) {
   return (
     <TabButton
+      className={`tab-button-${selected ? 'selected' : 'unselected'}`}
       onClick={() => action(name, children, simpleName, announcerText)}
       selected={selected}
       aria-label={`${simpleName || name} tab`}

@@ -29,9 +29,22 @@ jobs:
         run: |
           npm ci
 
+      - name: Run Lint
+        if: ${{ matrix.node == 16 }}
+        continue-on-error: true
+        run: |
+          npx eslint --output-file eslint_report.json --format json .
+
+      - name: Annotate JS Linting Results
+        if: ${{ matrix.node == 16 }}
+        uses: ataylorme/eslint-annotate-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          report-json: packages/es-components/eslint_report.json
+
       - name: Run Tests
         run: |
-          npm run ci-run
+          npm test
 
   npm:
     if: ${{ github.ref == 'refs/heads/main' }}

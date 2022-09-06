@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>21.6.91 (2022-09-06)</small>
+
+**Note:** Version bump only for package es-components-via-theme
+
+
+
+
+
 ## <small>21.6.91-pre-prod.0 (2022-08-31)</small>
 
 * Merge pull request #642 from WTW-IM/react-18 ([c076594](https://github.com/WTW-IM/es-components/commit/c076594)), closes [#642](https://github.com/WTW-IM/es-components/issues/642)

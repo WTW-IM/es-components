@@ -25,7 +25,7 @@ const TabContent = styled.div`
 `;
 
 function TabPanel(props) {
-  const { children, selectedKey, tabChanged, canTabChange } = props;
+  const { children, selectedKey, tabChanged, canTabChange, className } = props;
   const [value, setValue] = useState(selectedKey);
 
   let selectedIndex = findIndex(React.Children.toArray(children), child => {
@@ -59,7 +59,7 @@ function TabPanel(props) {
   );
 
   return (
-    <div>
+    <div className={className}>
       <TabList role="tablist" className='tab-list'>{elements}</TabList>
       <TabContent role="tabpanel" className="tab-content" >
         {elements[selectedIndex].props.children}

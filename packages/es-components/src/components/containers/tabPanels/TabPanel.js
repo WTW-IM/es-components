@@ -68,7 +68,7 @@ function TabPanel(props) {
   );
 }
 
-function childrenRule(props, propName, component) {
+function childrenRule(props, propName) {
   let children = props[propName];
   if (!Array.isArray(children)) {
     children = [children];
@@ -98,7 +98,8 @@ TabPanel.propTypes = {
   /**
    * Callback when the selected tab has changed. The callback is given the name of the tab that is active
    */
-  tabChanged: PropTypes.func
+  tabChanged: PropTypes.func,
+  className: PropTypes.string
 };
 
 TabPanel.defaultProps = {

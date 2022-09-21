@@ -81,6 +81,7 @@ function IconButton({
         isHighlighted={isHighlighted}
         disabled={disabled}
         activeColor={buttonStyle.bgColor}
+        aria-pressed={isHighlighted}
         aria-labelledby={textId}
       >
         <Icon name={iconName} size={iconSize} />

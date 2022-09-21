@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { noop } from 'lodash';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
@@ -15,8 +16,7 @@ const Container = styled.div`
 `;
 
 const PopoverHeader = styled.div`
-  background-color: ${props =>
-    props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
+  background-color: ${props => props.hasTitle ? props.theme.colors[props.styleType] : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
@@ -82,11 +82,14 @@ function Popover(props) {
     renderTrigger,
     hasCloseButton,
     hasAltCloseButton,
+    disableCloseOnScroll,
     disableRootClose,
     disableFlipping,
     enableEvents,
     keepTogether,
     strategy,
+    popoverWrapperClassName,
+    styleType,
     ...otherProps
   } = props;
 
@@ -159,11 +162,15 @@ function Popover(props) {
   }, [isOpen]);
 
   useEffect(() => {
+    if (disableCloseOnScroll) {
+      return noop;
+    }
+
     if (isOpen) {
       window.addEventListener('scroll', hidePopOnScroll);
     }
     return () => window.removeEventListener('scroll', hidePopOnScroll);
-  }, [isOpen]);
+  }, [isOpen, disableCloseOnScroll]);
 
   const closeButton = (
     <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
@@ -198,18 +205,13 @@ function Popover(props) {
         keepTogether={keepTogether}
         {...otherProps}
       >
-        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose}>
+        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose} className={popoverWrapperClassName}>
           <div role="dialog" ref={contentRef}>
-            <PopoverHeader hasTitle={hasTitle}>
+            <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
               {hasTitle && <TitleBar>{title}</TitleBar>}
               {hasAltCloseButton && altCloseButton}
-              <CloseHelpText
-                tabIndex={-1}
-                ref={escMsgRef}
-                aria-label="Press escape to close the Popover"
-              />
+              <CloseHelpText tabIndex={-1} ref={escMsgRef} aria-label="Press escape to close the Popover" />
             </PopoverHeader>
-
             <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
               <PopoverContent showCloseButton={showCloseButton}>
                 {renderContent ? renderContent({ toggleShow }) : content}
@@ -253,6 +255,10 @@ Popover.propTypes = {
   placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   /** The size of the arrow on the popover box */
   arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
+  /** Disables popover's ability to close when the user scrolls  */
+  disableCloseOnScroll: PropTypes.bool,
+  /** Disables popover's ability to change position to stay in viewport */
+  disableFlipping: PropTypes.bool,
   /** Prevents popover from closing when clicked outside of it */
   disableRootClose: PropTypes.bool,
   /** Display a close button in the bottom right of the popover body */
@@ -261,14 +267,16 @@ Popover.propTypes = {
   hasAltCloseButton: PropTypes.bool,
   /** Function returning a button component to be used as the popover trigger */
   renderTrigger: PropTypes.func.isRequired,
-  /** Disables popovers ability to change position to stay in viewport */
-  disableFlipping: PropTypes.bool,
   /** Enable event handlers provided by Popper.js */
   enableEvents: PropTypes.bool,
   /** Sets the strategy for positioning the popover in Popper.js */
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
   /** When using a React portal, such as sliding pane, this helps the arrow to stay aligned with the trigger */
-  keepTogether: PropTypes.bool
+  keepTogether: PropTypes.bool,
+  /** Pass a className to the wrapper of the popover content */
+  popoverWrapperClassName: PropTypes.string,
+  /** Specify the background color of the popover header (similar to Button style types) */
+  styleType: PropTypes.oneOf(['primary', 'info', 'success', 'warning', 'danger'])
 };
 
 Popover.defaultProps = {
@@ -278,10 +286,13 @@ Popover.defaultProps = {
   hasCloseButton: false,
   hasAltCloseButton: false,
   disableFlipping: false,
+  disableCloseOnScroll: false,
   title: undefined,
   enableEvents: true,
   strategy: 'absolute',
-  keepTogether: true
+  keepTogether: true,
+  styleType: 'primary',
+  popoverWrapperClassName: 'popover--active'
 };
 
 export default Popover;

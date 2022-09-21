@@ -49,28 +49,59 @@ const primary = blue900;
 const primaryHover = '#00436a'; // from bda toolkit link example
 const primaryLight = blue700;
 
-// semantic
-const info = '#006699';
-const infoHover = '#004d66';
-const infoLight = '#c0ebff';
-const success = '#006000';
-const successHover = '#004000';
-const successLight = '#d2e9d2';
-const warning = '#de7400';
-const warningHover = '#a65600';
-const warningLight = '#f6e0ca';
-const danger = '#e60700';
-const dangerHover = '#970500';
-const dangerLight = '#ffc2c0';
-const advisor = '#ff6310';
-const advisorLight = '#fee7de';
+// semantic - base colors, tints, & shades
+const agent50 = '#fde8de';
+const agent100 = '#fee8c4';
+const agent300 = '#fdcc8a';
+const agent500 = '#fc8d59';
+const agent700 = '#ff6310';
+const danger50 = '#f9e0e0';
+const danger100 = '#f0b3b3';
+const danger300 = '#db4d4d';
+const danger500 = '#cc0000';
+const danger700 = '#c00000';
+const danger900 = '#ad0000'; 
+const info50 = '#e0edf3';
+const info100 = '#b3d1e0';
+const info300 = '#4d94b8';
+const info500 = '#006699';
+const info700 = '#005386';
+const info900 = '#00386b';
+const success50 = '#e5f0e9';
+const success100 = '#bfdac7';
+const success300 = '#69aa7c';
+const success500 = '#298544';
+const success700 = '#1f7235';
+const success900 = '#0f551f'; 
+const warning50 = '#f8eae0';
+const warning100 = '#edccb3';
+const warning300 = '#d4874d';
+const warning500 = '#c25400';
+const warning700 = '#b44300';
+const warning900 = '#9f2900';
+
+// semantic - named variables
+const info = info500;
+const infoHover = info900;
+const infoLight = info50;
+const success = success500;
+const successHover = success900;
+const successLight = success50;
+const warning = warning500;
+const warningHover = warning900;
+const warningLight = warning50;
+const danger = danger500;
+const dangerHover = danger900;
+const dangerLight = danger50;
+const advisor = agent700;
+const advisorLight = agent100;
 
 // brand colors
-const primary1 = '#00a0d2'; // used by: spinner, drawerPanel
-const primary2 = '#00c389'; // used by: spinner
-const primary3 = '#c110a0'; // used by: spinner, modalHeader, breadcrumb, Nav, progressTracker, IconButton
-const secondary1 = '#5a0c6f'; // used by spinner, outlineButton
-const secondary2 = '#717171';
+const primary1 = blue500; // used by: spinner, drawerPanel
+const primary2 = green500; // used by: spinner
+const primary3 = magenta500; // used by: spinner, modalHeader, breadcrumb, Nav, progressTracker, IconButton
+const secondary1 = violet500; // used by spinner, outlineButton
+const secondary2 = gray7;
 
 // misc
 const inputFocus = '#83bffc';
@@ -82,11 +113,11 @@ const dpBackground = primary;
 const navArrow = white;
 const navArrowHover = gray2;
 const selected = primary3;
-const hover = '#7a0a65';
+const hover = violet500;
 const keyboard = primary;
 const inRange = 'rgba(251, 213, 244, 0.75)';
 const highlight = success;
-const highlightHover = '#007653';
+const highlightHover = success700;
 
 const theme = {
   colors: {
@@ -153,6 +184,9 @@ const theme = {
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus
   },
+  spacing: {
+    defaultMargin: '1.875rem'
+  },
   brandColors: {
     primary1: primary1,
     primary2: primary2,
@@ -173,16 +207,16 @@ const theme = {
   },
   promptStyles: {
     readAloud: {
-      bgColor: '#FDE8DE',
-      bannerBgColor: '#FF6310',
+      bgColor: agent50,
+      bannerBgColor: agent700,
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
       iconName: 'agent'
     },
     doNotReadAloud: {
-      bgColor: '#E0F4F4',
-      bannerBgColor: '#0073B6',
+      bgColor: blue50,
+      bannerBgColor: blue900,
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
@@ -197,7 +231,7 @@ const theme = {
       },
       light: {
         bgColor: successLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -211,7 +245,7 @@ const theme = {
       },
       light: {
         bgColor: infoLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -225,7 +259,7 @@ const theme = {
       },
       light: {
         bgColor: warningLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -239,7 +273,7 @@ const theme = {
       },
       light: {
         bgColor: dangerLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -253,7 +287,7 @@ const theme = {
       },
       light: {
         bgColor: advisorLight,
-        textColor: gray8
+        textColor: gray9
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -269,7 +303,7 @@ const theme = {
           bgColor: primary
         },
         default: {
-          bgColor: '#ccc'
+          bgColor: gray4
         },
         darkDefault: {
           bgColor: gray8
@@ -424,8 +458,8 @@ const theme = {
   validationIconName: {
     success: 'ok-circle',
     info: 'info-circle',
-    warning: 'exclamation-circle',
-    danger: 'exclamation-sign',
+    warning: 'exclamation-sign',
+    danger: 'exclamation-circle',
     advisor: 'agent'
   },
   validationTextColor: {
@@ -462,6 +496,7 @@ const theme = {
   font: {
     baseFontSize: '18px',
     baseLineHeight: 1.428,
+    baseFontFace: '"Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
     headingDesktop: {
       1: '44.78976px',
       2: '37.3248px',

@@ -25,12 +25,12 @@ const TabContent = styled.div`
 `;
 
 function TabPanel(props) {
-  const { children, selectedKey, tabChanged, canTabChange } = props;
+  const { children, selectedKey, tabChanged, canTabChange, className } = props;
   const [value, setValue] = useState(selectedKey);
 
   let selectedIndex = findIndex(React.Children.toArray(children), child => {
-    const key = selectedKey || value || value.key;
-    return child.props.name.key
+    const key = selectedKey || value;
+    return child.props.name && child.props.name.key
       ? child.props.name.key === key
       : child.props.name === key;
   });
@@ -59,16 +59,16 @@ function TabPanel(props) {
   );
 
   return (
-    <>
-      <TabList role="tablist">{elements}</TabList>
-      <TabContent role="tabpanel">
+    <div className={className}>
+      <TabList role="tablist" className='tab-list'>{elements}</TabList>
+      <TabContent role="tabpanel" className="tab-content" >
         {elements[selectedIndex].props.children}
       </TabContent>
-    </>
+    </div >
   );
 }
 
-function childrenRule(props, propName, component) {
+function childrenRule(props, propName) {
   let children = props[propName];
   if (!Array.isArray(children)) {
     children = [children];
@@ -98,7 +98,8 @@ TabPanel.propTypes = {
   /**
    * Callback when the selected tab has changed. The callback is given the name of the tab that is active
    */
-  tabChanged: PropTypes.func
+  tabChanged: PropTypes.func,
+  className: PropTypes.string
 };
 
 TabPanel.defaultProps = {

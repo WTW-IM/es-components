@@ -15,7 +15,13 @@ export {
   InlineMessage,
   Message
 } from './components/containers/notification/Message';
-export Drawer from './components/containers/drawer/Drawer';
+
+export {
+  Drawer,
+  useDrawerItemContext,
+  DrawerItemContext
+} from './components/containers/drawer/Drawer';
+
 export Fieldset from './components/containers/fieldset/Fieldset';
 export Tooltip from './components/containers/tooltip/Tooltip';
 export Popover from './components/containers/popover/Popover';
@@ -89,3 +95,4 @@ export { isValidEmail } from './components/util/isValidEmail';
 export useRootNode, { useRootNodeLocator } from './components/util/useRootNode';
 export { useLoadingState } from './hooks/useLoadingState';
 export { useMountedOnlyState } from './hooks/useMountedOnlyState';
+export useUniqueId from './components/util/useUniqueId';

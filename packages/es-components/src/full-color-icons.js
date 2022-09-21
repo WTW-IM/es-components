@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { debounce } from 'lodash';
 import Spinner from './components/base/spinner/Spinner';
 import FullColorIcon from './components/base/icons/FullColorIcon';
@@ -43,14 +43,16 @@ const HighlightSpan = styled.span`
 
 function DisplayName({ name, highlight }) {
   const highlightStart = name.indexOf(highlight);
-  if (!highlight.length || highlightStart < 0) return name;
   const values = useMemo(() => {
     const highlightEnd = highlightStart + highlight.length;
     const pre = highlightStart > 0 ? name.substring(0, highlightStart) : '';
     const post =
       highlightEnd >= name.length ? '' : name.substring(highlightEnd);
     return { pre, post };
-  }, [name, highlight]);
+  }, [name, highlight, highlightStart]);
+
+  if (!highlight.length || highlightStart < 0) return name;
+
   return (
     <div css={{ marginTop: 10 }}>
       {values.pre}
@@ -109,6 +111,7 @@ function FullColorIconsApp() {
       const foundIcons = [...xmlDoc.getElementsByTagName('Blob')]
         .map(blob => blob.getElementsByTagName('Name')[0].textContent)
         .filter(name => name.includes('full-color-icons'))
+        .filter(name => Boolean(name.match(/svg$/)))
         .map(fullName => fullName.match(/full-color-icons\/(.*)\.svg/)[1]);
       setIcons(foundIcons);
     };
@@ -152,9 +155,9 @@ function FullColorIconsApp() {
   );
 }
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('mount'));
+root.render(
   <ThemeProvider theme={viaTheme}>
     <FullColorIconsApp />
-  </ThemeProvider>,
-  document.getElementById('mount')
+  </ThemeProvider>
 );

@@ -63,7 +63,7 @@ const StyledButton = styled(ButtonBase)`
     border-color: ${props => props.colors.hoverBorderColor};
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075),
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
-    outline: 0;
+    outline: none;
   }
 
   &:active,
@@ -83,7 +83,7 @@ const StyledButton = styled(ButtonBase)`
   &[disabled],
   &[data-waiting]
   {
-    color: #ccc;
+    color: #777;
     cursor: not-allowed;
     background-color: #e6e6e6;
     border-color: #e6e6e6;
@@ -93,7 +93,7 @@ const StyledButton = styled(ButtonBase)`
     &.pressed,
       background-color: #e6e6e6;
       border-color: #e6e6e6;
-      color: #ccc;
+      color: #777;
       &:focus {
         box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
       }

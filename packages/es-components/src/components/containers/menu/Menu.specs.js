@@ -1,7 +1,8 @@
 /* eslint-env jest */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 import Menu from './Menu';
 
 import { renderWithTheme } from '../../util/test-utils';
@@ -16,24 +17,30 @@ function buildMenu() {
   );
 }
 
-it('toggles the menu open and closed', () => {
-  const { getByText } = renderWithTheme(buildMenu());
+it('toggles the menu open and closed', async () => {
+  const user = userEvent.setup();
+  renderWithTheme(buildMenu());
 
-  const menuToggleButton = getByText('Open Menu');
-  const menuSection = getByText('Menu Section');
+  const menuToggleButton = await screen.findByRole('button', {
+    name: /Open Menu/
+  });
+  const menuSection = screen.getByText('Menu Section');
 
-  menuToggleButton.click();
+  await user.click(menuToggleButton);
   expect(menuSection).toBeVisible();
 
-  menuToggleButton.click();
+  await user.click(menuToggleButton);
   expect(menuSection).not.toBeVisible();
 });
 
-it('closes open menu when ESC is pressed', () => {
-  const { container, getByText } = renderWithTheme(buildMenu());
+it('closes open menu when ESC is pressed', async () => {
+  const user = userEvent.setup();
+  renderWithTheme(buildMenu());
 
-  getByText('Open Menu').click();
+  const menuButton = await screen.findByRole('button', { name: /Open Menu/ });
+  await user.click(await screen.findByRole('button', { name: /Open Menu/ }));
+  expect(menuButton).toHaveFocus();
 
-  fireEvent.keyDown(container, { keyCode: 27 });
-  expect(getByText('Menu Section')).not.toBeVisible();
+  await user.keyboard('[Escape]');
+  expect(screen.getByText('Menu Section')).not.toBeVisible();
 });

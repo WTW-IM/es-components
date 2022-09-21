@@ -32,6 +32,7 @@ function Day({ onChange, date, ...props }) {
 
   return (
     <DayInput
+      aria-label="Day"
       type="number"
       inputmode="numeric"
       pattern="[0-9]*"

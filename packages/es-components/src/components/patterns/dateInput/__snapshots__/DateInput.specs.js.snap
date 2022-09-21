@@ -52,6 +52,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
   box-sizing: border-box;
   color: #000;
   font-size: 18px;
+  font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 39px;
   line-height: 1.428;
@@ -192,6 +193,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
       tabindex="-1"
     >
       <select
+        aria-label="Select Month"
         class="c3 c4"
         id="test"
         name="month"
@@ -213,6 +215,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         </option>
       </select>
       <input
+        aria-label="Day"
         class="c5 c6"
         max="31"
         min="1"
@@ -223,6 +226,7 @@ exports[`displays monthNames provided by the monthNames prop 1`] = `
         value=""
       />
       <input
+        aria-label="Year"
         class="c5 c7"
         name="year"
         pattern="[0-9]*"
@@ -287,6 +291,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
   box-sizing: border-box;
   color: #000;
   font-size: 18px;
+  font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 39px;
   line-height: 1.428;
@@ -410,6 +415,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
       tabindex="-1"
     >
       <select
+        aria-label="Select Month"
         class="c3 c4"
         id="test"
       >
@@ -475,6 +481,7 @@ exports[`hides the Day input when Day is excluded 1`] = `
         </option>
       </select>
       <input
+        aria-label="Year"
         class="c5 c6"
         pattern="[0-9]*"
         placeholder="Year"

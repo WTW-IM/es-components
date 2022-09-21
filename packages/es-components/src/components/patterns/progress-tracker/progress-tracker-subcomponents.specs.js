@@ -3,7 +3,9 @@
 import React from 'react';
 import { waitFor, cleanup } from '@testing-library/react';
 import viaTheme from 'es-components-via-theme';
-import 'jest-styled-components';
+import useUniqueId from '../../util/useUniqueId';
+
+jest.mock('../../util/useUniqueId');
 
 import {
   ProgressContainer,
@@ -17,6 +19,10 @@ const { ACTIVE, INACTIVE } = sizes;
 function getInstance(ComponentType, props) {
   return renderWithTheme(<ComponentType {...props} />);
 }
+
+beforeEach(async () => {
+  await useUniqueId.mockImplementation(() => '123');
+});
 
 it('breaks the background line at the expected point in ProgressContainer', () => {
   const expectedPercentages = [

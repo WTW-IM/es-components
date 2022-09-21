@@ -32,6 +32,7 @@ function Year({ onChange, date, ...props }) {
 
   return (
     <YearInput
+      aria-label="Year"
       type="number"
       inputmode="numeric"
       pattern="[0-9]*"

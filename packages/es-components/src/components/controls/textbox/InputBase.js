@@ -7,6 +7,7 @@ export default styled.input`
   box-sizing: border-box;
   color: ${props => props.theme.colors.black};
   font-size: ${props => props.theme.font.baseFontSize};
+  font-face: ${props => props.theme.font.baseFontFace};
   font-weight: normal;
   height: 39px;
   line-height: ${props => props.theme.font.baseLineHeight};

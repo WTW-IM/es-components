@@ -87,6 +87,7 @@ function Tooltip(props) {
     content,
     styleType,
     children,
+    buttonLabel,
     ...other
   } = props;
 
@@ -151,6 +152,7 @@ function Tooltip(props) {
             onClick={toggleShow}
             aria-describedby={descriptionId}
             styleType={styleType}
+            aria-label={buttonLabel}
           >
             {children}
           </PopoverLink>

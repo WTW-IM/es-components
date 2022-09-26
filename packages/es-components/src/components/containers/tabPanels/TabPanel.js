@@ -59,12 +59,12 @@ function TabPanel(props) {
   );
 
   return (
-    <div className={className}>
+    <>
       <TabList role="tablist" className='tab-list'>{elements}</TabList>
       <TabContent role="tabpanel" className="tab-content" >
         {elements[selectedIndex].props.children}
       </TabContent>
-    </div >
+    </>
   );
 }
 

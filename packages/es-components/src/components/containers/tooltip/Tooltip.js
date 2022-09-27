@@ -199,7 +199,8 @@ Tooltip.propTypes = {
   /** Disables the default show onFocus functionality */
   disableFocus: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string
+  styleType: PropTypes.string,
+  buttonLabel: PropTypes.string
 };
 
 Tooltip.defaultProps = {

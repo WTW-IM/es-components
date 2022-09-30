@@ -1,7 +1,9 @@
 import { createContext } from 'react';
 
 class NodeError extends Error {
-  constructor(node, ...errorArgs) {
+  public node: HTMLElement;
+
+  constructor(node: HTMLElement, ...errorArgs: any[]) {
     super(...errorArgs);
     this.node = node;
   }
@@ -10,7 +12,7 @@ class NodeError extends Error {
 const iconStyleAttribute = 'data-es-icon-styles';
 const iconsAsset = 'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css';
 
-const getExistingStyleTag = node =>
+const getExistingStyleTag = (node: HTMLElement) =>
   node.querySelector(`[${iconStyleAttribute}]`) ||
   node.querySelector(`link[href="${iconsAsset}"]:not([rel="preload"])`);
 
@@ -22,7 +24,7 @@ const createStyleTag = () => {
   return styleTag;
 };
 
-const addTag = (node, func) => {
+const addTag = (node: HTMLElement, func: (node: HTMLElement) => void) => {
   try {
     const foundTag = getExistingStyleTag(node);
     if (foundTag) return foundTag;
@@ -41,24 +43,24 @@ const addTag = (node, func) => {
   }
 };
 
-const defaultIconContext = {
+const defaultIconContext: { initializedNodes: Array<HTMLElement> } = {
   initializedNodes: []
 };
 
-const documentAppend = tag => document.head.append(tag);
-const initializeBody = node => {
+const documentAppend = (tag: HTMLElement) => document.head.append(tag);
+const initializeBody = (node: HTMLElement) => {
   if (getExistingStyleTag(document.head)) return node;
 
   return addTag(node, documentAppend);
 };
 
-const initializeNode = node => {
+const initializeNode = (node: HTMLElement) => {
   // body must always be set up
   setup(document.body); // eslint-disable-line no-use-before-define
-  return addTag(node, tag => node.prepend(tag));
+  return addTag(node, (tag: HTMLElement) => node.prepend(tag));
 };
 
-const setup = node => {
+const setup = (node: HTMLElement | undefined) => {
   if (!node) return;
 
   const { initializedNodes } = defaultIconContext;

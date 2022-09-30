@@ -15,7 +15,8 @@
     "downlevelIteration": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "declaration": true
+    "declaration": true,
+    "declarationDir": "types",
   },
   "include": ["./src"]
 }

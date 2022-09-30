@@ -22,11 +22,17 @@ export const iconBaseStyles = css`
   vertical-align: text-bottom;
 `;
 
-const StyledIcon = styled.i`
+export interface IconProps {
+  name: string;
+  size?: string | number;
+  className?: string;
+}
+
+const StyledIcon = styled.i<{ size: string }>`
   ${iconBaseStyles}
 `;
 
-const Icon = React.forwardRef(function ForwardedIcon(
+const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
   { name, size, className, ...other },
   ref
 ) {
@@ -38,7 +44,9 @@ const Icon = React.forwardRef(function ForwardedIcon(
       <RootNodeInput />
       <StyledIcon
         className={`bds-icon bds-${name} ${className || ''}`.trim()}
-        size={/^\d+$/.test(size) ? `${size}px` : size || 'inherit'}
+        size={
+          /^\d+$/.test(`${size}`) ? `${size}px` : size?.toString() || 'inherit'
+        }
         aria-hidden
         ref={ref}
         {...other}

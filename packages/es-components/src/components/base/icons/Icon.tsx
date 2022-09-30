@@ -28,7 +28,7 @@ export interface IconProps {
   className?: string;
 }
 
-const StyledIcon = styled.i<{ size: string }>`
+const StyledIcon = styled.i<{ size: string | number; }>`
   ${iconBaseStyles}
 `;
 
@@ -44,9 +44,7 @@ const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
       <RootNodeInput />
       <StyledIcon
         className={`bds-icon bds-${name} ${className || ''}`.trim()}
-        size={
-          /^\d+$/.test(`${size}`) ? `${size}px` : size?.toString() || 'inherit'
-        }
+        size={/^\d+$/.test(size?.toString() || '') ? `${size}px` : size || 'inherit'}
         aria-hidden
         ref={ref}
         {...other}

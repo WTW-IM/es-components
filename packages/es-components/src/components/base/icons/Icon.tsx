@@ -1,17 +1,23 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
 
-const StyledIcon = styled.i`
+export interface IconProps {
+  name: string;
+  size?: string | number;
+  className?: string;
+}
+
+const StyledIcon = styled.i<{ size: string; }>`
   display: inline-block;
   font-size: ${props => props.size};
   text-decoration: none;
   vertical-align: text-bottom;
 `;
 
-function Icon({ name, size, className, ...other }) {
+const Icon: FC<IconProps> = ({ name, size, className, ...other }) => {
   const [rootNode, RootNodeInput] = useRootNodeLocator();
   useContext(IconContext).setup(rootNode);
 
@@ -20,7 +26,7 @@ function Icon({ name, size, className, ...other }) {
       <RootNodeInput />
       <StyledIcon
         className={`bds-icon bds-${name} ${className || ''}`.trim()}
-        size={/^\d+$/.test(size) ? `${size}px` : size || 'inherit'}
+        size={/^\d+$/.test(`${size}`) ? `${size}px` : size?.toString() || 'inherit'}
         aria-hidden
         {...other}
       />

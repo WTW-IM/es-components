@@ -91,7 +91,6 @@ const highlightHover = '#32be3f';
 
 const theme = {
   colors: {
-<<<<<<< HEAD:packages/es-components-wtw-theme/index.js
     white,
     gray0,
     gray1,
@@ -155,7 +154,6 @@ const theme = {
     boxShadowLight,
     boxShadowDark,
     inputFocus
->>>>>>> 61f64ea7... New: typescript support for wtw-theme:packages/es-components-wtw-theme/src/index.ts
   },
   brandColors: {
     primary1,

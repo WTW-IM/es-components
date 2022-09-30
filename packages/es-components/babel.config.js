@@ -3,6 +3,10 @@ module.exports = function (api) {
 
   const presets = [
     [
+      '@babel/preset-typescript',
+      { isTSX: true, allExtensions: true }
+    ],
+    [
       'wtw-im',
       {
         extractFormatMessage: false,

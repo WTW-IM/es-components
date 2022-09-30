@@ -5,6 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
 import pkg from './package.json';
 
 export default [
@@ -45,6 +46,7 @@ export default [
         'core-js/**',
         'text-mask-addons/**'
       ]),
+      typescript(),
       babel({
         exclude: ['node_modules/**'],
         babelHelpers: 'runtime'
@@ -71,6 +73,7 @@ export default [
     plugins: [
       resolve(),
       commonjs({ include: /node_modules/ }),
+      typescript(),
       babel({
         exclude: /node_modules/,
         envName: 'production',

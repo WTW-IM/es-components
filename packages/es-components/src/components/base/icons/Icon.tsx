@@ -10,7 +10,7 @@ export interface IconProps {
   className?: string;
 }
 
-const StyledIcon = styled.i<{ size: string; }>`
+const StyledIcon = styled.i<{ size: string | number; }>`
   display: inline-block;
   font-size: ${props => props.size};
   text-decoration: none;
@@ -26,7 +26,7 @@ const Icon: FC<IconProps> = ({ name, size, className, ...other }) => {
       <RootNodeInput />
       <StyledIcon
         className={`bds-icon bds-${name} ${className || ''}`.trim()}
-        size={/^\d+$/.test(`${size}`) ? `${size}px` : size?.toString() || 'inherit'}
+        size={/^\d+$/.test(size?.toString() || '') ? `${size}px` : size || 'inherit'}
         aria-hidden
         {...other}
       />

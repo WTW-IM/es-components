@@ -7,6 +7,7 @@ import htmlTemplate from 'rollup-plugin-generate-html-template';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactIs from 'react-is';
+import typescript from '@rollup/plugin-typescript';
 
 export default args => {
   const isProduction = args.configEnv === 'prod';
@@ -37,6 +38,7 @@ export default args => {
             'react-is': Object.keys(ReactIs)
           }
         }),
+        typescript(),
         babel({
           exclude:
             /node_modules\/?!(es-components-via-theme|es-components-shared-types)/,

@@ -66,6 +66,7 @@ module.exports = {
     url: 'https://github.com/WTW-IM/es-components',
     text: 'Fork me on GitHub'
   },
+  ignore: ['**/*.specs.tsx', '**/*.specs.js'],
   sections: [
     {
       name: 'Themes',
@@ -91,7 +92,7 @@ module.exports = {
     },
     {
       name: 'Base',
-      components: path.join(baseComponentDir, 'base/**/*.js')
+      components: path.join(baseComponentDir, 'base/**/*.tsx')
     },
     {
       name: 'Containers',
@@ -135,7 +136,7 @@ module.exports = {
     return `import { ${name} } from 'es-components';`;
   },
   getExampleFilename(componentPath) {
-    return componentPath.replace(/\.js$/, '.md');
+    return componentPath.replace(/\.(js|tsx)$/, '.md');
   },
   skipComponentsWithoutExample: true,
   context: {
@@ -164,7 +165,7 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx|ts|tsx)?$/,
           include: [
             path.join(__dirname, 'node_modules', 'react-overlays'),
             path.join(__dirname, 'node_modules', 'react-context-toolbox'),

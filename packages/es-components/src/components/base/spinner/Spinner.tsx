@@ -1,5 +1,6 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { FC } from 'react';
+import PropTypes from 'prop-types';
+import styled, { keyframes, ThemeProps } from 'styled-components';
 import useUniqueId from '../../util/useUniqueId';
 
 const rotatorAnimation = keyframes`
@@ -36,7 +37,7 @@ const dashAnimation = keyframes`
   }
 `;
 
-const colorsAnimation = props => keyframes`
+const colorsAnimation = (props: ThemeProps<any> ) => keyframes`
   0% {
     stroke: ${props.theme.brandColors.primary1};
   }
@@ -68,7 +69,25 @@ const SpinnerCircle = styled.circle`
     ${colorsAnimation} 3.5s ease-in-out infinite;
 `;
 
-const Spinner = ({ title, description, ...other }) => {
+// this should probably be shared
+type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
+  Pick<T, Exclude<keyof T, Keys>>
+  & {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
+  }[Keys];
+
+interface SpinnerPropsBase {
+  /** The title of the spinner for screen readers. This or `description` is
+   * required */
+  title?: string;
+  /** The description of the spinner for screen readers. This or `title` is
+   * required */
+  description?: string;
+}
+
+export type SpinnerProps = RequireAtLeastOne<SpinnerPropsBase & { id: string; }, 'title' | 'description'>;
+
+const Spinner: FC<SpinnerProps & { id: string; }> = ({ title, description, ...other }) => {
   const titleId = title && `${useUniqueId(other.id)}-title`;
   const descId = description && `${useUniqueId(other.id)}-desc`;
 
@@ -95,12 +114,13 @@ const Spinner = ({ title, description, ...other }) => {
 };
 
 // eslint-disable-next-line consistent-return
-const descriptionTitleProp = (props, propName, componentName) => {
+const descriptionTitleProp = (props: { [key: string]: any }, propName: string, componentName: string) => {
   if (!props.title && !props.description) {
     return new Error(
       `You must provide a title, description, or both to ${componentName}.`
     );
   }
+  return null;
 };
 
 Spinner.propTypes = {

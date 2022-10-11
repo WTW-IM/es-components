@@ -13,13 +13,13 @@ function generateBadgeUrl(errors, messageLength) {
 }
 
 const parsedResults = JSON.parse(options.results);
-const errors = parsedResults.filter(({ errors }) => errors.length).length;
-const badgeUrl = generateBadgeUrl(errors, parsedResults.length);
+const errors = parsedResults.filter(({ errors }) => errors.length);
+const badgeUrl = generateBadgeUrl(errors.length, parsedResults.length);
 let message = `All commit messages are correctly formatted.`;
-if (errors) {
+if (errors.length) {
   message = `We following commit messages do not meet our commit convention. Please reword these commits for correct versioning and changelog generation.
 
-${parsedResults.map(lintResult => `* ${lintResult.message} ${lintResult.errors.map(error => `
+${errors.map(lintResult => `* ${lintResult.message} ${lintResult.errors.map(error => `
     * ${error}`)}
 `)}`;
 }

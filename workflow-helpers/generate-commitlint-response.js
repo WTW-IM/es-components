@@ -17,11 +17,11 @@ const errors = parsedResults.filter(({ errors }) => errors.length);
 const badgeUrl = generateBadgeUrl(errors.length, parsedResults.length);
 let message = `All commit messages are correctly formatted.`;
 if (errors.length) {
-  message = `We following commit messages do not meet our commit convention. Please reword these commits for correct versioning and changelog generation.
+  message = `The following commit messages do not meet our commit convention. Please reword these commits for correct versioning and changelog generation.
 
 ${errors.map(lintResult => `* ${lintResult.message} ${lintResult.errors.map(error => `
-    * ${error}`)}
-`)}`;
+    * ${error}`).join('')}
+`).join('\n')}`;
 }
 
 core.setOutput('msg', `${badgeUrl}

@@ -87,7 +87,7 @@ function Tooltip(props) {
     content,
     styleType,
     children,
-    buttonLabel,
+    linkProps,
     ...other
   } = props;
 
@@ -152,7 +152,7 @@ function Tooltip(props) {
             onClick={toggleShow}
             aria-describedby={descriptionId}
             styleType={styleType}
-            aria-label={buttonLabel}
+            {...linkProps}
           >
             {children}
           </PopoverLink>
@@ -200,7 +200,7 @@ Tooltip.propTypes = {
   disableFocus: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
-  buttonLabel: PropTypes.string
+  linkProps: PropTypes.object
 };
 
 Tooltip.defaultProps = {

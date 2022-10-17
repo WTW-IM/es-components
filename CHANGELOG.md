@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.93-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.2...v21.6.93-pre-prod.3) (2022-10-17)
+
+
+### Build
+
+* ensuring we always check out at full depth in publish workflows ([5f36755](https://github.com/WTW-IM/es-components/commit/5f367558af9b4657bb3c816c8f1b79e61782a7e2))
+* only mangling variable names in main branch ([abacbd2](https://github.com/WTW-IM/es-components/commit/abacbd208d1d60d042a484df517a06195967a4b2))
+
+
+
+
+
 ## 21.6.93-pre-prod.2 (2022-10-12)
 
 **Note:** Version bump only for package es-components

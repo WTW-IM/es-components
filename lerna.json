@@ -3,7 +3,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "21.6.93-pre-prod.2",
+  "version": "21.6.93-pre-prod.3",
   "command": {
     "publish": {
       "message": "Build: [skip ci][skip-release] %s",

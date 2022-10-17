@@ -9,7 +9,7 @@
   "main": "cjs/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "npm run rollup",
+    "build": "export MAIN_BUILD=\"$(echo \"$((git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false')\")\" && npm run rollup",
     "lint": "eslint src",
     "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\" && touch docs/temp ",
     "prepublishOnly": "npm run build",

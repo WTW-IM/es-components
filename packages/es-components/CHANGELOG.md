@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.93-pre-prod.5](https://github.com/wtw-im/es-components/compare/v21.6.93-pre-prod.4...v21.6.93-pre-prod.5) (2022-10-19)
+
+
+### Upgrade
+
+* add linkProps to tooltip ([89c4b6b](https://github.com/wtw-im/es-components/commit/89c4b6b2d16b9d9f5b4bee6326a94bcabdd9de9d))
+
+
+
+
+
 ## [21.6.93-pre-prod.4](https://github.com/wtw-im/es-components/compare/v21.6.93-pre-prod.3...v21.6.93-pre-prod.4) (2022-10-17)
 
 

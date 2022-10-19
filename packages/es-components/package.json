@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.6.92",
+  "version": "21.6.93-pre-prod.5",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -9,7 +9,7 @@
   "main": "cjs/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "npm run rollup",
+    "build": "MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
     "lint": "eslint src",
     "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\" && touch docs/temp ",
     "prepublishOnly": "npm run build",

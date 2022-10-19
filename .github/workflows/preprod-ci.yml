@@ -44,6 +44,7 @@ jobs:
         with:
           ref: pre-prod
           token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+          fetch-depth: 0
 
       - uses: actions/setup-node@v3
         with:
@@ -64,5 +65,3 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
-
-

@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PIPELINE_BOT_PAT }}
       - run: |
           npm ci
           npx cypress install

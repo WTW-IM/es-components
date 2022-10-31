@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.94-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94-pre-prod.0) (2022-10-31)
+
+
+### Build
+
+* using PIPLINE_BOT_PAT in all checkout actions ([4dc8f23](https://github.com/WTW-IM/es-components/commit/4dc8f237ec6c43bb109d1fefbd45c3e80edcd8c6))
+
+### Update
+
+* added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
+
+
+
+
+
 ## [21.6.93](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.5...v21.6.93) (2022-10-19)
 
 **Note:** Version bump only for package es-components

@@ -10,7 +10,8 @@ const NotificationIcon = styled(Icon)`
   color: ${props => props.iconColor};
   display: none;
 
-  @media (min-width: ${props => props.alwaysShowIcon ? 0 : props.theme.screenSize.tablet}) {
+  @media (min-width: ${props =>
+      props.alwaysShowIcon ? 0 : props.theme.screenSize.tablet}) {
     display: inline;
     margin-right: 8px;
   }
@@ -55,7 +56,12 @@ function NotificationContent(props) {
   return (
     <>
       {includeIcon && (
-        <NotificationIcon name={iconName} iconColor={iconColor} size={28} alwaysShowIcon={alwaysShowIcon} />
+        <NotificationIcon
+          name={iconName}
+          iconColor={iconColor}
+          size={28}
+          alwaysShowIcon={alwaysShowIcon}
+        />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
       {isDismissable && <Dismiss onClick={dismiss} color={color} />}
@@ -65,7 +71,7 @@ function NotificationContent(props) {
 
 const Notification = styled.div`
   align-items: center;
-  background-color: ${props => props.variant.bgColor};
+  background-color: ${props => props.bgColor ?? props.variant.bgColor};
   border-radius: 2px;
   color: ${props => props.variant.textColor};
   display: flex;
@@ -99,6 +105,7 @@ export function useNotification(styleType = 'base') {
     className,
     style,
     restyleAnchors = true,
+    bgColor,
     ...rest
   }) {
     const theme = useTheme();
@@ -125,6 +132,7 @@ export function useNotification(styleType = 'base') {
           variant={color}
           className={className}
           style={style}
+          bgColor={bgColor}
           restyleAnchors={restyleAnchors}
         >
           <NotificationContent

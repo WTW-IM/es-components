@@ -23,7 +23,9 @@ Notification.propTypes = {
   onDismiss: PropTypes.func,
   children: PropTypes.node,
   /** Allows the icon to display at all resolutions */
-  alwaysShowIcon: PropTypes.bool
+  alwaysShowIcon: PropTypes.bool,
+  /** Set a specific background color in the container */
+  bgColor: PropTypes.string
 };
 
 Notification.defaultProps = {
@@ -32,7 +34,8 @@ Notification.defaultProps = {
   children: null,
   role: 'dialog',
   onDismiss: noop,
-  alwaysShowIcon: false
+  alwaysShowIcon: false,
+  bgColor: null
 };
 
 export default Notification;

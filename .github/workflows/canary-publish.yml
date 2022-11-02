@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+          token: ${{ secrets.PIPELINE_BOT_PAT }}
           fetch-depth: 0
 
       - uses: actions/setup-node@v3

@@ -32,6 +32,10 @@ import PopoverLink from '../../controls/buttons/PopoverLink';
     <InlineMessage text="This is a danger notification!" />
   </Notification>
 
+  <Notification type="danger" bgColor="#800080">
+    <InlineMessage text="This is a custom background notification!" />
+  </Notification>
+
   <Notification type="advisor">
     <div style={{ flexBasis: '100%' }}>
       <h3 style={{ marginTop: '0' }}>This is an advisor alert!</h3>

@@ -27,5 +27,11 @@ These notifications are rendered with a lighter background.
   >
     <span>This is a danger notification!</span>
   </LightNotification>
+  <LightNotification
+    type="danger"
+    bgColor="#B19CD9"
+  >
+    <span>This is a custom background notification!</span>
+  </LightNotification>
 </div>
 ```

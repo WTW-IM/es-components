@@ -13,6 +13,7 @@ const gray9 = '#444';
 const black = '#000';
 
 // tints/shades
+const blue25 = '#f2f8fb';
 const blue50 = '#e0f4fa';
 const blue100 = '#b3e3f2';
 const blue300 = '#4dbde0';
@@ -102,6 +103,7 @@ const theme = {
     gray8: gray8,
     gray9: gray9,
     black: black,
+    blue25: blue25,
     blue50: blue50,
     blue100: blue100,
     blue300: blue300,

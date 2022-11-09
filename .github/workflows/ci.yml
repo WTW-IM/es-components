@@ -76,8 +76,8 @@ jobs:
 
       - name: Set Commitbot Identity
         run: |
-          git config user.name "ES-Components Lerna Publish Bot"
-          git config user.email "es-components-bot@wtw.org"
+          git config user.name "im-pipeline-bot"
+          git config user.email "${{ secrets.COMMITBOT_EMAIL }}"
 
       - name: Lerna Publish Latest
         run: |

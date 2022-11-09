@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.94](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94) (2022-11-09)
+
+
+### Update
+
+* added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
+
+
+
+
+
 ## [21.6.93](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.5...v21.6.93) (2022-10-19)
 
 **Note:** Version bump only for package es-components-via-theme

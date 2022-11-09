@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       - name: Ensure full history
         run: |
-          git remote add upstream ${{ github.event.pull_request.head.repo.ssh_url }}
+          git remote add upstream ${{ github.event.pull_request.head.repo.clone_url }}
           git fetch upstream
       - id: commitlint
         uses: wagoid/commitlint-github-action@v5

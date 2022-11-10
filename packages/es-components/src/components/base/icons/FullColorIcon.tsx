@@ -10,21 +10,23 @@ export interface FullColorIconProps {
 }
 
 const Container = styled.div<{ size?: string | number }>`
-  alignItems: center;
+  align-items: center;
   display: flex;
   height: ${({size}) => size};
-  justifyContent: center;
+  justify-content: center;
   width: ${({size}) => size};
 `;
 
 const Icon = styled.img`
   height: auto;
-  maxWidth: 100%;
+  max-width: 100%;
 `;
 
 export default function FullColorIcon({ name, size, ...props }: FullColorIconProps) {
   return (
-    <Container size={size} {...props}>
+    // reused this logic for size from the Icon component. Fine with the repeat for now, but should
+    // consider moving to a util function later if we use again
+    <Container size={/^\d+$/.test(size?.toString() || '') ? `${size}px` : size || 'inherit'} {...props}>
       <Icon
         src={`https://bdaim-webexcdn-p.azureedge.net/es-assets/images/full-color-icons/${name}.svg`}
         alt={`${name} icon`}

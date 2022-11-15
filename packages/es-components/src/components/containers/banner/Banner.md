@@ -1,5 +1,4 @@
-A `Banner` component can be used for various heading levels. Wrap secondary text in `<small>` tags. Provide an `underlineColor` to display a styled border.
-Larger headings will resize appropriately in mobile viewports.
+A `Banner` is static a container that will render any children passed to it. It allows customizing the background color and text color.
 
 ```jsx
 import Heading from '../heading/Heading';

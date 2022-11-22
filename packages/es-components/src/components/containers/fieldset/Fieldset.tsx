@@ -2,10 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-import OrientationContext from '../../controls/OrientationContext';
+import OrientationContext, {
+  Orientation
+} from '../../controls/OrientationContext';
 import useUniqueId from '../../util/useUniqueId';
 
-const FieldsetBase = styled.div`
+type FieldsetProps = {
+  legendContent?: React.ReactNode | undefined;
+  children?: React.ReactNode | undefined;
+};
+
+const FieldsetBase = styled.div<{ orientation: Orientation }>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -35,7 +42,7 @@ const Legend = styled.div`
   width: 100%;
 `;
 
-function Fieldset(props) {
+function Fieldset(props: FieldsetProps) {
   const { legendContent, children, ...other } = props;
   const legendId = useUniqueId();
   const orientation = React.useContext(OrientationContext);

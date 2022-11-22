@@ -1,4 +1,4 @@
-A `Banner` is static a container that will render any children passed to it. It allows customizing the background color and text color.
+A `Banner` is static a container that will render any children passed to it. It comes in five different types.
 
 ```jsx
 import Heading from '../heading/Heading';
@@ -6,22 +6,22 @@ import Anchor from '../../navigation/Anchor';
 import Action from '../../patterns/callToAction/Action';
 
 <div>
-  <Banner bgColor="#FF7377" textColor="white">
+  <ForwardedBanner type="success">
     <p>
-      <Anchor href="#">This anchor</Anchor> has the parent font color.
+      <b>Success</b> This is a successful notification!
     </p>
-  </Banner>
-  <Banner bgColor="#d3d3d3">
+  </ForwardedBanner>
+  <ForwardedBanner type="info">
     <p>
-      <Anchor href="#">This anchor</Anchor> has the default font color.
+      <Anchor href="#banner">This anchor</Anchor> has the info background color.
     </p>
-  </Banner>
-  <Banner bgColor="#00a0d2" textColor="white">
+  </ForwardedBanner>
+  <ForwardedBanner type="advisor">
     <div style={{ flexBasis: '100%' }}>
       <h3 style={{ marginTop: '0' }}>This is a banner!</h3>
       <div>
         Children are rendered in a flex container and{' '}
-        <a href="#notification">links</a> render with parent font color
+        <a href="#banner">links</a> render with underlined text
       </div>
       <h4>Any element can be rendered!</h4>
       <ul>
@@ -33,6 +33,6 @@ import Action from '../../patterns/callToAction/Action';
       <Action>Second</Action>
       <Action>Third</Action>
     </div>
-  </Banner>
+  </ForwardedBanner>
 </div>;
 ```

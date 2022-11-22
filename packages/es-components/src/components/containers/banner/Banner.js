@@ -1,41 +1,43 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useTheme } from '../../util/useTheme';
+import PropTypes from 'prop-types';
 
-const UnstyledBanner = styled.div``;
-const Banner = styled(({ ...props }) => (
-  <UnstyledBanner {...props}></UnstyledBanner>
-))`
-  background-color: ${props => props.bgColor};
-  color: ${props => props.textColor};
+
+const BannerContainer = styled.div`
   align-items: center;
+  background-color: ${props => props.variant.bgColor};
   border-radius: 2px;
+  color: ${props => props.variant.textColor};
   display: flex;
-  margin-bottom: 25px;
-  padding: 15px;
-  ${props => `
+  padding: ${({theme}) => theme.spacing.defaultMargin};
+  
+  
+  ${props =>`
     a {
-      color: ${props.textColor};
+      color: ${props.variant.textColor};
+
       &:hover {
         text-decoration: none;
       }
     }
   `}
+  button[aria-expanded] {
+    color: ${props => props.variant.textColor};
+  }
 `;
+const ForwardedBanner = React.forwardRef(function Banner({ type, ...props }, ref) {
+  const theme = useTheme();
+  const variant = theme.bannerStyles[type];
+  const bannerProps = { variant, ...props };
+  return (<BannerContainer ref={ref} {...bannerProps} />)
+})
 
-Banner.propTypes = {
-  children: PropTypes.node,
-  /** Set a specific background color in the banner */
-  bgColor: PropTypes.string,
-  /** Set a specific font color in the banner */
-  textColor: PropTypes.string
+ForwardedBanner.propTypes = {
+/** The type of notification to render */
+type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
+  .isRequired
 };
 
-Banner.defaultProps = {
-  children: null,
-  bgColor: null,
-  textColor: null
-};
-
-/** @component */
-export default Banner;
+export default ForwardedBanner;

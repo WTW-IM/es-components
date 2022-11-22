@@ -2,27 +2,27 @@
 
 import React from 'react';
 import { renderWithTheme } from '../../util/test-utils';
-import Banner from './Banner';
+import ForwardedBanner from './Banner';
 
 it('renders Banner', () => {
-  const { queryByText } = renderWithTheme(<Banner>Banner Content</Banner>);
+  const { queryByText } = renderWithTheme(
+    <ForwardedBanner type="info">Banner Content</ForwardedBanner>
+  );
   expect(queryByText('Banner Content')).not.toBeNull();
 });
 
-it('can take textColor attribute', () => {
+it('can take an extra className', () => {
   const { container } = renderWithTheme(
-    <Banner textColor="white">Text Color White</Banner>
+    <ForwardedBanner type="success" className="my-success" />
   );
-  const notificationDiv = container.querySelector('div');
-  const styles = window.getComputedStyle(notificationDiv);
-  expect(styles.color).toEqual('white');
+  expect(container.querySelector('.my-success')).not.toBeNull();
 });
 
-it('can take bgColor attribute', () => {
+it('can take styles', () => {
   const { container } = renderWithTheme(
-    <Banner bgColor="blue">Background Color</Banner>
+    <ForwardedBanner type="success" style={{ color: 'blue' }} />
   );
   const notificationDiv = container.querySelector('div');
   const styles = window.getComputedStyle(notificationDiv);
-  expect(styles.backgroundColor).toEqual('blue');
+  expect(styles.color).toEqual('blue');
 });

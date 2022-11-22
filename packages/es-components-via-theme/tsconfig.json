@@ -1,7 +1,7 @@
 {
   "extends": "../../theme-tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "include": ["src"],
   "exclude": ["dist"]

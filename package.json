@@ -3,6 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "build": "npm ci --workspaces --include-workspace-root",
     "ci-run": "sh ci.sh",
     "build-via-theme": "npm run build --prefix packages/es-components-via-theme",
     "build-wtw-theme": "npm run build --prefix packages/es-components-wtw-theme",
@@ -22,7 +23,7 @@
     "packages/*"
   ],
   "lint-staged": {
-    "packages/es-components/src/**/*.js": [
+    "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
       "prettier --single-quote --write",
       "eslint --fix --config packages/es-components/.eslintrc.js"
     ]

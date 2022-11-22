@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import { FormContextProvider } from '../form/Form';
-import OrientationContext from '../../controls/OrientationContext';
+import OrientationContext, {
+  Orientation
+} from '../../controls/OrientationContext';
 import useUniqueId from '../../util/useUniqueId';
 import isBool from '../../util/isBool';
 
-const FieldsetBase = styled.div`
+type FieldsetProps = Omit<JSX.IntrinsicElements['fieldset'], 'ref'> & {
+  legendContent?: React.ReactNode | undefined;
+  orientation?: Orientation | undefined;
+  flat?: boolean | undefined;
+};
+
+const FieldsetBase = styled.fieldset<{ orientation: Orientation }>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -28,7 +36,7 @@ const FieldsetBase = styled.div`
     `};
 `;
 
-const Legend = styled.div`
+const Legend = styled.legend`
   color: ${props => props.theme.colors.black};
   flex: 0 0 auto;
   font-size: 21.6px;
@@ -37,7 +45,7 @@ const Legend = styled.div`
   width: 100%;
 `;
 
-function Fieldset(props) {
+function Fieldset(props: FieldsetProps) {
   const {
     legendContent,
     children,
@@ -48,9 +56,8 @@ function Fieldset(props) {
   const legendId = useUniqueId();
   const orientation = useContext(OrientationContext);
   const extraFormContext = isBool(flat) ? { flat } : {};
-  const finalOrientation = isBool(orientationProp)
-    ? orientationProp
-    : orientation;
+  const finalOrientation =
+    (!isBool(orientationProp) ? orientationProp : orientation) || 'stacked';
 
   return (
     <OrientationContext.Provider value={finalOrientation}>

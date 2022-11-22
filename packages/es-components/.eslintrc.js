@@ -6,6 +6,7 @@ const exts = [
   'plugin:react/recommended',
   'plugin:react-hooks/recommended'
 ];
+
 module.exports = {
   extends: exts,
   parser: '@babel/eslint-parser',
@@ -58,7 +59,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/*.specs.js',
+          '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.js',
           '**/styleguide/*.{js,jsx,ts,tsx}'
         ]
@@ -72,6 +73,22 @@ module.exports = {
     ASSETS_PATH: 'readonly'
   },
   overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking'
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        },
+        ecmaVersion: 'latest',
+        project: path.join(__dirname, 'tsconfig.json')
+      },
+      plugins: ['@typescript-eslint']
+    },
     {
       files: [
         '.eslintrc*',

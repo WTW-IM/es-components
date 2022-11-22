@@ -13,6 +13,8 @@ const assets_url = isProduction
   ? 'https://app.viabenefits.com/static/cdn/es-assets/'
   : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
+const getDependencyDirectory = dep => path.dirname(require.resolve(dep));
+
 fs.copyFileSync(
   path.join(__dirname, '..', '..', 'CHANGELOG.md'),
   path.join(__dirname, 'CHANGELOG_COPY.md')
@@ -167,27 +169,18 @@ module.exports = {
         {
           test: /\.(js|jsx|ts|tsx)?$/,
           include: [
-            path.join(__dirname, 'node_modules', 'react-overlays'),
-            path.join(__dirname, 'node_modules', 'react-context-toolbox'),
-            path.join(__dirname, 'node_modules', 'ansi-styles'),
-            path.join(__dirname, 'node_modules', 'strip-ansi'),
-            path.join(__dirname, 'node_modules', 'ansi-regex'),
-            path.join(__dirname, 'node_modules', 'react-dev-utils'),
-            path.join(__dirname, 'node_modules', 'chalk'),
-            path.join(__dirname, 'node_modules', 'regexpu-core'),
-            path.join(__dirname, '../', 'es-components-via-theme'),
-            path.join(
-              __dirname,
-              'node_modules',
-              'unicode-match-property-ecmascript'
-            ),
-            path.join(
-              __dirname,
-              'node_modules',
-              'unicode-match-property-value-ecmascript'
-            ),
-            path.join(__dirname, 'node_modules', 'acorn-jsx'),
-            path.join(__dirname, 'node_modules', 'estree-walker'),
+            getDependencyDirectory('react-overlays'),
+            getDependencyDirectory('react-context-toolbox'),
+            getDependencyDirectory('ansi-styles'),
+            getDependencyDirectory('strip-ansi'),
+            getDependencyDirectory('ansi-regex'),
+            getDependencyDirectory('chalk'),
+            getDependencyDirectory('regexpu-core'),
+            getDependencyDirectory('es-components-via-theme'),
+            getDependencyDirectory('unicode-match-property-ecmascript'),
+            getDependencyDirectory('unicode-match-property-value-ecmascript'),
+            getDependencyDirectory('acorn-jsx'),
+            getDependencyDirectory('estree-walker'),
             path.join(__dirname, 'src')
           ],
           loader: 'babel-loader'

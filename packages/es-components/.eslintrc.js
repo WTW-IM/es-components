@@ -1,3 +1,4 @@
+const path = require('path');
 const plugins = ['import', '@babel'];
 const exts = [
   'eslint:recommended',
@@ -5,6 +6,7 @@ const exts = [
   'plugin:react/recommended',
   'plugin:react-hooks/recommended'
 ];
+
 module.exports = {
   extends: exts,
   parser: '@babel/eslint-parser',
@@ -36,6 +38,8 @@ module.exports = {
       {
         devDependencies: [
           '**/*.specs.js',
+          '**/*.specs.ts',
+          '**/*.specs.tsx',
           '**/ExampleWrapper.js',
           '**/test-utils.js'
         ]
@@ -45,6 +49,22 @@ module.exports = {
     'id-length': 0
   },
   overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking'
+      ],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        },
+        ecmaVersion: 'latest',
+        project: path.join(__dirname, 'tsconfig.json')
+      },
+      plugins: ['@typescript-eslint']
+    },
     {
       files: ['.eslintrc*', '*.config.js', '**/config/*'],
       env: {

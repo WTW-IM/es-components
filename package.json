@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "sh build.sh",
+    "build": "npm ci --prefix packages/es-components",
     "ci-run": "sh ci.sh",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
@@ -15,9 +15,9 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "packages/es-components/src/**/*.js": [
+    "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
       "prettier --single-quote --write",
-      "cd packages/es-components && npx eslint --fix"
+      "npm exec --prefix packages/es-components eslint --fix"
     ]
   },
   "devDependencies": {
@@ -29,7 +29,6 @@
     "babel-eslint": "^9.0.0",
     "commitlint": "^17.1.2",
     "conventional-changelog": "^3.1.21",
-    "es-components-via-theme": "file:packages/es-components-via-theme",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",

@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes, ThemeProps } from 'styled-components';
+import { RequireAtLeastOne } from '../../../../types/generics';
 import useUniqueId from '../../util/useUniqueId';
+import { Theme } from '../../../../types/theme';
 
 const rotatorAnimation = keyframes`
   0% {
@@ -37,7 +39,7 @@ const dashAnimation = keyframes`
   }
 `;
 
-const colorsAnimation = (props: ThemeProps<any> ) => keyframes`
+const colorsAnimation = (props: ThemeProps<Theme> ) => keyframes`
   0% {
     stroke: ${props.theme.brandColors.primary1};
   }
@@ -68,13 +70,6 @@ const SpinnerCircle = styled.circle`
   animation: ${dashAnimation} 1.4s ease-in-out infinite,
     ${colorsAnimation} 3.5s ease-in-out infinite;
 `;
-
-// this should probably be shared
-type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
-  Pick<T, Exclude<keyof T, Keys>>
-  & {
-    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
-  }[Keys];
 
 interface SpinnerPropsBase {
   /** The title of the spinner for screen readers. This or `description` is

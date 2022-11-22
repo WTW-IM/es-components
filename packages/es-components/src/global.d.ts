@@ -1,12 +1,18 @@
-import theme from '../../es-components-via-theme/src';
+import { Theme } from '../types/theme';
+import * as generics from '../types/generics';
+import viaTheme from 'es-components-via-theme';
 
-type ViaTheme = typeof theme;
+type ViaTheme = typeof viaTheme;
 
 declare global {
   type Maybe<T> = T | null | undefined;
+  type RequireAtLeastOne<
+    T,
+    K extends keyof T = keyof T
+  > = generics.RequireAtLeastOne<T, K>;
 }
 
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface DefaultTheme extends ViaTheme {}
+  export interface DefaultTheme extends Theme {}
 }

@@ -1,3 +1,5 @@
+import { Theme } from '../../es-components/types/theme';
+
 // grayscale
 const white = '#fff';
 const gray0 = '#f9f9f9';
@@ -120,7 +122,7 @@ const inRange = 'rgba(251, 213, 244, 0.75)';
 const highlight = success;
 const highlightHover = success700;
 
-const theme = {
+const theme: Theme = {
   colors: {
     white,
     gray0,

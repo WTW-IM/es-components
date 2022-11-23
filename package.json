@@ -17,7 +17,7 @@
   "lint-staged": {
     "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
       "prettier --single-quote --write",
-      "npm exec --prefix packages/es-components eslint --fix"
+      "cd packages/es-components && npx eslint --fix"
     ]
   },
   "devDependencies": {

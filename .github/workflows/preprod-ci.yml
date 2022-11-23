@@ -13,10 +13,12 @@ jobs:
         working-directory: packages/es-components
     strategy:
       matrix:
-        node: [12, 14, 16]
+        node: [lts/*, node]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PIPELINE_BOT_PAT }}
 
       - name: Use Node Version
         uses: actions/setup-node@v3
@@ -42,8 +44,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: pre-prod
-          token: ${{ secrets.IM_PIPELINE_BOT_TOKEN }}
+          fetch-depth: 0
 
       - uses: actions/setup-node@v3
         with:
@@ -64,5 +67,3 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
-
-

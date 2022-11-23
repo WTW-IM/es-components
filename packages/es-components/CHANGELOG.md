@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.93](https://github.com/wtw-im/es-components/compare/v21.6.93-pre-prod.5...v21.6.93) (2022-10-19)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
+## [21.6.93-pre-prod.5](https://github.com/wtw-im/es-components/compare/v21.6.93-pre-prod.4...v21.6.93-pre-prod.5) (2022-10-19)
+
+
+### Upgrade
+
+* add linkProps to tooltip ([89c4b6b](https://github.com/wtw-im/es-components/commit/89c4b6b2d16b9d9f5b4bee6326a94bcabdd9de9d))
+
+
+
+
+
+## [21.6.93-pre-prod.4](https://github.com/wtw-im/es-components/compare/v21.6.93-pre-prod.3...v21.6.93-pre-prod.4) (2022-10-17)
+
+
+### Fix
+
+* fixing prepublish script ([92f4870](https://github.com/wtw-im/es-components/commit/92f48705867ac2a3b519c120849c1c48e7b9f081))
+
+
+
+
+
+## [21.6.93-pre-prod.3](https://github.com/wtw-im/es-components/compare/v21.6.93-pre-prod.2...v21.6.93-pre-prod.3) (2022-10-17)
+
+
+### Build
+
+* only mangling variable names in main branch ([abacbd2](https://github.com/wtw-im/es-components/commit/abacbd208d1d60d042a484df517a06195967a4b2))
+
+
+
+
+
+## 21.6.93-pre-prod.2 (2022-10-12)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
+## 21.6.93-pre-prod.1 (2022-10-12)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
+## 21.6.93-pre-prod.0 (2022-10-11)
+
+**Note:** Version bump only for package es-components
+
+
+
+
+
 ## [21.6.92](https://github.com/wtw-im/es-components/compare/v21.6.92-pre-prod.0...v21.6.92) (2022-09-21)
 
 **Note:** Version bump only for package es-components

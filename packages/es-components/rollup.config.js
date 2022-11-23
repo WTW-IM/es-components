@@ -1,3 +1,4 @@
+import * as process from 'process';
 import babel from '@rollup/plugin-babel';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from '@rollup/plugin-node-resolve';
@@ -86,7 +87,8 @@ export default [
         compress: {
           if_return: false,
           typeofs: false
-        }
+        },
+        mangle: process.env.MAIN_BUILD === 'true'
       })
     ]
   }

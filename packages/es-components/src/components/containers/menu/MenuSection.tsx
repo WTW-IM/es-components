@@ -3,7 +3,26 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { InlineContext } from './InlineContext';
 
-const StyledMenuSection = styled.section`
+export type MenuSectionProps = {
+  title: string;
+  children: React.ReactNode;
+  isFirst: boolean;
+  isLast: boolean;
+  isOnlySection?: boolean;
+  [x: string]: any;
+};
+
+type SectionProps = {
+  isFirst?: boolean;
+  inline?: boolean;
+  isOnlySection?: boolean;
+  isLast?: boolean;
+  theme: {
+    colors: { gray5: string };
+  };
+};
+
+const StyledMenuSection = styled.section<SectionProps>`
   padding-top: ${props =>
     !props.isFirst && !props.inline && !props.isOnlySection ? '20px' : '0px'};
   padding-bottom: ${props => (props.isLast ? '0px' : '20px')};
@@ -21,7 +40,7 @@ const StyledChildrenContainer = styled.section`
   padding: 15px 20px 0px 20px;
 `;
 
-function MenuSection(props) {
+function MenuSection(props: MenuSectionProps) {
   const { title, children, isLast, isFirst, isOnlySection, ...other } = props;
   const inline = useContext(InlineContext);
 

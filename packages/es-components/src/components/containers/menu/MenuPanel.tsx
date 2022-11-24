@@ -5,14 +5,23 @@ import DismissButton from '../../controls/DismissButton';
 import { InlineContext } from './InlineContext';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 
-const StyledPanel = styled.div`
-  background-color: ${props => props.theme.colors.gray2};
+interface StyledPanelProps {
+  isOpen: boolean;
+}
+
+interface DismissButtonProps {
+  onClick: () => void;
+}
+
+const StyledPanel = styled.div<StyledPanelProps>`
+  background-color: ${(props: { theme: { colors: { gray2: any } } }) =>
+    props.theme.colors.gray2};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
   z-index: ${({ topIndex }) => topIndex};
 `;
 
-const StyledDismissButton = styled(DismissButton)`
+const StyledDismissButton = styled(DismissButton)<DismissButtonProps>`
   margin-left: auto;
   margin-right: 4px;
 `;
@@ -22,19 +31,28 @@ const Header = styled.header`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: ${props => (props.hasHeaderContent ? '10px' : '0')};
+  padding-bottom: ${(props: { hasHeaderContent: boolean }) =>
+    props.hasHeaderContent ? '10px' : '0'};
   padding-left: 11px;
   padding-right: 5px;
-  padding-top: ${props => (props.hasHeaderContent ? '5px' : '0')};
+  padding-top: ${(props: { hasHeaderContent: boolean }) =>
+    props.hasHeaderContent ? '5px' : '0'};
 `;
 
 const StyledChildrenContainer = styled.div`
   display: flex;
-  flex-direction: ${props => (props.inline ? 'row' : 'column')};
+  flex-direction: ${(props: { inline: boolean }) =>
+    props.inline ? 'row' : 'column'};
   flex-wrap: wrap;
 `;
 
-function MenuPanel(props) {
+function MenuPanel(props: {
+  [x: string]: any;
+  children: React.ReactNode;
+  headerContent: React.ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   const { children, headerContent, isOpen, onClose, ...other } = props;
   const getTopIndex = useTopZIndex();
 
@@ -43,7 +61,7 @@ function MenuPanel(props) {
       return;
     }
 
-    function onEscape({ key }) {
+    function onEscape({ key }: { key: string }) {
       if (key === 'Escape') {
         onClose();
       }

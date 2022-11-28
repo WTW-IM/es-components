@@ -1,7 +1,7 @@
 {
   "name": "es-components-via-theme",
   "version": "21.7.0-pre-prod.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -10,6 +10,6 @@
     "prepare": "npm run build"
   },
   "devDependencies": {
-    "typescript": "^4.8.4"
+    "typescript": "^4.9.3"
   }
 }

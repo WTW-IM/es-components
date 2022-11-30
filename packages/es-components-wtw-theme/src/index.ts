@@ -51,16 +51,25 @@ const primaryHover = '#3c084a';
 const primaryLight = '#ebcff3';
 
 // semantic
+const agent50 = '#fde8de';
+const agent100 = '#fee8c4';
+const agent300 = '#fdcc8a';
+const agent500 = '#fc8d59';
+const agent700 = '#ff6310';
 const info = '#006699';
+const info100 = '#006699';
 const infoHover = '#004466';
 const infoLight = '#c0ebff';
 const success = '#006000';
+const success100 = '#006000';
 const successHover = '#004000';
 const successLight = '#d2e9d2';
 const warning = '#de7400';
+const warning100 = '#de7400';
 const warningHover = '#a65600';
 const warningLight = '#f6e0ca';
 const danger = '#e60700';
+const danger100 = '#e60700';
 const dangerHover = '#970500';
 const dangerLight = '#ffc2c0';
 const advisor = '#ff6310';
@@ -153,14 +162,14 @@ const theme = {
     advisorLight,
     boxShadowLight,
     boxShadowDark,
-    inputFocus
+    inputFocus,
   },
   brandColors: {
     primary1,
     primary2,
     primary3,
     secondary1,
-    secondary2
+    secondary2,
   },
   datepickerColors: {
     dpBackground,
@@ -171,7 +180,7 @@ const theme = {
     keyboard,
     inRange,
     highlight,
-    highlightHover
+    highlightHover,
   },
   promptStyles: {
     readAloud: {
@@ -180,7 +189,7 @@ const theme = {
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: 'agent'
+      iconName: 'agent',
     },
     doNotReadAloud: {
       bgColor: '#E0F4F4',
@@ -188,129 +197,129 @@ const theme = {
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: 'no-symbol'
-    }
+      iconName: 'no-symbol',
+    },
   },
   bannerStyles: {
     success: {
       bgColor: success100,
-      textColor: black
+      textColor: black,
     },
     info: {
       bgColor: info100,
-      textColor: black
+      textColor: black,
     },
     warning: {
       bgColor: warning100,
-      textColor: black
+      textColor: black,
     },
     danger: {
       bgColor: danger100,
-      textColor: black
+      textColor: black,
     },
     advisor: {
       bgColor: agent300,
-      textColor: black
-    }
+      textColor: black,
+    },
   },
   notificationStyles: {
     success: {
       base: {
         bgColor: success,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: successLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: success
-      }
+        textColor: success,
+      },
     },
     info: {
       base: {
         bgColor: info,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: infoLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: info
-      }
+        textColor: info,
+      },
     },
     warning: {
       base: {
         bgColor: warning,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: warningLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: warning
-      }
+        textColor: warning,
+      },
     },
     danger: {
       base: {
         bgColor: danger,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: dangerLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: danger
-      }
+        textColor: danger,
+      },
     },
     advisor: {
       base: {
         bgColor: advisor,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: advisorLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: advisor
-      }
-    }
+        textColor: advisor,
+      },
+    },
   },
   buttonStyles: {
     button: {
       variant: {
         // default is required
         primary: {
-          bgColor: primary
+          bgColor: primary,
         },
         default: {
-          bgColor: '#ccc'
+          bgColor: '#ccc',
         },
         darkDefault: {
-          bgColor: gray9
+          bgColor: gray9,
         },
         success: {
-          bgColor: success
+          bgColor: success,
         },
         info: {
-          bgColor: info
+          bgColor: info,
         },
         warning: {
-          bgColor: warning
+          bgColor: warning,
         },
         danger: {
-          bgColor: danger
+          bgColor: danger,
         },
-        inherited: {}
+        inherited: {},
       },
       // size should always have default, lg, sm, xs
       // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
@@ -322,7 +331,7 @@ const theme = {
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
-          paddingBottom: '0.125rem'
+          paddingBottom: '0.125rem',
         },
         default: {
           borderRadius: '0.25rem',
@@ -330,7 +339,7 @@ const theme = {
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         sm: {
           borderRadius: '0.2rem',
@@ -338,7 +347,7 @@ const theme = {
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         xs: {
           borderRadius: '0.25rem',
@@ -347,37 +356,37 @@ const theme = {
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.1rem',
-          textTransform: 'uppercase'
-        }
-      }
+          textTransform: 'uppercase',
+        },
+      },
     },
     outlineButton: {
       variant: {
         primary: {
-          bgColor: primary
+          bgColor: primary,
         },
         default: {
-          bgColor: gray9
+          bgColor: gray9,
         },
         success: {
-          bgColor: success
+          bgColor: success,
         },
         info: {
-          bgColor: info
+          bgColor: info,
         },
         warning: {
-          bgColor: warning
+          bgColor: warning,
         },
         danger: {
-          bgColor: danger
+          bgColor: danger,
         },
         magenta: {
-          bgColor: primary3
+          bgColor: primary3,
         },
         violet: {
-          bgColor: primary1
+          bgColor: primary1,
         },
-        inherited: {}
+        inherited: {},
       },
       size: {
         lg: {
@@ -387,7 +396,7 @@ const theme = {
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
-          paddingBottom: '0.125rem'
+          paddingBottom: '0.125rem',
         },
         default: {
           borderRadius: '0.25rem',
@@ -396,7 +405,7 @@ const theme = {
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         sm: {
           borderRadius: '0.2rem',
@@ -405,7 +414,7 @@ const theme = {
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         xs: {
           borderRadius: '0.25rem',
@@ -415,73 +424,73 @@ const theme = {
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.1rem',
-          textTransform: 'uppercase'
-        }
-      }
+          textTransform: 'uppercase',
+        },
+      },
     },
     linkButton: {
       variant: {
         default: {
-          textColor: gray9
+          textColor: gray9,
         },
         primary: {
-          textColor: primary
+          textColor: primary,
         },
         success: {
-          textColor: success
+          textColor: success,
         },
         information: {
-          textColor: info
+          textColor: info,
         },
         danger: {
-          textColor: danger
+          textColor: danger,
         },
         warning: {
-          textColor: warning
+          textColor: warning,
         },
         inherited: {
-          textColor: 'inherit'
-        }
-      }
-    }
+          textColor: 'inherit',
+        },
+      },
+    },
   },
   validationIconName: {
     success: 'ok-circle',
     info: 'info-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
-    advisor: 'agent'
+    advisor: 'agent',
   },
   validationTextColor: {
     success: success,
     warning: warning,
-    danger: danger
+    danger: danger,
   },
   validationInputColor: {
     success: {
       borderColor: success,
       boxShadow: 'inset 0 0 5px ' + success,
       focusBorderColor: success,
-      focusBoxShadow: '0 0 6px ' + success
+      focusBoxShadow: '0 0 6px ' + success,
     },
     warning: {
       borderColor: warning,
       boxShadow: 'inset 0 0 5px ' + warning,
       focusBorderColor: warning,
-      focusBoxShadow: '0 0 6px ' + warning
+      focusBoxShadow: '0 0 6px ' + warning,
     },
     danger: {
       borderColor: danger,
       boxShadow: 'inset 0 0 5px ' + danger,
       focusBorderColor: danger,
-      focusBoxShadow: '0 0 6px ' + danger
+      focusBoxShadow: '0 0 6px ' + danger,
     },
     default: {
       borderColor: gray4,
       boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
-      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)'
-    }
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+    },
   },
   font: {
     baseFontSize: '18px',
@@ -492,7 +501,7 @@ const theme = {
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
-      6: '18px'
+      6: '18px',
     },
     headingMobile: {
       1: '31.104px',
@@ -500,16 +509,16 @@ const theme = {
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
-      6: '18px'
-    }
+      6: '18px',
+    },
   },
   screenSize: {
     retina: '360px',
     phone: '480px',
     tablet: '768px',
     desktop: '900px',
-    widescreen: '1200px'
-  }
+    widescreen: '1200px',
+  },
 };
 
 export = theme;

@@ -8,9 +8,6 @@ jobs:
   test:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/es-components
     strategy:
       matrix:
         node: [lts/*, node]
@@ -31,6 +28,7 @@ jobs:
         run: npm ci
 
       - name: Run Lint
+        working-directory: packages/es-components
         if: ${{ matrix.node == 16 &&
           github.ref != 'refs/heads/main' &&
           github.ref != 'refs/heads/pre-prod' }}
@@ -48,6 +46,7 @@ jobs:
           report-json: packages/es-components/eslint_report.json
 
       - name: Run Tests
+        working-directory: packages/es-components
         run: |
           npm test
 

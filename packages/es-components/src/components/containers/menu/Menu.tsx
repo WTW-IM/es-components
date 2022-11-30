@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
-import MenuSection from './MenuSection';
+import MenuSection, { MenuSectionProps } from './MenuSection';
 import { InlineContext } from './InlineContext';
-import RootCloseWrapper from "../../util/RootCloseWrapper";
+import RootCloseWrapper from '../../util/RootCloseWrapper';
 
-const Backdrop = styled.div`
+type BackdropProps = {
+  isMenuOpen: boolean;
+};
+
+const Backdrop = styled.div<BackdropProps>`
   background-color: black;
   bottom: 0;
   cursor: auto;
@@ -20,7 +24,7 @@ const Backdrop = styled.div`
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
-function Menu(props) {
+function Menu(props: MenuSectionProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -56,7 +60,7 @@ function Menu(props) {
         >
           {buttonContent}
         </ToggleButton>
-        <InlineContext.Provider value={inline}>
+        <InlineContext.Provider value={Boolean(inline)}>
           <MenuPanel
             headerContent={headerContent}
             isOpen={isMenuOpen}

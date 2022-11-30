@@ -2,9 +2,13 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import DismissButton from '../../controls/DismissButton';
+import OrigDismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
 import Heading from '../heading/Heading';
+
+const DismissButton = OrigDismissButton as React.ForwardRefExoticComponent<
+  JSX.IntrinsicElements['button']
+>;
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
@@ -50,7 +54,13 @@ const DismissModal = styled(DismissButton)`
   font-size: 18px;
 `;
 
-function ModalHeader(props) {
+interface ModalHeaderProps {
+  hideCloseButton: boolean;
+  children: React.ReactNode;
+  level: number;
+}
+
+function ModalHeader(props: ModalHeaderProps) {
   const { hideCloseButton, children, level, ...otherProps } = props;
   const { onHide, ariaId } = useContext(ModalContext);
 

@@ -1,6 +1,11 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import {
+  createGlobalStyle,
+  DefaultTheme,
+  ThemeProvider,
+  ThemeProviderComponent
+} from 'styled-components';
 import { noop, debounce } from 'lodash';
 import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
@@ -13,22 +18,55 @@ import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
 
+type ModalTheme = DefaultTheme & {
+  modalHeight: number;
+  windowHeight: number;
+  portalClassName: string;
+};
+
+type HTMLRef =
+  | React.Ref<HTMLElement>
+  | React.MutableRefObject<HTMLElement>
+  | undefined;
+
+interface ModalParameters {
+  animation?: boolean;
+  backdrop: string;
+  children?: React.ReactNode;
+  escapeExits?: boolean;
+  onEnter?: () => void;
+  onExit?: () => void;
+  onHide?: () => void;
+  show: boolean;
+  size: number;
+  parentSelector: () => HTMLElement;
+  className: string;
+  overlayRef?: HTMLRef;
+  contentRef?: HTMLRef;
+  [x: string]: unknown;
+}
+
 const modalSize = {
   small: '300px',
   medium: '600px',
   large: '900px'
 };
 
-const animationTimeMs = 300;
+const animationTimeMs = 300 as number;
 
-const getModalMargin = (windowHeight, modalHeight) => {
+const getModalMargin = (windowHeight: number, modalHeight: number) => {
   const fullMargin = windowHeight - modalHeight;
   const thirdTopMargin = fullMargin / 3;
   return Math.max(thirdTopMargin, 50);
 };
 
-const ModalStyles = createGlobalStyle`
-  .${({ theme }) => theme.portalClassName} {
+const ModalStyles = createGlobalStyle<{
+  showBackdrop: string;
+  showAnimation?: boolean;
+  portalClassName?: string;
+  theme: ModalTheme;
+}>`
+  .${({ portalClassName }) => portalClassName} {
     .background-overlay {
       bottom: 0;
       background-color: ${props => {
@@ -141,6 +179,11 @@ const ModalStyles = createGlobalStyle`
   }
 `;
 
+const ModalThemeProvider = ThemeProvider as unknown as ThemeProviderComponent<
+  ModalTheme,
+  DefaultTheme
+>;
+
 function Modal({
   animation,
   backdrop,
@@ -156,46 +199,52 @@ function Modal({
   overlayRef,
   contentRef,
   ...other
-}) {
-  const ariaId = useUniqueId(other.id);
+}: ModalParameters) {
+  const ariaId = useUniqueId(other.id as string);
   const portalClassName = `ReactModalPortal-${useUniqueId()}`;
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
   const [modalHeight, setModalHeight] = useState(300);
   const [shouldShow, setShouldShow] = useState(show);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-  const modalRef = useRef(null);
-  const innerContentRef = useRef(null);
-  const callRef = (ref, element) => {
+  const modalRef = useRef<HTMLElement | null>(null);
+  const innerContentRef = useRef<HTMLElement | null>(null);
+  const callRef = (ref: HTMLRef, element: HTMLElement) => {
     if (ref) {
       if (typeof ref === 'function') {
         ref(element);
       } else {
         // eslint-disable-next-line no-param-reassign
-        ref.current = element;
+        (ref as React.MutableRefObject<HTMLElement>).current = element;
       }
     }
   };
-  const setContentRef = useCallback(contentElement => {
-    callRef(contentRef, contentElement);
-    innerContentRef.current = contentElement;
-  });
+  const setContentRef = useCallback(
+    (contentElement: HTMLElement) => {
+      callRef(contentRef, contentElement);
+      innerContentRef.current = contentElement;
+    },
+    [contentRef]
+  );
 
-  const modalHeightRef = useCallback(modalElement => {
-    callRef(overlayRef, modalElement);
-    let newHeight = 0;
-    if (modalElement) {
-      modalRef.current = modalElement;
-      newHeight = modalElement.offsetHeight;
-    }
-    if (innerContentRef.current) {
-      const contRefHeight = innerContentRef.current.offsetHeight;
-      if (contRefHeight < newHeight) newHeight = contRefHeight;
-    }
-    setModalHeight(newHeight);
-  });
+  const modalHeightRef = useCallback(
+    (modalElement: HTMLElement) => {
+      callRef(overlayRef, modalElement);
+      let newHeight = 0;
+      if (modalElement) {
+        modalRef.current = modalElement;
+        newHeight = modalElement.offsetHeight;
+      }
+      if (innerContentRef.current) {
+        const contRefHeight = innerContentRef.current.offsetHeight;
+        if (contRefHeight < newHeight) newHeight = contRefHeight;
+      }
+      setModalHeight(newHeight);
+    },
+    [overlayRef]
+  );
 
-  const modalParentSelector =
-    parentSelector || useCallback(() => rootNode, [rootNode]);
+  const rootNodeSelector = useCallback(() => rootNode, [rootNode]);
+  const modalParentSelector = parentSelector || rootNodeSelector;
 
   useEffect(() => {
     if (!animation || show) {
@@ -225,14 +274,22 @@ function Modal({
     if (modalRef.current && modalRef.current.scroll) {
       modalRef.current.scroll(0, 0);
     }
-  }, [modalRef.current]);
+  }, []);
 
   useDisableBodyScroll(show);
 
-  const shouldCloseOnOverlayClick = backdrop !== 'static' && backdrop;
+  const shouldCloseOnOverlayClick = (backdrop !== 'static' &&
+    backdrop) as boolean;
 
   return (
-    <ThemeProvider theme={{ modalHeight, windowHeight, portalClassName }}>
+    <ModalThemeProvider
+      theme={theme => ({
+        ...theme,
+        modalHeight,
+        windowHeight,
+        portalClassName
+      })}
+    >
       <RootNodeLocator />
       {shouldShow ? (
         <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
@@ -242,7 +299,7 @@ function Modal({
           portalClassName={portalClassName}
           className={`${className} ${size} modal-content`}
           overlayClassName="background-overlay"
-          closeTimeoutMS={animation ? animationTimeMs : null}
+          closeTimeoutMS={animation ? animationTimeMs : undefined}
           isOpen={show}
           aria={{
             labelledby: ariaId
@@ -260,7 +317,7 @@ function Modal({
           {children}
         </ReactModal>
       </ModalContext.Provider>
-    </ThemeProvider>
+    </ModalThemeProvider>
   );
 }
 

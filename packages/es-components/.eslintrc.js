@@ -88,7 +88,13 @@ module.exports = {
         ...exts,
         'plugin:jest/recommended',
         'plugin:testing-library/react'
-      ]
+      ],
+      rules: {
+        'testing-library/prefer-screen-queries': 'warn',
+        'testing-library/no-node-access': 'warn',
+        'testing-library/prefer-presence-queries': 'warn',
+        'testing-library/no-container': 'warn'
+      }
     }
   ],
   env: {

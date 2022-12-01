@@ -2,25 +2,25 @@
 
 import React from 'react';
 import { renderWithTheme } from '../../util/test-utils';
-import ForwardedBanner from './Banner';
+import Banner from './Banner';
 
 it('renders Banner', () => {
   const { queryByText } = renderWithTheme(
-    <ForwardedBanner type="info">Banner Content</ForwardedBanner>
+    <Banner type="info">Banner Content</Banner>
   );
   expect(queryByText('Banner Content')).not.toBeNull();
 });
 
 it('can take an extra className', () => {
   const { container } = renderWithTheme(
-    <ForwardedBanner type="success" className="my-success" />
+    <Banner type="success" className="my-success" />
   );
   expect(container.querySelector('.my-success')).not.toBeNull();
 });
 
 it('can take styles', () => {
   const { container } = renderWithTheme(
-    <ForwardedBanner type="success" style={{ color: 'blue' }} />
+    <Banner type="success" style={{ color: 'blue' }} />
   );
   const notificationDiv = container.querySelector('div');
   const styles = window.getComputedStyle(notificationDiv);

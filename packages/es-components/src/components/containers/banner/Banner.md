@@ -6,17 +6,17 @@ import Anchor from '../../navigation/Anchor';
 import Action from '../../patterns/callToAction/Action';
 
 <div>
-  <ForwardedBanner type="success">
+  <Banner type="success">
     <p>
-      <b>Success</b> This is a successful notification!
+      <b>Success</b> This is a successful notification.
     </p>
-  </ForwardedBanner>
-  <ForwardedBanner type="info">
+  </Banner>
+  <Banner type="info">
     <p>
       <Anchor href="#banner">This anchor</Anchor> has the info background color.
     </p>
-  </ForwardedBanner>
-  <ForwardedBanner type="advisor">
+  </Banner>
+  <Banner type="advisor">
     <div style={{ flexBasis: '100%' }}>
       <h3 style={{ marginTop: '0' }}>This is a banner!</h3>
       <div>
@@ -33,6 +33,6 @@ import Action from '../../patterns/callToAction/Action';
       <Action>Second</Action>
       <Action>Third</Action>
     </div>
-  </ForwardedBanner>
+  </Banner>
 </div>;
 ```

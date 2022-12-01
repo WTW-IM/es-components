@@ -27,17 +27,17 @@ const BannerContainer = styled.div`
     color: ${props => props.variant.textColor};
   }
 `;
-const ForwardedBanner = React.forwardRef(function Banner({ type, ...props }, ref) {
+const Banner = React.forwardRef(function InnerBanner({ type, ...props }, ref) {
   const theme = useTheme();
   const variant = theme.bannerStyles[type];
   const bannerProps = { variant, ...props };
   return (<BannerContainer ref={ref} {...bannerProps} />)
 })
 
-ForwardedBanner.propTypes = {
+Banner.propTypes = {
 /** The type of notification to render */
 type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
   .isRequired
 };
 
-export default ForwardedBanner;
+export default Banner;

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import LinkButton from './LinkButton';
 import { useTheme } from '../../util/useTheme';
+import type { PopoverStyleType } from '../../containers/popover/PopoverShared';
 
-const StyledButton = styled(LinkButton)`
+const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
   text-underline-position: under;
   text-decoration-skip-ink: none;
   text-decoration: ${props =>
@@ -17,22 +18,32 @@ const StyledButton = styled(LinkButton)`
   }
 `;
 
-const PopoverLink = React.forwardRef(function PopoverLink(props, ref) {
-  const { children, styleType, suppressUnderline, ...other } = props;
-  const theme = useTheme();
-  const variant = theme.buttonStyles.linkButton.variant[styleType];
+type PopoverLinkProps = React.PropsWithChildren<
+  JSX.IntrinsicElements['button'] & {
+    suppressUnderline?: boolean;
+    styleType?: PopoverStyleType;
+  }
+>;
 
-  return (
-    <StyledButton
-      ref={ref}
-      variant={variant}
-      suppressUnderline={suppressUnderline}
-      {...other}
-    >
-      {children}
-    </StyledButton>
-  );
-});
+const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
+  function ForwardedPopoverLink(props, ref) {
+    const { children, styleType, suppressUnderline, ...other } = props;
+    const theme = useTheme();
+    const variant =
+      theme.buttonStyles.linkButton.variant[styleType || 'default'];
+
+    return (
+      <StyledButton
+        ref={ref}
+        variant={variant}
+        suppressUnderline={suppressUnderline}
+        {...other}
+      >
+        {children}
+      </StyledButton>
+    );
+  }
+);
 
 PopoverLink.propTypes = {
   children: PropTypes.node.isRequired,

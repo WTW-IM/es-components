@@ -71,6 +71,7 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@types/react-modal": "^3.13.1",
+    "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.26",
     "@types/tinycolor2": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
@@ -123,6 +124,7 @@
   "dependencies": {
     "@babel/helpers": "^7.13.16",
     "@babel/runtime": "^7.17.9",
+    "@floating-ui/react-dom": "^1.0.1",
     "@popperjs/core": "^2.9.2",
     "core-js": "^3.10.2",
     "date-fns": "^2.21.1",
@@ -136,9 +138,9 @@
     "react-is": "^18.2.0",
     "react-modal": "^3.14.4",
     "react-overlays": "^5.0.0",
-    "react-popper": "^2.2.5",
+    "react-popper": "^2.3.0",
     "react-text-mask": "^5.4.3",
-    "react-transition-group": "^4.4.1",
+    "react-transition-group": "^4.4.5",
     "text-mask-addons": "3.8.0",
     "tinycolor2": "^1.4.2"
   }

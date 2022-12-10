@@ -94,26 +94,26 @@ module.exports = {
     },
     {
       name: 'Base',
-      components: path.join(baseComponentDir, 'base/**/*.tsx')
+      components: path.join(baseComponentDir, 'base/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Containers',
       content: path.join(baseComponentDir, 'containers/Containers.md'),
-      components: path.join(baseComponentDir, 'containers/**/*.js')
+      components: path.join(baseComponentDir, 'containers/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Controls',
       content: path.join(baseComponentDir, 'controls/Controls.md'),
-      components: path.join(baseComponentDir, 'controls/**/*.js')
+      components: path.join(baseComponentDir, 'controls/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Navigation',
-      components: path.join(baseComponentDir, 'navigation/**/*.js')
+      components: path.join(baseComponentDir, 'navigation/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
-      components: path.join(baseComponentDir, 'patterns/**/*.js')
+      components: path.join(baseComponentDir, 'patterns/**/*.{js,jsx,tsx}')
     },
     {
       name: 'CHANGELOG',

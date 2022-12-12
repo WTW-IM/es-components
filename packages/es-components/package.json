@@ -16,7 +16,8 @@
     "rollup": "rollup -c rollup.config.js",
     "styleguide-build": "npm run mkdocsdir && styleguidist build && rollup -c docs-rollup.config.js",
     "start": "concurrently --kill-others \"npm run mkdocsdir && rollup -c docs-rollup.config.js -w\" \"styleguidist server\"",
-    "test": "jest",
+    "test": "npm run reinstall-via-theme && jest",
+    "reinstall-via-theme": "npm uninstall es-components-via-theme && npm install ../es-components-via-theme",
     "test:watch": "jest --watch",
     "wait-for-start": "wait-on http://localhost:6060",
     "cypressreport": "mochawesome-merge mochawesome-report/*.json > raw-results.json && marge --reportDir cypress-results raw-results.json"

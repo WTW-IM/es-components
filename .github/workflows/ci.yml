@@ -31,7 +31,8 @@ jobs:
         run: npm ci
 
       - name: Run Lint
-        if: ${{ matrix.node == 16 &&
+        working-directory: packages/es-components
+        if: ${{
           github.ref != 'refs/heads/main' &&
           github.ref != 'refs/heads/pre-prod' }}
         continue-on-error: true

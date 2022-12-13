@@ -191,6 +191,28 @@ const theme = {
       iconName: 'no-symbol'
     }
   },
+  bannerStyles: {
+    success: {
+      bgColor: success100,
+      textColor: black
+    },
+    info: {
+      bgColor: info100,
+      textColor: black
+    },
+    warning: {
+      bgColor: warning100,
+      textColor: black
+    },
+    danger: {
+      bgColor: danger100,
+      textColor: black
+    },
+    advisor: {
+      bgColor: agent300,
+      textColor: black
+    }
+  },
   notificationStyles: {
     success: {
       base: {

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.7.0-pre-prod.0) (2022-12-13)
+
+
+### Build
+
+* fetching commits from forked repos in commitlint ci ([9995324](https://github.com/WTW-IM/es-components/commit/99953246adb5bf5b9f74be0775ff4d9c49604017))
+* getting commit refs from forked repos in commitlint workflow ([4574360](https://github.com/WTW-IM/es-components/commit/45743609d50f2976d29930aa238368ea651bbcc3))
+* run ci on latest node and lts ([b150542](https://github.com/WTW-IM/es-components/commit/b150542aa47100008ba612cb0649d57d19057e3f))
+* running CI from PR base ([8b763e0](https://github.com/WTW-IM/es-components/commit/8b763e07487706b02d6b6d2b53268654e02e43f4))
+* using clone_url instead of ssh_url in commitlint ([346144c](https://github.com/WTW-IM/es-components/commit/346144c9282c40902497b591368049f1dcfe9f71))
+* using PIPLINE_BOT_PAT in all checkout actions ([4dc8f23](https://github.com/WTW-IM/es-components/commit/4dc8f237ec6c43bb109d1fefbd45c3e80edcd8c6))
+
+### New
+
+* banner es-component ([e2fde3f](https://github.com/WTW-IM/es-components/commit/e2fde3fadcedf8093523f0f7239afee3fc3ce61b))
+
+### Update
+
+* added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
+* banner component name ([035a63d](https://github.com/WTW-IM/es-components/commit/035a63da1565710f4aa049ffa0edfe67499a79ea))
+* banner component to ForwardedBanner ([d2f6615](https://github.com/WTW-IM/es-components/commit/d2f6615038e601baa81fe91c7da66b9e792beb44))
+* banner message ([6ce35ee](https://github.com/WTW-IM/es-components/commit/6ce35eecf014af7316c34fc41117e35409b3abca))
+
+
+
+
+
 ## [21.6.93](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.5...v21.6.93) (2022-10-19)
 
 **Note:** Version bump only for package es-components

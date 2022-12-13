@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.7.0-pre-prod.0) (2022-12-13)
+
+
+### Update
+
+* added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
+* banner component to ForwardedBanner ([d2f6615](https://github.com/WTW-IM/es-components/commit/d2f6615038e601baa81fe91c7da66b9e792beb44))
+
+
+
+
+
 ## [21.6.93](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.5...v21.6.93) (2022-10-19)
 
 **Note:** Version bump only for package es-components-via-theme

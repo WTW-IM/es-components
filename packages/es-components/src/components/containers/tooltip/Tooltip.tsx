@@ -1,12 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Manager, Reference, Popper } from 'react-popper';
+import {
+  useFloating,
+  useInteractions,
+  useHover,
+  useFocus,
+  useRole,
+  useClick,
+  useDismiss,
+  autoUpdate,
+  autoPlacement,
+  arrow,
+  flip,
+  shift,
+  Placement
+} from '@floating-ui/react';
 import styled from 'styled-components';
 
 import Fade from '../../util/Fade';
 import PopoverLink from '../../controls/buttons/PopoverLink';
-import type { PopoverStyleType } from '../../containers/popover/PopoverShared';
+import {
+  PopoverStyleType,
+  popoverVariantNames
+} from '../../containers/popover/PopoverShared';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
 import useRootNode from '../../util/useRootNode';
@@ -77,17 +94,24 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 `;
 
 const ScreenReaderContent = screenReaderOnly('div');
-type TooltipPosition = 'left' | 'right' | 'top' | 'bottom';
 
-const getTooltips = (position?: TooltipPosition) => {
+const getTooltips = (position?: Placement) => {
   switch (position) {
     case 'right':
+    case 'right-start':
+    case 'right-end':
       return [TooltipRight, TooltipArrowRight];
     case 'bottom':
+    case 'bottom-start':
+    case 'bottom-end':
       return [TooltipBottom, TooltipArrowBottom];
     case 'left':
+    case 'left-start':
+    case 'left-end':
       return [TooltipLeft, TooltipArrowLeft];
     case 'top':
+    case 'top-start':
+    case 'top-end':
     default:
       return [TooltipTop, TooltipArrowTop];
   }
@@ -96,7 +120,7 @@ const getTooltips = (position?: TooltipPosition) => {
 type TooltipProps = React.PropsWithChildren<{
   name: string;
   content: React.ReactNode;
-  position?: TooltipPosition;
+  position?: Placement;
   disableHover?: boolean;
   disableFocus?: boolean;
   styleType?: PopoverStyleType;
@@ -104,102 +128,142 @@ type TooltipProps = React.PropsWithChildren<{
   id?: string;
 }>;
 
-function Tooltip(props: TooltipProps): React.ReactNode {
-  const [show, setShow] = useState(false);
-  const {
-    name,
-    disableHover,
-    disableFocus,
-    position,
-    content,
-    styleType,
-    children,
-    linkProps,
-    id: idProp,
-    ...other
-  } = props;
+const callRef = <T, R extends React.ForwardedRef<T>>(ref: R, value: T) =>
+  typeof ref === 'function' ? ref(value) : ref && (ref.current = value);
 
-  const [InnerTooltip, TooltipArrow] = getTooltips(position);
-  const tooltipId = name ? `es-tooltip__${name}` : undefined;
-  const [rootNode, rootNodeRef] = useRootNode(document.body);
+const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
+  function ForwardedTooltip(props, ref) {
+    const [show, setShow] = useState(false);
+    const {
+      name,
+      disableHover,
+      disableFocus,
+      position,
+      content,
+      styleType,
+      children,
+      linkProps,
+      id: idProp,
+      ...other
+    } = props;
 
-  function showTooltip() {
-    setShow(true);
-  }
+    const tooltipId = name ? `es-tooltip__${name}` : undefined;
+    const [rootNode, rootNodeRef] = useRootNode(document.body);
+    const arrowRef = useRef<HTMLDivElement>(null);
+    const autoPlacementMiddleware = position
+      ? [flip()]
+      : [autoPlacement({ alignment: 'start' })];
 
-  function hideTooltip() {
-    setShow(false);
-  }
+    const {
+      x,
+      y,
+      placement,
+      middlewareData: { arrow: arrowCoords },
+      context,
+      reference: floatingAnchorRef,
+      floating: floatingTooltipRef,
+      strategy
+    } = useFloating<HTMLButtonElement>({
+      open: show,
+      onOpenChange: setShow,
+      whileElementsMounted: autoUpdate,
+      placement: position,
+      middleware: [
+        arrow({ element: arrowRef }),
+        shift(),
+        ...autoPlacementMiddleware
+      ]
+    });
 
-  function toggleShow() {
-    setShow(!show);
-  }
+    const { x: arrowX, y: arrowY } = arrowCoords || {};
+    const [InnerTooltip, TooltipArrow] = getTooltips(placement);
 
-  function closeOnEscape(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.keyCode === 27) {
-      setShow(false);
-    }
-  }
+    const hover = useHover(context, {
+      enabled: !disableHover
+    });
+    const focus = useFocus(context, {
+      enabled: !disableFocus
+    });
+    const role = useRole(context, {
+      role: 'tooltip'
+    });
+    const click = useClick(context);
+    const dismiss = useDismiss(context);
 
-  const descriptionId = `${useUniqueId(idProp)}-description`;
+    const { getReferenceProps, getFloatingProps } = useInteractions([
+      hover,
+      focus,
+      role,
+      click,
+      dismiss
+    ]);
 
-  return (
-    <Manager>
-      <Reference>
-        {({ ref }) => (
-          <PopoverLink
-            ref={el => {
-              if (ref) {
-                typeof ref === 'function' ? ref(el) : (ref.current = el);
-              }
-              rootNodeRef(el);
-            }}
-            onBlur={hideTooltip}
-            onFocus={!disableFocus ? showTooltip : undefined}
-            onMouseEnter={!disableHover ? showTooltip : undefined}
-            onMouseLeave={!disableHover ? hideTooltip : undefined}
-            onKeyDown={closeOnEscape}
-            onClick={toggleShow}
-            aria-describedby={descriptionId}
-            styleType={styleType}
-            {...linkProps}
-          >
-            {children}
-          </PopoverLink>
+    const descriptionId = `${useUniqueId(idProp)}-description`;
+
+    return (
+      <>
+        <PopoverLink
+          ref={el => {
+            callRef(floatingAnchorRef, el);
+            callRef(ref, el);
+            rootNodeRef(el);
+          }}
+          styleType={styleType}
+          {...getReferenceProps({
+            ...linkProps,
+            'aria-describedby': descriptionId,
+            onBlur: () => setShow(false)
+          })}
+        >
+          {children}
+        </PopoverLink>
+
+        {show && (
+          <ScreenReaderContent id={descriptionId}>
+            {content}
+          </ScreenReaderContent>
         )}
-      </Reference>
 
-      {show && (
-        <ScreenReaderContent id={descriptionId}>{content}</ScreenReaderContent>
-      )}
-
-      {!rootNode ? (
-        <></>
-      ) : (
-        ReactDOM.createPortal(
-          <Popper placement={position}>
-            {({ ref, style, arrowProps }) => (
-              <Fade in={show} mountOnEnter unmountOnExit>
-                <InnerTooltip
-                  ref={ref}
-                  role="tooltip"
-                  id={tooltipId}
-                  style={style}
-                  aria-live="polite"
-                  {...other}
-                >
-                  <TooltipArrow ref={arrowProps.ref} style={arrowProps.style} />
-                  <TooltipInner>{content}</TooltipInner>
-                </InnerTooltip>
-              </Fade>
-            )}
-          </Popper>,
-          rootNode
-        )
-      )}
-    </Manager>
-  );
-}
+        {!rootNode ? (
+          <></>
+        ) : (
+          ReactDOM.createPortal(
+            <Fade in={show} mountOnEnter unmountOnExit>
+              <InnerTooltip
+                ref={floatingTooltipRef}
+                {...getFloatingProps({
+                  id: tooltipId,
+                  'aria-live': 'polite',
+                  style: {
+                    position: strategy,
+                    top: y ?? 0,
+                    left: x ?? 0
+                  },
+                  ...other
+                })}
+              >
+                <TooltipArrow
+                  ref={arrowRef}
+                  style={
+                    arrowX !== undefined
+                      ? {
+                          left: arrowX ?? 0
+                        }
+                      : {
+                          top: arrowY ?? 0
+                        }
+                  }
+                />
+                <TooltipInner>{content}</TooltipInner>
+              </InnerTooltip>
+            </Fade>,
+            rootNode
+          )
+        )}
+      </>
+    );
+  }
+);
 
 Tooltip.propTypes = {
   name: PropTypes.string.isRequired,
@@ -213,15 +277,19 @@ Tooltip.propTypes = {
   /** Disables the default show onFocus functionality */
   disableFocus: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string,
-  linkProps: PropTypes.object
+  styleType: PropTypes.oneOf<PopoverStyleType>(
+    popoverVariantNames as PopoverStyleType[]
+  ),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  linkProps: PropTypes.shape<Record<string, any>>({})
 };
 
 Tooltip.defaultProps = {
   position: 'top',
   disableHover: false,
   disableFocus: false,
-  styleType: undefined
+  styleType: 'default',
+  linkProps: {}
 };
 
 export default Tooltip;

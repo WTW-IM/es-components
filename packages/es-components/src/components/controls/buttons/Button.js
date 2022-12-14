@@ -8,7 +8,7 @@ import ButtonBase from './ButtonBase';
 
 const StyledButton = styled(ButtonBase)`
   background-color: ${props => props.colors.bgColor};
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-color: ${props => props.colors.bgColor};
   border-bottom-left-radius: ${props => props.borderRadii.bottomLeft};
   border-bottom-right-radius: ${props => props.borderRadii.bottomRight};

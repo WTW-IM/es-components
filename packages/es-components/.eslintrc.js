@@ -76,6 +76,16 @@ module.exports = {
   overrides: [
     {
       files: ['.eslintrc.js', '*.config.js', '*.config.mjs', '**/config/*.js'],
+      parser: '@babel/eslint-parser',
+      plugins: ['import', '@babel'],
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+          destructuring: true,
+          experimentalObjectRestSpread: true,
+          ecmaVersion: 'latest'
+        }
+      },
       env: {
         node: true
       },

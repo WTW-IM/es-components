@@ -97,7 +97,8 @@ module.exports = {
     Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js')
   },
   getComponentPathLine(componentPath) {
-    const name = path.basename(componentPath, '.js');
+    const componentExtension = path.extname(componentPath);
+    const name = path.basename(componentPath, componentExtension);
     return `import { ${name} } from 'es-components';`;
   },
   getExampleFilename(componentPath) {

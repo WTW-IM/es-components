@@ -27,6 +27,7 @@ import {
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
 import useRootNode from '../../util/useRootNode';
+import callRef from '../../util/callRef';
 
 const TooltipBase = styled.div`
   position: absolute;
@@ -127,9 +128,6 @@ type TooltipProps = React.PropsWithChildren<{
   linkProps?: Record<string, unknown>;
   id?: string;
 }>;
-
-const callRef = <T, R extends React.ForwardedRef<T>>(ref: R, value: T) =>
-  typeof ref === 'function' ? ref(value) : ref && (ref.current = value);
 
 const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
   function ForwardedTooltip(props, ref) {

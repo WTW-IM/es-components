@@ -1,37 +1,44 @@
-/* eslint-env jest */
 import React from 'react';
 
 import { cleanup, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Popover from './Popover';
-import Button from '../../controls/buttons/Button';
+import viaTheme from 'es-components-via-theme';
+import Popover, { RenderTriggerParams, PopoverProps } from './Popover';
+import OriginalButton from '../../controls/buttons/Button';
 import { renderWithTheme } from '../../util/test-utils';
+
+const Button = OriginalButton as ReturnType<
+  typeof React.forwardRef<
+    HTMLElement | undefined,
+    JSX.IntrinsicElements['button'] & {
+      styleType: keyof typeof viaTheme['buttonStyles']['button']['variant'];
+    }
+  >
+>;
 
 beforeEach(cleanup);
 
-function buildPopover(props) {
-  const defaults = {
+type PossibleProps = Partial<PopoverProps>;
+
+function buildPopover(props?: PossibleProps) {
+  const defaults: Omit<PopoverProps, 'renderTrigger'> = {
     name: 'popTest',
     title: 'Popover Title',
     content: 'This is the popover content.'
   };
-  const mergedProps = Object.assign({}, defaults, props);
-  return (
-    <Popover
-      {...mergedProps}
-      renderTrigger={({ ref, toggleShow, isOpen }) => (
-        <Button
-          onClick={toggleShow}
-          aria-expanded={isOpen}
-          ref={ref}
-          styleType="primary"
-        >
-          Popover Trigger Button
-        </Button>
-      )}
-    />
+  const renderTrigger = ({ ref, toggleShow, isOpen }: RenderTriggerParams) => (
+    <Button
+      onClick={toggleShow}
+      aria-expanded={isOpen}
+      ref={ref}
+      styleType="primary"
+    >
+      Popover Trigger Button
+    </Button>
   );
+  const mergedProps: PopoverProps = { ...defaults, ...props, renderTrigger };
+  return <Popover {...mergedProps} />;
 }
 
 it('can be toggled by clicking the button', async () => {

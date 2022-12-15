@@ -157,6 +157,7 @@
     "@types/styled-components": "^5.1.26",
     "@types/react-transition-group": "^4.4.5",
     "core-js": "^3.26.1",
+    "csstype": "^3.1.1",
     "date-fns": "^2.29.3",
     "es-components-via-theme": "*",
     "format-message": "^6.2.4",

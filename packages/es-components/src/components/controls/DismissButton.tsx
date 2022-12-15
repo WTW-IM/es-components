@@ -18,19 +18,12 @@ const DismissButtonBase = styled.button`
   }
 `;
 
-interface Props {
-  children?: React.ReactNode;
-  type?: 'submit' | 'button';
-}
-
-type Ref = HTMLButtonElement;
-
 const ScreenReaderText = screenReaderOnly('span');
 
-const DismissButton = React.forwardRef<Ref, Props>(function DismissButton(
-  props,
-  ref
-) {
+const DismissButton = React.forwardRef<
+  HTMLButtonElement,
+  JSX.IntrinsicElements['button']
+>(function DismissButton(props, ref) {
   return (
     <DismissButtonBase aria-label="Close" {...props} type="button" ref={ref}>
       <Icon name="remove" />

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.0...v21.7.0-pre-prod.1) (2022-12-15)
+
+
+### Build
+
+* ensuring we have via-theme for tests ([2322977](https://github.com/WTW-IM/es-components/commit/232297748100c89c24074c078b01a9d7c757de72))
+* ensuring we run lint on all test matrices ([ad8855e](https://github.com/WTW-IM/es-components/commit/ad8855e81c539af4ea85ee69209bbb3e071d5c47))
+* ensuring we run tests on the head ref of a PR ([651bbce](https://github.com/WTW-IM/es-components/commit/651bbce8acb6f36fee727871f7f13754044ec78f))
+* fixing package-locks for CI ([7bb223f](https://github.com/WTW-IM/es-components/commit/7bb223f787aac3a958f0cde74a0c0aa5b60b8c90))
+* making the Client Customization team codeowners ([987995d](https://github.com/WTW-IM/es-components/commit/987995dd1df3491ef7fab3bea18eea43154a92df))
+
+
+
+
+
 # [21.7.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.7.0-pre-prod.0) (2022-12-13)
 
 

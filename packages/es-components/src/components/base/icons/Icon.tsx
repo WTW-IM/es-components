@@ -8,9 +8,11 @@ export interface IconProps {
   name: string;
   size?: string | number;
   className?: string;
+  iconColor?: string;
+  alwaysShowIcon?: boolean;
 }
 
-const StyledIcon = styled.i<{ size: string | number; }>`
+const StyledIcon = styled.i<{ size: string }>`
   display: inline-block;
   font-size: ${props => props.size};
   text-decoration: none;
@@ -26,13 +28,17 @@ const Icon: FC<IconProps> = ({ name, size, className, ...other }) => {
       <RootNodeInput />
       <StyledIcon
         className={`bds-icon bds-${name} ${className || ''}`.trim()}
-        size={/^\d+$/.test(size?.toString() || '') ? `${size}px` : size || 'inherit'}
+        size={
+          /^\d+$/.test(size?.toString() || '')
+            ? `${size || ''}px`
+            : size?.toString() || 'inherit'
+        }
         aria-hidden
         {...other}
       />
     </>
   );
-}
+};
 
 Icon.propTypes = {
   /** Name of the icon to display */

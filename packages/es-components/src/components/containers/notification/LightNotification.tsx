@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
-import { useNotification } from './useNotification';
-import { DefaultTheme } from 'styled-components';
-
-type TypeKeys = keyof DefaultTheme['notificationStyles'];
+import { TypeKeys, useNotification } from './useNotification';
 
 interface LightNotificationProps {
   type: TypeKeys;

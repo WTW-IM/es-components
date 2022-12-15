@@ -53,7 +53,7 @@ interface NotificationContentProps {
   alwaysShowIcon?: boolean;
 }
 
-type TypeKeys = keyof DefaultTheme['notificationStyles'];
+export type TypeKeys = keyof DefaultTheme['notificationStyles'];
 type StyleTypeKeys = keyof DefaultTheme['notificationStyles']['success'];
 
 interface BaseNotificationProps {

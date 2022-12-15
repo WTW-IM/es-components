@@ -19,7 +19,11 @@ jobs:
           ref: ${{ github.head_ref || github.ref }}
 
       - name: NPM Clean Install
-        run: npm ci
+        run: |
+          npm ci # runs installs and builds themes
+          cd packages/es-components
+          npm uninstall es-components-via-theme # uninstall unbuilt theme
+          npm install -D ../es-components-via-theme # reinstall built theme
 
       - name: Setup Cypress
         working-directory: ${{ env.ES_COMPONENTS_DIR }}

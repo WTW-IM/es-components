@@ -343,11 +343,20 @@ const theme: ESTheme = {
         info: {
           bgColor: info,
         },
+        information: {
+          bgColor: info,
+        },
         warning: {
           bgColor: warning,
         },
         danger: {
           bgColor: danger,
+        },
+        magenta: {
+          bgColor: primary3,
+        },
+        violet: {
+          bgColor: secondary1,
         },
         inherited: {},
       },
@@ -398,10 +407,16 @@ const theme: ESTheme = {
         default: {
           bgColor: gray8,
         },
+        darkDefault: {
+          bgColor: gray8,
+        },
         success: {
           bgColor: success,
         },
         info: {
+          bgColor: info,
+        },
+        information: {
           bgColor: info,
         },
         warning: {
@@ -478,6 +493,9 @@ const theme: ESTheme = {
         success: {
           textColor: success,
         },
+        info: {
+          textColor: info,
+        },
         information: {
           textColor: info,
         },
@@ -492,7 +510,7 @@ const theme: ESTheme = {
         },
       },
     },
-  },
+  } as ESTheme['buttonStyles'],
   inputStyles: {
     borderRadius: '2px',
     defaultFormStyle: 'default',
@@ -596,6 +614,9 @@ const theme: ESTheme = {
     desktop: '900px',
     widescreen: '1200px',
   },
-};
+} as const;
+
+type ThemeType = typeof theme;
+type Theme<T> = T extends ESTheme ? T : never;
 
 export default theme;

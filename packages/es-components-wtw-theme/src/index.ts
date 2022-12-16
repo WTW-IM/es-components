@@ -1,4 +1,5 @@
 import type ESTheme from 'es-components-shared-types';
+
 // grayscale
 const white = '#fff';
 const gray0 = '#f9f9f9';
@@ -355,11 +356,20 @@ const theme: ESTheme = {
         info: {
           bgColor: info,
         },
+        information: {
+          bgColor: info,
+        },
         warning: {
           bgColor: warning,
         },
         danger: {
           bgColor: danger,
+        },
+        magenta: {
+          bgColor: primary3,
+        },
+        violet: {
+          bgColor: primary1,
         },
         inherited: {},
       },
@@ -412,10 +422,16 @@ const theme: ESTheme = {
           hoverBgColor: gray1,
           hoverColor: primary,
         },
+        darkDefault: {
+          bgColor: gray9,
+        },
         success: {
           bgColor: success,
         },
         info: {
+          bgColor: info,
+        },
+        information: {
           bgColor: info,
         },
         warning: {
@@ -477,11 +493,23 @@ const theme: ESTheme = {
         default: {
           textColor: gray9,
         },
+        darkDefault: {
+          textColor: gray9,
+        },
+        magenta: {
+          textColor: gray9,
+        },
+        violet: {
+          textColor: gray9,
+        },
         primary: {
           textColor: primary,
         },
         success: {
           textColor: success,
+        },
+        info: {
+          textColor: info,
         },
         information: {
           textColor: info,
@@ -497,7 +525,7 @@ const theme: ESTheme = {
         },
       },
     },
-  },
+  } as ESTheme['buttonStyles'],
   inputStyles: {
     borderRadius: '2px',
     defaultFormStyle: 'flat',
@@ -608,5 +636,8 @@ const theme: ESTheme = {
     widescreen: '1200px',
   },
 };
+
+type ThemeType = typeof theme;
+type Theme<T> = T extends ESTheme ? T : never;
 
 export default theme;

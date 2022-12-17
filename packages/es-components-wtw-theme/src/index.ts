@@ -371,7 +371,9 @@ const theme: ESTheme = {
         violet: {
           bgColor: primary1,
         },
-        inherited: {},
+        inherited: {
+          bgColor: 'inherit',
+        },
       },
       // size should always have default, lg, sm, xs
       // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
@@ -446,7 +448,9 @@ const theme: ESTheme = {
         violet: {
           bgColor: primary1,
         },
-        inherited: {},
+        inherited: {
+          bgColor: 'inherit',
+        },
       },
       size: {
         lg: {

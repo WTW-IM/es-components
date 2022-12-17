@@ -32,16 +32,18 @@ export { default as Menu } from './components/containers/menu/Menu';
 export { default as TabPanel } from './components/containers/tabPanels/TabPanel';
 export { default as StripedContainer } from './components/containers/striped-container/StripedContainer';
 export { default as Prompt } from './components/containers/prompt/Prompt';
-export { default as Heading } from './components/containers/heading/Heading';
-export { PageHeading } from './components/containers/heading/Heading';
+export {
+  default as Heading,
+  PageHeading
+} from './components/containers/heading/Heading';
 export { default as Banner } from './components/containers/banner/Banner';
 export { default as Table } from './components/containers/table/Table';
 export { default as ResponsiveTable } from './components/containers/table/ResponsiveTable';
 export { default as HorizontalScrollWrapper } from './components/containers/horizontalScrollWrapper/HorizontalScrollWrapper';
 export { default as LoadingSkeleton } from './components/containers/loading-skeleton/LoadingSkeleton';
 
-export { default as Form } from './components/containers/form/Form';
 export {
+  default as Form,
   FormContext,
   FormContextProvider
 } from './components/containers/form/Form';
@@ -100,8 +102,10 @@ export { default as withWindowSize } from './components/util/withWindowSize';
 export { default as StyleReset } from './components/util/StyleReset';
 export { useTheme } from './components/util/useTheme';
 export { isValidEmail } from './components/util/isValidEmail';
-export { default as useRootNode } from './components/util/useRootNode';
-export { useRootNodeLocator } from './components/util/useRootNode';
+export {
+  default as useRootNode,
+  useRootNodeLocator
+} from './components/util/useRootNode';
 export { useLoadingState } from './hooks/useLoadingState';
 export { useMountedOnlyState } from './hooks/useMountedOnlyState';
 export { default as useUniqueId } from './components/util/useUniqueId';

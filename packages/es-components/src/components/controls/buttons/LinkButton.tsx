@@ -7,8 +7,13 @@ import ButtonBase, {
   propTypes as basePropTypes,
   defaultProps as baseDefaultProps
 } from './ButtonBase';
+import {
+  buttonVariantStyleTypes,
+  ButtonVariantStyleType,
+  TextColorButtonVariant
+} from '../../../../../../types/ESTheme';
 
-const StyledButton = styled(ButtonBase)`
+const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   background-color: transparent;
   border: none;
   box-shadow: none;
@@ -38,28 +43,34 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-const LinkButton = React.forwardRef(function LinkButton(props, ref) {
-  const { children, styleType, ...other } = props;
-  const theme = useTheme();
-  const variant = theme.buttonStyles.linkButton.variant[styleType];
+export type LinkButtonProps = React.PropsWithChildren<{
+  styleType?: ButtonVariantStyleType;
+}>;
 
-  return (
-    <StyledButton ref={ref} variant={variant} type="button" {...other}>
-      {children}
-    </StyledButton>
-  );
-});
+const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
+  function LinkButton(props, ref) {
+    const { children, styleType = 'default', ...other } = props;
+    const theme = useTheme();
+    const variant = theme.buttonStyles.linkButton.variant[styleType];
+
+    return (
+      <StyledButton ref={ref} variant={variant} type="button" {...other}>
+        {children}
+      </StyledButton>
+    );
+  }
+);
 
 export const propTypes = {
   ...basePropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
-  styleType: PropTypes.string
+  styleType: PropTypes.oneOf(buttonVariantStyleTypes)
 };
 
 export const defaultProps = {
   ...baseDefaultProps,
-  styleType: 'default'
+  styleType: 'default' as ButtonVariantStyleType
 };
 
 LinkButton.defaultProps = defaultProps;

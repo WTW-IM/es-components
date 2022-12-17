@@ -181,7 +181,8 @@ module.exports = {
             getDependencyDirectory('unicode-match-property-value-ecmascript'),
             getDependencyDirectory('acorn-jsx'),
             getDependencyDirectory('estree-walker'),
-            path.join(__dirname, 'src')
+            path.join(__dirname, 'src'),
+            path.join(__dirname, '../../types')
           ],
           loader: 'babel-loader'
         }

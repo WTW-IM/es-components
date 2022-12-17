@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import LinkButton from './LinkButton';
-import { useTheme } from '../../util/useTheme';
-import type { PopoverStyleType } from '../../containers/popover/PopoverShared';
+import {
+  buttonVariantStyleTypes,
+  ButtonVariantStyleType
+} from '../../../../../../types/ESTheme';
 
 const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
   text-underline-position: under;
@@ -19,23 +21,23 @@ const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
 `;
 
 type PopoverLinkProps = React.PropsWithChildren<
-  JSX.IntrinsicElements['button'] & {
+  Omit<JSX.IntrinsicElements['button'], 'ref'> & {
     suppressUnderline?: boolean;
-    styleType?: PopoverStyleType;
+    styleType?: Maybe<ButtonVariantStyleType>;
   }
 >;
 
 const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
-  function ForwardedPopoverLink(props, ref) {
+  function ForwardedPopoverLink(
+    props,
+    forwardedRef: React.Ref<HTMLButtonElement>
+  ) {
     const { children, styleType, suppressUnderline, ...other } = props;
-    const theme = useTheme();
-    const variant =
-      theme.buttonStyles.linkButton.variant[styleType || 'default'];
 
     return (
       <StyledButton
-        ref={ref}
-        variant={variant}
+        ref={forwardedRef}
+        styleType={styleType || 'default'}
         suppressUnderline={suppressUnderline}
         {...other}
       >
@@ -49,7 +51,7 @@ export const propTypes = {
   ...StyledButton.propTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string,
+  styleType: PropTypes.oneOf(buttonVariantStyleTypes),
   /** Hide underline from link. Useful for children like Icons */
   suppressUnderline: PropTypes.bool
 };

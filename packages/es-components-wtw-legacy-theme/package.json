@@ -9,8 +9,5 @@
   },
   "devDependencies": {
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "csstype": "^3.1.1"
   }
 }

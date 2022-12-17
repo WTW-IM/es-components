@@ -21,9 +21,9 @@ import styled from 'styled-components';
 import Fade from '../../util/Fade';
 import PopoverLink from '../../controls/buttons/PopoverLink';
 import {
-  PopoverStyleType,
-  popoverVariantNames
-} from '../../containers/popover/PopoverShared';
+  buttonVariantStyleTypes,
+  ButtonVariantStyleType
+} from '../../../../../../types/ESTheme';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
 import useRootNode from '../../util/useRootNode';
@@ -123,7 +123,7 @@ type TooltipProps = React.PropsWithChildren<{
   position?: Placement;
   disableHover?: boolean;
   disableFocus?: boolean;
-  styleType?: PopoverStyleType;
+  styleType?: ButtonVariantStyleType;
   linkProps?: Record<string, unknown>;
   id?: string;
 }>;
@@ -235,6 +235,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
                   id: tooltipId,
                   'aria-live': 'polite',
                   style: {
+                    width: 'max-content',
                     position: strategy,
                     top: y ?? 0,
                     left: x ?? 0
@@ -277,9 +278,7 @@ Tooltip.propTypes = {
   /** Disables the default show onFocus functionality */
   disableFocus: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.oneOf<PopoverStyleType>(
-    popoverVariantNames as PopoverStyleType[]
-  ),
+  styleType: PropTypes.oneOf(buttonVariantStyleTypes),
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   linkProps: PropTypes.shape<Record<string, any>>({})
 };

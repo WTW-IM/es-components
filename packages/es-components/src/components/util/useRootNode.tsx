@@ -1,10 +1,12 @@
 import 'get-root-node-polyfill/implement';
 import React, { useState, useCallback } from 'react';
 
-export default function useRootNode(initialRoot?: Maybe<HTMLElement>) {
-  const [rootNode, setRootNode] = useState<Maybe<HTMLElement>>(initialRoot);
-  const nodeRef = useCallback(
-    (node: Maybe<HTMLElement>) => {
+export type RootNode = HTMLElement | undefined;
+
+export default function useRootNode(initialRoot?: RootNode) {
+  const [rootNode, setRootNode] = useState<RootNode>(initialRoot);
+  const nodeRef = useCallback<React.RefCallback<HTMLElement>>(
+    (node: Maybe<RootNode>) => {
       if (!node) return;
 
       const foundRoot = node.getRootNode();
@@ -16,7 +18,7 @@ export default function useRootNode(initialRoot?: Maybe<HTMLElement>) {
   return [rootNode, nodeRef] as const;
 }
 
-export function useRootNodeLocator(initialRoot?: Maybe<HTMLElement>) {
+export function useRootNodeLocator(initialRoot?: RootNode) {
   const [rootNode, rootNodeRef] = useRootNode(initialRoot);
   const RootNodeInput = useCallback(
     () => <input type="hidden" ref={rootNodeRef} />,

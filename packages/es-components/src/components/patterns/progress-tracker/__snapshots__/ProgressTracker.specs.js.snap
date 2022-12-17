@@ -6,7 +6,7 @@ exports[`builds a ProgressTracker 1`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  background-image: linear-gradient( to right,#444 0%,#444 0%,#c5c5c5 0%,#c5c5c5 100% );
+  background-image: linear-gradient( to right, #444 0%, #444 0%, #c5c5c5 0%, #c5c5c5 100% );
   background-size: 100% 3px;
   background-position: 0 21px;
   background-repeat: no-repeat;
@@ -259,7 +259,7 @@ exports[`builds a ProgressTracker 2`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  background-image: linear-gradient( to right,#444 0%,#444 50%,#c5c5c5 50%,#c5c5c5 100% );
+  background-image: linear-gradient( to right, #444 0%, #444 50%, #c5c5c5 50%, #c5c5c5 100% );
   background-size: 100% 3px;
   background-position: 0 21px;
   background-repeat: no-repeat;
@@ -556,7 +556,7 @@ exports[`builds a ProgressTracker 3`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  background-image: linear-gradient( to right,#444 0%,#444 100%,#c5c5c5 100%,#c5c5c5 100% );
+  background-image: linear-gradient( to right, #444 0%, #444 100%, #c5c5c5 100%, #c5c5c5 100% );
   background-size: 100% 3px;
   background-position: 0 21px;
   background-repeat: no-repeat;

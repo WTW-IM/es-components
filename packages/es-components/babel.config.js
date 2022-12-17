@@ -1,11 +1,9 @@
 module.exports = function (api) {
   const inProd = api.env('production');
 
+  const extraTsConfig = inProd ? {} : {};
+
   const presets = [
-    [
-      '@babel/preset-typescript',
-      { isTSX: true, allExtensions: true }
-    ],
     [
       'wtw-im',
       {
@@ -13,7 +11,8 @@ module.exports = function (api) {
         transformFormatMessage: false,
         env: { corejs: 3 }
       }
-    ]
+    ],
+    ['@babel/preset-typescript', { isTSX: true, allExtensions: true }]
   ];
 
   const removePropTypesPlugin = [

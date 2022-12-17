@@ -148,7 +148,8 @@ module.exports = {
             ),
             path.join(__dirname, 'node_modules', 'acorn-jsx'),
             path.join(__dirname, 'node_modules', 'estree-walker'),
-            path.join(__dirname, 'src')
+            path.join(__dirname, 'src'),
+            path.join(__dirname, '../../types')
           ],
           loader: 'babel-loader'
         }

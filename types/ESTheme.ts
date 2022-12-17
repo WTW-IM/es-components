@@ -18,7 +18,7 @@ export type ButtonSizes = {
   [key in ButtonSizePropNames]: ButtonSize;
 };
 
-export const buttonVariantPropNames = [
+export const buttonVariantStyleTypes = [
   "primary",
   "default",
   "darkDefault",
@@ -31,26 +31,34 @@ export const buttonVariantPropNames = [
   "violet",
   "inherited",
 ] as const;
-export type ButtonVariantPropNames = typeof buttonVariantPropNames[number];
+export type ButtonVariantStyleType = typeof buttonVariantStyleTypes[number];
 
 export interface ButtonVariant {
   bgColor?: CSS.Property.BackgroundColor;
   textColor?: CSS.Property.Color;
 }
 
-export type ButtonVariants = {
-  [key in ButtonVariantPropNames]: ButtonVariant;
+export interface BGColorButtonVariant extends ButtonVariant {
+  bgColor: NonNullable<CSS.Property.BackgroundColor>;
+}
+
+export interface TextColorButtonVariant extends ButtonVariant {
+  textColor: NonNullable<CSS.Property.BackgroundColor>;
+}
+
+export type ButtonVariants<T extends ButtonVariant> = {
+  [key in ButtonVariantStyleType]: T;
 };
 
-export interface ButtonStyles {
-  variant: ButtonVariants;
+export interface ButtonStyles<T extends ButtonVariant> {
+  variant: ButtonVariants<T>;
   size?: ButtonSizes;
 }
 
 export default interface ESTheme {
   buttonStyles: {
-    button: ButtonStyles;
-    outlineButton: ButtonStyles;
-    linkButton: ButtonStyles;
+    button: ButtonStyles<BGColorButtonVariant>;
+    outlineButton: ButtonStyles<BGColorButtonVariant>;
+    linkButton: ButtonStyles<TextColorButtonVariant>;
   };
 }

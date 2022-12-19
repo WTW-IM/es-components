@@ -29,7 +29,6 @@ export const buttonVariantStyleTypes = [
   "information",
   "magenta",
   "violet",
-  "inherited",
 ] as const;
 export type ButtonVariantStyleType = typeof buttonVariantStyleTypes[number];
 
@@ -48,6 +47,8 @@ export interface TextColorButtonVariant extends ButtonVariant {
 
 export type ButtonVariants<T extends ButtonVariant> = {
   [key in ButtonVariantStyleType]: T;
+} & {
+  inherited: ButtonVariant;
 };
 
 export interface ButtonStyles<T extends ButtonVariant> {

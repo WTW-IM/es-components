@@ -577,6 +577,7 @@ const theme = {
 } as const;
 
 type ThemeType = typeof theme;
-type Theme<T> = T extends ESTheme ? T : never;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Theme<T> = T extends ThemeType ? T : any;
 
 export = theme as Theme<ThemeType>;

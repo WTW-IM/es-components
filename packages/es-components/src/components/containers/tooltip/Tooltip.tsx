@@ -23,7 +23,7 @@ import PopoverLink from '../../controls/buttons/PopoverLink';
 import {
   buttonVariantStyleTypes,
   ButtonVariantStyleType
-} from '../../../../../../types/ESTheme';
+} from 'es-components-shared-types';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
 import useRootNode from '../../util/useRootNode';

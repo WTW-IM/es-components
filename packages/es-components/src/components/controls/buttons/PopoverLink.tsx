@@ -5,7 +5,7 @@ import LinkButton from './LinkButton';
 import {
   buttonVariantStyleTypes,
   ButtonVariantStyleType
-} from '../../../../../../types/ESTheme';
+} from 'es-components-shared-types';
 
 const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
   text-underline-position: under;

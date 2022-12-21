@@ -6,6 +6,7 @@
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
+    "prebuild": "npm uninstall es-components-shared-types && npm install es-components-shared-types@file:../../shared/types",
     "build": "tsc",
     "prepare": "npm run build"
   },
@@ -13,6 +14,6 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
-    "csstype": "^3.1.1"
+    "es-components-shared-types": "file:../../shared/types"
   }
 }

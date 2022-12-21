@@ -9,7 +9,7 @@ import RootCloseWrapper from '../../util/RootCloseWrapper';
 import {
   buttonVariantStyleTypes,
   ButtonVariantStyleType
-} from '../../../../../../types/ESTheme';
+} from 'es-components-shared-types';
 
 const Backdrop = styled.div<{ isMenuOpen: boolean }>`
   background-color: black;

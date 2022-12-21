@@ -1,4 +1,4 @@
-import ESTheme from "../../../types/ESTheme";
+import ESTheme from "es-components-shared-types";
 // grayscale
 const white = "#fff";
 const gray0 = "#f9f9f9";

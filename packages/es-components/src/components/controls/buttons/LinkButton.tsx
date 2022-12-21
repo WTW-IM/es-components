@@ -8,7 +8,7 @@ import {
   buttonVariantStyleTypes,
   ButtonVariantStyleType,
   TextColorButtonVariant
-} from '../../../../../../types/ESTheme';
+} from 'es-components-shared-types';
 
 const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   background-color: transparent;

@@ -45,7 +45,7 @@ jobs:
           npx eslint --output-file eslint_report.json --format json .
 
       - name: Annotate JS Linting Results
-        if: ${{ matrix.node == 16 &&
+        if: ${{
           github.ref != 'refs/heads/main' &&
           github.ref != 'refs/heads/pre-prod' }}
         uses: ataylorme/eslint-annotate-action@v2

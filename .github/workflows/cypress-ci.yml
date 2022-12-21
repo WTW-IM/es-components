@@ -37,13 +37,13 @@ jobs:
             jq -s '.[0] * .[1]' cypress.json cypress-ci.json \
           )" > cypress-ci.json
 
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v5
         with:
           working-directory: ${{ env.ES_COMPONENTS_DIR }}
           config-file: cypress-ci.json
           install: false
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots

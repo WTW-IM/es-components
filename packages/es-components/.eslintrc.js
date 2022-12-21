@@ -16,11 +16,25 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 'latest',
-    project: path.join(__dirname, 'config', 'lint-tsconfig.json')
+    project: [path.join(__dirname, 'lint-tsconfig.json')]
   },
   extends: exts,
   plugins,
   root: true,
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
+  ignorePatterns: [
+    '**/node_modules/**',
+    'node_modules/**',
+    'dist/**',
+    'cjs/**',
+    'lib/**',
+    'bundle/**',
+    'docs/**'
+  ],
 
   rules: {
     '@typescript-eslint/no-unused-vars': ['warn'],
@@ -67,16 +81,6 @@ module.exports = {
     },
     {
       files: ['.eslintrc.js', '*.config.js', '**/config/*.js'],
-      parser: '@babel/eslint-parser',
-      plugins: ['import', '@babel'],
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-          destructuring: true,
-          experimentalObjectRestSpread: true,
-          ecmaVersion: 'latest'
-        }
-      },
       env: {
         node: true
       },
@@ -86,8 +90,17 @@ module.exports = {
           {
             devDependencies: true
           }
-        ]
+        ],
+        '@typescript-eslint/no-var-requires': 0
       }
+    },
+    {
+      files: ['cypress/**/*'],
+      plugins: ['cypress', ...plugins],
+      env: {
+        'cypress/globals': true
+      },
+      extends: ['plugin:cypress/recommended', ...exts]
     },
     {
       files: ['*.specs.*'],

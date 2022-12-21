@@ -5,9 +5,6 @@ on:
   workflow_dispatch:
 env:
   ES_COMPONENTS_DIR: packages/es-components
-defaults:
-  run:
-    working-directory: packages/es-components
 
 jobs:
   run-cypress:
@@ -31,7 +28,9 @@ jobs:
           npx cypress install
           npm start &
           npm run wait-for-start
+
       - name: Generate Cypress Config
+        working-directory: ${{ env.ES_COMPONENTS_DIR }}
         run: |
           echo "$( \
             jq -s '.[0] * .[1]' cypress.json cypress-ci.json \
@@ -47,9 +46,10 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: ${{ env.ES_COMPONENTS_DIR }}/cypress/screenshots
 
       - run: npm run cypressreport
+        working-directory: ${{ env.ES_COMPONENTS_DIR }}
 
       - name: Create Status check based on merged cypress results
         if: always()

@@ -8,9 +8,6 @@ jobs:
   test:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/es-components
     strategy:
       matrix:
         node: [lts/*, node]
@@ -54,6 +51,7 @@ jobs:
           report-json: packages/es-components/eslint_report.json
 
       - name: Run Tests
+        working-directory: packages/es-components
         run: |
           npm test
 

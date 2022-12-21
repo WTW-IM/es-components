@@ -23,7 +23,7 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 'latest',
-    project: path.join(__dirname, 'config', 'lint-tsconfig.json')
+    project: [path.join(__dirname, 'lint-tsconfig.json')]
   },
   env: {
     browser: true,
@@ -119,8 +119,17 @@ module.exports = {
           {
             devDependencies: true
           }
-        ]
+        ],
+        '@typescript-eslint/no-var-requires': 0
       }
+    },
+    {
+      files: ['cypress/**/*'],
+      plugins: ['cypress', ...plugins],
+      env: {
+        'cypress/globals': true
+      },
+      extends: ['plugin:cypress/recommended', ...exts]
     },
     {
       files: ['*.specs.*'],

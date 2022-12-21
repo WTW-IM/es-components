@@ -1,8 +1,12 @@
 {
   "extends": "../../theme-tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
   },
-  "include": ["src", "../../types"],
+  "include": ["src"],
   "exclude": ["dist"]
 }

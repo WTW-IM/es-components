@@ -28,9 +28,6 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci # runs installs and builds themes
-          cd packages/es-components
-          npm uninstall es-components-via-theme # uninstall unbuilt theme
-          npm install -D ../es-components-via-theme # reinstall built theme
 
       - name: Run Lint
         working-directory: packages/es-components

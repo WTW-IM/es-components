@@ -8,9 +8,6 @@ jobs:
   test:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/es-components
     strategy:
       matrix:
         node: [lts/*, node]
@@ -45,7 +42,7 @@ jobs:
           npx eslint --output-file eslint_report.json --format json .
 
       - name: Annotate JS Linting Results
-        if: ${{ matrix.node == 16 &&
+        if: ${{
           github.ref != 'refs/heads/main' &&
           github.ref != 'refs/heads/pre-prod' }}
         uses: ataylorme/eslint-annotate-action@v2
@@ -54,6 +51,7 @@ jobs:
           report-json: packages/es-components/eslint_report.json
 
       - name: Run Tests
+        working-directory: packages/es-components
         run: |
           npm test
 

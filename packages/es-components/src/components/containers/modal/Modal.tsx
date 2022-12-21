@@ -12,7 +12,7 @@ import tinycolor from 'tinycolor2';
 
 import useUniqueId from '../../util/useUniqueId';
 import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
-import { useRootNodeLocator } from '../../util/useRootNode';
+import { useRootNodeLocator, RootNode } from '../../util/useRootNode';
 import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
@@ -24,27 +24,24 @@ type ModalTheme = DefaultTheme & {
   portalClassName: string;
 };
 
-type HTMLRef =
-  | React.Ref<HTMLElement>
-  | React.MutableRefObject<HTMLElement>
-  | undefined;
+type HTMLRef = React.ForwardedRef<HTMLElement> | undefined;
+type BackdropValue = boolean | 'static';
 
-interface ModalParameters {
+export type ModalProps = Omit<ReactModal.Props, 'isOpen'> & {
+  show?: boolean;
+  size?: number;
+  parentSelector?: () => RootNode;
+  className?: string;
   animation?: boolean;
-  backdrop: string;
+  backdrop?: BackdropValue;
   children?: React.ReactNode;
   escapeExits?: boolean;
   onEnter?: () => void;
   onExit?: () => void;
   onHide?: () => void;
-  show: boolean;
-  size: number;
-  parentSelector: () => HTMLElement;
-  className: string;
   overlayRef?: HTMLRef;
   contentRef?: HTMLRef;
-  [x: string]: unknown;
-}
+};
 
 const modalSize = {
   small: '300px',
@@ -61,7 +58,7 @@ const getModalMargin = (windowHeight: number, modalHeight: number) => {
 };
 
 const ModalStyles = createGlobalStyle<{
-  showBackdrop: string;
+  showBackdrop: boolean;
   showAnimation?: boolean;
   portalClassName?: string;
   theme: ModalTheme;
@@ -185,8 +182,8 @@ const ModalThemeProvider = ThemeProvider as unknown as ThemeProviderComponent<
 >;
 
 function Modal({
-  animation,
-  backdrop,
+  animation = true,
+  backdrop = true,
   children,
   escapeExits,
   onEnter,
@@ -199,7 +196,7 @@ function Modal({
   overlayRef,
   contentRef,
   ...other
-}: ModalParameters) {
+}: ModalProps) {
   const ariaId = useUniqueId(other.id as string);
   const portalClassName = `ReactModalPortal-${useUniqueId()}`;
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
@@ -278,8 +275,7 @@ function Modal({
 
   useDisableBodyScroll(show);
 
-  const shouldCloseOnOverlayClick = (backdrop !== 'static' &&
-    backdrop) as boolean;
+  const shouldCloseOnOverlayClick = backdrop === 'static' ? false : backdrop;
 
   return (
     <ModalThemeProvider
@@ -292,15 +288,17 @@ function Modal({
     >
       <RootNodeLocator />
       {shouldShow ? (
-        <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
+        <ModalStyles
+          showAnimation={animation}
+          showBackdrop={Boolean(backdrop)}
+        />
       ) : null}
-      <ModalContext.Provider value={{ onHide, ariaId }}>
+      <ModalContext.Provider value={{ onHide: onHide || noop, ariaId }}>
         <ReactModal
           portalClassName={portalClassName}
-          className={`${className} ${size} modal-content`}
+          className={`${className || ''} ${size || 'medium'} modal-content`}
           overlayClassName="background-overlay"
           closeTimeoutMS={animation ? animationTimeMs : undefined}
-          isOpen={show}
           aria={{
             labelledby: ariaId
           }}
@@ -309,10 +307,10 @@ function Modal({
           onAfterOpen={onEnter}
           onAfterClose={onExit}
           shouldCloseOnEsc={escapeExits}
-          parentSelector={modalParentSelector}
+          parentSelector={modalParentSelector as () => HTMLElement}
           contentRef={setContentRef}
           overlayRef={modalHeightRef}
-          {...other}
+          {...{ ...(other || {}), isOpen: Boolean(show) }}
         >
           {children}
         </ReactModal>

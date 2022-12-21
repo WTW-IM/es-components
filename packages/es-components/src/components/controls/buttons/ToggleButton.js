@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 
 import Button from './Button';
 import OutlineButton from './OutlineButton';
-import { useTheme } from '../../util/useTheme';
 
 function ToggleButton(props) {
-  const theme = useTheme();
   const [isPressed, setIsPressed] = useState(props.isPressed);
   const prevPressedProp = useRef(props.isPressed);
 
@@ -22,9 +20,6 @@ function ToggleButton(props) {
 
   const { styleType, size, block, isOutline, ...buttonProps } = props;
   const ToggleButtonType = isOutline ? OutlineButton : Button;
-  const styles = isOutline
-    ? theme.buttonStyles.outlineButton
-    : theme.buttonStyles.button;
 
   return (
     <ToggleButtonType
@@ -39,7 +34,6 @@ function ToggleButton(props) {
           ? `${buttonProps.className || ''} pressed`
           : buttonProps.className
       }
-      variant={styles.variant[styleType]}
       aria-pressed={isPressed}
     >
       {props.children}

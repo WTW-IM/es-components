@@ -20,12 +20,10 @@ const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
   }
 `;
 
-type PopoverLinkProps = React.PropsWithChildren<
-  Omit<JSX.IntrinsicElements['button'], 'ref'> & {
-    suppressUnderline?: boolean;
-    styleType?: Maybe<ButtonVariantStyleType>;
-  }
->;
+type PopoverLinkProps = JSXElementProps<'button'> & {
+  suppressUnderline?: boolean;
+  styleType?: Maybe<ButtonVariantStyleType>;
+};
 
 const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
   function ForwardedPopoverLink(

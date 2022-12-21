@@ -350,7 +350,9 @@ ProgressItem.propTypes = {
 };
 
 ProgressItem.defaultProps = {
-  onPastStepClicked() {},
+  onPastStepClicked() {
+    // noop
+  },
   label: '',
   canClickFutureStep: false,
   showNav: true

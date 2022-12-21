@@ -1,5 +1,5 @@
 const path = require('path');
-const plugins = ['import', '@typescript-eslint'];
+const plugins = ['import', 'react', 'react-hooks', '@typescript-eslint'];
 const exts = [
   'eslint:recommended',
   'plugin:jsx-a11y/recommended',
@@ -70,15 +70,10 @@ module.exports = {
     'prefer-arrow-callback': 0,
     'id-length': 0
   },
+  env: {
+    browser: true
+  },
   overrides: [
-    {
-      files: ['**/*.js', '**/*.jsx'],
-      rules: {
-        '@typescript-eslint/no-unsafe-assignment': 0,
-        '@typescript-eslint/no-unsafe-return': 0,
-        '@typescript-eslint/no-unsafe-member-access': 0
-      }
-    },
     {
       files: ['.eslintrc.js', '*.config.js', '**/config/*.js'],
       env: {
@@ -113,7 +108,8 @@ module.exports = {
       },
       env: {
         es2021: true,
-        jest: true
+        jest: true,
+        browser: true
       },
       extends: [
         ...exts,
@@ -126,9 +122,17 @@ module.exports = {
         'testing-library/prefer-presence-queries': 'warn',
         'testing-library/no-container': 'warn'
       }
+    },
+    {
+      files: ['**/*.js', '**/*.jsx'],
+      rules: {
+        '@typescript-eslint/no-unsafe-assignment': 0,
+        '@typescript-eslint/no-unsafe-return': 0,
+        '@typescript-eslint/no-unsafe-member-access': 0,
+        '@typescript-eslint/no-unsafe-argument': 0,
+        '@typescript-eslint/no-unsafe-call': 0,
+        '@typescript-eslint/restrict-template-expressions': 0
+      }
     }
-  ],
-  env: {
-    browser: true
-  }
+  ]
 };

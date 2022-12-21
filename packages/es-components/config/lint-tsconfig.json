@@ -4,6 +4,6 @@
     "declaration": false,
     "declarationDir": null
   },
-  "include": ["../**/*.ts", "../**/*.tsx"],
-  "exclude": ["node_modules", "dist", "cjs", "lib", "bundle"]
+  "include": ["../**/*"],
+  "exclude": ["../node_modules", "../dist", "../cjs", "../lib", "../bundle"]
 }

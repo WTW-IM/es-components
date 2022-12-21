@@ -13,7 +13,7 @@ interface DismissButtonProps {
 }
 
 const StyledPanel = styled.div<StyledPanelProps>`
-  background-color: ${(props: { theme: { colors: { gray2: any } } }) =>
+  background-color: ${(props: { theme: { colors: { gray2: string } } }) =>
     props.theme.colors.gray2};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;

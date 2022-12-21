@@ -1,8 +1,6 @@
 module.exports = function (api) {
   const inProd = api.env('production');
 
-  const extraTsConfig = inProd ? {} : {};
-
   const presets = [
     [
       'wtw-im',

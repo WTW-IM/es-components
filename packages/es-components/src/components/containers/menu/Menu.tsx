@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ToggleButton from '../../controls/buttons/ToggleButton';
 import MenuPanel from './MenuPanel';
-import MenuSection, { MenuSectionProps } from './MenuSection';
+import MenuSection from './MenuSection';
 import { InlineContext } from './InlineContext';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
+import {
+  buttonVariantStyleTypes,
+  ButtonVariantStyleType
+} from '../../../../../../types/ESTheme';
 
-type BackdropProps = {
-  isMenuOpen: boolean;
-};
-
-const Backdrop = styled.div<BackdropProps>`
+const Backdrop = styled.div<{ isMenuOpen: boolean }>`
   background-color: black;
   bottom: 0;
   cursor: auto;
@@ -24,7 +24,17 @@ const Backdrop = styled.div<BackdropProps>`
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
-function Menu(props: MenuSectionProps) {
+type MenuProps = {
+  children: NonNullable<React.ReactNode>;
+  buttonContent: NonNullable<React.ReactNode>;
+  openButtonType?: ButtonVariantStyleType;
+  rootClose?: boolean;
+  inline?: boolean;
+  hasBackdrop?: boolean;
+  headerContent?: React.ReactNode;
+} & JSXElementProps<'div'>;
+
+function Menu(props: MenuProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -77,9 +87,9 @@ function Menu(props: MenuSectionProps) {
 Menu.MenuSection = MenuSection;
 
 Menu.propTypes = {
-  children: PropTypes.any.isRequired,
-  buttonContent: PropTypes.any.isRequired,
-  openButtonType: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  buttonContent: PropTypes.node.isRequired,
+  openButtonType: PropTypes.oneOf(buttonVariantStyleTypes),
   rootClose: PropTypes.bool,
   inline: PropTypes.bool,
   hasBackdrop: PropTypes.bool,

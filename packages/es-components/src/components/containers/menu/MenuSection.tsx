@@ -5,15 +5,11 @@ import { InlineContext } from './InlineContext';
 
 export type MenuSectionProps = {
   title?: string;
-  children: React.ReactNode;
-  headerContent?: React.ReactNode;
+  children?: React.ReactNode;
   isFirst?: boolean;
   isLast?: boolean;
   isOnlySection?: boolean;
-  openButtonType?: string;
-  inline?: boolean;
-  [x: string]: any;
-};
+} & JSXElementProps<'section'>;
 
 type SectionProps = {
   isFirst?: boolean;

@@ -12,7 +12,7 @@ const UnstyledButton = styled.button`
   // noop
 `;
 
-export type ButtonBaseProps = JSX.IntrinsicElements['button'] & {
+export type ButtonBaseProps = JSXElementProps<'button'> & {
   waiting?: boolean;
 };
 

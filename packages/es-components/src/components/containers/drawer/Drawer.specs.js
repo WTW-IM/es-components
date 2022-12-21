@@ -1,4 +1,3 @@
-/* eslint-env jest */
 /* eslint-disable react/prop-types */
 
 import React, { useEffect } from 'react';
@@ -8,6 +7,10 @@ import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
 import { Drawer, useDrawerItemContext } from './Drawer';
+
+const noop = () => {
+  // noop
+};
 
 // Ensure styled panels always work
 const StyledFirstPanel = styled(Drawer.Panel)`
@@ -103,8 +106,7 @@ describe('Drawer.Item functionality', () => {
     const { open } = useDrawerItemContext();
     useEffect(() => {
       trackDrawerChange(open);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [open]);
+    }, [open, trackDrawerChange]);
 
     return <></>;
   };
@@ -119,9 +121,7 @@ describe('Drawer.Item functionality', () => {
         <div>
           <Drawer.Item open={openItems[0]}>
             <ItemTracker
-              trackDrawerChange={() =>
-                onDrawersChange[0] && onDrawersChange[0]()
-              }
+              trackDrawerChange={isOpen => (onDrawersChange[0] || noop)(isOpen)}
             />
             <Drawer.ItemOpener>
               <button type="button">collapse 1</button>
@@ -131,7 +131,7 @@ describe('Drawer.Item functionality', () => {
         </div>
         <Drawer.Item open={openItems[1]}>
           <ItemTracker
-            trackDrawerChange={() => onDrawersChange[1] && onDrawersChange[1]()}
+            trackDrawerChange={isOpen => (onDrawersChange[1] || noop)(isOpen)}
           />
           <Drawer.ItemOpener>
             <button type="button">collapse 2</button>
@@ -140,7 +140,7 @@ describe('Drawer.Item functionality', () => {
         </Drawer.Item>
         <Drawer.Item open={openItems[2]}>
           <ItemTracker
-            trackDrawerChange={() => onDrawersChange[2] && onDrawersChange[2]()}
+            trackDrawerChange={isOpen => (onDrawersChange[2] || noop)(isOpen)}
           />
           <Drawer.ItemOpener>
             <button type="button">collapse 3</button>
@@ -200,17 +200,16 @@ describe('Drawer.Item functionality', () => {
   });
 
   it('reopens from a prop after a click', async () => {
-    let theRerender = () => ({});
-    const renderAgain = (open, renderFunc) =>
-      renderFunc(
-        <TestItemDrawer
-          openItems={[open]}
-          onDrawersChange={[newOpen => renderAgain(newOpen, theRerender)]}
-        />
-      );
-    const { rerender } = renderAgain(true, render);
-    theRerender = rerender;
+    let open = true;
+    const onDrawersChange = [isOpen => (open = isOpen)];
+    const getTestDrawer = newOpen => (
+      <TestItemDrawer
+        openItems={[typeof newOpen !== 'undefined' ? newOpen : open]}
+        {...{ onDrawersChange }}
+      />
+    );
 
+    const { rerender } = render(getTestDrawer());
     expect(await screen.findByText('first')).toBeVisible();
 
     await userEvent.click(await screen.findByText('collapse 1'));
@@ -219,7 +218,15 @@ describe('Drawer.Item functionality', () => {
       expect(await screen.findByText('first')).not.toBeVisible();
     });
 
-    renderAgain(true, theRerender);
+    // rerender so prop matches current state (closed after click)
+    rerender(getTestDrawer());
+
+    await waitFor(async () => {
+      expect(await screen.findByText('first')).not.toBeVisible();
+    });
+
+    // rerender to open again
+    rerender(getTestDrawer(true));
 
     await waitFor(async () => {
       expect(await screen.findByText('first')).toBeVisible();

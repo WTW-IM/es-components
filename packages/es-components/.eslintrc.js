@@ -83,6 +83,9 @@ module.exports = {
   globals: {
     ASSETS_PATH: 'readonly'
   },
+  env: {
+    browser: true
+  },
   overrides: [
     {
       files: ['**/*.js', '**/*.jsx'],
@@ -142,7 +145,8 @@ module.exports = {
       },
       env: {
         es2021: true,
-        jest: true
+        jest: true,
+        browser: true
       },
       extends: [
         ...exts,

@@ -126,15 +126,21 @@ DrawerItemBody.propTypes = {
 };
 
 export const DrawerItemOpener = ({ children }) => {
-  let child;
+  let child = {};
   let hasSingleChild = true;
+  let hasMultipleChildren = false;
   try {
     child = React.Children.only(children);
   } catch {
     hasSingleChild = false;
   }
-  const childClick = child?.props?.onClick || noop; // do not recreate noop every render
   const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
+  const childClick = useRef(child?.props?.onClick);
+
+  useEffect(() => {
+    childClick.current = child?.props?.onClick || noop;
+  }, [child?.props?.onClick]);
+
   const onClick = useCallback(
     ev => {
       childClick(ev);
@@ -148,17 +154,17 @@ export const DrawerItemOpener = ({ children }) => {
     console.error(
       'Drawer.ItemOpener could not set onClick. Please ensure it has only one root child component.'
     );
-    return children;
+    hasMultipleChildren = false;
   }
 
-  const clickChild = React.cloneElement(child, {
-    ...child.props,
-    onClick,
-    'aria-expanded': open,
-    'aria-controls': `${itemId}-region`
-  });
-
-  return clickChild;
+  return hasMultipleChildren
+    ? children
+    : React.cloneElement(child, {
+        ...child?.props,
+        onClick,
+        'aria-expanded': open,
+        'aria-controls': `${itemId}-region`
+      });
 };
 
 DrawerItemOpener.propTypes = {

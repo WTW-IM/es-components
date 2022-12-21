@@ -8,10 +8,9 @@ import { renderWithTheme } from '../../util/test-utils';
 beforeEach(cleanup);
 
 it('does not include title when not provided', () => {
-  const { queryByText } = renderWithTheme(
-    <Spinner description="test spinner description" />
-  );
-  expect(queryByText('Title')).toBeNull();
+  renderWithTheme(<Spinner description="test spinner description" />);
+  const title = screen.queryByText('Title');
+  expect(title).toBeNull();
 });
 
 it('includes title when provided', () => {

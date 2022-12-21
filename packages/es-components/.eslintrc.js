@@ -104,6 +104,13 @@ module.exports = {
     },
     {
       files: ['*.specs.*'],
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        },
+        ecmaVersion: 'latest',
+        project: [path.join(__dirname, 'config', 'test-tsconfig.json')]
+      },
       env: {
         es2021: true,
         jest: true

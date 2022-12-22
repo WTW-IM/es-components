@@ -75,7 +75,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['.eslintrc.js', '*.config.js', '**/config/*.js'],
+      files: ['.eslintrc.js', '*.config.js', '*.config.mjs', '**/config/*.js'],
       env: {
         node: true
       },
@@ -124,14 +124,15 @@ module.exports = {
       }
     },
     {
-      files: ['**/*.js', '**/*.jsx'],
+      files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
       rules: {
         '@typescript-eslint/no-unsafe-assignment': 0,
         '@typescript-eslint/no-unsafe-return': 0,
         '@typescript-eslint/no-unsafe-member-access': 0,
         '@typescript-eslint/no-unsafe-argument': 0,
         '@typescript-eslint/no-unsafe-call': 0,
-        '@typescript-eslint/restrict-template-expressions': 0
+        '@typescript-eslint/restrict-template-expressions': 0,
+        '@typescript-eslint/restrict-plus-operands': 0
       }
     }
   ]

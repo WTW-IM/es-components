@@ -20,9 +20,11 @@ jobs:
           node-version: "16"
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --workspaces --include-workspace-root # runs installs and builds themes
+
       - name: Set Commitbot Identity
         run: |
           git config user.name "ES-Components Lerna Publish Bot"

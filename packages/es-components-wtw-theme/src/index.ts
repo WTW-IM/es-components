@@ -1,4 +1,4 @@
-import ESTheme from "es-components-shared-types";
+import type ESTheme from "es-components-shared-types";
 // grayscale
 const white = "#fff";
 const gray0 = "#f9f9f9";
@@ -553,4 +553,4 @@ type ThemeType = typeof theme;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Theme<T> = T extends ThemeType ? T : any;
 
-export = theme as Theme<ThemeType>;
+export default theme as Theme<ThemeType>;

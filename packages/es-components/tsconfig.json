@@ -16,7 +16,7 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "types"
   },
   "include": ["./src"]
 }

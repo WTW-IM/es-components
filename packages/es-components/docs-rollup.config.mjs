@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -19,6 +19,7 @@ export default [
     },
     preserveSymlinks: true,
     plugins: [
+      typescript(),
       resolve({
         preferBuiltins: true
       }),
@@ -31,9 +32,9 @@ export default [
           'react-is': Object.keys(ReactIs)
         }
       }),
-      typescript(),
       babel({
-        exclude: /node_modules\/?!(es-components-via-theme)/,
+        exclude:
+          /node_modules\/?!(es-components-via-theme|es-components-shared-types)/,
         envName: 'production',
         babelHelpers: 'runtime'
       }),

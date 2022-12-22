@@ -1,14 +1,18 @@
 {
   "name": "es-components-shared-types",
-  "version": "0.0.1",
-  "description": "",
-  "main": "ESTheme.ts",
+  "version": "21.7.0-pre-prod.0",
+  "description": "Shared types for es-components and es-components themes",
+  "author": "Willis Towers Watson - Individual Marketplace",
+  "license": "MIT",
+  "repository": "https://github.com/wtw-im/es-components",
+  "main": "dist/ESTheme.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "csstype": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17"
   }
 }

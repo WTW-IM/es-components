@@ -24,6 +24,7 @@ export default args => {
       },
       preserveSymlinks: true,
       plugins: [
+        typescript(),
         resolve({
           preferBuiltins: true
         }),
@@ -37,7 +38,8 @@ export default args => {
           }
         }),
         babel({
-          exclude: /node_modules\/?!(es-components-via-theme)/,
+          exclude:
+            /node_modules\/?!(es-components-via-theme|es-components-shared-types)/,
           envName: 'production',
           babelHelpers: 'runtime'
         }),

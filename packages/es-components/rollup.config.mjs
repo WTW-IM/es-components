@@ -5,7 +5,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
-import pkg from './package.json';
+import typescript from '@rollup/plugin-typescript';
+import pkg from './package.json' assert { type: 'json' };
 
 export default args => {
   const isProduction =
@@ -16,7 +17,7 @@ export default args => {
 
   return [
     {
-      input: 'src/index.js',
+      input: 'src/index.tsx',
       output: [
         {
           format: 'cjs',
@@ -52,6 +53,7 @@ export default args => {
           'core-js/**',
           'text-mask-addons/**'
         ]),
+        typescript(),
         babel({
           exclude: ['node_modules/**'],
           babelHelpers: 'runtime'
@@ -63,7 +65,7 @@ export default args => {
       ]
     },
     {
-      input: 'src/index.js',
+      input: 'src/index.tsx',
       output: {
         file: 'bundle/main.min.js',
         banner:
@@ -80,6 +82,7 @@ export default args => {
       context: 'window',
       external: ['react', 'react-dom', 'styled-components'],
       plugins: [
+        typescript(),
         resolve(),
         commonjs({ include: /node_modules/ }),
         babel({

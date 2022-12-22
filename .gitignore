@@ -12,3 +12,4 @@ lerna-debug.log
 CHANGELOG_COPY.md
 **/src/types/
 **/index.d.ts
+**/dist/

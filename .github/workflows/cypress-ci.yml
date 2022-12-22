@@ -23,10 +23,7 @@ jobs:
 
       - name: NPM Clean Install
         run: |
-          npm ci # runs installs and builds themes
-          cd packages/es-components
-          npm uninstall es-components-via-theme # uninstall unbuilt theme
-          npm install -D ../es-components-via-theme # reinstall built theme
+          npm ci --workspaces --include-workspace-root # runs installs and builds themes
 
       - name: Setup Cypress
         working-directory: ${{ env.ES_COMPONENTS_DIR }}

@@ -608,4 +608,8 @@ const theme = {
   },
 };
 
-module.exports = theme;
+type ThemeType = typeof theme;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Theme<T> = T extends ThemeType ? T : any;
+
+export default theme as Theme<ThemeType>;

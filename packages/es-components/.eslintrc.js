@@ -57,7 +57,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['.eslintrc*', '*.config.js', '**/config/*', '**/build-scripts/*'],
+      files: [
+        '.eslintrc*',
+        '*.config.js',
+        '*.config.mjs',
+        '**/config/*.js',
+        '**/build-scripts/*'
+      ],
       env: {
         node: true
       },
@@ -79,7 +85,25 @@ module.exports = {
         ...exts,
         'plugin:jest/recommended',
         'plugin:testing-library/react'
-      ]
+      ],
+      rules: {
+        'testing-library/prefer-screen-queries': 'warn',
+        'testing-library/no-node-access': 'warn',
+        'testing-library/prefer-presence-queries': 'warn',
+        'testing-library/no-container': 'warn'
+      }
+    },
+    {
+      files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
+      rules: {
+        '@typescript-eslint/no-unsafe-assignment': 0,
+        '@typescript-eslint/no-unsafe-return': 0,
+        '@typescript-eslint/no-unsafe-member-access': 0,
+        '@typescript-eslint/no-unsafe-argument': 0,
+        '@typescript-eslint/no-unsafe-call': 0,
+        '@typescript-eslint/restrict-template-expressions': 0,
+        '@typescript-eslint/restrict-plus-operands': 0
+      }
     }
   ]
 };

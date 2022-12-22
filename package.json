@@ -3,7 +3,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "sh build.sh",
     "ci-run": "sh ci.sh",
     "build-via-theme": "npm run build --prefix packages/es-components-via-theme",
     "build-wtw-theme": "npm run build --prefix packages/es-components-wtw-theme",
@@ -11,12 +10,17 @@
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
-    "link": "lerna link --force-local",
+    "link": "lerna link",
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
-    "postinstall": "echo '\\033[0;32mInstalling npm dependencies for sub-packages\\033[0m' && lerna bootstrap --force-local",
-    "prepare": "husky install"
+    "preprepare": "npm run build -w es-components-shared-types -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
+    "prepare": "husky install",
+    "test": "npm test --workspaces --if-present"
   },
+  "workspaces": [
+    "shared/*",
+    "packages/*"
+  ],
   "lint-staged": {
     "packages/es-components/src/**/*.js": [
       "prettier --single-quote --write",
@@ -25,26 +29,15 @@
   },
   "devDependencies": {
     "@aabenoja/conventional-changelog-eslint-lerna": "^1.0.2",
-    "@babel/preset-react": "^7.18.6",
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
-    "@commitlint/prompt-cli": "^17.1.2",
-    "@rollup/plugin-babel": "^5.1.0",
-    "babel-eslint": "^9.0.0",
-    "commitlint": "^17.1.2",
-    "conventional-changelog": "^3.1.21",
-    "eslint": "^8.23.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.6.0",
-    "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0",
-    "husky": "^7.0.0",
-    "lerna": "^6.4.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "react-to-typescript-definitions": "^3.1.1",
-    "rollup": "^2.23.0"
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/prompt-cli": "^17.3.0",
+    "@types/node": "^18.11.17",
+    "commitlint": "^17.3.0",
+    "conventional-changelog": "^3.1.25",
+    "husky": "^8.0.2",
+    "lerna": "^6.1.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1"
   }
 }

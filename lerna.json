@@ -7,5 +7,6 @@
       "message": "Build: [skip ci][skip-release] %s",
       "verifyAccess": false
     }
-  }
+  },
+  "useWorkspaces": true
 }

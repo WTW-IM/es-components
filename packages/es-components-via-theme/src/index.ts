@@ -1,3 +1,4 @@
+import type ESTheme from "es-components-shared-types";
 // grayscale
 const white = "#fff";
 const gray0 = "#f9f9f9";
@@ -228,24 +229,24 @@ const theme = {
   bannerStyles: {
     success: {
       bgColor: success100,
-      textColor: black
+      textColor: black,
     },
     info: {
       bgColor: info100,
-      textColor: black
+      textColor: black,
     },
     warning: {
       bgColor: warning100,
-      textColor: black
+      textColor: black,
     },
     danger: {
       bgColor: danger100,
-      textColor: black
+      textColor: black,
     },
     advisor: {
       bgColor: agent300,
-      textColor: black
-    }
+      textColor: black,
+    },
   },
   notificationStyles: {
     success: {
@@ -338,11 +339,20 @@ const theme = {
         info: {
           bgColor: info,
         },
+        information: {
+          bgColor: info,
+        },
         warning: {
           bgColor: warning,
         },
         danger: {
           bgColor: danger,
+        },
+        magenta: {
+          bgColor: primary3,
+        },
+        violet: {
+          bgColor: secondary1,
         },
         inherited: {},
       },
@@ -393,10 +403,16 @@ const theme = {
         default: {
           bgColor: gray8,
         },
+        darkDefault: {
+          bgColor: gray8,
+        },
         success: {
           bgColor: success,
         },
         info: {
+          bgColor: info,
+        },
+        information: {
           bgColor: info,
         },
         warning: {
@@ -458,11 +474,23 @@ const theme = {
         default: {
           textColor: "#ccc",
         },
+        darkDefault: {
+          textColor: "#ccc",
+        },
+        magenta: {
+          textColor: "#ccc",
+        },
+        violet: {
+          textColor: "#ccc",
+        },
         primary: {
           textColor: primary,
         },
         success: {
           textColor: success,
+        },
+        info: {
+          textColor: info,
         },
         information: {
           textColor: info,
@@ -478,7 +506,7 @@ const theme = {
         },
       },
     },
-  },
+  } as ESTheme["buttonStyles"],
   validationIconName: {
     success: "ok-circle",
     info: "info-circle",
@@ -546,6 +574,10 @@ const theme = {
     desktop: "900px",
     widescreen: "1200px",
   },
-};
+} as const;
 
-export = theme;
+type ThemeType = typeof theme;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Theme<T> = T extends ThemeType ? T : any;
+
+export default theme as Theme<ThemeType>;

@@ -1,12 +1,16 @@
-/* eslint-env jest */
 /* eslint-disable react/prop-types */
 
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { render, cleanup, waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
 import { Drawer, useDrawerItemContext } from './Drawer';
+
+const noop = () => {
+  // noop
+};
 
 // Ensure styled panels always work
 const StyledFirstPanel = styled(Drawer.Panel)`
@@ -39,30 +43,30 @@ beforeEach(cleanup);
 describe('drawer', () => {
   it('active panel is opened', () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = render(
+    render(
       <PanelDrawer
         onActiveKeysChanged={onActiveKeysChanged}
         activeKeys={['1']}
       />
     );
 
-    expect(getByText('first')).toBeVisible();
-    expect(getByText('second')).not.toBeVisible();
-    expect(getByText('third')).not.toBeVisible();
+    expect(screen.getByText('first')).toBeVisible();
+    expect(screen.getByText('second')).not.toBeVisible();
+    expect(screen.getByText('third')).not.toBeVisible();
   });
 
   it('allows multiple panels to be opened at the same time', () => {
     const onActiveKeysChanged = jest.fn();
-    const { getByText } = render(
+    render(
       <PanelDrawer
         onActiveKeysChanged={onActiveKeysChanged}
         activeKeys={['1', '3']}
       />
     );
 
-    expect(getByText('first')).toBeVisible();
-    expect(getByText('second')).not.toBeVisible();
-    expect(getByText('third')).toBeVisible();
+    expect(screen.getByText('first')).toBeVisible();
+    expect(screen.getByText('second')).not.toBeVisible();
+    expect(screen.getByText('third')).toBeVisible();
   });
 });
 
@@ -70,19 +74,16 @@ describe('accordion', () => {
   it('should only allow one drawer to be opened at a time', async () => {
     const onActiveKeysChanged = jest.fn();
     let theRerender = () => ({});
-    onActiveKeysChanged.mockImplementation(
-      newActiveKeys => (
-        console.log('rerendering!', newActiveKeys),
-        theRerender(
-          <PanelDrawer
-            isAccordion
-            onActiveKeysChanged={onActiveKeysChanged}
-            activeKeys={newActiveKeys}
-          />
-        )
+    onActiveKeysChanged.mockImplementation(newActiveKeys =>
+      theRerender(
+        <PanelDrawer
+          isAccordion
+          onActiveKeysChanged={onActiveKeysChanged}
+          activeKeys={newActiveKeys}
+        />
       )
     );
-    const { getByText, rerender } = render(
+    const { rerender } = render(
       <PanelDrawer
         isAccordion
         onActiveKeysChanged={onActiveKeysChanged}
@@ -92,10 +93,10 @@ describe('accordion', () => {
     theRerender = rerender;
 
     await waitFor(() => {
-      expect(getByText('first')).toBeVisible();
+      expect(screen.getByText('first')).toBeVisible();
     });
     await waitFor(() => {
-      expect(getByText('second')).not.toBeVisible();
+      expect(screen.getByText('second')).not.toBeVisible();
     });
   });
 });
@@ -105,7 +106,7 @@ describe('Drawer.Item functionality', () => {
     const { open } = useDrawerItemContext();
     useEffect(() => {
       trackDrawerChange(open);
-    }, [open]);
+    }, [open, trackDrawerChange]);
 
     return <></>;
   };
@@ -120,9 +121,7 @@ describe('Drawer.Item functionality', () => {
         <div>
           <Drawer.Item open={openItems[0]}>
             <ItemTracker
-              trackDrawerChange={open =>
-                onDrawersChange[0] && onDrawersChange[0]()
-              }
+              trackDrawerChange={isOpen => (onDrawersChange[0] || noop)(isOpen)}
             />
             <Drawer.ItemOpener>
               <button type="button">collapse 1</button>
@@ -132,9 +131,7 @@ describe('Drawer.Item functionality', () => {
         </div>
         <Drawer.Item open={openItems[1]}>
           <ItemTracker
-            trackDrawerChange={open =>
-              onDrawersChange[1] && onDrawersChange[1]()
-            }
+            trackDrawerChange={isOpen => (onDrawersChange[1] || noop)(isOpen)}
           />
           <Drawer.ItemOpener>
             <button type="button">collapse 2</button>
@@ -143,9 +140,7 @@ describe('Drawer.Item functionality', () => {
         </Drawer.Item>
         <Drawer.Item open={openItems[2]}>
           <ItemTracker
-            trackDrawerChange={open =>
-              onDrawersChange[2] && onDrawersChange[2]()
-            }
+            trackDrawerChange={isOpen => (onDrawersChange[2] || noop)(isOpen)}
           />
           <Drawer.ItemOpener>
             <button type="button">collapse 3</button>
@@ -157,101 +152,102 @@ describe('Drawer.Item functionality', () => {
   );
 
   it('can open from a click', async () => {
-    const { findByText } = screen;
     render(<TestItemDrawer />);
 
-    expect(await findByText('first')).not.toBeVisible();
+    expect(await screen.findByText('first')).not.toBeVisible();
 
-    (await findByText('collapse 1')).click();
+    await userEvent.click(await screen.findByText('collapse 1'));
 
     await waitFor(async () => {
-      expect(await findByText('first')).toBeVisible();
+      expect(await screen.findByText('first')).toBeVisible();
     });
   });
 
   it('can close from a click', async () => {
-    const { findByText } = screen;
     render(<TestItemDrawer />);
 
-    expect(await findByText('first')).not.toBeVisible();
+    expect(await screen.findByText('first')).not.toBeVisible();
 
-    (await findByText('collapse 1')).click();
+    await userEvent.click(await screen.findByText('collapse 1'));
 
     await waitFor(async () => {
-      expect(await findByText('first')).toBeVisible();
+      expect(await screen.findByText('first')).toBeVisible();
     });
 
-    (await findByText('collapse 1')).click();
+    await userEvent.click(await screen.findByText('collapse 1'));
 
     await waitFor(async () => {
-      expect(await findByText('first')).not.toBeVisible();
+      expect(await screen.findByText('first')).not.toBeVisible();
     });
   });
 
   it('can open from a prop', async () => {
-    const { findByText } = screen;
     render(<TestItemDrawer openItems={[true]} />);
 
-    expect(await findByText('first')).toBeVisible();
+    expect(await screen.findByText('first')).toBeVisible();
   });
 
   it('can close from a prop', async () => {
-    const { findByText } = screen;
     const { rerender } = render(<TestItemDrawer openItems={[true]} />);
 
-    expect(await findByText('first')).toBeVisible();
+    expect(await screen.findByText('first')).toBeVisible();
 
     rerender(<TestItemDrawer openItems={[false]} />);
 
     await waitFor(async () => {
-      expect(await findByText('first')).not.toBeVisible();
+      expect(await screen.findByText('first')).not.toBeVisible();
     });
   });
 
   it('reopens from a prop after a click', async () => {
-    let theRerender = () => ({});
-    const renderAgain = (open, renderFunc) =>
-      renderFunc(
-        <TestItemDrawer
-          openItems={[open]}
-          onDrawersChange={[newOpen => renderAgain(newOpen, theRerender)]}
-        />
-      );
-    const { findByText } = screen;
-    const { rerender } = renderAgain(true, render);
-    theRerender = rerender;
+    let open = true;
+    const onDrawersChange = [isOpen => (open = isOpen)];
+    const getTestDrawer = newOpen => (
+      <TestItemDrawer
+        openItems={[typeof newOpen !== 'undefined' ? newOpen : open]}
+        {...{ onDrawersChange }}
+      />
+    );
 
-    expect(await findByText('first')).toBeVisible();
+    const { rerender } = render(getTestDrawer());
+    expect(await screen.findByText('first')).toBeVisible();
 
-    (await findByText('collapse 1')).click();
+    await userEvent.click(await screen.findByText('collapse 1'));
 
     await waitFor(async () => {
-      expect(await findByText('first')).not.toBeVisible();
+      expect(await screen.findByText('first')).not.toBeVisible();
     });
 
-    renderAgain(true, theRerender);
+    // rerender so prop matches current state (closed after click)
+    rerender(getTestDrawer());
 
     await waitFor(async () => {
-      expect(await findByText('first')).toBeVisible();
+      expect(await screen.findByText('first')).not.toBeVisible();
+    });
+
+    // rerender to open again
+    rerender(getTestDrawer(true));
+
+    await waitFor(async () => {
+      expect(await screen.findByText('first')).toBeVisible();
     });
   });
 
   it('matches correctly from prop to click', async () => {
-    const { findByText } = screen;
     const { rerender } = render(<TestItemDrawer openItems={[true]} />);
 
-    expect(await findByText('first')).toBeVisible();
+    expect(await screen.findByText('first')).toBeVisible();
 
-    (await findByText('collapse 1')).click();
+    await userEvent.click(await screen.findByText('collapse 1'));
 
     await waitFor(async () => {
-      expect(await findByText('first')).not.toBeVisible();
+      expect(await screen.findByText('first')).not.toBeVisible();
     });
 
     rerender(<TestItemDrawer openItems={[false]} />);
 
     await waitFor(async () => {
-      expect(await findByText('first')).not.toBeVisible();
+      expect(await screen.findByText('first')).not.toBeVisible();
     });
   });
 });

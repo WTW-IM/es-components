@@ -4,13 +4,13 @@ import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
-import pkg from './package.json';
+import pkg from './package.json' assert { type: 'json' };
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/index.tsx',
     output: [
       {
         file: pkg.main,
@@ -54,7 +54,7 @@ export default [
     ]
   },
   {
-    input: 'src/index.js',
+    input: 'src/index.tsx',
     output: {
       file: 'bundle/main.min.js',
       banner:
@@ -71,9 +71,9 @@ export default [
     context: 'window',
     external: ['react', 'react-dom', 'styled-components'],
     plugins: [
+      typescript(),
       resolve(),
       commonjs({ include: /node_modules/ }),
-      typescript(),
       babel({
         exclude: /node_modules/,
         envName: 'production',

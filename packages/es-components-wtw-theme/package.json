@@ -1,15 +1,14 @@
 {
   "name": "es-components-wtw-theme",
-  "version": "21.7.0-pre-prod.0",
+  "version": "21.7.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "prepare": "npm run build"
+    "build": "tsc"
   },
-  "devDependencies": {
-    "typescript": "^4.8.4"
+  "dependencies": {
+    "es-components-shared-types": "^21.7.0-pre-prod.0"
   }
 }

@@ -3,17 +3,14 @@ module.exports = function (api) {
 
   const presets = [
     [
-      '@babel/preset-typescript',
-      { isTSX: true, allExtensions: true }
-    ],
-    [
       'wtw-im',
       {
         extractFormatMessage: false,
         transformFormatMessage: false,
         env: { corejs: 3 }
       }
-    ]
+    ],
+    ['@babel/preset-typescript', { isTSX: true, allExtensions: true }]
   ];
 
   const removePropTypesPlugin = [

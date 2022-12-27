@@ -1,26 +1,44 @@
 const path = require('path');
-const plugins = ['import', '@babel'];
+const plugins = ['import', 'react', 'react-hooks', '@typescript-eslint'];
 const exts = [
   'eslint:recommended',
   'plugin:jsx-a11y/recommended',
   'plugin:react/recommended',
-  'plugin:react-hooks/recommended'
+  'plugin:react-hooks/recommended',
+  'plugin:@typescript-eslint/recommended',
+  'plugin:@typescript-eslint/recommended-requiring-type-checking'
 ];
 
 module.exports = {
-  extends: exts,
-  parser: '@babel/eslint-parser',
-  plugins,
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
-      destructuring: true,
-      experimentalObjectRestSpread: true,
-      ecmaVersion: 'latest'
+      jsx: true
+    },
+    ecmaVersion: 'latest',
+    project: [path.join(__dirname, 'lint-tsconfig.json')]
+  },
+  extends: exts,
+  plugins,
+  root: true,
+  settings: {
+    react: {
+      version: 'detect'
     }
   },
+  ignorePatterns: [
+    '**/node_modules/**',
+    'node_modules/**',
+    'dist/**',
+    'cjs/**',
+    'lib/**',
+    'bundle/**',
+    'docs/**'
+  ],
+
   rules: {
-    'no-unused-vars': ['warn'],
+    '@typescript-eslint/no-unused-vars': ['warn'],
+    'no-undefined': 'off', // typescript handles this
     'max-len': 0,
     'jsx-a11y/img-uses-alt': 0,
     'jsx-a11y/redundant-alt': 0,
@@ -33,6 +51,10 @@ module.exports = {
     'react/jsx-no-bind': 0,
     'react/destructuring-assignment': 0,
     'linebreak-style': 0,
+    'import/named': 0,
+    'import/namespace': 0, // typescript handles this
+    'import/default': 0, // typescript handles this
+    'import/no-named-as-default-member': 0, // typescript handles this
     'import/no-extraneous-dependencies': [
       'error',
       {
@@ -48,25 +70,12 @@ module.exports = {
     'prefer-arrow-callback': 0,
     'id-length': 0
   },
+  env: {
+    browser: true
+  },
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
-      extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking'
-      ],
-      parser: '@typescript-eslint/parser',
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true
-        },
-        ecmaVersion: 'latest',
-        project: path.join(__dirname, 'tsconfig.json')
-      },
-      plugins: ['@typescript-eslint']
-    },
-    {
-      files: ['.eslintrc*', '*.config.js', '**/config/*'],
+      files: ['.eslintrc.js', '*.config.js', '*.config.mjs', '**/config/*.js'],
       env: {
         node: true
       },
@@ -76,13 +85,31 @@ module.exports = {
           {
             devDependencies: true
           }
-        ]
+        ],
+        '@typescript-eslint/no-var-requires': 0
       }
     },
     {
-      files: ['*.specs.*'],
+      files: ['cypress/**/*'],
+      plugins: ['cypress', ...plugins],
       env: {
-        es2021: true
+        'cypress/globals': true
+      },
+      extends: ['plugin:cypress/recommended', ...exts]
+    },
+    {
+      files: ['*.specs.*'],
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        },
+        ecmaVersion: 'latest',
+        project: [path.join(__dirname, 'config', 'test-tsconfig.json')]
+      },
+      env: {
+        es2021: true,
+        jest: true,
+        browser: true
       },
       extends: [
         ...exts,
@@ -95,9 +122,18 @@ module.exports = {
         'testing-library/prefer-presence-queries': 'warn',
         'testing-library/no-container': 'warn'
       }
+    },
+    {
+      files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
+      rules: {
+        '@typescript-eslint/no-unsafe-assignment': 0,
+        '@typescript-eslint/no-unsafe-return': 0,
+        '@typescript-eslint/no-unsafe-member-access': 0,
+        '@typescript-eslint/no-unsafe-argument': 0,
+        '@typescript-eslint/no-unsafe-call': 0,
+        '@typescript-eslint/restrict-template-expressions': 0,
+        '@typescript-eslint/restrict-plus-operands': 0
+      }
     }
-  ],
-  env: {
-    browser: true
-  }
+  ]
 };

@@ -27,7 +27,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci # runs installs and builds themes
+          npm ci --workspaces --include-workspace-root # runs installs and builds themes
 
       - name: Run Lint
         working-directory: packages/es-components
@@ -73,7 +73,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --workspaces --include-workspace-root # runs installs and builds themes
 
       - name: Set Commitbot Identity
         run: |
@@ -106,7 +106,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --workspaces --include-workspace-root # runs installs and builds themes
 
       - name: Set Commitbot Identity
         run: |
@@ -148,7 +148,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --workspaces --include-workspace-root # runs installs and builds themes
 
       - name: Set Commitbot Identity
         run: |

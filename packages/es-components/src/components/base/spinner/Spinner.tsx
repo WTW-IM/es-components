@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import PropTypes from 'prop-types';
-import styled, { keyframes, ThemeProps } from 'styled-components';
+import styled, { keyframes, ThemeProps, DefaultTheme } from 'styled-components';
 import useUniqueId from '../../util/useUniqueId';
 
 const rotatorAnimation = keyframes`
@@ -37,7 +36,7 @@ const dashAnimation = keyframes`
   }
 `;
 
-const colorsAnimation = (props: ThemeProps<any> ) => keyframes`
+const colorsAnimation = (props: ThemeProps<DefaultTheme>) => keyframes`
   0% {
     stroke: ${props.theme.brandColors.primary1};
   }
@@ -70,10 +69,12 @@ const SpinnerCircle = styled.circle`
 `;
 
 // this should probably be shared
-type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
-  Pick<T, Exclude<keyof T, Keys>>
-  & {
-    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
+type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
+  T,
+  Exclude<keyof T, Keys>
+> &
+  {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
   }[Keys];
 
 interface SpinnerPropsBase {
@@ -85,11 +86,18 @@ interface SpinnerPropsBase {
   description?: string;
 }
 
-export type SpinnerProps = RequireAtLeastOne<SpinnerPropsBase & { id: string; }, 'title' | 'description'>;
+export type SpinnerProps = RequireAtLeastOne<
+  SpinnerPropsBase,
+  'title' | 'description'
+> &
+  JSXElementProps<'svg'>;
 
-const Spinner: FC<SpinnerProps & { id: string; }> = ({ title, description, ...other }) => {
-  const titleId = title && `${useUniqueId(other.id)}-title`;
-  const descId = description && `${useUniqueId(other.id)}-desc`;
+const Spinner: FC<SpinnerProps> = ({ title, description, ...other }) => {
+  const propId = other.id || '';
+  const generatedId = `${useUniqueId(propId)}-title`;
+  const generatedDesc = `${useUniqueId(propId)}-desc`;
+  const titleId = (title && generatedId) || '';
+  const descId = (description && generatedDesc) || '';
 
   return (
     <SpinnerSvg
@@ -113,8 +121,11 @@ const Spinner: FC<SpinnerProps & { id: string; }> = ({ title, description, ...ot
   );
 };
 
-// eslint-disable-next-line consistent-return
-const descriptionTitleProp = (props: { [key: string]: any }, propName: string, componentName: string) => {
+const descriptionTitleProp = (
+  props: { [key: string]: unknown },
+  propName: string,
+  componentName: string
+) => {
   if (!props.title && !props.description) {
     return new Error(
       `You must provide a title, description, or both to ${componentName}.`

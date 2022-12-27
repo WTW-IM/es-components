@@ -32,18 +32,14 @@ export const DrawerItem = ({
   onChange: onChangeProp,
   ...props
 }) => {
-  const {
-    activeKeys,
-    toggleActiveKey,
-    setActiveKey,
-    unsetActiveKey
-  } = useContext(DrawerContext);
+  const { activeKeys, toggleActiveKey, setActiveKey, unsetActiveKey } =
+    useContext(DrawerContext);
   const itemId = useUniqueId(id);
   const itemKey = useUniqueId(panelKey);
-  const toggleOpen = useCallback(() => toggleActiveKey(itemKey), [
-    itemKey,
-    toggleActiveKey
-  ]);
+  const toggleOpen = useCallback(
+    () => toggleActiveKey(itemKey),
+    [itemKey, toggleActiveKey]
+  );
   const onChange = useRef(onChangeProp);
   onChange.current = onChangeProp;
   const afterInitialRender = useRef(false);
@@ -55,7 +51,7 @@ export const DrawerItem = ({
       const newOpen = activeKeys.includes(itemKey);
       setOpen(newOpen);
     },
-    [activeKeys]
+    [activeKeys, itemKey]
   );
 
   useEffect(
@@ -64,7 +60,7 @@ export const DrawerItem = ({
 
       (openProp ? setActiveKey : unsetActiveKey)(itemKey);
     },
-    [openProp]
+    [openProp, itemKey, setActiveKey, unsetActiveKey]
   );
 
   useEffect(
@@ -126,32 +122,41 @@ export const DrawerItemBody = props => {
 };
 
 export const DrawerItemOpener = ({ children }) => {
+  let child = {};
+  let hasMultipleChildren = false;
   try {
-    const child = React.Children.only(children);
-    const childClick = child?.props?.onClick || noop; // do not recreate noop every render
-    const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
-    const onClick = useCallback(
-      ev => {
-        childClick(ev);
-        toggleOpen();
-      },
-      [toggleOpen, childClick]
-    );
-    const clickChild = React.cloneElement(child, {
-      ...child.props,
-      onClick,
-      'aria-expanded': open,
-      'aria-controls': `${itemId}-region`
-    });
-
-    return clickChild;
+    child = React.Children.only(children);
   } catch {
     // eslint-disable-next-line no-console
     console.error(
       'Drawer.ItemOpener could not set onClick. Please ensure it has only one root child component.'
     );
-    return children;
+    hasMultipleChildren = false;
   }
+
+  const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
+
+  const childClick = useRef(child?.props?.onClick);
+  useEffect(() => {
+    childClick.current = child?.props?.onClick;
+  }, [child?.props?.onClick]);
+
+  const onClick = useCallback(
+    ev => {
+      (childClick.current || noop)(ev);
+      toggleOpen();
+    },
+    [toggleOpen]
+  );
+
+  return hasMultipleChildren
+    ? children
+    : React.cloneElement(child, {
+        ...child?.props,
+        onClick,
+        'aria-expanded': open,
+        'aria-controls': `${itemId}-region`
+      });
 };
 
 DrawerItemOpener.propTypes = {

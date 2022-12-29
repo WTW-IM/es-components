@@ -6,18 +6,27 @@ import Icon from '../../base/icons/Icon';
 import Label from '../../controls/label/Label';
 import { PromptType } from './PromptType';
 
-const IconWrapper = styled.div`
+interface IconWrapperProps {
+  bannerBgColor: string;
+  textColor: string;
+}
+
+const IconWrapper = styled.div<IconWrapperProps>`
   background-color: ${promptProps => promptProps.bannerBgColor};
   padding: 6px 0 0 6px;
 `;
 
 const StyledIcon = styled(Icon)`
-  name: ${promptProps => promptProps.iconName};
+  name: ${promptProps => promptProps.name};
   color: ${promptProps => promptProps.iconColor};
   padding-right: 5px;
 `;
 
-const ContentWrapper = styled.div`
+interface ContentWrapperProps {
+  bgColor: string;
+}
+
+const ContentWrapper = styled.div<ContentWrapperProps>`
   align-items: center;
   background-color: ${promptProps => promptProps.bgColor};
   color: black;
@@ -33,14 +42,25 @@ const Content = styled.div`
   word-break: break-word;
 `;
 
-const BannerLabel = styled(Label)`
+interface BannerLabelProps {
+  bannerTextColor: string;
+}
+
+const BannerLabel = styled(Label)<BannerLabelProps>`
   letter-spacing: 0.5px;
   font-size: 20px;
   font-weight: 500;
   color: ${promptProps => promptProps.bannerTextColor};
 `;
 
-const Prompt = props => {
+export interface PromptProps {
+  isContentReadAloud: boolean;
+  children?: React.ReactElement;
+  bannerTextColor?: string;
+  iconName?: boolean;
+}
+
+const Prompt = (props: PromptProps) => {
   const { isContentReadAloud, children } = props;
   const theme = useTheme();
   const promptStyles = isContentReadAloud

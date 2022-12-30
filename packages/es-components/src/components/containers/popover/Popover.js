@@ -110,13 +110,6 @@ function Popover(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleShow(event) {
-   console.log('toggle show before')
-    event.stopPropagation();
-    console.log('toggle show after')
-    //event.preventDefault();
-    // if (REACT_MAJOR_VERSION <= 16) {
-    //   event.stopPropagation();
-    // }
     setIsOpen(!isOpen);
   }
 

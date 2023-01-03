@@ -4,7 +4,16 @@ import styled from 'styled-components';
 
 import { useTheme } from '../../util/useTheme';
 
-const StripedContainerWrapper = styled.div`
+interface StripedContainerProps {
+  children: React.ReactElement;
+}
+
+interface StripedContainerWrapperProps {
+  oddColor: string;
+  evenColor: string;
+}
+
+const StripedContainerWrapper = styled.div<StripedContainerWrapperProps>`
   > * {
     display: block;
     padding: 20px;
@@ -19,7 +28,7 @@ const StripedContainerWrapper = styled.div`
   }
 `;
 
-function StripedContainer(props) {
+function StripedContainer(props: StripedContainerProps) {
   const theme = useTheme();
 
   return (

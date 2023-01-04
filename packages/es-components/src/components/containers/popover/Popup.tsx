@@ -11,6 +11,7 @@ import {
   arrow,
   flip,
   shift,
+  limitShift,
   offset,
   Placement,
   FloatingPortal

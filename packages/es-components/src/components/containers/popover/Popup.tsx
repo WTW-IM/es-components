@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import * as CSS from 'csstype';
 import {
   useFloating,
-  useInteractions,
   useRole,
   useDismiss,
+  useInteractions,
   autoUpdate,
   arrow,
   flip,
@@ -178,7 +178,7 @@ function getArrowValues(size?: Maybe<ArrowSizeOptions>) {
   }
 }
 
-interface PopupProps extends JSXElementProps<'div'> {
+export interface PopupProps extends JSXElementProps<'div'> {
   name?: Maybe<string>;
   trigger: React.ReactNode;
   children: React.ReactNode;
@@ -340,7 +340,7 @@ Popup.propTypes = {
 
 Popup.defaultProps = {
   ...PopperBox.defaultProps,
-  name: '',
+  name: '' as string,
   trigger: undefined,
   children: undefined,
   position: 'bottom' as Placement,
@@ -354,3 +354,5 @@ Popup.defaultProps = {
   strategy: 'absolute',
   keepTogether: true
 };
+
+export default Popup;

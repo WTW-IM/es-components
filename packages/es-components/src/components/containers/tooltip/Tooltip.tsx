@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
   useFloating,
@@ -14,6 +13,7 @@ import {
   arrow,
   flip,
   shift,
+  FloatingPortal,
   Placement
 } from '@floating-ui/react';
 import styled, { StyledComponent, DefaultTheme } from 'styled-components';
@@ -235,45 +235,39 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
             {content}
           </ScreenReaderContent>
         )}
-
-        {!rootNode ? (
-          <></>
-        ) : (
-          ReactDOM.createPortal(
-            <Fade in={show} mountOnEnter unmountOnExit>
-              <InnerTooltip
-                ref={floatingTooltipRef}
-                topIndex={getTopIndex()}
-                {...getFloatingProps({
-                  id: tooltipId,
-                  'aria-live': 'polite',
-                  style: {
-                    width: 'max-content',
-                    position: strategy,
-                    top: y ?? 0,
-                    left: x ?? 0
-                  },
-                  ...other
-                })}
-              >
-                <TooltipArrow
-                  ref={arrowRef}
-                  style={
-                    arrowX !== undefined
-                      ? {
-                          left: arrowX ?? 0
-                        }
-                      : {
-                          top: arrowY ?? 0
-                        }
-                  }
-                />
-                <TooltipInner>{content}</TooltipInner>
-              </InnerTooltip>
-            </Fade>,
-            rootNode
-          )
-        )}
+        <FloatingPortal root={rootNode}>
+          <Fade in={show} mountOnEnter unmountOnExit>
+            <InnerTooltip
+              ref={floatingTooltipRef}
+              topIndex={getTopIndex()}
+              {...getFloatingProps({
+                id: tooltipId,
+                'aria-live': 'polite',
+                style: {
+                  width: 'max-content',
+                  position: strategy,
+                  top: y ?? 0,
+                  left: x ?? 0
+                },
+                ...other
+              })}
+            >
+              <TooltipArrow
+                ref={arrowRef}
+                style={
+                  arrowX !== undefined
+                    ? {
+                        left: arrowX ?? 0
+                      }
+                    : {
+                        top: arrowY ?? 0
+                      }
+                }
+              />
+              <TooltipInner>{content}</TooltipInner>
+            </InnerTooltip>
+          </Fade>
+        </FloatingPortal>
       </>
     );
   }

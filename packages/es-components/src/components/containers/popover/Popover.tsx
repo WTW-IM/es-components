@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import DismissButton from '../../controls/DismissButton';
 import OriginalButton from '../../controls/buttons/Button';
-import Popup from './Popup';
-import RootCloseWrapper from '../../util/RootCloseWrapper';
+import Popup, { PopupProps } from './Popup';
 import noop from '../../util/noop';
+import { Placement } from '@floating-ui/react';
 
 const Button = OriginalButton as ReturnType<
   typeof React.forwardRef<
@@ -14,9 +14,6 @@ const Button = OriginalButton as ReturnType<
     JSX.IntrinsicElements['button']
   >
 >;
-
-const reactVersionString = React.version.match(/\d+/)?.[0] || '0';
-const REACT_MAJOR_VERSION = parseInt(reactVersionString, 10);
 
 const Container = styled.div`
   display: inline-block;
@@ -99,13 +96,13 @@ export type RenderTriggerFunc = (
   params: RenderTriggerParams
 ) => React.ReactNode;
 
-export type PopoverProps = {
+export interface PopoverProps extends Omit<Partial<PopupProps>, 'content'> {
   name: string;
   renderTrigger: RenderTriggerFunc;
   title?: string;
   content?: React.ReactNode;
   renderContent?: (contentProps: RenderFuncParams) => React.ReactNode;
-  placement?: 'top' | 'bottom' | 'left' | 'right';
+  placement?: Placement;
   arrowSize?: 'sm' | 'lg' | 'none' | 'default';
   disableOnScroll?: boolean;
   disableFlipping?: boolean;
@@ -118,11 +115,11 @@ export type PopoverProps = {
   keepTogether?: boolean;
   popoverWrapperClassName?: string;
   styleType?: HeaderTypes;
-};
+}
 
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
-  function ForwardedPopover(props, ref) {
-    const {
+  function ForwardedPopover(
+    {
       name,
       title,
       content,
@@ -141,81 +138,67 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       popoverWrapperClassName,
       styleType,
       ...otherProps
-    } = props;
+    },
+    ref
+  ) {
     const hasTitle = title !== undefined;
     const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
     const showCloseButton = hasCloseButton && !hasAltCloseButton;
     const isFirstRun = useRef(true);
 
-    const triggerBtnRef = useRef<HTMLElement>();
+    const triggerBtnRef = useRef<HTMLElement>(null);
     const popperRef = useRef<HTMLElement>();
-    const contentRef = useRef<HTMLElement>();
+    const contentRef = useRef<HTMLDivElement>(null);
 
     const [isOpen, setIsOpen] = useState(false);
 
-  function toggleShow(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsOpen(!isOpen);
-  }
-
-    function hidePopover(event: Event) {
-      if (isOpen) {
-        if (event.type !== 'click') {
+    const toggleShowFromInteraction = useCallback((event?: React.UIEvent) => {
+      event?.preventDefault();
+      event?.stopPropagation();
+      setIsOpen(oldIsOpen => {
+        const nowOpen = !oldIsOpen;
+        if (!nowOpen) {
           triggerBtnRef.current?.focus();
         }
-        setIsOpen(false);
-      }
-    }
+        return nowOpen;
+      });
+    }, []);
 
-  useEffect(() => {
-    if (isFirstRun.current) {
-      isFirstRun.current = false;
-      return;
-    }
+    const getScrollOffScreenHandler = useCallback(() => {
+      let canFire = true;
+      return () => {
+        if (!canFire) return;
 
-    let timeoutId;
+        canFire = false;
+        setTimeout(() => {
+          if (popperRef.current) {
+            const bounds = popperRef.current.getBoundingClientRect();
+            const inViewport =
+              bounds.top <= window.innerHeight && bounds.bottom >= 0;
 
-    if (isOpen) {
-      timeoutId = setTimeout(() => {
-        if (contentRef.current) {
-          contentRef.current.focus();
-        }
-      }, 100);
-    } else {
-      triggerBtnRef.current.focus();
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [isOpen]);
+            if (!inViewport && isOpen) {
+              setIsOpen(false);
+            }
+          }
+        }, 100);
+      };
+    }, []);
 
     useEffect(() => {
       if (disableCloseOnScroll) {
         return noop;
       }
 
-    function hidePopOnScroll() {
-      setInterval(() => {
-        if (popperRef.current) {
-          const bounds = popperRef.current.getBoundingClientRect();
-          const inViewport =
-            bounds.top >= 0 && bounds.bottom <= window.innerHeight;
-
-          if (!inViewport && isOpen) {
-            setIsOpen(false);
-          }
-        }
-      }, 100);
-    }
+      const handler = getScrollOffScreenHandler();
 
       if (isOpen) {
-        window.addEventListener('scroll', hidePopOnScroll);
+        window.addEventListener('scroll', handler);
       }
-      return () => window.removeEventListener('scroll', hidePopOnScroll);
-    }, [isOpen, disableCloseOnScroll]);
+      return () => window.removeEventListener('scroll', handler);
+    }, [isOpen, disableCloseOnScroll, getScrollOffScreenHandler]);
 
     const closeButton = (
-      <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
+      <PopoverCloseButton onClick={toggleShowFromInteraction}>
         Close
       </PopoverCloseButton>
     );
@@ -224,7 +207,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <AltCloseButton
         aria-label="Close"
         hasTitle={hasTitle}
-        onClick={toggleShow}
+        onClick={toggleShowFromInteraction}
       />
     );
 
@@ -232,43 +215,50 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <Container ref={ref}>
         <Popup
           name={name}
-          trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
+          trigger={renderTrigger({
+            ref: triggerBtnRef,
+            toggleShow: toggleShowFromInteraction,
+            isOpen
+          })}
           position={placement}
           arrowSize={arrowSize}
           transitionIn={isOpen}
           hasTitle={hasTitle}
           disableFlipping={disableFlipping}
           popperRef={elem => {
+            if (!elem) return;
+
             popperRef.current = elem;
           }}
           enableEvents={enableEvents}
           strategy={strategy}
           keepTogether={keepTogether}
+          setIsOpen={setIsOpen}
+          disableRootClose={Boolean(disableRootClose)}
           {...otherProps}
         >
-          <RootCloseWrapper
-            onRootClose={hidePopover}
-            disabled={disableRootClose}
-            className={popoverWrapperClassName}
+          <div
+            className={`root-close-wrapper ${popoverWrapperClassName || ''}`}
           >
-          <div role="dialog" ref={contentRef} tabIndex={-1}>
+            <div role="dialog" ref={contentRef} tabIndex={-1}>
               <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
                 {hasTitle && <TitleBar>{title}</TitleBar>}
                 {hasAltCloseButton && altCloseButton}
                 <CloseHelpText
                   tabIndex={-1}
-                  ref={escMsgRef}
                   aria-label="Press escape to close the Popover"
                 />
               </PopoverHeader>
               <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
                 <PopoverContent showCloseButton={showCloseButton}>
-                  {renderContent ? renderContent({ toggleShow }) : content}
+                  {renderContent
+                    ? renderContent({ toggleShow: toggleShowFromInteraction })
+                    : content}
                 </PopoverContent>
                 {showCloseButton && closeButton}
               </PopoverBody>
             </div>
-          </RootCloseWrapper>
+          </div>
         </Popup>
       </Container>
     );
@@ -296,6 +286,21 @@ function contentRequired(
   return null;
 }
 
+const placements: Placement[] = [
+  'top',
+  'top-start',
+  'top-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+  'left',
+  'left-start',
+  'left-end'
+];
+
 Popover.propTypes = {
   ...Popup.propTypes,
   /** The name of the popover. Used for differentiating popovers */
@@ -309,7 +314,7 @@ Popover.propTypes = {
   // eslint-disable-next-line react/require-default-props
   renderContent: contentRequired,
   /** The placement of the popover in relation to the link */
-  placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+  placement: PropTypes.oneOf(placements),
   /** The size of the arrow on the popover box */
   arrowSize: PropTypes.oneOf(['sm', 'lg', 'none', 'default']),
   /** Disables popover's ability to close when the user scrolls  */
@@ -343,7 +348,8 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
-  ...Popup.defauProps,
+  ...Popup.defaultProps,
+  name: '',
   placement: 'bottom',
   arrowSize: 'default',
   disableRootClose: false,

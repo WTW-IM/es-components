@@ -1,5 +1,5 @@
 {
-  "name": "es-components",
+  "name": "es-components-monorepo",
   "private": true,
   "license": "MIT",
   "scripts": {

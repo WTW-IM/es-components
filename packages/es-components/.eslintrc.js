@@ -72,7 +72,8 @@ module.exports = {
         devDependencies: [
           '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.js',
-          '**/styleguide/*.{js,jsx,ts,tsx}'
+          '**/styleguide/*.{js,jsx,ts,tsx}',
+          '**/cypress/**/*.js'
         ]
       }
     ],

@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import styled, { CSSProperties, DefaultTheme } from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
-import DismissButton from '../../controls/DismissButton';
+import DismissButton, {
+  DismissButtonProps
+} from '../../controls/DismissButton';
 
 const NotificationIcon = styled(Icon)`
   align-self: start;
@@ -20,12 +22,12 @@ interface Color {
   textColor: string;
 }
 
-interface DismissProps {
+interface DismissProps extends Omit<DismissButtonProps, 'color'> {
   color: Color;
   onClick: () => void;
 }
 
-const Dismiss = styled(DismissButton)<DismissProps>`
+const DismissBtn = styled(DismissButton)<DismissProps>`
   align-self: start;
   color: ${props => props.color.textColor};
   font-weight: normal;
@@ -34,6 +36,8 @@ const Dismiss = styled(DismissButton)<DismissProps>`
     font-size: 27px;
   }
 `;
+
+const Dismiss = DismissBtn as React.FC<DismissProps>;
 
 const ContentWrapper = styled.div`
   align-self: center;

@@ -7,10 +7,8 @@ import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
-import { useRootNodeLocator } from '../../util/useRootNode';
 
 const reactVersionString = React.version.match(/\d+/)?.[0] || '0';
-const REACT_MAJOR_VERSION = parseInt(reactVersionString, 10);
 
 const Container = styled.div`
   display: inline-block;
@@ -105,18 +103,12 @@ function Popover(props) {
   const escMsgRef = useRef(null);
   const closeBtnRef = useRef(null);
   const timeoutRef = useRef(null);
-  const containerRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleShow(event) {
-   console.log('toggle show before')
+    event.preventDefault();
     event.stopPropagation();
-    console.log('toggle show after')
-    //event.preventDefault();
-    // if (REACT_MAJOR_VERSION <= 16) {
-    //   event.stopPropagation();
-    // }
     setIsOpen(!isOpen);
   }
 
@@ -127,7 +119,7 @@ function Popover(props) {
       }
       setIsOpen(false);
     }
-}
+  }
 
   function hidePopOnScroll() {
     setInterval(() => {
@@ -175,7 +167,7 @@ function Popover(props) {
       window.addEventListener('scroll', hidePopOnScroll);
     }
     return () => window.removeEventListener('scroll', hidePopOnScroll);
-  }, [isOpen, disableCloseOnScroll]);
+  }, [isOpen, disableCloseOnScroll, hidePopOnScroll]);
 
   const closeButton = (
     <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
@@ -193,7 +185,7 @@ function Popover(props) {
   );
 
   return (
-    <Container ref={containerRef}>
+    <Container>
       <Popup
         name={name}
         trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
@@ -210,7 +202,7 @@ function Popover(props) {
         keepTogether={keepTogether}
         {...otherProps}
       >
- <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose} className={popoverWrapperClassName} container={containerRef.current}>
+        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose} className={popoverWrapperClassName}>
           <div role="dialog" ref={contentRef}>
             <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
               {hasTitle && <TitleBar>{title}</TitleBar>}
@@ -224,7 +216,7 @@ function Popover(props) {
               {showCloseButton && closeButton}
             </PopoverBody>
           </div>
-      </RootCloseWrapper>
+        </RootCloseWrapper>
       </Popup>
     </Container>
   );

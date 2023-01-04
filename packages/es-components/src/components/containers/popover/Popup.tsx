@@ -1,32 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as CSS from 'csstype';
 import {
-  Manager,
-  Reference,
-  Popper,
-  PopperProps,
-  PopperChildrenProps
-} from 'react-popper';
-import {
   useFloating,
-  useInteractions,
-  useHover,
-  useFocus,
   useRole,
-  useClick,
   useDismiss,
+  useInteractions,
   autoUpdate,
-  autoPlacement,
   arrow,
   flip,
   shift,
+  limitShift,
   offset,
-  Placement
+  Placement,
+  FloatingPortal
 } from '@floating-ui/react';
-import callRef from '../../util/callRef';
+import { callRefs } from '../../util/callRef';
 
 import Fade from '../../util/Fade';
 import useRootNode from '../../util/useRootNode';
@@ -187,7 +177,7 @@ function getArrowValues(size?: Maybe<ArrowSizeOptions>) {
   }
 }
 
-interface PopupProps {
+interface PopupProps extends JSXElementProps<'div'> {
   name?: Maybe<string>;
   trigger: React.ReactNode;
   children: React.ReactNode;
@@ -201,16 +191,12 @@ interface PopupProps {
   enableEvents?: boolean;
   strategy?: 'absolute' | 'fixed';
   keepTogether?: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  disableRootClose: boolean;
 }
 
-type ESPopperType = typeof React.Component<
-  PopperProps<string> & Omit<JSXElementProps<'div'>, 'children'>
->;
-
-const ESPopper = Popper as ESPopperType;
-
 const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
-  function ForwardedPopup(props, ref) {
+  function ForwardedPopup(props, forwardedRef) {
     const {
       name,
       trigger,
@@ -219,99 +205,113 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
       arrowSize,
       hasTitle,
       transitionIn: isOpen,
+      setIsOpen,
       transitionTimeout,
       disableFlipping,
       popperRef,
       enableEvents,
       strategy,
       keepTogether,
+      disableRootClose,
       ...otherProps
     } = props;
     const arrowValues = getArrowValues(arrowSize);
     const [rootNode, rootNodeRef] = useRootNode(document.body);
+    const arrowRef = useRef<HTMLDivElement>(null);
+
+    const flipMiddleware = disableFlipping ? [] : [flip()];
+    const {
+      x,
+      y,
+      placement,
+      context,
+      reference: floatingAnchorRef,
+      floating: floatingPopupRef,
+      middlewareData: { arrow: arrowCoords }
+    } = useFloating<HTMLElement>({
+      open: isOpen,
+      onOpenChange: setIsOpen,
+      placement: position,
+      ...(enableEvents ? { whileElementsMounted: autoUpdate } : {}),
+      middleware: [
+        ...flipMiddleware,
+        shift({
+          padding: arrowValues.marginSize,
+          ...(keepTogether
+            ? {
+                limiter: limitShift()
+              }
+            : {})
+        }),
+        offset({
+          mainAxis: parseInt(arrowValues.marginSize, 10)
+        }),
+        arrow({
+          element: arrowRef
+        })
+      ]
+    });
+    const { x: arrowX, y: arrowY } = arrowCoords || {};
+
+    const role = useRole(context);
+    const dismiss = useDismiss(context, {
+      outsidePress: !disableRootClose,
+      outsidePressEvent: 'click'
+    });
+
+    const { getReferenceProps, getFloatingProps } = useInteractions([
+      role,
+      dismiss
+    ]);
 
     return (
-      <Manager>
-        <Reference>
-          {({ ref }) => (
-            <div
-              className={`${name || ''}-popper__trigger`}
-              ref={el => {
-                callRef(ref, el);
-                rootNodeRef(el);
-              }}
-            >
-              {trigger}
-            </div>
-          )}
-        </Reference>
-
-        {!rootNode ? (
-          <></>
-        ) : (
-          ReactDOM.createPortal(
-            <ESPopper
-              className={`${name || ''}-popper`}
-              placement={position}
-              strategy={strategy}
-              innerRef={popperRef}
-              modifiers={[
-                {
-                  name: 'preventOverflow',
-                  options: {
-                    boundariesElement: document.body,
-                    tether: keepTogether
-                  }
-                },
-                ...(disableFlipping
-                  ? []
-                  : [
-                      {
-                        name: 'flip',
-                        options: {
-                          fallbackPlacements: ['left', 'right', 'top', 'bottom']
-                        }
-                      }
-                    ]),
-                {
-                  name: 'offset',
-                  options: {
-                    offset: [0, parseInt(arrowValues.marginSize, 10)]
-                  }
-                },
-                {
-                  name: 'eventListeners',
-                  options: {
-                    scroll: enableEvents,
-                    resize: enableEvents
-                  }
+      <>
+        <div
+          ref={el => callRefs(el, floatingAnchorRef, forwardedRef, rootNodeRef)}
+          {...getReferenceProps({ className: `${name || ''}-popper__trigger` })}
+        >
+          {trigger}
+        </div>
+        <FloatingPortal root={rootNode}>
+          <Fade
+            in={isOpen}
+            duration={transitionTimeout}
+            mountOnEnter
+            unmountOnExit
+          >
+            <PopperBox
+              ref={el => callRefs(el, floatingPopupRef, popperRef || null)}
+              {...getFloatingProps({
+                ...otherProps,
+                style: {
+                  ...(otherProps.style || {}),
+                  position: strategy,
+                  top: y || 0,
+                  left: x || 0,
+                  width: 'max-content'
                 }
-              ]}
+              })}
             >
-              {({ ref, style, placement, arrowProps }: PopperChildrenProps) => (
-                <Fade
-                  in={isOpen}
-                  duration={transitionTimeout}
-                  mountOnEnter
-                  unmountOnExit
-                >
-                  <PopperBox ref={ref} style={style} {...otherProps}>
-                    {children}
-                    <Arrow
-                      ref={arrowProps.ref}
-                      data-placement={placement}
-                      style={arrowProps.style}
-                      arrowSize={arrowValues}
-                      hasTitle={Boolean(hasTitle)}
-                    />
-                  </PopperBox>
-                </Fade>
-              )}
-            </ESPopper>,
-            rootNode
-          )
-        )}
-      </Manager>
+              {children}
+              <Arrow
+                ref={arrowRef}
+                data-placement={placement}
+                style={
+                  arrowX !== undefined
+                    ? {
+                        left: arrowX ?? 0
+                      }
+                    : {
+                        top: arrowY ?? 0
+                      }
+                }
+                arrowSize={arrowValues}
+                hasTitle={Boolean(hasTitle)}
+              />
+            </PopperBox>
+          </Fade>
+        </FloatingPortal>
+      </>
     );
   }
 );
@@ -329,7 +329,9 @@ Popup.propTypes = {
   popperRef: PropTypes.func,
   enableEvents: PropTypes.bool,
   strategy: PropTypes.oneOf(['absolute', 'fixed']),
-  keepTogether: PropTypes.bool
+  keepTogether: PropTypes.bool,
+  setIsOpen: PropTypes.func.isRequired,
+  disableRootClose: PropTypes.bool.isRequired
 };
 
 Popup.defaultProps = {

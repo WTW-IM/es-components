@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import OriginalButton from '../../controls/buttons/Button';
 import Popup from './Popup';
-import RootCloseWrapper from '../../util/RootCloseWrapper';
 import noop from '../../util/noop';
 
 const Button = OriginalButton as ReturnType<
@@ -118,7 +117,7 @@ export type PopoverProps = {
   keepTogether?: boolean;
   popoverWrapperClassName?: string;
   styleType?: HeaderTypes;
-};
+} & JSXElementProps<'div'>;
 
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   function ForwardedPopover(props, ref) {
@@ -148,44 +147,48 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const showCloseButton = hasCloseButton && !hasAltCloseButton;
     const isFirstRun = useRef(true);
 
-    const triggerBtnRef = useRef<HTMLElement>();
+    const triggerBtnRef = useRef<HTMLElement>(null);
     const popperRef = useRef<HTMLElement>();
-    const contentRef = useRef<HTMLElement>();
-    const escMsgRef = useRef<HTMLElement>();
-    const closeBtnRef = useRef<HTMLButtonElement>();
-    const timeoutRef = useRef<number>();
+    const contentRef = useRef<HTMLDivElement>(null);
+    const escMsgRef = useRef<HTMLSpanElement>(null);
+    const closeBtnRef = useRef<HTMLButtonElement>(null);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
     const [isOpen, setIsOpen] = useState(false);
 
-    function toggleShow(event?: React.UIEvent) {
+    const toggleShowFromInteraction = useCallback((event?: React.UIEvent) => {
       event?.preventDefault();
       if (REACT_MAJOR_VERSION <= 16) {
         event?.stopPropagation();
       }
-      setIsOpen(!isOpen);
-    }
-
-    function hidePopover(event: Event) {
-      if (isOpen) {
-        if (event.type !== 'click') {
+      setIsOpen(oldIsOpen => {
+        const nowOpen = !oldIsOpen;
+        if (!nowOpen) {
           triggerBtnRef.current?.focus();
         }
-        setIsOpen(false);
-      }
-    }
+        return nowOpen;
+      });
+    }, []);
 
-    const hidePopOnScroll = useCallback(() => {
-      setInterval(() => {
-        if (popperRef.current) {
-          const bounds = popperRef.current.getBoundingClientRect();
-          const inViewport =
-            bounds.top >= 0 && bounds.bottom <= window.innerHeight;
+    const getScrollOffScreenHandler = useCallback(() => {
+      let canFire = true;
+      return () => {
+        if (!canFire) return;
 
-          if (!inViewport && isOpen) {
-            setIsOpen(false);
+        canFire = false;
+        setTimeout(() => {
+          if (popperRef.current) {
+            const bounds = popperRef.current.getBoundingClientRect();
+            const inViewport =
+              bounds.top <= window.innerHeight && bounds.bottom >= 0;
+
+            if (!inViewport && isOpen) {
+              setIsOpen(false);
+            }
           }
-        }
-      }, 100);
+          canFire = true;
+        }, 1000);
+      };
     }, [isOpen]);
 
     useEffect(() => {
@@ -206,8 +209,6 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
             escMsgRef.current.focus();
           }
         }, 100);
-      } else {
-        triggerBtnRef.current?.focus();
       }
     }, [isOpen]);
 
@@ -216,14 +217,16 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         return noop;
       }
 
+      const handler = getScrollOffScreenHandler();
+
       if (isOpen) {
-        window.addEventListener('scroll', hidePopOnScroll);
+        window.addEventListener('scroll', handler);
       }
-      return () => window.removeEventListener('scroll', hidePopOnScroll);
-    }, [isOpen, disableCloseOnScroll, hidePopOnScroll]);
+      return () => window.removeEventListener('scroll', handler);
+    }, [isOpen, disableCloseOnScroll, getScrollOffScreenHandler]);
 
     const closeButton = (
-      <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
+      <PopoverCloseButton onClick={toggleShowFromInteraction} ref={closeBtnRef}>
         Close
       </PopoverCloseButton>
     );
@@ -232,7 +235,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <AltCloseButton
         aria-label="Close"
         hasTitle={hasTitle}
-        onClick={toggleShow}
+        onClick={toggleShowFromInteraction}
         ref={closeBtnRef}
       />
     );
@@ -241,24 +244,30 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <Container ref={ref}>
         <Popup
           name={name}
-          trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
+          trigger={renderTrigger({
+            ref: triggerBtnRef,
+            toggleShow: toggleShowFromInteraction,
+            isOpen
+          })}
           position={placement}
           arrowSize={arrowSize}
           transitionIn={isOpen}
           hasTitle={hasTitle}
           disableFlipping={disableFlipping}
           popperRef={elem => {
+            if (!elem) return;
+
             popperRef.current = elem;
           }}
           enableEvents={enableEvents}
           strategy={strategy}
           keepTogether={keepTogether}
+          setIsOpen={setIsOpen}
+          disableRootClose={Boolean(disableRootClose)}
           {...otherProps}
         >
-          <RootCloseWrapper
-            onRootClose={hidePopover}
-            disabled={disableRootClose}
-            className={popoverWrapperClassName}
+          <div
+            className={`root-close-wrapper ${popoverWrapperClassName || ''}`}
           >
             <div role="dialog" ref={contentRef}>
               <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
@@ -272,12 +281,14 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
               </PopoverHeader>
               <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
                 <PopoverContent showCloseButton={showCloseButton}>
-                  {renderContent ? renderContent({ toggleShow }) : content}
+                  {renderContent
+                    ? renderContent({ toggleShow: toggleShowFromInteraction })
+                    : content}
                 </PopoverContent>
                 {showCloseButton && closeButton}
               </PopoverBody>
             </div>
-          </RootCloseWrapper>
+          </div>
         </Popup>
       </Container>
     );

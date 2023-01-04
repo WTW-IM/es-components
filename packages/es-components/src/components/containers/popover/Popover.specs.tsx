@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 import React from 'react';
 
 import { cleanup, screen, waitFor } from '@testing-library/react';
@@ -17,11 +18,13 @@ const Button = OriginalButton as ReturnType<
   >
 >;
 
-beforeEach(cleanup);
+beforeEach(() => {
+  cleanup();
+});
 
 type PossibleProps = Partial<PopoverProps>;
 
-function buildPopover(props?: PossibleProps) {
+function TestPopover(props?: PossibleProps) {
   const defaults: Omit<PopoverProps, 'renderTrigger'> = {
     name: 'popTest',
     title: 'Popover Title',
@@ -43,7 +46,7 @@ function buildPopover(props?: PossibleProps) {
 
 it('can be toggled by clicking the button', async () => {
   const user = userEvent.setup();
-  renderWithTheme(buildPopover());
+  renderWithTheme(<TestPopover />);
   const trigger = await screen.findByText('Popover Trigger Button');
 
   await userEvent.click(trigger);
@@ -58,7 +61,7 @@ it('can be toggled by clicking the button', async () => {
 
 it('renders the title when provided', async () => {
   const user = userEvent.setup();
-  renderWithTheme(buildPopover());
+  renderWithTheme(<TestPopover />);
   await user.click(screen.getByText('Popover Trigger Button'));
   await screen.findByText('This is the popover content.');
   expect(await screen.findByText('Popover Title')).toBeInTheDocument();
@@ -66,7 +69,7 @@ it('renders the title when provided', async () => {
 
 it('can be closed using the close button', async () => {
   const user = userEvent.setup();
-  renderWithTheme(buildPopover({ hasCloseButton: true }));
+  renderWithTheme(<TestPopover hasCloseButton />);
   await user.click(screen.getByText('Popover Trigger Button'));
   const popoverContent = await screen.findByText(
     'This is the popover content.'
@@ -79,7 +82,7 @@ it('can be closed using the close button', async () => {
 
 it('can be closed using the alternative close button', async () => {
   const user = userEvent.setup();
-  renderWithTheme(buildPopover({ hasAltCloseButton: true }));
+  renderWithTheme(<TestPopover hasAltCloseButton />);
   await user.click(screen.getByText('Popover Trigger Button'));
   await user.click(await screen.findByRole('button', { name: /Close/ }));
   await waitFor(() =>
@@ -90,7 +93,7 @@ it('can be closed using the alternative close button', async () => {
 it('sets focus on a focusable element within the content', async () => {
   const user = userEvent.setup();
   const popoverContent = <a href="#test">Test link</a>;
-  renderWithTheme(buildPopover({ content: popoverContent }));
+  renderWithTheme(<TestPopover content={popoverContent} />);
   await user.click(screen.getByText('Popover Trigger Button'));
 
   await waitFor(() =>

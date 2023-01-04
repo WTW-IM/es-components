@@ -63,7 +63,8 @@ module.exports = {
           '**/*.specs.ts',
           '**/*.specs.tsx',
           '**/ExampleWrapper.js',
-          '**/test-utils.js'
+          '**/test-utils.js',
+          '**/cypress/**/*.js'
         ]
       }
     ],
@@ -76,16 +77,6 @@ module.exports = {
   overrides: [
     {
       files: ['.eslintrc.js', '*.config.js', '*.config.mjs', '**/config/*.js'],
-      parser: '@babel/eslint-parser',
-      plugins: ['import', '@babel'],
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-          destructuring: true,
-          experimentalObjectRestSpread: true,
-          ecmaVersion: 'latest'
-        }
-      },
       env: {
         node: true
       },

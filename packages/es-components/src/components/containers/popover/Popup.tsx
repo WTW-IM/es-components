@@ -203,11 +203,11 @@ interface PopupProps {
   keepTogether?: boolean;
 }
 
-type ESPopper = React.Component<
-  PopperProps<unknown> & JSX.IntrinsicElements['div']
+type ESPopperType = typeof React.Component<
+  PopperProps<string> & Omit<JSXElementProps<'div'>, 'children'>
 >;
 
-const ESPopper = Popper as typeof Popper & ESPopper;
+const ESPopper = Popper as ESPopperType;
 
 const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
   function ForwardedPopup(props, ref) {
@@ -253,6 +253,8 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
             <ESPopper
               className={`${name || ''}-popper`}
               placement={position}
+              strategy={strategy}
+              innerRef={popperRef}
               modifiers={[
                 {
                   name: 'preventOverflow',
@@ -276,11 +278,15 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
                   options: {
                     offset: [0, parseInt(arrowValues.marginSize, 10)]
                   }
+                },
+                {
+                  name: 'eventListeners',
+                  options: {
+                    scroll: enableEvents,
+                    resize: enableEvents
+                  }
                 }
               ]}
-              innerRef={popperRef}
-              eventsEnabled={enableEvents}
-              positionFixed={strategy === 'fixed'}
             >
               {({ ref, style, placement, arrowProps }: PopperChildrenProps) => (
                 <Fade

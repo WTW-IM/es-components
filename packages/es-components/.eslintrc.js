@@ -1,3 +1,4 @@
+const path = require('path')
 const plugins = ['import', '@babel'];
 const exts = [
   'eslint:recommended',
@@ -14,7 +15,10 @@ module.exports = {
       jsx: true,
       destructuring: true,
       experimentalObjectRestSpread: true,
-      ecmaVersion: 'latest'
+      ecmaVersion: 'latest',
+    },
+    babelOptions: {
+    configFile: path.join(__dirname, 'babel.config.js')
     }
   },
   rules: {

@@ -18,25 +18,19 @@ const DismissButtonBase = styled.button`
   }
 `;
 
-interface Props {
-  children?: React.ReactNode;
-  type?: 'submit' | 'button';
-}
-
-type Ref = HTMLButtonElement;
-
 const ScreenReaderText = screenReaderOnly('span');
 
-const DismissButton = React.forwardRef<Ref, Props>(function DismissButton(
-  props,
-  ref
-) {
-  return (
-    <DismissButtonBase aria-label="Close" {...props} type="button" ref={ref}>
-      <Icon name="remove" />
-      <ScreenReaderText>Close</ScreenReaderText>
-    </DismissButtonBase>
-  );
-});
+export type DismissButtonProps = JSXElementProps<'button'>;
+
+const DismissButton = React.forwardRef<HTMLButtonElement, DismissButtonProps>(
+  function DismissButton(props, ref) {
+    return (
+      <DismissButtonBase aria-label="Close" {...props} type="button" ref={ref}>
+        <Icon name="remove" />
+        <ScreenReaderText>Close</ScreenReaderText>
+      </DismissButtonBase>
+    );
+  }
+);
 
 export default DismissButton;

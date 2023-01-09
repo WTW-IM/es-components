@@ -63,7 +63,8 @@ module.exports = {
           '**/*.specs.ts',
           '**/*.specs.tsx',
           '**/ExampleWrapper.js',
-          '**/test-utils.js'
+          '**/test-utils.js',
+          '**/cypress/**/*.js'
         ]
       }
     ],

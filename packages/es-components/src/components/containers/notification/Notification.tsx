@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
+import { TypeKeys, useNotification } from './useNotification';
 
-import { useNotification } from './useNotification';
+interface NotificationProps extends JSXElementProps<'div'> {
+  type: TypeKeys;
+}
 
-const DefaultNotification = useNotification();
+function Notification(props: NotificationProps) {
+  const DefaultNotification = useNotification();
 
-function Notification(props) {
   return <DefaultNotification {...props} />;
 }
 

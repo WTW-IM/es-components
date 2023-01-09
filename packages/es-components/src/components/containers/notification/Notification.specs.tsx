@@ -38,12 +38,13 @@ it('can take styles', () => {
     <Notification type="success" style={{ color: 'blue' }} />
   );
   const notificationDiv = container.querySelector('div');
+  if (notificationDiv === null) throw new Error('div not rendered');
   const styles = window.getComputedStyle(notificationDiv);
   expect(styles.color).toEqual('blue');
 });
 
 describe('dismissable notifications', () => {
-  it('removes notification when dismiss button is clicked', () => {
+  it('removes notification when dismiss button is clicked', async () => {
     const { container, getByText } = renderWithTheme(
       <Notification type="success" isDismissable>
         <p id="find-me">I am here!</p>
@@ -51,9 +52,11 @@ describe('dismissable notifications', () => {
     );
     expect(() => getByText('I am here!')).not.toThrow();
 
-    container.querySelector('button').click();
+    const button = container.querySelector('button');
+    if (button === null) throw new Error('button not rendered');
+    button.click();
 
-    waitFor(() => expect(() => getByText('I am here!')).toThrow());
+    await waitFor(() => expect(() => getByText('I am here!')).toThrow());
   });
 
   it('invokes the passed "onDismiss" function', () => {
@@ -64,7 +67,9 @@ describe('dismissable notifications', () => {
       </Notification>
     );
 
-    container.querySelector('button').click();
+    const button = container.querySelector('button');
+    if (button === null) throw new Error('button not rendered');
+    button.click();
 
     expect(onDismiss).toHaveBeenCalled();
   });

@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+interface MessageProps extends JSXElementProps<'span'> {
+  emphasizedText?: string;
+  text: string;
+}
+
 const propTypes = {
   emphasizedText: PropTypes.string,
   text: PropTypes.string.isRequired
@@ -10,7 +15,7 @@ const defaultProps = {
   emphasizedText: undefined
 };
 
-export function InlineMessage({ emphasizedText, text, ...rest }) {
+export function InlineMessage({ emphasizedText, text, ...rest }: MessageProps) {
   return (
     <span {...rest}>
       {emphasizedText !== undefined ? <strong>{emphasizedText}</strong> : null}{' '}
@@ -22,7 +27,7 @@ export function InlineMessage({ emphasizedText, text, ...rest }) {
 InlineMessage.propTypes = propTypes;
 InlineMessage.defaultProps = defaultProps;
 
-export function Message({ emphasizedText, text, ...rest }) {
+export function Message({ emphasizedText, text, ...rest }: MessageProps) {
   return (
     <span {...rest}>
       {emphasizedText !== undefined ? (

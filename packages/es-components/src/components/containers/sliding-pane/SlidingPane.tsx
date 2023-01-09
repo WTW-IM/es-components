@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'react-modal';
+import Modal, { OnAfterOpenCallback } from 'react-modal';
 import _noop from 'lodash/noop';
 import styled, { createGlobalStyle } from 'styled-components';
 import Heading from '../heading/Heading';
@@ -11,7 +11,36 @@ import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import { useTheme } from '../../util/useTheme';
 
-const PaneBase = styled(Modal)`
+interface PaneBaseProps {
+  paneWidth: string;
+}
+
+interface CloseLinkProps {
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+interface SlidingPaneProps extends Omit<Modal.Props, 'appElement'> {
+  title: string;
+  subTitle: string;
+  shouldCloseOnEsc: boolean;
+  onRequestClose: React.MouseEventHandler<HTMLButtonElement>;
+  onAfterOpen: OnAfterOpenCallback;
+  children: string;
+  closeIcon: string;
+  closeIconScreenReaderText: string;
+  from: string;
+  headingLevel: number;
+  headingSize: number;
+  closeTimeout: number;
+  overlayStyles: ReactModal.Styles;
+  contentStyles: ReactModal.Styles;
+  appElement: string | HTMLElement;
+  parentSelector: () => HTMLElement;
+  hideHeader: boolean;
+  paneWidth: string;
+}
+
+const PaneBase = styled(Modal)<PaneBaseProps>`
   background: ${props => props.theme.colors.white};
   box-shadow: 0 8px 8px ${props => props.theme.colors.boxShadowDark};
   display: flex;
@@ -80,7 +109,7 @@ const Header = styled.div`
   height: 64px;
 `;
 
-const CloseLink = styled(LinkButton)`
+const CloseLink = styled(LinkButton)<CloseLinkProps>`
   cursor: pointer;
   opacity: 0.7;
   padding: 16px;
@@ -140,7 +169,7 @@ const GlobalPaneStyles = createGlobalStyle`
   }
 `;
 
-function getPane(direction) {
+function getPane(direction: string) {
   switch (direction) {
     case 'bottom':
       return PaneBottom;
@@ -172,16 +201,16 @@ export default function SlidingPane({
   hideHeader,
   paneWidth,
   ...rest
-}) {
+}: SlidingPaneProps) {
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
   useDisableBodyScroll(isOpen);
-  const modalParentSelector =
-    parentSelector || useCallback(() => rootNode, [rootNode]);
+  const handle = useCallback(() => rootNode, [rootNode]);
+  const modalParentSelector = parentSelector || handle;
   const Pane = getPane(from);
   const styles = {
     overlay: { ...defaultStyles.overlay, ...overlayStyles },
     content: { ...defaultStyles.content, ...contentStyles }
-  };
+  } as ReactModal.Styles;
 
   if (appElement) {
     Pane.setAppElement(appElement);
@@ -240,8 +269,8 @@ SlidingPane.propTypes = {
   from: PropTypes.oneOf(['left', 'right', 'bottom']),
   closeIcon: PropTypes.any,
   closeIconScreenReaderText: PropTypes.string,
-  headingLevel: Heading.propTypes.level,
-  headingSize: Heading.propTypes.size,
+  headingLevel: Heading.propTypes?.level,
+  headingSize: Heading.propTypes?.size,
   closeTimeout: PropTypes.number,
   overlayStyles: PropTypes.object,
   contentStyles: PropTypes.object,

@@ -2,7 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const TableBase = styled.table`
+export interface TableProps {
+  isCondensed: boolean;
+  isRoomy: boolean;
+}
+
+interface TableBaseProps {
+  hasStripes?: boolean;
+  hasHover?: boolean;
+}
+
+const TableBase = styled.table<TableBaseProps>`
   border-collapse: collapse;
   border: 0;
   border-spacing: 0;
@@ -71,7 +81,7 @@ const TableBase = styled.table`
   }
 `;
 
-function Table(props) {
+function Table(props: TableProps) {
   const { isCondensed, isRoomy, ...rest } = props;
   let cellPadding = '8px';
   cellPadding = isCondensed ? '5px' : cellPadding;

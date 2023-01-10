@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Table from './Table';
+import Table, { TableProps } from './Table';
 
 const TableBase = styled(Table)`
   tbody {
@@ -12,8 +12,8 @@ const TableBase = styled(Table)`
   }
 
   &&& {
-    @media (max-width: ${props => props.theme.screenSize.phone}) {
-      background-color: ${props => props.theme.colors.gray2};
+    @media (max-width: ${props => props.theme.screenSize.phone as string}) {
+      background-color: ${props => props.theme.colors.gray2 as string};
 
       thead {
         border: none;
@@ -64,7 +64,7 @@ const TableBase = styled(Table)`
   }
 `;
 
-function ResponsiveTable(props) {
+function ResponsiveTable(props: TableProps) {
   return <TableBase {...props} />;
 }
 

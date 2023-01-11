@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.1...v21.7.0-pre-prod.2) (2023-01-11)
+
+
+### Build
+
+* adding pre-prod folder to gh-pages branch ([f73e433](https://github.com/wtw-im/es-components/commit/f73e433a2c6de45299d5c5b318afc6b7e1df9477))
+
+
+
+
+
 # [21.7.0-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.0...v21.7.0-pre-prod.1) (2022-12-15)
 
 

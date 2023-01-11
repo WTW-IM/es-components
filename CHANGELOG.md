@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.2...v21.7.0-pre-prod.3) (2023-01-11)
+
+
+### Build
+
+* fixing pre-prod Docs CI, not running cypress on PR close ([040d82a](https://github.com/WTW-IM/es-components/commit/040d82abb1f7199388482a0ff2a7bb2c9e9032f6))
+
+
+
+
+
 # [21.7.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.1...v21.7.0-pre-prod.2) (2023-01-11)
 
 

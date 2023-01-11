@@ -1,7 +1,11 @@
 name: Cypress CI
 on:
   pull_request_target:
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - main
+      - pre-prod
   workflow_dispatch:
 env:
   ES_COMPONENTS_DIR: packages/es-components

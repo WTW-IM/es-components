@@ -15,6 +15,8 @@
     "prepublishOnly": "npm run build",
     "rollup": "rollup -c rollup.config.js",
     "styleguide-build": "npm run mkdocsdir && styleguidist build && rollup -c docs-rollup.config.js",
+    "pre-prod-sg-build": "styleguidist build --config ./pre-prod-styleguide.config.js && npm run pre-prod-fc-icons",
+    "pre-prod-fc-icons": "cp docs/full-color-icons.html docs/pre-prod && cp docs/full-color-icons.js docs/pre-prod",
     "start": "concurrently --kill-others \"npm run mkdocsdir && rollup -c docs-rollup.config.js -w\" \"styleguidist server\"",
     "test": "npm run reinstall-via-theme && jest",
     "reinstall-via-theme": "npm uninstall es-components-via-theme && npm install ../es-components-via-theme",

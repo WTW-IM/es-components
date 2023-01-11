@@ -86,7 +86,11 @@ jobs:
       - name: Lerna Publish Latest
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-graduate --yes
+          npx lerna publish \
+            --conventional-commits \
+            --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
+            --conventional-graduate \
+            --yes
 
   npm_prerelease:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -131,7 +135,7 @@ jobs:
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
 
   docs:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' || github.ref == '/refs/heads/pre-prod' }}
     needs: npm
     name: Publish Docs to GH Pages
     runs-on: ubuntu-latest
@@ -163,11 +167,17 @@ jobs:
         run: |
           npm run styleguide-build
 
+      - name: Rebuild Pre-Prod Docs
+        working-directory: packages/es-components
+        run: |
+          git checkout origin/pre-prod ../../packages
+          npm run pre-prod-fg-build
+
       - name: Publish docs to github pages
         run: |
           git checkout gh-pages
           rm -rf build/
           mv ./packages/es-components/docs/* .
-          git add index.html full-color-icons.html full-color-icons.js build
+          git add index.html full-color-icons.html full-color-icons.js build pre-prod
           git commit -m "Deploy es-component docs to gh-pages"
           git push origin gh-pages

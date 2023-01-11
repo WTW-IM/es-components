@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - pre-prod
 jobs:
   test:
     name: Test with Node v${{matrix.node}}

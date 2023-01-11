@@ -67,3 +67,45 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
+  docs:
+    if: ${{ github.ref == 'refs/heads/pre-prod' }}
+    needs: npm
+    name: Publish Docs to GH Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PIPELINE_BOT_PAT }}
+          ref: pre-prod
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Install Dependencies
+        run: |
+          npm ci
+
+      - name: Set Commitbot Identity
+        run: |
+          git config user.name "ES-Components Lerna Publish Bot"
+          git config user.email "es-components-bot@wtw.org"
+
+      - name: Rebuild Pre-Prod Docs
+        working-directory: packages/es-components
+        run: |
+          npm run pre-prod-fg-build
+
+      - name: Publish docs to github pages
+        run: |
+          git checkout gh-pages
+          rm -rf build/
+          mkdir -p pre-prod
+          mv ./packages/es-components/docs/pre-prod/* ./pre-prod
+          git add pre-prod
+          git commit -m "Deploy es-component pre-prod docs to gh-pages"
+          git push origin gh-pages

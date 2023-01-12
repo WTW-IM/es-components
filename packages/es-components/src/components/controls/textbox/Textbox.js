@@ -1,4 +1,9 @@
-import React from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useRef,
+  useImperativeHandle
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -32,35 +37,21 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
     ...additionalTextProps
   } = props;
   const theme = useTheme();
-  const validationState = React.useContext(ValidationContext);
+  const validationState = useContext(ValidationContext);
+  const validationStyles = theme.validationInputColor[validationState];
 
-  const inputRef = React.useRef();
-  React.useImperativeHandle(ref, () => inputRef.current);
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => inputRef.current);
 
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
-  const hasValidationState = validationState !== 'default';
 
-  const addOnTextColor = hasValidationState
-    ? theme.colors.white
-    : theme.colors.gray8;
-  const addOnBgColor = hasValidationState
-    ? theme.validationTextColor[validationState]
-    : theme.colors.gray3;
-
-  function focusInput() {
-    inputRef.current.focus();
-  }
+  const focusInput = useCallback(() => inputRef.current?.focus(), []);
 
   return (
     <InputWrapper>
       {hasPrepend && (
-        <Prepend
-          addOnTextColor={addOnTextColor}
-          addOnBgColor={addOnBgColor}
-          aria-hidden="true"
-          onClick={focusInput}
-        >
+        <Prepend aria-hidden="true" onClick={focusInput} {...validationStyles}>
           <Icon aria-hidden="true" name={prependIconName} size={18} />
         </Prepend>
       )}
@@ -71,15 +62,10 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         type={type}
         flat={flat}
         {...additionalTextProps}
-        {...theme.validationInputColor[validationState]}
+        {...validationStyles}
       />
       {hasAppend && (
-        <Append
-          addOnTextColor={addOnTextColor}
-          addOnBgColor={addOnBgColor}
-          aria-hidden="true"
-          onClick={focusInput}
-        >
+        <Append aria-hidden="true" onClick={focusInput} {...validationStyles}>
           <Icon aria-hidden="true" name={appendIconName} size={18} />
         </Append>
       )}

@@ -1,32 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import getStyledProp from '../../util/getStyledProp';
 
-const getThemeProp = propPath => {
-  return ({ theme }) => {
-    const props = propPath.split('.');
-    let target = theme;
-    while (props.length) {
-      target = target[props.shift()];
-    }
-    return target;
-  };
-};
-
-export default styled.input`
+export const validationStateInputStyles = css`
   background-color: ${props => props.backgroundColor};
   border: 1px solid ${props => props.borderColor};
-  border-radius: 2px;
-  box-sizing: border-box;
-  color: ${getThemeProp('colors.black')};
-  font-size: ${getThemeProp('font.baseFontSize')};
-  font-face: ${getThemeProp('font.baseFontFace')};
-  font-weight: normal;
-  height: 39px;
-  line-height: ${getThemeProp('font.baseLineHeight')};
-  min-width: 0;
-  padding: 6px 12px;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  width: 100%;
-
   ${props =>
     !props.flat
       ? `box-shadow: ${props => props.boxShadow}`
@@ -37,14 +14,31 @@ export default styled.input`
     box-shadow: ${props => props.focusBoxShadow};
     outline: 0;
   }
+`;
 
-  &:disabled {
-    background-color: ${getThemeProp('colors.gray2')};
+export default styled.input`
+  ${validationStateInputStyles}
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: ${getStyledProp('colors.black')};
+  font-size: ${getStyledProp('font.baseFontSize')};
+  font-face: ${getStyledProp('font.baseFontFace')};
+  font-weight: normal;
+  height: 2.2em;
+  line-height: ${getStyledProp('font.baseLineHeight')};
+  min-width: 0;
+  padding: 6px 12px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  width: 100%;
+
+  &:disabled,
+  &:disabled:read-only {
+    background-color: ${getStyledProp('colors.gray2')};
     cursor: not-allowed;
   }
 
   &:read-only {
-    background-color: ${getThemeProp('colors.gray2')};
+    background-color: ${getStyledProp('colors.gray2')};
     cursor: text;
   }
 `;

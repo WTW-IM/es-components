@@ -1,25 +1,26 @@
 import styled from 'styled-components';
+import { validationStateInputStyles } from './InputBase';
+import getStyledProp from '../../util/getStyledProp';
 
 const defaultBorderRadius = '2px';
 
 const AddOn = styled.div`
-  background-color: ${props => props.addOnBgColor};
-  border: 1px solid
-    ${props =>
-      props.addOnBgColor === props.theme.colors.gray3
-        ? props.theme.colors.gray5
-        : props.addOnBgColor};
+  ${validationStateInputStyles}
+  background-color: ${getStyledProp('backgroundColor', 'addOn')};
+  border: 1px solid ${getStyledProp('borderColor', 'addOn')};
+
+  // todo fix border-radius
   border-radius: ${defaultBorderRadius};
+
   box-sizing: border-box;
-  color: ${props => props.addOnTextColor};
+  color: ${getStyledProp('textColor', 'addOn')};
   display: flex;
   flex-direction: column;
-  height: 39px;
   justify-content: center;
   line-height: 1;
   margin: 0;
   outline: 0;
-  padding: 6px 11px;
+  padding: 0.333em 0.6111em;
 `;
 
 const Prepend = styled(AddOn)`
@@ -36,6 +37,8 @@ const Append = styled(AddOn)`
 
 const InputWrapper = styled.div`
   display: flex;
+  font-size: ${getStyledProp('font.baseFontSize')};
+  height: 2.2em;
 `;
 
 export { Prepend, Append, InputWrapper };

@@ -28,6 +28,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
     prependIconName,
     appendIconName,
     type,
+    flat,
     ...additionalTextProps
   } = props;
   const theme = useTheme();
@@ -68,6 +69,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         hasPrepend={hasPrepend}
         ref={inputRef}
         type={type}
+        flat={flat}
         {...additionalTextProps}
         {...theme.validationInputColor[validationState]}
       />
@@ -91,7 +93,9 @@ Textbox.propTypes = {
   /** Content to append to input box */
   appendIconName: PropTypes.string,
   /** The type attribute for the textboxa */
-  type: PropTypes.string
+  type: PropTypes.string,
+  /** Whether the textbox is the flat style or not */
+  flat: PropTypes.bool
 };
 
 Textbox.defaultProps = {

@@ -1,20 +1,36 @@
 import styled from 'styled-components';
 
+const getThemeProp = propPath => {
+  return ({ theme }) => {
+    const props = propPath.split('.');
+    let target = theme;
+    while (props.length) {
+      target = target[props.shift()];
+    }
+    return target;
+  };
+};
+
 export default styled.input`
+  background-color: ${props => props.backgroundColor};
   border: 1px solid ${props => props.borderColor};
   border-radius: 2px;
-  box-shadow: ${props => props.boxShadow};
   box-sizing: border-box;
-  color: ${props => props.theme.colors.black};
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-face: ${props => props.theme.font.baseFontFace};
+  color: ${getThemeProp('colors.black')};
+  font-size: ${getThemeProp('font.baseFontSize')};
+  font-face: ${getThemeProp('font.baseFontFace')};
   font-weight: normal;
   height: 39px;
-  line-height: ${props => props.theme.font.baseLineHeight};
+  line-height: ${getThemeProp('font.baseLineHeight')};
   min-width: 0;
   padding: 6px 12px;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   width: 100%;
+
+  ${props =>
+    !props.flat
+      ? `box-shadow: ${props => props.boxShadow}`
+      : `border-bottom: 2px solid ${props => props.borderColor};`}
 
   &:focus {
     border-color: ${props => props.focusBorderColor};
@@ -23,12 +39,12 @@ export default styled.input`
   }
 
   &:disabled {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${getThemeProp('colors.gray2')};
     cursor: not-allowed;
   }
 
   &:read-only {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${getThemeProp('colors.gray2')};
     cursor: text;
   }
 `;

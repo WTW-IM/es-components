@@ -38,7 +38,10 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
   } = props;
   const theme = useTheme();
   const validationState = useContext(ValidationContext);
-  const validationStyles = theme.validationInputColor[validationState];
+  const validationProps = {
+    ...theme.validationInputColor[validationState],
+    flat
+  };
 
   const inputRef = useRef();
   useImperativeHandle(ref, () => inputRef.current);
@@ -51,7 +54,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
   return (
     <InputWrapper>
       {hasPrepend && (
-        <Prepend aria-hidden="true" onClick={focusInput} {...validationStyles}>
+        <Prepend aria-hidden="true" onClick={focusInput} {...validationProps}>
           <Icon aria-hidden="true" name={prependIconName} size={18} />
         </Prepend>
       )}
@@ -60,12 +63,11 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         hasPrepend={hasPrepend}
         ref={inputRef}
         type={type}
-        flat={flat}
         {...additionalTextProps}
-        {...validationStyles}
+        {...validationProps}
       />
       {hasAppend && (
-        <Append aria-hidden="true" onClick={focusInput} {...validationStyles}>
+        <Append aria-hidden="true" onClick={focusInput} {...validationProps}>
           <Icon aria-hidden="true" name={appendIconName} size={18} />
         </Append>
       )}

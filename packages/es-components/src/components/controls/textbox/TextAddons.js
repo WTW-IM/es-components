@@ -7,7 +7,7 @@ const defaultBorderRadius = '2px';
 const AddOn = styled.div`
   ${validationStateInputStyles}
   background-color: ${getStyledProp('backgroundColor', 'addOn')};
-  border: 1px solid ${getStyledProp('borderColor', 'addOn')};
+  border-color: ${getStyledProp('borderColor', 'addOn')};
 
   // todo fix border-radius
   border-radius: ${defaultBorderRadius};

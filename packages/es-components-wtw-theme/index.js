@@ -460,10 +460,12 @@ const theme = {
   validationInputColor: {
     success: {
       backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: success,
       boxShadow: "inset 0 0 5px " + success,
       focusBorderColor: success,
       focusBoxShadow: "0 0 6px " + success,
+      focusBoxShadowFlat: "0 0 1px 2px" + success,
       addOn: {
         textColor: white,
         backgroundColor: success,
@@ -472,10 +474,12 @@ const theme = {
     },
     warning: {
       backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: warning,
       boxShadow: "inset 0 0 5px " + warning,
       focusBorderColor: warning,
       focusBoxShadow: "0 0 6px " + warning,
+      focusBoxShadowFlat: "0 0 1px 2px" + warning,
       addOn: {
         textColor: white,
         backgroundColor: warning,
@@ -484,10 +488,12 @@ const theme = {
     },
     danger: {
       backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: danger,
       boxShadow: "inset 0 0 5px " + danger,
       focusBorderColor: danger,
       focusBoxShadow: "0 0 6px " + danger,
+      focusBoxShadowFlat: "0 0 1px 2px" + danger,
       addOn: {
         textColor: white,
         backgroundColor: danger,
@@ -496,10 +502,12 @@ const theme = {
     },
     default: {
       backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: gray4,
       boxShadow: "inset 0 1px 1px " + boxShadowLight,
       focusBorderColor: inputFocus,
       focusBoxShadow: "0 0 8px rgba(102, 175, 233, 0.6)",
+      focusBoxShadowFlat: "0 0 1px 2px rgba(102, 175, 233, 0.6)",
       addOn: {
         textColor: gray8,
         backgroundColor: gray3,

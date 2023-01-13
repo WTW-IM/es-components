@@ -14,6 +14,16 @@ import Label from '../label/Label';
     <Label htmlFor="inline">Inline</Label>
     <Textbox id="inline" />
   </Control>
+
+  <Control>
+    <Label htmlFor="stacked">Stacked Flat-Style</Label>
+    <Textbox id="stacked" flat className="custom-class" />
+  </Control>
+
+  <Control orientation="inline">
+    <Label htmlFor="inline">Inline Flat-Style</Label>
+    <Textbox id="inline" flat />
+  </Control>
 </>
 ```
 

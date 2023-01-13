@@ -2,16 +2,24 @@ import styled, { css } from 'styled-components';
 import getStyledProp from '../../util/getStyledProp';
 
 export const validationStateInputStyles = css`
-  background-color: ${props => props.backgroundColor};
   border: 1px solid ${props => props.borderColor};
+  box-shadow: 0 0 0 0 ${getStyledProp('colors.white')}
+    ${({ flat, boxShadow }) => !flat && `,${boxShadow}`};
   ${props =>
-    !props.flat
-      ? `box-shadow: ${props => props.boxShadow}`
-      : `border-bottom: 2px solid ${props => props.borderColor};`}
+    props.flat
+      ? css`
+          background-color: ${props => props.backgroundColorFlat};
+          border-width: 0;
+          border-bottom-width: 2px;
+        `
+      : css`
+          background-color: ${props => props.backgroundColor};
+        `}
 
-  &:focus {
+  &&:focus {
     border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props => props.focusBoxShadow};
+    box-shadow: ${props =>
+      props.flat ? props.focusBoxShadowFlat : props.focusBoxShadow};
     outline: 0;
   }
 `;
@@ -28,8 +36,14 @@ export default styled.input`
   line-height: ${getStyledProp('font.baseLineHeight')};
   min-width: 0;
   padding: 6px 12px;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color linear 0.15s, box-shadow linear 0.15s;
   width: 100%;
+
+  &:before {
+    content: 'hola';
+    background-color: red;
+    display: block;
+  }
 
   &:disabled,
   &:disabled:read-only {

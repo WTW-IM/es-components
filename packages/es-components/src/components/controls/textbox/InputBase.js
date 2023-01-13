@@ -1,14 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import ValidationContext from '../ValidationContext';
+import { FormContext } from '../../containers/form/Form';
 import getStyledProp from '../../util/getStyledProp';
 import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
+import isBool from '../../util/isBool';
 
 export const validationStateInputStyles = css`
   border: 1px solid ${props => props.borderColor};
-  box-shadow: 0 0 0 0 ${getStyledProp('colors.white')}
-    ${({ flat, boxShadow }) => !flat && `,${boxShadow}`};
+  box-shadow: 0 0 0 0 ${props => props.borderColor};
+  ${({ flat, boxShadow }) => !flat && `,${boxShadow}`};
   background-color: ${props => props.backgroundColor};
   ${props =>
     props.flat &&
@@ -54,25 +56,41 @@ export default styled.input`
   }
 `;
 
+function getValidationStylesOrDefault(theme, validationState) {
+  return (
+    theme.validationInputColor[validationState] || {
+      backgroundColor: theme.colors.white,
+      backgroundColorFlat: theme.colors.gray2
+    }
+  );
+}
+
 export function useValidationStyleProps(props) {
   const validationState = useContext(ValidationContext);
+  const fieldsetContext = useContext(FormContext);
+  const flat = isBool(props.flat) ? props.flat : fieldsetContext.flat;
   const theme = useTheme();
   const [validationStyleProps, setValidationStyleProps] = useState(
-    theme.validationInputColor[validationState]
+    getValidationStylesOrDefault(theme, validationState)
   );
   useEffect(() => {
-    setValidationStyleProps(theme.validationInputColor[validationState]);
-  }, [validationState, theme.validationInputColor]);
+    setValidationStyleProps(
+      getValidationStylesOrDefault(theme, validationState)
+    );
+  }, [validationState, theme]);
 
-  const backgroundColor = props.flat
+  const backgroundColor = flat
     ? validationStyleProps.backgroundColorFlat
     : validationStyleProps.backgroundColor;
   const disabledBackgroundColor = darken(backgroundColor, 7);
+  const calculatedProps = { disabledBackgroundColor, backgroundColor };
+  const finalProps = { flat };
 
   const validationProps = {
     ...validationStyleProps,
-    ...{ backgroundColor, disabledBackgroundColor },
-    ...props
+    ...calculatedProps,
+    ...props,
+    ...finalProps
   };
 
   return validationProps;

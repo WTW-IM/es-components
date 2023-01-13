@@ -83,7 +83,8 @@ Textbox.propTypes = {
 Textbox.defaultProps = {
   prependIconName: undefined,
   appendIconName: undefined,
-  type: 'text'
+  type: 'text',
+  flat: undefined
 };
 
 export default Textbox;

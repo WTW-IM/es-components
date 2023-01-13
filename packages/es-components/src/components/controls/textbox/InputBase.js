@@ -27,7 +27,7 @@ export const validationStateInputStyles = css`
 
 export default styled.input`
   ${validationStateInputStyles}
-  border-radius: 2px;
+  border-radius: ${getStyledProp('inputStyles.borderRadius')};
   box-sizing: border-box;
   color: ${getStyledProp('colors.black')};
   font-size: ${getStyledProp('font.baseFontSize')};

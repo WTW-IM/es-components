@@ -2,15 +2,13 @@ import styled from 'styled-components';
 import { validationStateInputStyles } from './InputBase';
 import getStyledProp from '../../util/getStyledProp';
 
-const defaultBorderRadius = '2px';
-
 const AddOn = styled.div`
   ${validationStateInputStyles}
   background-color: ${getStyledProp('backgroundColor', 'addOn')};
   border-color: ${getStyledProp('borderColor', 'addOn')};
 
   // todo fix border-radius
-  border-radius: ${defaultBorderRadius};
+  border-radius: ${getStyledProp('inputStyles.borderRadius')};
 
   box-sizing: border-box;
   color: ${getStyledProp('textColor', 'addOn')};

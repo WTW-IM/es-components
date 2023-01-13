@@ -445,6 +445,9 @@ const theme = {
       },
     },
   },
+  inputStyles: {
+    borderRadius: "2px",
+  },
   validationIconName: {
     success: "ok-circle",
     info: "info-circle",

@@ -17,17 +17,6 @@ const FlexControl = styled.div`
     margin-bottom: 0;
   }
 
-  select {
-    border-color: ${props => props.borderColor};
-    box-shadow: ${props => props.boxShadow};
-  }
-
-  input:focus,
-  select:focus {
-    border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props => props.focusBoxShadow};
-  }
-
   ${props =>
     props.hasValidationBorder &&
     props.validationState !== 'default' &&

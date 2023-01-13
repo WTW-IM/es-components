@@ -1,17 +1,10 @@
-import React, {
-  useContext,
-  useCallback,
-  useRef,
-  useImperativeHandle
-} from 'react';
+import React, { useCallback, useRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Icon from '../../base/icons/Icon';
-import InputBase from './InputBase';
+import InputBase, { useValidationStyleProps } from './InputBase';
 import { Prepend, Append, InputWrapper } from './TextAddons';
-import { useTheme } from '../../util/useTheme';
-import ValidationContext from '../ValidationContext';
 
 const defaultBorderRadius = '2px';
 
@@ -26,6 +19,12 @@ const TextboxBase = styled(InputBase)`
     props.hasAppend ? '0' : defaultBorderRadius};
   display: table-cell;
   -webkit-appearance: none;
+
+  &:read-only {
+    background-color: ${({ disabledBackgroundColor }) =>
+      disabledBackgroundColor};
+    cursor: text;
+  }
 `;
 
 const Textbox = React.forwardRef(function Textbox(props, ref) {
@@ -36,12 +35,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
     flat,
     ...additionalTextProps
   } = props;
-  const theme = useTheme();
-  const validationState = useContext(ValidationContext);
-  const validationProps = {
-    ...theme.validationInputColor[validationState],
-    flat
-  };
+  const validationProps = useValidationStyleProps({ flat });
 
   const inputRef = useRef();
   useImperativeHandle(ref, () => inputRef.current);

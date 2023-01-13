@@ -1,20 +1,21 @@
+import { useContext, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import ValidationContext from '../ValidationContext';
 import getStyledProp from '../../util/getStyledProp';
+import { useTheme } from '../../util/useTheme';
+import { darken } from '../../util/colors';
 
 export const validationStateInputStyles = css`
   border: 1px solid ${props => props.borderColor};
   box-shadow: 0 0 0 0 ${getStyledProp('colors.white')}
     ${({ flat, boxShadow }) => !flat && `,${boxShadow}`};
+  background-color: ${props => props.backgroundColor};
   ${props =>
-    props.flat
-      ? css`
-          background-color: ${props => props.backgroundColorFlat};
-          border-width: 0;
-          border-bottom-width: 2px;
-        `
-      : css`
-          background-color: ${props => props.backgroundColor};
-        `}
+    props.flat &&
+    css`
+      border-width: 0;
+      border-bottom-width: 2px;
+    `}
 
   &&:focus {
     border-color: ${props => props.focusBorderColor};
@@ -47,12 +48,32 @@ export default styled.input`
 
   &:disabled,
   &:disabled:read-only {
-    background-color: ${getStyledProp('colors.gray2')};
+    background-color: ${({ disabledBackgroundColor }) =>
+      disabledBackgroundColor};
     cursor: not-allowed;
   }
-
-  &:read-only {
-    background-color: ${getStyledProp('colors.gray2')};
-    cursor: text;
-  }
 `;
+
+export function useValidationStyleProps(props) {
+  const validationState = useContext(ValidationContext);
+  const theme = useTheme();
+  const [validationStyleProps, setValidationStyleProps] = useState(
+    theme.validationInputColor[validationState]
+  );
+  useEffect(() => {
+    setValidationStyleProps(theme.validationInputColor[validationState]);
+  }, [validationState, theme.validationInputColor]);
+
+  const backgroundColor = props.flat
+    ? validationStyleProps.backgroundColorFlat
+    : validationStyleProps.backgroundColor;
+  const disabledBackgroundColor = darken(backgroundColor, 7);
+
+  const validationProps = {
+    ...validationStyleProps,
+    ...{ backgroundColor, disabledBackgroundColor },
+    ...props
+  };
+
+  return validationProps;
+}

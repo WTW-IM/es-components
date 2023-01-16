@@ -7,29 +7,44 @@ import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
 import isBool from '../../util/isBool';
 
+export const noInset = 'inset 0 0 0 0 rgba(0, 0, 0, 0)';
+
+export const validationStateHighlightStyles = css`
+  border-color: ${props => props.focusBorderColor};
+  box-shadow: ${props =>
+      props.flat ? props.focusBoxShadowFlat : props.focusBoxShadow},
+    ${noInset};
+`;
+
 export const validationStateInputStyles = css`
   border: 1px solid ${props => props.borderColor};
-  box-shadow: 0 0 0 0 ${props => props.borderColor};
-  ${({ flat, boxShadow }) => !flat && `,${boxShadow}`};
-  background-color: ${props => props.backgroundColor};
   ${props =>
     props.flat &&
     css`
       border-width: 0;
       border-bottom-width: 2px;
     `}
-
-  &&:focus {
-    border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props =>
-      props.flat ? props.focusBoxShadowFlat : props.focusBoxShadow};
-    outline: 0;
-  }
 `;
 
-export default styled.input`
+export const validationStateReadonlyStyles = css`
+  background-color: ${({ disabledBackgroundColor }) => disabledBackgroundColor};
+  cursor: text;
+`;
+
+export const validationStateSetupStyles = css`
+  background-color: ${props => props.backgroundColor};
+  box-shadow: 0 0 0 0 ${props => props.borderColor},
+    ${({ flat, boxShadow }) => (flat ? noInset : boxShadow)};
+  transition: border-color linear 0.15s, box-shadow linear 0.15s;
+`;
+
+export const placeholderStyles = css`
+  color: ${({ theme }) => theme.colors.gray7};
+`;
+
+const InputBase = styled.input`
   ${validationStateInputStyles}
-  border-radius: ${getStyledProp('inputStyles.borderRadius')};
+  ${validationStateSetupStyles}
   box-sizing: border-box;
   color: ${getStyledProp('colors.black')};
   font-size: ${getStyledProp('font.baseFontSize')};
@@ -39,20 +54,41 @@ export default styled.input`
   line-height: ${getStyledProp('font.baseLineHeight')};
   min-width: 0;
   padding: 6px 12px;
-  transition: border-color linear 0.15s, box-shadow linear 0.15s;
   width: 100%;
 
-  &:before {
-    content: 'hola';
-    background-color: red;
-    display: block;
+  && {
+    outline: 0;
+  }
+
+  &::placeholder {
+    ${placeholderStyles}
   }
 
   &:disabled,
   &:disabled:read-only {
-    background-color: ${({ disabledBackgroundColor }) =>
-      disabledBackgroundColor};
+    ${validationStateReadonlyStyles}
     cursor: not-allowed;
+  }
+`;
+export default InputBase;
+
+export const basicTextboxStyles = css`
+  ${validationStateSetupStyles}
+
+  display: table-cell;
+  -webkit-appearance: none;
+
+  &&:read-only {
+    ${validationStateReadonlyStyles}
+  }
+`;
+
+export const BasicTextbox = styled(InputBase)`
+  ${basicTextboxStyles}
+  ${validationStateInputStyles}
+  border-radius: ${getStyledProp('inputStyles.borderRadius')};
+  &&:focus {
+    ${validationStateHighlightStyles}
   }
 `;
 
@@ -67,8 +103,8 @@ function getValidationStylesOrDefault(theme, validationState) {
 
 export function useValidationStyleProps(props) {
   const validationState = useContext(ValidationContext);
-  const fieldsetContext = useContext(FormContext);
-  const flat = isBool(props.flat) ? props.flat : fieldsetContext.flat;
+  const formContext = useContext(FormContext);
+  const flat = isBool(props.flat) ? props.flat : formContext.flat;
   const theme = useTheme();
   const [validationStyleProps, setValidationStyleProps] = useState(
     getValidationStylesOrDefault(theme, validationState)

@@ -507,7 +507,6 @@ const theme = {
       addOn: {
         textColor: white,
         backgroundColor: success,
-        borderColor: success,
       },
     },
     warning: {
@@ -521,7 +520,6 @@ const theme = {
       addOn: {
         textColor: white,
         backgroundColor: warning,
-        borderColor: warning,
       },
     },
     danger: {
@@ -535,7 +533,6 @@ const theme = {
       addOn: {
         textColor: white,
         backgroundColor: danger,
-        borderColor: danger,
       },
     },
     default: {
@@ -549,7 +546,6 @@ const theme = {
       addOn: {
         textColor: gray8,
         backgroundColor: gray3,
-        borderColor: gray5,
       },
     },
   },

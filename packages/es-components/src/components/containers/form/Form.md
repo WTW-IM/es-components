@@ -13,17 +13,17 @@ import Dropdown from '../../controls/dropdown/Dropdown';
   <Fieldset>
     <Control>
       <Label htmlFor="first-name-1">First name</Label>
-      <Textbox id="first-name-1" />
+      <Textbox prependIconName="male-user" id="first-name-1" />
     </Control>
 
     <Control>
       <Label htmlFor="middle-initial-1">Middle initial</Label>
-      <Textbox id="middle-initial-1" />
+      <Textbox prependIconName="male-user" id="middle-initial-1" />
     </Control>
 
     <Control>
       <Label htmlFor="last-name-1">Last name</Label>
-      <Textbox id="last-name-1" />
+      <Textbox prependIconName="male-user" id="last-name-1" />
     </Control>
     <Control>
       <Label htmlFor="dropdown-1">Select an operating system</Label>
@@ -54,17 +54,17 @@ import Dropdown from '../../controls/dropdown/Dropdown';
   <Fieldset>
     <Control>
       <Label htmlFor="first-name-1">First name</Label>
-      <Textbox id="first-name-1" />
+      <Textbox prependIconName="male-user" id="first-name-1" />
     </Control>
 
     <Control>
       <Label htmlFor="middle-initial-1">Middle initial</Label>
-      <Textbox id="middle-initial-1" />
+      <Textbox prependIconName="male-user" id="middle-initial-1" />
     </Control>
 
     <Control>
       <Label htmlFor="last-name-1">Last name</Label>
-      <Textbox id="last-name-1" />
+      <Textbox prependIconName="male-user" id="last-name-1" />
     </Control>
     <Control>
       <Label htmlFor="dropdown-1">Select an operating system</Label>

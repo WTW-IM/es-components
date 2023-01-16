@@ -26,11 +26,9 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFiles": [
-      "./config/jest-shims.js"
-    ],
     "setupFilesAfterEnv": [
-      "<rootDir>/config/import-matchers.js"
+      "<rootDir>/config/import-matchers.js",
+      "./config/jest-shims.js"
     ],
     "testPathIgnorePatterns": [
       "es6",

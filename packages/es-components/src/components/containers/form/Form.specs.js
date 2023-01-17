@@ -3,17 +3,17 @@ import viaTheme from 'es-components-via-theme';
 import { ThemeProvider } from 'styled-components';
 import { renderWithTheme } from '../../util/test-utils';
 import { screen } from '@testing-library/react';
-import Form, { FormContext } from './Form';
+import Form, { FormContextProvider } from './Form';
 import Textbox from '../../controls/textbox/Textbox';
 
 // eslint-disable-next-line react/prop-types
 const TestForm = ({ originalTheme, originalContext, formProps }) => (
   <ThemeProvider theme={originalTheme}>
-    <FormContext.Provider value={originalContext}>
+    <FormContextProvider value={originalContext}>
       <Form {...formProps}>
         <Textbox name="test" />
       </Form>
-    </FormContext.Provider>
+    </FormContextProvider>
   </ThemeProvider>
 );
 

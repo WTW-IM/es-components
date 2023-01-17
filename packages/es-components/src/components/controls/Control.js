@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
 import OrientationContext from './OrientationContext';
-import { FormContext } from '../containers/form/Form';
+import { FormContextProvider } from '../containers/form/Form';
 import isBool from '../util/isBool';
 
 const FlexControl = styled.div`
@@ -48,17 +48,16 @@ function Control(props) {
     orientation,
     borderOffset,
     children,
-    flat: flatProp,
+    flat,
     ...other
   } = props;
   const theme = useTheme();
-  const formContext = React.useContext(FormContext);
-  const flat = isBool(flatProp) ? flatProp : formContext.flat;
+  const extraFormContext = isBool(flat) ? { flat } : {};
   const textColor = theme.validationTextColor[validationState];
 
   return (
     <OrientationContext.Provider value={orientation}>
-      <FormContext.Provider value={{ flat }}>
+      <FormContextProvider value={extraFormContext}>
         <FlexControl
           textColor={textColor}
           borderOffset={borderOffset}
@@ -72,7 +71,7 @@ function Control(props) {
             {children}
           </ValidationContext.Provider>
         </FlexControl>
-      </FormContext.Provider>
+      </FormContextProvider>
     </OrientationContext.Provider>
   );
 }

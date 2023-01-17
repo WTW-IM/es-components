@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-import { FormContext } from '../form/Form';
+import { FormContextProvider } from '../form/Form';
 import OrientationContext from '../../controls/OrientationContext';
 import useUniqueId from '../../util/useUniqueId';
 import isBool from '../../util/isBool';
@@ -42,22 +42,19 @@ function Fieldset(props) {
     legendContent,
     children,
     orientation: orientationProp,
-    flat: flatProp,
+    flat,
     ...other
   } = props;
   const legendId = useUniqueId();
   const orientation = useContext(OrientationContext);
-  const fieldContext = useContext(FormContext);
-  const finalFieldContext = {
-    flat: isBool(flatProp) ? flatProp : fieldContext.flat
-  };
+  const extraFormContext = isBool(flat) ? { flat } : {};
   const finalOrientation = isBool(orientationProp)
     ? orientationProp
     : orientation;
 
   return (
     <OrientationContext.Provider value={finalOrientation}>
-      <FormContext.Provider value={finalFieldContext}>
+      <FormContextProvider value={extraFormContext}>
         <FieldsetBase
           role="group"
           aria-labelledby={legendId}
@@ -67,7 +64,7 @@ function Fieldset(props) {
           {legendContent && <Legend id={legendId}>{legendContent}</Legend>}
           {children}
         </FieldsetBase>
-      </FormContext.Provider>
+      </FormContextProvider>
     </OrientationContext.Provider>
   );
 }

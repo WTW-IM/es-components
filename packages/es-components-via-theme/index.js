@@ -481,6 +481,7 @@ const theme = {
   },
   inputStyles: {
     borderRadius: "2px",
+    defaultFormStyle: "default",
   },
   validationIconName: {
     success: "ok-circle",

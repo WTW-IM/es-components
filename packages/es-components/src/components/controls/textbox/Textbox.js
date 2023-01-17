@@ -162,10 +162,14 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
         appendIcon
       }}
     >
-      <Hidden>
-        <Icon ref={setPrependIcon} name={prependIconName} size={18} />
-        <Icon ref={setAppendIcon} name={appendIconName} size={18} />
-      </Hidden>
+      {hasPrepend || hasAppend ? (
+        <Hidden>
+          <Icon ref={setPrependIcon} name={prependIconName} size={18} />
+          <Icon ref={setAppendIcon} name={appendIconName} size={18} />
+        </Hidden>
+      ) : (
+        <></>
+      )}
       <TextboxBase
         ref={inputRef}
         type={type}

@@ -18,10 +18,6 @@ import InputBase, {
   basicTextboxStyles
 } from './InputBase';
 
-const noop = () => {
-  // noop
-};
-
 const computeStyle = (...args) => {
   try {
     return window.getComputedStyle(...args);
@@ -66,7 +62,9 @@ const InputWrapper = styled.div`
   display: flex;
   border-radius: ${getStyledProp('inputStyles.borderRadius')};
 
-  &.focused {
+  padding: 0 !important;
+
+  &:focus-within {
     ${validationStateHighlightStyles}
   }
 
@@ -90,7 +88,10 @@ const InputWrapper = styled.div`
 
 export const TextboxBase = styled(InputBase)`
   ${basicTextboxStyles}
-  border: none;
+  && {
+    border: none !important;
+    margin: 0 !important;
+  }
 
   ${({ hasPrepend }) =>
     hasPrepend &&
@@ -132,9 +133,9 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
     appendIconName,
     type,
     flat,
+    className,
     ...additionalTextProps
   } = props;
-  const [focused, setFocused] = useState(false);
   const validationProps = useValidationStyleProps({ flat });
 
   const inputRef = useRef();
@@ -149,18 +150,10 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
   const sharedProps = { ...validationProps, ...prependProps };
 
   const focusInput = useCallback(() => inputRef.current?.focus(), []);
-  const handleFocus = useCallback(
-    ev => ((props.onFocus || noop)(ev), setFocused(true)),
-    [props.onFocus]
-  );
-  const handleBlur = useCallback(
-    ev => ((props.onBlur || noop)(ev), setFocused(false)),
-    [props.onBlur]
-  );
 
   return (
     <InputWrapper
-      className={focused ? 'focused' : ''}
+      className={className}
       as="div"
       onClick={focusInput}
       {...{
@@ -176,10 +169,9 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
       <TextboxBase
         ref={inputRef}
         type={type}
+        className={className}
         {...additionalTextProps}
         {...sharedProps}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
       />
     </InputWrapper>
   );
@@ -195,7 +187,8 @@ Textbox.propTypes = {
   /** Whether the textbox is the flat style or not */
   flat: PropTypes.bool,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  className: PropTypes.string
 };
 
 Textbox.defaultProps = {
@@ -204,7 +197,8 @@ Textbox.defaultProps = {
   type: 'text',
   flat: undefined,
   onFocus: undefined,
-  onBlur: undefined
+  onBlur: undefined,
+  className: undefined
 };
 
 export default Textbox;

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.3...v21.7.0-pre-prod.4) (2023-01-18)
+
+
+### Build
+
+* ensuring styleguide is fully built for pre-prod path ([b8e6a6b](https://github.com/WTW-IM/es-components/commit/b8e6a6b8c28a582eed7afd4396a63fb32ace0f99))
+* fixing typo in pre-prod docs release ([ae027d9](https://github.com/WTW-IM/es-components/commit/ae027d97843e5e5cef11d7b22f34d2fa2978a6ec))
+* moving pre-prod docs publish to pre-prod release ([87efccf](https://github.com/WTW-IM/es-components/commit/87efccfd6eb202efb38f7126bdd83cbf1897f824))
+
+### Update
+
+* add cross-env ([c0113e1](https://github.com/WTW-IM/es-components/commit/c0113e1b0aada98477972fe1e0965b5a38f2fa60))
+* based on pre-prod now ([3374824](https://github.com/WTW-IM/es-components/commit/3374824fced8b13507e1c0af0eb0a5cbc8609477))
+* fix popover ([142c237](https://github.com/WTW-IM/es-components/commit/142c237d4cba16ebb23ab2da1232cad64180ffbb))
+
+
+
+
+
 # [21.7.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.2...v21.7.0-pre-prod.3) (2023-01-11)
 
 

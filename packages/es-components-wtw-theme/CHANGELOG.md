@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.3...v21.7.0-pre-prod.4) (2023-01-18)
+
+
+### Update
+
+* add cross-env ([c0113e1](https://github.com/WTW-IM/es-components/commit/c0113e1b0aada98477972fe1e0965b5a38f2fa60))
+
+
+
+
+
 # [21.7.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.7.0-pre-prod.0) (2022-12-13)
 
 

@@ -8,15 +8,15 @@ import Button from '../../controls/buttons/Button';
 import Popup from './Popup';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
 
-const reactVersionString = React.version.match(/\d+/)?.[0] || '0';
-const REACT_MAJOR_VERSION = parseInt(reactVersionString, 10);
-
 const Container = styled.div`
   display: inline-block;
 `;
 
 const PopoverHeader = styled.div`
-  background-color: ${props => props.hasTitle ? props.theme.colors[props.styleType] : props.theme.colors.white};
+  background-color: ${props =>
+    props.hasTitle
+      ? props.theme.colors[props.styleType]
+      : props.theme.colors.white};
   color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: space-between;
@@ -109,9 +109,7 @@ function Popover(props) {
 
   function toggleShow(event) {
     event.preventDefault();
-    if (REACT_MAJOR_VERSION <= 16) {
-      event.stopPropagation();
-    }
+    event.stopPropagation();
     setIsOpen(!isOpen);
   }
 
@@ -205,12 +203,20 @@ function Popover(props) {
         keepTogether={keepTogether}
         {...otherProps}
       >
-        <RootCloseWrapper onRootClose={hidePopover} disabled={disableRootClose} className={popoverWrapperClassName}>
+        <RootCloseWrapper
+          onRootClose={hidePopover}
+          disabled={disableRootClose}
+          className={popoverWrapperClassName}
+        >
           <div role="dialog" ref={contentRef}>
             <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
               {hasTitle && <TitleBar>{title}</TitleBar>}
               {hasAltCloseButton && altCloseButton}
-              <CloseHelpText tabIndex={-1} ref={escMsgRef} aria-label="Press escape to close the Popover" />
+              <CloseHelpText
+                tabIndex={-1}
+                ref={escMsgRef}
+                aria-label="Press escape to close the Popover"
+              />
             </PopoverHeader>
             <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
               <PopoverContent showCloseButton={showCloseButton}>
@@ -276,7 +282,13 @@ Popover.propTypes = {
   /** Pass a className to the wrapper of the popover content */
   popoverWrapperClassName: PropTypes.string,
   /** Specify the background color of the popover header (similar to Button style types) */
-  styleType: PropTypes.oneOf(['primary', 'info', 'success', 'warning', 'danger'])
+  styleType: PropTypes.oneOf([
+    'primary',
+    'info',
+    'success',
+    'warning',
+    'danger'
+  ])
 };
 
 Popover.defaultProps = {

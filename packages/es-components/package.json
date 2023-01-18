@@ -9,7 +9,7 @@
   "main": "cjs/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
+    "build": "cross-env MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
     "lint": "eslint src",
     "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\" && touch docs/temp ",
     "prepublishOnly": "npm run build",
@@ -75,6 +75,7 @@
     "bl": "^1.2.3",
     "braces": "^3.0.2",
     "concurrently": "^6.0.2",
+    "cross-env": "^7.0.3",
     "cypress": "^9.6.0",
     "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^8.23.0",

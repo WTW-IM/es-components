@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.2...v21.7.0-pre-prod.3) (2023-01-11)
+
+
+### Build
+
+* fixing pre-prod Docs CI, not running cypress on PR close ([040d82a](https://github.com/WTW-IM/es-components/commit/040d82abb1f7199388482a0ff2a7bb2c9e9032f6))
+
+
+
+
+
+# [21.7.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.1...v21.7.0-pre-prod.2) (2023-01-11)
+
+
+### Build
+
+* adding pre-prod folder to gh-pages branch ([f73e433](https://github.com/WTW-IM/es-components/commit/f73e433a2c6de45299d5c5b318afc6b7e1df9477))
+* ensuring via-theme is installed for tests ([3858bca](https://github.com/WTW-IM/es-components/commit/3858bca2c386d66840eaf4e4e05ae060ecc8a216))
+* fixing CI working-directory settings ([938d6c5](https://github.com/WTW-IM/es-components/commit/938d6c5a0efde39bc6ad0d35187b03df4ca1b38b))
+* running cypress from PR head ([ad75f20](https://github.com/WTW-IM/es-components/commit/ad75f2034d0ba94a8df033d9be9a499f9089976c))
+* running tests on all runs ([130eb1d](https://github.com/WTW-IM/es-components/commit/130eb1d17d8a513d6e68a87c82c5a742697c2bfc))
+
+
+
+
+
 # [21.7.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.0...v21.7.0-pre-prod.1) (2022-12-15)
 
 

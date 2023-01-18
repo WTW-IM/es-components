@@ -101,7 +101,7 @@
     "react-docgen": "^5.3.1",
     "react-docgen-displayname-handler": "^3.0.2",
     "react-dom": "^18.2.0",
-    "react-styleguidist": "^11.2.0",
+    "react-styleguidist": "^13.0.0",
     "react-test-renderer": "^17.0.2",
     "rollup": "^2.45.2",
     "rollup-plugin-generate-html-template": "^1.7.0",

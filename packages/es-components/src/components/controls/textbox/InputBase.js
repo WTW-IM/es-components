@@ -17,6 +17,7 @@ export const validationStateHighlightStyles = css`
 export const validationStateInputStyles = css`
   border: 1px solid ${props => props.borderColor};
   border-radius: ${getStyledProp('inputStyles.borderRadius') || '2px'};
+  box-sizing: border-box;
   ${props =>
     props.flat &&
     css`
@@ -44,7 +45,6 @@ export const placeholderStyles = css`
 const InputBase = styled.input`
   ${validationStateInputStyles}
   ${validationStateSetupStyles}
-  box-sizing: border-box;
   color: ${getStyledProp('colors.black')};
   font-size: ${getStyledProp('font.baseFontSize')};
   font-face: ${getStyledProp('font.baseFontFace')};
@@ -53,7 +53,7 @@ const InputBase = styled.input`
   line-height: ${getStyledProp('font.baseLineHeight')};
   min-width: 0;
   padding: 6px 12px;
-  width: 100%;
+  flex: 1;
 
   && {
     outline: 0;

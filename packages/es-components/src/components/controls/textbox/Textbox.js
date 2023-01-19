@@ -87,9 +87,12 @@ const InputWrapper = styled.div`
 
 export const TextboxBase = styled(InputBase)`
   ${basicTextboxStyles}
+  width: 100%;
+
   && {
     border: none !important;
     margin: 0 !important;
+    height: calc(2.2em - 2.9px); // adjust for outer border
   }
 
   ${({ hasPrepend }) =>
@@ -133,6 +136,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
     type,
     flat,
     className,
+    style,
     ...additionalTextProps
   } = props;
   const validationProps = useValidationStyleProps({ flat });
@@ -155,6 +159,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
       className={className}
       as="div"
       onClick={focusInput}
+      style={style}
       {...{
         ...sharedProps,
         prependIcon,
@@ -189,9 +194,8 @@ Textbox.propTypes = {
   type: PropTypes.string,
   /** Whether the textbox is the flat style or not */
   flat: PropTypes.bool,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 Textbox.defaultProps = {
@@ -199,9 +203,8 @@ Textbox.defaultProps = {
   appendIconName: undefined,
   type: 'text',
   flat: undefined,
-  onFocus: undefined,
-  onBlur: undefined,
-  className: undefined
+  className: undefined,
+  style: undefined
 };
 
 export default Textbox;

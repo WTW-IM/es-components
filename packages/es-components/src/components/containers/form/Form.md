@@ -25,6 +25,37 @@ import Dropdown from '../../controls/dropdown/Dropdown';
       <Label htmlFor="last-name-1">Last name</Label>
       <Textbox id="last-name-1" />
     </Control>
+
+    <Control orientation="inline">
+      <Control style={{ flex: 2, marginRight: 10 }}>
+        <Label htmlFor="address-line-1">Address Line 1</Label>
+        <Textbox id="address-line-1" />
+      </Control>
+      <Control style={{ flex: 2, marginRight: 10 }}>
+        <Label htmlFor="address-line-2">Address Line 2</Label>
+        <Textbox id="address-line-2" />
+      </Control>
+      <Control style={{ flex: 2, marginRight: 10 }}>
+        <Label htmlFor="city">City</Label>
+        <Textbox id="city" />
+      </Control>
+      <Control style={{ flex: 1, marginRight: 10 }}>
+        <Label htmlFor="state">State</Label>
+        <Dropdown id="state">
+          <option value="">--</option>
+          <option value="alabama">Alabama</option>
+          <option value="alaska">Alaska</option>
+          <option value="arizona">Arizona</option>
+        </Dropdown>
+      </Control>
+      <Control style={{ flex: 1, marginRight: 10, marginBottom: 10 }}>
+        <Label style={{ marginRight: 10 }} htmlFor="zip">
+          Zip Code
+        </Label>
+        <Textbox style={{ marginRight: 10, maxWidth: 100 }} id="zip" />
+      </Control>
+    </Control>
+
     <Control>
       <Label htmlFor="dropdown-1">Select an operating system</Label>
       <Dropdown
@@ -65,6 +96,36 @@ import Dropdown from '../../controls/dropdown/Dropdown';
     <Control>
       <Label htmlFor="last-name-1">Last name</Label>
       <Textbox id="last-name-1" />
+    </Control>
+
+    <Control orientation="inline">
+      <Control style={{ flex: 2, marginRight: 10 }}>
+        <Label htmlFor="address-line-1">Address Line 1</Label>
+        <Textbox id="address-line-1" />
+      </Control>
+      <Control style={{ flex: 2, marginRight: 10 }}>
+        <Label htmlFor="address-line-2">Address Line 2</Label>
+        <Textbox id="address-line-2" />
+      </Control>
+      <Control style={{ flex: 2, marginRight: 10 }}>
+        <Label htmlFor="city">City</Label>
+        <Textbox id="city" />
+      </Control>
+      <Control style={{ flex: 1, marginRight: 10 }}>
+        <Label htmlFor="state">State</Label>
+        <Dropdown id="state">
+          <option value="">--</option>
+          <option value="alabama">Alabama</option>
+          <option value="alaska">Alaska</option>
+          <option value="arizona">Arizona</option>
+        </Dropdown>
+      </Control>
+      <Control style={{ flex: 1, marginRight: 10, marginBottom: 10 }}>
+        <Label style={{ marginRight: 10 }} htmlFor="zip">
+          Zip Code
+        </Label>
+        <Textbox style={{ marginRight: 10, maxWidth: 100 }} id="zip" />
+      </Control>
     </Control>
     <Control>
       <Label htmlFor="dropdown-1">Select an operating system</Label>

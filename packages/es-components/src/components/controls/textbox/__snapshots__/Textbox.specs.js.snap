@@ -53,11 +53,11 @@ exports[`renders the correct addons when provided 1`] = `
 .c4 {
   border: 1px solid #c5c5c5;
   border-radius: 2px;
+  box-sizing: border-box;
   background-color: #fff;
   box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
-  box-sizing: border-box;
   color: #000;
   font-size: 18px;
   font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
@@ -66,7 +66,9 @@ exports[`renders the correct addons when provided 1`] = `
   line-height: 1.428;
   min-width: 0;
   padding: 6px 12px;
-  width: 100%;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .c4.c4 {
@@ -110,6 +112,7 @@ exports[`renders the correct addons when provided 1`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
   border-radius: 2px;
+  box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -162,6 +165,7 @@ exports[`renders the correct addons when provided 1`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   display: table-cell;
   -webkit-appearance: none;
+  width: 100%;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -179,6 +183,7 @@ exports[`renders the correct addons when provided 1`] = `
 .c5.c5 {
   border: none !important;
   margin: 0 !important;
+  height: calc(2.2em - 2.9px);
 }
 
 .c5.c5:focus {
@@ -284,11 +289,11 @@ exports[`renders the correct addons when provided 2`] = `
 .c4 {
   border: 1px solid #c5c5c5;
   border-radius: 2px;
+  box-sizing: border-box;
   background-color: #fff;
   box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
-  box-sizing: border-box;
   color: #000;
   font-size: 18px;
   font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
@@ -297,7 +302,9 @@ exports[`renders the correct addons when provided 2`] = `
   line-height: 1.428;
   min-width: 0;
   padding: 6px 12px;
-  width: 100%;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .c4.c4 {
@@ -341,6 +348,7 @@ exports[`renders the correct addons when provided 2`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
   border-radius: 2px;
+  box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -393,6 +401,7 @@ exports[`renders the correct addons when provided 2`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   display: table-cell;
   -webkit-appearance: none;
+  width: 100%;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -410,6 +419,7 @@ exports[`renders the correct addons when provided 2`] = `
 .c5.c5 {
   border: none !important;
   margin: 0 !important;
+  height: calc(2.2em - 2.9px);
 }
 
 .c5.c5:focus {
@@ -515,11 +525,11 @@ exports[`renders the correct addons when provided 3`] = `
 .c4 {
   border: 1px solid #c5c5c5;
   border-radius: 2px;
+  box-sizing: border-box;
   background-color: #fff;
   box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
-  box-sizing: border-box;
   color: #000;
   font-size: 18px;
   font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
@@ -528,7 +538,9 @@ exports[`renders the correct addons when provided 3`] = `
   line-height: 1.428;
   min-width: 0;
   padding: 6px 12px;
-  width: 100%;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .c4.c4 {
@@ -572,6 +584,7 @@ exports[`renders the correct addons when provided 3`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
   border-radius: 2px;
+  box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -657,6 +670,7 @@ exports[`renders the correct addons when provided 3`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   display: table-cell;
   -webkit-appearance: none;
+  width: 100%;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -676,6 +690,7 @@ exports[`renders the correct addons when provided 3`] = `
 .c5.c5 {
   border: none !important;
   margin: 0 !important;
+  height: calc(2.2em - 2.9px);
 }
 
 .c5.c5:focus {

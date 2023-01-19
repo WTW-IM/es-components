@@ -61,7 +61,7 @@ const danger100 = '#f0b3b3';
 const danger300 = '#db4d4d';
 const danger500 = '#cc0000';
 const danger700 = '#c00000';
-const danger900 = '#ad0000'; 
+const danger900 = '#ad0000';
 const info50 = '#e0edf3';
 const info100 = '#b3d1e0';
 const info300 = '#4d94b8';
@@ -73,7 +73,7 @@ const success100 = '#bfdac7';
 const success300 = '#69aa7c';
 const success500 = '#298544';
 const success700 = '#1f7235';
-const success900 = '#0f551f'; 
+const success900 = '#0f551f';
 const warning50 = '#f8eae0';
 const warning100 = '#edccb3';
 const warning300 = '#d4874d';
@@ -119,6 +119,9 @@ const keyboard = primary;
 const inRange = 'rgba(251, 213, 244, 0.75)';
 const highlight = success;
 const highlightHover = success700;
+
+const arrowDown =
+  "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 269.08 507.48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Rounded_Rectangle_33_copy_4_1_' transform='matrix(0.480497  0  0  0.480497  -96.099159  130.928314)' style=''%3E%3Cpath d='M480 344.181L268.869 131.889c-15.756-15.859-41.3-15.859-57.054 0c-15.754 15.857-15.754 41.57 0 57.431l237.632 238.937 c8.395 8.451 19.562 12.254 30.553 11.698c10.993 0.556 22.159-3.247 30.555-11.698l237.631-238.937 c15.756-15.86 15.756-41.571 0-57.431s-41.299-15.859-57.051 0L480 344.181z'/%3E%3C/g%3E%3C/svg%3E";
 
 const theme = {
   colors: {
@@ -184,17 +187,17 @@ const theme = {
     advisorLight: advisorLight,
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
-    inputFocus: inputFocus
+    inputFocus: inputFocus,
   },
   spacing: {
-    defaultMargin: '1.875rem'
+    defaultMargin: '1.875rem',
   },
   brandColors: {
     primary1: primary1,
     primary2: primary2,
     primary3: primary3,
     secondary1: secondary1,
-    secondary2: secondary2
+    secondary2: secondary2,
   },
   datepickerColors: {
     dpBackground: dpBackground,
@@ -205,7 +208,7 @@ const theme = {
     keyboard: keyboard,
     inRange: inRange,
     highlight: highlight,
-    highlightHover: highlightHover
+    highlightHover: highlightHover,
   },
   promptStyles: {
     readAloud: {
@@ -214,7 +217,7 @@ const theme = {
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: 'agent'
+      iconName: 'agent',
     },
     doNotReadAloud: {
       bgColor: blue50,
@@ -222,129 +225,129 @@ const theme = {
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: 'no-symbol'
-    }
+      iconName: 'no-symbol',
+    },
   },
   bannerStyles: {
     success: {
       bgColor: success100,
-      textColor: black
+      textColor: black,
     },
     info: {
       bgColor: info100,
-      textColor: black
+      textColor: black,
     },
     warning: {
       bgColor: warning100,
-      textColor: black
+      textColor: black,
     },
     danger: {
       bgColor: danger100,
-      textColor: black
+      textColor: black,
     },
     advisor: {
       bgColor: agent300,
-      textColor: black
-    }
+      textColor: black,
+    },
   },
   notificationStyles: {
     success: {
       base: {
         bgColor: success,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: successLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: success
-      }
+        textColor: success,
+      },
     },
     info: {
       base: {
         bgColor: info,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: infoLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: info
-      }
+        textColor: info,
+      },
     },
     warning: {
       base: {
         bgColor: warning,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: warningLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: warning
-      }
+        textColor: warning,
+      },
     },
     danger: {
       base: {
         bgColor: danger,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: dangerLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: danger
-      }
+        textColor: danger,
+      },
     },
     advisor: {
       base: {
         bgColor: advisor,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: advisorLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: advisor
-      }
-    }
+        textColor: advisor,
+      },
+    },
   },
   buttonStyles: {
     button: {
       variant: {
         // default is required
         primary: {
-          bgColor: primary
+          bgColor: primary,
         },
         default: {
-          bgColor: gray4
+          bgColor: gray4,
         },
         darkDefault: {
-          bgColor: gray8
+          bgColor: gray8,
         },
         success: {
-          bgColor: success
+          bgColor: success,
         },
         info: {
-          bgColor: info
+          bgColor: info,
         },
         warning: {
-          bgColor: warning
+          bgColor: warning,
         },
         danger: {
-          bgColor: danger
+          bgColor: danger,
         },
-        inherited: {}
+        inherited: {},
       },
       // size should always have default, lg, sm, xs
       // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
@@ -356,7 +359,7 @@ const theme = {
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
-          paddingBottom: '0.125rem'
+          paddingBottom: '0.125rem',
         },
         default: {
           borderRadius: '0.25rem',
@@ -364,7 +367,7 @@ const theme = {
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         sm: {
           borderRadius: '0.2rem',
@@ -372,7 +375,7 @@ const theme = {
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         xs: {
           borderRadius: '0.25rem',
@@ -381,37 +384,37 @@ const theme = {
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.1rem',
-          textTransform: 'uppercase'
-        }
-      }
+          textTransform: 'uppercase',
+        },
+      },
     },
     outlineButton: {
       variant: {
         primary: {
-          bgColor: primary
+          bgColor: primary,
         },
         default: {
-          bgColor: gray8
+          bgColor: gray8,
         },
         success: {
-          bgColor: success
+          bgColor: success,
         },
         info: {
-          bgColor: info
+          bgColor: info,
         },
         warning: {
-          bgColor: warning
+          bgColor: warning,
         },
         danger: {
-          bgColor: danger
+          bgColor: danger,
         },
         magenta: {
-          bgColor: primary3
+          bgColor: primary3,
         },
         violet: {
-          bgColor: secondary1
+          bgColor: secondary1,
         },
-        inherited: {}
+        inherited: {},
       },
       size: {
         lg: {
@@ -421,7 +424,7 @@ const theme = {
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
-          paddingBottom: '0.125rem'
+          paddingBottom: '0.125rem',
         },
         default: {
           borderRadius: '0.25rem',
@@ -430,7 +433,7 @@ const theme = {
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         sm: {
           borderRadius: '0.2rem',
@@ -439,7 +442,7 @@ const theme = {
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         xs: {
           borderRadius: '0.25rem',
@@ -449,85 +452,120 @@ const theme = {
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.1rem',
-          textTransform: 'uppercase'
-        }
-      }
+          textTransform: 'uppercase',
+        },
+      },
     },
     linkButton: {
       variant: {
         default: {
-          textColor: '#ccc'
+          textColor: '#ccc',
         },
         primary: {
-          textColor: primary
+          textColor: primary,
         },
         success: {
-          textColor: success
+          textColor: success,
         },
         information: {
-          textColor: info
+          textColor: info,
         },
         danger: {
-          textColor: danger
+          textColor: danger,
         },
         warning: {
-          textColor: warning
+          textColor: warning,
         },
         inherited: {
-          textColor: 'inherit'
-        }
-      }
-    }
+          textColor: 'inherit',
+        },
+      },
+    },
+  },
+  inputStyles: {
+    borderRadius: '2px',
+    defaultFormStyle: 'default',
+    dropdownArrow: arrowDown,
   },
   validationIconName: {
     success: 'ok-circle',
     info: 'info-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
-    advisor: 'agent'
+    advisor: 'agent',
   },
   validationTextColor: {
     success: success,
     warning: warning,
-    danger: danger
+    danger: danger,
+    default: gray3,
   },
   validationInputColor: {
     success: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: success,
       boxShadow: 'inset 0 0 5px ' + success,
       focusBorderColor: success,
-      focusBoxShadow: '0 0 6px ' + success
+      focusBoxShadow: '0 0 6px ' + success,
+      focusBoxShadowFlat: '0 0 1px 2px' + success,
+      addOn: {
+        textColor: white,
+        backgroundColor: success,
+      },
     },
     warning: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: warning,
       boxShadow: 'inset 0 0 5px ' + warning,
       focusBorderColor: warning,
-      focusBoxShadow: '0 0 6px ' + warning
+      focusBoxShadow: '0 0 6px ' + warning,
+      focusBoxShadowFlat: '0 0 1px 2px' + warning,
+      addOn: {
+        textColor: white,
+        backgroundColor: warning,
+      },
     },
     danger: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: danger,
       boxShadow: 'inset 0 0 5px ' + danger,
       focusBorderColor: danger,
-      focusBoxShadow: '0 0 6px ' + danger
+      focusBoxShadow: '0 0 6px ' + danger,
+      focusBoxShadowFlat: '0 0 1px 2px' + danger,
+      addOn: {
+        textColor: white,
+        backgroundColor: danger,
+      },
     },
     default: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: gray5,
       boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
-      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)'
-    }
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
+      addOn: {
+        textColor: gray8,
+        backgroundColor: gray3,
+      },
+    },
   },
   font: {
     baseFontSize: '18px',
     baseLineHeight: 1.428,
-    baseFontFace: '"Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
+    baseFontFace:
+      '"Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
     headingDesktop: {
       1: '44.78976px',
       2: '37.3248px',
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
-      6: '18px'
+      6: '18px',
     },
     headingMobile: {
       1: '38.7898px;',
@@ -535,16 +573,16 @@ const theme = {
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
-      6: '18px'
-    }
+      6: '18px',
+    },
   },
   screenSize: {
     retina: '360px',
     phone: '480px',
     tablet: '768px',
     desktop: '900px',
-    widescreen: '1200px'
-  }
+    widescreen: '1200px',
+  },
 };
 
 module.exports = theme;

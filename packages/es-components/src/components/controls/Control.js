@@ -5,6 +5,8 @@ import styled, { css } from 'styled-components';
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
 import OrientationContext from './OrientationContext';
+import { FormContextProvider } from '../containers/form/Form';
+import isBool from '../util/isBool';
 
 const FlexControl = styled.div`
   color: ${props => props.textColor};
@@ -15,17 +17,6 @@ const FlexControl = styled.div`
 
   >[role="group"] {
     margin-bottom: 0;
-  }
-
-  select {
-    border-color: ${props => props.borderColor};
-    box-shadow: ${props => props.boxShadow};
-  }
-
-  input:focus,
-  select:focus {
-    border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props => props.focusBoxShadow};
   }
 
   ${props =>
@@ -57,26 +48,30 @@ function Control(props) {
     orientation,
     borderOffset,
     children,
+    flat,
     ...other
   } = props;
   const theme = useTheme();
+  const extraFormContext = isBool(flat) ? { flat } : {};
   const textColor = theme.validationTextColor[validationState];
 
   return (
     <OrientationContext.Provider value={orientation}>
-      <FlexControl
-        textColor={textColor}
-        borderOffset={borderOffset}
-        validationState={validationState}
-        {...theme.validationInputColor[validationState]}
-        layoutOrientation={orientation}
-        hasValidationBorder={hasValidationBorder}
-        {...other}
-      >
-        <ValidationContext.Provider value={validationState}>
-          {children}
-        </ValidationContext.Provider>
-      </FlexControl>
+      <FormContextProvider value={extraFormContext}>
+        <FlexControl
+          textColor={textColor}
+          borderOffset={borderOffset}
+          validationState={validationState}
+          {...theme.validationInputColor[validationState]}
+          layoutOrientation={orientation}
+          hasValidationBorder={hasValidationBorder}
+          {...other}
+        >
+          <ValidationContext.Provider value={validationState}>
+            {children}
+          </ValidationContext.Provider>
+        </FlexControl>
+      </FormContextProvider>
     </OrientationContext.Provider>
   );
 }
@@ -88,6 +83,8 @@ Control.propTypes = {
   hasValidationBorder: PropTypes.bool,
   /** Set the border offset to match container padding */
   borderOffset: PropTypes.string,
+  /** Apply the Flat Style to all children */
+  flat: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -96,6 +93,7 @@ Control.defaultProps = {
   validationState: 'default',
   hasValidationBorder: false,
   borderOffset: '15px',
+  flat: undefined,
   children: null
 };
 

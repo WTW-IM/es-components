@@ -39,6 +39,10 @@ export ResponsiveTable from './components/containers/table/ResponsiveTable';
 export HorizontalScrollWrapper from './components/containers/horizontalScrollWrapper/HorizontalScrollWrapper';
 export LoadingSkeleton from './components/containers/loading-skeleton/LoadingSkeleton';
 
+export Form, {
+  FormContext,
+  FormContextProvider
+} from './components/containers/form/Form';
 export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';
 export Label from './components/controls/label/Label';

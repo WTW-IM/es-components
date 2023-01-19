@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
-import InputBase from '../../controls/textbox/InputBase';
+import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 
-const YearInput = styled(InputBase)`
+const YearInput = styled(BasicTextbox)`
   appearance: textfield;
   flex: 2 0 40px;
 

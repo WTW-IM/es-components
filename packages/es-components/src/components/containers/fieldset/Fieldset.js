@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
+import { FormContextProvider } from '../form/Form';
 import OrientationContext from '../../controls/OrientationContext';
 import useUniqueId from '../../util/useUniqueId';
+import isBool from '../../util/isBool';
 
 const FieldsetBase = styled.div`
   display: flex;
@@ -36,31 +38,50 @@ const Legend = styled.div`
 `;
 
 function Fieldset(props) {
-  const { legendContent, children, ...other } = props;
+  const {
+    legendContent,
+    children,
+    orientation: orientationProp,
+    flat,
+    ...other
+  } = props;
   const legendId = useUniqueId();
-  const orientation = React.useContext(OrientationContext);
+  const orientation = useContext(OrientationContext);
+  const extraFormContext = isBool(flat) ? { flat } : {};
+  const finalOrientation = isBool(orientationProp)
+    ? orientationProp
+    : orientation;
 
   return (
-    <FieldsetBase
-      role="group"
-      aria-labelledby={legendId}
-      orientation={orientation}
-      {...other}
-    >
-      {legendContent && <Legend id={legendId}>{legendContent}</Legend>}
-      {children}
-    </FieldsetBase>
+    <OrientationContext.Provider value={finalOrientation}>
+      <FormContextProvider value={extraFormContext}>
+        <FieldsetBase
+          role="group"
+          aria-labelledby={legendId}
+          orientation={finalOrientation}
+          {...other}
+        >
+          {legendContent && <Legend id={legendId}>{legendContent}</Legend>}
+          {children}
+        </FieldsetBase>
+      </FormContextProvider>
+    </OrientationContext.Provider>
   );
 }
 
 Fieldset.propTypes = {
+  orientation: PropTypes.oneOf(['stacked', 'inline']),
   /** Determine whether or not to add a legend and what content to display  */
   legendContent: PropTypes.node,
+  /** Apply the Flat Style to all children */
+  flat: PropTypes.bool,
   children: PropTypes.node
 };
 
 Fieldset.defaultProps = {
+  orientation: 'stacked',
   legendContent: null,
+  flat: undefined,
   children: undefined
 };
 

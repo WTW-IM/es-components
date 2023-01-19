@@ -6,6 +6,7 @@ import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
 
 import useUniqueId from '../../util/useUniqueId';
+import callRef from '../../util/callRef';
 import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import { ModalContext } from './ModalContext';
@@ -165,16 +166,7 @@ function Modal({
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const modalRef = useRef(null);
   const innerContentRef = useRef(null);
-  const callRef = (ref, element) => {
-    if (ref) {
-      if (typeof ref === 'function') {
-        ref(element);
-      } else {
-        // eslint-disable-next-line no-param-reassign
-        ref.current = element;
-      }
-    }
-  };
+
   const setContentRef = useCallback(contentElement => {
     callRef(contentRef, contentElement);
     innerContentRef.current = contentElement;

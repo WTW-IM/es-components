@@ -6,7 +6,10 @@ import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import OutlineButton from '../../controls/buttons/OutlineButton';
-import InputBase from '../../controls/textbox/InputBase';
+import {
+  BasicTextbox,
+  useValidationStyleProps
+} from '../../controls/textbox/InputBase';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import { useTheme } from '../../util/useTheme';
 
@@ -15,7 +18,7 @@ const IncrementerWrapper = styled.div`
   display: flex;
 `;
 
-const IncrementerTextbox = styled(InputBase)`
+const IncrementerTextbox = styled(BasicTextbox)`
   margin: 0 10px;
   min-width: 60px;
   padding-right: 12px;
@@ -112,16 +115,14 @@ function Incrementer({
   });
   const isIncrementDisabled = determineIsDisabled(upperThreshold, state.count);
   const isDecrementDisabled = determineIsDisabled(lowerThreshold, state.count);
+  const validationStyleProps = useValidationStyleProps(other);
 
-  React.useEffect(
-    () => {
-      if (!initialRender.current) {
-        onValueUpdated(state.count);
-      }
-      initialRender.current = false;
-    },
-    [state.count]
-  );
+  React.useEffect(() => {
+    if (!initialRender.current) {
+      onValueUpdated(state.count);
+    }
+    initialRender.current = false;
+  }, [state.count]);
 
   function setValue(event) {
     dispatch({ type: 'set', amount: event.target.value });
@@ -184,7 +185,7 @@ function Incrementer({
       </IncrementerButton>
       <IncrementerTextbox
         {...theme.validationInputColor.default}
-        {...other}
+        {...validationStyleProps}
         type="number"
         role="spinbutton"
         max={upperThreshold}

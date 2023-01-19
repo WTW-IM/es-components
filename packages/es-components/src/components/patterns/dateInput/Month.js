@@ -29,7 +29,7 @@ function Month({ onChange, monthNames, selectOptionText, date, ...props }) {
       value={month}
       {...props}
     >
-      {selectOptionText && <option value="none">{selectOptionText}</option>}
+      {selectOptionText && <option value="">{selectOptionText}</option>}
       {monthNames.map((value, index) => (
         <option value={index + 1} key={value}>
           {value}

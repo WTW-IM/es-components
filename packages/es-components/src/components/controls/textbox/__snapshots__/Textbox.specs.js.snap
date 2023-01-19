@@ -52,6 +52,7 @@ exports[`renders the correct addons when provided 1`] = `
 
 .c4 {
   border: 1px solid #c5c5c5;
+  border-radius: 2px;
   background-color: #fff;
   box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
@@ -108,11 +109,11 @@ exports[`renders the correct addons when provided 1`] = `
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
+  border-radius: 2px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-radius: 2px;
   padding: 0 !important;
 }
 
@@ -282,6 +283,7 @@ exports[`renders the correct addons when provided 2`] = `
 
 .c4 {
   border: 1px solid #c5c5c5;
+  border-radius: 2px;
   background-color: #fff;
   box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
@@ -338,11 +340,11 @@ exports[`renders the correct addons when provided 2`] = `
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
+  border-radius: 2px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-radius: 2px;
   padding: 0 !important;
 }
 
@@ -512,6 +514,7 @@ exports[`renders the correct addons when provided 3`] = `
 
 .c4 {
   border: 1px solid #c5c5c5;
+  border-radius: 2px;
   background-color: #fff;
   box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
@@ -568,11 +571,11 @@ exports[`renders the correct addons when provided 3`] = `
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
+  border-radius: 2px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  border-radius: 2px;
   padding: 0 !important;
 }
 

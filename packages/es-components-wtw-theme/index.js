@@ -1,93 +1,93 @@
 // grayscale
-const white = "#fff";
-const gray0 = "#f9f9f9";
-const gray1 = "#f4f4f4";
-const gray2 = "#ededed";
-const gray3 = "#e4e4e4";
-const gray4 = "#d8d8d8";
-const gray5 = "#c5c5c5";
-const gray6 = "#919191";
-const gray7 = "#787878";
-const gray8 = "#5e5e5e";
-const gray9 = "#444";
-const black = "#000";
+const white = '#fff';
+const gray0 = '#f9f9f9';
+const gray1 = '#f4f4f4';
+const gray2 = '#ededed';
+const gray3 = '#e4e4e4';
+const gray4 = '#d8d8d8';
+const gray5 = '#c5c5c5';
+const gray6 = '#919191';
+const gray7 = '#787878';
+const gray8 = '#5e5e5e';
+const gray9 = '#444';
+const black = '#000';
 
 // tints/shades
-const blue25 = "#f2f8fb";
-const blue50 = "#e0f4fa";
-const blue100 = "#b3e3f2";
-const blue300 = "#4dbde0";
-const blue500 = "#00a0d2";
-const blue700 = "#008ec7";
-const blue900 = "#0073b6";
-const green50 = "#e0f8f1";
-const green100 = "#b3eddc";
-const green300 = "#4dd5ac";
-const green500 = "#00c389";
-const green700 = "#00b576";
-const green900 = "#00a159";
-const magenta50 = "#f8e2f4";
-const magenta100 = "#ecb7e3";
-const magenta300 = "#d458bd";
-const magenta500 = "#c110a0";
-const magenta700 = "#b30c8e";
-const magenta900 = "#9e0573";
-const violet50 = "#ebe2ee";
-const violet100 = "#ceb6d4";
-const violet300 = "#8c559a";
-const violet500 = "#5a0c6f";
-const violet700 = "#48085c";
-const violet900 = "#2e0340";
-const yellow50 = "#fff6e4";
-const yellow100 = "#ffeabb";
-const yellow300 = "#ffcd60";
-const yellow500 = "#ffb81c";
-const yellow700 = "#ffa814";
-const yellow900 = "#ff9109";
+const blue25 = '#f2f8fb';
+const blue50 = '#e0f4fa';
+const blue100 = '#b3e3f2';
+const blue300 = '#4dbde0';
+const blue500 = '#00a0d2';
+const blue700 = '#008ec7';
+const blue900 = '#0073b6';
+const green50 = '#e0f8f1';
+const green100 = '#b3eddc';
+const green300 = '#4dd5ac';
+const green500 = '#00c389';
+const green700 = '#00b576';
+const green900 = '#00a159';
+const magenta50 = '#f8e2f4';
+const magenta100 = '#ecb7e3';
+const magenta300 = '#d458bd';
+const magenta500 = '#c110a0';
+const magenta700 = '#b30c8e';
+const magenta900 = '#9e0573';
+const violet50 = '#ebe2ee';
+const violet100 = '#ceb6d4';
+const violet300 = '#8c559a';
+const violet500 = '#5a0c6f';
+const violet700 = '#48085c';
+const violet900 = '#2e0340';
+const yellow50 = '#fff6e4';
+const yellow100 = '#ffeabb';
+const yellow300 = '#ffcd60';
+const yellow500 = '#ffb81c';
+const yellow700 = '#ffa814';
+const yellow900 = '#ff9109';
 
 // functional
-const primary = "#5a0c6f";
-const primaryHover = "#3c084a";
-const primaryLight = "#ebcff3";
+const primary = '#5a0c6f';
+const primaryHover = '#3c084a';
+const primaryLight = '#ebcff3';
 
 // semantic
-const info = "#006699";
-const infoHover = "#004466";
-const infoLight = "#c0ebff";
-const success = "#006000";
-const successHover = "#004000";
-const successLight = "#d2e9d2";
-const warning = "#de7400";
-const warningHover = "#a65600";
-const warningLight = "#f6e0ca";
-const danger = "#e60700";
-const dangerHover = "#970500";
-const dangerLight = "#ffc2c0";
-const advisor = "#ff6310";
-const advisorLight = "#fee7de";
+const info = '#006699';
+const infoHover = '#004466';
+const infoLight = '#c0ebff';
+const success = '#006000';
+const successHover = '#004000';
+const successLight = '#d2e9d2';
+const warning = '#de7400';
+const warningHover = '#a65600';
+const warningLight = '#f6e0ca';
+const danger = '#e60700';
+const dangerHover = '#970500';
+const dangerLight = '#ffc2c0';
+const advisor = '#ff6310';
+const advisorLight = '#fee7de';
 
 // brand colors
-const primary1 = "#5a0c6f";
-const primary2 = "#63666a";
-const primary3 = "#c110a0";
+const primary1 = '#5a0c6f';
+const primary2 = '#63666a';
+const primary3 = '#c110a0';
 const secondary1 = primary1;
 const secondary2 = primary2;
 
 // misc
-const inputFocus = "#66afe9";
-const boxShadowLight = "rgba(0, 0, 0, 0.075)";
-const boxShadowDark = "rgba(0, 0, 0, 0.5)";
+const inputFocus = '#66afe9';
+const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
+const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
 
 // Datepicker colors
-const dpBackground = "#006685";
+const dpBackground = '#006685';
 const navArrow = white;
 const navArrowHover = gray2;
-const selected = "#216ba5";
-const hover = "#1d5d90";
-const keyboard = "#2a87d0";
-const inRange = "rgba(33, 107, 165, 0.5)";
-const highlight = "#3dcc4a";
-const highlightHover = "#32be3f";
+const selected = '#216ba5';
+const hover = '#1d5d90';
+const keyboard = '#2a87d0';
+const inRange = 'rgba(33, 107, 165, 0.5)';
+const highlight = '#3dcc4a';
+const highlightHover = '#32be3f';
 
 const theme = {
   colors: {
@@ -175,20 +175,20 @@ const theme = {
   },
   promptStyles: {
     readAloud: {
-      bgColor: "#FDE8DE",
-      bannerBgColor: "#FF6310",
+      bgColor: '#FDE8DE',
+      bannerBgColor: '#FF6310',
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: "agent",
+      iconName: 'agent',
     },
     doNotReadAloud: {
-      bgColor: "#E0F4F4",
-      bannerBgColor: "#0073B6",
+      bgColor: '#E0F4F4',
+      bannerBgColor: '#0073B6',
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: "no-symbol",
+      iconName: 'no-symbol',
     },
   },
   bannerStyles: {
@@ -224,7 +224,7 @@ const theme = {
         textColor: gray9,
       },
       messageOnly: {
-        bgColor: "transparent",
+        bgColor: 'transparent',
         textColor: success,
       },
     },
@@ -238,7 +238,7 @@ const theme = {
         textColor: gray9,
       },
       messageOnly: {
-        bgColor: "transparent",
+        bgColor: 'transparent',
         textColor: info,
       },
     },
@@ -252,7 +252,7 @@ const theme = {
         textColor: gray9,
       },
       messageOnly: {
-        bgColor: "transparent",
+        bgColor: 'transparent',
         textColor: warning,
       },
     },
@@ -266,7 +266,7 @@ const theme = {
         textColor: gray9,
       },
       messageOnly: {
-        bgColor: "transparent",
+        bgColor: 'transparent',
         textColor: danger,
       },
     },
@@ -280,7 +280,7 @@ const theme = {
         textColor: gray9,
       },
       messageOnly: {
-        bgColor: "transparent",
+        bgColor: 'transparent',
         textColor: advisor,
       },
     },
@@ -293,7 +293,7 @@ const theme = {
           bgColor: primary,
         },
         default: {
-          bgColor: "#ccc",
+          bgColor: '#ccc',
         },
         darkDefault: {
           bgColor: gray9,
@@ -317,37 +317,37 @@ const theme = {
       // fontWeight, lineHeight, textTransform are optional
       size: {
         lg: {
-          borderRadius: "0.3rem",
-          fontSize: "1.4375rem",
-          lineHeight: "2",
-          paddingTop: "0.125rem",
-          paddingSides: "1rem",
-          paddingBottom: "0.125rem",
+          borderRadius: '0.3rem',
+          fontSize: '1.4375rem',
+          lineHeight: '2',
+          paddingTop: '0.125rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.125rem',
         },
         default: {
-          borderRadius: "0.25rem",
-          fontSize: "1.15rem",
-          lineHeight: "1.5",
-          paddingTop: "0.25rem",
-          paddingSides: "1rem",
-          paddingBottom: "0.25rem",
+          borderRadius: '0.25rem',
+          fontSize: '1.15rem',
+          lineHeight: '1.5',
+          paddingTop: '0.25rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.25rem',
         },
         sm: {
-          borderRadius: "0.2rem",
-          fontSize: "1.00625rem",
-          lineHeight: "1.25",
-          paddingTop: "0.25rem",
-          paddingSides: "0.5rem",
-          paddingBottom: "0.25rem",
+          borderRadius: '0.2rem',
+          fontSize: '1.00625rem',
+          lineHeight: '1.25',
+          paddingTop: '0.25rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.25rem',
         },
         xs: {
-          borderRadius: "0.25rem",
-          fontSize: "0.8855rem",
-          lineHeight: "1.5",
-          paddingTop: "0.1rem",
-          paddingSides: "0.5rem",
-          paddingBottom: "0.1rem",
-          textTransform: "uppercase",
+          borderRadius: '0.25rem',
+          fontSize: '0.8855rem',
+          lineHeight: '1.5',
+          paddingTop: '0.1rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.1rem',
+          textTransform: 'uppercase',
         },
       },
     },
@@ -381,41 +381,41 @@ const theme = {
       },
       size: {
         lg: {
-          borderRadius: "0.3rem",
-          fontSize: "1.4375rem",
-          fontWeight: "bold",
-          lineHeight: "2",
-          paddingTop: "0.125rem",
-          paddingSides: "1rem",
-          paddingBottom: "0.125rem",
+          borderRadius: '0.3rem',
+          fontSize: '1.4375rem',
+          fontWeight: 'bold',
+          lineHeight: '2',
+          paddingTop: '0.125rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.125rem',
         },
         default: {
-          borderRadius: "0.25rem",
-          fontSize: "1.15rem",
-          fontWeight: "bold",
-          lineHeight: "1.5",
-          paddingTop: "0.25rem",
-          paddingSides: "1rem",
-          paddingBottom: "0.25rem",
+          borderRadius: '0.25rem',
+          fontSize: '1.15rem',
+          fontWeight: 'bold',
+          lineHeight: '1.5',
+          paddingTop: '0.25rem',
+          paddingSides: '1rem',
+          paddingBottom: '0.25rem',
         },
         sm: {
-          borderRadius: "0.2rem",
-          fontSize: "1.00625rem",
-          fontWeight: "bold",
-          lineHeight: "1.25",
-          paddingTop: "0.25rem",
-          paddingSides: "0.5rem",
-          paddingBottom: "0.25rem",
+          borderRadius: '0.2rem',
+          fontSize: '1.00625rem',
+          fontWeight: 'bold',
+          lineHeight: '1.25',
+          paddingTop: '0.25rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.25rem',
         },
         xs: {
-          borderRadius: "0.25rem",
-          fontSize: "0.8855rem",
-          fontWeight: "bold",
-          lineHeight: "1.5",
-          paddingTop: "0.1rem",
-          paddingSides: "0.5rem",
-          paddingBottom: "0.1rem",
-          textTransform: "uppercase",
+          borderRadius: '0.25rem',
+          fontSize: '0.8855rem',
+          fontWeight: 'bold',
+          lineHeight: '1.5',
+          paddingTop: '0.1rem',
+          paddingSides: '0.5rem',
+          paddingBottom: '0.1rem',
+          textTransform: 'uppercase',
         },
       },
     },
@@ -440,21 +440,21 @@ const theme = {
           textColor: warning,
         },
         inherited: {
-          textColor: "inherit",
+          textColor: 'inherit',
         },
       },
     },
   },
   inputStyles: {
-    borderRadius: "2px",
-    defaultFormStyle: "default",
+    borderRadius: '2px',
+    defaultFormStyle: 'default',
   },
   validationIconName: {
-    success: "ok-circle",
-    info: "info-circle",
-    warning: "exclamation-sign",
-    danger: "exclamation-circle",
-    advisor: "agent",
+    success: 'ok-circle',
+    info: 'info-circle',
+    warning: 'exclamation-sign',
+    danger: 'exclamation-circle',
+    advisor: 'agent',
   },
   validationTextColor: {
     success: success,
@@ -467,10 +467,10 @@ const theme = {
       backgroundColor: white,
       backgroundColorFlat: gray1,
       borderColor: success,
-      boxShadow: "inset 0 0 5px " + success,
+      boxShadow: 'inset 0 0 5px ' + success,
       focusBorderColor: success,
-      focusBoxShadow: "0 0 6px " + success,
-      focusBoxShadowFlat: "0 0 1px 2px" + success,
+      focusBoxShadow: '0 0 6px ' + success,
+      focusBoxShadowFlat: '0 0 1px 2px' + success,
       addOn: {
         textColor: white,
         backgroundColor: success,
@@ -481,10 +481,10 @@ const theme = {
       backgroundColor: white,
       backgroundColorFlat: gray1,
       borderColor: warning,
-      boxShadow: "inset 0 0 5px " + warning,
+      boxShadow: 'inset 0 0 5px ' + warning,
       focusBorderColor: warning,
-      focusBoxShadow: "0 0 6px " + warning,
-      focusBoxShadowFlat: "0 0 1px 2px" + warning,
+      focusBoxShadow: '0 0 6px ' + warning,
+      focusBoxShadowFlat: '0 0 1px 2px' + warning,
       addOn: {
         textColor: white,
         backgroundColor: warning,
@@ -495,10 +495,10 @@ const theme = {
       backgroundColor: white,
       backgroundColorFlat: gray1,
       borderColor: danger,
-      boxShadow: "inset 0 0 5px " + danger,
+      boxShadow: 'inset 0 0 5px ' + danger,
       focusBorderColor: danger,
-      focusBoxShadow: "0 0 6px " + danger,
-      focusBoxShadowFlat: "0 0 1px 2px" + danger,
+      focusBoxShadow: '0 0 6px ' + danger,
+      focusBoxShadowFlat: '0 0 1px 2px' + danger,
       addOn: {
         textColor: white,
         backgroundColor: danger,
@@ -509,10 +509,10 @@ const theme = {
       backgroundColor: white,
       backgroundColorFlat: gray1,
       borderColor: gray4,
-      boxShadow: "inset 0 1px 1px " + boxShadowLight,
+      boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
-      focusBoxShadow: "0 0 8px rgba(102, 175, 233, 0.6)",
-      focusBoxShadowFlat: "0 0 1px 2px rgba(102, 175, 233, 0.6)",
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
       addOn: {
         textColor: gray8,
         backgroundColor: gray3,
@@ -521,31 +521,31 @@ const theme = {
     },
   },
   font: {
-    baseFontSize: "18px",
+    baseFontSize: '18px',
     baseLineHeight: 1.428,
     headingDesktop: {
-      1: "31.104px",
-      2: "31.104px",
-      3: "31.104px",
-      4: "25.92px",
-      5: "21.6px",
-      6: "18px",
+      1: '31.104px',
+      2: '31.104px',
+      3: '31.104px',
+      4: '25.92px',
+      5: '21.6px',
+      6: '18px',
     },
     headingMobile: {
-      1: "31.104px",
-      2: "31.104px",
-      3: "31.104px",
-      4: "25.92px",
-      5: "21.6px",
-      6: "18px",
+      1: '31.104px',
+      2: '31.104px',
+      3: '31.104px',
+      4: '25.92px',
+      5: '21.6px',
+      6: '18px',
     },
   },
   screenSize: {
-    retina: "360px",
-    phone: "480px",
-    tablet: "768px",
-    desktop: "900px",
-    widescreen: "1200px",
+    retina: '360px',
+    phone: '480px',
+    tablet: '768px',
+    desktop: '900px',
+    widescreen: '1200px',
   },
 };
 

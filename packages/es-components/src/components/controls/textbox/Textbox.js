@@ -60,7 +60,6 @@ const InputWrapper = styled.div`
   ${validationStateSetupStyles}
   ${validationStateInputStyles}
   display: flex;
-  border-radius: ${getStyledProp('inputStyles.borderRadius')};
 
   padding: 0 !important;
 

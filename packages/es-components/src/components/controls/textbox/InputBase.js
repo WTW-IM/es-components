@@ -10,14 +10,13 @@ import isBool from '../../util/isBool';
 export const noInset = 'inset 0 0 0 0 rgba(0, 0, 0, 0)';
 
 export const validationStateHighlightStyles = css`
-  border-color: ${props => props.focusBorderColor};
-  box-shadow: ${props =>
-      props.flat ? props.focusBoxShadowFlat : props.focusBoxShadow},
-    ${noInset};
+  border-color: ${({ focusBorderColor }) => focusBorderColor};
+  box-shadow: ${({ focusBoxShadow }) => focusBoxShadow}, ${noInset};
 `;
 
 export const validationStateInputStyles = css`
   border: 1px solid ${props => props.borderColor};
+  border-radius: ${getStyledProp('inputStyles.borderRadius') || '2px'};
   ${props =>
     props.flat &&
     css`
@@ -86,19 +85,18 @@ export const basicTextboxStyles = css`
 export const BasicTextbox = styled(InputBase)`
   ${basicTextboxStyles}
   ${validationStateInputStyles}
-  border-radius: ${getStyledProp('inputStyles.borderRadius')};
   &&:focus {
     ${validationStateHighlightStyles}
   }
 `;
 
 function getValidationStylesOrDefault(theme, validationState) {
-  return (
-    theme.validationInputColor[validationState] || {
-      backgroundColor: theme.colors.white,
-      backgroundColorFlat: theme.colors.gray2
-    }
-  );
+  const validationTarget = theme.validationInputColor[validationState] || {};
+  validationTarget.backgroundColor =
+    validationTarget.backgroundColor || theme.colors.white;
+  validationTarget.backgroundColorFlat =
+    validationTarget.backgroundColorFlat || theme.colors.gray2;
+  return validationTarget;
 }
 
 export function useValidationStyleProps(props) {
@@ -109,17 +107,44 @@ export function useValidationStyleProps(props) {
   const [validationStyleProps, setValidationStyleProps] = useState(
     getValidationStylesOrDefault(theme, validationState)
   );
+
   useEffect(() => {
     setValidationStyleProps(
       getValidationStylesOrDefault(theme, validationState)
     );
   }, [validationState, theme]);
 
+  const getValidationProp = (propName, fallback) =>
+    validationStyleProps[propName] || fallback;
+
   const backgroundColor = flat
-    ? validationStyleProps.backgroundColorFlat
-    : validationStyleProps.backgroundColor;
+    ? getValidationProp('backgroundColorFlat', theme.colors.gray1)
+    : getValidationProp('backgroundColor', theme.colors.white);
+
+  const focusBoxShadow = flat
+    ? getValidationProp(
+        'focusBoxShadowFlat',
+        `0 0 1px 2px ${validationStyleProps.focusBorderColor}`
+      )
+    : validationStyleProps.focusBoxShadow;
+
+  const addOn = getValidationProp('addOn', {
+    textColor: validationState === 'default' ? theme.colors.gray8 : 'white',
+    backgroundColor:
+      validationState === 'default'
+        ? theme.colors.gray3
+        : validationStyleProps.borderColor
+  });
+
   const disabledBackgroundColor = darken(backgroundColor, 7);
-  const calculatedProps = { disabledBackgroundColor, backgroundColor };
+
+  const calculatedProps = {
+    disabledBackgroundColor,
+    backgroundColor,
+    focusBoxShadow,
+    addOn
+  };
+
   const finalProps = { flat };
 
   const validationProps = {

@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.5](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.4...v21.7.0-pre-prod.5) (2023-01-19)
+
+
+### Build
+
+* fixing DateInput tests ([42c6797](https://github.com/wtw-im/es-components/commit/42c6797577bf09d2523b707ebbeee9a907ac4be6))
+
+### Fix
+
+* adding fallbacks for new validation theme props ([2b93d33](https://github.com/wtw-im/es-components/commit/2b93d33797676d7a5fc8891d9a1e6b8b7f95760d))
+* adjusting textbox height for outer container border ([4314473](https://github.com/wtw-im/es-components/commit/43144736b5e1d820650c0d91d756d44d1681a0fa))
+
+### New
+
+* adding 'defaultFormStyle' to 'inputStyles' in themes ([c3944e8](https://github.com/wtw-im/es-components/commit/c3944e847e75f306b6e954e52fbad509a352d1a1))
+* adding 'flat' prop to Textbox ([dd0c240](https://github.com/wtw-im/es-components/commit/dd0c240b45f2bbc457e12c1335dab6184502d77c))
+* adding Form component and 'flat' prop ([cd862d2](https://github.com/wtw-im/es-components/commit/cd862d2a40e74779334ce34586a7677a66249314))
+
+### Update
+
+* adding AddOn styles to theme ([8ef8fe9](https://github.com/wtw-im/es-components/commit/8ef8fe961a20148dfccfd48de52991f4efea9303))
+* adding input border-radius to theme ([e33e69e](https://github.com/wtw-im/es-components/commit/e33e69e99e71ce8f7129dc2f99b2a6cf00859ebb))
+* completing 'flat' style inputs ([a63f9fb](https://github.com/wtw-im/es-components/commit/a63f9fbcfc402b8cdb3632b48fadd6aa8b5ec808))
+* displaying icons only if needed ([5c90e36](https://github.com/wtw-im/es-components/commit/5c90e3634370049abb6c1c736c1e13f4e2cd3945))
+* moving default input style logic into FormContextProvider ([c825de0](https://github.com/wtw-im/es-components/commit/c825de0c1eeb7e33904c463e7044b1fc92d6121b))
+* using :before and :after for textbox prepends and appends ([c2d2017](https://github.com/wtw-im/es-components/commit/c2d2017efe5e11529a8e78b8d845827d61e194de))
+* using focus-within for focus styling ([ab92dd4](https://github.com/wtw-im/es-components/commit/ab92dd4df11c0cb9c6095c1cd8995f945ea662f7))
+* using InputBase for Dropdowns ([cada987](https://github.com/wtw-im/es-components/commit/cada98726bdc4f6a7aaffdb5c3d0abff7ad7e058))
+* using svg for dropdown arrow ([d0b1397](https://github.com/wtw-im/es-components/commit/d0b139719053c346efb64e96d457cb68b904993a))
+* using theme configs for Labels ([eb04078](https://github.com/wtw-im/es-components/commit/eb0407842df4250d9bfabd274a93d132bd51958d))
+
+### Upgrade
+
+* bump glob-parent and react-styleguidist ([21f45ed](https://github.com/wtw-im/es-components/commit/21f45ed220697f96e2fdb88c2526839c5117deaf))
+* bump json5 from 1.0.1 to 1.0.2 in /packages/es-components ([c109450](https://github.com/wtw-im/es-components/commit/c109450d5aecbb429de9c7198bf326a20d385ba7))
+
+
+
+
+
 # [21.7.0-pre-prod.4](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.3...v21.7.0-pre-prod.4) (2023-01-18)
 
 

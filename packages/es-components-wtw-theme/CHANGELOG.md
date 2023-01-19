@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.4...v21.7.0-pre-prod.5) (2023-01-19)
+
+
+### Fix
+
+* adding fallbacks for new validation theme props ([2b93d33](https://github.com/WTW-IM/es-components/commit/2b93d33797676d7a5fc8891d9a1e6b8b7f95760d))
+* adding the semantic colors to wtw-theme ([73bd838](https://github.com/WTW-IM/es-components/commit/73bd83821b996ecb167cea65e80bcc1566f512b4))
+
+### New
+
+* adding 'defaultFormStyle' to 'inputStyles' in themes ([c3944e8](https://github.com/WTW-IM/es-components/commit/c3944e847e75f306b6e954e52fbad509a352d1a1))
+
+### Update
+
+* adding AddOn styles to theme ([8ef8fe9](https://github.com/WTW-IM/es-components/commit/8ef8fe961a20148dfccfd48de52991f4efea9303))
+* adding input border-radius to theme ([e33e69e](https://github.com/WTW-IM/es-components/commit/e33e69e99e71ce8f7129dc2f99b2a6cf00859ebb))
+* completing 'flat' style inputs ([a63f9fb](https://github.com/WTW-IM/es-components/commit/a63f9fbcfc402b8cdb3632b48fadd6aa8b5ec808))
+* using svg for dropdown arrow ([d0b1397](https://github.com/WTW-IM/es-components/commit/d0b139719053c346efb64e96d457cb68b904993a))
+* using theme configs for Labels ([eb04078](https://github.com/WTW-IM/es-components/commit/eb0407842df4250d9bfabd274a93d132bd51958d))
+
+
+
+
+
 # [21.7.0-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.3...v21.7.0-pre-prod.4) (2023-01-18)
 
 

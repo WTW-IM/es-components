@@ -556,7 +556,9 @@ const theme = {
     },
   },
   font: {
-    baseFontSize: '18px',
+    baseFontSize: '16px',
+    labelFontSize: '14px',
+    labelFontWeight: 'normal',
     baseLineHeight: 1.428,
     headingDesktop: {
       1: '31.104px',

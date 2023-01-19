@@ -16,7 +16,8 @@ export const validationStateHighlightStyles = css`
 
 export const validationStateInputStyles = css`
   border: 1px solid ${props => props.borderColor};
-  border-radius: ${getStyledProp('inputStyles.borderRadius') || '2px'};
+  border-radius: ${props =>
+    getStyledProp('inputStyles.borderRadius')(props) || '2px'};
   box-sizing: border-box;
   ${props =>
     props.flat &&
@@ -92,10 +93,6 @@ export const BasicTextbox = styled(InputBase)`
 
 function getValidationStylesOrDefault(theme, validationState) {
   const validationTarget = theme.validationInputColor[validationState] || {};
-  validationTarget.backgroundColor =
-    validationTarget.backgroundColor || theme.colors.white;
-  validationTarget.backgroundColorFlat =
-    validationTarget.backgroundColorFlat || theme.colors.gray2;
   return validationTarget;
 }
 

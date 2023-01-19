@@ -50,8 +50,39 @@ const primary = '#5a0c6f';
 const primaryHover = '#3c084a';
 const primaryLight = '#ebcff3';
 
+// semantic - base colors, tints, & shades
+const agent50 = '#fde8de';
+const agent100 = '#fee8c4';
+const agent300 = '#fdcc8a';
+const agent500 = '#fc8d59';
+const agent700 = '#ff6310';
+const danger50 = '#f9e0e0';
+const danger100 = '#f0b3b3';
+const danger300 = '#db4d4d';
+const danger500 = '#cc0000';
+const danger700 = '#c00000';
+const danger900 = '#ad0000';
+const info50 = '#e0edf3';
+const info100 = '#b3d1e0';
+const info300 = '#4d94b8';
+const info500 = '#006699';
+const info700 = '#005386';
+const info900 = '#00386b';
+const success50 = '#e5f0e9';
+const success100 = '#bfdac7';
+const success300 = '#69aa7c';
+const success500 = '#298544';
+const success700 = '#1f7235';
+const success900 = '#0f551f';
+const warning50 = '#f8eae0';
+const warning100 = '#edccb3';
+const warning300 = '#d4874d';
+const warning500 = '#c25400';
+const warning700 = '#b44300';
+const warning900 = '#9f2900';
+
 // semantic
-const info = '#006699';
+const info = info500;
 const infoHover = '#004466';
 const infoLight = '#c0ebff';
 const success = '#006000';

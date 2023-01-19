@@ -183,7 +183,7 @@ exports[`renders the correct addons when provided 1`] = `
 .c5.c5 {
   border: none !important;
   margin: 0 !important;
-  height: calc(2.2em - 2.9px);
+  height: calc(2.2em - 2px);
 }
 
 .c5.c5:focus {
@@ -419,7 +419,7 @@ exports[`renders the correct addons when provided 2`] = `
 .c5.c5 {
   border: none !important;
   margin: 0 !important;
-  height: calc(2.2em - 2.9px);
+  height: calc(2.2em - 2px);
 }
 
 .c5.c5:focus {
@@ -690,7 +690,7 @@ exports[`renders the correct addons when provided 3`] = `
 .c5.c5 {
   border: none !important;
   margin: 0 !important;
-  height: calc(2.2em - 2.9px);
+  height: calc(2.2em - 2px);
 }
 
 .c5.c5:focus {

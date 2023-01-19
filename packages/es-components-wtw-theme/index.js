@@ -120,6 +120,9 @@ const inRange = 'rgba(33, 107, 165, 0.5)';
 const highlight = '#3dcc4a';
 const highlightHover = '#32be3f';
 
+const dropdownArrow =
+  "data:image/svg+xml,%3Csvg width='11px' height='21px' viewBox='0 0 11 21' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Autocomplete-and-Dropdowns' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Icon' transform='translate(1.000000  2.000000)' stroke='%2300A0D2' stroke-width='2'%3E%3Cg id='Atoms-/-Functional-Icons-/-Custom-/-Chevron-/-Down-/-Blue'%3E%3Cpolyline points='9 11.646475 4.5 16.646475 0 11.646475'%3E%3C/polyline%3E%3Cpolyline id='Atoms-/-Functional-Icons-/-Custom-/-Chevron-/-Down-/-Blue-Copy' transform='translate(4.500000 2.500000) rotate(-180.000000) translate(-4.500000  -2.500000) ' points='9 0 4.5 5 0 0'%3E%3C/polyline%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
+
 const theme = {
   colors: {
     white: white,
@@ -479,6 +482,7 @@ const theme = {
   inputStyles: {
     borderRadius: '2px',
     defaultFormStyle: 'default',
+    dropdownArrow: dropdownArrow,
   },
   validationIconName: {
     success: 'ok-circle',

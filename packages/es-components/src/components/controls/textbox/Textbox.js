@@ -92,7 +92,7 @@ export const TextboxBase = styled(InputBase)`
   && {
     border: none !important;
     margin: 0 !important;
-    height: calc(2.2em - 2.9px); // adjust for outer border
+    height: calc(2.2em - 2px); // adjust for outer border
   }
 
   ${({ hasPrepend }) =>

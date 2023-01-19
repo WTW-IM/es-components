@@ -6,9 +6,19 @@ import InputBase, {
   placeholderStyles
 } from '../textbox/InputBase';
 import callRef from '../../util/callRef';
+import { arrowDown } from './assets';
+import getStyledProp from '../../util/getStyledProp';
+
+const getCSSArrow = props =>
+  `"${getStyledProp('inputStyles.dropdownArrow')(props) || arrowDown}"`;
 
 const DropdownInput = styled(InputBase)`
   min-width: 100px;
+  appearance: none;
+  background-image: url(${getCSSArrow});
+  background-repeat: no-repeat;
+  background-position: right 0.5em center;
+  background-size: 0.6em auto;
 
   ${({ hasValue }) => !hasValue && placeholderStyles}
 

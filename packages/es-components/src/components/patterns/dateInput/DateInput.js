@@ -72,7 +72,7 @@ function DateInput({
         hasDayElement.current = true;
       }
     });
-  }, []);
+  }, [children, state.month]);
 
   function createDate(year, month, day) {
     const cleanDay = day ? cleanZeroes(day.toString()) : day;

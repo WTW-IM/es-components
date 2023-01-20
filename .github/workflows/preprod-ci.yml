@@ -24,8 +24,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
@@ -50,9 +50,9 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
@@ -82,9 +82,9 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
@@ -106,7 +106,7 @@ jobs:
           git checkout gh-pages
           rm -rf build/
           mkdir -p pre-prod
-          mv ./packages/es-components/docs/pre-prod/* ./pre-prod
+          cp -r ./packages/es-components/docs/pre-prod/* ./pre-prod
           git add pre-prod
           git commit -m "Deploy es-component pre-prod docs to gh-pages"
           git push origin gh-pages

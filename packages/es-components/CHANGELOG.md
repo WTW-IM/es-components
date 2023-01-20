@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.7](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.6...v21.7.0-pre-prod.7) (2023-01-20)
+
+
+### Fix
+
+* ensuring all BasicTextbox children get validationStyles ([643bc5f](https://github.com/wtw-im/es-components/commit/643bc5f31e905385ccc7f1f24b1170d7b8d9f5e7))
+
+
+
+
+
 # [21.7.0-pre-prod.6](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.5...v21.7.0-pre-prod.6) (2023-01-20)
 
 

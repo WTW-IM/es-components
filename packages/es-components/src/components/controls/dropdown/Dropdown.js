@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import InputBase, {
-  useValidationStyleProps,
   validationStateHighlightStyles,
-  placeholderStyles
+  placeholderStyles,
+  useValidationStyleProps
 } from '../textbox/InputBase';
 import callRef from '../../util/callRef';
 import { arrowDown } from './assets';
@@ -48,14 +48,11 @@ const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
 
   return (
     <DropdownInput
-      {...{
-        ...validationStyleProps,
-        ...props
-      }}
+      {...validationStyleProps}
       onChange={onChange}
       hasValue={hasValue}
       ref={inputRef}
-      as="select"
+      forwardedAs="select"
     />
   );
 });

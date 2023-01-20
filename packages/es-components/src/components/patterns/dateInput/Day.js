@@ -2,8 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useTheme } from '../../util/useTheme';
-import ValidationContext from '../../controls/ValidationContext';
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 
@@ -19,8 +17,6 @@ const DayInput = styled(BasicTextbox)`
 `;
 
 function Day({ onChange, date, ...props }) {
-  const theme = useTheme();
-  const validationState = React.useContext(ValidationContext);
   const [value, setValue] = React.useState(date ? date.getDate() : '');
 
   function onDayChange(event) {
@@ -42,7 +38,6 @@ function Day({ onChange, date, ...props }) {
       onChange={onDayChange}
       placeholder="Day"
       value={value}
-      {...theme.validationInputColor[validationState]}
       {...props}
     />
   );

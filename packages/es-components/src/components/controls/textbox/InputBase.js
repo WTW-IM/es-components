@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import ValidationContext from '../ValidationContext';
 import { FormContext } from '../../containers/form/Form';
@@ -32,10 +32,14 @@ export const validationStateReadonlyStyles = css`
   cursor: text;
 `;
 
+const maybeGetComma = ({ flat, boxShadow }) => (flat || boxShadow) && ', ';
+
 export const validationStateSetupStyles = css`
   background-color: ${props => props.backgroundColor};
-  box-shadow: 0 0 0 0 ${props => props.borderColor},
-    ${({ flat, boxShadow }) => (flat ? noInset : boxShadow)};
+  box-shadow: 0 0 0 0 ${props => props.borderColor}${maybeGetComma}${({
+      flat,
+      boxShadow
+    }) => (flat ? noInset : boxShadow)};
   transition: border-color linear 0.15s, box-shadow linear 0.15s;
 `;
 
@@ -43,7 +47,7 @@ export const placeholderStyles = css`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
-const InputBase = styled.input`
+const InputBaseComponent = styled.input`
   ${validationStateInputStyles}
   ${validationStateSetupStyles}
   color: ${getStyledProp('colors.black')};
@@ -70,6 +74,11 @@ const InputBase = styled.input`
     cursor: not-allowed;
   }
 `;
+const InputBase = React.forwardRef(function ForwardedInputBase(props, ref) {
+  const validationStyleProps = useValidationStyleProps(props);
+  return <InputBaseComponent ref={ref} {...validationStyleProps} />;
+});
+
 export default InputBase;
 
 export const basicTextboxStyles = css`
@@ -83,16 +92,26 @@ export const basicTextboxStyles = css`
   }
 `;
 
-export const BasicTextbox = styled(InputBase)`
+export const BasicTextboxComponent = styled(InputBaseComponent)`
   ${basicTextboxStyles}
-  ${validationStateInputStyles}
   &&:focus {
     ${validationStateHighlightStyles}
   }
 `;
 
+export const BasicTextbox = React.forwardRef(function ForwardedBasicTextbox(
+  props,
+  ref
+) {
+  const validationStyleProps = useValidationStyleProps(props);
+  return <BasicTextboxComponent ref={ref} {...validationStyleProps} />;
+});
+
 function getValidationStylesOrDefault(theme, validationState) {
-  const validationTarget = theme.validationInputColor[validationState] || {};
+  const validationTarget =
+    theme.validationInputColor[validationState] ||
+    theme.validationInputColor.default ||
+    {};
   return validationTarget;
 }
 

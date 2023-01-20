@@ -2,8 +2,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useTheme } from '../../util/useTheme';
-import ValidationContext from '../../controls/ValidationContext';
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 
@@ -19,8 +17,6 @@ const YearInput = styled(BasicTextbox)`
 `;
 
 function Year({ onChange, date, ...props }) {
-  const theme = useTheme();
-  const validationState = React.useContext(ValidationContext);
   const [value, setValue] = React.useState(date ? date.getFullYear() : '');
 
   function onYearChange(event) {
@@ -40,7 +36,6 @@ function Year({ onChange, date, ...props }) {
       onKeyDown={onNonNumericHandler}
       placeholder="Year"
       value={value}
-      {...theme.validationInputColor[validationState]}
       {...props}
     />
   );

@@ -508,7 +508,7 @@ const theme = {
       boxShadow: 'inset 0 0 5px ' + success,
       focusBorderColor: success,
       focusBoxShadow: '0 0 6px ' + success,
-      focusBoxShadowFlat: '0 0 1px 2px' + success,
+      focusBoxShadowFlat: '0 0 1px 2px ' + success,
       addOn: {
         textColor: white,
         backgroundColor: success,
@@ -521,7 +521,7 @@ const theme = {
       boxShadow: 'inset 0 0 5px ' + warning,
       focusBorderColor: warning,
       focusBoxShadow: '0 0 6px ' + warning,
-      focusBoxShadowFlat: '0 0 1px 2px' + warning,
+      focusBoxShadowFlat: '0 0 1px 2px ' + warning,
       addOn: {
         textColor: white,
         backgroundColor: warning,
@@ -534,7 +534,7 @@ const theme = {
       boxShadow: 'inset 0 0 5px ' + danger,
       focusBorderColor: danger,
       focusBoxShadow: '0 0 6px ' + danger,
-      focusBoxShadowFlat: '0 0 1px 2px' + danger,
+      focusBoxShadowFlat: '0 0 1px 2px ' + danger,
       addOn: {
         textColor: white,
         backgroundColor: danger,

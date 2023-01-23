@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.8](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.7...v21.7.0-pre-prod.8) (2023-01-23)
+
+
+### Fix
+
+* ensuring we always display placeholder styles correctly on Dropdowns ([538a8ad](https://github.com/wtw-im/es-components/commit/538a8ad058e84db6aa7ca9fb14ea1e6e94a18f4e))
+
+
+
+
+
 # [21.7.0-pre-prod.7](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.6...v21.7.0-pre-prod.7) (2023-01-20)
 
 

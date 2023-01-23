@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import InputBase, {
   validationStateHighlightStyles,
@@ -29,7 +29,8 @@ const DropdownInput = styled(InputBase)`
 
 const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
-  const [hasValue, setHasValue] = useState(false);
+  const [hasValue, setHasValue] = useState(Boolean(props.value));
+  const [inputRef, setInputRef] = useState(null);
   const onChange = useCallback(
     ev => {
       setHasValue(Boolean(ev.target.value));
@@ -38,20 +39,29 @@ const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
     [props.onChange]
   );
 
-  const inputRef = useCallback(
+  const inputRefCallback = useCallback(
     node => {
-      setHasValue(Boolean(node?.value));
+      setInputRef(node);
       callRef(ref, node);
     },
     [ref]
   );
+
+  useEffect(() => {
+    if (inputRef) {
+      setHasValue(Boolean(inputRef && inputRef.value));
+      return;
+    }
+
+    setHasValue(Boolean(props.value || props.defaultValue));
+  }, [props.value, props.defaultValue, inputRef, inputRef?.value]);
 
   return (
     <DropdownInput
       {...validationStyleProps}
       onChange={onChange}
       hasValue={hasValue}
-      ref={inputRef}
+      ref={inputRefCallback}
       forwardedAs="select"
     />
   );

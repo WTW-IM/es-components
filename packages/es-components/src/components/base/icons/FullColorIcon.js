@@ -18,7 +18,7 @@ export default function FullColorIcon({ name, size, ...props }) {
           height: 'auto',
           maxWidth: '100%'
         }}
-        src={`https://bdaim-webexcdn-p.azureedge.net/es-assets/images/full-color-icons/${name}.svg`}
+        src={`${ASSETS_PATH}images/full-color-icons/${name}.svg`}
         alt={`${name} icon`}
       />
     </div>

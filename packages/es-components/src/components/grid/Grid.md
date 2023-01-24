@@ -3,7 +3,7 @@ We use a minified, isolated, CSS version of [Bootstrap 4.6 Grid](https://getboot
 To include it in your project, add the following stylesheet reference:
 
 ```html
-<link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/grid.css" />
+<link rel="stylesheet" href="{{ASSETS_PATH}}grid.css" />
 ```
 
 Refer to the [official Bootstrap Grid documentation](https://getbootstrap.com/docs/4.6/layout/grid/) for usage.
@@ -11,5 +11,5 @@ Refer to the [official Bootstrap Grid documentation](https://getbootstrap.com/do
 We also have made the [Bootstrap 4.6 Utility](https://getbootstrap.com/docs/4.6/utilities/borders/) classes optionally available. Include them with the following link:
 
 ```html
-<link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/util.css" />
+<link rel="stylesheet" href="{{ASSETS_PATH}}util.css" />
 ```

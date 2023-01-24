@@ -42,13 +42,13 @@ const StarFill = styled.span`
 `;
 
 const StarOverlay = styled.div`
-  background-image: url(https://bdaim-webexcdn-p.azureedge.net/es-assets/images/star-rating-mask.svg);
+  background-image: url(${ASSETS_PATH}images/star-rating-mask.svg);
   height: 25px;
   margin-top: -23px;
 `;
 
 const PoorPerformerOverlay = styled.div`
-  background-image: url(https://bdaim-webexcdn-p.azureedge.net/es-assets/images/poor-performer-mask.svg);
+  background-image: url(${ASSETS_PATH}images/poor-performer-mask.svg);
   background-size: 100% 100%;
   height: 30px;
   margin-top: -5px;

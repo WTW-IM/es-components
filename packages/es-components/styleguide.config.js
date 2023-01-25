@@ -1,7 +1,16 @@
+const webpack = require('webpack');
 const path = require('path');
 const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
 const baseComponentDir = styleguidePaths.baseComponentDir;
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+const argv = yargs(hideBin(process.argv)).argv;
+
+const isProduction = argv.env === 'prod';
+const assets_url = isProduction
+  ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
+  : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
 module.exports = {
   styleguideDir: 'docs',
@@ -35,8 +44,8 @@ module.exports = {
           outline: 3px solid #3dbbdb;
         }
       </style>
-      <link rel="preload" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" as="style">
-      <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css">
+      <link rel="preload" href="${assets_url}icons.css" as="style">
+      <link rel="stylesheet" href="${assets_url}source-sans-pro.css">
       <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
     `
     }
@@ -93,7 +102,9 @@ module.exports = {
     }
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js')
+    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js'),
+    ReactComponentRenderer: path.join(__dirname, 'src/styleguide/ComponentRenderer.js'),
+    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.js'),
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
@@ -121,6 +132,11 @@ module.exports = {
         }
       }
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        ASSETS_PATH: JSON.stringify(assets_url)
+      })
+    ],
     module: {
       rules: [
         {

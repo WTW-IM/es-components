@@ -1,5 +1,5 @@
 /* eslint-env jest */
-
+global.ASSETS_PATH = "https://app.dev.viabenefits.com/static/third-party/"
 const originalError = console.error;
 
 beforeAll(() => {

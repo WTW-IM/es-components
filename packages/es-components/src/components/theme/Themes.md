@@ -61,7 +61,7 @@ Our web app font of choice is _Source Sans Pro_. Import it by adding the followi
 ```html
 <link
   rel="stylesheet"
-  href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css"
+  href="{{ASSETS_PATH}}source-sans-pro.css"
 />
 ```
 

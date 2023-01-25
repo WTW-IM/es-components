@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 const plugins = ['import', '@babel'];
 const exts = [
   'eslint:recommended',
@@ -15,10 +15,10 @@ module.exports = {
       jsx: true,
       destructuring: true,
       experimentalObjectRestSpread: true,
-      ecmaVersion: 'latest',
+      ecmaVersion: 'latest'
     },
     babelOptions: {
-    configFile: path.join(__dirname, 'babel.config.js')
+      configFile: path.join(__dirname, 'babel.config.js')
     }
   },
   rules: {
@@ -46,7 +46,11 @@ module.exports = {
       }
     ],
     'prefer-arrow-callback': 0,
-    'id-length': 0
+    'id-length': 0,
+    'react/no-unknown-property': ['error', { ignore: ['css'] }]
+  },
+  globals: {
+    ASSETS_PATH: 'readonly'
   },
   overrides: [
     {

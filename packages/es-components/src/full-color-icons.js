@@ -8,8 +8,7 @@ import { debounce } from 'lodash';
 import Spinner from './components/base/spinner/Spinner';
 import FullColorIcon from './components/base/icons/FullColorIcon';
 
-const iconsListUrl =
-  'https://bdaim-webexcdn-p.azureedge.net/es-assets?restype=directory&comp=list';
+const iconsListUrl = `${ASSETS_PATH}?restype=directory&comp=list`;
 
 const OuterContainer = styled.div`
   text-align: center;

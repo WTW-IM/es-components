@@ -1,4 +1,4 @@
-Icons will inherit their size unless otherwise specified. <a href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icon-demo.html" target="blank">This page</a> displays all the available icons.
+Icons will inherit their size unless otherwise specified. <a href="{{ASSETS_PATH}}icon-demo.html" target="blank">This page</a> displays all the available icons.
 
 ```
 const containerStyle = {
@@ -24,14 +24,6 @@ and classes in your project. To ensure that fonts load on the global scope
 you can also add the same script as a preload `<link>` with `as="font"`.
 
 ```html
-<link
-  rel="preload"
-  href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css"
-  as="style"
-/>
-<link
-  rel="preload"
-  href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css"
-  as="font"
-/>
+<link rel="preload" href="{{ASSETS_PATH}}icons.css" as="style" />
+<link rel="preload" href="{{ASSETS_PATH}}icons.css" as="font" />
 ```

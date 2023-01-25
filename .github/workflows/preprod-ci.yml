@@ -98,7 +98,6 @@ jobs:
       - name: Rebuild Pre-Prod Docs
         working-directory: packages/es-components
         run: |
-          npm run styleguide-build
           npm run pre-prod-sg-build
 
       - name: Publish docs to github pages

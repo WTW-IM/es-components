@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.9](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.8...v21.7.0-pre-prod.9) (2023-01-25)
+
+
+### Update
+
+* update es-assets urls ([ec49eb3](https://github.com/WTW-IM/es-components/commit/ec49eb3500d23efdca281995c659a9a5cedf6172))
+
+
+
+
+
 # [21.7.0-pre-prod.8](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.7...v21.7.0-pre-prod.8) (2023-01-23)
 
 

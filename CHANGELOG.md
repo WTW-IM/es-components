@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.95-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.0...v21.6.95-pre-prod.1) (2023-01-25)
+
+
+### Build
+
+* ensuring we publish for prod and preprod appropriately ([9239c01](https://github.com/WTW-IM/es-components/commit/9239c01c6c18960d328e249837ce85896b0096ed))
+* not pushing changes to docs if none ([92cf543](https://github.com/WTW-IM/es-components/commit/92cf543eba165cd9980891c47f662edccee40ffd))
+
+### Docs
+
+* including CHANGELOG in docs ([bd97f70](https://github.com/WTW-IM/es-components/commit/bd97f708bb96602724514dfa52ca333b19989064))
+
+
+
+
+
 ## [21.6.95-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.10...v21.6.95-pre-prod.0) (2023-01-25)
 
 

@@ -35,33 +35,33 @@ Because ES Components needs a reference to `document.body` on startup, you must 
   <!-- These fonts are used by es-components -->
   <link
     rel="stylesheet"
-    href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css"
+    href="https://app.viabenefits.com/static/cdn/es-assets/icons.css"
   />
   <link
     rel="stylesheet"
-    href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css"
+    href="https://app.viabenefits.com/static/cdn/es-assets/source-sans-pro.css"
   />
   <!-- You must include React, ReactDOM, PropTypes and Styled Components. ES Components depends on those packages. -->
   <script
     crossorigin
-    src="https://unpkg.com/react@16/umd/react.production.min.js"
+    src="https://app.viabenefits.com/static/third-party/react@16/umd/react.production.min.js"
   ></script>
   <script
     crossorigin
-    src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+    src="https://app.viabenefits.com/static/third-party/react-dom@16/umd/react-dom.production.min.js"
   ></script>
   <script
     crossorigin
-    src="https://unpkg.com/prop-types@15/prop-types.js"
+    src="https://app.viabenefits.com/static/third-party/prop-types@15/prop-types.js"
   ></script>
   <script
     crossorigin
-    src="https://unpkg.com/styled-components/dist/styled-components.min.js"
+    src="https://app.viabenefits.com/static/third-party/styled-components/dist/styled-components.min.js"
   ></script>
   <script
     crossorigin
     defer
-    src="https://unpkg.com/es-components/bundle/main.min.js"
+    src="https://app.viabenefits.com/static/third-party/es-components/bundle/main.min.js"
   ></script>
 </head>
 

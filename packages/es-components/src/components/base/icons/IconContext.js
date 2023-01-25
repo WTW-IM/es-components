@@ -8,7 +8,7 @@ class NodeError extends Error {
 }
 
 const iconStyleAttribute = 'data-es-icon-styles';
-const iconsAsset = 'https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css';
+const iconsAsset = `${ASSETS_PATH}icons.css`;
 
 const getExistingStyleTag = node =>
   node.querySelector(`[${iconStyleAttribute}]`) ||

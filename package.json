@@ -17,11 +17,12 @@
   "lint-staged": {
     "packages/es-components/src/**/*.js": [
       "prettier --single-quote --write",
-      "cd packages/es-components && npx eslint --fix"
+      "eslint --fix --config packages/es-components/.eslintrc.js"
     ]
   },
   "devDependencies": {
     "@aabenoja/conventional-changelog-eslint-lerna": "^1.0.2",
+    "@babel/preset-react": "^7.18.6",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@commitlint/prompt-cli": "^17.1.2",

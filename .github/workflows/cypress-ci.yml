@@ -1,13 +1,14 @@
 name: Cypress CI
 on:
   pull_request_target:
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - main
+      - pre-prod
   workflow_dispatch:
 env:
   ES_COMPONENTS_DIR: packages/es-components
-defaults:
-  run:
-    working-directory: packages/es-components
 
 jobs:
   run-cypress:
@@ -16,30 +17,43 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
-      - run: |
-          npm ci
+          ref: ${{ github.head_ref || github.ref }}
+
+      - name: NPM Clean Install
+        run: |
+          npm ci # runs installs and builds themes
+          cd packages/es-components
+          npm uninstall es-components-via-theme # uninstall unbuilt theme
+          npm install -D ../es-components-via-theme # reinstall built theme
+
+      - name: Setup Cypress
+        working-directory: ${{ env.ES_COMPONENTS_DIR }}
+        run: |
           npx cypress install
           npm start &
           npm run wait-for-start
+
       - name: Generate Cypress Config
+        working-directory: ${{ env.ES_COMPONENTS_DIR }}
         run: |
           echo "$( \
             jq -s '.[0] * .[1]' cypress.json cypress-ci.json \
           )" > cypress-ci.json
 
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v5
         with:
           working-directory: ${{ env.ES_COMPONENTS_DIR }}
           config-file: cypress-ci.json
           install: false
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: cypress-screenshots
-          path: cypress/screenshots
+          path: ${{ env.ES_COMPONENTS_DIR }}/cypress/screenshots
 
       - run: npm run cypressreport
+        working-directory: ${{ env.ES_COMPONENTS_DIR }}
 
       - name: Create Status check based on merged cypress results
         if: always()

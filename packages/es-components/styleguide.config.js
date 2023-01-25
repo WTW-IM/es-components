@@ -1,10 +1,31 @@
+const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
 const baseComponentDir = styleguidePaths.baseComponentDir;
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+const argv = yargs(hideBin(process.argv)).argv;
+
+const isProduction = argv.env === 'prod';
+const assets_url = isProduction
+  ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
+  : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+
+fs.copyFileSync(
+  path.join(__dirname, '..', '..', 'CHANGELOG.md'),
+  path.join(__dirname, 'CHANGELOG_COPY.md')
+);
+
+const styleguideDir = 'docs';
+const assetsDir = path.join(__dirname, 'docs');
+fs.mkdirSync(assetsDir, { recursive: true });
+const fd = fs.openSync(path.join(assetsDir, 'temp.txt'), 'a');
+fs.closeSync(fd);
 
 module.exports = {
-  styleguideDir: 'docs',
+  styleguideDir,
   title: `Exchange Solutions React Components v${version}`,
   template: {
     meta: [
@@ -35,8 +56,8 @@ module.exports = {
           outline: 3px solid #3dbbdb;
         }
       </style>
-      <link rel="preload" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/icons.css" as="style">
-      <link rel="stylesheet" href="https://bdaim-webexcdn-p.azureedge.net/es-assets/source-sans-pro.css">
+      <link rel="preload" href="${assets_url}icons.css" as="style">
+      <link rel="stylesheet" href="${assets_url}source-sans-pro.css">
       <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
     `
     }
@@ -90,10 +111,20 @@ module.exports = {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
       components: path.join(baseComponentDir, 'patterns/**/*.js')
+    },
+    {
+      name: 'CHANGELOG',
+      description: 'The changelog for this version of the library.',
+      content: path.join(__dirname, 'CHANGELOG_COPY.md')
     }
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js')
+    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js'),
+    ReactComponentRenderer: path.join(
+      __dirname,
+      'src/styleguide/ComponentRenderer.js'
+    ),
+    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.js')
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
@@ -107,7 +138,7 @@ module.exports = {
     dateFormat: 'date-fns/format'
   },
   require: [path.join(__dirname, 'config', 'styleguidist-page-scripts')],
-  assetsDir: path.join(__dirname, 'docs'),
+  assetsDir,
   webpackConfig: {
     optimization: {
       splitChunks: {
@@ -121,6 +152,11 @@ module.exports = {
         }
       }
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        ASSETS_PATH: JSON.stringify(assets_url)
+      })
+    ],
     module: {
       rules: [
         {

@@ -1,6 +1,6 @@
 ### Basic Table
 
-```
+```jsx
 <Table>
   <thead>
     <tr>
@@ -33,7 +33,7 @@
 </Table>
 ```
 
-```
+```jsx
 <Table>
   <caption>Row-based table headings</caption>
   <tbody>
@@ -55,7 +55,9 @@
 
 ### Other Options
 
-```
+Condensed Table With Hover:
+
+```jsx
 <Table hasHover isCondensed>
   <caption>Condensed Table with Hover</caption>
   <thead>
@@ -79,7 +81,11 @@
     </tr>
   </tbody>
 </Table>
+```
 
+Roomy Table With Stripes:
+
+```jsx
 <Table hasStripes isRoomy>
   <caption>Roomy Table with Stripes</caption>
   <thead>

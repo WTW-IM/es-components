@@ -1,12 +1,16 @@
 import styled from 'styled-components';
+import getStyledProp from '../../util/getStyledProp';
 
 const Label = styled.label`
-  color: ${props => props.theme.colors.gray9};
+  color: ${getStyledProp('colors.gray9')};
   cursor: pointer;
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-weight: bold;
-  line-height: ${props => props.theme.font.baseLineHeight};
+  font-size: ${props =>
+    getStyledProp('font.labelFontSize')(props) ||
+    getStyledProp('font.baseFontSize')(props)};
+  font-weight: ${props =>
+    getStyledProp('font.labelFontWeight')(props) || 'bold'};
+  line-height: ${getStyledProp('font.baseLineHeight')};
   margin-bottom: 5px;
   display: inline-block;
 
@@ -14,7 +18,7 @@ const Label = styled.label`
     cursor: not-allowed;
   }
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+  @media (min-width: ${getStyledProp('screenSize.tablet')}) {
     margin-right: 20px;
   }
 `;

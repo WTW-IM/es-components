@@ -1,14 +1,10 @@
-/* eslint-env jest */
-
 import React from 'react';
-import { fireEvent, cleanup } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { renderWithTheme } from '../../util/test-utils';
 
 import Control from '../Control';
 import Label from '../label/Label';
 import Textbox from './Textbox';
-
-beforeEach(cleanup);
 
 const buildTextbox = props => (
   <Control>
@@ -21,9 +17,9 @@ it('executes the handleOnChange function when text is changed', () => {
   const props = {
     onChange: jest.fn()
   };
-  const { getByLabelText } = renderWithTheme(buildTextbox(props));
+  renderWithTheme(buildTextbox(props));
 
-  fireEvent.change(getByLabelText('Text'), {
+  fireEvent.change(screen.getByLabelText('Text'), {
     target: { value: '112' }
   });
   expect(props.onChange).toHaveBeenCalled();
@@ -33,21 +29,20 @@ it('executes handleOnBlur when input focus is lost', () => {
   const props = {
     onBlur: jest.fn()
   };
-  const { getByLabelText } = renderWithTheme(buildTextbox(props));
+  renderWithTheme(buildTextbox(props));
 
-  fireEvent.blur(getByLabelText('Text'));
+  fireEvent.blur(screen.getByLabelText('Text'));
   expect(props.onBlur).toHaveBeenCalled();
 });
 
-it('renders addons when provided', () => {
-  function getNumberOfIcons(props) {
-    const { container } = renderWithTheme(buildTextbox(props));
-    return container.querySelectorAll('i').length;
-  }
+/* eslint-disable testing-library/no-node-access */
+test.each([
+  { prependIconName: 'prepend', appendIconName: undefined },
+  { prependIconName: undefined, appendIconName: 'append' },
+  { prependIconName: 'prepend', appendIconName: 'append' }
+])('renders the correct addons when provided', props => {
+  const { container } = renderWithTheme(buildTextbox(props));
 
-  expect(getNumberOfIcons({ prependIconName: 'prepend' })).toBe(1);
-  expect(getNumberOfIcons({ appendIconName: 'append' })).toBe(1);
-  expect(
-    getNumberOfIcons({ prependIconName: 'prepend', appendIconName: 'append' })
-  ).toBe(2);
+  expect(container.firstChild).toMatchSnapshot();
 });
+/* eslint-enable testing-library/no-node-access */

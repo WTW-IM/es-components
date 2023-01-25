@@ -27,14 +27,14 @@ const HelpContent = styled(Modal.Body)`
 `;
 
 const CautionRating = styled.div`
-  background-image: url(https://bdaim-webexcdn-p.azureedge.net/es-assets/images/poor-performer-mask.svg);
+  background-image: url(${ASSETS_PATH}images/poor-performer-mask.svg);
   background-size: 100% 100%;
   height: 30px;
   width: 150px;
 `;
 
 const StarRating = styled.div`
-  background-image: url(https://bdaim-webexcdn-p.azureedge.net/es-assets/images/star-rating-mask.svg);
+  background-image: url(${ASSETS_PATH}images/star-rating-mask.svg);
   background-color: #ffc436;
   height: 28px;
 `;

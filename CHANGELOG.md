@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.95-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.4...v21.6.95-pre-prod.5) (2023-01-25)
+
+
+### Build
+
+* ensuring styleguide can run completely ([6ba5ef3](https://github.com/WTW-IM/es-components/commit/6ba5ef36adfafd42cf3c0f296da8a268abf08e4c))
+
+
+
+
+
+## [21.6.95-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.3...v21.6.95-pre-prod.4) (2023-01-25)
+
+
+### Build
+
+* making pre-prod GH pages build verbose ([4fbf62a](https://github.com/WTW-IM/es-components/commit/4fbf62ad10f61568033f22dbc1f6bca717695ecc))
+
+
+
+
+
+## [21.6.95-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.2...v21.6.95-pre-prod.3) (2023-01-25)
+
+
+### Fix
+
+* fixing table markdown to not fail styleguide build ([f1f3cde](https://github.com/WTW-IM/es-components/commit/f1f3cdee5bfc00519eeffa0a021e341bedbe8153))
+
+
+
+
+
+## [21.6.95-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.1...v21.6.95-pre-prod.2) (2023-01-25)
+
+
+### Build
+
+* making pre-prod GH pages build verbose ([f11e31a](https://github.com/WTW-IM/es-components/commit/f11e31a83d557a1d6d1835263d2df6c441af8b4d))
+
+
+
+
+
+## [21.6.95-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.0...v21.6.95-pre-prod.1) (2023-01-25)
+
+
+### Build
+
+* ensuring we publish for prod and preprod appropriately ([9239c01](https://github.com/WTW-IM/es-components/commit/9239c01c6c18960d328e249837ce85896b0096ed))
+* not pushing changes to docs if none ([92cf543](https://github.com/WTW-IM/es-components/commit/92cf543eba165cd9980891c47f662edccee40ffd))
+
+### Docs
+
+* including CHANGELOG in docs ([bd97f70](https://github.com/WTW-IM/es-components/commit/bd97f708bb96602724514dfa52ca333b19989064))
+
+
+
+
+
+## [21.6.95-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.10...v21.6.95-pre-prod.0) (2023-01-25)
+
+
+
+
+## [21.6.94](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94) (2022-11-09)
+
+
+### Build
+
+* [skip ci][skip-release] v21.6.94 ([188ceae](https://github.com/WTW-IM/es-components/commit/188ceaed1caaafd562901dc61c9f40e8de85b853))
+
+
+
+
+
 ## [21.6.94](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94) (2022-11-09)
 
 

@@ -50,8 +50,39 @@ const primary = '#5a0c6f';
 const primaryHover = '#3c084a';
 const primaryLight = '#ebcff3';
 
+// semantic - base colors, tints, & shades
+const agent50 = '#fde8de';
+const agent100 = '#fee8c4';
+const agent300 = '#fdcc8a';
+const agent500 = '#fc8d59';
+const agent700 = '#ff6310';
+const danger50 = '#f9e0e0';
+const danger100 = '#f0b3b3';
+const danger300 = '#db4d4d';
+const danger500 = '#cc0000';
+const danger700 = '#c00000';
+const danger900 = '#ad0000';
+const info50 = '#e0edf3';
+const info100 = '#b3d1e0';
+const info300 = '#4d94b8';
+const info500 = '#006699';
+const info700 = '#005386';
+const info900 = '#00386b';
+const success50 = '#e5f0e9';
+const success100 = '#bfdac7';
+const success300 = '#69aa7c';
+const success500 = '#298544';
+const success700 = '#1f7235';
+const success900 = '#0f551f';
+const warning50 = '#f8eae0';
+const warning100 = '#edccb3';
+const warning300 = '#d4874d';
+const warning500 = '#c25400';
+const warning700 = '#b44300';
+const warning900 = '#9f2900';
+
 // semantic
-const info = '#006699';
+const info = info500;
 const infoHover = '#004466';
 const infoLight = '#c0ebff';
 const success = '#006000';
@@ -88,6 +119,9 @@ const keyboard = '#2a87d0';
 const inRange = 'rgba(33, 107, 165, 0.5)';
 const highlight = '#3dcc4a';
 const highlightHover = '#32be3f';
+
+const dropdownArrow =
+  "data:image/svg+xml,%3Csvg width='11px' height='21px' viewBox='0 0 11 21' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Autocomplete-and-Dropdowns' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Icon' transform='translate(1.000000  2.000000)' stroke='%2300A0D2' stroke-width='2'%3E%3Cg id='Atoms-/-Functional-Icons-/-Custom-/-Chevron-/-Down-/-Blue'%3E%3Cpolyline points='9 11.646475 4.5 16.646475 0 11.646475'%3E%3C/polyline%3E%3Cpolyline id='Atoms-/-Functional-Icons-/-Custom-/-Chevron-/-Down-/-Blue-Copy' transform='translate(4.500000 2.500000) rotate(-180.000000) translate(-4.500000  -2.500000) ' points='9 0 4.5 5 0 0'%3E%3C/polyline%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
 
 const theme = {
   colors: {
@@ -153,14 +187,14 @@ const theme = {
     advisorLight: advisorLight,
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
-    inputFocus: inputFocus
+    inputFocus: inputFocus,
   },
   brandColors: {
     primary1: primary1,
     primary2: primary2,
     primary3: primary3,
     secondary1: secondary1,
-    secondary2: secondary2
+    secondary2: secondary2,
   },
   datepickerColors: {
     dpBackground: dpBackground,
@@ -171,7 +205,7 @@ const theme = {
     keyboard: keyboard,
     inRange: inRange,
     highlight: highlight,
-    highlightHover: highlightHover
+    highlightHover: highlightHover,
   },
   promptStyles: {
     readAloud: {
@@ -180,7 +214,7 @@ const theme = {
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: 'agent'
+      iconName: 'agent',
     },
     doNotReadAloud: {
       bgColor: '#E0F4F4',
@@ -188,107 +222,129 @@ const theme = {
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
-      iconName: 'no-symbol'
-    }
+      iconName: 'no-symbol',
+    },
+  },
+  bannerStyles: {
+    success: {
+      bgColor: success100,
+      textColor: black,
+    },
+    info: {
+      bgColor: info100,
+      textColor: black,
+    },
+    warning: {
+      bgColor: warning100,
+      textColor: black,
+    },
+    danger: {
+      bgColor: danger100,
+      textColor: black,
+    },
+    advisor: {
+      bgColor: agent300,
+      textColor: black,
+    },
   },
   notificationStyles: {
     success: {
       base: {
         bgColor: success,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: successLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: success
-      }
+        textColor: success,
+      },
     },
     info: {
       base: {
         bgColor: info,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: infoLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: info
-      }
+        textColor: info,
+      },
     },
     warning: {
       base: {
         bgColor: warning,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: warningLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: warning
-      }
+        textColor: warning,
+      },
     },
     danger: {
       base: {
         bgColor: danger,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: dangerLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: danger
-      }
+        textColor: danger,
+      },
     },
     advisor: {
       base: {
         bgColor: advisor,
-        textColor: white
+        textColor: white,
       },
       light: {
         bgColor: advisorLight,
-        textColor: gray9
+        textColor: gray9,
       },
       messageOnly: {
         bgColor: 'transparent',
-        textColor: advisor
-      }
-    }
+        textColor: advisor,
+      },
+    },
   },
   buttonStyles: {
     button: {
       variant: {
         // default is required
         primary: {
-          bgColor: primary
+          bgColor: primary,
         },
         default: {
-          bgColor: '#ccc'
+          bgColor: '#ccc',
         },
         darkDefault: {
-          bgColor: gray9
+          bgColor: gray9,
         },
         success: {
-          bgColor: success
+          bgColor: success,
         },
         info: {
-          bgColor: info
+          bgColor: info,
         },
         warning: {
-          bgColor: warning
+          bgColor: warning,
         },
         danger: {
-          bgColor: danger
+          bgColor: danger,
         },
-        inherited: {}
+        inherited: {},
       },
       // size should always have default, lg, sm, xs
       // sizes must include borderRadius, fontSize, padding[Top|Sides|Bottom]
@@ -300,7 +356,7 @@ const theme = {
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
-          paddingBottom: '0.125rem'
+          paddingBottom: '0.125rem',
         },
         default: {
           borderRadius: '0.25rem',
@@ -308,7 +364,7 @@ const theme = {
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         sm: {
           borderRadius: '0.2rem',
@@ -316,7 +372,7 @@ const theme = {
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         xs: {
           borderRadius: '0.25rem',
@@ -325,37 +381,37 @@ const theme = {
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.1rem',
-          textTransform: 'uppercase'
-        }
-      }
+          textTransform: 'uppercase',
+        },
+      },
     },
     outlineButton: {
       variant: {
         primary: {
-          bgColor: primary
+          bgColor: primary,
         },
         default: {
-          bgColor: gray9
+          bgColor: gray9,
         },
         success: {
-          bgColor: success
+          bgColor: success,
         },
         info: {
-          bgColor: info
+          bgColor: info,
         },
         warning: {
-          bgColor: warning
+          bgColor: warning,
         },
         danger: {
-          bgColor: danger
+          bgColor: danger,
         },
         magenta: {
-          bgColor: primary3
+          bgColor: primary3,
         },
         violet: {
-          bgColor: primary1
+          bgColor: primary1,
         },
-        inherited: {}
+        inherited: {},
       },
       size: {
         lg: {
@@ -365,7 +421,7 @@ const theme = {
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
-          paddingBottom: '0.125rem'
+          paddingBottom: '0.125rem',
         },
         default: {
           borderRadius: '0.25rem',
@@ -374,7 +430,7 @@ const theme = {
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         sm: {
           borderRadius: '0.2rem',
@@ -383,7 +439,7 @@ const theme = {
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
-          paddingBottom: '0.25rem'
+          paddingBottom: '0.25rem',
         },
         xs: {
           borderRadius: '0.25rem',
@@ -393,76 +449,116 @@ const theme = {
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.1rem',
-          textTransform: 'uppercase'
-        }
-      }
+          textTransform: 'uppercase',
+        },
+      },
     },
     linkButton: {
       variant: {
         default: {
-          textColor: gray9
+          textColor: gray9,
         },
         primary: {
-          textColor: primary
+          textColor: primary,
         },
         success: {
-          textColor: success
+          textColor: success,
         },
         information: {
-          textColor: info
+          textColor: info,
         },
         danger: {
-          textColor: danger
+          textColor: danger,
         },
         warning: {
-          textColor: warning
+          textColor: warning,
         },
         inherited: {
-          textColor: 'inherit'
-        }
-      }
-    }
+          textColor: 'inherit',
+        },
+      },
+    },
+  },
+  inputStyles: {
+    borderRadius: '2px',
+    defaultFormStyle: 'default',
+    dropdownArrow: dropdownArrow,
   },
   validationIconName: {
     success: 'ok-circle',
     info: 'info-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
-    advisor: 'agent'
+    advisor: 'agent',
   },
   validationTextColor: {
     success: success,
     warning: warning,
-    danger: danger
+    danger: danger,
+    default: gray3,
   },
   validationInputColor: {
     success: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: success,
       boxShadow: 'inset 0 0 5px ' + success,
       focusBorderColor: success,
-      focusBoxShadow: '0 0 6px ' + success
+      focusBoxShadow: '0 0 6px ' + success,
+      focusBoxShadowFlat: '0 0 1px 2px ' + success,
+      addOn: {
+        textColor: white,
+        backgroundColor: success,
+        borderColor: success,
+      },
     },
     warning: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: warning,
       boxShadow: 'inset 0 0 5px ' + warning,
       focusBorderColor: warning,
-      focusBoxShadow: '0 0 6px ' + warning
+      focusBoxShadow: '0 0 6px ' + warning,
+      focusBoxShadowFlat: '0 0 1px 2px ' + warning,
+      addOn: {
+        textColor: white,
+        backgroundColor: warning,
+        borderColor: warning,
+      },
     },
     danger: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: danger,
       boxShadow: 'inset 0 0 5px ' + danger,
       focusBorderColor: danger,
-      focusBoxShadow: '0 0 6px ' + danger
+      focusBoxShadow: '0 0 6px ' + danger,
+      focusBoxShadowFlat: '0 0 1px 2px ' + danger,
+      addOn: {
+        textColor: white,
+        backgroundColor: danger,
+        borderColor: danger,
+      },
     },
     default: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
       borderColor: gray4,
       boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
-      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)'
-    }
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
+      addOn: {
+        textColor: gray8,
+        backgroundColor: gray3,
+        borderColor: gray4,
+      },
+    },
   },
   font: {
-    baseFontSize: '18px',
+    baseFontSize: '16px',
+    labelFontSize: '14px',
+    labelFontWeight: 'normal',
     baseLineHeight: 1.428,
     headingDesktop: {
       1: '31.104px',
@@ -470,7 +566,7 @@ const theme = {
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
-      6: '18px'
+      6: '18px',
     },
     headingMobile: {
       1: '31.104px',
@@ -478,16 +574,16 @@ const theme = {
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
-      6: '18px'
-    }
+      6: '18px',
+    },
   },
   screenSize: {
     retina: '360px',
     phone: '480px',
     tablet: '768px',
     desktop: '900px',
-    widescreen: '1200px'
-  }
+    widescreen: '1200px',
+  },
 };
 
 module.exports = theme;

@@ -33,11 +33,16 @@ export TabPanel from './components/containers/tabPanels/TabPanel';
 export StripedContainer from './components/containers/striped-container/StripedContainer';
 export Prompt from './components/containers/prompt/Prompt';
 export Heading, { PageHeading } from './components/containers/heading/Heading';
+export Banner from './components/containers/banner/Banner';
 export Table from './components/containers/table/Table';
 export ResponsiveTable from './components/containers/table/ResponsiveTable';
 export HorizontalScrollWrapper from './components/containers/horizontalScrollWrapper/HorizontalScrollWrapper';
 export LoadingSkeleton from './components/containers/loading-skeleton/LoadingSkeleton';
 
+export Form, {
+  FormContext,
+  FormContextProvider
+} from './components/containers/form/Form';
 export Control from './components/controls/Control';
 export AdditionalHelp from './components/controls/AdditionalHelp';
 export Label from './components/controls/label/Label';

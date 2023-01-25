@@ -1,35 +1,72 @@
+import React, { useCallback, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import InputBase, {
+  validationStateHighlightStyles,
+  placeholderStyles,
+  useValidationStyleProps
+} from '../textbox/InputBase';
+import callRef from '../../util/callRef';
+import { arrowDown } from './assets';
+import getStyledProp from '../../util/getStyledProp';
 
-const Dropdown = styled.select`
-  background-color: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.gray5};
-  border-radius: 2px;
-  box-shadow: ${props => props.boxShadow};
-  box-sizing: border-box;
-  color: ${props => props.theme.colors.black};
-  flex: auto;
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-weight: normal;
-  height: 39px;
+const getCSSArrow = props =>
+  `"${getStyledProp('inputStyles.dropdownArrow')(props) || arrowDown}"`;
+
+const DropdownInput = styled(InputBase)`
   min-width: 100px;
-  padding: 6px 12px;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  appearance: none;
+  background-image: url(${getCSSArrow});
+  background-repeat: no-repeat;
+  background-position: right 0.5em center;
+  background-size: 0.6em auto;
 
-  &:focus {
-    border-color: ${props =>
-      props.focusBorderColor ||
-      props.theme.validationInputColor.default.focusBorderColor};
-    box-shadow: ${props =>
-      props.focusBoxShadow ||
-      props.theme.validationInputColor.default.focusBoxShadow};
-    outline: 0;
-  }
+  ${({ hasValue }) => !hasValue && placeholderStyles}
 
-  &:disabled {
-    background-color: ${props => props.theme.colors.gray2};
-    cursor: not-allowed;
+  &&:focus {
+    ${validationStateHighlightStyles}
   }
 `;
 
-/** @component */
+const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
+  const validationStyleProps = useValidationStyleProps(props);
+  const [hasValue, setHasValue] = useState(Boolean(props.value));
+  const [inputRef, setInputRef] = useState(null);
+  const onChange = useCallback(
+    ev => {
+      setHasValue(Boolean(ev.target.value));
+      (props.onChange || (() => {}))(ev);
+    },
+    [props.onChange]
+  );
+
+  const inputRefCallback = useCallback(
+    node => {
+      setInputRef(node);
+      callRef(ref, node);
+    },
+    [ref]
+  );
+
+  useEffect(() => {
+    if (inputRef) {
+      setHasValue(Boolean(inputRef && inputRef.value));
+      return;
+    }
+
+    setHasValue(Boolean(props.value || props.defaultValue));
+  }, [props.value, props.defaultValue, inputRef, inputRef?.value]);
+
+  return (
+    <DropdownInput
+      {...validationStyleProps}
+      onChange={onChange}
+      hasValue={hasValue}
+      ref={inputRefCallback}
+      forwardedAs="select"
+    />
+  );
+});
+
+Dropdown.propTypes = styled.select.propTypes;
+
 export default Dropdown;

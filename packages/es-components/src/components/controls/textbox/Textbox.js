@@ -1,86 +1,186 @@
-import React from 'react';
+import React, {
+  useCallback,
+  useRef,
+  useImperativeHandle,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import Icon from '../../base/icons/Icon';
-import InputBase from './InputBase';
-import { Prepend, Append, InputWrapper } from './TextAddons';
-import { useTheme } from '../../util/useTheme';
-import ValidationContext from '../ValidationContext';
+import getStyledProp from '../../util/getStyledProp';
+import Icon, { iconBaseStyles } from '../../base/icons/Icon';
+import InputBase, {
+  useValidationStyleProps,
+  validationStateHighlightStyles,
+  validationStateInputStyles,
+  validationStateSetupStyles,
+  noInset,
+  basicTextboxStyles
+} from './InputBase';
 
-const defaultBorderRadius = '2px';
+const computeStyle = (...args) => {
+  try {
+    return window.getComputedStyle(...args);
+  } catch (err) {
+    if (err.message.match(/Not Implemented/i)) {
+      return {};
+    }
+    throw err;
+  }
+};
 
-const TextboxBase = styled(InputBase)`
-  border-bottom-left-radius: ${props =>
-    props.hasPrepend ? '0' : defaultBorderRadius};
-  border-bottom-right-radius: ${props =>
-    props.hasAppend ? '0' : defaultBorderRadius};
-  border-top-left-radius: ${props =>
-    props.hasPrepend ? '0' : defaultBorderRadius};
-  border-top-right-radius: ${props =>
-    props.hasAppend ? '0' : defaultBorderRadius};
-  display: table-cell;
-  -webkit-appearance: none;
+const getIconStyles = icon => {
+  const computedStyle = computeStyle(icon);
+  const beforeStyle = computeStyle(icon, ':before');
+  return css`
+    ${iconBaseStyles}
+
+    // computed styles
+    content: ${beforeStyle.content};
+    font-family: ${computedStyle.fontFamily};
+    font-size: ${computedStyle.fontSize};
+
+    // themed addon styles
+    background-color: ${getStyledProp('backgroundColor', 'addOn')};
+    color: ${getStyledProp('textColor', 'addOn')};
+
+    // base addon styles
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    outline: 0;
+    padding: 0.333em 0.6111em;
+  `;
+};
+
+const InputWrapper = styled.div`
+  ${validationStateSetupStyles}
+  ${validationStateInputStyles}
+  display: flex;
+
+  padding: 0 !important;
+
+  &:focus-within {
+    ${validationStateHighlightStyles}
+  }
+
+  ${({ hasPrepend, prependIcon }) =>
+    hasPrepend &&
+    prependIcon &&
+    css`
+      &&:before {
+        ${getIconStyles(prependIcon)}
+      }
+    `}
+  ${({ hasAppend, appendIcon }) =>
+    hasAppend &&
+    appendIcon &&
+    css`
+      &&:after {
+        ${getIconStyles(appendIcon)}
+      }
+    `}
 `;
+
+export const TextboxBase = styled(InputBase)`
+  ${basicTextboxStyles}
+  width: 100%;
+
+  && {
+    border: none !important;
+    margin: 0 !important;
+    height: calc(2.2em - 2px); // adjust for outer border
+  }
+
+  ${({ hasPrepend }) =>
+    hasPrepend &&
+    css`
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    `}
+
+  ${({ hasAppend }) =>
+    hasAppend &&
+    css`
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+    `}
+
+  &&:focus {
+    box-shadow: ${noInset};
+  }
+`;
+
+const Hidden = props => (
+  <div
+    aria-hidden="true"
+    style={{
+      position: 'absolute',
+      visibility: 'hidden',
+      overflow: 'visible',
+      width: 0,
+      height: 0,
+      left: -5000
+    }}
+    {...props}
+  />
+);
 
 const Textbox = React.forwardRef(function Textbox(props, ref) {
   const {
     prependIconName,
     appendIconName,
     type,
+    flat,
+    className,
+    style,
     ...additionalTextProps
   } = props;
-  const theme = useTheme();
-  const validationState = React.useContext(ValidationContext);
+  const validationProps = useValidationStyleProps({ flat });
 
-  const inputRef = React.useRef();
-  React.useImperativeHandle(ref, () => inputRef.current);
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => inputRef.current);
+
+  const [prependIcon, setPrependIcon] = useState();
+  const [appendIcon, setAppendIcon] = useState();
 
   const hasPrepend = !!prependIconName;
   const hasAppend = !!appendIconName;
-  const hasValidationState = validationState !== 'default';
+  const prependProps = { hasPrepend, hasAppend };
+  const sharedProps = { ...validationProps, ...prependProps };
 
-  const addOnTextColor = hasValidationState
-    ? theme.colors.white
-    : theme.colors.gray8;
-  const addOnBgColor = hasValidationState
-    ? theme.validationTextColor[validationState]
-    : theme.colors.gray3;
-
-  function focusInput() {
-    inputRef.current.focus();
-  }
+  const focusInput = useCallback(() => inputRef.current?.focus(), []);
 
   return (
-    <InputWrapper>
-      {hasPrepend && (
-        <Prepend
-          addOnTextColor={addOnTextColor}
-          addOnBgColor={addOnBgColor}
-          aria-hidden="true"
-          onClick={focusInput}
-        >
-          <Icon aria-hidden="true" name={prependIconName} size={18} />
-        </Prepend>
+    <InputWrapper
+      className={className}
+      as="div"
+      onClick={focusInput}
+      style={style}
+      {...{
+        ...sharedProps,
+        prependIcon,
+        appendIcon
+      }}
+    >
+      {hasPrepend || hasAppend ? (
+        <Hidden>
+          <Icon ref={setPrependIcon} name={prependIconName} size={18} />
+          <Icon ref={setAppendIcon} name={appendIconName} size={18} />
+        </Hidden>
+      ) : (
+        <></>
       )}
       <TextboxBase
-        hasAppend={hasAppend}
-        hasPrepend={hasPrepend}
         ref={inputRef}
         type={type}
+        className={className}
         {...additionalTextProps}
-        {...theme.validationInputColor[validationState]}
+        {...sharedProps}
       />
-      {hasAppend && (
-        <Append
-          addOnTextColor={addOnTextColor}
-          addOnBgColor={addOnBgColor}
-          aria-hidden="true"
-          onClick={focusInput}
-        >
-          <Icon aria-hidden="true" name={appendIconName} size={18} />
-        </Append>
-      )}
     </InputWrapper>
   );
 });
@@ -91,13 +191,20 @@ Textbox.propTypes = {
   /** Content to append to input box */
   appendIconName: PropTypes.string,
   /** The type attribute for the textboxa */
-  type: PropTypes.string
+  type: PropTypes.string,
+  /** Whether the textbox is the flat style or not */
+  flat: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 Textbox.defaultProps = {
   prependIconName: undefined,
   appendIconName: undefined,
-  type: 'text'
+  type: 'text',
+  flat: undefined,
+  className: undefined,
+  style: undefined
 };
 
 export default Textbox;

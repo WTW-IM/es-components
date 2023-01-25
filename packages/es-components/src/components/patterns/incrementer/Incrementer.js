@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { noop, isFinite, parseInt } from 'lodash';
 import styled from 'styled-components';
@@ -6,16 +6,15 @@ import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import Button from '../../controls/buttons/Button';
 import OutlineButton from '../../controls/buttons/OutlineButton';
-import InputBase from '../../controls/textbox/InputBase';
+import { BasicTextbox } from '../../controls/textbox/InputBase';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
-import { useTheme } from '../../util/useTheme';
 
 const IncrementerWrapper = styled.div`
   align-items: flex-start;
   display: flex;
 `;
 
-const IncrementerTextbox = styled(InputBase)`
+const IncrementerTextbox = styled(BasicTextbox)`
   margin: 0 10px;
   min-width: 60px;
   padding-right: 12px;
@@ -23,6 +22,7 @@ const IncrementerTextbox = styled(InputBase)`
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     width: 60px;
+    flex: 0;
   }
 
   /* Hides browser-specific number controls */
@@ -104,24 +104,20 @@ function Incrementer({
   onValueUpdated,
   ...other
 }) {
-  const theme = useTheme();
   const initialRender = useRef(true);
 
-  const [state, dispatch] = React.useReducer(updateCountReducer, {
+  const [state, dispatch] = useReducer(updateCountReducer, {
     count: startingValue === null ? '' : startingValue
   });
   const isIncrementDisabled = determineIsDisabled(upperThreshold, state.count);
   const isDecrementDisabled = determineIsDisabled(lowerThreshold, state.count);
 
-  React.useEffect(
-    () => {
-      if (!initialRender.current) {
-        onValueUpdated(state.count);
-      }
-      initialRender.current = false;
-    },
-    [state.count]
-  );
+  useEffect(() => {
+    if (!initialRender.current) {
+      onValueUpdated(state.count);
+    }
+    initialRender.current = false;
+  }, [state.count, onValueUpdated]);
 
   function setValue(event) {
     dispatch({ type: 'set', amount: event.target.value });
@@ -183,7 +179,6 @@ function Incrementer({
         <Icon name="minus" size={22} />
       </IncrementerButton>
       <IncrementerTextbox
-        {...theme.validationInputColor.default}
         {...other}
         type="number"
         role="spinbutton"

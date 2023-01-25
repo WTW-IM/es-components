@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.6.94",
+  "version": "21.6.95-pre-prod.5",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -9,25 +9,26 @@
   "main": "cjs/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
+    "build": "cross-env MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
     "lint": "eslint src",
-    "mkdocsdir": "node -e \"let mdkirp = require('mkdirp'); let path = require('path'); mdkirp(path.join(__dirname, 'docs'));\" && touch docs/temp ",
     "prepublishOnly": "npm run build",
     "rollup": "rollup -c rollup.config.js",
-    "styleguide-build": "npm run mkdocsdir && styleguidist build && rollup -c docs-rollup.config.js",
+    "styleguide-build": "styleguidist build --env prod && rollup -c docs-rollup.config.js --configEnv prod",
+    "styleguide-preprod": "styleguidist build --config ./pre-prod-styleguide.config.js && rollup -c docs-rollup.config.js",
+    "pre-prod-sg-build": "npm run styleguide-preprod && npm run pre-prod-fc-icons",
+    "pre-prod-fc-icons": "cp docs/full-color-icons.html docs/pre-prod && cp docs/full-color-icons.js docs/pre-prod",
     "start": "concurrently --kill-others \"npm run mkdocsdir && rollup -c docs-rollup.config.js -w\" \"styleguidist server\"",
-    "test": "jest",
+    "test": "npm run reinstall-via-theme && jest",
+    "reinstall-via-theme": "npm uninstall es-components-via-theme && npm install ../es-components-via-theme",
     "test:watch": "jest --watch",
     "wait-for-start": "wait-on http://localhost:6060",
     "cypressreport": "mochawesome-merge mochawesome-report/*.json > raw-results.json && marge --reportDir cypress-results raw-results.json"
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFiles": [
-      "./config/jest-shims.js"
-    ],
     "setupFilesAfterEnv": [
-      "<rootDir>/config/import-matchers.js"
+      "<rootDir>/config/import-matchers.js",
+      "./config/jest-shims.js"
     ],
     "testPathIgnorePatterns": [
       "es6",
@@ -72,8 +73,8 @@
     "bl": "^1.2.3",
     "braces": "^3.0.2",
     "concurrently": "^6.0.2",
+    "cross-env": "^7.0.3",
     "cypress": "^9.6.0",
-    "es-components-via-theme": "file:../es-components-via-theme",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
@@ -97,7 +98,7 @@
     "react-docgen": "^5.3.1",
     "react-docgen-displayname-handler": "^3.0.2",
     "react-dom": "^18.2.0",
-    "react-styleguidist": "^11.2.0",
+    "react-styleguidist": "^13.0.0",
     "react-test-renderer": "^17.0.2",
     "rollup": "^2.45.2",
     "rollup-plugin-generate-html-template": "^1.7.0",
@@ -105,7 +106,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "styled-components": "^5.3.5",
     "wait-on": "^6.0.1",
-    "webpack": "^5.74.0"
+    "webpack": "^5.74.0",
+    "yargs": "^17.6.2"
   },
   "dependencies": {
     "@babel/helpers": "^7.13.16",
@@ -113,6 +115,7 @@
     "@popperjs/core": "^2.9.2",
     "core-js": "^3.10.2",
     "date-fns": "^2.21.1",
+    "es-components-via-theme": "file:../es-components-via-theme",
     "format-message": "^6.2.3",
     "get-root-node-polyfill": "^1.0.0",
     "lodash": "^4.17.21",

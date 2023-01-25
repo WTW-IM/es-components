@@ -18,8 +18,14 @@ fs.copyFileSync(
   path.join(__dirname, 'CHANGELOG_COPY.md')
 );
 
+const styleguideDir = 'docs';
+const assetsDir = path.join(__dirname, 'docs');
+fs.mkdirSync(assetsDir, { recursive: true });
+const fd = fs.openSync(path.join(assetsDir, 'temp.txt'), 'a');
+fs.closeSync(fd);
+
 module.exports = {
-  styleguideDir: 'docs',
+  styleguideDir,
   title: `Exchange Solutions React Components v${version}`,
   template: {
     meta: [
@@ -132,7 +138,7 @@ module.exports = {
     dateFormat: 'date-fns/format'
   },
   require: [path.join(__dirname, 'config', 'styleguidist-page-scripts')],
-  assetsDir: path.join(__dirname, 'docs'),
+  assetsDir,
   webpackConfig: {
     optimization: {
       splitChunks: {

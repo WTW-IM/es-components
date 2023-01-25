@@ -8,7 +8,8 @@ import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 export default args => {
-  const isProduction = args.configEnv === 'prod';
+  const isProduction =
+    args.configEnv === 'prod' || process.env.MAIN_BUILD === 'true';
   const assets_url = isProduction
     ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
     : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
@@ -96,7 +97,7 @@ export default args => {
             if_return: false,
             typeofs: false
           },
-          mangle: process.env.MAIN_BUILD === 'true'
+          mangle: isProduction
         })
       ]
     }

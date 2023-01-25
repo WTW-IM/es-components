@@ -100,12 +100,25 @@ jobs:
         run: |
           npm run pre-prod-sg-build
 
-      - name: Publish docs to github pages
+      - name: Configure docs changes
         run: |
           git checkout gh-pages
           rm -rf build/
           mkdir -p pre-prod
           cp -r ./packages/es-components/docs/pre-prod/* ./pre-prod
           git add pre-prod
+          DIFF_RESULT=$(git diff --staged --quiet --exit-code; echo "$?")
+          HAS_CHANGES=$(
+            if [ $DIFF_RESULT -eq 0 ]
+            then echo "false"
+            else echo "true"
+            fi
+          )
+          echo "Has docs changes? $HAS_CHANGES"
+          echo "HAS_CHANGES=$HAS_CHANGES" >> $GITHUB_ENV
+
+      - name: Publish docs to github pages
+        if: env.HAS_CHANGES == 'true'
+        run: |
           git commit -m "Deploy es-component pre-prod docs to gh-pages"
           git push origin gh-pages

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs');
 const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
 const baseComponentDir = styleguidePaths.baseComponentDir;
@@ -11,6 +12,11 @@ const isProduction = argv.env === 'prod';
 const assets_url = isProduction
   ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
   : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+
+fs.copyFileSync(
+  path.join(__dirname, '..', '..', 'CHANGELOG.md'),
+  path.join(__dirname, 'CHANGELOG_COPY.md')
+);
 
 module.exports = {
   styleguideDir: 'docs',
@@ -99,12 +105,20 @@ module.exports = {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
       components: path.join(baseComponentDir, 'patterns/**/*.js')
+    },
+    {
+      name: 'CHANGELOG',
+      description: 'The changelog for this version of the library.',
+      content: path.join(__dirname, 'CHANGELOG_COPY.md')
     }
   ],
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js'),
-    ReactComponentRenderer: path.join(__dirname, 'src/styleguide/ComponentRenderer.js'),
-    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.js'),
+    ReactComponentRenderer: path.join(
+      __dirname,
+      'src/styleguide/ComponentRenderer.js'
+    ),
+    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.js')
   },
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');

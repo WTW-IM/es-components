@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.95-pre-prod.3](https://github.com/wtw-im/es-components/compare/v21.6.95-pre-prod.2...v21.6.95-pre-prod.3) (2023-01-25)
+
+
+### Fix
+
+* fixing table markdown to not fail styleguide build ([f1f3cde](https://github.com/wtw-im/es-components/commit/f1f3cdee5bfc00519eeffa0a021e341bedbe8153))
+
+
+
+
+
 ## [21.6.95-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.6.95-pre-prod.1...v21.6.95-pre-prod.2) (2023-01-25)
 
 

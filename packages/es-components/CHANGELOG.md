@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.7.0-pre-prod.10](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.9...v21.7.0-pre-prod.10) (2023-01-25)
+
+
+### Build
+
+* fixing styleguide preprod build ([1cc79d0](https://github.com/wtw-im/es-components/commit/1cc79d03c35b6477f2370b282a58c23b4f0dacf5))
+
+
+
+
+
 # [21.7.0-pre-prod.9](https://github.com/wtw-im/es-components/compare/v21.7.0-pre-prod.8...v21.7.0-pre-prod.9) (2023-01-25)
 
 

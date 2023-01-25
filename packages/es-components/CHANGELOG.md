@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.95-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.6.95-pre-prod.1...v21.6.95-pre-prod.2) (2023-01-25)
+
+
+### Build
+
+* making pre-prod GH pages build verbose ([f11e31a](https://github.com/wtw-im/es-components/commit/f11e31a83d557a1d6d1835263d2df6c441af8b4d))
+
+
+
+
+
 ## [21.6.95-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.6.95-pre-prod.0...v21.6.95-pre-prod.1) (2023-01-25)
 
 

@@ -3,91 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [21.7.0-pre-prod.10](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.9...v21.7.0-pre-prod.10) (2023-01-25)
-
-
-### Build
-
-* fixing styleguide preprod build ([1cc79d0](https://github.com/WTW-IM/es-components/commit/1cc79d03c35b6477f2370b282a58c23b4f0dacf5))
-
-
-
-
-
-# [21.7.0-pre-prod.9](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.8...v21.7.0-pre-prod.9) (2023-01-25)
-
-
-### Update
-
-* update es-assets urls ([ec49eb3](https://github.com/WTW-IM/es-components/commit/ec49eb3500d23efdca281995c659a9a5cedf6172))
-
-
-
-
-
-# [21.7.0-pre-prod.8](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.7...v21.7.0-pre-prod.8) (2023-01-23)
-
-
-### Fix
-
-* ensuring we always display placeholder styles correctly on Dropdowns ([538a8ad](https://github.com/WTW-IM/es-components/commit/538a8ad058e84db6aa7ca9fb14ea1e6e94a18f4e))
-
-
-
-
-
-# [21.7.0-pre-prod.7](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.6...v21.7.0-pre-prod.7) (2023-01-20)
-
-
-### Fix
-
-* ensuring all BasicTextbox children get validationStyles ([643bc5f](https://github.com/WTW-IM/es-components/commit/643bc5f31e905385ccc7f1f24b1170d7b8d9f5e7))
-
-
-
-
-
-# [21.7.0-pre-prod.6](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.5...v21.7.0-pre-prod.6) (2023-01-20)
-
-
-### Build
-
-* using cp instead of mv for pre-prod docs ([6667e51](https://github.com/WTW-IM/es-components/commit/6667e5111df9d8c5f2a60b4d582a00cc7e291973))
-
-
-
-
-
-# [21.7.0-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.4...v21.7.0-pre-prod.5) (2023-01-19)
-
-
-### Fix
-
-* adding fallbacks for new validation theme props ([2b93d33](https://github.com/WTW-IM/es-components/commit/2b93d33797676d7a5fc8891d9a1e6b8b7f95760d))
-
-### New
-
-* adding 'defaultFormStyle' to 'inputStyles' in themes ([c3944e8](https://github.com/WTW-IM/es-components/commit/c3944e847e75f306b6e954e52fbad509a352d1a1))
-
-### Update
-
-* adding AddOn styles to theme ([8ef8fe9](https://github.com/WTW-IM/es-components/commit/8ef8fe961a20148dfccfd48de52991f4efea9303))
-* adding input border-radius to theme ([e33e69e](https://github.com/WTW-IM/es-components/commit/e33e69e99e71ce8f7129dc2f99b2a6cf00859ebb))
-* completing 'flat' style inputs ([a63f9fb](https://github.com/WTW-IM/es-components/commit/a63f9fbcfc402b8cdb3632b48fadd6aa8b5ec808))
-* using :before and :after for textbox prepends and appends ([c2d2017](https://github.com/WTW-IM/es-components/commit/c2d2017efe5e11529a8e78b8d845827d61e194de))
-* using svg for dropdown arrow ([d0b1397](https://github.com/WTW-IM/es-components/commit/d0b139719053c346efb64e96d457cb68b904993a))
-
-
-
-
-
-# [21.7.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.7.0-pre-prod.0) (2022-12-13)
+## [21.6.94](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94) (2022-11-09)
 
 
 ### Update
 
 * added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
-* banner component to ForwardedBanner ([d2f6615](https://github.com/WTW-IM/es-components/commit/d2f6615038e601baa81fe91c7da66b9e792beb44))
 
 
 

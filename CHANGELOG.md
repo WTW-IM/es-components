@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.95-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.4...v21.6.95-pre-prod.5) (2023-01-25)
+
+
+### Build
+
+* ensuring styleguide can run completely ([6ba5ef3](https://github.com/WTW-IM/es-components/commit/6ba5ef36adfafd42cf3c0f296da8a268abf08e4c))
+
+
+
+
+
 ## [21.6.95-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.3...v21.6.95-pre-prod.4) (2023-01-25)
 
 

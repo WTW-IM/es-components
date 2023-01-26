@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.96](https://github.com/WTW-IM/es-components/compare/v21.6.96-pre-prod.0...v21.6.96) (2023-01-26)
+
+### Build
+
+- fixing message when merging main to preprod ([e2ef586](https://github.com/WTW-IM/es-components/commit/e2ef586ad081497a8c60b604de252daf2c68ac7b))
+- forcing local package links on postinstall ([f736ce4](https://github.com/WTW-IM/es-components/commit/f736ce48eb97f34864035022f0c2793cf2a2eab1))
+
 ## [21.6.96-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.95...v21.6.96-pre-prod.0) (2023-01-26)
 
 ## [21.6.95-pre-prod.7](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.6...v21.6.95-pre-prod.7) (2023-01-26)

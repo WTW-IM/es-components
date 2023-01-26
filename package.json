@@ -30,7 +30,6 @@
     "babel-eslint": "^9.0.0",
     "commitlint": "^17.1.2",
     "conventional-changelog": "^3.1.21",
-    "es-components-via-theme": "file:packages/es-components-via-theme",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",
@@ -39,7 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "husky": "^7.0.0",
-    "lerna": "^4.0.0",
+    "lerna": "^6.4.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "rollup": "^2.23.0"

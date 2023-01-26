@@ -8,9 +8,6 @@ jobs:
     name: Test with Node v${{matrix.node}}
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
-    defaults:
-      run:
-        working-directory: packages/es-components
     strategy:
       matrix:
         node: [lts/*, node]
@@ -32,6 +29,7 @@ jobs:
           npm ci
 
       - name: Run Tests
+        working-directory: packages/es-components
         run: |
           npm test
 

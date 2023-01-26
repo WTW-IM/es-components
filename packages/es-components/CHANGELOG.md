@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.95-pre-prod.7](https://github.com/wtw-im/es-components/compare/v21.6.95-pre-prod.6...v21.6.95-pre-prod.7) (2023-01-26)
+
+### Build
+
+- ensuring cypress runs ([4138926](https://github.com/wtw-im/es-components/commit/41389263a3a3c1d9ed758a052ca344f5e6c4ae9a))
+- fixing monorepo dependency issues ([ec817f8](https://github.com/wtw-im/es-components/commit/ec817f867a05129cc3a580502223bd2bac894e59))
+
 ## [21.6.95-pre-prod.6](https://github.com/wtw-im/es-components/compare/v21.6.95-pre-prod.5...v21.6.95-pre-prod.6) (2023-01-26)
 
 ### Build

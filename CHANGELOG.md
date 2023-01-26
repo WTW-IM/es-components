@@ -3,319 +3,179 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [21.6.95-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.4...v21.6.95-pre-prod.5) (2023-01-25)
-
+## [21.6.95-pre-prod.6](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.5...v21.6.95-pre-prod.6) (2023-01-26)
 
 ### Build
 
-* ensuring styleguide can run completely ([6ba5ef3](https://github.com/WTW-IM/es-components/commit/6ba5ef36adfafd42cf3c0f296da8a268abf08e4c))
+- fixing lockfile issues ([6992cf3](https://github.com/WTW-IM/es-components/commit/6992cf3d7a0a7340f33f13a03862784365271f9b))
 
+## [21.6.95-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.4...v21.6.95-pre-prod.5) (2023-01-25)
 
+### Build
 
-
+- ensuring styleguide can run completely ([6ba5ef3](https://github.com/WTW-IM/es-components/commit/6ba5ef36adfafd42cf3c0f296da8a268abf08e4c))
 
 ## [21.6.95-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.3...v21.6.95-pre-prod.4) (2023-01-25)
 
-
 ### Build
 
-* making pre-prod GH pages build verbose ([4fbf62a](https://github.com/WTW-IM/es-components/commit/4fbf62ad10f61568033f22dbc1f6bca717695ecc))
-
-
-
-
+- making pre-prod GH pages build verbose ([4fbf62a](https://github.com/WTW-IM/es-components/commit/4fbf62ad10f61568033f22dbc1f6bca717695ecc))
 
 ## [21.6.95-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.2...v21.6.95-pre-prod.3) (2023-01-25)
 
-
 ### Fix
 
-* fixing table markdown to not fail styleguide build ([f1f3cde](https://github.com/WTW-IM/es-components/commit/f1f3cdee5bfc00519eeffa0a021e341bedbe8153))
-
-
-
-
+- fixing table markdown to not fail styleguide build ([f1f3cde](https://github.com/WTW-IM/es-components/commit/f1f3cdee5bfc00519eeffa0a021e341bedbe8153))
 
 ## [21.6.95-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.1...v21.6.95-pre-prod.2) (2023-01-25)
 
-
 ### Build
 
-* making pre-prod GH pages build verbose ([f11e31a](https://github.com/WTW-IM/es-components/commit/f11e31a83d557a1d6d1835263d2df6c441af8b4d))
-
-
-
-
+- making pre-prod GH pages build verbose ([f11e31a](https://github.com/WTW-IM/es-components/commit/f11e31a83d557a1d6d1835263d2df6c441af8b4d))
 
 ## [21.6.95-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.6.95-pre-prod.0...v21.6.95-pre-prod.1) (2023-01-25)
 
-
 ### Build
 
-* ensuring we publish for prod and preprod appropriately ([9239c01](https://github.com/WTW-IM/es-components/commit/9239c01c6c18960d328e249837ce85896b0096ed))
-* not pushing changes to docs if none ([92cf543](https://github.com/WTW-IM/es-components/commit/92cf543eba165cd9980891c47f662edccee40ffd))
+- ensuring we publish for prod and preprod appropriately ([9239c01](https://github.com/WTW-IM/es-components/commit/9239c01c6c18960d328e249837ce85896b0096ed))
+- not pushing changes to docs if none ([92cf543](https://github.com/WTW-IM/es-components/commit/92cf543eba165cd9980891c47f662edccee40ffd))
 
 ### Docs
 
-* including CHANGELOG in docs ([bd97f70](https://github.com/WTW-IM/es-components/commit/bd97f708bb96602724514dfa52ca333b19989064))
-
-
-
-
+- including CHANGELOG in docs ([bd97f70](https://github.com/WTW-IM/es-components/commit/bd97f708bb96602724514dfa52ca333b19989064))
 
 ## [21.6.95-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.0-pre-prod.10...v21.6.95-pre-prod.0) (2023-01-25)
 
-
-
-
 ## [21.6.94](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94) (2022-11-09)
-
 
 ### Build
 
-* [skip ci][skip-release] v21.6.94 ([188ceae](https://github.com/WTW-IM/es-components/commit/188ceaed1caaafd562901dc61c9f40e8de85b853))
-
-
-
-
+- [skip ci][skip-release] v21.6.94 ([188ceae](https://github.com/WTW-IM/es-components/commit/188ceaed1caaafd562901dc61c9f40e8de85b853))
 
 ## [21.6.94](https://github.com/WTW-IM/es-components/compare/v21.6.93...v21.6.94) (2022-11-09)
 
-
 ### Build
 
-* running CI from PR base ([8b763e0](https://github.com/WTW-IM/es-components/commit/8b763e07487706b02d6b6d2b53268654e02e43f4))
-* using PIPLINE_BOT_PAT in all checkout actions ([4dc8f23](https://github.com/WTW-IM/es-components/commit/4dc8f237ec6c43bb109d1fefbd45c3e80edcd8c6))
+- running CI from PR base ([8b763e0](https://github.com/WTW-IM/es-components/commit/8b763e07487706b02d6b6d2b53268654e02e43f4))
+- using PIPLINE_BOT_PAT in all checkout actions ([4dc8f23](https://github.com/WTW-IM/es-components/commit/4dc8f237ec6c43bb109d1fefbd45c3e80edcd8c6))
 
 ### Update
 
-* added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
-
-
-
-
+- added Blue25 to themes ([75c31f9](https://github.com/WTW-IM/es-components/commit/75c31f950c7cdea1afbc3a36097fe7e9a41c3129))
 
 ## [21.6.93](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.5...v21.6.93) (2022-10-19)
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## [21.6.93-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.4...v21.6.93-pre-prod.5) (2022-10-19)
-
 
 ### Upgrade
 
-* add linkProps to tooltip ([89c4b6b](https://github.com/WTW-IM/es-components/commit/89c4b6b2d16b9d9f5b4bee6326a94bcabdd9de9d))
-
-
-
-
+- add linkProps to tooltip ([89c4b6b](https://github.com/WTW-IM/es-components/commit/89c4b6b2d16b9d9f5b4bee6326a94bcabdd9de9d))
 
 ## [21.6.93-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.3...v21.6.93-pre-prod.4) (2022-10-17)
 
-
 ### Fix
 
-* fixing prepublish script ([92f4870](https://github.com/WTW-IM/es-components/commit/92f48705867ac2a3b519c120849c1c48e7b9f081))
-
-
-
-
+- fixing prepublish script ([92f4870](https://github.com/WTW-IM/es-components/commit/92f48705867ac2a3b519c120849c1c48e7b9f081))
 
 ## [21.6.93-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.6.93-pre-prod.2...v21.6.93-pre-prod.3) (2022-10-17)
 
-
 ### Build
 
-* ensuring we always check out at full depth in publish workflows ([5f36755](https://github.com/WTW-IM/es-components/commit/5f367558af9b4657bb3c816c8f1b79e61782a7e2))
-* only mangling variable names in main branch ([abacbd2](https://github.com/WTW-IM/es-components/commit/abacbd208d1d60d042a484df517a06195967a4b2))
-
-
-
-
+- ensuring we always check out at full depth in publish workflows ([5f36755](https://github.com/WTW-IM/es-components/commit/5f367558af9b4657bb3c816c8f1b79e61782a7e2))
+- only mangling variable names in main branch ([abacbd2](https://github.com/WTW-IM/es-components/commit/abacbd208d1d60d042a484df517a06195967a4b2))
 
 ## 21.6.93-pre-prod.2 (2022-10-12)
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## 21.6.93-pre-prod.1 (2022-10-12)
 
 **Note:** Version bump only for package es-components
-
-
-
-
 
 ## 21.6.93-pre-prod.0 (2022-10-11)
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## [21.6.92](https://github.com/WTW-IM/es-components/compare/v21.6.92-pre-prod.0...v21.6.92) (2022-09-21)
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## 21.6.92-pre-prod.0 (2022-09-16)
-
 
 ### Build
 
-* update changelog generator ([b8c29f5](https://github.com/WTW-IM/es-components/commit/b8c29f50045c13c8fc13e66eca8a0eb972ea712a))
-
-
-
-
+- update changelog generator ([b8c29f5](https://github.com/WTW-IM/es-components/commit/b8c29f50045c13c8fc13e66eca8a0eb972ea712a))
 
 ## <small>21.6.91 (2022-09-06)</small>
 
-* Build: fixing ci.yml syntax ([eff89cc](https://github.com/WTW-IM/es-components/commit/eff89cc))
-* Build: only running lint on feature branches ([c188013](https://github.com/WTW-IM/es-components/commit/c188013))
-
-
-
-
+- Build: fixing ci.yml syntax ([eff89cc](https://github.com/WTW-IM/es-components/commit/eff89cc))
+- Build: only running lint on feature branches ([c188013](https://github.com/WTW-IM/es-components/commit/c188013))
 
 ## <small>21.6.91-pre-prod.0 (2022-08-31)</small>
 
-* Merge pull request #642 from WTW-IM/react-18 ([c076594](https://github.com/WTW-IM/es-components/commit/c076594)), closes [#642](https://github.com/WTW-IM/es-components/issues/642)
-
-
-
-
+- Merge pull request #642 from WTW-IM/react-18 ([c076594](https://github.com/WTW-IM/es-components/commit/c076594)), closes [#642](https://github.com/WTW-IM/es-components/issues/642)
 
 ## <small>21.6.90 (2022-07-21)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.90-pre-prod.0 (2022-07-21)</small>
 
-* Merge pull request #635 from WTW-IM/fix-full-color-icons-page ([ee3d98e](https://github.com/WTW-IM/es-components/commit/ee3d98e)), closes [#635](https://github.com/WTW-IM/es-components/issues/635)
-
-
-
-
+- Merge pull request #635 from WTW-IM/fix-full-color-icons-page ([ee3d98e](https://github.com/WTW-IM/es-components/commit/ee3d98e)), closes [#635](https://github.com/WTW-IM/es-components/issues/635)
 
 ## <small>21.6.89 (2022-07-19)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.89-pre-prod.0 (2022-07-18)</small>
 
-* Merge pull request #628 from WTW-IM/WE-17039-add-role-to-notification ([fcddbff](https://github.com/WTW-IM/es-components/commit/fcddbff)), closes [#628](https://github.com/WTW-IM/es-components/issues/628)
-
-
-
-
+- Merge pull request #628 from WTW-IM/WE-17039-add-role-to-notification ([fcddbff](https://github.com/WTW-IM/es-components/commit/fcddbff)), closes [#628](https://github.com/WTW-IM/es-components/issues/628)
 
 ## <small>21.6.88 (2022-07-11)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.88-pre-prod.1 (2022-07-07)</small>
 
-* Merge pull request #631 from WTW-IM/prevent-fieldset-rerender ([babb501](https://github.com/WTW-IM/es-components/commit/babb501)), closes [#631](https://github.com/WTW-IM/es-components/issues/631)
-
-
-
-
+- Merge pull request #631 from WTW-IM/prevent-fieldset-rerender ([babb501](https://github.com/WTW-IM/es-components/commit/babb501)), closes [#631](https://github.com/WTW-IM/es-components/issues/631)
 
 ## <small>21.6.88-pre-prod.0 (2022-07-05)</small>
 
-* Merge pull request #629 from WTW-IM/export-useuniqueid ([7d90a4f](https://github.com/WTW-IM/es-components/commit/7d90a4f)), closes [#629](https://github.com/WTW-IM/es-components/issues/629)
-
-
-
-
+- Merge pull request #629 from WTW-IM/export-useuniqueid ([7d90a4f](https://github.com/WTW-IM/es-components/commit/7d90a4f)), closes [#629](https://github.com/WTW-IM/es-components/issues/629)
 
 ## <small>21.6.87 (2022-06-24)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.87-pre-prod.0 (2022-06-17)</small>
 
-* Merge pull request #624 from WTW-IM/switch-checked-bugfix ([d023b00](https://github.com/WTW-IM/es-components/commit/d023b00)), closes [#624](https://github.com/WTW-IM/es-components/issues/624)
-
-
-
-
+- Merge pull request #624 from WTW-IM/switch-checked-bugfix ([d023b00](https://github.com/WTW-IM/es-components/commit/d023b00)), closes [#624](https://github.com/WTW-IM/es-components/issues/624)
 
 ## <small>21.6.86 (2022-05-19)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.86-pre-prod.0 (2022-05-17)</small>
 
-* Merge pull request #618 from WTW-IM/WE-16644-design-consistency ([7c38006](https://github.com/WTW-IM/es-components/commit/7c38006)), closes [#618](https://github.com/WTW-IM/es-components/issues/618)
-
-
-
-
+- Merge pull request #618 from WTW-IM/WE-16644-design-consistency ([7c38006](https://github.com/WTW-IM/es-components/commit/7c38006)), closes [#618](https://github.com/WTW-IM/es-components/issues/618)
 
 ## <small>21.6.85 (2022-05-12)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.85-pre-prod.0 (2022-05-12)</small>
 
-* Merge pull request #620 from WTW-IM/drawers-effect-fix ([2440656](https://github.com/WTW-IM/es-components/commit/2440656)), closes [#620](https://github.com/WTW-IM/es-components/issues/620)
-
-
-
-
+- Merge pull request #620 from WTW-IM/drawers-effect-fix ([2440656](https://github.com/WTW-IM/es-components/commit/2440656)), closes [#620](https://github.com/WTW-IM/es-components/issues/620)
 
 ## <small>21.6.84 (2022-05-12)</small>
 
 **Note:** Version bump only for package es-components
 
-
-
-
-
 ## <small>21.6.83-pre-prod.1 (2022-05-11)</small>
 
-* Merge pull request #616 from WTW-IM/add-drawer-item-onchange ([0b20dfe](https://github.com/WTW-IM/es-components/commit/0b20dfe)), closes [#616](https://github.com/WTW-IM/es-components/issues/616)
-
-
-
-
+- Merge pull request #616 from WTW-IM/add-drawer-item-onchange ([0b20dfe](https://github.com/WTW-IM/es-components/commit/0b20dfe)), closes [#616](https://github.com/WTW-IM/es-components/issues/616)
 
 ## <small>21.6.83-pre-prod.0 (2022-05-10)</small> & <small>21.6.83 (2022-05-10)</small>
 

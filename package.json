@@ -11,7 +11,7 @@
     "link": "lerna link --force-local",
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
-    "postinstall": "echo '\\033[0;32mInstalling npm dependencies for sub-packages\\033[0m' && lerna bootstrap --ci",
+    "postinstall": "echo '\\033[0;32mInstalling npm dependencies for sub-packages\\033[0m' && lerna bootstrap --force-local",
     "prepare": "husky install"
   },
   "lint-staged": {

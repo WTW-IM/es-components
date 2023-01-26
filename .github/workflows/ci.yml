@@ -118,7 +118,7 @@ jobs:
 
       - name: Merge main to pre-prod
         run: |
-          git merge --no-verify -Xtheirs --commit origin/main -m "Merging main into pre-prod [skip-release]"
+          git merge --no-verify -Xtheirs --commit origin/main -m "Build: merging main into pre-prod"
           # abort if failed merge
           git merge --abort || true
           git push origin pre-prod

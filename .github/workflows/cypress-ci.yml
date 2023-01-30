@@ -18,6 +18,7 @@ jobs:
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: ${{ github.head_ref || github.ref }}
+          fetch-depth: 0
 
       - name: NPM Clean Install
         run: |
@@ -62,9 +63,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: ${{ env.ES_COMPONENTS_DIR }}/raw-results.json
-          report-name: "Cypress ${{ github.run_number }}"
+          report-name: 'Cypress ${{ github.run_number }}'
           create-status-check: true
           create-pr-comment: true
           update-comment-if-one-exists: true
           ignore-test-failures: false
-          timezone: "america/denver"
+          timezone: 'america/denver'

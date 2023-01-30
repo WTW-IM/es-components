@@ -46,7 +46,7 @@ const yellow700 = '#ffa814';
 const yellow900 = '#ff9109';
 
 // functional
-const primary = '#5a0c6f';
+const primary = blue500;
 const primaryHover = '#3c084a';
 const primaryLight = '#ebcff3';
 
@@ -98,7 +98,7 @@ const advisor = '#ff6310';
 const advisorLight = '#fee7de';
 
 // brand colors
-const primary1 = '#5a0c6f';
+const primary1 = blue500;
 const primary2 = '#63666a';
 const primary3 = '#c110a0';
 const secondary1 = primary1;
@@ -351,7 +351,7 @@ const theme = {
       // fontWeight, lineHeight, textTransform are optional
       size: {
         lg: {
-          borderRadius: '0.3rem',
+          borderRadius: '0',
           fontSize: '1.4375rem',
           lineHeight: '2',
           paddingTop: '0.125rem',
@@ -359,15 +359,15 @@ const theme = {
           paddingBottom: '0.125rem',
         },
         default: {
-          borderRadius: '0.25rem',
-          fontSize: '1.15rem',
+          borderRadius: '0',
+          fontSize: '1rem',
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
           paddingBottom: '0.25rem',
         },
         sm: {
-          borderRadius: '0.2rem',
+          borderRadius: '0',
           fontSize: '1.00625rem',
           lineHeight: '1.25',
           paddingTop: '0.25rem',
@@ -375,7 +375,7 @@ const theme = {
           paddingBottom: '0.25rem',
         },
         xs: {
-          borderRadius: '0.25rem',
+          borderRadius: '0',
           fontSize: '0.8855rem',
           lineHeight: '1.5',
           paddingTop: '0.1rem',
@@ -415,36 +415,36 @@ const theme = {
       },
       size: {
         lg: {
-          borderRadius: '0.3rem',
+          borderRadius: '0',
           fontSize: '1.4375rem',
-          fontWeight: 'bold',
+          fontWeight: 'normal',
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
           paddingBottom: '0.125rem',
         },
         default: {
-          borderRadius: '0.25rem',
-          fontSize: '1.15rem',
-          fontWeight: 'bold',
+          borderRadius: '0',
+          fontSize: '1rem',
+          fontWeight: 'normal',
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
           paddingBottom: '0.25rem',
         },
         sm: {
-          borderRadius: '0.2rem',
+          borderRadius: '0',
           fontSize: '1.00625rem',
-          fontWeight: 'bold',
+          fontWeight: 'normal',
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.25rem',
         },
         xs: {
-          borderRadius: '0.25rem',
+          borderRadius: '0',
           fontSize: '0.8855rem',
-          fontWeight: 'bold',
+          fontWeight: 'normal',
           lineHeight: '1.5',
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
@@ -481,7 +481,7 @@ const theme = {
   },
   inputStyles: {
     borderRadius: '2px',
-    defaultFormStyle: 'default',
+    defaultFormStyle: 'flat',
     dropdownArrow: dropdownArrow,
   },
   validationIconName: {
@@ -557,6 +557,7 @@ const theme = {
   },
   font: {
     baseFontSize: '16px',
+    baseFontFace: 'NHaasGroteskTXPro-55Rg, "Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
     labelFontSize: '14px',
     labelFontWeight: 'normal',
     baseLineHeight: 1.428,

@@ -17,6 +17,7 @@ jobs:
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: ${{ github.head_ref || github.ref }}
+          fetch-depth: 0
 
       - name: Use Node Version
         uses: actions/setup-node@v3

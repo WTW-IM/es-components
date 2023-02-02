@@ -224,7 +224,7 @@ exports[`renders the correct addons when provided 1`] = `
       />
       <i
         aria-hidden="true"
-        class="c3 bds-icon bds-undefined"
+        class="c3 bds-icon bds-"
       />
     </div>
     <input
@@ -453,7 +453,7 @@ exports[`renders the correct addons when provided 2`] = `
       />
       <i
         aria-hidden="true"
-        class="c3 bds-icon bds-undefined"
+        class="c3 bds-icon bds-"
       />
       <input
         type="hidden"

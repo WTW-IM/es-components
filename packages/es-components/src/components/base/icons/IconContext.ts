@@ -3,7 +3,10 @@ import { createContext } from 'react';
 class NodeError extends Error {
   public node: HTMLElement;
 
-  constructor(node: HTMLElement, ...errorArgs: any[]) {
+  constructor(
+    node: HTMLElement,
+    ...errorArgs: ConstructorParameters<typeof Error>
+  ) {
     super(...errorArgs);
     this.node = node;
   }

@@ -21,7 +21,7 @@
     "pre-prod-sg-build": "npm run styleguide-preprod && npm run pre-prod-fc-icons",
     "pre-prod-fc-icons": "cp docs/full-color-icons.html docs/pre-prod && cp docs/full-color-icons.js docs/pre-prod",
     "start": "concurrently --kill-others \"rollup -c docs-rollup.config.js -w\" \"styleguidist server\"",
-    "test": "npm run reinstall-via-theme && jest",
+    "test": "jest",
     "reinstall-via-theme": "npm uninstall es-components-via-theme && npm install -D es-components-via-theme@file:../es-components-via-theme",
     "test:watch": "jest --watch",
     "prepare": "symlink-dir ../../node_modules/mochawesome ./node_modules/mochawesome",
@@ -32,7 +32,8 @@
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/config/import-matchers.js",
-      "<rootDir>/config/jest-setup.ts"
+      "<rootDir>/config/jest-setup.ts",
+      "<rootDir>/config/jest-shims.ts"
     ],
     "testPathIgnorePatterns": [
       "es6",
@@ -128,6 +129,7 @@
     "mochawesome-report-generator": "^6.2.0",
     "prettier": "^2.8.1",
     "react": "^18.2.0",
+    "react-context-toolbox": "^2.0.2",
     "react-docgen": "^5.4.3",
     "react-docgen-displayname-handler": "^3.0.2",
     "react-dom": "^18.2.0",

@@ -14,7 +14,7 @@ export const iconBasics = css`
   -moz-osx-font-smoothing: grayscale;
 `;
 
-export const iconBaseStyles = css<{ size: string | number; }>`
+export const iconBaseStyles = css<{ size: string | number }>`
   ${iconBasics}
   display: inline-block;
   font-size: ${props => props.size};
@@ -23,14 +23,14 @@ export const iconBaseStyles = css<{ size: string | number; }>`
 `;
 
 export interface IconProps {
-  name: string;
+  name?: string;
   size?: string | number;
   className?: string;
   iconColor?: string;
   alwaysShowIcon?: boolean;
 }
 
-const StyledIcon = styled.i<{ size: string | number; }>`
+const StyledIcon = styled.i<{ size: string | number }>`
   ${iconBaseStyles}
 `;
 
@@ -45,7 +45,7 @@ const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
     <>
       <RootNodeInput />
       <StyledIcon
-        className={`bds-icon bds-${name} ${className || ''}`.trim()}
+        className={`bds-icon bds-${name || ''} ${className || ''}`.trim()}
         size={
           /^\d+$/.test(size?.toString() || '')
             ? `${size || ''}px`

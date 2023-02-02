@@ -10,6 +10,7 @@ declare global {
     ? Omit<JSX.IntrinsicElements[T], 'ref'>
     : never;
   type Theme = ViaTheme;
+  const ASSETS_PATH: string;
 }
 
 declare module 'styled-components' {

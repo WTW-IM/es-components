@@ -6,7 +6,6 @@ import { FormContextProvider } from '../form/Form';
 import OrientationContext, {
   Orientation
 } from '../../controls/OrientationContext';
-import useUniqueId from '../../util/useUniqueId';
 import isBool from '../../util/isBool';
 
 type FieldsetProps = Omit<JSX.IntrinsicElements['fieldset'], 'ref'> & {
@@ -15,7 +14,15 @@ type FieldsetProps = Omit<JSX.IntrinsicElements['fieldset'], 'ref'> & {
   flat?: boolean | undefined;
 };
 
+const fieldsetReset = css`
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+`;
+
 const FieldsetBase = styled.fieldset<{ orientation: Orientation }>`
+  ${fieldsetReset}
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -37,6 +44,7 @@ const FieldsetBase = styled.fieldset<{ orientation: Orientation }>`
 `;
 
 const Legend = styled.legend`
+  ${fieldsetReset}
   color: ${props => props.theme.colors.black};
   flex: 0 0 auto;
   font-size: 21.6px;
@@ -53,7 +61,6 @@ function Fieldset(props: FieldsetProps) {
     flat,
     ...other
   } = props;
-  const legendId = useUniqueId();
   const orientation = useContext(OrientationContext);
   const extraFormContext = isBool(flat) ? { flat } : {};
   const finalOrientation =
@@ -62,13 +69,8 @@ function Fieldset(props: FieldsetProps) {
   return (
     <OrientationContext.Provider value={finalOrientation}>
       <FormContextProvider value={extraFormContext}>
-        <FieldsetBase
-          role="group"
-          aria-labelledby={legendId}
-          orientation={finalOrientation}
-          {...other}
-        >
-          {legendContent && <Legend id={legendId}>{legendContent}</Legend>}
+        <FieldsetBase orientation={finalOrientation} {...other}>
+          {legendContent && <Legend>{legendContent}</Legend>}
           {children}
         </FieldsetBase>
       </FormContextProvider>

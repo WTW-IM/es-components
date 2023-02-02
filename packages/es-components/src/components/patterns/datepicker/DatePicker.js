@@ -57,7 +57,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   const textbox = (
     <MaskedTextbox
       css="
-        max-width: 265px;
+        max-width: 100%;
       "
       maskType="date"
       placeholder={props.placeholder}

@@ -74,6 +74,7 @@
     "concurrently": "^6.0.2",
     "cypress": "^9.6.0",
     "es-components-via-theme": "file:../es-components-via-theme",
+    "es-components-wtw-theme": "file:../es-components-wtw-theme",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",

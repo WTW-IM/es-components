@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { createElement } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import viaTheme from 'es-components-via-theme';
+import { useStyleguideTheme } from './styleguideTheme';
 
 export default function ExampleWrapper({ children }) {
-  return createElement(ThemeProvider, { theme: viaTheme }, children);
+  const theme = useStyleguideTheme();
+  return (
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  );
 }

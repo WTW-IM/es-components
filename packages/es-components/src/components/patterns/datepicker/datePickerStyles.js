@@ -117,7 +117,7 @@ export const DatepickerStyles = createGlobalStyle`
 
 .react-datepicker__triangle {
   position: absolute;
-  left: 50% !important;
+  left: 50% !important ;
 }
 
 .react-datepicker-popper {

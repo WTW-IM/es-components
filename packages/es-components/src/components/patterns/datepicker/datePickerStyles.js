@@ -87,7 +87,7 @@ export const DatepickerStyles = createGlobalStyle`
   display: inline-block;
   padding: 0;
   border: 0;
-  max-width: 306px;
+  max-width: 100%;
 }
 
 .react-datepicker {
@@ -117,7 +117,7 @@ export const DatepickerStyles = createGlobalStyle`
 
 .react-datepicker__triangle {
   position: absolute;
-  left: 50px;
+  left: 50% !important;
 }
 
 .react-datepicker-popper {

@@ -9,8 +9,5 @@
   },
   "devDependencies": {
     "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "es-components-shared-types": "file:../../shared/types"
   }
 }

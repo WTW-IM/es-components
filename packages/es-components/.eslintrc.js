@@ -9,18 +9,21 @@ const exts = [
 module.exports = {
   extends: exts,
   parser: '@babel/eslint-parser',
-  plugins,
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
       destructuring: true,
-      experimentalObjectRestSpread: true,
-      ecmaVersion: 'latest'
+      experimentalObjectRestSpread: true
     },
     babelOptions: {
       configFile: path.join(__dirname, 'babel.config.js')
     }
   },
+  env: {
+    browser: true,
+    es2021: true
+  },
+  plugins,
   rules: {
     'no-unused-vars': ['warn'],
     'max-len': 0,
@@ -40,8 +43,8 @@ module.exports = {
       {
         devDependencies: [
           '**/*.specs.js',
-          '**/ExampleWrapper.js',
-          '**/test-utils.js'
+          '**/test-utils.js',
+          '**/styleguide/*.{js,jsx,ts,tsx}'
         ]
       }
     ],
@@ -78,8 +81,5 @@ module.exports = {
         'plugin:testing-library/react'
       ]
     }
-  ],
-  env: {
-    browser: true
-  }
+  ]
 };

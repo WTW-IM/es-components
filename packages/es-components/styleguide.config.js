@@ -119,6 +119,10 @@ module.exports = {
     }
   ],
   styleguideComponents: {
+    StyleGuideRenderer: path.join(
+      __dirname,
+      'src/styleguide/StyleGuideRenderer.js'
+    ),
     Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js'),
     ReactComponentRenderer: path.join(
       __dirname,

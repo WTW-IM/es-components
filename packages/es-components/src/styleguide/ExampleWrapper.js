@@ -6,6 +6,7 @@ import viaTheme from 'es-components-via-theme';
 import wtwTheme from 'es-components-wtw-theme';
 import tinycolor from 'tinycolor2';
 import Switch from '../components/controls/switch/Switch';
+import { useStyleguideTheme, useIsViaTheme } from './styleguideTheme';
 
 const ExampleContainer = styled.div`
   display: flex;
@@ -35,7 +36,10 @@ const SwitchContainer = styled.div`
     span[type='primary']:not([direction='left']) {
       top: -3px;
       &:before {
-        background-color: ${props => props.theme.brandColors.primary1};
+        background-color: ${({ theme: { brandColors, themeName } }) =>
+          themeName === 'via-theme'
+            ? brandColors.primary1
+            : brandColors.primary3};
       }
     }
   }
@@ -52,13 +56,18 @@ const UnelectedLabel = styled.span`
 `;
 
 export default function ExampleWrapper({ children }) {
-  const [theme, setTheme] = useState(viaTheme);
+  const globalTheme = useStyleguideTheme();
+  const [theme, setTheme] = useState(globalTheme);
   const toggleTheme = useCallback(() => {
-    setTheme(currentTheme => (currentTheme === viaTheme ? wtwTheme : viaTheme));
+    setTheme(currentTheme =>
+      currentTheme.themeName === 'via-theme' ? wtwTheme : viaTheme
+    );
   }, []);
 
-  const ViaLabel = theme === viaTheme ? SelectedLabel : UnelectedLabel;
-  const WtwLabel = theme === wtwTheme ? SelectedLabel : UnelectedLabel;
+  const ViaLabel =
+    theme.themeName === 'via-theme' ? SelectedLabel : UnelectedLabel;
+  const WtwLabel =
+    theme.themeName === 'wtw-theme' ? SelectedLabel : UnelectedLabel;
 
   return (
     <ThemeProvider theme={theme}>

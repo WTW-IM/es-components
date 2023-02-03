@@ -6,7 +6,7 @@ import viaTheme from 'es-components-via-theme';
 import wtwTheme from 'es-components-wtw-theme';
 import tinycolor from 'tinycolor2';
 import Switch from '../components/controls/switch/Switch';
-import { useStyleguideTheme, useIsViaTheme } from './styleguideTheme';
+import { useStyleguideTheme } from './styleguideTheme';
 
 const ExampleContainer = styled.div`
   display: flex;

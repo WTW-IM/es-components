@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid } from 'date-fns';
 import { noop, pick, omit } from 'lodash';
@@ -10,6 +11,8 @@ import { useWindowWidth } from '../../util/useWindowWidth';
 import { useTheme } from '../../util/useTheme';
 import { DatepickerStyles } from './datePickerStyles';
 import ReactDatePickerPropTypes from './ReactDatePickerPropTypes';
+
+import { calendarArrowStyles } from './datepickerAssets';
 
 const STRING_FORMAT = 'yyyy-MM-dd';
 
@@ -41,6 +44,19 @@ function NativeDatePicker(props) {
   );
 }
 
+const CalendarContainer = styled.div`
+  font-size: 18px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.gray5};
+  border-radius: 0.3rem;
+  color: ${({ theme }) => theme.colors.gray9};
+  box-shadow: 0 5px 10px ${({ theme }) => theme.colors.boxShadowLight};
+  display: inline-block;
+  position: relative;
+
+  ${calendarArrowStyles}
+`;
+
 const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
   const inputRef = React.useRef();
   React.useImperativeHandle(ref, () => ({
@@ -56,9 +72,6 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
 
   const textbox = (
     <MaskedTextbox
-      css="
-        max-width: 100%;
-      "
       maskType="date"
       placeholder={props.placeholder}
       prependIconName="calendar"
@@ -77,6 +90,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
           customInput={textbox}
           placeholderText={props.placeholder}
           selected={normalizeDate(props.selectedDate)}
+          calendarContainer={CalendarContainer}
           {...datepickerProps}
         />
       )}
@@ -90,6 +104,8 @@ const DatePicker = function DatePicker(props) {
     ? normalizeDate(props.selectedDate)
     : null;
   const [selectedDate, setSelectedDate] = useState(normalizedDateFromProps);
+  const propsRef = useRef(props);
+  propsRef.current = props;
 
   function dateSelected(dateOrEvent) {
     if (dateOrEvent) {
@@ -104,17 +120,14 @@ const DatePicker = function DatePicker(props) {
     }
   }
 
-  useEffect(
-    () => {
-      if (
-        normalizeDateString(selectedDate) !==
-        normalizeDateString(props.selectedDate)
-      ) {
-        props.onChange(selectedDate);
-      }
-    },
-    [selectedDate]
-  );
+  useEffect(() => {
+    if (
+      normalizeDateString(selectedDate) !==
+      normalizeDateString(propsRef.current.selectedDate)
+    ) {
+      propsRef.current.onChange(selectedDate);
+    }
+  }, [selectedDate]);
 
   const windowWidth = useWindowWidth();
   const theme = useTheme();
@@ -136,10 +149,14 @@ const DatePicker = function DatePicker(props) {
     onChange: props.onChange ? dateSelected : noop
   };
 
-  return <DatePickerInput {...actualProps} />;
+  const popperClassName = props.children ? 'has-children' : '';
+
+  return <DatePickerInput {...actualProps} popperClassName={popperClassName} />;
 };
 
 DatePicker.propTypes = {
+  children: PropTypes.node,
+  classNames: PropTypes.string,
   suppressDatepicker: PropTypes.bool,
   allowNativeDatepickerOnMobile: PropTypes.bool,
   selectedDate: PropTypes.oneOfType([
@@ -153,7 +170,9 @@ DatePicker.defaultProps = {
   suppressDatepicker: false,
   allowNativeDatepickerOnMobile: true,
   selectedDate: '',
-  onChange: undefined
+  onChange: undefined,
+  children: undefined,
+  classNames: ''
 };
 
 export default DatePicker;

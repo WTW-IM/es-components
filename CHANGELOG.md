@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.97-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.6.97-pre-prod.0...v21.6.97-pre-prod.1) (2023-02-07)
+
+### Docs
+
+- adding theme switch to examples ([a577ba5](https://github.com/WTW-IM/es-components/commit/a577ba540a70f361bcf94e73d8f19adf60f036d4))
+
+### Fix
+
+- allowing Switch to take node for onText and offText ([bf62470](https://github.com/WTW-IM/es-components/commit/bf62470ca49bbed3aebf3d8d06cb97e733d664ac))
+- using styleguide global theme for initial render ([906ee7c](https://github.com/WTW-IM/es-components/commit/906ee7cba4e8c7bbaee309215429cddfe165da41))
+
 ## [21.6.97-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.96...v21.6.97-pre-prod.0) (2023-01-30)
 
 ### Build

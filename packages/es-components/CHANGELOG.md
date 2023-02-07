@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.97-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.6.97-pre-prod.1...v21.6.97-pre-prod.2) (2023-02-07)
+
+### Build
+
+- updating Textbox tests with font-family corrections ([a89ebfc](https://github.com/wtw-im/es-components/commit/a89ebfcb82209603a7759c2b34029d88e2f38e14))
+
+### Fix
+
+- ensuring datepicker triangle is always correct ([29fb72d](https://github.com/wtw-im/es-components/commit/29fb72dbe35f0734dd5f68219a5ca14202db4fb7))
+- removing width limit form datepicker inputs ([e522e2f](https://github.com/wtw-im/es-components/commit/e522e2f99e22c3fcaa7481f5dbd9ee78ec76fd39))
+
 ## [21.6.97-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.6.97-pre-prod.0...v21.6.97-pre-prod.1) (2023-02-07)
 
 ### Docs

@@ -268,7 +268,7 @@ function DatePickerExample() {
 
 ### Child Content
 
-```
+```jsx
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 
@@ -285,12 +285,24 @@ function DatePickerExample() {
         selectedDate={selectedValue}
         allowNativeDatepickerOnMobile={false}
       >
-        <div style={{textAlign: 'center', padding: '8px', clear: 'both', borderTop: '1px solid #aeaeae', backgroundColor: 'whitesmoke'}}><strong>Year: Home / End <br/> Month: PgUp / PgDn</strong></div>
+        <div
+          style={{
+            textAlign: 'center',
+            padding: '8px',
+            clear: 'both',
+            borderTop: '1px solid #aeaeae',
+            backgroundColor: 'whitesmoke'
+          }}
+        >
+          <strong>
+            Year: Home / End <br /> Month: PgUp / PgDn
+          </strong>
+        </div>
       </DatePicker>
     </Control>
-  )
+  );
 }
-<DatePickerExample />
+<DatePickerExample />;
 ```
 
 ### Inline (no textbox)

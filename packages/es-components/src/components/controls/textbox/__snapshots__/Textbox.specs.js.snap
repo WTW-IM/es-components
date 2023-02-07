@@ -60,7 +60,7 @@ exports[`renders the correct addons when provided 1`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
   font-size: 18px;
-  font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
+  font-family: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 2.2em;
   line-height: 1.428;
@@ -296,7 +296,7 @@ exports[`renders the correct addons when provided 2`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
   font-size: 18px;
-  font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
+  font-family: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 2.2em;
   line-height: 1.428;
@@ -532,7 +532,7 @@ exports[`renders the correct addons when provided 3`] = `
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
   font-size: 18px;
-  font-face: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
+  font-family: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 2.2em;
   line-height: 1.428;

@@ -52,7 +52,7 @@ const InputBaseComponent = styled.input`
   ${validationStateSetupStyles}
   color: ${getStyledProp('colors.black')};
   font-size: ${getStyledProp('font.baseFontSize')};
-  font-face: ${getStyledProp('font.baseFontFace')};
+  font-family: ${getStyledProp('font.baseFontFace')};
   font-weight: normal;
   height: 2.2em;
   line-height: ${getStyledProp('font.baseLineHeight')};

@@ -224,9 +224,9 @@ Switch.propTypes = {
   /** Accessibility label for the checkbox */
   ariaLabel: PropTypes.string,
   /** This text goes on the right of the switch, denoting the 'on' position */
-  onText: PropTypes.string,
+  onText: PropTypes.node,
   /** This text goes on the left of the switch, denoting the 'off' position */
-  offText: PropTypes.string,
+  offText: PropTypes.node,
   /** Initial state of the toggle switch */
   checked: PropTypes.bool,
   /** Function for what happens when the switch is toggled */

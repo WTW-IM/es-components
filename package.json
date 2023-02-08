@@ -16,6 +16,7 @@
     "commit": "commit",
     "preprepare": "npm run build -w es-components-shared-types -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
     "prepare": "husky install",
+    "postprepare": "lerna link --force-local",
     "test": "npm test --workspaces --if-present"
   },
   "workspaces": [

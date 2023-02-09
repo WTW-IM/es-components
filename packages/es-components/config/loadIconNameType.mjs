@@ -21,18 +21,11 @@ async function getIconNames() {
 
 async function generateIconNameType() {
   const iconNames = await getIconNames();
-  const iconNamesType = iconNames.join('\n  | ');
   const iconArray = iconNames.join(', ');
   const iconType = `/* This file is auto-generated using \`npm run generate-icon-names\` */
-<<<<<<< Updated upstream
-export type IconNames =
-  | ${iconNamesType};
-export const iconNames = [${iconArray}];`;
-=======
 export const iconNames = [${iconArray}] as const;
 export type IconName = (typeof iconNames)[number];
 `;
->>>>>>> Stashed changes
   return iconType;
 }
 

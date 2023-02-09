@@ -1,8 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import formatMessage from 'format-message';
 import Icon from '../../base/icons/Icon';
+import { IconNames, iconNames } from '../../base/icons/IconNames';
 import withWindowSize from '../../util/withWindowSize';
 
 const OuterWrapper = styled.div`
@@ -29,14 +30,27 @@ const ArrowContainer = styled.div`
   padding: 0.5em;
 `;
 
-const generateOnArrowKeyDownHandler = onKeyDown => event => {
-  const code = event.code.toLowerCase();
-  if (code === 'enter' || code === 'space') {
-    onKeyDown();
-  }
+function generateOnArrowKeyDownHandler<
+  T extends Maybe<(...args: any[]) => void> // eslint-disable-line @typescript-eslint/no-explicit-any
+>(onKeyDown: T): React.KeyboardEventHandler<HTMLElement> {
+  return (event: React.KeyboardEvent<HTMLElement>) => {
+    const code = event.code.toLowerCase();
+    if (code === 'enter' || code === 'space') {
+      (
+        onKeyDown ||
+        (() => {
+          // noop
+        })
+      )();
+    }
+  };
+}
+
+type IconProps = JSXElementProps<'div'> & {
+  iconName: IconNames;
 };
 
-const ScrollIcon = styled(({ onClick, iconName, ...props }) => (
+const ScrollIcon = styled(({ onClick, iconName, ...props }: IconProps) => (
   <div
     role="button"
     tabIndex={0}
@@ -60,7 +74,7 @@ const ScrollIcon = styled(({ onClick, iconName, ...props }) => (
 `;
 
 ScrollIcon.propTypes = {
-  iconName: PropTypes.string.isRequired
+  iconName: PropTypes.oneOf(iconNames).isRequired
 };
 
 const ArrowLeft = styled(props => (
@@ -82,14 +96,34 @@ ArrowRight.propTypes = {
 };
 ArrowLeft.propTypes = ArrowRight.propTypes;
 
+type HorizontalScrollWrapperProps = JSXElementProps<'div'> & {
+  slideAmount: number;
+};
+
+type TouchOrMouseEvent =
+  | React.MouseEvent<HTMLElement>
+  | React.TouchEvent<HTMLElement>;
+
+const isMouseEvent = (
+  event: TouchOrMouseEvent
+): event is React.MouseEvent<HTMLElement> =>
+  event.type === 'mousedown' || event.type == 'mousemove';
+
+const isTouchEvent = (
+  event: TouchOrMouseEvent
+): event is React.TouchEvent<HTMLElement> =>
+  event.type === 'touchstart' || event.type == 'touchmove';
+
+type MaybeHasProp<T, S extends keyof T> = Omit<T, S> & Partial<Pick<T, S>>;
+type WithUnnamedProp<T, PName extends string, PType> = T & {
+  [K in PName]: PType;
+};
+
 function HorizontalScrollWrapper({
-  windowWidth,
   children,
   slideAmount,
   ...otherProps
-}) {
-  const rootRef = useRef(null);
-  const menuRef = useRef(null);
+}: HorizontalScrollWrapperProps) {
   const [rootWidth, setRootWidth] = useState(0);
   const [menuWidth, setMenuWidth] = useState(0);
   const [xPosition, setXPosition] = useState(0);
@@ -97,34 +131,37 @@ function HorizontalScrollWrapper({
   const [hasOverflow, setHasOverflow] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  const resetPosition = useCallback(() => {
+    setXPosition(oldXPosition => {
+      const absoluteXPosition = Math.abs(oldXPosition);
+      const widthXPosition = rootWidth + absoluteXPosition;
+      if (widthXPosition <= menuWidth) return oldXPosition;
+      const distance = Math.abs(menuWidth - widthXPosition);
+      return oldXPosition + distance;
+    });
+  }, [rootWidth, menuWidth]);
+
   useEffect(() => {
-    const currentRootWidth = rootRef.current ? rootRef.current.clientWidth : 0;
-    const currentMenuWidth = menuRef.current ? menuRef.current.scrollWidth : 0;
+    setHasOverflow(rootWidth <= menuWidth);
+  }, [rootWidth, menuWidth]);
 
-    if (currentRootWidth <= currentMenuWidth) {
-      setRootWidth(currentRootWidth);
-      setMenuWidth(currentMenuWidth);
-      setHasOverflow(true);
+  useEffect(() => {
+    resetPosition();
+  }, [resetPosition]);
 
-      const absoluteXPosition = Math.abs(xPosition);
-      if (currentRootWidth + absoluteXPosition > currentMenuWidth) {
-        const distance = Math.abs(
-          currentMenuWidth - currentRootWidth + xPosition
-        );
-        setXPosition(xPosition + distance);
-      }
-    } else if (hasOverflow) {
-      setHasOverflow(false);
-    }
-  }, [windowWidth, rootRef.current, menuRef.current]);
+  useEffect(() => {
+    window.addEventListener('resize', resetPosition);
 
-  const handleDownEvent = downEvent => {
+    return () => window.removeEventListener('resize', resetPosition);
+  }, [resetPosition]);
+
+  const handleDownEvent = (downEvent: TouchOrMouseEvent) => {
     if (!hasOverflow) return;
 
     let cursorX = 0;
-    if (downEvent.type === 'mousedown') {
+    if (isMouseEvent(downEvent)) {
       cursorX = downEvent.pageX - xPosition;
-    } else if (downEvent.type === 'touchstart') {
+    } else if (isTouchEvent(downEvent)) {
       const touchEvent = downEvent.changedTouches[0];
       cursorX = touchEvent.pageX - xPosition;
     }
@@ -133,15 +170,15 @@ function HorizontalScrollWrapper({
     setIsDragging(true);
   };
 
-  const handleMoveEvent = moveEvent => {
+  const handleMoveEvent = (moveEvent: TouchOrMouseEvent) => {
     if (!hasOverflow || !isDragging) return;
 
     let distance = 0;
 
-    if (moveEvent.type === 'mousemove') {
+    if (isMouseEvent(moveEvent)) {
       moveEvent.preventDefault();
       distance = moveEvent.pageX - cursorXPosition;
-    } else if (moveEvent.type === 'touchmove') {
+    } else if (isTouchEvent(moveEvent)) {
       const touchEvent = moveEvent.changedTouches[0];
       distance = touchEvent.pageX - cursorXPosition;
     }
@@ -163,7 +200,7 @@ function HorizontalScrollWrapper({
     setIsDragging(false);
   };
 
-  const handleLeftClick = event => {
+  const handleLeftClick = (event: MouseEvent) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -174,7 +211,7 @@ function HorizontalScrollWrapper({
 
     setXPosition(newXPosition);
   };
-  const handleRightClick = event => {
+  const handleRightClick = (event: MouseEvent) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -186,16 +223,23 @@ function HorizontalScrollWrapper({
     setXPosition(newXPosition);
   };
 
-  const handleKeyEvent = event => {
+  const handleKeyEvent = (event: React.KeyboardEvent<HTMLElement>) => {
     const code = event.key.toLowerCase();
     if (code !== 'tab') return;
 
-    const element = document.activeElement.parentElement;
+    const element = document.activeElement?.parentElement;
     if (!element) return;
 
-    const style = window.getComputedStyle
+    const style = (window as MaybeHasProp<Window, 'getComputedStyle'>)
+      .getComputedStyle
       ? getComputedStyle(element, null)
-      : element.currentStyle;
+      : (
+          element as WithUnnamedProp<
+            HTMLElement,
+            'currentStyle',
+            CSSStyleDeclaration
+          >
+        ).currentStyle;
     const marginLeft = parseInt(style.marginLeft, 10) || 0;
     const marginRight = parseInt(style.marginRight, 10) || 0;
     const tabSlide = element.offsetWidth + marginLeft + marginRight;
@@ -216,9 +260,12 @@ function HorizontalScrollWrapper({
   };
 
   return (
-    <OuterWrapper ref={rootRef} {...otherProps}>
+    <OuterWrapper
+      ref={root => setRootWidth(root?.clientWidth || 0)}
+      {...otherProps}
+    >
       <InnerWrapper
-        ref={menuRef}
+        ref={menu => setMenuWidth(menu?.scrollWidth || 0)}
         role="presentation"
         onMouseDown={handleDownEvent}
         onMouseMove={handleMoveEvent}
@@ -253,14 +300,12 @@ function HorizontalScrollWrapper({
 
 HorizontalScrollWrapper.propTypes = {
   /** @ignore */
-  windowWidth: PropTypes.number,
   children: PropTypes.node,
   /** Set the number of pixels the contents will move when clicking left/right arrows */
   slideAmount: PropTypes.number
 };
 
 HorizontalScrollWrapper.defaultProps = {
-  windowWidth: undefined,
   children: null,
   slideAmount: 300
 };

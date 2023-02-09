@@ -7,6 +7,7 @@ import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import alias from '@rollup/plugin-alias';
+import { writeIconNameType } from './config/loadIconNameType.mjs';
 import pkg from './package.json' assert { type: 'json' };
 
 export const aliasPlugin = alias({
@@ -18,7 +19,8 @@ export const aliasPlugin = alias({
   ]
 });
 
-export default args => {
+export default async args => {
+  await writeIconNameType();
   const isProduction =
     args.configEnv === 'prod' || process.env.MAIN_BUILD === 'true';
   const assets_url = isProduction

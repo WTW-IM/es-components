@@ -95,9 +95,8 @@ module.exports = {
     {
       files: [
         '.eslintrc*',
-        '*.config.js',
-        '*.config.mjs',
-        '**/config/*.js',
+        '*.config.*',
+        '**/config/*',
         '**/build-scripts/*',
         '**/test-utils.*'
       ],

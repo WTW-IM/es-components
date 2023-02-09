@@ -22,7 +22,8 @@
     "reinstall-via-theme": "npm uninstall es-components-via-theme && npm install -D es-components-via-theme@file:../es-components-via-theme",
     "test:watch": "jest --watch",
     "wait-for-start": "wait-on http://127.0.0.1:6060",
-    "cypressreport": "mochawesome-merge mochawesome-report/*.json > raw-results.json && marge --reportDir cypress-results raw-results.json"
+    "cypressreport": "mochawesome-merge mochawesome-report/*.json > raw-results.json && marge --reportDir cypress-results raw-results.json",
+    "generate-icon-names": "node config/generateIconNames.mjs"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -124,6 +125,7 @@
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
     "mochawesome-report-generator": "^6.2.0",
+    "node-fetch": "^3.3.0",
     "prettier": "^2.8.1",
     "react": "^18.2.0",
     "react-context-toolbox": "^2.0.2",

@@ -193,6 +193,14 @@ module.exports = {
           loader: 'babel-loader'
         }
       ]
+    },
+    devServer: {
+      server: {
+        type: 'https',
+        options: {
+          requestCertificate: true
+        }
+      }
     }
   },
   styles: {

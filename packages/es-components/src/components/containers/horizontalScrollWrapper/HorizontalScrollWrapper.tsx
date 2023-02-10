@@ -1,26 +1,67 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import formatMessage from 'format-message';
 import Icon from '../../base/icons/Icon';
-import { IconName, iconNames } from 'es-components-shared-types';
+import { IconName } from 'es-components-shared-types';
 import withWindowSize from '../../util/withWindowSize';
 
-const OuterWrapper = styled.div`
-  overflow: hidden;
-  position: relative;
-`;
-
 const InnerWrapper = styled.div`
-  alignitems: center;
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
   height: 100%;
   position: relative;
   white-space: nowrap;
   z-index: 0;
 `;
 
+const OuterWrapper = styled.div<{
+  hasOverflow?: boolean;
+  isDragging?: boolean;
+}>`
+  overflow: hidden;
+  overflow-x: auto;
+  position: relative;
+  cursor: ${({ hasOverflow, isDragging }) => {
+    let cursor = hasOverflow ? 'grab' : 'default';
+    cursor = isDragging ? 'grabbing' : cursor;
+    return cursor;
+  }};
+
+  ${InnerWrapper} {
+    ${({ hasOverflow }) =>
+      hasOverflow
+        ? css`
+            justify-content: flex-start;
+          `
+        : css`
+            justify-content: space-around;
+          `}
+  }
+`;
+
+const ArrowOuterContainer = styled.div`
+  width: 100%;
+  height: 0;
+  overflow: visible;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
+`;
+
 const ArrowContainer = styled.div`
+  pointer-events: none;
+  background-color: transparent;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+`;
+
+const ArrowIconContainer = styled.div`
   align-items: center;
   background-color: ${props => props.theme.colors.white};
   border-radius: 50%;
@@ -46,77 +87,45 @@ function generateOnArrowKeyDownHandler<
   };
 }
 
-type IconProps = JSXElementProps<'div'> & {
+type ScrollIconProps = JSXElementProps<'div'> & {
   iconName: IconName;
+  visible: boolean;
 };
 
-const ScrollIcon = styled(({ onClick, iconName, ...props }: IconProps) => (
-  <div
+const ScrollIconBase = (styled.div as Partial<typeof styled.div>).withConfig
+  ? styled.div.withConfig({
+      shouldForwardProp: (prop, defaultValidatorFn) =>
+        !['visible'].includes(prop) && defaultValidatorFn(prop)
+    })``
+  : styled.div``;
+
+const ScrollIconInner = ({ onClick, iconName, ...props }: ScrollIconProps) => (
+  <ScrollIconBase
     role="button"
     tabIndex={0}
     onClick={onClick}
     onKeyDown={generateOnArrowKeyDownHandler(onClick)}
     {...props}
   >
-    <ArrowContainer>
+    <ArrowIconContainer>
       <Icon name={iconName} />
-    </ArrowContainer>
-  </div>
-))`
+    </ArrowIconContainer>
+  </ScrollIconBase>
+);
+
+const ScrollIcon = styled(ScrollIconInner)`
   align-items: center;
   cursor: pointer;
   display: flex;
   height: 100%;
   outline: 0;
-  position: absolute;
-  top: 0;
   z-index: 1;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  pointer-events: all;
 `;
-
-ScrollIcon.propTypes = {
-  iconName: PropTypes.oneOf(iconNames).isRequired
-};
-
-const ArrowLeft = styled(props => (
-  <ScrollIcon iconName="chevron-left" {...props} />
-))`
-  left: 0;
-  text-align: left;
-`;
-
-const ArrowRight = styled(props => (
-  <ScrollIcon iconName="chevron-right" {...props} />
-))`
-  right: 0;
-  text-align: right;
-`;
-
-ArrowRight.propTypes = {
-  onClick: PropTypes.func.isRequired
-};
-ArrowLeft.propTypes = ArrowRight.propTypes;
 
 type HorizontalScrollWrapperProps = JSXElementProps<'div'> & {
   slideAmount: number;
-};
-
-type TouchOrMouseEvent =
-  | React.MouseEvent<HTMLElement>
-  | React.TouchEvent<HTMLElement>;
-
-const isMouseEvent = (
-  event: TouchOrMouseEvent
-): event is React.MouseEvent<HTMLElement> =>
-  event.type === 'mousedown' || event.type == 'mousemove';
-
-const isTouchEvent = (
-  event: TouchOrMouseEvent
-): event is React.TouchEvent<HTMLElement> =>
-  event.type === 'touchstart' || event.type == 'touchmove';
-
-type MaybeHasProp<T, S extends keyof T> = Omit<T, S> & Partial<Pick<T, S>>;
-type WithUnnamedProp<T, PName extends string, PType> = T & {
-  [K in PName]: PType;
 };
 
 function HorizontalScrollWrapper({
@@ -124,26 +133,28 @@ function HorizontalScrollWrapper({
   slideAmount,
   ...otherProps
 }: HorizontalScrollWrapperProps) {
-  const [rootWidth, setRootWidth] = useState(0);
-  const [menuWidth, setMenuWidth] = useState(0);
-  const [xPosition, setXPosition] = useState(0);
-  const [cursorXPosition, setCursorXPosition] = useState(0);
+  const [containerRef, setContainerRef] = useState<Maybe<HTMLElement>>(null);
+  const [innerRef, setInnerRef] = useState<Maybe<HTMLElement>>(null);
+  const [rootHeight, setRootHeight] = useState(0);
   const [hasOverflow, setHasOverflow] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [maxScroll, setMaxScroll] = useState(0);
+
+  const onScroll = useCallback((ev: React.UIEvent<HTMLElement>) => {
+    const el = ev.target as HTMLElement;
+    setScrollLeft(el.scrollLeft);
+  }, []);
 
   const resetPosition = useCallback(() => {
-    setXPosition(oldXPosition => {
-      const absoluteXPosition = Math.abs(oldXPosition);
-      const widthXPosition = rootWidth + absoluteXPosition;
-      if (widthXPosition <= menuWidth) return oldXPosition;
-      const distance = Math.abs(menuWidth - widthXPosition);
-      return oldXPosition + distance;
-    });
-  }, [rootWidth, menuWidth]);
+    if (!containerRef || !innerRef) return;
 
-  useEffect(() => {
-    setHasOverflow(rootWidth <= menuWidth);
-  }, [rootWidth, menuWidth]);
+    const containerWidth = containerRef.clientWidth;
+    const innerWidth = innerRef.scrollWidth;
+    setRootHeight(containerRef.clientHeight);
+    setHasOverflow(innerWidth > containerWidth);
+    setMaxScroll(innerWidth - containerWidth);
+  }, [containerRef, innerRef]);
 
   useEffect(() => {
     resetPosition();
@@ -155,145 +166,110 @@ function HorizontalScrollWrapper({
     return () => window.removeEventListener('resize', resetPosition);
   }, [resetPosition]);
 
-  const handleDownEvent = (downEvent: TouchOrMouseEvent) => {
+  const scrollContainer = useCallback(
+    (amount: number, extraOpts: ScrollToOptions = {}) => {
+      if (!containerRef) return;
+
+      let newLeft = scrollLeft + amount;
+      newLeft = Math.max(0, newLeft);
+      newLeft = Math.min(newLeft, maxScroll);
+
+      containerRef.scrollTo({
+        left: newLeft,
+        behavior: 'smooth',
+        ...extraOpts
+      });
+    },
+    [containerRef, scrollLeft, maxScroll]
+  );
+
+  const handleClick = useCallback(
+    (direction: 'left' | 'right') => {
+      return (event: React.MouseEvent<HTMLElement>) => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const moveAmount = direction === 'left' ? -slideAmount : slideAmount;
+        scrollContainer(moveAmount);
+      };
+    },
+    [slideAmount, scrollContainer]
+  );
+
+  /* eslint-disable react-hooks/exhaustive-deps */
+  const handleLeftClick = useCallback(handleClick('left'), [handleClick]);
+  const handleRightClick = useCallback(handleClick('right'), [handleClick]);
+  /* eslint-enable react-hooks/exhaustive-deps */
+
+  const handleDownEvent = useCallback(() => {
     if (!hasOverflow) return;
 
-    let cursorX = 0;
-    if (isMouseEvent(downEvent)) {
-      cursorX = downEvent.pageX - xPosition;
-    } else if (isTouchEvent(downEvent)) {
-      const touchEvent = downEvent.changedTouches[0];
-      cursorX = touchEvent.pageX - xPosition;
-    }
-
-    setCursorXPosition(cursorX);
     setIsDragging(true);
-  };
+  }, [hasOverflow]);
 
-  const handleMoveEvent = (moveEvent: TouchOrMouseEvent) => {
-    if (!hasOverflow || !isDragging) return;
+  useEffect(function stopDragging() {
+    const handleUpEvent = () => setIsDragging(false);
+    window.addEventListener('mouseup', handleUpEvent);
 
-    let distance = 0;
+    return () => window.removeEventListener('mouseup', handleUpEvent);
+  }, []);
 
-    if (isMouseEvent(moveEvent)) {
-      moveEvent.preventDefault();
-      distance = moveEvent.pageX - cursorXPosition;
-    } else if (isTouchEvent(moveEvent)) {
-      const touchEvent = moveEvent.changedTouches[0];
-      distance = touchEvent.pageX - cursorXPosition;
-    }
+  useEffect(
+    function startDragging() {
+      if (!isDragging) return;
 
-    let newXPosition = (xPosition + distance) * 0.5;
-    if (newXPosition > 0) {
-      newXPosition = 0;
-    }
-    if (-newXPosition > menuWidth - rootWidth) {
-      newXPosition = -(menuWidth - rootWidth);
-    }
+      const handleMoveEvent = (moveEvent: MouseEvent) => {
+        moveEvent.preventDefault();
 
-    setXPosition(newXPosition);
-  };
+        scrollContainer(-moveEvent.movementX, { behavior: 'auto' });
+      };
 
-  const handleUpEvent = () => {
-    if (!hasOverflow || !isDragging) return;
+      window.addEventListener('mousemove', handleMoveEvent);
 
-    setIsDragging(false);
-  };
-
-  const handleLeftClick = (event: MouseEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    let newXPosition = xPosition + slideAmount;
-    if (newXPosition > 0) {
-      newXPosition = 0;
-    }
-
-    setXPosition(newXPosition);
-  };
-  const handleRightClick = (event: MouseEvent) => {
-    event.stopPropagation();
-    event.preventDefault();
-
-    let newXPosition = xPosition - slideAmount;
-    if (-newXPosition > menuWidth - rootWidth) {
-      newXPosition = -(menuWidth - rootWidth);
-    }
-
-    setXPosition(newXPosition);
-  };
-
-  const handleKeyEvent = (event: React.KeyboardEvent<HTMLElement>) => {
-    const code = event.key.toLowerCase();
-    if (code !== 'tab') return;
-
-    const element = document.activeElement?.parentElement;
-    if (!element) return;
-
-    const style = (window as MaybeHasProp<Window, 'getComputedStyle'>)
-      .getComputedStyle
-      ? getComputedStyle(element, null)
-      : (
-          element as WithUnnamedProp<
-            HTMLElement,
-            'currentStyle',
-            CSSStyleDeclaration
-          >
-        ).currentStyle;
-    const marginLeft = parseInt(style.marginLeft, 10) || 0;
-    const marginRight = parseInt(style.marginRight, 10) || 0;
-    const tabSlide = element.offsetWidth + marginLeft + marginRight;
-
-    if (event.shiftKey) {
-      let newXPosition = xPosition + tabSlide;
-      if (newXPosition > 0) {
-        newXPosition = 0;
-      }
-      setXPosition(newXPosition);
-    } else {
-      let newXPosition = xPosition - tabSlide;
-      if (-newXPosition > menuWidth - rootWidth) {
-        newXPosition = -(menuWidth - rootWidth);
-      }
-      setXPosition(newXPosition);
-    }
-  };
+      return () => window.removeEventListener('mousemove', handleMoveEvent);
+    },
+    [isDragging, scrollContainer]
+  );
 
   return (
     <OuterWrapper
-      ref={root => setRootWidth(root?.clientWidth || 0)}
+      ref={setContainerRef}
+      onScroll={onScroll}
+      hasOverflow={hasOverflow}
+      isDragging={isDragging}
       {...otherProps}
     >
+      {!hasOverflow ? (
+        <></>
+      ) : (
+        <ArrowOuterContainer>
+          <ArrowContainer
+            style={{
+              height: rootHeight
+            }}
+          >
+            <ScrollIcon
+              iconName="chevron-left"
+              onClick={handleLeftClick}
+              aria-label={formatMessage(`See previous`)}
+              visible={scrollLeft > 0}
+            />
+            <ScrollIcon
+              iconName="chevron-right"
+              onClick={handleRightClick}
+              aria-label={formatMessage(`See next`)}
+              visible={scrollLeft < maxScroll}
+            />
+          </ArrowContainer>
+        </ArrowOuterContainer>
+      )}
       <InnerWrapper
-        ref={menu => setMenuWidth(menu?.scrollWidth || 0)}
+        ref={setInnerRef}
         role="presentation"
         onMouseDown={handleDownEvent}
-        onMouseMove={handleMoveEvent}
-        onMouseUp={handleUpEvent}
-        onMouseLeave={handleUpEvent}
-        onTouchStart={handleDownEvent}
-        onTouchMove={handleMoveEvent}
-        onTouchEnd={handleUpEvent}
-        onKeyUp={handleKeyEvent}
-        style={{
-          transform: `translate3d(${xPosition}px, 0, 0)`,
-          transition: `${isDragging ? '' : 'transform 0.3s ease-in-out'}`
-        }}
       >
         {children}
       </InnerWrapper>
-      {hasOverflow && xPosition < 0 && (
-        <ArrowLeft
-          onClick={handleLeftClick}
-          aria-label={formatMessage(`See previous`)}
-        />
-      )}
-      {hasOverflow && -xPosition < menuWidth - rootWidth && (
-        <ArrowRight
-          onClick={handleRightClick}
-          aria-label={formatMessage(`See next`)}
-        />
-      )}
     </OuterWrapper>
   );
 }

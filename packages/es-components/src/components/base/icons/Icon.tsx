@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
-import { IconNames, iconNames } from './IconNames';
+import { IconName, iconNames } from 'es-components-shared-types';
 
 export const iconBasics = css`
   font-style: normal;
@@ -24,7 +24,7 @@ export const iconBaseStyles = css<{ size: string | number }>`
 `;
 
 export interface IconProps {
-  name?: IconNames;
+  name?: IconName;
   size?: string | number;
   className?: string;
   iconColor?: string;

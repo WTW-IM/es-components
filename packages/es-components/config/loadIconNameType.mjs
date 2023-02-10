@@ -35,7 +35,9 @@ export async function writeIconNameType() {
   const iconTypePath = path.join(
     __dirname,
     '..',
-    'src/components/base/icons/IconNames.ts'
+    '..',
+    '..',
+    'shared/types/src/IconNames.ts'
   );
   await fs.writeFile(iconTypePath, iconType);
 }

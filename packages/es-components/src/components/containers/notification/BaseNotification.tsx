@@ -1,10 +1,11 @@
-/* eslint react/prop-types: 0 */
-import React, { useState } from 'react';
+import React, { AriaRole, useState } from 'react';
+import type * as CSS from 'csstype';
 import styled, { CSSProperties } from 'styled-components';
 import type {
   NotificationStyleBlock,
-  NotificationStyle,
-  NotificationStyles
+  ValidationStyleType,
+  NotificationStyleType,
+  IconName
 } from 'es-components-shared-types';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
@@ -24,12 +25,11 @@ const NotificationIcon = styled(Icon)<{ alwaysShowIcon: boolean }>`
   }
 `;
 interface Color {
-  textColor: string;
+  textColor: CSS.Property.Color;
 }
 
 interface DismissProps extends Omit<DismissButtonProps, 'color'> {
   color: Color;
-  onClick: () => void;
 }
 
 const DismissBtn = styled(DismissButton)<DismissProps>`
@@ -40,9 +40,7 @@ const DismissBtn = styled(DismissButton)<DismissProps>`
   i {
     font-size: 27px;
   }
-`;
-
-const Dismiss = DismissBtn as React.FC<DismissProps>;
+` as React.FC<DismissProps>;
 
 const ContentWrapper = styled.div`
   align-self: center;
@@ -55,7 +53,7 @@ interface NotificationContentProps {
   isDismissable?: boolean;
   onDismiss?: () => void;
   children: React.ReactNode;
-  iconName: string;
+  iconName: IconName;
   iconColor: string;
   color: Color;
   dismissNotification: () => void;
@@ -92,7 +90,7 @@ function NotificationContent(props: NotificationContentProps) {
         />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
-      {isDismissable && <Dismiss onClick={dismiss} color={color} />}
+      {isDismissable && <DismissBtn onClick={dismiss} color={color} />}
     </>
   );
 }
@@ -132,56 +130,56 @@ const Notification = styled.div<{
 `;
 
 interface BaseNotificationProps {
-  role?: string;
-  type: keyof NotificationStyles;
+  role?: AriaRole;
+  type: ValidationStyleType;
   children?: React.ReactNode;
   className?: string;
   style?: CSSProperties;
   restyleAnchors?: boolean;
+  styleType?: NotificationStyleType;
 }
 
-export function useNotification(styleType: keyof NotificationStyle = 'base') {
-  return function BaseNotification({
-    role,
-    type,
-    children,
-    className,
-    style,
-    restyleAnchors = true,
+export function BaseNotification({
+  role = 'dialog',
+  type,
+  children,
+  className,
+  style,
+  restyleAnchors = true,
+  styleType = 'base' as NotificationStyleType,
+  ...rest
+}: BaseNotificationProps) {
+  const theme = useTheme();
+  const color = theme.notificationStyles[type][styleType];
+  const iconName = theme.validationIconName[type];
+  const iconColor =
+    styleType === 'base' ? theme.colors.white : theme.colors[type];
+  const notificationContentProps = {
+    color,
+    iconName,
+    iconColor,
     ...rest
-  }: BaseNotificationProps) {
-    const theme = useTheme();
-    const color = theme.notificationStyles[type][styleType];
-    const iconName = theme.validationIconName[type];
-    const iconColor =
-      styleType === 'base' ? theme.colors.white : theme.colors[type];
-    const notificationContentProps = {
-      color,
-      iconName,
-      iconColor,
-      role,
-      ...rest
-    };
-    const [isDismissed, setIsDismissed] = useState(false);
-
-    function dismissNotification() {
-      setIsDismissed(true);
-    }
-
-    return (!isDismissed && (
-      <Notification
-        variant={color}
-        className={className}
-        style={style}
-        restyleAnchors={restyleAnchors}
-      >
-        <NotificationContent
-          dismissNotification={dismissNotification}
-          {...notificationContentProps}
-        >
-          {children}
-        </NotificationContent>
-      </Notification>
-    )) as React.ReactElement;
   };
+  const [isDismissed, setIsDismissed] = useState(false);
+
+  function dismissNotification() {
+    setIsDismissed(true);
+  }
+
+  return (!isDismissed && (
+    <Notification
+      variant={color}
+      className={className}
+      style={style}
+      restyleAnchors={restyleAnchors}
+      role={role}
+    >
+      <NotificationContent
+        dismissNotification={dismissNotification}
+        {...notificationContentProps}
+      >
+        {children}
+      </NotificationContent>
+    </Notification>
+  )) as React.ReactElement;
 }

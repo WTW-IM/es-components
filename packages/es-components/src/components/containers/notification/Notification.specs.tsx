@@ -7,12 +7,12 @@ import userEvent from '@testing-library/user-event';
 
 it('notification has the dialog role by default', () => {
   renderWithTheme(<Notification type="success" />);
-  expect(screen.getByRole('dialog')).not.toBeNull();
+  expect(screen.getByRole('dialog')).toBeInTheDocument();
 });
 
 it('notification has the alert role when role is "alert"', () => {
   renderWithTheme(<Notification type="success" role="alert" />);
-  expect(screen.getByRole('alert')).not.toBeNull();
+  expect(screen.getByRole('alert')).toBeInTheDocument();
 });
 
 it('notification prepends icon when includeIcon is true', () => {
@@ -20,8 +20,8 @@ it('notification prepends icon when includeIcon is true', () => {
     <Notification type="success" includeIcon />
   );
 
-  // eslint-disable-next-line testing-library/no-container,testing-library/no-node-access
-  expect(container.querySelector('i')).not.toBeNull();
+  // eslint-disable-next-line testing-library/no-node-access,testing-library/no-container
+  expect(container.querySelector('.bds-ok-circle')).toBeInTheDocument();
 });
 
 it('can take an extra className', async () => {
@@ -76,6 +76,8 @@ describe('dismissable notifications', () => {
 
     const button = await screen.findByRole('button', { name: /close/i });
     expect(button).toBeInTheDocument();
+
+    expect(await screen.findByText('I am here!')).toBeInTheDocument();
 
     await userEvent.click(button);
     expect(onDismiss).toHaveBeenCalled();

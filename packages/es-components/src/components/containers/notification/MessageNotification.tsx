@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
-import { TypeKeys, useNotification } from './useNotification';
+import { TypeKeys, BaseNotification } from './BaseNotification';
 
 interface MessageNotificationProps {
   type: TypeKeys;
 }
 
 function MessageNotification(props: MessageNotificationProps) {
-  const Notification = useNotification('messageOnly');
-
-  return <Notification {...props} />;
+  return <BaseNotification {...props} styleType="messageOnly" />;
 }
 
 MessageNotification.propTypes = {

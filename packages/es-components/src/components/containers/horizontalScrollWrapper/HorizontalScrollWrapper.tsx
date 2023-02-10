@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import formatMessage from 'format-message';
 import Icon from '../../base/icons/Icon';
-import { IconNames, iconNames } from '../../base/icons/IconNames';
+import { IconName, iconNames } from 'es-components-shared-types';
 import withWindowSize from '../../util/withWindowSize';
 
 const OuterWrapper = styled.div`
@@ -47,7 +47,7 @@ function generateOnArrowKeyDownHandler<
 }
 
 type IconProps = JSXElementProps<'div'> & {
-  iconName: IconNames;
+  iconName: IconName;
 };
 
 const ScrollIcon = styled(({ onClick, iconName, ...props }: IconProps) => (

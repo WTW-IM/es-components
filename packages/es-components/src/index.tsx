@@ -6,6 +6,8 @@ import ActionButton from './components/controls/buttons/ActionButton';
 import { withLoadingStateWhileRunning } from './components/controls/buttons/features/withLoadingStateWhileRunning';
 
 export { default as Icon } from './components/base/icons/Icon';
+export type { IconName } from 'es-components-shared-types';
+export { iconNames } from 'es-components-shared-types';
 export { default as FullColorIcon } from './components/base/icons/FullColorIcon';
 
 export { default as Notification } from './components/containers/notification/Notification';

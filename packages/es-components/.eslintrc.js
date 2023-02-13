@@ -12,7 +12,9 @@ const exts = [
   'plugin:react/recommended',
   'plugin:react-hooks/recommended',
   'plugin:@typescript-eslint/recommended',
-  'plugin:@typescript-eslint/recommended-requiring-type-checking'
+  'plugin:@typescript-eslint/recommended-requiring-type-checking',
+  'plugin:import/recommended',
+  'plugin:import/typescript'
 ];
 
 module.exports = {
@@ -35,7 +37,14 @@ module.exports = {
     react: {
       version: 'detect'
     },
-    'import/core-modules': ['es-components-shared-types']
+    'import/core-modules': ['es-components-shared-types'],
+    'import/resolver': {
+      node: true,
+      typescript: {
+        alwaysTryTypes: true,
+        project: [path.join(__dirname, 'lint-tsconfig.json')]
+      }
+    }
   },
   ignorePatterns: [
     '**/node_modules/**',

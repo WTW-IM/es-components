@@ -25,4 +25,15 @@
   },
   "rootDir": "src",
   "include": ["./src"]
+  "references": [
+    {
+      "path": "../es-components-wtw-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../es-components-via-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../../shared/types"
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 {
   "name": "es-components-monorepo",
+  "version": "21.6.97-pre-prod.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -14,9 +15,10 @@
     "link": "lerna link",
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
-    "preprepare": "npm run build -w es-components-shared-types -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
-    "prepare": "husky install",
+    "build-themes": "npm run build -w es-components-via-theme -w es-components-wtw-theme -w es-componets-wtw-legacy-theme",
+    "preprepare": "npm run build -w es-components-shared-types && npm run build-themes",
     "postprepare": "lerna link --force-local",
+    "prepare": "husky install",
     "test": "npm test --workspaces --if-present",
     "generate-icon-names": "npm run generate-icon-names -w es-components"
   },

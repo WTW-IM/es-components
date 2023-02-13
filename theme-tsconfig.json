@@ -18,5 +18,10 @@
     "jsx": "react",
     "noImplicitAny": true,
     "paths": { "es-components-shared-types": ["./shared/types/src/ESTheme.ts"] }
-  }
+  },
+  "references": [
+    {
+      "path": "shared/types"
+    }
+  ]
 }

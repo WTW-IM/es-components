@@ -99,11 +99,11 @@ export default interface ESTheme {
   };
 
   font: {
-    baseFontSize: number | string;
-    baseLineHeight: number | string;
+    [key: string]: string | number | object;
+    baseFontSize: CSS.Property.FontSize;
+    baseLineHeight: CSS.Property.LineHeight;
     headingDesktop: object;
     headingMobile: object;
-    [key: string]: string | number | object;
   };
 
   screenSize: {

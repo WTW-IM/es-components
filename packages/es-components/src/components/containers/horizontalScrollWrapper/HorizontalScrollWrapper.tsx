@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import formatMessage from 'format-message';
@@ -69,44 +69,47 @@ const ArrowIconContainer = styled.div`
   color: ${props => props.theme.colors.gray9};
   display: flex;
   padding: 0.5em;
+  transition: border-color linear 0.15s, box-shadow linear 0.15s;
 `;
 
-function generateOnArrowKeyDownHandler<
-  T extends Maybe<(...args: any[]) => void> // eslint-disable-line @typescript-eslint/no-explicit-any
->(onKeyDown: T): React.KeyboardEventHandler<HTMLElement> {
-  return (event: React.KeyboardEvent<HTMLElement>) => {
-    const code = event.code.toLowerCase();
-    if (code === 'enter' || code === 'space') {
-      (
-        onKeyDown ||
-        (() => {
-          // noop
-        })
-      )();
+const ScrollIconBaseComponent = styled.button.attrs({ type: 'button' })`
+  display: block;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-size: ${({
+    theme: {
+      font: { baseFontSize }
     }
-  };
-}
+  }) => baseFontSize};
 
-type ScrollIconProps = JSXElementProps<'div'> & {
+  &:focus,
+  &:focus-within {
+    outline: none;
+    ${ArrowIconContainer} {
+      box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+  }
+`;
+
+const IconBase = styled(ScrollIconBaseComponent);
+
+const ScrollIconBase = (IconBase as Partial<typeof styled.button>).withConfig
+  ? IconBase.withConfig({
+      shouldForwardProp: (prop, defaultValidatorFn) =>
+        !['visible'].includes(prop) && defaultValidatorFn(prop)
+    })``
+  : IconBase``;
+
+type ScrollIconProps = Omit<JSXElementProps<'button'>, 'type'> & {
   iconName: IconName;
   visible: boolean;
 };
 
-const ScrollIconBase = (styled.div as Partial<typeof styled.div>).withConfig
-  ? styled.div.withConfig({
-      shouldForwardProp: (prop, defaultValidatorFn) =>
-        !['visible'].includes(prop) && defaultValidatorFn(prop)
-    })``
-  : styled.div``;
-
 const ScrollIconInner = ({ onClick, iconName, ...props }: ScrollIconProps) => (
-  <ScrollIconBase
-    role="button"
-    tabIndex={0}
-    onClick={onClick}
-    onKeyDown={generateOnArrowKeyDownHandler(onClick)}
-    {...props}
-  >
+  <ScrollIconBase onClick={onClick} {...props}>
     <ArrowIconContainer>
       <Icon name={iconName} />
     </ArrowIconContainer>
@@ -140,6 +143,7 @@ function HorizontalScrollWrapper({
   const [isDragging, setIsDragging] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
+  const scrollWidthObserver = useRef<Maybe<ResizeObserver>>(null);
 
   const onScroll = useCallback((ev: React.UIEvent<HTMLElement>) => {
     const el = ev.target as HTMLElement;
@@ -159,6 +163,18 @@ function HorizontalScrollWrapper({
   useEffect(() => {
     resetPosition();
   }, [resetPosition]);
+
+  useEffect(() => {
+    if (!innerRef) return;
+
+    scrollWidthObserver.current =
+      scrollWidthObserver.current || new ResizeObserver(resetPosition);
+    scrollWidthObserver.current.observe(innerRef);
+
+    return () => {
+      scrollWidthObserver.current?.unobserve(innerRef);
+    };
+  }, [innerRef, resetPosition]);
 
   useEffect(() => {
     window.addEventListener('resize', resetPosition);

@@ -17,13 +17,13 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
-          npm ci --workspaces --include-workspace-root # runs installs and builds themes
+          npm ci
 
       - name: Set Commitbot Identity
         run: |

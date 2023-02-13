@@ -23,7 +23,7 @@ jobs:
 
       - name: NPM Clean Install
         run: |
-          npm ci --workspaces --include-workspace-root # runs installs and builds themes
+          npm ci
 
       - name: Setup Cypress
         working-directory: ${{ env.ES_COMPONENTS_DIR }}

@@ -484,6 +484,8 @@ const theme = {
     borderRadius: '2px',
     defaultFormStyle: 'flat',
     dropdownArrow: dropdownArrow,
+    inputHeight: '2.375em',
+    dropdownLineHeight: '1.6em',
   },
   validationIconName: {
     success: 'ok-circle',

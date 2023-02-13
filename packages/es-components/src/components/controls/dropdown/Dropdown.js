@@ -19,6 +19,8 @@ const DropdownInput = styled(InputBase)`
   background-repeat: no-repeat;
   background-position: right 0.5em center;
   background-size: 0.6em auto;
+  line-height: ${props =>
+    getStyledProp('inputStyles.dropdownLineHeight')(props) || '1.5em'};
 
   ${({ hasValue }) => !hasValue && placeholderStyles}
 

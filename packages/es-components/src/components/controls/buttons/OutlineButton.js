@@ -46,8 +46,9 @@ const StyledButton = styled(ButtonBase)`
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
-      background-color: ${props => props.colors.textColor};
-      color: ${props => props.colors.hoverTextColor};
+      background-color: #f4f4f4;
+      border-color: #009ed1;
+      color: #009ed1;
     }
   }
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.6.97-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.6.97-pre-prod.0...v21.6.97-pre-prod.1) (2023-02-07)
+
+### Fix
+
+- using styleguide global theme for initial render ([906ee7c](https://github.com/WTW-IM/es-components/commit/906ee7cba4e8c7bbaee309215429cddfe165da41))
+
+## [21.6.97-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.6.96...v21.6.97-pre-prod.0) (2023-01-30)
+
+### Update
+
+- update wtw theme to match new styles ([a95466f](https://github.com/WTW-IM/es-components/commit/a95466f38539e86cdf28e837c776d6ae8c923951))
+
 ## [21.6.96](https://github.com/WTW-IM/es-components/compare/v21.6.96-pre-prod.0...v21.6.96) (2023-01-26)
 
 **Note:** Version bump only for package es-components-wtw-theme

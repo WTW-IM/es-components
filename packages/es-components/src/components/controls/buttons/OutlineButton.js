@@ -46,9 +46,9 @@ const StyledButton = styled(ButtonBase)`
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
-      background-color: #f4f4f4;
-      border-color: #009ed1;
-      color: #009ed1;
+      background-color: ${props => props.colors.hoverBgColor};
+      color: ${props => props.colors.hoverTextColor};
+      border-color: ${props => props.colors.hoverBorderColor};
     }
   }
 
@@ -109,14 +109,29 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
   );
   focusBoxShadowColor.setAlpha(0.5);
 
-  const buttonColors = {
-    textColor: isInheritedStyle ? 'inherited' : variant.bgColor,
-    bgColor: isInheritedStyle ? 'inherited' : theme.colors.white,
-    hoverTextColor: isInheritedStyle ? 'inherited' : theme.colors.white,
-    focusBoxShadowColor: isInheritedStyle
-      ? theme.colors.gray4
-      : focusBoxShadowColor.toRgbString()
+  let buttonColors = {
+    textColor: 'inherited',
+    bgColor: 'inherited',
+
+    hoverTextColor: 'inherited',
+    hoverBgColor: 'inherited',
+    hoverBorderColor: 'inherited',
+
+    focusBoxShadowColor: theme.colors.gray4
   };
+
+  if (!isInheritedStyle) {
+    buttonColors = {
+      textColor: variant.bgColor,
+      bgColor: theme.colors.white,
+
+      hoverTextColor: variant?.hoverColor || theme.colors.white,
+      hoverBgColor: variant?.hoverBgColor || variant.bgColor,
+      hoverBorderColor: variant?.hoverColor || variant?.bgColor,
+
+      focusBoxShadowColor: focusBoxShadowColor.toRgbString()
+    };
+  }
 
   return (
     <StyledButton

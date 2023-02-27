@@ -393,6 +393,8 @@ const theme = {
         },
         default: {
           bgColor: gray9,
+          hoverBgColor: gray1,
+          hoverColor: primary,
         },
         success: {
           bgColor: success,

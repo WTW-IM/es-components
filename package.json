@@ -18,9 +18,7 @@
     "packages/es-components/src/**/*.js": [
       "prettier --single-quote --write",
       "eslint --fix --config packages/es-components/.eslintrc.js"
-    ],
-    "*.js": "eslint --cache --fix",
-    "*.{js,css,md}": "prettier --write"
+    ]
   },
   "devDependencies": {
     "@aabenoja/conventional-changelog-eslint-lerna": "^1.0.2",

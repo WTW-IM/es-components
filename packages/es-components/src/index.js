@@ -71,6 +71,7 @@ export Dropdown from './components/controls/dropdown/Dropdown';
 export Checkbox from './components/controls/checkbox/Checkbox';
 export CheckboxGroup from './components/controls/checkbox/CheckboxGroup';
 export Switch from './components/controls/switch/Switch';
+export RangeSelector from './components/controls/range-selector/RangeSelector';
 
 export Anchor from './components/navigation/Anchor';
 export SideNav from './components/navigation/sidenav/SideNav';

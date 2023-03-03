@@ -1,6 +1,7 @@
-import React, { useEffect, useState }from 'react';
+import React, { useState }from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { noop } from 'lodash';
 
 const RangeSelectorBase = styled.div`
    width: 100%;
@@ -132,7 +133,8 @@ RangeSelector.defaultProps = {
   minValue: 0,
   maxValue: 10000,
   progressColor: '#17A2B8',
-  sliderColor:  '#ddd'
+  sliderColor:  '#ddd',
+  onChange: noop
 };
 
 export default RangeSelector;

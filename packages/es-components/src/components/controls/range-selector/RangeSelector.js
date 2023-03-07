@@ -1,23 +1,23 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
 const RangeSelectorBase = styled.div`
-   width: 100%;
-  `;
+  width: 100%;
+`;
 const RangeSelectorSlider = styled.div`
   height: 5px;
   border-radius: 5px;
-  background: ${props => (props.sliderColor)};;
+  background: ${props => props.sliderColor};
   position: relative;
 `;
 const RangeSelectorProgress = styled.div`
   height: 5px;
-  left: ${props => (`${props.minPercentage}%`)};
-  right: ${props => (`${100 - props.maxPercentage}%`)};
+  left: ${props => `${props.minPercentage}%`};
+  right: ${props => `${100 - props.maxPercentage}%`};
   border-radius: 5px;
-  background: ${props => (props.progressColor)};
+  background: ${props => props.progressColor};
   position: absolute;
 `;
 const RangeSelectorInputContainer = styled.div`
@@ -25,7 +25,7 @@ const RangeSelectorInputContainer = styled.div`
 `;
 
 const RangeSelectorInput = styled.input`
-  position:absolute;
+  position: absolute;
   top: -5px;
   height: 5px;
   width: 100%;
@@ -34,22 +34,22 @@ const RangeSelectorInput = styled.input`
   -webkit-appearance: none;
   &:focus {
     outline: none;
-}
-  &::-webkit-slider-thumb{
+  }
+  &::-webkit-slider-thumb {
     height: 17px;
     width: 17px;
-    border-radius : 50%;
+    border-radius: 50%;
     pointer-events: auto;
     -webkit-appearance: none;
-    background: ${props => (props.progressColor)};
+    background: ${props => props.progressColor};
   }
-  &::-moz-range-thumb{
+  &::-moz-range-thumb {
     height: 17px;
     width: 17px;
     border: none;
     pointer-events: auto;
     -moz-appearance: none;
-    background: ${props => (props.progressColor)};
+    background: ${props => props.progressColor};
   }
 `;
 
@@ -61,50 +61,92 @@ function RangeSelector({
   progressColor,
   sliderColor,
   onChange,
-   ...RangeSelectorProps
+  ...RangeSelectorProps
 }) {
   const initStateMin = () => {
-    console.log("min  2");
+    console.log('min  2');
     console.log(currentMinValue);
     console.log(minValue);
     console.log(maxValue);
     if (currentMinValue < minValue) return 0;
     if (currentMinValue > maxValue) return 100;
-    return ((currentMinValue - minValue) / (maxValue - minValue) * 100);
+    return ((currentMinValue - minValue) / (maxValue - minValue)) * 100;
   };
   const initStateMax = () => {
-    console.log("max 2");
+    console.log('max 2');
     console.log(currentMaxValue);
     console.log(minValue);
     console.log(maxValue);
     if (currentMaxValue > maxValue) return 100;
     if (currentMaxValue < minValue) return 0;
-    return ((currentMaxValue - minValue) / (maxValue - minValue) * 100);
+    return ((currentMaxValue - minValue) / (maxValue - minValue)) * 100;
   };
   const [min, setMin] = useState(currentMinValue);
   const [max, setMax] = useState(currentMaxValue);
   const [minPercentage, setMinPercentage] = useState(initStateMin);
   const [maxPercentage, setMaxPercentage] = useState(initStateMax);
 
-  const changeMin = (event) => {
-    setMin(event.target.value);
-    setMinPercentage((event.target.value - minValue) / (maxValue - minValue) * 100);
-    onChange(event.target.value, max);
+  useEffect(() => {
+    setMin(currentMinValue);
+    setMinPercentage(initStateMin());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentMinValue, minValue, maxValue]);
+
+  useEffect(() => {
+    setMax(currentMaxValue);
+    setMaxPercentage(initStateMax());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentMaxValue, minValue, maxValue]);
+
+  const changeMin = event => {
+    setMin(Number(event.target.value));
+    setMinPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
   };
-  const changeMax = (event) => {
-    setMax(event.target.value);
-    setMaxPercentage((event.target.value - minValue) / (maxValue - minValue) * 100);
-    onChange(min, event.target.value);
+  const changeMinEnd = event => {
+    console.log(event);
+    setMin(Number(event.target.value));
+    setMinPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
+    onChange(Number(event.target.value), max);
   };
-  
- return (
-    <RangeSelectorBase  {...RangeSelectorProps}>
-      <RangeSelectorSlider sliderColor = {sliderColor} >
-        <RangeSelectorProgress minPercentage = {minPercentage} maxPercentage = {maxPercentage} progressColor = { progressColor } ></RangeSelectorProgress>
+  const changeMax = event => {
+    setMax(Number(event.target.value));
+    setMaxPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
+  };
+  const changeMaxEnd = event => {
+    console.log(event);
+    setMax(Number(event.target.value));
+    setMaxPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
+    onChange(min, Number(event.target.value));
+  };
+
+  return (
+    <RangeSelectorBase {...RangeSelectorProps}>
+      <RangeSelectorSlider sliderColor={sliderColor}>
+        <RangeSelectorProgress
+          minPercentage={minPercentage}
+          maxPercentage={maxPercentage}
+          progressColor={progressColor}
+        ></RangeSelectorProgress>
       </RangeSelectorSlider>
       <RangeSelectorInputContainer>
-        <RangeSelectorInput type="range" min = {minValue} max= {maxValue} value = {min} onChange={changeMin}  progressColor = { progressColor } ></RangeSelectorInput>
-        <RangeSelectorInput type="range" min = {minValue} max= {maxValue} value = {max}  onChange={changeMax}  progressColor = { progressColor } ></RangeSelectorInput>
+        <RangeSelectorInput
+          type="range"
+          min={minValue}
+          max={maxValue}
+          value={min}
+          onChange={changeMin}
+          onMouseUp={changeMinEnd}
+          progressColor={progressColor}
+        ></RangeSelectorInput>
+        <RangeSelectorInput
+          type="range"
+          min={minValue}
+          max={maxValue}
+          value={max}
+          onChange={changeMax}
+          onMouseUp={changeMaxEnd}
+          progressColor={progressColor}
+        ></RangeSelectorInput>
       </RangeSelectorInputContainer>
     </RangeSelectorBase>
   );
@@ -133,7 +175,7 @@ RangeSelector.defaultProps = {
   minValue: 0,
   maxValue: 10000,
   progressColor: '#17A2B8',
-  sliderColor:  '#ddd',
+  sliderColor: '#ddd',
   onChange: noop
 };
 

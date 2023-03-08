@@ -24,6 +24,22 @@ module.exports = {
     es2021: true
   },
   plugins,
+  root: true,
+  settings: {
+    react: {
+      version: 'detect'
+    },
+    'import/core-modules': ['es-components-shared-types']
+  },
+  ignorePatterns: [
+    '**/node_modules/**',
+    'node_modules/**',
+    'dist/**',
+    'cjs/**',
+    'lib/**',
+    'bundle/**',
+    'docs/**'
+  ],
   rules: {
     'no-unused-vars': ['warn'],
     'max-len': 0,

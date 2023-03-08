@@ -1,7 +1,7 @@
-import * as CSS from "csstype";
+import * as CSS from 'csstype';
 
-export const buttonSizePropNames = ["lg", "sm", "xs", "default"] as const;
-export type ButtonSizePropNames = typeof buttonSizePropNames[number];
+export const buttonSizePropNames = ['lg', 'sm', 'xs', 'default'] as const;
+export type ButtonSizePropNames = (typeof buttonSizePropNames)[number];
 
 export interface ButtonSize {
   borderRadius: CSS.Property.BorderRadius;
@@ -19,22 +19,24 @@ export type ButtonSizes = {
 };
 
 export const buttonVariantStyleTypes = [
-  "primary",
-  "default",
-  "darkDefault",
-  "success",
-  "danger",
-  "warning",
-  "info",
-  "information",
-  "magenta",
-  "violet",
+  'primary',
+  'default',
+  'darkDefault',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'information',
+  'magenta',
+  'violet',
 ] as const;
-export type ButtonVariantStyleType = typeof buttonVariantStyleTypes[number];
+export type ButtonVariantStyleType = (typeof buttonVariantStyleTypes)[number];
 
 export interface ButtonVariant {
   bgColor?: CSS.Property.BackgroundColor;
   textColor?: CSS.Property.Color;
+  hoverBgColor?: CSS.Property.BackgroundColor;
+  hoverColor?: CSS.Property.Color;
 }
 
 export interface BGColorButtonVariant extends ButtonVariant {
@@ -57,6 +59,8 @@ export interface ButtonStyles<T extends ButtonVariant> {
 }
 
 export default interface ESTheme {
+  [key: string]: any;
+
   buttonStyles: {
     button: ButtonStyles<BGColorButtonVariant>;
     outlineButton: ButtonStyles<BGColorButtonVariant>;

@@ -41,7 +41,7 @@ const RangeSelectorInput = styled.input`
     border-radius: 50%;
     pointer-events: auto;
     -webkit-appearance: none;
-    background: ${props => props.progressColor};
+    background: ${props => props.thumbColor};
   }
   &::-moz-range-thumb {
     height: 17px;
@@ -49,7 +49,7 @@ const RangeSelectorInput = styled.input`
     border: none;
     pointer-events: auto;
     -moz-appearance: none;
-    background: ${props => props.progressColor};
+    background: ${props => props.thumbColor};
   }
 `;
 
@@ -60,6 +60,7 @@ function RangeSelector({
   maxValue,
   progressColor,
   sliderColor,
+  thumbColor,
   onChange,
   ...RangeSelectorProps
 }) {
@@ -137,6 +138,7 @@ function RangeSelector({
           onChange={changeMin}
           onMouseUp={changeMinEnd}
           progressColor={progressColor}
+          thumbColor={thumbColor}
         ></RangeSelectorInput>
         <RangeSelectorInput
           type="range"
@@ -146,6 +148,7 @@ function RangeSelector({
           onChange={changeMax}
           onMouseUp={changeMaxEnd}
           progressColor={progressColor}
+          thumbColor={thumbColor}
         ></RangeSelectorInput>
       </RangeSelectorInputContainer>
     </RangeSelectorBase>
@@ -166,6 +169,8 @@ RangeSelector.propTypes = {
   /** progress color */
   sliderColor: PropTypes.string,
   /** slider color */
+  thumbColor: PropTypes.string,
+  /** slider color */
   onChange: PropTypes.func
 };
 
@@ -176,6 +181,7 @@ RangeSelector.defaultProps = {
   maxValue: 10000,
   progressColor: '#17A2B8',
   sliderColor: '#ddd',
+  thumbColor: '#17A2B8',
   onChange: noop
 };
 

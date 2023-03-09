@@ -65,19 +65,11 @@ function RangeSelector({
   ...RangeSelectorProps
 }) {
   const initStateMin = () => {
-    console.log('min  2');
-    console.log(currentMinValue);
-    console.log(minValue);
-    console.log(maxValue);
     if (currentMinValue < minValue) return 0;
     if (currentMinValue > maxValue) return 100;
     return ((currentMinValue - minValue) / (maxValue - minValue)) * 100;
   };
   const initStateMax = () => {
-    console.log('max 2');
-    console.log(currentMaxValue);
-    console.log(minValue);
-    console.log(maxValue);
     if (currentMaxValue > maxValue) return 100;
     if (currentMaxValue < minValue) return 0;
     return ((currentMaxValue - minValue) / (maxValue - minValue)) * 100;
@@ -104,7 +96,6 @@ function RangeSelector({
     setMinPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
   };
   const changeMinEnd = event => {
-    console.log(event);
     setMin(Number(event.target.value));
     setMinPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
     onChange(Number(event.target.value), max);
@@ -114,7 +105,6 @@ function RangeSelector({
     setMaxPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
   };
   const changeMaxEnd = event => {
-    console.log(event);
     setMax(Number(event.target.value));
     setMaxPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
     onChange(min, Number(event.target.value));
@@ -132,6 +122,7 @@ function RangeSelector({
       <RangeSelectorInputContainer>
         <RangeSelectorInput
           type="range"
+          aria-label="min-input"
           min={minValue}
           max={maxValue}
           value={min}
@@ -142,6 +133,7 @@ function RangeSelector({
         ></RangeSelectorInput>
         <RangeSelectorInput
           type="range"
+          aria-label="max-input"
           min={minValue}
           max={maxValue}
           value={max}

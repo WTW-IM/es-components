@@ -1,17 +1,56 @@
-/* eslint-env jest */
-/* eslint react/prop-types: 0 */
 import React from 'react';
-import { screen } from '@testing-library/react';
+
+import { cleanup, screen, fireEvent } from '@testing-library/react';
+
 import RangeSelector from './RangeSelector';
 import { renderWithTheme } from '../../util/test-utils';
 
-/*
- * Does not work for now. Something in the test lifecycle is unmounting the component after each render,
- * resulting in a false positive. Skipping this test for now until this can be fully investigated
- */
-it.skip('resynchronizes checked state', () => {
-  const { rerender } = renderWithTheme(<Switch label="Test" checked={false} />);
-  expect(screen.getByLabelText('Test').checked).toBeFalsy();
-  rerender(<RangeSelector label="Test" checked={true} />);
-  expect(screen.getByLabelText('Test').checked).toBeTruthy();
+beforeEach(cleanup);
+
+function buildRangeSelector(props) {
+  return (
+    <RangeSelector 
+      {...props}
+    />
+  );
+}
+
+it('executes the OnChange function when slider min is changed', () => {
+  const defaults = {
+    currentMinValue: 100,
+    currentMaxValue: 1200,
+    minValue : 0,
+    maxValue : 5000 ,
+    progressColor : '#0073b6',
+    sliderColor :'#69aa7c',
+    thumbColor: '#0073b6',
+    onChange : jest.fn()
+  };
+  renderWithTheme(buildRangeSelector(defaults));
+  const inputMin = screen.getByLabelText('min-input');
+  fireEvent.change( inputMin, {
+    target: { value: '1000' }
+  });
+  fireEvent.mouseUp(inputMin);
+  expect(defaults.onChange).toHaveBeenCalled();
+});
+
+it('executes the OnChange function when slider max is changed', () => {
+  const defaults = {
+    currentMinValue: 100,
+    currentMaxValue: 1200,
+    minValue : 0,
+    maxValue : 5000 ,
+    progressColor : '#0073b6',
+    sliderColor :'#69aa7c',
+    thumbColor: '#0073b6',
+    onChange : jest.fn()
+  };
+  renderWithTheme(buildRangeSelector(defaults));
+  const inputMax = screen.getByLabelText('max-input');
+  fireEvent.change( inputMax, {
+    target: { value: '4000' }
+  });
+  fireEvent.mouseUp(inputMax);
+  expect(defaults.onChange).toHaveBeenCalled();
 });

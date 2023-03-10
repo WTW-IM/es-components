@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.7.0",
+  "version": "21.7.1-pre-prod.0",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -75,7 +75,7 @@
     "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
     "cypress": "^9.6.0",
-    "es-components-wtw-theme": "^21.6.97",
+    "es-components-wtw-theme": "^21.7.1-pre-prod.0",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",

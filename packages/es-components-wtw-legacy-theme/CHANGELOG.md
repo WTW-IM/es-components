@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.7.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.0...v21.7.1-pre-prod.0) (2023-03-10)
+
+### Fix
+
+- change input fields height and hover outlinebutton ([25ca7d4](https://github.com/WTW-IM/es-components/commit/25ca7d43a3e756ff1b9ec312b0f1640af913f88f))
+
 # [21.7.0](https://github.com/WTW-IM/es-components/compare/v21.6.97...v21.7.0) (2023-03-06)
 
 ### New

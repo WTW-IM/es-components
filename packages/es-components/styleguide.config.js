@@ -10,7 +10,7 @@ const argv = yargs(hideBin(process.argv)).argv;
 
 const isProduction = argv.env === 'prod';
 const assets_url = isProduction
-  ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
+  ? 'https://app.viabenefits.com/static/cdn/es-assets/'
   : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
 fs.copyFileSync(

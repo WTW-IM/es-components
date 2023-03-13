@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.7.1-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.7.1-pre-prod.1...v21.7.1-pre-prod.2) (2023-03-13)
+
+### Build
+
+- [skip ci][skip-release] v21.7.1-pre-prod.1 ([6c04fd0](https://github.com/wtw-im/es-components/commit/6c04fd099fa2326489359f77bfafd3f914cc36ad))
+
 ## [21.7.1-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.7.1-pre-prod.0...v21.7.1-pre-prod.1) (2023-03-13)
 
 ### Build

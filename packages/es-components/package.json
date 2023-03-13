@@ -116,7 +116,7 @@
     "@popperjs/core": "^2.9.2",
     "core-js": "^3.10.2",
     "date-fns": "^2.21.1",
-    "es-components-via-theme": "file:../es-components-via-theme",
+    "es-components-via-theme": "21.7.1-pre-prod.0",
     "format-message": "^6.2.3",
     "get-root-node-polyfill": "^1.0.0",
     "lodash": "^4.17.21",

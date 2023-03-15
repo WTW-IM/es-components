@@ -9,10 +9,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - change input fields height and hover outlinebutton ([25ca7d4](https://github.com/WTW-IM/es-components/commit/25ca7d43a3e756ff1b9ec312b0f1640af913f88f))
 
-### Update
+# [21.7.0](https://github.com/WTW-IM/es-components/compare/v21.6.97...v21.7.0) (2023-03-06)
 
-- adding hover colors for primary outline button in wtw-theme ([a4fae01](https://github.com/WTW-IM/es-components/commit/a4fae0120004e792addf8234aa8e5f231d6022b2))
-- change danger color in wtw-theme ([46fffc7](https://github.com/WTW-IM/es-components/commit/46fffc7a327b8ac066d51d9f879c2e8051ab5146))
+### New
+
+- adding wtw-legacy-theme ([6992ed0](https://github.com/WTW-IM/es-components/commit/6992ed0e3c6a6b5f5510433d1e6a9ae28ff70d1d))
 
 ## [21.6.97](https://github.com/WTW-IM/es-components/compare/v21.6.97-pre-prod.2...v21.6.97) (2023-02-16)
 

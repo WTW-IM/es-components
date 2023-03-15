@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.6.97",
+  "version": "21.7.1-pre-prod.2",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "test": "npm run reinstall-via-theme && jest",
     "reinstall-via-theme": "npm uninstall es-components-via-theme && npm install ../es-components-via-theme",
     "test:watch": "jest --watch",
-    "wait-for-start": "wait-on http://localhost:6060",
+    "wait-for-start": "wait-on http://127.0.0.1:6060",
     "cypressreport": "mochawesome-merge mochawesome-report/*.json > raw-results.json && marge --reportDir cypress-results raw-results.json"
   },
   "jest": {
@@ -75,8 +75,7 @@
     "concurrently": "^6.0.2",
     "cross-env": "^7.0.3",
     "cypress": "^9.6.0",
-    "es-components-via-theme": "^21.6.97",
-    "es-components-wtw-theme": "^21.6.97",
+    "es-components-wtw-theme": "^21.7.1-pre-prod.0",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
@@ -107,7 +106,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-terser": "^7.0.2",
     "styled-components": "^5.3.5",
-    "wait-on": "^6.0.1",
+    "wait-on": "^7.0.1",
     "webpack": "^5.74.0",
     "yargs": "^17.6.2"
   },
@@ -117,6 +116,7 @@
     "@popperjs/core": "^2.9.2",
     "core-js": "^3.10.2",
     "date-fns": "^2.21.1",
+    "es-components-via-theme": "21.7.1-pre-prod.0",
     "format-message": "^6.2.3",
     "get-root-node-polyfill": "^1.0.0",
     "lodash": "^4.17.21",

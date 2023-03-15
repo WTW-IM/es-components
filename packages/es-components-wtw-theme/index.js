@@ -91,7 +91,7 @@ const successLight = '#d2e9d2';
 const warning = '#de7400';
 const warningHover = '#a65600';
 const warningLight = '#f6e0ca';
-const danger = '#e60700';
+const danger = '#a31e22';
 const dangerHover = '#970500';
 const dangerLight = '#ffc2c0';
 const advisor = '#ff6310';
@@ -393,6 +393,8 @@ const theme = {
         },
         default: {
           bgColor: gray9,
+          hoverBgColor: gray1,
+          hoverColor: primary,
         },
         success: {
           bgColor: success,
@@ -484,6 +486,8 @@ const theme = {
     borderRadius: '2px',
     defaultFormStyle: 'flat',
     dropdownArrow: dropdownArrow,
+    inputHeight: '2.375em',
+    dropdownLineHeight: '1.6em',
   },
   validationIconName: {
     success: 'ok-circle',

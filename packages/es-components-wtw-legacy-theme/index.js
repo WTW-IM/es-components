@@ -46,9 +46,9 @@ const yellow700 = '#ffa814';
 const yellow900 = '#ff9109';
 
 // functional
-const primary = blue900;
-const primaryHover = '#00436a'; // from bda toolkit link example
-const primaryLight = blue700;
+const primary = blue500;
+const primaryHover = '#3c084a';
+const primaryLight = '#ebcff3';
 
 // semantic - base colors, tints, & shades
 const agent50 = '#fde8de';
@@ -81,50 +81,50 @@ const warning500 = '#c25400';
 const warning700 = '#b44300';
 const warning900 = '#9f2900';
 
-// semantic - named variables
+// semantic
 const info = info500;
-const infoHover = info900;
-const infoLight = info50;
-const success = success500;
-const successHover = success900;
-const successLight = success50;
-const warning = warning500;
-const warningHover = warning900;
-const warningLight = warning50;
-const danger = danger500;
-const dangerHover = danger900;
-const dangerLight = danger50;
-const advisor = agent700;
-const advisorLight = agent100;
+const infoHover = '#004466';
+const infoLight = '#c0ebff';
+const success = '#006000';
+const successHover = '#004000';
+const successLight = '#d2e9d2';
+const warning = '#de7400';
+const warningHover = '#a65600';
+const warningLight = '#f6e0ca';
+const danger = '#a31e22';
+const dangerHover = '#970500';
+const dangerLight = '#ffc2c0';
+const advisor = '#ff6310';
+const advisorLight = '#fee7de';
 
 // brand colors
-const primary1 = blue500; // used by: spinner, drawerPanel
-const primary2 = green500; // used by: spinner
-const primary3 = magenta500; // used by: spinner, modalHeader, breadcrumb, Nav, progressTracker, IconButton
-const secondary1 = violet500; // used by spinner, outlineButton
-const secondary2 = gray7;
+const primary1 = blue500;
+const primary2 = '#63666a';
+const primary3 = '#c110a0';
+const secondary1 = primary1;
+const secondary2 = primary2;
 
 // misc
-const inputFocus = '#83bffc';
+const inputFocus = '#66afe9';
 const boxShadowLight = 'rgba(0, 0, 0, 0.075)';
 const boxShadowDark = 'rgba(0, 0, 0, 0.5)';
 
 // Datepicker colors
-const dpBackground = primary;
+const dpBackground = '#006685';
 const navArrow = white;
 const navArrowHover = gray2;
-const selected = primary3;
-const hover = violet500;
-const keyboard = primary;
-const inRange = 'rgba(251, 213, 244, 0.75)';
-const highlight = success;
-const highlightHover = success700;
+const selected = '#216ba5';
+const hover = '#1d5d90';
+const keyboard = '#2a87d0';
+const inRange = 'rgba(33, 107, 165, 0.5)';
+const highlight = '#3dcc4a';
+const highlightHover = '#32be3f';
 
-const arrowDown =
-  "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 269.08 507.48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Rounded_Rectangle_33_copy_4_1_' transform='matrix(0.480497  0  0  0.480497  -96.099159  130.928314)' style=''%3E%3Cpath d='M480 344.181L268.869 131.889c-15.756-15.859-41.3-15.859-57.054 0c-15.754 15.857-15.754 41.57 0 57.431l237.632 238.937 c8.395 8.451 19.562 12.254 30.553 11.698c10.993 0.556 22.159-3.247 30.555-11.698l237.631-238.937 c15.756-15.86 15.756-41.571 0-57.431s-41.299-15.859-57.051 0L480 344.181z'/%3E%3C/g%3E%3C/svg%3E";
+const dropdownArrow =
+  "data:image/svg+xml,%3Csvg width='11px' height='21px' viewBox='0 0 11 21' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cg id='Autocomplete-and-Dropdowns' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Icon' transform='translate(1.000000  2.000000)' stroke='%2300A0D2' stroke-width='2'%3E%3Cg id='Atoms-/-Functional-Icons-/-Custom-/-Chevron-/-Down-/-Blue'%3E%3Cpolyline points='9 11.646475 4.5 16.646475 0 11.646475'%3E%3C/polyline%3E%3Cpolyline id='Atoms-/-Functional-Icons-/-Custom-/-Chevron-/-Down-/-Blue-Copy' transform='translate(4.500000 2.500000) rotate(-180.000000) translate(-4.500000  -2.500000) ' points='9 0 4.5 5 0 0'%3E%3C/polyline%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
 
 const theme = {
-  themeName: 'via-theme',
+  themeName: 'wtw-theme',
   colors: {
     white: white,
     gray0: gray0,
@@ -190,9 +190,6 @@ const theme = {
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus,
   },
-  spacing: {
-    defaultMargin: '1.875rem',
-  },
   brandColors: {
     primary1: primary1,
     primary2: primary2,
@@ -213,16 +210,16 @@ const theme = {
   },
   promptStyles: {
     readAloud: {
-      bgColor: agent50,
-      bannerBgColor: agent700,
+      bgColor: '#FDE8DE',
+      bannerBgColor: '#FF6310',
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
       iconName: 'agent',
     },
     doNotReadAloud: {
-      bgColor: blue50,
-      bannerBgColor: blue900,
+      bgColor: '#E0F4F4',
+      bannerBgColor: '#0073B6',
       bannerTextColor: white,
       textColor: white,
       iconColor: white,
@@ -331,10 +328,10 @@ const theme = {
           bgColor: primary,
         },
         default: {
-          bgColor: gray4,
+          bgColor: '#ccc',
         },
         darkDefault: {
-          bgColor: gray8,
+          bgColor: gray9,
         },
         success: {
           bgColor: success,
@@ -355,7 +352,7 @@ const theme = {
       // fontWeight, lineHeight, textTransform are optional
       size: {
         lg: {
-          borderRadius: '0.3rem',
+          borderRadius: '0',
           fontSize: '1.4375rem',
           lineHeight: '2',
           paddingTop: '0.125rem',
@@ -363,15 +360,15 @@ const theme = {
           paddingBottom: '0.125rem',
         },
         default: {
-          borderRadius: '0.25rem',
-          fontSize: '1.15rem',
+          borderRadius: '0',
+          fontSize: '1rem',
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
           paddingBottom: '0.25rem',
         },
         sm: {
-          borderRadius: '0.2rem',
+          borderRadius: '0',
           fontSize: '1.00625rem',
           lineHeight: '1.25',
           paddingTop: '0.25rem',
@@ -379,7 +376,7 @@ const theme = {
           paddingBottom: '0.25rem',
         },
         xs: {
-          borderRadius: '0.25rem',
+          borderRadius: '0',
           fontSize: '0.8855rem',
           lineHeight: '1.5',
           paddingTop: '0.1rem',
@@ -395,7 +392,9 @@ const theme = {
           bgColor: primary,
         },
         default: {
-          bgColor: gray8,
+          bgColor: gray9,
+          hoverBgColor: gray1,
+          hoverColor: primary,
         },
         success: {
           bgColor: success,
@@ -413,42 +412,42 @@ const theme = {
           bgColor: primary3,
         },
         violet: {
-          bgColor: secondary1,
+          bgColor: primary1,
         },
         inherited: {},
       },
       size: {
         lg: {
-          borderRadius: '0.3rem',
+          borderRadius: '0',
           fontSize: '1.4375rem',
-          fontWeight: 'bold',
+          fontWeight: 'normal',
           lineHeight: '2',
           paddingTop: '0.125rem',
           paddingSides: '1rem',
           paddingBottom: '0.125rem',
         },
         default: {
-          borderRadius: '0.25rem',
-          fontSize: '1.15rem',
-          fontWeight: 'bold',
+          borderRadius: '0',
+          fontSize: '1rem',
+          fontWeight: 'normal',
           lineHeight: '1.5',
           paddingTop: '0.25rem',
           paddingSides: '1rem',
           paddingBottom: '0.25rem',
         },
         sm: {
-          borderRadius: '0.2rem',
+          borderRadius: '0',
           fontSize: '1.00625rem',
-          fontWeight: 'bold',
+          fontWeight: 'normal',
           lineHeight: '1.25',
           paddingTop: '0.25rem',
           paddingSides: '0.5rem',
           paddingBottom: '0.25rem',
         },
         xs: {
-          borderRadius: '0.25rem',
+          borderRadius: '0',
           fontSize: '0.8855rem',
-          fontWeight: 'bold',
+          fontWeight: 'normal',
           lineHeight: '1.5',
           paddingTop: '0.1rem',
           paddingSides: '0.5rem',
@@ -460,7 +459,7 @@ const theme = {
     linkButton: {
       variant: {
         default: {
-          textColor: '#ccc',
+          textColor: gray9,
         },
         primary: {
           textColor: primary,
@@ -485,8 +484,8 @@ const theme = {
   },
   inputStyles: {
     borderRadius: '2px',
-    defaultFormStyle: 'default',
-    dropdownArrow: arrowDown,
+    defaultFormStyle: 'flat',
+    dropdownArrow: dropdownArrow,
     inputHeight: '2.2em',
     dropdownLineHeight: '1.5em',
   },
@@ -515,6 +514,7 @@ const theme = {
       addOn: {
         textColor: white,
         backgroundColor: success,
+        borderColor: success,
       },
     },
     warning: {
@@ -528,6 +528,7 @@ const theme = {
       addOn: {
         textColor: white,
         backgroundColor: warning,
+        borderColor: warning,
       },
     },
     danger: {
@@ -541,12 +542,13 @@ const theme = {
       addOn: {
         textColor: white,
         backgroundColor: danger,
+        borderColor: danger,
       },
     },
     default: {
       backgroundColor: white,
       backgroundColorFlat: gray1,
-      borderColor: gray5,
+      borderColor: gray4,
       boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
       focusBorderColor: inputFocus,
       focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
@@ -554,25 +556,28 @@ const theme = {
       addOn: {
         textColor: gray8,
         backgroundColor: gray3,
+        borderColor: gray4,
       },
     },
   },
   font: {
-    baseFontSize: '18px',
-    baseLineHeight: 1.428,
+    baseFontSize: '16px',
     baseFontFace:
-      '"Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
+      'NHaasGroteskTXPro-55Rg, "Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',
+    labelFontSize: '14px',
+    labelFontWeight: 'normal',
+    baseLineHeight: 1.428,
     headingDesktop: {
-      1: '44.78976px',
-      2: '37.3248px',
+      1: '31.104px',
+      2: '31.104px',
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',
       6: '18px',
     },
     headingMobile: {
-      1: '38.7898px;',
-      2: '31.3248px',
+      1: '31.104px',
+      2: '31.104px',
       3: '31.104px',
       4: '25.92px',
       5: '21.6px',

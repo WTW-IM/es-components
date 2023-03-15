@@ -11,7 +11,7 @@ import ReactIs from 'react-is';
 export default args => {
   const isProduction = args.configEnv === 'prod';
   const assets_url = isProduction
-    ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
+    ? 'https://app.viabenefits.com/static/cdn/es-assets/'
     : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
   return [

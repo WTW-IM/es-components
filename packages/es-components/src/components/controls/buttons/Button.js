@@ -83,17 +83,18 @@ const StyledButton = styled(ButtonBase)`
   &[disabled],
   &[data-waiting]
   {
-    color: #777;
+    color: ${({ theme }) => theme.colors.gray6};
     cursor: not-allowed;
-    background-color: #e6e6e6;
-    border-color: #e6e6e6;
+    background-color: ${({ theme }) => theme.colors.gray3};
+    border-color: ${({ theme }) => theme.colors.gray3};
 
     &:hover,
     &:active
     &.pressed,
-      background-color: #e6e6e6;
-      border-color: #e6e6e6;
-      color: #777;
+      background-color: ${({ theme }) => theme.colors.gray3};
+      border-color: ${({ theme }) => theme.colors.gray3};
+      color: ${({ theme }) => theme.colors.gray6};
+
       &:focus {
         box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
       }

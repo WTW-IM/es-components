@@ -64,51 +64,45 @@ function RangeSelector({
   onChange,
   ...RangeSelectorProps
 }) {
-  const initStateMin = () => {
-    if (currentMinValue < minValue) return 0;
-    if (currentMinValue > maxValue) return 100;
-    return ((currentMinValue - minValue) / (maxValue - minValue)) * 100;
-  };
-  const initStateMax = () => {
-    if (currentMaxValue > maxValue) return 100;
-    if (currentMaxValue < minValue) return 0;
-    return ((currentMaxValue - minValue) / (maxValue - minValue)) * 100;
-  };
   const [min, setMin] = useState(currentMinValue);
   const [max, setMax] = useState(currentMaxValue);
-  const [minPercentage, setMinPercentage] = useState(initStateMin);
-  const [maxPercentage, setMaxPercentage] = useState(initStateMax);
+
+  const initStateMin = () => {
+    if (min < minValue) return 0;
+    if (min > maxValue) return 100;
+    return ((min - minValue) / (maxValue - minValue)) * 100;
+  };
+  const initStateMax = () => {
+    if (max > maxValue) return 100;
+    if (max < minValue) return 0;
+    return ((max - minValue) / (maxValue - minValue)) * 100;
+  };
 
   useEffect(() => {
     setMin(currentMinValue);
-    setMinPercentage(initStateMin());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentMinValue, minValue, maxValue]);
 
   useEffect(() => {
     setMax(currentMaxValue);
-    setMaxPercentage(initStateMax());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentMaxValue, minValue, maxValue]);
 
   const changeMin = event => {
     setMin(Number(event.target.value));
-    setMinPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
   };
   const changeMinEnd = event => {
     setMin(Number(event.target.value));
-    setMinPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
     onChange(Number(event.target.value), max);
   };
   const changeMax = event => {
     setMax(Number(event.target.value));
-    setMaxPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
   };
   const changeMaxEnd = event => {
     setMax(Number(event.target.value));
-    setMaxPercentage(((event.target.value - minValue) / (maxValue - minValue)) * 100);
     onChange(min, Number(event.target.value));
   };
+
+  const minPercentage = initStateMin();
+  const maxPercentage = initStateMax();
 
   return (
     <RangeSelectorBase {...RangeSelectorProps}>
@@ -122,7 +116,6 @@ function RangeSelector({
       <RangeSelectorInputContainer>
         <RangeSelectorInput
           type="range"
-          aria-label="min-input"
           min={minValue}
           max={maxValue}
           value={min}
@@ -133,7 +126,6 @@ function RangeSelector({
         ></RangeSelectorInput>
         <RangeSelectorInput
           type="range"
-          aria-label="max-input"
           min={minValue}
           max={maxValue}
           value={max}

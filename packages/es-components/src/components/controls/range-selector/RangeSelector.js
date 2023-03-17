@@ -165,9 +165,9 @@ RangeSelector.defaultProps = {
   currentMaxValue: 7500,
   minValue: 0,
   maxValue: 10000,
-  progressColor: '#17A2B8',
-  sliderColor: '#ddd',
-  thumbColor: '#17A2B8',
+  progressColor: props => props.theme.colors.success,
+  sliderColor: props => props.theme.colors.gray2 ,
+  thumbColor: props => props.theme.colors.primary,
   onChange: noop
 };
 

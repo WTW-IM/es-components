@@ -27,7 +27,7 @@ it('executes the OnChange function when slider min is changed', () => {
     onChange : jest.fn()
   };
   renderWithTheme(buildRangeSelector(defaults));
-  const inputMin = screen.getByLabelText('min-input');
+  const inputMin = screen.getByLabelText('Minimum Value Input');
   fireEvent.change( inputMin, {
     target: { value: '1000' }
   });

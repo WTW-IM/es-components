@@ -47,7 +47,7 @@ it('executes the OnChange function when slider max is changed', () => {
     onChange : jest.fn()
   };
   renderWithTheme(buildRangeSelector(defaults));
-  const inputMax = screen.getByLabelText('aria-label="Maximum Value Input"');
+  const inputMax = screen.getByLabelText('Maximum Value Input');
   fireEvent.change( inputMax, {
     target: { value: '4000' }
   });

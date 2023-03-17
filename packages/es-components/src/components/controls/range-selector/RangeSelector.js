@@ -116,6 +116,7 @@ function RangeSelector({
       <RangeSelectorInputContainer>
         <RangeSelectorInput
           type="range"
+          aria-label="Minimum Value Input"
           min={minValue}
           max={maxValue}
           value={min}
@@ -126,6 +127,7 @@ function RangeSelector({
         ></RangeSelectorInput>
         <RangeSelectorInput
           type="range"
+          aria-label="Maximum Value Input"
           min={minValue}
           max={maxValue}
           value={max}

@@ -5,7 +5,7 @@ These notifications are rendered with a lighter background.
 ```
 <div>
   <LightNotification
-    type="success"
+    type="success" includeIcon
   >
     <span>This is a successful notification!</span>
   </LightNotification>

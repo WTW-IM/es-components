@@ -257,6 +257,7 @@ const theme = {
       light: {
         bgColor: successLight,
         textColor: gray9,
+        borderColor: yellow100, //TICKET 6608
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -271,6 +272,7 @@ const theme = {
       light: {
         bgColor: infoLight,
         textColor: gray9,
+        borderColor: yellow100, //TICKET 6608
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -285,6 +287,7 @@ const theme = {
       light: {
         bgColor: warningLight,
         textColor: gray9,
+        borderColor: yellow100, //TICKET 6608
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -299,6 +302,7 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray9,
+        borderColor: yellow100, //TICKET 6608
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -313,6 +317,7 @@ const theme = {
       light: {
         bgColor: advisorLight,
         textColor: gray9,
+        borderColor: yellow100, //TICKET 6608
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -488,6 +493,7 @@ const theme = {
     dropdownArrow: dropdownArrow,
     inputHeight: '2.375em',
     dropdownLineHeight: '1.6em',
+    borderHeight: '2px',
   },
   validationIconName: {
     success: 'ok-circle',

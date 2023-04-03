@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
 import DismissButton from '../../controls/DismissButton';
-import getStyledProp from '../../util/getStyledProp';
 
 const NotificationIcon = styled(Icon)`
   align-self: start;
@@ -76,8 +75,8 @@ const Notification = styled.div`
   display: flex;
   margin-bottom: 25px;
   padding: 15px;
-  border: ${props => getStyledProp('inputStyles.borderHeight')(props) || '0px'}
-    solid ${props => props.variant.borderColor};
+  border: ${props => props.variant.borderWidth}
+    ${props => props.variant.borderStyle} ${props => props.variant.borderColor};
 
   ${props =>
     props.restyleAnchors

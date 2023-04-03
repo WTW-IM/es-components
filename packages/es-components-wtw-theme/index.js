@@ -85,17 +85,22 @@ const warning900 = '#9f2900';
 const info = info500;
 const infoHover = '#004466';
 const infoLight = '#c0ebff';
+const infoLightBorder = blue500;
 const success = '#006000';
 const successHover = '#004000';
-const successLight = '#d2e9d2';
+const successLight = '#F3FFFB'; //'#d2e9d2';
+const successLightBorder = '#009865';
 const warning = '#de7400';
 const warningHover = '#a65600';
-const warningLight = '#f6e0ca';
+const warningLight = '#FFF6EE';
+const warningLightBorder = '#CC6A01';
 const danger = '#a31e22';
 const dangerHover = '#970500';
 const dangerLight = '#ffc2c0';
+const dangerLightBorder = magenta500;
 const advisor = '#ff6310';
 const advisorLight = '#fee7de';
+const advisorLightBorder = advisor;
 
 // brand colors
 const primary1 = blue500;
@@ -175,17 +180,22 @@ const theme = {
     success: success,
     successHover: successHover,
     successLight: successLight,
+    successLightBorder: successLightBorder,
     info: info,
     infoHover: infoHover,
     infoLight: infoLight,
+    infoLightBorder: infoLightBorder,
     warning: warning,
     warningHover: warningHover,
     warningLight: warningLight,
+    warningLightBorder: warningLightBorder,
     danger: danger,
     dangerHover: dangerHover,
     dangerLight: dangerLight,
+    dangerLightBorder: dangerLightBorder,
     advisor: advisor,
     advisorLight: advisorLight,
+    advisorLightBorder: advisorLightBorder,
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus,
@@ -257,7 +267,9 @@ const theme = {
       light: {
         bgColor: successLight,
         textColor: gray9,
-        borderColor: yellow100, //TICKET 6608
+        borderColor: successLightBorder,
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -272,7 +284,9 @@ const theme = {
       light: {
         bgColor: infoLight,
         textColor: gray9,
-        borderColor: yellow100, //TICKET 6608
+        borderColor: infoLightBorder,
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -287,7 +301,9 @@ const theme = {
       light: {
         bgColor: warningLight,
         textColor: gray9,
-        borderColor: yellow100, //TICKET 6608
+        borderColor: warningLightBorder,
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -302,7 +318,9 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray9,
-        borderColor: yellow100, //TICKET 6608
+        borderColor: dangerLightBorder,
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -317,7 +335,9 @@ const theme = {
       light: {
         bgColor: advisorLight,
         textColor: gray9,
-        borderColor: yellow100, //TICKET 6608
+        borderColor: advisorLightBorder,
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -493,11 +513,10 @@ const theme = {
     dropdownArrow: dropdownArrow,
     inputHeight: '2.375em',
     dropdownLineHeight: '1.6em',
-    borderHeight: '2px',
   },
   validationIconName: {
-    success: 'ok-circle',
-    info: 'info-circle',
+    success: 'checkbox-checked',
+    info: 'checkbox-checked',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
     advisor: 'agent',

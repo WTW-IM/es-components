@@ -12,7 +12,8 @@
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
     "postinstall": "echo '\\033[0;32mInstalling npm dependencies for sub-packages\\033[0m' && lerna bootstrap --force-local",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "eslint": "eslint --fix --config packages/es-components/.eslintrc.js"
   },
   "lint-staged": {
     "packages/es-components/src/**/*.js": [

@@ -4,9 +4,8 @@ import { noop } from 'lodash';
 
 import { useNotification } from './useNotification';
 
-const Notification = useNotification('light');
-
 function LightNotification(props) {
+  const Notification = useNotification('light');
   return <Notification {...props} />;
 }
 
@@ -27,7 +26,7 @@ LightNotification.propTypes = {
 };
 
 LightNotification.defaultProps = {
-  includeIcon: false,
+  includeIcon: true,
   isDismissable: false,
   children: null,
   role: 'dialog',

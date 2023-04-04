@@ -85,22 +85,17 @@ const warning900 = '#9f2900';
 const info = info500;
 const infoHover = '#004466';
 const infoLight = '#c0ebff';
-const infoLightBorder = blue500;
 const success = '#006000';
 const successHover = '#004000';
 const successLight = '#F3FFFB'; //'#d2e9d2';
-const successLightBorder = '#009865';
 const warning = '#de7400';
 const warningHover = '#a65600';
 const warningLight = '#FFF6EE';
-const warningLightBorder = '#CC6A01';
 const danger = '#a31e22';
 const dangerHover = '#970500';
 const dangerLight = '#ffc2c0';
-const dangerLightBorder = magenta500;
 const advisor = '#ff6310';
 const advisorLight = '#fee7de';
-const advisorLightBorder = advisor;
 
 // brand colors
 const primary1 = blue500;
@@ -180,22 +175,17 @@ const theme = {
     success: success,
     successHover: successHover,
     successLight: successLight,
-    successLightBorder: successLightBorder,
     info: info,
     infoHover: infoHover,
     infoLight: infoLight,
-    infoLightBorder: infoLightBorder,
     warning: warning,
     warningHover: warningHover,
     warningLight: warningLight,
-    warningLightBorder: warningLightBorder,
     danger: danger,
     dangerHover: dangerHover,
     dangerLight: dangerLight,
-    dangerLightBorder: dangerLightBorder,
     advisor: advisor,
     advisorLight: advisorLight,
-    advisorLightBorder: advisorLightBorder,
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus,
@@ -267,7 +257,7 @@ const theme = {
       light: {
         bgColor: successLight,
         textColor: gray9,
-        borderColor: successLightBorder,
+        borderColor: '#009865',
         borderWidth: '2px',
         borderStyle: 'solid',
       },
@@ -284,7 +274,7 @@ const theme = {
       light: {
         bgColor: infoLight,
         textColor: gray9,
-        borderColor: infoLightBorder,
+        borderColor: blue500,
         borderWidth: '2px',
         borderStyle: 'solid',
       },
@@ -301,7 +291,7 @@ const theme = {
       light: {
         bgColor: warningLight,
         textColor: gray9,
-        borderColor: warningLightBorder,
+        borderColor: '#CC6A01',
         borderWidth: '2px',
         borderStyle: 'solid',
       },
@@ -318,7 +308,7 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray9,
-        borderColor: dangerLightBorder,
+        borderColor: magenta500,
         borderWidth: '2px',
         borderStyle: 'solid',
       },
@@ -335,7 +325,7 @@ const theme = {
       light: {
         bgColor: advisorLight,
         textColor: gray9,
-        borderColor: advisorLightBorder,
+        borderColor: advisor,
         borderWidth: '2px',
         borderStyle: 'solid',
       },

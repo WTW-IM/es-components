@@ -84,16 +84,16 @@ const warning900 = '#9f2900';
 // semantic
 const info = info500;
 const infoHover = '#004466';
-const infoLight = '#c0ebff';
+const infoLight = '#f4f4f4';
 const success = '#006000';
 const successHover = '#004000';
-const successLight = '#F3FFFB'; //'#d2e9d2';
+const successLight = '#f3fffb';
 const warning = '#de7400';
 const warningHover = '#a65600';
-const warningLight = '#FFF6EE';
+const warningLight = '#fff6ee';
 const danger = '#a31e22';
 const dangerHover = '#970500';
-const dangerLight = '#ffc2c0';
+const dangerLight = '#fff5f5';
 const advisor = '#ff6310';
 const advisorLight = '#fee7de';
 
@@ -274,7 +274,7 @@ const theme = {
       light: {
         bgColor: infoLight,
         textColor: gray9,
-        borderColor: blue500,
+        borderColor: '#585858',
         borderWidth: '2px',
         borderStyle: 'solid',
       },
@@ -291,8 +291,8 @@ const theme = {
       light: {
         bgColor: warningLight,
         textColor: gray9,
-        borderColor: '#CC6A01',
         borderWidth: '2px',
+        borderColor: '#CC6A01',
         borderStyle: 'solid',
       },
       messageOnly: {
@@ -308,7 +308,7 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray9,
-        borderColor: magenta500,
+        borderColor: '#A31E22',
         borderWidth: '2px',
         borderStyle: 'solid',
       },
@@ -506,7 +506,7 @@ const theme = {
   },
   validationIconName: {
     success: 'checkbox-checked',
-    info: 'checkbox-checked',
+    info: 'exclamation-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
     advisor: 'agent',

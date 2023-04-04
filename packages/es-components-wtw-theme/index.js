@@ -84,16 +84,16 @@ const warning900 = '#9f2900';
 // semantic
 const info = info500;
 const infoHover = '#004466';
-const infoLight = '#c0ebff';
+const infoLight = '#f4f4f4';
 const success = '#006000';
 const successHover = '#004000';
-const successLight = '#d2e9d2';
+const successLight = '#f3fffb';
 const warning = '#de7400';
 const warningHover = '#a65600';
-const warningLight = '#f6e0ca';
+const warningLight = '#fff6ee';
 const danger = '#a31e22';
 const dangerHover = '#970500';
-const dangerLight = '#ffc2c0';
+const dangerLight = '#fff5f5';
 const advisor = '#ff6310';
 const advisorLight = '#fee7de';
 
@@ -257,6 +257,9 @@ const theme = {
       light: {
         bgColor: successLight,
         textColor: gray9,
+        borderColor: '#009865',
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -271,6 +274,9 @@ const theme = {
       light: {
         bgColor: infoLight,
         textColor: gray9,
+        borderColor: '#585858',
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -285,6 +291,9 @@ const theme = {
       light: {
         bgColor: warningLight,
         textColor: gray9,
+        borderWidth: '2px',
+        borderColor: '#cc6a01',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -299,6 +308,9 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray9,
+        borderColor: '#a31e22',
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -313,6 +325,9 @@ const theme = {
       light: {
         bgColor: advisorLight,
         textColor: gray9,
+        borderColor: advisor,
+        borderWidth: '2px',
+        borderStyle: 'solid',
       },
       messageOnly: {
         bgColor: 'transparent',
@@ -490,8 +505,8 @@ const theme = {
     dropdownLineHeight: '1.6em',
   },
   validationIconName: {
-    success: 'ok-circle',
-    info: 'info-circle',
+    success: 'checkbox-checked',
+    info: 'exclamation-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
     advisor: 'agent',

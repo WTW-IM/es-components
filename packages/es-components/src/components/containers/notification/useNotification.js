@@ -9,8 +9,8 @@ const NotificationIcon = styled(Icon)`
   align-self: start;
   color: ${props => props.iconColor};
   display: none;
-
-  @media (min-width: ${props => props.alwaysShowIcon ? 0 : props.theme.screenSize.tablet}) {
+  @media (min-width: ${props =>
+      props.alwaysShowIcon ? 0 : props.theme.screenSize.tablet}) {
     display: inline;
     margin-right: 8px;
   }
@@ -21,7 +21,6 @@ const Dismiss = styled(DismissButton)`
   color: ${props => props.color.textColor};
   font-weight: normal;
   opacity: 0.8;
-
   i {
     font-size: 27px;
   }
@@ -55,7 +54,12 @@ function NotificationContent(props) {
   return (
     <>
       {includeIcon && (
-        <NotificationIcon name={iconName} iconColor={iconColor} size={28} alwaysShowIcon={alwaysShowIcon} />
+        <NotificationIcon
+          name={iconName}
+          iconColor={iconColor}
+          size={28}
+          alwaysShowIcon={alwaysShowIcon}
+        />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
       {isDismissable && <Dismiss onClick={dismiss} color={color} />}
@@ -71,6 +75,8 @@ const Notification = styled.div`
   display: flex;
   margin-bottom: 25px;
   padding: 15px;
+  border: ${props => props.variant?.borderWidth}
+    ${props => props.variant?.borderStyle} ${props => props.variant?.borderColor};
 
   ${props =>
     props.restyleAnchors

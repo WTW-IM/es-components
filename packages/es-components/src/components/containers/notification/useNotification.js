@@ -75,8 +75,8 @@ const Notification = styled.div`
   display: flex;
   margin-bottom: 25px;
   padding: 15px;
-  border: ${props => props.variant.borderWidth}
-    ${props => props.variant.borderStyle} ${props => props.variant.borderColor};
+  border: ${props => props.variant?.borderWidth}
+    ${props => props.variant?.borderStyle} ${props => props.variant?.borderColor};
 
   ${props =>
     props.restyleAnchors

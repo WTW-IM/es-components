@@ -292,7 +292,7 @@ const theme = {
         bgColor: warningLight,
         textColor: gray9,
         borderWidth: '2px',
-        borderColor: '#CC6A01',
+        borderColor: '#cc6a01',
         borderStyle: 'solid',
       },
       messageOnly: {
@@ -308,7 +308,7 @@ const theme = {
       light: {
         bgColor: dangerLight,
         textColor: gray9,
-        borderColor: '#A31E22',
+        borderColor: '#a31e22',
         borderWidth: '2px',
         borderStyle: 'solid',
       },

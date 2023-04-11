@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.7.2-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.7.1...v21.7.2-pre-prod.0) (2023-04-04)
+
+### Fix
+
+- change LightNotification border and color (#749) ([8b00ae5](https://github.com/wtw-im/es-components/commit/8b00ae541e1d3af293ee8aaf125bc31ce901b8da)), closes [#749](https://github.com/wtw-im/es-components/issues/749)
+
 ## [21.7.1](https://github.com/wtw-im/es-components/compare/v21.7.1-pre-prod.2...v21.7.1) (2023-03-16)
 
 **Note:** Version bump only for package es-components

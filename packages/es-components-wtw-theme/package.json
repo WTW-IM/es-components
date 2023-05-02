@@ -5,7 +5,8 @@
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
-    "build": "node -e 'require(\"fs\").unlink(\"index.d.ts\", () => {})'; tsc -p tsconfig.json"
+    "build": "node -e 'require(\"fs\").unlink(\"index.d.ts\", () => {})'; tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "typescript": "^5.0.4"

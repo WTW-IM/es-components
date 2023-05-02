@@ -4,5 +4,5 @@
 npx lint-staged
 npm run build-via-theme
 git add packages/es-components-via-theme/index.d.ts
-# npm run build-wtw-theme
-# git add packages/es-components-wtw-theme/index.d.ts
+npm run build-wtw-theme
+git add packages/es-components-wtw-theme/index.d.ts

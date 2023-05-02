@@ -5,6 +5,8 @@
   "scripts": {
     "build": "sh build.sh",
     "ci-run": "sh ci.sh",
+    "build-via-theme": "npm run build --prefix packages/es-components-via-theme",
+    "build-wtw-theme": "npm run build --prefix packages/es-components-wtw-theme",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",

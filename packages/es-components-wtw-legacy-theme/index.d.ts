@@ -46,16 +46,16 @@ declare const primaryHover: "#3c084a";
 declare const primaryLight: "#ebcff3";
 declare const success: "#006000";
 declare const successHover: "#004000";
-declare const successLight: "#f3fffb";
+declare const successLight: "#d2e9d2";
 declare const info: "#006699";
 declare const infoHover: "#004466";
-declare const infoLight: "#f4f4f4";
+declare const infoLight: "#c0ebff";
 declare const warning: "#de7400";
 declare const warningHover: "#a65600";
-declare const warningLight: "#fff6ee";
+declare const warningLight: "#f6e0ca";
 declare const danger: "#a31e22";
 declare const dangerHover: "#970500";
-declare const dangerLight: "#fff5f5";
+declare const dangerLight: "#ffc2c0";
 declare const advisor: "#ff6310";
 declare const advisorLight: "#fee7de";
 declare const boxShadowLight: "rgba(0, 0, 0, 0.075)";
@@ -222,9 +222,6 @@ export namespace notificationStyles {
         namespace light {
             export { successLight as bgColor };
             export { gray9 as textColor };
-            export const borderColor: string;
-            export const borderWidth: string;
-            export const borderStyle: string;
         }
         namespace messageOnly {
             const bgColor_2: string;
@@ -242,12 +239,6 @@ export namespace notificationStyles {
         export namespace light_1 {
             export { infoLight as bgColor };
             export { gray9 as textColor };
-            const borderColor_1: string;
-            export { borderColor_1 as borderColor };
-            const borderWidth_1: string;
-            export { borderWidth_1 as borderWidth };
-            const borderStyle_1: string;
-            export { borderStyle_1 as borderStyle };
         }
         export { light_1 as light };
         export namespace messageOnly_1 {
@@ -267,12 +258,6 @@ export namespace notificationStyles {
         export namespace light_2 {
             export { warningLight as bgColor };
             export { gray9 as textColor };
-            const borderWidth_2: string;
-            export { borderWidth_2 as borderWidth };
-            const borderColor_2: string;
-            export { borderColor_2 as borderColor };
-            const borderStyle_2: string;
-            export { borderStyle_2 as borderStyle };
         }
         export { light_2 as light };
         export namespace messageOnly_2 {
@@ -292,12 +277,6 @@ export namespace notificationStyles {
         export namespace light_3 {
             export { dangerLight as bgColor };
             export { gray9 as textColor };
-            const borderColor_3: string;
-            export { borderColor_3 as borderColor };
-            const borderWidth_3: string;
-            export { borderWidth_3 as borderWidth };
-            const borderStyle_3: string;
-            export { borderStyle_3 as borderStyle };
         }
         export { light_3 as light };
         export namespace messageOnly_3 {
@@ -317,11 +296,6 @@ export namespace notificationStyles {
         export namespace light_4 {
             export { advisorLight as bgColor };
             export { gray9 as textColor };
-            export { advisor as borderColor };
-            const borderWidth_4: string;
-            export { borderWidth_4 as borderWidth };
-            const borderStyle_4: string;
-            export { borderStyle_4 as borderStyle };
         }
         export { light_4 as light };
         export namespace messageOnly_4 {

@@ -670,3 +670,4 @@ export namespace screenSize {
     const widescreen: string;
 }
 export {};
+//# sourceMappingURL=index.d.ts.map

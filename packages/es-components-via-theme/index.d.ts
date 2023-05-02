@@ -665,3 +665,4 @@ export namespace screenSize {
 }
 export const ignore: {};
 export {};
+//# sourceMappingURL=index.d.ts.map

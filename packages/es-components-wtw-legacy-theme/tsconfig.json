@@ -16,6 +16,7 @@
         "emitDeclarationOnly": true,
         "declaration": true,
         "declarationDir": "./",
+        "declarationMap": true,
         "jsx": "react",
         "noImplicitAny": true
     },

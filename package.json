@@ -44,6 +44,7 @@
     "lerna": "^6.4.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "react-to-typescript-definitions": "^3.1.1",
     "rollup": "^2.23.0"
   }
 }

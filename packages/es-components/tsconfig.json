@@ -16,9 +16,11 @@
         "emitDeclarationOnly": true,
         "declaration": true,
         "declarationMap": true,
+        "declarationDir": "src/types",
         "jsx": "react",
         "noImplicitAny": true
     },
     "rootDir": "src",
-    "include": ["src"]
+    "include": ["src"],
+    "exclude": ["src/types", "src/components/controls/buttons/features/withLoadingStateWhileRunning.js"]
 }

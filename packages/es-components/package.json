@@ -9,9 +9,10 @@
   "main": "cjs/index.js",
   "sideEffects": false,
   "scripts": {
-    "build": "cross-env MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup && npm run ts-output && npm run update-type-props",
-    "ts-output": "npx tsc -p tsconfig.json && cp -R src/types/* lib && cp -R src/types/* cjs",
+    "build": "cross-env MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup && npm run ts-output && npm run update-type-props && npm run distribute-types",
+    "ts-output": "npx tsc -p tsconfig.json",
     "update-type-props": "node ./build-scripts/prop-types-declaration.js",
+    "distribute-types": "cp -R src/types/* lib && cp -R src/types/* cjs",
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
     "rollup": "rollup -c rollup.config.js",

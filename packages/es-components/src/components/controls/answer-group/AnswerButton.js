@@ -155,6 +155,7 @@ function AnswerButton({
 }
 
 export const propTypes = {
+  ...AnswerInput.propTypes,
   name: PropTypes.string,
   children: PropTypes.node,
   itemWidth: PropTypes.string,

@@ -129,12 +129,12 @@ function replaceTypeFile(componentName, typeFilePath) {
   let newText = importInferProps(fileText);
   newText = newText.replace(
     componentRegex,
-    ` ${componentName}(props: React.PropsWithChildren<InferProps<typeof ${componentName}.propTypes & { [x: string]: any }>>):`
+    ` ${componentName}(props: React.PropsWithChildren<InferProps<typeof ${componentName}.propTypes>>):`
   );
 
   newText = newText.replace(
     forwardedConstRegex,
-    `const ${componentName}: React.ForwardRefExoticComponent<Omit<React.PropsWithChildren<InferProps<typeof propTypes & { [x: string]: any }>>, "ref"> & React.RefAttributes<any>>`
+    `const ${componentName}: React.ForwardRefExoticComponent<Omit<React.PropsWithChildren<InferProps<typeof propTypes>>, "ref"> & React.RefAttributes<any>>`
   );
 
   fs.writeFileSync(typeFilePath, newText, 'utf8');

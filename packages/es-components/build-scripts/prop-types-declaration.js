@@ -122,6 +122,9 @@ function updateLoadingButton(componentName, fileName) {
   fs.writeFileSync(fileName, newText, 'utf8');
 }
 
+const getPropsDeclaration = typeToInfer =>
+  `React.PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & InferProps<typeof ${typeToInfer}>>`;
+
 function replaceTypeFile(componentName, typeFilePath) {
   const fileText = fs.readFileSync(typeFilePath, 'utf8');
   const componentRegex = getComponentDeclarationRegex(componentName);
@@ -129,12 +132,16 @@ function replaceTypeFile(componentName, typeFilePath) {
   let newText = importInferProps(fileText);
   newText = newText.replace(
     componentRegex,
-    ` ${componentName}(props: React.PropsWithChildren<InferProps<typeof ${componentName}.propTypes>>):`
+    ` ${componentName}(props: ${getPropsDeclaration(
+      `${componentName}.propTypes`
+    )}):`
   );
 
   newText = newText.replace(
     forwardedConstRegex,
-    `const ${componentName}: React.ForwardRefExoticComponent<Omit<React.PropsWithChildren<InferProps<typeof propTypes>>, "ref"> & React.RefAttributes<any>>`
+    `const ${componentName}: React.ForwardRefExoticComponent<Omit<${getPropsDeclaration(
+      'propTypes'
+    )}, "ref"> & React.RefAttributes<any>>`
   );
 
   fs.writeFileSync(typeFilePath, newText, 'utf8');

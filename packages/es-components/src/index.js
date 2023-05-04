@@ -75,6 +75,7 @@ export { default as CheckboxGroup } from './components/controls/checkbox/Checkbo
 export { default as Switch } from './components/controls/switch/Switch';
 
 export { default as Anchor } from './components/navigation/Anchor';
+export { default as Breadcrumb } from './components/navigation/breadcrumb/Breadcrumb';
 export { default as SideNav } from './components/navigation/sidenav/SideNav';
 export { default as HorizontalNav } from './components/navigation/horizontalnav/HorizontalNav';
 

@@ -108,15 +108,12 @@ export function RadioButton({ children, className, ...radioProps }) {
   );
 }
 
-RadioButton.propTypes = {
+export const propTypes = {
   /** supports styled-component usage, applies to the wrapping Label */
   className: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.node
 };
 
-RadioButton.defaultProps = {
-  className: undefined,
-  children: undefined
-};
+RadioButton.propTypes = propTypes;
 
 export default RadioButton;

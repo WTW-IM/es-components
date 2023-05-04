@@ -95,7 +95,7 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
+export function OutlineButtonComponent(props, ref) {
   const { children, styleType, size, block, ...other } = props;
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.outlineButton.size[size];
@@ -145,9 +145,9 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
       {children}
     </StyledButton>
   );
-});
+}
 
-OutlineButton.propTypes = {
+OutlineButtonComponent.propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.outlineButton */
   styleType: PropTypes.string,
@@ -156,10 +156,12 @@ OutlineButton.propTypes = {
   block: PropTypes.bool
 };
 
-OutlineButton.defaultProps = {
+OutlineButtonComponent.defaultProps = {
   styleType: 'default',
   block: false,
   size: 'default'
 };
+
+const OutlineButton = React.forwardRef(OutlineButtonComponent);
 
 export default OutlineButton;

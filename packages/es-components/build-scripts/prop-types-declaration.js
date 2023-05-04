@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { JSDOM } = require('jsdom');
+const { glob } = require('glob');
 const DEFAULT_HTML = '<html><body></body></html>';
 const jsdom = new JSDOM(DEFAULT_HTML, {
   url: 'https://wtw-im.github.io/es-components',
@@ -43,6 +44,18 @@ function findTypeFile(componentName, componentPath) {
 
 const getComponentDeclarationRegex = componentName =>
   new RegExp(` ${componentName}\\((?!props: InferProps)[^\\)]*\\):`, 'm');
+
+const getForwardedComponentDeclarationRegex = componentName =>
+  new RegExp(
+    ` ${componentName}Component\\((?!props: InferProps).+?(?=ref)`,
+    'ms'
+  );
+
+const getForwardedConstDeclarationRegex = componentName =>
+  new RegExp(
+    `const ${componentName}: React.ForwardRefExoticComponent<Omit.+?(?="ref")`,
+    'ms'
+  );
 
 function fileContainsComponentDeclaration(componentName, fileName) {
   const fileText = fs.readFileSync(fileName, 'utf8');
@@ -118,10 +131,23 @@ function updateLoadingButton(componentName, fileName) {
 function replaceTypeFile(componentName, typeFilePath) {
   const fileText = fs.readFileSync(typeFilePath, 'utf8');
   const componentRegex = getComponentDeclarationRegex(componentName);
+  const forwardedComponentRegex =
+    getForwardedComponentDeclarationRegex(componentName);
+  const forwardedConstRegex = getForwardedConstDeclarationRegex(componentName);
   let newText = importInferProps(fileText);
   newText = newText.replace(
     componentRegex,
-    ` ${componentName}(props: InferProps<typeof ${componentName}.propTypes> & { [x: string]: any }):`
+    ` ${componentName}(props: React.PropsWithChildren<InferProps<typeof ${componentName}.propTypes & { [x: string]: any }>>):`
+  );
+
+  newText = newText.replace(
+    forwardedComponentRegex,
+    ` ${componentName}Component(props: React.PropsWithChildren<InferProps<typeof ${componentName}Component.propTypes & { [x: string]: any }>>, `
+  );
+
+  newText = newText.replace(
+    forwardedConstRegex,
+    `const ${componentName}: React.ForwardRefExoticComponent<Omit<React.PropsWithChildren<InferProps<typeof ${componentName}Component.propTypes & { [x: string]: any }>>, `
   );
 
   fs.writeFileSync(typeFilePath, newText, 'utf8');
@@ -166,3 +192,18 @@ for (const inferredType of loaderButtons) {
     path.join(__dirname, '../src/types/index.d.ts')
   );
 }
+
+async function addChildren() {
+  const declarationFiles = await glob('src/types/**/*.d.ts');
+  for (const declarationFile of declarationFiles) {
+    const fileText = fs.readFileSync(declarationFile, 'utf8');
+    const newText = fileText.replace(
+      /React.ForwardRefExoticComponent<React.RefAttributes<any>>/g,
+      'React.ForwardRefExoticComponent<React.PropsWithChildren<React.RefAttributes<any>>>'
+    );
+
+    fs.writeFileSync(declarationFile, newText, 'utf8');
+  }
+}
+
+addChildren();

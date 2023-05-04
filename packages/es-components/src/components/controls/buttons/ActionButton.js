@@ -17,7 +17,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ActionButton = React.forwardRef(function ActionButton(props, ref) {
+export function ActionButtonComponent(props, ref) {
   const { children, styleType, ...other } = props;
   const theme = useTheme();
   const defaultStyle = theme.buttonStyles.button.variant.default;
@@ -35,16 +35,17 @@ const ActionButton = React.forwardRef(function ActionButton(props, ref) {
       {children}
     </StyledButton>
   );
-});
+}
 
-ActionButton.propTypes = {
+ActionButtonComponent.propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
   styleType: PropTypes.string
 };
 
-ActionButton.defaultProps = {
+ActionButtonComponent.defaultProps = {
   styleType: 'primary'
 };
 
+const ActionButton = React.forwardRef(ActionButtonComponent);
 export default ActionButton;

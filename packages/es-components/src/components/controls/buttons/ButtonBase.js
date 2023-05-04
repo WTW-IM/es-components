@@ -11,10 +11,8 @@ const noop = () => {
 const UnstyledButton = styled.button`
   // noop
 `;
-const ButtonBase = React.forwardRef(function ButtonBaseInner(
-  { waiting, onClick, ...props },
-  ref
-) {
+
+export function ButtonBaseComponent({ waiting, onClick, ...props }, ref) {
   const innerClick = useCallback(
     (...args) => !waiting && (onClick || noop)(...args),
     [waiting, onClick]
@@ -31,16 +29,17 @@ const ButtonBase = React.forwardRef(function ButtonBaseInner(
       ref={ref}
     />
   );
-});
+}
 
-ButtonBase.propTypes = {
+ButtonBaseComponent.propTypes = {
   ...(styled.button.propTypes || {}),
   /** Styles the Button with the "disabled" state and prevents click action */
   waiting: PropTypes.bool
 };
 
-ButtonBase.defaultProps = {
+ButtonBaseComponent.defaultProps = {
   waiting: false
 };
 
+const ButtonBase = React.forwardRef(ButtonBaseComponent);
 export default ButtonBase;

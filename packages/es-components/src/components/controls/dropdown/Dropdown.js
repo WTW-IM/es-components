@@ -29,7 +29,7 @@ const DropdownInput = styled(InputBase)`
   }
 `;
 
-const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
+export function DropdownComponent(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
   const [hasValue, setHasValue] = useState(Boolean(props.value));
   const [inputRef, setInputRef] = useState(null);
@@ -67,8 +67,11 @@ const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
       forwardedAs="select"
     />
   );
-});
+}
 
-Dropdown.propTypes = styled.select.propTypes;
+DropdownComponent.propTypes = {
+  ...styled.select.propTypes
+};
 
+const Dropdown = React.forwardRef(DropdownComponent);
 export default Dropdown;

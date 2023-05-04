@@ -99,7 +99,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
 });
 /* eslint-enable react/prop-types */
 
-const DatePicker = function DatePicker(props) {
+export default function DatePicker(props) {
   const normalizedDateFromProps = props.selectedDate
     ? normalizeDate(props.selectedDate)
     : null;
@@ -152,7 +152,7 @@ const DatePicker = function DatePicker(props) {
   const popperClassName = props.children ? 'has-children' : '';
 
   return <DatePickerInput {...actualProps} popperClassName={popperClassName} />;
-};
+}
 
 DatePicker.propTypes = {
   children: PropTypes.node,
@@ -174,5 +174,3 @@ DatePicker.defaultProps = {
   children: undefined,
   classNames: ''
 };
-
-export default DatePicker;

@@ -26,10 +26,7 @@ const StyledIcon = styled.i`
   ${iconBaseStyles}
 `;
 
-const Icon = React.forwardRef(function ForwardedIcon(
-  { name, size, className, ...other },
-  ref
-) {
+export function IconComponent({ name, size, className, ...other }, ref) {
   const [rootNode, RootNodeInput] = useRootNodeLocator();
   useContext(IconContext).setup(rootNode);
 
@@ -45,9 +42,9 @@ const Icon = React.forwardRef(function ForwardedIcon(
       />
     </>
   );
-});
+}
 
-Icon.propTypes = {
+IconComponent.propTypes = {
   /** Name of the icon to display */
   name: PropTypes.string,
   /** Specify icon size in pixels */
@@ -56,9 +53,11 @@ Icon.propTypes = {
   className: PropTypes.string
 };
 
-Icon.defaultProps = {
+IconComponent.defaultProps = {
   size: undefined,
   className: undefined
 };
+
+const Icon = React.forwardRef(IconComponent);
 
 export default Icon;

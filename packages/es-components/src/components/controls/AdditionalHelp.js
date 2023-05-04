@@ -27,20 +27,19 @@ function AdditionalHelp({ children, hasValidationIcon, ...props }) {
 
   return (
     <HelpText {...props}>
-      {hasValidationIcon &&
-        children &&
-        validationState !== 'default' && (
-          <ValidationIcon
-            aria-hidden="true"
-            name={theme.validationIconName[validationState]}
-          />
-        )}
+      {hasValidationIcon && children && validationState !== 'default' && (
+        <ValidationIcon
+          aria-hidden="true"
+          name={theme.validationIconName[validationState]}
+        />
+      )}
       {children}
     </HelpText>
   );
 }
 
 AdditionalHelp.propTypes = {
+  ...HelpText.propTypes,
   children: PropTypes.any,
   /** use to show or hide an associated validation icon */
   hasValidationIcon: PropTypes.bool

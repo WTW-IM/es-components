@@ -123,7 +123,12 @@ function updateLoadingButton(componentName, fileName) {
 }
 
 const getPropsDeclaration = typeToInfer =>
-  `React.PropsWithChildren<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & InferProps<typeof ${typeToInfer}>>`;
+  `React.PropsWithChildren<
+  Omit<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+    keyof InferProps<typeof ${typeToInfer}>
+  > & InferProps<typeof ${typeToInfer}>
+>`;
 
 function replaceTypeFile(componentName, typeFilePath) {
   const fileText = fs.readFileSync(typeFilePath, 'utf8');

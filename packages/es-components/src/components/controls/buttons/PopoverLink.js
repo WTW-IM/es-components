@@ -17,7 +17,7 @@ const StyledButton = styled(LinkButton)`
   }
 `;
 
-export function PopoverLinkComponent(props, ref) {
+const PopoverLink = React.forwardRef(function PopoverLink(props, ref) {
   const { children, styleType, suppressUnderline, ...other } = props;
   const theme = useTheme();
   const variant = theme.buttonStyles.linkButton.variant[styleType];
@@ -32,9 +32,9 @@ export function PopoverLinkComponent(props, ref) {
       {children}
     </StyledButton>
   );
-}
+});
 
-PopoverLinkComponent.propTypes = {
+export const propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
@@ -42,10 +42,12 @@ PopoverLinkComponent.propTypes = {
   suppressUnderline: PropTypes.bool
 };
 
-PopoverLinkComponent.defaultProps = {
+export const defaultProps = {
   styleType: 'primary',
   suppressUnderline: false
 };
 
-const PopoverLink = React.forwardRef(PopoverLinkComponent);
+PopoverLink.propTypes = propTypes;
+PopoverLink.defaultProps = defaultProps;
+
 export default PopoverLink;

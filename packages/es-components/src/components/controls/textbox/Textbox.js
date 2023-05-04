@@ -130,7 +130,7 @@ const Hidden = props => (
   />
 );
 
-export function TextboxComponent(props, ref) {
+const Textbox = React.forwardRef(function Textbox(props, ref) {
   const {
     prependIconName,
     appendIconName,
@@ -184,9 +184,9 @@ export function TextboxComponent(props, ref) {
       />
     </InputWrapper>
   );
-}
+});
 
-TextboxComponent.propTypes = {
+export const propTypes = {
   /** Content to prepend input box with */
   prependIconName: PropTypes.string,
   /** Content to append to input box */
@@ -199,7 +199,7 @@ TextboxComponent.propTypes = {
   style: PropTypes.object
 };
 
-TextboxComponent.defaultProps = {
+export const defaultProps = {
   prependIconName: undefined,
   appendIconName: undefined,
   type: 'text',
@@ -208,5 +208,7 @@ TextboxComponent.defaultProps = {
   style: undefined
 };
 
-const Textbox = React.forwardRef(TextboxComponent);
+Textbox.propTypes = propTypes;
+Textbox.defaultProps = defaultProps;
+
 export default Textbox;

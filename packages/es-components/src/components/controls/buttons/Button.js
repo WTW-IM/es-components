@@ -106,7 +106,7 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-export function ButtonComponent(
+const Button = React.forwardRef(function Button(
   {
     children,
     styleType,
@@ -198,9 +198,9 @@ export function ButtonComponent(
       {children}
     </StyledButton>
   );
-}
+});
 
-ButtonComponent.propTypes = {
+export const propTypes = {
   ...(ButtonBase.propTypes || {}),
   waiting: PropTypes.bool,
   children: PropTypes.node.isRequired,
@@ -217,7 +217,7 @@ ButtonComponent.propTypes = {
   flatRightEdge: PropTypes.bool
 };
 
-ButtonComponent.defaultProps = {
+export const defaultProps = {
   ...(ButtonBase.defaultProps || {}),
   waiting: false,
   styleType: 'default',
@@ -228,6 +228,7 @@ ButtonComponent.defaultProps = {
   flatRightEdge: false
 };
 
-const Button = React.forwardRef(ButtonComponent);
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default Button;

@@ -35,7 +35,7 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-export function LinkButtonComponent(props, ref) {
+const LinkButton = React.forwardRef(function LinkButton(props, ref) {
   const { children, styleType, ...other } = props;
   const theme = useTheme();
   const variant = theme.buttonStyles.linkButton.variant[styleType];
@@ -45,17 +45,19 @@ export function LinkButtonComponent(props, ref) {
       {children}
     </StyledButton>
   );
-}
+});
 
-LinkButtonComponent.propTypes = {
+export const propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
   styleType: PropTypes.string
 };
 
-LinkButtonComponent.defaultProps = {
+export const defaultProps = {
   styleType: 'default'
 };
 
-const LinkButton = React.forwardRef(LinkButtonComponent);
+LinkButton.defaultProps = defaultProps;
+LinkButton.propTypes = propTypes;
+
 export default LinkButton;

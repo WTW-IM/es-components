@@ -45,15 +45,9 @@ function findTypeFile(componentName, componentPath) {
 const getComponentDeclarationRegex = componentName =>
   new RegExp(` ${componentName}\\((?!props: InferProps)[^\\)]*\\):`, 'm');
 
-const getForwardedComponentDeclarationRegex = componentName =>
-  new RegExp(
-    ` ${componentName}Component\\((?!props: InferProps).+?(?=ref)`,
-    'ms'
-  );
-
 const getForwardedConstDeclarationRegex = componentName =>
   new RegExp(
-    `const ${componentName}: React.ForwardRefExoticComponent<Omit.+?(?="ref")`,
+    `const ${componentName}: React.ForwardRefExoticComponent<React.RefAttributes<any>>`,
     'ms'
   );
 
@@ -131,8 +125,6 @@ function updateLoadingButton(componentName, fileName) {
 function replaceTypeFile(componentName, typeFilePath) {
   const fileText = fs.readFileSync(typeFilePath, 'utf8');
   const componentRegex = getComponentDeclarationRegex(componentName);
-  const forwardedComponentRegex =
-    getForwardedComponentDeclarationRegex(componentName);
   const forwardedConstRegex = getForwardedConstDeclarationRegex(componentName);
   let newText = importInferProps(fileText);
   newText = newText.replace(
@@ -141,13 +133,8 @@ function replaceTypeFile(componentName, typeFilePath) {
   );
 
   newText = newText.replace(
-    forwardedComponentRegex,
-    ` ${componentName}Component(props: React.PropsWithChildren<InferProps<typeof ${componentName}Component.propTypes & { [x: string]: any }>>, `
-  );
-
-  newText = newText.replace(
     forwardedConstRegex,
-    `const ${componentName}: React.ForwardRefExoticComponent<Omit<React.PropsWithChildren<InferProps<typeof ${componentName}Component.propTypes & { [x: string]: any }>>, `
+    `const ${componentName}: React.ForwardRefExoticComponent<Omit<React.PropsWithChildren<InferProps<typeof propTypes & { [x: string]: any }>>, "ref"> & React.RefAttributes<any>>`
   );
 
   fs.writeFileSync(typeFilePath, newText, 'utf8');

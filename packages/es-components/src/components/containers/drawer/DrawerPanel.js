@@ -69,7 +69,7 @@ const styledDrawerItemBody = () => {
 
 const PanelBody = styledDrawerItemBody();
 
-export function DrawerPanelComponent(props, ref) {
+const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
   const {
     children,
     noPadding,
@@ -119,9 +119,9 @@ export function DrawerPanelComponent(props, ref) {
       </PanelWrapper>
     </DrawerItem>
   );
-}
+});
 
-DrawerPanelComponent.propTypes = {
+export const propTypes = {
   children: PropTypes.any.isRequired,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.oneOfType([
@@ -146,7 +146,7 @@ DrawerPanelComponent.propTypes = {
   panelKey: PropTypes.string
 };
 
-DrawerPanelComponent.defaultProps = {
+export const defaultProps = {
   noPadding: false,
   titleAside: undefined,
   headingLevel: 2,
@@ -156,5 +156,7 @@ DrawerPanelComponent.defaultProps = {
   openedIconName: 'minus'
 };
 
-const DrawerPanel = React.forwardRef(DrawerPanelComponent);
+DrawerPanel.propTypes = propTypes;
+DrawerPanel.defaultProps = defaultProps;
+
 export default DrawerPanel;

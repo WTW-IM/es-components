@@ -11,3 +11,4 @@ lerna-debug.log
 .DS_Store
 CHANGELOG_COPY.md
 **/src/types/
+**/index.d.ts

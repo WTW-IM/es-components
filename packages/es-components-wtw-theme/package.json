@@ -6,8 +6,7 @@
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
-    "build": "node -e 'require(\"fs\").unlink(\"index.d.ts\", () => {})'; tsc -p tsconfig.json && npm run open-namespaces",
-    "open-namespaces": "node -e 'require(\"../../build-scripts/open-theme-namespaces\")(\"index.d.ts\")'",
+    "build": "node -e 'require(\"fs\").unlink(\"index.d.ts\", () => {})'; tsc -p tsconfig.json",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {

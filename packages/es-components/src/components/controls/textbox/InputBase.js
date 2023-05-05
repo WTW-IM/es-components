@@ -79,6 +79,17 @@ const InputBase = React.forwardRef(function ForwardedInputBase(props, ref) {
   return <InputBaseComponent ref={ref} {...validationStyleProps} />;
 });
 
+export const propTypes = {
+  ...(InputBaseComponent.propTypes || {})
+};
+
+export const defaultProps = {
+  ...(InputBaseComponent.defaultProps || {})
+};
+
+InputBase.propTypes = propTypes;
+InputBase.defaultProps = defaultProps;
+
 export default InputBase;
 
 export const basicTextboxStyles = css`

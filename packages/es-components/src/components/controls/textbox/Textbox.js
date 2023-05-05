@@ -187,6 +187,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
 });
 
 export const propTypes = {
+  ...(TextboxBase.propTypes || {}),
   /** Content to prepend input box with */
   prependIconName: PropTypes.string,
   /** Content to append to input box */
@@ -200,6 +201,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  ...(TextboxBase.defaultProps || {}),
   prependIconName: undefined,
   appendIconName: undefined,
   type: 'text',

@@ -109,6 +109,7 @@ export function RadioButton({ children, className, ...radioProps }) {
 }
 
 export const propTypes = {
+  ...(RadioInput.propTypes || {}),
   /** supports styled-component usage, applies to the wrapping Label */
   className: PropTypes.string,
   children: PropTypes.node

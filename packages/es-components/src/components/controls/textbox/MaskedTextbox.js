@@ -31,6 +31,7 @@ const MaskedTextbox = React.forwardRef(function MaskedTextbox(props, ref) {
 });
 
 export const propTypes = {
+  ...Textbox.propTypes,
   /** Sets a mask type on the input */
   maskType: PropTypes.oneOf([
     'date',
@@ -52,6 +53,8 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  ...Textbox.defaultProps,
+  /** Sets a mask type on the input */
   customMask: undefined
 };
 

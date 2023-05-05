@@ -48,12 +48,14 @@ const LinkButton = React.forwardRef(function LinkButton(props, ref) {
 });
 
 export const propTypes = {
+  ...StyledButton.propTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
   styleType: PropTypes.string
 };
 
 export const defaultProps = {
+  ...StyledButton.defaultProps,
   styleType: 'default'
 };
 

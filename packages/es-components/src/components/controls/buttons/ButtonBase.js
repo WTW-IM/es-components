@@ -34,12 +34,13 @@ const ButtonBase = React.forwardRef(function ButtonBaseInner(
 });
 
 export const propTypes = {
-  ...(styled.button.propTypes || {}),
+  ...(UnstyledButton.propTypes || {}),
   /** Styles the Button with the "disabled" state and prevents click action */
   waiting: PropTypes.bool
 };
 
 export const defaultProps = {
+  ...(UnstyledButton.defaultProps || {}),
   waiting: false
 };
 

@@ -122,6 +122,7 @@ const DrawerPanel = React.forwardRef(function DrawerPanel(props, ref) {
 });
 
 export const propTypes = {
+  ...(PanelWrapper.propTypes || {}),
   children: PropTypes.any.isRequired,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.oneOfType([
@@ -147,6 +148,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  ...(PanelWrapper.defaultProps || {}),
   noPadding: false,
   titleAside: undefined,
   headingLevel: 2,

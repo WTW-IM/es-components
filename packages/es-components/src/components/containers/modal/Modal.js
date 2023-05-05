@@ -167,27 +167,33 @@ function Modal({
   const modalRef = useRef(null);
   const innerContentRef = useRef(null);
 
-  const setContentRef = useCallback(contentElement => {
-    callRef(contentRef, contentElement);
-    innerContentRef.current = contentElement;
-  });
+  const setContentRef = useCallback(
+    contentElement => {
+      callRef(contentRef, contentElement);
+      innerContentRef.current = contentElement;
+    },
+    [contentRef]
+  );
 
-  const modalHeightRef = useCallback(modalElement => {
-    callRef(overlayRef, modalElement);
-    let newHeight = 0;
-    if (modalElement) {
-      modalRef.current = modalElement;
-      newHeight = modalElement.offsetHeight;
-    }
-    if (innerContentRef.current) {
-      const contRefHeight = innerContentRef.current.offsetHeight;
-      if (contRefHeight < newHeight) newHeight = contRefHeight;
-    }
-    setModalHeight(newHeight);
-  });
+  const modalHeightRef = useCallback(
+    modalElement => {
+      callRef(overlayRef, modalElement);
+      let newHeight = 0;
+      if (modalElement) {
+        modalRef.current = modalElement;
+        newHeight = modalElement.offsetHeight;
+      }
+      if (innerContentRef.current) {
+        const contRefHeight = innerContentRef.current.offsetHeight;
+        if (contRefHeight < newHeight) newHeight = contRefHeight;
+      }
+      setModalHeight(newHeight);
+    },
+    [overlayRef]
+  );
 
-  const modalParentSelector =
-    parentSelector || useCallback(() => rootNode, [rootNode]);
+  const rootNodeSelector = useCallback(() => rootNode, [rootNode]);
+  const modalParentSelector = parentSelector || rootNodeSelector;
 
   useEffect(() => {
     if (!animation || show) {
@@ -217,6 +223,7 @@ function Modal({
     if (modalRef.current && modalRef.current.scroll) {
       modalRef.current.scroll(0, 0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalRef.current]);
 
   useDisableBodyScroll(show);
@@ -257,6 +264,7 @@ function Modal({
 }
 
 Modal.propTypes = {
+  ...ReactModal.propTypes,
   /** Open and close the Modal with transitions. */
   animation: PropTypes.bool,
   /**

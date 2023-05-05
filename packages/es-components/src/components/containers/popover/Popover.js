@@ -185,11 +185,13 @@ function Popover(props) {
     />
   );
 
+  const trigger = renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen });
+
   return (
     <Container>
       <Popup
         name={name}
-        trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
+        trigger={trigger}
         position={placement}
         arrowSize={arrowSize}
         transitionIn={isOpen}
@@ -293,7 +295,7 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
-  ...Popup.propTypes,
+  ...Popup.defauProps,
   placement: 'bottom',
   arrowSize: 'default',
   disableRootClose: false,

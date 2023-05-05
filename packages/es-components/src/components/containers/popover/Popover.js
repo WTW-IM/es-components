@@ -247,6 +247,7 @@ function contentRequired(props, propName, componentName) {
 }
 
 Popover.propTypes = {
+  ...Popup.propTypes,
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
   /** The text displayed in the popover title section */
@@ -292,6 +293,7 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
+  ...Popup.propTypes,
   placement: 'bottom',
   arrowSize: 'default',
   disableRootClose: false,

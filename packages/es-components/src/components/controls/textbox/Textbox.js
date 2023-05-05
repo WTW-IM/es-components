@@ -15,7 +15,9 @@ import InputBase, {
   validationStateInputStyles,
   validationStateSetupStyles,
   noInset,
-  basicTextboxStyles
+  basicTextboxStyles,
+  propTypes as basePropTypes,
+  defaultProps as baseDefaultProps
 } from './InputBase';
 
 const computeStyle = (...args) => {
@@ -187,7 +189,7 @@ const Textbox = React.forwardRef(function Textbox(props, ref) {
 });
 
 export const propTypes = {
-  ...(TextboxBase.propTypes || {}),
+  ...basePropTypes,
   /** Content to prepend input box with */
   prependIconName: PropTypes.string,
   /** Content to append to input box */
@@ -201,7 +203,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-  ...(TextboxBase.defaultProps || {}),
+  ...baseDefaultProps,
   prependIconName: undefined,
   appendIconName: undefined,
   type: 'text',

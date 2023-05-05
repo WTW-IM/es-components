@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
-import ButtonBase from './ButtonBase';
+import ButtonBase, {
+  propTypes as buttonBasePropTypes,
+  defaultProps as buttonBaseDefaultProps
+} from './ButtonBase';
 
 const StyledButton = styled(ButtonBase)`
   background-color: ${props => props.colors.bgColor};
@@ -201,8 +204,7 @@ const Button = React.forwardRef(function Button(
 });
 
 export const propTypes = {
-  ...StyledButton.propTypes,
-  ...ButtonBase.propTypes,
+  ...buttonBasePropTypes,
   waiting: PropTypes.bool,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
@@ -219,8 +221,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-  ...(StyledButton.defaultProps || {}),
-  ...(ButtonBase.defaultProps || {}),
+  ...buttonBaseDefaultProps,
   waiting: false,
   styleType: 'default',
   block: false,

@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
-import Button from './Button';
+import Button, {
+  propTypes as buttonPropTypes,
+  defaultProps as buttonDefaultProps
+} from './Button';
 
 const StyledButton = styled(Button)`
   background-color: ${props => props.defaultStyle.bgColor};
@@ -38,14 +41,14 @@ const ActionButton = React.forwardRef(function ActionButton(props, ref) {
 });
 
 export const propTypes = {
-  ...Button.propTypes,
+  ...buttonPropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
   styleType: PropTypes.string
 };
 
 export const defaultProps = {
-  ...Button.defaultProps,
+  ...buttonDefaultProps,
   styleType: 'primary'
 };
 

@@ -121,6 +121,7 @@
     "@babel/helpers": "^7.13.16",
     "@babel/runtime": "^7.17.9",
     "@popperjs/core": "^2.9.2",
+    "@types/lodash": "^4.14.194",
     "@types/react": "^18.2.2",
     "@types/react-dom": "^18.2.3",
     "@types/styled-components": "^5.1.26",

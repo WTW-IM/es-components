@@ -263,8 +263,20 @@ function Modal({
   );
 }
 
+const ModalPropTypes = { ...ReactModal.propTypes };
+delete ModalPropTypes.isOpen;
+delete ModalPropTypes.overlayClassName;
+delete ModalPropTypes.closeTimeoutMS;
+delete ModalPropTypes.aria;
+delete ModalPropTypes.onRequestClose;
+delete ModalPropTypes.onAfterOpen;
+delete ModalPropTypes.onAfterClose;
+delete ModalPropTypes.shouldCloseOnEsc;
+delete ModalPropTypes.contentRef;
+delete ModalPropTypes.overlayRef;
+
 Modal.propTypes = {
-  ...ReactModal.propTypes,
+  ...ModalPropTypes,
   /** Open and close the Modal with transitions. */
   animation: PropTypes.bool,
   /**

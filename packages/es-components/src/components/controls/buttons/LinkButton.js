@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
-import ButtonBase from './ButtonBase';
+import ButtonBase, {
+  propTypes as basePropTypes,
+  defaultProps as baseDefaultProps
+} from './ButtonBase';
 
 const StyledButton = styled(ButtonBase)`
   background-color: transparent;
@@ -47,14 +50,19 @@ const LinkButton = React.forwardRef(function LinkButton(props, ref) {
   );
 });
 
-LinkButton.propTypes = {
+export const propTypes = {
+  ...basePropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
   styleType: PropTypes.string
 };
 
-LinkButton.defaultProps = {
+export const defaultProps = {
+  ...baseDefaultProps,
   styleType: 'default'
 };
+
+LinkButton.defaultProps = defaultProps;
+LinkButton.propTypes = propTypes;
 
 export default LinkButton;

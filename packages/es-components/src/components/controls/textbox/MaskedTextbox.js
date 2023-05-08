@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 
 import inputMaskType from './inputMaskType';
-import Textbox from './Textbox';
+import Textbox, {
+  propTypes as basePropTypes,
+  defaultProps as baseDefaultProps
+} from './Textbox';
 
 const MaskedTextbox = React.forwardRef(function MaskedTextbox(props, ref) {
   const { maskType, customMask, ...additionalTextProps } = props;
@@ -30,7 +33,8 @@ const MaskedTextbox = React.forwardRef(function MaskedTextbox(props, ref) {
   );
 });
 
-MaskedTextbox.propTypes = {
+export const propTypes = {
+  ...basePropTypes,
   /** Sets a mask type on the input */
   maskType: PropTypes.oneOf([
     'date',
@@ -51,8 +55,13 @@ MaskedTextbox.propTypes = {
   })
 };
 
-MaskedTextbox.defaultProps = {
+export const defaultProps = {
+  ...baseDefaultProps,
+  /** Sets a mask type on the input */
   customMask: undefined
 };
+
+MaskedTextbox.propTypes = propTypes;
+MaskedTextbox.defaultProps = defaultProps;
 
 export default MaskedTextbox;

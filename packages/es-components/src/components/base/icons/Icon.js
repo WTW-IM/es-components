@@ -47,7 +47,8 @@ const Icon = React.forwardRef(function ForwardedIcon(
   );
 });
 
-Icon.propTypes = {
+export const propTypes = {
+  ...StyledIcon.propTypes,
   /** Name of the icon to display */
   name: PropTypes.string,
   /** Specify icon size in pixels */
@@ -56,9 +57,12 @@ Icon.propTypes = {
   className: PropTypes.string
 };
 
-Icon.defaultProps = {
+export const defaultProps = {
   size: undefined,
   className: undefined
 };
+
+Icon.propTypes = propTypes;
+Icon.defaultProps = defaultProps;
 
 export default Icon;

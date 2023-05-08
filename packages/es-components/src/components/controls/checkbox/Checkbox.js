@@ -126,10 +126,12 @@ function Checkbox({ children, ...checkboxProps }) {
 }
 
 Checkbox.propTypes = {
-  children: PropTypes.any
+  ...(CheckboxInput.propTypes || {}),
+  children: PropTypes.node
 };
 
 Checkbox.defaultProps = {
+  ...(CheckboxInput.defaultProps || {}),
   children: undefined
 };
 

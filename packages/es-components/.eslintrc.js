@@ -57,7 +57,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['.eslintrc*', '*.config.js', '**/config/*'],
+      files: ['.eslintrc*', '*.config.js', '**/config/*', '**/build-scripts/*'],
       env: {
         node: true
       },

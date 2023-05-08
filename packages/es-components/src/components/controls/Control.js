@@ -53,7 +53,9 @@ function Control(props) {
   } = props;
   const theme = useTheme();
   const extraFormContext = isBool(flat) ? { flat } : {};
-  const textColor = theme.validationTextColor[validationState];
+  const textColor =
+    theme.validationTextColor[validationState] ||
+    theme.validationTextColor['default'];
 
   return (
     <OrientationContext.Provider value={orientation}>
@@ -77,6 +79,7 @@ function Control(props) {
 }
 
 Control.propTypes = {
+  ...FlexControl.propTypes,
   orientation: PropTypes.oneOf(['stacked', 'inline']),
   validationState: PropTypes.oneOf(['default', 'success', 'warning', 'danger']),
   /** Apply a top/bottom validation border to a control (usually checkbox/radios)  */

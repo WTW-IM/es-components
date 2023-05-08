@@ -34,7 +34,8 @@ const PopoverLink = React.forwardRef(function PopoverLink(props, ref) {
   );
 });
 
-PopoverLink.propTypes = {
+export const propTypes = {
+  ...StyledButton.propTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.string,
@@ -42,9 +43,13 @@ PopoverLink.propTypes = {
   suppressUnderline: PropTypes.bool
 };
 
-PopoverLink.defaultProps = {
+export const defaultProps = {
+  ...StyledButton.defaultProps,
   styleType: 'primary',
   suppressUnderline: false
 };
+
+PopoverLink.propTypes = propTypes;
+PopoverLink.defaultProps = defaultProps;
 
 export default PopoverLink;

@@ -1,5 +1,5 @@
-/* eslint react/prop-types: 0 */
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { darken, getTextColor } from '../../util/colors';
@@ -100,7 +100,6 @@ function AnswerButton({
   selectedType,
   size,
   isOutline,
-  checked,
   ...radioProps
 }) {
   const id = useUniqueId(radioProps.id);
@@ -154,5 +153,18 @@ function AnswerButton({
     </AnswerLabel>
   );
 }
+
+export const propTypes = {
+  ...AnswerInput.propTypes,
+  name: PropTypes.string,
+  children: PropTypes.node,
+  itemWidth: PropTypes.string,
+  styleType: PropTypes.string,
+  selectedType: PropTypes.string,
+  size: PropTypes.string,
+  isOutline: PropTypes.bool
+};
+
+AnswerButton.propTypes = propTypes;
 
 export default AnswerButton;

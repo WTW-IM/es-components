@@ -88,11 +88,13 @@ function CheckAllBox({ children, ...checkboxProps }) {
 }
 
 CheckAllBox.propTypes = {
+  ...CheckboxInput.propTypes,
   children: PropTypes.any,
   textOnHover: PropTypes.bool
 };
 
 CheckAllBox.defaultProps = {
+  ...CheckboxInput.defaultProps,
   textOnHover: false,
   children: undefined
 };

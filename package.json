@@ -5,6 +5,9 @@
   "scripts": {
     "build": "sh build.sh",
     "ci-run": "sh ci.sh",
+    "build-via-theme": "npm run build --prefix packages/es-components-via-theme",
+    "build-wtw-theme": "npm run build --prefix packages/es-components-wtw-theme",
+    "build-wtw-legacy-theme": "npm run build --prefix packages/es-components-wtw-legacy-theme",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
     "publish": "lerna publish",
@@ -41,6 +44,7 @@
     "lerna": "^6.4.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "react-to-typescript-definitions": "^3.1.1",
     "rollup": "^2.23.0"
   }
 }

@@ -501,7 +501,7 @@ const theme = {
     success: success,
     warning: warning,
     danger: danger,
-    default: gray3,
+    default: gray9,
   },
   validationInputColor: {
     success: {

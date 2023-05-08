@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.8.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.7.2-pre-prod.0...v21.8.0-pre-prod.0) (2023-05-08)
+
+### Fix
+
+- correcting default validation state text color - fixes #751 ([7242000](https://github.com/wtw-im/es-components/commit/72420008d287d41ef4e361b60c42dd232acb021c)), closes [#751](https://github.com/wtw-im/es-components/issues/751)
+- fixing spread for Dropdown defaults ([8d26ba7](https://github.com/wtw-im/es-components/commit/8d26ba7e3becf70a1ee550a107123b8c65b3a560))
+- fixing spread for Popover defaults ([193967f](https://github.com/wtw-im/es-components/commit/193967f58e66288615b36fcfaef95ca6b4097042))
+
+### New
+
+- adding typescript declarations for es-components ([5c404ce](https://github.com/wtw-im/es-components/commit/5c404ce6fb1f2ecb1c2fa52332a7f3cc94a400d0))
+- fixing forwarded types for proper propType generation ([71dd9f5](https://github.com/wtw-im/es-components/commit/71dd9f5debb2c08ffb535cb84d9e50e505bd6740))
+
+### Update
+
+- adding a couple of propTypes spreads ([ec5e8ae](https://github.com/wtw-im/es-components/commit/ec5e8ae867b1ed47cad1c899d215db238774862b))
+- adding basic HTML attributes to propType declarations ([f509f6a](https://github.com/wtw-im/es-components/commit/f509f6af213ee3e5ef3cda6582fe0a0a2767ee31))
+- ensuring all components type declarations receive children ([1e2a389](https://github.com/wtw-im/es-components/commit/1e2a389defe9e08d436a9a00b50ad757493e47c1))
+- ensuring props have appropriate types ([6d17968](https://github.com/wtw-im/es-components/commit/6d17968e621f1be5a0418290f777156ebe9bd513))
+- ensuring we distribute types correctly for delivery ([3b11042](https://github.com/wtw-im/es-components/commit/3b1104206cd1538a3b11980a2b498a6ebe028ed2))
+- excluding declared props from inferred props in type declarations ([978cc6d](https://github.com/wtw-im/es-components/commit/978cc6d31611e515ed07d2fc97d1c36e88521612))
+- exporting type maps with types ([b460292](https://github.com/wtw-im/es-components/commit/b46029267bb4e16c300e630fbe0d907addeb639f))
+- narrowing prop types declarations ([5e59785](https://github.com/wtw-im/es-components/commit/5e597859da8881185fd39484119eaa5577349efc))
+- properly spreading inherited props for type declarations ([e72e0f7](https://github.com/wtw-im/es-components/commit/e72e0f78eec31c82357064c38aec3ece151900fb))
+- removing unnecessary Modal prop types ([ba78a71](https://github.com/wtw-im/es-components/commit/ba78a712c86da1ae5164b859a4b2180029cd11f4))
+- setting up prop types declarations for sub-components ([bf07989](https://github.com/wtw-im/es-components/commit/bf07989df6d1cb4f452a2627e027c9bdddc70cc1))
+- spreading props for LinkButton declarations ([5727abf](https://github.com/wtw-im/es-components/commit/5727abfee0f3e5bc62540ea306224e5289594791))
+- spreading props on input components ([5b83a92](https://github.com/wtw-im/es-components/commit/5b83a925390ded219e169cfd224f6c5c5c925fb0))
+- using spread props for Popover prop type declarations ([b4ceb65](https://github.com/wtw-im/es-components/commit/b4ceb65627d7c4552aa567e575ee9732c0914117))
+
 ## [21.7.2-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.7.1...v21.7.2-pre-prod.0) (2023-04-04)
 
 ### Fix

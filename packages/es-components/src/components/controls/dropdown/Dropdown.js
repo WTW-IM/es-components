@@ -70,9 +70,14 @@ const Dropdown = React.forwardRef(function ForwardedDropdown(props, ref) {
 });
 
 export const propTypes = {
-  ...styled.select.propTypes
+  ...DropdownInput.propTypes
+};
+
+export const defaultProps = {
+  ...DropdownInput.defaultProps
 };
 
 Dropdown.propTypes = propTypes;
+Dropdown.defaultProps = defaultProps;
 
 export default Dropdown;

@@ -141,7 +141,7 @@ function getArrowValues(size) {
   }
 }
 
-function Popup(props) {
+export default function Popup(props) {
   const {
     name,
     trigger,
@@ -239,6 +239,7 @@ function Popup(props) {
 }
 
 Popup.propTypes = {
+  ...PopperBox.propTypes,
   name: PropTypes.string,
   trigger: PropTypes.node,
   children: PropTypes.node,
@@ -255,6 +256,7 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
+  ...PopperBox.defaultProps,
   name: '',
   trigger: undefined,
   children: undefined,
@@ -269,5 +271,3 @@ Popup.defaultProps = {
   strategy: 'absolute',
   keepTogether: true
 };
-
-export default Popup;

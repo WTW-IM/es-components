@@ -147,7 +147,7 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
   );
 });
 
-OutlineButton.propTypes = {
+export const propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.outlineButton */
   styleType: PropTypes.string,
@@ -156,10 +156,13 @@ OutlineButton.propTypes = {
   block: PropTypes.bool
 };
 
-OutlineButton.defaultProps = {
+export const defaultProps = {
   styleType: 'default',
   block: false,
   size: 'default'
 };
+
+OutlineButton.propTypes = propTypes;
+OutlineButton.defaultProps = defaultProps;
 
 export default OutlineButton;

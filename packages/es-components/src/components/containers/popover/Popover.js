@@ -185,11 +185,13 @@ function Popover(props) {
     />
   );
 
+  const trigger = renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen });
+
   return (
     <Container>
       <Popup
         name={name}
-        trigger={renderTrigger({ ref: triggerBtnRef, toggleShow, isOpen })}
+        trigger={trigger}
         position={placement}
         arrowSize={arrowSize}
         transitionIn={isOpen}
@@ -247,6 +249,7 @@ function contentRequired(props, propName, componentName) {
 }
 
 Popover.propTypes = {
+  ...Popup.propTypes,
   /** The name of the popover. Used for differentiating popovers */
   name: PropTypes.string.isRequired,
   /** The text displayed in the popover title section */
@@ -292,6 +295,7 @@ Popover.propTypes = {
 };
 
 Popover.defaultProps = {
+  ...Popup.defauProps,
   placement: 'bottom',
   arrowSize: 'default',
   disableRootClose: false,

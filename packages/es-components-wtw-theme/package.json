@@ -1,7 +1,15 @@
 {
   "name": "es-components-wtw-theme",
-  "version": "21.7.1",
+  "version": "21.8.0-pre-prod.0",
   "main": "index.js",
+  "types": "index.d.ts",
   "author": "Willis Towers Watson - Individual Marketplace",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "node -e 'require(\"fs\").unlink(\"index.d.ts\", () => {})'; tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
 }

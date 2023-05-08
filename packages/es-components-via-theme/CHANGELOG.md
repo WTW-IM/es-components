@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.8.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.2-pre-prod.0...v21.8.0-pre-prod.0) (2023-05-08)
+
+### Fix
+
+- correcting default validation state text color - fixes #751 ([7242000](https://github.com/WTW-IM/es-components/commit/72420008d287d41ef4e361b60c42dd232acb021c)), closes [#751](https://github.com/WTW-IM/es-components/issues/751)
+
+### New
+
+- adding typescript declarations for es-components-via-theme ([7d797f3](https://github.com/WTW-IM/es-components/commit/7d797f3947f86e57d37df3a83aae884ffc5dc6f3))
+
+### Update
+
+- building themes on prepublishOnly ([6b5668f](https://github.com/WTW-IM/es-components/commit/6b5668f4a43a9c3be07cc44101f33a8725511136))
+- ensuring props have appropriate types ([6d17968](https://github.com/WTW-IM/es-components/commit/6d17968e621f1be5a0418290f777156ebe9bd513))
+- exporting type maps with types ([b460292](https://github.com/WTW-IM/es-components/commit/b46029267bb4e16c300e630fbe0d907addeb639f))
+- not modifying exported theme type declarations ([9054e1a](https://github.com/WTW-IM/es-components/commit/9054e1a41fbbde6b253d128bbd4bc082de856e08))
+- optimizing type declarations in themes ([97abfd9](https://github.com/WTW-IM/es-components/commit/97abfd94d1366fe8bcd5974bcf3cdd001374d4f4))
+- removing index.d.ts.map files from git ([7c4dc2d](https://github.com/WTW-IM/es-components/commit/7c4dc2dd3c2d42cc2a053790679bfdc530c74363))
+
 ## [21.7.1](https://github.com/WTW-IM/es-components/compare/v21.7.1-pre-prod.2...v21.7.1) (2023-03-16)
 
 **Note:** Version bump only for package es-components-via-theme

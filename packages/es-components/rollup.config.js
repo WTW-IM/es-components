@@ -4,7 +4,7 @@ import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import pkg from './package.json';
 
 export default args => {
@@ -19,12 +19,12 @@ export default args => {
       input: 'src/index.js',
       output: [
         {
-          file: pkg.main,
-          format: 'cjs'
+          format: 'cjs',
+          file: pkg.main
         },
         {
-          file: pkg.module,
-          format: 'esm'
+          format: 'esm',
+          file: pkg.module
         }
       ],
       external: [

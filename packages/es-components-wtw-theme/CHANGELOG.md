@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.8.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.2-pre-prod.0...v21.8.0-pre-prod.0) (2023-05-08)
+
+### New
+
+- adding typescript declarations for es-components-wtw-legacy-theme ([e179aaa](https://github.com/WTW-IM/es-components/commit/e179aaae8349e58475289e8f636978341283439c))
+- adding typescript declarations for es-components-wtw-theme ([6fbc50b](https://github.com/WTW-IM/es-components/commit/6fbc50b932c4fdbc046fe357bcaa202b769bda8b))
+
+### Update
+
+- building themes on prepublishOnly ([6b5668f](https://github.com/WTW-IM/es-components/commit/6b5668f4a43a9c3be07cc44101f33a8725511136))
+- ensuring props have appropriate types ([6d17968](https://github.com/WTW-IM/es-components/commit/6d17968e621f1be5a0418290f777156ebe9bd513))
+- exporting type maps with types ([b460292](https://github.com/WTW-IM/es-components/commit/b46029267bb4e16c300e630fbe0d907addeb639f))
+- not modifying exported theme type declarations ([9054e1a](https://github.com/WTW-IM/es-components/commit/9054e1a41fbbde6b253d128bbd4bc082de856e08))
+- optimizing type declarations in themes ([97abfd9](https://github.com/WTW-IM/es-components/commit/97abfd94d1366fe8bcd5974bcf3cdd001374d4f4))
+- removing index.d.ts.map files from git ([7c4dc2d](https://github.com/WTW-IM/es-components/commit/7c4dc2dd3c2d42cc2a053790679bfdc530c74363))
+
+## [21.7.2-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.7.1...v21.7.2-pre-prod.0) (2023-04-04)
+
+### Fix
+
+- change LightNotification border and color (#749) ([8b00ae5](https://github.com/WTW-IM/es-components/commit/8b00ae541e1d3af293ee8aaf125bc31ce901b8da)), closes [#749](https://github.com/WTW-IM/es-components/issues/749)
+
 ## [21.7.1](https://github.com/WTW-IM/es-components/compare/v21.7.1-pre-prod.2...v21.7.1) (2023-03-16)
 
 **Note:** Version bump only for package es-components-wtw-theme

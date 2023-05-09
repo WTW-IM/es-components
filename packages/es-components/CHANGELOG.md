@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.8.1-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.8.0...v21.8.1-pre-prod.0) (2023-05-09)
+
+### Fix
+
+- fixing Modal props spread ([279612a](https://github.com/wtw-im/es-components/commit/279612a403369d76e9f7b05fbb6cfdd38d32cdb8))
+
 # [21.8.0](https://github.com/wtw-im/es-components/compare/v21.8.0-pre-prod.0...v21.8.0) (2023-05-08)
 
 **Note:** Version bump only for package es-components

@@ -263,20 +263,24 @@ function Modal({
   );
 }
 
-const ModalPropTypes = { ...ReactModal.propTypes };
-delete ModalPropTypes.isOpen;
-delete ModalPropTypes.overlayClassName;
-delete ModalPropTypes.closeTimeoutMS;
-delete ModalPropTypes.aria;
-delete ModalPropTypes.onRequestClose;
-delete ModalPropTypes.onAfterOpen;
-delete ModalPropTypes.onAfterClose;
-delete ModalPropTypes.shouldCloseOnEsc;
-delete ModalPropTypes.contentRef;
-delete ModalPropTypes.overlayRef;
+const badProp = (props, propName, componentName) => {
+  if (props[propName]) {
+    return new Error(
+      `Invalid ReactModal prop '${propName}' supplied to '${componentName}'.`
+    );
+  }
+};
 
-Modal.propTypes = {
-  ...ModalPropTypes,
+export const propTypes = {
+  ...ReactModal.propTypes,
+  isOpen: badProp,
+  overlayClassName: badProp,
+  closeTimeoutMS: badProp,
+  aria: badProp,
+  onRequestClose: badProp,
+  onAfterOpen: badProp,
+  onAfterClose: badProp,
+  shouldCloseOnEsc: badProp,
   /** Open and close the Modal with transitions. */
   animation: PropTypes.bool,
   /**
@@ -317,7 +321,7 @@ Modal.propTypes = {
   ])
 };
 
-Modal.defaultProps = {
+export const defaultProps = {
   animation: true,
   backdrop: true,
   escapeExits: true,
@@ -332,6 +336,9 @@ Modal.defaultProps = {
   overlayRef: null,
   contentRef: null
 };
+
+Modal.propTypes = propTypes;
+Modal.defaultProps = defaultProps;
 
 Modal.Header = Header;
 Modal.Body = Body;

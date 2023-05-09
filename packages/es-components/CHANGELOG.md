@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.8.2-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.8.1...v21.8.2-pre-prod.0) (2023-05-09)
+
+### Fix
+
+- ensuring all @babel/runtime dependencies are not devDependencies ([5828aab](https://github.com/wtw-im/es-components/commit/5828aab3741d67bc550ff2676d69469d66c4f3ed))
+
 ## [21.8.1](https://github.com/wtw-im/es-components/compare/v21.8.1-pre-prod.0...v21.8.1) (2023-05-09)
 
 **Note:** Version bump only for package es-components

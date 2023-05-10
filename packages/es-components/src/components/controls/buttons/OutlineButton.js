@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
-import ButtonBase from './ButtonBase';
+import ButtonBase, {
+  propTypes as basePropTypes,
+  defaultProps as baseDefaultProps
+} from './ButtonBase';
 import { useTheme } from '../../util/useTheme';
 
 const StyledButton = styled(ButtonBase)`
@@ -80,7 +83,7 @@ const StyledButton = styled(ButtonBase)`
 
     &:hover,
     &:active,
-    &.pressed,
+    &.pressed {
       background-color: #e6e6e6;
       border-color: #e6e6e6;
       color: #ccc;
@@ -148,6 +151,7 @@ const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
 });
 
 export const propTypes = {
+  ...basePropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.outlineButton */
   styleType: PropTypes.string,
@@ -157,6 +161,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  ...baseDefaultProps,
   styleType: 'default',
   block: false,
   size: 'default'

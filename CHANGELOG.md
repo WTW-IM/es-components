@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.8.2](https://github.com/WTW-IM/es-components/compare/v21.8.2-pre-prod.1...v21.8.2) (2023-05-10)
+
+**Note:** Version bump only for package es-components
+
 ## [21.8.2-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.8.2-pre-prod.0...v21.8.2-pre-prod.1) (2023-05-10)
 
 ### Fix

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.8.2-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.8.2-pre-prod.0...v21.8.2-pre-prod.1) (2023-05-10)
+
+### Fix
+
+- fixing css for OutlineButton ([6a92faf](https://github.com/WTW-IM/es-components/commit/6a92fafae7c23d5a1d107ff6474d2f2dd2c1999a))
+
 ## [21.8.2-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.8.1...v21.8.2-pre-prod.0) (2023-05-09)
 
 ### Fix

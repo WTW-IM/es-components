@@ -1,5 +1,5 @@
 const path = require('path');
-const plugins = ['import', '@babel'];
+const plugins = ['import', '@babel', 'react', 'react-hooks', 'jsx-a11y'];
 const exts = [
   'eslint:recommended',
   'plugin:jsx-a11y/recommended',

@@ -47,7 +47,7 @@ const ButtonPanel = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   margin-top: 3px;
   position: relative;
-  z-index: 999;
+  z-index: 1000;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     position: absolute;

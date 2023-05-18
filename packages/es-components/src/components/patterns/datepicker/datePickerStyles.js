@@ -226,7 +226,7 @@ const timeStyles = css`
 
 const popperStyles = css`
   .react-datepicker-popper {
-    z-index: 1060;
+    z-index: ${({ topIndex }) => topIndex || 1060};
   }
 
   .react-datepicker-popper[data-placement^='bottom'] {

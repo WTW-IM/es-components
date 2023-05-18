@@ -13,6 +13,7 @@ import { DatepickerStyles } from './datePickerStyles';
 import ReactDatePickerPropTypes from './ReactDatePickerPropTypes';
 
 import { calendarArrowStyles } from './datepickerAssets';
+import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const STRING_FORMAT = 'yyyy-MM-dd';
 
@@ -64,6 +65,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
       inputRef.current.focus();
     }
   }));
+  const getTopIndex = useTopZIndex();
 
   /* eslint-disable react/forbid-foreign-prop-types */
   const datepickerProps = pick(props, Object.keys(ReactDatePickerPropTypes));
@@ -82,7 +84,7 @@ const DateTextbox = React.forwardRef(function DateTextbox(props, ref) {
 
   return (
     <>
-      <DatepickerStyles />
+      <DatepickerStyles topIndex={getTopIndex()} />
       {props.suppressDatepicker ? (
         textbox
       ) : (

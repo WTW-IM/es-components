@@ -9,10 +9,11 @@ import PopoverLink from '../../controls/buttons/PopoverLink';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
 import useRootNode from '../../util/useRootNode';
+import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const TooltipBase = styled.div`
   position: absolute;
-  z-index: 999;
+  z-index: ${({ topIndex }) => topIndex};
 `;
 
 const TooltipInner = styled.div`
@@ -95,6 +96,7 @@ function Tooltip(props) {
   let TooltipArrow;
   const tooltipId = name ? `es-tooltip__${name}` : undefined;
   const [rootNode, rootNodeRef] = useRootNode(document.body);
+  const getTopIndex = useTopZIndex();
 
   switch (position) {
     case 'right':
@@ -173,6 +175,7 @@ function Tooltip(props) {
                 id={tooltipId}
                 style={style}
                 aria-live="polite"
+                topIndex={getTopIndex()}
                 {...other}
               >
                 <TooltipArrow ref={arrowProps.ref} style={arrowProps.style} />

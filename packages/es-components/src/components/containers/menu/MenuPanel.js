@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import { InlineContext } from './InlineContext';
+import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const StyledPanel = styled.div`
   background-color: ${props => props.theme.colors.gray2};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
-  z-index: 999;
+  z-index: ${({ topIndex }) => topIndex};
 `;
 
 const StyledDismissButton = styled(DismissButton)`
@@ -35,6 +36,7 @@ const StyledChildrenContainer = styled.div`
 
 function MenuPanel(props) {
   const { children, headerContent, isOpen, onClose, ...other } = props;
+  const getTopIndex = useTopZIndex();
 
   useEffect(() => {
     if (!isOpen) {
@@ -58,7 +60,7 @@ function MenuPanel(props) {
   const inline = useContext(InlineContext);
 
   return (
-    <StyledPanel isOpen={isOpen} {...other}>
+    <StyledPanel isOpen={isOpen} topIndex={getTopIndex()} {...other}>
       <Header hasHeaderContent={hasHeaderContent}>
         {hasHeaderContent && <span>{headerContent}</span>}
         <StyledDismissButton onClick={onClose} />

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { noop } from 'lodash';
 
 import DismissButton from '../../controls/DismissButton';
 import Button from '../../controls/buttons/Button';
@@ -71,28 +70,26 @@ const CloseHelpText = styled.span`
   width: 1px;
 `;
 
-function Popover(props) {
-  const {
-    name,
-    title,
-    content,
-    renderContent,
-    placement,
-    arrowSize,
-    renderTrigger,
-    hasCloseButton,
-    hasAltCloseButton,
-    disableCloseOnScroll,
-    disableRootClose,
-    disableFlipping,
-    enableEvents,
-    keepTogether,
-    strategy,
-    popoverWrapperClassName,
-    styleType,
-    ...otherProps
-  } = props;
-
+function Popover({
+  name,
+  title,
+  content,
+  renderContent,
+  placement,
+  arrowSize,
+  renderTrigger,
+  hasCloseButton,
+  hasAltCloseButton,
+  disableCloseOnScroll,
+  disableRootClose,
+  disableFlipping,
+  enableEvents,
+  keepTogether,
+  strategy,
+  popoverWrapperClassName,
+  styleType,
+  ...otherProps
+}) {
   const hasTitle = title !== undefined;
   const hasAltCloseWithNoTitle = !hasTitle && hasAltCloseButton;
   const showCloseButton = hasCloseButton && !hasAltCloseButton;
@@ -101,9 +98,6 @@ function Popover(props) {
   const triggerBtnRef = useRef(null);
   const popperRef = useRef(null);
   const contentRef = useRef(null);
-  const escMsgRef = useRef(null);
-  const closeBtnRef = useRef(null);
-  const timeoutRef = useRef(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -122,46 +116,44 @@ function Popover(props) {
     }
   }
 
-  function hidePopOnScroll() {
-    setInterval(() => {
-      if (popperRef.current) {
-        const bounds = popperRef.current.getBoundingClientRect();
-        const inViewport =
-          bounds.top >= 0 && bounds.bottom <= window.innerHeight;
-
-        if (!inViewport && isOpen) {
-          setIsOpen(false);
-        }
-      }
-    }, 100);
-  }
-
   useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;
     }
 
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    }
+    let timeoutId;
 
     if (isOpen) {
-      timeoutRef.current = setTimeout(() => {
-        if (closeBtnRef.current) {
-          closeBtnRef.current.focus();
-        } else if (escMsgRef.current) {
-          escMsgRef.current.focus();
+      timeoutId = setTimeout(() => {
+        if (contentRef.current) {
+          contentRef.current.focus();
         }
       }, 100);
     } else {
       triggerBtnRef.current.focus();
     }
+
+    return () => clearTimeout(timeoutId);
   }, [isOpen]);
 
   useEffect(() => {
     if (disableCloseOnScroll) {
-      return noop;
+      return;
+    }
+
+    function hidePopOnScroll() {
+      setInterval(() => {
+        if (popperRef.current) {
+          const bounds = popperRef.current.getBoundingClientRect();
+          const inViewport =
+            bounds.top >= 0 && bounds.bottom <= window.innerHeight;
+
+          if (!inViewport && isOpen) {
+            setIsOpen(false);
+          }
+        }
+      }, 100);
     }
 
     if (isOpen) {
@@ -171,9 +163,7 @@ function Popover(props) {
   }, [isOpen, disableCloseOnScroll]);
 
   const closeButton = (
-    <PopoverCloseButton onClick={toggleShow} ref={closeBtnRef}>
-      Close
-    </PopoverCloseButton>
+    <PopoverCloseButton onClick={toggleShow}>Close</PopoverCloseButton>
   );
 
   const altCloseButton = (
@@ -181,7 +171,6 @@ function Popover(props) {
       aria-label="Close"
       hasTitle={hasTitle}
       onClick={toggleShow}
-      ref={closeBtnRef}
     />
   );
 
@@ -210,13 +199,12 @@ function Popover(props) {
           disabled={disableRootClose}
           className={popoverWrapperClassName}
         >
-          <div role="dialog" ref={contentRef}>
+          <div role="dialog" ref={contentRef} tabIndex={-1}>
             <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
               {hasTitle && <TitleBar>{title}</TitleBar>}
               {hasAltCloseButton && altCloseButton}
               <CloseHelpText
                 tabIndex={-1}
-                ref={escMsgRef}
                 aria-label="Press escape to close the Popover"
               />
             </PopoverHeader>

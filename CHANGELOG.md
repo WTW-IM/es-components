@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.8.3-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.8.2...v21.8.3-pre-prod.0) (2023-05-19)
+
+### Update
+
+- focusing popover content when opened, rather than esc links ([269aae4](https://github.com/WTW-IM/es-components/commit/269aae413104e5938a51db91197da7e5e045e54d))
+
 ## [21.8.2](https://github.com/WTW-IM/es-components/compare/v21.8.2-pre-prod.1...v21.8.2) (2023-05-10)
 
 **Note:** Version bump only for package es-components

@@ -86,9 +86,7 @@ it('sets focus on a focusable element within the content', async () => {
   renderWithTheme(buildPopover({ content: popoverContent }));
   await user.click(screen.getByText('Popover Trigger Button'));
 
-  await waitFor(() =>
-    expect(
-      screen.getByLabelText('Press escape to close the Popover')
-    ).toHaveFocus()
+  await waitFor(async () =>
+    expect(await screen.findByRole('dialog')).toHaveFocus()
   );
 });

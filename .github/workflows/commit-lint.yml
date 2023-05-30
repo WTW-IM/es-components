@@ -22,16 +22,18 @@ jobs:
       - id: lint_results_msg
         name: Generate Lint Results Message
         if: always()
+        env:
+          COMMIT_RESPONSE: ${{ steps.commitlint.outputs.results }}
         run: |
           npm i commander
           npm i @actions/core
-          node ./workflow-helpers/generate-commitlint-response.js --results '${{ steps.commitlint.outputs.results }}'
+          node ./workflow-helpers/generate-commitlint-response.js --results "$COMMIT_RESPONSE"
       - name: Post comment
         if: ${{ always() }}
         uses: mshick/add-pr-comment@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: "github-actions[bot]"
+          repo-token-user-login: 'github-actions[bot]'
           message: |
             ## Commitlint
 

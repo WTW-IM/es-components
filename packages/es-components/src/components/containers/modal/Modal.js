@@ -13,6 +13,7 @@ import { ModalContext } from './ModalContext';
 import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
+import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const modalSize = {
   small: '300px',
@@ -45,7 +46,7 @@ const ModalStyles = createGlobalStyle`
       right: 0;
       top: 0;
       transition: background-color ${() => animationTimeMs / 2}ms linear;
-      z-index: 1030;
+      z-index: ${({ topIndex }) => topIndex};
       -webkit-overflow-scrolling: touch;
 
       &.ReactModal__Overlay--after-open {
@@ -166,6 +167,7 @@ function Modal({
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const modalRef = useRef(null);
   const innerContentRef = useRef(null);
+  const getTopIndex = useTopZIndex();
 
   const setContentRef = useCallback(
     contentElement => {
@@ -234,8 +236,14 @@ function Modal({
     <ThemeProvider theme={{ modalHeight, windowHeight, portalClassName }}>
       <RootNodeLocator />
       {shouldShow ? (
-        <ModalStyles showAnimation={animation} showBackdrop={backdrop} />
-      ) : null}
+        <ModalStyles
+          showAnimation={animation}
+          showBackdrop={backdrop}
+          topIndex={getTopIndex()}
+        />
+      ) : (
+        <></>
+      )}
       <ModalContext.Provider value={{ onHide, ariaId }}>
         <ReactModal
           portalClassName={portalClassName}

@@ -7,6 +7,7 @@ import Button from './Button';
 import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
+import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const SplitButton = styled(Button)`
   ${props =>
@@ -47,7 +48,7 @@ const ButtonPanel = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   margin-top: 3px;
   position: relative;
-  z-index: 999;
+  z-index: ${({ topIndex }) => topIndex};
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     position: absolute;
@@ -120,9 +121,8 @@ function focusTrap(node) {
 }
 
 function arrowMovement(node) {
-  const { focusableElements, firstFocusable, lastFocusable } = getFocusables(
-    node
-  );
+  const { focusableElements, firstFocusable, lastFocusable } =
+    getFocusables(node);
   const focusables = [...focusableElements];
   const rootNode = node.getRootNode();
 
@@ -179,6 +179,7 @@ function DropdownButton({
   const buttonDropdown = useRef();
   const triggerButton = useRef();
   const panelId = useUniqueId(id);
+  const getTopIndex = useTopZIndex();
 
   useEffect(() => {
     const removeFocusTrapListener = focusTrap(buttonDropdown.current);
@@ -254,7 +255,11 @@ function DropdownButton({
           <Caret />
         </ActivationButton>
         <div css="position: relative;">
-          <ButtonPanel isOpen={isOpen} id={panelId}>
+          <ButtonPanel
+            isOpen={isOpen}
+            id={panelId}
+            topIndex={isOpen ? getTopIndex() : -1}
+          >
             <ButtonPanelChildrenContainer>
               {Children.map(children, child => {
                 const onClickHandler = handleDropdownItemClick(child.props);

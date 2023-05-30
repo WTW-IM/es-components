@@ -6,6 +6,7 @@ import { Manager, Reference, Popper } from 'react-popper';
 
 import Fade from '../../util/Fade';
 import useRootNode from '../../util/useRootNode';
+import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const PopperBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -15,7 +16,7 @@ const PopperBox = styled.div`
   min-width: 270px;
   position: absolute;
   text-align: center;
-  z-index: 99999;
+  z-index: ${({ topIndex }) => topIndex};
 `;
 
 const Arrow = styled.div`
@@ -160,6 +161,7 @@ export default function Popup(props) {
   } = props;
   const arrowValues = getArrowValues(arrowSize);
   const [rootNode, rootNodeRef] = useRootNode(document.body);
+  const getTopIndex = useTopZIndex();
 
   return (
     <Manager>
@@ -218,6 +220,7 @@ export default function Popup(props) {
                 ref={ref}
                 style={style}
                 arrowSize={arrowValues}
+                topIndex={getTopIndex()}
                 {...otherProps}
               >
                 {children}

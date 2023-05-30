@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.0...v21.9.0-pre-prod.1) (2023-05-30)
+
+### Fix
+
+- z-index for dropdown Button ([195e035](https://github.com/WTW-IM/es-components/commit/195e0352aaf9df815fb8b180313bef463cb5f924))
+
+### New
+
+- overlaid elements always take top z-index ([80a7b1b](https://github.com/WTW-IM/es-components/commit/80a7b1bec8d0ef2b9ccc6984ba29d18fc739c78c))
+
 # [21.9.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.8.3...v21.9.0-pre-prod.0) (2023-05-30)
 
 ### Build

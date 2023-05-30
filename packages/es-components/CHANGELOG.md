@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.8.3...v21.9.0-pre-prod.0) (2023-05-30)
+
+### New
+
+- using :focus-visible instead of :focus for global focus styles ([eb64e26](https://github.com/wtw-im/es-components/commit/eb64e268662eb3dd38b564d5839ebe661b1b51a9))
+
 ## [21.8.3](https://github.com/wtw-im/es-components/compare/v21.8.3-pre-prod.0...v21.8.3) (2023-05-22)
 
 **Note:** Version bump only for package es-components

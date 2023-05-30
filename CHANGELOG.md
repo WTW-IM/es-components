@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.8.3...v21.9.0-pre-prod.0) (2023-05-30)
+
+### Build
+
+- updating commit-lint workflow to ignore bash characters ([60b1e15](https://github.com/WTW-IM/es-components/commit/60b1e15a740f57c80955a2b2339706fe57334d0d))
+
+### New
+
+- using :focus-visible instead of :focus for global focus styles ([eb64e26](https://github.com/WTW-IM/es-components/commit/eb64e268662eb3dd38b564d5839ebe661b1b51a9))
+
 ## [21.8.3](https://github.com/WTW-IM/es-components/compare/v21.8.3-pre-prod.0...v21.8.3) (2023-05-22)
 
 **Note:** Version bump only for package es-components

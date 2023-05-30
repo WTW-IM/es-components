@@ -18,7 +18,7 @@ const StyleReset = createGlobalStyle`
     vertical-align: baseline;
   }
 
-  *:focus, input:focus, select:focus, button:focus {
+  *:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible {
     outline: 3px solid #3dbbdb;
   }
 

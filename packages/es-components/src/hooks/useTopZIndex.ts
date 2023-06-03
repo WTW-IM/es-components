@@ -10,7 +10,9 @@ function getCurrentTopIndex() {
 
   while (shadowElements.length) {
     const targetShadowEl = shadowElements.pop();
-    const newElements = [...targetShadowEl.shadowRoot.querySelectorAll('*')];
+    const newElements = [
+      ...(targetShadowEl?.shadowRoot?.querySelectorAll('*') || [])
+    ];
     allElements = [...allElements, ...newElements];
     shadowElements = [
       ...shadowElements,

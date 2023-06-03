@@ -32,6 +32,16 @@ export const buttonVariantStyleTypes = [
 ] as const;
 export type ButtonVariantStyleType = (typeof buttonVariantStyleTypes)[number];
 
+export const validationStyleTypes = [
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'advisor',
+  'default',
+] as const;
+export type ValidationStyleType = (typeof validationStyleTypes)[number];
+
 export interface ButtonVariant {
   bgColor?: CSS.Property.BackgroundColor;
   textColor?: CSS.Property.Color;
@@ -58,8 +68,41 @@ export interface ButtonStyles<T extends ButtonVariant> {
   size?: ButtonSizes;
 }
 
+export interface NotificationStyleBlock {
+  bgColor: CSS.Property.BackgroundColor;
+  textColor: CSS.Property.Color;
+  borderColor?: CSS.Property.BorderColor;
+  borderStyle?: CSS.Property.BorderStyle;
+  borderWidth?: CSS.Property.BorderWidth;
+}
+
+export type NotificationStyle = {
+  [key in 'base' | 'light' | 'messageOnly']: NotificationStyleBlock;
+};
+
+export type NotificationStyles = {
+  [key in ValidationStyleType]: NotificationStyle;
+};
+
 export default interface ESTheme {
   [key: string]: any;
+
+  colors: {
+    [key: string]: string;
+  };
+
+  font: {
+    [key: string]: any;
+  };
+
+  screenSize: {
+    [key: string]: CSS.Property.Width;
+  };
+
+  validationIconName: {
+    [key in ValidationStyleType]: string;
+  };
+  notificationStyles: NotificationStyles;
 
   buttonStyles: {
     button: ButtonStyles<BGColorButtonVariant>;

@@ -135,7 +135,7 @@ export const DrawerItemOpener = ({ children }) => {
     hasSingleChild = false;
   }
   const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
-  const childClick = useRef(child?.props?.onClick);
+  const childClick = useRef(child?.props?.onClick || noop);
 
   useEffect(() => {
     childClick.current = child?.props?.onClick || noop;
@@ -143,7 +143,7 @@ export const DrawerItemOpener = ({ children }) => {
 
   const onClick = useCallback(
     ev => {
-      childClick(ev);
+      childClick.current(ev);
       toggleOpen();
     },
     [toggleOpen, childClick]

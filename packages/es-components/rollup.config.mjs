@@ -6,7 +6,17 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import alias from '@rollup/plugin-alias';
 import pkg from './package.json' assert { type: 'json' };
+
+export const aliasPlugin = alias({
+  entries: [
+    {
+      find: 'es-components-shared-types',
+      replacement: '../../shared/types/dist/ESTheme.js'
+    }
+  ]
+});
 
 export default args => {
   const isProduction =
@@ -47,6 +57,7 @@ export default args => {
         'format-message'
       ],
       plugins: [
+        aliasPlugin,
         wildcardExternal([
           '@babel/**',
           'lodash/**',
@@ -82,6 +93,7 @@ export default args => {
       context: 'window',
       external: ['react', 'react-dom', 'styled-components'],
       plugins: [
+        aliasPlugin,
         typescript(),
         resolve(),
         commonjs({ include: /node_modules/ }),

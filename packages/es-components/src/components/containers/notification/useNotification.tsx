@@ -1,13 +1,18 @@
 /* eslint react/prop-types: 0 */
 import React, { useState } from 'react';
-import styled, { CSSProperties, DefaultTheme } from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
+import type {
+  NotificationStyleBlock,
+  NotificationStyle,
+  NotificationStyles
+} from 'es-components-shared-types';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
 import DismissButton, {
   DismissButtonProps
 } from '../../controls/DismissButton';
 
-const NotificationIcon = styled(Icon)`
+const NotificationIcon = styled(Icon)<{ alwaysShowIcon: boolean }>`
   align-self: start;
   color: ${props => props.iconColor};
   display: none;
@@ -57,18 +62,6 @@ interface NotificationContentProps {
   alwaysShowIcon?: boolean;
 }
 
-export type TypeKeys = keyof DefaultTheme['notificationStyles'];
-type StyleTypeKeys = keyof DefaultTheme['notificationStyles']['success'];
-
-interface BaseNotificationProps {
-  role?: string;
-  type: TypeKeys;
-  children?: React.ReactNode;
-  className?: string;
-  style?: CSSProperties;
-  restyleAnchors?: boolean;
-}
-
 function NotificationContent(props: NotificationContentProps) {
   const {
     includeIcon,
@@ -95,7 +88,7 @@ function NotificationContent(props: NotificationContentProps) {
           name={iconName}
           iconColor={iconColor}
           size={28}
-          alwaysShowIcon={alwaysShowIcon}
+          alwaysShowIcon={Boolean(alwaysShowIcon)}
         />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
@@ -104,17 +97,10 @@ function NotificationContent(props: NotificationContentProps) {
   );
 }
 
-interface Variant {
-  bgColor: string;
-  textColor: string;
-}
-
-interface NotificationProps {
+const Notification = styled.div<{
   restyleAnchors: boolean;
-  variant: Variant;
-}
-
-const Notification = styled.div<NotificationProps>`
+  variant: NotificationStyleBlock;
+}>`
   align-items: center;
   background-color: ${props => props.variant.bgColor};
   border-radius: 2px;
@@ -145,7 +131,16 @@ const Notification = styled.div<NotificationProps>`
   }
 `;
 
-export function useNotification(styleType = 'base') {
+interface BaseNotificationProps {
+  role?: string;
+  type: keyof NotificationStyles;
+  children?: React.ReactNode;
+  className?: string;
+  style?: CSSProperties;
+  restyleAnchors?: boolean;
+}
+
+export function useNotification(styleType: keyof NotificationStyle = 'base') {
   return function BaseNotification({
     role,
     type,
@@ -156,9 +151,7 @@ export function useNotification(styleType = 'base') {
     ...rest
   }: BaseNotificationProps) {
     const theme = useTheme();
-    const color = theme.notificationStyles[type][
-      styleType as StyleTypeKeys
-    ] as Variant;
+    const color = theme.notificationStyles[type][styleType];
     const iconName = theme.validationIconName[type];
     const iconColor =
       styleType === 'base' ? theme.colors.white : theme.colors[type];

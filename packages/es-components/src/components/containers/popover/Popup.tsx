@@ -14,7 +14,8 @@ import {
   limitShift,
   offset,
   Placement,
-  FloatingPortal
+  FloatingPortal,
+  Padding
 } from '@floating-ui/react';
 import { callRefs } from '../../util/callRef';
 
@@ -197,8 +198,8 @@ export interface PopupProps extends JSXElementProps<'div'> {
 }
 
 const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
-  function ForwardedPopup(props, forwardedRef) {
-    const {
+  function ForwardedPopup(
+    {
       name,
       trigger,
       children,
@@ -215,7 +216,9 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
       keepTogether,
       disableRootClose,
       ...otherProps
-    } = props;
+    },
+    forwardedRef
+  ) {
     const arrowValues = getArrowValues(arrowSize);
     const [rootNode, rootNodeRef] = useRootNode(document.body);
     const arrowRef = useRef<HTMLDivElement>(null);
@@ -238,7 +241,7 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
       middleware: [
         ...flipMiddleware,
         shift({
-          padding: arrowValues.marginSize,
+          padding: arrowValues.marginSize as Padding,
           ...(keepTogether
             ? {
                 limiter: limitShift()

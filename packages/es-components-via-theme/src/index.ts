@@ -267,6 +267,20 @@ const theme: ESTheme = {
         textColor: success,
       },
     },
+    default: {
+      base: {
+        bgColor: info,
+        textColor: white,
+      },
+      light: {
+        bgColor: infoLight,
+        textColor: gray9,
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: info,
+      },
+    },
     info: {
       base: {
         bgColor: info,
@@ -510,7 +524,7 @@ const theme: ESTheme = {
         },
       },
     },
-  } as ESTheme['buttonStyles'],
+  },
   inputStyles: {
     borderRadius: '2px',
     defaultFormStyle: 'default',
@@ -524,6 +538,7 @@ const theme: ESTheme = {
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
     advisor: 'agent',
+    default: 'info-circle',
   },
   validationTextColor: {
     success: success,
@@ -614,10 +629,6 @@ const theme: ESTheme = {
     desktop: '900px',
     widescreen: '1200px',
   },
-} as const;
-
-type ThemeType = typeof theme;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Theme<T> = T extends ThemeType ? T : any;
+};
 
 export default theme;

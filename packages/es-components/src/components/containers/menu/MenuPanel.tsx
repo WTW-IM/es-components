@@ -5,23 +5,18 @@ import DismissButton from '../../controls/DismissButton';
 import { InlineContext } from './InlineContext';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 
-interface StyledPanelProps {
-  isOpen: boolean;
-}
-
-interface DismissButtonProps {
-  onClick: () => void;
-}
-
-const StyledPanel = styled.div<StyledPanelProps>`
-  background-color: ${(props: { theme: { colors: { gray2: string } } }) =>
-    props.theme.colors.gray2};
+const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
+  background-color: ${({
+    theme: {
+      colors: { gray2 }
+    }
+  }) => gray2 };
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
   z-index: ${({ topIndex }) => topIndex};
 `;
 
-const StyledDismissButton = styled(DismissButton)<DismissButtonProps>`
+const StyledDismissButton = styled(DismissButton)`
   margin-left: auto;
   margin-right: 4px;
 `;
@@ -46,13 +41,13 @@ const StyledChildrenContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-function MenuPanel(props: {
-  [x: string]: any;
-  children: React.ReactNode;
-  headerContent: React.ReactNode;
+type MenuPanelProps = JSXElementProps<'div'> & {
+  headerContent?: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
-}) {
+};
+
+function MenuPanel(props: MenuPanelProps) {
   const { children, headerContent, isOpen, onClose, ...other } = props;
   const getTopIndex = useTopZIndex();
 

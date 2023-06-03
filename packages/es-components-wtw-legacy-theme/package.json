@@ -1,7 +1,7 @@
 {
   "name": "es-components-wtw-legacy-theme",
   "version": "21.7.0",
-  "main": "dist/packages/es-components-legacy-theme/index.js",
+  "main": "dist/packages/es-components-legacy-theme/src/index.js",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {

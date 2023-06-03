@@ -1,7 +1,7 @@
 /// <reference types="jest" />
 import React from 'react';
 
-import { cleanup, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import viaTheme from 'es-components-via-theme';
@@ -13,14 +13,10 @@ const Button = OriginalButton as ReturnType<
   typeof React.forwardRef<
     HTMLElement | undefined,
     JSX.IntrinsicElements['button'] & {
-      styleType: keyof typeof viaTheme['buttonStyles']['button']['variant'];
+      styleType: keyof (typeof viaTheme)['buttonStyles']['button']['variant'];
     }
   >
 >;
-
-beforeEach(() => {
-  cleanup();
-});
 
 type PossibleProps = Partial<PopoverProps>;
 
@@ -40,7 +36,11 @@ function TestPopover(props?: PossibleProps) {
       Popover Trigger Button
     </Button>
   );
-  const mergedProps: PopoverProps = { ...defaults, ...props, renderTrigger };
+  const mergedProps: PopoverProps = {
+    ...defaults,
+    ...props,
+    renderTrigger
+  };
   return <Popover {...mergedProps} />;
 }
 
@@ -94,9 +94,8 @@ it('sets focus on a focusable element within the content', async () => {
   const user = userEvent.setup();
   const popoverContent = <a href="#test">Test link</a>;
   renderWithTheme(<TestPopover content={popoverContent} />);
-  await user.click(screen.getByText('Popover Trigger Button'));
+  await user.click(await screen.findByText('Popover Trigger Button'));
 
-  await waitFor(async () =>
-    expect(await screen.findByRole('dialog')).toHaveFocus()
-  );
+  const dialog = await screen.findByRole('dialog');
+  expect(dialog).toHaveFocus();
 });

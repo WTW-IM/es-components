@@ -2,42 +2,41 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
 
-import PopoverLink from './PopoverLink';
+import PopoverLink, { PopoverLinkProps } from './PopoverLink';
 import { renderWithTheme } from '../../util/test-utils';
+import { screen } from '@testing-library/react';
 
 const onClick = jest.fn();
 
-function buildButton(props) {
+function buildButton(props: PopoverLinkProps) {
   const { children, ...otherProps } = props;
   const defaultProps = {
     onClick
   };
-  const mergedProps = Object.assign({}, defaultProps, otherProps);
+  const mergedProps = { ...defaultProps, ...otherProps };
 
   return <PopoverLink {...mergedProps}>{children}</PopoverLink>;
 }
 
 it('renders child text inside of button', () => {
-  const { queryByText } = renderWithTheme(
-    buildButton({ children: 'Test button' })
-  );
-  const button = queryByText('Test button');
+  renderWithTheme(buildButton({ children: 'Test button' }));
+  const button = screen.queryByText('Test button');
   expect(button).not.toBeNull();
 });
 
 it('renders child nodes inside of button', () => {
   const child = <span>Hello</span>;
 
-  const { getByText } = renderWithTheme(buildButton({ children: child }));
+  renderWithTheme(buildButton({ children: child }));
 
-  const foundChild = getByText('Hello');
+  const foundChild = screen.getByText('Hello');
   expect(foundChild.nodeName).toBe('SPAN');
 });
 
 it('executes the onClick function passed', () => {
-  const { getByText } = renderWithTheme(buildButton({ children: 'Test' }));
+  renderWithTheme(buildButton({ children: 'Test' }));
 
-  getByText('Test').click();
+  screen.getByText('Test').click();
 
   expect(onClick).toHaveBeenCalled();
 });

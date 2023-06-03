@@ -20,7 +20,7 @@ const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
   }
 `;
 
-type PopoverLinkProps = JSXElementProps<'button'> & {
+export type PopoverLinkProps = JSXElementProps<'button'> & {
   suppressUnderline?: boolean;
   styleType?: Maybe<ButtonVariantStyleType>;
 };
@@ -56,7 +56,7 @@ export const propTypes = {
 
 export const defaultProps = {
   ...StyledButton.defaultProps,
-  styleType: 'primary',
+  styleType: 'primary' as ButtonVariantStyleType,
   suppressUnderline: false
 };
 

@@ -264,6 +264,20 @@ const theme: ESTheme = {
         textColor: success,
       },
     },
+    default: {
+      base: {
+        bgColor: info,
+        textColor: white,
+      },
+      light: {
+        bgColor: infoLight,
+        textColor: gray9,
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: info,
+      },
+    },
     info: {
       base: {
         bgColor: info,
@@ -520,6 +534,7 @@ const theme: ESTheme = {
   validationIconName: {
     success: 'ok-circle',
     info: 'info-circle',
+    default: 'info-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
     advisor: 'agent',

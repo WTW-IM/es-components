@@ -1,21 +1,18 @@
-/* eslint-env jest */
-
 import React from 'react';
-import { waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import Notification from './Notification';
 import { renderWithTheme } from '../../util/test-utils';
+import userEvent from '@testing-library/user-event';
 
 it('notification has the dialog role by default', () => {
-  const { queryByRole } = renderWithTheme(<Notification type="success" />);
-  expect(queryByRole('dialog')).not.toBeNull();
+  renderWithTheme(<Notification type="success" />);
+  expect(screen.getByRole('dialog')).not.toBeNull();
 });
 
 it('notification has the alert role when role is "alert"', () => {
-  const { queryByRole } = renderWithTheme(
-    <Notification type="success" role="alert" />
-  );
-  expect(queryByRole('alert')).not.toBeNull();
+  renderWithTheme(<Notification type="success" role="alert" />);
+  expect(screen.getByRole('alert')).not.toBeNull();
 });
 
 it('notification prepends icon when includeIcon is true', () => {
@@ -23,54 +20,64 @@ it('notification prepends icon when includeIcon is true', () => {
     <Notification type="success" includeIcon />
   );
 
+  // eslint-disable-next-line testing-library/no-container,testing-library/no-node-access
   expect(container.querySelector('i')).not.toBeNull();
 });
 
-it('can take an extra className', () => {
-  const { container } = renderWithTheme(
-    <Notification type="success" className="my-success" />
+it('can take an extra className', async () => {
+  renderWithTheme(
+    <Notification type="success" className="my-success">
+      My Notification
+    </Notification>
   );
-  expect(container.querySelector('.my-success')).not.toBeNull();
+
+  expect(
+    // eslint-disable-next-line testing-library/no-node-access
+    (await screen.findByText('My Notification')).parentElement
+  ).toHaveClass('my-success');
 });
 
-it('can take styles', () => {
-  const { container } = renderWithTheme(
-    <Notification type="success" style={{ color: 'blue' }} />
+it('can take styles', async () => {
+  renderWithTheme(
+    <Notification type="success" style={{ color: 'blue' }}>
+      My Notification
+    </Notification>
   );
-  const notificationDiv = container.querySelector('div');
-  if (notificationDiv === null) throw new Error('div not rendered');
-  const styles = window.getComputedStyle(notificationDiv);
-  expect(styles.color).toEqual('blue');
+  const notificationDiv = await screen.findByText('My Notification');
+  expect(notificationDiv).toBeInTheDocument();
+
+  // eslint-disable-next-line testing-library/no-node-access
+  expect(notificationDiv.parentElement).toHaveStyle('color: blue');
 });
 
 describe('dismissable notifications', () => {
   it('removes notification when dismiss button is clicked', async () => {
-    const { container, getByText } = renderWithTheme(
+    renderWithTheme(
       <Notification type="success" isDismissable>
         <p id="find-me">I am here!</p>
       </Notification>
     );
-    expect(() => getByText('I am here!')).not.toThrow();
+    expect(await screen.findByText('I am here!')).toBeInTheDocument();
 
-    const button = container.querySelector('button');
-    if (button === null) throw new Error('button not rendered');
-    button.click();
+    const button = await screen.findByRole('button', { name: /close/i });
+    expect(button).toBeInTheDocument();
 
-    await waitFor(() => expect(() => getByText('I am here!')).toThrow());
+    await userEvent.click(button);
+    expect(screen.queryByText('I am here!')).not.toBeInTheDocument();
   });
 
-  it('invokes the passed "onDismiss" function', () => {
+  it('invokes the passed "onDismiss" function', async () => {
     const onDismiss = jest.fn();
-    const { container } = renderWithTheme(
+    renderWithTheme(
       <Notification type="success" isDismissable onDismiss={onDismiss}>
         <p id="find-me">I am here!</p>
       </Notification>
     );
 
-    const button = container.querySelector('button');
-    if (button === null) throw new Error('button not rendered');
-    button.click();
+    const button = await screen.findByRole('button', { name: /close/i });
+    expect(button).toBeInTheDocument();
 
+    await userEvent.click(button);
     expect(onDismiss).toHaveBeenCalled();
   });
 });

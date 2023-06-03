@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { TypeKeys, useNotification } from './useNotification';
+import { useNotification } from './useNotification';
+import type { ValidationStyleType } from 'es-components-shared-types';
 
 interface NotificationProps extends JSXElementProps<'div'> {
-  type: TypeKeys;
+  type: ValidationStyleType;
 }
 
 function Notification(props: NotificationProps) {

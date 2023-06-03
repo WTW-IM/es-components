@@ -160,6 +160,11 @@ module.exports = {
         }
       }
     },
+    resolve: {
+      alias: {
+        'es-components-shared-types': path.join(__dirname, '../../shared/types')
+      }
+    },
     plugins: [
       new webpack.DefinePlugin({
         ASSETS_PATH: JSON.stringify(assets_url)

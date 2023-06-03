@@ -268,6 +268,23 @@ const theme: ESTheme = {
         textColor: success,
       },
     },
+    default: {
+      base: {
+        bgColor: info,
+        textColor: white,
+      },
+      light: {
+        bgColor: infoLight,
+        textColor: gray9,
+        borderColor: '#585858',
+        borderWidth: '2px',
+        borderStyle: 'solid',
+      },
+      messageOnly: {
+        bgColor: 'transparent',
+        textColor: info,
+      },
+    },
     info: {
       base: {
         bgColor: info,
@@ -540,6 +557,7 @@ const theme: ESTheme = {
   validationIconName: {
     success: 'checkbox-checked',
     info: 'exclamation-circle',
+    default: 'exclamation-circle',
     warning: 'exclamation-sign',
     danger: 'exclamation-circle',
     advisor: 'agent',
@@ -640,9 +658,5 @@ const theme: ESTheme = {
     widescreen: '1200px',
   },
 };
-
-type ThemeType = typeof theme;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Theme<T> = T extends ThemeType ? T : any;
 
 export default theme;

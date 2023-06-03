@@ -1,4 +1,4 @@
-import theme from '../../es-components-via-theme/src';
+import theme from 'es-components-via-theme';
 import React from 'react';
 
 type ViaTheme = typeof theme;

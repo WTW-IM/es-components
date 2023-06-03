@@ -4,10 +4,8 @@ import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactIs from 'react-is';
 import typescript from '@rollup/plugin-typescript';
+import { aliasPlugin } from './rollup.config.mjs';
 
 export default args => {
   const isProduction = args.configEnv === 'prod';
@@ -25,20 +23,22 @@ export default args => {
       },
       preserveSymlinks: true,
       plugins: [
-        typescript(),
+        aliasPlugin,
+        typescript({
+          include: [
+            'src/**/*',
+            '../../shared/types/src/*',
+            '../es-components-wtw-theme/src/*',
+            '../es-components-via-theme/src/*'
+          ]
+        }),
         resolve({
           preferBuiltins: true
         }),
         commonjs({
           include: /node_modules/,
-          exclude: 'src/**',
-          namedExports: {
-            react: Object.keys(React),
-            'react-dom': Object.keys(ReactDOM),
-            'react-is': Object.keys(ReactIs)
-          }
+          exclude: 'src/**'
         }),
-        typescript(),
         babel({
           exclude:
             /node_modules\/?!(es-components-via-theme|es-components-shared-types)/,

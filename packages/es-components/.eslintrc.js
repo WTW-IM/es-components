@@ -1,7 +1,6 @@
 const path = require('path');
 const plugins = [
   'import',
-  '@babel',
   '@typescript-eslint',
   'react',
   'react-hooks',
@@ -71,7 +70,7 @@ module.exports = {
       {
         devDependencies: [
           '**/*.specs.{js,jsx,ts,tsx}',
-          '**/test-utils.js',
+          '**/test-utils.*',
           '**/styleguide/*.{js,jsx,ts,tsx}',
           '**/cypress/**/*.js'
         ]
@@ -87,16 +86,6 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.js', '**/*.jsx'],
-      parser: '@babel/eslint-parser',
-      plugins: ['import', '@babel'],
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-          destructuring: true,
-          experimentalObjectRestSpread: true,
-          ecmaVersion: 'latest'
-        }
-      },
       rules: {
         '@typescript-eslint/no-unsafe-assignment': 0,
         '@typescript-eslint/no-unsafe-return': 0,
@@ -109,7 +98,8 @@ module.exports = {
         '*.config.js',
         '*.config.mjs',
         '**/config/*.js',
-        '**/build-scripts/*'
+        '**/build-scripts/*',
+        '**/test-utils.*'
       ],
       env: {
         node: true
@@ -133,7 +123,7 @@ module.exports = {
       extends: ['plugin:cypress/recommended', ...exts]
     },
     {
-      files: ['*.specs.*'],
+      files: ['*.specs.*', '**/test-utils.*'],
       parserOptions: {
         ecmaFeatures: {
           jsx: true

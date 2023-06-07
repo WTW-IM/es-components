@@ -6,12 +6,17 @@ import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import typescript from '@rollup/plugin-typescript';
 import { aliasPlugin } from './rollup.config.mjs';
+import alias from '@rollup/plugin-alias';
+import { createRequire } from 'module';
 
 export default args => {
   const isProduction = args.configEnv === 'prod';
   const assets_url = isProduction
     ? 'https://app.viabenefits.com/static/cdn/es-assets/'
     : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+  const viaThemePath = createRequire(import.meta.url).resolve(
+    'es-components-via-theme'
+  );
 
   return [
     {
@@ -24,24 +29,26 @@ export default args => {
       preserveSymlinks: true,
       plugins: [
         aliasPlugin,
-        typescript({
-          include: [
-            'src/**/*',
-            '../../shared/types/src/*',
-            '../es-components-wtw-theme/src/*',
-            '../es-components-via-theme/src/*'
+        alias({
+          entries: [
+            {
+              find: 'es-components-via-theme',
+              replacement: viaThemePath
+            }
           ]
+        }),
+        typescript({
+          tsconfig: 'tsconfig.json'
         }),
         resolve({
           preferBuiltins: true
         }),
         commonjs({
-          include: /node_modules/,
+          include: [/node_modules/, viaThemePath],
           exclude: 'src/**'
         }),
         babel({
-          exclude:
-            /node_modules\/?!(es-components-via-theme|es-components-shared-types)/,
+          exclude: /node_modules/,
           envName: 'production',
           babelHelpers: 'runtime'
         }),

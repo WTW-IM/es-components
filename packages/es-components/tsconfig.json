@@ -23,8 +23,7 @@
       "es-components-via-theme": ["../es-components-via-theme/src/index.ts"]
     }
   },
-  "rootDir": "src",
-  "include": ["./src"]
+  "include": ["./src"],
   "references": [
     {
       "path": "../es-components-wtw-theme/tsconfig.ref.json"
@@ -33,7 +32,7 @@
       "path": "../es-components-via-theme/tsconfig.ref.json"
     },
     {
-      "path": "../../shared/types"
+      "path": "../../shared/types/tsconfig.ref.json"
     }
   ]
 }

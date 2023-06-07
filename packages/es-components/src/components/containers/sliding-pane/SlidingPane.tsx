@@ -1,6 +1,9 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Modal, { OnAfterOpenCallback } from 'react-modal';
+import Modal, {
+  OnAfterOpenCallback,
+  Props as ReactModalProps
+} from 'react-modal';
 import _noop from 'lodash/noop';
 import styled, { createGlobalStyle } from 'styled-components';
 import Heading from '../heading/Heading';
@@ -19,7 +22,7 @@ interface CloseLinkProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-interface SlidingPaneProps extends Omit<Modal.Props, 'appElement'> {
+interface SlidingPaneProps extends Omit<ReactModalProps, 'appElement'> {
   title: string;
   subTitle: string;
   shouldCloseOnEsc: boolean;
@@ -233,7 +236,7 @@ export default function SlidingPane({
         shouldCloseOnEsc={shouldCloseOnEsc}
         contentLabel={`Modal "${title}"`}
         parentSelector={modalParentSelector}
-        paneWidth={paneWidth || theme.screenSize.tablet}
+        paneWidth={paneWidth || `${theme.screenSize.tablet}`}
         {...rest}
       >
         {hideHeader ? (

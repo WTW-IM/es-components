@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
-import { TypeKeys, BaseNotification } from './BaseNotification';
+import { BaseNotification } from './BaseNotification';
+import { ValidationStyleType } from 'es-components-shared-types';
 
 interface MessageNotificationProps {
-  type: TypeKeys;
+  type: ValidationStyleType;
 }
 
 function MessageNotification(props: MessageNotificationProps) {

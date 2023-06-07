@@ -4,11 +4,8 @@
     "module": "esnext",
     "strict": true,
     "declaration": true,
-    "rootDir": "src",
     "outDir": "dist",
     "moduleResolution": "node",
-    "composite": true,
-    "tsBuildInfoFile": "dist/.tsbuildinfo",
   },
-  "include": ["src"],
+  "include": ["src"]
 }

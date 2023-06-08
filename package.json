@@ -27,8 +27,10 @@
     "packages/*"
   ],
   "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,mjs,json}": [
+      "prettier --single-quote --write"
+    ],
     "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
-      "prettier --single-quote --write",
       "eslint --fix --config packages/es-components/.eslintrc.js"
     ]
   },

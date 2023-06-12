@@ -15,10 +15,7 @@ function radioFill(color) {
     content: '';
     display: block;
     height: 13px;
-    left: 3px;
-    position: relative;
     width: 13px;
-    top: 3px;
     transition: background 0.25s linear;
   `;
 }
@@ -57,10 +54,13 @@ const RadioInput = styled.input`
 `;
 
 const RadioDisplay = styled.span`
+  align-items: center;
   border: 3px solid ${props => props.borderColor};
   border-radius: 50%;
   box-sizing: border-box;
+  display: flex;
   height: 25px;
+  justify-content: center;
   margin-right: 8px;
   min-width: 25px;
 

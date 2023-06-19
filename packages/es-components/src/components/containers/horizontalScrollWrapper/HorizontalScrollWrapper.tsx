@@ -144,6 +144,7 @@ function HorizontalScrollWrapper({
   const [scrollLeft, setScrollLeft] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
   const scrollWidthObserver = useRef<Maybe<ResizeObserver>>(null);
+  const mutationObserver = useRef<Maybe<MutationObserver> | null>(null);
 
   const onScroll = useCallback((ev: React.UIEvent<HTMLElement>) => {
     const el = ev.target as HTMLElement;
@@ -165,16 +166,32 @@ function HorizontalScrollWrapper({
   }, [resetPosition]);
 
   useEffect(() => {
-    if (!innerRef) return;
+    if (!innerRef && !containerRef) return;
 
     scrollWidthObserver.current =
       scrollWidthObserver.current || new ResizeObserver(resetPosition);
-    scrollWidthObserver.current.observe(innerRef);
+    mutationObserver.current =
+      mutationObserver.current || new MutationObserver(resetPosition);
+    const activeElements = [innerRef, containerRef].filter(
+      (el): el is HTMLElement => Boolean(el)
+    );
+    activeElements.forEach(el => {
+      scrollWidthObserver.current?.observe(el, { box: 'border-box' });
+      mutationObserver.current?.observe(el, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true
+      });
+    });
 
     return () => {
-      scrollWidthObserver.current?.unobserve(innerRef);
+      activeElements.forEach(el => {
+        scrollWidthObserver.current?.unobserve(el);
+        mutationObserver.current?.disconnect();
+      });
     };
-  }, [innerRef, resetPosition]);
+  }, [innerRef, containerRef, resetPosition]);
 
   useEffect(() => {
     window.addEventListener('resize', resetPosition);

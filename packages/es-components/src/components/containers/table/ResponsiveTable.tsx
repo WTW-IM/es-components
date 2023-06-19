@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Table from './Table';
+import Table, { TableBaseProps } from './Table';
 
 const TableBase = styled(Table)`
   tbody {
@@ -64,7 +64,7 @@ const TableBase = styled(Table)`
   }
 `;
 
-function ResponsiveTable(props) {
+function ResponsiveTable(props: TableBaseProps) {
   return <TableBase {...props} />;
 }
 

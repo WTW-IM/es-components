@@ -92,7 +92,11 @@ export default interface ESTheme {
   };
 
   font: {
-    [key: string]: any;
+    baseFontSize: number | string;
+    baseLineHeight: number | string;
+    headingDesktop: object;
+    headingMobile: object;
+    [key: string]: string | number | object;
   };
 
   screenSize: {

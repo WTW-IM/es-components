@@ -20,7 +20,7 @@
     "start": "concurrently --kill-others \"rollup -c docs-rollup.config.mjs -w\" \"styleguidist server\"",
     "test": "jest",
     "test:watch": "jest --watch",
-    "wait-for-start": "wait-on https://127.0.0.1:6060",
+    "wait-for-start": "wait-on http://127.0.0.1:6060",
     "cypressreport": "mochawesome-merge mochawesome-report/*.json > raw-results.json && marge --reportDir cypress-results raw-results.json",
     "generate-icon-names": "node config/generateIconNames.mjs"
   },

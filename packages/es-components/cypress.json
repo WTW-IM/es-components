@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://localhost:6060",
+  "baseUrl": "http://localhost:6060",
   "scrollBehavior": "center",
   "chromeWebSecurity": false
 }

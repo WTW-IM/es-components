@@ -81,7 +81,8 @@ module.exports = {
           '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.*',
           '**/styleguide/*.{js,jsx,ts,tsx}',
-          '**/cypress/**/*.js'
+          '**/cypress/**/*.js',
+          '**/global.d.ts'
         ]
       }
     ],

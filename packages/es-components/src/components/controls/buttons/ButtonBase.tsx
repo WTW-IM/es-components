@@ -50,6 +50,8 @@ export const defaultProps = {
   waiting: false
 };
 
+export type ButtonDefaultProps = typeof defaultProps;
+
 ButtonBase.propTypes = propTypes;
 ButtonBase.defaultProps = defaultProps;
 

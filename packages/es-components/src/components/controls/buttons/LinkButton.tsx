@@ -5,13 +5,12 @@ import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
 import ButtonBase, {
   propTypes as basePropTypes,
-  defaultProps as baseDefaultProps
+  defaultProps as baseDefaultProps,
+  ButtonDefaultProps,
+  ButtonBaseProps
 } from './ButtonBase';
-import {
-  buttonVariantStyleTypes,
-  ButtonVariantStyleType,
-  TextColorButtonVariant
-} from 'es-components-shared-types';
+import { TextColorButtonVariant } from 'es-components-shared-types';
+import Button, { ButtonProps } from './Button';
 
 const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   background-color: transparent;
@@ -43,9 +42,10 @@ const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   }
 `;
 
-export type LinkButtonProps = React.PropsWithChildren<{
-  styleType?: ButtonVariantStyleType;
-}>;
+export type LinkButtonProps = Omit<ButtonBaseProps, 'children'> & {
+  styleType?: ButtonProps['styleType'];
+  children: NonNullable<React.ReactNode>;
+};
 
 const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
   function LinkButton(props, ref) {
@@ -61,17 +61,22 @@ const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
   }
 );
 
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export const propTypes = {
   ...basePropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
-  styleType: PropTypes.oneOf(buttonVariantStyleTypes)
+  styleType: Button.propTypes!.styleType
 };
 
+const unchildrenDefaults = { ...baseDefaultProps };
+delete unchildrenDefaults['children'];
+
 export const defaultProps = {
-  ...baseDefaultProps,
-  styleType: 'default' as ButtonVariantStyleType
+  ...(unchildrenDefaults as Omit<ButtonDefaultProps, 'children'>),
+  styleType: Button.defaultProps!.styleType
 };
+/* eslint-enable @typescript-eslint/no-non-null-assertion */
 
 LinkButton.defaultProps = defaultProps;
 LinkButton.propTypes = propTypes;

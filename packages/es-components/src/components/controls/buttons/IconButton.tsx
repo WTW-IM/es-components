@@ -1,19 +1,29 @@
 import React from 'react';
+import type * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from '../../base/icons/Icon';
 import OutlineButton from './OutlineButton';
 import { useTheme } from '../../util/useTheme';
 import genName from '../../util/generateAlphaName';
+import { IconName, iconNames } from '../../..';
+import { ButtonProps } from './Button';
+import {
+  ButtonVariantStyleType,
+  buttonVariantStyleTypes
+} from 'es-components-shared-types';
 
-const Container = styled.div`
+const Container = styled.div<{ maxWidth: CSS.Property.MaxWidth }>`
   align-items: center;
   display: flex;
   flex-direction: column;
   max-width: ${props => props.maxWidth};
 `;
 
-const StyledIconButton = styled(OutlineButton)`
+const StyledIconButton = styled(OutlineButton)<{
+  activeColor: CSS.Property.BackgroundColor;
+  isHighlighted: Maybe<boolean>;
+}>`
   background-color: ${props => props.isHighlighted && props.activeColor};
   border-radius: 50%;
   border-width: 3px;
@@ -45,7 +55,11 @@ const IncompleteButton = styled(StyledIconButton)`
   }
 `;
 
-const IconText = styled.span`
+const IconText = styled.span<{
+  fontSize: number;
+  maxWidth: CSS.Property.MaxWidth;
+  isHighlighted?: boolean;
+}>`
   font-size: ${props => props.fontSize}px;
   font-weight: ${props => (props.isHighlighted ? 'bold' : 'normal')};
   margin-top: 6px;
@@ -55,19 +69,31 @@ const IconText = styled.span`
   white-space: nowrap;
 `;
 
+export type IconButtonProps = JSXElementProps<'div'> & {
+  iconName: IconName;
+  iconSize?: number;
+  childrenFontSize?: number;
+  isHighlighted?: boolean;
+  isIncomplete?: boolean;
+  disabled?: boolean;
+  maxWidth?: CSS.Property.MaxWidth;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  styleType?: ButtonProps['styleType'];
+};
+
 function IconButton({
   iconName,
   iconSize,
-  childrenFontSize,
+  childrenFontSize = 18,
   isHighlighted,
   isIncomplete,
   disabled,
-  maxWidth,
+  maxWidth = 'auto',
   onClick,
-  styleType,
+  styleType = 'magenta',
   children,
   ...otherProps
-}) {
+}: IconButtonProps) {
   const CurrentButton = isIncomplete ? IncompleteButton : StyledIconButton;
   const theme = useTheme();
   const textId = genName();
@@ -99,8 +125,9 @@ function IconButton({
 }
 
 IconButton.propTypes = {
+  ...Container.propTypes,
   /** Used to specify the icon used within the button */
-  iconName: PropTypes.string.isRequired,
+  iconName: PropTypes.oneOf<IconName>(iconNames).isRequired,
   /** The font size of the inner icon */
   iconSize: PropTypes.number,
   /** The font size of the text displayed below the icon */
@@ -116,19 +143,20 @@ IconButton.propTypes = {
   /** Onclick function used by the button */
   onClick: PropTypes.func,
   /** OutlineButton styleType (from theme) used for the icon */
-  styleType: PropTypes.string,
+  styleType: PropTypes.oneOf<ButtonVariantStyleType>(buttonVariantStyleTypes),
   /** Content to be displayed below the icon */
   children: PropTypes.node
 };
 
 IconButton.defaultProps = {
+  ...Container.defaultProps,
   isHighlighted: false,
   isIncomplete: false,
   iconSize: 45,
   childrenFontSize: 18,
   disabled: false,
   maxWidth: undefined,
-  onClick: () => {},
+  onClick: () => ({}),
   styleType: 'magenta',
   children: undefined
 };

@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
+import { ValidationStyleType } from 'es-components-shared-types';
 
-import { TypeKeys, useNotification } from './useNotification';
+import { BaseNotification } from './BaseNotification';
 
 interface LightNotificationProps {
-  type: TypeKeys;
+  type: ValidationStyleType;
 }
 
 function LightNotification(props: LightNotificationProps) {
-  const Notification = useNotification('light');
-
-  return <Notification {...props} />;
+  return <BaseNotification {...props} styleType="light" />;
 }
 
 LightNotification.propTypes = {

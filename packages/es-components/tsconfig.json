@@ -16,13 +16,18 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
-    "declarationDir": "types",
-    "paths": {
-      "es-components-shared-types": ["../../shared/types/src/ESTheme.ts"],
-      "es-components-wtw-theme": ["../es-components-wtw-theme/src/index.ts"],
-      "es-components-via-theme": ["../es-components-via-theme/src/index.ts"]
-    }
+    "declarationDir": "types"
   },
-  "rootDir": "src",
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    {
+      "path": "../es-components-wtw-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../es-components-via-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../../shared/types/tsconfig.ref.json"
+    }
+  ]
 }

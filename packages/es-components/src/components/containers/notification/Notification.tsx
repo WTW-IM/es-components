@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { useNotification } from './useNotification';
+import { BaseNotification } from './BaseNotification';
 import type { ValidationStyleType } from 'es-components-shared-types';
 
 interface NotificationProps extends JSXElementProps<'div'> {
@@ -9,9 +9,7 @@ interface NotificationProps extends JSXElementProps<'div'> {
 }
 
 function Notification(props: NotificationProps) {
-  const DefaultNotification = useNotification();
-
-  return <DefaultNotification {...props} />;
+  return <BaseNotification {...props} />;
 }
 
 Notification.propTypes = {

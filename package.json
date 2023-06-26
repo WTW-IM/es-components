@@ -1,5 +1,6 @@
 {
   "name": "es-components-monorepo",
+  "version": "21.6.97-pre-prod.2",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -14,18 +15,22 @@
     "link": "lerna link",
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
-    "preprepare": "npm run build -w es-components-shared-types -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
-    "prepare": "husky install",
+    "build-themes": "npm run build -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
+    "preprepare": "npm run build -w es-components-shared-types && npm run build-themes",
     "postprepare": "lerna link --force-local",
-    "test": "npm test --workspaces --if-present"
+    "prepare": "husky install",
+    "test": "npm test --workspaces --if-present",
+    "generate-icon-names": "npm run generate-icon-names -w es-components"
   },
   "workspaces": [
     "shared/*",
     "packages/*"
   ],
   "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,mjs,json}": [
+      "prettier --single-quote --write"
+    ],
     "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
-      "prettier --single-quote --write",
       "eslint --fix --config packages/es-components/.eslintrc.js"
     ]
   },
@@ -34,12 +39,19 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@commitlint/prompt-cli": "^17.3.0",
+    "@testing-library/react": "^13.4.0",
     "@types/node": "^18.11.17",
     "commitlint": "^17.3.0",
     "conventional-changelog": "^3.1.25",
+    "data-uri-to-buffer": "^5.0.1",
+    "fd-slicer": "^1.1.0",
+    "formdata-polyfill": "^4.0.10",
     "husky": "^8.0.2",
+    "jest": "^29.4.2",
+    "jest-environment-jsdom": "^29.4.2",
     "lerna": "^6.1.0",
     "lint-staged": "^13.1.0",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.1",
+    "ts-jest": "^29.0.5"
   }
 }

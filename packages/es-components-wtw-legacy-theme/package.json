@@ -1,13 +1,13 @@
 {
   "name": "es-components-wtw-legacy-theme",
-  "version": "21.7.0",
-  "main": "dist/packages/es-components-legacy-theme/src/index.js",
+  "version": "21.8.0",
+  "main": "dist/packages/es-components-wtw-legacy-theme/src/index.js",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
     "build": "tsc"
   },
   "devDependencies": {
-    "typescript": "^5.0.4"
+    "typescript": "^5.1.3"
   }
 }

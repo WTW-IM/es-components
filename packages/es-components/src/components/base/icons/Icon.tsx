@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
+import { IconName, iconNames } from 'es-components-shared-types';
 
 export const iconBasics = css`
   font-style: normal;
@@ -23,7 +24,7 @@ export const iconBaseStyles = css<{ size: string | number }>`
 `;
 
 export interface IconProps {
-  name?: string;
+  name?: IconName;
   size?: string | number;
   className?: string;
   iconColor?: string;
@@ -62,7 +63,7 @@ const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
 export const propTypes = {
   ...StyledIcon.propTypes,
   /** Name of the icon to display */
-  name: PropTypes.string,
+  name: PropTypes.oneOf(iconNames),
   /** Specify icon size in pixels */
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Additional classes to include */

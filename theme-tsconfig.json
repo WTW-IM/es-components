@@ -17,6 +17,11 @@
     "declarationMap": true,
     "jsx": "react",
     "noImplicitAny": true,
-    "paths": { "es-components-shared-types": ["./shared/types/src/ESTheme.ts"] }
-  }
+    "rootDir": "."
+  },
+  "references": [
+    {
+      "path": "shared/types/tsconfig.ref.json"
+    }
+  ]
 }

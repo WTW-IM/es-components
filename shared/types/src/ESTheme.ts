@@ -1,4 +1,8 @@
 import * as CSS from 'csstype';
+export { iconNames } from './IconNames';
+export type { IconName } from './IconNames';
+
+import { IconName } from './IconNames';
 
 export const buttonSizePropNames = ['lg', 'sm', 'xs', 'default'] as const;
 export type ButtonSizePropNames = (typeof buttonSizePropNames)[number];
@@ -76,8 +80,11 @@ export interface NotificationStyleBlock {
   borderWidth?: CSS.Property.BorderWidth;
 }
 
+export const notificationStyleTypes = ['base', 'light', 'messageOnly'] as const;
+export type NotificationStyleType = (typeof notificationStyleTypes)[number];
+
 export type NotificationStyle = {
-  [key in 'base' | 'light' | 'messageOnly']: NotificationStyleBlock;
+  [key in NotificationStyleType]: NotificationStyleBlock;
 };
 
 export type NotificationStyles = {
@@ -92,11 +99,11 @@ export default interface ESTheme {
   };
 
   font: {
-    baseFontSize: number | string;
-    baseLineHeight: number | string;
+    [key: string]: string | number | object;
+    baseFontSize: CSS.Property.FontSize;
+    baseLineHeight: CSS.Property.LineHeight;
     headingDesktop: object;
     headingMobile: object;
-    [key: string]: string | number | object;
   };
 
   screenSize: {
@@ -104,7 +111,7 @@ export default interface ESTheme {
   };
 
   validationIconName: {
-    [key in ValidationStyleType]: string;
+    [key in ValidationStyleType]: IconName;
   };
   notificationStyles: NotificationStyles;
 

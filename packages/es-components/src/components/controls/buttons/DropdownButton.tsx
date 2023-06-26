@@ -1,9 +1,17 @@
+/// <reference types="styled-components/cssprop" />
+
 import 'get-root-node-polyfill/implement';
-import React, { useState, useEffect, useRef, Children } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  Children,
+  useCallback
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
@@ -42,7 +50,7 @@ const Caret = styled.span`
   width: 0;
 `;
 
-const ButtonPanel = styled.div`
+const ButtonPanel = styled.div<{ topIndex: number; isOpen?: boolean }>`
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.gray3};
   display: ${props => (props.isOpen ? 'block' : 'none')};
@@ -78,8 +86,10 @@ const StyledButtonLink = styled(LinkButton)`
 const TAB_KEY_CODE = 9;
 const UP_ARROW_CODE = 38;
 const DOWN_ARROW_CODE = 40;
+const UP_ARROW_KEY = 'ArrowUp';
+const DOWN_ARROW_KEY = 'ArrowDown';
 
-function getFocusables(node) {
+function getFocusables(node: HTMLElement) {
   const focusableElements = node.querySelectorAll('button');
   const firstFocusable = focusableElements[0];
   const lastFocusable = focusableElements[focusableElements.length - 1];
@@ -91,15 +101,20 @@ function getFocusables(node) {
   };
 }
 
-function isCurrentlyActive(node) {
-  const rootNode = node.getRootNode();
+const getRootNode = (node: HTMLElement): DocumentOrShadowRoot =>
+  node.getRootNode() as unknown as DocumentOrShadowRoot;
+
+function isCurrentlyActive(node: HTMLElement) {
+  const rootNode = getRootNode(node);
   return rootNode.activeElement === node;
 }
 
-function focusTrap(node) {
+function focusTrap(node: Maybe<HTMLElement>) {
+  if (!node) return () => ({});
+
   const { firstFocusable, lastFocusable } = getFocusables(node);
 
-  function handleTabFocus(event) {
+  function handleTabFocus(event: KeyboardEvent) {
     if (event.key === 'Tab' || event.keyCode === TAB_KEY_CODE) {
       if (event.shiftKey) {
         if (isCurrentlyActive(firstFocusable)) {
@@ -120,33 +135,34 @@ function focusTrap(node) {
   };
 }
 
-function arrowMovement(node) {
+function arrowMovement(node: Maybe<HTMLElement>) {
+  if (!node) return () => ({});
+
   const { focusableElements, firstFocusable, lastFocusable } =
     getFocusables(node);
   const focusables = [...focusableElements];
-  const rootNode = node.getRootNode();
+  const rootNode = getRootNode(node);
 
-  function handleArrowMovementKeys(event) {
-    if (event.keyCode === UP_ARROW_CODE) {
-      if (isCurrentlyActive(firstFocusable)) {
-        lastFocusable.focus();
-        event.preventDefault();
-      } else {
-        const index = focusables.indexOf(rootNode.activeElement);
-        focusables[index - 1].focus();
-        event.preventDefault();
-      }
-    }
-    if (event.keyCode === DOWN_ARROW_CODE) {
-      if (isCurrentlyActive(lastFocusable)) {
-        firstFocusable.focus();
-        event.preventDefault();
-      } else {
-        const index = focusables.indexOf(rootNode.activeElement);
-        focusableElements[index + 1].focus();
-        event.preventDefault();
-      }
-    }
+  function handleArrowMovementKeys(event: KeyboardEvent) {
+    const isUp = event.key === UP_ARROW_KEY || event.keyCode === UP_ARROW_CODE;
+    const isDown =
+      event.key === DOWN_ARROW_KEY || event.keyCode === DOWN_ARROW_CODE;
+
+    if (!isUp && !isDown) return;
+
+    const focusedIndex = focusables.indexOf(
+      rootNode.activeElement as HTMLButtonElement
+    );
+
+    let newIndex = focusedIndex + (isDown ? 1 : -1);
+    newIndex =
+      isUp && isCurrentlyActive(firstFocusable)
+        ? focusables.length - 1
+        : newIndex;
+    newIndex = isDown && isCurrentlyActive(lastFocusable) ? 0 : newIndex;
+
+    focusableElements[newIndex].focus();
+    event.preventDefault();
   }
 
   node.addEventListener('keydown', handleArrowMovementKeys);
@@ -155,6 +171,20 @@ function arrowMovement(node) {
     node.removeEventListener('keydown', handleArrowMovementKeys);
   };
 }
+
+export type DropdownButtonProps = Omit<ButtonProps, 'children'> & {
+  children: NonNullable<React.ReactNode>;
+  buttonValue?: React.ReactNode;
+  manualButtonValue?: React.ReactNode;
+  shouldUpdateButtonValue?: boolean;
+  shouldCloseOnButtonClick?: boolean;
+  rootClose?: boolean;
+  styleType?: ButtonProps['styleType'];
+  inline?: boolean;
+  id?: string;
+  flatLeftEdge?: boolean;
+  flatRightEdge?: boolean;
+};
 
 function DropdownButton({
   id,
@@ -169,15 +199,15 @@ function DropdownButton({
   flatLeftEdge,
   flatRightEdge,
   ...otherProps
-}) {
+}: DropdownButtonProps) {
   const ActivationButton = flatLeftEdge || flatRightEdge ? SplitButton : Button;
 
   const [buttonStateValue, setButtonStateValue] = useState(buttonValue);
   const [isOpen, setIsOpen] = useState(false);
 
   const initialRender = useRef(true);
-  const buttonDropdown = useRef();
-  const triggerButton = useRef();
+  const buttonDropdown = useRef<HTMLDivElement>(null);
+  const triggerButton = useRef<HTMLButtonElement>(null);
   const panelId = useUniqueId(id);
   const getTopIndex = useTopZIndex();
 
@@ -193,21 +223,30 @@ function DropdownButton({
 
   useEffect(() => {
     if (!initialRender.current) {
-      triggerButton.current.focus();
+      triggerButton.current?.focus();
     }
     initialRender.current = false;
   }, [isOpen]);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  const toggleDropdown = useCallback(
+    () => setIsOpen(oldIsOpen => !oldIsOpen),
+    []
+  );
 
-  function closeDropdown() {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  }
+  const closeDropdown = useCallback(() => setIsOpen(false), []);
 
-  function handleDropdownItemClick(buttonProps) {
-    return event => {
+  const handleDropdownItemClick = useCallback(
+    (childProps?: unknown) => (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (!childProps) return;
+
+      const buttonProps = childProps as {
+        children?: React.ReactNode;
+        name?: string;
+        onClick?: (
+          event: React.MouseEvent<HTMLButtonElement>,
+          name: string
+        ) => void;
+      };
       if (shouldUpdateButtonValue) {
         setButtonStateValue(buttonProps.children);
       }
@@ -215,9 +254,10 @@ function DropdownButton({
         closeDropdown();
       }
 
-      buttonProps.onClick(event, buttonProps.name);
-    };
-  }
+      buttonProps?.onClick?.(event, buttonProps?.name || '');
+    },
+    [shouldUpdateButtonValue, shouldCloseOnButtonClick, closeDropdown]
+  );
 
   return (
     <RootCloseWrapper
@@ -245,7 +285,7 @@ function DropdownButton({
           aria-pressed={isOpen}
           className={
             isOpen
-              ? `${otherProps && otherProps.className} pressed`
+              ? `${otherProps?.className || ''} pressed`
               : otherProps.className
           }
           ref={triggerButton}
@@ -261,7 +301,10 @@ function DropdownButton({
             topIndex={isOpen ? getTopIndex() : -1}
           >
             <ButtonPanelChildrenContainer>
-              {Children.map(children, child => {
+              {Children.map(children, ch => {
+                if (!ch || typeof ch !== 'object') return ch;
+
+                const child = ch as React.ReactElement;
                 const onClickHandler = handleDropdownItemClick(child.props);
                 const newProps = {
                   onClick: onClickHandler,
@@ -280,8 +323,9 @@ function DropdownButton({
 DropdownButton.Button = StyledButtonLink;
 
 DropdownButton.propTypes = {
+  ...Button.propTypes,
   /** Content shown in the button */
-  buttonValue: PropTypes.any,
+  buttonValue: PropTypes.node,
   /**
    * Defines what value should be displayed on the button.
    * Overrides the stored state value, and renders shouldUpdateButtonValue
@@ -313,6 +357,7 @@ DropdownButton.propTypes = {
 };
 
 DropdownButton.defaultProps = {
+  ...Button.defaultProps,
   buttonValue: undefined,
   manualButtonValue: undefined,
   shouldUpdateButtonValue: false,

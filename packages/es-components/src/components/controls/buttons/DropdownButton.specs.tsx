@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 import React from 'react';
 import { waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -69,26 +67,26 @@ it('allows arrow movement and traps focus when dropdown is opened', async () => 
     </DropdownButton>
   );
 
-  const firstButton = await screen.findByRole('button', 'Button');
+  const firstButton = await screen.findByRole('button', { name: 'Button' });
+
   await user.click(firstButton);
   expect(firstButton).toHaveFocus();
 
-  const verifyFocusAfterKeydown = async (key, itemName) => {
+  const firstItem = await screen.findByRole('option', { name: /Item 1/ });
+  const secondItem = await screen.findByRole('option', { name: /Item 2/ });
+
+  const verifyFocusAfterKeydown = async (
+    key: string,
+    focusedItem: HTMLElement
+  ) => {
     await user.keyboard(key);
-    await waitFor(async () =>
-      expect(
-        await screen.findByRole('button', { name: itemName })
-      ).toHaveFocus()
-    );
+    await waitFor(() => expect(focusedItem).toHaveFocus());
   };
 
-  const firstItemName = /Item 1/;
-  const secondItemName = /Item 2/;
-
-  verifyFocusAfterKeydown('[ArrowDown]', firstItemName);
-  verifyFocusAfterKeydown('[ArrowDown]', secondItemName);
-  verifyFocusAfterKeydown('[ArrowDown]', firstItemName);
+  await verifyFocusAfterKeydown('[ArrowDown]', firstItem);
+  await verifyFocusAfterKeydown('[ArrowDown]', secondItem);
+  await verifyFocusAfterKeydown('[ArrowDown]', firstButton);
   // pressing the up arrow key while focused on the first button
   // will verify focus trap is working as expected
-  verifyFocusAfterKeydown('[ArrowUp]', secondItemName);
+  await verifyFocusAfterKeydown('[ArrowUp]', secondItem);
 });

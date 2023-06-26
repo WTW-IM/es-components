@@ -15,16 +15,16 @@ it('sets isPressed state on click', async () => {
   await user.click(button);
 
   await waitFor(() => {
-    expect(button.getAttribute('aria-pressed')).toBe('true');
+    expect(button).toHaveAttribute('aria-pressed', 'true');
   });
-  expect(button.classList.contains('pressed')).toBe(true);
+  expect(button).toHaveClass('pressed');
   expect(onClick).toHaveBeenCalledTimes(1);
 
   await user.click(button);
 
   await waitFor(() => {
-    expect(button.getAttribute('aria-pressed')).toBe('false');
+    expect(button).toHaveAttribute('aria-pressed', 'false');
   });
-  expect(button.classList.contains('pressed')).toBe(false);
+  expect(button).not.toHaveClass('pressed');
   expect(onClick).toHaveBeenCalledTimes(2);
 });

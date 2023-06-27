@@ -5,7 +5,8 @@ import type {
   NotificationStyleBlock,
   ValidationStyleType,
   NotificationStyleType,
-  IconName
+  IconName,
+  ColorName
 } from 'es-components-shared-types';
 import Icon from '../../base/icons/Icon';
 import { useTheme } from '../../util/useTheme';
@@ -153,7 +154,7 @@ export function BaseNotification({
   const color = theme.notificationStyles[type][styleType];
   const iconName = theme.validationIconName[type];
   const iconColor =
-    styleType === 'base' ? theme.colors.white : theme.colors[type];
+    styleType === 'base' ? theme.colors.white : theme.colors[type as ColorName];
   const notificationContentProps = {
     color,
     iconName,

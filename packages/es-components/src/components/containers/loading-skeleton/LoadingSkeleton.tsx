@@ -1,8 +1,23 @@
 import React from 'react';
+import type * as CSS from 'csstype';
 import PropTypes from 'prop-types';
-import styled, { ThemeProvider } from 'styled-components';
+import originalStyled, {
+  ThemeProvider,
+  DefaultTheme,
+  ThemedStyledInterface
+} from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
+
+export interface SkeletonTheme extends DefaultTheme {
+  skeleton: {
+    shimmerColor: CSS.Property.BackgroundColor;
+    shapeColor: CSS.Property.BackgroundColor;
+  };
+}
+
+const styled =
+  originalStyled as unknown as ThemedStyledInterface<SkeletonTheme>;
 
 const SkeletonContainer = styled.div`
   position: relative;
@@ -15,29 +30,19 @@ const SkeletonContainer = styled.div`
     background-image: linear-gradient(
       -60deg,
       ${({ theme: { skeleton } }) =>
-          tinycolor(skeleton.shimmerColor)
-            .setAlpha(0)
-            .toRgbString()}
+          tinycolor(skeleton.shimmerColor).setAlpha(0).toRgbString()}
         0,
       ${({ theme: { skeleton } }) =>
-          tinycolor(skeleton.shimmerColor)
-            .setAlpha(0)
-            .toRgbString()}
+          tinycolor(skeleton.shimmerColor).setAlpha(0).toRgbString()}
         40%,
       ${({ theme: { skeleton } }) =>
-          tinycolor(skeleton.shimmerColor)
-            .setAlpha(0.8)
-            .toRgbString()}
+          tinycolor(skeleton.shimmerColor).setAlpha(0.8).toRgbString()}
         50%,
       ${({ theme: { skeleton } }) =>
-          tinycolor(skeleton.shimmerColor)
-            .setAlpha(0)
-            .toRgbString()}
+          tinycolor(skeleton.shimmerColor).setAlpha(0).toRgbString()}
         60%,
       ${({ theme: { skeleton } }) =>
-          tinycolor(skeleton.shimmerColor)
-            .setAlpha(0)
-            .toRgbString()}
+          tinycolor(skeleton.shimmerColor).setAlpha(0).toRgbString()}
         100%
     );
     content: '';
@@ -66,14 +71,23 @@ const SkeletonShape = styled.div`
   background-color: ${({ theme: { skeleton } }) => skeleton.shapeColor};
 `;
 
-const LoadingSkeleton = ({ shapeColor, shimmerColor, ...props }) => {
+export type LoadingSkeletonProps = JSXElementProps<'div'> & {
+  shapeColor?: CSS.Property.BackgroundColor;
+  shimmerColor?: CSS.Property.BackgroundColor;
+};
+
+const LoadingSkeleton = ({
+  shapeColor,
+  shimmerColor,
+  ...props
+}: LoadingSkeletonProps) => {
   const theme = useTheme();
   const { colors } = theme;
   const shimmer = shimmerColor || colors.white;
   const shape = shapeColor || colors.gray3;
   const skeleton = { shimmerColor: shimmer, shapeColor: shape };
   return (
-    <ThemeProvider theme={{ skeleton }}>
+    <ThemeProvider theme={{ ...theme, skeleton }}>
       <SkeletonContainer {...props} />
     </ThemeProvider>
   );

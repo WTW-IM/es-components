@@ -160,23 +160,38 @@ const colorNames = [
 
 export type ColorName = (typeof colorNames)[number];
 
+export type Colors = {
+  [key in ColorName]: CSS.Property.Color;
+};
+
+export const screenSizeNames = [
+  'retina',
+  'phone',
+  'tablet',
+  'desktop',
+  'widescreen',
+] as const;
+
+export type ScreenSizeName = (typeof screenSizeNames)[number];
+
 export default interface ESTheme {
   [key: string]: any;
 
-  colors: {
-    [key in ColorName]: CSS.Property.Color;
-  };
+  colors: Colors;
 
   font: {
-    [key: string]: string | number | object;
+    [key: string]: string | number | object | undefined;
     baseFontSize: CSS.Property.FontSize;
     baseLineHeight: CSS.Property.LineHeight;
     headingDesktop: object;
     headingMobile: object;
+
+    labelFontSize?: CSS.Property.FontSize;
+    labelFontWeight?: CSS.Property.FontWeight;
   };
 
   screenSize: {
-    [key: string]: CSS.Property.Width;
+    [key in ScreenSizeName]: CSS.Property.Width;
   };
 
   validationIconName: {

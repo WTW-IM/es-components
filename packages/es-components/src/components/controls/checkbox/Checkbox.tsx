@@ -1,20 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Colors, ValidationStyleType } from 'es-components-shared-types';
 
 import Label from '../label/Label';
 import ValidationContext from '../ValidationContext';
 
-const backgroundColorSelect = (checked, theme, validationState) => {
-  if (checked) {
-    return validationState === 'default'
-      ? theme.colors.primary
-      : theme.colors[validationState];
+const backgroundColorSelect = (
+  checked: Maybe<boolean>,
+  colors: Colors,
+  validationStyle: ValidationStyleType
+) => {
+  if (!checked) {
+    return colors.white;
   }
-  return theme.colors.white;
+
+  if (validationStyle === 'default') {
+    return colors.primary;
+  }
+
+  return colors[validationStyle];
 };
 
-export const CheckboxLabel = styled(Label)`
+const borderColorSelect = (
+  checked: Maybe<boolean>,
+  colors: Colors,
+  validationStyle: ValidationStyleType
+) => {
+  if (!checked && validationStyle === 'default') {
+    return 'inherit';
+  }
+
+  if (validationStyle !== 'default') {
+    return colors[validationStyle];
+  }
+
+  if (checked) {
+    return colors.primary;
+  }
+};
+
+export const CheckboxLabel = styled(Label)<{
+  checked?: boolean;
+  validationState: ValidationStyleType;
+  disabled?: boolean;
+}>`
   font-size: ${props => props.theme.font.baseFontSize};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.font.baseFontSize};
@@ -31,12 +61,10 @@ export const CheckboxLabel = styled(Label)`
   }
 
   .es-checkbox__fill {
-    background-color: ${({ checked, theme, validationState }) =>
-      backgroundColorSelect(checked, theme, validationState)};
-    border-color: ${({ checked, theme, validationState }) =>
-      checked && validationState === 'default'
-        ? theme.colors.primary
-        : theme.colors[validationState]};
+    background-color: ${({ checked, theme: { colors }, validationState }) =>
+      backgroundColorSelect(checked, colors, validationState)};
+    border-color: ${({ checked, theme: { colors }, validationState }) =>
+      borderColorSelect(checked, colors, validationState)};
 
     &:after {
       border-color: ${props => props.theme.colors.white};
@@ -109,7 +137,9 @@ export const CheckboxDisplay = styled.span`
   }
 `;
 
-function Checkbox({ children, ...checkboxProps }) {
+export type CheckboxProps = JSXElementProps<'input'>;
+
+function Checkbox({ children, ...checkboxProps }: CheckboxProps) {
   const validationState = React.useContext(ValidationContext);
 
   return (

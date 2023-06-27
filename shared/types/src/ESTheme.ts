@@ -64,13 +64,14 @@ export interface TextColorButtonVariant extends ButtonVariant {
 export type ButtonVariants<T extends ButtonVariant> = {
   [key in ButtonVariantStyleType]: T;
 } & {
-  inherited: ButtonVariant;
+  inherited: T;
 };
 
-export interface ButtonStyles<T extends ButtonVariant> {
+export type ButtonStyles<T extends ButtonVariant> = {
   variant: ButtonVariants<T>;
-  size?: ButtonSizes;
-}
+} & (T extends BGColorButtonVariant
+  ? { size: ButtonSizes }
+  : { size?: ButtonSizes });
 
 export interface NotificationStyleBlock {
   bgColor: CSS.Property.BackgroundColor;

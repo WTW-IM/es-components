@@ -50,9 +50,8 @@ jobs:
           report-json: packages/es-components/eslint_report.json
 
       - name: Run Tests
-        working-directory: packages/es-components
         run: |
-          npm test
+          npm test --workspaces --if-present
 
   npm:
     if: ${{ github.ref == 'refs/heads/main' }}

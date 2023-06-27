@@ -78,8 +78,10 @@ module.exports = {
       'error',
       {
         devDependencies: [
+          '**/config/*.{js,jsx,ts,tsx}',
+          '**/*.config.{js,jsx,ts,tsx}',
           '**/*.specs.{js,jsx,ts,tsx}',
-          '**/test-utils.*',
+          '**/test-utils.{js,jsx,ts,tsx}',
           '**/styleguide/*.{js,jsx,ts,tsx}',
           '**/cypress/**/*.js',
           '**/global.d.ts'
@@ -95,31 +97,17 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/*.js', '**/*.jsx'],
-      rules: {
-        '@typescript-eslint/no-unsafe-assignment': 0,
-        '@typescript-eslint/no-unsafe-return': 0,
-        '@typescript-eslint/no-unsafe-member-access': 0
-      }
-    },
-    {
       files: [
-        '.eslintrc*',
-        '*.config.*',
-        '**/config/*',
-        '**/build-scripts/*',
-        '**/test-utils.*'
+        '.eslintrc.{js,jsx,ts,tsx}',
+        '**/*.config.{js,jsx,ts,tsx}',
+        '**/config/*.{js,jsx,ts,tsx}',
+        '**/build-scripts/*.{js,jsx,ts,tsx}',
+        '**/test-utils.{js,jsx,ts,tsx}'
       ],
       env: {
         node: true
       },
       rules: {
-        'import/no-extraneous-dependencies': [
-          'error',
-          {
-            devDependencies: true
-          }
-        ],
         '@typescript-eslint/no-var-requires': 0
       }
     },
@@ -132,24 +120,13 @@ module.exports = {
       extends: ['plugin:cypress/recommended', ...exts]
     },
     {
-      files: ['*.specs.*', '**/test-utils.*'],
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true
-        },
-        ecmaVersion: 'latest',
-        project: [path.join(__dirname, 'config', 'test-tsconfig.json')]
-      },
+      files: ['**/*.specs.{js,jsx,ts,tsx}', '**/test-utils.{js,jsx,ts,tsx}'],
       env: {
         es2021: true,
         jest: true,
         browser: true
       },
-      extends: [
-        ...exts,
-        'plugin:jest/recommended',
-        'plugin:testing-library/react'
-      ],
+      extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
       rules: {
         'testing-library/prefer-screen-queries': 'warn',
         'testing-library/no-node-access': 'warn',

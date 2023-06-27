@@ -1,14 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import type * as CSS from 'csstype';
 import styled from 'styled-components';
-import tinycolor from 'tinycolor2';
-import ButtonBase, {
-  propTypes as basePropTypes,
-  defaultProps as baseDefaultProps
-} from './ButtonBase';
+import tinycolor, { ColorInput } from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
+import Button, { ButtonProps } from './Button';
+import ButtonBase from './ButtonBase';
+import { ButtonSize } from 'es-components-shared-types';
 
-const StyledButton = styled(ButtonBase)`
+type OutlineButtonColors = {
+  textColor: CSS.Property.Color;
+  bgColor: CSS.Property.BackgroundColor;
+
+  hoverTextColor: CSS.Property.Color;
+  hoverBgColor: CSS.Property.BackgroundColor;
+  hoverBorderColor: CSS.Property.BorderColor;
+
+  focusBoxShadowColor: CSS.Property.Color;
+};
+
+const StyledButton = styled(ButtonBase)<{
+  colors: OutlineButtonColors;
+  buttonSize: ButtonSize;
+  block: boolean;
+}>`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid ${props => props.colors.textColor};
   border-radius: ${props => props.buttonSize.borderRadius};
@@ -98,73 +112,81 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-const OutlineButton = React.forwardRef(function OutlineButton(props, ref) {
-  const { children, styleType, size, block, ...other } = props;
-  const theme = useTheme();
-  const buttonSize = theme.buttonStyles.outlineButton.size[size];
-  const variant = theme.buttonStyles.outlineButton.variant[styleType];
-  const isInheritedStyle = styleType === 'inherited';
+const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  function OutlineButton(props, ref) {
+    const {
+      children,
+      styleType = 'default',
+      size = 'default',
+      block = false,
+      ...other
+    } = props;
+    const theme = useTheme();
+    const buttonSize = theme.buttonStyles.outlineButton.size[size];
+    const variant = theme.buttonStyles.outlineButton.variant[styleType];
+    const isInheritedStyle = styleType === 'inherited';
 
-  const focusBoxShadowColor = tinycolor.mix(
-    variant.bgColor,
-    theme.colors.black,
-    14
-  );
-  focusBoxShadowColor.setAlpha(0.5);
+    const focusBoxShadowColor = tinycolor.mix(
+      variant.bgColor as ColorInput,
+      theme.colors.black,
+      14
+    );
+    focusBoxShadowColor.setAlpha(0.5);
 
-  let buttonColors = {
-    textColor: 'inherited',
-    bgColor: 'inherited',
+    let buttonColors: OutlineButtonColors = {
+      textColor: 'inherited',
+      bgColor: 'inherited',
 
-    hoverTextColor: 'inherited',
-    hoverBgColor: 'inherited',
-    hoverBorderColor: 'inherited',
+      hoverTextColor: 'inherited',
+      hoverBgColor: 'inherited',
+      hoverBorderColor: 'inherited',
 
-    focusBoxShadowColor: theme.colors.gray4
-  };
-
-  if (!isInheritedStyle) {
-    buttonColors = {
-      textColor: variant.bgColor,
-      bgColor: theme.colors.white,
-
-      hoverTextColor: variant?.hoverColor || theme.colors.white,
-      hoverBgColor: variant?.hoverBgColor || variant.bgColor,
-      hoverBorderColor: variant?.hoverColor || variant?.bgColor,
-
-      focusBoxShadowColor: focusBoxShadowColor.toRgbString()
+      focusBoxShadowColor: theme.colors.gray4
     };
+
+    if (!isInheritedStyle) {
+      buttonColors = {
+        textColor: variant.bgColor as CSS.Property.Color,
+        bgColor: theme.colors.white,
+
+        hoverTextColor: variant?.hoverColor || theme.colors.white,
+        hoverBgColor:
+          variant?.hoverBgColor ||
+          (variant.bgColor as CSS.Property.BackgroundColor),
+        hoverBorderColor:
+          variant?.hoverColor || (variant?.bgColor as CSS.Property.BorderColor),
+
+        focusBoxShadowColor: focusBoxShadowColor.toRgbString()
+      };
+    }
+
+    return (
+      <StyledButton
+        ref={ref}
+        block={block}
+        buttonSize={buttonSize}
+        colors={buttonColors}
+        type="button"
+        {...other}
+      >
+        {children}
+      </StyledButton>
+    );
   }
+);
 
-  return (
-    <StyledButton
-      ref={ref}
-      block={block}
-      buttonSize={buttonSize}
-      colors={buttonColors}
-      type="button"
-      {...other}
-    >
-      {children}
-    </StyledButton>
-  );
-});
-
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 export const propTypes = {
-  ...basePropTypes,
-  children: PropTypes.node.isRequired,
+  ...Button.propTypes,
   /** Select the color style of the button, types come from theme buttonStyles.outlineButton */
-  styleType: PropTypes.string,
-  size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
+  styleType: Button.propTypes!.styleType,
   /** Make the button's width the size of it's parent container */
-  block: PropTypes.bool
+  block: Button.propTypes!.block
 };
+/* eslint-enable @typescript-eslint/no-non-null-assertion */
 
 export const defaultProps = {
-  ...baseDefaultProps,
-  styleType: 'default',
-  block: false,
-  size: 'default'
+  ...Button.defaultProps
 };
 
 OutlineButton.propTypes = propTypes;

@@ -360,7 +360,9 @@ const theme: ESTheme = {
         danger: {
           bgColor: danger,
         },
-        inherited: {},
+        inherited: {
+          bgColor: 'inherit',
+        },
         magenta: {
           bgColor: primary3,
         },
@@ -444,7 +446,9 @@ const theme: ESTheme = {
         violet: {
           bgColor: primary1,
         },
-        inherited: {},
+        inherited: {
+          bgColor: 'inherit',
+        },
       },
       size: {
         lg: {

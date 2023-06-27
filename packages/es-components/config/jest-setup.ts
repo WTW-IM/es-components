@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom';
+
 beforeEach(() => {
   Object.defineProperty(global, 'ResizeObserver', {
     writable: true,

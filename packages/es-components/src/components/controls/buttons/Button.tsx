@@ -1,15 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
 import ButtonBase, {
   propTypes as buttonBasePropTypes,
-  defaultProps as buttonBaseDefaultProps
+  defaultProps as buttonBaseDefaultProps,
+  ButtonBaseProps
 } from './ButtonBase';
+import type * as CSS from 'csstype';
+import {
+  ButtonVariant,
+  ButtonVariantStyleType,
+  ButtonSizePropNames,
+  ButtonSize,
+  buttonVariantStyleTypes,
+  buttonSizePropNames
+} from 'es-components-shared-types';
 
-const StyledButton = styled(ButtonBase)`
+type BorderRadii = {
+  [key in
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomRight'
+    | 'bottomLeft']: CSS.Property.BorderRadius;
+};
+
+const StyledButton = styled(ButtonBase)<{
+  colors: ButtonColors;
+  borderRadii: BorderRadii;
+  mobileBlock: boolean;
+  block: boolean;
+  buttonSize: ButtonSize;
+}>`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid transparent;
   border-color: ${props => props.colors.bgColor};
@@ -62,7 +86,7 @@ const StyledButton = styled(ButtonBase)`
   &:focus {
     color: ${props => props.colors.hoverTextColor};
     background-color: ${props => props.colors.hoverBgColor};
-    border: 1px solid;
+    border: 2px solid;
     border-color: ${props => props.colors.hoverBorderColor};
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075),
       0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
@@ -109,83 +133,125 @@ const StyledButton = styled(ButtonBase)`
   }
 `;
 
-const Button = React.forwardRef(function Button(
+const buttonColorProps = [
+  'bgColor',
+  'textColor',
+  'borderColor',
+  'hoverBgColor',
+  'focusBoxShadowColor',
+  'activeBgColor',
+  'activeTextColor',
+  'activeBorderColor',
+  'hoverTextColor',
+  'hoverBorderColor'
+] as const;
+export type ButtonColorProps = (typeof buttonColorProps)[number];
+
+export type ButtonColors = {
+  [key in ButtonColorProps]: CSS.Property.Color;
+};
+
+type GuaranteedButtonVariant = Omit<ButtonVariant, 'bgColor'> & {
+  bgColor: NonNullable<CSS.Property.BackgroundColor>;
+};
+
+function getButtonColors<T extends boolean>(
+  theme: DefaultTheme,
+  isInheritedStyle: T,
+  buttonVariant?: T extends false ? GuaranteedButtonVariant : undefined
+): ButtonColors {
+  const baseButtonColors: ButtonColors = {
+    bgColor: 'inherited',
+    textColor: 'inherited',
+    borderColor: 'inherited',
+    hoverBgColor: 'inherited',
+    focusBoxShadowColor: theme.colors.gray4,
+    activeBgColor: 'inherited',
+    activeTextColor: 'inherited',
+    activeBorderColor: 'inherited',
+    hoverTextColor: 'inherited',
+    hoverBorderColor: 'inherited'
+  };
+
+  if (isInheritedStyle) {
+    return baseButtonColors;
+  }
+
+  const variant = buttonVariant as GuaranteedButtonVariant;
+
+  const focusBoxShadowColor = tinycolor
+    .mix(variant.bgColor, theme.colors.black, 14)
+    .setAlpha(0.5);
+
+  const calculatedButtonColors: ButtonColors = {
+    ...baseButtonColors,
+    bgColor: variant.bgColor || baseButtonColors.bgColor,
+    textColor: getTextColor(variant.bgColor) as CSS.Property.Color,
+    borderColor: variant.bgColor,
+    hoverBgColor: darken(variant.bgColor, 7.5),
+    hoverBorderColor: darken(variant.bgColor, 9.9),
+    focusBoxShadowColor: focusBoxShadowColor.toRgbString()
+  };
+
+  calculatedButtonColors.activeBgColor = darken(
+    calculatedButtonColors.hoverBgColor,
+    2.5
+  );
+  calculatedButtonColors.activeTextColor = getTextColor(
+    calculatedButtonColors.activeBgColor
+  ) as CSS.Property.Color;
+  calculatedButtonColors.activeBorderColor = darken(
+    calculatedButtonColors.hoverBgColor,
+    5
+  );
+  calculatedButtonColors.hoverTextColor = getTextColor(
+    calculatedButtonColors.hoverBgColor
+  ) as CSS.Property.Color;
+
+  return calculatedButtonColors;
+}
+
+type ButtonStyleType = ButtonVariantStyleType | 'inherited';
+export type ButtonProps = ButtonBaseProps & {
+  size?: ButtonSizePropNames;
+  styleType?: ButtonStyleType;
+  mobileBlock?: boolean;
+  flatLeftEdge?: boolean;
+  flatRightEdge?: boolean;
+  block?: boolean;
+};
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     children,
-    styleType,
-    size,
-    block,
-    mobileBlock,
-    flatLeftEdge,
-    flatRightEdge,
+    styleType = 'default',
+    size = 'default',
+    block = false,
+    mobileBlock = false,
+    flatLeftEdge = false,
+    flatRightEdge = false,
     ...other
   },
   ref
 ) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
-  const variant = theme.buttonStyles.button.variant[styleType];
+  const variant = theme.buttonStyles.button.variant[
+    styleType
+  ] as GuaranteedButtonVariant;
   const isInheritedStyle = styleType === 'inherited';
   const mobileBlockSetting =
     flatLeftEdge || flatRightEdge ? false : mobileBlock;
 
   const defaultRadius = buttonSize.borderRadius;
-  const borderRadii = {
+  const borderRadii: BorderRadii = {
     topLeft: flatLeftEdge ? 0 : defaultRadius,
     topRight: flatRightEdge ? 0 : defaultRadius,
     bottomRight: flatRightEdge ? 0 : defaultRadius,
     bottomLeft: flatLeftEdge ? 0 : defaultRadius
   };
 
-  function getButtonColors() {
-    if (isInheritedStyle) {
-      return {
-        bgColor: 'inherited',
-        textColor: 'inherited',
-        borderColor: 'inherited',
-        hoverBgColor: 'inherited',
-        focusBoxShadowColor: theme.colors.gray4,
-        activeBgColor: 'inherited',
-        activeTextColor: 'inherited',
-        activeBorderColor: 'inherited',
-        hoverTextColor: 'inherited'
-      };
-    }
-
-    const focusBoxShadowColor = tinycolor.mix(
-      variant.bgColor,
-      theme.colors.black,
-      14
-    );
-    focusBoxShadowColor.setAlpha(0.5);
-
-    const calculatedButtonColors = {
-      bgColor: variant.bgColor,
-      textColor: getTextColor(variant.bgColor),
-      borderColor: variant.bgColor,
-      hoverBgColor: darken(variant.bgColor, 7.5),
-      hoverBorderColor: darken(variant.bgColor, 9.9),
-      focusBoxShadowColor: focusBoxShadowColor.toRgbString()
-    };
-    calculatedButtonColors.activeBgColor = darken(
-      calculatedButtonColors.hoverBgColor,
-      2.5
-    );
-    calculatedButtonColors.activeTextColor = getTextColor(
-      calculatedButtonColors.activeBgColor
-    );
-    calculatedButtonColors.activeBorderColor = darken(
-      calculatedButtonColors.hoverBgColor,
-      5
-    );
-    calculatedButtonColors.hoverTextColor = getTextColor(
-      calculatedButtonColors.hoverBgColor
-    );
-
-    return calculatedButtonColors;
-  }
-
-  const buttonColors = getButtonColors();
+  const buttonColors = getButtonColors(theme, isInheritedStyle, variant);
 
   return (
     <StyledButton
@@ -208,8 +274,11 @@ export const propTypes = {
   waiting: PropTypes.bool,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
-  styleType: PropTypes.string,
-  size: PropTypes.oneOf(['lg', 'default', 'sm', 'xs']),
+  styleType: PropTypes.oneOf<ButtonStyleType>([
+    ...buttonVariantStyleTypes,
+    'inherited'
+  ]),
+  size: PropTypes.oneOf(buttonSizePropNames),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,
   /** Override the default block mobile style */
@@ -223,10 +292,10 @@ export const propTypes = {
 export const defaultProps = {
   ...buttonBaseDefaultProps,
   waiting: false,
-  styleType: 'default',
+  styleType: 'default' as ButtonVariantStyleType,
   block: false,
   mobileBlock: true,
-  size: 'default',
+  size: 'default' as ButtonSizePropNames,
   flatLeftEdge: false,
   flatRightEdge: false
 };

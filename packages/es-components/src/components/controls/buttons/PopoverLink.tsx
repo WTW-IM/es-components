@@ -39,7 +39,7 @@ const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
         suppressUnderline={suppressUnderline}
         {...other}
       >
-        {children}
+        {children || ''}
       </StyledButton>
     );
   }

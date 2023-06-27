@@ -31,7 +31,7 @@
       "prettier --single-quote --write"
     ],
     "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config packages/es-components/.eslintrc.js"
+      "eslint --fix --config packages/es-components/.eslintrc.js --cache"
     ]
   },
   "devDependencies": {
@@ -41,9 +41,12 @@
     "@commitlint/prompt-cli": "^17.3.0",
     "@testing-library/react": "^13.4.0",
     "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
     "commitlint": "^17.3.0",
     "conventional-changelog": "^3.1.25",
     "data-uri-to-buffer": "^5.0.1",
+    "eslint": "^8.43.0",
     "fd-slicer": "^1.1.0",
     "formdata-polyfill": "^4.0.10",
     "husky": "^8.0.2",

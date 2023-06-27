@@ -17,7 +17,10 @@
     "declarationMap": true,
     "jsx": "react",
     "noImplicitAny": true,
-    "rootDir": "."
+    "rootDir": ".",
+    "paths": {
+      "es-components-shared-types": ["./shared/types/src/index.ts"]
+    }
   },
   "references": [
     {

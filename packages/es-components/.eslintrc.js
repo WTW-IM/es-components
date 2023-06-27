@@ -79,6 +79,7 @@ module.exports = {
       {
         devDependencies: [
           '**/config/*.{js,jsx,ts,tsx}',
+          '**/*.config.{js,jsx,ts,tsx}',
           '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.{js,jsx,ts,tsx}',
           '**/styleguide/*.{js,jsx,ts,tsx}',

@@ -64,7 +64,7 @@ export interface TextColorButtonVariant extends ButtonVariant {
 export type ButtonVariants<T extends ButtonVariant> = {
   [key in ButtonVariantStyleType]: T;
 } & {
-  inherited: ButtonVariant;
+  inherited: T;
 };
 
 export type ButtonStyles<T extends ButtonVariant> = {

@@ -7,7 +7,7 @@ const Label = styled.label`
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props =>
     getStyledProp('font.labelFontSize')(props) ||
-    getStyledProp('font.baseFontSize')(props)}
+    getStyledProp('font.baseFontSize')(props)};
   font-weight: ${props =>
     getStyledProp('font.labelFontWeight')(props) || 'bold'};
   line-height: ${getStyledProp('font.baseLineHeight')};

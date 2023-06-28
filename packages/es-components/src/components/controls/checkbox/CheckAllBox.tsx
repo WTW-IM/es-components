@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { CheckboxLabel, CheckboxDisplay, CheckboxInput } from './Checkbox';
+import styled, { css } from 'styled-components';
+import {
+  CheckboxLabel,
+  CheckboxDisplay,
+  CheckboxInput,
+  CheckboxProps
+} from './Checkbox';
 import ValidationContext from '../ValidationContext';
 
-const Label = styled(CheckboxLabel)`
+type CheckAllBoxProps = CheckboxProps & {
+  textOnHover?: boolean;
+};
+
+const Label = styled(CheckboxLabel)<CheckAllBoxProps>`
   font-weight: bold;
   margin-bottom: 10px;
   padding: 10px 0 10px 62px;
@@ -16,15 +25,15 @@ const Label = styled(CheckboxLabel)`
 
   ${({ textOnHover }) =>
     textOnHover &&
-    `
-    &:hover {
-      .es-checkbox__text {
-        opacity: 1;
-        transition: visibility 0s linear 10ms, opacity 10ms;
-        visibility: visible;
+    css`
+      &:hover {
+        ${Text} {
+          opacity: 1;
+          transition: visibility 0s linear 10ms, opacity 10ms;
+          visibility: visible;
+        }
       }
-    }
-  `}
+    `}
 `;
 
 const Well = styled.div`
@@ -52,19 +61,19 @@ const Display = styled(CheckboxDisplay)`
   }
 `;
 
-const Text = styled.span`
+const Text = styled.span<CheckAllBoxProps>`
   ${({ textOnHover, theme }) =>
     textOnHover &&
-    `
-    @media (min-width: ${theme.screenSize.tablet}) {
-      opacity: 0;
-      transition: visibility 0s linear 500ms, opacity 500ms;
-      visibility: hidden;
-    }
-  `}
+    css`
+      @media (min-width: ${theme.screenSize.tablet}) {
+        opacity: 0;
+        transition: visibility 0s linear 500ms, opacity 500ms;
+        visibility: hidden;
+      }
+    `}
 `;
 
-function CheckAllBox({ children, ...checkboxProps }) {
+function CheckAllBox({ children, ...checkboxProps }: CheckAllBoxProps) {
   const validationState = React.useContext(ValidationContext);
 
   return (
@@ -72,6 +81,7 @@ function CheckAllBox({ children, ...checkboxProps }) {
       validationState={validationState}
       checked={checkboxProps.checked}
       disabled={checkboxProps.disabled}
+      textOnHover={checkboxProps.textOnHover}
     >
       <Well>
         <CheckboxInput type="checkbox" {...checkboxProps} />

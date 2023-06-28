@@ -1,4 +1,5 @@
 .npmrc
+.eslintcache
 lib/
 es6/
 cjs/

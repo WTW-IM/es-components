@@ -1,7 +1,4 @@
 import * as CSS from 'csstype';
-export { iconNames } from './IconNames';
-export type { IconName } from './IconNames';
-
 import { IconName } from './IconNames';
 
 export const buttonSizePropNames = ['lg', 'sm', 'xs', 'default'] as const;
@@ -197,6 +194,28 @@ export default interface ESTheme {
   validationIconName: {
     [key in ValidationStyleType]: IconName;
   };
+
+  validationTextColor: {
+    [key in ValidationStyleType]: CSS.Property.Color;
+  };
+
+  validationInputColor: {
+    [key in ValidationStyleType]: {
+      backgroundColor: CSS.Property.BackgroundColor;
+      backgroundColorFlat: CSS.Property.BackgroundColor;
+      borderColor: CSS.Property.BorderColor;
+      boxShadow: CSS.Property.BoxShadow;
+      focusBorderColor: CSS.Property.BorderColor;
+      focusBoxShadow: CSS.Property.BoxShadow;
+      focusBoxShadowFlat: CSS.Property.BoxShadow;
+      addOn: {
+        textColor: CSS.Property.Color;
+        backgroundColor: CSS.Property.BackgroundColor;
+        borderColor?: CSS.Property.BorderColor;
+      };
+    };
+  };
+
   notificationStyles: NotificationStyles;
 
   buttonStyles: {

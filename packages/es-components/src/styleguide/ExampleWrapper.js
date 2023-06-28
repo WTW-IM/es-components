@@ -26,20 +26,35 @@ const SwitchContainer = styled.div`
   box-shadow: 0 1px 2px 0 ${props => props.theme.colors.gray5};
   margin-bottom: 2em;
 
-  div[type='primary'] {
+  div.theme-switch {
     margin: 0;
 
-    span[type='primary'][direction='left'] {
-      color: ${props => props.theme.colors.gray9};
+    .es-switch__display {
+      top: -3px;
     }
 
-    span[type='primary']:not([direction='left']) {
-      top: -3px;
-      &:before {
-        background-color: ${({ theme: { brandColors, themeName } }) =>
-          themeName === 'via-theme'
-            ? brandColors.primary1
-            : brandColors.primary3};
+    &.toggled-off {
+      .es-switch__on-text {
+        color: ${props => props.theme.colors.gray9};
+      }
+
+      .es-switch__display {
+        &:before {
+          background-color: ${({ theme: { brandColors } }) =>
+            brandColors.primary1};
+        }
+      }
+    }
+
+    &.toggled-on {
+      .es-switch__off-text {
+        color: ${props => props.theme.colors.gray9};
+      }
+      .es-switch__display {
+        &:before {
+          background-color: ${({ theme: { brandColors } }) =>
+            brandColors.primary3};
+        }
       }
     }
   }
@@ -74,6 +89,7 @@ export default function ExampleWrapper({ children }) {
       <ExampleContainer>
         <SwitchContainer>
           <Switch
+            className="theme-switch"
             direction="left"
             offText={<ViaLabel>via-theme</ViaLabel>}
             onText={<WtwLabel>wtw-theme</WtwLabel>}

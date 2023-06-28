@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
 import Icon from '../base/icons/Icon';
+import { ValidationStyleType } from 'es-components-shared-types';
+
+export type AdditionalHelpProps = JSXElementProps<'div'> & {
+  hasValidationIcon: boolean;
+};
 
 const ValidationIcon = styled(Icon)`
   align-self: flex-start;
@@ -21,9 +26,15 @@ const HelpText = styled.div`
   width: 100%;
 `;
 
-function AdditionalHelp({ children, hasValidationIcon, ...props }) {
+function AdditionalHelp({
+  children,
+  hasValidationIcon,
+  ...props
+}: AdditionalHelpProps) {
   const theme = useTheme();
-  const validationState = React.useContext(ValidationContext);
+  const validationState = React.useContext(
+    ValidationContext
+  ) as ValidationStyleType;
 
   return (
     <HelpText {...props}>

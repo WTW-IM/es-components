@@ -15,5 +15,11 @@ ThemeComponent.propTypes = {
 };
 
 export function renderWithTheme<T extends React.ReactNode>(component: T) {
-  return render(<ThemeComponent>{component}</ThemeComponent>);
+  // eslint-disable-next-line testing-library/render-result-naming-convention
+  const renderObj = render(<ThemeComponent>{component}</ThemeComponent>);
+  return {
+    ...renderObj,
+    rerender: (rerenderComponent: T) =>
+      renderObj.rerender(<ThemeComponent>{rerenderComponent}</ThemeComponent>)
+  };
 }

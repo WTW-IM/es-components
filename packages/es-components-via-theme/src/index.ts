@@ -548,6 +548,8 @@ const theme: ESTheme = {
     success: success,
     warning: warning,
     danger: danger,
+    info: gray9,
+    advisor: gray9,
     default: gray9,
   },
   validationInputColor: {
@@ -588,6 +590,32 @@ const theme: ESTheme = {
       addOn: {
         textColor: white,
         backgroundColor: danger,
+      },
+    },
+    info: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
+      borderColor: gray5,
+      boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
+      focusBorderColor: inputFocus,
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
+      addOn: {
+        textColor: gray8,
+        backgroundColor: gray3,
+      },
+    },
+    advisor: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
+      borderColor: gray5,
+      boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
+      focusBorderColor: inputFocus,
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
+      addOn: {
+        textColor: gray8,
+        backgroundColor: gray3,
       },
     },
     default: {

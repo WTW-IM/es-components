@@ -566,6 +566,8 @@ const theme: ESTheme = {
     success: success,
     warning: warning,
     danger: danger,
+    info: gray3,
+    advisor: gray3,
     default: gray3,
   },
   validationInputColor: {
@@ -609,6 +611,34 @@ const theme: ESTheme = {
         textColor: white,
         backgroundColor: danger,
         borderColor: danger,
+      },
+    },
+    info: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
+      borderColor: gray4,
+      boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
+      focusBorderColor: inputFocus,
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
+      addOn: {
+        textColor: gray8,
+        backgroundColor: gray3,
+        borderColor: gray4,
+      },
+    },
+    advisor: {
+      backgroundColor: white,
+      backgroundColorFlat: gray1,
+      borderColor: gray4,
+      boxShadow: 'inset 0 1px 1px ' + boxShadowLight,
+      focusBorderColor: inputFocus,
+      focusBoxShadow: '0 0 8px rgba(102, 175, 233, 0.6)',
+      focusBoxShadowFlat: '0 0 1px 2px rgba(102, 175, 233, 0.6)',
+      addOn: {
+        textColor: gray8,
+        backgroundColor: gray3,
+        borderColor: gray4,
       },
     },
     default: {

@@ -2,6 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
 
+type RadioGroupProps = JSXElementProps<'input'> & {
+  name: string;
+  disableAllOptions: boolean;
+  selectedValue: string | number;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+interface ChildProps {
+  props: {
+    disabled: boolean;
+    value: string | number;
+  };
+}
+
 function RadioGroup({
   name,
   disableAllOptions,
@@ -9,11 +23,14 @@ function RadioGroup({
   children,
   onChange,
   ...rest
-}) {
+}: RadioGroupProps) {
   return React.Children.map(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
     const key = `${name}-option-${index + 1}`;
-    const disabled = disableAllOptions || child.props.disabled;
-    const checked = selectedValue === child.props.value;
+    const disabled = disableAllOptions || (child as ChildProps).props.disabled;
+    const checked = selectedValue === (child as ChildProps).props.value;
     return React.cloneElement(child, {
       key,
       name,
@@ -21,7 +38,7 @@ function RadioGroup({
       checked,
       onChange,
       ...rest
-    });
+    } as React.HTMLAttributes<HTMLInputElement>);
   });
 }
 

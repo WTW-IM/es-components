@@ -2,8 +2,17 @@ import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import isBool from '../../util/isBool';
 import { useTheme } from '../../util/useTheme';
+import { FormStyle } from 'es-components-shared-types';
 
-export default function Form({ flat, ...otherProps }) {
+export type FormContextShape = {
+  [key in FormStyle]?: boolean;
+};
+
+export type FormProps = JSXElementProps<'form'> & {
+  flat?: boolean;
+};
+
+export default function Form({ flat, ...otherProps }: FormProps) {
   return (
     <FormContextProvider value={isBool(flat) ? { flat } : {}}>
       <form {...otherProps} />
@@ -11,18 +20,25 @@ export default function Form({ flat, ...otherProps }) {
   );
 }
 
-export const FormContext = createContext({});
+export const FormContext = createContext<FormContextShape>({});
 
-export const FormContextProvider = ({ value, ...props }) => {
+export const FormContextProvider = ({
+  value,
+  ...props
+}: React.ProviderProps<FormContextShape>) => {
   const { inputStyles = {} } = useTheme();
-  const { defaultFormStyle } = inputStyles;
+  const { defaultFormStyle } = inputStyles as { defaultFormStyle?: FormStyle };
   const parentFormContext = useContext(FormContext);
-  const newContext = { ...parentFormContext, ...(value || {}) };
+  const newContext: FormContextShape = {
+    ...parentFormContext,
+    ...(value || {})
+  };
 
   if (defaultFormStyle) {
-    newContext[defaultFormStyle] = isBool(newContext[defaultFormStyle])
+    const newDefaultValue = isBool(newContext[defaultFormStyle])
       ? newContext[defaultFormStyle]
       : true;
+    newContext[defaultFormStyle] = newDefaultValue;
   }
 
   return (

@@ -43,6 +43,12 @@ export const validationStyleTypes = [
 ] as const;
 export type ValidationStyleType = (typeof validationStyleTypes)[number];
 
+export interface ValidationAddOn {
+  textColor: CSS.Property.Color;
+  backgroundColor: CSS.Property.BackgroundColor;
+  borderColor?: CSS.Property.BorderColor;
+}
+
 export interface ButtonVariant {
   bgColor?: CSS.Property.BackgroundColor;
   textColor?: CSS.Property.Color;
@@ -171,6 +177,19 @@ export const screenSizeNames = [
 
 export type ScreenSizeName = (typeof screenSizeNames)[number];
 
+export type FormStyle = 'default' | 'flat';
+
+export type ValidationInputColor = {
+  backgroundColor: CSS.Property.BackgroundColor;
+  backgroundColorFlat: CSS.Property.BackgroundColor;
+  borderColor: CSS.Property.BorderColor;
+  boxShadow: CSS.Property.BoxShadow;
+  focusBorderColor: CSS.Property.BorderColor;
+  focusBoxShadow: CSS.Property.BoxShadow;
+  focusBoxShadowFlat: CSS.Property.BoxShadow;
+  addOn: ValidationAddOn;
+};
+
 export default interface ESTheme {
   [key: string]: any;
 
@@ -200,20 +219,7 @@ export default interface ESTheme {
   };
 
   validationInputColor: {
-    [key in ValidationStyleType]: {
-      backgroundColor: CSS.Property.BackgroundColor;
-      backgroundColorFlat: CSS.Property.BackgroundColor;
-      borderColor: CSS.Property.BorderColor;
-      boxShadow: CSS.Property.BoxShadow;
-      focusBorderColor: CSS.Property.BorderColor;
-      focusBoxShadow: CSS.Property.BoxShadow;
-      focusBoxShadowFlat: CSS.Property.BoxShadow;
-      addOn: {
-        textColor: CSS.Property.Color;
-        backgroundColor: CSS.Property.BackgroundColor;
-        borderColor?: CSS.Property.BorderColor;
-      };
-    };
+    [key in ValidationStyleType]: ValidationInputColor;
   };
 
   notificationStyles: NotificationStyles;
@@ -222,5 +228,13 @@ export default interface ESTheme {
     button: ButtonStyles<BGColorButtonVariant>;
     outlineButton: ButtonStyles<BGColorButtonVariant>;
     linkButton: ButtonStyles<TextColorButtonVariant>;
+  };
+
+  inputStyles: {
+    borderRadius: CSS.Property.BorderRadius;
+    defaultFormStyle: FormStyle;
+    dropdownArrow: CSS.Property.BackgroundImage;
+    inputHeight: CSS.Property.Height;
+    dropdownLineHeight: CSS.Property.LineHeight;
   };
 }

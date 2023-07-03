@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import type * as CSS from 'csstype';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
 import { IconName, iconNames } from 'es-components-shared-types';
@@ -15,25 +16,30 @@ export const iconBasics = css`
   -moz-osx-font-smoothing: grayscale;
 `;
 
-export const iconBaseStyles = css<{ size: string | number }>`
+export type IconBaseProps = {
+  size?: CSS.Property.FontSize;
+};
+
+export const iconBaseStyles = css<IconBaseProps>`
   ${iconBasics}
-  display: inline-block;
-  font-size: ${props => props.size};
-  text-decoration: none;
-  vertical-align: text-bottom;
+  ${({ size }) => css`
+    display: inline-block;
+    font-size: ${size || 'inherit'};
+    text-decoration: none;
+    vertical-align: text-bottom;
+  `}
 `;
 
-export interface IconProps {
-  name?: IconName;
-  size?: string | number;
-  className?: string;
-  iconColor?: string;
-  alwaysShowIcon?: boolean;
-}
-
-const StyledIcon = styled.i<{ size: string | number }>`
+const StyledIcon = styled.i<IconBaseProps>`
   ${iconBaseStyles}
 `;
+
+export type IconProps = Omit<JSXElementProps<'i'>, 'size'> & {
+  name?: IconName;
+  size?: CSS.Property.FontSize | number;
+  iconColor?: string;
+  alwaysShowIcon?: boolean;
+};
 
 const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
   { name, size, className, ...other },

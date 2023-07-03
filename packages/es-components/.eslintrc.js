@@ -57,6 +57,10 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-unused-vars': ['warn'],
+    '@typescript-eslint/restrict-template-expressions': [
+      'error',
+      { allowNumber: true, allowBoolean: true, allowNullish: true }
+    ],
     'no-undefined': 'off', // typescript handles this
     'max-len': 0,
     'jsx-a11y/img-uses-alt': 0,
@@ -79,7 +83,7 @@ module.exports = {
       {
         devDependencies: [
           '**/config/*.{js,jsx,ts,tsx}',
-          '**/*.config.{js,jsx,ts,tsx}',
+          '**/*.config.{js,jsx,mjs,ts,tsx}',
           '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.{js,jsx,ts,tsx}',
           '**/styleguide/*.{js,jsx,ts,tsx}',

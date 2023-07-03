@@ -22,7 +22,7 @@ const generateConfig = (rootDir = esComponentsRoot) => ({
   },
   moduleNameMapper: {
     '^es-components-via-theme$': `${rootDir}/../es-components-via-theme/src/index.ts`,
-    '^es-components-shared-types$': `${rootDir}/../../shared/types/src/ESTheme.ts`,
+    '^es-components-shared-types$': `${rootDir}/../../shared/types/src/index.ts`,
   },
   preset: 'ts-jest',
 });

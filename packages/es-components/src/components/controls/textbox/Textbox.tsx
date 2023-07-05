@@ -1,6 +1,12 @@
-import React, { useCallback, useImperativeHandle, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { IconName, iconNames } from 'es-components-shared-types';
 import getStyledProp, { ESThemeProps } from '../../util/getStyledProp';
 import Icon, { iconBaseStyles, IconBaseProps } from '../../base/icons/Icon';
 import InputBase, {
@@ -14,7 +20,7 @@ import InputBase, {
   defaultProps as baseDefaultProps,
   ValidationStyleProps
 } from './InputBase';
-import { IconName, iconNames } from 'es-components-shared-types';
+import { callRefs } from '../../util/callRef';
 
 type GetComputedStyleFunc = typeof window.getComputedStyle;
 type ComputedStyleParams = Parameters<GetComputedStyleFunc>;
@@ -157,7 +163,7 @@ export interface TextboxProps extends JSXElementProps<'input'> {
 }
 
 const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
-  function Textbox(props, ref) {
+  function ForwardedTextbox(props, ref) {
     const {
       prependIconName,
       appendIconName,
@@ -175,6 +181,13 @@ const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
     const [appendIcon, setAppendIcon] = useState<Maybe<HTMLElement>>();
 
     useImperativeHandle(ref, () => inputRef || undefined, [inputRef]);
+
+    const setRefs = useCallback(
+      (instance: Maybe<HTMLInputElement>) => {
+        callRefs(instance, setInputRef, ref);
+      },
+      [ref]
+    );
 
     const hasPrepend = !!prependIconName;
     const hasAppend = !!appendIconName;
@@ -204,7 +217,7 @@ const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
           <></>
         )}
         <TextboxBase
-          ref={setInputRef}
+          ref={setRefs}
           type={type}
           className={className}
           {...additionalTextProps}

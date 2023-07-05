@@ -8,6 +8,16 @@ declare global {
     ? React.PropsWithoutRef<JSX.IntrinsicElements[T]>
     : never;
   type Theme = ESTheme;
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  type StyledComponentElementProps<T> = JSXElementProps<T> & {
+    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    forwardedAs?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+  };
+  /* eslint-enable @typescript-eslint/no-explicit-any */
+
+  type Override<T, U> = Omit<T, keyof U> & U;
+
   const ASSETS_PATH: string;
 }
 

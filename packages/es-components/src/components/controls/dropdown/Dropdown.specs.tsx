@@ -3,37 +3,47 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import viaTheme from 'es-components-via-theme';
 
-import Dropdown from './Dropdown';
+import Dropdown, { DropdownProps } from './Dropdown';
 import { renderWithTheme } from '../../util/test-utils';
 
-test.each([
+type TestProps = Partial<DropdownProps> & {
+  selectedOption?: Maybe<string>;
+  hasPlaceholderStyle: boolean;
+};
+
+test.each<TestProps>([
   {
-    selectedOption: null,
-    value: null,
-    defaultValue: null,
+    selectedOption: undefined,
+    value: undefined,
+    defaultValue: undefined,
     hasPlaceholderStyle: true
   },
   {
-    selectedOption: null,
+    selectedOption: undefined,
     value: 'option 2',
-    defaultValue: null,
+    defaultValue: undefined,
     hasPlaceholderStyle: false
   },
   {
     selectedOption: 'option 1',
-    value: null,
-    defaultValue: null,
+    value: undefined,
+    defaultValue: undefined,
     hasPlaceholderStyle: false
   },
   {
-    selectedOption: null,
-    value: null,
+    selectedOption: undefined,
+    value: undefined,
     defaultValue: 'option 2',
     hasPlaceholderStyle: false
   }
 ])(
   'renders a dropdown button with appropriate color style',
-  async ({ selectedOption, defaultValue, value, hasPlaceholderStyle }) => {
+  async ({
+    selectedOption,
+    defaultValue,
+    value,
+    hasPlaceholderStyle
+  }: TestProps) => {
     const valueProp = value ? { value } : {};
     const defaultValueProp = defaultValue ? { defaultValue } : {};
 

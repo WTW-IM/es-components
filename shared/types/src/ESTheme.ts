@@ -198,6 +198,7 @@ export default interface ESTheme {
   font: {
     [key: string]: string | number | object | undefined;
     baseFontSize: CSS.Property.FontSize;
+    baseFontFace: CSS.Property.FontFamily;
     baseLineHeight: CSS.Property.LineHeight;
     headingDesktop: object;
     headingMobile: object;

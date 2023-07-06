@@ -7,7 +7,7 @@ import InputBase, {
   useValidationStyleProps,
   ValidationStyleProps
 } from '../textbox/InputBase';
-import callRef from '../../util/callRef';
+import { callRefs } from '../../util/callRef';
 import { arrowDown } from './assets';
 import getStyledProp, { ESThemeProps } from '../../util/getStyledProp';
 
@@ -64,10 +64,7 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
     );
 
     const inputRefCallback = useCallback(
-      (node: HTMLSelectElement | null) => {
-        setInputRef(node);
-        callRef(ref, node);
-      },
+      (node: HTMLSelectElement | null) => callRefs(node, setInputRef, ref),
       [ref]
     );
 

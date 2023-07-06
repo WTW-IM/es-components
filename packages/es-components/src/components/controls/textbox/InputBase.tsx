@@ -19,12 +19,13 @@ export type ValidationStateHighlightProps = Pick<
   'focusBorderColor' | 'focusBoxShadow'
 >;
 
+export type FlatInputProps = { flat?: boolean };
+
 export type ValidationStateInputProps = Pick<
   ValidationInputColor,
   'borderColor'
-> & {
-  flat?: boolean;
-};
+> &
+  FlatInputProps;
 
 export interface ValidationStateReadonlyProps {
   disabledBackgroundColor: CSS.Property.BackgroundColor;
@@ -136,11 +137,12 @@ InputBase.defaultProps = defaultProps;
 
 export default InputBase;
 
-export interface BasicTextboxProps
-  extends ValidationStateSetupProps,
+export interface BasicTextboxStyleProps
+  extends JSXElementProps<'input'>,
+    ValidationStateSetupProps,
     ValidationStateReadonlyProps {}
 
-export const basicTextboxStyles = css<BasicTextboxProps>`
+export const basicTextboxStyles = css<BasicTextboxStyleProps>`
   ${validationStateSetupStyles}
   ${css`
     display: table-cell;
@@ -159,12 +161,16 @@ export const BasicTextboxComponent = styled(InputBaseComponent)`
   }
 `;
 
+export type BasicTextboxProps = JSXElementProps<'input'> & FlatInputProps;
+
 export const BasicTextbox = React.forwardRef<
   HTMLInputElement,
   BasicTextboxProps
 >(function ForwardedBasicTextbox(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
-  return <BasicTextboxComponent ref={ref} {...validationStyleProps} />;
+  return (
+    <BasicTextboxComponent {...props} {...validationStyleProps} ref={ref} />
+  );
 });
 
 function getValidationStylesOrDefault(
@@ -182,9 +188,9 @@ export interface ValidationProps
   extends ValidationInputColor,
     ValidationStyleProps {}
 
-export function useValidationStyleProps(props: {
-  flat?: boolean;
-}): ValidationProps {
+export function useValidationStyleProps(
+  props: FlatInputProps
+): ValidationProps {
   const validationState = useContext(ValidationContext);
   const formContext = useContext(FormContext);
   const flat = isBool(props.flat) ? props.flat : formContext.flat;

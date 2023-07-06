@@ -8,6 +8,10 @@ declare global {
     ? React.PropsWithoutRef<JSX.IntrinsicElements[T]>
     : never;
   type Theme = ESTheme;
+  type HTMLElementProps = React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLElement>,
+    HTMLElement
+  >;
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   type StyledComponentElementProps<T> = JSXElementProps<T> & {

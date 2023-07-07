@@ -2,10 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+interface NavigationProps {
+  useAltStyle?: boolean;
+  children: React.ReactNode;
+  selected: string;
+  [others: string]: string | boolean | React.ReactNode;
+}
+
 const VerticalNavigation = styled.nav`
   background-color: ${props => props.theme.colors.white};
   box-shadow: 2px 2px 5px ${props => props.theme.colors.gray6};
-
   ul {
     list-style: none;
     margin: 0;
@@ -23,32 +29,32 @@ const HorizontalNavigation = styled.nav`
   }
 `;
 
-export function useNavigation(orientation) {
+export function useNavigation(orientation: string) {
   const OrientedNavigation =
     orientation === 'horizontal' ? HorizontalNavigation : VerticalNavigation;
 
-  function Navigation(props) {
+  function Navigation(props: NavigationProps) {
     const { useAltStyle, children } = props;
 
     const [selected, setSelected] = React.useState(props.selected);
 
-    React.useEffect(
-      () => {
-        setSelected(props.selected);
-      },
-      [props.selected]
-    );
+    React.useEffect(() => {
+      setSelected(props.selected);
+    }, [props.selected]);
+
+    const mappingFunction = (child: React.ReactNode) => {
+      if (!React.isValidElement(child)) {
+        return null;
+      }
+      return React.cloneElement(child as React.ReactElement, {
+        useAltStyle,
+        highlightedId: selected
+      });
+    };
 
     return (
       <OrientedNavigation className="es-sidenav">
-        <ul>
-          {React.Children.map(children, child =>
-            React.cloneElement(child, {
-              useAltStyle,
-              highlightedId: selected
-            })
-          )}
-        </ul>
+        <ul>{React.Children.map(children, mappingFunction)}</ul>
       </OrientedNavigation>
     );
   }

@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-export const getTriangleSvgBg = color => {
+export const getTriangleSvgBg = (color: string) => {
   const svg = `<?xml version="1.0" encoding="UTF-8"?><svg version="1.0" viewBox="0 0 351 351" xmlns="http://www.w3.org/2000/svg"><path transform="matrix(0 1 -1 0 351 0)" d="m0 0v351h351l-351-351z" fill="${color}"/></svg>`;
   return `url('data:image/svg+xml;base64,${btoa(svg)}')`;
 };

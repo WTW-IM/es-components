@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useState
-} from 'react';
+import React, { useCallback, useImperativeHandle, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { IconName, iconNames } from 'es-components-shared-types';

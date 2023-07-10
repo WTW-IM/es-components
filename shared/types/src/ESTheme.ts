@@ -190,6 +190,18 @@ export type ValidationInputColor = {
   addOn: ValidationAddOn;
 };
 
+export type DatepickerColors = {
+  dpBackground: CSS.Property.BackgroundColor;
+  navArrow: CSS.Property.BorderColor;
+  navArrowHover: CSS.Property.BorderColor;
+  selected: CSS.Property.BackgroundColor;
+  hover: CSS.Property.BackgroundColor;
+  keyboard: CSS.Property.BackgroundColor;
+  inRange: CSS.Property.BackgroundColor;
+  highlight: CSS.Property.BackgroundColor;
+  highlightHover: CSS.Property.BackgroundColor;
+};
+
 export default interface ESTheme {
   [key: string]: any;
 
@@ -238,4 +250,6 @@ export default interface ESTheme {
     inputHeight: CSS.Property.Height;
     dropdownLineHeight: CSS.Property.LineHeight;
   };
+
+  datepickerColors: DatepickerColors;
 }

@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import type * as CSS from 'csstype';
+import { IconName, iconNames } from 'es-components-shared-types';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
-import { IconName, iconNames } from 'es-components-shared-types';
+import { htmlProps, htmlDefaultProps } from '../../util/htmlProps';
 
 export const iconBasics = css`
   font-style: normal;
@@ -67,9 +68,9 @@ const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
 });
 
 export const propTypes = {
-  ...StyledIcon.propTypes,
+  ...htmlProps,
   /** Name of the icon to display */
-  name: PropTypes.oneOf(iconNames),
+  name: PropTypes.oneOf<IconName>([...iconNames]),
   /** Specify icon size in pixels */
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Additional classes to include */
@@ -77,6 +78,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  ...htmlDefaultProps,
   size: undefined,
   className: undefined
 };

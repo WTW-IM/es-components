@@ -11,10 +11,10 @@ const exts = [
   'plugin:jsx-a11y/recommended',
   'plugin:react/recommended',
   'plugin:react-hooks/recommended',
-  'plugin:@typescript-eslint/recommended',
-  'plugin:@typescript-eslint/recommended-requiring-type-checking',
   'plugin:import/recommended',
-  'plugin:import/typescript'
+  'plugin:import/typescript',
+  'plugin:@typescript-eslint/recommended',
+  'plugin:@typescript-eslint/recommended-requiring-type-checking'
 ];
 
 module.exports = {
@@ -69,7 +69,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'react/jsx-filename-extension': 0,
     'import/no-named-as-default': 0,
-    'react/forbid-prop-types': 0,
     'react/no-find-dom-node': 0,
     'react/jsx-no-bind': 0,
     'react/destructuring-assignment': 0,

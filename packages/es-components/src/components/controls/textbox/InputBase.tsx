@@ -11,6 +11,7 @@ import {
   ValidationInputColor,
   ValidationStyleType
 } from 'es-components-shared-types';
+import { htmlInputPropTypes, htmlInputDefaultProps } from './htmlInputProps';
 
 export const noInset = 'inset 0 0 0 0 rgba(0, 0, 0, 0)';
 
@@ -125,11 +126,11 @@ const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 );
 
 export const propTypes = {
-  ...(InputBaseComponent.propTypes || {})
+  ...htmlInputPropTypes
 };
 
 export const defaultProps = {
-  ...(InputBaseComponent.defaultProps || {})
+  ...htmlInputDefaultProps
 };
 
 InputBase.propTypes = propTypes;

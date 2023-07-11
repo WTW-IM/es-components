@@ -206,6 +206,13 @@ export default interface ESTheme {
   [key: string]: any;
 
   colors: Colors;
+  brandColors: {
+    primary1: CSS.Property.Color;
+    primary2: CSS.Property.Color;
+    primary3: CSS.Property.Color;
+    secondary1: CSS.Property.Color;
+    secondary2: CSS.Property.Color;
+  };
 
   font: {
     [key: string]: string | number | object | undefined;

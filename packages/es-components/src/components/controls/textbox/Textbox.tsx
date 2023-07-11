@@ -1,4 +1,10 @@
-import React, { useCallback, useImperativeHandle, useState } from 'react';
+import React, {
+  useCallback,
+  useImperativeHandle,
+  useState,
+  useEffect,
+  useMemo
+} from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { IconName, iconNames } from 'es-components-shared-types';
@@ -64,6 +70,33 @@ const getIconStyles = (icon: IconElement) => {
   `;
 };
 
+const useIconStyles = (
+  iconName: IconName | undefined,
+  icon: Maybe<IconElement>
+) => {
+  const [iconRecheck, setIconRecheck] = useState(0);
+  const iconStyles = useMemo(
+    () => (icon ? getIconStyles(icon) : css``),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [icon, iconRecheck]
+  );
+
+  useEffect(
+    function ensureIconRendered() {
+      if (!iconName || icon) {
+        return;
+      }
+
+      requestAnimationFrame(() => setIconRecheck(r => r + 1));
+    },
+    [iconName, icon]
+  );
+
+  return iconStyles;
+};
+
+type IconStyles = ReturnType<typeof useIconStyles>;
+
 export type TextboxAdditionProps = {
   hasPrepend?: boolean;
   hasAppend?: boolean;
@@ -71,8 +104,8 @@ export type TextboxAdditionProps = {
 
 export type InputWrapperProps = IconStyleProps &
   TextboxAdditionProps & {
-    prependIcon?: Maybe<IconElement>;
-    appendIcon?: Maybe<IconElement>;
+    prependIconStyles: IconStyles;
+    appendIconStyles: IconStyles;
   };
 
 const InputWrapper = styled.div<InputWrapperProps>`
@@ -86,21 +119,17 @@ const InputWrapper = styled.div<InputWrapperProps>`
     ${validationStateHighlightStyles}
   }
 
-  ${({ hasPrepend, prependIcon }) =>
-    hasPrepend &&
-    prependIcon &&
+  ${({ prependIconStyles }) =>
     css`
       &&:before {
-        ${getIconStyles(prependIcon)}
+        ${prependIconStyles}
       }
     `}
 
-  ${({ hasAppend, appendIcon }) =>
-    hasAppend &&
-    appendIcon &&
+  ${({ appendIconStyles }) =>
     css`
       &&:after {
-        ${getIconStyles(appendIcon)}
+        ${appendIconStyles}
       }
     `}
 `;
@@ -174,6 +203,8 @@ const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
 
     const [prependIcon, setPrependIcon] = useState<Maybe<HTMLElement>>();
     const [appendIcon, setAppendIcon] = useState<Maybe<HTMLElement>>();
+    const prependIconStyles = useIconStyles(prependIconName, prependIcon);
+    const appendIconStyles = useIconStyles(appendIconName, appendIcon);
 
     useImperativeHandle(ref, () => inputRef || undefined, [inputRef]);
 
@@ -199,8 +230,8 @@ const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
         style={style}
         {...{
           ...sharedProps,
-          prependIcon,
-          appendIcon
+          prependIconStyles,
+          appendIconStyles
         }}
       >
         {hasPrepend || hasAppend ? (

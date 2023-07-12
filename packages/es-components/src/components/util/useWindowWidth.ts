@@ -1,12 +1,12 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 export function useWindowWidth() {
   const getMediaWidth = () =>
     // https://stackoverflow.com/a/6850319
     window.innerWidth > 0 ? window.innerWidth : window.screen.width;
-  const [width, setWidth] = React.useState(getMediaWidth());
+  const [width, setWidth] = useState(getMediaWidth());
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = () => setWidth(getMediaWidth());
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

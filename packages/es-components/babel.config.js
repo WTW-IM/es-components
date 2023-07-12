@@ -15,7 +15,22 @@ module.exports = function (api) {
 
   const removePropTypesPlugin = [
     'babel-plugin-transform-react-remove-prop-types',
-    { removeImport: true }
+    {
+      removeImport: true,
+      ignoreFilenames: [
+        'node_modules/styled-components',
+        'controls/textbox',
+        'controls/dropdown',
+        'containers/popover',
+        'controls/buttons',
+        'controls/checkbox',
+        'controls/radio-buttons',
+        'controls/answer-group',
+        'controls/Control',
+        'controls/AdditionalHelp',
+        'base/icons'
+      ]
+    }
   ];
   const plugins = [
     ['@babel/plugin-transform-runtime', { corejs: 3 }],

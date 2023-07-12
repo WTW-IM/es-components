@@ -3,11 +3,37 @@ import React from 'react';
 
 declare global {
   type Maybe<T> = T | null | undefined;
+  type IsNullable<T, K> = null | undefined extends T ? K : never;
+  type IsNonNullable<T, K> = T extends null | undefined ? never : K;
+
+  type NullableKeys<T> = {
+    [K in keyof T]-?: IsNullable<T[K], K>;
+  }[keyof T];
+  type NonNullableKeys<T> = {
+    [K in keyof T]-?: IsNonNullable<T[K], K>;
+  }[keyof T];
+
+  type BooleanString = 'true' | 'false';
+
   type ReactFCWithChildren<T = unknown> = React.FC<React.PropsWithChildren<T>>;
   type JSXElementProps<T> = T extends keyof JSX.IntrinsicElements
     ? React.PropsWithoutRef<JSX.IntrinsicElements[T]>
     : never;
   type Theme = ESTheme;
+  type HTMLElementProps = React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLElement>,
+    HTMLElement
+  >;
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  type StyledComponentElementProps<T> = JSXElementProps<T> & {
+    as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+    forwardedAs?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
+  };
+  /* eslint-enable @typescript-eslint/no-explicit-any */
+
+  type Override<T, U> = Omit<T, keyof U> & U;
+
   const ASSETS_PATH: string;
 }
 

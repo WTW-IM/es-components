@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ValidationInputColor } from 'es-components-shared-types';
 
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
-const TextareaBase = styled.textarea`
+const TextareaBase = styled.textarea<ValidationInputColor>`
   border: 1px solid ${props => props.borderColor};
   border-radius: 2px;
   box-shadow: ${props => props.boxShadow};
@@ -38,7 +39,10 @@ const TextareaBase = styled.textarea`
   }
 `;
 
-const Textarea = React.forwardRef(function Textarea(props, ref) {
+const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  JSXElementProps<'textarea'>
+>(function Textarea(props, ref) {
   const theme = useTheme();
   const validationState = React.useContext(ValidationContext);
 

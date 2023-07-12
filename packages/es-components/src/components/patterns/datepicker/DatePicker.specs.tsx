@@ -1,4 +1,3 @@
-/* eslint-env jest */
 import React from 'react';
 import viaTheme from 'es-components-via-theme';
 
@@ -9,13 +8,13 @@ import Label from '../../controls/label/Label';
 import DatePicker from './DatePicker';
 import { renderWithTheme } from '../../util/test-utils';
 
-const phoneWidth = parseInt(viaTheme.screenSize.phone, 10);
+const phoneWidth = parseInt(viaTheme.screenSize.phone.toString(), 10);
 
 Object.defineProperty(window, 'innerWidth', {
   writable: true
 });
 
-function setScreenWidth(size) {
+function setScreenWidth(size: number) {
   window.innerWidth = size;
 }
 
@@ -80,6 +79,22 @@ it('renders the native date input when the screen is smaller than phone sized', 
     'Very small screen DatePicker'
   );
   expect(datePickerElement.getAttribute('type')).toBe('date');
+});
+
+it('correctly calls onChange for the native input in the same way as the normal input', async () => {
+  const onChange = jest.fn();
+  setScreenWidth(phoneWidth);
+  renderWithTheme(
+    <Control>
+      <Label htmlFor="test-date">Phone sized DatePicker</Label>
+      <DatePicker id="test-date" onChange={onChange} />
+    </Control>
+  );
+  const datePickerElement = screen.getByLabelText('Phone sized DatePicker');
+  expect(datePickerElement).toHaveAttribute('type', 'date');
+  await userEvent.type(datePickerElement, '2020-01-01');
+
+  expect(onChange).toHaveBeenCalledWith(new Date(2020, 0, 1));
 });
 
 it('renders the custom date input when the screen is smaller than phone sized, but we specify the native date picker should not be used', () => {

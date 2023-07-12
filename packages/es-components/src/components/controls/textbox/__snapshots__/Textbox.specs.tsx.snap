@@ -134,6 +134,41 @@ exports[`renders the correct addons when provided 1`] = `
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  font-size: 18px;
+  background-color: #e4e4e4;
+  color: #5e5e5e;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: 0;
+  padding: 0.333em 0.6111em;
+}
+
+.c2.c2:after {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
   -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
@@ -196,42 +231,44 @@ exports[`renders the correct addons when provided 1`] = `
   }
 }
 
-<div
-  class="c0"
->
-  <label
-    class="c1"
-    for="test"
-  >
-    Text
-  </label>
+<div>
   <div
-    class="c2"
+    class="c0"
   >
-    <div
-      aria-hidden="true"
-      style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+    <label
+      class="c1"
+      for="test"
     >
-      <input
-        type="hidden"
-      />
-      <i
+      Text
+    </label>
+    <div
+      class="c2"
+    >
+      <div
         aria-hidden="true"
-        class="c3 bds-icon bds-prepend"
-      />
+        style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+      >
+        <input
+          type="hidden"
+        />
+        <i
+          aria-hidden="true"
+          class="c3 bds-icon bds-phone"
+        />
+        <input
+          type="hidden"
+        />
+        <i
+          aria-hidden="true"
+          class="c3 bds-icon bds-"
+        />
+      </div>
       <input
-        type="hidden"
-      />
-      <i
-        aria-hidden="true"
-        class="c3 bds-icon bds-"
+        class="c4 c5"
+        id="test"
+        type="text"
       />
     </div>
-    <input
-      class="c4 c5"
-      id="test"
-      type="text"
-    />
   </div>
 </div>
 `;
@@ -361,6 +398,40 @@ exports[`renders the correct addons when provided 2`] = `
   box-shadow: 0 0 8px rgba(102,175,233,0.6),inset 0 0 0 0 rgba(0,0,0,0);
 }
 
+.c2.c2:before {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  font-size: 18px;
+  background-color: #e4e4e4;
+  color: #5e5e5e;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: 0;
+  padding: 0.333em 0.6111em;
+}
+
 .c2.c2:after {
   font-style: normal;
   font-weight: normal;
@@ -370,6 +441,7 @@ exports[`renders the correct addons when provided 2`] = `
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
+  font-size: inherit;
   -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
@@ -432,42 +504,44 @@ exports[`renders the correct addons when provided 2`] = `
   }
 }
 
-<div
-  class="c0"
->
-  <label
-    class="c1"
-    for="test"
-  >
-    Text
-  </label>
+<div>
   <div
-    class="c2"
+    class="c0"
   >
-    <div
-      aria-hidden="true"
-      style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+    <label
+      class="c1"
+      for="test"
     >
-      <input
-        type="hidden"
-      />
-      <i
+      Text
+    </label>
+    <div
+      class="c2"
+    >
+      <div
         aria-hidden="true"
-        class="c3 bds-icon bds-"
-      />
+        style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+      >
+        <input
+          type="hidden"
+        />
+        <i
+          aria-hidden="true"
+          class="c3 bds-icon bds-"
+        />
+        <input
+          type="hidden"
+        />
+        <i
+          aria-hidden="true"
+          class="c3 bds-icon bds-user"
+        />
+      </div>
       <input
-        type="hidden"
-      />
-      <i
-        aria-hidden="true"
-        class="c3 bds-icon bds-append"
+        class="c4 c5"
+        id="test"
+        type="text"
       />
     </div>
-    <input
-      class="c4 c5"
-      id="test"
-      type="text"
-    />
   </div>
 </div>
 `;
@@ -606,6 +680,7 @@ exports[`renders the correct addons when provided 3`] = `
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
+  font-size: inherit;
   -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
@@ -639,6 +714,7 @@ exports[`renders the correct addons when provided 3`] = `
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
+  font-size: inherit;
   -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
@@ -703,42 +779,44 @@ exports[`renders the correct addons when provided 3`] = `
   }
 }
 
-<div
-  class="c0"
->
-  <label
-    class="c1"
-    for="test"
-  >
-    Text
-  </label>
+<div>
   <div
-    class="c2"
+    class="c0"
   >
-    <div
-      aria-hidden="true"
-      style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+    <label
+      class="c1"
+      for="test"
     >
-      <input
-        type="hidden"
-      />
-      <i
+      Text
+    </label>
+    <div
+      class="c2"
+    >
+      <div
         aria-hidden="true"
-        class="c3 bds-icon bds-prepend"
-      />
+        style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+      >
+        <input
+          type="hidden"
+        />
+        <i
+          aria-hidden="true"
+          class="c3 bds-icon bds-phone"
+        />
+        <input
+          type="hidden"
+        />
+        <i
+          aria-hidden="true"
+          class="c3 bds-icon bds-user"
+        />
+      </div>
       <input
-        type="hidden"
-      />
-      <i
-        aria-hidden="true"
-        class="c3 bds-icon bds-append"
+        class="c4 c5"
+        id="test"
+        type="text"
       />
     </div>
-    <input
-      class="c4 c5"
-      id="test"
-      type="text"
-    />
   </div>
 </div>
 `;

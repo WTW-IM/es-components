@@ -4,9 +4,9 @@ import { renderWithTheme } from '../../util/test-utils';
 
 import Control from '../Control';
 import Label from '../label/Label';
-import Textbox from './Textbox';
+import Textbox, { TextboxProps } from './Textbox';
 
-const buildTextbox = props => (
+const TestTextbox = (props: TextboxProps) => (
   <Control>
     <Label htmlFor="test">Text</Label>
     <Textbox id="test" {...props} />
@@ -17,7 +17,7 @@ it('executes the handleOnChange function when text is changed', () => {
   const props = {
     onChange: jest.fn()
   };
-  renderWithTheme(buildTextbox(props));
+  renderWithTheme(<TestTextbox {...props} />);
 
   fireEvent.change(screen.getByLabelText('Text'), {
     target: { value: '112' }
@@ -29,20 +29,18 @@ it('executes handleOnBlur when input focus is lost', () => {
   const props = {
     onBlur: jest.fn()
   };
-  renderWithTheme(buildTextbox(props));
+  renderWithTheme(<TestTextbox {...props} />);
 
   fireEvent.blur(screen.getByLabelText('Text'));
   expect(props.onBlur).toHaveBeenCalled();
 });
 
-/* eslint-disable testing-library/no-node-access */
-test.each([
-  { prependIconName: 'prepend', appendIconName: undefined },
-  { prependIconName: undefined, appendIconName: 'append' },
-  { prependIconName: 'prepend', appendIconName: 'append' }
+test.each<TextboxProps>([
+  { prependIconName: 'phone', appendIconName: undefined },
+  { prependIconName: undefined, appendIconName: 'user' },
+  { prependIconName: 'phone', appendIconName: 'user' }
 ])('renders the correct addons when provided', props => {
-  const { container } = renderWithTheme(buildTextbox(props));
+  const { container } = renderWithTheme(<TestTextbox {...props} />);
 
-  expect(container.firstChild).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
-/* eslint-enable testing-library/no-node-access */

@@ -1,13 +1,12 @@
 import React from 'react';
+import type * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
-import genName from '../../util/generateAlphaName';
+import useUniqueId from '../../util/useUniqueId';
 
-function darkenPrimary(primary) {
-  return tinycolor(primary)
-    .darken(15)
-    .toRgbString();
+function darkenPrimary(primary: CSS.Property.Color) {
+  return tinycolor(primary).darken(15).toRgbString();
 }
 
 const OrderedList = styled.ol`
@@ -56,11 +55,29 @@ const Crumb = styled.li`
   }
 `;
 
-function Breadcrumb({ children, ...props }) {
+const getChildKey = (child: React.ReactNode) =>
+  (
+    (child as Maybe<React.ReactElement | React.ReactPortal>)?.key ||
+    (typeof child === 'string' ||
+    typeof child === 'number' ||
+    typeof child === 'boolean'
+      ? child
+      : undefined)
+  )?.toString();
+
+export type BreadcrumbProps = Override<
+  JSXElementProps<'ol'>,
+  {
+    children: React.ReactNode;
+  }
+>;
+
+function Breadcrumb({ children, ...props }: BreadcrumbProps) {
+  const keyId = useUniqueId();
   return (
     <OrderedList {...props}>
       {React.Children.map(children, (child, index) => (
-        <Crumb key={genName()}>{child}</Crumb>
+        <Crumb key={`${keyId}-${getChildKey(child)}-${index}`}>{child}</Crumb>
       ))}
     </OrderedList>
   );

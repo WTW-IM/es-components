@@ -1,10 +1,7 @@
-/* eslint-env jest */
 import React from 'react';
-import viaTheme from 'es-components-via-theme';
-
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Incrementer from './Incrementer';
+import Incrementer, { IncrementerProps } from './Incrementer';
 import { renderWithTheme } from '../../util/test-utils';
 
 const valueUpdated = jest.fn();
@@ -12,21 +9,15 @@ const valueUpdated = jest.fn();
 beforeAll(() =>
   jest.spyOn(React, 'useEffect').mockImplementation(React.useLayoutEffect)
 );
-afterAll(() => React.useEffect.mockRestore());
+afterAll(() => (React.useEffect as unknown as jest.SpyInstance).mockRestore());
 
-function createIncrementer(props) {
-  return (
-    <Incrementer {...props} onValueUpdated={valueUpdated} theme={viaTheme} />
-  );
+function TestIncrementer(props: IncrementerProps) {
+  return <Incrementer {...props} onValueUpdated={valueUpdated} />;
 }
 
 it('when decrement button is clicked the displayed value is decreased by decrementAmount', async () => {
   const user = userEvent.setup();
-  renderWithTheme(
-    createIncrementer({
-      decrementAmount: 5
-    })
-  );
+  renderWithTheme(<TestIncrementer decrementAmount={5} />);
   await user.click(await screen.findByRole('button', { name: /Decrement/ }));
 
   expect(await screen.findByDisplayValue('-5')).toBeInTheDocument();
@@ -36,11 +27,13 @@ it('when decrement button is clicked the displayed value is decreased by decreme
 it('when decrement button is clicked the displayed value does not exceed the lowerThreshold', async () => {
   const user = userEvent.setup();
   renderWithTheme(
-    createIncrementer({
-      decrementAmount: 5,
-      lowerThreshold: 3,
-      startingValue: 6
-    })
+    <TestIncrementer
+      {...{
+        decrementAmount: 5,
+        lowerThreshold: 3,
+        startingValue: 6
+      }}
+    />
   );
   await user.click(await screen.findByRole('button', { name: /Decrement/ }));
 
@@ -51,9 +44,11 @@ it('when decrement button is clicked the displayed value does not exceed the low
 it('when increment button is clicked, the displayed value is increased by incrementAmount', async () => {
   const user = userEvent.setup();
   renderWithTheme(
-    createIncrementer({
-      incrementAmount: 2
-    })
+    <TestIncrementer
+      {...{
+        incrementAmount: 2
+      }}
+    />
   );
   await user.click(await screen.findByRole('button', { name: /Increment/ }));
 
@@ -64,11 +59,13 @@ it('when increment button is clicked, the displayed value is increased by increm
 it('when increment button is clicked, the displayed value does not exceed the upperThreshold', async () => {
   const user = userEvent.setup();
   renderWithTheme(
-    createIncrementer({
-      incrementAmount: 3,
-      upperThreshold: 8,
-      startingValue: 6
-    })
+    <TestIncrementer
+      {...{
+        incrementAmount: 3,
+        upperThreshold: 8,
+        startingValue: 6
+      }}
+    />
   );
   await user.click(await screen.findByRole('button', { name: /Increment/ }));
 
@@ -79,10 +76,12 @@ it('when increment button is clicked, the displayed value does not exceed the up
 it('disables decrementation button when current value equals lowerThreshold', async () => {
   const user = userEvent.setup();
   renderWithTheme(
-    createIncrementer({
-      startingValue: 2,
-      lowerThreshold: 0
-    })
+    <TestIncrementer
+      {...{
+        startingValue: 2,
+        lowerThreshold: 0
+      }}
+    />
   );
   const decrementButton = await screen.findByRole('button', {
     name: /Decrement value/
@@ -96,10 +95,12 @@ it('disables decrementation button when current value equals lowerThreshold', as
 it('disables incrementation button when current value equals upperThreshold', async () => {
   const user = userEvent.setup();
   renderWithTheme(
-    createIncrementer({
-      startingValue: 8,
-      upperThreshold: 10
-    })
+    <TestIncrementer
+      {...{
+        startingValue: 8,
+        upperThreshold: 10
+      }}
+    />
   );
   const incrementButton = await screen.findByRole('button', {
     name: /Increment value/
@@ -110,84 +111,94 @@ it('disables incrementation button when current value equals upperThreshold', as
   expect(incrementButton).toBeDisabled();
 });
 
-it('when a non-numeric value is entered the incrementer resets to 0', () => {
+it('when a non-numeric value is entered the incrementer resets to 0', async () => {
   renderWithTheme(
-    createIncrementer({
-      startingValue: 6
-    })
+    <TestIncrementer
+      {...{
+        startingValue: 6
+      }}
+    />
   );
 
-  const input = screen.queryByDisplayValue('6');
-  input.value = 'hi';
-  fireEvent.change(input);
-  fireEvent.blur(input);
+  const input = await screen.findByDisplayValue('6');
+  await userEvent.clear(input);
+  await userEvent.type(input, 'hi');
+  await userEvent.tab();
 
   expect(screen.getByDisplayValue('0')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(0);
 });
 
-it('when a non-numeric value is entered the incrementer resets to lowerThreshold when available', () => {
+it('when a non-numeric value is entered the incrementer resets to lowerThreshold when available', async () => {
   renderWithTheme(
-    createIncrementer({
-      startingValue: 6,
-      lowerThreshold: 3
-    })
+    <TestIncrementer
+      {...{
+        startingValue: 6,
+        lowerThreshold: 3
+      }}
+    />
   );
 
-  const input = screen.queryByDisplayValue('6');
-  input.value = 'hi';
-  fireEvent.change(input);
-  fireEvent.blur(input);
+  const input = await screen.findByDisplayValue('6');
+  await userEvent.clear(input);
+  await userEvent.type(input, 'hi');
+  await userEvent.tab();
 
   expect(screen.getByDisplayValue('3')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(3);
 });
 
-it('when a value is entered that exceeds the upperThreshold, it resets to upperThreshold', () => {
+it('when a value is entered that exceeds the upperThreshold, it resets to upperThreshold', async () => {
   renderWithTheme(
-    createIncrementer({
-      upperThreshold: 10
-    })
+    <TestIncrementer
+      {...{
+        upperThreshold: 10
+      }}
+    />
   );
 
-  const input = screen.queryByDisplayValue('0');
-  input.value = '25';
-  fireEvent.change(input);
-  fireEvent.blur(input);
+  const input = await screen.findByDisplayValue('0');
+  await userEvent.clear(input);
+  await userEvent.type(input, '25');
+  await userEvent.tab();
 
   expect(screen.getByDisplayValue('10')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(10);
 });
 
-it('when a value is entered that exceeds the lowerThreshold, it resets to lowerThreshold', () => {
+it('when a value is entered that is below the lowerThreshold, it resets to lowerThreshold', async () => {
   renderWithTheme(
-    createIncrementer({
-      lowerThreshold: 3,
-      startingValue: 5
-    })
+    <TestIncrementer
+      {...{
+        lowerThreshold: 3,
+        startingValue: 5
+      }}
+    />
   );
 
-  const input = screen.queryByDisplayValue('5');
-  input.value = '1';
-  fireEvent.change(input);
-  fireEvent.blur(input);
+  const input = await screen.findByDisplayValue('5');
+  await userEvent.clear(input);
+  await userEvent.type(input, '1');
+  await userEvent.tab();
 
   expect(screen.getByDisplayValue('3')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(3);
 });
 
-it('when the lowerThreshold is 0, negative numbers should reset to 0', () => {
+it('when the lowerThreshold is 0, negative numbers should reset to 0', async () => {
   renderWithTheme(
-    createIncrementer({
-      lowerThreshold: 0,
-      startingValue: 5
-    })
+    <TestIncrementer
+      {...{
+        lowerThreshold: 0,
+        startingValue: 5
+      }}
+    />
   );
 
-  const input = screen.queryByDisplayValue('5');
-  input.value = '-1';
-  fireEvent.change(input);
-  fireEvent.blur(input);
+  const input = await screen.findByDisplayValue('5');
+  await userEvent.clear(input);
+  await userEvent.type(input, '-1');
+  await userEvent.tab();
 
   expect(screen.getByDisplayValue('0')).toBeInTheDocument();
   expect(valueUpdated).toHaveBeenCalledWith(0);

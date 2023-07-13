@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled, { DefaultTheme, css } from 'styled-components';
 import * as CSS from 'csstype';
 import ValidationContext from '../ValidationContext';
@@ -173,6 +174,19 @@ export const BasicTextbox = React.forwardRef<
     <BasicTextboxComponent {...props} {...validationStyleProps} ref={ref} />
   );
 });
+
+export const basicTextboxPropTypes = {
+  ...htmlInputPropTypes,
+  flat: PropTypes.bool
+};
+
+export const basicTextboxDefaultProps = {
+  ...htmlInputDefaultProps,
+  flat: false
+};
+
+BasicTextbox.propTypes = basicTextboxPropTypes;
+BasicTextbox.defaultProps = basicTextboxDefaultProps;
 
 function getValidationStylesOrDefault(
   theme: DefaultTheme,

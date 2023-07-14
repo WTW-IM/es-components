@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import styled from 'styled-components';
+import styled, { AnyStyledComponent } from 'styled-components';
 
 // styles are based off of WebAIM's recommended styles
 // https://webaim.org/techniques/css/invisiblecontent/#absolutepositioning
@@ -11,8 +10,11 @@ const screenReaderOnlyBase = styled.div`
   overflow: hidden;
 `;
 
-const screenReaderOnly = Component =>
-  screenReaderOnlyBase.withComponent(Component);
+function screenReaderOnly(
+  Component: AnyStyledComponent | keyof JSX.IntrinsicElements
+) {
+  return screenReaderOnlyBase.withComponent(Component);
+}
 
 /** @component */
 export default screenReaderOnly;

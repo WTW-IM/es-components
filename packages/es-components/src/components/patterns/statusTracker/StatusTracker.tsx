@@ -11,7 +11,7 @@ const List = styled.ol`
   z-index: 1;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled.li<{ itemWidth: number }>`
   color: ${props => props.theme.colors.gray6};
   list-style-type: none;
   position: relative;
@@ -120,26 +120,44 @@ const ListItem = styled.li`
   }
 `;
 
-function StatusTracker({ statusArray, step, isErrorState, ...rest }) {
-  const itemWidth = 100 / statusArray.length;
+export type StatusTrackerProps = Override<
+  JSXElementProps<'ol'>,
+  {
+    statusArray: React.ReactNode[];
+    step?: number;
+    isErrorState?: boolean;
+  }
+>;
 
-  return (
-    <List {...rest}>
-      {statusArray.map((status, i) => {
-        let statusClass;
-        if (i + 1 === step) statusClass = isErrorState ? 'error' : 'active';
-        if (i + 1 < step) statusClass = 'done';
-        const itemKey = genName();
+const StatusTracker = React.forwardRef<HTMLOListElement, StatusTrackerProps>(
+  function ForwardedStatusTracker(
+    { statusArray, step = 1, isErrorState, ...rest },
+    ref
+  ) {
+    const itemWidth = 100 / statusArray.length;
 
-        return (
-          <ListItem key={itemKey} itemWidth={itemWidth} className={statusClass}>
-            <span className="status-text">{status}</span>
-          </ListItem>
-        );
-      })}
-    </List>
-  );
-}
+    return (
+      <List ref={ref} {...rest}>
+        {statusArray.map((status, i) => {
+          let statusClass;
+          if (i + 1 === step) statusClass = isErrorState ? 'error' : 'active';
+          if (i + 1 < step) statusClass = 'done';
+          const itemKey = genName();
+
+          return (
+            <ListItem
+              key={itemKey}
+              itemWidth={itemWidth}
+              className={statusClass}
+            >
+              <span className="status-text">{status}</span>
+            </ListItem>
+          );
+        })}
+      </List>
+    );
+  }
+);
 
 StatusTracker.propTypes = {
   /** Array of status descriptions which display sequentially under each step */

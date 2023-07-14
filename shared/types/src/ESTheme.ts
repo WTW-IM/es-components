@@ -202,6 +202,8 @@ export type DatepickerColors = {
   highlightHover: CSS.Property.BackgroundColor;
 };
 
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
 export default interface ESTheme {
   [key: string]: any;
 
@@ -219,8 +221,8 @@ export default interface ESTheme {
     baseFontSize: CSS.Property.FontSize;
     baseFontFace: CSS.Property.FontFamily;
     baseLineHeight: CSS.Property.LineHeight;
-    headingDesktop: object;
-    headingMobile: object;
+    headingDesktop: Record<HeadingLevel, string>;
+    headingMobile: Record<HeadingLevel, string>;
 
     labelFontSize?: CSS.Property.FontSize;
     labelFontWeight?: CSS.Property.FontWeight;

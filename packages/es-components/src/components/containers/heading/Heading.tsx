@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, {
+  DefaultTheme,
+  ThemedStyledProps,
+  css
+} from 'styled-components';
+import { HeadingLevel } from 'es-components-shared-types';
 
 const knockoutStyles = css`
   background-color: ${({ theme }) => theme.colors.primary};
@@ -8,16 +13,36 @@ const knockoutStyles = css`
   padding: 20px 15px;
 `;
 
-const getAdjustedProps = func => ({ size, level = 1, ...props }) =>
-  func({
-    ...props,
+export type HeadingProps = JSXElementProps<'h1'> & {
+  children?: React.ReactNode;
+  level?: HeadingLevel;
+  size?: HeadingLevel;
+  isKnockoutStyle?: boolean;
+  underlineColor?: string | null;
+};
+
+function getAdjustedProps(
+  func: (
+    props: ThemedStyledProps<HeadingProps, DefaultTheme> & {
+      adjustedSize: HeadingLevel;
+    }
+  ) => string
+) {
+  return ({
     size,
-    level,
-    adjustedSize: size || level
-  });
+    level = 1,
+    ...props
+  }: ThemedStyledProps<HeadingProps, DefaultTheme>) =>
+    func({
+      ...props,
+      size,
+      level,
+      adjustedSize: size || level
+    });
+}
 
 const UnstyledHeading = styled.h1``;
-const Heading = styled(({ level = 1, ...props }) => (
+const Heading = styled(({ level = 1, ...props }: HeadingProps) => (
   <UnstyledHeading as={`h${level}`} {...props} />
 ))`
   border-bottom: ${props =>
@@ -54,7 +79,7 @@ const Heading = styled(({ level = 1, ...props }) => (
 Heading.propTypes = {
   children: PropTypes.node,
   /** Heading level element */
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   /** Override the default font size with another level */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
   /** Alternate knockout-style header with a solid background */
@@ -65,6 +90,7 @@ Heading.propTypes = {
 
 Heading.defaultProps = {
   children: undefined,
+  level: 1,
   size: undefined,
   isKnockoutStyle: false,
   underlineColor: null

@@ -86,13 +86,13 @@ const TableBase = styled.table<TableBaseProps>`
 `;
 
 const TableOriginal = React.forwardRef<HTMLTableElement, TableProps>(
-  function ForwardedTable(props: TableProps) {
+  function ForwardedTable(props, ref) {
     const { isCondensed, isRoomy, ...rest } = props;
     let cellPadding = '8px';
     cellPadding = isCondensed ? '5px' : cellPadding;
     cellPadding = isRoomy ? '12px' : cellPadding;
 
-    return <TableBase cellPadding={cellPadding} {...rest} />;
+    return <TableBase ref={ref} cellPadding={cellPadding} {...rest} />;
   }
 );
 

@@ -1,7 +1,9 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
+import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import {
   createGlobalStyle,
+  css,
   DefaultTheme,
   ThemeProvider,
   ThemeProviderComponent
@@ -20,7 +22,7 @@ import Body from './ModalBody';
 import Footer from './ModalFooter';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 
-type ModalTheme = DefaultTheme & {
+export type ModalTheme = DefaultTheme & {
   modalHeight: number;
   windowHeight: number;
   portalClassName: string;
@@ -37,21 +39,24 @@ const modalSize = {
 
 export type ModalSize = keyof typeof modalSize;
 
-export type ModalProps = Omit<ReactModal.Props, 'isOpen'> & {
-  show?: boolean;
-  size?: ModalSize;
-  parentSelector?: () => RootNode;
-  className?: string;
-  animation?: boolean;
-  backdrop?: BackdropValue;
-  children?: React.ReactNode;
-  escapeExits?: boolean;
-  onEnter?: () => void;
-  onExit?: () => void;
-  onHide?: () => void;
-  overlayRef?: HTMLRef;
-  contentRef?: HTMLRef;
-};
+export type ModalProps = Override<
+  Omit<ReactModal.Props, 'isOpen'>,
+  {
+    show?: boolean;
+    size?: ModalSize;
+    parentSelector?: () => RootNode;
+    className?: string;
+    animation?: boolean;
+    backdrop?: BackdropValue;
+    children?: React.ReactNode;
+    escapeExits?: boolean;
+    onEnter?: () => void;
+    onExit?: () => void;
+    onHide?: () => void;
+    overlayRef?: HTMLRef;
+    contentRef?: HTMLRef;
+  }
+>;
 
 const animationTimeMs = 300 as number;
 
@@ -61,21 +66,35 @@ const getModalMargin = (windowHeight: number, modalHeight: number) => {
   return Math.max(thirdTopMargin, 50);
 };
 
+const getAlphaColor = (color: CSS.Property.Color, alpha: number) => {
+  const colorObj = tinycolor(color);
+  colorObj.setAlpha(alpha);
+  return colorObj.toRgbString();
+};
+
 const ModalStyles = createGlobalStyle<{
   showBackdrop: boolean;
   showAnimation?: boolean;
-  portalClassName?: string;
   theme: ModalTheme;
   topIndex: number;
 }>`
-  .${({ portalClassName }) => portalClassName} {
+${({
+  theme: {
+    portalClassName,
+    colors,
+    font,
+    screenSize,
+    windowHeight,
+    modalHeight
+  },
+  showBackdrop,
+  topIndex,
+  showAnimation
+}) => css`
+  .${portalClassName} {
     .background-overlay {
       bottom: 0;
-      background-color: ${props => {
-        const color = tinycolor(props.theme.colors.gray9);
-        color.setAlpha(0);
-        return color.toRgbString();
-      }};
+      background-color: ${getAlphaColor(colors.gray9, 0)};
 
       left: 0;
       max-height: 100%;
@@ -83,103 +102,90 @@ const ModalStyles = createGlobalStyle<{
       position: fixed;
       right: 0;
       top: 0;
-      transition: background-color ${() => animationTimeMs / 2}ms linear;
-      z-index: ${({ topIndex }) => topIndex};
+      transition: background-color ${animationTimeMs / 2}ms linear;
+      z-index: ${topIndex};
       -webkit-overflow-scrolling: touch;
 
       &.ReactModal__Overlay--after-open {
-        ${props => {
-          if (!props.showBackdrop) return '';
+        background-color: ${() => {
+          if (!showBackdrop) return '';
 
-          const color = tinycolor(props.theme.colors.gray9);
-          color.setAlpha(0.5);
-          return `background-color: ${color.toRgbString()};`;
-        }}
+          return getAlphaColor(colors.gray9, 0.5);
+        }};
 
         &.ReactModal__Overlay--before-close {
-          background-color: ${props => {
-            const color = tinycolor(props.theme.colors.gray9);
-            color.setAlpha(0);
-            return color.toRgbString();
-          }};
+          background-color: ${getAlphaColor(colors.gray9, 0)};
         }
       }
     }
 
     .modal-content {
       background-clip: padding-box;
-      background-color: ${props => props.theme.colors.white};
+      background-color: ${colors.white};
       border-radius: 3px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-      font-size: ${props => props.theme.font.baseFontSize};
+      font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
+        sans-serif;
+      font-size: ${font.baseFontSize};
       margin: 0.5rem;
       outline: 0;
       opacity: 0;
       position: absolute;
       left: 0;
       transform: translateY(0);
-      transition:
-        transform ${() => animationTimeMs}ms ease-out ${() =>
-  animationTimeMs / 4}ms,
-        opacity ${() => animationTimeMs}ms ease-out ${() =>
-  animationTimeMs / 4}ms;
-      ${props =>
-        props.showAnimation
-          ? `
+      transition: transform ${animationTimeMs}ms ease-out
+          ${animationTimeMs / 4}ms,
+        opacity ${animationTimeMs}ms ease-out ${animationTimeMs / 4}ms;
+      ${showAnimation
+        ? `
             transform: translateY(-50px);
           `
-          : ''};
+        : ''};
 
       &.ReactModal__Content--after-open {
         opacity: 1;
-        ${props =>
-          props.showAnimation
-            ? `
+        ${showAnimation
+          ? `
               transform: translateY(0);
             `
-            : ''};
+          : ''};
 
         &.ReactModal__Content--before-close {
           opacity: 0;
-          ${props =>
-            props.showAnimation
-              ? `
+          ${showAnimation
+            ? `
                 transform: translateY(-50px);
               `
-              : ''};
+            : ''};
         }
       }
 
       &.small {
-        @media (min-width: ${props => props.theme.screenSize.phone}) {
+        @media (min-width: ${screenSize.phone}) {
           position: relative;
-          margin: ${({ theme }) =>
-            getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
+          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
           width: ${modalSize.small};
         }
       }
 
       &.medium {
-        @media (min-width: ${props => props.theme.screenSize.tablet}) {
+        @media (min-width: ${screenSize.tablet}) {
           position: relative;
-          margin: ${({ theme }) =>
-            getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
+          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
           width: ${modalSize.medium};
         }
       }
 
       &.large {
-        @media (min-width: ${props => props.theme.screenSize.desktop}) {
+        @media (min-width: ${screenSize.desktop}) {
           position: relative;
-          margin: ${({ theme }) =>
-            getModalMargin(theme.windowHeight, theme.modalHeight)}px auto;
+          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
           width: ${modalSize.large};
         }
       }
     }
   }
-`;
+`}`;
 
 const ModalThemeProvider = ThemeProvider as unknown as ThemeProviderComponent<
   ModalTheme,

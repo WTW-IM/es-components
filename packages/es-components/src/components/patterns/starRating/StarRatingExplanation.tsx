@@ -1,12 +1,12 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
 import styled from 'styled-components';
 import formatMessage from 'format-message';
-import Modal from '../../containers/modal/Modal';
+import Modal, { ModalProps } from '../../containers/modal/Modal';
 import ModalButtonContainer from '../../containers/modal/ModalButtonContainer';
 import Button from '../../controls/buttons/Button';
 import Table from '../../containers/table/Table';
+import callRef from '../../util/callRef';
+import useUniqueId from '../../util/useUniqueId';
 
 formatMessage.setup({ missingTranslation: 'ignore' });
 
@@ -57,13 +57,36 @@ const RatingTable = styled(Table)`
   }
 `;
 
-export default function StarRatingExplanation(props) {
+export type StarRatingExplanationProps = Override<
+  ModalProps,
+  {
+    parentNode: HTMLElement;
+    closeModal?: () => void;
+  }
+>;
+
+const StrongMessage = ({ children }: React.PropsWithChildren) => {
+  const key = `bold-${useUniqueId()}`;
+  return <strong key={key}>{children}</strong>;
+};
+
+const StarRatingExplanation = React.forwardRef<
+  HTMLDivElement,
+  StarRatingExplanationProps
+>(function ForwardedStarRatingExplanation(
+  { show, closeModal, parentNode, ...props },
+  ref
+) {
   return (
     <Modal
-      show={props.show}
+      show={show}
       size="large"
-      onHide={props.closeModal}
-      parentSelector={() => props.parentNode}
+      onHide={closeModal}
+      parentSelector={() => parentNode}
+      overlayRef={(el: HTMLElement | null) =>
+        callRef(ref, el as HTMLDivElement)
+      }
+      {...props}
     >
       <Modal.Header>{formatMessage('Plan Ratings')}</Modal.Header>
       <HelpContent>
@@ -109,7 +132,7 @@ export default function StarRatingExplanation(props) {
             {formatMessage.rich(
               '<s>For plans covering health services</s>, the overall score for quality of those services covers <s>36 different topics in 5 categories:</s>',
               {
-                s: ({ children }) => <strong key="bold">{children}</strong>
+                s: StrongMessage
               }
             )}
             <ul>
@@ -117,7 +140,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Staying healthy: screenings, tests, and vaccines:</s> Includes how often members got various screening tests, vaccines, and other check-ups that help them stay healthy.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -125,7 +148,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Managing chronic (long-term) conditions:</s> Includes how often members with different conditions got certain tests and treatments that help them manage their condition.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -133,7 +156,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Ratings of health plan responsiveness and care:</s> Includes ratings of member satisfaction with the plan.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -141,7 +164,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Member complaints, problems getting services, and choosing to leave the plan:</s> Includes how often members filed complaints against the plan and how often members choose to leave the plan. Includes how often Medicare found problems with the plan.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -149,7 +172,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Health plan customer service:</s> Includes how well the plan handles calls and makes decisions about member appeals for health coverage.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -159,7 +182,7 @@ export default function StarRatingExplanation(props) {
             {formatMessage.rich(
               '<s>For plans covering drug services,</s> the overall score for quality of those services covers <s>17 different topics in 4 categories:</s>',
               {
-                s: ({ children }) => <strong key="bold">{children}</strong>
+                s: StrongMessage
               }
             )}
             <ul>
@@ -167,7 +190,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Drug plan customer service:</s> Includes how well the plan handles calls and makes decisions about member appeals for drug coverage.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -175,7 +198,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Member complaints, problems getting services, and choosing to leave the plan:</s>  Includes how often members filed complaints about the plan and how often members choose to leave the plan. Includes how often Medicare found problems with the plan.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -183,7 +206,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   `<s>Member experience with plan's drug services:</s> Includes ratings of member satisfaction with the plan.`,
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -191,7 +214,7 @@ export default function StarRatingExplanation(props) {
                 {formatMessage.rich(
                   '<s>Drug pricing and patient safety:</s> Includes how well the plan prices prescriptions and provides updated and accurate pricing information for the Medicare website. Includes information on how often members with certain medical conditions get prescription drugs that are considered safer and clinically recommended for their condition. Includes information on whether members are taking certain medications as directed.',
                   {
-                    s: ({ children }) => <strong key="bold">{children}</strong>
+                    s: StrongMessage
                   }
                 )}
               </li>
@@ -201,7 +224,7 @@ export default function StarRatingExplanation(props) {
             {formatMessage.rich(
               '<s>For plans covering both health and drug services,</s> the overall score for quality of those services covers <s>all of the 53 topics listed above.</s>',
               {
-                s: ({ children }) => <strong key="bold">{children}</strong>
+                s: StrongMessage
               }
             )}
           </li>
@@ -218,7 +241,7 @@ export default function StarRatingExplanation(props) {
             {formatMessage.rich(
               'For quality of <s>health services</s>, the information comes from sources that include:',
               {
-                s: ({ children }) => <strong key="bold">{children}</strong>
+                s: StrongMessage
               }
             )}
             <ul>
@@ -236,7 +259,7 @@ export default function StarRatingExplanation(props) {
             {formatMessage.rich(
               'For quality of <s>drug services</s>, the information comes from sources that include:',
               {
-                s: ({ children }) => <strong key="bold">{children}</strong>
+                s: StrongMessage
               }
             )}
             <ul>
@@ -272,9 +295,11 @@ export default function StarRatingExplanation(props) {
       </HelpContent>
       <Modal.Footer>
         <ModalButtonContainer>
-          <Button onClick={props.closeModal}>{formatMessage('Close')}</Button>
+          <Button onClick={closeModal}>{formatMessage('Close')}</Button>
         </ModalButtonContainer>
       </Modal.Footer>
     </Modal>
   );
-}
+});
+
+export default StarRatingExplanation;

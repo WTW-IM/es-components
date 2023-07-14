@@ -29,9 +29,17 @@ type ModalTheme = DefaultTheme & {
 type HTMLRef = React.ForwardedRef<HTMLElement> | undefined;
 type BackdropValue = boolean | 'static';
 
+const modalSize = {
+  small: '300px',
+  medium: '600px',
+  large: '900px'
+} as const;
+
+export type ModalSize = keyof typeof modalSize;
+
 export type ModalProps = Omit<ReactModal.Props, 'isOpen'> & {
   show?: boolean;
-  size?: number;
+  size?: ModalSize;
   parentSelector?: () => RootNode;
   className?: string;
   animation?: boolean;
@@ -43,12 +51,6 @@ export type ModalProps = Omit<ReactModal.Props, 'isOpen'> & {
   onHide?: () => void;
   overlayRef?: HTMLRef;
   contentRef?: HTMLRef;
-};
-
-const modalSize = {
-  small: '300px',
-  medium: '600px',
-  large: '900px'
 };
 
 const animationTimeMs = 300 as number;

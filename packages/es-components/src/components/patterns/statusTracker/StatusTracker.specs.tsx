@@ -1,14 +1,9 @@
-/* eslint-env jest */
 import React from 'react';
 import StatusTracker from './StatusTracker';
 import { renderWithTheme } from '../../util/test-utils';
 
 describe('StatusTracker', () => {
-  let planStates;
-
-  beforeEach(() => {
-    planStates = ['step 1', 'step 2', 'step 3', 'step 4'];
-  });
+  const planStates = ['step 1', 'step 2', 'step 3', 'step 4'];
 
   it('should display the third step with the active class', () => {
     const { container } = renderWithTheme(

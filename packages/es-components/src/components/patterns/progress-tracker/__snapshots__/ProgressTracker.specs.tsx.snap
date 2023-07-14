@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`builds a ProgressTracker 1`] = `
+exports[`ProgressTracker renders as expected 1`] = `
 .c0 {
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
@@ -77,6 +77,21 @@ exports[`builds a ProgressTracker 1`] = `
   text-align: center;
   width: 20px;
   position: relative;
+}
+
+.c4 {
+  cursor: pointer;
+}
+
+.c4:hover::before {
+  box-shadow: rgba(0,0,0,0.35) 0 0 3px 1px;
+}
+
+.c4:active span,
+.c4:hover span,
+.c4:focus span {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c3 {
@@ -208,7 +223,6 @@ exports[`builds a ProgressTracker 1`] = `
     <button
       aria-labelledby="1-span"
       class="c2 c3"
-      disabled=""
       id="1"
     >
       <span
@@ -222,13 +236,12 @@ exports[`builds a ProgressTracker 1`] = `
     class="c1"
   >
     <button
-      aria-labelledby="1-span"
-      class="c2"
-      disabled=""
-      id="1"
+      aria-labelledby="2-span"
+      class="c2 c4"
+      id="2"
     >
       <span
-        id="1-span"
+        id="2-span"
       >
         step 2
       </span>
@@ -238,13 +251,12 @@ exports[`builds a ProgressTracker 1`] = `
     class="c1"
   >
     <button
-      aria-labelledby="1-span"
-      class="c2"
-      disabled=""
-      id="1"
+      aria-labelledby="3-span"
+      class="c2 c4"
+      id="3"
     >
       <span
-        id="1-span"
+        id="3-span"
       >
         step 3
       </span>
@@ -253,7 +265,7 @@ exports[`builds a ProgressTracker 1`] = `
 </ol>
 `;
 
-exports[`builds a ProgressTracker 2`] = `
+exports[`ProgressTracker renders as expected 2`] = `
 .c0 {
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
@@ -330,6 +342,21 @@ exports[`builds a ProgressTracker 2`] = `
   text-align: center;
   width: 20px;
   position: relative;
+}
+
+.c5 {
+  cursor: pointer;
+}
+
+.c5:hover::before {
+  box-shadow: rgba(0,0,0,0.35) 0 0 3px 1px;
+}
+
+.c5:active span,
+.c5:hover span,
+.c5:focus span {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c3 {
@@ -409,10 +436,6 @@ exports[`builds a ProgressTracker 2`] = `
   -ms-flex-align: flex-end;
   align-items: flex-end;
   text-align: right;
-}
-
-@media (min-width:768px) {
-
 }
 
 @media (min-width:768px) {
@@ -504,12 +527,12 @@ exports[`builds a ProgressTracker 2`] = `
     class="c1"
   >
     <button
-      aria-labelledby="2-span"
+      aria-labelledby="1-span"
       class="c2 c3"
-      id="2"
+      id="1"
     >
       <span
-        id="2-span"
+        id="1-span"
       >
         step 1
       </span>
@@ -521,7 +544,6 @@ exports[`builds a ProgressTracker 2`] = `
     <button
       aria-labelledby="2-span"
       class="c2 c4"
-      disabled=""
       id="2"
     >
       <span
@@ -535,13 +557,12 @@ exports[`builds a ProgressTracker 2`] = `
     class="c1"
   >
     <button
-      aria-labelledby="2-span"
-      class="c2"
-      disabled=""
-      id="2"
+      aria-labelledby="3-span"
+      class="c2 c5"
+      id="3"
     >
       <span
-        id="2-span"
+        id="3-span"
       >
         step 3
       </span>
@@ -550,7 +571,7 @@ exports[`builds a ProgressTracker 2`] = `
 </ol>
 `;
 
-exports[`builds a ProgressTracker 3`] = `
+exports[`ProgressTracker renders as expected 3`] = `
 .c0 {
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
@@ -709,14 +730,6 @@ exports[`builds a ProgressTracker 3`] = `
 }
 
 @media (min-width:768px) {
-
-}
-
-@media (min-width:768px) {
-
-}
-
-@media (min-width:768px) {
   .c0 {
     background-position: center 19px;
     background-size: 66.66666666666667% 3px;
@@ -805,12 +818,12 @@ exports[`builds a ProgressTracker 3`] = `
     class="c1"
   >
     <button
-      aria-labelledby="3-span"
+      aria-labelledby="1-span"
       class="c2 c3"
-      id="3"
+      id="1"
     >
       <span
-        id="3-span"
+        id="1-span"
       >
         step 1
       </span>
@@ -820,12 +833,12 @@ exports[`builds a ProgressTracker 3`] = `
     class="c1"
   >
     <button
-      aria-labelledby="3-span"
+      aria-labelledby="2-span"
       class="c2 c3"
-      id="3"
+      id="2"
     >
       <span
-        id="3-span"
+        id="2-span"
       >
         step 2
       </span>
@@ -837,7 +850,6 @@ exports[`builds a ProgressTracker 3`] = `
     <button
       aria-labelledby="3-span"
       class="c2 c4"
-      disabled=""
       id="3"
     >
       <span

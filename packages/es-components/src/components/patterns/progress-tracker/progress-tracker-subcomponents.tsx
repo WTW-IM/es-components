@@ -6,21 +6,31 @@ import useUniqueId from '../../util/useUniqueId';
 
 const { ACTIVE, INACTIVE, DESKTOP, TRACKING_LINE_HEIGHT } = sizes;
 
-const getProgressLineBreakPercentage = (activeStepIndex, numberOfSteps) =>
-  (activeStepIndex / (numberOfSteps - 1)) * 100;
+const getProgressLineBreakPercentage = (
+  activeStepIndex: number,
+  numberOfSteps: number
+) => (activeStepIndex / (numberOfSteps - 1)) * 100;
 
-const getProgressItemWidthPercentage = baseAmount => (1 / baseAmount) * 100;
+const getProgressItemWidthPercentage = (baseAmount: number) =>
+  (1 / baseAmount) * 100;
 
-const getCenterTopPosition = (containerHeight, itemHeight) =>
+const getCenterTopPosition = (containerHeight: number, itemHeight: number) =>
   containerHeight / 2 - itemHeight / 2;
 
 const stepStates = {
   active: 'active',
   pastStep: 'isPastStep',
   clickableFutureStep: 'clickableFutureStep'
-};
+} as const;
 
-export const ProgressContainer = styled.ol`
+type StepState = (typeof stepStates)[keyof typeof stepStates];
+
+interface ProgressContainerProps {
+  activeStepIndex: number;
+  numberOfSteps: number;
+}
+
+export const ProgressContainer = styled.ol<ProgressContainerProps>`
   align-items: flex-start;
   background-image: linear-gradient(
     to right,
@@ -59,10 +69,6 @@ export const ProgressContainer = styled.ol`
       ${() => TRACKING_LINE_HEIGHT}px;
   }
 `;
-
-ProgressContainer.propTypes = {
-  activePercentage: PropTypes.number
-};
 
 const BasicProgressButton = styled.button`
   align-items: center;
@@ -238,7 +244,7 @@ const ActiveProgressButton = styled(BasicProgressButton)`
   }
 `;
 
-const ProgressLi = styled.li`
+const ProgressLi = styled.li<{ numberOfSteps: number }>`
   display: flex;
   list-style-type: none;
   max-width: ${props =>
@@ -275,7 +281,10 @@ const ProgressLi = styled.li`
   }
 `;
 
-function getProgressItemType(itemType, showNav) {
+function getProgressItemType(
+  itemType: Maybe<StepState>,
+  showNav: Maybe<boolean>
+) {
   switch (itemType) {
     case stepStates.active:
       return ActiveProgressButton;
@@ -288,7 +297,11 @@ function getProgressItemType(itemType, showNav) {
   }
 }
 
-function getStepState(isActiveStep, isPastStep, canClickFutureStep) {
+function getStepState(
+  isActiveStep: Maybe<boolean>,
+  isPastStep: Maybe<boolean>,
+  canClickFutureStep: Maybe<boolean>
+) {
   if (isActiveStep) {
     return stepStates.active;
   }
@@ -304,40 +317,55 @@ function getStepState(isActiveStep, isPastStep, canClickFutureStep) {
   return stepStates.active;
 }
 
-export function ProgressItem({
-  active,
-  isPastStep,
-  numberOfSteps,
-  onPastStepClicked,
-  canClickFutureStep,
-  label,
-  showNav
-}) {
-  let itemType;
-  if (isPastStep || active || canClickFutureStep) {
-    itemType = getStepState(active, isPastStep, canClickFutureStep);
+type ProgressItemProps = {
+  active?: Maybe<boolean>;
+  isPastStep?: Maybe<boolean>;
+  numberOfSteps: number;
+  onPastStepClicked?: () => void;
+  canClickFutureStep?: Maybe<boolean>;
+  label?: string;
+  showNav?: Maybe<boolean>;
+};
+
+export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
+  function ForwardedProgressItem(
+    {
+      active,
+      isPastStep,
+      numberOfSteps,
+      onPastStepClicked,
+      canClickFutureStep,
+      label,
+      showNav
+    },
+    ref
+  ) {
+    let itemType;
+    if (isPastStep || active || canClickFutureStep) {
+      itemType = getStepState(active, isPastStep, canClickFutureStep);
+    }
+    const ProgressItemType = getProgressItemType(itemType, showNav);
+    const itemId = useUniqueId();
+
+    const listItemProps = {
+      numberOfSteps,
+      disabled: !isPastStep && !canClickFutureStep,
+      onClick: onPastStepClicked
+    };
+
+    return (
+      <ProgressLi numberOfSteps={numberOfSteps} ref={ref}>
+        <ProgressItemType
+          {...listItemProps}
+          id={itemId}
+          aria-labelledby={`${itemId}-span`}
+        >
+          <span id={`${itemId}-span`}>{label}</span>
+        </ProgressItemType>
+      </ProgressLi>
+    );
   }
-  const ProgressItemType = getProgressItemType(itemType, showNav);
-  const itemId = useUniqueId();
-
-  const listItemProps = {
-    numberOfSteps,
-    disabled: !isPastStep && !canClickFutureStep,
-    onClick: onPastStepClicked
-  };
-
-  return (
-    <ProgressLi numberOfSteps={numberOfSteps}>
-      <ProgressItemType
-        {...listItemProps}
-        id={itemId}
-        aria-labelledby={`${itemId}-span`}
-      >
-        <span id={`${itemId}-span`}>{label}</span>
-      </ProgressItemType>
-    </ProgressLi>
-  );
-}
+);
 
 ProgressItem.propTypes = {
   active: PropTypes.bool.isRequired,

@@ -5,21 +5,37 @@ import {
   ProgressContainer,
   ProgressItem
 } from './progress-tracker-subcomponents';
+import noop from '../../util/noop';
 
-const getMappedSteps = (
+export interface Step {
+  label?: Maybe<string>;
+  active?: Maybe<boolean>;
+}
+
+export interface ProgressTrackerInternalProps {
+  steps?: Step[];
+  onPastStepClicked?: (index: number) => void;
+  onFutureStepClicked?: (index: number) => void;
+  showNav?: boolean;
+}
+
+export type ProgressTrackerProps = Override<
+  JSXElementProps<'ol'>,
+  ProgressTrackerInternalProps & OptionalThemeProps
+>;
+
+const getMappedSteps = ({
   steps,
   onPastStepClicked,
   onFutureStepClicked,
   showNav
-) => {
+}: Required<ProgressTrackerInternalProps>) => {
   let isPastStep = true;
   return steps.map((step, index) => {
     isPastStep = !(step.active || !isPastStep);
     return (
       <ProgressItem
-        /* eslint-disable react/no-array-index-key */
         key={`${index}-${step.label}`}
-        /* eslint-enable */
         active={step.active}
         isPastStep={isPastStep}
         numberOfSteps={steps.length}
@@ -27,39 +43,53 @@ const getMappedSteps = (
         canClickFutureStep={
           onFutureStepClicked !== null && onFutureStepClicked !== undefined
         }
-        onFutureStepClicked={() => onFutureStepClicked(index)}
-        label={step.label}
+        label={step.label || ''}
         showNav={showNav}
       />
     );
   });
 };
 
-const getIndexOfActiveStep = steps => steps.findIndex(step => step.active);
+const getIndexOfActiveStep = (steps: Step[]) =>
+  steps.findIndex(step => step.active);
 
-function ProgressTracker({
-  steps,
-  onPastStepClicked,
-  onFutureStepClicked,
-  showNav
-}) {
+const ProgressTracker = React.forwardRef<
+  HTMLOListElement,
+  ProgressTrackerProps
+>(function ForwardedProgressTracker(
+  {
+    steps = [],
+    onPastStepClicked = noop,
+    onFutureStepClicked = noop,
+    showNav = false,
+    ...props
+  },
+  ref
+) {
   return (
     <ProgressContainer
+      ref={ref}
       data-testid="progress-tracker"
       activeStepIndex={getIndexOfActiveStep(steps)}
       numberOfSteps={steps.length}
+      {...props}
     >
-      {getMappedSteps(steps, onPastStepClicked, onFutureStepClicked, showNav)}
+      {getMappedSteps({
+        steps,
+        onPastStepClicked,
+        onFutureStepClicked,
+        showNav
+      })}
     </ProgressContainer>
   );
-}
+});
 
 ProgressTracker.propTypes = {
-  steps: PropTypes.arrayOf(
+  steps: PropTypes.arrayOf<Step>(
     PropTypes.shape({
       active: PropTypes.bool,
       label: PropTypes.string
-    })
+    }).isRequired
   ),
   onPastStepClicked: PropTypes.func,
   onFutureStepClicked: PropTypes.func,
@@ -68,8 +98,8 @@ ProgressTracker.propTypes = {
 
 ProgressTracker.defaultProps = {
   steps: [],
-  onPastStepClicked() {},
-  onFutureStepClicked: null,
+  onPastStepClicked: noop,
+  onFutureStepClicked: noop,
   showNav: true
 };
 

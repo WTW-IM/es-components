@@ -20,7 +20,7 @@ export default args => {
 
   return [
     {
-      input: 'src/full-color-icons.js',
+      input: 'src/full-color-icons.tsx',
       output: {
         file: 'docs/full-color-icons.js',
         format: 'iife',

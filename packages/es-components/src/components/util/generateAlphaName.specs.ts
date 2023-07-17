@@ -1,5 +1,3 @@
-/* eslint-env jest */
-
 import generateAlphaName from './generateAlphaName';
 
 describe('generateAlphaName', () => {

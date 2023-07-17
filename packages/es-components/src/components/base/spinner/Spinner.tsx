@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled, { keyframes, ThemeProps, DefaultTheme } from 'styled-components';
 import useUniqueId from '../../util/useUniqueId';
 
@@ -92,34 +92,37 @@ export type SpinnerProps = RequireAtLeastOne<
 > &
   JSXElementProps<'svg'>;
 
-const Spinner: FC<SpinnerProps> = ({ title, description, ...other }) => {
-  const propId = other.id || '';
-  const generatedId = `${useUniqueId(propId)}-title`;
-  const generatedDesc = `${useUniqueId(propId)}-desc`;
-  const titleId = (title && generatedId) || '';
-  const descId = (description && generatedDesc) || '';
+const Spinner = React.forwardRef<SVGSVGElement, SpinnerProps>(
+  function ForwardedSpinner({ title, description, ...other }, ref) {
+    const propId = other.id || '';
+    const generatedId = `${useUniqueId(propId)}-title`;
+    const generatedDesc = `${useUniqueId(propId)}-desc`;
+    const titleId = (title && generatedId) || '';
+    const descId = (description && generatedDesc) || '';
 
-  return (
-    <SpinnerSvg
-      viewBox="0 0 66 66"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-labelledby={`${titleId} ${descId}`.trim()}
-      {...other}
-    >
-      {title && <title id={titleId}>{title}</title>}
-      {description && <desc id={descId}>{description}</desc>}
-      <SpinnerCircle
-        fill="none"
-        strokeWidth="6"
-        strokeLinecap="round"
-        cx="33"
-        cy="33"
-        r="30"
-      />
-    </SpinnerSvg>
-  );
-};
+    return (
+      <SpinnerSvg
+        ref={ref}
+        viewBox="0 0 66 66"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby={`${titleId} ${descId}`.trim()}
+        {...other}
+      >
+        {title && <title id={titleId}>{title}</title>}
+        {description && <desc id={descId}>{description}</desc>}
+        <SpinnerCircle
+          fill="none"
+          strokeWidth="6"
+          strokeLinecap="round"
+          cx="33"
+          cy="33"
+          r="30"
+        />
+      </SpinnerSvg>
+    );
+  }
+);
 
 const descriptionTitleProp = (
   props: { [key: string]: unknown },

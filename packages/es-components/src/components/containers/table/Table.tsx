@@ -85,7 +85,7 @@ const TableBase = styled.table<TableBaseProps>`
   }
 `;
 
-const TableOriginal = React.forwardRef<HTMLTableElement, TableProps>(
+const Table = React.forwardRef<HTMLTableElement, TableProps>(
   function ForwardedTable(props, ref) {
     const { isCondensed, isRoomy, ...rest } = props;
     let cellPadding = '8px';
@@ -101,17 +101,15 @@ const TableRow = styled.tr``;
 const TableBodyCell = styled.td``;
 const TableHeaderCell = styled.th``;
 
-type TableComponent = typeof TableOriginal & {
+type TableComponent = typeof Table & {
   Row: typeof TableRow;
   Cell: typeof TableBodyCell;
   HeaderCell: typeof TableHeaderCell;
 };
 
-const Table = TableOriginal as TableComponent;
-
-Table.Row = TableRow;
-Table.Cell = TableBodyCell;
-Table.HeaderCell = TableHeaderCell;
+(Table as TableComponent).Row = TableRow;
+(Table as TableComponent).Cell = TableBodyCell;
+(Table as TableComponent).HeaderCell = TableHeaderCell;
 
 Table.propTypes = {
   /** adds a darker background to every other row */
@@ -131,4 +129,4 @@ Table.defaultProps = {
   isRoomy: false
 };
 
-export default Table;
+export default Table as TableComponent;

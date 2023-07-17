@@ -87,7 +87,8 @@ module.exports = {
           '**/test-utils.{js,jsx,ts,tsx}',
           '**/styleguide/*.{js,jsx,ts,tsx}',
           '**/cypress/**/*.js',
-          '**/global.d.ts'
+          '**/global.d.ts',
+          '**/full-color-icons.tsx'
         ]
       }
     ],

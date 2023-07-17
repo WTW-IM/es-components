@@ -1,7 +1,5 @@
-/* eslint-env jest */
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { render, screen, act } from '@testing-library/react';
 import { useWindowWidth } from './useWindowWidth';
 
 const WindowSizeComponent = () => {
@@ -29,27 +27,23 @@ beforeEach(() => {
   window.innerWidth = 500;
 });
 
-afterEach(cleanup);
-
-it('uses document clientWidth', () => {
-  const { getByTestId } = render(React.cloneElement(<WindowSizeComponent />));
-  expect(getByTestId('window-width').textContent).toBe('500');
+it('uses document clientWidth', async () => {
+  render(React.cloneElement(<WindowSizeComponent />));
+  expect(await screen.findByTestId('window-width')).toHaveTextContent('500');
 });
 
-it('adjusts the size based on resize', () => {
+it('adjusts the size based on resize', async () => {
   // Initial size
+  render(<WindowSizeComponent />);
+  const windowWidthElement = await screen.findByTestId('window-width');
 
-  const { getByTestId } = render(<WindowSizeComponent />);
-  const windowWidthElement = getByTestId('window-width');
-
-  expect(windowWidthElement.textContent).toBe('500');
+  expect(windowWidthElement).toHaveTextContent('500');
 
   // Resize
-
   act(() => {
     window.innerWidth = 1000;
     triggerResize();
   });
 
-  expect(windowWidthElement.textContent).toBe('1000');
+  expect(windowWidthElement).toHaveTextContent('1000');
 });

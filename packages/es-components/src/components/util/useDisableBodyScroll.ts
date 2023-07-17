@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const useDisableBodyScroll = shouldDisableScroll => {
+export const useDisableBodyScroll = (shouldDisableScroll: Maybe<boolean>) => {
   useEffect(() => {
     const newStyle = 'overflow: hidden;';
     const getCurrentStyle = () => document.body.getAttribute('style') || '';

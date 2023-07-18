@@ -1,62 +1,85 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
+import { HTMLInputProps, htmlInputPropTypes } from '../../util/htmlProps';
 
-type RadioGroupProps = JSXElementProps<'input'> & {
+export type RadioGroupProps = {
   name: string;
-  disableAllOptions: boolean;
-  selectedValue: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  children: NonNullable<React.ReactNode>;
+  disableAllOptions?: boolean;
+  selectedValue?: HTMLInputProps['value'];
+  onChange?: HTMLInputProps['onChange'];
 };
 
 interface ChildProps {
-  props: {
-    disabled: boolean;
-    value: string | number;
-  };
+  disabled?: HTMLInputProps['disabled'];
+  value?: HTMLInputProps['value'];
+  onChange?: HTMLInputProps['onChange'];
+  checked?: HTMLInputProps['checked'];
 }
 
-function RadioGroup({
+function RadioGroup<P extends ChildProps>({
   name,
   disableAllOptions,
   selectedValue,
   children,
-  onChange,
+  onChange: onChangeProp,
   ...rest
-}: RadioGroupProps) {
-  return React.Children.map(children, (child, index) => {
-    if (!React.isValidElement(child)) {
+}: RadioGroupProps & P) {
+  return React.Children.map(children, (c, index) => {
+    if (!React.isValidElement(c)) {
       return null;
     }
+    const child = c as React.ComponentElement<
+      ChildProps,
+      React.Component<ChildProps>
+    >;
     const key = `${name}-option-${index + 1}`;
-    const disabled = disableAllOptions || (child as ChildProps).props.disabled;
-    const checked = selectedValue === (child as ChildProps).props.value;
-    return React.cloneElement(child, {
+    const {
+      checked: childChecked,
+      onChange: childOnChange,
+      disabled: childDisabled,
+      ...childProps
+    } = child.props;
+    const disabled = disableAllOptions || childDisabled;
+    const checked = selectedValue === child.props.value || childChecked;
+    const onChange = childOnChange || onChangeProp;
+
+    const props = {
+      ...childProps,
+      ...rest,
       key,
       name,
       disabled,
-      checked,
       onChange,
-      ...rest
-    } as React.HTMLAttributes<HTMLInputElement>);
+      ...(onChange ? { checked } : { defaultChecked: checked })
+    };
+
+    return React.cloneElement(
+      child,
+      props as React.HTMLAttributes<HTMLInputElement>
+    );
   });
 }
 
-RadioGroup.propTypes = {
+export const propTypes = {
   /** The name of the radio group */
   name: PropTypes.string.isRequired,
   /** Selected option for the radio group */
-  selectedValue: PropTypes.any,
+  selectedValue: htmlInputPropTypes.value,
   /** Disable all radio buttons */
   disableAllOptions: PropTypes.bool,
-  /** Function to change selected value */
-  onChange: PropTypes.func
+  children: PropTypes.node.isRequired
 };
+
+export const defaultProps = {
+  disableAllOptions: false
+};
+
+RadioGroup.propTypes = propTypes;
 
 RadioGroup.defaultProps = {
   selectedValue: undefined,
-  disableAllOptions: false,
-  onChange: noop
+  disableAllOptions: false
 };
 
 /** @component */

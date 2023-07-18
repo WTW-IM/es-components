@@ -206,6 +206,9 @@ export interface ValidationProps
   extends ValidationInputColor,
     ValidationStyleProps {}
 
+export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
+  darken(color, 7);
+
 export function useValidationStyleProps(
   props: FlatInputProps
 ): ValidationProps {
@@ -249,7 +252,7 @@ export function useValidationStyleProps(
         : validationStyleProps.borderColor
   });
 
-  const disabledBackgroundColor = darken(backgroundColor, 7);
+  const disabledBackgroundColor = getDisabledBackgroundColor(backgroundColor);
 
   const calculatedProps = {
     disabledBackgroundColor,

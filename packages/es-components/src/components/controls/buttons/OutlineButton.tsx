@@ -5,7 +5,7 @@ import tinycolor, { ColorInput } from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import Button, { ButtonProps } from './Button';
 import ButtonBase from './ButtonBase';
-import { ButtonSize } from 'es-components-shared-types';
+import { ButtonSizeBlock } from 'es-components-shared-types';
 
 type OutlineButtonColors = {
   textColor: CSS.Property.Color;
@@ -20,7 +20,7 @@ type OutlineButtonColors = {
 
 const StyledButton = styled(ButtonBase)<{
   colors: OutlineButtonColors;
-  buttonSize: ButtonSize;
+  buttonSize: ButtonSizeBlock;
   block: boolean;
 }>`
   background-color: ${props => props.colors.bgColor};

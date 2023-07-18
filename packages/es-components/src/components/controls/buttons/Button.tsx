@@ -12,11 +12,10 @@ import ButtonBase, {
 import type * as CSS from 'csstype';
 import {
   ButtonVariant,
-  ButtonVariantStyleType,
-  ButtonSizePropName,
   ButtonSize,
+  ButtonSizeBlock,
   buttonVariantStyleTypes,
-  buttonSizePropNames
+  buttonSizes
 } from 'es-components-shared-types';
 
 type BorderRadii = {
@@ -32,7 +31,7 @@ const StyledButton = styled(ButtonBase)<{
   borderRadii: BorderRadii;
   mobileBlock: boolean;
   block: boolean;
-  buttonSize: ButtonSize;
+  buttonSize: ButtonSizeBlock;
 }>`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid transparent;
@@ -217,7 +216,7 @@ export const buttonStyleTypes = [
 ] as const;
 export type ButtonStyleType = (typeof buttonStyleTypes)[number];
 export type ButtonProps = ButtonBaseProps & {
-  size?: ButtonSizePropName;
+  size?: ButtonSize;
   styleType?: ButtonStyleType;
   mobileBlock?: boolean;
   flatLeftEdge?: boolean;
@@ -278,7 +277,7 @@ export const propTypes = {
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
   styleType: PropTypes.oneOf<ButtonStyleType>(buttonStyleTypes),
-  size: PropTypes.oneOf<ButtonSizePropName>(buttonSizePropNames),
+  size: PropTypes.oneOf<ButtonSize>(buttonSizes),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,
   /** Override the default block mobile style */
@@ -294,7 +293,7 @@ export const defaultProps = {
   styleType: 'default' as ButtonStyleType,
   block: false,
   mobileBlock: true,
-  size: 'default' as ButtonSizePropName,
+  size: 'default' as ButtonSize,
   flatLeftEdge: false,
   flatRightEdge: false
 };

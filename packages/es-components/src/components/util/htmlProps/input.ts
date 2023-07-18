@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { htmlProps } from './html';
 import { baseFormElementProps } from './form';
 
-type HTMLInputProps = JSXElementProps<'input'>;
+export type HTMLInputProps = JSXElementProps<'input'>;
 
-type HTMLInputPropTypes = {
+export type HTMLInputPropTypes = {
   [key in keyof HTMLInputProps]:
     | PropTypes.Requireable<HTMLInputProps[key]>
     | PropTypes.Validator<HTMLInputProps[key]>;
@@ -12,7 +12,7 @@ type HTMLInputPropTypes = {
 
 type NonNullableInputKeys = NonNullableKeys<HTMLInputProps>;
 
-type HTMLInputDefaultProps = {
+export type HTMLInputDefaultProps = {
   [key in NonNullableInputKeys]?: HTMLInputProps[key];
 };
 

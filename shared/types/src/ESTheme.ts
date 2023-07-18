@@ -2,7 +2,7 @@ import * as CSS from 'csstype';
 import { IconName } from './IconNames';
 
 export const buttonSizePropNames = ['lg', 'sm', 'xs', 'default'] as const;
-export type ButtonSizePropNames = (typeof buttonSizePropNames)[number];
+export type ButtonSizePropName = (typeof buttonSizePropNames)[number];
 
 export interface ButtonSize {
   borderRadius: CSS.Property.BorderRadius;
@@ -16,7 +16,7 @@ export interface ButtonSize {
 }
 
 export type ButtonSizes = {
-  [key in ButtonSizePropNames]: ButtonSize;
+  [key in ButtonSizePropName]: ButtonSize;
 };
 
 export const buttonVariantStyleTypes = [

@@ -1,15 +1,18 @@
-/* eslint-env jest */
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Button from '../Button';
 import { renderWithTheme } from '../../../util/test-utils';
-import { withLoadingStateWhileRunning } from './withLoadingStateWhileRunning';
+import {
+  withLoadingStateWhileRunning,
+  LoadingStateOnClick
+} from './withLoadingStateWhileRunning';
+import noop from '../../../util/noop';
 
 const LoaderButton = withLoadingStateWhileRunning(Button);
-let resolve = () => ({});
-let reject = () => ({});
+let resolve: () => void = noop;
+let reject = noop;
 
 afterEach(() => {
   resolve();
@@ -18,12 +21,12 @@ afterEach(() => {
 const loadingContent = 'Loading...';
 const defaultContent = 'Click Me!';
 const load = () =>
-  new Promise((res, rej) => {
+  new Promise<void>((res, rej) => {
     resolve = res;
     reject = rej;
   });
 
-const generateLoaderButton = (onClick = load) =>
+const generateLoaderButton = (onClick: LoadingStateOnClick = load) =>
   renderWithTheme(
     <LoaderButton showWhileRunning={loadingContent} onClick={onClick}>
       {defaultContent}
@@ -37,12 +40,12 @@ it('renders a loading state while running', async () => {
   await user.click(screen.getByText(defaultContent));
 
   const loadingElement = await screen.findByText(loadingContent);
-  expect(loadingElement.hasAttribute('data-waiting')).toBe(true);
+  expect(loadingElement).toHaveAttribute('data-waiting');
 
   resolve();
 
   const completedElement = await screen.findByText(defaultContent);
-  expect(completedElement.hasAttribute('data-waiting')).toBe(false);
+  expect(completedElement).not.toHaveAttribute('data-waiting');
 });
 
 it('renders the default state after rejection', async () => {
@@ -50,12 +53,9 @@ it('renders the default state after rejection', async () => {
   const rejectedLoad = () =>
     new Promise((res, rej) => {
       reject = rej;
-    }).then(
-      () => ({}),
-      () => {
-        // we have appropriately rejected
-      }
-    );
+    }).then(noop, () => {
+      // we have appropriately rejected
+    });
   generateLoaderButton(rejectedLoad);
 
   await user.click(screen.getByText(defaultContent));
@@ -63,5 +63,5 @@ it('renders the default state after rejection', async () => {
   reject();
 
   const completedElement = await screen.findByText(defaultContent);
-  expect(completedElement.hasAttribute('data-waiting')).toBe(false);
+  expect(completedElement).not.toHaveAttribute('data-waiting');
 });

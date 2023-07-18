@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-
-import { htmlProps } from '../../util/htmlProps';
+import { htmlProps } from './html';
+import { baseFormElementProps } from './form';
 
 type HTMLInputProps = JSXElementProps<'input'>;
 
@@ -39,10 +39,11 @@ export const inputTypes = [
   'time',
   'url',
   'week'
-];
+] as const;
 
 export const htmlInputPropTypes: HTMLInputPropTypes = {
   ...htmlProps,
+  ...baseFormElementProps,
   accept: PropTypes.string,
   alt: PropTypes.string,
   autoComplete: PropTypes.string,
@@ -53,7 +54,6 @@ export const htmlInputPropTypes: HTMLInputPropTypes = {
   ]),
   checked: PropTypes.bool,
   crossOrigin: PropTypes.oneOf(['anonymous', 'use-credentials']),
-  disabled: PropTypes.bool,
   form: PropTypes.string,
   enterKeyHint: PropTypes.oneOf([
     'enter',
@@ -64,11 +64,6 @@ export const htmlInputPropTypes: HTMLInputPropTypes = {
     'search',
     'send'
   ]),
-  formAction: PropTypes.string,
-  formEncType: PropTypes.string,
-  formMethod: PropTypes.string,
-  formNoValidate: PropTypes.bool,
-  formTarget: PropTypes.string,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   list: PropTypes.string,
   max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -77,7 +72,6 @@ export const htmlInputPropTypes: HTMLInputPropTypes = {
 
   minLength: PropTypes.number,
   multiple: PropTypes.bool,
-  name: PropTypes.string,
   pattern: PropTypes.string,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -86,11 +80,6 @@ export const htmlInputPropTypes: HTMLInputPropTypes = {
   src: PropTypes.string,
   step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.oneOf(inputTypes),
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.arrayOf(PropTypes.string.isRequired)
-  ]),
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func
 };

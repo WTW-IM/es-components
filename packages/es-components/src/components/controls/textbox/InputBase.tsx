@@ -12,7 +12,10 @@ import {
   ValidationInputColor,
   ValidationStyleType
 } from 'es-components-shared-types';
-import { htmlInputPropTypes, htmlInputDefaultProps } from './htmlInputProps';
+import {
+  htmlInputPropTypes,
+  htmlInputDefaultProps
+} from '../../util/htmlProps';
 
 export const noInset = 'inset 0 0 0 0 rgba(0, 0, 0, 0)';
 

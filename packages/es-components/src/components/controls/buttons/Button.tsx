@@ -13,7 +13,7 @@ import type * as CSS from 'csstype';
 import {
   ButtonVariant,
   ButtonVariantStyleType,
-  ButtonSizePropNames,
+  ButtonSizePropName,
   ButtonSize,
   buttonVariantStyleTypes,
   buttonSizePropNames
@@ -211,9 +211,13 @@ function getButtonColors<T extends boolean>(
   return calculatedButtonColors;
 }
 
-type ButtonStyleType = ButtonVariantStyleType | 'inherited';
+export const buttonStyleTypes = [
+  ...buttonVariantStyleTypes,
+  'inherited'
+] as const;
+export type ButtonStyleType = (typeof buttonStyleTypes)[number];
 export type ButtonProps = ButtonBaseProps & {
-  size?: ButtonSizePropNames;
+  size?: ButtonSizePropName;
   styleType?: ButtonStyleType;
   mobileBlock?: boolean;
   flatLeftEdge?: boolean;
@@ -271,14 +275,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
 
 export const propTypes = {
   ...buttonBasePropTypes,
-  waiting: PropTypes.bool,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */
-  styleType: PropTypes.oneOf<ButtonStyleType>([
-    ...buttonVariantStyleTypes,
-    'inherited'
-  ]),
-  size: PropTypes.oneOf(buttonSizePropNames),
+  styleType: PropTypes.oneOf<ButtonStyleType>(buttonStyleTypes),
+  size: PropTypes.oneOf<ButtonSizePropName>(buttonSizePropNames),
   /** Make the button's width the size of it's parent container */
   block: PropTypes.bool,
   /** Override the default block mobile style */
@@ -291,11 +291,10 @@ export const propTypes = {
 
 export const defaultProps = {
   ...buttonBaseDefaultProps,
-  waiting: false,
-  styleType: 'default' as ButtonVariantStyleType,
+  styleType: 'default' as ButtonStyleType,
   block: false,
   mobileBlock: true,
-  size: 'default' as ButtonSizePropNames,
+  size: 'default' as ButtonSizePropName,
   flatLeftEdge: false,
   flatRightEdge: false
 };

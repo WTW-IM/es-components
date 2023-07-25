@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import OrigDismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
 import Heading from '../heading/Heading';
+import { HeadingLevel } from 'es-components-shared-types';
 
 const DismissButton = OrigDismissButton as React.ForwardRefExoticComponent<
   JSX.IntrinsicElements['button']
@@ -57,7 +58,7 @@ const DismissModal = styled(DismissButton)`
 interface ModalHeaderProps {
   hideCloseButton: boolean;
   children: React.ReactNode;
-  level: number;
+  level: HeadingLevel;
 }
 
 function ModalHeader(props: ModalHeaderProps) {

@@ -9,7 +9,7 @@ export default callRef;
 
 export function callRefs<T, R extends React.ForwardedRef<T>>(
   value: T,
-  ...refs: Array<R>
+  ...refs: R[]
 ) {
   refs.forEach(r => callRef(r, value));
 }

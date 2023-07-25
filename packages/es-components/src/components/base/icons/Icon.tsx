@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import type * as CSS from 'csstype';
+import { IconName, iconNames } from 'es-components-shared-types';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
-import { IconName, iconNames } from 'es-components-shared-types';
+import { htmlProps, htmlDefaultProps } from '../../util/htmlProps';
 
 export const iconBasics = css`
   font-style: normal;
@@ -15,25 +17,30 @@ export const iconBasics = css`
   -moz-osx-font-smoothing: grayscale;
 `;
 
-export const iconBaseStyles = css<{ size: string | number }>`
+export type IconBaseProps = {
+  size?: CSS.Property.FontSize;
+};
+
+export const iconBaseStyles = css<IconBaseProps>`
   ${iconBasics}
-  display: inline-block;
-  font-size: ${props => props.size};
-  text-decoration: none;
-  vertical-align: text-bottom;
+  ${({ size }) => css`
+    display: inline-block;
+    font-size: ${size || 'inherit'};
+    text-decoration: none;
+    vertical-align: text-bottom;
+  `}
 `;
 
-export interface IconProps {
-  name?: IconName;
-  size?: string | number;
-  className?: string;
-  iconColor?: string;
-  alwaysShowIcon?: boolean;
-}
-
-const StyledIcon = styled.i<{ size: string | number }>`
+const StyledIcon = styled.i<IconBaseProps>`
   ${iconBaseStyles}
 `;
+
+export type IconProps = Omit<JSXElementProps<'i'>, 'size'> & {
+  name?: IconName;
+  size?: CSS.Property.FontSize | number;
+  iconColor?: string;
+  alwaysShowIcon?: boolean;
+};
 
 const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
   { name, size, className, ...other },
@@ -61,9 +68,9 @@ const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
 });
 
 export const propTypes = {
-  ...StyledIcon.propTypes,
+  ...htmlProps,
   /** Name of the icon to display */
-  name: PropTypes.oneOf(iconNames),
+  name: PropTypes.oneOf<IconName>([...iconNames]),
   /** Specify icon size in pixels */
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Additional classes to include */
@@ -71,6 +78,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  ...htmlDefaultProps,
   size: undefined,
   className: undefined
 };

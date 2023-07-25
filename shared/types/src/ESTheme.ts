@@ -2,7 +2,7 @@ import * as CSS from 'csstype';
 import { IconName } from './IconNames';
 
 export const buttonSizePropNames = ['lg', 'sm', 'xs', 'default'] as const;
-export type ButtonSizePropNames = (typeof buttonSizePropNames)[number];
+export type ButtonSizePropName = (typeof buttonSizePropNames)[number];
 
 export interface ButtonSize {
   borderRadius: CSS.Property.BorderRadius;
@@ -16,7 +16,7 @@ export interface ButtonSize {
 }
 
 export type ButtonSizes = {
-  [key in ButtonSizePropNames]: ButtonSize;
+  [key in ButtonSizePropName]: ButtonSize;
 };
 
 export const buttonVariantStyleTypes = [
@@ -42,6 +42,12 @@ export const validationStyleTypes = [
   'default',
 ] as const;
 export type ValidationStyleType = (typeof validationStyleTypes)[number];
+
+export interface ValidationAddOn {
+  textColor: CSS.Property.Color;
+  backgroundColor: CSS.Property.BackgroundColor;
+  borderColor?: CSS.Property.BorderColor;
+}
 
 export interface ButtonVariant {
   bgColor?: CSS.Property.BackgroundColor;
@@ -171,17 +177,52 @@ export const screenSizeNames = [
 
 export type ScreenSizeName = (typeof screenSizeNames)[number];
 
+export type FormStyle = 'default' | 'flat';
+
+export type ValidationInputColor = {
+  backgroundColor: CSS.Property.BackgroundColor;
+  backgroundColorFlat: CSS.Property.BackgroundColor;
+  borderColor: CSS.Property.BorderColor;
+  boxShadow: CSS.Property.BoxShadow;
+  focusBorderColor: CSS.Property.BorderColor;
+  focusBoxShadow: CSS.Property.BoxShadow;
+  focusBoxShadowFlat: CSS.Property.BoxShadow;
+  addOn: ValidationAddOn;
+};
+
+export type DatepickerColors = {
+  dpBackground: CSS.Property.BackgroundColor;
+  navArrow: CSS.Property.BorderColor;
+  navArrowHover: CSS.Property.BorderColor;
+  selected: CSS.Property.BackgroundColor;
+  hover: CSS.Property.BackgroundColor;
+  keyboard: CSS.Property.BackgroundColor;
+  inRange: CSS.Property.BackgroundColor;
+  highlight: CSS.Property.BackgroundColor;
+  highlightHover: CSS.Property.BackgroundColor;
+};
+
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+
 export default interface ESTheme {
   [key: string]: any;
 
   colors: Colors;
+  brandColors: {
+    primary1: CSS.Property.Color;
+    primary2: CSS.Property.Color;
+    primary3: CSS.Property.Color;
+    secondary1: CSS.Property.Color;
+    secondary2: CSS.Property.Color;
+  };
 
   font: {
     [key: string]: string | number | object | undefined;
     baseFontSize: CSS.Property.FontSize;
+    baseFontFace: CSS.Property.FontFamily;
     baseLineHeight: CSS.Property.LineHeight;
-    headingDesktop: object;
-    headingMobile: object;
+    headingDesktop: Record<HeadingLevel, string>;
+    headingMobile: Record<HeadingLevel, string>;
 
     labelFontSize?: CSS.Property.FontSize;
     labelFontWeight?: CSS.Property.FontWeight;
@@ -200,20 +241,7 @@ export default interface ESTheme {
   };
 
   validationInputColor: {
-    [key in ValidationStyleType]: {
-      backgroundColor: CSS.Property.BackgroundColor;
-      backgroundColorFlat: CSS.Property.BackgroundColor;
-      borderColor: CSS.Property.BorderColor;
-      boxShadow: CSS.Property.BoxShadow;
-      focusBorderColor: CSS.Property.BorderColor;
-      focusBoxShadow: CSS.Property.BoxShadow;
-      focusBoxShadowFlat: CSS.Property.BoxShadow;
-      addOn: {
-        textColor: CSS.Property.Color;
-        backgroundColor: CSS.Property.BackgroundColor;
-        borderColor?: CSS.Property.BorderColor;
-      };
-    };
+    [key in ValidationStyleType]: ValidationInputColor;
   };
 
   notificationStyles: NotificationStyles;
@@ -223,4 +251,14 @@ export default interface ESTheme {
     outlineButton: ButtonStyles<BGColorButtonVariant>;
     linkButton: ButtonStyles<TextColorButtonVariant>;
   };
+
+  inputStyles: {
+    borderRadius: CSS.Property.BorderRadius;
+    defaultFormStyle: FormStyle;
+    dropdownArrow: CSS.Property.BackgroundImage;
+    inputHeight: CSS.Property.Height;
+    dropdownLineHeight: CSS.Property.LineHeight;
+  };
+
+  datepickerColors: DatepickerColors;
 }

@@ -165,6 +165,10 @@ module.exports = {
         'es-components-shared-types': path.join(
           __dirname,
           '../../shared/types/src/index.ts'
+        ),
+        'styled-components': path.join(
+          __dirname,
+          '../../node_modules/styled-components/dist/styled-components.js'
         )
       }
     },

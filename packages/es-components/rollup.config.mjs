@@ -14,7 +14,7 @@ export const aliasPlugin = alias({
   entries: [
     {
       find: 'es-components-shared-types',
-      replacement: '../../shared/types/dist/ESTheme.js'
+      replacement: '../../shared/types/dist/index.js'
     }
   ]
 });

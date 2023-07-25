@@ -53,30 +53,31 @@ const Legend = styled.legend`
   width: 100%;
 `;
 
-function Fieldset(props: FieldsetProps) {
-  const {
-    legendContent,
-    children,
-    orientation: orientationProp,
-    flat,
-    ...other
-  } = props;
-  const orientation = useContext(OrientationContext);
-  const extraFormContext = isBool(flat) ? { flat } : {};
-  const finalOrientation =
-    (!isBool(orientationProp) ? orientationProp : orientation) || 'stacked';
+const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
+  function ForwardedFieldset(
+    { legendContent, children, orientation: orientationProp, flat, ...other },
+    ref
+  ) {
+    const orientation = useContext(OrientationContext);
+    const extraFormContext = isBool(flat) ? { flat } : {};
+    const finalOrientation = orientationProp || orientation || 'stacked';
 
-  return (
-    <OrientationContext.Provider value={finalOrientation}>
-      <FormContextProvider value={extraFormContext}>
-        <FieldsetBase orientation={finalOrientation} {...other}>
-          {legendContent && <Legend>{legendContent}</Legend>}
-          {children}
-        </FieldsetBase>
-      </FormContextProvider>
-    </OrientationContext.Provider>
-  );
-}
+    return (
+      <OrientationContext.Provider value={finalOrientation}>
+        <FormContextProvider value={extraFormContext}>
+          <FieldsetBase ref={ref} orientation={finalOrientation} {...other}>
+            {legendContent && <Legend>{legendContent}</Legend>}
+            {children}
+          </FieldsetBase>
+        </FormContextProvider>
+      </OrientationContext.Provider>
+    );
+  }
+);
+
+type FieldsetComponent = typeof Fieldset & {
+  Legend: typeof Legend;
+};
 
 Fieldset.propTypes = {
   orientation: PropTypes.oneOf(['stacked', 'inline']),
@@ -88,12 +89,12 @@ Fieldset.propTypes = {
 };
 
 Fieldset.defaultProps = {
-  orientation: 'stacked',
+  orientation: undefined,
   legendContent: null,
   flat: undefined,
   children: undefined
 };
 
-Fieldset.Legend = Legend;
+(Fieldset as FieldsetComponent).Legend = Legend;
 
-export default Fieldset;
+export default Fieldset as FieldsetComponent;

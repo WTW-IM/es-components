@@ -1,10 +1,10 @@
 import * as CSS from 'csstype';
 import { IconName } from './IconNames';
 
-export const buttonSizePropNames = ['lg', 'sm', 'xs', 'default'] as const;
-export type ButtonSizePropName = (typeof buttonSizePropNames)[number];
+export const buttonSizes = ['lg', 'sm', 'xs', 'default'] as const;
+export type ButtonSize = (typeof buttonSizes)[number];
 
-export interface ButtonSize {
+export interface ButtonSizeBlock {
   borderRadius: CSS.Property.BorderRadius;
   fontSize: CSS.Property.FontSize;
   fontWeight?: CSS.Property.FontWeight;
@@ -15,8 +15,8 @@ export interface ButtonSize {
   textTransform?: CSS.Property.TextTransform;
 }
 
-export type ButtonSizes = {
-  [key in ButtonSizePropName]: ButtonSize;
+export type ButtonSizeBlocks = {
+  [key in ButtonSize]: ButtonSizeBlock;
 };
 
 export const buttonVariantStyleTypes = [
@@ -73,8 +73,8 @@ export type ButtonVariants<T extends ButtonVariant> = {
 export type ButtonStyles<T extends ButtonVariant> = {
   variant: ButtonVariants<T>;
 } & (T extends BGColorButtonVariant
-  ? { size: ButtonSizes }
-  : { size?: ButtonSizes });
+  ? { size: ButtonSizeBlocks }
+  : { size?: ButtonSizeBlocks });
 
 export interface NotificationStyleBlock {
   bgColor: CSS.Property.BackgroundColor;

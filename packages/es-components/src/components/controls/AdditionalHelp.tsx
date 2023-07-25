@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { useTheme } from '../util/useTheme';
 import ValidationContext from './ValidationContext';
 import Icon from '../base/icons/Icon';
-import { ValidationStyleType } from 'es-components-shared-types';
 
 export type AdditionalHelpProps = JSXElementProps<'div'> & {
   hasValidationIcon: boolean;
@@ -32,9 +31,7 @@ function AdditionalHelp({
   ...props
 }: AdditionalHelpProps) {
   const theme = useTheme();
-  const validationState = React.useContext(
-    ValidationContext
-  ) as ValidationStyleType;
+  const validationState = React.useContext(ValidationContext);
 
   return (
     <HelpText {...props}>

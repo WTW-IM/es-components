@@ -13,7 +13,9 @@ export function getTextColor(
   darkestColor: ColorInput = 'black',
   lightestColor: ColorInput = 'white'
 ) {
-  return tinycolor.readability(darkestColor, bgColor) > 10
-    ? darkestColor
-    : lightestColor;
+  return tinycolor(
+    tinycolor.readability(darkestColor, bgColor) > 10
+      ? darkestColor
+      : lightestColor
+  ).toHexString();
 }

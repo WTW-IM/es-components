@@ -3,9 +3,9 @@ import { HTMLAttributes, AriaRole } from 'react';
 import { domProps, domDefaultProps } from './dom';
 import { booleanStrings, ariaRoles, ariaProps, ariaDefaultProps } from './aria';
 
-type BasicHTMLProps = HTMLAttributes<HTMLElement>;
+export type BasicHTMLProps = HTMLAttributes<HTMLElement>;
 
-type HTMLPropTypes = {
+export type HTMLPropTypes = {
   [key in keyof BasicHTMLProps]:
     | PropTypes.Requireable<BasicHTMLProps[key]>
     | PropTypes.Validator<BasicHTMLProps[key]>;
@@ -13,7 +13,7 @@ type HTMLPropTypes = {
 
 type NonNullableHTMLKeys = NonNullableKeys<BasicHTMLProps>;
 
-type HTMLDefaultProps = {
+export type HTMLDefaultProps = {
   [key in NonNullableHTMLKeys]?: BasicHTMLProps[key];
 };
 

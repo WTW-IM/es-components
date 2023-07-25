@@ -1,21 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { BaseNotification } from './BaseNotification';
-import type { ValidationStyleType } from 'es-components-shared-types';
+import { BaseNotification, BaseNotificationProps } from './BaseNotification';
+import {
+  ValidationStyleType,
+  validationStyleTypes
+} from 'es-components-shared-types';
 
-interface NotificationProps extends JSXElementProps<'div'> {
+export interface NotificationProps extends BaseNotificationProps {
   type: ValidationStyleType;
 }
 
-function Notification(props: NotificationProps) {
-  return <BaseNotification {...props} />;
-}
+const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
+  function ForwardedNotification(props, ref) {
+    return <BaseNotification ref={ref} {...props} />;
+  }
+);
 
 Notification.propTypes = {
   /** The type of notification to render */
-  type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
-    .isRequired,
+  type: PropTypes.oneOf<ValidationStyleType>(validationStyleTypes).isRequired,
   /** Display an icon in the notification on a screen >= 768px */
   includeIcon: PropTypes.bool,
   /** Display a dismiss button that will close the notification */

@@ -1,6 +1,6 @@
 import React, { AriaRole, useState } from 'react';
 import type * as CSS from 'csstype';
-import styled, { CSSProperties } from 'styled-components';
+import styled, { CSSProperties, css } from 'styled-components';
 import type {
   NotificationStyleBlock,
   ValidationStyleType,
@@ -15,33 +15,42 @@ import DismissButton, {
 } from '../../controls/DismissButton';
 
 const NotificationIcon = styled(Icon)<{ alwaysShowIcon: boolean }>`
-  align-self: start;
-  color: ${props => props.iconColor};
-  display: none;
+  ${({ iconColor, theme, alwaysShowIcon }) => css`
+    align-self: start;
+    color: ${iconColor};
+    display: none;
 
-  @media (min-width: ${props =>
-      props.alwaysShowIcon ? 0 : props.theme.screenSize.tablet}) {
-    display: inline;
-    margin-right: 8px;
-  }
+    @media (min-width: ${alwaysShowIcon ? 0 : theme.screenSize.tablet}) {
+      display: inline;
+      margin-right: 8px;
+    }
+  `}
 `;
 interface Color {
   textColor: CSS.Property.Color;
 }
 
-interface DismissProps extends Omit<DismissButtonProps, 'color'> {
-  color: Color;
-}
-
-const DismissBtn = styled(DismissButton)<DismissProps>`
-  align-self: start;
-  color: ${props => props.color.textColor};
-  font-weight: normal;
-  opacity: 0.8;
-  i {
-    font-size: 27px;
+type DismissProps = Override<
+  DismissButtonProps,
+  {
+    color: Color;
   }
-` as React.FC<DismissProps>;
+>;
+
+const DismissBtn = styled(DismissButton).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) =>
+    !['color'].includes(prop) && defaultValidatorFn(prop)
+})<DismissProps>`
+  ${({ color }) => css`
+    align-self: start;
+    color: ${color};
+    font-weight: normal;
+    opacity: 0.8;
+    i {
+      font-size: 27px;
+    }
+  `}
+`;
 
 const ContentWrapper = styled.div`
   align-self: center;
@@ -49,16 +58,30 @@ const ContentWrapper = styled.div`
   word-break: break-word;
 `;
 
-interface NotificationContentProps {
+interface NotificationContentProps
+  extends Omit<JSXElementProps<'div'>, 'color'> {
   includeIcon?: boolean;
   isDismissable?: boolean;
   onDismiss?: () => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   iconName: IconName;
   iconColor: string;
   color: Color;
   dismissNotification: () => void;
   alwaysShowIcon?: boolean;
+}
+
+export interface BaseNotificationProps
+  extends Omit<
+    NotificationContentProps,
+    'dismissNotification' | 'color' | 'iconName' | 'iconColor'
+  > {
+  role?: AriaRole;
+  type: ValidationStyleType;
+  className?: string;
+  style?: CSSProperties;
+  restyleAnchors?: boolean;
+  styleType?: NotificationStyleType;
 }
 
 function NotificationContent(props: NotificationContentProps) {
@@ -91,7 +114,9 @@ function NotificationContent(props: NotificationContentProps) {
         />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
-      {isDismissable && <DismissBtn onClick={dismiss} color={color} />}
+      {isDismissable && (
+        <DismissBtn onClick={dismiss} color={color as string & Color} />
+      )}
     </>
   );
 }
@@ -100,56 +125,53 @@ const Notification = styled.div<{
   restyleAnchors: boolean;
   variant: NotificationStyleBlock;
 }>`
-  align-items: center;
-  background-color: ${props => props.variant.bgColor};
-  border-radius: 2px;
-  color: ${props => props.variant.textColor};
-  display: flex;
-  margin-bottom: 25px;
-  padding: 15px;
-  border: ${props => props.variant?.borderWidth}
-    ${props => props.variant?.borderStyle}
-    ${props => props.variant?.borderColor};
+  ${({ variant, restyleAnchors }) =>
+    css`
+      align-items: center;
+      background-color: ${variant.bgColor};
+      border-radius: 2px;
+      color: ${variant.textColor};
+      display: flex;
+      margin-bottom: 25px;
+      padding: 15px;
+      border: ${variant.borderWidth} ${variant.borderStyle}
+        ${variant.borderColor};
 
-  ${props =>
-    props.restyleAnchors
-      ? `
-    a {
-      color: ${props.variant.textColor};
-      text-decoration: underline;
+      ${restyleAnchors
+        ? css`
+            a {
+              color: ${variant.textColor};
+              text-decoration: underline;
 
-      &:hover {
-        text-decoration: none;
+              &:hover {
+                text-decoration: none;
+              }
+            }
+          `
+        : ``}
+
+      button[aria-expanded] {
+        color: ${variant.textColor};
       }
-    }
-  `
-      : ``}
-
-  button[aria-expanded] {
-    color: ${props => props.variant.textColor};
-  }
+    `}
 `;
 
-interface BaseNotificationProps {
-  role?: AriaRole;
-  type: ValidationStyleType;
-  children?: React.ReactNode;
-  className?: string;
-  style?: CSSProperties;
-  restyleAnchors?: boolean;
-  styleType?: NotificationStyleType;
-}
-
-export function BaseNotification({
-  role = 'dialog',
-  type,
-  children,
-  className,
-  style,
-  restyleAnchors = true,
-  styleType = 'base' as NotificationStyleType,
-  ...rest
-}: BaseNotificationProps) {
+export const BaseNotification = React.forwardRef<
+  HTMLDivElement,
+  BaseNotificationProps
+>(function ForwardedBaseNotification(
+  {
+    role = 'dialog',
+    type,
+    children,
+    className,
+    style,
+    restyleAnchors = true,
+    styleType = 'base',
+    ...rest
+  },
+  ref
+) {
   const theme = useTheme();
   const color = theme.notificationStyles[type][styleType];
   const iconName = theme.validationIconName[type];
@@ -169,6 +191,7 @@ export function BaseNotification({
 
   return (!isDismissed && (
     <Notification
+      ref={ref}
       variant={color}
       className={className}
       style={style}
@@ -183,4 +206,4 @@ export function BaseNotification({
       </NotificationContent>
     </Notification>
   )) as React.ReactElement;
-}
+});

@@ -1,6 +1,5 @@
 module.exports = function (source) {
   const { rawRequest } = this._module;
-  console.log('running rsg-loader with rawRequest', rawRequest);
   if (/orig-sg-components/.test(rawRequest)) {
     return source;
   }

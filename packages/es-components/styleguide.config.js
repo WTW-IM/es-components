@@ -131,7 +131,8 @@ module.exports = {
       __dirname,
       'src/styleguide/ComponentRenderer.tsx'
     ),
-    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.tsx')
+    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.tsx'),
+    Preview: path.join(__dirname, 'src/styleguide/FixedPreview.tsx')
   },
   getComponentPathLine(componentPath) {
     const componentExtension = path.extname(componentPath);
@@ -177,6 +178,10 @@ module.exports = {
         'orig-sg-components': path.join(
           __dirname,
           '../../node_modules/react-styleguidist/lib/client/rsg-components/'
+        ),
+        'rsg-components/Wrapper/Wrapper': path.join(
+          __dirname,
+          '../../node_modules/react-styleguidist/lib/client/rsg-components/Wrapper/Wrapper.js'
         )
       }
     },

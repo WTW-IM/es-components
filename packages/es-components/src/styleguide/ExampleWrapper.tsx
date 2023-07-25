@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import React, { useState, useCallback } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
@@ -70,7 +68,7 @@ const UnelectedLabel = styled.span`
   color: ${props => props.theme.colors.gray6};
 `;
 
-export default function ExampleWrapper({ children }) {
+export default function ExampleWrapper({ children }: React.PropsWithChildren) {
   const globalTheme = useStyleguideTheme();
   const [theme, setTheme] = useState(globalTheme);
   const toggleTheme = useCallback(() => {

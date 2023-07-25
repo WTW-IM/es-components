@@ -26,11 +26,12 @@ const Icon = styled.img`
 `;
 
 const FullColorIcon = React.forwardRef<HTMLDivElement, FullColorIconProps>(
-  function FullColorIcon({ name, size, ...props }) {
+  function FullColorIcon({ name, size, ...props }, ref) {
     return (
       // reused this logic for size from the Icon component. Fine with the repeat for now, but should
       // consider moving to a util function later if we use again
       <Container
+        ref={ref}
         size={
           /^\d+$/.test(size?.toString() || '') ? `${size}px` : size || 'inherit'
         }

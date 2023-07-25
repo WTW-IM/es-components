@@ -124,14 +124,14 @@ module.exports = {
   styleguideComponents: {
     StyleGuideRenderer: path.join(
       __dirname,
-      'src/styleguide/StyleGuideRenderer.js'
+      'src/styleguide/StyleGuideRenderer.tsx'
     ),
-    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js'),
+    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.tsx'),
     ReactComponentRenderer: path.join(
       __dirname,
-      'src/styleguide/ComponentRenderer.js'
+      'src/styleguide/ComponentRenderer.tsx'
     ),
-    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.js')
+    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.tsx')
   },
   getComponentPathLine(componentPath) {
     const componentExtension = path.extname(componentPath);
@@ -169,6 +169,14 @@ module.exports = {
         'styled-components': path.join(
           __dirname,
           '../../node_modules/styled-components/dist/styled-components.js'
+        ),
+        'orig-sg-typings': path.join(
+          __dirname,
+          '../../node_modules/react-styleguidist/lib/typings/index.d.ts'
+        ),
+        'orig-sg-components': path.join(
+          __dirname,
+          '../../node_modules/react-styleguidist/lib/client/rsg-components/'
         )
       }
     },
@@ -198,6 +206,11 @@ module.exports = {
             path.join(__dirname, '../../shared/types')
           ],
           loader: 'babel-loader'
+        },
+        {
+          resource: /rsg-components/,
+          issuer: /src\/styleguide\//,
+          use: ['./config/rsg-loader']
         }
       ]
     }

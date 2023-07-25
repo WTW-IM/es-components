@@ -2,5 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "composite": true
-  }
+  },
+  "references": [
+    {
+      "path": "../../shared/types/tsconfig.ref.json"
+    }
+  ]
 }

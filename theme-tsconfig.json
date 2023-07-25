@@ -21,10 +21,5 @@
     "paths": {
       "es-components-shared-types": ["./shared/types/src/index.ts"]
     }
-  },
-  "references": [
-    {
-      "path": "shared/types/tsconfig.ref.json"
-    }
-  ]
+  }
 }

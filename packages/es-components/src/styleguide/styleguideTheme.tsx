@@ -11,15 +11,16 @@ import Switch from '../components/controls/switch/Switch';
 import Modal from '../components/containers/modal/Modal';
 
 function createStore() {
+  type Listener = () => void;
   let useViaTheme = true;
-  const listeners = new Set();
+  const listeners = new Set<Listener>();
 
   const getState = () => useViaTheme;
-  const setState = isViaTheme => {
+  const setState = (isViaTheme: boolean) => {
     useViaTheme = isViaTheme;
     listeners.forEach(listener => listener());
   };
-  const subscribe = listener => {
+  const subscribe = (listener: Listener) => {
     listeners.add(listener);
     return () => {
       listeners.delete(listener);
@@ -43,16 +44,21 @@ export function useStyleguideTheme() {
 export function ThemeSwitch() {
   const [isTransitioning, startTransition] = useTransition();
   const isViaTheme = useIsViaTheme();
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const [nextTheme, setNextTheme] = useState(isViaTheme);
   const [isBlocking, setIsBlocking] = useState(false);
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 
-  const onChange = useCallback(e => {
-    // setIsBlocking(true);
-    // setNextTheme(e.target.checked);
-    startTransition(() => {
-      themeStore.setState(e.target.checked);
-    });
-  }, []);
+  const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
+    e => {
+      // setIsBlocking(true);
+      // setNextTheme(e.target.checked);
+      startTransition(() => {
+        themeStore.setState(e.target.checked);
+      });
+    },
+    []
+  );
 
   const onEnter = useCallback(() => {
     setTimeout(() => {
@@ -61,6 +67,8 @@ export function ThemeSwitch() {
       });
       // ensure the modal enter animation is completed before starting the transition
     }, 2000);
+    // only running this on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -68,7 +76,7 @@ export function ThemeSwitch() {
     //   setIsBlocking(false);
     // }
     console.log({ isViaTheme, nextTheme });
-  }, [isTransitioning]);
+  }, [isTransitioning, isViaTheme, nextTheme]);
 
   return (
     <>

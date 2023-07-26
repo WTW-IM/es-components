@@ -4,5 +4,10 @@
     "outDir": "dist"
   },
   "include": ["src"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "references": [
+    {
+      "path": "../../shared/types/tsconfig.ref.json"
+    }
+  ]
 }

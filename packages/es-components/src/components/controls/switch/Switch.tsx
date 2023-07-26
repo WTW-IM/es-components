@@ -193,14 +193,18 @@ const SwitchCheck = styled.span<SwitchElementProps>`
   }
 `;
 
-const SwitchOffText = styled.span<SwitchElementProps & { textOff: string }>`
+const SwitchOffText = styled.span<
+  SwitchElementProps & { textOff: React.ReactNode }
+>`
   order: ${props =>
     props.direction === 'left' || props.direction === 'top' ? '-1' : '-3'};
   padding: ${props => (props.textOff === '' ? '0' : '0 1rem 0 1rem')};
   vertical-align: middle;
 `;
 
-const SwitchOnText = styled.span<SwitchElementProps & { textOn: string }>`
+const SwitchOnText = styled.span<
+  SwitchElementProps & { textOn: React.ReactNode }
+>`
   order: ${props =>
     props.direction === 'left' || props.direction === 'top' ? '-3' : '-1'};
   padding: ${props => (props.textOn === '' ? '0' : '0 1rem 0 0.75rem')};
@@ -214,8 +218,8 @@ export type SwitchProps = JSXElementProps<'div'> & {
   label?: string;
   direction?: Direction;
   ariaLabel?: InputProps['aria-label'];
-  onText?: string;
-  offText?: string;
+  onText?: React.ReactNode;
+  offText?: React.ReactNode;
   checked?: boolean;
   onChange?: InputProps['onChange'];
   disabled?: InputProps['disabled'];

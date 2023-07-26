@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-
 import React, { useState, useCallback } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
 import wtwTheme from 'es-components-wtw-theme';
 import tinycolor from 'tinycolor2';
+import Wrapper from 'orig-sg-components/Wrapper';
 import Switch from '../components/controls/switch/Switch';
 import { useStyleguideTheme } from './styleguideTheme';
 
@@ -70,7 +69,10 @@ const UnelectedLabel = styled.span`
   color: ${props => props.theme.colors.gray6};
 `;
 
-export default function ExampleWrapper({ children }) {
+type ExampleWrapperComponent = typeof Wrapper;
+type ExampleWrapperProps = React.ComponentProps<ExampleWrapperComponent>;
+
+export default function ExampleWrapper(props: ExampleWrapperProps) {
   const globalTheme = useStyleguideTheme();
   const [theme, setTheme] = useState(globalTheme);
   const toggleTheme = useCallback(() => {
@@ -96,7 +98,7 @@ export default function ExampleWrapper({ children }) {
             onChange={toggleTheme}
           ></Switch>
         </SwitchContainer>
-        <div>{children}</div>
+        <Wrapper {...props} />
       </ExampleContainer>
     </ThemeProvider>
   );

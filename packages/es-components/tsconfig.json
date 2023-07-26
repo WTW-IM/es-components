@@ -20,7 +20,16 @@
     "paths": {
       "es-components-via-theme": ["../es-components-via-theme/src/index.ts"],
       "es-components-wtw-theme": ["../es-components-wtw-theme/src/index.ts"],
-      "es-components-shared-types": ["../../shared/types/src/index.ts"],
+      "es-components-shared-types": ["../../shared/types/src/"],
+      "orig-sg-components/*": [
+        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "rsg-components/*": [
+        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "orig-sg-typings": [
+        "../../node_modules/react-styleguidist/lib/typings/index.d.ts"
+      ],
       "*": ["../../node_modules/@types/*"]
     }
   },

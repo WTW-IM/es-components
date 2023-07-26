@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useStyleguideTheme, ThemeSwitch } from './styleguideTheme';
-import DefaultStyleGuideRenderer from 'react-styleguidist/lib/client/rsg-components/StyleGuide/StyleGuideRenderer';
+import DefaultStyleGuideRenderer from 'orig-sg-components/StyleGuide/StyleGuideRenderer';
 
 const Header = styled.header`
   display: flex;
@@ -9,7 +9,7 @@ const Header = styled.header`
   position: sticky;
 `;
 
-export default function StyleGuideRenderer(props) {
+const StyleGuideRenderer: typeof DefaultStyleGuideRenderer = props => {
   const theme = useStyleguideTheme();
 
   // We can add a ThemeSwitch to the header when the switch is worked out
@@ -21,10 +21,14 @@ export default function StyleGuideRenderer(props) {
   //     <DefaultStyleGuideRenderer {...props} />
   //   </ThemeProvider>
   // );
+  //
+
+  console.log('rendering with theme', theme);
 
   return (
     <ThemeProvider theme={theme}>
       <DefaultStyleGuideRenderer {...props} />
     </ThemeProvider>
   );
-}
+};
+export default StyleGuideRenderer;

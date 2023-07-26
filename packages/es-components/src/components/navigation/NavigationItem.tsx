@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 import Icon from '../base/icons/Icon';
 import type { NavOrientation } from './Navigation';
-import noop from '../util/noop';
 
 type NavItemProps = {
   isActive?: boolean;
@@ -167,6 +166,13 @@ export const NavigationItem = React.forwardRef<
   const isActive = id === highlightedId;
   const Wrapper = useAltStyle ? AltNavItemWrapper : NavItemWrapper;
   const isVertical = navOrientation === 'vertical';
+  const disabledClick = useCallback<React.MouseEventHandler<HTMLLIElement>>(
+    ev => {
+      ev.preventDefault();
+      ev.stopPropagation();
+    },
+    []
+  );
 
   const child = React.Children.only(children);
 
@@ -193,7 +199,7 @@ export const NavigationItem = React.forwardRef<
 
   const wrapperProps = {
     ...props,
-    onClick: isDisabled ? noop : props.onClick,
+    onClick: isDisabled ? disabledClick : props.onClick,
     className
   };
 

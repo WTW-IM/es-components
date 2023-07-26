@@ -1,23 +1,38 @@
 import React from 'react';
-import viaTheme from 'es-components-via-theme';
-import { ThemeProvider } from 'styled-components';
-import { renderWithTheme } from '../../util/test-utils';
 import { screen } from '@testing-library/react';
-import Form, { FormContextProvider } from './Form';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
+import { renderWithTheme } from '../../util/test-utils';
+import Form, { FormContextProvider, FormContextShape, FormProps } from './Form';
 import Textbox from '../../controls/textbox/Textbox';
 
-// eslint-disable-next-line react/prop-types
-const TestForm = ({ originalTheme, originalContext, formProps }) => (
-  <ThemeProvider theme={originalTheme}>
-    <FormContextProvider value={originalContext}>
-      <Form {...formProps}>
-        <Textbox name="test" />
-      </Form>
-    </FormContextProvider>
-  </ThemeProvider>
-);
+const TestForm = ({
+  originalTheme,
+  originalContext,
+  formProps
+}: {
+  originalTheme: Partial<DefaultTheme>;
+  originalContext: Partial<FormContextShape>;
+  formProps: FormProps;
+}) => {
+  const theme = { ...viaTheme, ...originalTheme };
+  return (
+    <ThemeProvider theme={theme}>
+      <FormContextProvider value={originalContext}>
+        <Form {...formProps}>
+          <Textbox name="test" />
+        </Form>
+      </FormContextProvider>
+    </ThemeProvider>
+  );
+};
 
-test.each([
+test.each<{
+  originalTheme: Partial<DefaultTheme>;
+  originalContext: Partial<FormContextShape>;
+  formProps: FormProps;
+  hasFlatStyle: boolean;
+}>([
   {
     originalTheme: {},
     originalContext: {},
@@ -25,7 +40,9 @@ test.each([
     hasFlatStyle: false
   },
   {
-    originalTheme: { inputStyles: { defaultFormStyle: 'flat' } },
+    originalTheme: {
+      inputStyles: { ...viaTheme.inputStyles, defaultFormStyle: 'flat' }
+    },
     originalContext: {},
     formProps: {},
     hasFlatStyle: true
@@ -43,25 +60,33 @@ test.each([
     hasFlatStyle: true
   },
   {
-    originalTheme: { inputStyles: { defaultFormStyle: 'flat' } },
+    originalTheme: {
+      inputStyles: { ...viaTheme.inputStyles, defaultFormStyle: 'flat' }
+    },
     originalContext: { flat: false },
     formProps: {},
     hasFlatStyle: false
   },
   {
-    originalTheme: { inputStyles: { defaultFormStyle: 'flat' } },
+    originalTheme: {
+      inputStyles: { ...viaTheme.inputStyles, defaultFormStyle: 'flat' }
+    },
     originalContext: {},
     formProps: { flat: false },
     hasFlatStyle: false
   },
   {
-    originalTheme: { inputStyles: { defaultFormStyle: 'default' } },
+    originalTheme: {
+      inputStyles: { ...viaTheme.inputStyles, defaultFormStyle: 'default' }
+    },
     originalContext: { flat: true },
     formProps: {},
     hasFlatStyle: true
   },
   {
-    originalTheme: { inputStyles: { defaultFormStyle: 'default' } },
+    originalTheme: {
+      inputStyles: { ...viaTheme.inputStyles, defaultFormStyle: 'default' }
+    },
     originalContext: {},
     formProps: { flat: true },
     hasFlatStyle: true

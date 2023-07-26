@@ -12,13 +12,18 @@ export type FormProps = JSXElementProps<'form'> & {
   flat?: boolean;
 };
 
-export default function Form({ flat, ...otherProps }: FormProps) {
+const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
+  { flat, ...otherProps },
+  ref
+) {
   return (
     <FormContextProvider value={isBool(flat) ? { flat } : {}}>
-      <form {...otherProps} />
+      <form ref={ref} {...otherProps} />
     </FormContextProvider>
   );
-}
+});
+
+export default Form;
 
 export const FormContext = createContext<FormContextShape>({});
 

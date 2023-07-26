@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+.c0 {
+  background-color: #fff;
+  box-shadow: 2px 2px 5px #919191;
+}
+
+.c0 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c3 {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+.c1 {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  line-height: 1.428;
+  min-width: 75px;
+  padding: 0;
+  background-color: #0073b6;
+  color: #fff;
+}
+
+.c1:hover {
+  background-color: #ededed;
+  color: #0073b6;
+}
+
+.c1:hover > i {
+  color: #0073b6;
+}
+
+.c1:hover {
+  background-color: #0073b6;
+  color: #fff;
+}
+
+.c1:hover > i {
+  color: #fff;
+}
+
+.c5 {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  line-height: 1.428;
+  min-width: 75px;
+  padding: 0;
+}
+
+.c5:hover {
+  background-color: #ededed;
+  color: #0073b6;
+}
+
+.c5:hover > i {
+  color: #0073b6;
+}
+
+.c6 {
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  line-height: 1.428;
+  min-width: 75px;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #919191;
+  cursor: not-allowed;
+}
+
+.c6:hover {
+  background-color: #ededed;
+  color: #0073b6;
+}
+
+.c6:hover > i {
+  color: #0073b6;
+}
+
+.c6 > span {
+  pointer-events: none;
+}
+
+.c6 > i {
+  color: #f4f4f4;
+}
+
+.c6:hover {
+  background-color: #f4f4f4;
+  color: #919191;
+}
+
+.c6:hover > i {
+  color: #f4f4f4;
+}
+
+.c4 {
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+}
+
+.c2 {
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  background-color: transparent;
+  box-sizing: border-box;
+  border: 0;
+  color: inherit;
+  cursor: inherit;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: inherit;
+  height: 100%;
+  padding: 10px;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+}
+
+<div>
+  <nav
+    class="c0 es-sidenav "
+  >
+    <ul>
+      <li
+        class="c1 es-sidenav__navitem home"
+      >
+        <button
+          class="c2"
+          style="justify-content: space-between;"
+          type="button"
+        >
+          <span>
+            Home
+          </span>
+          <input
+            type="hidden"
+          />
+          <i
+            aria-hidden="true"
+            class="c3 bds-icon bds-chevron-right c4"
+          />
+        </button>
+      </li>
+      <li
+        class="c5 es-sidenav__navitem "
+      >
+        <button
+          class="c2"
+          style="justify-content: space-between;"
+          type="button"
+        >
+          <span>
+            Cart
+          </span>
+          <input
+            type="hidden"
+          />
+          <i
+            aria-hidden="true"
+            class="c3 bds-icon bds-chevron-right c4"
+          />
+        </button>
+      </li>
+      <li
+        class="c5 es-sidenav__navitem "
+      >
+        <a
+          class="c2"
+          href="https://google.com"
+          style="justify-content: space-between;"
+        >
+          <span>
+            External Link
+          </span>
+          <input
+            type="hidden"
+          />
+          <i
+            aria-hidden="true"
+            class="c3 bds-icon bds-chevron-right c4"
+          />
+        </a>
+      </li>
+      <li
+        class="c6 es-sidenav__navitem "
+      >
+        <button
+          class="c2"
+          style="justify-content: space-between;"
+          type="button"
+        >
+          <span>
+            Disabled
+          </span>
+          <input
+            type="hidden"
+          />
+          <i
+            aria-hidden="true"
+            class="c3 bds-icon bds-chevron-right c4"
+          />
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>
+`;

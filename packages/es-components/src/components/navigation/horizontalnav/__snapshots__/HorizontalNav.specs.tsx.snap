@@ -124,11 +124,11 @@ exports[`renders as expected 1`] = `
 
 <div>
   <nav
-    class="c0 es-sidenav"
+    class="c0 es-sidenav "
   >
     <ul>
       <li
-        class="c1 es-sidenav__navitem"
+        class="c1 es-sidenav__navitem home"
       >
         <button
           class="c2"
@@ -141,7 +141,7 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="c3 es-sidenav__navitem"
+        class="c3 es-sidenav__navitem "
       >
         <button
           class="c2"
@@ -154,7 +154,7 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
-        class="c3 es-sidenav__navitem"
+        class="c3 es-sidenav__navitem "
       >
         <a
           class="c2"
@@ -167,7 +167,7 @@ exports[`renders as expected 1`] = `
         </a>
       </li>
       <li
-        class="c4 es-sidenav__navitem"
+        class="c4 es-sidenav__navitem "
       >
         <button
           class="c2"

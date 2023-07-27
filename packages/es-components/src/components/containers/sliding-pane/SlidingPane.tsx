@@ -4,7 +4,7 @@ import Modal, {
   OnAfterOpenCallback,
   Props as ReactModalProps
 } from 'react-modal';
-import _noop from 'lodash/noop';
+import { HeadingLevel } from 'es-components-shared-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import Heading from '../heading/Heading';
 import LinkButton from '../../controls/buttons/LinkButton';
@@ -13,6 +13,7 @@ import Icon from '../../base/icons/Icon';
 import { useDisableBodyScroll } from '../../util/useDisableBodyScroll';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import { useTheme } from '../../util/useTheme';
+import noop from '../../util/noop';
 
 interface PaneBaseProps {
   paneWidth: string;
@@ -22,26 +23,29 @@ interface CloseLinkProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-interface SlidingPaneProps extends Omit<ReactModalProps, 'appElement'> {
-  title: string;
-  subTitle: string;
-  shouldCloseOnEsc: boolean;
-  onRequestClose: React.MouseEventHandler<HTMLButtonElement>;
-  onAfterOpen: OnAfterOpenCallback;
-  children: string;
-  closeIcon: string;
-  closeIconScreenReaderText: string;
-  from: string;
-  headingLevel: number;
-  headingSize: number;
-  closeTimeout: number;
-  overlayStyles: ReactModal.Styles;
-  contentStyles: ReactModal.Styles;
-  appElement: string | HTMLElement;
-  parentSelector: () => HTMLElement;
-  hideHeader: boolean;
-  paneWidth: string;
-}
+type SlidingPaneProps = Override<
+  ReactModalProps,
+  {
+    children: string;
+    title?: string;
+    subTitle?: string;
+    shouldCloseOnEsc?: boolean;
+    onRequestClose?: React.MouseEventHandler<HTMLButtonElement>;
+    onAfterOpen?: OnAfterOpenCallback;
+    closeIcon?: string;
+    closeIconScreenReaderText?: string;
+    from?: string;
+    headingLevel?: HeadingLevel;
+    headingSize?: HeadingLevel;
+    closeTimeout?: number;
+    overlayStyles?: ReactModal.Styles;
+    contentStyles?: ReactModal.Styles;
+    appElement?: string | HTMLElement;
+    parentSelector?: () => HTMLElement;
+    hideHeader?: boolean;
+    paneWidth?: string;
+  }
+>;
 
 const PaneBase = styled(Modal)<PaneBaseProps>`
   background: ${props => props.theme.colors.white};
@@ -188,12 +192,12 @@ export default function SlidingPane({
   title,
   subTitle,
   shouldCloseOnEsc,
-  onRequestClose,
+  onRequestClose = noop,
   onAfterOpen,
   children,
   closeIcon,
   closeIconScreenReaderText,
-  from,
+  from = 'right',
   headingLevel,
   headingSize,
   closeTimeout,
@@ -295,8 +299,8 @@ SlidingPane.defaultProps = {
   shouldCloseOnEsc: true,
   title: undefined,
   subTitle: undefined,
-  onRequestClose: _noop,
-  onAfterOpen: _noop,
+  onRequestClose: noop,
+  onAfterOpen: noop,
   closeIcon: undefined,
   closeIconScreenReaderText: 'Close',
   overlayStyles: {},

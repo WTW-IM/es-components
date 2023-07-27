@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 interface MessageProps extends JSXElementProps<'span'> {
   emphasizedText?: string;
   text: string;
+  isInline?: boolean;
 }
 
 const propTypes = {
@@ -15,31 +16,32 @@ const defaultProps = {
   emphasizedText: undefined
 };
 
-export function InlineMessage({ emphasizedText, text, ...rest }: MessageProps) {
-  return (
-    <span {...rest}>
-      {emphasizedText !== undefined ? <strong>{emphasizedText}</strong> : null}{' '}
-      {text}
-    </span>
-  );
-}
+export const InlineMessage = React.forwardRef<HTMLSpanElement, MessageProps>(
+  function ForwardedInlineMessage(props, ref) {
+    return <Message {...props} isInline ref={ref} />;
+  }
+);
 
 InlineMessage.propTypes = propTypes;
 InlineMessage.defaultProps = defaultProps;
 
-export function Message({ emphasizedText, text, ...rest }: MessageProps) {
-  return (
-    <span {...rest}>
-      {emphasizedText !== undefined ? (
-        <>
-          <strong>{emphasizedText}</strong>
-          <br />
-        </>
-      ) : null}
-      {text}
-    </span>
-  );
-}
+export const Message = React.forwardRef<HTMLSpanElement, MessageProps>(
+  function Message({ emphasizedText, text, isInline, ...rest }, ref) {
+    const inlineBreak = isInline ? <></> : <br />;
+
+    return (
+      <span {...rest} ref={ref}>
+        {emphasizedText !== undefined ? (
+          <>
+            <strong>{emphasizedText}</strong>
+            {inlineBreak}
+          </>
+        ) : null}
+        {text}
+      </span>
+    );
+  }
+);
 
 Message.propTypes = propTypes;
 Message.defaultProps = defaultProps;

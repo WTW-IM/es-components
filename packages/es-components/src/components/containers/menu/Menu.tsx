@@ -24,17 +24,23 @@ const Backdrop = styled.div<{ isMenuOpen: boolean }>`
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
 `;
 
-type MenuProps = {
-  children: NonNullable<React.ReactNode>;
-  buttonContent: NonNullable<React.ReactNode>;
-  openButtonType?: ButtonVariantStyleType;
-  rootClose?: boolean;
-  inline?: boolean;
-  hasBackdrop?: boolean;
-  headerContent?: React.ReactNode;
-} & JSXElementProps<'div'>;
+type MenuProps = Override<
+  JSXElementProps<'div'>,
+  {
+    children: NonNullable<React.ReactNode>;
+    buttonContent: NonNullable<React.ReactNode>;
+    openButtonType?: ButtonVariantStyleType;
+    rootClose?: boolean;
+    inline?: boolean;
+    hasBackdrop?: boolean;
+    headerContent?: React.ReactNode;
+  }
+>;
 
-function Menu(props: MenuProps) {
+const Menu = React.forwardRef<HTMLDivElement, MenuProps>(function ForwardedMenu(
+  props,
+  ref
+) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -58,7 +64,7 @@ function Menu(props: MenuProps) {
 
   return (
     <RootCloseWrapper onRootClose={closeMenu} disabled={!rootClose}>
-      <div {...other}>
+      <div ref={ref} {...other}>
         {hasBackdrop && (
           <Backdrop isMenuOpen={isMenuOpen} onClick={closeMenu} />
         )}
@@ -82,9 +88,13 @@ function Menu(props: MenuProps) {
       </div>
     </RootCloseWrapper>
   );
-}
+});
 
-Menu.MenuSection = MenuSection;
+type MenuComponent = typeof Menu & {
+  MenuSection: typeof MenuSection;
+};
+
+(Menu as MenuComponent).MenuSection = MenuSection;
 
 Menu.propTypes = {
   children: PropTypes.node.isRequired,
@@ -104,4 +114,4 @@ Menu.defaultProps = {
   headerContent: undefined
 };
 
-export default Menu;
+export default Menu as MenuComponent;

@@ -10,7 +10,7 @@ const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
     theme: {
       colors: { gray2 }
     }
-  }) => gray2 };
+  }) => gray2};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   position: absolute;
   z-index: ${({ topIndex }) => topIndex};
@@ -47,48 +47,55 @@ type MenuPanelProps = JSXElementProps<'div'> & {
   onClose: () => void;
 };
 
-function MenuPanel(props: MenuPanelProps) {
-  const { children, headerContent, isOpen, onClose, ...other } = props;
-  const getTopIndex = useTopZIndex();
+const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
+  function MenuPanel(props, ref) {
+    const { children, headerContent, isOpen, onClose, ...other } = props;
+    const getTopIndex = useTopZIndex();
 
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    function onEscape({ key }: { key: string }) {
-      if (key === 'Escape') {
-        onClose();
+    useEffect(() => {
+      if (!isOpen) {
+        return;
       }
-    }
-    window.addEventListener('keydown', onEscape);
 
-    return function removeKeydownListener() {
-      window.removeEventListener('keydown', onEscape);
-    };
-  }, [isOpen, onClose]);
+      function onEscape({ key }: { key: string }) {
+        if (key === 'Escape') {
+          onClose();
+        }
+      }
+      window.addEventListener('keydown', onEscape);
 
-  const hasHeaderContent = !!headerContent;
+      return function removeKeydownListener() {
+        window.removeEventListener('keydown', onEscape);
+      };
+    }, [isOpen, onClose]);
 
-  const inline = useContext(InlineContext);
+    const hasHeaderContent = !!headerContent;
 
-  return (
-    <StyledPanel isOpen={isOpen} topIndex={getTopIndex()} {...other}>
-      <Header hasHeaderContent={hasHeaderContent}>
-        {hasHeaderContent && <span>{headerContent}</span>}
-        <StyledDismissButton onClick={onClose} />
-      </Header>
-      <StyledChildrenContainer inline={inline}>
-        {children}
-      </StyledChildrenContainer>
-    </StyledPanel>
-  );
-}
+    const inline = useContext(InlineContext);
+
+    return (
+      <StyledPanel
+        ref={ref}
+        isOpen={isOpen}
+        topIndex={getTopIndex()}
+        {...other}
+      >
+        <Header hasHeaderContent={hasHeaderContent}>
+          {hasHeaderContent && <span>{headerContent}</span>}
+          <StyledDismissButton onClick={onClose} />
+        </Header>
+        <StyledChildrenContainer inline={inline}>
+          {children}
+        </StyledChildrenContainer>
+      </StyledPanel>
+    );
+  }
+);
 
 MenuPanel.propTypes = {
   children: PropTypes.any.isRequired,
   headerContent: PropTypes.node,
-  isOpen: PropTypes.bool,
+  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired
 };
 

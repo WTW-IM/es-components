@@ -1,8 +1,6 @@
-import { DefaultTheme } from 'styled-components';
+import { PromptStyle } from 'es-components-shared-types';
 
-type PromptType = keyof DefaultTheme['promptStyles'];
-
-export const PromptType: { [index: string]: PromptType } = {
+export const PromptType: { [index in PromptStyle]: PromptStyle } = {
   readAloud: 'readAloud',
   doNotReadAloud: 'doNotReadAloud'
 };

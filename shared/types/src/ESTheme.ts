@@ -209,6 +209,18 @@ export type BannerBlock = {
   textColor: CSS.Property.Color;
 };
 
+export type PromptBlock = {
+  bgColor: CSS.Property.BackgroundColor;
+  bannerBgColor: CSS.Property.BackgroundColor;
+  bannerTextColor: CSS.Property.Color;
+  textColor: CSS.Property.Color;
+  iconColor: CSS.Property.Color;
+  iconName: IconName;
+};
+
+export const promptStyles = ['readAloud', 'doNotReadAloud'] as const;
+export type PromptStyle = (typeof promptStyles)[number];
+
 export default interface ESTheme {
   [key: string]: any;
 
@@ -271,6 +283,10 @@ export default interface ESTheme {
 
   bannerStyles: {
     [key in ValidationStyleType]: BannerBlock;
+  };
+
+  promptStyles: {
+    [key in PromptStyle]: PromptBlock;
   };
 
   datepickerColors: DatepickerColors;

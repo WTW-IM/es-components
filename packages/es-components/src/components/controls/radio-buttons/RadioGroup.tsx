@@ -20,7 +20,7 @@ interface ChildProps {
 function RadioGroup<P extends ChildProps>({
   name,
   disableAllOptions,
-  selectedValue,
+  selectedValue = '',
   children,
   onChange: onChangeProp,
   ...rest
@@ -78,7 +78,7 @@ export const defaultProps = {
 RadioGroup.propTypes = propTypes;
 
 RadioGroup.defaultProps = {
-  selectedValue: undefined,
+  selectedValue: '',
   disableAllOptions: false
 };
 

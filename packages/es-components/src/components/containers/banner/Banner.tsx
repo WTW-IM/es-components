@@ -1,10 +1,14 @@
-/* eslint react/prop-types: 0 */
 import React from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import PropTypes from 'prop-types';
+import {
+  ValidationStyleType,
+  validationStyleTypes,
+  BannerBlock
+} from 'es-components-shared-types';
 
-const BannerContainer = styled.div`
+const BannerContainer = styled.div<{ variant: BannerBlock }>`
   align-items: center;
   background-color: ${props => props.variant.bgColor};
   border-radius: 2px;
@@ -25,17 +29,26 @@ const BannerContainer = styled.div`
     color: ${props => props.variant.textColor};
   }
 `;
-const Banner = React.forwardRef(function InnerBanner({ type, ...props }, ref) {
-  const theme = useTheme();
-  const variant = theme.bannerStyles[type];
-  const bannerProps = { variant, ...props };
-  return <BannerContainer ref={ref} {...bannerProps} />;
-});
+
+export type BannerProps = Override<
+  JSXElementProps<'div'>,
+  {
+    type: ValidationStyleType;
+  }
+>;
+
+const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+  function InnerBanner({ type, ...props }, ref) {
+    const theme = useTheme();
+    const variant = theme.bannerStyles[type];
+    const bannerProps = { variant, ...props };
+    return <BannerContainer ref={ref} {...bannerProps} />;
+  }
+);
 
 export const propTypes = {
   /** The type of notification to render */
-  type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
-    .isRequired
+  type: PropTypes.oneOf<ValidationStyleType>(validationStyleTypes).isRequired
 };
 
 Banner.propTypes = propTypes;

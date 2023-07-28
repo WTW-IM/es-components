@@ -60,9 +60,7 @@ const Fade: React.FC<FadeProps> = ({
     timeout: duration || otherProps.timeout || 150
   };
 
-  const hasValidChildren =
-    children &&
-    (typeof children === 'object' || typeof children === 'function');
+  const hasValidChildren = React.isValidElement(children);
 
   return !hasValidChildren ? (
     <>{children}</>

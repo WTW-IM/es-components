@@ -69,60 +69,68 @@ const IconText = styled.span<{
   white-space: nowrap;
 `;
 
-export type IconButtonProps = JSXElementProps<'div'> & {
-  iconName: IconName;
-  iconSize?: number;
-  childrenFontSize?: number;
-  isHighlighted?: boolean;
-  isIncomplete?: boolean;
-  disabled?: boolean;
-  maxWidth?: CSS.Property.MaxWidth;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  styleType?: ButtonProps['styleType'];
-};
+export type IconButtonProps = Override<
+  JSXElementProps<'div'>,
+  {
+    iconName: IconName;
+    iconSize?: number;
+    childrenFontSize?: number;
+    isHighlighted?: boolean;
+    isIncomplete?: boolean;
+    disabled?: ButtonProps['disabled'];
+    maxWidth?: CSS.Property.MaxWidth;
+    onClick?: ButtonProps['onClick'];
+    styleType?: ButtonProps['styleType'];
+  }
+>;
 
-function IconButton({
-  iconName,
-  iconSize,
-  childrenFontSize = 18,
-  isHighlighted,
-  isIncomplete,
-  disabled,
-  maxWidth = 'auto',
-  onClick,
-  styleType = 'magenta',
-  children,
-  ...otherProps
-}: IconButtonProps) {
-  const CurrentButton = isIncomplete ? IncompleteButton : StyledIconButton;
-  const theme = useTheme();
-  const textId = genName();
-  const buttonStyle = theme.buttonStyles.outlineButton.variant[styleType];
+const IconButton = React.forwardRef<HTMLDivElement, IconButtonProps>(
+  function IconButton(
+    {
+      iconName,
+      iconSize,
+      childrenFontSize = 18,
+      isHighlighted,
+      isIncomplete,
+      disabled,
+      maxWidth = 'auto',
+      onClick,
+      styleType = 'magenta',
+      children,
+      ...otherProps
+    },
+    ref
+  ) {
+    const CurrentButton = isIncomplete ? IncompleteButton : StyledIconButton;
+    const theme = useTheme();
+    const textId = genName();
+    const buttonStyle = theme.buttonStyles.outlineButton.variant[styleType];
 
-  return (
-    <Container maxWidth={maxWidth} {...otherProps}>
-      <CurrentButton
-        onClick={onClick}
-        styleType={styleType}
-        isHighlighted={isHighlighted}
-        disabled={disabled}
-        activeColor={buttonStyle.bgColor}
-        aria-pressed={isHighlighted}
-        aria-labelledby={textId}
-      >
-        <Icon name={iconName} size={iconSize} />
-      </CurrentButton>
-      <IconText
-        id={textId}
-        isHighlighted={isHighlighted}
-        maxWidth={maxWidth}
-        fontSize={childrenFontSize}
-      >
-        {children}
-      </IconText>
-    </Container>
-  );
-}
+    return (
+      <Container ref={ref} maxWidth={maxWidth} {...otherProps}>
+        <CurrentButton
+          onClick={onClick}
+          styleType={styleType}
+          isHighlighted={isHighlighted}
+          disabled={disabled}
+          activeColor={buttonStyle.bgColor}
+          aria-pressed={isHighlighted}
+          aria-labelledby={textId}
+        >
+          <Icon name={iconName} size={iconSize} />
+        </CurrentButton>
+        <IconText
+          id={textId}
+          isHighlighted={isHighlighted}
+          maxWidth={maxWidth}
+          fontSize={childrenFontSize}
+        >
+          {children}
+        </IconText>
+      </Container>
+    );
+  }
+);
 
 IconButton.propTypes = {
   ...Container.propTypes,

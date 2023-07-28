@@ -72,16 +72,18 @@ export type BreadcrumbProps = Override<
   }
 >;
 
-function Breadcrumb({ children, ...props }: BreadcrumbProps) {
-  const keyId = useUniqueId();
-  return (
-    <OrderedList {...props}>
-      {React.Children.map(children, (child, index) => (
-        <Crumb key={`${keyId}-${getChildKey(child)}-${index}`}>{child}</Crumb>
-      ))}
-    </OrderedList>
-  );
-}
+const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
+  function Breadcrumb({ children, ...props }, ref) {
+    const keyId = useUniqueId();
+    return (
+      <OrderedList {...props} ref={ref}>
+        {React.Children.map(children, (child, index) => (
+          <Crumb key={`${keyId}-${getChildKey(child)}-${index}`}>{child}</Crumb>
+        ))}
+      </OrderedList>
+    );
+  }
+);
 
 Breadcrumb.propTypes = {
   children: PropTypes.node.isRequired

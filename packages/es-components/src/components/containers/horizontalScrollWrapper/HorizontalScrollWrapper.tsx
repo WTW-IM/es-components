@@ -321,4 +321,6 @@ HorizontalScrollWrapper.defaultProps = {
   slideAmount: 300
 };
 
-export default withWindowSize(HorizontalScrollWrapper);
+export default withWindowSize<HorizontalScrollWrapperProps, HTMLDivElement>(
+  HorizontalScrollWrapper
+);

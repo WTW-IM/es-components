@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 const callRef = <T, R extends React.ForwardedRef<T>>(ref: Maybe<R>, value: T) =>
   typeof ref === 'function'
@@ -12,4 +12,15 @@ export function callRefs<T, R extends React.ForwardedRef<T>>(
   ...refs: R[]
 ) {
   refs.forEach(r => callRef(r, value));
+}
+
+export function useMergedRefs<T>(...refs: React.Ref<T>[]) {
+  const mergedRefs = useCallback<React.RefCallback<T>>(
+    el => {
+      callRefs(el, ...refs);
+    },
+    [...refs]
+  ); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return mergedRefs;
 }

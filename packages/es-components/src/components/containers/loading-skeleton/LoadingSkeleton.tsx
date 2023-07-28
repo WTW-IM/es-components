@@ -76,22 +76,23 @@ export type LoadingSkeletonProps = JSXElementProps<'div'> & {
   shimmerColor?: CSS.Property.BackgroundColor;
 };
 
-const LoadingSkeleton = ({
-  shapeColor,
-  shimmerColor,
-  ...props
-}: LoadingSkeletonProps) => {
-  const theme = useTheme();
-  const { colors } = theme;
-  const shimmer = shimmerColor || colors.white;
-  const shape = shapeColor || colors.gray3;
-  const skeleton = { shimmerColor: shimmer, shapeColor: shape };
-  return (
-    <ThemeProvider theme={{ ...theme, skeleton }}>
-      <SkeletonContainer {...props} />
-    </ThemeProvider>
-  );
-};
+const LoadingSkeleton = React.forwardRef<HTMLDivElement, LoadingSkeletonProps>(
+  function ForwardedLoadingSkeleton(
+    { shapeColor, shimmerColor, ...props },
+    ref
+  ) {
+    const theme = useTheme();
+    const { colors } = theme;
+    const shimmer = shimmerColor || colors.white;
+    const shape = shapeColor || colors.gray3;
+    const skeleton = { shimmerColor: shimmer, shapeColor: shape };
+    return (
+      <ThemeProvider theme={{ ...theme, skeleton }}>
+        <SkeletonContainer ref={ref} {...props} />
+      </ThemeProvider>
+    );
+  }
+);
 
 LoadingSkeleton.propTypes = {
   shapeColor: PropTypes.string,
@@ -99,10 +100,14 @@ LoadingSkeleton.propTypes = {
 };
 
 LoadingSkeleton.defaultProps = {
-  shapeColor: null,
-  shimmerColor: null
+  shapeColor: '',
+  shimmerColor: ''
 };
 
-LoadingSkeleton.Shape = SkeletonShape;
+type LoadingSkeletonComponent = typeof LoadingSkeleton & {
+  Shape: typeof SkeletonShape;
+};
 
-export default LoadingSkeleton;
+(LoadingSkeleton as LoadingSkeletonComponent).Shape = SkeletonShape;
+
+export default LoadingSkeleton as LoadingSkeletonComponent;

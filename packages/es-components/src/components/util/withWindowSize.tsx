@@ -22,10 +22,7 @@ function getWindowSize({
 }
 
 type AllWindowSizeProps<P> = P & DefaultSizeProps & WindowSizeProps;
-type WithWindowSizeProps<P> = Override<
-  Omit<P, keyof WindowSizeProps>,
-  DefaultSizeProps
->;
+type WithWindowSizeProps<P> = Omit<P, keyof WindowSizeProps> & DefaultSizeProps;
 
 export default function withWindowSize<
   P extends WindowSizeProps = WindowSizeProps,

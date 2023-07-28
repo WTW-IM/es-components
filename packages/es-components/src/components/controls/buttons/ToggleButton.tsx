@@ -9,49 +9,54 @@ export type ToggleButtonProps = ButtonProps & {
   isOutline?: boolean;
 };
 
-function ToggleButton(props: ToggleButtonProps) {
-  const {
-    styleType,
-    size,
-    block,
-    isOutline,
-    onClick = () => ({}),
-    ...buttonProps
-  } = props;
-  const [isPressed, setIsPressed] = useState(props.isPressed);
+const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
+  function ToggleButton(props, ref) {
+    const {
+      styleType,
+      size,
+      block,
+      isOutline,
+      onClick = () => ({}),
+      ...buttonProps
+    } = props;
+    const [isPressed, setIsPressed] = useState(props.isPressed);
 
-  useEffect(() => {
-    setIsPressed(props.isPressed);
-  }, [props.isPressed]);
+    useEffect(() => {
+      setIsPressed(props.isPressed);
+    }, [props.isPressed]);
 
-  const toggleButton = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-    event => {
-      setIsPressed(oldIsPressed => !oldIsPressed);
-      onClick(event);
-    },
-    [onClick]
-  );
+    const toggleButton = useCallback<
+      React.MouseEventHandler<HTMLButtonElement>
+    >(
+      event => {
+        setIsPressed(oldIsPressed => !oldIsPressed);
+        onClick(event);
+      },
+      [onClick]
+    );
 
-  const ToggleButtonType = isOutline ? OutlineButton : Button;
+    const ToggleButtonType = isOutline ? OutlineButton : Button;
 
-  return (
-    <ToggleButtonType
-      {...buttonProps}
-      onClick={toggleButton}
-      styleType={styleType}
-      size={size}
-      block={block}
-      className={
-        isPressed
-          ? `${buttonProps.className || ''} pressed`
-          : buttonProps.className
-      }
-      aria-pressed={isPressed}
-    >
-      {props.children}
-    </ToggleButtonType>
-  );
-}
+    return (
+      <ToggleButtonType
+        {...buttonProps}
+        onClick={toggleButton}
+        styleType={styleType}
+        size={size}
+        block={block}
+        className={
+          isPressed
+            ? `${buttonProps.className || ''} pressed`
+            : buttonProps.className
+        }
+        aria-pressed={isPressed}
+        ref={ref}
+      >
+        {props.children}
+      </ToggleButtonType>
+    );
+  }
+);
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 ToggleButton.propTypes = {

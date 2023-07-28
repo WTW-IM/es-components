@@ -22,43 +22,60 @@ function getWindowSize({
 }
 
 type AllWindowSizeProps<P> = P & DefaultSizeProps & WindowSizeProps;
-type WithWindowSizeProps<P> = Omit<P, keyof WindowSizeProps> & DefaultSizeProps;
+type WithWindowSizeProps<P> = Override<
+  Omit<P, keyof WindowSizeProps>,
+  DefaultSizeProps
+>;
 
-export default function withWindowSize<P extends WindowSizeProps>(
-  ComponentClass: React.ComponentType<AllWindowSizeProps<P>>
+export default function withWindowSize<
+  P extends WindowSizeProps = WindowSizeProps,
+  T = never
+>(
+  ComponentClass:
+    | React.ComponentType<AllWindowSizeProps<P>>
+    | React.ForwardRefExoticComponent<
+        AllWindowSizeProps<P> & React.RefAttributes<T>
+      >
 ) {
-  const WithWindowSize = (props: WithWindowSizeProps<P>) => {
-    const [windowSize, setWindowSize] = useState(getWindowSize(props));
+  const WithWindowSize = React.forwardRef<T, WithWindowSizeProps<P>>(
+    function ForwardedWithWindowSize(props, ref) {
+      const [windowSize, setWindowSize] = useState(getWindowSize(props));
 
-    useEffect(() => {
-      const handleResize = () => {
-        const activeTag = document.activeElement?.tagName.toLocaleLowerCase();
-        if (activeTag === 'input' || activeTag === 'select') {
-          return;
-        }
+      useEffect(() => {
+        const handleResize = () => {
+          const activeTag = document.activeElement?.tagName.toLocaleLowerCase();
+          if (activeTag === 'input' || activeTag === 'select') {
+            return;
+          }
 
-        setWindowSize(getWindowSize());
-      };
+          setWindowSize(getWindowSize());
+        };
 
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
-    return (
-      <ComponentClass
-        {...(props as P & DefaultSizeProps)}
-        windowWidth={windowSize.windowWidth}
-        windowHeight={windowSize.windowHeight}
-      />
-    );
-  };
+      return (
+        <ComponentClass
+          ref={ref}
+          {...(props as P & DefaultSizeProps)}
+          windowWidth={windowSize.windowWidth}
+          windowHeight={windowSize.windowHeight}
+        />
+      );
+    }
+  );
 
-  WithWindowSize.propTypes = {
+  (
+    WithWindowSize as React.ForwardRefExoticComponent<DefaultSizeProps>
+  ).propTypes = {
     defaultWidth: PropTypes.number,
     defaultHeight: PropTypes.number
   };
 
-  WithWindowSize.defaultProps = {
+  (
+    WithWindowSize as React.ForwardRefExoticComponent<DefaultSizeProps>
+  ).defaultProps = {
     defaultWidth: undefined,
     defaultHeight: undefined
   };

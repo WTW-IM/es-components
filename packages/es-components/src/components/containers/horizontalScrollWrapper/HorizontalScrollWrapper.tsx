@@ -4,7 +4,8 @@ import styled, { css } from 'styled-components';
 import formatMessage from 'format-message';
 import Icon from '../../base/icons/Icon';
 import { IconName } from 'es-components-shared-types';
-import withWindowSize from '../../util/withWindowSize';
+import withWindowSize, { WindowSizeProps } from '../../util/withWindowSize';
+import { callRefs } from '../../util/callRef';
 
 const InnerWrapper = styled.div`
   display: flex;
@@ -127,15 +128,18 @@ const ScrollIcon = styled(ScrollIconInner)`
   pointer-events: all;
 `;
 
-type HorizontalScrollWrapperProps = JSXElementProps<'div'> & {
-  slideAmount: number;
-};
+type HorizontalScrollWrapperProps = JSXElementProps<'div'> &
+  WindowSizeProps & {
+    slideAmount?: number;
+  };
 
-function HorizontalScrollWrapper({
-  children,
-  slideAmount,
-  ...otherProps
-}: HorizontalScrollWrapperProps) {
+const HorizontalScrollWrapper = React.forwardRef<
+  HTMLDivElement,
+  HorizontalScrollWrapperProps
+>(function HorizontalScrollWrapper(
+  { children, slideAmount = 300, windowWidth, windowHeight, ...otherProps },
+  ref
+) {
   const [containerRef, setContainerRef] = useState<Maybe<HTMLElement>>(null);
   const [innerRef, setInnerRef] = useState<Maybe<HTMLElement>>(null);
   const [rootHeight, setRootHeight] = useState(0);
@@ -161,9 +165,16 @@ function HorizontalScrollWrapper({
     setMaxScroll(innerWidth - containerWidth);
   }, [containerRef, innerRef]);
 
+  const callContainerRefs = useCallback<React.RefCallback<HTMLDivElement>>(
+    el => {
+      callRefs(el, setContainerRef, ref);
+    },
+    [ref]
+  );
+
   useEffect(() => {
     resetPosition();
-  }, [resetPosition]);
+  }, [resetPosition, windowWidth, windowHeight]);
 
   useEffect(() => {
     if (!innerRef && !containerRef) return;
@@ -192,12 +203,6 @@ function HorizontalScrollWrapper({
       });
     };
   }, [innerRef, containerRef, resetPosition]);
-
-  useEffect(() => {
-    window.addEventListener('resize', resetPosition);
-
-    return () => window.removeEventListener('resize', resetPosition);
-  }, [resetPosition]);
 
   const scrollContainer = useCallback(
     (amount: number, extraOpts: ScrollToOptions = {}) => {
@@ -266,7 +271,7 @@ function HorizontalScrollWrapper({
 
   return (
     <OuterWrapper
-      ref={setContainerRef}
+      ref={callContainerRefs}
       onScroll={onScroll}
       hasOverflow={hasOverflow}
       isDragging={isDragging}
@@ -305,17 +310,14 @@ function HorizontalScrollWrapper({
       </InnerWrapper>
     </OuterWrapper>
   );
-}
+});
 
 HorizontalScrollWrapper.propTypes = {
-  /** @ignore */
-  children: PropTypes.node,
   /** Set the number of pixels the contents will move when clicking left/right arrows */
   slideAmount: PropTypes.number
 };
 
 HorizontalScrollWrapper.defaultProps = {
-  children: null,
   slideAmount: 300
 };
 

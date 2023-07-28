@@ -16,6 +16,13 @@ declare global {
 
   type BooleanString = 'true' | 'false';
 
+  type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
+    T,
+    Exclude<keyof T, Keys>
+  > & {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
+  };
+
   type ReactFCWithChildren<T = unknown> = React.FC<React.PropsWithChildren<T>>;
   type JSXElementProps<T> = T extends keyof JSX.IntrinsicElements
     ? React.PropsWithoutRef<JSX.IntrinsicElements[T]>

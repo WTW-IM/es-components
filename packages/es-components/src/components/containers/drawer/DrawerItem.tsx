@@ -7,7 +7,7 @@ import React, {
   useRef
 } from 'react';
 import PropTypes from 'prop-types';
-import AnimateHeight from 'react-animate-height';
+import AnimateHeight, { AnimateHeightProps } from 'react-animate-height';
 import { DrawerContext } from './DrawerContext';
 import useUniqueId from '../../util/useUniqueId';
 
@@ -15,9 +15,17 @@ const noop = () => {
   // noop
 };
 
-export const DrawerItemContext = createContext({
+interface DrawerItemContextShape {
+  open: boolean;
+  itemId: string;
+  itemKey: string;
+  toggleOpen: () => void;
+}
+
+export const DrawerItemContext = createContext<DrawerItemContextShape>({
   open: false,
-  itemId: undefined,
+  itemId: '',
+  itemKey: '',
   toggleOpen: () => {
     /* noop */
   }
@@ -25,17 +33,25 @@ export const DrawerItemContext = createContext({
 
 export const useDrawerItemContext = () => useContext(DrawerItemContext);
 
+export interface DrawerItemProps {
+  open?: boolean;
+  onChange?: (open: boolean) => void;
+  id?: string;
+  panelKey?: React.Key;
+  children?: React.ReactNode;
+}
+
 export const DrawerItem = ({
   id,
   panelKey,
   open: openProp,
   onChange: onChangeProp,
   ...props
-}) => {
+}: DrawerItemProps) => {
   const { activeKeys, toggleActiveKey, setActiveKey, unsetActiveKey } =
     useContext(DrawerContext);
   const itemId = useUniqueId(id);
-  const itemKey = useUniqueId(panelKey);
+  const itemKey = useUniqueId(panelKey?.toString());
   const toggleOpen = useCallback(
     () => toggleActiveKey(itemKey),
     [itemKey, toggleActiveKey]
@@ -44,7 +60,12 @@ export const DrawerItem = ({
   onChange.current = onChangeProp;
   const afterInitialRender = useRef(false);
   const [open, setOpen] = useState(activeKeys.includes(itemKey));
-  const [itemContext, setItemContext] = useState({ open, itemKey, toggleOpen });
+  const [itemContext, setItemContext] = useState({
+    open,
+    itemId,
+    itemKey,
+    toggleOpen
+  });
 
   useEffect(
     function setOpenFromActiveKeys() {
@@ -76,9 +97,9 @@ export const DrawerItem = ({
 
   useEffect(
     function setChangedContext() {
-      setItemContext({ open, itemId, toggleOpen });
+      setItemContext({ open, itemId, itemKey, toggleOpen });
     },
-    [open, itemId, toggleOpen]
+    [open, itemId, itemKey, toggleOpen]
   );
 
   useEffect(() => {
@@ -98,7 +119,7 @@ DrawerItem.propTypes = {
   /** @ignore@ */
   id: PropTypes.string,
   /** @ignore */
-  panelKey: PropTypes.string
+  panelKey: PropTypes.oneOf([PropTypes.string, PropTypes.number])
 };
 
 DrawerItem.defaultProps = {
@@ -107,7 +128,12 @@ DrawerItem.defaultProps = {
   panelKey: undefined
 };
 
-export const DrawerItemBody = props => {
+export type DrawerItemBodyProps = Omit<
+  AnimateHeightProps,
+  'height' | 'duration' | 'id' | 'role'
+>;
+
+export const DrawerItemBody = (props: DrawerItemBodyProps) => {
   const { open, itemId } = useDrawerItemContext();
   const height = open ? 'auto' : 0;
   return (
@@ -125,15 +151,16 @@ DrawerItemBody.propTypes = {
   children: PropTypes.node
 };
 
-export const DrawerItemOpener = ({ children }) => {
-  let child = {};
-  let hasSingleChild = true;
-  let hasMultipleChildren = false;
-  try {
-    child = React.Children.only(children);
-  } catch {
-    hasSingleChild = false;
-  }
+export interface DrawerItemOpenerProps {
+  children: React.ReactElement<{
+    onClick: (event: React.SyntheticEvent) => void;
+    'aria-expanded'?: boolean;
+    'aria-controls'?: string;
+  }>;
+}
+
+function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
+  const child = React.Children.only(children);
   const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
   const childClick = useRef(child?.props?.onClick || noop);
 
@@ -142,29 +169,30 @@ export const DrawerItemOpener = ({ children }) => {
   }, [child?.props?.onClick]);
 
   const onClick = useCallback(
-    ev => {
+    (ev: React.SyntheticEvent) => {
       childClick.current(ev);
       toggleOpen();
     },
     [toggleOpen, childClick]
   );
+  return React.cloneElement(child, {
+    ...child?.props,
+    onClick,
+    'aria-expanded': open,
+    'aria-controls': `${itemId}-region`
+  });
+}
 
-  if (!hasSingleChild) {
+export const DrawerItemOpener = ({ children }: DrawerItemOpenerProps) => {
+  try {
+    return <DrawerItemOpenerSingle>{children}</DrawerItemOpenerSingle>;
+  } catch {
     // eslint-disable-next-line no-console
     console.error(
       'Drawer.ItemOpener could not set onClick. Please ensure it has only one root child component.'
     );
-    hasMultipleChildren = false;
+    return children;
   }
-
-  return hasMultipleChildren
-    ? children
-    : React.cloneElement(child, {
-        ...child?.props,
-        onClick,
-        'aria-expanded': open,
-        'aria-controls': `${itemId}-region`
-      });
 };
 
 DrawerItemOpener.propTypes = {

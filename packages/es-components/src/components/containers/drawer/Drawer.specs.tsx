@@ -6,7 +6,7 @@ import { render, cleanup, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
-import { Drawer, useDrawerItemContext } from './Drawer';
+import { Drawer, DrawerProps, useDrawerItemContext } from './Drawer';
 
 const noop = () => {
   // noop
@@ -17,7 +17,7 @@ const StyledFirstPanel = styled(Drawer.Panel)`
   background-color: blue;
 `;
 
-const PanelDrawer = props => (
+const PanelDrawer = (props: DrawerProps) => (
   <ThemeComponent>
     <Drawer className="important" {...props}>
       <StyledFirstPanel
@@ -42,7 +42,7 @@ beforeEach(cleanup);
 
 describe('drawer', () => {
   it('active panel is opened', () => {
-    const onActiveKeysChanged = jest.fn();
+    const onActiveKeysChanged = jest.fn<void, [string | string[]]>();
     render(
       <PanelDrawer
         onActiveKeysChanged={onActiveKeysChanged}
@@ -73,8 +73,11 @@ describe('drawer', () => {
 describe('accordion', () => {
   it('should only allow one drawer to be opened at a time', async () => {
     const onActiveKeysChanged = jest.fn();
-    let theRerender = () => ({});
-    onActiveKeysChanged.mockImplementation(newActiveKeys =>
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    let theRerender = (ui: React.ReactElement) => {
+      // noop
+    };
+    onActiveKeysChanged.mockImplementation((newActiveKeys: string | string[]) =>
       theRerender(
         <PanelDrawer
           isAccordion
@@ -102,7 +105,11 @@ describe('accordion', () => {
 });
 
 describe('Drawer.Item functionality', () => {
-  const ItemTracker = ({ trackDrawerChange }) => {
+  const ItemTracker = ({
+    trackDrawerChange
+  }: {
+    trackDrawerChange: (isOpen: boolean) => void;
+  }) => {
     const { open } = useDrawerItemContext();
     useEffect(() => {
       trackDrawerChange(open);
@@ -115,6 +122,9 @@ describe('Drawer.Item functionality', () => {
     openItems = [],
     onDrawersChange = [],
     ...props
+  }: DrawerProps & {
+    openItems?: boolean[];
+    onDrawersChange?: ((isOpen: boolean) => void)[];
   }) => (
     <ThemeComponent>
       <Drawer className="important" {...props}>
@@ -201,11 +211,13 @@ describe('Drawer.Item functionality', () => {
 
   it('reopens from a prop after a click', async () => {
     let open = true;
-    const onDrawersChange = [isOpen => (open = isOpen)];
-    const getTestDrawer = newOpen => (
+    const onDrawersChange = (isOpen: boolean) => {
+      open = isOpen;
+    };
+    const getTestDrawer = (newOpen?: boolean) => (
       <TestItemDrawer
         openItems={[typeof newOpen !== 'undefined' ? newOpen : open]}
-        {...{ onDrawersChange }}
+        onDrawersChange={[onDrawersChange]}
       />
     );
 

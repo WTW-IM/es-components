@@ -239,6 +239,10 @@ const theme: ESTheme = {
       bgColor: info100,
       textColor: black,
     },
+    default: {
+      bgColor: info100,
+      textColor: black,
+    },
     warning: {
       bgColor: warning100,
       textColor: black,

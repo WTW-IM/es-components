@@ -236,6 +236,10 @@ const theme: ESTheme = {
       bgColor: info100,
       textColor: black,
     },
+    default: {
+      bgColor: info100,
+      textColor: black,
+    },
     warning: {
       bgColor: warning100,
       textColor: black,
@@ -667,6 +671,9 @@ const theme: ESTheme = {
     tablet: '768px',
     desktop: '900px',
     widescreen: '1200px',
+  },
+  spacing: {
+    defaultMargin: '1.875rem',
   },
 };
 

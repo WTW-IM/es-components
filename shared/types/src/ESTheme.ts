@@ -204,6 +204,11 @@ export type DatepickerColors = {
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
+export type BannerBlock = {
+  bgColor: CSS.Property.BackgroundColor;
+  textColor: CSS.Property.Color;
+};
+
 export default interface ESTheme {
   [key: string]: any;
 
@@ -232,6 +237,10 @@ export default interface ESTheme {
     [key in ScreenSizeName]: CSS.Property.Width;
   };
 
+  spacing: {
+    defaultMargin: CSS.Property.Padding;
+  };
+
   validationIconName: {
     [key in ValidationStyleType]: IconName;
   };
@@ -258,6 +267,10 @@ export default interface ESTheme {
     dropdownArrow: CSS.Property.BackgroundImage;
     inputHeight: CSS.Property.Height;
     dropdownLineHeight: CSS.Property.LineHeight;
+  };
+
+  bannerStyles: {
+    [key in ValidationStyleType]: BannerBlock;
   };
 
   datepickerColors: DatepickerColors;

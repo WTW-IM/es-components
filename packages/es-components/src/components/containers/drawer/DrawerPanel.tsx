@@ -82,25 +82,28 @@ const styledDrawerItemBody = () => {
 
 const PanelBody = styledDrawerItemBody();
 
-export type DrawerPanelProps = Omit<JSXElementProps<'div'>, 'title'> & {
-  // this is only any because of the old value in the propTypes object below
-  // we should change this to React.ReactNode in the future
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children: any;
-  title: string | number | React.ReactNode;
-  titleAside?: string | React.ReactNode;
-  noPadding?: boolean;
-  headingLevel?: HeadingLevel;
-  open?: boolean;
+export type DrawerPanelProps = Override<
+  JSXElementProps<'div'>,
+  {
+    // this is only any because of the old value in the propTypes object below
+    // we should change this to React.ReactNode in the future
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children: any;
+    title: string | number | React.ReactNode;
+    titleAside?: string | React.ReactNode;
+    noPadding?: boolean;
+    headingLevel?: HeadingLevel;
+    open?: boolean;
 
-  // INTERNAL PROPS
-  /** @ignore */
-  closedIconName?: IconName;
-  /** @ignore */
-  openedIconName?: IconName;
-  /** @ignore */
-  panelKey?: string;
-};
+    // INTERNAL PROPS
+    /** @ignore */
+    closedIconName?: IconName;
+    /** @ignore */
+    openedIconName?: IconName;
+    /** @ignore */
+    panelKey?: string;
+  }
+>;
 
 const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
   function DrawerPanel(

@@ -42,145 +42,162 @@ const removeKey = (key: string, keysList: string[]) => {
   return newKeys;
 };
 
-export type DrawerProps = JSXElementProps<'div'> & {
-  activeKeys?: string | string[];
-  children?:
-    | React.ReactComponentElement<typeof DrawerPanel>
-    | React.ReactComponentElement<typeof DrawerPanel>[];
-  closedIconName?: IconName;
-  isAccordion?: boolean;
-  onActiveKeysChanged?: (keys: string | string[]) => void;
-  openedIconName?: IconName;
-  useDefaultStyles?: boolean;
-};
+export type DrawerProps = Override<
+  JSXElementProps<'div'>,
+  {
+    activeKeys?: string | string[];
+    children?:
+      | React.ReactComponentElement<typeof DrawerPanel>
+      | React.ReactComponentElement<typeof DrawerPanel>[];
+    closedIconName?: IconName;
+    isAccordion?: boolean;
+    onActiveKeysChanged?: (keys: string | string[]) => void;
+    openedIconName?: IconName;
+    useDefaultStyles?: boolean;
+  }
+>;
 
-export function Drawer({
-  activeKeys: activeKeysProp,
-  children,
-  closedIconName = 'add',
-  isAccordion = false,
-  onActiveKeysChanged = () => {
-    // noop
-  },
-  openedIconName = 'minus',
-  useDefaultStyles = true,
-  ...other
-}: DrawerProps) {
-  const keysChangedCallback = useRef(onActiveKeysChanged);
-  keysChangedCallback.current = onActiveKeysChanged;
-  const currentActiveKeysProp = useRef(activeKeysProp);
-  currentActiveKeysProp.current = activeKeysProp;
+const ForwardedDrawer = React.forwardRef<HTMLDivElement, DrawerProps>(
+  function InnerDrawer(
+    {
+      activeKeys: activeKeysProp,
+      children,
+      closedIconName = 'add',
+      isAccordion = false,
+      onActiveKeysChanged = () => {
+        // noop
+      },
+      openedIconName = 'minus',
+      useDefaultStyles = true,
+      ...other
+    },
+    ref
+  ) {
+    const keysChangedCallback = useRef(onActiveKeysChanged);
+    keysChangedCallback.current = onActiveKeysChanged;
+    const currentActiveKeysProp = useRef(activeKeysProp);
+    currentActiveKeysProp.current = activeKeysProp;
 
-  const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
+    const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
 
-  const resetActiveKeys = useCallback(
-    (keymaker: (oldKeys: string | string[]) => string | string[]) =>
-      setActiveKeys(oldKeys => {
-        const oldKeysArray = keysAsArray(oldKeys);
-        const keys = keymaker(oldKeysArray);
-        const newKeys = keys.length && isAccordion ? [keys[0]] : keys;
-        return simpleArraysEqual(oldKeysArray, keysAsArray(newKeys))
-          ? oldKeys
-          : newKeys;
-      }),
-    [isAccordion]
-  );
-  const resetActiveKeysCallback = useRef(resetActiveKeys);
-  resetActiveKeysCallback.current = resetActiveKeys;
-
-  const setActiveKey = useCallback(
-    (key: string) =>
-      resetActiveKeysCallback.current(oldActiveKeys =>
-        addKey(key, keysAsArray(oldActiveKeys))
-      ),
-    []
-  );
-
-  const unsetActiveKey = useCallback(
-    (key: string) =>
-      resetActiveKeysCallback.current(oldActiveKeys =>
-        removeKey(key, keysAsArray(oldActiveKeys))
-      ),
-    []
-  );
-
-  const toggleActiveKey = useCallback((key: string) => {
-    resetActiveKeysCallback.current(oldActiveKeys => {
-      const isOpen = oldActiveKeys.includes(key);
-      return (isOpen ? removeKey : addKey)(key, keysAsArray(oldActiveKeys));
-    });
-  }, []);
-
-  const [drawerState, setDrawerState] = useState({
-    activeKeys,
-    setActiveKey,
-    unsetActiveKey,
-    toggleActiveKey
-  });
-
-  useEffect(() => {
-    if (
-      simpleArraysEqual(
-        keysAsArray(activeKeys),
-        keysAsArray(currentActiveKeysProp.current)
-      )
-    )
-      return;
-
-    keysChangedCallback.current(activeKeys);
-  }, [activeKeys]);
-
-  useEffect(() => {
-    if (!activeKeysProp) return;
-
-    resetActiveKeysCallback.current(oldKeys =>
-      simpleArraysEqual(keysAsArray(oldKeys), keysAsArray(activeKeysProp))
-        ? oldKeys
-        : activeKeysProp
+    const resetActiveKeys = useCallback(
+      (keymaker: (oldKeys: string | string[]) => string | string[]) =>
+        setActiveKeys(oldKeys => {
+          const oldKeysArray = keysAsArray(oldKeys);
+          const keys = keymaker(oldKeysArray);
+          const newKeys = keys.length && isAccordion ? [keys[0]] : keys;
+          return simpleArraysEqual(oldKeysArray, keysAsArray(newKeys))
+            ? oldKeys
+            : newKeys;
+        }),
+      [isAccordion]
     );
-  }, [activeKeysProp]);
+    const resetActiveKeysCallback = useRef(resetActiveKeys);
+    resetActiveKeysCallback.current = resetActiveKeys;
 
-  useEffect(() => {
-    setDrawerState({
+    const setActiveKey = useCallback(
+      (key: string) =>
+        resetActiveKeysCallback.current(oldActiveKeys =>
+          addKey(key, keysAsArray(oldActiveKeys))
+        ),
+      []
+    );
+
+    const unsetActiveKey = useCallback(
+      (key: string) =>
+        resetActiveKeysCallback.current(oldActiveKeys =>
+          removeKey(key, keysAsArray(oldActiveKeys))
+        ),
+      []
+    );
+
+    const toggleActiveKey = useCallback((key: string) => {
+      resetActiveKeysCallback.current(oldActiveKeys => {
+        const isOpen = oldActiveKeys.includes(key);
+        return (isOpen ? removeKey : addKey)(key, keysAsArray(oldActiveKeys));
+      });
+    }, []);
+
+    const [drawerState, setDrawerState] = useState({
       activeKeys,
       setActiveKey,
       unsetActiveKey,
       toggleActiveKey
     });
-  }, [activeKeys, setActiveKey, unsetActiveKey, toggleActiveKey]);
 
-  const DrawerContainer = useDefaultStyles ? StyledDrawer : UnstyledDrawer;
+    useEffect(() => {
+      if (
+        simpleArraysEqual(
+          keysAsArray(activeKeys),
+          keysAsArray(currentActiveKeysProp.current)
+        )
+      )
+        return;
 
-  return (
-    <DrawerContext.Provider value={drawerState}>
-      <DrawerContainer {...other}>
-        {React.Children.map(children, (child, ind) => {
-          if (!child) return child;
+      keysChangedCallback.current(activeKeys);
+    }, [activeKeys]);
 
-          /*Handle styled-component*/
-          const targetType = child.type as unknown as {
-            target: Maybe<typeof DrawerPanel>;
-          };
+    useEffect(() => {
+      if (!activeKeysProp) return;
 
-          const isDrawerPanel =
-            child.type === DrawerPanel || targetType.target === DrawerPanel;
-          if (!isDrawerPanel) return child;
+      resetActiveKeysCallback.current(oldKeys =>
+        simpleArraysEqual(keysAsArray(oldKeys), keysAsArray(activeKeysProp))
+          ? oldKeys
+          : activeKeysProp
+      );
+    }, [activeKeysProp]);
 
-          const childKey = child.key?.toString();
-          const activeIndex = `${ind + 1}`;
-          const panelKey = childKey || activeIndex;
+    useEffect(() => {
+      setDrawerState({
+        activeKeys,
+        setActiveKey,
+        unsetActiveKey,
+        toggleActiveKey
+      });
+    }, [activeKeys, setActiveKey, unsetActiveKey, toggleActiveKey]);
 
-          return React.cloneElement(child, {
-            ...child.props,
-            openedIconName,
-            closedIconName,
-            panelKey
-          });
-        })}
-      </DrawerContainer>
-    </DrawerContext.Provider>
-  );
-}
+    const DrawerContainer = useDefaultStyles ? StyledDrawer : UnstyledDrawer;
+
+    return (
+      <DrawerContext.Provider value={drawerState}>
+        <DrawerContainer {...other} ref={ref}>
+          {React.Children.map(children, (child, ind) => {
+            if (!child) return child;
+
+            /*Handle styled-component*/
+            const targetType = child.type as unknown as {
+              target: Maybe<typeof DrawerPanel>;
+            };
+
+            const isDrawerPanel =
+              child.type === DrawerPanel || targetType.target === DrawerPanel;
+            if (!isDrawerPanel) return child;
+
+            const childKey = child.key?.toString();
+            const activeIndex = `${ind + 1}`;
+            const panelKey = childKey || activeIndex;
+
+            return React.cloneElement(child, {
+              ...child.props,
+              openedIconName,
+              closedIconName,
+              panelKey
+            });
+          })}
+        </DrawerContainer>
+      </DrawerContext.Provider>
+    );
+  }
+);
+
+type DrawerComponent = typeof ForwardedDrawer & {
+  Panel: typeof DrawerPanel;
+  Item: typeof DrawerItem;
+  ItemOpener: typeof DrawerItemOpener;
+  ItemBody: typeof DrawerItemBody;
+};
+
+export const Drawer = ForwardedDrawer as DrawerComponent;
 
 Drawer.propTypes = {
   /** Set which panels are open */

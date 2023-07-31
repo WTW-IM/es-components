@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-interface DrawerContextShape {
+export interface DrawerContextShape {
   activeKeys: string | string[];
   toggleActiveKey: (key: string) => void;
   setActiveKey: (key: string) => void;

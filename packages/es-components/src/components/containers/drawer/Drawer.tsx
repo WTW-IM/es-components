@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { DrawerContext } from './DrawerContext';
 import { DrawerItem, DrawerItemBody, DrawerItemOpener } from './DrawerItem';
 import DrawerPanel from './DrawerPanel';
+import { IconName, iconNames } from 'es-components-shared-types';
 
 export { useDrawerItemContext, DrawerItemContext } from './DrawerItem';
 
@@ -17,35 +18,54 @@ const StyledDrawer = styled.div`
 
 const UnstyledDrawer = styled.div``;
 
-const simpleArraysEqual = (arr1, arr2) =>
-  arr1?.length === arr2?.length && arr1?.every(item => arr2?.includes(item));
+const keysAsArray = (activeKeys?: string | string[]) =>
+  activeKeys === undefined
+    ? []
+    : Array.isArray(activeKeys)
+    ? activeKeys
+    : [activeKeys];
 
-const addKey = (key, keysList) => {
+const simpleArraysEqual = (arr1: string[], arr2: string[]) =>
+  arr1.length === arr2.length && arr1.every(item => arr2.includes(item));
+
+const addKey = (key: string, keysList: string[]) => {
   if (keysList?.includes(key)) return keysList;
 
   const newKeys = [...new Set([key, ...keysList])];
   return newKeys;
 };
 
-const removeKey = (key, keysList) => {
+const removeKey = (key: string, keysList: string[]) => {
   if (!keysList?.includes(key)) return keysList;
 
   const newKeys = keysList?.filter(k => k !== key);
   return newKeys;
 };
 
-export function Drawer(props) {
-  const {
-    activeKeys: activeKeysProp,
-    children,
-    closedIconName,
-    isAccordion,
-    onActiveKeysChanged,
-    openedIconName,
-    useDefaultStyles,
-    ...other
-  } = props;
+export type DrawerProps = JSXElementProps<'div'> & {
+  activeKeys?: string | string[];
+  children?:
+    | React.ReactComponentElement<typeof DrawerPanel>
+    | React.ReactComponentElement<typeof DrawerPanel>[];
+  closedIconName?: IconName;
+  isAccordion?: boolean;
+  onActiveKeysChanged?: (keys: string | string[]) => void;
+  openedIconName?: IconName;
+  useDefaultStyles?: boolean;
+};
 
+export function Drawer({
+  activeKeys: activeKeysProp,
+  children,
+  closedIconName = 'add',
+  isAccordion = false,
+  onActiveKeysChanged = () => {
+    // noop
+  },
+  openedIconName = 'minus',
+  useDefaultStyles = true,
+  ...other
+}: DrawerProps) {
   const keysChangedCallback = useRef(onActiveKeysChanged);
   keysChangedCallback.current = onActiveKeysChanged;
   const currentActiveKeysProp = useRef(activeKeysProp);
@@ -54,11 +74,14 @@ export function Drawer(props) {
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
 
   const resetActiveKeys = useCallback(
-    keymaker =>
+    (keymaker: (oldKeys: string | string[]) => string | string[]) =>
       setActiveKeys(oldKeys => {
-        const keys = keymaker(oldKeys);
+        const oldKeysArray = keysAsArray(oldKeys);
+        const keys = keymaker(oldKeysArray);
         const newKeys = keys.length && isAccordion ? [keys[0]] : keys;
-        return simpleArraysEqual(oldKeys, newKeys) ? oldKeys : newKeys;
+        return simpleArraysEqual(oldKeysArray, keysAsArray(newKeys))
+          ? oldKeys
+          : newKeys;
       }),
     [isAccordion]
   );
@@ -66,25 +89,25 @@ export function Drawer(props) {
   resetActiveKeysCallback.current = resetActiveKeys;
 
   const setActiveKey = useCallback(
-    key =>
+    (key: string) =>
       resetActiveKeysCallback.current(oldActiveKeys =>
-        addKey(key, oldActiveKeys)
+        addKey(key, keysAsArray(oldActiveKeys))
       ),
     []
   );
 
   const unsetActiveKey = useCallback(
-    key =>
+    (key: string) =>
       resetActiveKeysCallback.current(oldActiveKeys =>
-        removeKey(key, oldActiveKeys)
+        removeKey(key, keysAsArray(oldActiveKeys))
       ),
     []
   );
 
-  const toggleActiveKey = useCallback(key => {
+  const toggleActiveKey = useCallback((key: string) => {
     resetActiveKeysCallback.current(oldActiveKeys => {
       const isOpen = oldActiveKeys.includes(key);
-      return (isOpen ? removeKey : addKey)(key, oldActiveKeys);
+      return (isOpen ? removeKey : addKey)(key, keysAsArray(oldActiveKeys));
     });
   }, []);
 
@@ -96,7 +119,13 @@ export function Drawer(props) {
   });
 
   useEffect(() => {
-    if (simpleArraysEqual(activeKeys, currentActiveKeysProp.current)) return;
+    if (
+      simpleArraysEqual(
+        keysAsArray(activeKeys),
+        keysAsArray(currentActiveKeysProp.current)
+      )
+    )
+      return;
 
     keysChangedCallback.current(activeKeys);
   }, [activeKeys]);
@@ -105,7 +134,9 @@ export function Drawer(props) {
     if (!activeKeysProp) return;
 
     resetActiveKeysCallback.current(oldKeys =>
-      simpleArraysEqual(oldKeys, activeKeysProp) ? oldKeys : activeKeysProp
+      simpleArraysEqual(keysAsArray(oldKeys), keysAsArray(activeKeysProp))
+        ? oldKeys
+        : activeKeysProp
     );
   }, [activeKeysProp]);
 
@@ -126,12 +157,16 @@ export function Drawer(props) {
         {React.Children.map(children, (child, ind) => {
           if (!child) return child;
 
+          /*Handle styled-component*/
+          const targetType = child.type as unknown as {
+            target: Maybe<typeof DrawerPanel>;
+          };
+
           const isDrawerPanel =
-            child.type === DrawerPanel ||
-            /*Handle styled-component*/ child.type.target === DrawerPanel;
+            child.type === DrawerPanel || targetType.target === DrawerPanel;
           if (!isDrawerPanel) return child;
 
-          const childKey = child.key;
+          const childKey = child.key?.toString();
           const activeIndex = `${ind + 1}`;
           const panelKey = childKey || activeIndex;
 
@@ -156,13 +191,13 @@ Drawer.propTypes = {
   /** Usually only one or more Drawer.Panel elements */
   children: PropTypes.node,
   /** Override the default plus icon with another OE icon name */
-  closedIconName: PropTypes.string,
+  closedIconName: PropTypes.oneOf<IconName>([...iconNames]),
   /** Only allows one DrawerPanel to be open at a time */
   isAccordion: PropTypes.bool,
   /** Function called when changing active keys */
   onActiveKeysChanged: PropTypes.func,
   /** Override the default minus icon with another OE icon name */
-  openedIconName: PropTypes.string,
+  openedIconName: PropTypes.oneOf<IconName>([...iconNames]),
   /** Include default container styles */
   useDefaultStyles: PropTypes.bool
 };

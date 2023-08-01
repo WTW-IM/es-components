@@ -1,12 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { render, cleanup, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
-import { Drawer, DrawerProps, useDrawerItemContext } from './Drawer';
+import Drawer, { DrawerProps, useDrawerItemContext } from './Drawer';
 
 const noop = () => {
   // noop

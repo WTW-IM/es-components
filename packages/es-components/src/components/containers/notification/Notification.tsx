@@ -24,10 +24,8 @@ Notification.propTypes = {
   includeIcon: PropTypes.bool,
   /** Display a dismiss button that will close the notification */
   isDismissable: PropTypes.bool,
-  role: PropTypes.oneOf(['dialog', 'alert']),
   /** Function to execute when the dialog is closed */
   onDismiss: PropTypes.func,
-  children: PropTypes.node,
   /** Allows the icon to display at all resolutions */
   alwaysShowIcon: PropTypes.bool
 };
@@ -35,8 +33,6 @@ Notification.propTypes = {
 Notification.defaultProps = {
   includeIcon: false,
   isDismissable: false,
-  children: null,
-  role: 'dialog',
   onDismiss: noop,
   alwaysShowIcon: false
 };

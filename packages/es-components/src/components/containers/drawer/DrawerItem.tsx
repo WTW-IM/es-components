@@ -37,17 +37,17 @@ export interface DrawerItemProps {
   open?: boolean;
   onChange?: (open: boolean) => void;
   id?: string;
-  panelKey?: React.Key;
+  panelKey?: string | number;
   children?: React.ReactNode;
 }
 
-export const DrawerItem = ({
+export const DrawerItem: React.FC<DrawerItemProps> = ({
   id,
   panelKey,
   open: openProp,
   onChange: onChangeProp,
   ...props
-}: DrawerItemProps) => {
+}) => {
   const { activeKeys, toggleActiveKey, setActiveKey, unsetActiveKey } =
     useContext(DrawerContext);
   const itemId = useUniqueId(id);
@@ -119,7 +119,7 @@ DrawerItem.propTypes = {
   /** @ignore@ */
   id: PropTypes.string,
   /** @ignore */
-  panelKey: PropTypes.oneOf([PropTypes.string, PropTypes.number])
+  panelKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 DrawerItem.defaultProps = {
@@ -133,7 +133,7 @@ export type DrawerItemBodyProps = Omit<
   'height' | 'duration' | 'id' | 'role'
 >;
 
-export const DrawerItemBody = (props: DrawerItemBodyProps) => {
+export const DrawerItemBody: React.FC<DrawerItemBodyProps> = props => {
   const { open, itemId } = useDrawerItemContext();
   const height = open ? 'auto' : 0;
   return (
@@ -183,7 +183,9 @@ function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
   });
 }
 
-export const DrawerItemOpener = ({ children }: DrawerItemOpenerProps) => {
+export const DrawerItemOpener: React.FC<DrawerItemOpenerProps> = ({
+  children
+}) => {
   try {
     return <DrawerItemOpenerSingle>{children}</DrawerItemOpenerSingle>;
   } catch {

@@ -1,8 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import LoadingSkeleton from './LoadingSkeleton';
+import originalStyled, { ThemedStyledInterface } from 'styled-components';
+import LoadingSkeleton, { SkeletonTheme } from './LoadingSkeleton';
 
 const { Shape } = LoadingSkeleton;
+const styled =
+  originalStyled as unknown as ThemedStyledInterface<SkeletonTheme>;
 
 const TileContainer = styled(LoadingSkeleton)`
   display: flex;

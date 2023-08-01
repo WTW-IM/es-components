@@ -1,30 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { noop } from 'lodash';
-import { ValidationStyleType } from 'es-components-shared-types';
+import { validationStyleTypes } from 'es-components-shared-types';
 
-import { BaseNotification } from './BaseNotification';
+import { BaseNotification, BaseNotificationProps } from './BaseNotification';
 
-interface LightNotificationProps {
-  type: ValidationStyleType;
-}
-
-function LightNotification(props: LightNotificationProps) {
-  return <BaseNotification {...props} styleType="light" />;
-}
+const LightNotification = React.forwardRef<
+  HTMLDivElement,
+  BaseNotificationProps
+>(function LightNotification(props, ref) {
+  return <BaseNotification ref={ref} {...props} styleType="light" />;
+});
 
 LightNotification.propTypes = {
   /** The type of notification to render */
-  type: PropTypes.oneOf(['success', 'info', 'warning', 'danger', 'advisor'])
-    .isRequired,
+  type: PropTypes.oneOf(validationStyleTypes).isRequired,
   /** Display an icon in the notification on a screen >= 768px */
   includeIcon: PropTypes.bool,
   /** Display a dismiss button that will close the notification */
   isDismissable: PropTypes.bool,
-  role: PropTypes.oneOf(['dialog', 'alert', 'text', 'region']),
   /** Function to execute when the dialog is closed */
   onDismiss: PropTypes.func,
-  children: PropTypes.node,
   /** Allows the icon to display at all resolutions */
   alwaysShowIcon: PropTypes.bool
 };
@@ -32,8 +28,6 @@ LightNotification.propTypes = {
 LightNotification.defaultProps = {
   includeIcon: false,
   isDismissable: false,
-  children: null,
-  role: 'dialog',
   onDismiss: noop,
   alwaysShowIcon: false
 };

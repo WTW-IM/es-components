@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Colors, ValidationStyleType } from 'es-components-shared-types';
 
 import Label from '../label/Label';
 import ValidationContext from '../ValidationContext';
+import {
+  htmlInputPropTypes,
+  htmlInputDefaultProps
+} from '../../util/htmlProps';
 
 const backgroundColorSelect = (
   checked: Maybe<boolean>,
@@ -139,30 +142,30 @@ export const CheckboxDisplay = styled.span`
 
 export type CheckboxProps = JSXElementProps<'input'>;
 
-function Checkbox({ children, ...checkboxProps }: CheckboxProps) {
-  const validationState = React.useContext(ValidationContext);
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  function ForwardedCheckbox({ children, ...checkboxProps }, ref) {
+    const validationState = React.useContext(ValidationContext);
 
-  return (
-    <CheckboxLabel
-      validationState={validationState}
-      checked={checkboxProps.checked}
-      disabled={checkboxProps.disabled}
-    >
-      <CheckboxInput type="checkbox" {...checkboxProps} />
-      <CheckboxDisplay className="es-checkbox__fill" />
-      {children}
-    </CheckboxLabel>
-  );
-}
+    return (
+      <CheckboxLabel
+        validationState={validationState}
+        checked={checkboxProps.checked}
+        disabled={checkboxProps.disabled}
+      >
+        <CheckboxInput type="checkbox" {...checkboxProps} ref={ref} />
+        <CheckboxDisplay className="es-checkbox__fill" />
+        {children}
+      </CheckboxLabel>
+    );
+  }
+);
 
 Checkbox.propTypes = {
-  ...(CheckboxInput.propTypes || {}),
-  children: PropTypes.node
+  ...htmlInputPropTypes
 };
 
 Checkbox.defaultProps = {
-  ...(CheckboxInput.defaultProps || {}),
-  children: undefined
+  ...htmlInputDefaultProps
 };
 
 export default Checkbox;

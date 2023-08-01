@@ -228,7 +228,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     styleType = 'default',
     size = 'default',
     block = false,
-    mobileBlock = false,
+    mobileBlock = true,
     flatLeftEdge = false,
     flatRightEdge = false,
     ...other

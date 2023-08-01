@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { DrawerContext } from './DrawerContext';
 import { DrawerItem, DrawerItemBody, DrawerItemOpener } from './DrawerItem';
-import DrawerPanel from './DrawerPanel';
+import DrawerPanel, { DrawerPanelProps } from './DrawerPanel';
 import { IconName, iconNames } from 'es-components-shared-types';
 
 export { useDrawerItemContext, DrawerItemContext } from './DrawerItem';
@@ -42,11 +42,11 @@ const removeKey = (key: string, keysList: string[]) => {
   return newKeys;
 };
 
+export type PanelChild = React.ReactElement<DrawerPanelProps>;
+
 export type DrawerProps = JSXElementProps<'div'> & {
   activeKeys?: string | string[];
-  children?:
-    | React.ReactComponentElement<typeof DrawerPanel>
-    | React.ReactComponentElement<typeof DrawerPanel>[];
+  children?: React.ReactNode;
   closedIconName?: IconName;
   isAccordion?: boolean;
   onActiveKeysChanged?: (keys: string | string[]) => void;
@@ -54,18 +54,21 @@ export type DrawerProps = JSXElementProps<'div'> & {
   useDefaultStyles?: boolean;
 };
 
-export function Drawer({
-  activeKeys: activeKeysProp,
-  children,
-  closedIconName = 'add',
-  isAccordion = false,
-  onActiveKeysChanged = () => {
-    // noop
+const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
+  {
+    activeKeys: activeKeysProp,
+    children,
+    closedIconName = 'add',
+    isAccordion = false,
+    onActiveKeysChanged = () => {
+      // noop
+    },
+    openedIconName = 'minus',
+    useDefaultStyles = true,
+    ...other
   },
-  openedIconName = 'minus',
-  useDefaultStyles = true,
-  ...other
-}: DrawerProps) {
+  ref
+) {
   const keysChangedCallback = useRef(onActiveKeysChanged);
   keysChangedCallback.current = onActiveKeysChanged;
   const currentActiveKeysProp = useRef(activeKeysProp);
@@ -153,9 +156,11 @@ export function Drawer({
 
   return (
     <DrawerContext.Provider value={drawerState}>
-      <DrawerContainer {...other}>
+      <DrawerContainer {...other} ref={ref}>
         {React.Children.map(children, (child, ind) => {
           if (!child) return child;
+
+          if (!React.isValidElement<DrawerPanelProps>(child)) return child;
 
           /*Handle styled-component*/
           const targetType = child.type as unknown as {
@@ -171,7 +176,6 @@ export function Drawer({
           const panelKey = childKey || activeIndex;
 
           return React.cloneElement(child, {
-            ...child.props,
             openedIconName,
             closedIconName,
             panelKey
@@ -180,13 +184,13 @@ export function Drawer({
       </DrawerContainer>
     </DrawerContext.Provider>
   );
-}
+});
 
 Drawer.propTypes = {
   /** Set which panels are open */
   activeKeys: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.string.isRequired,
+    PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
   ]),
   /** Usually only one or more Drawer.Panel elements */
   children: PropTypes.node,
@@ -214,7 +218,16 @@ Drawer.defaultProps = {
   }
 };
 
-Drawer.Panel = DrawerPanel;
-Drawer.Item = DrawerItem;
-Drawer.ItemOpener = DrawerItemOpener;
-Drawer.ItemBody = DrawerItemBody;
+type DrawerComponent = typeof Drawer & {
+  Panel: typeof DrawerPanel;
+  Item: typeof DrawerItem;
+  ItemOpener: typeof DrawerItemOpener;
+  ItemBody: typeof DrawerItemBody;
+};
+
+(Drawer as DrawerComponent).Panel = DrawerPanel;
+(Drawer as DrawerComponent).Item = DrawerItem;
+(Drawer as DrawerComponent).ItemOpener = DrawerItemOpener;
+(Drawer as DrawerComponent).ItemBody = DrawerItemBody;
+
+export default Drawer as DrawerComponent;

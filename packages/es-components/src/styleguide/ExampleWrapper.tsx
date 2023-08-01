@@ -98,7 +98,9 @@ export default function ExampleWrapper(props: ExampleWrapperProps) {
             onChange={toggleTheme}
           ></Switch>
         </SwitchContainer>
-        <Wrapper {...props} />
+        <div>
+          <Wrapper {...props} />
+        </div>
       </ExampleContainer>
     </ThemeProvider>
   );

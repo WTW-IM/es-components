@@ -11,11 +11,18 @@ import React, {
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Button, { ButtonProps } from './Button';
+import Button, {
+  ButtonProps,
+  ButtonStyleType,
+  buttonStyleTypes,
+  propTypes as buttonPropTypes,
+  defaultProps as buttonDefaultProps
+} from './Button';
 import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
 import RootCloseWrapper from '../../util/RootCloseWrapper';
 import useTopZIndex from '../../../hooks/useTopZIndex';
+import { useMergedRefs } from '../../util/callRef';
 
 const SplitButton = styled(Button)`
   ${props =>
@@ -186,144 +193,156 @@ export type DropdownButtonProps = Omit<ButtonProps, 'children'> & {
   flatRightEdge?: boolean;
 };
 
-function DropdownButton({
-  id,
-  rootClose,
-  children,
-  buttonValue,
-  manualButtonValue,
-  shouldCloseOnButtonClick,
-  shouldUpdateButtonValue,
-  styleType,
-  inline,
-  flatLeftEdge,
-  flatRightEdge,
-  ...otherProps
-}: DropdownButtonProps) {
-  const ActivationButton = flatLeftEdge || flatRightEdge ? SplitButton : Button;
-
-  const [buttonStateValue, setButtonStateValue] = useState(buttonValue);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const initialRender = useRef(true);
-  const buttonDropdown = useRef<HTMLDivElement>(null);
-  const triggerButton = useRef<HTMLButtonElement>(null);
-  const panelId = useUniqueId(id);
-  const getTopIndex = useTopZIndex();
-
-  useEffect(() => {
-    const removeFocusTrapListener = focusTrap(buttonDropdown.current);
-    const removeArrowMovementListener = arrowMovement(buttonDropdown.current);
-
-    return function removeListeners() {
-      removeFocusTrapListener();
-      removeArrowMovementListener();
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!initialRender.current) {
-      triggerButton.current?.focus();
-    }
-    initialRender.current = false;
-  }, [isOpen]);
-
-  const toggleDropdown = useCallback(
-    () => setIsOpen(oldIsOpen => !oldIsOpen),
-    []
-  );
-
-  const closeDropdown = useCallback(() => setIsOpen(false), []);
-
-  const handleDropdownItemClick = useCallback(
-    (childProps?: unknown) => (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (!childProps) return;
-
-      const buttonProps = childProps as {
-        children?: React.ReactNode;
-        name?: string;
-        onClick?: (
-          event: React.MouseEvent<HTMLButtonElement>,
-          name: string
-        ) => void;
-      };
-      if (shouldUpdateButtonValue) {
-        setButtonStateValue(buttonProps.children);
-      }
-      if (shouldCloseOnButtonClick) {
-        closeDropdown();
-      }
-
-      buttonProps?.onClick?.(event, buttonProps?.name || '');
+const DropdownButton = React.forwardRef<HTMLButtonElement, DropdownButtonProps>(
+  function DropdownButton(
+    {
+      id,
+      rootClose,
+      children,
+      buttonValue,
+      manualButtonValue,
+      shouldCloseOnButtonClick,
+      shouldUpdateButtonValue,
+      styleType,
+      inline,
+      flatLeftEdge,
+      flatRightEdge,
+      ...otherProps
     },
-    [shouldUpdateButtonValue, shouldCloseOnButtonClick, closeDropdown]
-  );
+    ref
+  ) {
+    const ActivationButton =
+      flatLeftEdge || flatRightEdge ? SplitButton : Button;
 
-  return (
-    <RootCloseWrapper
-      onRootClose={closeDropdown}
-      disabled={!rootClose}
-      css={`
-        display: ${inline ? 'inline-flex' : 'block'};
-        flex-direction: column;
-        position: relative;
-      `}
-    >
-      <div
-        ref={buttonDropdown}
-        role="combobox"
-        aria-controls={panelId}
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-      >
-        <ActivationButton
-          {...otherProps}
-          flatLeftEdge={flatLeftEdge}
-          flatRightEdge={flatRightEdge}
-          onClick={toggleDropdown}
-          aria-haspopup="true"
-          aria-pressed={isOpen}
-          className={
-            isOpen
-              ? `${otherProps?.className || ''} pressed`
-              : otherProps.className
+    const [buttonStateValue, setButtonStateValue] = useState(buttonValue);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const initialRender = useRef(true);
+    const buttonDropdown = useRef<HTMLDivElement>(null);
+    const triggerButton = useRef<HTMLButtonElement>(null);
+    const panelId = useUniqueId(id);
+    const getTopIndex = useTopZIndex();
+    const mainRef = useMergedRefs(ref, triggerButton);
+
+    useEffect(() => {
+      const removeFocusTrapListener = focusTrap(buttonDropdown.current);
+      const removeArrowMovementListener = arrowMovement(buttonDropdown.current);
+
+      return function removeListeners() {
+        removeFocusTrapListener();
+        removeArrowMovementListener();
+      };
+    }, [isOpen]);
+
+    useEffect(() => {
+      if (!initialRender.current) {
+        triggerButton.current?.focus();
+      }
+      initialRender.current = false;
+    }, [isOpen]);
+
+    const toggleDropdown = useCallback(
+      () => setIsOpen(oldIsOpen => !oldIsOpen),
+      []
+    );
+
+    const closeDropdown = useCallback(() => setIsOpen(false), []);
+
+    const handleDropdownItemClick = useCallback(
+      (childProps?: unknown) =>
+        (event: React.MouseEvent<HTMLButtonElement>) => {
+          if (!childProps) return;
+
+          const buttonProps = childProps as {
+            children?: React.ReactNode;
+            name?: string;
+            onClick?: (
+              event: React.MouseEvent<HTMLButtonElement>,
+              name: string
+            ) => void;
+          };
+          if (shouldUpdateButtonValue) {
+            setButtonStateValue(buttonProps.children);
           }
-          ref={triggerButton}
-          styleType={styleType}
+          if (shouldCloseOnButtonClick) {
+            closeDropdown();
+          }
+
+          buttonProps?.onClick?.(event, buttonProps?.name || '');
+        },
+      [shouldUpdateButtonValue, shouldCloseOnButtonClick, closeDropdown]
+    );
+
+    return (
+      <RootCloseWrapper
+        onRootClose={closeDropdown}
+        disabled={!rootClose}
+        css={`
+          display: ${inline ? 'inline-flex' : 'block'};
+          flex-direction: column;
+          position: relative;
+        `}
+      >
+        <div
+          ref={buttonDropdown}
+          role="combobox"
+          aria-controls={panelId}
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
         >
-          {manualButtonValue || buttonStateValue}
-          <Caret />
-        </ActivationButton>
-        <div css="position: relative;">
-          <ButtonPanel
-            isOpen={isOpen}
-            id={panelId}
-            topIndex={isOpen ? getTopIndex() : -1}
+          <ActivationButton
+            {...otherProps}
+            flatLeftEdge={flatLeftEdge}
+            flatRightEdge={flatRightEdge}
+            onClick={toggleDropdown}
+            aria-haspopup="true"
+            aria-pressed={isOpen}
+            className={
+              isOpen
+                ? `${otherProps?.className || ''} pressed`
+                : otherProps.className
+            }
+            ref={mainRef}
+            styleType={styleType}
           >
-            <ButtonPanelChildrenContainer>
-              {Children.map(children, ch => {
-                if (!ch || typeof ch !== 'object') return ch;
+            {manualButtonValue || buttonStateValue}
+            <Caret />
+          </ActivationButton>
+          <div css="position: relative;">
+            <ButtonPanel
+              isOpen={isOpen}
+              id={panelId}
+              topIndex={isOpen ? getTopIndex() : -1}
+            >
+              <ButtonPanelChildrenContainer>
+                {Children.map(children, ch => {
+                  if (!ch || typeof ch !== 'object') return ch;
 
-                const child = ch as React.ReactElement;
-                const onClickHandler = handleDropdownItemClick(child.props);
-                const newProps = {
-                  onClick: onClickHandler,
-                  role: 'option'
-                };
-                return React.cloneElement(child, newProps);
-              })}
-            </ButtonPanelChildrenContainer>
-          </ButtonPanel>
+                  const child = ch as React.ReactElement;
+                  const onClickHandler = handleDropdownItemClick(child.props);
+                  const newProps = {
+                    onClick: onClickHandler,
+                    role: 'option'
+                  };
+                  return React.cloneElement(child, newProps);
+                })}
+              </ButtonPanelChildrenContainer>
+            </ButtonPanel>
+          </div>
         </div>
-      </div>
-    </RootCloseWrapper>
-  );
-}
+      </RootCloseWrapper>
+    );
+  }
+);
 
-DropdownButton.Button = StyledButtonLink;
+type DropdownButtonComponent = typeof DropdownButton & {
+  Button: typeof StyledButtonLink;
+};
+
+(DropdownButton as DropdownButtonComponent).Button = StyledButtonLink;
 
 DropdownButton.propTypes = {
-  ...Button.propTypes,
+  ...buttonPropTypes,
   /** Content shown in the button */
   buttonValue: PropTypes.node,
   /**
@@ -332,7 +351,7 @@ DropdownButton.propTypes = {
    * useless
    */
   manualButtonValue: PropTypes.node,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * Defines if the buttons value should update to the last pressed,
    * childs value.
@@ -346,7 +365,7 @@ DropdownButton.propTypes = {
    */
   rootClose: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.string,
+  styleType: PropTypes.oneOf<ButtonStyleType>(buttonStyleTypes),
   /** Display the dropdown button inline */
   inline: PropTypes.bool,
   id: PropTypes.string,
@@ -356,8 +375,25 @@ DropdownButton.propTypes = {
   flatRightEdge: PropTypes.bool
 };
 
+type ButtonDefaultPropsNoChildren = Omit<typeof buttonDefaultProps, 'children'>;
+type ButtonDefaultEntry = [
+  keyof ButtonDefaultPropsNoChildren,
+  ButtonDefaultPropsNoChildren[keyof ButtonDefaultPropsNoChildren]
+];
+
+const correctedDefaultProps = Object.entries(buttonDefaultProps)
+  .filter<ButtonDefaultEntry>(
+    (entry): entry is ButtonDefaultEntry => entry[0] !== 'children'
+  )
+  .reduce<ButtonDefaultPropsNoChildren>(
+    (acc, [key, value]) =>
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      ({ ...acc, [key]: value } as ButtonDefaultPropsNoChildren),
+    {} as ButtonDefaultPropsNoChildren
+  );
+
 DropdownButton.defaultProps = {
-  ...Button.defaultProps,
+  ...correctedDefaultProps,
   buttonValue: undefined,
   manualButtonValue: undefined,
   shouldUpdateButtonValue: false,
@@ -370,4 +406,4 @@ DropdownButton.defaultProps = {
   flatRightEdge: false
 };
 
-export default DropdownButton;
+export default DropdownButton as DropdownButtonComponent;

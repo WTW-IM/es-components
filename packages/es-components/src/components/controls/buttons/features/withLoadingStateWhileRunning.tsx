@@ -11,7 +11,7 @@ export interface LoadingStateOnClick {
   (ev: React.MouseEvent<HTMLButtonElement>): Promise<void>;
 }
 
-interface LoadingStateProps {
+export interface LoadingStateProps {
   showWhileRunning?: React.ReactNode;
   onClick?: LoadingStateOnClick;
 }

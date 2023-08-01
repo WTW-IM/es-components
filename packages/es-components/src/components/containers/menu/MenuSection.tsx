@@ -39,25 +39,28 @@ const StyledChildrenContainer = styled.section`
   padding: 15px 20px 0px 20px;
 `;
 
-function MenuSection(props: MenuSectionProps) {
-  const { title, children, isLast, isFirst, isOnlySection, ...other } = props;
-  const inline = useContext(InlineContext);
+const MenuSection = React.forwardRef<HTMLElement, MenuSectionProps>(
+  function MenuSection(props, ref) {
+    const { title, children, isLast, isFirst, isOnlySection, ...other } = props;
+    const inline = useContext(InlineContext);
 
-  return (
-    <StyledMenuSection
-      isLast={isLast}
-      isFirst={isFirst}
-      inline={inline}
-      isOnlySection={isOnlySection}
-      {...other}
-    >
-      {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}
-      {children && (
-        <StyledChildrenContainer>{children}</StyledChildrenContainer>
-      )}
-    </StyledMenuSection>
-  );
-}
+    return (
+      <StyledMenuSection
+        ref={ref}
+        isLast={isLast}
+        isFirst={isFirst}
+        inline={inline}
+        isOnlySection={isOnlySection}
+        {...other}
+      >
+        {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}
+        {children && (
+          <StyledChildrenContainer>{children}</StyledChildrenContainer>
+        )}
+      </StyledMenuSection>
+    );
+  }
+);
 
 MenuSection.propTypes = {
   title: PropTypes.string,

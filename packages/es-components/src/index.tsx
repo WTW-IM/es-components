@@ -19,7 +19,7 @@ export {
 } from './components/containers/notification/Message';
 
 export {
-  Drawer,
+  default as Drawer,
   useDrawerItemContext,
   DrawerItemContext
 } from './components/containers/drawer/Drawer';

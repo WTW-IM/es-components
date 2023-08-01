@@ -11,54 +11,90 @@ export interface WindowSizeProps {
   windowHeight: number;
 }
 
+const getMediaWidth = () =>
+  // https://stackoverflow.com/a/8876069
+  document.documentElement.clientWidth || window.innerWidth || 0;
+
+const getMediaHeight = () =>
+  // https://stackoverflow.com/a/8876069
+  document.documentElement.clientHeight || window.innerHeight || 0;
+
 function getWindowSize({
   defaultWidth,
   defaultHeight
 }: DefaultSizeProps = {}): WindowSizeProps {
   return {
-    windowWidth: defaultWidth || document.body.clientWidth,
-    windowHeight: defaultHeight || document.body.clientHeight
+    windowWidth: defaultWidth || getMediaWidth(),
+    windowHeight: defaultHeight || getMediaHeight()
   };
 }
 
 type AllWindowSizeProps<P> = P & DefaultSizeProps & WindowSizeProps;
 type WithWindowSizeProps<P> = Omit<P, keyof WindowSizeProps> & DefaultSizeProps;
 
-export default function withWindowSize<P extends WindowSizeProps>(
-  ComponentClass: React.ComponentType<AllWindowSizeProps<P>>
-) {
-  const WithWindowSize = (props: WithWindowSizeProps<P>) => {
-    const [windowSize, setWindowSize] = useState(getWindowSize(props));
+export function useWindowSize({
+  defaultWidth,
+  defaultHeight
+}: DefaultSizeProps = {}): WindowSizeProps {
+  const [windowSize, setWindowSize] = useState(
+    getWindowSize({ defaultWidth, defaultHeight })
+  );
 
-    useEffect(() => {
-      const handleResize = () => {
-        const activeTag = document.activeElement?.tagName.toLocaleLowerCase();
-        if (activeTag === 'input' || activeTag === 'select') {
-          return;
-        }
+  useEffect(() => {
+    const handleResize = () => {
+      const activeTag = document.activeElement?.tagName.toLocaleLowerCase();
+      if (activeTag === 'input' || activeTag === 'select') {
+        return;
+      }
 
-        setWindowSize(getWindowSize());
-      };
+      setWindowSize(getWindowSize());
+    };
 
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [defaultWidth, defaultHeight]);
 
-    return (
-      <ComponentClass
-        {...(props as P & DefaultSizeProps)}
-        windowWidth={windowSize.windowWidth}
-        windowHeight={windowSize.windowHeight}
-      />
-    );
+  return {
+    windowWidth: windowSize.windowWidth,
+    windowHeight: windowSize.windowHeight
   };
+}
 
-  WithWindowSize.propTypes = {
+export default function withWindowSize<
+  P extends WindowSizeProps = WindowSizeProps,
+  T = never
+>(
+  ComponentClass:
+    | React.ComponentType<AllWindowSizeProps<P>>
+    | React.ForwardRefExoticComponent<
+        AllWindowSizeProps<P> & React.RefAttributes<T>
+      >
+) {
+  const WithWindowSize = React.forwardRef<T, WithWindowSizeProps<P>>(
+    function ForwardedWithWindowSize(props, ref) {
+      const windowSize = useWindowSize(props);
+
+      return (
+        <ComponentClass
+          ref={ref}
+          {...(props as P & DefaultSizeProps)}
+          windowWidth={windowSize.windowWidth}
+          windowHeight={windowSize.windowHeight}
+        />
+      );
+    }
+  );
+
+  (
+    WithWindowSize as React.ForwardRefExoticComponent<DefaultSizeProps>
+  ).propTypes = {
     defaultWidth: PropTypes.number,
     defaultHeight: PropTypes.number
   };
 
-  WithWindowSize.defaultProps = {
+  (
+    WithWindowSize as React.ForwardRefExoticComponent<DefaultSizeProps>
+  ).defaultProps = {
     defaultWidth: undefined,
     defaultHeight: undefined
   };

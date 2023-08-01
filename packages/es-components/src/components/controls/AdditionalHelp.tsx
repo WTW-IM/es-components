@@ -7,7 +7,7 @@ import ValidationContext from './ValidationContext';
 import Icon from '../base/icons/Icon';
 
 export type AdditionalHelpProps = JSXElementProps<'div'> & {
-  hasValidationIcon: boolean;
+  hasValidationIcon?: boolean;
 };
 
 const ValidationIcon = styled(Icon)`
@@ -25,26 +25,24 @@ const HelpText = styled.div`
   width: 100%;
 `;
 
-function AdditionalHelp({
-  children,
-  hasValidationIcon,
-  ...props
-}: AdditionalHelpProps) {
-  const theme = useTheme();
-  const validationState = React.useContext(ValidationContext);
+const AdditionalHelp = React.forwardRef<HTMLDivElement, AdditionalHelpProps>(
+  function AdditionalHelp({ children, hasValidationIcon, ...props }, ref) {
+    const theme = useTheme();
+    const validationState = React.useContext(ValidationContext);
 
-  return (
-    <HelpText {...props}>
-      {hasValidationIcon && children && validationState !== 'default' && (
-        <ValidationIcon
-          aria-hidden="true"
-          name={theme.validationIconName[validationState]}
-        />
-      )}
-      {children}
-    </HelpText>
-  );
-}
+    return (
+      <HelpText {...props} ref={ref}>
+        {hasValidationIcon && children && validationState !== 'default' && (
+          <ValidationIcon
+            aria-hidden="true"
+            name={theme.validationIconName[validationState]}
+          />
+        )}
+        {children}
+      </HelpText>
+    );
+  }
+);
 
 AdditionalHelp.propTypes = {
   ...HelpText.propTypes,

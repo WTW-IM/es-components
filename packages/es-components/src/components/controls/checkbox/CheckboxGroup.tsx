@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Checkbox, { CheckboxProps } from './Checkbox';
 import CheckAllBox from './CheckAllBox';
+import { htmlInputPropTypes } from '../../util/htmlProps';
 
 const Spacer = styled.div<{ bumpRight?: boolean }>`
   margin-left: ${props => (props.bumpRight ? '10px' : '0')};
@@ -107,7 +108,7 @@ CheckboxGroup.propTypes = {
   /** Disable all checkbox buttons */
   disableAllOptions: PropTypes.bool,
   /** array of checkbox objects defined by this shape */
-  options: PropTypes.arrayOf(PropTypes.shape(Checkbox.propTypes)),
+  options: PropTypes.arrayOf(PropTypes.shape(htmlInputPropTypes)),
   /** display an optional "Check All" checkbox with this value */
   checkAllText: PropTypes.string,
   /** display the "Check All" text on hover */

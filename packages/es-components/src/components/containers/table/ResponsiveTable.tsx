@@ -64,8 +64,10 @@ const TableBase = styled(Table)`
   }
 `;
 
-function ResponsiveTable(props: TableBaseProps) {
-  return <TableBase {...props} />;
-}
+const ResponsiveTable = React.forwardRef<HTMLTableElement, TableBaseProps>(
+  function ForwardedResponsiveTable(props, ref) {
+    return <TableBase ref={ref} {...props} />;
+  }
+);
 
 export default ResponsiveTable;

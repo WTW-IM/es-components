@@ -225,18 +225,21 @@ export type SwitchProps = JSXElementProps<'div'> & {
   disabled?: InputProps['disabled'];
 };
 
-function Switch({
-  type = 'primary',
-  label,
-  direction = 'right',
-  ariaLabel,
-  onText = '',
-  offText = '',
-  checked,
-  onChange = noop,
-  disabled,
-  ...switchProps
-}: SwitchProps) {
+const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
+  {
+    type = 'primary',
+    label,
+    direction = 'right',
+    ariaLabel,
+    onText = '',
+    offText = '',
+    checked,
+    onChange = noop,
+    disabled,
+    ...switchProps
+  },
+  ref
+) {
   const [isToggled, setIsToggled] = useState(checked);
 
   const elementProps = { direction, type };
@@ -258,6 +261,7 @@ function Switch({
     <SwitchBase
       {...elementProps}
       {...switchProps}
+      ref={ref}
       className={`${switchProps.className || ''} es-switch__container ${
         isToggled ? 'toggled-on' : 'toggled-off'
       }`}
@@ -292,7 +296,7 @@ function Switch({
       </SwitchLabel>
     </SwitchBase>
   );
-}
+});
 
 Switch.propTypes = {
   /** The type attribute for the switch */

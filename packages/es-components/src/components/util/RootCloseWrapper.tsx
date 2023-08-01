@@ -1,33 +1,37 @@
 import React, { useRef } from 'react';
 import { useRootClose } from 'react-overlays';
+import { useMergedRefs } from './callRef';
 
-// eslint-disable-next-line react/prop-types
+type RootCloseWrapperProps = Override<
+  JSXElementProps<'div'>,
+  {
+    children: React.ReactNode;
+    onRootClose: (
+      ...rootCloseArgs: Parameters<Parameters<typeof useRootClose>[1]>
+    ) => void;
+    disabled: boolean;
+  }
+>;
 
-interface RootCloseWrapperProps {
-  children: React.ReactNode;
-  onRootClose: (
-    ...rootCloseArgs: Parameters<Parameters<typeof useRootClose>[1]>
-  ) => void;
-  disabled: boolean;
-  className?: string;
-}
-
-const RootCloseWrapper: React.FC<RootCloseWrapperProps> = ({
-  children,
-  onRootClose,
-  disabled,
-  className
-}) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useRootClose(ref.current, onRootClose, {
+const RootCloseWrapper = React.forwardRef<
+  HTMLDivElement,
+  RootCloseWrapperProps
+>(function ForwardedRootCloseWrapper(
+  { children, onRootClose, disabled, className },
+  ref
+) {
+  const rootCloseRef = useRef<HTMLDivElement>(null);
+  useRootClose(rootCloseRef.current, onRootClose, {
     disabled
   });
 
+  const handleRef = useMergedRefs(rootCloseRef, ref);
+
   return (
-    <div ref={ref} className={`root-close-wrapper ${className || ''}`}>
+    <div ref={handleRef} className={`root-close-wrapper ${className || ''}`}>
       {children}
     </div>
   );
-};
+});
 
 export default RootCloseWrapper;

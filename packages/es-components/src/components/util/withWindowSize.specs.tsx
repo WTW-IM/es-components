@@ -21,28 +21,21 @@ const WindowSizeComponent = withWindowSize(InnerComponent);
 const triggerResize = () =>
   fireEvent(window, new Event('resize', { bubbles: true, cancelable: true }));
 
-let bodyDouble: Override<
-  typeof document.body,
-  {
-    clientWidth: number;
-    clientHeight: number;
-  }
->;
-
-beforeEach(() => {
-  bodyDouble = document.body;
-  Object.defineProperties(bodyDouble, {
-    clientWidth: {
-      value: 500,
-      writable: true
-    },
-    clientHeight: {
-      value: 500,
-      writable: true
-    }
+const setClientWidth = (width: number) => {
+  Object.defineProperty(document.documentElement, 'clientWidth', {
+    writable: true,
+    configurable: true,
+    value: width
   });
-  document.body = bodyDouble;
-});
+};
+
+const setClientHeight = (height: number) => {
+  Object.defineProperty(document.documentElement, 'clientHeight', {
+    writable: true,
+    configurable: true,
+    value: height
+  });
+};
 
 it('uses a passed windowWidth if one is present', () => {
   render(<WindowSizeComponent defaultWidth={1000} />);
@@ -50,7 +43,7 @@ it('uses a passed windowWidth if one is present', () => {
 });
 
 it('uses document windowWidth if no prop is present', () => {
-  bodyDouble.clientWidth = 500;
+  setClientWidth(500);
   render(React.cloneElement(<WindowSizeComponent />));
   expect(screen.getByTestId('window-width')).toHaveTextContent('500');
 });
@@ -61,7 +54,7 @@ it('uses a passed windowHeight if one is present', () => {
 });
 
 it('uses document windowHeight if no prop is present', () => {
-  bodyDouble.clientHeight = 500;
+  setClientHeight(500);
   render(<WindowSizeComponent />);
   expect(screen.getByTestId('window-height')).toHaveTextContent('500');
 });
@@ -69,7 +62,7 @@ it('uses document windowHeight if no prop is present', () => {
 it('adjusts the size based on resize', () => {
   // Initial size
 
-  bodyDouble.clientHeight = 500;
+  setClientHeight(500);
 
   render(<WindowSizeComponent />);
   const windowHeightElement = screen.getByTestId('window-height');
@@ -78,7 +71,7 @@ it('adjusts the size based on resize', () => {
 
   // Resize
 
-  bodyDouble.clientHeight = 1000;
+  setClientHeight(1000);
   triggerResize();
 
   expect(windowHeightElement).toHaveTextContent('1000');
@@ -87,7 +80,7 @@ it('adjusts the size based on resize', () => {
 it('starts with props but will update based on resize', () => {
   // Initial size
 
-  bodyDouble.clientHeight = 500;
+  setClientHeight(500);
 
   render(<WindowSizeComponent defaultHeight={750} />);
   const windowHeightElement = screen.getByTestId('window-height');
@@ -96,7 +89,7 @@ it('starts with props but will update based on resize', () => {
 
   // Resize
 
-  bodyDouble.clientHeight = 1000;
+  setClientHeight(1000);
   triggerResize();
 
   expect(windowHeightElement).toHaveTextContent('1000');

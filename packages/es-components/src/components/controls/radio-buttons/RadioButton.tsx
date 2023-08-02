@@ -14,11 +14,14 @@ import {
 import { lighten } from '../../util/colors';
 
 export const RadioDisplay = styled.span`
+  align-items: center;
   border-radius: 50%;
   border-style: solid;
   border-width: 3px;
   box-sizing: border-box;
+  display: flex;
   height: 25px;
+  justify-content: center;
   margin-right: 8px;
   min-width: 25px;
 
@@ -28,10 +31,7 @@ export const RadioDisplay = styled.span`
     content: '';
     display: block;
     height: 13px;
-    left: 3px;
-    position: relative;
     width: 13px;
-    top: 3px;
     transition: background 0.25s linear;
   }
 `;

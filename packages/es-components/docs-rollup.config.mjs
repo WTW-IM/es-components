@@ -4,7 +4,7 @@ import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import { aliasPlugin } from './rollup.config.mjs';
 import alias from '@rollup/plugin-alias';
 import { createRequire } from 'module';
@@ -38,7 +38,7 @@ export default args => {
           ]
         }),
         typescript({
-          tsconfig: 'tsconfig.json'
+          tsconfig: './tsconfig.json'
         }),
         resolve({
           preferBuiltins: true

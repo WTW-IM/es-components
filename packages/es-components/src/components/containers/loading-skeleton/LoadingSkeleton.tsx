@@ -87,7 +87,7 @@ const LoadingSkeleton = React.forwardRef<HTMLDivElement, LoadingSkeletonProps>(
     const shape = shapeColor || colors.gray3;
     const skeleton = { shimmerColor: shimmer, shapeColor: shape };
     return (
-      <ThemeProvider theme={{ ...theme, skeleton }}>
+      <ThemeProvider theme={{ ...theme, skeleton } as DefaultTheme}>
         <SkeletonContainer ref={ref} {...props} />
       </ThemeProvider>
     );

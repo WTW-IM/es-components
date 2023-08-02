@@ -23,3 +23,19 @@ export function renderWithTheme<T extends React.ReactNode>(component: T) {
       renderObj.rerender(<ThemeComponent>{rerenderComponent}</ThemeComponent>)
   };
 }
+
+export const setClientWidth = (width: number) => {
+  Object.defineProperty(document.documentElement, 'clientWidth', {
+    writable: true,
+    configurable: true,
+    value: width
+  });
+};
+
+export const setClientHeight = (height: number) => {
+  Object.defineProperty(document.documentElement, 'clientHeight', {
+    writable: true,
+    configurable: true,
+    value: height
+  });
+};

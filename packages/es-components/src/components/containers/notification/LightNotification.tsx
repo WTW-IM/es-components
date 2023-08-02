@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
 import { validationStyleTypes } from 'es-components-shared-types';
+import noop from '../../util/noop';
 
 import { BaseNotification, BaseNotificationProps } from './BaseNotification';
 

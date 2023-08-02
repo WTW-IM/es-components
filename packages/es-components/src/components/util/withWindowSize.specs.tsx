@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import withWindowSize, { WindowSizeProps } from './withWindowSize';
+import { setClientHeight, setClientWidth } from './test-utils';
 
 const InnerComponent = ({ windowWidth, windowHeight }: WindowSizeProps) => (
   <div>
@@ -20,22 +21,6 @@ const WindowSizeComponent = withWindowSize(InnerComponent);
 
 const triggerResize = () =>
   fireEvent(window, new Event('resize', { bubbles: true, cancelable: true }));
-
-const setClientWidth = (width: number) => {
-  Object.defineProperty(document.documentElement, 'clientWidth', {
-    writable: true,
-    configurable: true,
-    value: width
-  });
-};
-
-const setClientHeight = (height: number) => {
-  Object.defineProperty(document.documentElement, 'clientHeight', {
-    writable: true,
-    configurable: true,
-    value: height
-  });
-};
 
 it('uses a passed windowWidth if one is present', () => {
   render(<WindowSizeComponent defaultWidth={1000} />);
@@ -59,25 +44,23 @@ it('uses document windowHeight if no prop is present', () => {
   expect(screen.getByTestId('window-height')).toHaveTextContent('500');
 });
 
-it('adjusts the size based on resize', () => {
+it('adjusts the size based on resize', async () => {
   // Initial size
-
   setClientHeight(500);
 
   render(<WindowSizeComponent />);
-  const windowHeightElement = screen.getByTestId('window-height');
+  const windowHeightElement = await screen.findByTestId('window-height');
 
   expect(windowHeightElement).toHaveTextContent('500');
 
   // Resize
-
   setClientHeight(1000);
   triggerResize();
 
-  expect(windowHeightElement).toHaveTextContent('1000');
+  await waitFor(() => expect(windowHeightElement).toHaveTextContent('1000'));
 });
 
-it('starts with props but will update based on resize', () => {
+it('starts with props but will update based on resize', async () => {
   // Initial size
 
   setClientHeight(500);
@@ -92,5 +75,5 @@ it('starts with props but will update based on resize', () => {
   setClientHeight(1000);
   triggerResize();
 
-  expect(windowHeightElement).toHaveTextContent('1000');
+  await waitFor(() => expect(windowHeightElement).toHaveTextContent('1000'));
 });

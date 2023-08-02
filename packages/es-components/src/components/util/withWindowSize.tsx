@@ -41,13 +41,20 @@ export function useWindowSize({
   );
 
   useEffect(() => {
+    let running = false;
     const handleResize = () => {
+      if (running) return;
+
       const activeTag = document.activeElement?.tagName.toLocaleLowerCase();
       if (activeTag === 'input' || activeTag === 'select') {
         return;
       }
 
-      setWindowSize(getWindowSize());
+      running = true;
+      requestAnimationFrame(() => {
+        running = false;
+        setWindowSize(getWindowSize());
+      });
     };
 
     window.addEventListener('resize', handleResize);

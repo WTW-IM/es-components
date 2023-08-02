@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { useWindowWidth } from './useWindowWidth';
+import { setClientWidth } from './test-utils';
 
 const WindowSizeComponent = () => {
   const windowWidth = useWindowWidth();
@@ -19,16 +20,9 @@ const triggerResize = () => {
   window.dispatchEvent(resizeEvent);
 };
 
-beforeEach(() => {
-  Object.defineProperty(window, 'innerWidth', {
-    value: 500,
-    writable: true
-  });
-  window.innerWidth = 500;
-});
-
 it('uses document clientWidth', async () => {
-  render(React.cloneElement(<WindowSizeComponent />));
+  setClientWidth(500);
+  render(<WindowSizeComponent />);
   expect(await screen.findByTestId('window-width')).toHaveTextContent('500');
 });
 
@@ -41,9 +35,9 @@ it('adjusts the size based on resize', async () => {
 
   // Resize
   act(() => {
-    window.innerWidth = 1000;
+    setClientWidth(1000);
     triggerResize();
   });
 
-  expect(windowWidthElement).toHaveTextContent('1000');
+  await waitFor(() => expect(windowWidthElement).toHaveTextContent('1000'));
 });

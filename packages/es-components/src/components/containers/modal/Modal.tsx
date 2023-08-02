@@ -8,7 +8,6 @@ import {
   ThemeProvider,
   ThemeProviderComponent
 } from 'styled-components';
-import { noop, debounce } from 'lodash';
 import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
 
@@ -21,6 +20,8 @@ import Header from './ModalHeader';
 import Body from './ModalBody';
 import Footer from './ModalFooter';
 import useTopZIndex from '../../../hooks/useTopZIndex';
+import { useWindowSize } from '../../util/withWindowSize';
+import noop from '../../util/noop';
 
 export type ModalTheme = DefaultTheme & {
   modalHeight: number;
@@ -213,7 +214,6 @@ function Modal({
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
   const [modalHeight, setModalHeight] = useState(300);
   const [shouldShow, setShouldShow] = useState(show);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const modalRef = useRef<HTMLElement | null>(null);
   const innerContentRef = useRef<HTMLElement | null>(null);
   const getTopIndex = useTopZIndex();
@@ -224,6 +224,7 @@ function Modal({
     },
     [contentRef]
   );
+  const { windowHeight } = useWindowSize();
 
   const modalHeightRef = useCallback(
     (modalElement: HTMLElement) => {
@@ -262,12 +263,6 @@ function Modal({
       mounted = false;
     };
   }, [show, animation]);
-
-  useEffect(() => {
-    const setHeight = debounce(() => setWindowHeight(window.innerHeight), 100);
-    window.addEventListener('resize', setHeight);
-    return () => window.removeEventListener('resize', setHeight);
-  }, []);
 
   useEffect(() => {
     if (modalRef.current && modalRef.current.scroll) {

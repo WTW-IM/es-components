@@ -43,6 +43,7 @@
     "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
+    "babel-plugin-lodash": "^3.3.4",
     "commitlint": "^17.3.0",
     "conventional-changelog": "^3.1.25",
     "data-uri-to-buffer": "^5.0.1",

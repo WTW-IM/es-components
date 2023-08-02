@@ -6,12 +6,13 @@ import Icon from '../../base/icons/Icon';
 import OutlineButton from './OutlineButton';
 import { useTheme } from '../../util/useTheme';
 import genName from '../../util/generateAlphaName';
-import { IconName, iconNames } from '../../..';
-import { ButtonProps } from './Button';
 import {
+  IconName,
+  iconNames,
   ButtonVariantStyleType,
   buttonVariantStyleTypes
 } from 'es-components-shared-types';
+import { ButtonProps } from './Button';
 
 const Container = styled.div<{ maxWidth: CSS.Property.MaxWidth }>`
   align-items: center;

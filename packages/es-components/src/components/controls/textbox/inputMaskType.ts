@@ -1,8 +1,14 @@
 import { MaskedInputProps } from 'react-text-mask';
-import {
-  createAutoCorrectedDatePipe,
-  createNumberMask
+import type {
+  createNumberMask as typedCreateNumberMask,
+  createAutoCorrectedDatePipe as typedCreateAutoCorrectedDatePipe
 } from 'text-mask-addons';
+import createAutoCorrectedDatePipeOrig from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
+import createNumberMaskOrig from 'text-mask-addons/dist/createNumberMask';
+
+const createAutoCorrectedDatePipe =
+  createAutoCorrectedDatePipeOrig as typeof typedCreateAutoCorrectedDatePipe;
+const createNumberMask = createNumberMaskOrig as typeof typedCreateNumberMask;
 
 export const maskTypes = ['date', 'dollar', 'phone', 'ssnum', 'zip'] as const;
 

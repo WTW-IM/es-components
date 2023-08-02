@@ -66,7 +66,10 @@ export default async args => {
           'core-js/**',
           'text-mask-addons/**'
         ]),
-        typescript(),
+        typescript({
+          tsconfig: './tsconfig.json'
+        }),
+        resolve(),
         babel({
           exclude: ['node_modules/**'],
           babelHelpers: 'runtime'
@@ -96,7 +99,9 @@ export default async args => {
       external: ['react', 'react-dom', 'styled-components'],
       plugins: [
         aliasPlugin,
-        typescript(),
+        typescript({
+          tsconfig: './tsconfig.json'
+        }),
         resolve(),
         commonjs({ include: /node_modules/ }),
         babel({

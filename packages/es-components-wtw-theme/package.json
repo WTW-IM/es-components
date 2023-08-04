@@ -2,6 +2,9 @@
   "name": "es-components-wtw-theme",
   "version": "21.8.0",
   "main": "dist/packages/es-components-wtw-theme/src/index.js",
+  "files": [
+    "dist"
+  ],
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {

@@ -2,6 +2,9 @@
   "name": "es-components-wtw-legacy-theme",
   "version": "21.8.0",
   "main": "dist/packages/es-components-wtw-legacy-theme/src/index.js",
+  "files": [
+    "dist"
+  ],
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {

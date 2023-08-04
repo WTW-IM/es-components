@@ -1,12 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import Icon from './Icon';
 
-it('includes the aria-hidden attribute', () => {
-  const { container } = render(<Icon name="federal" size={16} />);
-  const hasAriaHiddenAttribute = container
-    ?.querySelector('i')
-    ?.getAttribute('aria-hidden');
-  expect(Boolean(hasAriaHiddenAttribute)).toBe(true);
+it('includes the aria-hidden attribute', async () => {
+  render(<Icon data-testid={`bds-icon-federal`} name="federal" size={16} />);
+  const icon = await screen.findByTestId('bds-icon-federal');
+  expect(icon).toHaveAttribute('aria-hidden');
 });

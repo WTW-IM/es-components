@@ -81,7 +81,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/config/*.{js,jsx,ts,tsx}',
+          '**/config/*.{js,jsx,mjs,ts,tsx}',
           '**/*.config.{js,jsx,mjs,ts,tsx}',
           '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.{js,jsx,ts,tsx}',
@@ -116,12 +116,22 @@ module.exports = {
       }
     },
     {
-      files: ['cypress/**/*'],
+      files: ['cypress/**/*.{js,jsx,mjs,ts,tsx}'],
       plugins: ['cypress', ...plugins],
       env: {
         'cypress/globals': true
       },
       extends: ['plugin:cypress/recommended', ...exts]
+    },
+    {
+      files: [
+        'cypress/plugins/**/*.{js,jsx,mjs,ts,tsx}',
+        'cypress/plugins/*.{js,jsx,mjs,ts,tsx}'
+      ],
+      plugins: ['cypress', ...plugins],
+      env: {
+        node: true
+      }
     },
     {
       files: ['**/*.specs.{js,jsx,ts,tsx}', '**/test-utils.{js,jsx,ts,tsx}'],

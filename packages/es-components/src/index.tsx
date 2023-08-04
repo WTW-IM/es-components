@@ -1,8 +1,4 @@
 /** Imports */
-import Button from './components/controls/buttons/Button';
-import OutlineButton from './components/controls/buttons/OutlineButton';
-import LinkButton from './components/controls/buttons/LinkButton';
-import ActionButton from './components/controls/buttons/ActionButton';
 import { withLoadingStateWhileRunning } from './components/controls/buttons/features/withLoadingStateWhileRunning';
 
 export { default as Icon } from './components/base/icons/Icon';
@@ -61,6 +57,11 @@ export { default as ToggleButton } from './components/controls/buttons/ToggleBut
 export { default as DropdownButton } from './components/controls/buttons/DropdownButton';
 export { default as OutlineButton } from './components/controls/buttons/OutlineButton';
 export { default as LinkButton } from './components/controls/buttons/LinkButton';
+
+import Button from './components/controls/buttons/Button';
+import OutlineButton from './components/controls/buttons/OutlineButton';
+import LinkButton from './components/controls/buttons/LinkButton';
+import ActionButton from './components/controls/buttons/ActionButton';
 
 export const LoaderButton = withLoadingStateWhileRunning(Button);
 export const LoaderOutlineButton = withLoadingStateWhileRunning(OutlineButton);

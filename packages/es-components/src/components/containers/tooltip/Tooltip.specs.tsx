@@ -57,7 +57,7 @@ it('is displayed/hidden on focus/blur of target', async () => {
   );
 
   const target = await screen.findByText('this is the target');
-  await act(() => target.focus());
+  act(() => target.focus());
 
   expect(await screen.findByRole('tooltip')).toBeVisible();
 

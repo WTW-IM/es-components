@@ -1,4 +1,5 @@
 {
+  "extends": "../../projects-tsconfig.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -17,21 +18,14 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "types",
-    "paths": {
-      "es-components-via-theme": ["../es-components-via-theme/src/index.ts"],
-      "es-components-wtw-theme": ["../es-components-wtw-theme/src/index.ts"],
-      "es-components-shared-types": ["../../shared/types/src/"],
-      "orig-sg-components/*": [
-        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
-      ],
-      "rsg-components/*": [
-        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
-      ],
-      "orig-sg-typings": [
-        "../../node_modules/react-styleguidist/lib/typings/index.d.ts"
-      ],
-      "*": ["../../node_modules/@types/*"]
-    }
+    "rootDirs": ["src", "../../shared/types/src"],
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true,
+        "useRootDirs": true
+      }
+    ]
   },
   "include": ["./src"],
   "references": [

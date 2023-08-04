@@ -24,7 +24,8 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 'latest',
-    project: [path.join(__dirname, 'lint-tsconfig.json')]
+    project: [path.join(__dirname, 'lint-tsconfig.json')],
+    EXPERIMENTAL_useProjectService: true
   },
   env: {
     browser: true,

@@ -1,13 +1,9 @@
 {
   "extends": "../../theme-tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDirs": ["src", "../../shared/types/src"]
   },
   "include": ["src"],
-  "exclude": ["dist"],
-  "references": [
-    {
-      "path": "../../shared/types/tsconfig.ref.json"
-    }
-  ]
+  "exclude": ["dist"]
 }

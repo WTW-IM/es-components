@@ -7,6 +7,7 @@
   "repository": "https://github.com/wtw-im/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
+  "types": "lib/packages/es-components/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "build": "cross-env MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
@@ -84,7 +85,7 @@
     "cypress": "^9.7.0",
     "es-components-via-theme": "*",
     "es-components-wtw-theme": "*",
-    "eslint": "^8.43.0",
+    "eslint": "^8.46.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.3",

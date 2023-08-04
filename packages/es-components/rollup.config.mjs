@@ -59,16 +59,10 @@ export default async args => {
         'format-message'
       ],
       plugins: [
-        aliasPlugin,
-        wildcardExternal([
-          '@babel/**',
-          'lodash/**',
-          'core-js/**',
-          'text-mask-addons/**'
-        ]),
         typescript({
           tsconfig: './tsconfig.json'
         }),
+        wildcardExternal(['@babel/**', 'core-js/**', 'text-mask-addons/**']),
         resolve(),
         babel({
           exclude: ['node_modules/**'],
@@ -98,7 +92,6 @@ export default async args => {
       context: 'window',
       external: ['react', 'react-dom', 'styled-components'],
       plugins: [
-        aliasPlugin,
         typescript({
           tsconfig: './tsconfig.json'
         }),

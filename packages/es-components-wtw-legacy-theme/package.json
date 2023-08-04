@@ -5,7 +5,8 @@
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "typescript": "^5.1.3"

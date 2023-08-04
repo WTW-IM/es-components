@@ -18,7 +18,7 @@
     "build-themes": "npm run build -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
     "preprepare": "npm run build -w es-components-shared-types && npm run build-themes",
     "postprepare": "lerna link --force-local",
-    "prepare": "husky install; ts-patch install -s",
+    "prepare": "husky install && ts-patch install -s",
     "test": "npm test --workspaces --if-present",
     "generate-icon-names": "npm run generate-icon-names -w es-components"
   },

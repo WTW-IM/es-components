@@ -41,28 +41,14 @@ export default async args => {
         }
       ],
       external: [
-        'date-fns',
-        'prop-types',
-        'react',
-        'react-animate-height',
-        'react-datepicker',
-        'react-dom',
-        'react-overlays',
-        'react-popper',
-        'react-text-mask',
-        'react-transition-group/Transition',
-        'styled-components',
-        'regenerator-runtime/runtime',
-        'react-modal',
-        'tinycolor2',
-        'get-root-node-polyfill/implement',
-        'format-message'
+        ...Object.keys(pkg.peerDependencies || {}),
+        ...Object.keys(pkg.dependencies || {})
       ],
       plugins: [
         typescript({
           tsconfig: './tsconfig.json'
         }),
-        wildcardExternal(['@babel/**', 'core-js/**', 'text-mask-addons/**']),
+        wildcardExternal(['core-js/**', 'text-mask-addons/**']),
         resolve(),
         babel({
           exclude: ['node_modules/**'],
@@ -90,7 +76,7 @@ export default async args => {
         }
       },
       context: 'window',
-      external: ['react', 'react-dom', 'styled-components'],
+      external: [...Object.keys(pkg.peerDependencies || {})],
       plugins: [
         typescript({
           tsconfig: './tsconfig.json'

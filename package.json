@@ -11,7 +11,6 @@
     "build-wtw-legacy-theme": "npm run build --prefix packages/es-components-wtw-legacy-theme",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
-    "publish": "lerna publish",
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
     "build-themes": "npm run build -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",

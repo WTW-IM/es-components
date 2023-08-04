@@ -41,7 +41,9 @@ function RadioGroup<P extends ChildProps>({
       ...childProps
     } = child.props;
     const disabled = disableAllOptions || childDisabled;
-    const checked = selectedValue === child.props.value || childChecked;
+    const checked = Boolean(
+      selectedValue === child.props.value || childChecked
+    );
     const onChange = childOnChange || onChangeProp;
 
     const props = {

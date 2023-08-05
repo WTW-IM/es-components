@@ -5,7 +5,6 @@ import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
 import typescript from 'rollup-plugin-typescript2';
-import { aliasPlugin } from './rollup.config.mjs';
 import alias from '@rollup/plugin-alias';
 import { createRequire } from 'module';
 
@@ -28,7 +27,6 @@ export default args => {
       },
       preserveSymlinks: true,
       plugins: [
-        aliasPlugin,
         alias({
           entries: [
             {

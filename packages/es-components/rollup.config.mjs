@@ -6,18 +6,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
-import alias from '@rollup/plugin-alias';
+import copy from 'rollup-plugin-copy';
 import { writeIconNameType } from './config/loadIconNameType.mjs';
 import pkg from './package.json' assert { type: 'json' };
-
-export const aliasPlugin = alias({
-  entries: [
-    {
-      find: 'es-components-shared-types',
-      replacement: '../../shared/types/dist/index.js'
-    }
-  ]
-});
 
 export default async args => {
   await writeIconNameType();
@@ -57,6 +48,18 @@ export default async args => {
         replace({
           ASSETS_PATH: JSON.stringify(assets_url),
           preventAssignment: true
+        }),
+        copy({
+          targets: [
+            {
+              src: 'src/global.d.ts',
+              dest: 'lib/packages/es-components/src/'
+            },
+            {
+              src: 'src/global.d.ts',
+              dest: 'cjs/packages/es-components/src/'
+            }
+          ]
         })
       ]
     },

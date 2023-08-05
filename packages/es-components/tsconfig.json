@@ -27,6 +27,7 @@
     ]
   },
   "include": ["./src"],
+  "exclude": ["./dist"],
   "references": [
     {
       "path": "../es-components-wtw-theme/tsconfig.ref.json"

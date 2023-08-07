@@ -2,8 +2,18 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": false,
-    "declarationDir": null
+    "declarationDir": null,
+    "noEmit": true
   },
   "include": ["*", "*.*", "**/*", "**/*.*"],
-  "exclude": ["node_modules/", "dist/", "cjs/", "lib/", "bundle/", "docs/"]
+  "exclude": [
+    "node_modules/",
+    "dist/",
+    "cjs/",
+    "lib/",
+    "bundle/",
+    "docs/",
+    "**/*.specs.ts",
+    "**/*.specs.tsx"
+  ]
 }

@@ -43,7 +43,10 @@ module.exports = {
       node: true,
       typescript: {
         alwaysTryTypes: true,
-        project: [path.join(__dirname, 'lint-tsconfig.json')]
+        project: [
+          path.join(__dirname, 'lint-tsconfig.json'),
+          path.join(__dirname, '../../projects-tsconfig.json')
+        ]
       }
     }
   },
@@ -140,6 +143,9 @@ module.exports = {
         es2021: true,
         jest: true,
         browser: true
+      },
+      parserOptions: {
+        project: [path.join(__dirname, 'config/test-tsconfig.json')]
       },
       extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
       rules: {

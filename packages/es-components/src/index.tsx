@@ -1,4 +1,5 @@
 /** Imports */
+import './global';
 import { withLoadingStateWhileRunning } from './components/controls/buttons/features/withLoadingStateWhileRunning';
 
 export { default as Icon } from './components/base/icons/Icon';

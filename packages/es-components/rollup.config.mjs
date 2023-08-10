@@ -14,7 +14,7 @@ export default async args => {
   const isProduction =
     args.configEnv === 'prod' || process.env.MAIN_BUILD === 'true';
   const assets_url = isProduction
-    ? 'https://bdaim-webexcdn-p.azureedge.net/es-assets/'
+    ? 'https://app.viabenefits.com/static/cdn/es-assets/'
     : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
   return [

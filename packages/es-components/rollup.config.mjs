@@ -33,7 +33,11 @@ export default async args => {
       output: [
         {
           format: 'cjs',
-          file: pkg.main
+          file: pkg.main,
+          interop: 'compat',
+          generatedCode: {
+            reservedNamesAsProps: false
+          }
         },
         {
           format: 'esm',

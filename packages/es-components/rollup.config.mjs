@@ -62,6 +62,35 @@ export default async args => {
       ]
     },
     {
+      input: 'src/build-utils/jest.ts',
+      output: [
+        {
+          format: 'cjs',
+          file: 'build-utils/jest.js',
+          interop: 'compat',
+          generatedCode: {
+            reservedNamesAsProps: false
+          }
+        }
+      ],
+      external,
+      plugins: [
+        typescript({
+          tsconfig: './tsconfig.json'
+        }),
+        wildcardExternal(['core-js/**', 'text-mask-addons/**']),
+        resolve(),
+        babel({
+          exclude: ['node_modules/**'],
+          babelHelpers: 'runtime'
+        }),
+        replace({
+          ASSETS_PATH: JSON.stringify(assets_url),
+          preventAssignment: true
+        })
+      ]
+    },
+    {
       input: 'src/index.tsx',
       output: {
         file: 'bundle/main.min.js',

@@ -92,7 +92,8 @@ module.exports = {
           '**/styleguide/*.{js,jsx,ts,tsx}',
           '**/cypress/**/*.js',
           '**/global.d.ts',
-          '**/full-color-icons.tsx'
+          '**/full-color-icons.tsx',
+          '**/build-utils/*.{js,jsx,ts,tsx}'
         ]
       }
     ],
@@ -110,7 +111,8 @@ module.exports = {
         '**/*.config.{js,jsx,ts,tsx}',
         '**/config/*.{js,jsx,ts,tsx}',
         '**/build-scripts/*.{js,jsx,ts,tsx}',
-        '**/test-utils.{js,jsx,ts,tsx}'
+        '**/test-utils.{js,jsx,ts,tsx}',
+        '**/build-utils/*.{js,jsx,ts,tsx}'
       ],
       env: {
         node: true

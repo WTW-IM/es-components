@@ -1,7 +1,7 @@
 # [es-components](https://github.com/WTW-IM/es-components/blob/main/packages/es-components/README.md)
 
 [![npm version](https://badge.fury.io/js/es-components.svg)](https://badge.fury.io/js/es-components)
-[![Build Status](https://travis-ci.com/WTW-IM/es-components.svg?branch=main)](https://travis-ci.com/WTW-IM/es-components)
+[![Build Status](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml)
 [![dependency status](https://david-dm.org/wtw-im/es-components.svg?path=packages%2Fes-components)](https://david-dm.org/wtw-im/es-components?path=packages%2Fes-components)
 
 # es-components-via-theme

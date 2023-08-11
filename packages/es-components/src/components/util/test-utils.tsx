@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import viaTheme from 'es-components-via-theme';
-import { render } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 
 export function ThemeComponent(
   props: Omit<React.ComponentPropsWithoutRef<typeof ThemeProvider>, 'theme'>
@@ -14,12 +14,12 @@ ThemeComponent.propTypes = {
   children: PropTypes.node
 };
 
-export function renderWithTheme<T extends React.ReactNode>(component: T) {
+export function renderWithTheme(component: React.ReactElement): RenderResult {
   // eslint-disable-next-line testing-library/render-result-naming-convention
   const renderObj = render(<ThemeComponent>{component}</ThemeComponent>);
   return {
     ...renderObj,
-    rerender: (rerenderComponent: T) =>
+    rerender: (rerenderComponent: React.ReactElement) =>
       renderObj.rerender(<ThemeComponent>{rerenderComponent}</ThemeComponent>)
   };
 }

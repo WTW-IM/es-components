@@ -53,7 +53,6 @@ export const htmlInputPropTypes: HTMLInputPropTypes = {
     PropTypes.oneOf<'user' | 'environment'>(['user', 'environment']).isRequired
   ]),
   checked: PropTypes.bool,
-  crossOrigin: PropTypes.oneOf(['anonymous', 'use-credentials']),
   form: PropTypes.string,
   enterKeyHint: PropTypes.oneOf([
     'enter',

@@ -1,1 +1,1 @@
-import 'resize-observer/dist/resize-observer';
+require('resize-observer/dist/resize-observer');

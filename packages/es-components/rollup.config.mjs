@@ -17,6 +17,16 @@ export default async args => {
     ? 'https://app.viabenefits.com/static/cdn/es-assets/'
     : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
+  const peerDepNames = Object.keys(pkg.peerDependencies || {});
+  const peerDepExternal = peerDepNames.map(
+    external => new RegExp(`^${external}(/.+)?$`)
+  );
+  const depExternals = [...Object.keys(pkg.dependencies || {})];
+  const external = [
+    ...peerDepExternal,
+    ...depExternals.map(external => new RegExp(`^${external}(/.+)?$`))
+  ];
+
   return [
     {
       input: 'src/index.tsx',
@@ -30,10 +40,7 @@ export default async args => {
           file: pkg.module
         }
       ],
-      external: [
-        ...Object.keys(pkg.peerDependencies || {}),
-        ...Object.keys(pkg.dependencies || {})
-      ],
+      external,
       plugins: [
         typescript({
           tsconfig: './tsconfig.json'
@@ -66,7 +73,7 @@ export default async args => {
         }
       },
       context: 'window',
-      external: [...Object.keys(pkg.peerDependencies || {})],
+      external: peerDepExternal,
       plugins: [
         typescript({
           tsconfig: './tsconfig.json'

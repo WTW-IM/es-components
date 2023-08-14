@@ -1,3 +1,5 @@
+import rewire from 'rewire';
+
 Object.defineProperty(global, 'ResizeObserver', {
   writable: true,
   value: function () {
@@ -15,14 +17,12 @@ Object.defineProperty(global, 'ResizeObserver', {
   }
 });
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-return */
 jest.mock('es-components', () => {
-  const esComp = jest.requireActual('es-components');
   let topZIndex = 1000;
+  const newUseTopZIndex = jest.fn(() => (topZIndex += 1));
 
-  return {
-    ...esComp,
-    useTopZIndex: jest.fn(() => (topZIndex += 1))
-  };
+  const rewiredESComp = rewire('es-components');
+  rewiredESComp.__set__('useTopZIndex', newUseTopZIndex);
+
+  return rewiredESComp;
 });
-/* eslint-enable @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-return */

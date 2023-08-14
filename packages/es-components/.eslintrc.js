@@ -92,8 +92,7 @@ module.exports = {
           '**/styleguide/*.{js,jsx,ts,tsx}',
           '**/cypress/**/*.js',
           '**/global.d.ts',
-          '**/full-color-icons.tsx',
-          '**/build-utils/*.{js,jsx,ts,tsx}'
+          '**/full-color-icons.tsx'
         ]
       }
     ],

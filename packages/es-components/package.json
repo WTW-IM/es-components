@@ -63,6 +63,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.2",
     "@types/node": "^18.11.17",
+    "@types/rewire": "^2.5.28",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "ast-types": "^0.14.2",
@@ -154,6 +155,7 @@
     "react-text-mask": "^5.5.0",
     "react-transition-group": "^4.4.5",
     "resize-observer": "^1.0.4",
+    "rewire": "^7.0.0",
     "text-mask-addons": "3.8.0",
     "tinycolor2": "^1.5.1"
   }

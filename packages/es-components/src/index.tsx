@@ -112,4 +112,5 @@ export {
 } from './components/util/useRootNode';
 export { useLoadingState } from './hooks/useLoadingState';
 export { useMountedOnlyState } from './hooks/useMountedOnlyState';
+export { default as useTopZIndex } from './hooks/useTopZIndex';
 export { default as useUniqueId } from './components/util/useUniqueId';

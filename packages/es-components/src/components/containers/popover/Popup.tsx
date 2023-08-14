@@ -326,7 +326,6 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
 );
 
 Popup.propTypes = {
-  ...PopperBox.propTypes,
   name: PropTypes.string,
   trigger: PropTypes.node,
   children: PropTypes.node,
@@ -345,7 +344,6 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  ...PopperBox.defaultProps,
   name: '' as string,
   trigger: undefined,
   children: undefined,

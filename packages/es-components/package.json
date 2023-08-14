@@ -155,7 +155,6 @@
     "react-text-mask": "^5.5.0",
     "react-transition-group": "^4.4.5",
     "resize-observer": "^1.0.4",
-    "rewire": "^7.0.0",
     "text-mask-addons": "3.8.0",
     "tinycolor2": "^1.5.1"
   }

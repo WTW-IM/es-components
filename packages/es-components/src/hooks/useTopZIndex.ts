@@ -42,10 +42,16 @@ function computeCurrentTopIndex() {
   return topIndex;
 }
 
+let naiveTopIndex = 1000;
+function getNaiveTopIndex() {
+  return naiveTopIndex++;
+}
+
 export default function useTopZIndex() {
   const getTopIndex = useCallback(() => {
     // only compute at most every 1 second
     if (new Date().getTime() - lastComputeTime < 1000) return topIndex;
+    if (process?.env?.NODE_ENV === 'test') return getNaiveTopIndex();
 
     computeCurrentTopIndex();
     return topIndex;

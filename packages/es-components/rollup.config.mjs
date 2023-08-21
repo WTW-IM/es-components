@@ -37,11 +37,17 @@ export default async args => {
           interop: 'compat',
           generatedCode: {
             reservedNamesAsProps: false
+          },
+          globals: {
+            process: '{}'
           }
         },
         {
           format: 'esm',
-          file: pkg.module
+          file: pkg.module,
+          globals: {
+            process: '{}'
+          }
         }
       ],
       external,
@@ -102,7 +108,8 @@ export default async args => {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          'styled-components': 'styled'
+          'styled-components': 'styled',
+          process: '{}'
         }
       },
       context: 'window',

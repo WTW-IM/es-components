@@ -38,16 +38,16 @@ export default async args => {
           generatedCode: {
             reservedNamesAsProps: false
           },
-          globals: {
-            process: '{}'
-          }
+          banner: `
+          var process = this.process || {};
+        `
         },
         {
           format: 'esm',
           file: pkg.module,
-          globals: {
-            process: '{}'
-          }
+          banner: `
+          var process = this.process || {};
+        `
         }
       ],
       external,
@@ -100,16 +100,17 @@ export default async args => {
       input: 'src/index.tsx',
       output: {
         file: 'bundle/main.min.js',
-        banner:
-          'var self = this.styled ? this : self; var globalThis = self || globalThis;',
+        banner: `
+          var self = this.styled ? this : self; var globalThis = self || globalThis;
+          var process = this.process || {};
+        `,
         inlineDynamicImports: true,
         format: 'umd',
         name: 'ESComponents',
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          'styled-components': 'styled',
-          process: '{}'
+          'styled-components': 'styled'
         }
       },
       context: 'window',

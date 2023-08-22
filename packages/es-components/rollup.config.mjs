@@ -39,15 +39,15 @@ export default async args => {
             reservedNamesAsProps: false
           },
           banner: `
-          var process = this.process || {};
-        `
+            var process = this.process || global.process || window.process || {};
+          `
         },
         {
           format: 'esm',
           file: pkg.module,
           banner: `
-          var process = this.process || {};
-        `
+            var process = this.process || global.process || window.process || {};
+          `
         }
       ],
       external,
@@ -102,7 +102,7 @@ export default async args => {
         file: 'bundle/main.min.js',
         banner: `
           var self = this.styled ? this : self; var globalThis = self || globalThis;
-          var process = this.process || {};
+          var process = this.process || window.process || {};
         `,
         inlineDynamicImports: true,
         format: 'umd',

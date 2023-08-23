@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 interface MessageProps extends JSXElementProps<'span'> {
   emphasizedText?: string;
-  text: string;
+  text: React.ReactNode;
   isInline?: boolean;
 }
 
 const propTypes = {
   emphasizedText: PropTypes.string,
-  text: PropTypes.string.isRequired
+  text: PropTypes.node.isRequired
 };
 
 const defaultProps = {

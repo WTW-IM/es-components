@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useSyncExternalStore } from 'react';
 import PropTypes from 'prop-types';
 
 export interface DefaultSizeProps {
@@ -28,6 +28,50 @@ function getWindowSize({
     windowHeight: defaultHeight || getMediaHeight()
   };
 }
+
+const windowSizeListeners = new Set<() => void>();
+let windowSize = getWindowSize();
+
+const notify = () => {
+  windowSizeListeners.forEach(listener => listener());
+};
+
+let running = false;
+const handleResize = () => {
+  if (running) return;
+
+  const activeTag = document.activeElement?.tagName.toLocaleLowerCase();
+  if (activeTag === 'input' || activeTag === 'select') {
+    return;
+  }
+
+  running = true;
+  requestAnimationFrame(() => {
+    running = false;
+    windowSize = getWindowSize();
+    notify();
+  });
+};
+
+const subscribe = (listener: () => void) => {
+  if (!windowSizeListeners.size) {
+    window.addEventListener('resize', handleResize);
+  }
+
+  windowSizeListeners.add(listener);
+
+  return () => {
+    windowSizeListeners.delete(listener);
+
+    if (!windowSizeListeners.size) {
+      window.removeEventListener('resize', handleResize);
+    }
+  };
+};
+
+export const useWindowSizeStore = () => {
+  return useSyncExternalStore(subscribe, () => windowSize);
+};
 
 type AllWindowSizeProps<P> = P & DefaultSizeProps & WindowSizeProps;
 type WithWindowSizeProps<P> = Omit<P, keyof WindowSizeProps> & DefaultSizeProps;

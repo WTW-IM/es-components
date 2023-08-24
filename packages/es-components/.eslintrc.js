@@ -24,7 +24,8 @@ module.exports = {
       jsx: true
     },
     ecmaVersion: 'latest',
-    project: [path.join(__dirname, 'lint-tsconfig.json')]
+    project: [path.join(__dirname, 'lint-tsconfig.json')],
+    EXPERIMENTAL_useProjectService: true
   },
   env: {
     browser: true,
@@ -42,7 +43,10 @@ module.exports = {
       node: true,
       typescript: {
         alwaysTryTypes: true,
-        project: [path.join(__dirname, 'lint-tsconfig.json')]
+        project: [
+          path.join(__dirname, 'lint-tsconfig.json'),
+          path.join(__dirname, '../../projects-tsconfig.json')
+        ]
       }
     }
   },
@@ -81,7 +85,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '**/config/*.{js,jsx,ts,tsx}',
+          '**/config/*.{js,jsx,mjs,ts,tsx}',
           '**/*.config.{js,jsx,mjs,ts,tsx}',
           '**/*.specs.{js,jsx,ts,tsx}',
           '**/test-utils.{js,jsx,ts,tsx}',
@@ -106,7 +110,8 @@ module.exports = {
         '**/*.config.{js,jsx,ts,tsx}',
         '**/config/*.{js,jsx,ts,tsx}',
         '**/build-scripts/*.{js,jsx,ts,tsx}',
-        '**/test-utils.{js,jsx,ts,tsx}'
+        '**/test-utils.{js,jsx,ts,tsx}',
+        '**/build-utils/*.{js,jsx,ts,tsx}'
       ],
       env: {
         node: true
@@ -116,7 +121,7 @@ module.exports = {
       }
     },
     {
-      files: ['cypress/**/*'],
+      files: ['cypress/**/*.{js,jsx,mjs,ts,tsx}'],
       plugins: ['cypress', ...plugins],
       env: {
         'cypress/globals': true
@@ -124,11 +129,24 @@ module.exports = {
       extends: ['plugin:cypress/recommended', ...exts]
     },
     {
+      files: [
+        'cypress/plugins/**/*.{js,jsx,mjs,ts,tsx}',
+        'cypress/plugins/*.{js,jsx,mjs,ts,tsx}'
+      ],
+      plugins: ['cypress', ...plugins],
+      env: {
+        node: true
+      }
+    },
+    {
       files: ['**/*.specs.{js,jsx,ts,tsx}', '**/test-utils.{js,jsx,ts,tsx}'],
       env: {
         es2021: true,
         jest: true,
         browser: true
+      },
+      parserOptions: {
+        project: [path.join(__dirname, 'config/test-tsconfig.json')]
       },
       extends: ['plugin:jest/recommended', 'plugin:testing-library/react'],
       rules: {

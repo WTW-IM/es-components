@@ -1,8 +1,5 @@
 /** Imports */
-import Button from './components/controls/buttons/Button';
-import OutlineButton from './components/controls/buttons/OutlineButton';
-import LinkButton from './components/controls/buttons/LinkButton';
-import ActionButton from './components/controls/buttons/ActionButton';
+import './global';
 import { withLoadingStateWhileRunning } from './components/controls/buttons/features/withLoadingStateWhileRunning';
 
 export { default as Icon } from './components/base/icons/Icon';
@@ -62,6 +59,11 @@ export { default as DropdownButton } from './components/controls/buttons/Dropdow
 export { default as OutlineButton } from './components/controls/buttons/OutlineButton';
 export { default as LinkButton } from './components/controls/buttons/LinkButton';
 
+import Button from './components/controls/buttons/Button';
+import OutlineButton from './components/controls/buttons/OutlineButton';
+import LinkButton from './components/controls/buttons/LinkButton';
+import ActionButton from './components/controls/buttons/ActionButton';
+
 export const LoaderButton = withLoadingStateWhileRunning(Button);
 export const LoaderOutlineButton = withLoadingStateWhileRunning(OutlineButton);
 export const LoaderLinkButton = withLoadingStateWhileRunning(LinkButton);
@@ -110,4 +112,5 @@ export {
 } from './components/util/useRootNode';
 export { useLoadingState } from './hooks/useLoadingState';
 export { useMountedOnlyState } from './hooks/useMountedOnlyState';
+export { default as useTopZIndex } from './hooks/useTopZIndex';
 export { default as useUniqueId } from './components/util/useUniqueId';

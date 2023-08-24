@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import 'jest-styled-components';
 import '@testing-library/jest-dom';
 
-beforeEach(() => {
+beforeAll(() => {
   Object.defineProperty(global, 'ResizeObserver', {
     writable: true,
     value: jest.fn().mockImplementation(() => ({

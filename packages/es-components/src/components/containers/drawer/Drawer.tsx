@@ -18,7 +18,9 @@ const StyledDrawer = styled.div`
 
 const UnstyledDrawer = styled.div``;
 
-const keysAsArray = (activeKeys?: string | string[]) =>
+export type ActiveKeys = string | string[];
+
+const keysAsArray = (activeKeys?: ActiveKeys) =>
   activeKeys === undefined
     ? []
     : Array.isArray(activeKeys)
@@ -44,17 +46,31 @@ const removeKey = (key: string, keysList: string[]) => {
 
 export type PanelChild = React.ReactElement<DrawerPanelProps>;
 
-export type DrawerProps = JSXElementProps<'div'> & {
-  activeKeys?: string | string[];
-  children?: React.ReactNode;
-  closedIconName?: IconName;
-  isAccordion?: boolean;
-  onActiveKeysChanged?: (keys: string | string[]) => void;
-  openedIconName?: IconName;
-  useDefaultStyles?: boolean;
-};
+export type DrawerProps<T extends ActiveKeys = ActiveKeys> =
+  JSXElementProps<'div'> & {
+    activeKeys?: T;
+    children?: React.ReactNode;
+    closedIconName?: IconName;
+    isAccordion?: boolean;
+    onActiveKeysChanged?: (keys: string[]) => void;
+    openedIconName?: IconName;
+    useDefaultStyles?: boolean;
+  };
 
-const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
+type DrawerRefProps<T extends ActiveKeys = ActiveKeys> = DrawerProps<T> &
+  React.RefAttributes<HTMLDivElement>;
+
+interface DrawerComponentType
+  extends React.ForwardRefExoticComponent<DrawerRefProps> {
+  <T extends ActiveKeys>(props: DrawerProps<T>): ReturnType<
+    React.ForwardRefExoticComponent<DrawerProps<T>>
+  >;
+}
+
+const Drawer: DrawerComponentType = React.forwardRef<
+  HTMLDivElement,
+  DrawerProps
+>(function Drawer(
   {
     activeKeys: activeKeysProp,
     children,
@@ -76,8 +92,10 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
 
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
 
-  const resetActiveKeys = useCallback(
-    (keymaker: (oldKeys: string | string[]) => string | string[]) =>
+  const resetActiveKeys = useCallback<
+    (keymaker: (oldKeys: ActiveKeys) => ActiveKeys) => void
+  >(
+    keymaker =>
       setActiveKeys(oldKeys => {
         const oldKeysArray = keysAsArray(oldKeys);
         const keys = keymaker(oldKeysArray);
@@ -130,7 +148,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(function Drawer(
     )
       return;
 
-    keysChangedCallback.current(activeKeys);
+    keysChangedCallback.current(keysAsArray(activeKeys));
   }, [activeKeys]);
 
   useEffect(() => {
@@ -218,7 +236,7 @@ Drawer.defaultProps = {
   }
 };
 
-type DrawerComponent = typeof Drawer & {
+type DrawerComponent = DrawerComponentType & {
   Panel: typeof DrawerPanel;
   Item: typeof DrawerItem;
   ItemOpener: typeof DrawerItemOpener;

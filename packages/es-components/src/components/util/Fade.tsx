@@ -7,7 +7,7 @@ import Transition, {
 
 type Opacity = React.CSSProperties['opacity'];
 
-interface FadeProps extends Partial<TimeoutProps<HTMLElement>> {
+export interface FadeProps extends Partial<TimeoutProps<HTMLElement>> {
   duration?: number;
   opacity?: Opacity;
   children: NonNullable<React.ReactNode>;

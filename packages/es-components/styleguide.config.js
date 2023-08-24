@@ -11,6 +11,8 @@ const argv = yargs(hideBin(process.argv)).argv;
 const isProduction = argv.env === 'prod';
 const assets_url = isProduction
   ? 'https://app.viabenefits.com/static/cdn/es-assets/'
+  : argv.env === 'local'
+  ? 'https://bdaimsna26fetoolcdnendpoint.azureedge.net/es-assets/'
   : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
 const getDependencyDirectory = dep => path.dirname(require.resolve(dep));
@@ -187,7 +189,8 @@ module.exports = {
     },
     plugins: [
       new webpack.DefinePlugin({
-        ASSETS_PATH: JSON.stringify(assets_url)
+        ASSETS_PATH: JSON.stringify(assets_url),
+        process: `{}`
       })
     ],
     module: {

@@ -5,6 +5,7 @@ es6/
 cjs/
 bundle/
 docs/
+/packages/es-components/build-utils/
 node_modules
 npm-debug.log
 *.tgz

@@ -1,4 +1,5 @@
 {
+  "extends": "./projects-tsconfig.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -16,10 +17,6 @@
     "declaration": true,
     "declarationMap": true,
     "jsx": "react",
-    "noImplicitAny": true,
-    "rootDir": ".",
-    "paths": {
-      "es-components-shared-types": ["./shared/types/src/index.ts"]
-    }
+    "noImplicitAny": true
   }
 }

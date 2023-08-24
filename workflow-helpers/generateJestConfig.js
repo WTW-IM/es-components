@@ -3,6 +3,7 @@ const esComponentsRoot = `<rootDir>/packages/es-components`;
 const generateConfig = (rootDir = esComponentsRoot) => ({
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: [
+    `${rootDir}/src/build-utils/jest.ts`,
     `${rootDir}/config/jest-setup.ts`,
     `${rootDir}/config/jest-shims.ts`,
   ],

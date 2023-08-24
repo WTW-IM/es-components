@@ -1,5 +1,3 @@
-/* eslint-env jest */
-/* eslint react/prop-types: 0 */
 import React from 'react';
 
 import PopoverLink, { PopoverLinkProps } from './PopoverLink';
@@ -8,7 +6,7 @@ import { screen } from '@testing-library/react';
 
 const onClick = jest.fn();
 
-function buildButton(props: PopoverLinkProps) {
+function TestLink(props: PopoverLinkProps) {
   const { children, ...otherProps } = props;
   const defaultProps = {
     onClick
@@ -19,22 +17,24 @@ function buildButton(props: PopoverLinkProps) {
 }
 
 it('renders child text inside of button', () => {
-  renderWithTheme(buildButton({ children: 'Test button' }));
+  renderWithTheme(<TestLink>Test button</TestLink>);
   const button = screen.queryByText('Test button');
   expect(button).not.toBeNull();
 });
 
 it('renders child nodes inside of button', () => {
-  const child = <span>Hello</span>;
-
-  renderWithTheme(buildButton({ children: child }));
+  renderWithTheme(
+    <TestLink>
+      <span>Hello</span>
+    </TestLink>
+  );
 
   const foundChild = screen.getByText('Hello');
   expect(foundChild.nodeName).toBe('SPAN');
 });
 
 it('executes the onClick function passed', () => {
-  renderWithTheme(buildButton({ children: 'Test' }));
+  renderWithTheme(<TestLink>Test</TestLink>);
 
   screen.getByText('Test').click();
 

@@ -15,4 +15,5 @@ const StripedContainer = styled.div`
   }
 `;
 
+/** @component */
 export default StripedContainer;

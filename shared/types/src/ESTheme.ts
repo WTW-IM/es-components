@@ -222,8 +222,7 @@ export const promptStyles = ['readAloud', 'doNotReadAloud'] as const;
 export type PromptStyle = (typeof promptStyles)[number];
 
 export default interface ESTheme {
-  [key: string]: any;
-
+  themeName: string;
   colors: Colors;
   brandColors: {
     primary1: CSS.Property.Color;

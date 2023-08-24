@@ -19,7 +19,7 @@ import {
 } from '@floating-ui/react';
 import { callRefs } from '../../util/callRef';
 
-import Fade from '../../util/Fade';
+import Fade, { FadeProps } from '../../util/Fade';
 import useRootNode from '../../util/useRootNode';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 
@@ -195,6 +195,7 @@ export interface PopupProps extends JSXElementProps<'div'> {
   keepTogether?: boolean;
   setIsOpen: (isOpen: boolean) => void;
   disableRootClose: boolean;
+  onExited?: FadeProps['onExited'];
 }
 
 const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
@@ -215,6 +216,7 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
       strategy,
       keepTogether,
       disableRootClose,
+      onExited,
       ...otherProps
     },
     forwardedRef
@@ -281,6 +283,7 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
           <Fade
             in={isOpen}
             duration={transitionTimeout}
+            onExited={onExited}
             mountOnEnter
             unmountOnExit
           >
@@ -323,7 +326,6 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
 );
 
 Popup.propTypes = {
-  ...PopperBox.propTypes,
   name: PropTypes.string,
   trigger: PropTypes.node,
   children: PropTypes.node,
@@ -342,7 +344,6 @@ Popup.propTypes = {
 };
 
 Popup.defaultProps = {
-  ...PopperBox.defaultProps,
   name: '' as string,
   trigger: undefined,
   children: undefined,

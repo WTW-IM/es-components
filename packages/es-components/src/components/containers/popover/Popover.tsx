@@ -152,11 +152,16 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     );
 
     const [isOpen, setIsOpen] = useState(false);
+    const closedOnScroll = useRef(false);
 
     const toggleShowFromInteraction = useCallback((event?: React.UIEvent) => {
       event?.preventDefault();
       event?.stopPropagation();
       setIsOpen(oldIsOpen => !oldIsOpen);
+    }, []);
+
+    const endScrollClose = useCallback(() => {
+      closedOnScroll.current = false;
     }, []);
 
     useEffect(
@@ -172,6 +177,10 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
             const bounds = popperElement.getBoundingClientRect();
             const inViewport =
               bounds.top <= window.innerHeight && bounds.bottom >= 0;
+
+            if (!inViewport) {
+              closedOnScroll.current = true;
+            }
 
             setIsOpen(oldValue => {
               if (inViewport) return oldValue;
@@ -198,11 +207,13 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           hasOpened.current = true;
           popperElement?.focus();
         } else {
-          if (!hasOpened.current) {
+          if (!hasOpened.current || !popperElement) {
             // ensure we don't focus on mount
             return;
           }
-          triggerBtnRef.current?.focus();
+          if (!closedOnScroll.current) {
+            triggerBtnRef.current?.focus();
+          }
         }
       },
       [popperElement, isOpen]
@@ -228,6 +239,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           keepTogether={keepTogether}
           setIsOpen={setIsOpen}
           disableRootClose={Boolean(disableRootClose)}
+          onExited={endScrollClose}
           {...otherProps}
         >
           <div

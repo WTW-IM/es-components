@@ -11,14 +11,11 @@
     "build-wtw-legacy-theme": "npm run build --prefix packages/es-components-wtw-legacy-theme",
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
-    "publish": "lerna publish",
-    "link": "lerna link",
     "start": "npm start --prefix packages/es-components",
     "commit": "commit",
     "build-themes": "npm run build -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
     "preprepare": "npm run build -w es-components-shared-types && npm run build-themes",
-    "postprepare": "lerna link --force-local",
-    "prepare": "husky install",
+    "prepare": "husky install && ts-patch install -s",
     "test": "npm test --workspaces --if-present",
     "generate-icon-names": "npm run generate-icon-names -w es-components"
   },
@@ -39,10 +36,10 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@commitlint/prompt-cli": "^17.3.0",
-    "@testing-library/react": "^13.4.0",
     "@types/node": "^18.11.17",
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
+    "babel-plugin-lodash": "^3.3.4",
     "commitlint": "^17.3.0",
     "conventional-changelog": "^3.1.25",
     "data-uri-to-buffer": "^5.0.1",
@@ -52,9 +49,11 @@
     "husky": "^8.0.2",
     "jest": "^29.4.2",
     "jest-environment-jsdom": "^29.4.2",
-    "lerna": "^6.1.0",
+    "lerna": "^7.1.4",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
-    "ts-jest": "^29.0.5"
+    "ts-jest": "^29.0.5",
+    "ts-patch": "^3.0.2",
+    "typescript-transform-paths": "^3.4.6"
   }
 }

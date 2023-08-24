@@ -1,6 +1,6 @@
 # Exchange Solutions React components
 
-[![Build Status](https://travis-ci.com/WTW-IM/es-components.svg?branch=main)](https://travis-ci.com/WTW-IM/es-components)
+[![Build Status](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/es-components.svg)](https://badge.fury.io/js/es-components)
 
 ## Documentation and Demos
@@ -68,4 +68,22 @@ Because ES Components needs a reference to `document.body` on startup, you must 
 <body>
   <!-- My ES Components Site Body -->
 </body>
+```
+
+### Jest
+
+es-components uses `ResizeObserver`, but if you're using jsdom, it doesn't come with it. You can set
+up jest to work with es-components by using `build-utils/jest` in your `setupFilesAfterEnv`
+configuration. Eg:
+
+```jsx
+// jest.config.js
+
+module.exports = {
+  // other jest config
+  setupFilesAfterEnv: [
+    'es-components/build-utils/jest'
+    // others...
+  ]
+};
 ```

@@ -1,4 +1,3 @@
-/// <reference types="jest" />
 import React from 'react';
 
 import { screen, waitFor } from '@testing-library/react';

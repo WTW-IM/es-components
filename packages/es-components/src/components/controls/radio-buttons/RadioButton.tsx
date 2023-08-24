@@ -14,11 +14,14 @@ import {
 import { lighten } from '../../util/colors';
 
 export const RadioDisplay = styled.span`
+  align-items: center;
   border-radius: 50%;
   border-style: solid;
   border-width: 3px;
   box-sizing: border-box;
+  display: flex;
   height: 25px;
+  justify-content: center;
   margin-right: 8px;
   min-width: 25px;
 
@@ -28,10 +31,7 @@ export const RadioDisplay = styled.span`
     content: '';
     display: block;
     height: 13px;
-    left: 3px;
-    position: relative;
     width: 13px;
-    top: 3px;
     transition: background 0.25s linear;
   }
 `;
@@ -104,10 +104,20 @@ const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
 
 export type RadioButtonProps = HTMLInputProps;
 
+export function getCheckedProps(radioProps: RadioButtonProps) {
+  const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
+  return radioProps.onChange
+    ? { onChange: radioProps.onChange, checked, defaultChecked: undefined }
+    : {
+        defaultChecked: checked,
+        checked: undefined
+      };
+}
+
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   function ForwardedRadioButton({ children, className, ...radioProps }, ref) {
     const id = useUniqueId(radioProps.id);
-    const checked = radioProps.checked || radioProps.defaultChecked;
+    const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
     const theme = useTheme();
     const validationState = React.useContext(ValidationContext);
     const fill =
@@ -126,8 +136,8 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
 
     const inputProps = {
       ...radioProps,
-      checked,
-      fill
+      fill,
+      ...getCheckedProps(radioProps)
     };
 
     return (

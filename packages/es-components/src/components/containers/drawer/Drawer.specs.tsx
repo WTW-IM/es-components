@@ -4,7 +4,11 @@ import { render, cleanup, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
-import Drawer, { DrawerProps, useDrawerItemContext } from './Drawer';
+import Drawer, {
+  DrawerProps,
+  ActiveKeys,
+  useDrawerItemContext
+} from './Drawer';
 
 const noop = () => {
   // noop
@@ -15,32 +19,34 @@ const StyledFirstPanel = styled(Drawer.Panel)`
   background-color: blue;
 `;
 
-const PanelDrawer = (props: DrawerProps) => (
-  <ThemeComponent>
-    <Drawer className="important" {...props}>
-      <StyledFirstPanel
-        title="collapse 1"
-        key="1"
-        className="first"
-        titleAside="side text"
-      >
-        first
-      </StyledFirstPanel>
-      <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
-        second
-      </Drawer.Panel>
-      <Drawer.Panel title="collapse 3" key="3" className="third">
-        third
-      </Drawer.Panel>
-    </Drawer>
-  </ThemeComponent>
-);
+function PanelDrawer<T extends ActiveKeys>(props: DrawerProps<T>) {
+  return (
+    <ThemeComponent>
+      <Drawer className="important" {...props}>
+        <StyledFirstPanel
+          title="collapse 1"
+          key="1"
+          className="first"
+          titleAside="side text"
+        >
+          first
+        </StyledFirstPanel>
+        <Drawer.Panel title="collapse 2" key="2" className="second" noPadding>
+          second
+        </Drawer.Panel>
+        <Drawer.Panel title="collapse 3" key="3" className="third">
+          third
+        </Drawer.Panel>
+      </Drawer>
+    </ThemeComponent>
+  );
+}
 
 beforeEach(cleanup);
 
 describe('drawer', () => {
   it('active panel is opened', () => {
-    const onActiveKeysChanged = jest.fn<void, [string | string[]]>();
+    const onActiveKeysChanged = jest.fn<void, [string[]]>();
     render(
       <PanelDrawer
         onActiveKeysChanged={onActiveKeysChanged}

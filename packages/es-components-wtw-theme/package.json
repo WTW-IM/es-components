@@ -1,6 +1,6 @@
 {
   "name": "es-components-wtw-theme",
-  "version": "21.8.0",
+  "version": "21.9.0-pre-prod.2",
   "main": "dist/packages/es-components-wtw-theme/src/index.js",
   "files": [
     "dist"

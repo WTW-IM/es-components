@@ -1,5 +1,5 @@
 {
-  "reporter": "mochawesome",
+  "reporter": "../../node_modules/mochawesome",
   "reporterOptions": {
     "overwrite": false,
     "html": false,

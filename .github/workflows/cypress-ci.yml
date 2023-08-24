@@ -23,10 +23,7 @@ jobs:
 
       - name: NPM Clean Install
         run: |
-          npm ci # runs installs and builds themes
-          cd packages/es-components
-          npm uninstall es-components-via-theme # uninstall unbuilt theme
-          npm install -D ../es-components-via-theme # reinstall built theme
+          npm ci
 
       - name: Setup Cypress
         working-directory: ${{ env.ES_COMPONENTS_DIR }}
@@ -35,17 +32,10 @@ jobs:
           npm start &
           npm run wait-for-start
 
-      - name: Generate Cypress Config
-        working-directory: ${{ env.ES_COMPONENTS_DIR }}
-        run: |
-          echo "$( \
-            jq -s '.[0] * .[1]' cypress.json cypress-ci.json \
-          )" > cypress-ci.json
-
       - uses: cypress-io/github-action@v5
         with:
           working-directory: ${{ env.ES_COMPONENTS_DIR }}
-          config-file: cypress-ci.json
+          config-file: cypress.config.ts
           install: false
 
       - uses: actions/upload-artifact@v3

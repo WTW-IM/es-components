@@ -188,7 +188,7 @@ Within `Drawer.Item`, you can use `useDrawerItemContext` to react when the
 drawer is opened and closed.
 
 ```javascript
-import { useDrawerItemContext } from './Drawer.js';
+import { useDrawerItemContext } from './Drawer.tsx';
 const DrawerTracker = () => {
   const { open } = useDrawerItemContext();
 

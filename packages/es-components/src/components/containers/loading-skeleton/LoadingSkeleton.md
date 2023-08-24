@@ -31,10 +31,10 @@ Below, we're using a pre-fabricated "Skeleton Tile," which utilizes the pieces
 of the `LoadingSkeleton` to represent a header section, some body lines, and a
 call-to-action button.
 
-[Look at the `SkeletonTile` code](https://github.com/WTW-IM/es-components/tree/master/packages/es-components/src/components/containers/loading-skeleton/SkeletonTile.js) for a more in-depth example.
+[Look at the `SkeletonTile` code](https://github.com/WTW-IM/es-components/tree/main/packages/es-components/src/components/containers/loading-skeleton/SkeletonTile.tsx) for a more in-depth example.
 
 ```jsx
-import SkeletonTile from './SkeletonTile.js';
+import SkeletonTile from './SkeletonTile.tsx';
 
 <SkeletonTile />;
 ```

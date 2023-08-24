@@ -1,26 +1,42 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": false,
-        "forceConsistentCasingInFileNames": false,
-        "module": "esnext",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": false,
-        "emitDeclarationOnly": true,
-        "declaration": true,
-        "declarationMap": true,
-        "declarationDir": "src/types",
-        "jsx": "react",
-        "noImplicitAny": true
+  "extends": "../../projects-tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "outDir": "dist",
+    "declaration": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "rootDirs": ["src", "../../shared/types/src"],
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true,
+        "useRootDirs": true,
+        "exclude": ["**/node_modules/**"]
+      }
+    ]
+  },
+  "include": ["./src"],
+  "exclude": ["./dist"],
+  "references": [
+    {
+      "path": "../es-components-wtw-theme/tsconfig.ref.json"
     },
-    "rootDir": "src",
-    "include": ["src"],
-    "exclude": ["src/types", "src/components/controls/buttons/features/withLoadingStateWhileRunning.js"]
+    {
+      "path": "../es-components-via-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../../shared/types/tsconfig.ref.json"
+    }
+  ]
 }

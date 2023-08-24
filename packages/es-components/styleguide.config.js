@@ -11,7 +11,11 @@ const argv = yargs(hideBin(process.argv)).argv;
 const isProduction = argv.env === 'prod';
 const assets_url = isProduction
   ? 'https://app.viabenefits.com/static/cdn/es-assets/'
+  : argv.env === 'local'
+  ? 'https://bdaimsna26fetoolcdnendpoint.azureedge.net/es-assets/'
   : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+
+const getDependencyDirectory = dep => path.dirname(require.resolve(dep));
 
 fs.copyFileSync(
   path.join(__dirname, '..', '..', 'CHANGELOG.md'),
@@ -66,6 +70,7 @@ module.exports = {
     url: 'https://github.com/WTW-IM/es-components',
     text: 'Fork me on GitHub'
   },
+  ignore: ['**/*.specs.tsx', '**/*.specs.js'],
   sections: [
     {
       name: 'Themes',
@@ -91,26 +96,26 @@ module.exports = {
     },
     {
       name: 'Base',
-      components: path.join(baseComponentDir, 'base/**/*.js')
+      components: path.join(baseComponentDir, 'base/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Containers',
       content: path.join(baseComponentDir, 'containers/Containers.md'),
-      components: path.join(baseComponentDir, 'containers/**/*.js')
+      components: path.join(baseComponentDir, 'containers/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Controls',
       content: path.join(baseComponentDir, 'controls/Controls.md'),
-      components: path.join(baseComponentDir, 'controls/**/*.js')
+      components: path.join(baseComponentDir, 'controls/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Navigation',
-      components: path.join(baseComponentDir, 'navigation/**/*.js')
+      components: path.join(baseComponentDir, 'navigation/**/*.{js,jsx,tsx}')
     },
     {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
-      components: path.join(baseComponentDir, 'patterns/**/*.js')
+      components: path.join(baseComponentDir, 'patterns/**/*.{js,jsx,tsx}')
     },
     {
       name: 'CHANGELOG',
@@ -121,21 +126,23 @@ module.exports = {
   styleguideComponents: {
     StyleGuideRenderer: path.join(
       __dirname,
-      'src/styleguide/StyleGuideRenderer.js'
+      'src/styleguide/StyleGuideRenderer.tsx'
     ),
-    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.js'),
+    Wrapper: path.join(__dirname, 'src/styleguide/ExampleWrapper.tsx'),
     ReactComponentRenderer: path.join(
       __dirname,
-      'src/styleguide/ComponentRenderer.js'
+      'src/styleguide/ComponentRenderer.tsx'
     ),
-    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.js')
+    SectionRenderer: path.join(__dirname, 'src/styleguide/SectionRenderer.tsx'),
+    Preview: path.join(__dirname, 'src/styleguide/FixedPreview.tsx')
   },
   getComponentPathLine(componentPath) {
-    const name = path.basename(componentPath, '.js');
+    const componentExtension = path.extname(componentPath);
+    const name = path.basename(componentPath, componentExtension);
     return `import { ${name} } from 'es-components';`;
   },
   getExampleFilename(componentPath) {
-    return componentPath.replace(/\.js$/, '.md');
+    return componentPath.replace(/\.(js|tsx)$/, '.md');
   },
   skipComponentsWithoutExample: true,
   context: {
@@ -156,40 +163,62 @@ module.exports = {
         }
       }
     },
+    resolve: {
+      alias: {
+        'es-components-shared-types': path.join(
+          __dirname,
+          '../../shared/types/src/index.ts'
+        ),
+        'styled-components': path.join(
+          __dirname,
+          '../../node_modules/styled-components/dist/styled-components.js'
+        ),
+        'orig-sg-typings': path.join(
+          __dirname,
+          '../../node_modules/react-styleguidist/lib/typings/index.d.ts'
+        ),
+        'orig-sg-components': path.join(
+          __dirname,
+          '../../node_modules/react-styleguidist/lib/client/rsg-components/'
+        ),
+        'rsg-components/Wrapper/Wrapper': path.join(
+          __dirname,
+          '../../node_modules/react-styleguidist/lib/client/rsg-components/Wrapper/Wrapper.js'
+        )
+      }
+    },
     plugins: [
       new webpack.DefinePlugin({
-        ASSETS_PATH: JSON.stringify(assets_url)
+        ASSETS_PATH: JSON.stringify(assets_url),
+        process: `{}`
       })
     ],
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx|ts|tsx)?$/,
           include: [
-            path.join(__dirname, 'node_modules', 'react-overlays'),
-            path.join(__dirname, 'node_modules', 'react-context-toolbox'),
-            path.join(__dirname, 'node_modules', 'ansi-styles'),
-            path.join(__dirname, 'node_modules', 'strip-ansi'),
-            path.join(__dirname, 'node_modules', 'ansi-regex'),
-            path.join(__dirname, 'node_modules', 'react-dev-utils'),
-            path.join(__dirname, 'node_modules', 'chalk'),
-            path.join(__dirname, 'node_modules', 'regexpu-core'),
-            path.join(__dirname, '../', 'es-components-via-theme'),
-            path.join(
-              __dirname,
-              'node_modules',
-              'unicode-match-property-ecmascript'
-            ),
-            path.join(
-              __dirname,
-              'node_modules',
-              'unicode-match-property-value-ecmascript'
-            ),
-            path.join(__dirname, 'node_modules', 'acorn-jsx'),
-            path.join(__dirname, 'node_modules', 'estree-walker'),
-            path.join(__dirname, 'src')
+            getDependencyDirectory('react-overlays'),
+            getDependencyDirectory('react-context-toolbox'),
+            getDependencyDirectory('ansi-styles'),
+            getDependencyDirectory('strip-ansi'),
+            getDependencyDirectory('ansi-regex'),
+            getDependencyDirectory('chalk'),
+            getDependencyDirectory('regexpu-core'),
+            getDependencyDirectory('es-components-via-theme'),
+            getDependencyDirectory('unicode-match-property-ecmascript'),
+            getDependencyDirectory('unicode-match-property-value-ecmascript'),
+            getDependencyDirectory('acorn-jsx'),
+            getDependencyDirectory('estree-walker'),
+            path.join(__dirname, 'src'),
+            path.join(__dirname, '../../shared/types')
           ],
           loader: 'babel-loader'
+        },
+        {
+          resource: /rsg-components/,
+          issuer: /src\/styleguide\//,
+          use: ['./config/rsg-loader']
         }
       ]
     }

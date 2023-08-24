@@ -1,0 +1,20 @@
+{
+  "name": "es-components-shared-types",
+  "version": "21.7.0-pre-prod.0",
+  "private": true,
+  "description": "Shared types for es-components and es-components themes",
+  "author": "Willis Towers Watson - Individual Marketplace",
+  "license": "MIT",
+  "repository": "https://github.com/wtw-im/es-components",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "csstype": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "typescript": "^5.1.3"
+  }
+}

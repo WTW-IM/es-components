@@ -3,10 +3,7 @@
 Using the `onChange` callback returns an object:
 
 ```html
-{
-  value: [Date | undefined]
-  isInRange: [true | false]
-}
+{ value: [Date | undefined] isInRange: [true | false] }
 ```
 
 The `value` is a Date created from the combined inputs. The `value` is `undefined` when the date is invalid.
@@ -15,13 +12,18 @@ The `value` is a Date created from the combined inputs. The `value` is `undefine
 `DateInput.Month` also accepts an array of month names (`monthName` prop) for localization support. You may also
 provide `selectOptionText` to define a default "Please select a Month"-style option.
 
-```
+```jsx
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DateInputExample() {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
   const [myDate, setMyDate] = React.useState();
   const [validation, setValidation] = React.useState('default');
 
@@ -38,19 +40,31 @@ function DateInputExample() {
   return (
     <Control validationState={validation}>
       <Label htmlFor="someDate">Enter a Date</Label>
-      <DateInput id="someDate" name="someDate" onChange={handleChange} onBlur={handleOnBlur}>
-        <DateInput.Month monthNames={['01 - Jan', '02 - Feb', '03 - Mar']} selectOptionText="Select a month" />
+      <DateInput
+        id="someDate"
+        name="someDate"
+        onChange={handleChange}
+        onBlur={handleOnBlur}
+      >
+        <DateInput.Month
+          monthNames={['01 - Jan', '02 - Feb', '03 - Mar']}
+          selectOptionText="Select a month"
+        />
         <DateInput.Day />
         <DateInput.Year />
       </DateInput>
       <AdditionalHelp>
-        {myDate && <span>You entered: {myDate.toLocaleDateString("en-US", options)}</span>}
+        {myDate && (
+          <span>
+            You entered: {myDate.toLocaleDateString('en-US', options)}
+          </span>
+        )}
       </AdditionalHelp>
     </Control>
   );
 }
 
-<DateInputExample />
+<DateInputExample />;
 ```
 
 You can set the value of the component with `defaultValue`. When populating this value from
@@ -58,8 +72,8 @@ an API call or other source via a `useEffect`, the `defaultValue` may not update
 In this case, provide `DateInput` with a `key` prop that changes along with the `defaultValue`
 to force the component to re-render with the new value.
 
-```
-<DateInput defaultValue={new Date()} onChange={()=>{}}>
+```jsx
+<DateInput defaultValue={new Date()} onChange={() => {}}>
   <DateInput.Month name="month" />
   <DateInput.Day name="day" />
   <DateInput.Year name="year" />
@@ -70,13 +84,18 @@ to force the component to re-render with the new value.
 
 Use `minDate` and `maxDate` to set restrictions on valid dates.
 
-```
+```jsx
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DateInputExample() {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
   const [myDate, setMyDate] = React.useState();
   const [validation, setValidation] = React.useState('default');
 
@@ -93,7 +112,8 @@ function DateInputExample() {
   return (
     <Control validationState={validation}>
       <Label htmlFor="demoDate">Enter a Date between 1900 and 2020</Label>
-      <DateInput id="demoDate"
+      <DateInput
+        id="demoDate"
         onChange={handleChange}
         onBlur={handleOnBlur}
         minDate={new Date('1900/1/1')}
@@ -104,22 +124,28 @@ function DateInputExample() {
         <DateInput.Year />
       </DateInput>
       <AdditionalHelp>
-        <span>{myDate && myDate.isInRange
-                  ? `You entered: ${myDate.value.toLocaleDateString("en-US", options)}`
-                  : validation !== 'default' && 'The date you entered is outside the valid range.'}</span>
+        <span>
+          {myDate && myDate.isInRange
+            ? `You entered: ${myDate.value.toLocaleDateString(
+                'en-US',
+                options
+              )}`
+            : validation !== 'default' &&
+              'The date you entered is outside the valid range.'}
+        </span>
       </AdditionalHelp>
     </Control>
   );
 }
 
-<DateInputExample />
+<DateInputExample />;
 ```
 
 ### Display
 
 You may omit Day, but Month and Year is required.
 
-```
+```jsx
 <DateInput id="anotherDate" onChange={console.log}>
   <DateInput.Month />
   <DateInput.Year />
@@ -128,13 +154,18 @@ You may omit Day, but Month and Year is required.
 
 Month and Year validated with no default selected.
 
-```
+```jsx
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DateInputExample() {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
   const [myDate, setMyDate] = React.useState();
   const [validation, setValidation] = React.useState('default');
 
@@ -150,7 +181,8 @@ function DateInputExample() {
 
   return (
     <Control validationState={validation}>
-      <DateInput id="demoDate"
+      <DateInput
+        id="demoDate"
         onChange={handleChange}
         onBlur={handleOnBlur}
         minDate={new Date('2000/1/1')}
@@ -160,25 +192,35 @@ function DateInputExample() {
         <DateInput.Year />
       </DateInput>
       <AdditionalHelp>
-        <span>{myDate && myDate.isInRange
-                  ? `You entered: ${myDate.value.toLocaleDateString("en-US", options)}`
-                  : validation !== 'default' && 'Please enter a valid date.'}</span>
+        <span>
+          {myDate && myDate.isInRange
+            ? `You entered: ${myDate.value.toLocaleDateString(
+                'en-US',
+                options
+              )}`
+            : validation !== 'default' && 'Please enter a valid date.'}
+        </span>
       </AdditionalHelp>
     </Control>
   );
 }
-<DateInputExample />
+<DateInputExample />;
 ```
 
 Set default day if no day input is provided and no default value is provided.
 
-```
+```jsx
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import AdditionalHelp from '../../controls/AdditionalHelp';
 
 function DateInputExample() {
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
   const [myDate, setMyDate] = React.useState();
   const [validation, setValidation] = React.useState('default');
 
@@ -194,7 +236,8 @@ function DateInputExample() {
 
   return (
     <Control validationState={validation}>
-      <DateInput id="demoDate"
+      <DateInput
+        id="demoDate"
         onChange={handleChange}
         onBlur={handleOnBlur}
         minDate={new Date('2000/1/1')}
@@ -205,28 +248,33 @@ function DateInputExample() {
         <DateInput.Year />
       </DateInput>
       <AdditionalHelp>
-        <span>{myDate && myDate.isInRange
-                  ? `You entered: ${myDate.value.toLocaleDateString("en-US", options)}`
-                  : validation !== 'default' && 'Please enter a valid date.'}</span>
+        <span>
+          {myDate && myDate.isInRange
+            ? `You entered: ${myDate.value.toLocaleDateString(
+                'en-US',
+                options
+              )}`
+            : validation !== 'default' && 'Please enter a valid date.'}
+        </span>
       </AdditionalHelp>
     </Control>
   );
 }
-<DateInputExample />
+<DateInputExample />;
 ```
 
 Year, Month, and Day will display in the order you provide them.
 
-```
+```jsx
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 
 <Control>
   <Label htmlFor="orderDate">Enter a Date</Label>
-  <DateInput id="orderDate" defaultValue={new Date()} onChange={()=>{}}>
+  <DateInput id="orderDate" defaultValue={new Date()} onChange={() => {}}>
     <DateInput.Year />
     <DateInput.Month />
     <DateInput.Day />
   </DateInput>
-</Control>
+</Control>;
 ```

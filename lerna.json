@@ -4,8 +4,7 @@
   "version": "21.9.0-pre-prod.1",
   "command": {
     "publish": {
-      "message": "Build: [skip ci][skip-release] %s",
-      "verifyAccess": false
+      "message": "Build: [skip ci][skip-release] %s"
     }
   }
 }

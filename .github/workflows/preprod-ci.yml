@@ -87,7 +87,6 @@ jobs:
       - name: Install Dependencies
         run: |
           npm ci
-          npx lerna bootstrap --force-local
 
       - name: Set Commitbot Identity
         run: |

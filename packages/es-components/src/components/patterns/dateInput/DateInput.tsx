@@ -133,20 +133,20 @@ function isDatePartChild(
 }
 
 const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
-  function ForwardedDateInput(
-    {
+  function ForwardedDateInput(passedProps, ref) {
+    const {
       children,
       defaultValue,
       defaultDay = '',
       id,
       maxDate,
       minDate,
-      onBlur = noop,
-      onChange,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onChange: _onChange,
       ...props
-    },
-    ref
-  ) {
+    } = passedProps;
+    const propsRef = useRef(passedProps);
+    propsRef.current = passedProps;
     const [state, dispatch] = useReducer<typeof reducer>(
       reducer,
       getDefaultState(defaultValue, defaultDay)
@@ -205,6 +205,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
 
     const onChangeDatePart = useCallback(
       (datePart: DatePart, value: string) => {
+        const { onChange = noop } = propsRef.current;
         const { day, month, year } = state;
         switch (datePart) {
           case 'day':
@@ -229,27 +230,24 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
             throw new Error();
         }
       },
-      [createDate, onChange, state]
+      [createDate, state]
     );
 
     const onBlurComponent = useCallback<
       React.FocusEventHandler<HTMLInputElement>
-    >(
-      event => {
-        const target = event.currentTarget;
-        setTimeout(() => {
-          if (
-            !target.contains(
-              (target.getRootNode() as unknown as DocumentOrShadowRoot)
-                .activeElement || null
-            )
-          ) {
-            onBlur(event);
-          }
-        }, 0);
-      },
-      [onBlur]
-    );
+    >(event => {
+      const target = event.currentTarget;
+      setTimeout(() => {
+        if (
+          !target.contains(
+            (target.getRootNode() as unknown as DocumentOrShadowRoot)
+              .activeElement || null
+          )
+        ) {
+          (propsRef.current.onBlur || noop)(event);
+        }
+      }, 0);
+    }, []);
 
     let setId = false;
 

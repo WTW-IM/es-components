@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -103,28 +103,30 @@ function getAriaText(isPoorPerformer: Maybe<boolean>, rating: Maybe<number>) {
 }
 
 const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
-  function ForwardedStarRating(
-    {
+  function ForwardedStarRating(passedProps, ref) {
+    const {
       rating,
       isPoorPerformer = false,
-      onExplanationOpen = noop,
       noRatingText = NOT_AVAILABLE_MESSAGE,
-      onClick: onClickProp = noop,
+      /* eslint-disable @typescript-eslint/no-unused-vars */
+      onClick: _onClick,
+      onExplanationOpen: _onExplanationOpen,
+      /* eslint-enable @typescript-eslint/no-unused-vars */
       ...props
-    },
-    ref
-  ) {
+    } = passedProps;
+    const propsRef = useRef(passedProps);
+    propsRef.current = passedProps;
     const [showHelp, setShowHelp] = useState(false);
     const [rootNode, rootNodeRef] = useRootNode(document.body);
     const ariaText = getAriaText(isPoorPerformer, rating);
 
     const onClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
       e => {
-        onClickProp(e);
-        onExplanationOpen();
+        (propsRef.current.onClick || noop)(e);
+        (propsRef.current.onExplanationOpen || noop)();
         setShowHelp(true);
       },
-      [onClickProp, onExplanationOpen]
+      []
     );
 
     const closeModal = useCallback(() => {

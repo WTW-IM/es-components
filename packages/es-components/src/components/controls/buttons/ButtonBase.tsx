@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
@@ -22,10 +22,14 @@ export type ButtonBaseProps = Override<
 >;
 
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
-  function ButtonBaseInner({ waiting, onClick, ...props }, ref) {
+  function ButtonBaseInner(passedProps, ref) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { waiting, onClick: _onClick, ...props } = passedProps;
+    const propsRef = useRef(passedProps);
+    propsRef.current = passedProps;
     const innerClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-      (...args) => !waiting && (onClick || noop)(...args),
-      [waiting, onClick]
+      (...args) => !waiting && (propsRef.current.onClick || noop)(...args),
+      [waiting]
     );
     const computedProps = {
       ...props,

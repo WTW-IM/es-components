@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import { InlineContext } from './InlineContext';
 import useTopZIndex from '../../../hooks/useTopZIndex';
+import noop from '../../util/noop';
 
 const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
   background-color: ${({
@@ -49,7 +50,9 @@ type MenuPanelProps = JSXElementProps<'div'> & {
 
 const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
   function MenuPanel(props, ref) {
-    const { children, headerContent, isOpen, onClose, ...other } = props;
+    const { children, headerContent, isOpen, ...other } = props;
+    const propsRef = useRef(props);
+    propsRef.current = props;
     const getTopIndex = useTopZIndex();
 
     useEffect(() => {
@@ -59,7 +62,7 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
 
       function onEscape({ key }: { key: string }) {
         if (key === 'Escape') {
-          onClose();
+          (propsRef.current.onClose || noop)();
         }
       }
       window.addEventListener('keydown', onEscape);
@@ -67,7 +70,7 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
       return function removeKeydownListener() {
         window.removeEventListener('keydown', onEscape);
       };
-    }, [isOpen, onClose]);
+    }, [isOpen]);
 
     const hasHeaderContent = !!headerContent;
 
@@ -82,7 +85,7 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
       >
         <Header hasHeaderContent={hasHeaderContent}>
           {hasHeaderContent && <span>{headerContent}</span>}
-          <StyledDismissButton onClick={onClose} />
+          <StyledDismissButton onClick={propsRef.current.onClose} />
         </Header>
         <StyledChildrenContainer inline={inline}>
           {children}

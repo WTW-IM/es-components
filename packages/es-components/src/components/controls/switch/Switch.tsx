@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import styled, { DefaultTheme } from 'styled-components';
@@ -8,8 +8,7 @@ import {
   ValidationStyleType,
   validationStyleTypes
 } from 'es-components-shared-types';
-
-const noop = () => ({});
+import noop from '../../util/noop';
 
 type SwitchStyleType = ButtonVariantStyleType | ValidationStyleType;
 
@@ -226,7 +225,10 @@ export type SwitchProps = JSXElementProps<'div'> & {
 };
 
 const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
-  {
+  props,
+  ref
+) {
+  const {
     type = 'primary',
     label,
     direction = 'right',
@@ -234,12 +236,13 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
     onText = '',
     offText = '',
     checked,
-    onChange = noop,
     disabled,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onChange,
     ...switchProps
-  },
-  ref
-) {
+  } = props;
+  const propsRef = useRef(props);
+  propsRef.current = props;
   const [isToggled, setIsToggled] = useState(checked);
 
   const elementProps = { direction, type };
@@ -252,9 +255,9 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const isChecked = event.target.checked;
       setIsToggled(isChecked);
-      onChange(event);
+      (propsRef.current.onChange || noop)(event);
     },
-    [onChange]
+    []
   );
 
   return (

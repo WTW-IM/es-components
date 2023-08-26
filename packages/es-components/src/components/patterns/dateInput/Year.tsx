@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { BasicTextbox } from '../../controls/textbox/InputBase';
@@ -27,35 +27,28 @@ export type YearProps = Override<
 >;
 
 const Year = React.forwardRef<HTMLInputElement, YearProps>(
-  function ForwardedYear(
-    { onChange = noop, onKeyDown = noop, date, ...props },
-    ref
-  ) {
+  function ForwardedYear({ date, ...props }, ref) {
+    const propsRef = useRef(props);
+    propsRef.current = props;
     const [value, setValue] = useState(date?.getFullYear() || '');
 
     const onYearChange = useCallback<
       React.ChangeEventHandler<HTMLInputElement>
-    >(
-      event => {
-        let year = event.target.value;
-        year = year.length > 4 ? year.slice(0, 4) : year;
-        setValue(year);
-        onChange('year', year);
-      },
-      [onChange]
-    );
+    >(event => {
+      let year = event.target.value;
+      year = year.length > 4 ? year.slice(0, 4) : year;
+      setValue(year);
+      (propsRef.current.onChange || noop)('year', year);
+    }, []);
 
     const onYearKeyDown = useCallback<
       React.KeyboardEventHandler<HTMLInputElement>
-    >(
-      ev => {
-        onNonNumericHandler(ev);
-        if (ev.defaultPrevented) return;
+    >(ev => {
+      onNonNumericHandler(ev);
+      if (ev.defaultPrevented) return;
 
-        onKeyDown(ev);
-      },
-      [onKeyDown]
-    );
+      (propsRef.current.onKeyDown || noop)(ev);
+    }, []);
 
     return (
       <YearInput

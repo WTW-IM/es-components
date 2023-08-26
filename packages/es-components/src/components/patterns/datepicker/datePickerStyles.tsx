@@ -8,6 +8,20 @@ import {
 
 type CSSReturn = FlattenInterpolation<ThemedStyledProps<unknown, DefaultTheme>>;
 
+const ariaStyles = css`
+  .react-datepicker__aria-live {
+    border: 0;
+    clip-path: circle(0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+`;
+
 const downArrowStyles = css`
   .react-datepicker__year-read-view--down-arrow,
   .react-datepicker__month-read-view--down-arrow,
@@ -800,6 +814,7 @@ const containerStyles = css`
 `;
 
 export const DatepickerStyles = createGlobalStyle`
+${ariaStyles}
 ${containerStyles}
 ${downArrowStyles}
 ${timeStyles}

@@ -1,6 +1,6 @@
-import ESTheme from 'es-components-shared-types';
+import type ESTheme from 'es-components-shared-types';
 import React from 'react';
-import { DefaultTheme } from 'styled-components';
+import type { DefaultTheme } from 'styled-components';
 
 declare global {
   type Maybe<T> = T | null | undefined;

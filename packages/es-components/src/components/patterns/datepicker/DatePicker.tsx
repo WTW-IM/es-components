@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid as dateIsValid } from 'date-fns';
-import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
+import type { ReactDatePickerProps } from 'react-datepicker';
 
 import Textbox, { TextboxProps } from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';

@@ -5,6 +5,7 @@ import React, {
   useSyncExternalStore,
   useTransition
 } from 'react';
+import ESTheme from 'es-components-shared-types';
 import viaTheme from 'es-components-via-theme';
 import wtwTheme from 'es-components-wtw-theme';
 import Switch from '../components/controls/switch/Switch';
@@ -36,7 +37,7 @@ export function useIsViaTheme() {
   return useSyncExternalStore(themeStore.subscribe, themeStore.getState);
 }
 
-export function useStyleguideTheme() {
+export function useStyleguideTheme(): ESTheme {
   const isViaTheme = useIsViaTheme();
   return isViaTheme ? viaTheme : wtwTheme;
 }

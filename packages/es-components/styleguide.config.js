@@ -7,13 +7,9 @@ const baseComponentDir = styleguidePaths.baseComponentDir;
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const argv = yargs(hideBin(process.argv)).argv;
+const { getAssetsUrl } = require('./config/assetsUrl');
 
-const isProduction = argv.env === 'prod';
-const assets_url = isProduction
-  ? 'https://app.viabenefits.com/static/cdn/es-assets/'
-  : argv.env === 'local'
-  ? 'https://bdaimsna26fetoolcdnendpoint.azureedge.net/es-assets/'
-  : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+const assets_url = getAssetsUrl(argv);
 
 const getDependencyDirectory = dep => path.dirname(require.resolve(dep));
 

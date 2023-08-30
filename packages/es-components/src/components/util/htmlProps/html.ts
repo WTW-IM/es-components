@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
-import { HTMLAttributes, AriaRole } from 'react';
+import { AriaRole } from 'react';
 import { domProps, domDefaultProps } from './dom';
 import { booleanStrings, ariaRoles, ariaProps, ariaDefaultProps } from './aria';
+import { CSSObject } from 'styled-components';
 
-export type BasicHTMLProps = HTMLAttributes<HTMLElement>;
+export type BasicHTMLProps = JSXElementProps<'basicHTMLElement'>;
 
-export type HTMLPropTypes = {
-  [key in keyof BasicHTMLProps]:
-    | PropTypes.Requireable<BasicHTMLProps[key]>
-    | PropTypes.Validator<BasicHTMLProps[key]>;
-};
+export type HTMLPropTypes = PropTypesOf<BasicHTMLProps>;
 
 type NonNullableHTMLKeys = NonNullableKeys<BasicHTMLProps>;
 
@@ -113,7 +110,19 @@ export const htmlProps: HTMLPropTypes = {
   security: PropTypes.string,
   unselectable: PropTypes.oneOf<'on' | 'off'>(['on', 'off']),
   inputMode: PropTypes.oneOf<InputMode>(inputModes),
-  is: PropTypes.string
+  is: PropTypes.string,
+
+  // styled-components css prop
+  css: PropTypes.oneOfType([
+    PropTypes.objectOf<CSSObject | string | number | undefined>(
+      PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.shape<PropTypes.ValidationMap<CSSObject>>({})
+      ]).isRequired
+    ),
+    PropTypes.string
+  ])
 };
 
 export const htmlDefaultProps: HTMLDefaultProps = {

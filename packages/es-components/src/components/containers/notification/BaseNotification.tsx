@@ -14,7 +14,10 @@ import DismissButton, {
   DismissButtonProps
 } from '../../controls/DismissButton';
 
-const NotificationIcon = styled(Icon)<{ alwaysShowIcon: boolean }>`
+const NotificationIcon = styled(Icon)<{
+  alwaysShowIcon: boolean;
+  iconColor: CSS.Property.Color;
+}>`
   ${({ iconColor, theme, alwaysShowIcon }) => css`
     align-self: start;
     color: ${iconColor};

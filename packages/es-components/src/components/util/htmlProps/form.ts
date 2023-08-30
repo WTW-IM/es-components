@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 export const baseFormElementProps = {
   disabled: PropTypes.bool,
+  form: PropTypes.string,
   formAction: PropTypes.string,
   formEncType: PropTypes.string,
   formMethod: PropTypes.string,

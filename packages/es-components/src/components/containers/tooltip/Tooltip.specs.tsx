@@ -7,11 +7,9 @@ import { renderWithTheme } from '../../util/test-utils';
 
 it('displays when the mouse enters the target and hides when the mouse leaves the target', async () => {
   renderWithTheme(
-    <>
-      <Tooltip name="test" content="this is the tooltip">
-        this is the target
-      </Tooltip>
-    </>
+    <Tooltip name="test" content="this is the tooltip">
+      this is the target
+    </Tooltip>
   );
 
   const target = await screen.findByText('this is the target');

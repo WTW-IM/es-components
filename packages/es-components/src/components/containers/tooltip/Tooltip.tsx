@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { Validator } from 'prop-types';
 import {
   useFloating,
   useInteractions,
@@ -13,22 +13,22 @@ import {
   arrow,
   flip,
   shift,
+  limitShift,
   FloatingPortal,
   Placement
 } from '@floating-ui/react';
 import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 
 import Fade from '../../util/Fade';
-import PopoverLink from '../../controls/buttons/PopoverLink';
-import {
-  buttonVariantStyleTypes,
-  ButtonVariantStyleType
-} from 'es-components-shared-types';
+import PopoverLink, {
+  PopoverLinkProps,
+  propTypes as popoverLinkPropTypes
+} from '../../controls/buttons/PopoverLink';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 import useUniqueId from '../../util/useUniqueId';
 import useRootNode from '../../util/useRootNode';
 import useTopZIndex from '../../../hooks/useTopZIndex';
-import callRef from '../../util/callRef';
+import { callRefs } from '../../util/callRef';
 
 type TooltipStyleProps = { topIndex: number };
 
@@ -131,16 +131,22 @@ const getTooltips = (
   }
 };
 
-type TooltipProps = React.PropsWithChildren<{
-  name: string;
-  content: React.ReactNode;
-  position?: Placement;
-  disableHover?: boolean;
-  disableFocus?: boolean;
-  styleType?: ButtonVariantStyleType;
-  linkProps?: Record<string, unknown>;
-  id?: string;
-}>;
+type HandledLinkProps = 'children' | 'styleType';
+
+type TooltipProps = Override<
+  JSXElementProps<'div'>,
+  {
+    name: string;
+    children: PopoverLinkProps['children'];
+    content: React.ReactNode;
+    position?: Placement;
+    disableHover?: boolean;
+    disableFocus?: boolean;
+    styleType?: PopoverLinkProps['styleType'];
+    linkProps?: Omit<PopoverLinkProps, HandledLinkProps>;
+    id?: string;
+  }
+>;
 
 const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
   function ForwardedTooltip(props, ref) {
@@ -182,7 +188,9 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       placement: position,
       middleware: [
         arrow({ element: arrowRef }),
-        shift(),
+        shift({
+          limiter: limitShift()
+        }),
         ...autoPlacementMiddleware
       ]
     });
@@ -216,9 +224,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       <>
         <PopoverLink
           ref={el => {
-            callRef(floatingAnchorRef, el);
-            callRef(ref, el);
-            rootNodeRef(el);
+            callRefs(el, floatingAnchorRef, ref, rootNodeRef);
           }}
           styleType={styleType}
           {...getReferenceProps({
@@ -273,9 +279,33 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
   }
 );
 
+type NullableUndefined<T> = {
+  [P in keyof T]: T[P] extends undefined ? Maybe<T[P]> : T[P];
+};
+
+type PopoverLinkValidationProps = NullableUndefined<
+  Omit<PopoverLinkProps, HandledLinkProps>
+>;
+
+type PopoverLinkValidationMap = PropTypesOf<PopoverLinkValidationProps>;
+
+const passedPopoverLinkProps = Object.entries(
+  popoverLinkPropTypes || {}
+).reduce<PopoverLinkValidationMap>(
+  (props, [key, value]) => ({
+    ...props,
+    ...(['children', 'styleType'].includes(key) ? {} : { [key]: value })
+  }),
+  {} as PopoverLinkValidationMap
+);
+
+passedPopoverLinkProps.dangerouslySetInnerHTML;
+
 Tooltip.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired,
+  children: popoverLinkPropTypes.children as Validator<
+    PopoverLinkProps['children']
+  >,
   /** The text the tooltip displays */
   content: PropTypes.node.isRequired,
   /** Set the position of the tooltip over the content */
@@ -285,16 +315,18 @@ Tooltip.propTypes = {
   /** Disables the default show onFocus functionality */
   disableFocus: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
-  styleType: PropTypes.oneOf(buttonVariantStyleTypes),
+  styleType: popoverLinkPropTypes.styleType,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  linkProps: PropTypes.shape<Record<string, any>>({})
+  linkProps: PropTypes.exact<PopoverLinkValidationMap>(
+    passedPopoverLinkProps
+  ) as Validator<PopoverLinkValidationProps>
 };
 
 Tooltip.defaultProps = {
   position: 'top',
   disableHover: false,
   disableFocus: false,
-  styleType: 'default',
+  styleType: undefined,
   linkProps: {}
 };
 

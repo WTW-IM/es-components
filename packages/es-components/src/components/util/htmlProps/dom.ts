@@ -3,11 +3,7 @@ import { DOMAttributes } from 'react';
 
 type BasicDOMProps = DOMAttributes<HTMLElement>;
 
-type DOMPropTypes = {
-  [key in keyof DOMAttributes<HTMLElement>]:
-    | PropTypes.Requireable<BasicDOMProps[key]>
-    | PropTypes.Validator<BasicDOMProps[key]>;
-};
+export type DOMPropTypes = PropTypesOf<BasicDOMProps>;
 
 type NonNullableDOMKeys = NonNullableKeys<DOMPropTypes>;
 
@@ -15,9 +11,9 @@ type DOMDefaultProps = {
   [key in NonNullableDOMKeys]?: BasicDOMProps[key];
 };
 
-export const domProps = {
+export const domProps: DOMPropTypes = {
   children: PropTypes.node,
-  dangerouslySetInnerHTML: PropTypes.shape({
+  dangerouslySetInnerHTML: PropTypes.exact({
     __html: PropTypes.string.isRequired
   }),
 

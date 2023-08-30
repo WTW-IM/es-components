@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { ValidationMap } from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
@@ -10,7 +10,11 @@ import ButtonBase, {
   ButtonBaseProps
 } from './ButtonBase';
 import { TextColorButtonVariant } from 'es-components-shared-types';
-import Button, { ButtonProps } from './Button';
+import {
+  ButtonProps,
+  propTypes as buttonPropTypes,
+  defaultProps as buttonDefaultProps
+} from './Button';
 
 const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   background-color: transparent;
@@ -42,10 +46,13 @@ const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   }
 `;
 
-export type LinkButtonProps = Omit<ButtonBaseProps, 'children'> & {
-  styleType?: ButtonProps['styleType'];
-  children: NonNullable<React.ReactNode>;
-};
+export type LinkButtonProps = Override<
+  ButtonBaseProps,
+  {
+    styleType?: ButtonProps['styleType'];
+    children: NonNullable<React.ReactNode>;
+  }
+>;
 
 const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
   function LinkButton(props, ref) {
@@ -62,11 +69,11 @@ const LinkButton = React.forwardRef<HTMLButtonElement, LinkButtonProps>(
 );
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-export const propTypes = {
+export const propTypes: PropTypesOf<LinkButtonProps> = {
   ...basePropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
-  styleType: Button.propTypes!.styleType
+  styleType: buttonPropTypes.styleType
 };
 
 const unchildrenDefaults = { ...baseDefaultProps };
@@ -74,11 +81,11 @@ delete unchildrenDefaults['children'];
 
 export const defaultProps = {
   ...(unchildrenDefaults as Omit<ButtonDefaultProps, 'children'>),
-  styleType: Button.defaultProps!.styleType
+  styleType: buttonDefaultProps.styleType
 };
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
 LinkButton.defaultProps = defaultProps;
-LinkButton.propTypes = propTypes;
+LinkButton.propTypes = propTypes as ValidationMap<LinkButtonProps>;
 
 export default LinkButton;

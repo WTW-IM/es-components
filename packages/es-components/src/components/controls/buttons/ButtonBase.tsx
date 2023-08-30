@@ -17,7 +17,7 @@ const UnstyledButton = styled.button`
 export type ButtonBaseProps = Override<
   JSXElementProps<'button'>,
   {
-    waiting?: boolean;
+    waiting?: Maybe<boolean>;
   }
 >;
 
@@ -46,7 +46,7 @@ const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
   }
 );
 
-export const propTypes = {
+export const propTypes: PropTypesOf<ButtonBaseProps> = {
   ...htmlButtonPropTypes,
   /** Styles the Button with the "disabled" state and prevents click action */
   waiting: PropTypes.bool

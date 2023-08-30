@@ -270,7 +270,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   );
 });
 
-export const propTypes = {
+export const propTypes: PropTypesOf<ButtonProps> = {
   ...buttonBasePropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme buttonStyles.button */

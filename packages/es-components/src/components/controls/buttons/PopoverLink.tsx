@@ -1,7 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { ValidationMap } from 'prop-types';
 import styled from 'styled-components';
-import LinkButton from './LinkButton';
+import LinkButton, {
+  propTypes as linkButtonPropTypes,
+  defaultProps as linkButtonDefaultProps,
+  LinkButtonProps
+} from './LinkButton';
 import {
   buttonVariantStyleTypes,
   ButtonVariantStyleType
@@ -20,8 +24,8 @@ const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
   }
 `;
 
-export type PopoverLinkProps = JSXElementProps<'button'> & {
-  suppressUnderline?: boolean;
+export type PopoverLinkProps = LinkButtonProps & {
+  suppressUnderline?: Maybe<boolean>;
   styleType?: Maybe<ButtonVariantStyleType>;
 };
 
@@ -36,7 +40,7 @@ const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
       <StyledButton
         ref={forwardedRef}
         styleType={styleType || 'default'}
-        suppressUnderline={suppressUnderline}
+        suppressUnderline={suppressUnderline || false}
         {...other}
       >
         {children || ''}
@@ -45,8 +49,8 @@ const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
   }
 );
 
-export const propTypes = {
-  ...StyledButton.propTypes,
+export const propTypes: PropTypesOf<PopoverLinkProps> = {
+  ...linkButtonPropTypes,
   children: PropTypes.node.isRequired,
   /** Select the color style of the button, types come from theme */
   styleType: PropTypes.oneOf(buttonVariantStyleTypes),
@@ -55,12 +59,12 @@ export const propTypes = {
 };
 
 export const defaultProps = {
-  ...StyledButton.defaultProps,
+  ...linkButtonDefaultProps,
   styleType: 'primary' as ButtonVariantStyleType,
   suppressUnderline: false
 };
 
-PopoverLink.propTypes = propTypes;
+PopoverLink.propTypes = propTypes as ValidationMap<PopoverLinkProps>;
 PopoverLink.defaultProps = defaultProps;
 
 export default PopoverLink;

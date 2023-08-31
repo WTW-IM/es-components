@@ -29,7 +29,10 @@ const getMappedSteps = ({
   onPastStepClicked,
   onFutureStepClicked,
   showNav
-}: Required<ProgressTrackerInternalProps>) => {
+}: Override<
+  ProgressTrackerProps,
+  Omit<Required<ProgressTrackerInternalProps>, 'onFutureStepClicked'>
+>) => {
   let isPastStep = true;
   return steps.map((step, index) => {
     isPastStep = !(step.active || !isPastStep);
@@ -40,9 +43,8 @@ const getMappedSteps = ({
         isPastStep={isPastStep}
         numberOfSteps={steps.length}
         onPastStepClicked={() => onPastStepClicked(index)}
-        canClickFutureStep={
-          onFutureStepClicked !== null && onFutureStepClicked !== undefined
-        }
+        onFutureStepClicked={() => onFutureStepClicked?.(index)}
+        canClickFutureStep={Boolean(onFutureStepClicked)}
         label={step.label || ''}
         showNav={showNav}
       />
@@ -60,7 +62,7 @@ const ProgressTracker = React.forwardRef<
   {
     steps = [],
     onPastStepClicked = noop,
-    onFutureStepClicked = noop,
+    onFutureStepClicked,
     showNav = false,
     ...props
   },
@@ -99,7 +101,7 @@ ProgressTracker.propTypes = {
 ProgressTracker.defaultProps = {
   steps: [],
   onPastStepClicked: noop,
-  onFutureStepClicked: noop,
+  onFutureStepClicked: undefined,
   showNav: true
 };
 

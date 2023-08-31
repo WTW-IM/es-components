@@ -95,19 +95,20 @@ export type IncrementerProps = BasicTextboxProps & {
 };
 
 const Incrementer = React.forwardRef<HTMLDivElement, IncrementerProps>(
-  function ForwardedIncrementer(
-    {
+  function ForwardedIncrementer(props, ref) {
+    const {
       startingValue,
       incrementAmount = 1,
       decrementAmount = 1,
       upperThreshold = null,
       lowerThreshold = null,
       useOutlineButton,
-      onValueUpdated = noop,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onValueUpdated: _onValueUpdated,
       ...other
-    },
-    ref
-  ) {
+    } = props;
+    const propsRef = useRef(props);
+    propsRef.current = props;
     const initialRender = useRef(true);
 
     const [count, setCount] = useState(getCount(startingValue));
@@ -134,9 +135,9 @@ const Incrementer = React.forwardRef<HTMLDivElement, IncrementerProps>(
           return;
         }
 
-        onValueUpdated(count);
+        propsRef.current.onValueUpdated?.(count);
       },
-      [count, onValueUpdated]
+      [count]
     );
 
     useEffect(

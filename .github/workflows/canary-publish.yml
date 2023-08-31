@@ -33,12 +33,12 @@ jobs:
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          preId=$(git rev-parse --short HEAD)
+          preId=$(git rev-parse --abbrev-ref HEAD)
           echo "Publishing a canary release..."
           npx lerna publish \
             --canary \
             --force-publish \
-            --preid canary \
+            --preid canary-$preId \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
             --yes

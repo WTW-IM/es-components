@@ -1,31 +1,31 @@
-import * as process from 'process';
+import * as path from 'path';
 import babel from '@rollup/plugin-babel';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
-import typescript from 'rollup-plugin-typescript2';
+import copy from 'rollup-plugin-copy';
+import { createRequire } from 'module';
 import { writeIconNameType } from './config/loadIconNameType.mjs';
+import { getAssetsUrl, getIsProduction } from './config/assetsUrl.js';
+import { getPackageExternals } from './config/getPackageExternals.mjs';
+import { tscEsComponents } from './config/tscEsComponents.mjs';
 import pkg from './package.json' assert { type: 'json' };
 
-export default async args => {
-  await writeIconNameType();
-  const isProduction =
-    args.configEnv === 'prod' || process.env.MAIN_BUILD === 'true';
-  const assets_url = isProduction
-    ? 'https://app.viabenefits.com/static/cdn/es-assets/'
-    : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
-  const peerDepNames = Object.keys(pkg.peerDependencies || {});
-  const peerDepExternal = peerDepNames.map(
-    external => new RegExp(`^${external}(/.+)?$`)
+export default async args => {
+  await Promise.all([writeIconNameType(), tscEsComponents()]);
+  const isProduction = getIsProduction(args);
+  const assets_url = getAssetsUrl(args);
+  const require = createRequire(import.meta.url);
+
+  const sharedTypesPath = path.dirname(
+    require.resolve('../../shared/types/src/index.ts')
   );
-  const depExternals = [...Object.keys(pkg.dependencies || {})];
-  const external = [
-    ...peerDepExternal,
-    ...depExternals.map(external => new RegExp(`^${external}(/.+)?$`))
-  ];
+
+  const { peerDepExternal, external } = getPackageExternals();
 
   return [
     {
@@ -52,43 +52,16 @@ export default async args => {
       ],
       external,
       plugins: [
-        typescript({
-          tsconfig: './tsconfig.json'
-        }),
         wildcardExternal(['core-js/**', 'text-mask-addons/**']),
-        resolve(),
+        commonjs({ include: [/node_modules/, sharedTypesPath], extensions }),
+        resolve({
+          extensions,
+          preferBuiltins: true
+        }),
         babel({
           exclude: ['node_modules/**'],
-          babelHelpers: 'runtime'
-        }),
-        replace({
-          ASSETS_PATH: JSON.stringify(assets_url),
-          preventAssignment: true
-        })
-      ]
-    },
-    {
-      input: 'src/build-utils/jest.ts',
-      output: [
-        {
-          format: 'cjs',
-          file: 'build-utils/jest.js',
-          interop: 'compat',
-          generatedCode: {
-            reservedNamesAsProps: false
-          }
-        }
-      ],
-      external,
-      plugins: [
-        typescript({
-          tsconfig: './tsconfig.json'
-        }),
-        wildcardExternal(['core-js/**', 'text-mask-addons/**']),
-        resolve(),
-        babel({
-          exclude: ['node_modules/**'],
-          babelHelpers: 'runtime'
+          babelHelpers: 'runtime',
+          extensions
         }),
         replace({
           ASSETS_PATH: JSON.stringify(assets_url),
@@ -111,32 +84,73 @@ export default async args => {
           react: 'React',
           'react-dom': 'ReactDOM',
           'styled-components': 'styled'
-        }
+        },
+        plugins: [
+          terser({
+            compress: {
+              if_return: false,
+              typeofs: false
+            },
+            mangle: isProduction
+          })
+        ]
       },
       context: 'window',
       external: peerDepExternal,
       plugins: [
-        typescript({
-          tsconfig: './tsconfig.json'
+        resolve({
+          extensions,
+          preferBuiltins: true
         }),
-        resolve(),
-        commonjs({ include: /node_modules/ }),
+        commonjs({ include: [/node_modules/, sharedTypesPath], extensions }),
         babel({
           exclude: /node_modules/,
-          envName: 'production',
-          babelHelpers: 'runtime'
+          envName: isProduction ? 'production' : 'development',
+          babelHelpers: 'runtime',
+          extensions
         }),
         replace({
           'process.env.NODE_ENV': JSON.stringify('production'),
           ASSETS_PATH: JSON.stringify(assets_url),
           preventAssignment: true
+        })
+      ]
+    },
+    {
+      input: 'src/build-utils/jest.ts',
+      output: [
+        {
+          format: 'cjs',
+          file: 'build-utils/jest.js',
+          interop: 'compat',
+          generatedCode: {
+            reservedNamesAsProps: false
+          }
+        }
+      ],
+      external,
+      plugins: [
+        wildcardExternal(['core-js/**', 'text-mask-addons/**']),
+        resolve({
+          extensions,
+          preferBuiltins: true
         }),
-        terser({
-          compress: {
-            if_return: false,
-            typeofs: false
-          },
-          mangle: isProduction
+        babel({
+          exclude: ['node_modules/**'],
+          babelHelpers: 'runtime',
+          extensions
+        }),
+        replace({
+          ASSETS_PATH: JSON.stringify(assets_url),
+          preventAssignment: true
+        }),
+        copy({
+          targets: [
+            {
+              src: './types/build-utils/jest.d.ts',
+              dest: './build-utils'
+            }
+          ]
         })
       ]
     }

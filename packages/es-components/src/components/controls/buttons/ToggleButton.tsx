@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import Button, { ButtonProps } from './Button';
@@ -11,14 +11,9 @@ export type ToggleButtonProps = ButtonProps & {
 
 const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   function ToggleButton(props, ref) {
-    const {
-      styleType,
-      size,
-      block,
-      isOutline,
-      onClick = () => ({}),
-      ...buttonProps
-    } = props;
+    const { styleType, size, block, isOutline, ...buttonProps } = props;
+    const propsRef = useRef(props);
+    propsRef.current = props;
     const [isPressed, setIsPressed] = useState(props.isPressed);
 
     useEffect(() => {
@@ -27,13 +22,10 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
 
     const toggleButton = useCallback<
       React.MouseEventHandler<HTMLButtonElement>
-    >(
-      event => {
-        setIsPressed(oldIsPressed => !oldIsPressed);
-        onClick(event);
-      },
-      [onClick]
-    );
+    >(event => {
+      setIsPressed(oldIsPressed => !oldIsPressed);
+      propsRef.current.onClick?.(event);
+    }, []);
 
     const ToggleButtonType = isOutline ? OutlineButton : Button;
 

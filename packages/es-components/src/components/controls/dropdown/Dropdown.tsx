@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { DefaultTheme, StyledComponent } from 'styled-components';
 import InputBase, {
@@ -50,18 +50,17 @@ export type DropdownProps = JSXElementProps<'select'> & {
 
 const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
   function ForwardedDropdown(props, ref) {
+    const propsRef = useRef(props);
+    propsRef.current = props;
     const validationStyleProps = useValidationStyleProps(props);
     const [hasValue, setHasValue] = useState(Boolean(props.value));
     const [inputRef, setInputRef] = useState<HTMLSelectElement | null>(null);
     const onChange = useCallback<
       React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>
-    >(
-      (ev: React.ChangeEvent<HTMLSelectElement>) => {
-        setHasValue(Boolean(ev.target.value));
-        (props.onChange || (() => ({})))(ev);
-      },
-      [props.onChange]
-    );
+    >((ev: React.ChangeEvent<HTMLSelectElement>) => {
+      setHasValue(Boolean(ev.target.value));
+      propsRef.current.onChange?.(ev);
+    }, []);
 
     const inputRefCallback = useCallback(
       (node: HTMLSelectElement | null) => callRefs(node, setInputRef, ref),

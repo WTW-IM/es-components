@@ -226,7 +226,13 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
     const arrowRef = useRef<HTMLDivElement>(null);
     const getTopIndex = useTopZIndex();
 
-    const flipMiddleware = disableFlipping ? [] : [flip()];
+    const flipMiddleware = disableFlipping
+      ? []
+      : [
+          flip({
+            crossAxis: false
+          })
+        ];
     const {
       x,
       y,
@@ -295,9 +301,13 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
                 style: {
                   ...(otherProps.style || {}),
                   position: strategy,
-                  top: y || 0,
-                  left: x || 0,
-                  width: 'max-content'
+                  width: 'max-content',
+                  ...(typeof x !== 'number' || typeof y !== 'number'
+                    ? {}
+                    : {
+                        top: y,
+                        left: x
+                      })
                 }
               })}
             >

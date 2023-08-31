@@ -12,8 +12,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "outDir": "dist",
     "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "types",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "rootDirs": ["src", "../../shared/types/src"],
@@ -26,8 +27,8 @@
       }
     ]
   },
-  "include": ["./src"],
-  "exclude": ["./dist"],
+  "include": ["./src", "./src/build-utils"],
+  "exclude": ["./types"],
   "references": [
     {
       "path": "../es-components-wtw-theme/tsconfig.ref.json"

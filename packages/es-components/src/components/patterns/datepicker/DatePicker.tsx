@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid as dateIsValid } from 'date-fns';
-import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
+import type { ReactDatePickerProps } from 'react-datepicker';
 
 import Textbox, { TextboxProps } from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
@@ -104,32 +105,25 @@ const CalendarContainer = styled.div`
   ${calendarArrowStyles}
 `;
 
-function NativeDatePicker({
-  selectedDate,
-  onChange: onChangeProp,
-  onSelect: onSelectProp,
-  ...props
-}: DatePickerProps) {
+function NativeDatePicker({ selectedDate, ...props }: DatePickerProps) {
+  const propsRef = useRef(props);
+  propsRef.current = props;
   const textboxProps = pick(props, textboxKeys);
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     e => {
-      if (!onChangeProp) return;
-
-      onChangeProp(normalizeDate(e.target.value));
+      propsRef.current.onChange?.(normalizeDate(e.target.value));
     },
-    [onChangeProp]
+    []
   );
 
   const onSelect = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     e => {
-      if (!onSelectProp) return;
-
       // date is guaranteed to be valid on select
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      onSelectProp(normalizeDate(e.target.value)!, e);
+      propsRef.current.onSelect?.(normalizeDate(e.target.value)!, e);
     },
-    [onSelectProp]
+    []
   );
 
   return (
@@ -153,7 +147,9 @@ export type DateTextboxProps = Override<
 
 const DateTextbox = React.forwardRef<HTMLInputElement, DateTextboxProps>(
   function ForwardedDateTextbox(props, ref) {
-    const { suppressDatepicker, onChange } = props;
+    const propsRef = useRef(props);
+    propsRef.current = props;
+    const { suppressDatepicker } = props;
     const getTopIndex = useTopZIndex();
 
     const datepickerProps = pick(props, reactDatepickerPropKeys);
@@ -168,9 +164,9 @@ const DateTextbox = React.forwardRef<HTMLInputElement, DateTextboxProps>(
       e => {
         if (!suppressDatepicker) return;
 
-        onChange(normalizeDate(e.target.value), e);
+        propsRef.current.onChange?.(normalizeDate(e.target.value), e);
       },
-      [suppressDatepicker, onChange]
+      [suppressDatepicker]
     );
 
     const textbox = (
@@ -186,17 +182,19 @@ const DateTextbox = React.forwardRef<HTMLInputElement, DateTextboxProps>(
 
     return (
       <>
-        <DatepickerStyles topIndex={getTopIndex()} />
         {props.suppressDatepicker ? (
           textbox
         ) : (
-          <ReactDatePicker
-            customInput={textbox}
-            placeholderText={props.placeholder}
-            selected={normalizeDate(props.selectedDate)}
-            calendarContainer={CalendarContainer}
-            {...datepickerProps}
-          />
+          <>
+            <DatepickerStyles topIndex={getTopIndex()} />
+            <ReactDatePicker
+              customInput={textbox}
+              placeholderText={props.placeholder}
+              selected={normalizeDate(props.selectedDate)}
+              calendarContainer={CalendarContainer}
+              {...datepickerProps}
+            />
+          </>
         )}
       </>
     );
@@ -205,9 +203,8 @@ const DateTextbox = React.forwardRef<HTMLInputElement, DateTextboxProps>(
 
 const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
   function ForwardedDatePicker(props, ref) {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const { selectedDate: selectedDateProp = '', onChange: onChangeProp } =
-      props;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { selectedDate: selectedDateProp = '', onChange: _onChange } = props;
     const normalizedDateFromProps = props.selectedDate
       ? normalizeDate(props.selectedDate)
       : null;
@@ -234,15 +231,15 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     );
 
     useEffect(() => {
-      if (!onChangeProp) return;
+      if (!propsRef.current.onChange) return;
 
       if (
         normalizeDateString(selectedDate) !==
         normalizeDateString(selectedDateProp)
       ) {
-        onChangeProp(selectedDate);
+        propsRef.current.onChange(selectedDate);
       }
-    }, [selectedDate, onChangeProp, selectedDateProp]);
+    }, [selectedDate, selectedDateProp]);
 
     const windowWidth = useWindowWidth();
     const theme = useTheme();

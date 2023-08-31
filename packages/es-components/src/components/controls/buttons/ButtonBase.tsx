@@ -1,12 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   htmlButtonPropTypes,
   htmlButtonDefaultProps
 } from '../../util/htmlProps';
-
-import noop from '../../util/noop';
 
 // Using this because React does not like many of our upstream props.
 // This allows that to flow without issue.
@@ -17,15 +15,19 @@ const UnstyledButton = styled.button`
 export type ButtonBaseProps = Override<
   JSXElementProps<'button'>,
   {
-    waiting?: boolean;
+    waiting?: Maybe<boolean>;
   }
 >;
 
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
-  function ButtonBaseInner({ waiting, onClick, ...props }, ref) {
+  function ButtonBaseInner(passedProps, ref) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { waiting, onClick: _onClick, ...props } = passedProps;
+    const propsRef = useRef(passedProps);
+    propsRef.current = passedProps;
     const innerClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-      (...args) => !waiting && (onClick || noop)(...args),
-      [waiting, onClick]
+      (...args) => !waiting && propsRef.current.onClick?.(...args),
+      [waiting]
     );
     const computedProps = {
       ...props,
@@ -42,7 +44,7 @@ const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
   }
 );
 
-export const propTypes = {
+export const propTypes: PropTypesOf<ButtonBaseProps> = {
   ...htmlButtonPropTypes,
   /** Styles the Button with the "disabled" state and prevents click action */
   waiting: PropTypes.bool

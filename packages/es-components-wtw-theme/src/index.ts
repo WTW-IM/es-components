@@ -550,7 +550,7 @@ const theme: ESTheme = {
         },
       },
     },
-  } as ESTheme['buttonStyles'],
+  },
   inputStyles: {
     borderRadius: '2px',
     defaultFormStyle: 'flat',

@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import { AriaAttributes, AriaRole } from 'react';
 
-type AriaPropTypes = {
-  [key in keyof AriaAttributes]:
-    | PropTypes.Requireable<AriaAttributes[key]>
-    | PropTypes.Validator<AriaAttributes[key]>;
-};
+type AriaPropTypes = PropTypesOf<AriaAttributes>;
 
 type NonNullableAriaKeys = NonNullableKeys<AriaAttributes>;
 

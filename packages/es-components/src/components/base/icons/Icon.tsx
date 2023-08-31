@@ -35,12 +35,12 @@ const StyledIcon = styled.i<IconBaseProps>`
   ${iconBaseStyles}
 `;
 
-export type IconProps = Omit<JSXElementProps<'i'>, 'size'> & {
+type IconInternalProps = {
   name?: IconName;
   size?: CSS.Property.FontSize | number;
-  iconColor?: string;
-  alwaysShowIcon?: boolean;
 };
+
+export type IconProps = Override<JSXElementProps<'i'>, IconInternalProps>;
 
 const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
   { name, size, className, ...other },
@@ -67,14 +67,14 @@ const Icon = React.forwardRef<HTMLElement, IconProps>(function ForwardedIcon(
   );
 });
 
-export const propTypes = {
+export const propTypes: PropTypesOf<IconProps> = {
   ...htmlProps,
   /** Name of the icon to display */
   name: PropTypes.oneOf<IconName>([...iconNames]),
   /** Specify icon size in pixels */
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** Additional classes to include */
-  className: PropTypes.string
+  className: htmlProps['className']
 };
 
 export const defaultProps = {

@@ -1,11 +1,10 @@
 /* eslint react/prop-types: 0 */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 import type { DatePartChangeHandler } from './DateInput';
-import noop from '../../util/noop';
 
 const DayInput = styled(BasicTextbox)`
   appearance: textfield;
@@ -27,9 +26,11 @@ export type DayProps = Override<
 >;
 
 const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
-  { onChange = noop, onKeyDown = noop, date, ...props },
+  { date, ...props },
   ref
 ) {
+  const propsRef = useRef(props);
+  propsRef.current = props;
   const [value, setValue] = useState<string>(date?.getDate().toString() || '');
 
   const onDayChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
@@ -37,22 +38,19 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
       let day = event.currentTarget.value;
       day = day.length > 2 ? day.slice(0, 2) : day;
       setValue(day);
-      onChange('day', day);
+      propsRef.current.onChange?.('day', day);
     },
-    [onChange]
+    []
   );
 
   const onDayKeyDown = useCallback<
     React.KeyboardEventHandler<HTMLInputElement>
-  >(
-    ev => {
-      onNonNumericHandler(ev);
-      if (ev.defaultPrevented) return;
+  >(ev => {
+    onNonNumericHandler(ev);
+    if (ev.defaultPrevented) return;
 
-      onKeyDown(ev);
-    },
-    [onKeyDown]
-  );
+    propsRef.current.onKeyDown?.(ev);
+  }, []);
 
   return (
     <DayInput

@@ -1,6 +1,7 @@
 import React from 'react';
+import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import Icon from '../../base/icons/Icon';
 import Label from '../../controls/label/Label';
@@ -16,10 +17,12 @@ const IconWrapper = styled.div<IconWrapperProps>`
   padding: 6px 0 0 6px;
 `;
 
-const StyledIcon = styled(Icon)`
-  name: ${promptProps => promptProps.name};
-  color: ${promptProps => promptProps.iconColor};
-  padding-right: 5px;
+const StyledIcon = styled(Icon)<{ iconColor: CSS.Property.Color }>`
+  ${({ name, iconColor }) => css`
+    name: ${name};
+    color: ${iconColor};
+    padding-right: 5px;
+  `}}
 `;
 
 interface ContentWrapperProps {

@@ -4,17 +4,22 @@ import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import htmlTemplate from 'rollup-plugin-generate-html-template';
-import typescript from 'rollup-plugin-typescript2';
 import alias from '@rollup/plugin-alias';
 import { createRequire } from 'module';
+import { writeIconNameType } from './config/loadIconNameType.mjs';
+import { getAssetsUrl, getIsProduction } from './config/assetsUrl.js';
+import { tscEsComponents } from './config/tscEsComponents.mjs';
 
-export default args => {
-  const isProduction = args.configEnv === 'prod';
-  const assets_url = isProduction
-    ? 'https://app.viabenefits.com/static/cdn/es-assets/'
-    : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
-  const viaThemePath = createRequire(import.meta.url).resolve(
-    'es-components-via-theme'
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
+
+export default async args => {
+  await Promise.all([writeIconNameType(), tscEsComponents()]);
+  const isProduction = getIsProduction(args);
+  const assets_url = getAssetsUrl(args);
+  const require = createRequire(import.meta.url);
+
+  const viaThemePath = require.resolve(
+    '../es-components-via-theme/src/index.ts'
   );
 
   return [
@@ -23,22 +28,19 @@ export default args => {
       output: {
         file: 'docs/full-color-icons.js',
         format: 'iife',
-        intro: 'var global = typeof self !== undefined ? self : this;'
+        intro: 'var global = typeof self !== undefined ? self : this;',
+        plugins: [terser({ mangle: isProduction })]
       },
       preserveSymlinks: true,
       plugins: [
-        alias({
-          entries: [
-            {
-              find: 'es-components-via-theme',
-              replacement: viaThemePath
-            }
-          ]
-        }),
-        typescript({
-          tsconfig: './tsconfig.json'
-        }),
+        alias([
+          {
+            find: 'es-components-via-theme',
+            replacement: viaThemePath
+          }
+        ]),
         resolve({
+          extensions,
           preferBuiltins: true
         }),
         commonjs({
@@ -46,22 +48,19 @@ export default args => {
           exclude: 'src/**'
         }),
         babel({
+          extensions,
           exclude: /node_modules/,
-          envName: 'production',
+          envName: isProduction ? 'production' : 'development',
           babelHelpers: 'runtime'
         }),
         replace({
           'process.env.NODE_ENV': JSON.stringify('production'),
+          ASSETS_PATH: JSON.stringify(assets_url),
           preventAssignment: true
         }),
-        terser(),
         htmlTemplate({
           template: 'src/full-color-icons.html',
           target: 'docs/full-color-icons.html'
-        }),
-        replace({
-          ASSETS_PATH: JSON.stringify(assets_url),
-          preventAssignment: true
         })
       ]
     }

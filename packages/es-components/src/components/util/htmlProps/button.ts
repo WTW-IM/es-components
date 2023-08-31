@@ -4,11 +4,7 @@ import { baseFormElementProps } from './form';
 
 export type HTMLButtonProps = JSXElementProps<'button'>;
 
-export type HTMLButtonPropTypes = {
-  [key in keyof HTMLButtonProps]:
-    | PropTypes.Requireable<HTMLButtonProps[key]>
-    | PropTypes.Validator<HTMLButtonProps[key]>;
-};
+export type HTMLButtonPropTypes = PropTypesOf<HTMLButtonProps>;
 
 type NonNullableButtonKeys = NonNullableKeys<HTMLButtonProps>;
 

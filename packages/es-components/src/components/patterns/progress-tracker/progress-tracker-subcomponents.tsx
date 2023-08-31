@@ -322,6 +322,7 @@ type ProgressItemProps = {
   isPastStep?: Maybe<boolean>;
   numberOfSteps: number;
   onPastStepClicked?: () => void;
+  onFutureStepClicked?: () => void;
   canClickFutureStep?: Maybe<boolean>;
   label?: string;
   showNav?: Maybe<boolean>;
@@ -334,6 +335,7 @@ export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
       isPastStep,
       numberOfSteps,
       onPastStepClicked,
+      onFutureStepClicked,
       canClickFutureStep,
       label,
       showNav
@@ -350,7 +352,7 @@ export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
     const listItemProps = {
       numberOfSteps,
       disabled: !isPastStep && !canClickFutureStep,
-      onClick: onPastStepClicked
+      onClick: isPastStep ? onPastStepClicked : onFutureStepClicked
     };
 
     return (

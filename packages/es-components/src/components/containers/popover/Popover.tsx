@@ -205,7 +205,9 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       function focusPopperContent() {
         if (isOpen) {
           hasOpened.current = true;
-          popperElement?.focus();
+          setTimeout(function focusAfterRenderComplete() {
+            popperElement?.focus();
+          }, 0);
         } else {
           if (!hasOpened.current || !popperElement) {
             // ensure we don't focus on mount

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ReactDatePickerProps } from 'react-datepicker';
+import type { ReactDatePickerProps } from 'react-datepicker';
 
 /* https://github.com/FezVrasta/popper.js/blob/master/packages/popper/src/methods/placements.js */
 const popperPlacementPositions = [

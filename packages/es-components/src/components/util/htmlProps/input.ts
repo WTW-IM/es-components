@@ -4,11 +4,7 @@ import { baseFormElementProps } from './form';
 
 export type HTMLInputProps = JSXElementProps<'input'>;
 
-export type HTMLInputPropTypes = {
-  [key in keyof HTMLInputProps]:
-    | PropTypes.Requireable<HTMLInputProps[key]>
-    | PropTypes.Validator<HTMLInputProps[key]>;
-};
+export type HTMLInputPropTypes = PropTypesOf<HTMLInputProps>;
 
 type NonNullableInputKeys = NonNullableKeys<HTMLInputProps>;
 

@@ -17,13 +17,15 @@ export type CheckboxGroupProps = {
   textOnHoverCheckAll?: boolean;
 };
 
-function CheckboxGroup({
-  onChange,
-  disableAllOptions,
-  options = [],
-  checkAllText,
-  textOnHoverCheckAll
-}: CheckboxGroupProps) {
+function CheckboxGroup(props: CheckboxGroupProps) {
+  const {
+    disableAllOptions,
+    options = [],
+    checkAllText,
+    textOnHoverCheckAll
+  } = props;
+  const propsRef = useRef(props);
+  propsRef.current = props;
   const [selectedValues, setSelectedValues] = useState(
     options.filter(o => o.checked).map(o => o.value)
   );
@@ -33,8 +35,8 @@ function CheckboxGroup({
   useEffect(() => {
     if (!afterFirstRender.current) return;
 
-    onChange(selectedValues);
-  }, [onChange, selectedValues]);
+    propsRef.current.onChange?.(selectedValues);
+  }, [selectedValues]);
 
   useEffect(() => {
     const allChecked = options.every(o => selectedValues.includes(o.value));

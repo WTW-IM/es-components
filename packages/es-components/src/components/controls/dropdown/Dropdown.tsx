@@ -10,7 +10,6 @@ import InputBase, {
 import { callRefs } from '../../util/callRef';
 import { arrowDown } from './assets';
 import getStyledProp, { ESThemeProps } from '../../util/getStyledProp';
-import noop from '../../util/noop';
 
 const getCSSArrow = (props: ESThemeProps) =>
   `"${
@@ -60,7 +59,7 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
       React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>
     >((ev: React.ChangeEvent<HTMLSelectElement>) => {
       setHasValue(Boolean(ev.target.value));
-      (propsRef.current.onChange || noop)(ev);
+      propsRef.current.onChange?.(ev);
     }, []);
 
     const inputRefCallback = useCallback(

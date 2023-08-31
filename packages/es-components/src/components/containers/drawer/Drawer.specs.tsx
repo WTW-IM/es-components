@@ -10,10 +10,6 @@ import Drawer, {
   useDrawerItemContext
 } from './Drawer';
 
-const noop = () => {
-  // noop
-};
-
 // Ensure styled panels always work
 const StyledFirstPanel = styled(Drawer.Panel)`
   background-color: blue;
@@ -135,7 +131,7 @@ describe('Drawer.Item functionality', () => {
         <div>
           <Drawer.Item open={openItems[0]}>
             <ItemTracker
-              trackDrawerChange={isOpen => (onDrawersChange[0] || noop)(isOpen)}
+              trackDrawerChange={isOpen => onDrawersChange[0]?.(isOpen)}
             />
             <Drawer.ItemOpener>
               <button type="button">collapse 1</button>
@@ -145,7 +141,7 @@ describe('Drawer.Item functionality', () => {
         </div>
         <Drawer.Item open={openItems[1]}>
           <ItemTracker
-            trackDrawerChange={isOpen => (onDrawersChange[1] || noop)(isOpen)}
+            trackDrawerChange={isOpen => onDrawersChange[1]?.(isOpen)}
           />
           <Drawer.ItemOpener>
             <button type="button">collapse 2</button>
@@ -154,7 +150,7 @@ describe('Drawer.Item functionality', () => {
         </Drawer.Item>
         <Drawer.Item open={openItems[2]}>
           <ItemTracker
-            trackDrawerChange={isOpen => (onDrawersChange[2] || noop)(isOpen)}
+            trackDrawerChange={isOpen => onDrawersChange[2]?.(isOpen)}
           />
           <Drawer.ItemOpener>
             <button type="button">collapse 3</button>

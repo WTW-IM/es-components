@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Checkbox, { CheckboxProps } from './Checkbox';
 import CheckAllBox from './CheckAllBox';
 import { htmlInputPropTypes } from '../../util/htmlProps';
-import noop from '../../util/noop';
 
 const Spacer = styled.div<{ bumpRight?: boolean }>`
   margin-left: ${props => (props.bumpRight ? '10px' : '0')};
@@ -36,7 +35,7 @@ function CheckboxGroup(props: CheckboxGroupProps) {
   useEffect(() => {
     if (!afterFirstRender.current) return;
 
-    (propsRef.current.onChange || noop)(selectedValues);
+    propsRef.current.onChange?.(selectedValues);
   }, [selectedValues]);
 
   useEffect(() => {

@@ -7,7 +7,6 @@ import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
 import Dropdown, { DropdownProps } from '../../controls/dropdown/Dropdown';
 import type { DatePartChangeHandler } from './DateInput';
-import noop from '../../util/noop';
 
 const MonthDropdown = styled(Dropdown)`
   flex: 3 1 100px;
@@ -38,7 +37,7 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
       React.ChangeEventHandler<HTMLSelectElement>
     >(event => {
       setMonth(event.target.value);
-      (propsRef.current.onChange || noop)('month', event.target.value);
+      propsRef.current.onChange?.('month', event.target.value);
     }, []);
 
     return (

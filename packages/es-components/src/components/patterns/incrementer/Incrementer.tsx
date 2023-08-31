@@ -135,7 +135,7 @@ const Incrementer = React.forwardRef<HTMLDivElement, IncrementerProps>(
           return;
         }
 
-        (propsRef.current.onValueUpdated || noop)(count);
+        propsRef.current.onValueUpdated?.(count);
       },
       [count]
     );

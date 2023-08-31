@@ -122,8 +122,8 @@ const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
 
     const onClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
       e => {
-        (propsRef.current.onClick || noop)(e);
-        (propsRef.current.onExplanationOpen || noop)();
+        propsRef.current.onClick?.(e);
+        propsRef.current.onExplanationOpen?.();
         setShowHelp(true);
       },
       []

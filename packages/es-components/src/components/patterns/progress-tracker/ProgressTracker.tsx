@@ -43,7 +43,7 @@ const getMappedSteps = ({
         isPastStep={isPastStep}
         numberOfSteps={steps.length}
         onPastStepClicked={() => onPastStepClicked(index)}
-        onFutureStepClicked={() => (onFutureStepClicked || noop)(index)}
+        onFutureStepClicked={() => onFutureStepClicked?.(index)}
         canClickFutureStep={Boolean(onFutureStepClicked)}
         label={step.label || ''}
         showNav={showNav}

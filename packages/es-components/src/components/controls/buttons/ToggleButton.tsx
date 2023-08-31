@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Button, { ButtonProps } from './Button';
 import OutlineButton from './OutlineButton';
-import noop from '../../util/noop';
 
 export type ToggleButtonProps = ButtonProps & {
   isPressed?: boolean;
@@ -25,7 +24,7 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
       React.MouseEventHandler<HTMLButtonElement>
     >(event => {
       setIsPressed(oldIsPressed => !oldIsPressed);
-      (propsRef.current.onClick || noop)(event);
+      propsRef.current.onClick?.(event);
     }, []);
 
     const ToggleButtonType = isOutline ? OutlineButton : Button;

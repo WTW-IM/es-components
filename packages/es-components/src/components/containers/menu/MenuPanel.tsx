@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import { InlineContext } from './InlineContext';
 import useTopZIndex from '../../../hooks/useTopZIndex';
-import noop from '../../util/noop';
 
 const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
   background-color: ${({
@@ -62,7 +61,7 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
 
       function onEscape({ key }: { key: string }) {
         if (key === 'Escape') {
-          (propsRef.current.onClose || noop)();
+          propsRef.current.onClose?.();
         }
       }
       window.addEventListener('keydown', onEscape);

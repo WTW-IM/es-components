@@ -18,7 +18,6 @@ import {
 
 import { calendarArrowStyles } from './datepickerAssets';
 import useTopZIndex from '../../../hooks/useTopZIndex';
-import noop from '../../util/noop';
 
 const STRING_FORMAT = 'yyyy-MM-dd' as const;
 
@@ -113,7 +112,7 @@ function NativeDatePicker({ selectedDate, ...props }: DatePickerProps) {
 
   const onChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>(
     e => {
-      (propsRef.current.onChange || noop)(normalizeDate(e.target.value));
+      propsRef.current.onChange?.(normalizeDate(e.target.value));
     },
     []
   );
@@ -122,7 +121,7 @@ function NativeDatePicker({ selectedDate, ...props }: DatePickerProps) {
     e => {
       // date is guaranteed to be valid on select
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      (propsRef.current.onSelect || noop)(normalizeDate(e.target.value)!, e);
+      propsRef.current.onSelect?.(normalizeDate(e.target.value)!, e);
     },
     []
   );
@@ -165,7 +164,7 @@ const DateTextbox = React.forwardRef<HTMLInputElement, DateTextboxProps>(
       e => {
         if (!suppressDatepicker) return;
 
-        (propsRef.current.onChange || noop)(normalizeDate(e.target.value), e);
+        propsRef.current.onChange?.(normalizeDate(e.target.value), e);
       },
       [suppressDatepicker]
     );

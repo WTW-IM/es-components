@@ -244,7 +244,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
               .activeElement || null
           )
         ) {
-          (propsRef.current.onBlur || noop)(event);
+          propsRef.current.onBlur?.(event);
         }
       }, 0);
     }, []);

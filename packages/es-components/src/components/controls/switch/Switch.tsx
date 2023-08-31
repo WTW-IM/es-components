@@ -255,7 +255,7 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const isChecked = event.target.checked;
       setIsToggled(isChecked);
-      (propsRef.current.onChange || noop)(event);
+      propsRef.current.onChange?.(event);
     },
     []
   );

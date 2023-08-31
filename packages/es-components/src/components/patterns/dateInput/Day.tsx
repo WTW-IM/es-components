@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 import type { DatePartChangeHandler } from './DateInput';
-import noop from '../../util/noop';
 
 const DayInput = styled(BasicTextbox)`
   appearance: textfield;
@@ -39,7 +38,7 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
       let day = event.currentTarget.value;
       day = day.length > 2 ? day.slice(0, 2) : day;
       setValue(day);
-      (propsRef.current.onChange || noop)('day', day);
+      propsRef.current.onChange?.('day', day);
     },
     []
   );
@@ -50,7 +49,7 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
     onNonNumericHandler(ev);
     if (ev.defaultPrevented) return;
 
-    (propsRef.current.onKeyDown || noop)(ev);
+    propsRef.current.onKeyDown?.(ev);
   }, []);
 
   return (

@@ -11,10 +11,6 @@ import AnimateHeight, { AnimateHeightProps } from 'react-animate-height';
 import { DrawerContext } from './DrawerContext';
 import useUniqueId from '../../util/useUniqueId';
 
-const noop = () => {
-  // noop
-};
-
 interface DrawerItemContextShape {
   open: boolean;
   itemId: string;
@@ -90,7 +86,7 @@ export const DrawerItem: React.FC<DrawerItemProps> = ({
         return;
       }
 
-      (onChange.current || noop)(open);
+      onChange.current?.(open);
     },
     [open]
   );
@@ -153,7 +149,7 @@ DrawerItemBody.propTypes = {
 
 export interface DrawerItemOpenerProps {
   children: React.ReactElement<{
-    onClick: (event: React.SyntheticEvent) => void;
+    onClick?: (event: React.SyntheticEvent) => void;
     'aria-expanded'?: boolean;
     'aria-controls'?: string;
   }>;
@@ -162,21 +158,22 @@ export interface DrawerItemOpenerProps {
 function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
   const child = React.Children.only(children);
   const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
-  const childClick = useRef(child?.props?.onClick || noop);
+  const childClick = useRef(child.props.onClick);
 
   useEffect(() => {
-    childClick.current = child?.props?.onClick || noop;
-  }, [child?.props?.onClick]);
+    childClick.current = child.props.onClick;
+  }, [child.props.onClick]);
 
   const onClick = useCallback(
     (ev: React.SyntheticEvent) => {
-      childClick.current(ev);
+      childClick.current?.(ev);
       toggleOpen();
     },
     [toggleOpen, childClick]
   );
+
   return React.cloneElement(child, {
-    ...child?.props,
+    ...child.props,
     onClick,
     'aria-expanded': open,
     'aria-controls': `${itemId}-region`

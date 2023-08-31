@@ -6,8 +6,6 @@ import {
   htmlButtonDefaultProps
 } from '../../util/htmlProps';
 
-import noop from '../../util/noop';
-
 // Using this because React does not like many of our upstream props.
 // This allows that to flow without issue.
 const UnstyledButton = styled.button`
@@ -28,7 +26,7 @@ const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
     const propsRef = useRef(passedProps);
     propsRef.current = passedProps;
     const innerClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-      (...args) => !waiting && (propsRef.current.onClick || noop)(...args),
+      (...args) => !waiting && propsRef.current.onClick?.(...args),
       [waiting]
     );
     const computedProps = {

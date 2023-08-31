@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 import type { DatePartChangeHandler } from './DateInput';
-import noop from '../../util/noop';
 
 const YearInput = styled(BasicTextbox)`
   appearance: textfield;
@@ -38,7 +37,7 @@ const Year = React.forwardRef<HTMLInputElement, YearProps>(
       let year = event.target.value;
       year = year.length > 4 ? year.slice(0, 4) : year;
       setValue(year);
-      (propsRef.current.onChange || noop)('year', year);
+      propsRef.current.onChange?.('year', year);
     }, []);
 
     const onYearKeyDown = useCallback<
@@ -47,7 +46,7 @@ const Year = React.forwardRef<HTMLInputElement, YearProps>(
       onNonNumericHandler(ev);
       if (ev.defaultPrevented) return;
 
-      (propsRef.current.onKeyDown || noop)(ev);
+      propsRef.current.onKeyDown?.(ev);
     }, []);
 
     return (

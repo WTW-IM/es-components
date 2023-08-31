@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.2...v21.9.0-pre-prod.3) (2023-08-31)
+
+### Build
+
+- adding branch name to canary preId ([5e68e2b](https://github.com/WTW-IM/es-components/commit/5e68e2bf149a285bb526def8269b79f91050bc48))
+- removing lerna bootstrap from docs publish ([ffb02e9](https://github.com/WTW-IM/es-components/commit/ffb02e984b8027088d38ec266823821d72f51ad1))
+
+### Fix
+
+- ensuring css prop works ([e68d019](https://github.com/WTW-IM/es-components/commit/e68d01935fd1951dd273b4eb65773c3a4651d165))
+- ensuring ProgressTracker steps are appropriately clickable ([b1a997b](https://github.com/WTW-IM/es-components/commit/b1a997bd911f115fcd2ba1c738962cbee73c06f0))
+- ensuring we don't get in render loops from passed functions ([86578c7](https://github.com/WTW-IM/es-components/commit/86578c793d96dd715aa9fc87b02213425b1cd492))
+- ensuring we don't jump to focus on Popover open ([07b0d8a](https://github.com/WTW-IM/es-components/commit/07b0d8afedc1fca9293adbc4f095be3c5610f9bd))
+- fixing Tooltip color (and handling prop types better) ([02225f7](https://github.com/WTW-IM/es-components/commit/02225f73618b43142b8404fc57c9b72118229efb))
+- using optional chaining to function calls instead of noop fallback ([29cf199](https://github.com/WTW-IM/es-components/commit/29cf1993a3adfad9bd25c9115be3a6d2cd9571b7))
+
 # [21.9.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.1...v21.9.0-pre-prod.2) (2023-08-24)
 
 ### Build

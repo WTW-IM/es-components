@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.2...v21.9.0-pre-prod.3) (2023-08-31)
+
+### Fix
+
+- ensuring css prop works ([e68d019](https://github.com/WTW-IM/es-components/commit/e68d01935fd1951dd273b4eb65773c3a4651d165))
+
 # [21.9.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.1...v21.9.0-pre-prod.2) (2023-08-24)
 
 ### Build

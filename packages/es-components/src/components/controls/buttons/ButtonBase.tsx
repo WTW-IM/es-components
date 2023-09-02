@@ -1,10 +1,11 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   htmlButtonPropTypes,
   htmlButtonDefaultProps
 } from '../../util/htmlProps';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 // Using this because React does not like many of our upstream props.
 // This allows that to flow without issue.
@@ -20,23 +21,24 @@ export type ButtonBaseProps = Override<
 >;
 
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
-  function ButtonBaseInner(passedProps, ref) {
+  function ButtonBaseInner({ waiting, onClick: onClickProp, ...props }, ref) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { waiting, onClick: _onClick, ...props } = passedProps;
-    const propsRef = useRef(passedProps);
-    propsRef.current = passedProps;
-    const innerClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-      (...args) => !waiting && propsRef.current.onClick?.(...args),
-      [waiting]
-    );
+    const onClick: React.MouseEventHandler<HTMLButtonElement> =
+      useMonitoringCallback(
+        (currentOnClick, ...args) => !waiting && currentOnClick?.(...args),
+        [waiting],
+        onClickProp
+      );
+
     const computedProps = {
       ...props,
       ...(waiting ? { 'data-waiting': waiting } : {})
     };
+
     return (
       <UnstyledButton
         type="button"
-        onClick={innerClick}
+        onClick={onClick}
         {...computedProps}
         ref={ref}
       />

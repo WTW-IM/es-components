@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { DefaultTheme, StyledComponent } from 'styled-components';
 import InputBase, {
@@ -10,6 +10,7 @@ import InputBase, {
 import { callRefs } from '../../util/callRef';
 import { arrowDown } from './assets';
 import getStyledProp, { ESThemeProps } from '../../util/getStyledProp';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const getCSSArrow = (props: ESThemeProps) =>
   `"${
@@ -49,18 +50,16 @@ export type DropdownProps = JSXElementProps<'select'> & {
 };
 
 const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
-  function ForwardedDropdown(props, ref) {
-    const propsRef = useRef(props);
-    propsRef.current = props;
+  function ForwardedDropdown({ onChange: onChangeProp, ...props }, ref) {
+    const { value, defaultValue } = props;
     const validationStyleProps = useValidationStyleProps(props);
     const [hasValue, setHasValue] = useState(Boolean(props.value));
     const [inputRef, setInputRef] = useState<HTMLSelectElement | null>(null);
-    const onChange = useCallback<
-      React.ChangeEventHandler<HTMLSelectElement | HTMLInputElement>
-    >((ev: React.ChangeEvent<HTMLSelectElement>) => {
-      setHasValue(Boolean(ev.target.value));
-      propsRef.current.onChange?.(ev);
-    }, []);
+    const onChange: React.ChangeEventHandler<HTMLSelectElement> =
+      useMonitoringCallback((currentOnChange, ev) => {
+        setHasValue(Boolean(ev.target.value));
+        currentOnChange?.(ev);
+      }, onChangeProp);
 
     const inputRefCallback = useCallback(
       (node: HTMLSelectElement | null) => callRefs(node, setInputRef, ref),
@@ -73,8 +72,8 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
         return;
       }
 
-      setHasValue(Boolean(props.value || props.defaultValue));
-    }, [props.value, props.defaultValue, inputRef, inputRef?.value]);
+      setHasValue(Boolean(value || defaultValue));
+    }, [value, defaultValue, inputRef, inputRef?.value]);
 
     return (
       <DropdownInput

@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -7,6 +7,7 @@ import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
 import Dropdown, { DropdownProps } from '../../controls/dropdown/Dropdown';
 import type { DatePartChangeHandler } from './DateInput';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const MonthDropdown = styled(Dropdown)`
   flex: 3 1 100px;
@@ -24,21 +25,18 @@ export type MonthProps = Override<
 
 const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
   function ForwardedMonth(
-    { monthNames = [], selectOptionText, date, ...props },
+    { monthNames = [], selectOptionText, date, onChange, ...props },
     ref
   ) {
-    const propsRef = useRef(props);
-    propsRef.current = props;
     const theme = useTheme();
     const validationState = useContext(ValidationContext);
     const [month, setMonth] = useState(date ? date.getMonth() + 1 : '');
 
-    const onMonthChange = useCallback<
-      React.ChangeEventHandler<HTMLSelectElement>
-    >(event => {
-      setMonth(event.target.value);
-      propsRef.current.onChange?.('month', event.target.value);
-    }, []);
+    const onMonthChange: React.ChangeEventHandler<HTMLSelectElement> =
+      useMonitoringCallback((currentOnChange, event) => {
+        setMonth(event.target.value);
+        currentOnChange?.('month', event.target.value);
+      }, onChange);
 
     return (
       <MonthDropdown

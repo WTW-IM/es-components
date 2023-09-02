@@ -1,10 +1,11 @@
 /* eslint react/prop-types: 0 */
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 import type { DatePartChangeHandler } from './DateInput';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const YearInput = styled(BasicTextbox)`
   appearance: textfield;
@@ -26,28 +27,24 @@ export type YearProps = Override<
 >;
 
 const Year = React.forwardRef<HTMLInputElement, YearProps>(
-  function ForwardedYear({ date, ...props }, ref) {
-    const propsRef = useRef(props);
-    propsRef.current = props;
+  function ForwardedYear({ date, onChange, onKeyDown, ...props }, ref) {
     const [value, setValue] = useState(date?.getFullYear() || '');
 
-    const onYearChange = useCallback<
-      React.ChangeEventHandler<HTMLInputElement>
-    >(event => {
-      let year = event.target.value;
-      year = year.length > 4 ? year.slice(0, 4) : year;
-      setValue(year);
-      propsRef.current.onChange?.('year', year);
-    }, []);
+    const onYearChange: React.ChangeEventHandler<HTMLInputElement> =
+      useMonitoringCallback((currentOnChange, event) => {
+        let year = event.target.value;
+        year = year.length > 4 ? year.slice(0, 4) : year;
+        setValue(year);
+        currentOnChange?.('year', year);
+      }, onChange);
 
-    const onYearKeyDown = useCallback<
-      React.KeyboardEventHandler<HTMLInputElement>
-    >(ev => {
-      onNonNumericHandler(ev);
-      if (ev.defaultPrevented) return;
+    const onYearKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
+      useMonitoringCallback((currentOnKeyDown, ev) => {
+        onNonNumericHandler(ev);
+        if (ev.defaultPrevented) return;
 
-      propsRef.current.onKeyDown?.(ev);
-    }, []);
+        currentOnKeyDown?.(ev);
+      }, onKeyDown);
 
     return (
       <YearInput

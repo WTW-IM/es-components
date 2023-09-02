@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import StarRatingExplanation from './StarRatingExplanation';
 import useRootNode from '../../util/useRootNode';
 import noop from '../../util/noop';
 import { callRefs } from '../../util/callRef';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 formatMessage.setup({ missingTranslation: 'ignore' });
 
@@ -103,31 +104,30 @@ function getAriaText(isPoorPerformer: Maybe<boolean>, rating: Maybe<number>) {
 }
 
 const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
-  function ForwardedStarRating(passedProps, ref) {
-    const {
+  function ForwardedStarRating(
+    {
       rating,
       isPoorPerformer = false,
       noRatingText = NOT_AVAILABLE_MESSAGE,
-      /* eslint-disable @typescript-eslint/no-unused-vars */
-      onClick: _onClick,
-      onExplanationOpen: _onExplanationOpen,
-      /* eslint-enable @typescript-eslint/no-unused-vars */
+      onClick: onClickProp,
+      onExplanationOpen,
       ...props
-    } = passedProps;
-    const propsRef = useRef(passedProps);
-    propsRef.current = passedProps;
+    },
+    ref
+  ) {
     const [showHelp, setShowHelp] = useState(false);
     const [rootNode, rootNodeRef] = useRootNode(document.body);
     const ariaText = getAriaText(isPoorPerformer, rating);
 
-    const onClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
-      e => {
-        propsRef.current.onClick?.(e);
-        propsRef.current.onExplanationOpen?.();
-        setShowHelp(true);
-      },
-      []
-    );
+    const onClick: React.MouseEventHandler<HTMLButtonElement> =
+      useMonitoringCallback(
+        ([currentOnClick, currentOnExplanationOpen], e) => {
+          currentOnClick?.(e);
+          currentOnExplanationOpen?.();
+          setShowHelp(true);
+        },
+        [onClickProp, onExplanationOpen] as const
+      );
 
     const closeModal = useCallback(() => {
       setShowHelp(false);

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.3...v21.9.0-pre-prod.4) (2023-09-05)
+
+### Build
+
+- ensuring we run lint on PR events ([3bc7608](https://github.com/WTW-IM/es-components/commit/3bc76087adaf0655c51a618d56e0e590be853387))
+
+### Update
+
+- creating useMonitoringHooks to replace propsRef ([b4882a4](https://github.com/WTW-IM/es-components/commit/b4882a4089a6978aad2de3abf209287d2fbb0ea3))
+
 # [21.9.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.2...v21.9.0-pre-prod.3) (2023-08-31)
 
 ### Build

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useLoadingState } from '../../../../hooks/useLoadingState';
 import {
@@ -6,6 +6,7 @@ import {
   propTypes as buttonBasePropTypes,
   defaultProps as buttonBaseDefaultProps
 } from '../ButtonBase';
+import { useMonitoringCallback } from '../../../../hooks/useMonitoringHooks';
 
 export interface LoadingStateOnClick {
   (ev: React.MouseEvent<HTMLButtonElement>): Promise<void>;
@@ -42,23 +43,26 @@ export function withLoadingStateWhileRunning<
     HTMLButtonElement,
     ButtonWithLoadingStateProps<P>
   >(function ForwardedButtonWithLoadingState(
-    { showWhileRunning: runningContent, children, waiting, ...otherProps },
+    {
+      showWhileRunning: runningContent,
+      children,
+      waiting,
+      onClick = voidClick,
+      ...otherProps
+    },
     ref
   ) {
-    const propsRef = useRef(otherProps);
     const [isRunning, showRunningWhile] = useLoadingState();
     const runOperation: React.MouseEventHandler<HTMLButtonElement> =
-      useCallback(
-        (...params) => {
-          const { onClick = voidClick } = propsRef.current;
+      useMonitoringCallback(
+        (currentOnClick, ...params) => {
           if (runningContent && !isRunning)
-            return void showRunningWhile(
-              (onClick as LoadingStateOnClick)(...params)
-            );
+            return void showRunningWhile(currentOnClick(...params));
 
-          return onClick(...params);
+          return void currentOnClick(...params);
         },
-        [isRunning, runningContent, showRunningWhile]
+        [isRunning, runningContent, showRunningWhile],
+        onClick
       );
 
     return (

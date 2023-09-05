@@ -33,17 +33,17 @@ jobs:
 
       - name: Run Lint
         working-directory: packages/es-components
-        if: ${{
-          github.ref != 'refs/heads/main' &&
-          github.ref != 'refs/heads/pre-prod' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         continue-on-error: true
         run: |
-          npx eslint --output-file eslint_report.json --format json .
+          npx eslint \
+            --output-file eslint_report.json \
+            --format json \
+            --no-error-on-unmatched-pattern \
+            $(git diff --name-only --relative)
 
       - name: Annotate JS Linting Results
-        if: ${{
-          github.ref != 'refs/heads/main' &&
-          github.ref != 'refs/heads/pre-prod' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         uses: ataylorme/eslint-annotate-action@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

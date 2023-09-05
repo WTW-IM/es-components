@@ -1,8 +1,9 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Button, { ButtonProps } from './Button';
 import OutlineButton from './OutlineButton';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 export type ToggleButtonProps = ButtonProps & {
   isPressed?: boolean;
@@ -11,21 +12,19 @@ export type ToggleButtonProps = ButtonProps & {
 
 const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   function ToggleButton(props, ref) {
-    const { styleType, size, block, isOutline, ...buttonProps } = props;
-    const propsRef = useRef(props);
-    propsRef.current = props;
+    const { styleType, size, block, isOutline, onClick, ...buttonProps } =
+      props;
     const [isPressed, setIsPressed] = useState(props.isPressed);
 
     useEffect(() => {
       setIsPressed(props.isPressed);
     }, [props.isPressed]);
 
-    const toggleButton = useCallback<
-      React.MouseEventHandler<HTMLButtonElement>
-    >(event => {
-      setIsPressed(oldIsPressed => !oldIsPressed);
-      propsRef.current.onClick?.(event);
-    }, []);
+    const toggleButton: React.MouseEventHandler<HTMLButtonElement> =
+      useMonitoringCallback((currentOnClick, event) => {
+        setIsPressed(oldIsPressed => !oldIsPressed);
+        currentOnClick?.(event);
+      }, onClick);
 
     const ToggleButtonType = isOutline ? OutlineButton : Button;
 

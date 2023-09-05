@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { ValidationMap } from 'prop-types';
 import styled from 'styled-components';
 import Checkbox, { CheckboxProps } from './Checkbox';
 import CheckAllBox from './CheckAllBox';
 import { htmlInputPropTypes } from '../../util/htmlProps';
+import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
 const Spacer = styled.div<{ bumpRight?: boolean }>`
   margin-left: ${props => (props.bumpRight ? '10px' : '0')};
@@ -17,26 +18,28 @@ export type CheckboxGroupProps = {
   textOnHoverCheckAll?: boolean;
 };
 
-function CheckboxGroup(props: CheckboxGroupProps) {
-  const {
-    disableAllOptions,
-    options = [],
-    checkAllText,
-    textOnHoverCheckAll
-  } = props;
-  const propsRef = useRef(props);
-  propsRef.current = props;
+const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
+  disableAllOptions,
+  options = [],
+  checkAllText,
+  textOnHoverCheckAll,
+  onChange
+}) => {
   const [selectedValues, setSelectedValues] = useState(
     options.filter(o => o.checked).map(o => o.value)
   );
   const [checkAll, setCheckAll] = useState(false);
   const afterFirstRender = useRef(false);
 
-  useEffect(() => {
-    if (!afterFirstRender.current) return;
+  useMonitoringEffect(
+    currentOnChange => {
+      if (!afterFirstRender.current) return;
 
-    propsRef.current.onChange?.(selectedValues);
-  }, [selectedValues]);
+      currentOnChange?.(selectedValues);
+    },
+    [selectedValues],
+    onChange
+  );
 
   useEffect(() => {
     const allChecked = options.every(o => selectedValues.includes(o.value));
@@ -102,7 +105,7 @@ function CheckboxGroup(props: CheckboxGroupProps) {
       ))}
     </>
   );
-}
+};
 
 CheckboxGroup.propTypes = {
   /** change handler */
@@ -110,7 +113,10 @@ CheckboxGroup.propTypes = {
   /** Disable all checkbox buttons */
   disableAllOptions: PropTypes.bool,
   /** array of checkbox objects defined by this shape */
-  options: PropTypes.arrayOf(PropTypes.shape(htmlInputPropTypes)),
+  options: PropTypes.arrayOf<CheckboxProps>(
+    PropTypes.shape(htmlInputPropTypes as ValidationMap<CheckboxProps>)
+      .isRequired
+  ),
   /** display an optional "Check All" checkbox with this value */
   checkAllText: PropTypes.string,
   /** display the "Check All" text on hover */

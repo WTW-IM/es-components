@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
 import styled, { DefaultTheme } from 'styled-components';
@@ -9,6 +9,7 @@ import {
   validationStyleTypes
 } from 'es-components-shared-types';
 import noop from '../../util/noop';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 type SwitchStyleType = ButtonVariantStyleType | ValidationStyleType;
 
@@ -225,10 +226,7 @@ export type SwitchProps = JSXElementProps<'div'> & {
 };
 
 const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
-  props,
-  ref
-) {
-  const {
+  {
     type = 'primary',
     label,
     direction = 'right',
@@ -237,12 +235,11 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
     offText = '',
     checked,
     disabled,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onChange,
     ...switchProps
-  } = props;
-  const propsRef = useRef(props);
-  propsRef.current = props;
+  },
+  ref
+) {
   const [isToggled, setIsToggled] = useState(checked);
 
   const elementProps = { direction, type };
@@ -251,14 +248,12 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
     setIsToggled(checked);
   }, [checked]);
 
-  const handleToggle = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleToggle: React.ChangeEventHandler<HTMLInputElement> =
+    useMonitoringCallback((currentOnChange, event) => {
       const isChecked = event.target.checked;
       setIsToggled(isChecked);
-      propsRef.current.onChange?.(event);
-    },
-    []
-  );
+      currentOnChange?.(event);
+    }, onChange);
 
   return (
     <SwitchBase

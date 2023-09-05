@@ -10,6 +10,7 @@ import Year, { YearProps } from './Year';
 
 import isBool from '../../util/isBool';
 import noop from '../../util/noop';
+import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const Wrapper = styled.div`
   display: flex;
@@ -133,20 +134,20 @@ function isDatePartChild(
 }
 
 const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
-  function ForwardedDateInput(passedProps, ref) {
-    const {
+  function ForwardedDateInput(
+    {
       children,
       defaultValue,
       defaultDay = '',
       id,
       maxDate,
       minDate,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      onChange: _onChange,
+      onChange,
+      onBlur,
       ...props
-    } = passedProps;
-    const propsRef = useRef(passedProps);
-    propsRef.current = passedProps;
+    },
+    ref
+  ) {
     const [state, dispatch] = useReducer<typeof reducer>(
       reducer,
       getDefaultState(defaultValue, defaultDay)
@@ -203,24 +204,23 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       [maxDate, minDate]
     );
 
-    const onChangeDatePart = useCallback(
-      (datePart: DatePart, value: string) => {
-        const { onChange = noop } = propsRef.current;
+    const onChangeDatePart = useMonitoringCallback(
+      (currentOnChange, datePart: DatePart, value: string) => {
         const { day, month, year } = state;
         switch (datePart) {
           case 'day':
-            onChange(createDate(year, month, value));
+            currentOnChange?.(createDate(year, month, value));
             dispatch({
               type: 'day_updated',
               value
             });
             return;
           case 'month':
-            onChange(createDate(year, value, day));
+            currentOnChange?.(createDate(year, value, day));
             dispatch({ type: 'month_updated', value });
             return;
           case 'year':
-            onChange(createDate(value, month, day));
+            currentOnChange?.(createDate(value, month, day));
             dispatch({
               type: 'year_updated',
               value
@@ -230,24 +230,24 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
             throw new Error();
         }
       },
-      [createDate, state]
+      [createDate, state],
+      onChange
     );
 
-    const onBlurComponent = useCallback<
-      React.FocusEventHandler<HTMLInputElement>
-    >(event => {
-      const target = event.currentTarget;
-      setTimeout(() => {
-        if (
-          !target.contains(
-            (target.getRootNode() as unknown as DocumentOrShadowRoot)
-              .activeElement || null
-          )
-        ) {
-          propsRef.current.onBlur?.(event);
-        }
-      }, 0);
-    }, []);
+    const onBlurComponent: React.FocusEventHandler<HTMLInputElement> =
+      useMonitoringCallback((currentOnBlur, event) => {
+        const target = event.currentTarget;
+        setTimeout(() => {
+          if (
+            !target.contains(
+              (target.getRootNode() as unknown as DocumentOrShadowRoot)
+                .activeElement || null
+            )
+          ) {
+            currentOnBlur?.(event);
+          }
+        }, 0);
+      }, onBlur);
 
     let setId = false;
 

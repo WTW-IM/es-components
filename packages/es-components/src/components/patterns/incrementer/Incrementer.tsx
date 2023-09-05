@@ -13,6 +13,7 @@ import {
 } from '../../controls/textbox/InputBase';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import noop from '../../util/noop';
+import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
 const IncrementerWrapper = styled.div`
   align-items: flex-start;
@@ -95,20 +96,19 @@ export type IncrementerProps = BasicTextboxProps & {
 };
 
 const Incrementer = React.forwardRef<HTMLDivElement, IncrementerProps>(
-  function ForwardedIncrementer(props, ref) {
-    const {
+  function ForwardedIncrementer(
+    {
       startingValue,
       incrementAmount = 1,
       decrementAmount = 1,
       upperThreshold = null,
       lowerThreshold = null,
       useOutlineButton,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      onValueUpdated: _onValueUpdated,
+      onValueUpdated,
       ...other
-    } = props;
-    const propsRef = useRef(props);
-    propsRef.current = props;
+    },
+    ref
+  ) {
     const initialRender = useRef(true);
 
     const [count, setCount] = useState(getCount(startingValue));
@@ -129,15 +129,16 @@ const Incrementer = React.forwardRef<HTMLDivElement, IncrementerProps>(
       [count, upperThreshold, lowerThreshold]
     );
 
-    useEffect(
-      function emitValueUpdated() {
+    useMonitoringEffect(
+      function emitValueUpdated(currentOnValueUpdated) {
         if (initialRender.current) {
           return;
         }
 
-        propsRef.current.onValueUpdated?.(count);
+        currentOnValueUpdated?.(count);
       },
-      [count]
+      [count],
+      onValueUpdated
     );
 
     useEffect(

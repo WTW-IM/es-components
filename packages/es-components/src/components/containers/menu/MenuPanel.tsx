@@ -1,9 +1,10 @@
-import React, { useEffect, useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DismissButton from '../../controls/DismissButton';
 import { InlineContext } from './InlineContext';
 import useTopZIndex from '../../../hooks/useTopZIndex';
+import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
 const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
   background-color: ${({
@@ -48,28 +49,32 @@ type MenuPanelProps = JSXElementProps<'div'> & {
 };
 
 const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
-  function MenuPanel(props, ref) {
-    const { children, headerContent, isOpen, ...other } = props;
-    const propsRef = useRef(props);
-    propsRef.current = props;
+  function ForwardedMenuPanel(
+    { children, headerContent, isOpen, onClose, ...other },
+    ref
+  ) {
     const getTopIndex = useTopZIndex();
 
-    useEffect(() => {
-      if (!isOpen) {
-        return;
-      }
-
-      function onEscape({ key }: { key: string }) {
-        if (key === 'Escape') {
-          propsRef.current.onClose?.();
+    useMonitoringEffect(
+      currentOnClose => {
+        if (!isOpen) {
+          return;
         }
-      }
-      window.addEventListener('keydown', onEscape);
 
-      return function removeKeydownListener() {
-        window.removeEventListener('keydown', onEscape);
-      };
-    }, [isOpen]);
+        function onEscape({ key }: { key: string }) {
+          if (key === 'Escape') {
+            currentOnClose?.();
+          }
+        }
+        window.addEventListener('keydown', onEscape);
+
+        return function removeKeydownListener() {
+          window.removeEventListener('keydown', onEscape);
+        };
+      },
+      [isOpen],
+      onClose
+    );
 
     const hasHeaderContent = !!headerContent;
 
@@ -84,7 +89,7 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
       >
         <Header hasHeaderContent={hasHeaderContent}>
           {hasHeaderContent && <span>{headerContent}</span>}
-          <StyledDismissButton onClick={propsRef.current.onClose} />
+          <StyledDismissButton onClick={onClose} />
         </Header>
         <StyledChildrenContainer inline={inline}>
           {children}

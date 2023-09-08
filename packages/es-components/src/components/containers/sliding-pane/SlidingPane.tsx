@@ -26,7 +26,7 @@ interface CloseLinkProps {
 type SlidingPaneProps = Override<
   ReactModalProps,
   {
-    children: string;
+    children: NonNullable<React.ReactNode>;
     title?: string;
     subTitle?: string;
     shouldCloseOnEsc?: boolean;
@@ -38,8 +38,8 @@ type SlidingPaneProps = Override<
     headingLevel?: HeadingLevel;
     headingSize?: HeadingLevel;
     closeTimeout?: number;
-    overlayStyles?: ReactModal.Styles;
-    contentStyles?: ReactModal.Styles;
+    overlayStyles?: ReactModal.Styles['overlay'];
+    contentStyles?: ReactModal.Styles['content'];
     appElement?: string | HTMLElement;
     parentSelector?: () => HTMLElement;
     hideHeader?: boolean;
@@ -272,7 +272,7 @@ SlidingPane.propTypes = {
   shouldCloseOnEsc: PropTypes.bool,
   onRequestClose: PropTypes.func,
   onAfterOpen: PropTypes.func,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
   from: PropTypes.oneOf(['left', 'right', 'bottom']),
   closeIcon: PropTypes.any,
   closeIconScreenReaderText: PropTypes.string,

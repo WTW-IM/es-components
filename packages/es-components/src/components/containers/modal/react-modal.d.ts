@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactModal from 'react-modal';
+import { InferProps } from 'prop-types';
+import { Props as ReactModalProps } from 'react-modal';
 
 declare module 'react-modal' {
-  export const propTypes: ReactModal.Props;
+  export const propTypes: InferProps<ReactModalProps>;
 }

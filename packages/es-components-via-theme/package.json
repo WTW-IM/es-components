@@ -1,15 +1,17 @@
 {
   "name": "es-components-via-theme",
-  "version": "21.8.0",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "version": "21.9.0-pre-prod.2",
+  "main": "dist/packages/es-components-via-theme/src/index.js",
+  "files": [
+    "dist"
+  ],
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "scripts": {
-    "build": "node -e 'require(\"fs\").unlink(\"index.d.ts\", () => {})'; tsc -p tsconfig.json",
+    "build": "tsc --build",
     "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "typescript": "^5.0.4"
+  "devDependencies": {
+    "typescript": "^5.1.3"
   }
 }

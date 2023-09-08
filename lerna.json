@@ -1,11 +1,10 @@
 {
   "lerna": "2.11.0",
   "packages": ["packages/*"],
-  "version": "21.8.3",
+  "version": "21.9.0-pre-prod.4",
   "command": {
     "publish": {
-      "message": "Build: [skip ci][skip-release] %s",
-      "verifyAccess": false
+      "message": "Build: [skip ci][skip-release] %s"
     }
   }
 }

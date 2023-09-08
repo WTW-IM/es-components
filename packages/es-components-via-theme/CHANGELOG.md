@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.1...v21.9.0-pre-prod.2) (2023-08-24)
+
+### Build
+
+- ensuring all packages function downstream ([2e64bc5](https://github.com/WTW-IM/es-components/commit/2e64bc5c7375f9397c3334e71052d37c044a3161))
+- ensuring themes are built before publish ([57d81d3](https://github.com/WTW-IM/es-components/commit/57d81d3ee3b53c2591286fabca459f57db32d30c))
+- including all dist files for themes in packages ([3732d99](https://github.com/WTW-IM/es-components/commit/3732d994eff48a597670e35e58f1b00e865424ff))
+- solidifying referenced packages in tsconfig ([4eb52fc](https://github.com/WTW-IM/es-components/commit/4eb52fc96a7f3a16d0abbc6a800a4cc489fe3b36))
+- updating to npm workspaces ([416a3b6](https://github.com/WTW-IM/es-components/commit/416a3b638037f4479818eb9f2883764ad2bdb648))
+
+### Fix
+
+- better working with local deps ([e9447f2](https://github.com/WTW-IM/es-components/commit/e9447f24f658c4959c15ca27650531ff1b6cc2f0))
+- ensuring cypress starts and runs under https ([d7c88ef](https://github.com/WTW-IM/es-components/commit/d7c88ef27cc8179018161ee3954d511b263427ee))
+- ensuring tests pass with Button updates ([b140fec](https://github.com/WTW-IM/es-components/commit/b140fec720cf305b87d1b53a4e4d5cb965887155))
+- ensuring TS works in all projects ([ff18d8c](https://github.com/WTW-IM/es-components/commit/ff18d8c9e871ceacd7ae6679cd77de7ba1aa209f))
+
+### New
+
+- adding es-components-shared-types as a local npm package ([12e7c58](https://github.com/WTW-IM/es-components/commit/12e7c58a7ea40dc9376e7f559fdb92a2c092af1c))
+- adding ESTheme interface to themes with buttonStyles definitions ([53a2539](https://github.com/WTW-IM/es-components/commit/53a253933774b623e706efb8984c23ada91beed9))
+- converting Banner to Typescript ([269aafe](https://github.com/WTW-IM/es-components/commit/269aafea32d18c42681a043dc0a0c2fc943db32e))
+- converting Fieldset to typescript ([a57bb4b](https://github.com/WTW-IM/es-components/commit/a57bb4ba5866c184d6334444f51c830dcf5ad992))
+- converting Styleguide components to Typescript ([27e8728](https://github.com/WTW-IM/es-components/commit/27e872867508561bfba5b4ca827bcad369f0f626))
+- typescript support for via-theme ([0e039ec](https://github.com/WTW-IM/es-components/commit/0e039ec6da2653e2402f0dad88cbebaf6b054db6))
+- updating Switch to Typescript ([14cf256](https://github.com/WTW-IM/es-components/commit/14cf256d7977d78587346fa7db708f2a16bb7848))
+- updating wtw-legacy-theme to typescript ([57f6a62](https://github.com/WTW-IM/es-components/commit/57f6a625e97172df24837052dcbda5a01ab643cd))
+
+### Update
+
+- ensuring theme code builds ([0323f37](https://github.com/WTW-IM/es-components/commit/0323f3709b7011571f7aaa4e3c83371395123441))
+- fixes after rebase ([d6ba3f5](https://github.com/WTW-IM/es-components/commit/d6ba3f53ca52dafc680941bffc83e029f5834d52))
+- using Button props for LinkButton typescript ([846214b](https://github.com/WTW-IM/es-components/commit/846214b2342a26d02052e66f51e703938606c5df))
+
 # [21.8.0](https://github.com/WTW-IM/es-components/compare/v21.8.0-pre-prod.0...v21.8.0) (2023-05-08)
 
 **Note:** Version bump only for package es-components-via-theme

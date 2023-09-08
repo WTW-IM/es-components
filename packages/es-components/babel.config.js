@@ -3,24 +3,70 @@ module.exports = function (api) {
 
   const presets = [
     [
-      'wtw-im',
+      '@babel/preset-env',
       {
-        extractFormatMessage: false,
-        transformFormatMessage: false,
-        env: { corejs: 3 }
+        modules: false,
+        targets: { ie: '11' },
+        useBuiltIns: 'usage',
+        corejs: '3.32'
       }
-    ]
+    ],
+    [
+      '@babel/preset-typescript',
+      { isTSX: true, allExtensions: true, dts: true }
+    ],
+    '@babel/preset-react'
   ];
 
-  const removePropTypesPlugin = [
-    'babel-plugin-transform-react-remove-prop-types',
-    { removeImport: true }
-  ];
-  const plugins = [
+  let plugins = [
+    [
+      'module-resolver',
+      {
+        alias: {
+          'es-components-shared-types': '../../shared/types/src/index.ts'
+        }
+      }
+    ],
+    [
+      'styled-components',
+      {
+        ssr: false,
+        displayName: false
+      }
+    ],
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-object-rest-spread',
     ['@babel/plugin-transform-runtime', { corejs: 3 }],
+    '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-optional-chaining'
-  ].concat(inProd ? [removePropTypesPlugin] : []);
+  ];
+
+  if (inProd) {
+    plugins = [
+      ...plugins,
+      [
+        'transform-react-remove-prop-types',
+        {
+          removeImport: true,
+          ignoreFilenames: [
+            'node_modules/styled-components',
+            'controls/textbox',
+            'controls/dropdown',
+            'containers/popover',
+            'controls/buttons',
+            'controls/checkbox',
+            'controls/radio-buttons',
+            'controls/answer-group',
+            'controls/Control',
+            'controls/AdditionalHelp',
+            'base/icons'
+          ]
+        },
+        'es-components-remove-prop-types'
+      ]
+    ];
+  }
 
   return {
     ignore: [/[/\\]core-js/, /@babel[/\\]runtime/],

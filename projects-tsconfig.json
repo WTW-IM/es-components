@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "es-components-via-theme": ["./packages/es-components-via-theme/src/"],
+      "es-components-wtw-theme": ["./packages/es-components-wtw-theme/src/"],
+      "es-components-shared-types": ["./shared/types/src/"],
+      "orig-sg-components/*": [
+        "./node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "rsg-components/*": [
+        "./node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "orig-sg-typings": [
+        "./node_modules/react-styleguidist/lib/typings/index.d.ts"
+      ],
+      "react": ["./node_modules/@types/react"],
+      "*": ["./node_modules/@types/*"]
+    },
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths",
+        "useRootDirs": true,
+        "exclude": ["**/node_modules/**"]
+      },
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true,
+        "useRootDirs": true,
+        "exclude": ["**/node_modules/**"]
+      }
+    ]
+  }
+}

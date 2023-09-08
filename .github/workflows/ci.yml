@@ -29,33 +29,29 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci # runs installs and builds themes
-          cd packages/es-components
-          npm uninstall es-components-via-theme # uninstall unbuilt theme
-          npm install -D ../es-components-via-theme # reinstall built theme
+          npm ci
 
       - name: Run Lint
         working-directory: packages/es-components
-        if: ${{
-          github.ref != 'refs/heads/main' &&
-          github.ref != 'refs/heads/pre-prod' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         continue-on-error: true
         run: |
-          npx eslint --output-file eslint_report.json --format json .
+          npx eslint \
+            --output-file eslint_report.json \
+            --format json \
+            --no-error-on-unmatched-pattern \
+            $(git diff --name-only --relative)
 
       - name: Annotate JS Linting Results
-        if: ${{
-          github.ref != 'refs/heads/main' &&
-          github.ref != 'refs/heads/pre-prod' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         uses: ataylorme/eslint-annotate-action@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           report-json: packages/es-components/eslint_report.json
 
       - name: Run Tests
-        working-directory: packages/es-components
         run: |
-          npm test
+          npm test --workspaces --if-present
 
   npm:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -72,7 +68,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 'lts/*'
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
@@ -105,7 +101,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 'lts/*'
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
@@ -147,7 +143,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 'lts/*'
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 

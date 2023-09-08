@@ -5,3 +5,4 @@ src/
 .babelrc.js
 styleguide.config.js
 webpack-components-bundle.config.js
+cypress

@@ -1,25 +1,9 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "allowJs": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": false,
-        "forceConsistentCasingInFileNames": false,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": false,
-        "emitDeclarationOnly": true,
-        "declaration": true,
-        "declarationDir": "./",
-        "declarationMap": true,
-        "jsx": "react",
-        "noImplicitAny": true
-    },
-    "include": ["./"],
-    "exclude": []
+  "extends": "../../theme-tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDirs": ["src", "../../shared/types/src"]
+  },
+  "include": ["src"],
+  "exclude": ["dist"]
 }

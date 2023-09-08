@@ -1,9 +1,12 @@
 .npmrc
+.eslintcache
 lib/
 es6/
 cjs/
 bundle/
 docs/
+/packages/es-components/build-utils/
+/packages/es-components/types/
 node_modules
 npm-debug.log
 *.tgz
@@ -11,4 +14,4 @@ lerna-debug.log
 .DS_Store
 CHANGELOG_COPY.md
 **/src/types/
-**/index.d.ts
+**/dist/

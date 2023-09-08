@@ -38,8 +38,8 @@ type SlidingPaneProps = Override<
     headingLevel?: HeadingLevel;
     headingSize?: HeadingLevel;
     closeTimeout?: number;
-    overlayStyles?: ReactModal.Styles;
-    contentStyles?: ReactModal.Styles;
+    overlayStyles?: ReactModal.Styles['overlay'];
+    contentStyles?: ReactModal.Styles['content'];
     appElement?: string | HTMLElement;
     parentSelector?: () => HTMLElement;
     hideHeader?: boolean;

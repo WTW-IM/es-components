@@ -43,6 +43,17 @@ const borderColorSelect = (
   }
 };
 
+export const CheckboxDisplayWrapper = styled.span`
+  left: 10px;
+  position: absolute;
+  top: 0.55em;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    left: 0;
+    top: 0.35em;
+  }
+`;
+
 export const CheckboxLabel = styled(Label)<{
   checked?: boolean;
   validationState: ValidationStyleType;
@@ -97,7 +108,7 @@ export const CheckboxInput = styled.input`
   pointer-events: none;
   position: absolute;
 
-  &:focus ~ .es-checkbox__fill {
+  &:focus ~ ${CheckboxDisplayWrapper} > .es-checkbox__fill {
     box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
     &:after {
       border-color: ${({ checked, theme }) =>
@@ -106,24 +117,17 @@ export const CheckboxInput = styled.input`
   }
 `;
 
-export const CheckboxDisplay = styled.span`
+export const CheckboxDisplay = styled.div`
   background: ${props => props.theme.colors.white};
   border: 3px solid ${props => props.theme.colors.gray8};
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
   height: 25px;
-  left: 10px;
-  position: absolute;
-  top: 0.55em;
-  transition: all 0.25s linear, box-shadow 0.15s linear;
+  transition:
+    all 0.25s linear,
+    box-shadow 0.15s linear;
   width: 25px;
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    left: 0;
-    top: 0.35em;
-  }
-
   &:after {
     background: transparent;
     border: 3px solid ${props => props.theme.colors.white};
@@ -140,10 +144,15 @@ export const CheckboxDisplay = styled.span`
   }
 `;
 
-export type CheckboxProps = JSXElementProps<'input'>;
+export type CheckboxProps = JSXElementProps<'input'> & {
+  displayClassName?: string;
+};
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  function ForwardedCheckbox({ children, ...checkboxProps }, ref) {
+  function ForwardedCheckbox(
+    { children, displayClassName, ...checkboxProps },
+    ref
+  ) {
     const validationState = React.useContext(ValidationContext);
 
     return (
@@ -153,7 +162,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         disabled={checkboxProps.disabled}
       >
         <CheckboxInput type="checkbox" {...checkboxProps} ref={ref} />
-        <CheckboxDisplay className="es-checkbox__fill" />
+        <CheckboxDisplayWrapper className={displayClassName}>
+          <CheckboxDisplay className="es-checkbox__fill" />
+        </CheckboxDisplayWrapper>
         {children}
       </CheckboxLabel>
     );
@@ -161,11 +172,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 );
 
 Checkbox.propTypes = {
-  ...htmlInputPropTypes
+  ...htmlInputPropTypes,
+  /** applies to the display wrapper */
+  displayClassName: htmlInputPropTypes['className']
 };
 
 Checkbox.defaultProps = {
-  ...htmlInputDefaultProps
+  ...htmlInputDefaultProps,
+  displayClassName: ''
 };
 
 export default Checkbox;

@@ -13,6 +13,10 @@ import {
 } from '../../util/htmlProps';
 import { lighten } from '../../util/colors';
 
+export const RadioDisplayWrapper = styled.div`
+  margin-right: 8px;
+`;
+
 export const RadioDisplay = styled.span`
   align-items: center;
   border-radius: 50%;
@@ -22,7 +26,6 @@ export const RadioDisplay = styled.span`
   display: flex;
   height: 25px;
   justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
 
   &:before {
@@ -50,24 +53,24 @@ export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
     pointer-events: none;
     position: absolute;
 
-    ~ ${RadioDisplay} {
+    ~ ${RadioDisplayWrapper} > ${RadioDisplay} {
       border-color: ${fill};
     }
 
-    &:focus ~ ${RadioDisplay} {
+    &:focus ~ ${RadioDisplayWrapper} > ${RadioDisplay} {
       box-shadow: 0 0 3px 3px ${inputFocus};
     }
 
-    &:checked ~ ${RadioDisplay}:before {
+    &:checked ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before {
       background-color: ${fill};
     }
 
     &&:disabled {
-      ~ ${RadioDisplay} {
+      ~ ${RadioDisplayWrapper} > ${RadioDisplay} {
         border-color: ${disabledColor};
       }
 
-      &:checked ~ ${RadioDisplay}:before {
+      &:checked ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before {
         background-color: ${disabledColor};
       }
     }
@@ -96,13 +99,16 @@ const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
 
     &:hover
       > ${RadioInput}:not(:disabled):not(:checked)
-      ~ ${RadioDisplay}:before {
+      ~ ${RadioDisplayWrapper}
+      > ${RadioDisplay}:before {
       background-color: ${hover};
     }
   `}
 `;
 
-export type RadioButtonProps = HTMLInputProps;
+export type RadioButtonProps = HTMLInputProps & {
+  displayClassName?: string;
+};
 
 export function getCheckedProps(radioProps: RadioButtonProps) {
   const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
@@ -115,7 +121,10 @@ export function getCheckedProps(radioProps: RadioButtonProps) {
 }
 
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
-  function ForwardedRadioButton({ children, className, ...radioProps }, ref) {
+  function ForwardedRadioButton(
+    { children, className, displayClassName, ...radioProps },
+    ref
+  ) {
     const id = useUniqueId(radioProps.id);
     const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
     const theme = useTheme();
@@ -143,7 +152,9 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
     return (
       <RadioLabel className={className} {...labelProps}>
         <RadioInput ref={ref} type="radio" id={id} {...inputProps} />
-        <RadioDisplay className="es-radio__fill" />
+        <RadioDisplayWrapper className={displayClassName}>
+          <RadioDisplay className="es-radio__fill" />
+        </RadioDisplayWrapper>
         {children}
       </RadioLabel>
     );
@@ -153,10 +164,15 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
 export const propTypes = {
   ...htmlInputPropTypes,
   /** supports styled-component usage, applies to the wrapping Label */
-  className: htmlInputPropTypes['className']
+  className: htmlInputPropTypes['className'],
+  /** applies to the display wrapper */
+  displayClassName: htmlInputPropTypes['className']
 };
 
 RadioButton.propTypes = propTypes;
-RadioButton.defaultProps = { ...htmlInputDefaultProps };
+RadioButton.defaultProps = {
+  ...htmlInputDefaultProps,
+  displayClassName: ''
+};
 
 export default RadioButton;

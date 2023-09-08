@@ -16,6 +16,7 @@ export type CheckboxGroupProps = {
   disableAllOptions?: boolean;
   checkAllText?: string;
   textOnHoverCheckAll?: boolean;
+  displayClassName?: string;
 };
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
@@ -23,7 +24,8 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   options = [],
   checkAllText,
   textOnHoverCheckAll,
-  onChange
+  onChange,
+  displayClassName
 }) => {
   const [selectedValues, setSelectedValues] = useState(
     options.filter(o => o.checked).map(o => o.value)
@@ -81,6 +83,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
           checked={checkAll}
           disabled={disableAllOptions}
           textOnHover={textOnHoverCheckAll}
+          displayClassName={displayClassName}
         >
           {checkAllText}
         </CheckAllBox>
@@ -98,6 +101,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
             checked={selectedValues.includes(value)}
             disabled={disableAllOptions || disabled}
             onChange={handleCheckboxChange}
+            displayClassName={displayClassName}
           >
             {content || value}
           </Checkbox>
@@ -120,14 +124,17 @@ CheckboxGroup.propTypes = {
   /** display an optional "Check All" checkbox with this value */
   checkAllText: PropTypes.string,
   /** display the "Check All" text on hover */
-  textOnHoverCheckAll: PropTypes.bool
+  textOnHoverCheckAll: PropTypes.bool,
+  /** applies to the checkboxes display wrappers */
+  displayClassName: PropTypes.string
 };
 
 CheckboxGroup.defaultProps = {
   checkAllText: undefined,
   textOnHoverCheckAll: false,
   disableAllOptions: false,
-  options: []
+  options: [],
+  displayClassName: ''
 };
 
 export default CheckboxGroup;

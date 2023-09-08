@@ -26,7 +26,7 @@ interface CloseLinkProps {
 type SlidingPaneProps = Override<
   ReactModalProps,
   {
-    children: string;
+    children: NonNullable<React.ReactNode>;
     title?: string;
     subTitle?: string;
     shouldCloseOnEsc?: boolean;
@@ -272,7 +272,7 @@ SlidingPane.propTypes = {
   shouldCloseOnEsc: PropTypes.bool,
   onRequestClose: PropTypes.func,
   onAfterOpen: PropTypes.func,
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
   from: PropTypes.oneOf(['left', 'right', 'bottom']),
   closeIcon: PropTypes.any,
   closeIconScreenReaderText: PropTypes.string,

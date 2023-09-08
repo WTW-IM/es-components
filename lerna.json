@@ -1,7 +1,7 @@
 {
   "lerna": "2.11.0",
   "packages": ["packages/*"],
-  "version": "21.9.0-pre-prod.4",
+  "version": "21.9.0",
   "command": {
     "publish": {
       "message": "Build: [skip ci][skip-release] %s"

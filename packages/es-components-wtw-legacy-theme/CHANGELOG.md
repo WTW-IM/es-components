@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.9.0](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.4...v21.9.0) (2023-09-08)
+
+**Note:** Version bump only for package es-components-wtw-legacy-theme
+
 # [21.9.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.1...v21.9.0-pre-prod.2) (2023-08-24)
 
 ### Build

@@ -30,7 +30,7 @@
   "peerDependencies": {
     "react": ">=17",
     "react-dom": ">=17",
-    "styled-components": "^5"
+    "styled-components": "^5.3.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",

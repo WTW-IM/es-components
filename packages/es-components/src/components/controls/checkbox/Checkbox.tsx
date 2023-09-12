@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Colors, ValidationStyleType } from 'es-components-shared-types';
 
@@ -151,7 +151,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     { children, displayClassName, ...checkboxProps },
     ref
   ) {
-    const validationState = React.useContext(ValidationContext);
+    const validationState = useContext(ValidationContext);
 
     return (
       <CheckboxLabel
@@ -169,15 +169,18 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   }
 );
 
-Checkbox.propTypes = {
+export const propTypes = {
   ...htmlInputPropTypes,
   /** applies to the display wrapper */
   displayClassName: htmlInputPropTypes['className']
 };
 
-Checkbox.defaultProps = {
+export const defaultProps = {
   ...htmlInputDefaultProps,
   displayClassName: ''
 };
+
+Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

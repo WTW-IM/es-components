@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import {
   CheckboxLabel,
-  CheckboxDisplayWrapper,
   CheckboxDisplay,
   CheckboxInput,
   CheckboxProps
 } from './Checkbox';
 import ValidationContext from '../ValidationContext';
-import { htmlInputPropTypes } from '../../util/htmlProps';
 
 type CheckAllBoxProps = CheckboxProps & {
   textOnHover?: boolean;
@@ -31,9 +29,7 @@ const Label = styled(CheckboxLabel)<CheckAllBoxProps>`
       &:hover {
         ${Text} {
           opacity: 1;
-          transition:
-            visibility 0s linear 10ms,
-            opacity 10ms;
+          transition: visibility 0s linear 10ms, opacity 10ms;
           visibility: visible;
         }
       }
@@ -58,7 +54,7 @@ const Well = styled.div`
   }
 `;
 
-const Wrapper = styled(CheckboxDisplayWrapper)`
+const Display = styled(CheckboxDisplay)`
   && {
     left: 10px;
     top: 10px;
@@ -71,19 +67,13 @@ const Text = styled.span<CheckAllBoxProps>`
     css`
       @media (min-width: ${theme.screenSize.tablet}) {
         opacity: 0;
-        transition:
-          visibility 0s linear 500ms,
-          opacity 500ms;
+        transition: visibility 0s linear 500ms, opacity 500ms;
         visibility: hidden;
       }
     `}
 `;
 
-function CheckAllBox({
-  children,
-  displayClassName,
-  ...checkboxProps
-}: CheckAllBoxProps) {
+function CheckAllBox({ children, ...checkboxProps }: CheckAllBoxProps) {
   const validationState = React.useContext(ValidationContext);
 
   return (
@@ -95,9 +85,7 @@ function CheckAllBox({
     >
       <Well>
         <CheckboxInput type="checkbox" {...checkboxProps} />
-        <Wrapper className={displayClassName}>
-          <CheckboxDisplay className="es-checkbox__fill" />
-        </Wrapper>
+        <Display className="es-checkbox__fill" />
       </Well>
       <Text
         className="es-checkbox__text"
@@ -112,16 +100,13 @@ function CheckAllBox({
 CheckAllBox.propTypes = {
   ...CheckboxInput.propTypes,
   children: PropTypes.any,
-  textOnHover: PropTypes.bool,
-  /** applies to the display wrapper */
-  displayClassName: htmlInputPropTypes['className']
+  textOnHover: PropTypes.bool
 };
 
 CheckAllBox.defaultProps = {
   ...CheckboxInput.defaultProps,
   textOnHover: false,
-  children: undefined,
-  displayClassName: ''
+  children: undefined
 };
 
 export default CheckAllBox;

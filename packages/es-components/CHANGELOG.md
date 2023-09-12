@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.9.1-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.9.0...v21.9.1-pre-prod.0) (2023-09-08)
+
+### Fix
+
+- correcting children type on SlidingPane ([2ef72fb](https://github.com/wtw-im/es-components/commit/2ef72fba5596703b4b724db9366db1793fda887b))
+- correcting overlayStyles and contentStyles types for SlidingPane ([7df2838](https://github.com/wtw-im/es-components/commit/7df28383d1e66f7af9d9804d15f3df7f1ad687bc))
+
 # [21.9.0](https://github.com/wtw-im/es-components/compare/v21.9.0-pre-prod.4...v21.9.0) (2023-09-08)
 
 **Note:** Version bump only for package es-components

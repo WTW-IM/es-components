@@ -13,6 +13,8 @@ import {
 } from '../../util/htmlProps';
 import { lighten } from '../../util/colors';
 
+const RadioDisplayWrapper = styled.div``;
+
 export const RadioDisplay = styled.span`
   align-items: center;
   border-radius: 50%;
@@ -102,7 +104,9 @@ const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
   `}
 `;
 
-export type RadioButtonProps = HTMLInputProps;
+export type RadioButtonProps = HTMLInputProps & {
+  displayClassName?: string;
+};
 
 export function getCheckedProps(radioProps: RadioButtonProps) {
   const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
@@ -115,7 +119,10 @@ export function getCheckedProps(radioProps: RadioButtonProps) {
 }
 
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
-  function ForwardedRadioButton({ children, className, ...radioProps }, ref) {
+  function ForwardedRadioButton(
+    { children, className, displayClassName, ...radioProps },
+    ref
+  ) {
     const id = useUniqueId(radioProps.id);
     const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
     const theme = useTheme();
@@ -142,8 +149,10 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
 
     return (
       <RadioLabel className={className} {...labelProps}>
-        <RadioInput ref={ref} type="radio" id={id} {...inputProps} />
-        <RadioDisplay className="es-radio__fill" />
+        <RadioDisplayWrapper className={displayClassName}>
+          <RadioInput ref={ref} type="radio" id={id} {...inputProps} />
+          <RadioDisplay className="es-radio__fill" />
+        </RadioDisplayWrapper>
         {children}
       </RadioLabel>
     );
@@ -153,10 +162,15 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
 export const propTypes = {
   ...htmlInputPropTypes,
   /** supports styled-component usage, applies to the wrapping Label */
-  className: htmlInputPropTypes['className']
+  className: htmlInputPropTypes['className'],
+  /** applies to the display wrapper */
+  displayClassName: htmlInputPropTypes['className']
 };
 
 RadioButton.propTypes = propTypes;
-RadioButton.defaultProps = { ...htmlInputDefaultProps };
+RadioButton.defaultProps = {
+  ...htmlInputDefaultProps,
+  displayClassName: ''
+};
 
 export default RadioButton;

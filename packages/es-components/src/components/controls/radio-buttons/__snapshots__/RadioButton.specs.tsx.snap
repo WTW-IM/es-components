@@ -116,15 +116,19 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   class="c0 c1"
   for="test-radio"
 >
-  <input
-    class="c2 c3"
-    fill="#444"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      class="c2 c3"
+      fill="#444"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -245,15 +249,19 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   class="c0 c1"
   for="test-radio"
 >
-  <input
-    class="c2 c3"
-    fill="#c25400"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      class="c2 c3"
+      fill="#c25400"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -374,16 +382,20 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   class="c0 c1"
   for="test-radio"
 >
-  <input
-    checked=""
-    class="c2 c3"
-    fill="#0073b6"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      checked=""
+      class="c2 c3"
+      fill="#0073b6"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -504,16 +516,20 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   class="c0 c1"
   for="test-radio"
 >
-  <input
-    checked=""
-    class="c2 c3"
-    fill="#c25400"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      checked=""
+      class="c2 c3"
+      fill="#c25400"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -635,16 +651,20 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   disabled=""
   for="test-radio"
 >
-  <input
-    class="c2 c3"
-    disabled=""
-    fill="#444"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      class="c2 c3"
+      disabled=""
+      fill="#444"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -766,16 +786,20 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   disabled=""
   for="test-radio"
 >
-  <input
-    class="c2 c3"
-    disabled=""
-    fill="#c25400"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      class="c2 c3"
+      disabled=""
+      fill="#c25400"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -897,17 +921,21 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   disabled=""
   for="test-radio"
 >
-  <input
-    checked=""
-    class="c2 c3"
-    disabled=""
-    fill="#0073b6"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      checked=""
+      class="c2 c3"
+      disabled=""
+      fill="#0073b6"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;
@@ -1029,17 +1057,21 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   disabled=""
   for="test-radio"
 >
-  <input
-    checked=""
-    class="c2 c3"
-    disabled=""
-    fill="#c25400"
-    id="test-radio"
-    type="radio"
-  />
-  <span
-    class="c4 c5 es-radio__fill"
-  />
+  <div
+    class=""
+  >
+    <input
+      checked=""
+      class="c2 c3"
+      disabled=""
+      fill="#c25400"
+      id="test-radio"
+      type="radio"
+    />
+    <span
+      class="c4 c5 es-radio__fill"
+    />
+  </div>
   Option
 </label>
 `;

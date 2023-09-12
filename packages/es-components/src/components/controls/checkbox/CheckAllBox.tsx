@@ -1,26 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import {
-  CheckboxLabel,
+import Checkbox, {
+  CheckboxProps,
   CheckboxDisplay,
-  CheckboxInput,
-  CheckboxProps
+  propTypes as checkboxPropTypes,
+  defaultProps as checkboxDefaultProps
 } from './Checkbox';
-import ValidationContext from '../ValidationContext';
+import useUniqueId from '../../util/useUniqueId';
 
 type CheckAllBoxProps = CheckboxProps & {
   textOnHover?: boolean;
 };
 
-const Label = styled(CheckboxLabel)<CheckAllBoxProps>`
+const Label = styled.label<CheckAllBoxProps>`
   font-weight: bold;
   margin-bottom: 10px;
-  padding: 10px 0 10px 62px;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     margin-left: 0;
-    padding: 5px 0 5px 52px;
+    padding: 5px 0;
   }
 
   ${({ textOnHover }) =>
@@ -40,24 +42,29 @@ const Well = styled.div`
   background-color: ${props => props.theme.colors.gray1};
   border: solid 1px ${props => props.theme.colors.gray3};
   border-radius: 2px;
-  display: inline-block;
   height: 45px;
-  left: 10px;
   margin-right: 6px;
-  position: absolute;
-  top: -1px;
   width: 45px;
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    left: 0;
-    top: -6px;
-  }
-`;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 
-const Display = styled(CheckboxDisplay)`
-  && {
-    left: 10px;
-    top: 10px;
+  label {
+    position: relative;
+    display: block;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  ${CheckboxDisplay} {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
   }
 `;
 
@@ -74,18 +81,11 @@ const Text = styled.span<CheckAllBoxProps>`
 `;
 
 function CheckAllBox({ children, ...checkboxProps }: CheckAllBoxProps) {
-  const validationState = React.useContext(ValidationContext);
-
+  const id = useUniqueId(checkboxProps.id);
   return (
-    <Label
-      validationState={validationState}
-      checked={checkboxProps.checked}
-      disabled={checkboxProps.disabled}
-      textOnHover={checkboxProps.textOnHover}
-    >
+    <Label htmlFor={id}>
       <Well>
-        <CheckboxInput type="checkbox" {...checkboxProps} />
-        <Display className="es-checkbox__fill" />
+        <Checkbox {...checkboxProps} id={id} />
       </Well>
       <Text
         className="es-checkbox__text"
@@ -98,15 +98,11 @@ function CheckAllBox({ children, ...checkboxProps }: CheckAllBoxProps) {
 }
 
 CheckAllBox.propTypes = {
-  ...CheckboxInput.propTypes,
-  children: PropTypes.any,
-  textOnHover: PropTypes.bool
+  ...checkboxPropTypes
 };
 
 CheckAllBox.defaultProps = {
-  ...CheckboxInput.defaultProps,
-  textOnHover: false,
-  children: undefined
+  ...checkboxDefaultProps
 };
 
 export default CheckAllBox;

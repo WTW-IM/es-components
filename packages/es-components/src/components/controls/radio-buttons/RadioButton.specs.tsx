@@ -5,11 +5,7 @@ import { screen } from '@testing-library/react';
 // using a different name for `css` so prettier doesn't mess with css selectors
 import { css as cssStyled } from 'styled-components';
 import { renderWithTheme } from '../../util/test-utils';
-import RadioButton, {
-  RadioDisplay,
-  RadioDisplayWrapper,
-  RadioInput
-} from './RadioButton';
+import RadioButton, { RadioDisplay, RadioInput } from './RadioButton';
 import ValidationContext from '../ValidationContext';
 import { ValidationStyleType } from 'es-components-shared-types';
 import viaTheme from 'es-components-via-theme';
@@ -91,26 +87,26 @@ describe('RadioButton colors', () => {
       const radio = await screen.findByRole('radio');
 
       expect(radio).toHaveStyleRule('border-color', expectedColor, {
-        modifier: cssStyled`~ ${RadioDisplayWrapper} > ${RadioDisplay}`
+        modifier: cssStyled`~ ${RadioDisplay}`
       });
 
       expect(radio).toHaveStyleRule('background-color', expectedColor, {
-        modifier: cssStyled`:checked ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before`
+        modifier: cssStyled`:checked ~ ${RadioDisplay}:before`
       });
 
       expect(radio).toHaveStyleRule('border-color', disabledColor, {
-        modifier: cssStyled`&&:disabled ~ ${RadioDisplayWrapper} > ${RadioDisplay}`
+        modifier: cssStyled`&&:disabled ~ ${RadioDisplay}`
       });
 
       expect(radio).toHaveStyleRule('background-color', disabledColor, {
-        modifier: cssStyled`&&:disabled:checked ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before`
+        modifier: cssStyled`&&:disabled:checked ~ ${RadioDisplay}:before`
       });
 
       const label = await screen.findByText('Option', {
         selector: 'label'
       });
       expect(label).toHaveStyleRule('background-color', expectedHoverColor, {
-        modifier: cssStyled`&:hover > ${RadioInput}:not(:disabled):not(:checked) ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before`
+        modifier: cssStyled`&:hover > ${RadioInput}:not(:disabled):not(:checked) ~ ${RadioDisplay}:before`
       });
       expect(label).toMatchSnapshot();
     }

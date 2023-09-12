@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Colors, ValidationStyleType } from 'es-components-shared-types';
 
@@ -43,14 +43,39 @@ const borderColorSelect = (
   }
 };
 
-export const CheckboxDisplayWrapper = styled.span`
+export const CheckboxDisplayWrapper = styled.div``;
+
+export const CheckboxDisplay = styled.span`
+  background: ${props => props.theme.colors.white};
+  border: 3px solid ${props => props.theme.colors.gray8};
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 25px;
   left: 10px;
   position: absolute;
   top: 0.55em;
+  transition: all 0.25s linear, box-shadow 0.15s linear;
+  width: 25px;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     left: 0;
     top: 0.35em;
+  }
+
+  &:after {
+    background: transparent;
+    border: 3px solid ${props => props.theme.colors.white};
+    border-right: none;
+    border-top: none;
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    height: 9px;
+    margin: 3px 0 0 2px;
+    transform: rotate(-45deg);
+    transition: border 0.25s linear;
+    width: 15px;
   }
 `;
 
@@ -74,7 +99,7 @@ export const CheckboxLabel = styled(Label)<{
     padding: 5px 0 5px 32px;
   }
 
-  .es-checkbox__fill {
+  ${CheckboxDisplay} {
     background-color: ${({ checked, theme: { colors }, validationState }) =>
       backgroundColorSelect(checked, colors, validationState)};
     border-color: ${({ checked, theme: { colors }, validationState }) =>
@@ -85,12 +110,12 @@ export const CheckboxLabel = styled(Label)<{
     }
   }
 
-  &:hover .es-checkbox__fill:after {
+  &:hover ${CheckboxDisplay}:after {
     border-color: ${({ checked, theme }) =>
       checked ? theme.colors.white : theme.colors.gray3};
   }
 
-  &[disabled] .es-checkbox__fill {
+  &[disabled] ${CheckboxDisplay} {
     background-color: ${({ checked, theme }) =>
       checked ? theme.colors.gray5 : theme.colors.white};
     border-color: ${props => props.theme.colors.gray5};
@@ -108,39 +133,12 @@ export const CheckboxInput = styled.input`
   pointer-events: none;
   position: absolute;
 
-  &:focus ~ ${CheckboxDisplayWrapper} > .es-checkbox__fill {
+  &:focus ~ ${CheckboxDisplay} {
     box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
     &:after {
       border-color: ${({ checked, theme }) =>
         checked ? theme.colors.white : theme.colors.gray3};
     }
-  }
-`;
-
-export const CheckboxDisplay = styled.div`
-  background: ${props => props.theme.colors.white};
-  border: 3px solid ${props => props.theme.colors.gray8};
-  border-radius: 4px;
-  box-sizing: border-box;
-  cursor: pointer;
-  height: 25px;
-  transition:
-    all 0.25s linear,
-    box-shadow 0.15s linear;
-  width: 25px;
-  &:after {
-    background: transparent;
-    border: 3px solid ${props => props.theme.colors.white};
-    border-right: none;
-    border-top: none;
-    box-sizing: border-box;
-    content: '';
-    display: block;
-    height: 9px;
-    margin: 3px 0 0 2px;
-    transform: rotate(-45deg);
-    transition: border 0.25s linear;
-    width: 15px;
   }
 `;
 
@@ -153,7 +151,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     { children, displayClassName, ...checkboxProps },
     ref
   ) {
-    const validationState = React.useContext(ValidationContext);
+    const validationState = useContext(ValidationContext);
 
     return (
       <CheckboxLabel
@@ -161,8 +159,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         checked={checkboxProps.checked}
         disabled={checkboxProps.disabled}
       >
-        <CheckboxInput type="checkbox" {...checkboxProps} ref={ref} />
         <CheckboxDisplayWrapper className={displayClassName}>
+          <CheckboxInput type="checkbox" {...checkboxProps} ref={ref} />
           <CheckboxDisplay className="es-checkbox__fill" />
         </CheckboxDisplayWrapper>
         {children}
@@ -171,15 +169,18 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   }
 );
 
-Checkbox.propTypes = {
+export const propTypes = {
   ...htmlInputPropTypes,
   /** applies to the display wrapper */
   displayClassName: htmlInputPropTypes['className']
 };
 
-Checkbox.defaultProps = {
+export const defaultProps = {
   ...htmlInputDefaultProps,
   displayClassName: ''
 };
+
+Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

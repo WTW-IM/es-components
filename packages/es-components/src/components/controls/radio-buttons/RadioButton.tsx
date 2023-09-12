@@ -13,9 +13,7 @@ import {
 } from '../../util/htmlProps';
 import { lighten } from '../../util/colors';
 
-export const RadioDisplayWrapper = styled.div`
-  margin-right: 8px;
-`;
+const RadioDisplayWrapper = styled.div``;
 
 export const RadioDisplay = styled.span`
   align-items: center;
@@ -26,6 +24,7 @@ export const RadioDisplay = styled.span`
   display: flex;
   height: 25px;
   justify-content: center;
+  margin-right: 8px;
   min-width: 25px;
 
   &:before {
@@ -53,24 +52,24 @@ export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
     pointer-events: none;
     position: absolute;
 
-    ~ ${RadioDisplayWrapper} > ${RadioDisplay} {
+    ~ ${RadioDisplay} {
       border-color: ${fill};
     }
 
-    &:focus ~ ${RadioDisplayWrapper} > ${RadioDisplay} {
+    &:focus ~ ${RadioDisplay} {
       box-shadow: 0 0 3px 3px ${inputFocus};
     }
 
-    &:checked ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before {
+    &:checked ~ ${RadioDisplay}:before {
       background-color: ${fill};
     }
 
     &&:disabled {
-      ~ ${RadioDisplayWrapper} > ${RadioDisplay} {
+      ~ ${RadioDisplay} {
         border-color: ${disabledColor};
       }
 
-      &:checked ~ ${RadioDisplayWrapper} > ${RadioDisplay}:before {
+      &:checked ~ ${RadioDisplay}:before {
         background-color: ${disabledColor};
       }
     }
@@ -99,8 +98,7 @@ const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
 
     &:hover
       > ${RadioInput}:not(:disabled):not(:checked)
-      ~ ${RadioDisplayWrapper}
-      > ${RadioDisplay}:before {
+      ~ ${RadioDisplay}:before {
       background-color: ${hover};
     }
   `}
@@ -151,8 +149,8 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
 
     return (
       <RadioLabel className={className} {...labelProps}>
-        <RadioInput ref={ref} type="radio" id={id} {...inputProps} />
         <RadioDisplayWrapper className={displayClassName}>
+          <RadioInput ref={ref} type="radio" id={id} {...inputProps} />
           <RadioDisplay className="es-radio__fill" />
         </RadioDisplayWrapper>
         {children}

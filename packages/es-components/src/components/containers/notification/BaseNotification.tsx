@@ -29,14 +29,11 @@ const NotificationIcon = styled(Icon)<{
     }
   `}
 `;
-interface Color {
-  textColor: CSS.Property.Color;
-}
 
 type DismissProps = Override<
   DismissButtonProps,
   {
-    color: Color;
+    color: CSS.Property.Color;
   }
 >;
 
@@ -69,7 +66,7 @@ interface NotificationContentProps
   children?: React.ReactNode;
   iconName: IconName;
   iconColor: string;
-  color: Color;
+  color: CSS.Property.Color;
   dismissNotification: () => void;
   alwaysShowIcon?: boolean;
 }
@@ -117,9 +114,7 @@ function NotificationContent(props: NotificationContentProps) {
         />
       )}
       <ContentWrapper {...rest}>{children}</ContentWrapper>
-      {isDismissable && (
-        <DismissBtn onClick={dismiss} color={color as string & Color} />
-      )}
+      {isDismissable && <DismissBtn onClick={dismiss} color={color} />}
     </>
   );
 }
@@ -142,11 +137,13 @@ const Notification = styled.div<{
 
       ${restyleAnchors
         ? css`
-            a {
+            && a {
               color: ${variant.textColor};
               text-decoration: underline;
 
-              &:hover {
+              &:hover,
+              &:focus,
+              &:active {
                 text-decoration: none;
               }
             }
@@ -176,15 +173,16 @@ export const BaseNotification = React.forwardRef<
   ref
 ) {
   const theme = useTheme();
-  const color = theme.notificationStyles[type][styleType];
+  const colorVariant = theme.notificationStyles[type][styleType];
+  const color = colorVariant.textColor;
   const iconName = theme.validationIconName[type];
   const iconColor =
     styleType === 'base' ? theme.colors.white : theme.colors[type as ColorName];
   const notificationContentProps = {
+    ...rest,
     color,
     iconName,
-    iconColor,
-    ...rest
+    iconColor
   };
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -192,10 +190,10 @@ export const BaseNotification = React.forwardRef<
     setIsDismissed(true);
   }
 
-  return (!isDismissed && (
+  return !isDismissed ? (
     <Notification
       ref={ref}
-      variant={color}
+      variant={colorVariant}
       className={className}
       style={style}
       restyleAnchors={restyleAnchors}
@@ -208,5 +206,7 @@ export const BaseNotification = React.forwardRef<
         {children}
       </NotificationContent>
     </Notification>
-  )) as React.ReactElement;
+  ) : (
+    <></>
+  );
 });

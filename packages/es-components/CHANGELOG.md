@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.10.0-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.10.0-pre-prod.0...v21.10.0-pre-prod.1) (2023-09-15)
+
+### Fix
+
+- fixing Notification anchor and button colors ([47d2932](https://github.com/wtw-im/es-components/commit/47d2932b2dba1b06f9d42881eda0837b61f46be1))
+
 # [21.10.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.9.1-pre-prod.0...v21.10.0-pre-prod.0) (2023-09-12)
 
 ### New

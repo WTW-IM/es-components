@@ -4,7 +4,7 @@ Group `RadioButton` components together using a `RadioGroup`. Any additional pro
 
 <a href="https://8lf1uv.axshare.com/#id=7zaoiz&p=multi_field_error&dp=0&g=1" target="blank"><div style="color:#cc0000;text-transform:uppercase;margin:1em 0;">View Error Pattern Examples</div></a>
 
-```jsx
+```javascript
 import RadioButton from './RadioButton';
 import Control from '../Control';
 import Fieldset from '../../containers/fieldset/Fieldset';
@@ -44,7 +44,7 @@ function RadioGroupExample() {
 
 Each radio is disabled when the `disableAllOptions` prop is true.
 
-```jsx
+```javascript
 import RadioButton from './RadioButton';
 import Control from '../Control';
 
@@ -59,7 +59,7 @@ import Control from '../Control';
 
 ### Validation States
 
-```jsx
+```javascript
 import RadioButton from './RadioButton';
 import Control from '../Control';
 import Fieldset from '../../containers/fieldset/Fieldset';

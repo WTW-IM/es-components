@@ -4,36 +4,7 @@ on:
     branches:
       - pre-prod
 jobs:
-  test:
-    name: Test with Node v${{matrix.node}}
-    runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
-    strategy:
-      matrix:
-        node: [lts/*, node]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PIPELINE_BOT_PAT }}
-
-      - name: Use Node Version
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-
-      - name: Install Dependencies
-        run: |
-          npm ci
-
-      - name: Run Tests
-        working-directory: packages/es-components
-        run: |
-          npm test
-
-  npm:
+  pre-prod-release:
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
     needs: test
     name: Publish Pre-Prod NPM Packages
@@ -67,7 +38,7 @@ jobs:
           npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
   docs:
     if: ${{ github.ref == 'refs/heads/pre-prod' }}
-    needs: npm
+    needs: pre-prod-release
     name: Publish Docs to GH Pages
     runs-on: ubuntu-latest
     steps:

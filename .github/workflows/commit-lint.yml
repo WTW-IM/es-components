@@ -6,19 +6,25 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v3
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
       - name: Ensure full history
         run: |
           git remote add upstream ${{ github.event.pull_request.head.repo.clone_url }}
           git fetch upstream
+
       - id: commitlint
         uses: wagoid/commitlint-github-action@v5
+
       - id: lint_results_msg
         name: Generate Lint Results Message
         if: always()
@@ -28,6 +34,7 @@ jobs:
           npm i commander
           npm i @actions/core
           node ./workflow-helpers/generate-commitlint-response.js --results "$COMMIT_RESPONSE"
+
       - name: Post comment
         if: ${{ always() }}
         uses: mshick/add-pr-comment@v1

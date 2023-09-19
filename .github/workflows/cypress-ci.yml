@@ -21,6 +21,11 @@ jobs:
           repository: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name) || github.repository  }}
           fetch-depth: 0
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
       - name: NPM Clean Install
         run: |
           npm ci
@@ -32,7 +37,7 @@ jobs:
           npm start &
           npm run wait-for-start
 
-      - uses: cypress-io/github-action@v5
+      - uses: cypress-io/github-action@v6
         with:
           working-directory: ${{ env.ES_COMPONENTS_DIR }}
           config-file: cypress.config.ts

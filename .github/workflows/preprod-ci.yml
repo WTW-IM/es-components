@@ -34,7 +34,14 @@ jobs:
       - name: Lerna Publish
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
+          npx lerna publish \
+            --conventional-commits \
+            --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
+            --conventional-prerelease \
+            --dist-tag pre-prod \
+            --preid pre-prod \
+            --allow-branch pre-prod \
+            --yes
   docs:
     if: ${{ github.ref == 'refs/heads/pre-prod' }}
     needs: pre-prod-release

@@ -6,7 +6,6 @@ on:
 jobs:
   pre-prod-release:
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
-    needs: test
     name: Publish Pre-Prod NPM Packages
     runs-on: ubuntu-latest
     steps:

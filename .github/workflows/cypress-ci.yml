@@ -14,12 +14,17 @@ jobs:
   run-cypress:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: ${{ github.head_ref || github.ref }}
           repository: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name) || github.repository  }}
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
 
       - name: NPM Clean Install
         run: |
@@ -32,7 +37,7 @@ jobs:
           npm start &
           npm run wait-for-start
 
-      - uses: cypress-io/github-action@v5
+      - uses: cypress-io/github-action@v6
         with:
           working-directory: ${{ env.ES_COMPONENTS_DIR }}
           config-file: cypress.config.ts
@@ -50,7 +55,7 @@ jobs:
       - name: Create Status check based on merged cypress results
         if: always()
         id: process-cypress
-        uses: im-open/process-cypress-test-results@v2.0.5
+        uses: im-open/process-cypress-test-results@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           results-file: ${{ env.ES_COMPONENTS_DIR }}/raw-results.json

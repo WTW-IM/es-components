@@ -13,11 +13,14 @@ jobs:
         node: [lts/*, node]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: ${{ github.head_ref || github.ref }}
-          repository: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name) || github.repository  }}
+          repository: ${{ (
+            github.event_name == 'pull_request_target' &&
+            github.event.pull_request.head.repo.full_name
+            ) || github.repository }}
           fetch-depth: 0
 
       - name: Use Node Version
@@ -25,7 +28,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
@@ -60,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: main
@@ -70,7 +72,6 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
@@ -84,7 +85,11 @@ jobs:
       - name: Lerna Publish Latest
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-graduate --yes
+          npx lerna publish \
+            --conventional-commits \
+            --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
+            --conventional-graduate \
+            --yes
 
   npm_prerelease:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -93,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: pre-prod
@@ -103,7 +108,6 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |
@@ -126,7 +130,14 @@ jobs:
       - name: Lerna Publish Pre-Prod
         run: |
           echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
-          npx lerna publish --conventional-commits --changelog-preset @aabenoja/conventional-changelog-eslint-lerna --conventional-prerelease --dist-tag pre-prod --preid pre-prod --allow-branch pre-prod --yes
+          npx lerna publish \
+            --conventional-commits \
+            --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
+            --conventional-prerelease \
+            --dist-tag pre-prod \
+            --preid pre-prod \
+            --allow-branch pre-prod \
+            --yes
 
   docs:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -135,7 +146,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: main
@@ -145,7 +156,6 @@ jobs:
         with:
           node-version: 'lts/*'
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
 
       - name: Install Dependencies
         run: |

@@ -96,6 +96,7 @@ export { default as ProgressTracker } from './components/patterns/progress-track
 export { default as StarRating } from './components/patterns/starRating/StarRating';
 export { default as StarRatingExplanation } from './components/patterns/starRating/StarRatingExplanation';
 export { default as StatusTracker } from './components/patterns/statusTracker/StatusTracker';
+export { default as SelectionDrawer } from './components/patterns/selectionDrawer/SelectionDrawer';
 
 export { default as Spinner } from './components/base/spinner/Spinner';
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.10.0](https://github.com/WTW-IM/es-components/compare/v21.10.0-pre-prod.1...v21.10.0) (2023-09-22)
+
+### Build
+
+- cleaning up some workflow calls ([6cc5f5e](https://github.com/WTW-IM/es-components/commit/6cc5f5e63805062569fd93233434d26b19af4e6f))
+- fixing issue in preprod-ci.yml ([58d858e](https://github.com/WTW-IM/es-components/commit/58d858e34a1047db2287a537411bf8766a969fde))
+- removing unnecessary test step in pre-prod release ([40f543b](https://github.com/WTW-IM/es-components/commit/40f543b1f8d3406ec805e6161455caaf9d771a5c))
+- update CODEOWNERS with new customization team name ([49c5a5b](https://github.com/WTW-IM/es-components/commit/49c5a5ba686f873463cbdb6090229ea324d72f5a))
+- updating actions/checkout to v4 ([36e4364](https://github.com/WTW-IM/es-components/commit/36e43649416eb1302b4f65fd95e827a7338a1330))
+- updating npm caching for workspaces ([67cb4d9](https://github.com/WTW-IM/es-components/commit/67cb4d9f9d9d68618ca61e9f1c50e1e4301d7631))
+- using floating major version for im-open actions ([426e2a9](https://github.com/WTW-IM/es-components/commit/426e2a9788a2a1d675602bab66338184d321456d))
+
 # [21.10.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.10.0-pre-prod.0...v21.10.0-pre-prod.1) (2023-09-15)
 
 ### Fix

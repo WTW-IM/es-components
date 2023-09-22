@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Colors, ValidationStyleType } from 'es-components-shared-types';
 
@@ -43,68 +43,7 @@ const borderColorSelect = (
   }
 };
 
-export const CheckboxLabel = styled(Label)<{
-  checked?: boolean;
-  validationState: ValidationStyleType;
-  disabled?: boolean;
-}>`
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-weight: normal;
-  line-height: ${props => props.theme.font.baseLineHeight};
-  margin-left: -10px;
-  min-height: 25px;
-  padding: 10px 0 10px 42px;
-  position: relative;
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin-left: 0;
-    padding: 5px 0 5px 32px;
-  }
-
-  .es-checkbox__fill {
-    background-color: ${({ checked, theme: { colors }, validationState }) =>
-      backgroundColorSelect(checked, colors, validationState)};
-    border-color: ${({ checked, theme: { colors }, validationState }) =>
-      borderColorSelect(checked, colors, validationState)};
-
-    &:after {
-      border-color: ${props => props.theme.colors.white};
-    }
-  }
-
-  &:hover .es-checkbox__fill:after {
-    border-color: ${({ checked, theme }) =>
-      checked ? theme.colors.white : theme.colors.gray3};
-  }
-
-  &[disabled] .es-checkbox__fill {
-    background-color: ${({ checked, theme }) =>
-      checked ? theme.colors.gray5 : theme.colors.white};
-    border-color: ${props => props.theme.colors.gray5};
-    cursor: not-allowed;
-    outline: 0;
-
-    &:after {
-      border-color: ${props => props.theme.colors.white};
-    }
-  }
-`;
-
-export const CheckboxInput = styled.input`
-  clip: rect(0, 0, 0, 0);
-  pointer-events: none;
-  position: absolute;
-
-  &:focus ~ .es-checkbox__fill {
-    box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
-    &:after {
-      border-color: ${({ checked, theme }) =>
-        checked ? theme.colors.white : theme.colors.gray3};
-    }
-  }
-`;
+export const CheckboxDisplayWrapper = styled.div``;
 
 export const CheckboxDisplay = styled.span`
   background: ${props => props.theme.colors.white};
@@ -140,11 +79,79 @@ export const CheckboxDisplay = styled.span`
   }
 `;
 
-export type CheckboxProps = JSXElementProps<'input'>;
+export const CheckboxLabel = styled(Label)<{
+  checked?: boolean;
+  validationState: ValidationStyleType;
+  disabled?: boolean;
+}>`
+  font-size: ${props => props.theme.font.baseFontSize};
+  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+  font-size: ${props => props.theme.font.baseFontSize};
+  font-weight: normal;
+  line-height: ${props => props.theme.font.baseLineHeight};
+  margin-left: -10px;
+  min-height: 25px;
+  padding: 10px 0 10px 42px;
+  position: relative;
+
+  @media (min-width: ${props => props.theme.screenSize.tablet}) {
+    margin-left: 0;
+    padding: 5px 0 5px 32px;
+  }
+
+  ${CheckboxDisplay} {
+    background-color: ${({ checked, theme: { colors }, validationState }) =>
+      backgroundColorSelect(checked, colors, validationState)};
+    border-color: ${({ checked, theme: { colors }, validationState }) =>
+      borderColorSelect(checked, colors, validationState)};
+
+    &:after {
+      border-color: ${props => props.theme.colors.white};
+    }
+  }
+
+  &:hover ${CheckboxDisplay}:after {
+    border-color: ${({ checked, theme }) =>
+      checked ? theme.colors.white : theme.colors.gray3};
+  }
+
+  &[disabled] ${CheckboxDisplay} {
+    background-color: ${({ checked, theme }) =>
+      checked ? theme.colors.gray5 : theme.colors.white};
+    border-color: ${props => props.theme.colors.gray5};
+    cursor: not-allowed;
+    outline: 0;
+
+    &:after {
+      border-color: ${props => props.theme.colors.white};
+    }
+  }
+`;
+
+export const CheckboxInput = styled.input`
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+  position: absolute;
+
+  &:focus ~ ${CheckboxDisplay} {
+    box-shadow: 0 0 3px 3px ${props => props.theme.colors.inputFocus};
+    &:after {
+      border-color: ${({ checked, theme }) =>
+        checked ? theme.colors.white : theme.colors.gray3};
+    }
+  }
+`;
+
+export type CheckboxProps = JSXElementProps<'input'> & {
+  displayClassName?: string;
+};
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  function ForwardedCheckbox({ children, ...checkboxProps }, ref) {
-    const validationState = React.useContext(ValidationContext);
+  function ForwardedCheckbox(
+    { children, displayClassName, ...checkboxProps },
+    ref
+  ) {
+    const validationState = useContext(ValidationContext);
 
     return (
       <CheckboxLabel
@@ -152,20 +159,28 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         checked={checkboxProps.checked}
         disabled={checkboxProps.disabled}
       >
-        <CheckboxInput type="checkbox" {...checkboxProps} ref={ref} />
-        <CheckboxDisplay className="es-checkbox__fill" />
+        <CheckboxDisplayWrapper className={displayClassName}>
+          <CheckboxInput type="checkbox" {...checkboxProps} ref={ref} />
+          <CheckboxDisplay className="es-checkbox__fill" />
+        </CheckboxDisplayWrapper>
         {children}
       </CheckboxLabel>
     );
   }
 );
 
-Checkbox.propTypes = {
-  ...htmlInputPropTypes
+export const propTypes = {
+  ...htmlInputPropTypes,
+  /** applies to the display wrapper */
+  displayClassName: htmlInputPropTypes['className']
 };
 
-Checkbox.defaultProps = {
-  ...htmlInputDefaultProps
+export const defaultProps = {
+  ...htmlInputDefaultProps,
+  displayClassName: ''
 };
+
+Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

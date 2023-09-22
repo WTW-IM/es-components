@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.10.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.10.0-pre-prod.0...v21.10.0-pre-prod.1) (2023-09-15)
+
+### Fix
+
+- fixing Notification anchor and button colors ([47d2932](https://github.com/WTW-IM/es-components/commit/47d2932b2dba1b06f9d42881eda0837b61f46be1))
+
+# [21.10.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.9.1-pre-prod.0...v21.10.0-pre-prod.0) (2023-09-12)
+
+### New
+
+- add a wrapper to checkboxDisplay and radioDisplay ([31111a7](https://github.com/WTW-IM/es-components/commit/31111a7e825316256da53d6cf8a5e3de33430510))
+
+### Update
+
+- simplifying CheckAllBox with displayClassName work ([1d94066](https://github.com/WTW-IM/es-components/commit/1d94066812a13e4671aea6496dc5c094c424df57))
+- simplifying checkbox input wrapping ([aeb8e47](https://github.com/WTW-IM/es-components/commit/aeb8e479259bf7bbb2b2522dd18aff2c6a0912e0))
+- simplifying radio button input wrapping ([625dd09](https://github.com/WTW-IM/es-components/commit/625dd09836f5944af07538e04c74b181e8c03d10))
+
+## [21.9.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.9.0...v21.9.1-pre-prod.0) (2023-09-08)
+
+### Fix
+
+- correcting children type on SlidingPane ([2ef72fb](https://github.com/WTW-IM/es-components/commit/2ef72fba5596703b4b724db9366db1793fda887b))
+- correcting overlayStyles and contentStyles types for SlidingPane ([7df2838](https://github.com/WTW-IM/es-components/commit/7df28383d1e66f7af9d9804d15f3df7f1ad687bc))
+
 # [21.9.0](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.4...v21.9.0) (2023-09-08)
 
 **Note:** Version bump only for package es-components-monorepo

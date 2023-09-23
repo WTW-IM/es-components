@@ -1,39 +1,32 @@
-import React, { ReactNode, useCallback, useContext, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ValidationStyleType } from 'es-components-shared-types';
-import Checkbox from '../../controls/checkbox/Checkbox';
+import Checkbox, { CheckboxProps } from '../../controls/checkbox/Checkbox';
 import Control from '../../controls/Control';
 import Drawer, { useDrawerItemContext } from '../../containers/drawer/Drawer';
 import Icon from '../../base/icons/Icon';
-import { SelectedItemsContext } from './SelectionDrawer';
+import {
+  DrawerType,
+  useSelectionDrawerContext
+} from './SelectionDrawerProvider';
+import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
+import {
+  RadioButton,
+  RadioButtonProps
+} from '../../controls/radio-buttons/RadioButton';
 
 export type SelectionDrawerProps = {
   children: ReactNode;
 };
 
-export type SelectionDrawerItemProps = {
-  header: ReactNode | (({ className }: { className: string }) => ReactNode);
-  type?: 'radio' | 'checkbox';
-  panelKey: string;
-  forceOpen?: boolean;
-  forceClose?: boolean;
-  disabled?: boolean;
-  validationState?: Extract<
-    ValidationStyleType,
-    'default' | 'info' | 'warning' | 'danger'
-  >;
-  independentSelection?: boolean;
-  checkboxAlignment?: 'left' | 'right';
-  headerAlignment?: 'left' | 'right';
-  children: ReactNode;
-};
+export type ControlAlignment = 'left' | 'right';
 
 type StyledItemHeaderProps = {
-  checkboxAlignment: 'left' | 'right';
-  headerAlignment: 'left' | 'right';
+  checkboxAlignment: ControlAlignment;
+  headerAlignment: ControlAlignment;
 };
 
-const headerClass = 'selection-drawer__title';
 function determineJustify({
   checkboxAlignment,
   headerAlignment
@@ -54,23 +47,9 @@ const StyledSelectionDrawerItemHeader = styled.div<StyledItemHeaderProps>`
     flex-wrap: wrap;
     justify-content: ${determineJustify};
     align-items: center;
-    column-gap: 0.66rem;
     flex-grow: 1;
     margin: 0;
     padding: 0;
-  }
-
-  .es-checkbox__wrapper {
-    display: flex;
-  }
-
-  .${headerClass} {
-    display: flex;
-  }
-
-  .es-checkbox__fill {
-    position: static;
-    border-radius: 50%;
   }
 `;
 
@@ -93,108 +72,150 @@ const ValidationBorder = styled.div<{
   }
 `;
 
-const StyledDrawerBody = styled.div`
-  display: flex;
+const StyledDrawerBody = styled(Drawer.ItemBody)`
+  flex-shrink: 0;
+  padding-top: 1rem;
+
+  transition: padding-top 0.3s linear, height 0.3s ease-in-out;
+
+  &.rah-static--height-zero,
+  &.rah-animating--up {
+    padding-top: 0;
+  }
 `;
 
 const StyledDropdownButton = styled.div`
   cursor: pointer;
 `;
 
-function DrawerControl({
-  checkboxAlignment,
-  headerAlignment,
-  disabled,
+/* eslint-disable react/prop-types */
+const DrawerRadio: ReactFCWithChildren<RadioButtonProps> = props => {
+  return <RadioButton {...props} />;
+};
+/* eslint-enable react/prop-types */
+
+/* eslint-disable react/prop-types */
+const DrawerCheckbox: ReactFCWithChildren<CheckboxProps> = ({
   children,
-  independentSelection,
-  type
-}: {
-  checkboxAlignment: 'left' | 'right';
-  headerAlignment: 'left' | 'right';
-  disabled: boolean;
-  children: ReactNode;
-  independentSelection: boolean;
-  type: 'radio' | 'checkbox';
-}) {
-  const { open, toggleOpen, itemKey } = useDrawerItemContext();
-  const { selectedItems, setSelectedItems } = useContext(SelectedItemsContext);
+  ...props
+}) => {
+  const { itemKey } = useDrawerItemContext();
+  const { selectedItems, handleCheckboxChange } = useSelectionDrawerContext();
 
   const isSelected = selectedItems.includes(itemKey);
-  const onChange = useCallback(() => {
-    if (type === 'radio') {
-      setSelectedItems(() => [itemKey]);
-      if (!open) {
-        toggleOpen();
-      }
-      return;
-    }
 
-    if (!isSelected) {
-      setSelectedItems(items => [...items, itemKey]);
-      if (open === isSelected) {
-        toggleOpen();
-      }
-      return;
-    }
+  return (
+    <Checkbox {...props} checked={isSelected} onChange={handleCheckboxChange}>
+      {children}
+    </Checkbox>
+  );
+};
+/* eslint-enable react/prop-types */
 
-    setSelectedItems(items =>
-      items.reduce((acc, item) => {
-        return item === itemKey ? acc : [...acc, item];
-      }, [] as string[])
-    );
-    if (open === isSelected) {
-      toggleOpen();
-    }
-  }, [type, open, itemKey, isSelected]);
+const DrawerControl: ReactFCWithChildren<{
+  checkboxAlignment: ControlAlignment;
+  headerAlignment: ControlAlignment;
+  independentSelection: boolean;
+  setOpenState: (state: boolean) => void;
+}> = ({
+  checkboxAlignment,
+  headerAlignment,
+  children,
+  independentSelection,
+  setOpenState
+}) => {
+  const { open, itemKey } = useDrawerItemContext();
+  const { selectedItems } = useSelectionDrawerContext();
+
+  const isSelected = selectedItems.includes(itemKey);
+
+  useMonitoringEffect(
+    currentSetOpen => {
+      currentSetOpen(isSelected);
+    },
+    [isSelected],
+    setOpenState
+  );
 
   return (
     <StyledSelectionDrawerItemHeader
       checkboxAlignment={checkboxAlignment}
       headerAlignment={headerAlignment}
     >
-      <Checkbox
-        displayClassName="es-checkbox__wrapper"
-        checked={isSelected}
-        disabled={disabled}
-        onChange={onChange}
-      >
-        {children}
-      </Checkbox>
+      {children}
       {independentSelection && (
         <Drawer.ItemOpener>
-          <StyledDropdownButton>
+          <StyledDropdownButton onClick={() => setOpenState(!open)}>
             <Icon size={24} name={open ? 'chevron-down' : 'chevron-up'} />
           </StyledDropdownButton>
         </Drawer.ItemOpener>
       )}
     </StyledSelectionDrawerItemHeader>
   );
-}
+};
 
-export function SelectionDrawerItem({
+DrawerControl.propTypes = {
+  children: PropTypes.node,
+  checkboxAlignment: PropTypes.oneOf<ControlAlignment>(['left', 'right'])
+    .isRequired,
+  headerAlignment: PropTypes.oneOf<ControlAlignment>(['left', 'right'])
+    .isRequired,
+  independentSelection: PropTypes.bool.isRequired,
+  setOpenState: PropTypes.func.isRequired
+};
+
+export type SelectionDrawerItemProps<T extends DrawerType> = Override<
+  T extends 'radio' ? RadioButtonProps : CheckboxProps,
+  {
+    header: ReactNode;
+    forceOpen?: boolean;
+    forceClose?: boolean;
+    disabled?: boolean;
+    validationState?: Extract<
+      ValidationStyleType,
+      'default' | 'info' | 'warning' | 'danger'
+    >;
+    independentSelection?: boolean;
+    checkboxAlignment?: ControlAlignment;
+    headerAlignment?: ControlAlignment;
+    children: ReactNode;
+    type: T;
+  }
+>;
+
+export function SelectionDrawerItem<T extends DrawerType>({
   header,
-  type = 'checkbox',
   children,
-  panelKey,
   forceOpen,
   forceClose,
   disabled = false,
   independentSelection = false,
   validationState = 'default',
   checkboxAlignment = 'left',
-  headerAlignment = 'left'
-}: SelectionDrawerItemProps) {
-  const [isOpen, setIsOpen] = useState(() => {
-    if (typeof forceOpen !== 'undefined') return forceOpen;
-    if (typeof forceClose !== 'undefined') return !forceClose;
-    return false;
-  });
-  const title =
-    typeof header === 'function' ? (
-      header({ className: headerClass })
-    ) : (
-      <div className={headerClass}>{header}</div>
-    );
+  headerAlignment = 'left',
+  type,
+  value: valueProp,
+  ...props
+}: SelectionDrawerItemProps<T>) {
+  const value = valueProp?.toString() || '';
+  const [isOpen, setIsOpen] = useState(false);
+  const { selectedItems } = useSelectionDrawerContext();
+
+  const setOpenState = useCallback(
+    (openState: boolean) => {
+      let newOpen = openState;
+      if (typeof forceOpen !== 'undefined') newOpen = forceOpen;
+      if (typeof forceClose !== 'undefined') newOpen = !forceClose;
+      setIsOpen(newOpen);
+    },
+    [forceOpen, forceClose]
+  );
+
+  useEffect(function defaultClosed() {
+    setOpenState(false);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const Input = type === 'radio' ? DrawerRadio : DrawerCheckbox;
 
   return (
     <ValidationBorder
@@ -203,20 +224,23 @@ export function SelectionDrawerItem({
       disabled={disabled}
     >
       <Control validationState={validationState}>
-        <Drawer.Item onChange={setIsOpen} panelKey={panelKey} open={isOpen}>
+        <Drawer.Item
+          onChange={setOpenState}
+          panelKey={value}
+          controlledOpen={Boolean(isOpen || selectedItems.includes(value))}
+        >
           <DrawerControl
-            type={type}
             checkboxAlignment={checkboxAlignment}
             headerAlignment={headerAlignment}
             independentSelection={independentSelection}
-            disabled={disabled}
+            setOpenState={setOpenState}
           >
-            {title}
+            <Input {...props} disabled={disabled} value={value}>
+              <div>{header}</div>
+            </Input>
           </DrawerControl>
-          <StyledDrawerBody>
-            <Drawer.ItemBody style={{ flexShrink: 0 }}>
-              {children}
-            </Drawer.ItemBody>
+          <StyledDrawerBody applyInlineTransitions={false}>
+            {children}
           </StyledDrawerBody>
         </Drawer.Item>
       </Control>

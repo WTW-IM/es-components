@@ -1,22 +1,15 @@
-import React, {
-  ReactNode,
-  createContext,
-  useCallback,
-  useRef,
-  useState
-} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Drawer from '../../containers/drawer/Drawer';
+import Drawer, { DrawerProps } from '../../containers/drawer/Drawer';
 import {
   SelectionDrawerItem,
   SelectionDrawerItemProps
 } from './SelectionDrawerItem';
-
-export type SelectionDrawerProps = {
-  children: ReactNode;
-  onSelectionChange?: (selectedItems: string[]) => void;
-  type?: 'radio' | 'checkbox';
-};
+import SelectionDrawerProvider, {
+  DrawerType,
+  SelectionDrawerProviderProps
+} from './SelectionDrawerProvider';
+import noop from '../../util/noop';
 
 const StyledDrawer = styled(Drawer)`
   display: flex;
@@ -24,51 +17,57 @@ const StyledDrawer = styled(Drawer)`
   row-gap: 1rem;
 `;
 
-export const SelectedItemsContext = createContext<{
-  selectedItems: string[];
-  setSelectedItems: (dispatch: (items: string[]) => string[]) => void;
-}>({
-  selectedItems: [],
-  setSelectedItems() {
-    // noop
-  }
-});
+export type SelectionDrawerProps<T extends DrawerType> = Override<
+  Omit<DrawerProps, 'activeKeys' | 'isAccordion' | 'useDefaultStyles'>,
+  SelectionDrawerProviderProps<T>
+>;
 
-export default function SelectionDrawer({
-  type = 'checkbox',
-  children,
-  ...props
-}: SelectionDrawerProps) {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const onChangeRef = useRef(props.onSelectionChange);
-
-  const onChange = useCallback(
-    (dispatch: (items: string[]) => string[]) => {
-      setSelectedItems(items => {
-        const newState = dispatch(items);
-        onChangeRef.current?.(newState);
-        return newState;
-      });
-    },
-    [selectedItems]
-  );
+const SelectionDrawer = React.forwardRef<
+  HTMLDivElement,
+  SelectionDrawerProps<DrawerType>
+>(function ForwardedSelectionDrawer<T extends DrawerType>(
+  { children, ...props }: SelectionDrawerProps<T>,
+  ref: React.ForwardedRef<HTMLDivElement>
+) {
+  const {
+    selectedItems = [],
+    onSelectionChange = noop,
+    type: typeProp = 'checkbox',
+    ...drawerProps
+  } = props;
+  const type: DrawerType = typeProp || 'checkbox';
+  const providerProps = { selectedItems, onSelectionChange, type };
 
   return (
-    <SelectedItemsContext.Provider
-      value={{ selectedItems, setSelectedItems: onChange }}
-    >
-      <StyledDrawer useDefaultStyles={false} isAccordion={type === 'radio'}>
+    <SelectionDrawerProvider {...providerProps}>
+      <StyledDrawer
+        ref={ref}
+        useDefaultStyles={false}
+        isAccordion={type === 'radio'}
+        {...drawerProps}
+      >
         {React.Children.map(children, child => {
-          if (!child || !React.isValidElement<SelectionDrawerItemProps>(child))
+          if (
+            !child ||
+            !React.isValidElement<SelectionDrawerItemProps<DrawerType>>(child)
+          )
             return child;
 
           return React.cloneElement(child, { type });
         })}
       </StyledDrawer>
-    </SelectedItemsContext.Provider>
+    </SelectionDrawerProvider>
   );
-}
+});
 
-SelectionDrawer.Item = SelectionDrawerItem;
+type SelectionDrawerComponentType = typeof SelectionDrawer & {
+  Item: typeof SelectionDrawerItem;
+};
 
-SelectionDrawer.propTypes = {};
+const SelectionDrawerComponent =
+  SelectionDrawer as SelectionDrawerComponentType;
+
+SelectionDrawerComponent.Item = SelectionDrawerItem;
+
+/** @component */
+export default SelectionDrawerComponent;

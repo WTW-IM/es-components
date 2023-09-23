@@ -123,6 +123,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
       class="c2 c3"
       fill="#444"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -256,6 +257,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
       class="c2 c3"
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -390,6 +392,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
       class="c2 c3"
       fill="#0073b6"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -524,6 +527,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
       class="c2 c3"
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -659,6 +663,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
       disabled=""
       fill="#444"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -794,6 +799,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
       disabled=""
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -930,6 +936,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
       disabled=""
       fill="#0073b6"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
@@ -1066,6 +1073,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
       disabled=""
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span

@@ -3,13 +3,16 @@ import React, {
   useContext,
   useCallback,
   useEffect,
-  useState,
-  useRef
+  useState
 } from 'react';
 import PropTypes from 'prop-types';
 import AnimateHeight, { AnimateHeightProps } from 'react-animate-height';
 import { DrawerContext } from './DrawerContext';
 import useUniqueId from '../../util/useUniqueId';
+import {
+  useMonitoringCallback,
+  useMonitoringEffect
+} from '../../../hooks/useMonitoringHooks';
 
 interface DrawerItemContextShape {
   open: boolean;
@@ -31,6 +34,7 @@ export const useDrawerItemContext = () => useContext(DrawerItemContext);
 
 export interface DrawerItemProps {
   open?: boolean;
+  controlledOpen?: boolean;
   onChange?: (open: boolean) => void;
   id?: string;
   panelKey?: string | number;
@@ -41,21 +45,32 @@ export const DrawerItem: React.FC<DrawerItemProps> = ({
   id,
   panelKey,
   open: openProp,
-  onChange: onChangeProp,
+  controlledOpen,
+  onChange,
   ...props
 }) => {
   const { activeKeys, toggleActiveKey, setActiveKey, unsetActiveKey } =
     useContext(DrawerContext);
   const itemId = useUniqueId(id);
   const itemKey = useUniqueId(panelKey?.toString());
+
   const toggleOpen = useCallback(
     () => toggleActiveKey(itemKey),
     [itemKey, toggleActiveKey]
   );
-  const onChange = useRef(onChangeProp);
-  onChange.current = onChangeProp;
-  const afterInitialRender = useRef(false);
+
+  const [afterInitialRender, setAfterInitialRender] = useState(false);
   const [open, setOpen] = useState(activeKeys.includes(itemKey));
+
+  const safeSetOpen = useCallback(
+    (openState: boolean) => {
+      let newOpen = openState;
+      if (typeof controlledOpen !== 'undefined') newOpen = controlledOpen;
+      setOpen(newOpen);
+    },
+    [controlledOpen]
+  );
+
   const [itemContext, setItemContext] = useState({
     open,
     itemId,
@@ -66,9 +81,9 @@ export const DrawerItem: React.FC<DrawerItemProps> = ({
   useEffect(
     function setOpenFromActiveKeys() {
       const newOpen = activeKeys.includes(itemKey);
-      setOpen(newOpen);
+      safeSetOpen(newOpen);
     },
-    [activeKeys, itemKey]
+    [activeKeys, itemKey, safeSetOpen]
   );
 
   useEffect(
@@ -80,15 +95,19 @@ export const DrawerItem: React.FC<DrawerItemProps> = ({
     [openProp, itemKey, setActiveKey, unsetActiveKey]
   );
 
-  useEffect(
-    function callOnChangeWhenOpenChanges() {
-      if (!afterInitialRender.current) {
+  useMonitoringEffect(
+    function callOnChangeWhenOpenChanges({
+      onChange: currentOnChange,
+      afterInitialRender: afterRender
+    }) {
+      if (!afterRender) {
         return;
       }
 
-      onChange.current?.(open);
+      currentOnChange?.(open);
     },
-    [open]
+    [open],
+    { onChange, afterInitialRender }
   );
 
   useEffect(
@@ -99,7 +118,7 @@ export const DrawerItem: React.FC<DrawerItemProps> = ({
   );
 
   useEffect(() => {
-    afterInitialRender.current = true;
+    setAfterInitialRender(true);
   }, []);
 
   return <DrawerItemContext.Provider {...props} value={itemContext} />;
@@ -129,11 +148,16 @@ export type DrawerItemBodyProps = Omit<
   'height' | 'duration' | 'id' | 'role'
 >;
 
-export const DrawerItemBody: React.FC<DrawerItemBodyProps> = props => {
+export const DrawerItemBody = React.forwardRef<
+  HTMLDivElement,
+  DrawerItemBodyProps
+>(function ForwardedItemBody(props, ref) {
   const { open, itemId } = useDrawerItemContext();
   const height = open ? 'auto' : 0;
+
   return (
     <AnimateHeight
+      ref={ref}
       height={height}
       duration={300}
       id={`${itemId}-region`}
@@ -141,7 +165,7 @@ export const DrawerItemBody: React.FC<DrawerItemBodyProps> = props => {
       {...props}
     />
   );
-};
+});
 
 DrawerItemBody.propTypes = {
   children: PropTypes.node
@@ -158,18 +182,16 @@ export interface DrawerItemOpenerProps {
 function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
   const child = React.Children.only(children);
   const { open, toggleOpen, itemId } = useContext(DrawerItemContext);
-  const childClick = useRef(child.props.onClick);
 
-  useEffect(() => {
-    childClick.current = child.props.onClick;
-  }, [child.props.onClick]);
-
-  const onClick = useCallback(
-    (ev: React.SyntheticEvent) => {
-      childClick.current?.(ev);
-      toggleOpen();
+  const onClick = useMonitoringCallback(
+    (
+      { onChildClick: currentOnClick, toggleOpen: currentToggle },
+      ev: React.SyntheticEvent
+    ) => {
+      currentOnClick?.(ev);
+      currentToggle();
     },
-    [toggleOpen, childClick]
+    { toggleOpen, onChildClick: child.props.onClick }
   );
 
   return React.cloneElement(child, {

@@ -12,6 +12,10 @@ import {
   htmlInputDefaultProps
 } from '../../util/htmlProps';
 import { lighten } from '../../util/colors';
+import {
+  useRadioGroupContext,
+  RadioGroupContextShape
+} from './RadioGroupContext';
 
 const RadioDisplayWrapper = styled.div``;
 
@@ -108,10 +112,30 @@ export type RadioButtonProps = HTMLInputProps & {
   displayClassName?: string;
 };
 
-export function getCheckedProps(radioProps: RadioButtonProps) {
-  const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
-  return radioProps.onChange
-    ? { onChange: radioProps.onChange, checked, defaultChecked: undefined }
+const getOnChange =
+  (
+    ...onChanges: (HTMLInputProps['onChange'] | undefined)[]
+  ): React.ChangeEventHandler<HTMLInputElement> =>
+  event => {
+    onChanges.forEach(c => c?.(event));
+  };
+
+export function getCheckedProps(
+  radioProps: RadioButtonProps,
+  contextProps: RadioGroupContextShape
+) {
+  const checked = Boolean(
+    radioProps.checked ||
+      radioProps.defaultChecked ||
+      contextProps.selectedValue === radioProps.value
+  );
+  const onChanges = [radioProps.onChange, contextProps.onChange];
+  return onChanges.some(c => c)
+    ? {
+        onChange: getOnChange(...onChanges),
+        checked,
+        defaultChecked: undefined
+      }
     : {
         defaultChecked: checked,
         checked: undefined
@@ -123,8 +147,11 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
     { children, className, displayClassName, ...radioProps },
     ref
   ) {
+    const contextProps = useRadioGroupContext();
+    const { disableAllOptions } = contextProps;
     const id = useUniqueId(radioProps.id);
-    const checked = Boolean(radioProps.checked || radioProps.defaultChecked);
+    const checkedProps = getCheckedProps(radioProps, contextProps);
+    const checked = checkedProps.checked || checkedProps.defaultChecked;
     const theme = useTheme();
     const validationState = React.useContext(ValidationContext);
     const fill =
@@ -132,24 +159,31 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
         ? theme.colors.primary
         : theme.validationTextColor[validationState];
     const hover = lighten(fill, 40);
+    const disabled = radioProps.disabled || disableAllOptions;
 
     const labelProps = {
-      disabled: radioProps.disabled,
       htmlFor: id,
+      disabled,
       validationState,
       checked,
       hover
     };
 
     const inputProps = {
+      ...contextProps,
       ...radioProps,
+      disabled,
       fill,
-      ...getCheckedProps(radioProps)
+      ...checkedProps
     };
+
+    const displayWrapperClasses = `${displayClassName || ''} ${
+      contextProps.displayClassName || ''
+    }`.trim();
 
     return (
       <RadioLabel className={className} {...labelProps}>
-        <RadioDisplayWrapper className={displayClassName}>
+        <RadioDisplayWrapper className={displayWrapperClasses}>
           <RadioInput ref={ref} type="radio" id={id} {...inputProps} />
           <RadioDisplay className="es-radio__fill" />
         </RadioDisplayWrapper>

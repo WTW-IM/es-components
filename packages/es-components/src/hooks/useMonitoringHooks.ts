@@ -24,10 +24,15 @@ export function useMonitoringEffect<T>(
     ? (depsOrMonitor as React.DependencyList)
     : undefined;
   const monitorValue = depsIncluded ? (monitor as T) : (depsOrMonitor as T);
+
   const monitorRef = useRef(monitorValue);
   monitorRef.current = monitorValue;
+
+  const effectRef = useRef(effect);
+  effectRef.current = effect;
+
   useEffect(() => {
-    return effect(monitorRef.current);
+    return effectRef.current(monitorRef.current);
   }, deps || []); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
@@ -59,13 +64,16 @@ export function useMonitoringCallback<T, O extends AnyArray, R>(
   const [callback, depsOrMonitor, monitor] = args;
   const depsIncluded = args.length === 3;
 
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
+
   const deps = depsIncluded ? (depsOrMonitor as React.DependencyList) : [];
   const monitorValue = depsIncluded ? (monitor as T) : (depsOrMonitor as T);
   const monitorRef = useRef(monitorValue);
   monitorRef.current = monitorValue;
 
   const monitoredCallback = useCallback((...args: O) => {
-    return callback(monitorRef.current, ...args);
+    return callbackRef.current(monitorRef.current, ...args);
   }, deps); // eslint-disable-line react-hooks/exhaustive-deps
 
   return monitoredCallback;

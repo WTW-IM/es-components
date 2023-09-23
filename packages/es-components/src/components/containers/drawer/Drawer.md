@@ -201,12 +201,12 @@ const FreeformExample = () => {
   const [backwardsValue, setBackwardsValue] = React.useState(0);
   const [drawerOneOpen, setDrawerOneOpen] = React.useState(false);
   const [drawerTwoOpen, setDrawerTwoOpen] = React.useState(true);
-  const onDrawerOneChange = (open) => {
+  const onDrawerOneChange = open => {
     setDrawerOneOpen(open);
     setDrawerTwoOpen(open);
   };
 
-  const onDrawerTwoChange = (open) => {
+  const onDrawerTwoChange = open => {
     setDrawerTwoOpen(open);
   };
 
@@ -225,6 +225,7 @@ const FreeformExample = () => {
       newValue = buttonOptions.length - 1;
     }
     setBackwardsValue(newValue);
+    setDrawerTwoOpen(op => !op);
   };
 
   return (
@@ -236,7 +237,7 @@ const FreeformExample = () => {
           border: 1px solid gray;
           padding: 8px;
         }
-      `,
+      `
         }}
       ></style>
       <h2>This is a drawer!</h2>
@@ -270,7 +271,7 @@ const FreeformExample = () => {
                   aria-labelledby="first-opener"
                   id="first-body"
                   style={{
-                    boxSizing: 'border-box',
+                    boxSizing: 'border-box'
                   }}
                 >
                   <p>Hello and welcome to the revealed Drawer content!</p>
@@ -319,7 +320,7 @@ const FreeformExample = () => {
                   aria-labelledby="second-opener"
                   id="second-body"
                   style={{
-                    boxSizing: 'border-box',
+                    boxSizing: 'border-box'
                   }}
                 >
                   <p>Hello and welcome to the other revealed Drawer content!</p>

@@ -1,6 +1,13 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import * as CSS from 'csstype';
+import styled, { useTheme, css } from 'styled-components';
 import { ValidationStyleType } from 'es-components-shared-types';
 import Checkbox, {
   CheckboxProps,
@@ -18,9 +25,11 @@ import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 import {
   RadioButton,
   RadioButtonProps,
-  RadioDisplay
+  RadioDisplay,
+  getValidationSelectionColors
 } from '../../controls/radio-buttons/RadioButton';
 import { useValidationState } from '../../controls/ValidationContext';
+import { lighten } from '../../util/colors';
 
 export type SelectionDrawerProps = {
   children: ReactNode;
@@ -78,22 +87,36 @@ const StyledSelectionDrawerItemHeader = styled.div<StyledItemHeaderProps>`
 `;
 
 const ValidationBorder = styled.div<{
+  borderColor: CSS.Property.Color;
   validationState: ValidationStyleType;
   disabled: boolean;
+  disabledBgColor: CSS.Property.BackgroundColor;
 }>`
-  border: 2px solid
-    ${props =>
-      props.theme.validationInputColor[props.validationState].borderColor};
-  border-radius: 0.3rem;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background-color: ${props =>
-    props.disabled ? props.theme.colors.gray3 : 'inherit'};
+  ${({ borderColor, disabled, disabledBgColor, theme }) => css`
+    border: 2px solid ${borderColor};
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: inherit;
 
-  > div {
-    margin-bottom: 0;
-  }
+    ${disabled &&
+    css`
+      background-color: ${disabledBgColor};
+      border-color: ${theme.colors.disabled ||
+      theme.validationInputColor.default.borderColor};
+
+      &,
+      & ${Label} {
+        color: ${theme.colors.disabled ||
+        theme.validationInputColor.default.borderColor};
+      }
+    `}
+
+    > div {
+      margin-bottom: 0;
+    }
+  `}
 `;
 
 const StyledDrawerBody = styled(Drawer.ItemBody)`
@@ -225,6 +248,20 @@ export function SelectionDrawerItem<T extends DrawerType>({
   const parentValidationState = useValidationState();
   const validationState =
     validationStateProp || drawerValidationState || parentValidationState;
+  const theme = useTheme();
+  const isChecked = selectedItems.includes(value);
+  const { fill: borderColor } = useMemo(
+    () => getValidationSelectionColors(theme, validationState, isChecked),
+    [theme, validationState, isChecked]
+  );
+  const disabledBgColor = useMemo(
+    () =>
+      lighten(
+        theme.colors.disabled || theme.validationInputColor.default.borderColor,
+        20
+      ),
+    [theme]
+  );
 
   const setOpenState = useCallback(
     (openState: boolean) => {
@@ -247,6 +284,8 @@ export function SelectionDrawerItem<T extends DrawerType>({
       className="test"
       disabled={disabled}
       validationState={validationState}
+      borderColor={borderColor}
+      disabledBgColor={disabledBgColor}
     >
       <Control validationState={validationState}>
         <Drawer.Item

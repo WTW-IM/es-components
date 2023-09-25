@@ -46,9 +46,9 @@ export const RadioDisplay = styled.span`
 export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
   ${({
     theme: {
-      colors: { inputFocus },
+      colors: { inputFocus, disabled: disabledColor },
       validationInputColor: {
-        default: { borderColor: disabledColor }
+        default: { borderColor: disabledBorderColor }
       }
     },
     fill
@@ -71,11 +71,11 @@ export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
 
     &&:disabled {
       ~ ${RadioDisplay} {
-        border-color: ${disabledColor};
+        border-color: ${disabledColor || disabledBorderColor};
       }
 
       &:checked ~ ${RadioDisplay}:before {
-        background-color: ${disabledColor};
+        background-color: ${disabledColor || disabledBorderColor};
       }
     }
   `}

@@ -13,7 +13,7 @@ import {
 } from '../radio-buttons/RadioButton';
 import useUniqueId from '../../util/useUniqueId';
 
-export const CheckboxLabel = styled(Label)`
+export const CheckboxLabel = styled(Label)<{ disabled?: boolean }>`
   font-size: ${props => props.theme.font.baseFontSize};
   font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.font.baseFontSize};
@@ -27,6 +27,12 @@ export const CheckboxLabel = styled(Label)`
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     margin-left: 0;
     padding: 5px 0 5px 32px;
+  }
+
+  [disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    outline: 0;
   }
 `;
 
@@ -155,7 +161,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const checkboxName = checkboxProps.name || uniqueName;
 
     return (
-      <CheckboxLabel>
+      <CheckboxLabel disabled={checkboxProps.disabled}>
         <CheckboxDisplayWrapper className={displayClassName}>
           <CheckboxInput
             type="checkbox"

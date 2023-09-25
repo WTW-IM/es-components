@@ -88,7 +88,8 @@ export const CheckboxDisplay = styled.span<
     }
 
     ${CheckboxInput}:disabled ~ && {
-      border-color: ${theme.colors.gray5};
+      border-color: ${theme.colors.disabled ||
+      theme.validationInputColor.default.borderColor};
       cursor: not-allowed;
       outline: 0;
 
@@ -100,7 +101,8 @@ export const CheckboxDisplay = styled.span<
     }
 
     ${CheckboxInput}:disabled:checked ~ && {
-      background-color: ${theme.colors.gray5};
+      background-color: ${theme.colors.disabled ||
+      theme.validationInputColor.default.borderColor};
       border-color: transparent;
 
       ${CheckboxLabel}:focus &:after,

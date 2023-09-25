@@ -17,7 +17,8 @@ import {
 import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 import {
   RadioButton,
-  RadioButtonProps
+  RadioButtonProps,
+  RadioDisplay
 } from '../../controls/radio-buttons/RadioButton';
 import { useValidationState } from '../../controls/ValidationContext';
 
@@ -42,19 +43,26 @@ function determineJustify({
 }
 
 const StyledSelectionDrawerItemHeader = styled.div<StyledItemHeaderProps>`
-  display: flex;
-  align-items: center;
-
-  ${Label} {
+  &,
+  & > ${Label} {
     display: flex;
-    flex-direction: ${props =>
-      props.checkboxAlignment === 'left' ? 'row' : 'row-reverse'};
-    flex-wrap: wrap;
-    justify-content: ${determineJustify};
     align-items: center;
-    flex-grow: 1;
+    flex-wrap: nowrap;
+    column-gap: 0.5em;
+
     margin: 0;
     padding: 0;
+
+    & > * {
+      margin: 0;
+    }
+  }
+
+  & > ${Label} {
+    flex-direction: ${props =>
+      props.checkboxAlignment === 'left' ? 'row' : 'row-reverse'};
+    justify-content: ${determineJustify};
+    flex-grow: 1;
   }
 
   ${CheckboxDisplay} {
@@ -62,7 +70,10 @@ const StyledSelectionDrawerItemHeader = styled.div<StyledItemHeaderProps>`
     position: relative;
     top: 0;
     left: 0;
-    margin-right: 0.5em;
+  }
+
+  ${CheckboxDisplay}, ${RadioDisplay} {
+    margin: 0;
   }
 `;
 

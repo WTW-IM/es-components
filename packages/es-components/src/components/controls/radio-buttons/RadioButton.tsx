@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as CSS from 'csstype';
-import styled, { css } from 'styled-components';
+import styled, { DefaultTheme, css } from 'styled-components';
+import { ValidationStyleType } from 'es-components-shared-types';
 
 import Label from '../label/Label';
 import { useTheme } from '../../util/useTheme';
-import ValidationContext from '../ValidationContext';
+import { useValidationState } from '../ValidationContext';
 import useUniqueId from '../../util/useUniqueId';
 import {
   HTMLInputProps,
@@ -17,7 +18,7 @@ import {
   RadioGroupContextShape
 } from './RadioGroupContext';
 
-const RadioDisplayWrapper = styled.div``;
+export const RadioDisplayWrapper = styled.div``;
 
 export const RadioDisplay = styled.span`
   align-items: center;
@@ -100,10 +101,14 @@ const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
       padding: 5px 0;
     }
 
-    &:hover
-      > ${RadioInput}:not(:disabled):not(:checked)
-      ~ ${RadioDisplay}:before {
-      background-color: ${hover};
+    &:hover {
+      & > ${RadioDisplayWrapper} {
+        &
+          > ${RadioInput}:not(:disabled):not(:checked)
+          ~ ${RadioDisplay}:before {
+          background-color: ${hover};
+        }
+      }
     }
   `}
 `;
@@ -142,6 +147,26 @@ export function getCheckedProps(
       };
 }
 
+export interface ValidationSelectionColors {
+  fill: CSS.Property.BackgroundColor;
+  hover: CSS.Property.BackgroundColor;
+}
+
+export const getValidationSelectionColors = (
+  theme: DefaultTheme,
+  validationState: ValidationStyleType,
+  checked?: boolean
+): ValidationSelectionColors => {
+  const targetColor =
+    validationState === 'default' && checked
+      ? theme.colors.primary
+      : theme.validationTextColor[validationState];
+  return {
+    fill: targetColor,
+    hover: lighten(targetColor, 40)
+  };
+};
+
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   function ForwardedRadioButton(
     { children, className, displayClassName, ...radioProps },
@@ -153,12 +178,11 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
     const checkedProps = getCheckedProps(radioProps, contextProps);
     const checked = checkedProps.checked || checkedProps.defaultChecked;
     const theme = useTheme();
-    const validationState = React.useContext(ValidationContext);
-    const fill =
-      validationState === 'default' && checked
-        ? theme.colors.primary
-        : theme.validationTextColor[validationState];
-    const hover = lighten(fill, 40);
+    const validationState = useValidationState();
+    const { fill, hover } = useMemo(
+      () => getValidationSelectionColors(theme, validationState, checked),
+      [theme, validationState, checked]
+    );
     const disabled = radioProps.disabled || disableAllOptions;
 
     const labelProps = {

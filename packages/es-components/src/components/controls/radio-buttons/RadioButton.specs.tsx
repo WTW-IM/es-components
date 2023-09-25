@@ -5,7 +5,11 @@ import { screen } from '@testing-library/react';
 // using a different name for `css` so prettier doesn't mess with css selectors
 import { css as cssStyled } from 'styled-components';
 import { renderWithTheme } from '../../util/test-utils';
-import RadioButton, { RadioDisplay, RadioInput } from './RadioButton';
+import RadioButton, {
+  RadioDisplay,
+  RadioDisplayWrapper,
+  RadioInput
+} from './RadioButton';
 import ValidationContext from '../ValidationContext';
 import { ValidationStyleType } from 'es-components-shared-types';
 import viaTheme from 'es-components-via-theme';
@@ -106,7 +110,7 @@ describe('RadioButton colors', () => {
         selector: 'label'
       });
       expect(label).toHaveStyleRule('background-color', expectedHoverColor, {
-        modifier: cssStyled`&:hover > ${RadioInput}:not(:disabled):not(:checked) ~ ${RadioDisplay}:before`
+        modifier: cssStyled`&:hover > ${RadioDisplayWrapper} > ${RadioInput}:not(:disabled):not(:checked) ~ ${RadioDisplay}:before`
       });
       expect(label).toMatchSnapshot();
     }

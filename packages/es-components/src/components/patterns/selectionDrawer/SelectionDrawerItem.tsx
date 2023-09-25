@@ -2,7 +2,11 @@ import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ValidationStyleType } from 'es-components-shared-types';
-import Checkbox, { CheckboxProps } from '../../controls/checkbox/Checkbox';
+import Checkbox, {
+  CheckboxProps,
+  CheckboxDisplay
+} from '../../controls/checkbox/Checkbox';
+import Label from '../../controls/label/Label';
 import Control from '../../controls/Control';
 import Drawer, { useDrawerItemContext } from '../../containers/drawer/Drawer';
 import Icon from '../../base/icons/Icon';
@@ -15,6 +19,7 @@ import {
   RadioButton,
   RadioButtonProps
 } from '../../controls/radio-buttons/RadioButton';
+import { useValidationState } from '../../controls/ValidationContext';
 
 export type SelectionDrawerProps = {
   children: ReactNode;
@@ -40,7 +45,7 @@ const StyledSelectionDrawerItemHeader = styled.div<StyledItemHeaderProps>`
   display: flex;
   align-items: center;
 
-  label {
+  ${Label} {
     display: flex;
     flex-direction: ${props =>
       props.checkboxAlignment === 'left' ? 'row' : 'row-reverse'};
@@ -50,6 +55,14 @@ const StyledSelectionDrawerItemHeader = styled.div<StyledItemHeaderProps>`
     flex-grow: 1;
     margin: 0;
     padding: 0;
+  }
+
+  ${CheckboxDisplay} {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-right: 0.5em;
   }
 `;
 
@@ -171,10 +184,7 @@ export type SelectionDrawerItemProps<T extends DrawerType> = Override<
     forceOpen?: boolean;
     forceClose?: boolean;
     disabled?: boolean;
-    validationState?: Extract<
-      ValidationStyleType,
-      'default' | 'info' | 'warning' | 'danger'
-    >;
+    validationState?: ValidationStyleType;
     independentSelection?: boolean;
     checkboxAlignment?: ControlAlignment;
     headerAlignment?: ControlAlignment;
@@ -190,7 +200,7 @@ export function SelectionDrawerItem<T extends DrawerType>({
   forceClose,
   disabled = false,
   independentSelection = false,
-  validationState = 'default',
+  validationState: validationStateProp = 'default',
   checkboxAlignment = 'left',
   headerAlignment = 'left',
   type,
@@ -199,7 +209,11 @@ export function SelectionDrawerItem<T extends DrawerType>({
 }: SelectionDrawerItemProps<T>) {
   const value = valueProp?.toString() || '';
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedItems } = useSelectionDrawerContext();
+  const { selectedItems, validationState: drawerValidationState } =
+    useSelectionDrawerContext();
+  const parentValidationState = useValidationState();
+  const validationState =
+    validationStateProp || drawerValidationState || parentValidationState;
 
   const setOpenState = useCallback(
     (openState: boolean) => {
@@ -219,9 +233,9 @@ export function SelectionDrawerItem<T extends DrawerType>({
 
   return (
     <ValidationBorder
-      validationState={validationState}
       className="test"
       disabled={disabled}
+      validationState={validationState}
     >
       <Control validationState={validationState}>
         <Drawer.Item

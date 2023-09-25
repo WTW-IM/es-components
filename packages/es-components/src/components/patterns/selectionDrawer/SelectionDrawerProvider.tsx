@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect
-} from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   useMonitoringCallback,
@@ -15,15 +10,26 @@ import noop from '../../util/noop';
 import RadioGroup, {
   RadioGroupProps
 } from '../../controls/radio-buttons/RadioGroup';
+import { ValidationStyleType } from 'es-components-shared-types';
 
 export type DrawerType = 'radio' | 'checkbox';
 
-export const SelectionDrawerContext = createContext<{
-  selectedItems: string[];
-  setSelectedItems: (dispatch: (items: string[]) => string[]) => void;
-  drawerType: DrawerType;
-  handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
-}>({
+export type SelectionDrawerSharedProps = {
+  selectedItems?: string[];
+  validationState?: ValidationStyleType;
+};
+
+export const SelectionDrawerContext = createContext<
+  Override<
+    SelectionDrawerSharedProps,
+    {
+      selectedItems: string[];
+      setSelectedItems: (dispatch: (items: string[]) => string[]) => void;
+      drawerType: DrawerType;
+      handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
+    }
+  >
+>({
   selectedItems: [],
   setSelectedItems: noop,
   drawerType: 'checkbox',
@@ -32,8 +38,7 @@ export const SelectionDrawerContext = createContext<{
 
 export type SelectionDrawerProviderProps<T extends DrawerType> =
   React.PropsWithChildren<
-    {
-      selectedItems?: string[];
+    SelectionDrawerSharedProps & {
       onSelectionChange: (selectedItems: string[]) => void;
       type?: T;
     } & (T extends 'radio' ? RadioGroupProps : { name?: string })
@@ -51,6 +56,7 @@ function SelectionDrawerProvider<T extends DrawerType>(
     selectedItems: selectedItemsProp,
     onSelectionChange,
     type = 'checkbox' as DrawerType,
+    validationState,
     name
   } = props;
   const isRadio = isRadioDrawer(props);
@@ -89,7 +95,8 @@ function SelectionDrawerProvider<T extends DrawerType>(
         selectedItems: selectedValues,
         setSelectedItems: setSelectedValues,
         drawerType: type || 'checkbox',
-        handleCheckboxChange
+        handleCheckboxChange,
+        validationState
       }}
     >
       {isRadio ? (

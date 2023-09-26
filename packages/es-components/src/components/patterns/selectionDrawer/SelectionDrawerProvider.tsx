@@ -13,8 +13,14 @@ import RadioGroup, {
 import { ValidationStyleType } from 'es-components-shared-types';
 
 export type DrawerType = 'radio' | 'checkbox';
+export type ControlAlignment = 'left' | 'right';
 
-export type SelectionDrawerSharedProps = {
+export type HeaderAlignment = {
+  inputAlignment: ControlAlignment;
+  labelAlignment: ControlAlignment;
+};
+
+export type SelectionDrawerSharedProps = HeaderAlignment & {
   selectedItems?: string[];
   validationState?: ValidationStyleType;
 };
@@ -33,7 +39,9 @@ export const SelectionDrawerContext = createContext<
   selectedItems: [],
   setSelectedItems: noop,
   drawerType: 'checkbox',
-  handleCheckboxChange: noop
+  handleCheckboxChange: noop,
+  labelAlignment: 'left',
+  inputAlignment: 'right'
 });
 
 export type SelectionDrawerProviderProps<T extends DrawerType> =

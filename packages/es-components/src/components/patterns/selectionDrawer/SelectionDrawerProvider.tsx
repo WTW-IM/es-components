@@ -20,9 +20,10 @@ export type HeaderAlignment = {
   labelAlignment: ControlAlignment;
 };
 
-export type SelectionDrawerSharedProps = HeaderAlignment & {
+export type SelectionDrawerSharedProps = Partial<HeaderAlignment> & {
   selectedItems?: string[];
   validationState?: ValidationStyleType;
+  openable?: boolean;
 };
 
 export const SelectionDrawerContext = createContext<
@@ -44,7 +45,7 @@ export const SelectionDrawerContext = createContext<
   inputAlignment: 'right'
 });
 
-export type SelectionDrawerProviderProps<T extends DrawerType> =
+export type SelectionDrawerProviderProps<T extends DrawerType = DrawerType> =
   React.PropsWithChildren<
     SelectionDrawerSharedProps & {
       onSelectionChange: (selectedItems: string[]) => void;
@@ -64,8 +65,8 @@ function SelectionDrawerProvider<T extends DrawerType>(
     selectedItems: selectedItemsProp,
     onSelectionChange,
     type = 'checkbox' as DrawerType,
-    validationState,
-    name
+    name,
+    ...contextProps
   } = props;
   const isRadio = isRadioDrawer(props);
   const guaranteedName = isRadio ? props.name : name || '';
@@ -93,9 +94,13 @@ function SelectionDrawerProvider<T extends DrawerType>(
     onSelectionChange
   );
 
-  useEffect(() => {
-    setSelectedValues(selectedItemsProp || []);
-  }, [selectedItemsProp, setSelectedValues]);
+  useMonitoringEffect(
+    currentSetSelected => {
+      currentSetSelected(selectedItemsProp || []);
+    },
+    [selectedItemsProp],
+    setSelectedValues
+  );
 
   return (
     <SelectionDrawerContext.Provider
@@ -104,7 +109,7 @@ function SelectionDrawerProvider<T extends DrawerType>(
         setSelectedItems: setSelectedValues,
         drawerType: type || 'checkbox',
         handleCheckboxChange,
-        validationState
+        ...contextProps
       }}
     >
       {isRadio ? (

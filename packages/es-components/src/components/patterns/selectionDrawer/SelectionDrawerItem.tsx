@@ -28,23 +28,17 @@ export type SelectionDrawerProps = {
   children: ReactNode;
 };
 
-function determineJustify({ inputAlignment, labelAlignment }: HeaderAlignment) {
-  if (inputAlignment !== labelAlignment) return 'space-between';
-  // if (checkboxAlignment === 'right' && headerAlignment === 'right') return
-  return 'flex-start';
-}
-
 const DrawerValidationControl = styled(Control)`
   margin-bottom: 0;
 `;
 
 const DrawerHeader = styled.div<HeaderAlignment>`
   ${({ inputAlignment, labelAlignment }) => css`
+    display: flex;
     flex-direction: row;
 
     &,
     & > ${Label} {
-      display: flex;
       flex-wrap: nowrap;
       align-items: center;
       column-gap: 0.5em;
@@ -57,25 +51,11 @@ const DrawerHeader = styled.div<HeaderAlignment>`
     & > ${Label} {
       display: flex;
       flex-wrap: nowrap;
+
       flex-direction: ${inputAlignment === 'left' ? 'row' : 'row-reverse'};
-      justify-content: ${determineJustify({
-        inputAlignment,
-        labelAlignment
-      })};
-
-      justify-content: space-between;
-
-      ${inputAlignment === 'left' &&
-      labelAlignment === 'left' &&
-      css`
-        justify-content: flex-start;
-      `}
-
-      ${inputAlignment === 'right' &&
-      labelAlignment === 'right' &&
-      css`
-        justify-content: flex-end;
-      `}
+      justify-content: ${inputAlignment !== labelAlignment
+        ? 'space-between'
+        : 'flex-start'};
     }
 
     ${CheckboxDisplay} {
@@ -160,15 +140,15 @@ const DrawerCheckbox: ReactFCWithChildren<CheckboxProps> = ({
 };
 
 const DrawerControl: ReactFCWithChildren<{
-  independentSelection: boolean;
+  openable: boolean;
   setOpenState: (state: boolean) => void;
-}> = ({ independentSelection, setOpenState }) => {
+}> = ({ openable, setOpenState }) => {
   const { open } = useDrawerItemContext();
 
-  return independentSelection ? (
+  return openable ? (
     <Drawer.ItemOpener>
       <StyledOpenerButton onClick={() => setOpenState(!open)}>
-        <Icon size={24} name={open ? 'chevron-down' : 'chevron-up'} />
+        <Icon size={24} name={open ? 'chevron-up' : 'chevron-down'} />
       </StyledOpenerButton>
     </Drawer.ItemOpener>
   ) : (
@@ -185,7 +165,7 @@ export type SelectionDrawerItemProps<T extends DrawerType> = Override<
     forceClose?: boolean;
     disabled?: boolean;
     validationState?: ValidationStyleType;
-    independentSelection?: boolean;
+    openable?: boolean;
     children: ReactNode;
     type: T;
   }
@@ -197,27 +177,44 @@ export function SelectionDrawerItem<T extends DrawerType>({
   forceOpen,
   forceClose,
   disabled = false,
-  independentSelection = false,
-  validationState: validationStateProp = 'default',
-  inputAlignment,
-  labelAlignment,
-  type,
+  openable: openableProp,
+  validationState: validationStateProp,
+  inputAlignment: inputAlignmentProp,
+  labelAlignment: labelAlignmentProp,
+  type: typeProp,
   value: valueProp,
   ...props
 }: SelectionDrawerItemProps<T>) {
   const value = valueProp?.toString() || '';
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedItems, validationState: drawerValidationState } =
-    useSelectionDrawerContext();
+  const {
+    selectedItems,
+    validationState: drawerValidationState,
+    inputAlignment: contextInputAlignment,
+    labelAlignment: contextLabelAlignment,
+    drawerType: contextType,
+    openable: contextOpenable
+  } = useSelectionDrawerContext();
   const parentValidationState = useValidationState();
+
+  const type = typeProp || contextType;
+  const openable = Boolean(
+    openableProp !== undefined ? openableProp : contextOpenable
+  );
+
   const validationState =
     validationStateProp || drawerValidationState || parentValidationState;
+
+  const labelAlignment = labelAlignmentProp || contextLabelAlignment;
+  const inputAlignment = inputAlignmentProp || contextInputAlignment;
+
   const theme = useTheme();
   const isChecked = selectedItems.includes(value);
   const { fill: borderColor } = useMemo(
     () => getValidationSelectionColors(theme, validationState, isChecked),
     [theme, validationState, isChecked]
   );
+
   const disabledBgColor = useMemo(
     () =>
       lighten(
@@ -257,9 +254,7 @@ export function SelectionDrawerItem<T extends DrawerType>({
             <Input {...props} disabled={disabled} value={value}>
               <div>{header}</div>
             </Input>
-            <DrawerControl
-              {...{ independentSelection, setOpenState: setIsOpen }}
-            />
+            <DrawerControl {...{ openable, setOpenState: setIsOpen }} />
           </DrawerHeader>
           <StyledDrawerBody applyInlineTransitions={false}>
             {children}

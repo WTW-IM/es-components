@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
 import styled, { useTheme, css } from 'styled-components';
 
 import Label from '../label/Label';
@@ -87,12 +88,6 @@ export const CheckboxDisplay = styled.span<
       box-shadow: 0 0 3px 3px ${theme.colors.inputFocus};
     }
 
-    ${CheckboxInput}:checked ~ & {
-      &:after {
-        border-color: ${theme.colors.white};
-      }
-    }
-
     ${CheckboxInput}:disabled ~ && {
       border-color: ${theme.colors.disabled ||
       theme.validationInputColor.default.borderColor};
@@ -117,19 +112,24 @@ export const CheckboxDisplay = styled.span<
         border-color: ${theme.colors.white};
       }
     }
+
     &.${validationStateClass} {
       border-color: ${fill};
 
       ${CheckboxInput}:checked ~ & {
         background-color: ${fill};
+
+        &:after {
+          border-color: ${theme.colors.white};
+        }
       }
 
       &:after {
         ${CheckboxInput}:not(:disabled):not(:checked) ~ & {
           ${CheckboxLabel}:focus &,
-        ${CheckboxLabel}:hover &,
-        ${CheckboxInput}:focus&,
-        ${CheckboxInput}:hover& {
+          ${CheckboxLabel}:hover &,
+          ${CheckboxInput}:focus&,
+          ${CheckboxInput}:hover& {
             border-color: ${hover};
           }
         }
@@ -138,9 +138,13 @@ export const CheckboxDisplay = styled.span<
   `}
 `;
 
-export type CheckboxProps = JSXElementProps<'input'> & {
-  displayClassName?: string;
-};
+export type CheckboxProps = Override<
+  JSXElementProps<'input'>,
+  {
+    /** Applies as className on the display wrapper. */
+    displayClassName?: string;
+  }
+>;
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   function ForwardedCheckbox(
@@ -159,6 +163,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const uniqueName = useUniqueId();
     const checkboxName = checkboxProps.name || uniqueName;
+    const validationStateClass = `${
+      theme.themeName?.toLowerCase().replace(/\s+/g, '-') || 'es'
+    }-${validationState}${isChecked ? '-checked' : ''}`;
 
     return (
       <CheckboxLabel disabled={checkboxProps.disabled}>
@@ -170,8 +177,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             ref={ref}
           />
           <CheckboxDisplay
-            className={`es-checkbox__fill ${validationState}`}
-            {...{ hover, fill, validationStateClass: validationState }}
+            className={`es-checkbox__fill ${validationStateClass}`}
+            {...{ hover, fill, validationStateClass }}
           />
         </CheckboxDisplayWrapper>
         {children}
@@ -183,7 +190,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 export const propTypes = {
   ...htmlInputPropTypes,
   /** applies to the display wrapper */
-  displayClassName: htmlInputPropTypes['className']
+  displayClassName: PropTypes.string
 };
 
 export const defaultProps = {

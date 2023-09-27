@@ -111,7 +111,19 @@ module.exports = {
     {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
-      components: path.join(baseComponentDir, 'patterns/**/*.{js,jsx,tsx}')
+      components: path.join(
+        baseComponentDir,
+        'patterns/!(selectionDrawer)/**/*.{js,jsx,tsx}'
+      ),
+      sections: [
+        {
+          name: 'SelectionDrawer',
+          components: path.join(
+            baseComponentDir,
+            'patterns/selectionDrawer/**/*.{js,jsx,tsx}'
+          )
+        }
+      ]
     },
     {
       name: 'CHANGELOG',

@@ -34,6 +34,7 @@ export const SelectionDrawerContext = createContext<
       setSelectedItems: (dispatch: (items: string[]) => string[]) => void;
       drawerType: DrawerType;
       handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
+      disableAll?: boolean;
     }
   >
 >({
@@ -42,13 +43,15 @@ export const SelectionDrawerContext = createContext<
   drawerType: 'checkbox',
   handleCheckboxChange: noop,
   labelAlignment: 'left',
-  inputAlignment: 'right'
+  inputAlignment: 'right',
+  disableAll: false
 });
 
 export type SelectionDrawerProviderProps<T extends DrawerType = DrawerType> =
   React.PropsWithChildren<
     SelectionDrawerSharedProps & {
       onSelectionChange: (selectedItems: string[]) => void;
+      disableAll?: boolean;
       type?: T;
     } & (T extends 'radio' ? RadioGroupProps : { name?: string })
   >;

@@ -34,6 +34,7 @@ const SelectionDrawer = React.forwardRef<HTMLDivElement, SelectionDrawerProps>(
       labelAlignment = 'left',
       inputAlignment = 'right',
       validationState,
+      disableAll,
       openable,
       name,
       children,
@@ -49,6 +50,7 @@ const SelectionDrawer = React.forwardRef<HTMLDivElement, SelectionDrawerProps>(
       type,
       labelAlignment,
       inputAlignment,
+      disableAll,
       openable,
       validationState
     };
@@ -81,6 +83,8 @@ SelectionDrawer.propTypes = {
    * @param selectedItems The currently selected items
    */
   onSelectionChange: PropTypes.func.isRequired,
+  /** Disable all drawers */
+  disableAll: PropTypes.bool,
   /** The type of input for each drawer */
   type: PropTypes.oneOf<DrawerType>(['radio', 'checkbox'])
 };

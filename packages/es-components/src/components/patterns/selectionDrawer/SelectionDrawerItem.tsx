@@ -1,7 +1,11 @@
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import * as CSS from 'csstype';
 import styled, { useTheme, css } from 'styled-components';
-import { ValidationStyleType } from 'es-components-shared-types';
+import {
+  ValidationStyleType,
+  validationStyleTypes
+} from 'es-components-shared-types';
 import Checkbox, {
   CheckboxProps,
   CheckboxDisplay
@@ -11,6 +15,7 @@ import Control from '../../controls/Control';
 import Drawer, { useDrawerItemContext } from '../../containers/drawer/Drawer';
 import Icon from '../../base/icons/Icon';
 import {
+  ControlAlignment,
   DrawerType,
   HeaderAlignment,
   useSelectionDrawerContext
@@ -23,6 +28,7 @@ import {
 } from '../../controls/radio-buttons/RadioButton';
 import { useValidationState } from '../../controls/ValidationContext';
 import { lighten } from '../../util/colors';
+import getFirstDefined from '../../util/getFirstDefinedValue';
 
 export type SelectionDrawerProps = {
   children: ReactNode;
@@ -120,9 +126,7 @@ const StyledOpenerButton = styled.div`
 const DrawerRadio: ReactFCWithChildren<RadioButtonProps> = props => {
   return <RadioButton {...props} />;
 };
-/* eslint-enable react/prop-types */
 
-/* eslint-disable react/prop-types */
 const DrawerCheckbox: ReactFCWithChildren<CheckboxProps> = ({
   children,
   ...props
@@ -141,13 +145,13 @@ const DrawerCheckbox: ReactFCWithChildren<CheckboxProps> = ({
 
 const DrawerControl: ReactFCWithChildren<{
   openable: boolean;
-  setOpenState: (state: boolean) => void;
-}> = ({ openable, setOpenState }) => {
+  setOpen: (state: boolean) => void;
+}> = ({ openable, setOpen }) => {
   const { open } = useDrawerItemContext();
 
   return openable ? (
     <Drawer.ItemOpener>
-      <StyledOpenerButton onClick={() => setOpenState(!open)}>
+      <StyledOpenerButton onClick={() => setOpen(!open)}>
         <Icon size={24} name={open ? 'chevron-up' : 'chevron-down'} />
       </StyledOpenerButton>
     </Drawer.ItemOpener>
@@ -171,12 +175,15 @@ export type SelectionDrawerItemProps<T extends DrawerType> = Override<
   }
 >;
 
+/**
+ * @visibleName SelectionDrawer.Item
+ */
 export function SelectionDrawerItem<T extends DrawerType>({
   header,
   children,
   forceOpen,
   forceClose,
-  disabled = false,
+  disabled: disabledProp,
   openable: openableProp,
   validationState: validationStateProp,
   inputAlignment: inputAlignmentProp,
@@ -186,27 +193,33 @@ export function SelectionDrawerItem<T extends DrawerType>({
   ...props
 }: SelectionDrawerItemProps<T>) {
   const value = valueProp?.toString() || '';
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const {
     selectedItems,
     validationState: drawerValidationState,
     inputAlignment: contextInputAlignment,
     labelAlignment: contextLabelAlignment,
     drawerType: contextType,
-    openable: contextOpenable
+    openable: contextOpenable,
+    disableAll
   } = useSelectionDrawerContext();
   const parentValidationState = useValidationState();
 
-  const type = typeProp || contextType;
-  const openable = Boolean(
-    openableProp !== undefined ? openableProp : contextOpenable
-  );
+  const type = getFirstDefined(typeProp, contextType);
+  const openable = Boolean(getFirstDefined(openableProp, contextOpenable));
+  const disabled = Boolean(getFirstDefined(disabledProp, disableAll));
 
   const validationState =
-    validationStateProp || drawerValidationState || parentValidationState;
+    getFirstDefined(
+      validationStateProp,
+      drawerValidationState,
+      parentValidationState
+    ) || 'default';
 
-  const labelAlignment = labelAlignmentProp || contextLabelAlignment;
-  const inputAlignment = inputAlignmentProp || contextInputAlignment;
+  const labelAlignment =
+    getFirstDefined(labelAlignmentProp, contextLabelAlignment) || 'left';
+  const inputAlignment =
+    getFirstDefined(inputAlignmentProp, contextInputAlignment) || 'right';
 
   const theme = useTheme();
   const isChecked = selectedItems.includes(value);
@@ -225,7 +238,7 @@ export function SelectionDrawerItem<T extends DrawerType>({
   );
 
   useEffect(() => {
-    setIsOpen(isChecked);
+    setOpen(isChecked);
   }, [isChecked]);
 
   const Input = type === 'radio' ? DrawerRadio : DrawerCheckbox;
@@ -242,19 +255,19 @@ export function SelectionDrawerItem<T extends DrawerType>({
     >
       <DrawerValidationControl validationState={validationState}>
         <Drawer.Item
-          onChange={setIsOpen}
+          onChange={setOpen}
           panelKey={value}
           {...(forceOpen
             ? { controlledOpen: true }
             : forceClose
             ? { controlledOpen: false }
-            : { open: isOpen })}
+            : { open })}
         >
           <DrawerHeader {...{ inputAlignment, labelAlignment }}>
             <Input {...props} disabled={disabled} value={value}>
               <div>{header}</div>
             </Input>
-            <DrawerControl {...{ openable, setOpenState: setIsOpen }} />
+            <DrawerControl {...{ openable, setOpen }} />
           </DrawerHeader>
           <StyledDrawerBody applyInlineTransitions={false}>
             {children}
@@ -264,3 +277,16 @@ export function SelectionDrawerItem<T extends DrawerType>({
     </StyledSelectionDrawerItemHeader>
   );
 }
+
+SelectionDrawerItem.propTypes = {
+  /** The left or right alignment of the checkbox/radio input */
+  inputAlignment: PropTypes.oneOf<ControlAlignment>(['left', 'right']),
+  /** The left or right alignment of the header label */
+  labelAlignment: PropTypes.oneOf<ControlAlignment>(['left', 'right']),
+  /** The currently selected items */
+  selectedItems: PropTypes.arrayOf(PropTypes.string.isRequired),
+  /** Optional validation state */
+  validationState: PropTypes.oneOf<ValidationStyleType>(validationStyleTypes),
+  /** The type of input for each drawer */
+  type: PropTypes.oneOf<DrawerType>(['radio', 'checkbox'])
+};

@@ -211,6 +211,24 @@ You can use `openable` to determine independent opening/closing of drawer items
 </SelectionDrawer>
 ```
 
+### Disabling Drawers
+
+You can use `disableAll` to disable all the drawer items.
+
+```javascript
+<SelectionDrawer type="checkbox" disableAll>
+  <SelectionDrawer.Item header="Medicare coverage 1" value="medicareCoverage1">
+    Intently stare at the same spot present belly, scratch hand when stroked.
+    Meoooow! Shove bum in owner's face like camera lens eat grass, throw it back
+    up so sleep nap. Sit in window and stare ooo, a bird!
+  </SelectionDrawer.Item>
+  <SelectionDrawer.Item header="Medicare coverage 2" value="medicareCoverage2">
+    Hello and welcome to the other revealed Drawer content! We hope it is not
+    nightmarish!
+  </SelectionDrawer.Item>
+</SelectionDrawer>
+```
+
 ### Validation
 
 You can control the layout using the `validationState` prop, or from an outer `Control`

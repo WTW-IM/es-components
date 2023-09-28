@@ -4,12 +4,10 @@ The Textbox component will accept typical input attributes as props such as onCh
 import Control from '../Control';
 import Label from '../label/Label';
 
-const refCb = React.useCallback(ref => console.log('textbox', ref), []);
-
 <>
   <Control>
     <Label htmlFor="stacked">Stacked</Label>
-    <Textbox ref={refCb} id="stacked" className="custom-class" />
+    <Textbox id="stacked" className="custom-class" />
   </Control>
 
   <Control orientation="inline">

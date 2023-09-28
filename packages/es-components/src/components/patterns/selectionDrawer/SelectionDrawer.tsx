@@ -85,6 +85,8 @@ SelectionDrawer.propTypes = {
   onSelectionChange: PropTypes.func.isRequired,
   /** Disable all drawers */
   disableAll: PropTypes.bool,
+  /** Set all the drawers as independently openable */
+  openable: PropTypes.bool,
   /** The type of input for each drawer */
   type: PropTypes.oneOf<DrawerType>(['radio', 'checkbox'])
 };

@@ -82,7 +82,7 @@ SelectionDrawer.propTypes = {
   /** Callback when selection changes
    * @param selectedItems The currently selected items
    */
-  onSelectionChange: PropTypes.func.isRequired,
+  onSelectionChange: PropTypes.func,
   /** Disable all drawers */
   disableAll: PropTypes.bool,
   /** Set all the drawers as independently openable */

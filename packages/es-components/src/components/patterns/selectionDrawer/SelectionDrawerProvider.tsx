@@ -49,11 +49,14 @@ export const SelectionDrawerContext = createContext<
 
 export type SelectionDrawerProviderProps<T extends DrawerType = DrawerType> =
   React.PropsWithChildren<
-    SelectionDrawerSharedProps & {
-      onSelectionChange: (selectedItems: string[]) => void;
-      disableAll?: boolean;
-      type?: T;
-    } & (T extends 'radio' ? RadioGroupProps : { name?: string })
+    Override<
+      T extends 'radio' ? RadioGroupProps : { name?: string },
+      SelectionDrawerSharedProps & {
+        onSelectionChange?: (selectedItems: string[]) => void;
+        disableAll?: boolean;
+        type?: T;
+      }
+    >
   >;
 
 const isRadioDrawer = (
@@ -76,7 +79,7 @@ function SelectionDrawerProvider<T extends DrawerType>(
   const { selectedValues, setSelectedValues, handleCheckboxChange } =
     useCheckboxGroupActions({
       originalSelectedValues: selectedItemsProp || [],
-      onChange: onSelectionChange
+      onChange: onSelectionChange || noop
     });
 
   const onRadioChange = useMonitoringCallback(
@@ -91,7 +94,7 @@ function SelectionDrawerProvider<T extends DrawerType>(
     currentOnChange => {
       if (arraysEqual(selectedValues || [], selectedItemsProp || [])) return;
 
-      currentOnChange(selectedValues);
+      currentOnChange?.(selectedValues);
     },
     [selectedValues, selectedItemsProp],
     onSelectionChange
@@ -105,27 +108,25 @@ function SelectionDrawerProvider<T extends DrawerType>(
     setSelectedValues
   );
 
+  const radioGroupProps: RadioGroupProps = {
+    name: guaranteedName,
+    disableAllOptions: contextProps.disableAll,
+    onChange: onRadioChange,
+    selectedValue: selectedValues[0],
+    children: children || ''
+  };
+
   return (
     <SelectionDrawerContext.Provider
       value={{
-        selectedItems: selectedValues,
+        selectedItems: selectedValues || [],
         setSelectedItems: setSelectedValues,
         drawerType: type || 'checkbox',
         handleCheckboxChange,
         ...contextProps
       }}
     >
-      {isRadio ? (
-        <RadioGroup
-          name={guaranteedName}
-          onChange={onRadioChange}
-          selectedValue={selectedValues[0]}
-        >
-          {children || ''}
-        </RadioGroup>
-      ) : (
-        children
-      )}
+      {isRadio ? <RadioGroup {...radioGroupProps} /> : children}
     </SelectionDrawerContext.Provider>
   );
 }
@@ -133,7 +134,7 @@ function SelectionDrawerProvider<T extends DrawerType>(
 export const propTypes = {
   children: PropTypes.node,
   /** The currently selected items */
-  selectedItems: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  selectedItems: PropTypes.arrayOf(PropTypes.string.isRequired),
   /** Function when selected items changes */
   onSelectionChange: PropTypes.func.isRequired,
   /** Type of drawer */

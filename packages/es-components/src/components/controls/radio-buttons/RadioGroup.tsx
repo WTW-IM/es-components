@@ -6,9 +6,12 @@ import {
   radioGroupContextPropTypes
 } from './RadioGroupContext';
 
-export type RadioGroupProps = RadioGroupContextShape & {
-  children: NonNullable<React.ReactNode>;
-};
+export type RadioGroupProps = Override<
+  RadioGroupContextShape,
+  {
+    children: NonNullable<React.ReactNode>;
+  }
+>;
 
 function RadioGroup<P>({ children, ...props }: RadioGroupProps & P) {
   return (

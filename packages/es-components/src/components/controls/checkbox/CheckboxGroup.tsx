@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes, { ValidationMap } from 'prop-types';
 import styled from 'styled-components';
 import Checkbox, { CheckboxProps } from './Checkbox';
@@ -19,41 +19,24 @@ export type CheckboxGroupProps = {
   displayClassName?: string;
 };
 
-const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
-  disableAllOptions,
-  options = [],
-  checkAllText,
-  textOnHoverCheckAll,
-  onChange,
-  displayClassName
-}) => {
-  const [selectedValues, setSelectedValues] = useState(
-    options.filter(o => o.checked).map(o => o.value)
-  );
-  const [checkAll, setCheckAll] = useState(false);
-  const afterFirstRender = useRef(false);
+export function useCheckboxGroupActions({
+  originalSelectedValues,
+  onChange
+}: {
+  onChange: (values: string[]) => void;
+  originalSelectedValues: string[];
+}) {
+  const [selectedValues, setSelectedValues] = useState(originalSelectedValues);
+  const [afterFirstRender, setAfterFirstRender] = useState(false);
 
   useMonitoringEffect(
-    currentOnChange => {
-      if (!afterFirstRender.current) return;
+    ({ onChange: currentOnChange, afterFirstRender: currentAfterFirst }) => {
+      if (!currentAfterFirst) return;
 
       currentOnChange?.(selectedValues);
     },
     [selectedValues],
-    onChange
-  );
-
-  useEffect(() => {
-    const allChecked = options.every(o => selectedValues.includes(o.value));
-    setCheckAll(allChecked);
-  }, [options, selectedValues]);
-
-  const handleCheckAll = useCallback(
-    (ev: React.ChangeEvent<HTMLInputElement>) => {
-      const checked = ev.target.checked;
-      setSelectedValues(checked ? options.map(o => o.value) : []);
-    },
-    [options]
+    { onChange, afterFirstRender }
   );
 
   const handleCheckboxChange = useCallback(
@@ -72,8 +55,52 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   );
 
   useEffect(function lastEffect() {
-    afterFirstRender.current = true;
+    setAfterFirstRender(true);
   }, []);
+
+  return {
+    selectedValues,
+    setSelectedValues,
+    handleCheckboxChange
+  } as const;
+}
+
+const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
+  disableAllOptions,
+  options = [],
+  checkAllText,
+  textOnHoverCheckAll,
+  onChange,
+  displayClassName
+}) => {
+  const originalSelectedValues = useMemo(
+    () => options.filter(o => o.checked).map(o => o.value?.toString() || ''),
+    [] // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  const { selectedValues, setSelectedValues, handleCheckboxChange } =
+    useCheckboxGroupActions({
+      originalSelectedValues,
+      onChange
+    });
+  const [checkAll, setCheckAll] = useState(false);
+
+  useEffect(() => {
+    const allChecked = options.every(o =>
+      selectedValues.includes(o.value?.toString() || '')
+    );
+    setCheckAll(allChecked);
+  }, [options, selectedValues]);
+
+  const handleCheckAll = useCallback(
+    (ev: React.ChangeEvent<HTMLInputElement>) => {
+      const checked = ev.target.checked;
+      setSelectedValues(
+        checked ? options.map(o => o.value?.toString() || '') : []
+      );
+    },
+    [options, setSelectedValues]
+  );
 
   return (
     <>
@@ -98,7 +125,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
           <Checkbox
             name={name}
             value={value}
-            checked={selectedValues.includes(value)}
+            checked={selectedValues.includes(value?.toString() || '')}
             disabled={disableAllOptions || disabled}
             onChange={handleCheckboxChange}
             displayClassName={displayClassName}

@@ -1,6 +1,6 @@
 The Textbox component will accept typical input attributes as props such as onChange, onBlur, value, placeholder, etc.
 
-```
+```javascript
 import Control from '../Control';
 import Label from '../label/Label';
 
@@ -24,7 +24,7 @@ import Label from '../label/Label';
     <Label htmlFor="inline">Inline Flat-Style</Label>
     <Textbox id="inline" flat />
   </Control>
-</>
+</>;
 ```
 
 Pass an `onChange` function to execute any time the input box value changes. This function will have the current value of the input box passed to it. The following is a simple controlled example, where state is handled outside the component. (See [Controlled Components](https://facebook.github.io/react/docs/htmlForms.html#controlled-components) and [Uncontrolled Components](https://facebook.github.io/react/docs/uncontrolled-components.html).)

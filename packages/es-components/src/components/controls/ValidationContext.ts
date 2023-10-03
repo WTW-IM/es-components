@@ -1,4 +1,7 @@
 import React from 'react';
 import { ValidationStyleType } from 'es-components-shared-types';
 
-export default React.createContext<ValidationStyleType>('default');
+const ValidationContext = React.createContext<ValidationStyleType>('default');
+export default ValidationContext;
+
+export const useValidationState = () => React.useContext(ValidationContext);

@@ -97,6 +97,7 @@ const dangerHover = '#970500';
 const dangerLight = '#ffc2c0';
 const advisor = '#ff6310';
 const advisorLight = '#fee7de';
+const disabled = gray4;
 
 // brand colors
 const primary1 = blue500;
@@ -190,6 +191,7 @@ const theme: ESTheme = {
     boxShadowLight: boxShadowLight,
     boxShadowDark: boxShadowDark,
     inputFocus: inputFocus,
+    disabled,
   },
   brandColors: {
     primary1: primary1,

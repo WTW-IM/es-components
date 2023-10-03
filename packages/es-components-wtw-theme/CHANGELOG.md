@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.11.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.10.0...v21.11.0-pre-prod.0) (2023-10-03)
+
+### Update
+
+- adding 'disabled' to the colors list ([db0d038](https://github.com/WTW-IM/es-components/commit/db0d03887ae90ffc6714bc6bd46341edfe641ed8))
+
 # [21.9.0](https://github.com/WTW-IM/es-components/compare/v21.9.0-pre-prod.4...v21.9.0) (2023-09-08)
 
 **Note:** Version bump only for package es-components-wtw-theme

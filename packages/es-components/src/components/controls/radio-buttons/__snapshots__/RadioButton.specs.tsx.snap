@@ -16,7 +16,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -38,7 +38,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -49,30 +49,30 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #444;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #444;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -96,10 +96,6 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   text-transform: none;
 }
 
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #aaaaaa;
-}
-
 @media (min-width:768px) {
   .c0 {
     margin-right: 20px;
@@ -120,13 +116,14 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
     class=""
   >
     <input
-      class="c2 c3"
+      class="c2"
       fill="#444"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -149,7 +146,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -171,7 +168,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -182,30 +179,30 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #c25400;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #c25400;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -229,10 +226,6 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   text-transform: none;
 }
 
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #ffbf8f;
-}
-
 @media (min-width:768px) {
   .c0 {
     margin-right: 20px;
@@ -253,13 +246,14 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
     class=""
   >
     <input
-      class="c2 c3"
+      class="c2"
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -282,7 +276,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -304,7 +298,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -315,30 +309,30 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #0073b6;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #0073b6;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -362,10 +356,6 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   text-transform: none;
 }
 
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #83d1ff;
-}
-
 @media (min-width:768px) {
   .c0 {
     margin-right: 20px;
@@ -387,13 +377,14 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   >
     <input
       checked=""
-      class="c2 c3"
+      class="c2"
       fill="#0073b6"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -416,7 +407,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -438,7 +429,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -449,30 +440,30 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #c25400;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #c25400;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -496,10 +487,6 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   text-transform: none;
 }
 
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #ffbf8f;
-}
-
 @media (min-width:768px) {
   .c0 {
     margin-right: 20px;
@@ -521,13 +508,14 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   >
     <input
       checked=""
-      class="c2 c3"
+      class="c2"
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -550,7 +538,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -572,7 +560,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -583,30 +571,30 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #444;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #444;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -630,10 +618,6 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   text-transform: none;
 }
 
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #aaaaaa;
-}
-
 @media (min-width:768px) {
   .c0 {
     margin-right: 20px;
@@ -655,14 +639,15 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
     class=""
   >
     <input
-      class="c2 c3"
+      class="c2"
       disabled=""
       fill="#444"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -685,7 +670,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -707,7 +692,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -718,30 +703,30 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #c25400;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #c25400;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -765,10 +750,6 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   text-transform: none;
 }
 
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #ffbf8f;
-}
-
 @media (min-width:768px) {
   .c0 {
     margin-right: 20px;
@@ -790,14 +771,15 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
     class=""
   >
     <input
-      class="c2 c3"
+      class="c2"
       disabled=""
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -820,7 +802,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -842,7 +824,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -853,30 +835,30 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #0073b6;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #0073b6;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -898,10 +880,6 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   position: relative;
   padding: 10px 0 10px 10px;
   text-transform: none;
-}
-
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #83d1ff;
 }
 
 @media (min-width:768px) {
@@ -926,14 +904,15 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   >
     <input
       checked=""
-      class="c2 c3"
+      class="c2"
       disabled=""
       fill="#0073b6"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option
@@ -956,7 +935,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c5 {
+.c4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -978,7 +957,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   min-width: 25px;
 }
 
-.c5:before {
+.c4:before {
   background-color: transparent;
   border-radius: 50%;
   content: '';
@@ -989,30 +968,30 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   transition: background 0.25s linear;
 }
 
-.c3 {
+.c2 {
   -webkit-clip: rect(0,0,0,0);
   clip: rect(0,0,0,0);
   pointer-events: none;
   position: absolute;
 }
 
-.c3 ~ .c4 {
+.c2 ~ .c3 {
   border-color: #c25400;
 }
 
-.c3:focus ~ .c4 {
+.c2:focus ~ .c3 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c3:checked ~ .c4:before {
+.c2:checked ~ .c3:before {
   background-color: #c25400;
 }
 
-.c3.c3:disabled ~ .c4 {
+.c2.c2:disabled ~ .c3 {
   border-color: #c5c5c5;
 }
 
-.c3.c3:disabled:checked ~ .c4:before {
+.c2.c2:disabled:checked ~ .c3:before {
   background-color: #c5c5c5;
 }
 
@@ -1034,10 +1013,6 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   position: relative;
   padding: 10px 0 10px 10px;
   text-transform: none;
-}
-
-.c1:hover > .c2:not(:disabled):not(:checked) ~ .c4:before {
-  background-color: #ffbf8f;
 }
 
 @media (min-width:768px) {
@@ -1062,14 +1037,15 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   >
     <input
       checked=""
-      class="c2 c3"
+      class="c2"
       disabled=""
       fill="#c25400"
       id="test-radio"
+      name=""
       type="radio"
     />
     <span
-      class="c4 c5 es-radio__fill"
+      class="c3 c4 es-radio__fill"
     />
   </div>
   Option

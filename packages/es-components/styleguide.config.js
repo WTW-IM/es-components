@@ -111,7 +111,19 @@ module.exports = {
     {
       name: 'Patterns',
       content: path.join(baseComponentDir, 'patterns/Patterns.md'),
-      components: path.join(baseComponentDir, 'patterns/**/*.{js,jsx,tsx}')
+      components: path.join(
+        baseComponentDir,
+        'patterns/!(selectionDrawer)/**/*.{js,jsx,tsx}'
+      ),
+      sections: [
+        {
+          name: 'SelectionDrawer',
+          components: path.join(
+            baseComponentDir,
+            'patterns/selectionDrawer/**/*.{js,jsx,tsx}'
+          )
+        }
+      ]
     },
     {
       name: 'CHANGELOG',
@@ -135,7 +147,10 @@ module.exports = {
   getComponentPathLine(componentPath) {
     const componentExtension = path.extname(componentPath);
     const name = path.basename(componentPath, componentExtension);
-    return `import { ${name} } from 'es-components';`;
+    const subcomponent = [['SelectionDrawerItem', 'SelectionDrawer']].find(
+      ([subcomponentName]) => name === subcomponentName
+    );
+    return `import { ${subcomponent?.[1] || name} } from 'es-components';`;
   },
   getExampleFilename(componentPath) {
     return componentPath.replace(/\.(js|tsx)$/, '.md');

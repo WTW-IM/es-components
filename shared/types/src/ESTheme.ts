@@ -159,6 +159,7 @@ const colorNames = [
   'boxShadowLight',
   'boxShadowDark',
   'inputFocus',
+  'disabled',
 ] as const;
 
 export type ColorName = (typeof colorNames)[number];

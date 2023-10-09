@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.11.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.10.0...v21.11.0-pre-prod.0) (2023-10-03)
+
+### New
+
+- added SelectionDrawer component ([0d7cde2](https://github.com/WTW-IM/es-components/commit/0d7cde22d4311ebe8131f9f7403905d104a8b551))
+- adding disableAll on SelectionDrawer ([080d9e5](https://github.com/WTW-IM/es-components/commit/080d9e5c87eb5f7a1d70115131f2dcebcb1f5292))
+- adding SelectionDrawer tests; updating SelectionDrawer.Item opener element to button ([f17549b](https://github.com/WTW-IM/es-components/commit/f17549b06acf315311e6b37c1df546631a65cf0d))
+- adding SelectionDrawer.Item docs ([124fa71](https://github.com/WTW-IM/es-components/commit/124fa7194ceaf0c5e95cd800294c31d7813230d1))
+- documenting SelectionDrawer top-level functionality ([8ec4b2b](https://github.com/WTW-IM/es-components/commit/8ec4b2b163f579c592a6d7207eb60b59a7eeb0f2))
+- fixing up header container styles ([6027c5d](https://github.com/WTW-IM/es-components/commit/6027c5d222ba1ec62fdfc52ff1649e9f840ab0c0))
+- fixing up SelectionDrawer alignment properties ([7f0bb9a](https://github.com/WTW-IM/es-components/commit/7f0bb9ad2516e21ad37eddf34d9e563c9e762f9f))
+- using Checkboxes and RadioButtons in SelectionDrawer ([012704d](https://github.com/WTW-IM/es-components/commit/012704df26bfac5b815faec211a3a2c821c10146))
+- using validationState from all levels ([19a4ce0](https://github.com/WTW-IM/es-components/commit/19a4ce0ccc850126b46f1e18fcf3f33e02dc5975))
+- utilizing selection colors for SelectionDrawer border ([edef7f9](https://github.com/WTW-IM/es-components/commit/edef7f94e817eb557b6e40f8d0ef5bd37daa2906))
+
+### Update
+
+- adding 'disabled' to the colors list ([db0d038](https://github.com/WTW-IM/es-components/commit/db0d03887ae90ffc6714bc6bd46341edfe641ed8))
+- using the same coloration for checkboxes as radio buttons ([bc947a0](https://github.com/WTW-IM/es-components/commit/bc947a03be68a82b31fa1d3243dd2fe35e90f4b7))
+
 # [21.10.0](https://github.com/WTW-IM/es-components/compare/v21.10.0-pre-prod.1...v21.10.0) (2023-09-22)
 
 ### Build

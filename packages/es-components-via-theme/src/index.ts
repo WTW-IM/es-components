@@ -97,6 +97,7 @@ const dangerHover = danger900;
 const dangerLight = danger50;
 const advisor = agent700;
 const advisorLight = agent100;
+const disabled = gray5;
 
 // brand colors
 const primary1 = blue500; // used by: spinner, drawerPanel
@@ -190,6 +191,7 @@ const theme: ESTheme = {
     boxShadowLight,
     boxShadowDark,
     inputFocus,
+    disabled,
   },
   spacing: {
     defaultMargin: '1.875rem',

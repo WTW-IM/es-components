@@ -1,6 +1,6 @@
 {
   "name": "es-components-wtw-legacy-theme",
-  "version": "21.11.0-pre-prod.0",
+  "version": "21.11.0",
   "main": "dist/packages/es-components-wtw-legacy-theme/src/index.js",
   "files": [
     "dist"

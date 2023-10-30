@@ -15,6 +15,8 @@ import pkg from './package.json' assert { type: 'json' };
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
+const processBanner = `var process = this.process || (global && global.process) || window.process || {};`;
+
 export default async args => {
   await Promise.all([writeIconNameType(), tscEsComponents()]);
   const isProduction = getIsProduction(args);
@@ -38,16 +40,12 @@ export default async args => {
           generatedCode: {
             reservedNamesAsProps: false
           },
-          banner: `
-            var process = this.process || global.process || window.process || {};
-          `
+          banner: processBanner
         },
         {
           format: 'esm',
           file: pkg.module,
-          banner: `
-            var process = this.process || global.process || window.process || {};
-          `
+          banner: processBanner
         }
       ],
       external,

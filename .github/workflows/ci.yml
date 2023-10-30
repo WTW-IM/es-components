@@ -29,9 +29,16 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'npm'
 
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --prefer-offline --no-audit
 
       - name: Run Lint
         working-directory: packages/es-components
@@ -73,9 +80,16 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |
@@ -109,9 +123,16 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |
@@ -157,9 +178,16 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |

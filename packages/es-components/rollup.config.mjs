@@ -19,8 +19,8 @@ const processBanner = `
 var process = {};
 try {
   process = this.process ||
-    (typeof window !== undefined && window.process) ||
-    (typeof global !== undefined && global.process) ||
+    (typeof window !== 'undefined' && window.process) ||
+    (typeof global !== 'undefined' && global.process) ||
     {};
 } catch {
   process = {};

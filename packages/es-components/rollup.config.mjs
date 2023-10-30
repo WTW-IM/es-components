@@ -16,9 +16,12 @@ import pkg from './package.json' assert { type: 'json' };
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 const processBanner = `
-var process =  {};
+var process = {};
 try {
-  process = this.process || window.process || (global && global.process) || {};
+  process = this.process ||
+    (typeof window !== undefined && window.process) ||
+    (typeof global !== undefined && global.process) ||
+    {};
 } catch {
   process = {};
 }`;

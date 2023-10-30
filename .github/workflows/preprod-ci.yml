@@ -30,7 +30,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci --prefer-offline --no-audit
+          npm i --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |
@@ -75,7 +75,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm ci --prefer-offline --no-audit
+          npm i --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |

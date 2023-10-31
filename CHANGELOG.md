@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.11.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.11.0...v21.11.1-pre-prod.0) (2023-10-31)
+
+### Build
+
+- using 'npm i' as behavior works much better with cached node_modules ([e38d1bb](https://github.com/WTW-IM/es-components/commit/e38d1bbb72d2cd85a63af2ac742dc2d01b6585a8)), closes [/github.com/npm/rfcs/issues/415#issuecomment-1018556050](https://github.com//github.com/npm/rfcs/issues/415/issues/issuecomment-1018556050)
+- using caching for npm packages in all builds ([4d66e3e](https://github.com/WTW-IM/es-components/commit/4d66e3ef73d995ecdcc129870ca76fe577ed3f40))
+- using caching for npm packages in canary build ([71cb399](https://github.com/WTW-IM/es-components/commit/71cb399196bf98e9a7691a800cd7d1121cb65954))
+
+### Fix
+
+- adding core-js as prod dependency and ensuring process doesn't fail in browser ([763ce04](https://github.com/WTW-IM/es-components/commit/763ce04511a722fac4fa9fb812075d09d5e29f95))
+- ensuring process doesn't fail in browser in all cases ([389c7d0](https://github.com/WTW-IM/es-components/commit/389c7d0e60ba0bd78af08b0fa19580581d858d8a))
+- fixing undefined check in process banner ([93ba579](https://github.com/WTW-IM/es-components/commit/93ba579088f0a864d6962da93d85aaa4c256b556))
+- typechecking process lookups so we don't fail in any env ([e17fdd9](https://github.com/WTW-IM/es-components/commit/e17fdd95b57821d053fbdeb149415e76d4b3fcd1))
+
 # [21.11.0](https://github.com/WTW-IM/es-components/compare/v21.11.0-pre-prod.0...v21.11.0) (2023-10-09)
 
 **Note:** Version bump only for package es-components-monorepo

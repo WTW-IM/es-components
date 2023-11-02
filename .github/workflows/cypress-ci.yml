@@ -26,9 +26,16 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - name: NPM Clean Install
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - name: Install Dependencies
         run: |
-          npm ci
+          npm i --prefer-offline --no-audit
 
       - name: Setup Cypress
         working-directory: ${{ env.ES_COMPONENTS_DIR }}

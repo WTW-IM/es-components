@@ -21,9 +21,16 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm i --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |
@@ -59,9 +66,16 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
-          npm ci
+          npm i --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |

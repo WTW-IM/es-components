@@ -15,6 +15,23 @@ import pkg from './package.json' assert { type: 'json' };
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
+const processBanner = `
+var process = {};
+try {
+  process = this.process ||
+    (typeof window !== 'undefined' && window.process) ||
+    (typeof global !== 'undefined' && global.process) ||
+    {};
+} catch {
+  process = {};
+}`;
+
+const umdBanner = `
+var self = this.styled ? this : self;
+var globalThis = self || globalThis;
+${processBanner}
+`;
+
 export default async args => {
   await Promise.all([writeIconNameType(), tscEsComponents()]);
   const isProduction = getIsProduction(args);
@@ -38,16 +55,12 @@ export default async args => {
           generatedCode: {
             reservedNamesAsProps: false
           },
-          banner: `
-            var process = this.process || global.process || window.process || {};
-          `
+          banner: processBanner
         },
         {
           format: 'esm',
           file: pkg.module,
-          banner: `
-            var process = this.process || global.process || window.process || {};
-          `
+          banner: processBanner
         }
       ],
       external,
@@ -73,10 +86,7 @@ export default async args => {
       input: 'src/index.tsx',
       output: {
         file: 'bundle/main.min.js',
-        banner: `
-          var self = this.styled ? this : self; var globalThis = self || globalThis;
-          var process = this.process || window.process || {};
-        `,
+        banner: umdBanner,
         inlineDynamicImports: true,
         format: 'umd',
         name: 'ESComponents',

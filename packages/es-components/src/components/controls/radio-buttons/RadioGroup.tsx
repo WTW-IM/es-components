@@ -6,14 +6,17 @@ import {
   radioGroupContextPropTypes
 } from './RadioGroupContext';
 
-export type RadioGroupProps = Override<
-  RadioGroupContextShape,
+export type RadioGroupProps<A extends boolean = false> = Override<
+  RadioGroupContextShape<A>,
   {
     children: NonNullable<React.ReactNode>;
   }
 >;
 
-function RadioGroup<P>({ children, ...props }: RadioGroupProps & P) {
+function RadioGroup<P, A extends boolean>({
+  children,
+  ...props
+}: RadioGroupProps<A> & P) {
   return (
     <RadioGroupContext.Provider value={props}>
       {children}

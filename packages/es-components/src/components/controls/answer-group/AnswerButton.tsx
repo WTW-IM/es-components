@@ -16,6 +16,8 @@ import {
   buttonSizes,
   buttonVariantStyleTypes
 } from 'es-components-shared-types';
+import { useRadioGroupContext } from '../radio-buttons/RadioGroupContext';
+import { getCheckedProps } from '../radio-buttons/RadioButton';
 
 export interface AnswerButtonVariant extends BGColorButtonVariant {
   borderColor?: CSS.Property.BorderColor;
@@ -24,7 +26,6 @@ export interface AnswerButtonVariant extends BGColorButtonVariant {
 export type AnswerButtonProps = Override<
   HTMLInputProps,
   {
-    name?: string;
     itemWidth?: CSS.Property.Width;
     styleType?: ButtonVariantStyleType;
     selectedType?: ButtonVariantStyleType;
@@ -133,19 +134,32 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
   function AnswerButton(
     {
       children,
-      itemWidth,
-      styleType = 'default' as ButtonVariantStyleType,
-      selectedType = 'success' as ButtonVariantStyleType,
-      size = 'default' as ButtonSize,
-      isOutline,
+      itemWidth: itemWidthProp,
+      styleType: styleTypeProp,
+      selectedType: selectedTypeProp,
+      size: sizeProp,
+      isOutline: isOutlineProp,
       ...radioProps
     },
     ref
   ) {
+    const { size: contextPropsSize, ...contextProps } =
+      useRadioGroupContext<true>();
+    const { disableAllOptions } = contextProps;
+    const checkedProps = getCheckedProps(radioProps, contextProps);
     const id = useUniqueId(radioProps.id);
-    const isChecked = radioProps.checked || radioProps.defaultChecked;
+    const isChecked = checkedProps.checked || checkedProps.defaultChecked;
+    const disabled = radioProps.disabled || disableAllOptions;
     const theme = useTheme();
     const validationState = React.useContext(ValidationContext);
+    const isOutline =
+      isOutlineProp !== undefined ? isOutlineProp : contextProps.isOutline;
+    const size = sizeProp || contextPropsSize || 'default';
+    const styleType = styleTypeProp || contextProps.styleType || 'default';
+    const selectedType =
+      selectedTypeProp || contextProps.selectedType || 'default';
+    const itemWidth = itemWidthProp || contextProps.itemWidth;
+
     const buttonType = isOutline ? 'outlineButton' : 'button';
     const buttonSize = theme.buttonStyles[buttonType].size[size];
 
@@ -171,7 +185,7 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
     const buttonStyle = isChecked ? selectedStyles : unSelectedStyles;
 
     const buttonProps = {
-      disabled: radioProps.disabled,
+      disabled,
       isChecked,
       buttonStyle,
       buttonSize
@@ -184,6 +198,13 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
       validationState
     };
 
+    const inputProps = {
+      ...contextProps,
+      ...radioProps,
+      ...checkedProps,
+      disabled
+    };
+
     const Display = isOutline ? OutlineAnswerDisplay : AnswerDisplay;
 
     return (
@@ -193,7 +214,7 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
           id={id}
           buttonStyle={buttonStyle}
           ref={ref}
-          {...radioProps}
+          {...inputProps}
         />
         <Display {...buttonProps}>{children}</Display>
       </AnswerLabel>
@@ -203,7 +224,6 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
 
 export const propTypes = {
   ...htmlInputPropTypes,
-  name: PropTypes.string,
   itemWidth: PropTypes.string,
   styleType: PropTypes.oneOf<ButtonVariantStyleType>(buttonVariantStyleTypes),
   selectedType: PropTypes.oneOf<ButtonVariantStyleType>(

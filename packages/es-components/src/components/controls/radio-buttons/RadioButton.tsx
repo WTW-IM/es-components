@@ -127,7 +127,7 @@ const getOnChange =
 
 export function getCheckedProps(
   radioProps: RadioButtonProps,
-  contextProps: RadioGroupContextShape
+  contextProps: RadioGroupContextShape<boolean>
 ) {
   const checked = Boolean(
     radioProps.checked ||

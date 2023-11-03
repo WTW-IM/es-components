@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.11.2-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.11.1...v21.11.2-pre-prod.0) (2023-11-02)
+
+### Fix
+
+- fixing AnswerGroup after RadioGroup context update ([27c0052](https://github.com/WTW-IM/es-components/commit/27c0052d8437eb096b7d89b5d4d6b385cf0e222e))
+
 ## [21.11.1](https://github.com/WTW-IM/es-components/compare/v21.11.1-pre-prod.0...v21.11.1) (2023-11-02)
 
 **Note:** Version bump only for package es-components-monorepo

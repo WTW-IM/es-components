@@ -35,17 +35,16 @@ const AnswerSet = styled.div<{ isOutline?: boolean }>`
 `;
 
 export type AnswerGroupProps = Override<
-  RadioGroupProps,
-  Override<AnswerButtonProps, Pick<RadioGroupProps, 'name' | 'children'>>
+  RadioGroupProps<true>,
+  Override<AnswerButtonProps, Pick<RadioGroupProps<true>, 'name' | 'children'>>
 >;
 
 const AnswerGroup = React.forwardRef<HTMLDivElement, AnswerGroupProps>(
   function ForwardedAnswerGroup(props, ref) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { size: _, ...radioGroupProps } = props;
     return (
       <AnswerSet isOutline={props.isOutline} ref={ref}>
-        <RadioGroup {...radioGroupProps} />
+        <RadioGroup {...props} isAnswerGroup={true} />
       </AnswerSet>
     );
   }
@@ -55,7 +54,7 @@ AnswerGroup.propTypes = {
   ...answerButtonPropTypes,
   ...radioGroupPropTypes,
   /** The name of the answer group */
-  name: answerButtonPropTypes.name.isRequired,
+  name: radioGroupPropTypes.name,
   /** The width of each item when not in mobile view */
   itemWidth: answerButtonPropTypes.itemWidth,
   /** Select the color style of the buttons, types come from theme */

@@ -25,7 +25,7 @@ To include it in your project, add the following stylesheet reference:
 
 Refer to the [official Bootstrap 5.3 Grid documentation](https://getbootstrap.com/docs/5.3/layout/grid/) for usage.
 
-Second, these are the [Bootstrap 5.3 Utility](https://getbootstrap.com/docs/5.3/utilities/borders/) classes, also available. You can include them with the following link:
+Second, these are the [Bootstrap 5.3 Utility](https://getbootstrap.com/docs/5.3/utilities/api/) classes, also available. You can include them with the following link:
 
 ```html
 <link rel="stylesheet" href="{{ASSETS_PATH}}util-v5.css" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import Transition, {
   TransitionStatus,
@@ -50,6 +50,7 @@ const Fade: React.FC<FadeProps> = ({
   opacity,
   ...otherProps
 }) => {
+  const nodeRef = useRef(null);
   const transitionStyles = {
     transition: `opacity ${duration || 150}ms linear`,
     opacity
@@ -65,7 +66,7 @@ const Fade: React.FC<FadeProps> = ({
   return !hasValidChildren ? (
     <>{children}</>
   ) : (
-    <Transition {...transitionProps}>
+    <Transition nodeRef={nodeRef} {...transitionProps}>
       {transitionStatus => {
         try {
           return (

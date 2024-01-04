@@ -2,6 +2,7 @@ Popover utilizes a [render prop](https://reactjs.org/docs/render-props.html) to 
 This function will require `ref`, `toggleShow`, and `isOpen` parameters to function properly.
 
 ```
+import React from 'react';
 import Button from '../../controls/buttons/Button';
 
 const styles = {
@@ -9,7 +10,7 @@ const styles = {
     margin: '10px'
 };
 
-<>
+<React.StrictMode>
     <div style={styles}>
     <Popover
       name="topEx"
@@ -85,7 +86,7 @@ const styles = {
       />
     </div>
 
-</>
+</React.StrictMode>
 ```
 
 ```

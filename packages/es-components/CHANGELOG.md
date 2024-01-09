@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.11.3-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.11.3-pre-prod.0...v21.11.3-pre-prod.1) (2024-01-09)
+
+### Fix
+
+- removing warning message of popover in console ([cb5be71](https://github.com/wtw-im/es-components/commit/cb5be71b8a03800529432aed0122a4f2c3d38f21))
+
+### Update
+
+- properly handling multiple children passed to Fade ([99f4cd1](https://github.com/wtw-im/es-components/commit/99f4cd1d98eeb607cd8dda16c7aaeebb96f9055d))
+
 ## [21.11.3-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.11.2...v21.11.3-pre-prod.0) (2023-11-08)
 
 ### Docs

@@ -7,7 +7,7 @@ const callRef = <T, R extends React.ForwardedRef<T>>(ref: Maybe<R>, value: T) =>
 
 export default callRef;
 
-export function callRefs<T, R extends React.ForwardedRef<T>>(
+export function callRefs<T, R extends Maybe<React.ForwardedRef<T>>>(
   value: T,
   ...refs: R[]
 ) {

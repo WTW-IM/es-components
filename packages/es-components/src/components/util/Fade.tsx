@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Transition, {
   TransitionStatus,
-  TimeoutProps
+  TimeoutProps,
+  TransitionProps
 } from 'react-transition-group/Transition';
+import { callRefs } from './callRef';
 
 type Opacity = React.CSSProperties['opacity'];
 
@@ -24,25 +26,66 @@ const getFadeStyle = (status: TransitionStatus, finalOpacity: Opacity) => {
 };
 
 type AnyReactHTMLElement = React.ReactHTMLElement<HTMLElement>;
-
-const TransitionChild: React.FC<{
+type TransitionChildProps = {
   children: AnyReactHTMLElement;
   style: React.CSSProperties;
   transitionStatus: TransitionStatus;
-}> = ({ children, style, transitionStatus }) => {
-  return React.cloneElement(children, {
-    style: {
-      ...((children?.props?.style as Maybe<React.CSSProperties>) || {}),
-      ...style,
-      ...getFadeStyle(
-        transitionStatus,
-        typeof style.opacity == 'number' || Boolean(style.opacity)
-          ? style.opacity
-          : 1
-      )
-    }
-  });
 };
+
+const TransitionChild = forwardRef<unknown, TransitionChildProps>(
+  function ForwardedTransitionChild(
+    { children, style, transitionStatus },
+    ref
+  ) {
+    return React.cloneElement(children, {
+      ref: (el: unknown) =>
+        callRefs(el, ref, children.ref as React.Ref<unknown> | undefined),
+      style: {
+        ...((children?.props?.style as Maybe<React.CSSProperties>) || {}),
+        ...style,
+        ...getFadeStyle(
+          transitionStatus,
+          typeof style.opacity == 'number' || Boolean(style.opacity)
+            ? style.opacity
+            : 1
+        )
+      }
+    });
+  }
+);
+
+type TransitionElement = HTMLElement | undefined;
+
+type FadeTransitionProps<T extends TransitionElement> = Omit<
+  TransitionChildProps,
+  'transitionStatus'
+> &
+  Omit<TransitionProps<T>, 'timeout'> & {
+    timeout: NonNullable<TransitionProps<T>['timeout']>;
+  };
+
+function FadeTransition<T extends TransitionElement>({
+  children,
+  style,
+  ...transitionProps
+}: FadeTransitionProps<T>) {
+  const nodeRef = useRef(null);
+  const child = React.Children.only(children);
+
+  return (
+    <Transition nodeRef={nodeRef} {...transitionProps}>
+      {transitionStatus => (
+        <TransitionChild
+          ref={nodeRef}
+          transitionStatus={transitionStatus}
+          style={style}
+        >
+          {child}
+        </TransitionChild>
+      )}
+    </Transition>
+  );
+}
 
 const Fade: React.FC<FadeProps> = ({
   children,
@@ -50,7 +93,6 @@ const Fade: React.FC<FadeProps> = ({
   opacity,
   ...otherProps
 }) => {
-  const nodeRef = useRef(null);
   const transitionStyles = {
     transition: `opacity ${duration || 150}ms linear`,
     opacity
@@ -61,40 +103,14 @@ const Fade: React.FC<FadeProps> = ({
     timeout: duration || otherProps.timeout || 150
   };
 
-  const hasValidChildren = React.isValidElement(children);
-
-  return !hasValidChildren ? (
-    <>{children}</>
-  ) : (
-    <Transition nodeRef={nodeRef} {...transitionProps}>
-      {transitionStatus => {
-        try {
-          return (
-            React.Children.only(children) && (
-              <TransitionChild
-                transitionStatus={transitionStatus}
-                style={transitionStyles}
-              >
-                {children as AnyReactHTMLElement}
-              </TransitionChild>
-            )
-          );
-        } catch (e) {
-          return React.Children.map(children, child => {
-            return !child ? (
-              child
-            ) : (
-              <TransitionChild
-                transitionStatus={transitionStatus}
-                style={transitionStyles}
-              >
-                {child as AnyReactHTMLElement}
-              </TransitionChild>
-            );
-          });
-        }
-      }}
-    </Transition>
+  return React.Children.map(children, child =>
+    !React.isValidElement(child) ? (
+      child
+    ) : (
+      <FadeTransition {...transitionProps} style={transitionStyles}>
+        {child as AnyReactHTMLElement}
+      </FadeTransition>
+    )
   );
 };
 

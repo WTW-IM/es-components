@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import OrigDismissButton from '../../controls/DismissButton';
 import { ModalContext } from './ModalContext';
 import Heading from '../heading/Heading';
-import { HeadingLevel } from 'es-components-shared-types';
+import { HeadingLevel, headingLevel } from 'es-components-shared-types';
 
 const DismissButton = OrigDismissButton as React.ForwardRefExoticComponent<
   JSX.IntrinsicElements['button']
@@ -59,15 +59,16 @@ interface ModalHeaderProps {
   hideCloseButton: boolean;
   children: React.ReactNode;
   level: HeadingLevel;
+  size?: HeadingLevel;
 }
 
 function ModalHeader(props: ModalHeaderProps) {
-  const { hideCloseButton, children, level, ...otherProps } = props;
+  const { hideCloseButton, children, level, size, ...otherProps } = props;
   const { onHide, ariaId } = useContext(ModalContext);
 
   return (
     <Header {...otherProps}>
-      <Title id={ariaId} level={level}>
+      <Title id={ariaId} level={level} size={size}>
         {children}
       </Title>
 
@@ -80,7 +81,8 @@ ModalHeader.propTypes = {
   /** Specify whether the modal header should contain a close button */
   hideCloseButton: PropTypes.bool,
   children: PropTypes.any,
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  level: PropTypes.oneOf<HeadingLevel>(headingLevel),
+  size: PropTypes.oneOf<HeadingLevel>(headingLevel),
   ref: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any })
@@ -91,6 +93,7 @@ ModalHeader.defaultProps = {
   hideCloseButton: false,
   children: undefined,
   level: 4,
+  size: undefined,
   ref: null
 };
 

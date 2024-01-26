@@ -203,7 +203,8 @@ export type DatepickerColors = {
   highlightHover: CSS.Property.BackgroundColor;
 };
 
-export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export const headingLevel = [1, 2, 3, 4, 5, 6] as const;
+export type HeadingLevel = (typeof headingLevel)[number];
 
 export type BannerBlock = {
   bgColor: CSS.Property.BackgroundColor;

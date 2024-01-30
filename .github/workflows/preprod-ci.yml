@@ -89,7 +89,9 @@ jobs:
 
       - name: Configure docs changes
         run: |
+          git stash
           git checkout gh-pages
+          git stash show -p | git apply && git stash drop
           rm -rf build/
           mkdir -p pre-prod
           cp -r ./packages/es-components/docs/pre-prod/* ./pre-prod

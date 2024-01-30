@@ -201,7 +201,9 @@ jobs:
 
       - name: Configure docs changes
         run: |
+          git stash
           git checkout gh-pages
+          git stash show -p | git apply && git stash drop
           rm -rf build/
           mv ./packages/es-components/docs/* .
           git add index.html full-color-icons.html full-color-icons.js build

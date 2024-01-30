@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.11.4](https://github.com/WTW-IM/es-components/compare/v21.11.4-pre-prod.0...v21.11.4) (2024-01-30)
+
+### Fix
+
+- keep automatic changes from styleguid-build in docs updates ([f7a1213](https://github.com/WTW-IM/es-components/commit/f7a1213329269aaef778d911974b0e7334e5d0a5))
+- keep automatic changes from styleguid-build in pre-prod ci docs ([144d12c](https://github.com/WTW-IM/es-components/commit/144d12c2cec4ec0dc2a6725d503c6cbfe30dd5f8))
+- updating IconNames.ts with latest names ([33d8d27](https://github.com/WTW-IM/es-components/commit/33d8d275a6c4d38693ac71e5f76ade54ab8a8eeb))
+
+### Upgrade
+
+- bump @adobe/css-tools from 4.3.1 to 4.3.2 ([12942bb](https://github.com/WTW-IM/es-components/commit/12942bbf2422142b7e4015c2970d9493d5fe5a1a))
+- bump follow-redirects from 1.15.3 to 1.15.5 ([fe1c045](https://github.com/WTW-IM/es-components/commit/fe1c0456a6a436e6b7be17cd605ef38b442a2a27))
+
 ## [21.11.4-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.11.3...v21.11.4-pre-prod.0) (2024-01-26)
 
 ### Update

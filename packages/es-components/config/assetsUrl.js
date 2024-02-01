@@ -11,7 +11,7 @@ const getAssetsUrl = args => {
     ? 'https://app.viabenefits.com/static/cdn/es-assets/'
     : isLocal
     ? 'https://bdaimdna26fetoolcdnsa.blob.core.windows.net/es-assets/'
-    : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
+    : `https://my.${process.env.ENVIRONMENT}.viabenefits.com/static/cdn/es-assets/`;
 
   return assetsUrl;
 };

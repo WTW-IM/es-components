@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.11.5-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.11.4...v21.11.5-pre-prod.0) (2024-02-09)
+
+### Fix
+
+- icon context ([5a01304](https://github.com/WTW-IM/es-components/commit/5a01304452de49bcd662e9d4bd4a0ce254875549))
+
 ## [21.11.4](https://github.com/WTW-IM/es-components/compare/v21.11.4-pre-prod.0...v21.11.4) (2024-01-30)
 
 ### Fix

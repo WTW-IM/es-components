@@ -13,7 +13,19 @@ class NodeError extends Error {
 }
 
 const iconStyleAttribute = 'data-es-icon-styles';
-const iconsAsset = `${ASSETS_PATH}icons.css`;
+let iconsAsset = `${ASSETS_PATH}icons.css`;
+
+const subdomain = window.location.hostname.split('.')[1];
+const environments = ['dev', 'qa', 'stage'] as const;
+const local = 'localtest' as const;
+if (environments.some(arr => arr === subdomain))
+  iconsAsset = iconsAsset.replace('qa', subdomain);
+
+if (local === subdomain)
+  iconsAsset = iconsAsset.replace(
+    'app.qa.viabenefits.com',
+    'app.localtest.viabenefits.com:34300'
+  );
 
 const getExistingStyleTag = (node: HTMLElement) =>
   node.querySelector(`[${iconStyleAttribute}]`) ||

@@ -66,7 +66,6 @@ export const htmlProps: HTMLPropTypes = {
   id: PropTypes.string,
   lang: PropTypes.string,
   nonce: PropTypes.string,
-  placeholder: PropTypes.string,
   slot: PropTypes.string,
   spellCheck: PropTypes.oneOfType([
     PropTypes.bool,

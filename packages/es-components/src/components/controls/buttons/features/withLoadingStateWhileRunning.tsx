@@ -53,17 +53,19 @@ export function withLoadingStateWhileRunning<
     ref
   ) {
     const [isRunning, showRunningWhile] = useLoadingState();
-    const runOperation: React.MouseEventHandler<HTMLButtonElement> =
-      useMonitoringCallback(
-        (currentOnClick, ...params) => {
-          if (runningContent && !isRunning)
-            return void showRunningWhile(currentOnClick(...params));
+    const runOperation = useMonitoringCallback(
+      (
+        currentOnClick,
+        ...params: Parameters<React.MouseEventHandler<HTMLButtonElement>>
+      ) => {
+        if (runningContent && !isRunning)
+          return void showRunningWhile(currentOnClick(...params));
 
-          return void currentOnClick(...params);
-        },
-        [isRunning, runningContent, showRunningWhile],
-        onClick
-      );
+        return void currentOnClick(...params);
+      },
+      [isRunning, runningContent, showRunningWhile],
+      onClick
+    );
 
     return (
       <ButtonComponent

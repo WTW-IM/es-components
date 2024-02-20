@@ -23,12 +23,14 @@ export type ButtonBaseProps = Override<
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
   function ButtonBaseInner({ waiting, onClick: onClickProp, ...props }, ref) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const onClick: React.MouseEventHandler<HTMLButtonElement> =
-      useMonitoringCallback(
-        (currentOnClick, ...args) => !waiting && currentOnClick?.(...args),
-        [waiting],
-        onClickProp
-      );
+    const onClick = useMonitoringCallback(
+      (
+        currentOnClick,
+        ...args: Parameters<React.MouseEventHandler<HTMLButtonElement>>
+      ) => !waiting && currentOnClick?.(...args),
+      [waiting],
+      onClickProp
+    );
 
     const computedProps = {
       ...props,

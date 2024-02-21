@@ -1,5 +1,8 @@
 import { createGlobalStyle, css } from 'styled-components';
-import { baseFontCss, globalStyleDefaults } from './GlobalStyleDefaults';
+import {
+  baseFontCss,
+  globalStyleDefaults
+} from '../base/global-styles/GlobalStyleDefaults';
 
 const styleResetCss = css`
   html,

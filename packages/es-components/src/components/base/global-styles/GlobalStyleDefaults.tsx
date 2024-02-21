@@ -1,9 +1,10 @@
 import { createGlobalStyle, css } from 'styled-components';
-import { anchorCss } from '../navigation/Anchor';
+import { anchorCss } from '../../navigation/Anchor';
 import {
   headingBaseCss,
   globalHeadingSizesCss
-} from '../containers/heading/Heading';
+} from '../../containers/heading/Heading';
+import { globalButtonCss } from '../../controls/buttons/Button';
 
 export const baseFontCss = css`
   font-family: ${({
@@ -52,6 +53,7 @@ export const globalStyleDefaults = css`
     ${headingBaseCss}
   }
   ${globalHeadingSizesCss}
+  ${globalButtonCss}
 `;
 
 export const GlobalStyleDefaults = createGlobalStyle`

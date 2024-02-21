@@ -6,7 +6,7 @@ import styled, {
   css
 } from 'styled-components';
 import { HeadingLevel, headingLevel } from 'es-components-shared-types';
-import { baseFontCss } from '../../util/GlobalStyleDefaults';
+import { baseFontCss } from '../../base/global-styles/GlobalStyleDefaults';
 
 const knockoutStyles = css`
   background-color: ${({ theme }) => theme.colors.primary};

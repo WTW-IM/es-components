@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { DefaultTheme } from 'styled-components';
+import styled, { DefaultTheme, css } from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
@@ -26,84 +26,95 @@ type BorderRadii = {
     | 'bottomLeft']: CSS.Property.BorderRadius;
 };
 
-const StyledButton = styled(ButtonBase)<{
+type ButtonStyleProps = {
   colors: ButtonColors;
   borderRadii: BorderRadii;
   mobileBlock: boolean;
   block: boolean;
   buttonSize: ButtonSizeBlock;
-}>`
-  background-color: ${props => props.colors.bgColor};
+};
+
+const getButtonCss = ({
+  theme,
+  colors,
+  borderRadii,
+  mobileBlock,
+  block,
+  buttonSize
+}: {
+  theme: DefaultTheme;
+} & ButtonStyleProps) => css`
+  background-color: ${colors.bgColor};
   border: 2px solid transparent;
-  border-color: ${props => props.colors.bgColor};
-  border-bottom-left-radius: ${props => props.borderRadii.bottomLeft};
-  border-bottom-right-radius: ${props => props.borderRadii.bottomRight};
-  border-top-left-radius: ${props => props.borderRadii.topLeft};
-  border-top-right-radius: ${props => props.borderRadii.topRight};
+  border-color: ${colors.bgColor};
+  border-bottom-left-radius: ${borderRadii.bottomLeft};
+  border-bottom-right-radius: ${borderRadii.bottomRight};
+  border-top-left-radius: ${borderRadii.topLeft};
+  border-top-right-radius: ${borderRadii.topRight};
   box-sizing: border-box;
-  color: ${props => props.colors.textColor};
+  color: ${colors.textColor};
   cursor: pointer;
-  display: ${props => (props.mobileBlock ? 'block' : 'inline-block')};
+  display: ${mobileBlock ? 'block' : 'inline-block'};
   font-family: inherit;
-  font-size: ${props => props.buttonSize.fontSize};
-  font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
-  line-height: ${props =>
-    props.buttonSize.lineHeight
-      ? props.buttonSize.lineHeight
-      : props.theme.font.baseLineHeight};
+  font-size: ${buttonSize.fontSize};
+  font-weight: ${buttonSize.fontWeight || 'normal'};
+  line-height: ${buttonSize.lineHeight
+    ? buttonSize.lineHeight
+    : theme.font.baseLineHeight};
   min-width: 100px;
-  padding-bottom: ${props => props.buttonSize.paddingBottom};
-  padding-left: ${props => props.buttonSize.paddingSides};
-  padding-right: ${props => props.buttonSize.paddingSides};
-  padding-top: ${props => props.buttonSize.paddingTop};
+  padding-bottom: ${buttonSize.paddingBottom};
+  padding-left: ${buttonSize.paddingSides};
+  padding-right: ${buttonSize.paddingSides};
+  padding-top: ${buttonSize.paddingTop};
   position: relative;
   text-align: center;
   text-decoration: none;
-  text-transform: ${props =>
-    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
+  text-transform: ${buttonSize.textTransform
+    ? buttonSize.textTransform
+    : 'none'};
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: ${props => (props.mobileBlock ? '100%' : 'auto')};
+  width: ${mobileBlock ? '100%' : 'auto'};
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    display: ${props => (props.block ? 'block' : 'inline-block')};
-    width: ${props => (props.block ? '100%' : 'auto')};
+  @media (min-width: ${theme.screenSize.tablet}) {
+    display: ${block ? 'block' : 'inline-block'};
+    width: ${block ? '100%' : 'auto'};
   }
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
-      color: ${props => props.colors.hoverTextColor};
-      background-color: ${props => props.colors.hoverBgColor};
-      border-color: ${props => props.colors.hoverBorderColor};
+      color: ${colors.hoverTextColor};
+      background-color: ${colors.hoverBgColor};
+      border-color: ${colors.hoverBorderColor};
       text-decoration: none;
     }
   }
 
   &:focus {
-    color: ${props => props.colors.hoverTextColor};
-    background-color: ${props => props.colors.hoverBgColor};
+    color: ${colors.hoverTextColor};
+    background-color: ${colors.hoverBgColor};
     border: 2px solid;
-    border-color: ${props => props.colors.hoverBorderColor};
+    border-color: ${colors.hoverBorderColor};
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075),
-      0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+      0 0 0 0.2rem ${colors.focusBoxShadowColor};
     outline: none;
   }
 
   &:active,
   &.pressed {
-    color: ${props => props.colors.activeTextColor};
-    background-color: ${props => props.colors.activeBgColor};
-    border-color: ${props => props.colors.activeBorderColor};
+    color: ${colors.activeTextColor};
+    background-color: ${colors.activeBgColor};
+    border-color: ${colors.activeBorderColor};
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
   }
 
   &:active:focus,
   &.pressed:focus {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25),
-      0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+      0 0 0 0.2rem ${colors.focusBoxShadowColor};
   }
 
   &[disabled],
@@ -120,7 +131,7 @@ const StyledButton = styled(ButtonBase)<{
       color: ${({ theme }) => theme.colors.gray6};
 
       &:focus {
-        box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
+        box-shadow: 0 0 0 0.2rem ${colors.focusBoxShadowColor};
       }
     }
 
@@ -128,6 +139,63 @@ const StyledButton = styled(ButtonBase)<{
       pointer-events: none;
     }
   }
+`;
+
+const StyledButton = styled(ButtonBase)<ButtonStyleProps>`
+  ${getButtonCss}
+`;
+
+const getBorderRadii = (buttonSize: ButtonSizeBlock): BorderRadii => ({
+  topLeft: buttonSize.borderRadius,
+  topRight: buttonSize.borderRadius,
+  bottomRight: buttonSize.borderRadius,
+  bottomLeft: buttonSize.borderRadius
+});
+
+export const globalButtonCss = css`
+  button {
+    ${({ theme }) =>
+      getButtonCss({
+        theme,
+        colors: getButtonColors(
+          theme,
+          false,
+          theme.buttonStyles.button.variant.default as GuaranteedButtonVariant
+        ),
+        borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
+        mobileBlock: true,
+        block: false,
+        buttonSize: theme.buttonStyles.button.size.default
+      })}
+    ${({ theme }) =>
+      buttonVariantStyleTypes.map(style =>
+        buttonSizes.map(size => {
+          const buttonSize = theme.buttonStyles.button.size[size];
+          const variant = theme.buttonStyles.button.variant[
+            style
+          ] as GuaranteedButtonVariant;
+          const buttonColors = getButtonColors(theme, false, variant);
+          const borderRadii: BorderRadii = {
+            topLeft: buttonSize.borderRadius,
+            topRight: buttonSize.borderRadius,
+            bottomRight: buttonSize.borderRadius,
+            bottomLeft: buttonSize.borderRadius
+          };
+
+          return css`
+            &.${[style, size].join('.')} {
+              ${getButtonCss({
+                theme,
+                colors: buttonColors,
+                borderRadii,
+                mobileBlock: true,
+                block: false,
+                buttonSize
+              })}
+            }
+          `;
+        })
+      )}
 `;
 
 const buttonColorProps = [

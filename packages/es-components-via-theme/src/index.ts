@@ -639,7 +639,7 @@ const theme: ESTheme = {
     },
   },
   font: {
-    baseFontSize: '18px',
+    baseFontSize: '1.125rem',
     baseLineHeight: 1.428,
     baseFontFace:
       '"Source Sans Pro", "Segoe UI", Segoe, Calibri, Tahoma, sans-serif',

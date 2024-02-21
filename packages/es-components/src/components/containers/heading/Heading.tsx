@@ -14,48 +14,54 @@ const knockoutStyles = css`
   padding: 20px 15px;
 `;
 
+const getMarginBottom = (size: string) => {
+  const sizeNum = parseFloat(size);
+  if (sizeNum > 36) {
+    return '1.5rem';
+  }
+
+  if (sizeNum > 26) {
+    return '1.25rem';
+  }
+
+  if (sizeNum > 18) {
+    return '1rem';
+  }
+
+  return '0.75rem';
+};
+
+const getHeadingSizeCss = (
+  { font: { headingMobile, headingDesktop }, screenSize }: DefaultTheme,
+  adjustedSize: HeadingLevel
+) => css`
+  font-size: ${headingMobile[adjustedSize]};
+  margin-bottom: ${getMarginBottom(headingMobile[adjustedSize])};
+
+  small {
+    font-size: ${adjustedSize > 3 ? '75%' : '65%'};
+  }
+
+  @media (min-width: ${screenSize.tablet}) {
+    font-size: ${headingDesktop[adjustedSize]};
+    margin-bottom: ${getMarginBottom(headingDesktop[adjustedSize])};
+  }
+`;
+
 export const globalHeadingSizesCss = css`
-  ${({
-    theme: {
-      font: { headingDesktop, headingMobile }
-    }
-  }) =>
+  ${({ theme }) =>
     headingLevel.map(
       size => css`
         h${size} {
-          font-size: ${headingMobile[size]};
-
-          @media (min-width: ${({
-              theme: {
-                screenSize: { tablet }
-              }
-            }) => tablet}) {
-            font-size: ${headingDesktop[size]};
-          }
+          ${getHeadingSizeCss(theme, size)}
         }
       `
     )}
-
-  h1,
-  h2,
-  h3 {
-    small {
-      font-size: 75%;
-    }
-  }
-
-  h4,
-  h5,
-  h6 {
-    small {
-      font-size: 65%;
-    }
-  }
 `;
 
 export const headingBaseCss = css`
   font-weight: 300;
-  line-height: 1.1;
+  line-height: calc(1em + 0.5rem);
   margin-bottom: 0.45em;
   margin-top: 0;
   color: inherit;
@@ -73,12 +79,12 @@ export type HeadingProps = JSXElementProps<'h1'> & {
   underlineColor?: string | null;
 };
 
-function getAdjustedProps(
+function getAdjustedProps<R>(
   func: (
     props: ThemedStyledProps<HeadingProps, DefaultTheme> & {
       adjustedSize: HeadingLevel;
     }
-  ) => string
+  ) => R
 ) {
   return ({
     size,
@@ -101,25 +107,13 @@ const Heading = styled(({ level = 1, ...props }: HeadingProps) => (
   ${headingBaseCss}
   border-bottom: ${props =>
     props.underlineColor && `2px solid ${props.underlineColor};`};
-  font-size: ${getAdjustedProps(
-    ({ theme, adjustedSize }) => theme.font.headingMobile[adjustedSize]
-  )};
   padding-bottom: ${props => props.underlineColor && '0.22em'};
+  ${getAdjustedProps(({ theme, adjustedSize }) =>
+    getHeadingSizeCss(theme, adjustedSize)
+  )}
 
   && {
     ${({ isKnockoutStyle }) => isKnockoutStyle && knockoutStyles}
-  }
-
-  small {
-    font-size: ${getAdjustedProps(({ adjustedSize }) =>
-      adjustedSize > 3 ? '75%' : '65%'
-    )};
-  }
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    font-size: ${getAdjustedProps(
-      ({ adjustedSize, theme }) => theme.font.headingDesktop[adjustedSize]
-    )};
   }
 `;
 

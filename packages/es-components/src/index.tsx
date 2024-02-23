@@ -104,7 +104,7 @@ export { default as Fade } from './components/util/Fade';
 export { default as generateAlphaName } from './components/util/generateAlphaName';
 export { useWindowWidth } from './components/util/useWindowWidth';
 export { default as withWindowSize } from './components/util/withWindowSize';
-export { GlobalStyleDefaults } from './components/util/GlobalStyleDefaults';
+export { GlobalStyleDefaults } from './components/base/global-styles/GlobalStyleDefaults';
 export { default as StyleReset } from './components/util/StyleReset';
 export { useTheme } from './components/util/useTheme';
 export { isValidEmail } from './components/util/isValidEmail';

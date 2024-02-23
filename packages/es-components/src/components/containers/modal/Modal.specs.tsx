@@ -42,9 +42,7 @@ it('invokes functions when triggered', async () => {
     expect(onEnter).toHaveBeenCalled();
   });
 
-  fireEvent.click(
-    await screen.findByRole('button', { name: 'Close', exact: false })
-  );
+  fireEvent.click(await screen.findByRole('button', { name: /Close/i }));
 
   expect(onHide).toHaveBeenCalled();
 });
@@ -73,9 +71,7 @@ it('hides dismiss button when hideCloseButton is true', () => {
       <ModalFooter>Footer</ModalFooter>
     </>
   );
-  expect(
-    screen.queryByRole('button', { name: 'Close', exact: false })
-  ).toBeNull();
+  expect(screen.queryByRole('button', { name: /Close/i })).toBeNull();
 });
 
 it('passes through class names', async () => {

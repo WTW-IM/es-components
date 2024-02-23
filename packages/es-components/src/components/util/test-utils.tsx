@@ -24,7 +24,7 @@ export function renderWithTheme(component: React.ReactElement): RenderResult {
   const renderObj = render(<ThemeComponent>{component}</ThemeComponent>);
   return {
     ...renderObj,
-    rerender: (rerenderComponent: React.ReactElement) =>
+    rerender: (rerenderComponent: React.ReactNode) =>
       renderObj.rerender(
         <Profiler id="ThemeRender" onRender={profilerRender}>
           <ThemeComponent>{rerenderComponent}</ThemeComponent>

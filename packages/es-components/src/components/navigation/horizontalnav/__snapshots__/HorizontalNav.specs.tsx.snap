@@ -122,6 +122,13 @@ exports[`renders as expected 1`] = `
   width: 100%;
 }
 
+.c2:hover,
+.c2:focus,
+.c2:active,
+.c2:visited {
+  color: inherit;
+}
+
 <div>
   <nav
     class="c0 es-sidenav "

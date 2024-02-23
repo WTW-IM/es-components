@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { render, cleanup, waitFor, screen } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
@@ -41,7 +41,7 @@ function PanelDrawer<T extends ActiveKeys>(props: DrawerProps<T>) {
 beforeEach(cleanup);
 
 describe('drawer', () => {
-  it('active panel is opened', () => {
+  it('active panel is opened', async () => {
     const onActiveKeysChanged = jest.fn<void, [string[]]>();
     render(
       <PanelDrawer
@@ -50,12 +50,15 @@ describe('drawer', () => {
       />
     );
 
-    expect(screen.getByText('first')).toBeVisible();
-    expect(screen.getByText('second')).not.toBeVisible();
-    expect(screen.getByText('third')).not.toBeVisible();
+    (await screen.findAllByRole('region', { hidden: true })).forEach(
+      (panel, index) => {
+        const hidden = index === 0 ? 'false' : 'true';
+        expect(panel).toHaveAttribute('aria-hidden', hidden);
+      }
+    );
   });
 
-  it('allows multiple panels to be opened at the same time', () => {
+  it('allows multiple panels to be opened at the same time', async () => {
     const onActiveKeysChanged = jest.fn();
     render(
       <PanelDrawer
@@ -64,9 +67,11 @@ describe('drawer', () => {
       />
     );
 
-    expect(screen.getByText('first')).toBeVisible();
-    expect(screen.getByText('second')).not.toBeVisible();
-    expect(screen.getByText('third')).toBeVisible();
+    const regions = await screen.findAllByRole('region', { hidden: true });
+    regions.forEach((panel, index) => {
+      const hidden = index === 0 || index === 2 ? 'false' : 'true';
+      expect(panel).toHaveAttribute('aria-hidden', hidden);
+    });
   });
 });
 
@@ -95,11 +100,10 @@ describe('accordion', () => {
     );
     theRerender = rerender;
 
-    await waitFor(() => {
-      expect(screen.getByText('first')).toBeVisible();
-    });
-    await waitFor(() => {
-      expect(screen.getByText('second')).not.toBeVisible();
+    const regions = await screen.findAllByRole('region', { hidden: true });
+    regions.forEach((panel, index) => {
+      const hidden = index === 0 ? 'false' : 'true';
+      expect(panel).toHaveAttribute('aria-hidden', hidden);
     });
   });
 });
@@ -161,52 +165,75 @@ describe('Drawer.Item functionality', () => {
     </ThemeComponent>
   );
 
+  /* eslint-disable testing-library/no-node-access */
   it('can open from a click', async () => {
     render(<TestItemDrawer />);
 
-    expect(await screen.findByText('first')).not.toBeVisible();
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
 
-    await userEvent.click(await screen.findByText('collapse 1'));
+    await userEvent.click(
+      await screen.findByRole('button', { name: /collapse 1/ })
+    );
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
   });
 
   it('can close from a click', async () => {
     render(<TestItemDrawer />);
 
-    expect(await screen.findByText('first')).not.toBeVisible();
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
 
-    await userEvent.click(await screen.findByText('collapse 1'));
+    await userEvent.click(
+      await screen.findByRole('button', { name: /collapse 1/ })
+    );
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
 
-    await userEvent.click(await screen.findByText('collapse 1'));
+    await userEvent.click(
+      await screen.findByRole('button', { name: /collapse 1/ })
+    );
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).not.toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
   });
 
   it('can open from a prop', async () => {
     render(<TestItemDrawer openItems={[true]} />);
 
-    expect(await screen.findByText('first')).toBeVisible();
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
   });
 
   it('can close from a prop', async () => {
     const { rerender } = render(<TestItemDrawer openItems={[true]} />);
 
-    expect(await screen.findByText('first')).toBeVisible();
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
 
     rerender(<TestItemDrawer openItems={[false]} />);
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).not.toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
   });
 
   it('reopens from a prop after a click', async () => {
@@ -222,44 +249,56 @@ describe('Drawer.Item functionality', () => {
     );
 
     const { rerender } = render(getTestDrawer());
-    expect(await screen.findByText('first')).toBeVisible();
+
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
 
     await userEvent.click(await screen.findByText('collapse 1'));
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).not.toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
 
     // rerender so prop matches current state (closed after click)
     rerender(getTestDrawer());
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).not.toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
 
     // rerender to open again
     rerender(getTestDrawer(true));
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
   });
 
   it('matches correctly from prop to click', async () => {
     const { rerender } = render(<TestItemDrawer openItems={[true]} />);
 
-    expect(await screen.findByText('first')).toBeVisible();
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
 
     await userEvent.click(await screen.findByText('collapse 1'));
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).not.toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
 
     rerender(<TestItemDrawer openItems={[false]} />);
 
-    await waitFor(async () => {
-      expect(await screen.findByText('first')).not.toBeVisible();
-    });
+    expect((await screen.findByText('first')).parentElement).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
   });
 });

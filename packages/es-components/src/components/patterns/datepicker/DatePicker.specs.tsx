@@ -94,7 +94,7 @@ it('correctly calls onChange for the native input in the same way as the normal 
   expect(datePickerElement).toHaveAttribute('type', 'date');
   await userEvent.type(datePickerElement, '2020-01-01');
 
-  expect(onChange).toHaveBeenCalledWith(new Date(2020, 0, 1));
+  expect(onChange).toHaveBeenCalledWith(new Date(2020, 0, 1), undefined);
 });
 
 it('renders the custom date input when the screen is smaller than phone sized, but we specify the native date picker should not be used', () => {

@@ -5,7 +5,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -86,7 +86,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -135,7 +135,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -216,7 +216,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -265,7 +265,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -346,7 +346,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -396,7 +396,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -477,7 +477,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -527,7 +527,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -608,7 +608,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -659,7 +659,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -740,7 +740,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -791,7 +791,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -872,7 +872,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;
@@ -924,7 +924,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -1005,7 +1005,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   display: -ms-flexbox;
   display: flex;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
   margin-right: 15px;

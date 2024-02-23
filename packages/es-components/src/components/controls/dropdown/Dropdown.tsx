@@ -57,7 +57,14 @@ export const globalDrowdownCss = css`
 const StyledDropdownInput = styled(InputBase)<StyledInputProps>`
   ${getDropdownStyles}
 
-  ${({ hasValue }) => !hasValue && placeholderStyles}
+  && {
+    ${({ hasValue }) =>
+      !hasValue
+        ? placeholderStyles
+        : css`
+            color: ${getStyledProp('colors.black')};
+          `}
+  }
 `;
 
 const DropdownInput = StyledDropdownInput as StyledComponent<

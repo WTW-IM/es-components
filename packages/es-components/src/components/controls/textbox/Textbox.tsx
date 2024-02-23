@@ -141,6 +141,12 @@ export const TextboxBase = styled(InputBase)<TextboxAdditionProps>`
   && {
     border: none !important;
     margin: 0 !important;
+
+    &:not([disabled]):not([readonly]) {
+      box-shadow: none !important;
+      background-color: transparent !important;
+    }
+
     height: ${props =>
       getStyledProp('inputStyles.inputHeight', props as ESThemeProps) ||
       '2.2em'};

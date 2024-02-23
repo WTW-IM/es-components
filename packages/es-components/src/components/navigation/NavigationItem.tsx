@@ -135,6 +135,13 @@ const NavigationAnchor = styled.a`
   position: relative;
   text-decoration: none;
   width: 100%;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    color: inherit;
+  }
 `;
 
 export type NavigationItemProps = Override<

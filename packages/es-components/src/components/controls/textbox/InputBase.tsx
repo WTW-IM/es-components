@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled, { DefaultTheme, css } from 'styled-components';
 import * as CSS from 'csstype';
@@ -45,55 +45,66 @@ export interface ValidationStyleProps
     ValidationStateHighlightProps,
     ValidationStateReadonlyProps {}
 
-export const validationStateHighlightStyles = css<ValidationStateHighlightProps>`
-  ${({ focusBorderColor, focusBoxShadow }) => css`
-    border-color: ${focusBorderColor};
-    box-shadow: ${focusBoxShadow}, ${noInset};
+type InputStyleProps<T = ValidationStyleProps> = { theme: DefaultTheme } & T;
+
+export const validationStateHighlightStyles = ({
+  focusBorderColor,
+  focusBoxShadow
+}: InputStyleProps<ValidationStateHighlightProps>) => css`
+  border-color: ${focusBorderColor};
+  box-shadow: ${focusBoxShadow}, ${noInset};
+`;
+
+export const validationStateInputStyles = (
+  props: InputStyleProps<ValidationStateInputProps>
+) => css`
+  border: 1px solid ${props.borderColor};
+  border-radius: ${getStyledProp(
+    'inputStyles.borderRadius',
+    props as InputStyleProps<object>
+  ) || '2px'};
+  box-sizing: border-box;
+
+  ${props.flat &&
+  css`
+    border-width: 0;
+    border-bottom-width: 2px;
   `}
 `;
 
-export const validationStateInputStyles = css<ValidationStateInputProps>`
-  ${props => css`
-    border: 1px solid ${props.borderColor};
-    border-radius: ${getStyledProp('inputStyles.borderRadius', props) || '2px'};
-    box-sizing: border-box;
-  `}
-
-  ${props =>
-    props.flat &&
-    css`
-      border-width: 0;
-      border-bottom-width: 2px;
-    `}
+export const validationStateReadonlyStyles = ({
+  disabledBackgroundColor
+}: InputStyleProps<ValidationStateReadonlyProps>) => css`
+  background-color: ${disabledBackgroundColor};
+  cursor: text;
 `;
 
-export const validationStateReadonlyStyles = css<ValidationStateReadonlyProps>`
-  ${({ disabledBackgroundColor }) => css`
-    background-color: ${disabledBackgroundColor};
-    cursor: text;
-  `};
-`;
-
-const maybeGetComma = ({ flat, boxShadow }: ValidationStateSetupProps) =>
+const maybeGetComma = ({
+  flat,
+  boxShadow
+}: Pick<ValidationStateSetupProps, 'flat' | 'boxShadow'>) =>
   (flat || boxShadow) && ', ';
 
-export const validationStateSetupStyles = css<ValidationStateSetupProps>`
-  ${({ backgroundColor, borderColor, flat, boxShadow }) => css`
-    background-color: ${backgroundColor};
-    box-shadow: 0 0 0 0 ${borderColor}${maybeGetComma}${flat
-        ? noInset
-        : boxShadow};
-    transition: border-color linear 0.15s, box-shadow linear 0.15s;
-  `}
+export const validationStateSetupStyles = ({
+  backgroundColor,
+  borderColor,
+  flat,
+  boxShadow
+}: InputStyleProps<ValidationStateSetupProps>) => css`
+  background-color: ${backgroundColor};
+  box-shadow: 0 0 0 0 ${borderColor}${maybeGetComma({ flat, boxShadow })}${flat
+      ? noInset
+      : boxShadow};
+  transition: border-color linear 0.15s, box-shadow linear 0.15s;
 `;
 
 export const placeholderStyles = css`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
-const InputBaseComponent = styled.input<ValidationStyleProps>`
-  ${validationStateInputStyles}
-  ${validationStateSetupStyles}
+const getInputStyles = (props: InputStyleProps) => css<object>`
+  ${validationStateInputStyles(props)}
+  ${validationStateSetupStyles(props)}
   color: ${getStyledProp('colors.black')};
   font-size: ${getStyledProp('font.baseFontSize')};
   font-family: ${getStyledProp('font.baseFontFace')};
@@ -114,8 +125,116 @@ const InputBaseComponent = styled.input<ValidationStyleProps>`
 
   &:disabled,
   &:disabled:read-only {
-    ${validationStateReadonlyStyles}
+    ${validationStateReadonlyStyles(props)}
     cursor: not-allowed;
+  }
+`;
+
+const InputBaseComponent = styled.input<ValidationStyleProps>`
+  ${getInputStyles}
+`;
+
+function getValidationStyleProp<P, T extends keyof P>(
+  props: P,
+  propName: T,
+  fallback: P[T]
+) {
+  return props[propName] || fallback;
+}
+
+function getValidationStylesOrDefault(
+  theme: DefaultTheme,
+  validationState: ValidationStyleType
+) {
+  const validationTarget =
+    theme.validationInputColor[validationState] ||
+    theme.validationInputColor.default ||
+    {};
+  return validationTarget;
+}
+
+export interface ValidationProps
+  extends ValidationInputColor,
+    ValidationStyleProps {}
+
+export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
+  darken(color, 7);
+
+function getInputPropsForValidation(
+  theme: DefaultTheme,
+  validationState: ValidationStyleType,
+  flat?: boolean
+): ValidationProps {
+  const validationStyleProps = getValidationStylesOrDefault(
+    theme,
+    validationState
+  );
+
+  const getValidationProp = getValidationStyleProp.bind(
+    null,
+    validationStyleProps
+  ) as unknown as <K extends keyof ValidationStyleProps>(
+    k: K,
+    fb: ValidationStyleProps[K]
+  ) => ValidationStyleProps[K];
+
+  const backgroundColor = flat
+    ? getValidationProp('backgroundColorFlat', theme.colors.gray1)
+    : getValidationProp('backgroundColor', theme.colors.white);
+
+  const focusBoxShadow = flat
+    ? getValidationProp(
+        'focusBoxShadowFlat',
+        `0 0 1px 2px ${validationStyleProps.focusBorderColor}`
+      )
+    : validationStyleProps.focusBoxShadow;
+
+  const addOn = getValidationProp('addOn', {
+    textColor: validationState === 'default' ? theme.colors.gray8 : 'white',
+    backgroundColor:
+      validationState === 'default'
+        ? theme.colors.gray3
+        : validationStyleProps.borderColor
+  });
+
+  const disabledBackgroundColor = getDisabledBackgroundColor(backgroundColor);
+
+  const calculatedProps = {
+    disabledBackgroundColor,
+    backgroundColor,
+    focusBoxShadow,
+    addOn
+  };
+
+  const validationProps = {
+    ...validationStyleProps,
+    ...calculatedProps
+  };
+
+  return validationProps;
+}
+
+const inputTypes = [
+  'date',
+  'datetime-local',
+  'email',
+  'month',
+  'number',
+  'password',
+  'search',
+  'tel',
+  'text',
+  'time',
+  'url',
+  'week'
+];
+export const globalInputCss = css`
+  ${inputTypes.map(type => `input[type='${type}']`).join(',')} {
+    ${({ theme }) =>
+      getInputStyles({
+        theme,
+        ...getInputPropsForValidation(theme, 'default')
+      })}
   }
 `;
 
@@ -191,24 +310,6 @@ export const basicTextboxDefaultProps = {
 BasicTextbox.propTypes = basicTextboxPropTypes;
 BasicTextbox.defaultProps = basicTextboxDefaultProps;
 
-function getValidationStylesOrDefault(
-  theme: DefaultTheme,
-  validationState: ValidationStyleType
-) {
-  const validationTarget =
-    theme.validationInputColor[validationState] ||
-    theme.validationInputColor.default ||
-    {};
-  return validationTarget;
-}
-
-export interface ValidationProps
-  extends ValidationInputColor,
-    ValidationStyleProps {}
-
-export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
-  darken(color, 7);
-
 export function useValidationStyleProps(
   props: FlatInputProps
 ): ValidationProps {
@@ -216,59 +317,16 @@ export function useValidationStyleProps(
   const formContext = useContext(FormContext);
   const flat = isBool(props.flat) ? props.flat : formContext.flat;
   const theme = useTheme();
-  const [validationStyleProps, setValidationStyleProps] = useState(
-    getValidationStylesOrDefault(theme, validationState)
-  );
-
-  useEffect(() => {
-    setValidationStyleProps(
-      getValidationStylesOrDefault(theme, validationState)
-    );
-  }, [validationState, theme]);
-
-  function getValidationProp<T extends keyof ValidationInputColor>(
-    propName: T,
-    fallback: ValidationInputColor[T]
-  ) {
-    return validationStyleProps[propName] || fallback;
-  }
-
-  const backgroundColor = flat
-    ? getValidationProp('backgroundColorFlat', theme.colors.gray1)
-    : getValidationProp('backgroundColor', theme.colors.white);
-
-  const focusBoxShadow = flat
-    ? getValidationProp(
-        'focusBoxShadowFlat',
-        `0 0 1px 2px ${validationStyleProps.focusBorderColor}`
-      )
-    : validationStyleProps.focusBoxShadow;
-
-  const addOn = getValidationProp('addOn', {
-    textColor: validationState === 'default' ? theme.colors.gray8 : 'white',
-    backgroundColor:
-      validationState === 'default'
-        ? theme.colors.gray3
-        : validationStyleProps.borderColor
-  });
-
-  const disabledBackgroundColor = getDisabledBackgroundColor(backgroundColor);
-
-  const calculatedProps = {
-    disabledBackgroundColor,
-    backgroundColor,
-    focusBoxShadow,
-    addOn
-  };
-
   const finalProps = { flat };
 
-  const validationProps = {
-    ...validationStyleProps,
-    ...calculatedProps,
+  const newValidationProps = useMemo(
+    () => getInputPropsForValidation(theme, validationState, flat),
+    [theme, validationState, flat]
+  );
+
+  return {
+    ...newValidationProps,
     ...props,
     ...finalProps
   };
-
-  return validationProps;
 }

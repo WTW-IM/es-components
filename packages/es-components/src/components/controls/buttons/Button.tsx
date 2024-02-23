@@ -17,6 +17,9 @@ import {
   buttonVariantStyleTypes,
   buttonSizes
 } from 'es-components-shared-types';
+import { PanelButton } from '../../containers/drawer/DrawerPanel';
+import { ScrollIconBaseComponent } from '../../containers/horizontalScrollWrapper/HorizontalScrollWrapper';
+import { BasicProgressButton } from '../../patterns/progress-tracker/progress-tracker-subcomponents';
 
 type BorderRadii = {
   [key in
@@ -34,16 +37,16 @@ type ButtonStyleProps = {
   buttonSize: ButtonSizeBlock;
 };
 
+type ButtonStyleCssProps = {
+  theme: DefaultTheme;
+} & Omit<ButtonStyleProps, 'mobileBlock' | 'block'>;
+
 const getButtonCss = ({
   theme,
   colors,
   borderRadii,
-  mobileBlock,
-  block,
   buttonSize
-}: {
-  theme: DefaultTheme;
-} & ButtonStyleProps) => css`
+}: ButtonStyleCssProps) => css`
   background-color: ${colors.bgColor};
   border: 2px solid transparent;
   border-color: ${colors.bgColor};
@@ -54,14 +57,12 @@ const getButtonCss = ({
   box-sizing: border-box;
   color: ${colors.textColor};
   cursor: pointer;
-  display: ${mobileBlock ? 'block' : 'inline-block'};
   font-family: inherit;
   font-size: ${buttonSize.fontSize};
   font-weight: ${buttonSize.fontWeight || 'normal'};
   line-height: ${buttonSize.lineHeight
     ? buttonSize.lineHeight
     : theme.font.baseLineHeight};
-  min-width: 100px;
   padding-bottom: ${buttonSize.paddingBottom};
   padding-left: ${buttonSize.paddingSides};
   padding-right: ${buttonSize.paddingSides};
@@ -77,12 +78,6 @@ const getButtonCss = ({
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-  width: ${mobileBlock ? '100%' : 'auto'};
-
-  @media (min-width: ${theme.screenSize.tablet}) {
-    display: ${block ? 'block' : 'inline-block'};
-    width: ${block ? '100%' : 'auto'};
-  }
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
@@ -143,6 +138,14 @@ const getButtonCss = ({
 
 const StyledButton = styled(ButtonBase)<ButtonStyleProps>`
   ${getButtonCss}
+  min-width: 100px;
+  display: ${({ mobileBlock }) => (mobileBlock ? 'block' : 'inline-block')};
+  width: ${({ mobileBlock }) => (mobileBlock ? '100%' : 'auto')};
+
+  @media (min-width: ${({ theme }) => theme.screenSize.tablet}) {
+    display: ${({ block }) => (block ? 'block' : 'inline-block')};
+    width: ${({ block }) => (block ? '100%' : 'auto')};
+  }
 `;
 
 const getBorderRadii = (buttonSize: ButtonSizeBlock): BorderRadii => ({
@@ -153,7 +156,16 @@ const getBorderRadii = (buttonSize: ButtonSizeBlock): BorderRadii => ({
 });
 
 export const globalButtonCss = css`
-  button {
+  form
+    button:not(
+      .react-datepicker__navigation,
+      [name^='rsg'],
+      [class^='rsg'],
+      ${PanelButton},
+        ${ScrollIconBaseComponent},
+        ${StyledButton},
+        ${BasicProgressButton}
+    ) {
     ${({ theme }) =>
       getButtonCss({
         theme,
@@ -163,8 +175,6 @@ export const globalButtonCss = css`
           theme.buttonStyles.button.variant.default as GuaranteedButtonVariant
         ),
         borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
-        mobileBlock: true,
-        block: false,
         buttonSize: theme.buttonStyles.button.size.default
       })}
     ${({ theme }) =>
@@ -188,14 +198,13 @@ export const globalButtonCss = css`
                 theme,
                 colors: buttonColors,
                 borderRadii,
-                mobileBlock: true,
-                block: false,
                 buttonSize
               })}
             }
           `;
         })
       )}
+  }
 `;
 
 const buttonColorProps = [

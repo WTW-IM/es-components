@@ -17,7 +17,7 @@ const PanelWrapper = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.gray3};
 `;
 
-const PanelButton = styled.button`
+export const PanelButton = styled.button`
   background: none;
   border: 0;
   color: ${props => props.theme.colors.primary};

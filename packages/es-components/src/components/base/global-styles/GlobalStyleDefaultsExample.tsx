@@ -6,6 +6,7 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import css from 'react-syntax-highlighter/dist/esm/languages/hljs/css';
 import forest from 'react-syntax-highlighter/dist/esm/styles/hljs/atelier-forest-light';
 import GlobalStyleDefaults from './GlobalStyleDefaults';
+import Drawer from '../../containers/drawer/Drawer';
 
 SyntaxHighlighter.registerLanguage('css', css);
 
@@ -13,18 +14,25 @@ export default function GlobalStyleDefaultsExample() {
   const [syntaxRef, setSyntaxRef] = useState<HTMLTemplateElement | null>(null);
   const [rawCssString, setRawCssString] = useState('');
   const [cssString, setCssString] = useState('');
+  const [instruction, setInstruction] = useState('Loading...');
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
 
   useEffect(() => {
+    if (!syntaxRef?.content) {
+      return;
+    }
     const setRaw = () =>
       setRawCssString(
-        (syntaxRef?.firstElementChild as HTMLElement | undefined)?.innerHTML ||
-          ''
+        syntaxRef.content.querySelector('style')?.innerHTML || ''
       );
-    const intrvl = setInterval(setRaw, 1000 / 30);
+    const observer = new MutationObserver(setRaw);
+    observer.observe(syntaxRef.content, { childList: true });
     setRaw();
 
-    return () => clearInterval(intrvl);
+    return () => {
+      observer.disconnect();
+    };
   }, [syntaxRef]);
 
   useEffect(() => {
@@ -41,14 +49,63 @@ export default function GlobalStyleDefaultsExample() {
     );
   }, [rawCssString]);
 
+  useEffect(() => {
+    if (cssString) {
+      setInstruction('Open drawer to see CSS.');
+      return;
+    }
+
+    setInstruction('Loading...');
+  }, [cssString]);
+
+  useEffect(() => {
+    const openingString = 'CSS drawer opening...';
+    if (drawerOpen) {
+      setInstruction(openingString);
+      setTimeout(() => {
+        setInstruction(old => (old === openingString ? 'See CSS below.' : old));
+      }, 500);
+    }
+  }, [drawerOpen]);
+
   return (
-    <StyleSheetManager target={syntaxRef || undefined} disableCSSOMInjection>
+    <StyleSheetManager
+      target={(syntaxRef?.content as ShadowRoot | null) || undefined}
+      disableCSSOMInjection
+      disableVendorPrefixes
+    >
       <ThemeProvider theme={theme}>
         <template id="global-style-syntax" ref={setSyntaxRef} />
         <GlobalStyleDefaults />
-        <SyntaxHighlighter language="css" style={forest}>
-          {cssString}
-        </SyntaxHighlighter>
+        <h3>{instruction}</h3>
+        <Drawer
+          onActiveKeysChanged={keys => {
+            setDrawerOpen(Boolean(keys.length));
+          }}
+        >
+          <Drawer.Panel title="Global Style Defaults:">
+            {drawerOpen ? (
+              <SyntaxHighlighter
+                language="css"
+                style={forest}
+                showLineNumbers
+                lineNumberStyle={{
+                  minWidth: '2.5em',
+                  borderRight: '4px darkgray solid',
+                  borderBottom: '1px darkgray solid',
+                  padding: '0 0.5em',
+                  marginRight: '1em',
+                  lineHeight: '1.5em',
+                  background: 'rgba(0, 0, 0, 0.05)'
+                }}
+              >
+                {cssString}
+              </SyntaxHighlighter>
+            ) : (
+              <></>
+            )}
+          </Drawer.Panel>
+        </Drawer>
       </ThemeProvider>
     </StyleSheetManager>
   );

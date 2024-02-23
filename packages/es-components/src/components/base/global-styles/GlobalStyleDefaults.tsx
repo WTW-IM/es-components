@@ -5,14 +5,8 @@ import {
   globalHeadingSizesCss
 } from '../../containers/heading/Heading';
 import { globalButtonCss } from '../../controls/buttons/Button';
-
-export const baseFontCss = css`
-  font-family: ${({
-    theme: {
-      font: { baseFontFace }
-    }
-  }) => baseFontFace};
-`;
+import { globalInputCss } from '../../controls/textbox/InputBase';
+import { baseFontCss } from '../../util/style-utils';
 
 export const globalStyleDefaults = css`
   body,
@@ -37,7 +31,7 @@ export const globalStyleDefaults = css`
   }
 
   p {
-    margin: 0 auto 1em;
+    margin: 0 0 1em;
   }
 
   a {
@@ -54,6 +48,7 @@ export const globalStyleDefaults = css`
   }
   ${globalHeadingSizesCss}
   ${globalButtonCss}
+  ${globalInputCss}
 `;
 
 export const GlobalStyleDefaults = createGlobalStyle`

@@ -185,13 +185,7 @@ export const globalButtonCss = css`
             style
           ] as GuaranteedButtonVariant;
           const buttonColors = getButtonColors(theme, false, variant);
-          const borderRadii: BorderRadii = {
-            topLeft: buttonSize.borderRadius,
-            topRight: buttonSize.borderRadius,
-            bottomRight: buttonSize.borderRadius,
-            bottomLeft: buttonSize.borderRadius
-          };
-
+          const borderRadii = getBorderRadii(buttonSize);
           return css`
             &.${[style, size].join('.')} {
               ${getButtonCss({

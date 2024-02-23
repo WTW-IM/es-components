@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { StyleSheetManager, useTheme, ThemeProvider } from 'styled-components';
 import beautify from 'js-beautify';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -10,13 +10,38 @@ import Drawer from '../../containers/drawer/Drawer';
 
 SyntaxHighlighter.registerLanguage('css', css);
 
+const drawerOpeningText = 'CSS drawer opening...';
+
 export default function GlobalStyleDefaultsExample() {
   const [syntaxRef, setSyntaxRef] = useState<HTMLTemplateElement | null>(null);
   const [rawCssString, setRawCssString] = useState('');
   const [cssString, setCssString] = useState('');
   const [instruction, setInstruction] = useState('Loading...');
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [displayCss, setDisplayCss] = useState(false);
   const theme = useTheme();
+
+  const memoizedHighlighter = useMemo(
+    () => (
+      <SyntaxHighlighter
+        language="css"
+        style={forest}
+        showLineNumbers
+        lineNumberStyle={{
+          minWidth: '2.5em',
+          borderRight: '4px darkgray solid',
+          borderBottom: '1px darkgray solid',
+          padding: '0 0.5em',
+          marginRight: '1em',
+          lineHeight: '1.5em',
+          background: 'rgba(0, 0, 0, 0.05)'
+        }}
+      >
+        {cssString}
+      </SyntaxHighlighter>
+    ),
+    [cssString]
+  );
 
   useEffect(() => {
     if (!syntaxRef?.content) {
@@ -59,13 +84,15 @@ export default function GlobalStyleDefaultsExample() {
   }, [cssString]);
 
   useEffect(() => {
-    const openingString = 'CSS drawer opening...';
     if (drawerOpen) {
-      setInstruction(openingString);
+      setInstruction(drawerOpeningText);
       setTimeout(() => {
-        setInstruction(old => (old === openingString ? 'See CSS below.' : old));
+        setInstruction(old =>
+          old === drawerOpeningText ? 'See CSS below.' : old
+        );
       }, 500);
     }
+    setTimeout(() => setDisplayCss(drawerOpen), 0);
   }, [drawerOpen]);
 
   return (
@@ -84,26 +111,7 @@ export default function GlobalStyleDefaultsExample() {
           }}
         >
           <Drawer.Panel title="Global Style Defaults:">
-            {drawerOpen ? (
-              <SyntaxHighlighter
-                language="css"
-                style={forest}
-                showLineNumbers
-                lineNumberStyle={{
-                  minWidth: '2.5em',
-                  borderRight: '4px darkgray solid',
-                  borderBottom: '1px darkgray solid',
-                  padding: '0 0.5em',
-                  marginRight: '1em',
-                  lineHeight: '1.5em',
-                  background: 'rgba(0, 0, 0, 0.05)'
-                }}
-              >
-                {cssString}
-              </SyntaxHighlighter>
-            ) : (
-              <></>
-            )}
+            {displayCss && memoizedHighlighter}
           </Drawer.Panel>
         </Drawer>
       </ThemeProvider>

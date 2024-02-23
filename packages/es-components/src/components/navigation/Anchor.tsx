@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const anchorCss = css`
+const anchorCss = css`
   background-color: transparent;
   box-sizing: border-box;
   color: ${props => props.theme.colors.primary};
@@ -9,6 +9,12 @@ export const anchorCss = css`
   &:hover {
     color: ${props => props.theme.colors.primaryHover};
     text-decoration: none;
+  }
+`;
+
+export const globalAnchorCss = css`
+  a {
+    ${anchorCss};
   }
 `;
 

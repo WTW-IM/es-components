@@ -48,18 +48,8 @@ const getHeadingSizeCss = (
   }
 `;
 
-export const globalHeadingSizesCss = css`
-  ${({ theme }) =>
-    headingLevel.map(
-      size => css`
-        h${size} {
-          ${getHeadingSizeCss(theme, size)}
-        }
-      `
-    )}
-`;
-
-export const headingBaseCss = css`
+const headingBaseCss = css`
+  ${baseFontCss}
   font-weight: 300;
   line-height: calc(1em + 0.5rem);
   margin-bottom: 0.45em;
@@ -69,6 +59,20 @@ export const headingBaseCss = css`
   small {
     line-height: 1;
   }
+`;
+
+export const globalHeadingsCss = css`
+  ${headingLevel.map(level => `h${level}`).join(', ')} {
+    ${headingBaseCss}
+  }
+  ${({ theme }) =>
+    headingLevel.map(
+      size => css`
+        h${size} {
+          ${getHeadingSizeCss(theme, size)}
+        }
+      `
+    )}
 `;
 
 export type HeadingProps = JSXElementProps<'h1'> & {
@@ -103,7 +107,6 @@ const UnstyledHeading = styled.h1``;
 const Heading = styled(({ level = 1, ...props }: HeadingProps) => (
   <UnstyledHeading as={`h${level}`} {...props} />
 ))`
-  ${baseFontCss}
   ${headingBaseCss}
   border-bottom: ${props =>
     props.underlineColor && `2px solid ${props.underlineColor};`};

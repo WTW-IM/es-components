@@ -123,7 +123,7 @@ const highlight = success;
 const highlightHover = success700;
 
 const arrowDown =
-  "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 269.08 507.48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Rounded_Rectangle_33_copy_4_1_' transform='matrix(0.480497  0  0  0.480497  -96.099159  130.928314)' style=''%3E%3Cpath d='M480 344.181L268.869 131.889c-15.756-15.859-41.3-15.859-57.054 0c-15.754 15.857-15.754 41.57 0 57.431l237.632 238.937 c8.395 8.451 19.562 12.254 30.553 11.698c10.993 0.556 22.159-3.247 30.555-11.698l237.631-238.937 c15.756-15.86 15.756-41.571 0-57.431s-41.299-15.859-57.051 0L480 344.181z'/%3E%3C/g%3E%3C/svg%3E";
+  "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 269.08 507.48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Rounded_Rectangle_33_copy_4_1_' transform='matrix(0.480497  0  0  0.480497  -96.099159  130.928314)' style='' %3E%3Cpath d='M480 344.181L268.869 131.889c-15.756-15.859-41.3-15.859-57.054 0c-15.754 15.857-15.754 41.57 0 57.431l237.632 238.937 c8.395 8.451 19.562 12.254 30.553 11.698c10.993 0.556 22.159-3.247 30.555-11.698l237.631-238.937 c15.756-15.86 15.756-41.571 0-57.431s-41.299-15.859-57.051 0L480 344.181z'/%3E%3C/g%3E%3C/svg%3E";
 
 const theme: ESTheme = {
   themeName: 'via-theme',

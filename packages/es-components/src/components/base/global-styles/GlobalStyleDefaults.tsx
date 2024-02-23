@@ -7,6 +7,7 @@ import {
 import { globalButtonCss } from '../../controls/buttons/Button';
 import { globalInputCss } from '../../controls/textbox/InputBase';
 import { baseFontCss } from '../../util/style-utils';
+import { globalDrowdownCss } from '../../controls/dropdown/Dropdown';
 
 export const globalStyleDefaults = css`
   body,
@@ -49,6 +50,7 @@ export const globalStyleDefaults = css`
   ${globalHeadingSizesCss}
   ${globalButtonCss}
   ${globalInputCss}
+  ${globalDrowdownCss}
 `;
 
 export const GlobalStyleDefaults = createGlobalStyle`

@@ -4,7 +4,7 @@ import styled, { DefaultTheme, css } from 'styled-components';
 import * as CSS from 'csstype';
 import ValidationContext from '../ValidationContext';
 import { FormContext } from '../../containers/form/Form';
-import getStyledProp from '../../util/getStyledProp';
+import getStyledProp, { ESThemeProps } from '../../util/getStyledProp';
 import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
 import isBool from '../../util/isBool';
@@ -45,23 +45,21 @@ export interface ValidationStyleProps
     ValidationStateHighlightProps,
     ValidationStateReadonlyProps {}
 
-type InputStyleProps<T = ValidationStyleProps> = { theme: DefaultTheme } & T;
-
 export const validationStateHighlightStyles = ({
   focusBorderColor,
   focusBoxShadow
-}: InputStyleProps<ValidationStateHighlightProps>) => css`
+}: ESThemeProps<ValidationStateHighlightProps>) => css`
   border-color: ${focusBorderColor};
   box-shadow: ${focusBoxShadow}, ${noInset};
 `;
 
 export const validationStateInputStyles = (
-  props: InputStyleProps<ValidationStateInputProps>
+  props: ESThemeProps<ValidationStateInputProps>
 ) => css`
   border: 1px solid ${props.borderColor};
   border-radius: ${getStyledProp(
     'inputStyles.borderRadius',
-    props as InputStyleProps<object>
+    props as ESThemeProps
   ) || '2px'};
   box-sizing: border-box;
 
@@ -74,7 +72,7 @@ export const validationStateInputStyles = (
 
 export const validationStateReadonlyStyles = ({
   disabledBackgroundColor
-}: InputStyleProps<ValidationStateReadonlyProps>) => css`
+}: ESThemeProps<ValidationStateReadonlyProps>) => css`
   background-color: ${disabledBackgroundColor};
   cursor: text;
 `;
@@ -90,7 +88,7 @@ export const validationStateSetupStyles = ({
   borderColor,
   flat,
   boxShadow
-}: InputStyleProps<ValidationStateSetupProps>) => css`
+}: ESThemeProps<ValidationStateSetupProps>) => css`
   background-color: ${backgroundColor};
   box-shadow: 0 0 0 0 ${borderColor}${maybeGetComma({ flat, boxShadow })}${flat
       ? noInset
@@ -102,7 +100,9 @@ export const placeholderStyles = css`
   color: ${({ theme }) => theme.colors.gray7};
 `;
 
-const getInputStyles = (props: InputStyleProps) => css<object>`
+export const getInputStyles = (
+  props: ESThemeProps<ValidationStyleProps>
+) => css<object>`
   ${validationStateInputStyles(props)}
   ${validationStateSetupStyles(props)}
   color: ${getStyledProp('colors.black')};
@@ -160,7 +160,7 @@ export interface ValidationProps
 export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
   darken(color, 7);
 
-function getInputPropsForValidation(
+export function getInputPropsForValidation(
   theme: DefaultTheme,
   validationState: ValidationStyleType,
   flat?: boolean

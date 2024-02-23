@@ -11,9 +11,11 @@ export type AdditionalHelpProps = JSXElementProps<'div'> & {
 };
 
 const ValidationIcon = styled(Icon)`
-  align-self: flex-start;
-  font-size: 35px;
-  margin-right: 5px;
+  && {
+    align-self: flex-start;
+    font-size: 35px;
+    margin-right: 5px;
+  }
 `;
 
 const HelpText = styled.div`

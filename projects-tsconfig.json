@@ -29,5 +29,6 @@
         "exclude": ["**/node_modules/**"]
       }
     ]
-  }
+  },
+  "include": ["./packages/es-components/config/jest-setup.ts"]
 }

@@ -3,8 +3,8 @@ To apply a theme wrap your root react app component in a `<ThemeProvider theme='
 Example:
 
 ```javascript static
-import { ThemeProvider } from "styled-components";
-import viaTheme from "es-components-via-theme";
+import { ThemeProvider } from 'styled-components';
+import viaTheme from 'es-components-via-theme';
 
 // ...
 
@@ -59,22 +59,19 @@ The [via benefits theme](https://www.npmjs.com/package/es-components-via-theme) 
 Our web app font of choice is _Source Sans Pro_. Import it by adding the following to your application:
 
 ```html
-<link
-  rel="stylesheet"
-  href="{{ASSETS_PATH}}source-sans-pro.css"
-/>
+<link rel="stylesheet" href="{{ASSETS_PATH}}source-sans-pro.css" />
 ```
 
 ### Styles
 
 A small style reset is available to use in your project. This sets a baseline for general elements
 and allows headings and inputs to properly inherit fonts. To use it, import `StyleReset` and include the
-element anywhere in your app.
+element anywhere in your app. This will also apply the [GlobalStyleDefaults](#globalstyledefaults).
 
 _note: if you are using im-screens or the page-chrome web component, you do not need to include this_
 
 ```javascript static
-import StyleReset from "es-components";
+import StyleReset from 'es-components';
 
 // ...
 

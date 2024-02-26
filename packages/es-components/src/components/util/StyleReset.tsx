@@ -1,34 +1,90 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
+import { globalStyleDefaults } from '../base/global-styles/GlobalStyleDefaults';
+import { baseFontCss } from './style-utils';
 
-const StyleReset = createGlobalStyle`
-  html, body, div, span, applet, object, iframe,
-  a, big, cite, code, del, dfn, em, img, ins, kbd,
-  q, s, samp, strike, tt, var,
-  b, u, i, center, fieldset, form, label, legend
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+const styleResetCss = css`
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  a,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  strike,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  fieldset,
+  form,
+  label,
+  legend table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
     border: 0;
-    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+    ${baseFontCss}
     font-size: 100%;
     margin: 0;
     padding: 0;
     vertical-align: baseline;
   }
 
-  *:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible {
+  *:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  button:focus-visible {
     outline: 3px solid #3dbbdb;
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin: 0 1em 25px;
     padding-left: 1em;
     list-style-position: outside;
   }
 
-  input, button {
+  input,
+  button {
     font: inherit;
   }
 
@@ -41,15 +97,25 @@ const StyleReset = createGlobalStyle`
     font-size: 85%;
   }
 
-  strong, b {
-    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+  strong,
+  b {
+    ${baseFontCss}
     font-weight: bold;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: ${({
+      theme: {
+        font: { baseFontFace }
+      }
+    }) => baseFontFace};
     color: inherit;
     font: inherit;
-    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
     font-weight: 300;
     line-height: 1.1;
     margin-bottom: 0.45em;
@@ -74,6 +140,11 @@ const StyleReset = createGlobalStyle`
   h6 {
     font-size: 18px;
   }
+`;
+
+const StyleReset = createGlobalStyle<{ optOutGlobalStyle?: boolean }>`
+  ${styleResetCss}
+  ${({ optOutGlobalStyle }) => !optOutGlobalStyle && globalStyleDefaults}
 `;
 
 export default StyleReset;

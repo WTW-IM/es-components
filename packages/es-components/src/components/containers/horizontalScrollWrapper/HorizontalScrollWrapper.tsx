@@ -73,7 +73,7 @@ const ArrowIconContainer = styled.div`
   transition: border-color linear 0.15s, box-shadow linear 0.15s;
 `;
 
-const ScrollIconBaseComponent = styled.button.attrs({ type: 'button' })`
+export const ScrollIconBaseComponent = styled.button.attrs({ type: 'button' })`
   display: block;
   appearance: none;
   background-color: transparent;

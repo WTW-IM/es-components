@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.11.5...v21.12.0-pre-prod.0) (2024-02-26)
+
+### Build
+
+- ensuring all tests pass ([d699344](https://github.com/wtw-im/es-components/commit/d699344a7c5942939d1db2c01f9c93b0e01326ec))
+
+### Fix
+
+- ensuring we have correct path for Global styles in index ([8f6a219](https://github.com/wtw-im/es-components/commit/8f6a2196be5bf8c4806b2f4972715595a2f24fcf))
+
+### New
+
+- adding GlobalStyleDefaults; making them default in StyleReset ([c892427](https://github.com/wtw-im/es-components/commit/c892427552c082a50c07fa0a56a41ee4dfe0d031))
+- adding Link and Heading styles in global CSS ([d4a9421](https://github.com/wtw-im/es-components/commit/d4a94213d67c5ab8d715aa0999b995fb7a23189f))
+- finishing Heading styles in Global CSS ([23e4db3](https://github.com/wtw-im/es-components/commit/23e4db3ad1a8f1da10f8cf233a27e42c1a456d51))
+- setting up button styles in Global Styles; adding example ([4f48877](https://github.com/wtw-im/es-components/commit/4f48877f17cec3a7cf66cea552813cd7c5ed0833))
+- setting up input styles in global styles ([75060d5](https://github.com/wtw-im/es-components/commit/75060d58cd9ebd7d2348cc3ec6f2c893170f6f68))
+- setting up select styles in global styles ([288ddc0](https://github.com/wtw-im/es-components/commit/288ddc0bfc8ed9f223810f88db9621ccfef842f3))
+
+### Update
+
+- ensuring border radii stay consistent in buttons ([a70e545](https://github.com/wtw-im/es-components/commit/a70e545331695e6a06b4fb689ce2ecf593d5f413))
+- slight refactor in global styles ([2c07cdf](https://github.com/wtw-im/es-components/commit/2c07cdf7b1c39971eecd77a1ea92c70b82db541b))
+
+### Upgrade
+
+- upgrading to latest react-datepicker ([5007f10](https://github.com/wtw-im/es-components/commit/5007f1072303d6813accc9e04eed281b911786e1))
+
 ## [21.11.5](https://github.com/wtw-im/es-components/compare/v21.11.5-pre-prod.0...v21.11.5) (2024-02-12)
 
 **Note:** Version bump only for package es-components

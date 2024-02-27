@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.1...v21.12.0-pre-prod.2) (2024-02-27)
+
+### Fix
+
+- fixing global style exports ([b20142f](https://github.com/WTW-IM/es-components/commit/b20142f0b224d06d4a74faafe8f0799f8fc409f5))
+
 # [21.12.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.0...v21.12.0-pre-prod.1) (2024-02-27)
 
 ### Fix

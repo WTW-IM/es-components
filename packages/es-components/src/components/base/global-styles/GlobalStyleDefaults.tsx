@@ -1,4 +1,5 @@
-import { createGlobalStyle, css } from 'styled-components';
+import React from 'react';
+import { createGlobalStyle, css, useTheme } from 'styled-components';
 import { globalAnchorCss } from '../../navigation/Anchor';
 import { globalHeadingsCss } from '../../containers/heading/Heading';
 import { globalButtonCss } from '../../controls/buttons/Button';
@@ -29,8 +30,12 @@ export const globalStyleDefaults = css`
   ${globalDrowdownCss}
 `;
 
-export const GlobalStyleDefaults = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   ${globalStyleDefaults}
 `;
 
-export default GlobalStyleDefaults;
+export default function GlobalStyleDefaults() {
+  const theme = useTheme();
+
+  return theme?.font ? <GlobalStyles /> : <></>;
+}

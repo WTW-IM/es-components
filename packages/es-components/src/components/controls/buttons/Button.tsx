@@ -169,11 +169,7 @@ export const globalButtonCss = css`
     ${({ theme }) =>
       getButtonCss({
         theme,
-        colors: getButtonColors(
-          theme,
-          false,
-          theme.buttonStyles.button.variant.default as GuaranteedButtonVariant
-        ),
+        colors: getButtonColors(theme, false, 'default'),
         borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
         buttonSize: theme.buttonStyles.button.size.default
       })}
@@ -181,10 +177,7 @@ export const globalButtonCss = css`
       buttonVariantStyleTypes.map(style =>
         buttonSizes.map(size => {
           const buttonSize = theme.buttonStyles.button.size[size];
-          const variant = theme.buttonStyles.button.variant[
-            style
-          ] as GuaranteedButtonVariant;
-          const buttonColors = getButtonColors(theme, false, variant);
+          const buttonColors = getButtonColors(theme, false, style);
           const borderRadii = getBorderRadii(buttonSize);
           return css`
             &.${[style, size].join('.')} {
@@ -200,6 +193,12 @@ export const globalButtonCss = css`
       )}
   }
 `;
+
+export const buttonStyleTypes = [
+  ...buttonVariantStyleTypes,
+  'inherited'
+] as const;
+export type ButtonStyleType = (typeof buttonStyleTypes)[number];
 
 const buttonColorProps = [
   'bgColor',
@@ -223,10 +222,19 @@ type GuaranteedButtonVariant = Omit<ButtonVariant, 'bgColor'> & {
   bgColor: NonNullable<CSS.Property.BackgroundColor>;
 };
 
+function getButtonVariant(
+  theme: DefaultTheme,
+  buttonVariant: ButtonStyleType
+): GuaranteedButtonVariant {
+  const variant = theme.buttonStyles.button.variant[buttonVariant] || {};
+  variant.bgColor = variant.bgColor || theme.colors.gray4;
+  return variant;
+}
+
 function getButtonColors<T extends boolean>(
   theme: DefaultTheme,
   isInheritedStyle: T,
-  buttonVariant?: T extends false ? GuaranteedButtonVariant : undefined
+  buttonVariant: ButtonStyleType = 'default'
 ): ButtonColors {
   const baseButtonColors: ButtonColors = {
     bgColor: 'inherited',
@@ -245,7 +253,7 @@ function getButtonColors<T extends boolean>(
     return baseButtonColors;
   }
 
-  const variant = buttonVariant as GuaranteedButtonVariant;
+  const variant = getButtonVariant(theme, buttonVariant);
 
   const focusBoxShadowColor = tinycolor
     .mix(variant.bgColor, theme.colors.black, 14)
@@ -279,11 +287,6 @@ function getButtonColors<T extends boolean>(
   return calculatedButtonColors;
 }
 
-export const buttonStyleTypes = [
-  ...buttonVariantStyleTypes,
-  'inherited'
-] as const;
-export type ButtonStyleType = (typeof buttonStyleTypes)[number];
 export type ButtonProps = ButtonBaseProps & {
   size?: ButtonSize;
   styleType?: ButtonStyleType;
@@ -308,9 +311,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
 ) {
   const theme = useTheme();
   const buttonSize = theme.buttonStyles.button.size[size];
-  const variant = theme.buttonStyles.button.variant[
-    styleType
-  ] as GuaranteedButtonVariant;
   const isInheritedStyle = styleType === 'inherited';
   const mobileBlockSetting =
     flatLeftEdge || flatRightEdge ? false : mobileBlock;
@@ -323,7 +323,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     bottomLeft: flatLeftEdge ? 0 : defaultRadius
   };
 
-  const buttonColors = getButtonColors(theme, isInheritedStyle, variant);
+  const buttonColors = getButtonColors(theme, isInheritedStyle, styleType);
 
   return (
     <StyledButton

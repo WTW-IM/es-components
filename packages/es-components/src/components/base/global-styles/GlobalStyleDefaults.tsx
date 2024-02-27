@@ -34,8 +34,10 @@ export const GlobalStyles = createGlobalStyle`
   ${globalStyleDefaults}
 `;
 
-export default function GlobalStyleDefaults() {
+export function GlobalStyleDefaults() {
   const theme = useTheme();
 
   return theme?.font ? <GlobalStyles /> : <></>;
 }
+
+export default GlobalStyleDefaults;

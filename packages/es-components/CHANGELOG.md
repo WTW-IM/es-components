@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.12.0-pre-prod.0...v21.12.0-pre-prod.1) (2024-02-27)
+
+### Fix
+
+- ensuring we don't fail on button styles for old themes ([0348bd4](https://github.com/wtw-im/es-components/commit/0348bd4e5764be184fa32b5999ac0fd4a1edf064))
+
 # [21.12.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.11.5...v21.12.0-pre-prod.0) (2024-02-26)
 
 ### Build

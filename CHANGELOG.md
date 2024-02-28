@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.4...v21.12.0-pre-prod.5) (2024-02-28)
+
+### Fix
+
+- getting the theme at top css level in global button styles ([811ed85](https://github.com/WTW-IM/es-components/commit/811ed853311b35c5cec3c40b3490ba471d9e6586))
+
 # [21.12.0-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.3...v21.12.0-pre-prod.4) (2024-02-28)
 
 ### Fix

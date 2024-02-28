@@ -9,7 +9,7 @@ import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 // Using this because React does not like many of our upstream props.
 // This allows that to flow without issue.
-const UnstyledButton = styled.button`
+export const UnstyledButton = styled.button`
   // noop
 `;
 
@@ -20,8 +20,12 @@ export type ButtonBaseProps = Override<
   }
 >;
 
+export const esComponentsButtonClass = 'es-components-button';
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
-  function ButtonBaseInner({ waiting, onClick: onClickProp, ...props }, ref) {
+  function ButtonBaseInner(
+    { waiting, onClick: onClickProp, className, ...props },
+    ref
+  ) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onClick = useMonitoringCallback(
       (
@@ -34,6 +38,9 @@ const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
 
     const computedProps = {
       ...props,
+      ...(className
+        ? { className: `${className} ${esComponentsButtonClass}` }
+        : { className: esComponentsButtonClass }),
       ...(waiting ? { 'data-waiting': waiting } : {})
     };
 

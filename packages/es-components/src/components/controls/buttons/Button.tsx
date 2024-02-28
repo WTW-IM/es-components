@@ -163,29 +163,28 @@ const onlyHasOldButtons = () =>
   );
 
 export const globalButtonCss = css`
-  ${!onlyHasOldButtons() &&
-  css`
-    form
-      button:not(
-        .react-datepicker__navigation,
-        [name^='rsg'],
-        [class^='rsg'],
-        ${PanelButton},
-          ${ScrollIconBaseComponent},
-          ${StyledButton},
-          ${BasicProgressButton},
-          ${UnstyledButton},
-          .${esComponentsButtonClass}
-      ) {
-      ${({ theme }) =>
-        getButtonCss({
+  ${({ theme }) =>
+    !onlyHasOldButtons() &&
+    css`
+      form
+        button:not(
+          .react-datepicker__navigation,
+          [name^='rsg'],
+          [class^='rsg'],
+          ${PanelButton},
+            ${ScrollIconBaseComponent},
+            ${StyledButton},
+            ${BasicProgressButton},
+            ${UnstyledButton},
+            .${esComponentsButtonClass}
+        ) {
+        ${getButtonCss({
           theme,
           colors: getButtonColors(theme, false, 'default'),
           borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
           buttonSize: theme.buttonStyles.button.size.default
         })}
-      ${({ theme }) =>
-        buttonVariantStyleTypes.map(style =>
+        ${buttonVariantStyleTypes.map(style =>
           buttonSizes.map(size => {
             const buttonSize = theme.buttonStyles.button.size[size];
             const buttonColors = getButtonColors(theme, false, style);
@@ -202,8 +201,8 @@ export const globalButtonCss = css`
             `;
           })
         )}
-    }
-  `}
+      }
+    `}
 `;
 
 export const buttonStyleTypes = [

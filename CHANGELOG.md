@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.3...v21.12.0-pre-prod.4) (2024-02-28)
+
+### Fix
+
+- adding a buttons escape hatch for older es-components instances ([0c03bbf](https://github.com/WTW-IM/es-components/commit/0c03bbffe9413e6bd85ec72db9cc3302012295ab))
+- ensuring baseFontFace has an escape hatch ([67c3c6f](https://github.com/WTW-IM/es-components/commit/67c3c6fc130bcf9351dcb01c6c84a36f204cab21))
+
 # [21.12.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.2...v21.12.0-pre-prod.3) (2024-02-28)
 
 ### Fix

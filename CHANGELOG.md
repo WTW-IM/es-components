@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.6](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.5...v21.12.0-pre-prod.6) (2024-02-28)
+
+### Fix
+
+- ensuring StyleReset doesn't break setting base font ([d182bf0](https://github.com/WTW-IM/es-components/commit/d182bf06a2af5999f97422ee655f01c1cae61085))
+
 # [21.12.0-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.4...v21.12.0-pre-prod.5) (2024-02-28)
 
 ### Fix

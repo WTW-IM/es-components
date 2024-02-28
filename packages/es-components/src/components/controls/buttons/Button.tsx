@@ -157,45 +157,53 @@ const getBorderRadii = (buttonSize: ButtonSizeBlock): BorderRadii => ({
   bottomLeft: buttonSize.borderRadius
 });
 
+const onlyHasOldButtons = () =>
+  [...document.querySelectorAll('button')].every(
+    button => !button.classList.contains(esComponentsButtonClass)
+  );
+
 export const globalButtonCss = css`
-  form
-    button:not(
-      .react-datepicker__navigation,
-      [name^='rsg'],
-      [class^='rsg'],
-      ${PanelButton},
-        ${ScrollIconBaseComponent},
-        ${StyledButton},
-        ${BasicProgressButton},
-        ${UnstyledButton},
-        .${esComponentsButtonClass}
-    ) {
-    ${({ theme }) =>
-      getButtonCss({
-        theme,
-        colors: getButtonColors(theme, false, 'default'),
-        borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
-        buttonSize: theme.buttonStyles.button.size.default
-      })}
-    ${({ theme }) =>
-      buttonVariantStyleTypes.map(style =>
-        buttonSizes.map(size => {
-          const buttonSize = theme.buttonStyles.button.size[size];
-          const buttonColors = getButtonColors(theme, false, style);
-          const borderRadii = getBorderRadii(buttonSize);
-          return css`
-            &.${[style, size].join('.')} {
-              ${getButtonCss({
-                theme,
-                colors: buttonColors,
-                borderRadii,
-                buttonSize
-              })}
-            }
-          `;
-        })
-      )}
-  }
+  ${!onlyHasOldButtons() &&
+  css`
+    form
+      button:not(
+        .react-datepicker__navigation,
+        [name^='rsg'],
+        [class^='rsg'],
+        ${PanelButton},
+          ${ScrollIconBaseComponent},
+          ${StyledButton},
+          ${BasicProgressButton},
+          ${UnstyledButton},
+          .${esComponentsButtonClass}
+      ) {
+      ${({ theme }) =>
+        getButtonCss({
+          theme,
+          colors: getButtonColors(theme, false, 'default'),
+          borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
+          buttonSize: theme.buttonStyles.button.size.default
+        })}
+      ${({ theme }) =>
+        buttonVariantStyleTypes.map(style =>
+          buttonSizes.map(size => {
+            const buttonSize = theme.buttonStyles.button.size[size];
+            const buttonColors = getButtonColors(theme, false, style);
+            const borderRadii = getBorderRadii(buttonSize);
+            return css`
+              &.${[style, size].join('.')} {
+                ${getButtonCss({
+                  theme,
+                  colors: buttonColors,
+                  borderRadii,
+                  buttonSize
+                })}
+              }
+            `;
+          })
+        )}
+    }
+  `}
 `;
 
 export const buttonStyleTypes = [

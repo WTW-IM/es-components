@@ -109,11 +109,7 @@ const styleResetCss = css`
   h4,
   h5,
   h6 {
-    font-family: ${({
-      theme: {
-        font: { baseFontFace }
-      }
-    }) => baseFontFace};
+    ${baseFontCss}
     color: inherit;
     font: inherit;
     font-weight: 300;

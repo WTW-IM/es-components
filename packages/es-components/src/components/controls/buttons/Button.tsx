@@ -7,7 +7,9 @@ import { darken, getTextColor } from '../../util/colors';
 import ButtonBase, {
   propTypes as buttonBasePropTypes,
   defaultProps as buttonBaseDefaultProps,
-  ButtonBaseProps
+  ButtonBaseProps,
+  UnstyledButton,
+  esComponentsButtonClass
 } from './ButtonBase';
 import type * as CSS from 'csstype';
 import {
@@ -164,7 +166,9 @@ export const globalButtonCss = css`
       ${PanelButton},
         ${ScrollIconBaseComponent},
         ${StyledButton},
-        ${BasicProgressButton}
+        ${BasicProgressButton},
+        ${UnstyledButton},
+        .${esComponentsButtonClass}
     ) {
     ${({ theme }) =>
       getButtonCss({

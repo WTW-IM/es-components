@@ -1,5 +1,4 @@
-import React from 'react';
-import { createGlobalStyle, css, useTheme } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { globalAnchorCss } from '../../navigation/Anchor';
 import { globalHeadingsCss } from '../../containers/heading/Heading';
 import { globalButtonCss } from '../../controls/buttons/Button';
@@ -8,36 +7,34 @@ import { baseFontCss } from '../../util/style-utils';
 import { globalDrowdownCss } from '../../controls/dropdown/Dropdown';
 
 export const globalStyleDefaults = css`
-  body,
-  p {
-    ${baseFontCss}
-    font-size: 1.125rem;
-    line-height: ${({
-      theme: {
-        font: { baseLineHeight }
+  ${({ theme }) =>
+    theme?.font &&
+    css`
+      body,
+      p {
+        ${baseFontCss}
+        font-size: 1.125rem;
+        line-height: ${({
+          theme: {
+            font: { baseLineHeight }
+          }
+        }) => baseLineHeight};
       }
-    }) => baseLineHeight};
-  }
 
-  p {
-    margin: 0 0 1em;
-  }
+      p {
+        margin: 0 0 1em;
+      }
 
-  ${globalAnchorCss}
-  ${globalHeadingsCss}
-  ${globalButtonCss}
-  ${globalInputCss}
-  ${globalDrowdownCss}
+      ${globalAnchorCss}
+      ${globalHeadingsCss}
+      ${globalButtonCss}
+      ${globalInputCss}
+      ${globalDrowdownCss}
+    `}
 `;
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyleDefaults = createGlobalStyle`
   ${globalStyleDefaults}
 `;
-
-export function GlobalStyleDefaults() {
-  const theme = useTheme();
-
-  return theme?.font ? <GlobalStyles /> : <></>;
-}
 
 export default GlobalStyleDefaults;

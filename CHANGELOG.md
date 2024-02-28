@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.2...v21.12.0-pre-prod.3) (2024-02-28)
+
+### Fix
+
+- ensuring we never target es-components buttons with global styles ([68603f5](https://github.com/WTW-IM/es-components/commit/68603f5bc3b6d40d841f75e5396bde98c83ae143))
+- moving global style theme check to css call ([0297e60](https://github.com/WTW-IM/es-components/commit/0297e60f3ad42c7f3accd9389dad9e4506e9154f))
+
 # [21.12.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.1...v21.12.0-pre-prod.2) (2024-02-27)
 
 ### Fix

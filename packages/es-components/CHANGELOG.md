@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.7](https://github.com/wtw-im/es-components/compare/v21.12.0-pre-prod.6...v21.12.0-pre-prod.7) (2024-03-01)
+
+### Fix
+
+- alternative close button in Popover component ([3770688](https://github.com/wtw-im/es-components/commit/3770688ae34aac8f008db295777563c16676ef30))
+
 # [21.12.0-pre-prod.6](https://github.com/wtw-im/es-components/compare/v21.12.0-pre-prod.5...v21.12.0-pre-prod.6) (2024-02-28)
 
 ### Fix

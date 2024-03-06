@@ -1,25 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import type { ReactDatePickerProps } from 'react-datepicker';
-
-/* https://github.com/FezVrasta/popper.js/blob/master/packages/popper/src/methods/placements.js */
-const popperPlacementPositions = [
-  'auto-start',
-  'auto',
-  'auto-end',
-  'top-start',
-  'top',
-  'top-end',
-  'right-start',
-  'right',
-  'right-end',
-  'bottom-end',
-  'bottom',
-  'bottom-start',
-  'left-end',
-  'left',
-  'left-start'
-] as const;
+import { Placement, placements } from '@floating-ui/utils';
+import type { Middleware } from '@floating-ui/dom';
 
 export interface HighlightDates {
   [className: string]: Date[];
@@ -50,19 +33,22 @@ declare module 'react-datepicker' {
   }
 }
 
-export type PopperPlacement = (typeof popperPlacementPositions)[number];
+export type PopperPlacement = Placement;
 
-export type OurReactDatePickerProps = Override<
-  ReactDatePickerProps<never, boolean>,
-  {
-    highlightDates?: (HighlightDates | Date)[] | undefined;
-  }
->;
+export type OurReactDatePickerProps<T extends boolean | undefined = undefined> =
+  Override<
+    ReactDatePickerProps<T>,
+    {
+      highlightDates?: (HighlightDates | Date)[] | undefined;
+    }
+  >;
 
-export type ReactDatePickerPropTypes = {
+export type ReactDatePickerPropTypes<
+  T extends boolean | undefined = undefined
+> = {
   [key in keyof OurReactDatePickerProps]:
-    | PropTypes.Requireable<OurReactDatePickerProps[key]>
-    | PropTypes.Validator<OurReactDatePickerProps[key]>;
+    | PropTypes.Requireable<OurReactDatePickerProps<T>[key]>
+    | PropTypes.Validator<OurReactDatePickerProps<T>[key]>;
 };
 
 type DateInterval = {
@@ -70,13 +56,13 @@ type DateInterval = {
   end: Date;
 };
 
-export type InnerHighlightDates = ReactDatePickerProps<
-  never,
-  true
->['highlightDates'];
+export type InnerHighlightDates<T extends boolean | undefined = undefined> =
+  ReactDatePickerProps<T>['highlightDates'];
 
 // copied from react-datepicker@v4.15.0 - https://github.com/Hacker0x01/react-datepicker/blob/v4.15.0/src/index.jsx
-export const reactDatePickerPropTypes: ReactDatePickerPropTypes = {
+export const reactDatePickerPropTypes: ReactDatePickerPropTypes<
+  boolean | undefined
+> = {
   adjustDateOnChange: PropTypes.bool,
   allowSameDay: PropTypes.bool,
   ariaDescribedBy: PropTypes.string,
@@ -159,8 +145,14 @@ export const reactDatePickerPropTypes: ReactDatePickerPropTypes = {
   placeholderText: PropTypes.string,
   popperContainer: PropTypes.func,
   popperClassName: PropTypes.string, // <PopperComponent/> props
-  popperModifiers: PropTypes.arrayOf(PropTypes.object.isRequired), // <PopperComponent/> props
-  popperPlacement: PropTypes.oneOf<PopperPlacement>(popperPlacementPositions), // <PopperComponent/> props
+  popperModifiers: PropTypes.arrayOf<Middleware>(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      options: PropTypes.object,
+      fn: PropTypes.func.isRequired
+    }).isRequired
+  ), // <PopperComponent/> props
+  popperPlacement: PropTypes.oneOf<Placement>(placements), // <PopperComponent/> props
   popperProps: PropTypes.object,
   preventOpenOnFocus: PropTypes.bool,
   readOnly: PropTypes.bool,
@@ -171,8 +163,7 @@ export const reactDatePickerPropTypes: ReactDatePickerPropTypes = {
   selectsEnd: PropTypes.bool,
   selectsStart: PropTypes.bool,
   selectsRange: PropTypes.oneOfType([
-    PropTypes.bool.isRequired,
-    PropTypes.oneOf<undefined>([undefined]).isRequired
+    PropTypes.oneOf<boolean | undefined>([undefined, true, false]).isRequired
   ]),
   selectsDisabledDaysInRange: PropTypes.bool,
   showMonthDropdown: PropTypes.bool,
@@ -248,10 +239,8 @@ export const reactDatePickerPropTypes: ReactDatePickerPropTypes = {
   monthAriaLabelPrefix: PropTypes.string
 };
 
-export type ReactDatePickerPropName = Extract<
-  keyof OurReactDatePickerProps,
-  string
->;
+export type ReactDatePickerPropName<T extends boolean | undefined = undefined> =
+  Extract<keyof OurReactDatePickerProps<T>, string>;
 
 export const reactDatepickerPropKeys = [
   'adjustDateOnChange',
@@ -404,6 +393,6 @@ export const reactDatepickerPropKeys = [
   'customTimeInput',
   'weekAriaLabelPrefix',
   'monthAriaLabelPrefix'
-] as ReactDatePickerPropName[];
+] as ReactDatePickerPropName<boolean | undefined>[];
 
 export default reactDatePickerPropTypes;

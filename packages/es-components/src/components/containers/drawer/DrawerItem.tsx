@@ -203,10 +203,13 @@ function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
 }
 
 export const DrawerItemOpener: React.FC<DrawerItemOpenerProps> = ({
-  children
+  children,
+  ...props
 }) => {
   try {
-    return <DrawerItemOpenerSingle>{children}</DrawerItemOpenerSingle>;
+    return (
+      <DrawerItemOpenerSingle {...props}>{children}</DrawerItemOpenerSingle>
+    );
   } catch {
     // eslint-disable-next-line no-console
     console.error(

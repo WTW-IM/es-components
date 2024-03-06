@@ -70,7 +70,7 @@ export const ProgressContainer = styled.ol<ProgressContainerProps>`
   }
 `;
 
-const BasicProgressButton = styled.button`
+export const BasicProgressButton = styled.button`
   align-items: center;
   background: none;
   border: none;

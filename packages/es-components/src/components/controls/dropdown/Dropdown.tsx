@@ -1,11 +1,13 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled, { DefaultTheme, StyledComponent } from 'styled-components';
+import styled, { DefaultTheme, StyledComponent, css } from 'styled-components';
 import InputBase, {
   validationStateHighlightStyles,
   placeholderStyles,
   useValidationStyleProps,
-  ValidationStyleProps
+  ValidationStyleProps,
+  getInputStyles,
+  getInputPropsForValidation
 } from '../textbox/InputBase';
 import { callRefs } from '../../util/callRef';
 import { arrowDown } from './assets';
@@ -21,10 +23,11 @@ type StyledInputProps = ValidationStyleProps & {
   hasValue?: boolean;
 };
 
-const StyledDropdownInput = styled(InputBase)<StyledInputProps>`
+const getDropdownStyles = (props: ESThemeProps<ValidationStyleProps>) => css`
+  ${getInputStyles(props)}
   min-width: 100px;
   appearance: none;
-  background-image: url(${getCSSArrow});
+  background-image: url(${getCSSArrow(props)});
   background-repeat: no-repeat;
   background-position: right 0.5em center;
   background-size: 0.6em auto;
@@ -32,10 +35,35 @@ const StyledDropdownInput = styled(InputBase)<StyledInputProps>`
     getStyledProp('inputStyles.dropdownLineHeight', props as ESThemeProps) ||
     '1.5em'};
 
-  ${({ hasValue }) => !hasValue && placeholderStyles}
+  &:not(:has(:checked)) {
+    ${placeholderStyles}
+  }
 
   &&:focus {
-    ${validationStateHighlightStyles}
+    ${validationStateHighlightStyles(props)}
+  }
+`;
+
+export const globalDrowdownCss = css`
+  select {
+    ${({ theme }) =>
+      getDropdownStyles({
+        theme,
+        ...getInputPropsForValidation(theme, 'default')
+      })}
+  }
+`;
+
+const StyledDropdownInput = styled(InputBase)<StyledInputProps>`
+  ${getDropdownStyles}
+
+  && {
+    ${({ hasValue }) =>
+      !hasValue
+        ? placeholderStyles
+        : css`
+            color: ${getStyledProp('colors.black')};
+          `}
   }
 `;
 
@@ -55,11 +83,16 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
     const validationStyleProps = useValidationStyleProps(props);
     const [hasValue, setHasValue] = useState(Boolean(props.value));
     const [inputRef, setInputRef] = useState<HTMLSelectElement | null>(null);
-    const onChange: React.ChangeEventHandler<HTMLSelectElement> =
-      useMonitoringCallback((currentOnChange, ev) => {
+    const onChange = useMonitoringCallback(
+      (
+        currentOnChange,
+        ev: Parameters<React.ChangeEventHandler<HTMLSelectElement>>[0]
+      ) => {
         setHasValue(Boolean(ev.target.value));
         currentOnChange?.(ev);
-      }, onChangeProp);
+      },
+      onChangeProp
+    );
 
     const inputRefCallback = useCallback(
       (node: HTMLSelectElement | null) => callRefs(node, setInputRef, ref),

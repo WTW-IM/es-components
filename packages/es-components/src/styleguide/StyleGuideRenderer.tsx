@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { useStyleguideTheme, ThemeSwitch } from './styleguideTheme';
 import DefaultStyleGuideRenderer from 'orig-sg-components/StyleGuide/StyleGuideRenderer';
+import GlobalStyleDefaults from '../components/base/global-styles/GlobalStyleDefaults';
 
 const Header = styled.header`
   display: flex;
@@ -23,10 +24,11 @@ const StyleGuideRenderer: typeof DefaultStyleGuideRenderer = props => {
   // );
   //
 
-  console.log('rendering with theme', theme);
+  // console.log('rendering with theme', theme);
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyleDefaults />
       <DefaultStyleGuideRenderer {...props} />
     </ThemeProvider>
   );

@@ -83,7 +83,7 @@ it('can be closed using the alternative close button', async () => {
   const user = userEvent.setup();
   renderWithTheme(<TestPopover hasAltCloseButton />);
   await user.click(screen.getByText('Popover Trigger Button'));
-  await user.click(await screen.findByRole('button', { name: /Close/ }));
+  await user.click(await screen.findByLabelText('Close'));
   await waitFor(() =>
     expect(screen.queryByText('This is the popover content.')).toBeNull()
   );

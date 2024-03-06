@@ -113,6 +113,10 @@ test.each<{
     const expectedStyle = hasFlatStyle
       ? `background-color: ${defaultInputStyles.backgroundColorFlat};`
       : `background-color: ${defaultInputStyles.backgroundColor};`;
-    expect(screen.getByRole('textbox')).toHaveStyle(expectedStyle);
+
+    // eslint-disable-next-line testing-library/no-node-access
+    expect(screen.getByRole('textbox').parentElement).toHaveStyle(
+      expectedStyle
+    );
   }
 );

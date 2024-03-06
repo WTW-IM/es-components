@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.12.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.11.5...v21.12.0-pre-prod.0) (2024-02-26)
+
+### New
+
+- finishing Heading styles in Global CSS ([23e4db3](https://github.com/WTW-IM/es-components/commit/23e4db3ad1a8f1da10f8cf233a27e42c1a456d51))
+
+### Update
+
+- slight refactor in global styles ([2c07cdf](https://github.com/WTW-IM/es-components/commit/2c07cdf7b1c39971eecd77a1ea92c70b82db541b))
+
 # [21.11.0](https://github.com/WTW-IM/es-components/compare/v21.11.0-pre-prod.0...v21.11.0) (2023-10-09)
 
 **Note:** Version bump only for package es-components-via-theme

@@ -58,6 +58,7 @@ module.exports = {
       </style>
       <link rel="preload" href="${assets_url}icons.css" as="style">
       <link rel="stylesheet" href="${assets_url}source-sans-pro.css">
+      <link href="https://fonts.cdnfonts.com/css/liberation-mono" rel="stylesheet">
       <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
     `
     }

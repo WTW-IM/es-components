@@ -10,7 +10,7 @@ const getAssetsUrl = args => {
   const assetsUrl = isProduction
     ? 'https://app.viabenefits.com/static/cdn/es-assets/'
     : isLocal
-    ? 'https://bdaimdna26fetoolcdnsa.blob.core.windows.net/es-assets/'
+    ? 'https://app.dev.viabenefits.com/static/cdn/es-assets/'
     : 'https://app.qa.viabenefits.com/static/cdn/es-assets/';
 
   return assetsUrl;

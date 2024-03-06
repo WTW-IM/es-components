@@ -5,12 +5,74 @@ import styled, {
   ThemedStyledProps,
   css
 } from 'styled-components';
-import { HeadingLevel } from 'es-components-shared-types';
+import { HeadingLevel, headingLevel } from 'es-components-shared-types';
+import { baseFontCss } from '../../util/style-utils';
 
 const knockoutStyles = css`
   background-color: ${({ theme }) => theme.colors.primary};
   color: white;
   padding: 20px 15px;
+`;
+
+const getMarginBottom = (size: string) => {
+  const sizeNum = parseFloat(size);
+  if (sizeNum > 36) {
+    return '1.5rem';
+  }
+
+  if (sizeNum > 26) {
+    return '1.25rem';
+  }
+
+  if (sizeNum > 18) {
+    return '1rem';
+  }
+
+  return '0.75rem';
+};
+
+const getHeadingSizeCss = (
+  { font: { headingMobile, headingDesktop }, screenSize }: DefaultTheme,
+  adjustedSize: HeadingLevel
+) => css`
+  font-size: ${headingMobile[adjustedSize]};
+  margin-bottom: ${getMarginBottom(headingMobile[adjustedSize])};
+
+  small {
+    font-size: ${adjustedSize > 3 ? '75%' : '65%'};
+  }
+
+  @media (min-width: ${screenSize.tablet}) {
+    font-size: ${headingDesktop[adjustedSize]};
+    margin-bottom: ${getMarginBottom(headingDesktop[adjustedSize])};
+  }
+`;
+
+const headingBaseCss = css`
+  ${baseFontCss}
+  font-weight: 300;
+  line-height: calc(1em + 0.5rem);
+  margin-bottom: 0.45em;
+  margin-top: 0;
+  color: inherit;
+
+  small {
+    line-height: 1;
+  }
+`;
+
+export const globalHeadingsCss = css`
+  ${headingLevel.map(level => `h${level}`).join(', ')} {
+    ${headingBaseCss}
+  }
+  ${({ theme }) =>
+    headingLevel.map(
+      size => css`
+        h${size} {
+          ${getHeadingSizeCss(theme, size)}
+        }
+      `
+    )}
 `;
 
 export type HeadingProps = JSXElementProps<'h1'> & {
@@ -21,12 +83,12 @@ export type HeadingProps = JSXElementProps<'h1'> & {
   underlineColor?: string | null;
 };
 
-function getAdjustedProps(
+function getAdjustedProps<R>(
   func: (
     props: ThemedStyledProps<HeadingProps, DefaultTheme> & {
       adjustedSize: HeadingLevel;
     }
-  ) => string
+  ) => R
 ) {
   return ({
     size,
@@ -45,34 +107,16 @@ const UnstyledHeading = styled.h1``;
 const Heading = styled(({ level = 1, ...props }: HeadingProps) => (
   <UnstyledHeading as={`h${level}`} {...props} />
 ))`
+  ${headingBaseCss}
   border-bottom: ${props =>
     props.underlineColor && `2px solid ${props.underlineColor};`};
-  color: inherit;
-  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: ${getAdjustedProps(
-    ({ theme, adjustedSize }) => theme.font.headingMobile[adjustedSize]
-  )};
-  font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 0.45em;
-  margin-top: 0;
   padding-bottom: ${props => props.underlineColor && '0.22em'};
+  ${getAdjustedProps(({ theme, adjustedSize }) =>
+    getHeadingSizeCss(theme, adjustedSize)
+  )}
 
   && {
     ${({ isKnockoutStyle }) => isKnockoutStyle && knockoutStyles}
-  }
-
-  small {
-    font-size: ${getAdjustedProps(({ adjustedSize }) =>
-      adjustedSize > 3 ? '75%' : '65%'
-    )};
-    line-height: 1;
-  }
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    font-size: ${getAdjustedProps(
-      ({ adjustedSize, theme }) => theme.font.headingDesktop[adjustedSize]
-    )};
   }
 `;
 

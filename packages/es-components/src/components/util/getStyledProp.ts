@@ -35,7 +35,7 @@ export type StyledPropPathValue<
     : never
   : never;
 
-export type ESThemeProps = ThemeProps<DefaultTheme>;
+export type ESThemeProps<T = object> = ThemeProps<DefaultTheme> & T;
 
 export function getProp<
   O extends ESThemeProps,

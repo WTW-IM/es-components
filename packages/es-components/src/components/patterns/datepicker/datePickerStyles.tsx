@@ -811,6 +811,14 @@ const containerStyles = css`
     display: inline-block;
     width: 100%;
   }
+
+  .react-datepicker {
+    max-width: fit-content;
+  }
+
+  .react-datepicker-popper .react-datepicker__triangle {
+    display: none;
+  }
 `;
 
 export const DatepickerStyles = createGlobalStyle`

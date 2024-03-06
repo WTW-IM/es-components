@@ -34,12 +34,12 @@ module.exports = function (api) {
         displayName: false
       }
     ],
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-transform-class-properties',
+    '@babel/plugin-transform-object-rest-spread',
     ['@babel/plugin-transform-runtime', { corejs: 3 }],
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-optional-chaining'
+    '@babel/plugin-transform-optional-chaining'
   ];
 
   if (inProd) {

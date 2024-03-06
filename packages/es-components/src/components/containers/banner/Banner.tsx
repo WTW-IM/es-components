@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import PropTypes from 'prop-types';
 import {
@@ -16,18 +16,18 @@ const BannerContainer = styled.div<{ variant: BannerBlock }>`
   display: flex;
   padding: ${({ theme }) => theme.spacing.defaultMargin};
 
-  ${props => `
-    a {
+  ${props => css`
+    & a,
+    & button[aria-expanded] {
       color: ${props.variant.textColor};
+    }
 
+    a {
       &:hover {
         text-decoration: none;
       }
     }
   `}
-  button[aria-expanded] {
-    color: ${props => props.variant.textColor};
-  }
 `;
 
 export type BannerProps = Override<

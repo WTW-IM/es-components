@@ -27,7 +27,7 @@
       }
     ]
   },
-  "include": ["./src", "./src/build-utils"],
+  "include": ["./src", "./src/build-utils", "./config/jest-setup.ts"],
   "exclude": ["./types"],
   "references": [
     {

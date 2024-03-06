@@ -24,7 +24,7 @@ exports[`renders the correct addons when provided 1`] = `
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -59,7 +59,7 @@ exports[`renders the correct addons when provided 1`] = `
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 2.2em;
@@ -219,6 +219,11 @@ exports[`renders the correct addons when provided 1`] = `
   border: none !important;
   margin: 0 !important;
   height: 2.2em;
+}
+
+.c5.c5:not([disabled]):not([readonly]) {
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
 .c5.c5:focus {
@@ -297,7 +302,7 @@ exports[`renders the correct addons when provided 2`] = `
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -332,7 +337,7 @@ exports[`renders the correct addons when provided 2`] = `
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 2.2em;
@@ -494,6 +499,11 @@ exports[`renders the correct addons when provided 2`] = `
   height: 2.2em;
 }
 
+.c5.c5:not([disabled]):not([readonly]) {
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
 .c5.c5:focus {
   box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
 }
@@ -570,7 +580,7 @@ exports[`renders the correct addons when provided 3`] = `
   color: #444;
   cursor: pointer;
   font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   line-height: 1.428;
   margin-bottom: 5px;
@@ -605,7 +615,7 @@ exports[`renders the correct addons when provided 3`] = `
   -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "Source Sans Pro","Segoe UI",Segoe,Calibri,Tahoma,sans-serif;
   font-weight: normal;
   height: 2.2em;
@@ -767,6 +777,11 @@ exports[`renders the correct addons when provided 3`] = `
   border: none !important;
   margin: 0 !important;
   height: 2.2em;
+}
+
+.c5.c5:not([disabled]):not([readonly]) {
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
 .c5.c5:focus {

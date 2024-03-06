@@ -141,6 +141,12 @@ export const TextboxBase = styled(InputBase)<TextboxAdditionProps>`
   && {
     border: none !important;
     margin: 0 !important;
+
+    &:not([disabled]):not([readonly]) {
+      box-shadow: none !important;
+      background-color: transparent !important;
+    }
+
     height: ${props =>
       getStyledProp('inputStyles.inputHeight', props as ESThemeProps) ||
       '2.2em'};
@@ -186,7 +192,7 @@ export interface TextboxProps extends JSXElementProps<'input'> {
   appendIconName?: IconName;
 }
 
-const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
+const Textbox = React.forwardRef<HTMLInputElement, TextboxProps>(
   function ForwardedTextbox(props, ref) {
     const {
       prependIconName,
@@ -199,17 +205,21 @@ const Textbox = React.forwardRef<Maybe<HTMLInputElement>, TextboxProps>(
     } = props;
     const validationProps = useValidationStyleProps({ flat });
 
-    const [inputRef, setInputRef] = useState<Maybe<HTMLInputElement>>();
+    const [inputRef, setInputRef] = useState<HTMLInputElement | null>(null);
 
     const [prependIcon, setPrependIcon] = useState<Maybe<HTMLElement>>();
     const [appendIcon, setAppendIcon] = useState<Maybe<HTMLElement>>();
     const prependIconStyles = useIconStyles(prependIconName, prependIcon);
     const appendIconStyles = useIconStyles(appendIconName, appendIcon);
 
-    useImperativeHandle(ref, () => inputRef || undefined, [inputRef]);
+    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
+      ref,
+      () => inputRef,
+      [inputRef]
+    );
 
-    const setRefs = useCallback(
-      (instance: Maybe<HTMLInputElement>) => {
+    const setRefs = useCallback<React.RefCallback<HTMLInputElement>>(
+      instance => {
         callRefs(instance, setInputRef, ref);
       },
       [ref]

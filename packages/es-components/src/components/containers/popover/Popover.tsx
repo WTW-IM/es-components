@@ -245,6 +245,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           {...otherProps}
         >
           <div
+            aria-live="assertive"
             className={`root-close-wrapper ${popoverWrapperClassName || ''}`}
           >
             <div>
@@ -255,6 +256,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
                     aria-label="Close"
                     hasTitle={hasTitle}
                     onClick={toggleShowFromInteraction}
+                    aria-hidden
                   />
                 ) : (
                   <></>

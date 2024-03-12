@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.13.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.12.0...v21.13.0-pre-prod.0) (2024-03-12)
+
+### Build
+
+- adding start-localtest to es-components options ([890783d](https://github.com/WTW-IM/es-components/commit/890783dc42cb10b3c7323ed258a8e82a3c811934))
+
+### New
+
+- using icon styles from Icon in StatusTracker ([b4cbf5e](https://github.com/WTW-IM/es-components/commit/b4cbf5e44a2a37baa85fa480b62268fd83fb3257))
+
 # [21.12.0](https://github.com/WTW-IM/es-components/compare/v21.12.0-pre-prod.7...v21.12.0) (2024-03-06)
 
 **Note:** Version bump only for package es-components-monorepo

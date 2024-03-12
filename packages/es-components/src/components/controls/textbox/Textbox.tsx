@@ -1,15 +1,9 @@
-import React, {
-  useCallback,
-  useImperativeHandle,
-  useState,
-  useEffect,
-  useMemo
-} from 'react';
+import React, { useCallback, useImperativeHandle, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { IconName, iconNames } from 'es-components-shared-types';
 import getStyledProp, { ESThemeProps } from '../../util/getStyledProp';
-import Icon, { iconBaseStyles, IconBaseProps } from '../../base/icons/Icon';
+import { HiddenIcons, useIconStyles } from '../../base/icons/useIconStyles';
 import InputBase, {
   useValidationStyleProps,
   validationStateHighlightStyles,
@@ -23,90 +17,23 @@ import InputBase, {
 } from './InputBase';
 import { callRefs } from '../../util/callRef';
 
-type GetComputedStyleFunc = typeof window.getComputedStyle;
-type ComputedStyleParams = Parameters<GetComputedStyleFunc>;
-type ComputedStyleReturn = ReturnType<GetComputedStyleFunc>;
-type IconElement = HTMLElement;
-
-const computeStyle = (...args: ComputedStyleParams) => {
-  try {
-    return window.getComputedStyle(...args);
-  } catch (err) {
-    if ((err as Error)?.message?.match(/Not Implemented/i)) {
-      return {} as ComputedStyleReturn;
-    }
-    throw err;
-  }
-};
-
-type IconStyleProps = ValidationStyleProps & IconBaseProps;
-
-const getIconStyles = (icon: IconElement) => {
-  const computedStyle = computeStyle(icon);
-  const beforeStyle = computeStyle(icon, ':before');
-  return css<IconStyleProps>`
-    ${props => css`
-      ${iconBaseStyles}
-
-      // computed styles
-      content: ${beforeStyle.content};
-      font-family: ${computedStyle.fontFamily};
-      font-size: ${computedStyle.fontSize};
-
-      // themed addon styles
-      background-color: ${getStyledProp('backgroundColor', 'addOn', props)};
-      color: ${getStyledProp('textColor', 'addOn', props)};
-
-      // base addon styles
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 1;
-      margin: 0;
-      outline: 0;
-      padding: 0.333em 0.6111em;
-    `}
-  `;
-};
-
-const useIconStyles = (
-  iconName: IconName | undefined,
-  icon: Maybe<IconElement>
-) => {
-  const [iconRecheck, setIconRecheck] = useState(0);
-  const iconStyles = useMemo(
-    () => (icon ? getIconStyles(icon) : css``),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [icon, iconRecheck]
-  );
-
-  useEffect(
-    function ensureIconRendered() {
-      if (!iconName || icon) {
-        return;
-      }
-
-      requestAnimationFrame(() => setIconRecheck(r => r + 1));
-    },
-    [iconName, icon]
-  );
-
-  return iconStyles;
-};
-
-type IconStyles = ReturnType<typeof useIconStyles>;
-
 export type TextboxAdditionProps = {
   hasPrepend?: boolean;
   hasAppend?: boolean;
 };
 
-export type InputWrapperProps = IconStyleProps &
-  TextboxAdditionProps & {
-    prependIconStyles: IconStyles;
-    appendIconStyles: IconStyles;
-  };
+type IconStyles = ReturnType<typeof useIconStyles>;
+
+export type InputWrapperProps = Override<
+  ValidationStyleProps,
+  Override<
+    TextboxAdditionProps,
+    {
+      prependIconStyles?: IconStyles;
+      appendIconStyles?: IconStyles;
+    }
+  >
+>;
 
 const InputWrapper = styled.div<InputWrapperProps>`
   ${validationStateSetupStyles}
@@ -119,19 +46,30 @@ const InputWrapper = styled.div<InputWrapperProps>`
     ${validationStateHighlightStyles}
   }
 
-  ${({ prependIconStyles }) =>
-    css`
-      &&:before {
-        ${prependIconStyles}
-      }
+  &&:before {
+    ${props => props.prependIconStyles}
+  }
+
+  &&:after {
+    ${props => props.appendIconStyles}
+  }
+
+  &&:before,
+  &&:after {
+    ${props => css`
+      background-color: ${getStyledProp('backgroundColor', 'addOn', props)};
+      color: ${getStyledProp('textColor', 'addOn', props)};
     `}
 
-  ${({ appendIconStyles }) =>
-    css`
-      &&:after {
-        ${appendIconStyles}
-      }
-    `}
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    outline: 0;
+    padding: 0.333em 0.6111em;
+  }
 `;
 
 export const TextboxBase = styled(InputBase)<TextboxAdditionProps>`
@@ -170,21 +108,6 @@ export const TextboxBase = styled(InputBase)<TextboxAdditionProps>`
     box-shadow: ${noInset};
   }
 `;
-
-const Hidden = (props: JSXElementProps<'div'>) => (
-  <div
-    aria-hidden="true"
-    style={{
-      position: 'absolute',
-      visibility: 'hidden',
-      overflow: 'visible',
-      width: 0,
-      height: 0,
-      left: -5000
-    }}
-    {...props}
-  />
-);
 
 export interface TextboxProps extends JSXElementProps<'input'> {
   flat?: boolean;
@@ -245,10 +168,13 @@ const Textbox = React.forwardRef<HTMLInputElement, TextboxProps>(
         }}
       >
         {hasPrepend || hasAppend ? (
-          <Hidden>
-            <Icon ref={setPrependIcon} name={prependIconName} size={18} />
-            <Icon ref={setAppendIcon} name={appendIconName} size={18} />
-          </Hidden>
+          <HiddenIcons
+            icons={{
+              ...(hasPrepend ? { [prependIconName]: setPrependIcon } : {}),
+              ...(hasAppend ? { [appendIconName]: setAppendIcon } : {})
+            }}
+            iconProps={{ size: 18 }}
+          />
         ) : (
           <></>
         )}

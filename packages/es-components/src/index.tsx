@@ -110,7 +110,10 @@ export { useTheme } from './components/util/useTheme';
 export { isValidEmail } from './components/util/isValidEmail';
 export {
   default as useRootNode,
-  useRootNodeLocator
+  useRootNodeLocator,
+  useRootNodeContext,
+  RootNodeProvider,
+  RootNodeContext
 } from './components/util/useRootNode';
 export { useLoadingState } from './hooks/useLoadingState';
 export { useMountedOnlyState } from './hooks/useMountedOnlyState';

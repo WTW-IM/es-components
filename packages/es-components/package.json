@@ -19,6 +19,7 @@
     "pre-prod-sg-build": "npm run styleguide-preprod && npm run pre-prod-fc-icons",
     "pre-prod-fc-icons": "cp docs/full-color-icons.html docs/pre-prod && cp docs/full-color-icons.js docs/pre-prod",
     "start": "concurrently --kill-others \"rollup -c docs-rollup.config.mjs -w --configEnv local\" \"styleguidist server --env local\"",
+    "start-localtest": "concurrently --kill-others \"rollup -c docs-rollup.config.mjs -w --configEnv local\" \"styleguidist server --env local --run-localtest\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "wait-for-start": "wait-on http://127.0.0.1:6060",

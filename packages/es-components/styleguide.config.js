@@ -10,8 +10,16 @@ const argv = yargs(hideBin(process.argv)).argv;
 const { getAssetsUrl } = require('./config/assetsUrl');
 
 const assets_url = getAssetsUrl(argv);
+console.log(argv);
 
 const getDependencyDirectory = dep => path.dirname(require.resolve(dep));
+
+// html passthrough
+const html = (strings, ...values) =>
+  strings.reduce(
+    (result, string, i) => result + string + (values[i] || ''),
+    ''
+  );
 
 fs.copyFileSync(
   path.join(__dirname, '..', '..', 'CHANGELOG.md'),
@@ -23,6 +31,31 @@ const assetsDir = path.join(__dirname, styleguideDir);
 fs.mkdirSync(assetsDir, { recursive: true });
 const fd = fs.openSync(path.join(assetsDir, 'temp.txt'), 'a');
 fs.closeSync(fd);
+
+const gatewayCertsPath =
+  '../../../mktp-web-local-gateway/src/Mktp.Web.LocalGateway/certs';
+
+const getGatewayCert = certName => {
+  return fs.readFileSync(path.join(__dirname, gatewayCertsPath, certName));
+};
+
+const extraWebpack = argv.runLocaltest
+  ? {
+      devServer: {
+        server: {
+          type: 'https',
+          options: {
+            minVersion: 'TLSv1.2',
+            key: getGatewayCert('localhost.key'),
+            cert: getGatewayCert('localhost.crt'),
+            ca: getGatewayCert('ca.crt')
+          }
+        },
+        allowedHosts: ['localhost', 'es-components.localtest.viabenefits.com']
+      }
+    }
+  : {};
+console.log('extraWebpack', extraWebpack);
 
 module.exports = {
   styleguideDir,
@@ -36,31 +69,42 @@ module.exports = {
       }
     ],
     head: {
-      raw: `<style>
-        body {
-          color: #444;
-          font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-          font-weight: 400;
-        }
+      raw: html`
+        <style>
+          body {
+            color: #444;
+            font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
+              sans-serif;
+            font-weight: 400;
+          }
 
-        input, button, select, textarea {
-          font-family: inherit;
-        }
+          input,
+          button,
+          select,
+          textarea {
+            font-family: inherit;
+          }
 
-        code {
-          white-space: pre-wrap !important;
-          word-break: break-word !important;
-        }
+          code {
+            white-space: pre-wrap !important;
+            word-break: break-word !important;
+          }
 
-        *:focus, input:focus, select:focus, button:focus {
-          outline: 3px solid #3dbbdb;
-        }
-      </style>
-      <link rel="preload" href="${assets_url}icons.css" as="style">
-      <link rel="stylesheet" href="${assets_url}source-sans-pro.css">
-      <link href="https://fonts.cdnfonts.com/css/liberation-mono" rel="stylesheet">
-      <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
-    `
+          *:focus,
+          input:focus,
+          select:focus,
+          button:focus {
+            outline: 3px solid #3dbbdb;
+          }
+        </style>
+        <link rel="preload" href="${assets_url}icons.css" as="style" />
+        <link rel="stylesheet" href="${assets_url}source-sans-pro.css" />
+        <link
+          href="https://fonts.cdnfonts.com/css/liberation-mono"
+          rel="stylesheet"
+        />
+        <script src="https://unpkg.com/@babel/polyfill@7.0.0/dist/polyfill.min.js"></script>
+      `
     }
   },
   ribbon: {
@@ -233,7 +277,8 @@ module.exports = {
           use: ['./config/rsg-loader']
         }
       ]
-    }
+    },
+    ...extraWebpack
   },
   styles: {
     Playground: {

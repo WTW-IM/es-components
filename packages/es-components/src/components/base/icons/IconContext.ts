@@ -1,10 +1,13 @@
 import { createContext } from 'react';
+import type { RootNode } from '../../util/useRootNode';
+
+type TrueRootNode = NonNullable<RootNode>;
 
 class NodeError extends Error {
-  public node: HTMLElement;
+  public node: TrueRootNode;
 
   constructor(
-    node: HTMLElement,
+    node: TrueRootNode,
     ...errorArgs: ConstructorParameters<typeof Error>
   ) {
     super(...errorArgs);
@@ -27,7 +30,7 @@ if (local === subdomain)
     'app.localtest.viabenefits.com:34300'
   );
 
-const getExistingStyleTag = (node: HTMLElement) =>
+const getExistingStyleTag = (node: TrueRootNode) =>
   node.querySelector(`[${iconStyleAttribute}]`) ||
   node.querySelector(`link[href="${iconsAsset}"]:not([rel="preload"])`);
 
@@ -39,7 +42,7 @@ const createStyleTag = () => {
   return styleTag;
 };
 
-const addTag = (node: HTMLElement, func: (node: HTMLElement) => void) => {
+const addTag = (node: TrueRootNode, func: (node: TrueRootNode) => void) => {
   try {
     const foundTag = getExistingStyleTag(node);
     if (foundTag) return foundTag;
@@ -58,24 +61,24 @@ const addTag = (node: HTMLElement, func: (node: HTMLElement) => void) => {
   }
 };
 
-const defaultIconContext: { initializedNodes: Array<HTMLElement> } = {
+const defaultIconContext: { initializedNodes: Array<TrueRootNode> } = {
   initializedNodes: []
 };
 
-const documentAppend = (tag: HTMLElement) => document.head.append(tag);
-const initializeBody = (node: HTMLElement) => {
+const documentAppend = (tag: TrueRootNode) => document.head.append(tag);
+const initializeBody = (node: TrueRootNode) => {
   if (getExistingStyleTag(document.head)) return node;
 
   return addTag(node, documentAppend);
 };
 
-const initializeNode = (node: HTMLElement) => {
+const initializeNode = (node: TrueRootNode) => {
   // body must always be set up
   setup(document.body); // eslint-disable-line no-use-before-define
-  return addTag(node, (tag: HTMLElement) => node.prepend(tag));
+  return addTag(node, (tag: TrueRootNode) => node.prepend(tag));
 };
 
-const setup = (node: HTMLElement | undefined) => {
+const setup = (node: RootNode | undefined) => {
   if (!node) return;
 
   const { initializedNodes } = defaultIconContext;

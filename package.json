@@ -12,6 +12,7 @@
     "version_only": "lerna publish --skip-npm --force-publish",
     "publish_only": "lerna publish --skip-git",
     "start": "npm start -w es-components",
+    "start-localtest": "npm run start-localtest -w es-components",
     "commit": "commit",
     "build-themes": "npm run build -w es-components-via-theme -w es-components-wtw-theme -w es-components-wtw-legacy-theme",
     "preprepare": "npm run build -w es-components-shared-types && npm run build-themes",

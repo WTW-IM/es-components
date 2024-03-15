@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.13.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.13.0-pre-prod.0...v21.13.0-pre-prod.1) (2024-03-15)
+
+### Build
+
+- fixing types declaration in package.json ([2b2b8cc](https://github.com/WTW-IM/es-components/commit/2b2b8cc7463ad966adbbceb746ea903a296f1244))
+
 # [21.13.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.12.0...v21.13.0-pre-prod.0) (2024-03-12)
 
 ### Build

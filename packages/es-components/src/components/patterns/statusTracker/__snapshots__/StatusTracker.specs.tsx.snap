@@ -2,6 +2,21 @@
 
 exports[`StatusTracker should display the first step with the active class 1`] = `
 .c0 {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,7 +27,25 @@ exports[`StatusTracker should display the first step with the active class 1`] =
   z-index: 1;
 }
 
-.c1 {
+.done.c2 > .status-text,
+.active.fUNtYE > .status-text,
+.error.fUNtYE > .status-text {
+  color: #00a0d2;
+}
+
+.active.c2 > .status-text,
+.error.fUNtYE > .status-text {
+  display: inherit;
+  font-weight: bold;
+}
+
+.active.c2:after,
+.done.fUNtYE:after,
+.error.fUNtYE:after {
+  background-color: #00a0d2;
+}
+
+.c4 {
   color: #919191;
   list-style-type: none;
   position: relative;
@@ -20,35 +53,76 @@ exports[`StatusTracker should display the first step with the active class 1`] =
   width: 25%;
 }
 
-.c1 .status-text {
+.c4 > .status-text {
   display: none;
 }
 
-.c1.done > .status-text {
+.done.c2 > .status-text,
+.active.c4 > .status-text,
+.error.c4 > .status-text {
   color: #00a0d2;
 }
 
-.c1.active > .status-text,
-.c1.error > .status-text {
-  color: #00a0d2;
+.active.c2 > .status-text,
+.error.c4 > .status-text {
   display: inherit;
   font-weight: bold;
 }
 
-.c1:before {
+.c4.c4:before {
+  content: '';
   background-color: white;
   border: 3px solid #c5c5c5;
   border-radius: 50%;
-  content: '';
-  display: block;
+  font-weight: bold;
   height: 20px;
   line-height: 20px;
   margin: 5px auto 15px auto;
   text-align: center;
   width: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.c1:after {
+.error.c4.c4:before,
+.active.c4.c4:before {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.done.c4.c4:before,
+.active.c4.c4:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+}
+
+.done.c4.c4:before {
+  font-size: 14px;
+}
+
+.active.c4.c4:before {
+  font-size: 22px;
+}
+
+.error.c4.c4:before {
+  border-color: #cc0000;
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.c4:after {
   background-color: #c5c5c5;
   content: '';
   height: 4px;
@@ -59,61 +133,183 @@ exports[`StatusTracker should display the first step with the active class 1`] =
   z-index: -1;
 }
 
-.c1:first-child:after {
-  content: none;
-}
-
-.c1.done:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.c1.active:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 22px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.error:before {
-  border-color: #cc0000;
-  color: #cc0000;
-  content: '\\e68e';
-  font-family: 'bds-func-icons';
-  font-size: 18px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.active:after,
-.c1.done:after,
-.c1.error:after {
+.active.c2:after,
+.done.c4:after,
+.error.c4:after {
   background-color: #00a0d2;
 }
 
+.c4:first-child:after {
+  content: none;
+}
+
+.c3 {
+  color: #919191;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+  width: 25%;
+}
+
+.c3 > .status-text {
+  display: none;
+}
+
+.done.c2 > .status-text,
+.active.c3 > .status-text,
+.error.c3 > .status-text {
+  color: #00a0d2;
+}
+
+.active.c2 > .status-text,
+.error.c3 > .status-text {
+  display: inherit;
+  font-weight: bold;
+}
+
+.c3.c3:before {
+  content: '';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  background-color: white;
+  border: 3px solid #c5c5c5;
+  border-radius: 50%;
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px auto 15px auto;
+  text-align: center;
+  width: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.error.c3.c3:before,
+.active.c3.c3:before {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.done.c3.c3:before,
+.active.c3.c3:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+}
+
+.done.c3.c3:before {
+  font-size: 14px;
+}
+
+.active.c3.c3:before {
+  font-size: 22px;
+}
+
+.error.c3.c3:before {
+  border-color: #cc0000;
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.c3:after {
+  background-color: #c5c5c5;
+  content: '';
+  height: 4px;
+  left: -50%;
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  z-index: -1;
+}
+
+.active.c2:after,
+.done.c3:after,
+.error.c3:after {
+  background-color: #00a0d2;
+}
+
+.c3:first-child:after {
+  content: none;
+}
+
 @media (min-width:768px) {
-  .c1 .status-text {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+  .c4 > .status-text {
+    display: inherit;
+  }
+}
+
+@media (min-width:768px) {
+  .done.c4.c4:before {
+    font-size: 22px;
+  }
+}
+
+@media (min-width:768px) {
+  .c4 .status-text {
     display: inherit;
   }
 
-  .c1.active:before,
-  .c1.done:before {
-    content: '\\e67b';
-    font-family: 'bds-func-icons';
+  .c4.active:before,
+  .c4.done:before {
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto 10px auto;
+    width: 30px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 > .status-text {
+    display: inherit;
+  }
+}
+
+@media (min-width:768px) {
+  .done.c3.c3:before {
     font-size: 22px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 .status-text {
+    display: inherit;
+  }
+
+  .c3.active:before,
+  .c3.done:before {
     height: 30px;
     line-height: 30px;
     margin: 0 auto 10px auto;
@@ -122,11 +318,33 @@ exports[`StatusTracker should display the first step with the active class 1`] =
 }
 
 <div>
+  <input
+    type="hidden"
+  />
+  <div
+    aria-hidden="true"
+    style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+  >
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-ok"
+    />
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-remove"
+    />
+  </div>
   <ol
-    class="c0"
+    class="c1"
   >
     <li
-      class="c1 active"
+      class="c2 c3 active"
     >
       <span
         class="status-text"
@@ -135,7 +353,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="c1"
+      class="c2 c4"
     >
       <span
         class="status-text"
@@ -144,7 +362,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="c1"
+      class="c2 c4"
     >
       <span
         class="status-text"
@@ -153,7 +371,7 @@ exports[`StatusTracker should display the first step with the active class 1`] =
       </span>
     </li>
     <li
-      class="c1"
+      class="c2 c4"
     >
       <span
         class="status-text"
@@ -167,6 +385,21 @@ exports[`StatusTracker should display the first step with the active class 1`] =
 
 exports[`StatusTracker should display the last step with the active class 1`] = `
 .c0 {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -177,7 +410,25 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
   z-index: 1;
 }
 
-.c1 {
+.done.c2 > .status-text,
+.active.fUNtYE > .status-text,
+.error.fUNtYE > .status-text {
+  color: #00a0d2;
+}
+
+.active.c2 > .status-text,
+.error.fUNtYE > .status-text {
+  display: inherit;
+  font-weight: bold;
+}
+
+.active.c2:after,
+.done.fUNtYE:after,
+.error.fUNtYE:after {
+  background-color: #00a0d2;
+}
+
+.c3 {
   color: #919191;
   list-style-type: none;
   position: relative;
@@ -185,35 +436,88 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
   width: 25%;
 }
 
-.c1 .status-text {
+.c3 > .status-text {
   display: none;
 }
 
-.c1.done > .status-text {
+.done.c2 > .status-text,
+.active.c3 > .status-text,
+.error.c3 > .status-text {
   color: #00a0d2;
 }
 
-.c1.active > .status-text,
-.c1.error > .status-text {
-  color: #00a0d2;
+.active.c2 > .status-text,
+.error.c3 > .status-text {
   display: inherit;
   font-weight: bold;
 }
 
-.c1:before {
+.c3.c3:before {
+  content: '';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
   background-color: white;
   border: 3px solid #c5c5c5;
   border-radius: 50%;
-  content: '';
-  display: block;
+  font-weight: bold;
   height: 20px;
   line-height: 20px;
   margin: 5px auto 15px auto;
   text-align: center;
   width: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.c1:after {
+.error.c3.c3:before,
+.active.c3.c3:before {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.done.c3.c3:before,
+.active.c3.c3:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+}
+
+.done.c3.c3:before {
+  font-size: 14px;
+}
+
+.active.c3.c3:before {
+  font-size: 22px;
+}
+
+.error.c3.c3:before {
+  border-color: #cc0000;
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.c3:after {
   background-color: #c5c5c5;
   content: '';
   height: 4px;
@@ -224,61 +528,47 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
   z-index: -1;
 }
 
-.c1:first-child:after {
-  content: none;
-}
-
-.c1.done:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.c1.active:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 22px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.error:before {
-  border-color: #cc0000;
-  color: #cc0000;
-  content: '\\e68e';
-  font-family: 'bds-func-icons';
-  font-size: 18px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.active:after,
-.c1.done:after,
-.c1.error:after {
+.active.c2:after,
+.done.c3:after,
+.error.c3:after {
   background-color: #00a0d2;
 }
 
+.c3:first-child:after {
+  content: none;
+}
+
 @media (min-width:768px) {
-  .c1 .status-text {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+  .c3 > .status-text {
+    display: inherit;
+  }
+}
+
+@media (min-width:768px) {
+  .done.c3.c3:before {
+    font-size: 22px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 .status-text {
     display: inherit;
   }
 
-  .c1.active:before,
-  .c1.done:before {
-    content: '\\e67b';
-    font-family: 'bds-func-icons';
-    font-size: 22px;
+  .c3.active:before,
+  .c3.done:before {
     height: 30px;
     line-height: 30px;
     margin: 0 auto 10px auto;
@@ -287,11 +577,33 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
 }
 
 <div>
+  <input
+    type="hidden"
+  />
+  <div
+    aria-hidden="true"
+    style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+  >
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-ok"
+    />
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-remove"
+    />
+  </div>
   <ol
-    class="c0"
+    class="c1"
   >
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -300,7 +612,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -309,7 +621,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -318,7 +630,7 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
       </span>
     </li>
     <li
-      class="c1 active"
+      class="c2 c3 active"
     >
       <span
         class="status-text"
@@ -332,6 +644,21 @@ exports[`StatusTracker should display the last step with the active class 1`] = 
 
 exports[`StatusTracker should display the last step with the error class when isErrorState is true 1`] = `
 .c0 {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -342,7 +669,25 @@ exports[`StatusTracker should display the last step with the error class when is
   z-index: 1;
 }
 
-.c1 {
+.done.c2 > .status-text,
+.active.fUNtYE > .status-text,
+.error.fUNtYE > .status-text {
+  color: #00a0d2;
+}
+
+.active.c2 > .status-text,
+.error.fUNtYE > .status-text {
+  display: inherit;
+  font-weight: bold;
+}
+
+.active.c2:after,
+.done.fUNtYE:after,
+.error.fUNtYE:after {
+  background-color: #00a0d2;
+}
+
+.c3 {
   color: #919191;
   list-style-type: none;
   position: relative;
@@ -350,35 +695,88 @@ exports[`StatusTracker should display the last step with the error class when is
   width: 25%;
 }
 
-.c1 .status-text {
+.c3 > .status-text {
   display: none;
 }
 
-.c1.done > .status-text {
+.done.c2 > .status-text,
+.active.c3 > .status-text,
+.error.c3 > .status-text {
   color: #00a0d2;
 }
 
-.c1.active > .status-text,
-.c1.error > .status-text {
-  color: #00a0d2;
+.active.c2 > .status-text,
+.error.c3 > .status-text {
   display: inherit;
   font-weight: bold;
 }
 
-.c1:before {
+.c3.c3:before {
+  content: '';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
   background-color: white;
   border: 3px solid #c5c5c5;
   border-radius: 50%;
-  content: '';
-  display: block;
+  font-weight: bold;
   height: 20px;
   line-height: 20px;
   margin: 5px auto 15px auto;
   text-align: center;
   width: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.c1:after {
+.error.c3.c3:before,
+.active.c3.c3:before {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.done.c3.c3:before,
+.active.c3.c3:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+}
+
+.done.c3.c3:before {
+  font-size: 14px;
+}
+
+.active.c3.c3:before {
+  font-size: 22px;
+}
+
+.error.c3.c3:before {
+  border-color: #cc0000;
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.c3:after {
   background-color: #c5c5c5;
   content: '';
   height: 4px;
@@ -389,61 +787,47 @@ exports[`StatusTracker should display the last step with the error class when is
   z-index: -1;
 }
 
-.c1:first-child:after {
-  content: none;
-}
-
-.c1.done:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.c1.active:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 22px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.error:before {
-  border-color: #cc0000;
-  color: #cc0000;
-  content: '\\e68e';
-  font-family: 'bds-func-icons';
-  font-size: 18px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.active:after,
-.c1.done:after,
-.c1.error:after {
+.active.c2:after,
+.done.c3:after,
+.error.c3:after {
   background-color: #00a0d2;
 }
 
+.c3:first-child:after {
+  content: none;
+}
+
 @media (min-width:768px) {
-  .c1 .status-text {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+  .c3 > .status-text {
+    display: inherit;
+  }
+}
+
+@media (min-width:768px) {
+  .done.c3.c3:before {
+    font-size: 22px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 .status-text {
     display: inherit;
   }
 
-  .c1.active:before,
-  .c1.done:before {
-    content: '\\e67b';
-    font-family: 'bds-func-icons';
-    font-size: 22px;
+  .c3.active:before,
+  .c3.done:before {
     height: 30px;
     line-height: 30px;
     margin: 0 auto 10px auto;
@@ -452,11 +836,33 @@ exports[`StatusTracker should display the last step with the error class when is
 }
 
 <div>
+  <input
+    type="hidden"
+  />
+  <div
+    aria-hidden="true"
+    style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+  >
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-ok"
+    />
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-remove"
+    />
+  </div>
   <ol
-    class="c0"
+    class="c1"
   >
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -465,7 +871,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -474,7 +880,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -483,7 +889,7 @@ exports[`StatusTracker should display the last step with the error class when is
       </span>
     </li>
     <li
-      class="c1 error"
+      class="c2 c3 error"
     >
       <span
         class="status-text"
@@ -497,6 +903,21 @@ exports[`StatusTracker should display the last step with the error class when is
 
 exports[`StatusTracker should display the third step with the active class 1`] = `
 .c0 {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+}
+
+.c1 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -507,7 +928,25 @@ exports[`StatusTracker should display the third step with the active class 1`] =
   z-index: 1;
 }
 
-.c1 {
+.done.c2 > .status-text,
+.active.fUNtYE > .status-text,
+.error.fUNtYE > .status-text {
+  color: #00a0d2;
+}
+
+.active.c2 > .status-text,
+.error.fUNtYE > .status-text {
+  display: inherit;
+  font-weight: bold;
+}
+
+.active.c2:after,
+.done.fUNtYE:after,
+.error.fUNtYE:after {
+  background-color: #00a0d2;
+}
+
+.c4 {
   color: #919191;
   list-style-type: none;
   position: relative;
@@ -515,35 +954,76 @@ exports[`StatusTracker should display the third step with the active class 1`] =
   width: 25%;
 }
 
-.c1 .status-text {
+.c4 > .status-text {
   display: none;
 }
 
-.c1.done > .status-text {
+.done.c2 > .status-text,
+.active.c4 > .status-text,
+.error.c4 > .status-text {
   color: #00a0d2;
 }
 
-.c1.active > .status-text,
-.c1.error > .status-text {
-  color: #00a0d2;
+.active.c2 > .status-text,
+.error.c4 > .status-text {
   display: inherit;
   font-weight: bold;
 }
 
-.c1:before {
+.c4.c4:before {
+  content: '';
   background-color: white;
   border: 3px solid #c5c5c5;
   border-radius: 50%;
-  content: '';
-  display: block;
+  font-weight: bold;
   height: 20px;
   line-height: 20px;
   margin: 5px auto 15px auto;
   text-align: center;
   width: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
-.c1:after {
+.error.c4.c4:before,
+.active.c4.c4:before {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.done.c4.c4:before,
+.active.c4.c4:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+}
+
+.done.c4.c4:before {
+  font-size: 14px;
+}
+
+.active.c4.c4:before {
+  font-size: 22px;
+}
+
+.error.c4.c4:before {
+  border-color: #cc0000;
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.c4:after {
   background-color: #c5c5c5;
   content: '';
   height: 4px;
@@ -554,61 +1034,183 @@ exports[`StatusTracker should display the third step with the active class 1`] =
   z-index: -1;
 }
 
-.c1:first-child:after {
-  content: none;
-}
-
-.c1.done:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.c1.active:before {
-  border-color: #00a0d2;
-  color: #00a0d2;
-  content: '\\e67b';
-  font-family: 'bds-func-icons';
-  font-size: 22px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.error:before {
-  border-color: #cc0000;
-  color: #cc0000;
-  content: '\\e68e';
-  font-family: 'bds-func-icons';
-  font-size: 18px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  margin: 0 auto 10px auto;
-  width: 30px;
-}
-
-.c1.active:after,
-.c1.done:after,
-.c1.error:after {
+.active.c2:after,
+.done.c4:after,
+.error.c4:after {
   background-color: #00a0d2;
 }
 
+.c4:first-child:after {
+  content: none;
+}
+
+.c3 {
+  color: #919191;
+  list-style-type: none;
+  position: relative;
+  text-align: center;
+  width: 25%;
+}
+
+.c3 > .status-text {
+  display: none;
+}
+
+.done.c2 > .status-text,
+.active.c3 > .status-text,
+.error.c3 > .status-text {
+  color: #00a0d2;
+}
+
+.active.c2 > .status-text,
+.error.c3 > .status-text {
+  display: inherit;
+  font-weight: bold;
+}
+
+.c3.c3:before {
+  content: '';
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-size: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  background-color: white;
+  border: 3px solid #c5c5c5;
+  border-radius: 50%;
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px auto 15px auto;
+  text-align: center;
+  width: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.error.c3.c3:before,
+.active.c3.c3:before {
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 10px auto;
+  width: 30px;
+}
+
+.done.c3.c3:before,
+.active.c3.c3:before {
+  border-color: #00a0d2;
+  color: #00a0d2;
+}
+
+.done.c3.c3:before {
+  font-size: 14px;
+}
+
+.active.c3.c3:before {
+  font-size: 22px;
+}
+
+.error.c3.c3:before {
+  border-color: #cc0000;
+  color: #cc0000;
+  font-size: 18px;
+}
+
+.c3:after {
+  background-color: #c5c5c5;
+  content: '';
+  height: 4px;
+  left: -50%;
+  position: absolute;
+  top: 17px;
+  width: 100%;
+  z-index: -1;
+}
+
+.active.c2:after,
+.done.c3:after,
+.error.c3:after {
+  background-color: #00a0d2;
+}
+
+.c3:first-child:after {
+  content: none;
+}
+
 @media (min-width:768px) {
-  .c1 .status-text {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+
+}
+
+@media (min-width:768px) {
+  .c4 > .status-text {
+    display: inherit;
+  }
+}
+
+@media (min-width:768px) {
+  .done.c4.c4:before {
+    font-size: 22px;
+  }
+}
+
+@media (min-width:768px) {
+  .c4 .status-text {
     display: inherit;
   }
 
-  .c1.active:before,
-  .c1.done:before {
-    content: '\\e67b';
-    font-family: 'bds-func-icons';
+  .c4.active:before,
+  .c4.done:before {
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto 10px auto;
+    width: 30px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 > .status-text {
+    display: inherit;
+  }
+}
+
+@media (min-width:768px) {
+  .done.c3.c3:before {
     font-size: 22px;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 .status-text {
+    display: inherit;
+  }
+
+  .c3.active:before,
+  .c3.done:before {
     height: 30px;
     line-height: 30px;
     margin: 0 auto 10px auto;
@@ -617,11 +1219,33 @@ exports[`StatusTracker should display the third step with the active class 1`] =
 }
 
 <div>
+  <input
+    type="hidden"
+  />
+  <div
+    aria-hidden="true"
+    style="position: absolute; visibility: hidden; overflow: visible; width: 0px; height: 0px; left: -5000px;"
+  >
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-ok"
+    />
+    <input
+      type="hidden"
+    />
+    <i
+      aria-hidden="true"
+      class="c0 bds-icon bds-remove"
+    />
+  </div>
   <ol
-    class="c0"
+    class="c1"
   >
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -630,7 +1254,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="c1 done"
+      class="c2 c3 done"
     >
       <span
         class="status-text"
@@ -639,7 +1263,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="c1 active"
+      class="c2 c3 active"
     >
       <span
         class="status-text"
@@ -648,7 +1272,7 @@ exports[`StatusTracker should display the third step with the active class 1`] =
       </span>
     </li>
     <li
-      class="c1"
+      class="c2 c4"
     >
       <span
         class="status-text"

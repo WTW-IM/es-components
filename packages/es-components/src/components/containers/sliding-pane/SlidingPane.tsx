@@ -211,7 +211,10 @@ export default function SlidingPane({
 }: SlidingPaneProps) {
   const [rootNode, RootNodeLocator] = useRootNodeLocator(document.body);
   useDisableBodyScroll(isOpen);
-  const handle = useCallback(() => rootNode, [rootNode]);
+  const handle = useCallback<() => HTMLElement>(
+    () => rootNode as HTMLElement,
+    [rootNode]
+  );
   const modalParentSelector = parentSelector || handle;
   const Pane = getPane(from);
   const styles = {

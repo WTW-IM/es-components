@@ -1,13 +1,13 @@
 {
   "name": "es-components",
-  "version": "21.12.0",
+  "version": "21.13.0-pre-prod.1",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "repository": "https://github.com/wtw-im/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
-  "types": "types/index.d.ts",
+  "types": "types/src/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "build": "cross-env MAIN_BUILD=\"$( (git merge-base --is-ancestor HEAD origin/main && echo 'true') || echo 'false' )\" npm run rollup",
@@ -19,6 +19,7 @@
     "pre-prod-sg-build": "npm run styleguide-preprod && npm run pre-prod-fc-icons",
     "pre-prod-fc-icons": "cp docs/full-color-icons.html docs/pre-prod && cp docs/full-color-icons.js docs/pre-prod",
     "start": "concurrently --kill-others \"rollup -c docs-rollup.config.mjs -w --configEnv local\" \"styleguidist server --env local\"",
+    "start-localtest": "concurrently --kill-others \"rollup -c docs-rollup.config.mjs -w --configEnv local\" \"styleguidist server --env local --run-localtest\"",
     "test": "jest",
     "test:watch": "jest --watch",
     "wait-for-start": "wait-on http://127.0.0.1:6060",

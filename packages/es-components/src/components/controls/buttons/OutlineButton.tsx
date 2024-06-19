@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import tinycolor, { ColorInput } from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 import Button, { ButtonProps } from './Button';
-import ButtonBase from './ButtonBase';
 import { ButtonSizeBlock } from 'es-components-shared-types';
 
 type OutlineButtonColors = {
@@ -18,43 +17,13 @@ type OutlineButtonColors = {
   focusBoxShadowColor: CSS.Property.Color;
 };
 
-const StyledButton = styled(ButtonBase)<{
+const StyledButton = styled(Button)<{
   colors: OutlineButtonColors;
   buttonSize: ButtonSizeBlock;
-  block: boolean;
 }>`
   background-color: ${props => props.colors.bgColor};
   border: 2px solid ${props => props.colors.textColor};
-  border-radius: ${props => props.buttonSize.borderRadius};
-  box-sizing: border-box;
   color: ${props => props.colors.textColor};
-  cursor: pointer;
-  display: block;
-  font-family: inherit;
-  font-size: ${props => props.buttonSize.fontSize};
-  font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
-  line-height: ${props =>
-    props.buttonSize.lineHeight || props.theme.font.baseLineHeight};
-  min-width: 100px;
-  padding-bottom: ${props => props.buttonSize.paddingBottom};
-  padding-left: ${props => props.buttonSize.paddingSides};
-  padding-right: ${props => props.buttonSize.paddingSides};
-  padding-top: ${props => props.buttonSize.paddingTop};
-  text-align: center;
-  text-decoration: none;
-  text-transform: ${props =>
-    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 100%;
-
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    display: ${props => (props.block ? 'block' : 'inline-block')};
-    width: ${props => (props.block ? '100%' : 'auto')};
-  }
 
   &:focus {
     box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};
@@ -118,7 +87,6 @@ const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       styleType = 'default',
       size = 'default',
-      block = false,
       ...other
     } = props;
     const theme = useTheme();
@@ -126,36 +94,32 @@ const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const variant = theme.buttonStyles.outlineButton.variant[styleType];
     const isInheritedStyle = styleType === 'inherited';
 
-    const focusBoxShadowColor = tinycolor.mix(
-      variant.bgColor as ColorInput,
-      theme.colors.black,
-      14
-    );
-    focusBoxShadowColor.setAlpha(0.5);
-
     let buttonColors: OutlineButtonColors = {
       textColor: 'inherited',
       bgColor: 'inherited',
-
       hoverTextColor: 'inherited',
       hoverBgColor: 'inherited',
       hoverBorderColor: 'inherited',
-
       focusBoxShadowColor: theme.colors.gray4
     };
 
     if (!isInheritedStyle) {
+      const focusBoxShadowColor = tinycolor.mix(
+        variant.bgColor as ColorInput,
+        theme.colors.black,
+        14
+      );
+      focusBoxShadowColor.setAlpha(0.5);
+
       buttonColors = {
         textColor: variant.bgColor as CSS.Property.Color,
         bgColor: theme.colors.white,
-
         hoverTextColor: variant?.hoverColor || theme.colors.white,
         hoverBgColor:
           variant?.hoverBgColor ||
           (variant.bgColor as CSS.Property.BackgroundColor),
         hoverBorderColor:
           variant?.hoverColor || (variant?.bgColor as CSS.Property.BorderColor),
-
         focusBoxShadowColor: focusBoxShadowColor.toRgbString()
       };
     }
@@ -163,10 +127,8 @@ const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <StyledButton
         ref={ref}
-        block={block}
         buttonSize={buttonSize}
         colors={buttonColors}
-        type="button"
         {...other}
       >
         {children}
@@ -179,9 +141,7 @@ const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 export const propTypes = {
   ...Button.propTypes,
   /** Select the color style of the button, types come from theme buttonStyles.outlineButton */
-  styleType: Button.propTypes!.styleType,
-  /** Make the button's width the size of it's parent container */
-  block: Button.propTypes!.block
+  styleType: Button.propTypes!.styleType
 };
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 

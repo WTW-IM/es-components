@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.1-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.13.1-pre-prod.0...v21.13.1-pre-prod.1) (2024-06-25)
+
+### Fix
+
+- overflow in outlinebutton (#844) ([b880257](https://github.com/wtw-im/es-components/commit/b88025707cb8c521adca40d4fe2b6b68008d8db5)), closes [#844](https://github.com/wtw-im/es-components/issues/844)
+
 ## [21.13.1-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.13.0...v21.13.1-pre-prod.0) (2024-06-19)
 
 ### Fix

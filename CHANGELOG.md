@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.1-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.13.1-pre-prod.0...v21.13.1-pre-prod.1) (2024-06-25)
+
+### Fix
+
+- overflow in outlinebutton (#844) ([b880257](https://github.com/WTW-IM/es-components/commit/b88025707cb8c521adca40d4fe2b6b68008d8db5)), closes [#844](https://github.com/WTW-IM/es-components/issues/844)
+
+### Upgrade
+
+- bump braces from 3.0.2 to 3.0.3 ([e49a8b2](https://github.com/WTW-IM/es-components/commit/e49a8b28196354301d5081eecc16f86d3772294f))
+- bump ejs from 3.1.9 to 3.1.10 ([8eac6d0](https://github.com/WTW-IM/es-components/commit/8eac6d07bc73d85834cc3e5a241b1f0f384c0337))
+- bump ws from 8.16.0 to 8.17.1 ([6d1c294](https://github.com/WTW-IM/es-components/commit/6d1c2940c61ecd5456d54b3d971701e08eb2dd76))
+
+## [21.13.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.13.0...v21.13.1-pre-prod.0) (2024-06-19)
+
+### Fix
+
+- changing outline button to a styled component of button ([92b97f5](https://github.com/WTW-IM/es-components/commit/92b97f5ba867fe5646a651993a68e43c021127f7))
+- lowercase branch name in canary build ([bbf9467](https://github.com/WTW-IM/es-components/commit/bbf9467ba42917c08a253fcf3c937dc9a55fd756))
+- removing OutlineButton non-color related styles ([7571f4b](https://github.com/WTW-IM/es-components/commit/7571f4b333ba56ce823166a8720452b1d29e4b8e))
+
+### Upgrade
+
+- bump express from 4.18.2 to 4.19.2 ([33c8762](https://github.com/WTW-IM/es-components/commit/33c8762e870449a8453692784f649e14c95f3b0f))
+- bump follow-redirects from 1.15.5 to 1.15.6 ([440d8f7](https://github.com/WTW-IM/es-components/commit/440d8f79d59c79c36012ef8e3a0973d94e83a236))
+- bump webpack-dev-middleware from 5.3.3 to 5.3.4 ([d203440](https://github.com/WTW-IM/es-components/commit/d203440542736c1fa6b07cc6190f7e4b9631cc06))
+
 # [21.13.0](https://github.com/WTW-IM/es-components/compare/v21.13.0-pre-prod.1...v21.13.0) (2024-03-20)
 
 **Note:** Version bump only for package es-components-monorepo

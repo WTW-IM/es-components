@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.1-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.13.1-pre-prod.0...v21.13.1-pre-prod.1) (2024-06-25)
+
+### Fix
+
+- overflow in outlinebutton (#844) ([b880257](https://github.com/wtw-im/es-components/commit/b88025707cb8c521adca40d4fe2b6b68008d8db5)), closes [#844](https://github.com/wtw-im/es-components/issues/844)
+
+## [21.13.1-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.13.0...v21.13.1-pre-prod.0) (2024-06-19)
+
+### Fix
+
+- changing outline button to a styled component of button ([92b97f5](https://github.com/wtw-im/es-components/commit/92b97f5ba867fe5646a651993a68e43c021127f7))
+- removing OutlineButton non-color related styles ([7571f4b](https://github.com/wtw-im/es-components/commit/7571f4b333ba56ce823166a8720452b1d29e4b8e))
+
 # [21.13.0](https://github.com/wtw-im/es-components/compare/v21.13.0-pre-prod.1...v21.13.0) (2024-03-20)
 
 **Note:** Version bump only for package es-components

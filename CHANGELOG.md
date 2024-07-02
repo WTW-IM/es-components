@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.2-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.13.1...v21.13.2-pre-prod.0) (2024-07-02)
+
+### Fix
+
+- button styles to keep format as an anchor ([b6af5b1](https://github.com/WTW-IM/es-components/commit/b6af5b167d2d2119f27b91b8aad39fda15e72c0c))
+- update OutlineButton to include forwardedAs prop ([d4ad207](https://github.com/WTW-IM/es-components/commit/d4ad207645d565840ef257de4781c6f817d5fe72))
+
 ## [21.13.1](https://github.com/WTW-IM/es-components/compare/v21.13.1-pre-prod.1...v21.13.1) (2024-06-26)
 
 **Note:** Version bump only for package es-components-monorepo

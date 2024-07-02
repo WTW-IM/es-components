@@ -25,6 +25,13 @@ const StyledButton = styled(Button)<{
   border: 2px solid ${props => props.colors.textColor};
   color: ${props => props.colors.textColor};
   overflow: hidden;
+  min-width: 100px;
+  padding-bottom: ${props => props.buttonSize.paddingBottom};
+  padding-left: ${props => props.buttonSize.paddingSides};
+  padding-right: ${props => props.buttonSize.paddingSides};
+  padding-top: ${props => props.buttonSize.paddingTop};
+  text-align: center;
+  text-decoration: none;
 
   &:focus {
     box-shadow: 0 0 0 0.2rem ${props => props.colors.focusBoxShadowColor};

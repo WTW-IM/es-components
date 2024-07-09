@@ -82,12 +82,17 @@ const StyledButton = styled(Button)<{
   }
 `;
 
-const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+type OutlineButtonProps = ButtonProps & {
+  as?: string | React.ComponentType<unknown>;
+};
+
+const OutlineButton = React.forwardRef<HTMLButtonElement, OutlineButtonProps>(
   function OutlineButton(props, ref) {
     const {
       children,
       styleType = 'default',
       size = 'default',
+      as,
       ...other
     } = props;
     const theme = useTheme();
@@ -127,6 +132,7 @@ const OutlineButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <StyledButton
+        forwardedAs={as}
         ref={ref}
         buttonSize={buttonSize}
         colors={buttonColors}

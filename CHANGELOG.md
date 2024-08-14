@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.3-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.13.3-pre-prod.0...v21.13.3-pre-prod.1) (2024-08-14)
+
+### Docs
+
+- fix container listing for icons ([b8dacf4](https://github.com/WTW-IM/es-components/commit/b8dacf4dd35c13f7de0df1d6247311d281690bc2))
+
 ## [21.13.3-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.13.2...v21.13.3-pre-prod.0) (2024-07-09)
 
 ## [21.13.2-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.13.1...v21.13.2-pre-prod.0) (2024-07-02)

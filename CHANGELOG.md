@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.3](https://github.com/WTW-IM/es-components/compare/v21.13.3-pre-prod.1...v21.13.3) (2024-08-14)
+
+**Note:** Version bump only for package es-components-monorepo
+
 ## [21.13.3-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.13.3-pre-prod.0...v21.13.3-pre-prod.1) (2024-08-14)
 
 ### Docs

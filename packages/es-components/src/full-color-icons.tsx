@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom/client';
 import Spinner from './components/base/spinner/Spinner';
 import FullColorIcon from './components/base/icons/FullColorIcon';
 
-const iconsListUrl = `${ASSETS_PATH}?restype=directory&comp=list`;
+const iconsListUrl = `${ASSETS_PATH}?restype=container&comp=list`;
 
 const OuterContainer = styled.div`
   text-align: center;

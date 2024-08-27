@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.4-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.13.3...v21.13.4-pre-prod.0) (2024-08-27)
+
+### Fix
+
+- removed unnecessary aria-labels from dateinputs ([83c9c90](https://github.com/wtw-im/es-components/commit/83c9c901758a1f9e977d7a758acd999fa2235bfd))
+
 ## [21.13.3](https://github.com/wtw-im/es-components/compare/v21.13.3-pre-prod.1...v21.13.3) (2024-08-14)
 
 **Note:** Version bump only for package es-components

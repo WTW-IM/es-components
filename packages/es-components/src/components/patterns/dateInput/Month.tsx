@@ -40,7 +40,6 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
 
     return (
       <MonthDropdown
-        aria-label="Select Month"
         {...theme.validationInputColor[validationState]}
         {...props}
         onChange={onMonthChange}

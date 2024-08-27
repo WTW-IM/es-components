@@ -58,7 +58,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "js-beautify": "^1.15.1",
     "lerna": "^8.1.2",
-    "lint-staged": "^13.1.0",
+    "lint-staged": "^15.2.9",
     "prettier": "^2.8.1",
     "ts-jest": "^29.1.2",
     "ts-patch": "^3.0.2",

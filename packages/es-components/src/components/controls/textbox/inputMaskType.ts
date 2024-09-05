@@ -26,7 +26,8 @@ const inputMask: InputMask = {
     showMask: false,
     keepCharPositions: true,
     placeholderChar: '\u2000',
-    title: 'Enter month, day, and 4-digit year'
+    title: 'Enter month, day, and 4-digit year',
+    guide: false
   },
   dollar: { mask: createNumberMask({ prefix: '$' }) },
   phone: {
@@ -49,7 +50,8 @@ const inputMask: InputMask = {
     showMask: false,
     keepCharPositions: true,
     placeholderChar: '\u2000',
-    title: 'Enter area code and phone number'
+    title: 'Enter area code and phone number',
+    guide: false
   },
   ssnum: {
     mask: [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/],

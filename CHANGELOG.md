@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.4](https://github.com/WTW-IM/es-components/compare/v21.13.4-pre-prod.1...v21.13.4) (2024-09-13)
+
+### Upgrade
+
+- bump webpack from 5.90.3 to 5.94.0 ([c0c20f0](https://github.com/WTW-IM/es-components/commit/c0c20f0b2b9822d52d6660a6885ff96d6a6f77e0))
+
 ## [21.13.4-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.13.4-pre-prod.0...v21.13.4-pre-prod.1) (2024-09-13)
 
 ### Fix

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.13.4-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.13.4-pre-prod.0...v21.13.4-pre-prod.1) (2024-09-13)
+
+### Fix
+
+- updating to @im-open/react-text-mask to fix issues with Web Components ([782d87a](https://github.com/wtw-im/es-components/commit/782d87abafaab13d537d156792d4c68a1de47e61))
+
+### Update
+
+- including MaskedInputProps in MaskedTextboxProps ([67edd64](https://github.com/wtw-im/es-components/commit/67edd64382566260089514ca1bdbc3a0aa434239))
+
 ## [21.13.4-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.13.3...v21.13.4-pre-prod.0) (2024-08-27)
 
 ### Fix

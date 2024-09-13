@@ -1,4 +1,4 @@
-import { MaskedInputProps } from 'react-text-mask';
+import { MaskedInputProps } from '@im-open/react-text-mask';
 import type {
   createNumberMask as typedCreateNumberMask,
   createAutoCorrectedDatePipe as typedCreateAutoCorrectedDatePipe

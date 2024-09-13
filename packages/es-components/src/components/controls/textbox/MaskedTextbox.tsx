@@ -1,17 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes, { ValidationMap, Validator } from 'prop-types';
-import MaskedInput, { MaskedInputProps } from 'react-text-mask';
+import MaskedInput, { MaskedInputProps } from '@im-open/react-text-mask';
 
 import { callRefs } from '../../util/callRef';
 import inputMaskType, {
   maskTypes as inputMaskTypes,
   InputMaskType
 } from './inputMaskType';
-import Textbox, {
-  propTypes as basePropTypes,
-  defaultProps as baseDefaultProps,
-  TextboxProps
-} from './Textbox';
+import Textbox, { propTypes as basePropTypes, TextboxProps } from './Textbox';
 
 export const maskTypes = [...inputMaskTypes, 'custom'] as const;
 
@@ -24,21 +20,29 @@ export interface MaskedTextboxProps extends TextboxProps {
 
 type MaskedRenderFunc = NonNullable<MaskedInputProps['render']>;
 
+const isCustomMask = (
+  maskProps: MaskedInputProps | undefined
+): maskProps is MaskedInputProps => Boolean(maskProps);
+
 const MaskedTextbox = React.forwardRef<
   Maybe<HTMLInputElement>,
   MaskedTextboxProps
 >(function MaskedTextbox(props, ref) {
   const { maskType, customMask, ...additionalTextProps } = props;
   const [inputRef, setInputRef] = useState<Maybe<HTMLInputElement>>();
+  const hasCustomMaskType = maskType === 'custom';
+  const customMaskIsSet = isCustomMask(customMask);
+  const hasCustomMask = hasCustomMaskType ? customMaskIsSet : false;
   React.useImperativeHandle(ref, () => inputRef || undefined);
 
-  if (maskType === 'custom' && !customMask) {
+  if (hasCustomMaskType && !customMaskIsSet) {
     throw new Error('customMask must be provided when maskType is "custom"');
   }
 
-  const maskArgs =
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    maskType === 'custom' ? customMask! : inputMaskType[maskType];
+  const maskArgs: MaskedInputProps =
+    hasCustomMask && customMaskIsSet
+      ? customMask
+      : inputMaskType[maskType as InputMaskType];
 
   const inputRender = useCallback<MaskedRenderFunc>(
     (maskRef, textboxProps) => {
@@ -87,13 +91,6 @@ export const propTypes = {
   })
 };
 
-export const defaultProps = {
-  ...baseDefaultProps,
-  /** Sets a mask type on the input */
-  customMask: undefined
-};
-
 MaskedTextbox.propTypes = propTypes;
-MaskedTextbox.defaultProps = defaultProps;
 
 export default MaskedTextbox;

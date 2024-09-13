@@ -48,7 +48,6 @@ const Year = React.forwardRef<HTMLInputElement, YearProps>(
 
     return (
       <YearInput
-        aria-label="Year"
         type="number"
         inputMode="numeric"
         pattern="[0-9]*"

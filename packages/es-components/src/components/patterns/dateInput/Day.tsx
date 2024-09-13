@@ -50,7 +50,6 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
 
   return (
     <DayInput
-      aria-label="Day"
       type="number"
       inputMode="numeric"
       pattern="[0-9]*"

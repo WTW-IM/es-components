@@ -1,6 +1,6 @@
 {
   "name": "es-components",
-  "version": "21.13.3",
+  "version": "21.13.4-pre-prod.1",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
@@ -140,6 +140,7 @@
     "@floating-ui/dom": "^1.6.3",
     "@floating-ui/react": "^0.14.0",
     "@floating-ui/utils": "^0.2.1",
+    "@im-open/react-text-mask": "^5.4.4",
     "@popperjs/core": "^2.11.6",
     "@types/lodash": "^4.14.194",
     "@types/react": "^18.2.55",
@@ -163,7 +164,6 @@
     "react-modal": "^3.16.1",
     "react-overlays": "^5.2.1",
     "react-popper": "^2.3.0",
-    "react-text-mask": "^5.5.0",
     "react-transition-group": "^4.4.5",
     "resize-observer": "^1.0.4",
     "text-mask-addons": "3.8.0",

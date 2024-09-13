@@ -140,7 +140,7 @@
     "@floating-ui/dom": "^1.6.3",
     "@floating-ui/react": "^0.14.0",
     "@floating-ui/utils": "^0.2.1",
-    "@im-open/react-text-mask": "^5.4.4-fix-web-components-06ca88e.1",
+    "@im-open/react-text-mask": "^5.4.4",
     "@popperjs/core": "^2.11.6",
     "@types/lodash": "^4.14.194",
     "@types/react": "^18.2.55",

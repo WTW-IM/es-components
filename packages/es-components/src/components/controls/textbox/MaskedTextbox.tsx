@@ -13,10 +13,11 @@ export const maskTypes = [...inputMaskTypes, 'custom'] as const;
 
 export type MaskType = InputMaskType | (typeof maskTypes)[number];
 
-export interface MaskedTextboxProps extends TextboxProps {
-  maskType: MaskType;
-  customMask?: MaskedInputProps;
-}
+export type MaskedTextboxProps = TextboxProps &
+  Partial<MaskedInputProps> & {
+    maskType: MaskType;
+    customMask?: MaskedInputProps;
+  };
 
 type MaskedRenderFunc = NonNullable<MaskedInputProps['render']>;
 

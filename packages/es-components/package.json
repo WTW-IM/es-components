@@ -7,6 +7,13 @@
   "repository": "https://github.com/wtw-im/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
+  "files": [
+    "lib",
+    "cjs",
+    "types",
+    "build-utils",
+    "bundle"
+  ],
   "types": "types/src/index.d.ts",
   "sideEffects": false,
   "scripts": {

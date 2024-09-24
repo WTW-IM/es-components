@@ -1,12 +1,19 @@
 {
   "name": "es-components",
-  "version": "21.13.4",
+  "version": "21.13.5-pre-prod.0",
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
   "repository": "https://github.com/wtw-im/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
+  "files": [
+    "lib",
+    "cjs",
+    "types",
+    "build-utils",
+    "bundle"
+  ],
   "types": "types/src/index.d.ts",
   "sideEffects": false,
   "scripts": {

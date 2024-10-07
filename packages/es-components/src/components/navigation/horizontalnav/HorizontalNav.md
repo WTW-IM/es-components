@@ -1,4 +1,5 @@
 Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalNav.Item` will render with the same styling. A `HorizontalNav.Item` only accepts one child component and will typically be a `a`, `button`, or client side routing `Link`-type component.
+For accessibility, the `HorizontalNav` will be rendered with the role of `tablist` and each `HorizontalNav.Item` will be rendered with the role of `tab`.
 
 ```
 <>
@@ -42,7 +43,7 @@ Use `HorizontalNav` to create an uncontrolled navigation menu. Each `HorizontalN
 </>
 ```
 
-Change the `selected` prop that is passed to `HorizontalNav` to change when an item is clicked.
+Change the `selected` prop that is passed to `HorizontalNav` to change when an item is clicked. This item will be rendered with the aria-selected attribute set to true, all other items will have it set to false.
 
 ```
 import Icon from '../../base/icons/Icon';

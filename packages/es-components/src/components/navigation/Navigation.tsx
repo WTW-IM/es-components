@@ -58,13 +58,15 @@ export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
     };
 
     return (
-      <OrientedNavigation ref={ref} {...navProps}>
+      <OrientedNavigation ref={ref} {...navProps} role="tablist">
         <ul>
           {React.Children.map(children, child =>
             React.isValidElement<NavigationItemProps>(child)
               ? React.cloneElement(child, {
                   useAltStyle,
-                  highlightedId: selected
+                  highlightedId: selected,
+                  role: 'tab',
+                  'aria-selected': child.props.id === selected
                 })
               : child
           )}

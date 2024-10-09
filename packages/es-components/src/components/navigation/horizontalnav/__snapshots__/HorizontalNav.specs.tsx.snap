@@ -132,10 +132,13 @@ exports[`renders as expected 1`] = `
 <div>
   <nav
     class="c0 es-sidenav "
+    role="tablist"
   >
     <ul>
       <li
+        aria-selected="true"
         class="c1 es-sidenav__navitem home"
+        role="tab"
       >
         <button
           class="c2"
@@ -148,7 +151,9 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
+        aria-selected="false"
         class="c3 es-sidenav__navitem "
+        role="tab"
       >
         <button
           class="c2"
@@ -161,7 +166,9 @@ exports[`renders as expected 1`] = `
         </button>
       </li>
       <li
+        aria-selected="false"
         class="c3 es-sidenav__navitem "
+        role="tab"
       >
         <a
           class="c2"
@@ -174,7 +181,9 @@ exports[`renders as expected 1`] = `
         </a>
       </li>
       <li
+        aria-selected="false"
         class="c4 es-sidenav__navitem "
+        role="tab"
       >
         <button
           class="c2"

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.14.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.13.5...v21.14.0-pre-prod.0) (2024-10-08)
+
+### Docs
+
+- add accessibility instructions around tabpanel and tablist usage ([968ef98](https://github.com/wtw-im/es-components/commit/968ef9840dbbf9f14ae85e56a6c2ee6c1d83813c))
+
+### Fix
+
+- add role and aria-selected attributes to Navigation items ([8a5eac6](https://github.com/wtw-im/es-components/commit/8a5eac6cff2e27f8ce1a2f90b7e6075e9d7f13b2))
+
+### New
+
+- add role and aria-selected attributes to Navigation items ([66616f9](https://github.com/wtw-im/es-components/commit/66616f9f138d3d481b8aefba7668ff813c5f4706))
+- add role and aria-selected attributes to Navigation items for accessibility ([d17dd6b](https://github.com/wtw-im/es-components/commit/d17dd6bd34f6d0e57825ddd4bfc2fff5f1bc1448))
+
 ## [21.13.5](https://github.com/wtw-im/es-components/compare/v21.13.5-pre-prod.0...v21.13.5) (2024-09-24)
 
 **Note:** Version bump only for package es-components

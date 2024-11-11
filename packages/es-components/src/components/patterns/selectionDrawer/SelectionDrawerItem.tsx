@@ -172,20 +172,28 @@ const DrawerControl: ReactFCWithChildren<{
 };
 /* eslint-enable react/prop-types */
 
-export type SelectionDrawerItemProps<T extends DrawerType> = Override<
-  T extends 'radio' ? RadioButtonProps : CheckboxProps,
-  Partial<HeaderAlignment> & {
-    header: NonNullable<ReactNode>;
-    forceOpen?: boolean;
-    forceClose?: boolean;
-    disabled?: boolean;
-    validationState?: ValidationStyleType;
-    openable?: boolean;
-    children: NonNullable<ReactNode>;
-    inputRef?: React.ForwardedRef<HTMLInputElement>;
-    type?: T;
-  }
->;
+type BaseDrawerType<T extends DrawerType> = T extends 'radio'
+  ? RadioButtonProps
+  : CheckboxProps;
+
+type CheckboxValue = CheckboxProps['value'];
+type RadioValue = RadioButtonProps['value'];
+
+type SelectionDrawerItemBase<T extends DrawerType = 'checkbox'> = {
+  header: NonNullable<ReactNode>;
+  forceOpen?: boolean;
+  forceClose?: boolean;
+  disabled?: boolean;
+  validationState?: ValidationStyleType;
+  openable?: boolean;
+  children: NonNullable<ReactNode>;
+  inputRef?: React.ForwardedRef<HTMLInputElement>;
+  type?: T;
+  value?: T extends 'radio' ? RadioValue : CheckboxValue;
+} & Partial<HeaderAlignment>;
+
+export type SelectionDrawerItemProps<T extends DrawerType = 'checkbox'> =
+  Override<BaseDrawerType<T>, SelectionDrawerItemBase<T>>;
 
 /**
  * @visibleName SelectionDrawer.Item

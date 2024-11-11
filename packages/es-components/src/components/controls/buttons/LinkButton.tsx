@@ -5,16 +5,10 @@ import { useTheme } from '../../util/useTheme';
 import { darken } from '../../util/colors';
 import ButtonBase, {
   propTypes as basePropTypes,
-  defaultProps as baseDefaultProps,
-  ButtonDefaultProps,
   ButtonBaseProps
 } from './ButtonBase';
 import { TextColorButtonVariant } from 'es-components-shared-types';
-import {
-  ButtonProps,
-  propTypes as buttonPropTypes,
-  defaultProps as buttonDefaultProps
-} from './Button';
+import { ButtonProps, propTypes as buttonPropTypes } from './Button';
 
 const StyledButton = styled(ButtonBase)<{ variant: TextColorButtonVariant }>`
   background-color: transparent;
@@ -75,17 +69,8 @@ export const propTypes: PropTypesOf<LinkButtonProps> = {
   /** Select the color style of the button, types come from theme buttonStyles.linkButton */
   styleType: buttonPropTypes.styleType
 };
-
-const unchildrenDefaults = { ...baseDefaultProps };
-delete unchildrenDefaults['children'];
-
-export const defaultProps = {
-  ...(unchildrenDefaults as Omit<ButtonDefaultProps, 'children'>),
-  styleType: buttonDefaultProps.styleType
-};
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
-LinkButton.defaultProps = defaultProps;
 LinkButton.propTypes = propTypes as ValidationMap<LinkButtonProps>;
 
 export default LinkButton;

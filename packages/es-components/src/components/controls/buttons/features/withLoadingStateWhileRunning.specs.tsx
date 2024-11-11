@@ -6,7 +6,7 @@ import Button from '../Button';
 import { renderWithTheme } from '../../../util/test-utils';
 import {
   withLoadingStateWhileRunning,
-  LoadingStateOnClick
+  LoadingStateOnClick,
 } from './withLoadingStateWhileRunning';
 import noop from '../../../util/noop';
 

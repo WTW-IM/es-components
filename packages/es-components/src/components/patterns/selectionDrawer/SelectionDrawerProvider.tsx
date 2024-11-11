@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect } from 'react';
+import React, { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import {
   useMonitoringCallback,
@@ -141,10 +141,7 @@ export const propTypes = {
   type: PropTypes.oneOf(['radio', 'checkbox'])
 };
 
-export const defaultProps = {};
-
 SelectionDrawerProvider.propTypes = propTypes;
-SelectionDrawerProvider.defaultProps = defaultProps;
 
 export default SelectionDrawerProvider;
 

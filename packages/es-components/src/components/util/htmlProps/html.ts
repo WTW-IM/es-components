@@ -56,6 +56,9 @@ export const htmlProps: HTMLPropTypes = {
     PropTypes.bool,
     PropTypes.oneOf<BooleanString | 'inherit'>([...booleanStrings, 'inherit'])
   ]),
+  enterKeyHint: PropTypes.oneOf<'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'>(
+    ['enter', 'done', 'go', 'next', 'previous', 'search', 'send']
+  ),
   contextMenu: PropTypes.string,
   dir: PropTypes.string,
   draggable: PropTypes.oneOfType([

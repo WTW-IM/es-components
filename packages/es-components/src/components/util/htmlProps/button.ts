@@ -21,5 +21,3 @@ export const htmlButtonPropTypes: HTMLButtonPropTypes = {
   ...baseFormElementProps,
   type: PropTypes.oneOf<ButtonType>(buttonTypes)
 };
-
-export const htmlButtonDefaultProps: HTMLInputButtonProps = {};

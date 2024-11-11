@@ -152,11 +152,6 @@ export const propTypes = {
 };
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
-export const defaultProps = {
-  ...Button.defaultProps
-};
-
 OutlineButton.propTypes = propTypes;
-OutlineButton.defaultProps = defaultProps;
 
 export default OutlineButton;

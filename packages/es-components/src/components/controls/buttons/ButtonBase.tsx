@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  htmlButtonPropTypes,
-  htmlButtonDefaultProps
-} from '../../util/htmlProps';
+import { htmlButtonPropTypes } from '../../util/htmlProps';
 import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 // Using this because React does not like many of our upstream props.
@@ -13,12 +10,9 @@ export const UnstyledButton = styled.button`
   // noop
 `;
 
-export type ButtonBaseProps = Override<
-  JSXElementProps<'button'>,
-  {
-    waiting?: Maybe<boolean>;
-  }
->;
+export type ButtonBaseProps = JSXElementProps<'button'> & {
+  waiting?: Maybe<boolean>;
+};
 
 export const esComponentsButtonClass = 'es-components-button';
 const ButtonBase = React.forwardRef<HTMLButtonElement, ButtonBaseProps>(
@@ -61,14 +55,6 @@ export const propTypes: PropTypesOf<ButtonBaseProps> = {
   waiting: PropTypes.bool
 };
 
-export const defaultProps = {
-  ...htmlButtonDefaultProps,
-  waiting: false
-};
-
-export type ButtonDefaultProps = typeof defaultProps;
-
 ButtonBase.propTypes = propTypes;
-ButtonBase.defaultProps = defaultProps;
 
 export default ButtonBase;

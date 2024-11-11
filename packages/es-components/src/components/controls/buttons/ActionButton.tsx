@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
-import Button, {
-  propTypes as buttonPropTypes,
-  defaultProps as buttonDefaultProps,
-  ButtonProps
-} from './Button';
+import Button, { propTypes as buttonPropTypes, ButtonProps } from './Button';
 import type {
   ButtonVariant,
   ButtonVariantStyleType
@@ -57,12 +53,6 @@ export const propTypes = {
   styleType: buttonPropTypes.styleType
 };
 
-export const defaultProps = {
-  ...buttonDefaultProps,
-  styleType: 'primary' as ButtonVariantStyleType
-};
-
 ActionButton.propTypes = propTypes;
-ActionButton.defaultProps = defaultProps;
 
 export default ActionButton;

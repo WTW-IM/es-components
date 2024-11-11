@@ -137,12 +137,6 @@ DrawerItem.propTypes = {
   panelKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
-DrawerItem.defaultProps = {
-  open: undefined,
-  id: undefined,
-  panelKey: undefined
-};
-
 export type DrawerItemBodyProps = Omit<
   AnimateHeightProps,
   'height' | 'duration' | 'id' | 'role'

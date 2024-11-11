@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.14.1-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.14.1-pre-prod.1...v21.14.1-pre-prod.2) (2024-11-11)
+
+### Build
+
+- fixing json attributes ([f6e7578](https://github.com/wtw-im/es-components/commit/f6e75783daafd0d743f5e5dea8c168f5a4071ad8))
+
 ## [21.14.1-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.14.0...v21.14.1-pre-prod.1) (2024-11-11)
 
 ### Build

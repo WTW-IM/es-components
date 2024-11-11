@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 
 import RadioGroup, {
   propTypes as radioGroupPropTypes,
-  defaultProps as radioGroupDefaultProps,
   RadioGroupProps
 } from '../radio-buttons/RadioGroup';
 import {
@@ -40,11 +39,33 @@ export type AnswerGroupProps = Override<
 >;
 
 const AnswerGroup = React.forwardRef<HTMLDivElement, AnswerGroupProps>(
-  function ForwardedAnswerGroup(props, ref) {
+  function ForwardedAnswerGroup(
+    {
+      styleType = 'default',
+      selectedType = 'success',
+      size = 'default' as ButtonSize,
+      itemWidth = '100px',
+      isOutline = false,
+      disableAllOptions = false,
+      ...props
+    },
+    ref
+  ) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return (
-      <AnswerSet isOutline={props.isOutline} ref={ref}>
-        <RadioGroup {...props} isAnswerGroup={true} />
+      <AnswerSet isOutline={isOutline} ref={ref}>
+        <RadioGroup
+          {...{
+            ...props,
+            styleType,
+            selectedType,
+            size,
+            itemWidth,
+            isOutline,
+            disableAllOptions
+          }}
+          isAnswerGroup={true}
+        />
       </AnswerSet>
     );
   }
@@ -69,17 +90,6 @@ AnswerGroup.propTypes = {
   disableAllOptions: radioGroupPropTypes.disableAllOptions,
   /** Selected option for the answer group */
   selectedValue: radioGroupPropTypes.selectedValue
-};
-
-AnswerGroup.defaultProps = {
-  ...radioGroupDefaultProps,
-  styleType: 'default',
-  selectedType: 'success',
-  size: 'default' as ButtonSize,
-  itemWidth: '100px',
-  isOutline: false,
-  disableAllOptions: false,
-  selectedValue: undefined
 };
 
 export default AnswerGroup;

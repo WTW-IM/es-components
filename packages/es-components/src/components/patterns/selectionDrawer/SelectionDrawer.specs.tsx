@@ -20,15 +20,15 @@ const css = (
   ...values: (ToStringable | undefined)[]
 ) => strings.map((s, i) => `${s}${values[i]?.toString() || ''}`).join('');
 
-type TestDrawerProps<T extends DrawerType> = Pick<
-  SelectionDrawerProps<T>,
-  'type'
-> &
-  Partial<Omit<SelectionDrawerProps<T>, 'type'>>;
+type TestDrawerProps<T extends DrawerType = 'checkbox'> = Partial<
+  SelectionDrawerProps<T>
+>;
 
-type TestItemProps<T extends DrawerType> = Partial<SelectionDrawerItemProps<T>>;
+type TestItemProps<T extends DrawerType = 'checkbox'> = Partial<
+  SelectionDrawerItemProps<T>
+>;
 
-type TestSelectionProps<T extends DrawerType> = Override<
+type TestSelectionProps<T extends DrawerType = 'checkbox'> = Override<
   TestDrawerProps<T>,
   {
     items?: TestItemProps<T>[];
@@ -40,10 +40,10 @@ export type ItemValue = Partial<SelectionDrawerItemProps<DrawerType>>['value'];
 
 function TestSelectionDrawer<T extends DrawerType>({
   items = [
-    { value: 'item1' } as TestItemProps<T>,
-    { value: 'item2' } as TestItemProps<T>,
-    { value: 'item3' } as TestItemProps<T>
-  ],
+    { value: 'item1' },
+    { value: 'item2' },
+    { value: 'item3' }
+  ] as TestItemProps<T>[],
   ...props
 }: TestSelectionProps<T>) {
   while (items.length < 3) {
@@ -67,19 +67,17 @@ function TestSelectionDrawer<T extends DrawerType>({
 }
 
 describe('SelectionDrawer', () => {
-  test.each<Partial<TestSelectionProps<DrawerType>> & { expectedRole: string }>(
-    [
-      {
-        type: 'checkbox',
-        expectedRole: 'checkbox'
-      },
-      {
-        type: 'radio',
-        name: 'test',
-        expectedRole: 'radio'
-      }
-    ]
-  )(
+  test.each<TestSelectionProps<DrawerType> & { expectedRole: string }>([
+    {
+      type: 'checkbox',
+      expectedRole: 'checkbox'
+    },
+    {
+      type: 'radio',
+      name: 'test',
+      expectedRole: 'radio'
+    }
+  ])(
     'has "$expectedRole" role when $type',
     async ({ expectedRole, ...props }) => {
       render(<TestSelectionDrawer {...props} />);
@@ -88,9 +86,7 @@ describe('SelectionDrawer', () => {
     }
   );
 
-  test.each<
-    Partial<TestSelectionProps<DrawerType>> & { expectedLabelStyles: string }
-  >([
+  test.each<TestSelectionProps<DrawerType> & { expectedLabelStyles: string }>([
     {
       inputAlignment: 'left',
       labelAlignment: 'left',
@@ -156,17 +152,17 @@ describe('SelectionDrawer', () => {
     }
   };
 
+  type SelectionDrawerTestProps = TestSelectionProps<DrawerType> & {
+    expectedContainerStyles: string;
+    expectedInputStyles: StyleBlock;
+    expectedSelectedStyles: {
+      display: StyleBlock;
+      pseudo?: Record<string, string>;
+    };
+  };
+
   /* eslint-disable jest/no-conditional-expect */
-  test.each<
-    Partial<TestSelectionProps<DrawerType>> & {
-      expectedContainerStyles: string;
-      expectedInputStyles: StyleBlock;
-      expectedSelectedStyles: {
-        display: StyleBlock;
-        pseudo?: Record<string, string>;
-      };
-    }
-  >([
+  test.each<SelectionDrawerTestProps>([
     {
       type: 'checkbox',
       validationState: 'danger',
@@ -211,13 +207,18 @@ describe('SelectionDrawer', () => {
       expectedContainerStyles,
       expectedInputStyles,
       expectedSelectedStyles,
+      items,
+      type = 'checkbox',
+      validationState = 'default',
       ...props
     }) => {
-      render(<TestSelectionDrawer {...props} />);
-      const elementType = props.type || 'checkbox';
+      render(
+        <TestSelectionDrawer {...{ ...props, items, type, validationState }} />
+      );
+      const elementType = type || 'checkbox';
 
       const allInputs = await screen.findAllByLabelText(/item\d/);
-      expect(allInputs).toHaveLength(Math.max(3, props.items?.length || 0));
+      expect(allInputs).toHaveLength(Math.max(3, items?.length || 0));
 
       allInputs.forEach(el => {
         const container = el.closest('label')?.closest('div')
@@ -233,7 +234,7 @@ describe('SelectionDrawer', () => {
         selector: 'input:checked'
       });
       const validationClass = `via-theme-${
-        props.validationState || 'default'
+        validationState || 'default'
       }-checked`;
 
       selectedInputs.forEach(el => {

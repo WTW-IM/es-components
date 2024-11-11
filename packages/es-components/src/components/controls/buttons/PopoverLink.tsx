@@ -3,7 +3,6 @@ import PropTypes, { ValidationMap } from 'prop-types';
 import styled from 'styled-components';
 import LinkButton, {
   propTypes as linkButtonPropTypes,
-  defaultProps as linkButtonDefaultProps,
   LinkButtonProps
 } from './LinkButton';
 import {
@@ -34,7 +33,12 @@ const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
     props,
     forwardedRef: React.Ref<HTMLButtonElement>
   ) {
-    const { children, styleType, suppressUnderline, ...other } = props;
+    const {
+      children,
+      styleType = 'primary',
+      suppressUnderline,
+      ...other
+    } = props;
 
     return (
       <StyledButton
@@ -58,13 +62,6 @@ export const propTypes: PropTypesOf<PopoverLinkProps> = {
   suppressUnderline: PropTypes.bool
 };
 
-export const defaultProps = {
-  ...linkButtonDefaultProps,
-  styleType: 'primary' as ButtonVariantStyleType,
-  suppressUnderline: false
-};
-
 PopoverLink.propTypes = propTypes as ValidationMap<PopoverLinkProps>;
-PopoverLink.defaultProps = defaultProps;
 
 export default PopoverLink;

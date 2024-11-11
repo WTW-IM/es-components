@@ -1,97 +1,98 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useLoadingState } from '../../../../hooks/useLoadingState';
-import {
-  ButtonBaseProps,
-  propTypes as buttonBasePropTypes,
-  defaultProps as buttonBaseDefaultProps
-} from '../ButtonBase';
+import { ButtonBaseProps } from '../ButtonBase';
 import { useMonitoringCallback } from '../../../../hooks/useMonitoringHooks';
 
-export interface LoadingStateOnClick {
-  (ev: React.MouseEvent<HTMLButtonElement>): Promise<void>;
-}
+type ButtonClickHandler = React.MouseEventHandler<HTMLButtonElement>;
+type ButtonClickParams = Parameters<ButtonClickHandler>;
+type ButtonClickReturn = ReturnType<ButtonClickHandler>;
+type AwaitableButtonClickHandler = (
+  ...params: ButtonClickParams
+) => Promise<ButtonClickReturn>;
+
+export type LoadingStateOnClick =
+  | ButtonClickHandler
+  | AwaitableButtonClickHandler;
 
 export interface LoadingStateProps {
   showWhileRunning?: React.ReactNode;
   onClick?: LoadingStateOnClick;
 }
 
-type ButtonProps<P> = React.PropsWithoutRef<P>;
-
-type ButtonWithLoadingStateProps<P> = Override<
-  ButtonProps<P>,
-  LoadingStateProps
+type ExpectedButtonProps = Pick<
+  ButtonBaseProps,
+  'waiting' | 'children' | 'onClick'
 >;
-
-type ForwardedButtonComponent<P> = React.ForwardRefExoticComponent<
-  ButtonProps<P>
->;
-
-type ForwardedButtonBaseProps = ButtonProps<ButtonBaseProps>;
-
-type ButtonWithLoadingStateComponent<P> = React.ForwardRefExoticComponent<
-  ButtonWithLoadingStateProps<P> & React.RefAttributes<HTMLButtonElement>
+type ForwardedButtonProps = Override<ButtonBaseProps, LoadingStateProps>;
+type ModifiedButtonProps<P extends ExpectedButtonProps> = Override<
+  ForwardedButtonProps,
+  P
 >;
 
 const voidClick = () => Promise.resolve();
 
-export function withLoadingStateWhileRunning<
-  P extends ForwardedButtonBaseProps
->(ButtonComponent: ForwardedButtonComponent<P>) {
+export function withLoadingStateWhileRunning<P extends ExpectedButtonProps>(
+  ButtonComponent: React.ComponentType<P>
+) {
+  type ButtonWithLoadingStateProps = P extends ExpectedButtonProps
+    ? ModifiedButtonProps<P>
+    : never;
+
+  type ButtonWithLoadingStateFunction = React.ForwardRefRenderFunction<
+    HTMLButtonElement,
+    React.PropsWithoutRef<ButtonWithLoadingStateProps>
+  >;
+
   const ButtonWithLoadingState = React.forwardRef<
     HTMLButtonElement,
-    ButtonWithLoadingStateProps<P>
-  >(function ForwardedButtonWithLoadingState(
-    {
-      showWhileRunning: runningContent,
-      children,
-      waiting,
-      onClick = voidClick,
-      ...otherProps
-    },
-    ref
-  ) {
-    const [isRunning, showRunningWhile] = useLoadingState();
-    const runOperation = useMonitoringCallback(
-      (
-        currentOnClick,
-        ...params: Parameters<React.MouseEventHandler<HTMLButtonElement>>
+    ButtonWithLoadingStateProps
+  >(
+    ((): ButtonWithLoadingStateFunction => {
+      const ForwardedButtonWithLoadingState: ButtonWithLoadingStateFunction = (
+        {
+          showWhileRunning: runningContent,
+          children,
+          waiting,
+          onClick = voidClick,
+          ...otherProps
+        },
+        ref
       ) => {
-        if (runningContent && !isRunning)
-          return void showRunningWhile(currentOnClick(...params));
+        const [isRunning, showRunningWhile] = useLoadingState();
+        const runOperation = useMonitoringCallback(
+          (currentOnClick, ...params: ButtonClickParams) => {
+            if (runningContent && !isRunning)
+              return void showRunningWhile(
+                (currentOnClick as AwaitableButtonClickHandler)(...params)
+              );
 
-        return void currentOnClick(...params);
-      },
-      [isRunning, runningContent, showRunningWhile],
-      onClick
-    );
+            return void currentOnClick(...params);
+          },
+          [isRunning, runningContent, showRunningWhile],
+          onClick
+        );
 
-    return (
-      <ButtonComponent
-        {...(otherProps as ButtonProps<P>)}
-        waiting={waiting || isRunning}
-        onClick={runOperation}
-        ref={ref}
-      >
-        {(isRunning && runningContent) || children}
-      </ButtonComponent>
-    );
-  }) as ButtonWithLoadingStateComponent<P>;
+        const buttonProps = {
+          ...otherProps,
+          waiting: waiting || isRunning,
+          onClick: runOperation,
+          children: (isRunning && runningContent) || children,
+        };
 
-  ButtonWithLoadingState.propTypes = {
-    ...buttonBasePropTypes,
-    ...(ButtonComponent.propTypes || {}),
-    showWhileRunning: PropTypes.node,
-    onClick: PropTypes.func
-  } as React.WeakValidationMap<ButtonWithLoadingStateProps<P>>;
+        return <ButtonComponent {...(buttonProps as unknown as P)} ref={ref} />;
+      };
 
-  ButtonWithLoadingState.defaultProps = {
-    ...buttonBaseDefaultProps,
-    ...((ButtonComponent.defaultProps || {}) as ButtonProps<P>),
-    showWhileRunning: undefined,
-    onClick: undefined
-  };
+      ForwardedButtonWithLoadingState.propTypes = {
+        children: PropTypes.node,
+        ...(ButtonComponent.propTypes || {}),
+        showWhileRunning: PropTypes.node,
+        onClick: PropTypes.func,
+      } as unknown as (typeof ForwardedButtonWithLoadingState)['propTypes'];
+
+      return ForwardedButtonWithLoadingState;
+    })()
+  );
 
   return ButtonWithLoadingState;
 }

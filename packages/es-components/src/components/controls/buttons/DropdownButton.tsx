@@ -15,8 +15,7 @@ import Button, {
   ButtonProps,
   ButtonStyleType,
   buttonStyleTypes,
-  propTypes as buttonPropTypes,
-  defaultProps as buttonDefaultProps
+  propTypes as buttonPropTypes
 } from './Button';
 import LinkButton from './LinkButton';
 import useUniqueId from '../../util/useUniqueId';
@@ -201,12 +200,12 @@ const DropdownButton = React.forwardRef<HTMLButtonElement, DropdownButtonProps>(
       children,
       buttonValue,
       manualButtonValue,
-      shouldCloseOnButtonClick,
-      shouldUpdateButtonValue,
-      styleType,
-      inline,
-      flatLeftEdge,
-      flatRightEdge,
+      shouldCloseOnButtonClick = false,
+      shouldUpdateButtonValue = false,
+      styleType = 'default',
+      inline = false,
+      flatLeftEdge = false,
+      flatRightEdge = false,
       ...otherProps
     },
     ref
@@ -373,37 +372,6 @@ DropdownButton.propTypes = {
   flatLeftEdge: PropTypes.bool,
   /** Styles the Button with a flat right edge */
   flatRightEdge: PropTypes.bool
-};
-
-type ButtonDefaultPropsNoChildren = Omit<typeof buttonDefaultProps, 'children'>;
-type ButtonDefaultEntry = [
-  keyof ButtonDefaultPropsNoChildren,
-  ButtonDefaultPropsNoChildren[keyof ButtonDefaultPropsNoChildren]
-];
-
-const correctedDefaultProps = Object.entries(buttonDefaultProps)
-  .filter<ButtonDefaultEntry>(
-    (entry): entry is ButtonDefaultEntry => entry[0] !== 'children'
-  )
-  .reduce<ButtonDefaultPropsNoChildren>(
-    (acc, [key, value]) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      ({ ...acc, [key]: value } as ButtonDefaultPropsNoChildren),
-    {} as ButtonDefaultPropsNoChildren
-  );
-
-DropdownButton.defaultProps = {
-  ...correctedDefaultProps,
-  buttonValue: undefined,
-  manualButtonValue: undefined,
-  shouldUpdateButtonValue: false,
-  shouldCloseOnButtonClick: false,
-  styleType: 'default',
-  rootClose: false,
-  inline: false,
-  id: undefined,
-  flatLeftEdge: false,
-  flatRightEdge: false
 };
 
 export default DropdownButton as DropdownButtonComponent;

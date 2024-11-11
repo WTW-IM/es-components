@@ -1,4 +1,4 @@
-import pkg from '../package.json' assert { type: 'json' };
+import pkg from '../package.json' with { type: 'json' };
 
 export function getPackageExternals() {
   const peerDepNames = Object.keys(pkg.peerDependencies || {});

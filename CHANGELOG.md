@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.14.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.14.0...v21.14.1-pre-prod.0) (2024-11-11)
+
+### Build
+
+- linting against files changed from base_ref ([c6c82ac](https://github.com/WTW-IM/es-components/commit/c6c82ac83382ce07e49f6848a4ba537fa5b92c8d))
+- removing Darrken as a CODEOWNER ([7fac1c3](https://github.com/WTW-IM/es-components/commit/7fac1c356b0ea6edb04572d16274c40b4de16b4d))
+
+### Fix
+
+- fixing default type export in shared types ([602c97f](https://github.com/WTW-IM/es-components/commit/602c97f77b86f43a79ecc3189da86943ad39137b))
+- fixing tests after TS upgrade; removing some defaultProps ([1b68968](https://github.com/WTW-IM/es-components/commit/1b68968f8cd63dc9200b35497b2137229321deb8))
+
+### Upgrade
+
+- bump rollup from 3.29.4 to 3.29.5 ([f201931](https://github.com/WTW-IM/es-components/commit/f201931aedc1ef1c116f4906d439234a33419399))
+
 # [21.14.0](https://github.com/WTW-IM/es-components/compare/v21.14.0-pre-prod.0...v21.14.0) (2024-10-09)
 
 **Note:** Version bump only for package es-components-monorepo

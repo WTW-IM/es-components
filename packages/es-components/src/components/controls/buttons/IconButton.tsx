@@ -85,17 +85,21 @@ export type IconButtonProps = Override<
   }
 >;
 
+const noop = () => {
+  // noop
+};
+
 const IconButton = React.forwardRef<HTMLDivElement, IconButtonProps>(
   function IconButton(
     {
       iconName,
-      iconSize,
+      iconSize = 45,
       childrenFontSize = 18,
-      isHighlighted,
-      isIncomplete,
-      disabled,
+      isHighlighted = false,
+      isIncomplete = false,
+      disabled = false,
       maxWidth = 'auto',
-      onClick,
+      onClick = noop,
       styleType = 'magenta',
       children,
       ...otherProps
@@ -155,19 +159,6 @@ IconButton.propTypes = {
   styleType: PropTypes.oneOf<ButtonVariantStyleType>(buttonVariantStyleTypes),
   /** Content to be displayed below the icon */
   children: PropTypes.node
-};
-
-IconButton.defaultProps = {
-  ...Container.defaultProps,
-  isHighlighted: false,
-  isIncomplete: false,
-  iconSize: 45,
-  childrenFontSize: 18,
-  disabled: false,
-  maxWidth: undefined,
-  onClick: () => ({}),
-  styleType: 'magenta',
-  children: undefined
 };
 
 export default IconButton;

@@ -8,21 +8,24 @@ import type {
   ButtonVariantStyleType
 } from 'es-components-shared-types';
 
-export type RadioGroupContextShape<A extends boolean = false> = Override<
-  Partial<RadioButtonProps>,
-  {
-    name: string;
-    disableAllOptions?: boolean;
-    selectedValue?: HTMLInputProps['value'];
-    onChange?: HTMLInputProps['onChange'];
-    isAnswerGroup?: A;
-    size?: A extends true ? ButtonSize : RadioButtonProps['size'];
-    isOutline?: A extends true ? boolean : never;
-    styleType?: A extends true ? ButtonVariantStyleType : never;
-    selectedType?: A extends true ? ButtonVariantStyleType : never;
-    itemWidth?: A extends true ? CSS.Property.Width : never;
-  }
->;
+export type IsAnswerGroup = boolean | undefined;
+
+export type RadioGroupContextShape<A extends IsAnswerGroup = undefined> =
+  Override<
+    RadioButtonProps,
+    {
+      name: string;
+      disableAllOptions?: boolean;
+      selectedValue?: HTMLInputProps['value'];
+      onChange?: HTMLInputProps['onChange'];
+      isAnswerGroup?: A;
+      size?: A extends true ? ButtonSize : RadioButtonProps['size'];
+      isOutline?: A extends true ? boolean : never;
+      styleType?: A extends true ? ButtonVariantStyleType : never;
+      selectedType?: A extends true ? ButtonVariantStyleType : never;
+      itemWidth?: A extends true ? CSS.Property.Width : never;
+    }
+  >;
 
 export const radioGroupContextPropTypes = {
   /** The name of the radio group */
@@ -33,14 +36,14 @@ export const radioGroupContextPropTypes = {
   disableAllOptions: PropTypes.bool
 };
 
-export const RadioGroupContext = createContext<RadioGroupContextShape<boolean>>(
-  {
-    name: '',
-    selectedValue: ''
-  }
-);
+export const RadioGroupContext = createContext<
+  RadioGroupContextShape<IsAnswerGroup>
+>({
+  name: '',
+  selectedValue: ''
+});
 
-export function useRadioGroupContext<T extends boolean = false>() {
+export function useRadioGroupContext<T extends IsAnswerGroup = undefined>() {
   return useContext<RadioGroupContextShape<T>>(
     RadioGroupContext as React.Context<RadioGroupContextShape<T>>
   );

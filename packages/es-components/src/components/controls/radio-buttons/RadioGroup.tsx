@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 import {
   RadioGroupContext,
   RadioGroupContextShape,
-  radioGroupContextPropTypes
+  radioGroupContextPropTypes,
+  IsAnswerGroup
 } from './RadioGroupContext';
 
-export type RadioGroupProps<A extends boolean = false> = Override<
+export type RadioGroupProps<A extends IsAnswerGroup = undefined> = Override<
   RadioGroupContextShape<A>,
   {
     children: NonNullable<React.ReactNode>;
   }
 >;
 
-function RadioGroup<P, A extends boolean>({
+function RadioGroup<A extends IsAnswerGroup>({
   children,
+  selectedValue = '',
+  disableAllOptions = false,
   ...props
-}: RadioGroupProps<A> & P) {
+}: RadioGroupProps<A>) {
   return (
-    <RadioGroupContext.Provider value={props}>
+    <RadioGroupContext.Provider
+      value={{ ...props, selectedValue, disableAllOptions }}
+    >
       {children}
     </RadioGroupContext.Provider>
   );
@@ -29,16 +34,7 @@ export const propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export const defaultProps = {
-  disableAllOptions: false
-};
-
 RadioGroup.propTypes = propTypes;
-
-RadioGroup.defaultProps = {
-  selectedValue: '',
-  disableAllOptions: false
-};
 
 /** @component */
 export default RadioGroup;

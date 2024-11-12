@@ -3,6 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import type { DefaultTheme } from 'styled-components';
 
+type KeysMatching<T, V> = {
+  [K in keyof T]-?: K extends keyof V ? (T[K] extends V[K] ? K : never) : never;
+}[keyof T];
+
 declare global {
   type Maybe<T> = T | null | undefined;
   type IsNullable<T, K> = null | undefined extends T ? K : never;
@@ -28,7 +32,11 @@ declare global {
 
   type JSXElementProps<T extends keyof JSX.IntrinsicElements> =
     T extends keyof JSX.IntrinsicElements
-      ? React.PropsWithoutRef<Omit<JSX.IntrinsicElements[T], 'key'>>
+      ? React.PropsWithoutRef<
+          'key' extends keyof JSX.IntrinsicElements[T]
+            ? Omit<JSX.IntrinsicElements[T], 'key'>
+            : JSX.IntrinsicElements[T]
+        >
       : never;
 
   type Theme = ESTheme;
@@ -50,6 +58,7 @@ declare global {
     theme?: DefaultTheme;
   }
 
+  type Without<T, U> = Omit<T, Extract<keyof T, keyof U>>;
   type Override<T, U> = Omit<T, keyof U> & U;
 
   type PropTypesOf<T> = {

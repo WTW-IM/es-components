@@ -6,7 +6,6 @@ import { useTheme } from '../../util/useTheme';
 import { darken, getTextColor } from '../../util/colors';
 import ButtonBase, {
   propTypes as buttonBasePropTypes,
-  defaultProps as buttonBaseDefaultProps,
   ButtonBaseProps,
   UnstyledButton,
   esComponentsButtonClass
@@ -368,17 +367,6 @@ export const propTypes: PropTypesOf<ButtonProps> = {
   flatRightEdge: PropTypes.bool
 };
 
-export const defaultProps = {
-  ...buttonBaseDefaultProps,
-  styleType: 'default' as ButtonStyleType,
-  block: false,
-  mobileBlock: true,
-  size: 'default' as ButtonSize,
-  flatLeftEdge: false,
-  flatRightEdge: false
-};
-
 Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 
 export default Button;

@@ -12,13 +12,20 @@ export type ToggleButtonProps = ButtonProps & {
 
 const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   function ToggleButton(props, ref) {
-    const { styleType, size, block, isOutline, onClick, ...buttonProps } =
-      props;
-    const [isPressed, setIsPressed] = useState(props.isPressed);
+    const {
+      styleType,
+      size,
+      block,
+      isOutline = false,
+      onClick,
+      isPressed: isPressedProp = false,
+      ...buttonProps
+    } = props;
+    const [isPressed, setIsPressed] = useState(isPressedProp);
 
     useEffect(() => {
-      setIsPressed(props.isPressed);
-    }, [props.isPressed]);
+      setIsPressed(isPressedProp);
+    }, [isPressedProp]);
 
     const toggleButton: React.MouseEventHandler<HTMLButtonElement> =
       useMonitoringCallback((currentOnClick, event) => {
@@ -49,21 +56,10 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   }
 );
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 ToggleButton.propTypes = {
   ...Button.propTypes,
   isOutline: PropTypes.bool,
   isPressed: PropTypes.bool
 };
-
-const unchildrenDefaults = { ...Button.defaultProps };
-delete unchildrenDefaults['children'];
-
-ToggleButton.defaultProps = {
-  ...(unchildrenDefaults as Omit<ButtonProps, 'children'>),
-  isOutline: false,
-  isPressed: false
-};
-/* eslint-enable @typescript-eslint/no-non-null-assertion */
 
 export default ToggleButton;

@@ -11,7 +11,7 @@ import { writeIconNameType } from './config/loadIconNameType.mjs';
 import { getAssetsUrl, getIsProduction } from './config/assetsUrl.js';
 import { getPackageExternals } from './config/getPackageExternals.mjs';
 import { tscEsComponents } from './config/tscEsComponents.mjs';
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 

@@ -28,9 +28,11 @@ function getWindowSize({
     windowHeight: defaultHeight || getMediaHeight()
   };
 }
+type PropsWithoutWindowSizeProps<P> =
+    P extends unknown ? (keyof WindowSizeProps extends keyof P ? Omit<P, keyof WindowSizeProps> : P) : P;
 
-type AllWindowSizeProps<P> = P & DefaultSizeProps & WindowSizeProps;
-type WithWindowSizeProps<P> = Omit<P, keyof WindowSizeProps> & DefaultSizeProps;
+type AllWindowSizeProps<P = object> = P & DefaultSizeProps & WindowSizeProps;
+type WithWindowSizeProps<P = object> = PropsWithoutWindowSizeProps<P> & DefaultSizeProps;
 
 export function useWindowSize({
   defaultWidth,
@@ -68,25 +70,21 @@ export function useWindowSize({
 }
 
 export default function withWindowSize<
-  P extends WindowSizeProps = WindowSizeProps,
-  T = never
+  P extends AllWindowSizeProps=AllWindowSizeProps,
+  T = unknown
 >(
-  ComponentClass:
-    | React.ComponentType<AllWindowSizeProps<P>>
-    | React.ForwardRefExoticComponent<
-        AllWindowSizeProps<P> & React.RefAttributes<T>
-      >
+  ComponentClass: React.ComponentType<P & React.RefAttributes<T>>
 ) {
   const WithWindowSize = React.forwardRef<T, WithWindowSizeProps<P>>(
     function ForwardedWithWindowSize(props, ref) {
-      const windowSize = useWindowSize(props);
+      const { windowWidth, windowHeight} = useWindowSize(props);
+
+      const allProps = {...props, windowWidth, windowHeight} as AllWindowSizeProps<P>;
 
       return (
         <ComponentClass
           ref={ref}
-          {...(props as P & DefaultSizeProps)}
-          windowWidth={windowSize.windowWidth}
-          windowHeight={windowSize.windowHeight}
+          {...(allProps)}
         />
       );
     }
@@ -97,13 +95,6 @@ export default function withWindowSize<
   ).propTypes = {
     defaultWidth: PropTypes.number,
     defaultHeight: PropTypes.number
-  };
-
-  (
-    WithWindowSize as React.ForwardRefExoticComponent<DefaultSizeProps>
-  ).defaultProps = {
-    defaultWidth: undefined,
-    defaultHeight: undefined
   };
 
   return WithWindowSize;

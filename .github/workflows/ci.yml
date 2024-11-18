@@ -49,6 +49,7 @@ jobs:
             --output-file eslint_report.json \
             --format json \
             --no-error-on-unmatched-pattern \
+            --cache \
             $(git diff ${{ github.base_ref }} --name-only --relative)
 
       - name: Annotate JS Linting Results

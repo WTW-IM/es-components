@@ -1,4 +1,3 @@
-import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -6,7 +5,7 @@ import Button from '../Button';
 import { renderWithTheme } from '../../../util/test-utils';
 import {
   withLoadingStateWhileRunning,
-  LoadingStateOnClick,
+  LoadingStateOnClick
 } from './withLoadingStateWhileRunning';
 import noop from '../../../util/noop';
 

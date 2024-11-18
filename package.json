@@ -29,7 +29,7 @@
       "prettier --single-quote --write"
     ],
     "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config packages/es-components/.eslintrc.js --cache"
+      "eslint --fix --config eslint.config.mjs --cache"
     ]
   },
   "devDependencies": {
@@ -39,9 +39,9 @@
     "@commitlint/prompt-cli": "^17.3.0",
     "@eslint/js": "^9.15.0",
     "@testing-library/cypress": "^10.0.1",
-    "@testing-library/dom": "^9.3.4",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/eslint__js": "^8.42.3",
     "@types/js-beautify": "^1.14.3",

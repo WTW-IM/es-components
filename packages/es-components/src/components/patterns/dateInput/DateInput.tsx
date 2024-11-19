@@ -14,6 +14,7 @@ import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
 
   && > * {
     margin-right: 2px;

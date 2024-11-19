@@ -31,12 +31,15 @@ const Year = React.forwardRef<HTMLInputElement, YearProps>(
     const [value, setValue] = useState(date?.getFullYear() || '');
 
     const onYearChange: React.ChangeEventHandler<HTMLInputElement> =
-      useMonitoringCallback((currentOnChange, event) => {
-        let year = event.target.value;
-        year = year.length > 4 ? year.slice(0, 4) : year;
-        setValue(year);
-        currentOnChange?.('year', year);
-      }, onChange);
+      useMonitoringCallback(
+        (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
+          let year = event.target.value;
+          year = year.length > 4 ? year.slice(0, 4) : year;
+          setValue(year);
+          currentOnChange?.('year', year);
+        },
+        onChange
+      );
 
     const onYearKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
       useMonitoringCallback((currentOnKeyDown, ev) => {

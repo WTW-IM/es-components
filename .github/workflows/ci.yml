@@ -50,7 +50,7 @@ jobs:
             --format json \
             --no-error-on-unmatched-pattern \
             --cache \
-            $(git diff ${{ github.base_ref }} --name-only --relative)
+            $(git diff origin/${{ github.base_ref }} --name-only --relative)
 
       - name: Annotate JS Linting Results
         if: ${{ github.event_name == 'pull_request_target' }}

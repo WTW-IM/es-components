@@ -25,7 +25,7 @@
     "packages/*"
   ],
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,mjs,json}": [
+    "**/*.{js,jsx,ts,tsx,mjs,json,yml,yaml}": [
       "prettier --single-quote --write"
     ],
     "packages/es-components/src/**/*.{js,jsx,ts,tsx}": [

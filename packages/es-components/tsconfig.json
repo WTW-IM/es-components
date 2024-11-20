@@ -15,7 +15,7 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "types",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "rootDirs": ["src", "../../shared/types/src"],
     "plugins": [

@@ -15,12 +15,7 @@ module.exports = function (api) {
       '@babel/preset-typescript',
       { isTSX: true, allExtensions: true, dts: true }
     ],
-    [
-      '@babel/preset-react',
-      {
-        runtime: 'automatic'
-      }
-    ]
+    '@babel/preset-react'
   ];
 
   let plugins = [

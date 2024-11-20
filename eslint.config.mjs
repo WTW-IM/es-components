@@ -10,7 +10,9 @@ import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import globals from 'globals';
 import path from 'path';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const plugins = {
   react: reactPlugin,

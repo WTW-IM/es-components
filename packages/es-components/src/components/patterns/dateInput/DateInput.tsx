@@ -37,9 +37,7 @@ function cleanZeroes(day: DayNumber) {
   return cleanDay as CleanNumber;
 }
 
-const dateParts = ['day', 'month', 'year'] as const;
-
-export type DatePart = (typeof dateParts)[number];
+export type DatePart = 'day' | 'month' | 'year';
 
 export type DatePartChangeHandler = (part: DatePart, value: string) => void;
 
@@ -236,19 +234,22 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     );
 
     const onBlurComponent: React.FocusEventHandler<HTMLInputElement> =
-      useMonitoringCallback((currentOnBlur, event) => {
-        const target = event.currentTarget;
-        setTimeout(() => {
-          if (
-            !target.contains(
-              (target.getRootNode() as unknown as DocumentOrShadowRoot)
-                .activeElement || null
-            )
-          ) {
-            currentOnBlur?.(event);
-          }
-        }, 0);
-      }, onBlur);
+      useMonitoringCallback(
+        (currentOnBlur, event: React.FocusEvent<HTMLInputElement>) => {
+          const target = event.currentTarget;
+          setTimeout(() => {
+            if (
+              !target.contains(
+                (target.getRootNode() as unknown as DocumentOrShadowRoot)
+                  .activeElement || null
+              )
+            ) {
+              currentOnBlur?.(event);
+            }
+          }, 0);
+        },
+        onBlur
+      );
 
     let setId = false;
 
@@ -259,7 +260,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
             ? React.cloneElement(child, {
                 id:
                   !setId && id
-                    ? (setId = true) && id
+                    ? ((setId = true), id)
                     : (child.props as HTMLElementProps).id,
                 onChange: onChangeDatePart,
                 date: createDate(state.year, state.month, state.day).value

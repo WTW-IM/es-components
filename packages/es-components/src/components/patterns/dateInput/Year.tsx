@@ -42,12 +42,15 @@ const Year = React.forwardRef<HTMLInputElement, YearProps>(
       );
 
     const onYearKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
-      useMonitoringCallback((currentOnKeyDown, ev) => {
-        onNonNumericHandler(ev);
-        if (ev.defaultPrevented) return;
+      useMonitoringCallback(
+        (currentOnKeyDown, ev: React.KeyboardEvent<HTMLInputElement>) => {
+          onNonNumericHandler(ev);
+          if (ev.defaultPrevented) return;
 
-        currentOnKeyDown?.(ev);
-      }, onKeyDown);
+          currentOnKeyDown?.(ev);
+        },
+        onKeyDown
+      );
 
     return (
       <YearInput

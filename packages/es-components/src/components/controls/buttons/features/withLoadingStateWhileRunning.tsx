@@ -11,9 +11,9 @@ type AwaitableButtonClickHandler = (
   ...params: ButtonClickParams
 ) => Promise<ButtonClickReturn>;
 
-export type LoadingStateOnClick =
-  | ButtonClickHandler
-  | AwaitableButtonClickHandler;
+export type LoadingStateOnClick = (
+  ...params: ButtonClickParams
+) => ButtonClickReturn | Promise<ButtonClickReturn>;
 
 export interface LoadingStateProps {
   showWhileRunning?: React.ReactNode;
@@ -26,73 +26,61 @@ type ExpectedButtonProps = Pick<
 >;
 type ForwardedButtonProps = Override<ButtonBaseProps, LoadingStateProps>;
 type ModifiedButtonProps<P extends ExpectedButtonProps> = Override<
-  ForwardedButtonProps,
-  P
+  P,
+  ForwardedButtonProps
 >;
 
 const voidClick = () => Promise.resolve();
 
+type ButtonWithLoadingStateProps<P extends ExpectedButtonProps> =
+  P extends ExpectedButtonProps ? ModifiedButtonProps<P> : never;
+
 export function withLoadingStateWhileRunning<P extends ExpectedButtonProps>(
   ButtonComponent: React.ComponentType<P>
 ) {
-  type ButtonWithLoadingStateProps = P extends ExpectedButtonProps
-    ? ModifiedButtonProps<P>
-    : never;
-
-  type ButtonWithLoadingStateFunction = React.ForwardRefRenderFunction<
-    HTMLButtonElement,
-    React.PropsWithoutRef<ButtonWithLoadingStateProps>
-  >;
-
   const ButtonWithLoadingState = React.forwardRef<
     HTMLButtonElement,
-    ButtonWithLoadingStateProps
-  >(
-    ((): ButtonWithLoadingStateFunction => {
-      const ForwardedButtonWithLoadingState: ButtonWithLoadingStateFunction = (
-        {
-          showWhileRunning: runningContent,
-          children,
-          waiting,
-          onClick = voidClick,
-          ...otherProps
-        },
-        ref
-      ) => {
-        const [isRunning, showRunningWhile] = useLoadingState();
-        const runOperation = useMonitoringCallback(
-          (currentOnClick, ...params: ButtonClickParams) => {
-            if (runningContent && !isRunning)
-              return void showRunningWhile(
-                (currentOnClick as AwaitableButtonClickHandler)(...params)
-              );
+    ButtonWithLoadingStateProps<P>
+  >(function ForwardedButtonWithLoadingState(
+    {
+      showWhileRunning: runningContent,
+      children,
+      waiting,
+      onClick = voidClick,
+      ...otherProps
+    },
+    ref
+  ) {
+    const [isRunning, showRunningWhile] = useLoadingState();
+    const runOperation = useMonitoringCallback(
+      (currentOnClick, ...params: ButtonClickParams) => {
+        if (runningContent && !isRunning)
+          return void showRunningWhile(
+            (currentOnClick as AwaitableButtonClickHandler)(...params)
+          );
 
-            return void currentOnClick(...params);
-          },
-          [isRunning, runningContent, showRunningWhile],
-          onClick
-        );
+        return void currentOnClick(...params);
+      },
+      [isRunning, runningContent, showRunningWhile],
+      onClick
+    );
 
-        const buttonProps = {
-          ...otherProps,
-          waiting: waiting || isRunning,
-          onClick: runOperation,
-          children: (isRunning && runningContent) || children,
-        };
+    const buttonProps = {
+      ...otherProps,
+      waiting: waiting || isRunning,
+      onClick: runOperation,
+      children: (isRunning && runningContent) || children
+    };
 
-        return <ButtonComponent {...(buttonProps as unknown as P)} ref={ref} />;
-      };
+    return <ButtonComponent {...(buttonProps as unknown as P)} ref={ref} />;
+  });
 
-      ForwardedButtonWithLoadingState.propTypes = {
-        children: PropTypes.node,
-        ...(ButtonComponent.propTypes || {}),
-        showWhileRunning: PropTypes.node,
-        onClick: PropTypes.func,
-      } as unknown as (typeof ForwardedButtonWithLoadingState)['propTypes'];
-
-      return ForwardedButtonWithLoadingState;
-    })()
-  );
+  ButtonWithLoadingState.propTypes = {
+    children: PropTypes.node,
+    ...(ButtonComponent.propTypes || {}),
+    showWhileRunning: PropTypes.node,
+    onClick: PropTypes.func
+  } as (typeof ButtonWithLoadingState)['propTypes'];
 
   return ButtonWithLoadingState;
 }

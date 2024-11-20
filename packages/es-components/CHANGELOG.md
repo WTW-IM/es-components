@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.14.2-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.14.1...v21.14.2-pre-prod.0) (2024-11-20)
+
+### Build
+
+- updating eslint to latest w/ flat config ([129dc21](https://github.com/wtw-im/es-components/commit/129dc2141ea0052800fe3eac58820a0747392fb5))
+- using React.createElement for JSX ([de2b7fd](https://github.com/wtw-im/es-components/commit/de2b7fd0c8b68456cb6671ed0d881e44213ff4ba))
+
+### Fix
+
+- ensuring we don't have warnings from withLoadingStateWhileRunning ([cffe753](https://github.com/wtw-im/es-components/commit/cffe7538edcc3b9dbcf56d53e6aff1a3970b5ab2))
+
 ## [21.14.1](https://github.com/wtw-im/es-components/compare/v21.14.1-pre-prod.2...v21.14.1) (2024-11-12)
 
 **Note:** Version bump only for package es-components

@@ -306,6 +306,6 @@ export const iconNames = [
   'woman',
   'wrench',
   'zoom-in',
-  'zoom-out',
+  'zoom-out'
 ] as const;
 export type IconName = (typeof iconNames)[number];

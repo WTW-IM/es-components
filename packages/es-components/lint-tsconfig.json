@@ -13,7 +13,6 @@
     "lib/",
     "bundle/",
     "docs/",
-    "**/*.specs.ts",
-    "**/*.specs.tsx"
+    "types/"
   ]
 }

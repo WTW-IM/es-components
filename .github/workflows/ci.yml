@@ -49,7 +49,8 @@ jobs:
             --output-file eslint_report.json \
             --format json \
             --no-error-on-unmatched-pattern \
-            $(git diff ${{ github.base_ref }} --name-only --relative)
+            --cache \
+            $(git diff origin/${{ github.base_ref }} --name-only --relative)
 
       - name: Annotate JS Linting Results
         if: ${{ github.event_name == 'pull_request_target' }}

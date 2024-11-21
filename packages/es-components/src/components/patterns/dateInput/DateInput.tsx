@@ -233,23 +233,22 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       onChange
     );
 
-    const onBlurComponent: React.FocusEventHandler<HTMLInputElement> =
-      useMonitoringCallback(
-        (currentOnBlur, event: React.FocusEvent<HTMLInputElement>) => {
-          const target = event.currentTarget;
-          setTimeout(() => {
-            if (
-              !target.contains(
-                (target.getRootNode() as unknown as DocumentOrShadowRoot)
-                  .activeElement || null
-              )
-            ) {
-              currentOnBlur?.(event);
-            }
-          }, 0);
-        },
-        onBlur
-      );
+    const onBlurComponent = useMonitoringCallback(
+      (currentOnBlur, event: React.FocusEvent<HTMLInputElement>) => {
+        const target = event.currentTarget;
+        setTimeout(() => {
+          if (
+            !target.contains(
+              (target.getRootNode() as unknown as DocumentOrShadowRoot)
+                .activeElement || null
+            )
+          ) {
+            currentOnBlur?.(event);
+          }
+        }, 0);
+      },
+      onBlur
+    );
 
     let setId = false;
 

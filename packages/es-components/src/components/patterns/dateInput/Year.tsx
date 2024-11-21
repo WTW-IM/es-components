@@ -30,27 +30,25 @@ const Year = React.forwardRef<HTMLInputElement, YearProps>(
   function ForwardedYear({ date, onChange, onKeyDown, ...props }, ref) {
     const [value, setValue] = useState(date?.getFullYear() || '');
 
-    const onYearChange: React.ChangeEventHandler<HTMLInputElement> =
-      useMonitoringCallback(
-        (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
-          let year = event.target.value;
-          year = year.length > 4 ? year.slice(0, 4) : year;
-          setValue(year);
-          currentOnChange?.('year', year);
-        },
-        onChange
-      );
+    const onYearChange = useMonitoringCallback(
+      (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
+        let year = event.target.value;
+        year = year.length > 4 ? year.slice(0, 4) : year;
+        setValue(year);
+        currentOnChange?.('year', year);
+      },
+      onChange
+    );
 
-    const onYearKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
-      useMonitoringCallback(
-        (currentOnKeyDown, ev: React.KeyboardEvent<HTMLInputElement>) => {
-          onNonNumericHandler(ev);
-          if (ev.defaultPrevented) return;
+    const onYearKeyDown = useMonitoringCallback(
+      (currentOnKeyDown, ev: React.KeyboardEvent<HTMLInputElement>) => {
+        onNonNumericHandler(ev);
+        if (ev.defaultPrevented) return;
 
-          currentOnKeyDown?.(ev);
-        },
-        onKeyDown
-      );
+        currentOnKeyDown?.(ev);
+      },
+      onKeyDown
+    );
 
     return (
       <YearInput

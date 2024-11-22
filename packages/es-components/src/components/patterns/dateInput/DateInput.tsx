@@ -14,6 +14,7 @@ import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
 
   && > * {
     margin-right: 2px;
@@ -36,9 +37,7 @@ function cleanZeroes(day: DayNumber) {
   return cleanDay as CleanNumber;
 }
 
-const dateParts = ['day', 'month', 'year'] as const;
-
-export type DatePart = (typeof dateParts)[number];
+export type DatePart = 'day' | 'month' | 'year';
 
 export type DatePartChangeHandler = (part: DatePart, value: string) => void;
 
@@ -234,8 +233,8 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       onChange
     );
 
-    const onBlurComponent: React.FocusEventHandler<HTMLInputElement> =
-      useMonitoringCallback((currentOnBlur, event) => {
+    const onBlurComponent = useMonitoringCallback(
+      (currentOnBlur, event: React.FocusEvent<HTMLInputElement>) => {
         const target = event.currentTarget;
         setTimeout(() => {
           if (
@@ -247,7 +246,9 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
             currentOnBlur?.(event);
           }
         }, 0);
-      }, onBlur);
+      },
+      onBlur
+    );
 
     let setId = false;
 
@@ -258,7 +259,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
             ? React.cloneElement(child, {
                 id:
                   !setId && id
-                    ? (setId = true) && id
+                    ? ((setId = true), id)
                     : (child.props as HTMLElementProps).id,
                 onChange: onChangeDatePart,
                 date: createDate(state.year, state.month, state.day).value

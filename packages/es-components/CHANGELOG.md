@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.14.3-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.14.2...v21.14.3-pre-prod.0) (2024-11-22)
+
+### Fix
+
+- clarifying types in useMonitoringHooks ([78b4d30](https://github.com/wtw-im/es-components/commit/78b4d305926cee25891fb5f431f686e7986af5da))
+- enhance DateInput component layout and improve Year input change handler ([ae334df](https://github.com/wtw-im/es-components/commit/ae334df213460724d76984efa3e5c49254437016))
+
+### Update
+
+- update ESLint config and improve type definitions in DateInput and Year components ([bdce10b](https://github.com/wtw-im/es-components/commit/bdce10b041432a4c444f99c9d5f9cb5505ab6517))
+
 ## [21.14.2](https://github.com/wtw-im/es-components/compare/v21.14.2-pre-prod.0...v21.14.2) (2024-11-20)
 
 **Note:** Version bump only for package es-components

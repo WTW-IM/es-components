@@ -37,63 +37,59 @@ export function useMonitoringEffect<T>(
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-type AnyMonitoringCallback<T> = (...args: [T, ...any]) => any;
+type SomeMonitoringCallback<T> = (...args: [T, ...any]) => any;
 
-type MonitoringCallbackArgs<MonitorT extends AnyMonitoringCallback<any>> =
-  MonitorT extends (arg1: infer T, ...args: infer Args) => any
-    ? [...Args]
-    : never;
-
-type MonitoringCallback<MonitorT extends AnyMonitoringCallback<any>> = (
-  ...args: MonitoringCallbackArgs<MonitorT>
-) => ReturnType<MonitorT>;
+type MonitoringCallback<
+  MonitorT extends SomeMonitoringCallback<MonitoredT>,
+  MonitoredT
+> = MonitorT extends (...args: [MonitoredT, ...infer Args]) => infer R
+  ? (...args: Args) => R
+  : never;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 export function useMonitoringCallback<
-  MonitorT extends AnyMonitoringCallback<MonitoredT>,
+  MonitorT extends SomeMonitoringCallback<MonitoredT>,
   MonitoredT
->(callback: MonitorT, monitor: MonitoredT): MonitoringCallback<MonitorT>;
+>(
+  callback: MonitorT,
+  monitor: MonitoredT
+): MonitoringCallback<MonitorT, MonitoredT>;
 export function useMonitoringCallback<
-  MonitorT extends AnyMonitoringCallback<MonitoredT>,
+  MonitorT extends SomeMonitoringCallback<MonitoredT>,
   MonitoredT
 >(
   callback: MonitorT,
   deps: React.DependencyList,
   monitor: MonitoredT
-): MonitoringCallback<MonitorT>;
+): MonitoringCallback<MonitorT, MonitoredT>;
 export function useMonitoringCallback<
-  MonitorT extends AnyMonitoringCallback<MonitoredT>,
+  MonitorT extends SomeMonitoringCallback<MonitoredT>,
   MonitoredT
 >(
   ...args: [MonitorT, MonitoredT] | [MonitorT, React.DependencyList, MonitoredT]
-): MonitoringCallback<MonitorT> {
+): MonitoringCallback<MonitorT, MonitoredT> {
+  type ReturnCallback = MonitoringCallback<MonitorT, MonitoredT>;
   const [callback, depsOrMonitor, monitor] = args;
   const depsIncluded = args.length === 3;
 
   const callbackRef = useRef(callback);
   callbackRef.current = callback;
 
-  const deps = depsIncluded ? (depsOrMonitor as React.DependencyList) : [];
-  const monitorValue: MonitoredT = depsIncluded
-    ? (monitor as MonitoredT)
-    : (depsOrMonitor as MonitoredT);
+  const deps = (depsIncluded ? depsOrMonitor : []) as React.DependencyList;
+  const monitorValue = (depsIncluded ? monitor : depsOrMonitor) as MonitoredT;
   const monitorRef = useRef(monitorValue);
   monitorRef.current = monitorValue;
 
-  /* eslint-disable react-hooks/exhaustive-deps */
-  const monitoredCallback = useCallback<MonitoringCallback<MonitorT>>(
-    (...args) => {
-      const result = callbackRef.current(
+  /* eslint-disable @typescript-eslint/no-unsafe-return,react-hooks/exhaustive-deps */
+  const monitoredCallback = useCallback<ReturnCallback>(
+    ((...args: Parameters<ReturnCallback>) =>
+      callbackRef.current(
         monitorRef.current,
         ...args
-      ) as ReturnType<MonitorT>;
-      // eslint seems to think this is unsafe, but it's not
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return result;
-    },
+      ) as ReturnType<ReturnCallback>) as ReturnCallback,
     deps
   );
-  /* eslint-enable react-hooks/exhaustive-deps */
+  /* eslint-enable @typescript-eslint/no-unsafe-return,react-hooks/exhaustive-deps */
 
   return monitoredCallback;
 }

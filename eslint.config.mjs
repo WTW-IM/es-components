@@ -1,5 +1,5 @@
 import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import tseslint, { configs as tseslintConfigs } from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
@@ -10,7 +10,9 @@ import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import globals from 'globals';
 import path from 'path';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const plugins = {
   react: reactPlugin,
@@ -23,8 +25,8 @@ export default tseslint.config(
   reactPlugin.configs.flat.recommended,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
-  tseslint.configs.eslintRecommended,
-  ...tseslint.configs.recommendedTypeChecked,
+  tseslintConfigs.eslintRecommended,
+  ...tseslintConfigs.recommendedTypeChecked,
   {
     ignores: [
       '**/node_modules/',
@@ -82,10 +84,14 @@ export default tseslint.config(
       'react/jsx-no-bind': 0,
       'react/destructuring-assignment': 0,
       'linebreak-style': 0,
+
+      // import rules handled by typescript
+      'import/default': 0,
       'import/named': 0,
-      'import/namespace': 0, // typescript handles this
-      'import/default': 0, // typescript handles this
-      'import/no-named-as-default-member': 0, // typescript handles this
+      'import/namespace': 0,
+      'import/no-named-as-default-member': 0,
+      'import/no-unresolved': 0,
+
       'import/no-extraneous-dependencies': [
         'error',
         {
@@ -205,7 +211,7 @@ export default tseslint.config(
   },
   {
     files: ['**/*.{js,jsx,mjs}', '*.{js,jsx,mjs}'],
-    extends: [tseslint.configs.disableTypeChecked, eslint.configs.recommended],
+    extends: [tseslintConfigs.disableTypeChecked, eslint.configs.recommended],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 0,
       '@typescript-eslint/no-unsafe-return': 0,
@@ -213,7 +219,10 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-argument': 0,
       '@typescript-eslint/no-unsafe-call': 0,
       '@typescript-eslint/restrict-template-expressions': 0,
-      '@typescript-eslint/restrict-plus-operands': 0
+      '@typescript-eslint/restrict-plus-operands': 0,
+
+      // reset import rules previously handled by typescript
+      ...importPlugin.configs.recommended.rules
     }
   }
 );

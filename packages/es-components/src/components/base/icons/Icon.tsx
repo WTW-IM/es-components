@@ -8,13 +8,13 @@ import IconContext from './IconContext';
 import { htmlProps, htmlDefaultProps } from '../../util/htmlProps';
 
 export const iconBasics = css`
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
 `;
 
 export type IconBaseProps = {
@@ -37,7 +37,7 @@ const StyledIcon = styled.i<IconBaseProps>`
 
 type IconInternalProps = {
   name?: IconName;
-  size?: CSS.Property.FontSize | number;
+  size?: Exclude<CSS.Property.FontSize, 0> | number;
 };
 
 export type IconProps = Override<JSXElementProps<'i'>, IconInternalProps>;

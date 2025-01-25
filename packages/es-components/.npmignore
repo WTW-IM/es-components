@@ -2,6 +2,7 @@ config/
 es6/styleguide
 lib/styleguide
 src/
+shared/
 .babelrc.js
 styleguide.config.js
 webpack-components-bundle.config.js

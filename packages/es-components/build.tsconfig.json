@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "es-components-shared-types": ["./shared/index.d.ts"],
+      "orig-sg-components/*": [
+        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "rsg-components/*": [
+        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "orig-sg-typings": [
+        "../../node_modules/react-styleguidist/lib/typings/index.d.ts"
+      ],
+      "react": ["../../node_modules/@types/react"],
+      "*": ["../../node_modules/@types/*"]
+    }
+  },
+  "references": [
+    {
+      "path": "../es-components-wtw-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../es-components-via-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "./shared-types.tsconfig.json"
+    }
+  ]
+}

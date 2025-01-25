@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": "./"
+  },
+  "references": [
+    {
+      "path": "../../es-components-wtw-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../../es-components-via-theme/tsconfig.ref.json"
+    },
+    {
+      "path": "../../../shared/types/tsconfig.ref.json"
+    }
+  ]
+}

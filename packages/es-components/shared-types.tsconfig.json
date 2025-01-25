@@ -1,0 +1,10 @@
+{
+  "extends": "../../shared/types/tsconfig.ref.json",
+  "compilerOptions": {
+    "outDir": "shared",
+    "tsBuildInfoFile": "shared/.tsbuildinfo",
+    "composite": true,
+    "emitDeclarationOnly": true,
+    "declaration": true
+  }
+}

@@ -46,7 +46,7 @@ jobs:
 
       - uses: cypress-io/github-action@v6
         with:
-          working-directory: ${{ env.ES_COMPONENTS_DIR }}
+          working-directory: ${{ env.ES_COMPONENTS_DIR }}/cypress
           config-file: cypress.config.ts
           install: false
 

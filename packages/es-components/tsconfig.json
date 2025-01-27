@@ -1,6 +1,8 @@
 {
   "extends": "../../projects-tsconfig.json",
   "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -8,8 +10,6 @@
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
@@ -17,15 +17,20 @@
     "outDir": "types",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "rootDirs": ["src", "../../shared/types/src"],
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths",
-        "afterDeclarations": true,
-        "useRootDirs": true,
-        "exclude": ["**/node_modules/**"]
-      }
-    ]
+    "rootDirs": ["src"],
+    "paths": {
+      "orig-sg-components/*": [
+        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "rsg-components/*": [
+        "../../node_modules/react-styleguidist/lib/client/rsg-components/*"
+      ],
+      "orig-sg-typings": [
+        "../../node_modules/react-styleguidist/lib/typings/index.d.ts"
+      ],
+      "react": ["../../node_modules/@types/react"],
+      "*": ["../../node_modules/@types/*"]
+    }
   },
   "include": ["./src", "./src/build-utils", "./config/jest-setup.ts"],
   "exclude": ["./types"],

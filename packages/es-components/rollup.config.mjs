@@ -159,6 +159,10 @@ export default async args => {
             {
               src: './types/build-utils/jest.d.ts',
               dest: './build-utils'
+            },
+            {
+              src: './shared',
+              dest: './types'
             }
           ]
         })

@@ -1,6 +1,6 @@
 {
   "name": "es-components-via-theme",
-  "version": "21.14.4-pre-prod.0",
+  "version": "21.14.4",
   "main": "dist/packages/es-components-via-theme/src/index.js",
   "files": [
     "dist"

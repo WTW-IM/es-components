@@ -18,6 +18,8 @@ Commit messages should follow the [eslint conventional commit](https://www.npmjs
 structure. References to github issues are not required.
 
 Submit a pull request when you're ready to have your code reviewed and apply the `ready for review` label.
+If you are on the WTW IM-Technology Teams network, you should also message `@Customization Team` in
+the "Enrollment - Customization" Teams channel.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more information on standards.
 

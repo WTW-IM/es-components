@@ -3,10 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import type { DefaultTheme } from 'styled-components';
 
-type KeysMatching<T, V> = {
-  [K in keyof T]-?: K extends keyof V ? (T[K] extends V[K] ? K : never) : never;
-}[keyof T];
-
 declare global {
   type Maybe<T> = T | null | undefined;
   type IsNullable<T, K> = null | undefined extends T ? K : never;
@@ -78,6 +74,6 @@ declare global {
 }
 
 declare module 'styled-components' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   export interface DefaultTheme extends ESTheme {}
 }

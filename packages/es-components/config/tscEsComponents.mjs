@@ -10,7 +10,9 @@ const exec = util.promisify(origExec);
 
 export async function tscEsComponents() {
   const require = createRequire(import.meta.url);
-  const tsconfigPath = path.normalize(require.resolve('../tsconfig.json'));
+  const tsconfigPath = path.normalize(
+    require.resolve('../build.tsconfig.json')
+  );
   const tscCommand = ['npx', 'tsc', '--build', `"${tsconfigPath}"`].join(' ');
   console.log(
     chalk.yellow('running tsc command'),

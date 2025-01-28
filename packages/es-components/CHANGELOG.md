@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.14.4-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.14.3...v21.14.4-pre-prod.0) (2025-01-27)
+
+### Fix
+
+- ensuring types paths are correct in exported package ([7033cd7](https://github.com/wtw-im/es-components/commit/7033cd7b0c000e02d9e0f0390f2179abb5f49320))
+
 ## [21.14.3](https://github.com/wtw-im/es-components/compare/v21.14.3-pre-prod.0...v21.14.3) (2024-12-12)
 
 **Note:** Version bump only for package es-components

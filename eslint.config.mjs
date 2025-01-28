@@ -10,9 +10,7 @@ import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import globals from 'globals';
 import path from 'path';
 
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = import.meta.dirname;
 
 const plugins = {
   react: reactPlugin,
@@ -25,9 +23,9 @@ export default tseslint.config(
   reactPlugin.configs.flat.recommended,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
-  tseslintConfigs.eslintRecommended,
-  ...tseslintConfigs.recommendedTypeChecked,
+  tseslintConfigs.recommendedTypeChecked,
   {
+    // ignores needs to be its own config block
     ignores: [
       '**/node_modules/',
       '**/dist/',
@@ -35,7 +33,8 @@ export default tseslint.config(
       '**/lib/',
       '**/bundle/',
       '**/docs/',
-      '**/es-components/types/'
+      '**/es-components/types/',
+      '**/es-components/shared/'
     ]
   },
   {
@@ -50,8 +49,12 @@ export default tseslint.config(
         ecmaFeatures: {
           jsx: true
         },
-        // project: [path.join(__dirname, 'base-lint-tsconfig.json')],
-        projectServices: true
+        project: [
+          './tsconfig.json',
+          './packages/*/tsconfig.json',
+          './shared/*/tsconfig.json'
+        ],
+        tsConfigRootDir: __dirname
       }
     },
     plugins,

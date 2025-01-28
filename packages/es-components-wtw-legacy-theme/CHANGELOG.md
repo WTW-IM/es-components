@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.14.4-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.14.3...v21.14.4-pre-prod.0) (2025-01-27)
+
+### Docs
+
+- updating README to reference messaging the Customization team for PR reviews ([914c710](https://github.com/WTW-IM/es-components/commit/914c71027810463af6fd128379fd5583e7bd7833))
+
+### Fix
+
+- ensuring types paths are correct in exported package ([7033cd7](https://github.com/WTW-IM/es-components/commit/7033cd7b0c000e02d9e0f0390f2179abb5f49320))
+
 # [21.11.0](https://github.com/WTW-IM/es-components/compare/v21.11.0-pre-prod.0...v21.11.0) (2023-10-09)
 
 **Note:** Version bump only for package es-components-wtw-legacy-theme

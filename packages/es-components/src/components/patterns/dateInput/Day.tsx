@@ -30,7 +30,9 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
   { date, onChange, onKeyDown, ...props },
   ref
 ) {
-  const [value, setValue] = useState<string>(date?.getDate().toString() || '');
+  const [value, setValue] = useState<string>(
+    props.value?.toString() || date?.getDate().toString() || ''
+  );
 
   const onDayChange: React.ChangeEventHandler<HTMLInputElement> =
     useMonitoringCallback((currentOnChange, event) => {

@@ -252,16 +252,19 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
 
     let setId = false;
 
-    const cloneChild = (child: React.ReactElement, value?: string) => {
+    const cloneChild = (
+      child: React.ReactElement<DayProps | MonthProps | YearProps>,
+      value?: string
+    ) => {
       return React.cloneElement(child, {
-      ...child.props,
-      id:
-        !setId && id
-        ? ((setId = true), id)
-        : (child.props as HTMLElementProps).id,
-      onChange: onChangeDatePart,
-      date: createDate(state.year, state.month, state.day).value,
-      value: value || (child.props as HTMLElementProps).value,
+        ...child.props,
+        id:
+          !setId && id
+            ? ((setId = true), id)
+            : (child.props as HTMLElementProps).id,
+        onChange: onChangeDatePart,
+        date: createDate(state.year, state.month, state.day).value,
+        value: value || (child.props as HTMLElementProps).defaultValue
       });
     };
 
@@ -269,7 +272,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       <Wrapper ref={ref} tabIndex={-1} {...props} onBlur={onBlurComponent}>
         {React.Children.map(children, child => {
           const isDate = isDatePartChild(child);
-          if (child.type === Day && defaultDay) {
+          if (isReactElementChild(child) && child.type === Day && defaultDay) {
             return cloneChild(child, defaultDay);
           }
           return isDate ? cloneChild(child) : child;

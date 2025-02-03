@@ -35,20 +35,26 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
   );
 
   const onDayChange: React.ChangeEventHandler<HTMLInputElement> =
-    useMonitoringCallback((currentOnChange, event) => {
-      let day = event.currentTarget.value;
-      day = day.length > 2 ? day.slice(0, 2) : day;
-      setValue(day);
-      currentOnChange?.('day', day);
-    }, onChange);
+    useMonitoringCallback(
+      (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
+        let day = event.currentTarget.value;
+        day = day.length > 2 ? day.slice(0, 2) : day;
+        setValue(day);
+        currentOnChange?.('day', day);
+      },
+      onChange
+    );
 
   const onDayKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
-    useMonitoringCallback((currentOnKeyDown, ev) => {
-      onNonNumericHandler(ev);
-      if (ev.defaultPrevented) return;
+    useMonitoringCallback(
+      (currentOnKeyDown, ev: React.KeyboardEvent<HTMLInputElement>) => {
+        onNonNumericHandler(ev);
+        if (ev.defaultPrevented) return;
 
-      currentOnKeyDown?.(ev);
-    }, onKeyDown);
+        currentOnKeyDown?.(ev);
+      },
+      onKeyDown
+    );
 
   return (
     <DayInput

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../../controls/ValidationContext';
 import Dropdown, { DropdownProps } from '../../controls/dropdown/Dropdown';
-import type { DatePartChangeHandler } from './DateInput';
+import type { DatePartProps } from './DateInput';
 import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const MonthDropdown = styled(Dropdown)`
@@ -15,28 +15,45 @@ const MonthDropdown = styled(Dropdown)`
 
 export type MonthProps = Override<
   DropdownProps,
-  {
+  DatePartProps & {
     monthNames?: string[];
-    date?: Date;
+    monthValues?: (number | string)[];
     selectOptionText?: string;
-    onChange?: DatePartChangeHandler;
   }
 >;
 
 const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
   function ForwardedMonth(
-    { monthNames = [], selectOptionText, date, onChange, ...props },
+    {
+      monthNames = [],
+      monthValues,
+      selectOptionText,
+      date,
+      onChange,
+      currentDateEvent,
+      ...props
+    },
     ref
   ) {
+    if (monthValues?.length && monthNames.length !== monthValues.length) {
+      throw new Error(
+        'If both monthNames and monthValues are provided, they must be the same length'
+      );
+    }
+
     const theme = useTheme();
     const validationState = useContext(ValidationContext);
-    const [month, setMonth] = useState(date ? date.getMonth() + 1 : '');
+    const [month, setMonth] = useState(
+      (date?.getMonth() ?? -1) + 1 || currentDateEvent?.rawValues?.month || '1'
+    );
 
-    const onMonthChange: React.ChangeEventHandler<HTMLSelectElement> =
-      useMonitoringCallback((currentOnChange, event) => {
+    const onMonthChange = useMonitoringCallback(
+      (currentOnChange, event: React.ChangeEvent<HTMLSelectElement>) => {
         setMonth(event.target.value);
         currentOnChange?.('month', event.target.value);
-      }, onChange);
+      },
+      onChange
+    );
 
     return (
       <MonthDropdown
@@ -48,7 +65,7 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
       >
         {selectOptionText && <option value="">{selectOptionText}</option>}
         {monthNames.map((value, index) => (
-          <option value={index + 1} key={value}>
+          <option value={monthValues?.[index] ?? index + 1} key={value}>
             {value}
           </option>
         ))}

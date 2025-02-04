@@ -22,16 +22,20 @@ export type DayProps = Override<
   JSXElementProps<'input'>,
   {
     date?: Date;
+    defaultDay?: number;
     onChange?: DatePartChangeHandler;
   }
 >;
 
 const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
-  { date, onChange, onKeyDown, ...props },
+  { date, defaultDay, onChange, onKeyDown, ...props },
   ref
 ) {
   const [value, setValue] = useState<string>(
-    props.value?.toString() || date?.getDate().toString() || ''
+    props.value?.toString() ||
+      date?.getDate().toString() ||
+      defaultDay?.toString() ||
+      ''
   );
 
   const onDayChange: React.ChangeEventHandler<HTMLInputElement> =
@@ -69,6 +73,7 @@ const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
       onKeyDown={onDayKeyDown}
       onChange={onDayChange}
       value={value}
+      defaultValue={defaultDay?.toString()}
     />
   );
 });

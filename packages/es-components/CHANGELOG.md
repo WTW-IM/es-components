@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.15.0-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.14.4...v21.15.0-pre-prod.0) (2025-02-05)
+
+### Fix
+
+- correct defaultDay usage in day input component ([a36e336](https://github.com/wtw-im/es-components/commit/a36e336275c8cf0735fb4c500521566a470b838b))
+
+### New
+
+- allowing monthValues to be passed along with monthNames ([f85b733](https://github.com/wtw-im/es-components/commit/f85b7331f3ced96e3e34cc31de937a5eb1932e4e))
+
+### Update
+
+- changes to date input control to allow for default day functionality ([5d05809](https://github.com/wtw-im/es-components/commit/5d0580993f9cdab76b646f148d2cf3d8cfb0ec03))
+- enhance date input control to support default day functionality for child components ([5793fdc](https://github.com/wtw-im/es-components/commit/5793fdc075640c28b6cfa220d1e29ab333dd1b24))
+- refine event handling in Day component for improved type safety ([406794c](https://github.com/wtw-im/es-components/commit/406794cf663482bc4b971d6b120c03d21e08304b))
+
 ## [21.14.4](https://github.com/wtw-im/es-components/compare/v21.14.4-pre-prod.0...v21.14.4) (2025-01-28)
 
 **Note:** Version bump only for package es-components

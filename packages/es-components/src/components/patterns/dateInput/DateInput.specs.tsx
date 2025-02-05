@@ -82,7 +82,7 @@ it('executes handleOnBlur when focus is lost', async () => {
     isInRange: false,
     rawValues: {
       day: '',
-      month: '0',
+      month: '1',
       year: '2025'
     }
   });
@@ -287,7 +287,7 @@ it('returns undefined when Day is present but not defined', async () => {
     isInRange: false,
     rawValues: {
       day: '',
-      month: '0',
+      month: '1',
       year: '1983'
     },
     value: undefined

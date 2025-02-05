@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.15.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.15.0-pre-prod.0...v21.15.0-pre-prod.1) (2025-02-05)
+
+### Fix
+
+- ensuring change doesn't trigger immediately ([4d1f051](https://github.com/WTW-IM/es-components/commit/4d1f05141f72e7b5f0952c56f4b917c8f443d020))
+- ensuring month has correct default value ([977b73c](https://github.com/WTW-IM/es-components/commit/977b73c78cdb679626ab26dbbfb23f2ecac84da4))
+
 # [21.15.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.14.4...v21.15.0-pre-prod.0) (2025-02-05)
 
 ### Fix

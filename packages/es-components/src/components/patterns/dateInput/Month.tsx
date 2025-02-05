@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -22,6 +22,21 @@ export type MonthProps = Override<
   }
 >;
 
+const getDefaultMonth = (
+  date: Maybe<Date>,
+  currentDateEvent: DatePartProps['currentDateEvent'],
+  selectOptionText: Maybe<string>,
+  monthValues?: (number | string)[]
+) => {
+  const dateMonthValue = date ? date.getMonth() + 1 : undefined;
+  const currentMonthValue = currentDateEvent?.rawValues?.month;
+  const initialSelectedMonth = selectOptionText
+    ? 'none'
+    : (monthValues?.[0] ?? 1);
+
+  return dateMonthValue || currentMonthValue || initialSelectedMonth;
+};
+
 const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
   function ForwardedMonth(
     {
@@ -31,6 +46,7 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
       date,
       onChange,
       currentDateEvent,
+      updateStateSilently,
       ...props
     },
     ref
@@ -44,8 +60,14 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
     const theme = useTheme();
     const validationState = useContext(ValidationContext);
     const [month, setMonth] = useState(
-      (date?.getMonth() ?? -1) + 1 || currentDateEvent?.rawValues?.month || '1'
+      getDefaultMonth(date, currentDateEvent, selectOptionText, monthValues)
     );
+
+    useEffect(() => {
+      updateStateSilently?.({ month });
+      // we only want to run this effect once, so we don't need to include the dependencies
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onMonthChange = useMonitoringCallback(
       (currentOnChange, event: React.ChangeEvent<HTMLSelectElement>) => {

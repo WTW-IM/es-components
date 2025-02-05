@@ -214,6 +214,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
   ) {
     const onChange = useRef(onChangeProp);
     onChange.current = onChangeProp;
+    const afterInitialRender = useRef(false);
 
     const [state, dispatch] = useReducer<typeof reducer>(
       reducer,
@@ -266,6 +267,8 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     }, [children, state.month]);
 
     useEffect(() => {
+      if (!afterInitialRender.current) return;
+
       onChange.current?.(currentDate);
     }, [currentDate]);
 
@@ -310,6 +313,10 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       },
       onBlur
     );
+
+    useEffect(() => {
+      afterInitialRender.current = true;
+    }, []);
 
     let hasSetId = false;
 

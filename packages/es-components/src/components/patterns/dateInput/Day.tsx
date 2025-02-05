@@ -5,48 +5,53 @@ import styled from 'styled-components';
 import { BasicTextbox } from '../../controls/textbox/InputBase';
 import onNonNumericHandler from './onNonNumericHandler';
 import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
-import type { DatePartChangeHandler } from './DateInput';
+import type { DatePartProps } from './DateInput';
 
 const DayInput = styled(BasicTextbox)`
-  appearance: textfield;
   flex: 1 0 35px;
+  appearance: textfield;
 
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
-    appearance: none;
     margin: 0;
+    appearance: none;
   }
 `;
 
-export type DayProps = Override<
-  JSXElementProps<'input'>,
-  {
-    date?: Date;
-    onChange?: DatePartChangeHandler;
-  }
->;
+export type DayProps = Override<JSXElementProps<'input'>, DatePartProps>;
 
 const Day = React.forwardRef<HTMLInputElement, DayProps>(function ForwardedDay(
-  { date, onChange, onKeyDown, ...props },
+  { date, currentDateEvent, onChange, onKeyDown, ...props },
   ref
 ) {
-  const [value, setValue] = useState<string>(date?.getDate().toString() || '');
+  const [value, setValue] = useState<string>(
+    props.value?.toString() ||
+      date?.getDate().toString() ||
+      currentDateEvent?.rawValues?.day ||
+      ''
+  );
 
   const onDayChange: React.ChangeEventHandler<HTMLInputElement> =
-    useMonitoringCallback((currentOnChange, event) => {
-      let day = event.currentTarget.value;
-      day = day.length > 2 ? day.slice(0, 2) : day;
-      setValue(day);
-      currentOnChange?.('day', day);
-    }, onChange);
+    useMonitoringCallback(
+      (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
+        let day = event.currentTarget.value;
+        day = day.length > 2 ? day.slice(0, 2) : day;
+        setValue(day);
+        currentOnChange?.('day', day);
+      },
+      onChange
+    );
 
   const onDayKeyDown: React.KeyboardEventHandler<HTMLInputElement> =
-    useMonitoringCallback((currentOnKeyDown, ev) => {
-      onNonNumericHandler(ev);
-      if (ev.defaultPrevented) return;
+    useMonitoringCallback(
+      (currentOnKeyDown, ev: React.KeyboardEvent<HTMLInputElement>) => {
+        onNonNumericHandler(ev);
+        if (ev.defaultPrevented) return;
 
-      currentOnKeyDown?.(ev);
-    }, onKeyDown);
+        currentOnKeyDown?.(ev);
+      },
+      onKeyDown
+    );
 
   return (
     <DayInput

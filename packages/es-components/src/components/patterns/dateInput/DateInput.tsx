@@ -1,5 +1,12 @@
 import 'get-root-node-polyfill/implement';
-import React, { useEffect, useReducer, useRef, useCallback } from 'react';
+import React, {
+  useEffect,
+  useReducer,
+  useRef,
+  useCallback,
+  useMemo,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { isBefore, isAfter } from 'date-fns';
@@ -63,15 +70,17 @@ function reducer(state: DateInputState, action: DateAction): DateInputState {
   }
 }
 
+export interface RawDate {
+  year: string;
+  month: string;
+  day: string;
+}
+
 type InputProps = JSXElementProps<'input'>;
 export type DateChangeEvent = {
   value?: Date;
   isInRange: boolean;
-  rawValues: {
-    year: string;
-    month: string;
-    day: string;
-  };
+  rawValues: RawDate;
 };
 
 export type DateInputProps = Override<
@@ -88,6 +97,12 @@ export type DateInputProps = Override<
   }
 >;
 
+export interface DatePartProps {
+  date?: Date;
+  onChange?: DatePartChangeHandler;
+  currentDateEvent?: DateChangeEvent;
+}
+
 const getDefaultState = (
   defaultValue?: Date,
   defaultDay = ''
@@ -95,7 +110,7 @@ const getDefaultState = (
   if (!defaultValue) {
     return {
       day: defaultDay,
-      month: '',
+      month: '0',
       year: ''
     };
   }
@@ -132,6 +147,56 @@ function isDatePartChild(
   );
 }
 
+const createDate = (
+  dateState: DateInputState,
+  {
+    minDate,
+    maxDate,
+    hasDayElement
+  }: { minDate?: Date; maxDate?: Date; hasDayElement?: boolean }
+): DateChangeEvent => {
+  const { day, month, year } = dateState;
+  const cleanDay = day ? cleanZeroes(day.toString() as DayNumber) : day;
+  const date = new Date(`${year}/${month}/${cleanDay}`);
+  const dateIsValid =
+    month !== 'none' &&
+    year?.length === 4 &&
+    (hasDayElement ? date.getDate().toString() === cleanDay : true) &&
+    (month ? (date.getMonth() + 1).toString() === month.toString() : true) &&
+    date.getFullYear().toString() === year.toString();
+
+  const isInRange =
+    dateIsValid &&
+    (minDate ? isAfter(date, minDate) : true) &&
+    (maxDate ? isBefore(date, maxDate) : true);
+  return {
+    value: dateIsValid ? date : undefined,
+    isInRange,
+    rawValues: {
+      year: year?.toString() || '',
+      month: month === 'none' ? '' : month?.toString() || '',
+      day: day?.toString() || ''
+    }
+  };
+};
+
+function cloneDateChild<T extends DayProps | MonthProps | YearProps>(
+  child: React.ReactElement<T>,
+  currentDateEvent: DateChangeEvent,
+  { defaultValue: propsDefaultValue, value: propsValue, ...props }: Partial<T>
+) {
+  const { value: childValue, defaultValue: childDefaultValue } = child.props;
+  const value =
+    propsValue || propsDefaultValue || childValue || childDefaultValue;
+
+  return React.cloneElement(child, {
+    ...child.props,
+    ...props,
+    currentDateEvent,
+    value
+  });
+}
+
 const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
   function ForwardedDateInput(
     {
@@ -141,18 +206,47 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       id,
       maxDate,
       minDate,
-      onChange,
+      onChange: onChangeProp,
       onBlur,
       ...props
     },
     ref
   ) {
+    const onChange = useRef(onChangeProp);
+    onChange.current = onChangeProp;
+
     const [state, dispatch] = useReducer<typeof reducer>(
       reducer,
       getDefaultState(defaultValue, defaultDay)
     );
 
+    const [currentMinDate, setCurrentMinDate] = useState(minDate);
+    const [currentMaxDate, setCurrentMaxDate] = useState(maxDate);
+
     const hasDayElement = useRef(false);
+    const currentDate = useMemo(
+      () =>
+        createDate(state, {
+          minDate: currentMinDate,
+          maxDate: currentMaxDate,
+          hasDayElement: hasDayElement.current
+        }),
+      [state, currentMinDate, currentMaxDate]
+    );
+
+    useEffect(() => {
+      setCurrentMinDate(oldMin => {
+        if (oldMin?.toString() === minDate?.toString()) return oldMin;
+        return minDate;
+      });
+    }, [minDate]);
+
+    useEffect(() => {
+      setCurrentMaxDate(oldMax => {
+        if (oldMax?.toString() === maxDate?.toString()) return oldMax;
+        return maxDate;
+      });
+    }, [maxDate]);
 
     useEffect(() => {
       React.Children.forEach(children, child => {
@@ -171,55 +265,23 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       });
     }, [children, state.month]);
 
-    const createDate = useCallback(
-      (year?: string, month?: string, day?: string): DateChangeEvent => {
-        const cleanDay = day ? cleanZeroes(day.toString() as DayNumber) : day;
-        const date = new Date(`${year}/${month}/${cleanDay}`);
-        const dateIsValid =
-          month !== 'none' &&
-          year?.length === 4 &&
-          (hasDayElement.current
-            ? date.getDate().toString() === cleanDay
-            : true) &&
-          (month
-            ? (date.getMonth() + 1).toString() === month.toString()
-            : true) &&
-          date.getFullYear().toString() === year.toString();
+    useEffect(() => {
+      onChange.current?.(currentDate);
+    }, [currentDate]);
 
-        const isInRange =
-          dateIsValid &&
-          (minDate ? isAfter(date, minDate) : true) &&
-          (maxDate ? isBefore(date, maxDate) : true);
-        return {
-          value: dateIsValid ? date : undefined,
-          isInRange,
-          rawValues: {
-            year: year?.toString() || '',
-            month: month === 'none' ? '' : month?.toString() || '',
-            day: day?.toString() || ''
-          }
-        };
-      },
-      [maxDate, minDate]
-    );
-
-    const onChangeDatePart = useMonitoringCallback(
-      (currentOnChange, datePart: DatePart, value: string) => {
-        const { day, month, year } = state;
+    const onChangeDatePart = useCallback(
+      (datePart: DatePart, value: string) => {
         switch (datePart) {
           case 'day':
-            currentOnChange?.(createDate(year, month, value));
             dispatch({
               type: 'day_updated',
               value
             });
             return;
           case 'month':
-            currentOnChange?.(createDate(year, value, day));
             dispatch({ type: 'month_updated', value });
             return;
           case 'year':
-            currentOnChange?.(createDate(value, month, day));
             dispatch({
               type: 'year_updated',
               value
@@ -229,8 +291,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
             throw new Error();
         }
       },
-      [createDate, state],
-      onChange
+      []
     );
 
     const onBlurComponent = useMonitoringCallback(
@@ -250,22 +311,25 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       onBlur
     );
 
-    let setId = false;
+    let hasSetId = false;
 
     return (
       <Wrapper ref={ref} tabIndex={-1} {...props} onBlur={onBlurComponent}>
-        {React.Children.map(children, child =>
-          isDatePartChild(child)
-            ? React.cloneElement(child, {
-                id:
-                  !setId && id
-                    ? ((setId = true), id)
-                    : (child.props as HTMLElementProps).id,
-                onChange: onChangeDatePart,
-                date: createDate(state.year, state.month, state.day).value
-              })
-            : child
-        )}
+        {React.Children.map(children, child => {
+          const isDatePart = isDatePartChild(child);
+          if (!isDatePart) return child;
+
+          const childId =
+            !hasSetId && id
+              ? ((hasSetId = true), id)
+              : (child as HTMLElementProps).id;
+
+          return cloneDateChild(child, currentDate, {
+            id: childId,
+            onChange: onChangeDatePart,
+            date: currentDate.value
+          });
+        })}
       </Wrapper>
     );
   }

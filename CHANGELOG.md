@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.15.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.15.0-pre-prod.1...v21.15.0-pre-prod.2) (2025-02-06)
+
+### Fix
+
+- ensuring children of DateInput retain their id attributes ([a95c3a9](https://github.com/WTW-IM/es-components/commit/a95c3a9f1bb76865dcd9540d00ef73621641521c))
+
 # [21.15.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.15.0-pre-prod.0...v21.15.0-pre-prod.1) (2025-02-05)
 
 ### Fix

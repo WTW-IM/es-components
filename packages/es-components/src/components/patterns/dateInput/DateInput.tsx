@@ -297,9 +297,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
           if (!isDatePart) return child;
 
           const childId =
-            !hasSetId && id
-              ? ((hasSetId = true), id)
-              : (child as HTMLElementProps).id;
+            !hasSetId && id ? ((hasSetId = true), id) : child.props.id;
 
           return cloneDateChild(child, currentDate, {
             id: childId,

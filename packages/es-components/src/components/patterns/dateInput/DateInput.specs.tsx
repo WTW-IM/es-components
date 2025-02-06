@@ -59,6 +59,25 @@ it('correctly adds id to first DatePart element', async () => {
   expect(targetInput).toHaveAttribute('data-testid', 'month');
 });
 
+it('correctly adds a child id if provided', async () => {
+  const props = {
+    onChange: jest.fn()
+  };
+
+  renderWithTheme(
+    <Control>
+      <DateInput {...props}>
+        <DateInput.Month />
+        <DateInput.Day aria-label="day" id="test" />
+        <DateInput.Year />
+      </DateInput>
+    </Control>
+  );
+
+  const targetInput = await screen.findByRole('spinbutton', { name: /day/i });
+  expect(targetInput).toHaveAttribute('id', 'test');
+});
+
 it('executes handleOnBlur when focus is lost', async () => {
   const onBlur = jest.fn();
   const onChange = jest.fn();

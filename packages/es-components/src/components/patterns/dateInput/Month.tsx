@@ -37,10 +37,27 @@ const getDefaultMonth = (
   return dateMonthValue || currentMonthValue || initialSelectedMonth;
 };
 
+export const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+] as const;
+
+export type MonthName = (typeof monthNames)[number];
+
 const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
   function ForwardedMonth(
     {
-      monthNames = [],
+      monthNames: monthNamesProp = monthNames,
       monthValues,
       selectOptionText,
       date,
@@ -51,7 +68,7 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
     },
     ref
   ) {
-    if (monthValues?.length && monthNames.length !== monthValues.length) {
+    if (monthValues?.length && monthNamesProp.length !== monthValues.length) {
       throw new Error(
         'If both monthNames and monthValues are provided, they must be the same length'
       );
@@ -86,7 +103,7 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
         ref={ref}
       >
         {selectOptionText && <option value="">{selectOptionText}</option>}
-        {monthNames.map((value, index) => (
+        {monthNamesProp.map((value, index) => (
           <option value={monthValues?.[index] ?? index + 1} key={value}>
             {value}
           </option>
@@ -96,23 +113,6 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
   }
 );
 
-export const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
-] as const;
-
-export type MonthName = (typeof monthNames)[number];
-
 Month.propTypes = {
   /** array of month names */
   monthNames: PropTypes.arrayOf<string>(
@@ -121,24 +121,6 @@ Month.propTypes = {
   ),
   /** adds an unselected option at the top */
   selectOptionText: PropTypes.string
-};
-
-Month.defaultProps = {
-  monthNames: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ],
-  selectOptionText: undefined
 };
 
 export default Month;

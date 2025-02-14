@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.15.0-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.15.0-pre-prod.1...v21.15.0-pre-prod.2) (2025-02-06)
+
+### Fix
+
+- ensuring children of DateInput retain their id attributes ([a95c3a9](https://github.com/WTW-IM/es-components/commit/a95c3a9f1bb76865dcd9540d00ef73621641521c))
+
+# [21.15.0-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.15.0-pre-prod.0...v21.15.0-pre-prod.1) (2025-02-05)
+
+### Fix
+
+- ensuring change doesn't trigger immediately ([4d1f051](https://github.com/WTW-IM/es-components/commit/4d1f05141f72e7b5f0952c56f4b917c8f443d020))
+- ensuring month has correct default value ([977b73c](https://github.com/WTW-IM/es-components/commit/977b73c78cdb679626ab26dbbfb23f2ecac84da4))
+
+# [21.15.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.14.4...v21.15.0-pre-prod.0) (2025-02-05)
+
+### Fix
+
+- correct defaultDay usage in day input component ([a36e336](https://github.com/WTW-IM/es-components/commit/a36e336275c8cf0735fb4c500521566a470b838b))
+
+### New
+
+- allowing monthValues to be passed along with monthNames ([f85b733](https://github.com/WTW-IM/es-components/commit/f85b7331f3ced96e3e34cc31de937a5eb1932e4e))
+
+### Update
+
+- changes to date input control to allow for default day functionality ([5d05809](https://github.com/WTW-IM/es-components/commit/5d0580993f9cdab76b646f148d2cf3d8cfb0ec03))
+- enhance date input control to support default day functionality for child components ([5793fdc](https://github.com/WTW-IM/es-components/commit/5793fdc075640c28b6cfa220d1e29ab333dd1b24))
+- refine event handling in Day component for improved type safety ([406794c](https://github.com/WTW-IM/es-components/commit/406794cf663482bc4b971d6b120c03d21e08304b))
+- upgrade GitHub Actions to latest versions for improved performance and reliability ([90ce4b9](https://github.com/WTW-IM/es-components/commit/90ce4b90ee5d9381464245db4f48cd0590244b8e))
+- upload-artifact version ([cdc1a2f](https://github.com/WTW-IM/es-components/commit/cdc1a2fcbd67e6269fc64bd84ed062af04a847dd))
+
 ## [21.14.4](https://github.com/WTW-IM/es-components/compare/v21.14.4-pre-prod.0...v21.14.4) (2025-01-28)
 
 **Note:** Version bump only for package es-components-monorepo

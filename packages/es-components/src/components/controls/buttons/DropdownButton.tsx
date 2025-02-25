@@ -1,5 +1,3 @@
-/// <reference types="styled-components/cssprop" />
-
 import 'get-root-node-polyfill/implement';
 import React, {
   useState,
@@ -46,23 +44,23 @@ const SplitButton = styled(Button)`
 `;
 
 const Caret = styled.span`
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px dashed;
   display: inline-block;
+  width: 0;
   height: 0;
+  border-top: 4px dashed;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
   margin-left: 5px;
   vertical-align: middle;
-  width: 0;
 `;
 
 const ButtonPanel = styled.div<{ topIndex: number; isOpen?: boolean }>`
-  background-color: ${props => props.theme.colors.white};
-  border: 1px solid ${props => props.theme.colors.gray3};
-  display: ${props => (props.isOpen ? 'block' : 'none')};
-  margin-top: 3px;
   position: relative;
   z-index: ${({ topIndex }) => topIndex};
+  display: ${props => (props.isOpen ? 'block' : 'none')};
+  border: 1px solid ${props => props.theme.colors.gray3};
+  margin-top: 3px;
+  background-color: ${props => props.theme.colors.white};
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     position: absolute;
@@ -75,9 +73,9 @@ const ButtonPanelChildrenContainer = styled.div`
 `;
 
 const StyledButtonLink = styled(LinkButton)`
-  color: black;
-  margin-bottom: 0;
   padding: 10px 20px;
+  margin-bottom: 0;
+  color: black;
   text-align: left;
   text-decoration: none;
 

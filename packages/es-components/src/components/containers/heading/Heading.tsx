@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {
-  DefaultTheme,
-  ThemedStyledProps,
-  css
-} from 'styled-components';
+import styled, { DefaultTheme, ExecutionContext, css } from 'styled-components';
 import { HeadingLevel, headingLevel } from 'es-components-shared-types';
 import { baseFontCss } from '../../util/style-utils';
 
 const knockoutStyles = css`
+  padding: 20px 15px;
   background-color: ${({ theme }) => theme.colors.primary};
   color: white;
-  padding: 20px 15px;
 `;
 
 const getMarginBottom = (size: string) => {
@@ -35,16 +31,16 @@ const getHeadingSizeCss = (
   { font: { headingMobile, headingDesktop }, screenSize }: DefaultTheme,
   adjustedSize: HeadingLevel
 ) => css`
-  font-size: ${headingMobile[adjustedSize]};
   margin-bottom: ${getMarginBottom(headingMobile[adjustedSize])};
+  font-size: ${headingMobile[adjustedSize]};
 
   small {
     font-size: ${adjustedSize > 3 ? '75%' : '65%'};
   }
 
   @media (min-width: ${screenSize.tablet}) {
-    font-size: ${headingDesktop[adjustedSize]};
     margin-bottom: ${getMarginBottom(headingDesktop[adjustedSize])};
+    font-size: ${headingDesktop[adjustedSize]};
   }
 `;
 
@@ -85,16 +81,13 @@ export type HeadingProps = JSXElementProps<'h1'> & {
 
 function getAdjustedProps<R>(
   func: (
-    props: ThemedStyledProps<HeadingProps, DefaultTheme> & {
-      adjustedSize: HeadingLevel;
-    }
+    props: ExecutionContext &
+      HeadingProps & {
+        adjustedSize: HeadingLevel;
+      }
   ) => R
 ) {
-  return ({
-    size,
-    level = 1,
-    ...props
-  }: ThemedStyledProps<HeadingProps, DefaultTheme>) =>
+  return ({ size, level = 1, ...props }: ExecutionContext & HeadingProps) =>
     func({
       ...props,
       size,

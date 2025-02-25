@@ -173,7 +173,9 @@ const SwitchCheck = styled.span<SwitchElementProps>`
     top: 0.2rem;
     width: 54px;
     z-index: 5;
-    transition: background-color 0.25s linear, border 0.25s linear,
+    transition:
+      background-color 0.25s linear,
+      border 0.25s linear,
       box-shadow 0.25s linear;
   }
 
@@ -249,11 +251,14 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
   }, [checked]);
 
   const handleToggle: React.ChangeEventHandler<HTMLInputElement> =
-    useMonitoringCallback((currentOnChange, event) => {
-      const isChecked = event.target.checked;
-      setIsToggled(isChecked);
-      currentOnChange?.(event);
-    }, onChange);
+    useMonitoringCallback(
+      (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = event.target.checked;
+        setIsToggled(isChecked);
+        currentOnChange?.(event);
+      },
+      onChange
+    );
 
   return (
     <SwitchBase

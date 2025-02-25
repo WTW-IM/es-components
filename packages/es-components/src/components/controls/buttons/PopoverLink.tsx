@@ -10,16 +10,20 @@ import {
   ButtonVariantStyleType
 } from 'es-components-shared-types';
 
-const StyledButton = styled(LinkButton)<{ suppressUnderline?: boolean }>`
-  text-underline-position: under;
+interface PopoverLinkButtonStyledProps {
+  $suppressUnderline: boolean;
+}
+
+const StyledButton = styled(LinkButton)<PopoverLinkButtonStyledProps>`
+  text-decoration: ${({ $suppressUnderline }) =>
+    $suppressUnderline ? 'none' : `dashed underline`};
   text-decoration-skip-ink: none;
-  text-decoration: ${props =>
-    props.suppressUnderline ? 'none' : `dashed underline`};
+  text-underline-position: under;
 
   &:hover,
   :focus {
-    text-decoration: ${props =>
-      props.suppressUnderline ? 'none' : `solid underline`};
+    text-decoration: ${({ $suppressUnderline }) =>
+      $suppressUnderline ? 'none' : `solid underline`};
   }
 `;
 
@@ -44,7 +48,7 @@ const PopoverLink = React.forwardRef<HTMLButtonElement, PopoverLinkProps>(
       <StyledButton
         ref={forwardedRef}
         styleType={styleType || 'default'}
-        suppressUnderline={suppressUnderline || false}
+        $suppressUnderline={suppressUnderline || false}
         {...other}
       >
         {children || ''}

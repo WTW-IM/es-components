@@ -17,7 +17,7 @@ import {
   FloatingPortal,
   Placement
 } from '@floating-ui/react';
-import styled, { StyledComponent, DefaultTheme } from 'styled-components';
+import styled, { IStyledComponent } from 'styled-components';
 
 import Fade from '../../util/Fade';
 import PopoverLink, {
@@ -30,31 +30,32 @@ import useRootNode from '../../util/useRootNode';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 import { callRefs } from '../../util/callRef';
 
-type TooltipStyleProps = { topIndex: number };
+type TooltipStyleProps = { $topIndex: number };
 
 const TooltipBase = styled.div<TooltipStyleProps>`
   position: absolute;
-  z-index: ${({ topIndex }) => topIndex};
+  z-index: ${({ $topIndex }) => $topIndex};
 `;
 
 const TooltipInner = styled.div`
-  background-color: ${props => props.theme.colors.primary};
-  border-radius: 2px;
-  color: ${props => props.theme.colors.white};
-  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
-  font-size: 15px;
-  line-height: ${props => props.theme.font.baseLineHeight};
   max-width: 250px;
   padding: 3px 8px;
+  border-radius: 2px;
+  background-color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.white};
+  font-family:
+    'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+  font-size: 15px;
+  line-height: ${props => props.theme.font.baseLineHeight};
   text-align: left;
 `;
 
 const TooltipArrowBase = styled.div`
-  border-color: transparent;
-  border-style: solid;
-  height: 0;
   position: absolute;
   width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
 `;
 
 const TooltipTop = styled(TooltipBase)`
@@ -74,42 +75,38 @@ const TooltipLeft = styled(TooltipBase)`
 `;
 
 const TooltipArrowTop = styled(TooltipArrowBase)`
-  border-top-color: ${props => props.theme.colors.primary};
-  border-width: 5px 5px 0;
   bottom: 0;
+  border-width: 5px 5px 0;
+  border-top-color: ${props => props.theme.colors.primary};
 `;
 
 const TooltipArrowRight = styled(TooltipArrowBase)`
-  border-right-color: ${props => props.theme.colors.primary};
-  border-width: 5px 5px 5px 0;
   left: 0;
+  border-width: 5px 5px 5px 0;
+  border-right-color: ${props => props.theme.colors.primary};
 `;
 
 const TooltipArrowBottom = styled(TooltipArrowBase)`
-  border-bottom-color: ${props => props.theme.colors.primary};
-  border-width: 0 5px 5px;
   top: 0;
+  border-width: 0 5px 5px;
+  border-bottom-color: ${props => props.theme.colors.primary};
 `;
 
 const TooltipArrowLeft = styled(TooltipArrowBase)`
-  border-left-color: ${props => props.theme.colors.primary};
-  border-width: 5px 0 5px 5px;
   right: 0;
+  border-width: 5px 0 5px 5px;
+  border-left-color: ${props => props.theme.colors.primary};
 `;
 
 const ScreenReaderContent = screenReaderOnly('div');
 
-type AllTooltipProps = React.ComponentPropsWithRef<typeof TooltipBase>;
-type AllTooltipArrowProps = React.ComponentPropsWithRef<
-  typeof TooltipArrowBase
->;
+type DivPropsWithRef = React.PropsWithRef<JSX.IntrinsicElements['div']>;
+type Tooltips = [
+  IStyledComponent<'web', DivPropsWithRef & TooltipStyleProps>,
+  IStyledComponent<'web', DivPropsWithRef>
+];
 
-const getTooltips = (
-  position?: Placement
-): [
-  StyledComponent<'div', DefaultTheme, AllTooltipProps>,
-  StyledComponent<'div', DefaultTheme, AllTooltipArrowProps>
-] => {
+const getTooltips = (position?: Placement): Tooltips => {
   switch (position) {
     case 'right':
     case 'right-start':
@@ -245,7 +242,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
           <Fade in={show} mountOnEnter unmountOnExit>
             <InnerTooltip
               ref={floatingTooltipRef}
-              topIndex={getTopIndex()}
+              $topIndex={getTopIndex()}
               {...getFloatingProps({
                 id: tooltipId,
                 'aria-live': 'polite',
@@ -299,8 +296,6 @@ const passedPopoverLinkProps = Object.entries(
   {} as PopoverLinkValidationMap
 );
 
-passedPopoverLinkProps.dangerouslySetInnerHTML;
-
 Tooltip.propTypes = {
   name: PropTypes.string.isRequired,
   children: popoverLinkPropTypes.children as Validator<
@@ -316,7 +311,6 @@ Tooltip.propTypes = {
   disableFocus: PropTypes.bool,
   /** Select the color style of the button, types come from theme */
   styleType: popoverLinkPropTypes.styleType,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   linkProps: PropTypes.exact<PopoverLinkValidationMap>(
     passedPopoverLinkProps
   ) as Validator<PopoverLinkValidationProps>

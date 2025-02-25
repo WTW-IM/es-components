@@ -22,7 +22,6 @@ exports[`renders as expected 1`] = `
   text-transform: none;
   display: inline-block;
   font-size: inherit;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
 }
@@ -43,7 +42,7 @@ exports[`renders as expected 1`] = `
   color: #0073b6;
 }
 
-.c1:hover > i {
+.c1:hover >i {
   color: #0073b6;
 }
 
@@ -52,7 +51,7 @@ exports[`renders as expected 1`] = `
   color: #fff;
 }
 
-.c1:hover > i {
+.c1:hover >i {
   color: #fff;
 }
 
@@ -70,7 +69,7 @@ exports[`renders as expected 1`] = `
   color: #0073b6;
 }
 
-.c5:hover > i {
+.c5:hover >i {
   color: #0073b6;
 }
 
@@ -91,15 +90,15 @@ exports[`renders as expected 1`] = `
   color: #0073b6;
 }
 
-.c6:hover > i {
+.c6:hover >i {
   color: #0073b6;
 }
 
-.c6 > span {
+.c6 >span {
   pointer-events: none;
 }
 
-.c6 > i {
+.c6 >i {
   color: #f4f4f4;
 }
 
@@ -108,34 +107,26 @@ exports[`renders as expected 1`] = `
   color: #919191;
 }
 
-.c6:hover > i {
+.c6:hover >i {
   color: #f4f4f4;
 }
 
 .c4 {
-  -webkit-align-self: flex-end;
-  -ms-flex-item-align: end;
   align-self: flex-end;
 }
 
 .c2 {
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
   align-content: center;
   background-color: transparent;
   box-sizing: border-box;
   border: 0;
   color: inherit;
   cursor: inherit;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   font-size: inherit;
   height: 100%;
   padding: 10px;
   position: relative;
-  -webkit-text-decoration: none;
   text-decoration: none;
   width: 100%;
 }

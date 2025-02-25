@@ -9,7 +9,7 @@ import SelectionDrawer, { SelectionDrawerProps } from './SelectionDrawer';
 import { SelectionDrawerItemProps } from './SelectionDrawerItem';
 import { DrawerType } from './SelectionDrawerProvider';
 import { RadioDisplay } from '../../controls/radio-buttons/RadioButton';
-import { CheckboxDisplay } from '../../controls/checkbox/Checkbox';
+import { CheckboxInput } from '../../controls/checkbox/Checkbox';
 
 interface ToStringable {
   toString(): string;
@@ -27,6 +27,8 @@ type TestDrawerProps<T extends DrawerType = 'checkbox'> = Partial<
 type TestItemProps<T extends DrawerType = 'checkbox'> = Partial<
   SelectionDrawerItemProps<T>
 >;
+type TestItemValue<T extends DrawerType = 'checkbox'> =
+  TestItemProps<T>['value'];
 
 type TestSelectionProps<T extends DrawerType = 'checkbox'> = Override<
   TestDrawerProps<T>,
@@ -35,15 +37,12 @@ type TestSelectionProps<T extends DrawerType = 'checkbox'> = Override<
   }
 >;
 
-// eslint-disable-next-line jest/no-export
-export type ItemValue = Partial<SelectionDrawerItemProps<DrawerType>>['value'];
-
 function TestSelectionDrawer<T extends DrawerType>({
   items = [
-    { value: 'item1' },
-    { value: 'item2' },
-    { value: 'item3' }
-  ] as TestItemProps<T>[],
+    { value: 'item1' satisfies TestItemValue<T> } as TestItemProps<T>,
+    { value: 'item2' satisfies TestItemValue<T> } as TestItemProps<T>,
+    { value: 'item3' satisfies TestItemValue<T> } as TestItemProps<T>
+  ],
   ...props
 }: TestSelectionProps<T>) {
   while (items.length < 3) {
@@ -86,58 +85,19 @@ describe('SelectionDrawer', () => {
     }
   );
 
-  test.each<TestSelectionProps<DrawerType> & { expectedLabelStyles: string }>([
-    {
-      inputAlignment: 'left',
-      labelAlignment: 'left',
-      expectedLabelStyles: css`
-        justify-content: flex-start;
-        flex-direction: row;
-      `
-    },
-    {
-      inputAlignment: 'left',
-      labelAlignment: 'right',
-      expectedLabelStyles: css`
-        justify-content: space-between;
-        flex-direction: row;
-      `
-    },
-    {
-      inputAlignment: 'right',
-      labelAlignment: 'right',
-      expectedLabelStyles: css`
-        justify-content: flex-start;
-        flex-direction: row-reverse;
-      `
-    },
-    {
-      inputAlignment: 'right',
-      labelAlignment: 'left',
-      expectedLabelStyles: css`
-        justify-content: space-between;
-        flex-direction: row-reverse;
-      `
-    }
-  ])(
-    `properly renders $expectedLabelStyles header layout with "$inputAlignment" input and "$labelAlignment" label`,
-    async ({ expectedLabelStyles, ...props }) => {
-      render(<TestSelectionDrawer {...props} />);
-      const targets = await screen.findAllByLabelText(/item\d/);
-      targets.forEach(el => {
-        expect(el.closest('label')).toHaveStyle(expectedLabelStyles);
-      });
-    }
-  );
-
   interface StyleRuleBlock {
     [key: string]: ReturnType<typeof styledCss> | string;
+  }
+
+  interface StyleRuleBlockWithModifier extends StyleRuleBlock {
     modifier: ReturnType<typeof styledCss>;
   }
 
-  type StyleBlock = string | StyleRuleBlock;
+  type StyleBlock = string | StyleRuleBlockWithModifier;
 
-  const isRuleBlock = (styles: StyleBlock): styles is StyleRuleBlock =>
+  const isRuleBlock = (
+    styles: StyleBlock
+  ): styles is StyleRuleBlockWithModifier =>
     Boolean((styles as StyleRuleBlock).modifier);
 
   const checkStyleRules = (element: Element | null, styleBlock: StyleBlock) => {
@@ -152,6 +112,54 @@ describe('SelectionDrawer', () => {
     }
   };
 
+  // eslint-disable-next-line jest/expect-expect
+  test.each<
+    TestSelectionProps<DrawerType> & { expectedLabelStyles: StyleBlock }
+  >([
+    {
+      inputAlignment: 'left',
+      labelAlignment: 'left',
+      expectedLabelStyles: css`
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+      `
+    },
+    {
+      inputAlignment: 'left',
+      labelAlignment: 'right',
+      expectedLabelStyles: css`
+        flex-flow: row nowrap;
+        justify-content: space-between;
+      `
+    },
+    {
+      inputAlignment: 'right',
+      labelAlignment: 'right',
+      expectedLabelStyles: css`
+        flex-flow: row-reverse nowrap;
+        justify-content: flex-start;
+      `
+    },
+    {
+      inputAlignment: 'right',
+      labelAlignment: 'left',
+      expectedLabelStyles: css`
+        flex-flow: row-reverse nowrap;
+        justify-content: space-between;
+      `
+    }
+  ])(
+    `properly renders header layout with "$inputAlignment" input and "$labelAlignment" label`,
+    async ({ expectedLabelStyles, ...props }) => {
+      render(<TestSelectionDrawer {...props} />);
+      const targets = await screen.findAllByLabelText(/item\d/);
+      targets.forEach(el => {
+        const itemLabel = el.closest('label')!;
+        checkStyleRules(itemLabel, expectedLabelStyles);
+      });
+    }
+  );
+
   type SelectionDrawerTestProps = TestSelectionProps<DrawerType> & {
     expectedContainerStyles: string;
     expectedInputStyles: StyleBlock;
@@ -161,7 +169,6 @@ describe('SelectionDrawer', () => {
     };
   };
 
-  /* eslint-disable jest/no-conditional-expect */
   test.each<SelectionDrawerTestProps>([
     {
       type: 'checkbox',
@@ -191,12 +198,12 @@ describe('SelectionDrawer', () => {
         border-color: ${viaTheme.validationInputColor.danger.borderColor};
       `,
       expectedInputStyles: {
-        modifier: styledCss`& ~ ${styledCss`${RadioDisplay}`}`,
+        modifier: styledCss`& ~ ${RadioDisplay}`,
         'border-color': viaTheme.validationTextColor.danger
       },
       expectedSelectedStyles: {
         display: {
-          modifier: styledCss`&:checked ~ ${RadioDisplay}:before`,
+          modifier: styledCss`&:checked~${RadioDisplay}::before`,
           'background-color': viaTheme.validationTextColor.danger
         }
       }
@@ -249,21 +256,20 @@ describe('SelectionDrawer', () => {
         }
 
         if (pseudoStyles) {
+          const pseudoTarget = elementType === 'checkbox' ? inputDisplay : el;
           const pseudoModifier =
             elementType === 'checkbox'
-              ? `&:checked ~ ${CheckboxDisplay}.${validationClass}:after`
-              : styledCss`&:checked ~ ${RadioDisplay}:before`;
+              ? styledCss`${CheckboxInput}:checked~&.${validationClass}::after`
+              : styledCss`:checked~${RadioDisplay}::before`;
 
-          Object.entries(pseudoStyles).forEach(([prop, value]) => {
-            expect(el).toHaveStyleRule(prop, value, {
-              modifier: pseudoModifier
-            });
+          checkStyleRules(pseudoTarget, {
+            ...pseudoStyles,
+            modifier: pseudoModifier
           });
         }
       });
     }
   );
-  /* eslint-enable jest/no-conditional-expect */
 
   it('properly handles selection change for "radio" inputs', async () => {
     let selectedItems: string[] = [];
@@ -279,7 +285,7 @@ describe('SelectionDrawer', () => {
     while (itemNumber <= 3) {
       const targetValue = `item${itemNumber}`;
       const target = await screen.findByLabelText(targetValue);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
       await userEvent.click(target.closest('label')!);
       expect(target).toBeChecked();
       expect(selectedItems).toEqual([targetValue]);
@@ -304,7 +310,6 @@ describe('SelectionDrawer', () => {
       expectedItems = [...expectedItems, targetValue];
       const target = await screen.findByLabelText(targetValue);
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       await userEvent.click(target.closest('label')!);
 
       expectedItems.forEach(item => {
@@ -335,7 +340,6 @@ describe('SelectionDrawer', () => {
         expect(opener).toBeVisible();
         expect(opener).toHaveAttribute('aria-label', 'Expand');
 
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await userEvent.click(opener!);
         expect(opener).toHaveAttribute('aria-label', 'Collapse');
       })
@@ -369,7 +373,6 @@ describe('SelectionDrawer.Item', () => {
         expect(opener).toBeVisible();
         expect(opener).toHaveAttribute('aria-label', 'Expand');
 
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await userEvent.click(opener!);
         expect(opener).toHaveAttribute('aria-label', 'Collapse');
 
@@ -377,16 +380,12 @@ describe('SelectionDrawer.Item', () => {
           ?.parentElement?.parentElement;
         const inputDisplay = el.nextElementSibling;
 
-        expect(container).toHaveStyle(
-          css`
-            border-color: ${viaTheme.validationTextColor.danger};
-          `
-        );
-        expect(inputDisplay).toHaveStyle(
-          css`
-            border-color: ${viaTheme.validationTextColor.danger};
-          `
-        );
+        expect(container).toHaveStyle(css`
+          border-color: ${viaTheme.validationTextColor.danger};
+        `);
+        expect(inputDisplay).toHaveStyle(css`
+          border-color: ${viaTheme.validationTextColor.danger};
+        `);
       })
     );
 
@@ -399,16 +398,12 @@ describe('SelectionDrawer.Item', () => {
       ?.parentElement?.parentElement;
     const blackSheepDisplay = blackSheepInput.nextElementSibling;
 
-    expect(blackSheepContainer).toHaveStyle(
-      css`
-        border-color: ${viaTheme.validationTextColor.success};
-      `
-    );
-    expect(blackSheepDisplay).toHaveStyle(
-      css`
-        border-color: ${viaTheme.validationTextColor.success};
-      `
-    );
+    expect(blackSheepContainer).toHaveStyle(css`
+      border-color: ${viaTheme.validationTextColor.success};
+    `);
+    expect(blackSheepDisplay).toHaveStyle(css`
+      border-color: ${viaTheme.validationTextColor.success};
+    `);
   });
 
   it('overrides parent disabled prop', async () => {

@@ -37,10 +37,15 @@ export type BannerProps = Override<
   }
 >;
 
+const defaultVariant = {
+  bgColor: '#bd3d1e0',
+  textColor: '#000'
+};
+
 const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
   function InnerBanner({ type, ...props }, ref) {
     const theme = useTheme();
-    const variant = theme.bannerStyles[type];
+    const variant = theme?.bannerStyles[type] ?? defaultVariant;
     const bannerProps = { variant, ...props };
     return <BannerContainer ref={ref} {...bannerProps} />;
   }

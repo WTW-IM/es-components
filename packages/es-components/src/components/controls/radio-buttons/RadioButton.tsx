@@ -7,11 +7,7 @@ import Label from '../label/Label';
 import { useTheme } from '../../util/useTheme';
 import { useValidationState } from '../ValidationContext';
 import useUniqueId from '../../util/useUniqueId';
-import {
-  HTMLInputProps,
-  htmlInputPropTypes,
-  htmlInputDefaultProps
-} from '../../util/htmlProps';
+import { HTMLInputProps, htmlInputPropTypes } from '../../util/htmlProps';
 import { lighten } from '../../util/colors';
 import {
   useRadioGroupContext,
@@ -21,29 +17,32 @@ import {
 export const RadioDisplayWrapper = styled.div``;
 
 export const RadioDisplay = styled.span`
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
   display: flex;
-  height: 25px;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 
-  &:before {
-    background-color: transparent;
-    border-radius: 50%;
-    content: '';
+  &::before {
     display: block;
-    height: 13px;
     width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: transparent;
+    content: '';
     transition: background 0.25s linear;
   }
 `;
 
-export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
+export const RadioInput = styled.input.withConfig({
+  shouldForwardProp: prop =>
+    !['selectedValue', 'disableAllOptions'].includes(prop)
+})<{ $fill: CSS.Property.BackgroundColor }>`
   ${({
     theme: {
       colors: { inputFocus, disabled: disabledColor },
@@ -51,22 +50,22 @@ export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
         default: { borderColor: disabledBorderColor }
       }
     },
-    fill
+    $fill
   }) => css`
+    position: absolute;
     clip: rect(0, 0, 0, 0);
     pointer-events: none;
-    position: absolute;
 
     ~ ${RadioDisplay} {
-      border-color: ${fill};
+      border-color: ${$fill};
     }
 
     &:focus ~ ${RadioDisplay} {
       box-shadow: 0 0 3px 3px ${inputFocus};
     }
 
-    &:checked ~ ${RadioDisplay}:before {
-      background-color: ${fill};
+    &:checked ~ ${RadioDisplay}::before {
+      background-color: ${$fill};
     }
 
     &&:disabled {
@@ -74,27 +73,29 @@ export const RadioInput = styled.input<{ fill: CSS.Property.BackgroundColor }>`
         border-color: ${disabledColor || disabledBorderColor};
       }
 
-      &:checked ~ ${RadioDisplay}:before {
+      &:checked ~ ${RadioDisplay}::before {
         background-color: ${disabledColor || disabledBorderColor};
       }
     }
   `}
 `;
 
-const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
+const RadioLabel = styled(Label).withConfig({
+  shouldForwardProp: prop => !['validationState'].includes(prop)
+})<{ hover: CSS.Property.BackgroundColor }>`
   ${({ theme, hover }) => css`
-    align-self: flex-start;
-    cursor: pointer;
+    position: relative;
     display: flex;
-    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-      sans-serif;
+    align-self: flex-start;
+    padding: 10px 0 10px 10px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-family:
+      'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
     font-size: ${theme.font.baseFontSize};
     font-weight: normal;
     line-height: ${theme.font.baseLineHeight};
-    margin-right: 15px;
-    margin-bottom: 10px;
-    position: relative;
-    padding: 10px 0 10px 10px;
     text-transform: none;
 
     @media (min-width: ${theme.screenSize.tablet}) {
@@ -105,7 +106,7 @@ const RadioLabel = styled(Label)<{ hover: CSS.Property.BackgroundColor }>`
       & > ${RadioDisplayWrapper} {
         &
           > ${RadioInput}:not(:disabled):not(:checked)
-          ~ ${RadioDisplay}:before {
+          ~ ${RadioDisplay}::before {
           background-color: ${hover};
         }
       }
@@ -152,15 +153,17 @@ export interface ValidationSelectionColors {
   hover: CSS.Property.BackgroundColor;
 }
 
+const defaultPrimary = '#0073b6';
+
 export const getValidationSelectionColors = (
-  theme: DefaultTheme,
+  theme: DefaultTheme | undefined,
   validationState: ValidationStyleType,
   checked?: boolean
 ): ValidationSelectionColors => {
   const targetColor =
     validationState === 'default' && checked
-      ? theme.colors.primary
-      : theme.validationTextColor[validationState];
+      ? (theme?.colors.primary ?? defaultPrimary)
+      : (theme?.validationTextColor[validationState] ?? defaultPrimary);
   return {
     fill: targetColor,
     hover: lighten(targetColor, 40)
@@ -197,7 +200,7 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
       ...contextProps,
       ...radioProps,
       disabled,
-      fill,
+      $fill: fill,
       ...checkedProps
     };
 
@@ -226,9 +229,5 @@ export const propTypes = {
 };
 
 RadioButton.propTypes = propTypes;
-RadioButton.defaultProps = {
-  ...htmlInputDefaultProps,
-  displayClassName: ''
-};
 
 export default RadioButton;

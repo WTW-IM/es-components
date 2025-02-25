@@ -8,7 +8,6 @@ import cypressPlugin from 'eslint-plugin-cypress/flat';
 import jestPlugin from 'eslint-plugin-jest';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import globals from 'globals';
-import path from 'path';
 
 const __dirname = import.meta.dirname;
 
@@ -49,11 +48,12 @@ export default tseslint.config(
         ecmaFeatures: {
           jsx: true
         },
-        project: [
-          './tsconfig.json',
-          './packages/*/tsconfig.json',
-          './shared/*/tsconfig.json'
-        ],
+        // project: [
+        //   './tsconfig.json',
+        //   './packages/*/tsconfig.json',
+        //   './shared/*/tsconfig.json'
+        // ],
+        projectService: true,
         tsConfigRootDir: __dirname
       }
     },
@@ -75,7 +75,6 @@ export default tseslint.config(
         'error',
         { allowNumber: true, allowBoolean: true, allowNullish: true }
       ],
-      'no-undefined': 'off', // typescript handles this
       'max-len': 0,
       'jsx-a11y/img-uses-alt': 0,
       'jsx-a11y/redundant-alt': 0,
@@ -94,6 +93,10 @@ export default tseslint.config(
       'import/namespace': 0,
       'import/no-named-as-default-member': 0,
       'import/no-unresolved': 0,
+
+      // other rules handled by typescript
+      'no-undefined': 'off',
+      'no-unused-vars': 'off',
 
       'import/no-extraneous-dependencies': [
         'error',
@@ -118,47 +121,9 @@ export default tseslint.config(
     }
   },
   {
-    files: ['**/*-theme/**/*.{js,jsx,mjs,ts,tsx}'],
-    languageOptions: {
-      parserOptions: {
-        project: [path.join(__dirname, 'theme-tsconfig.json')],
-        projectServices: false
-      }
-    }
-  },
-  {
-    files: ['**/shared/types/**/*.{js,jsx,mjs,ts,tsx}'],
-    languageOptions: {
-      parserOptions: {
-        project: [path.join(__dirname, 'shared', 'types', 'tsconfig.json')],
-        projectServices: false
-      }
-    }
-  },
-  {
-    files: [
-      '**/es-components/src/*.{js,jsx,mjs,ts,tsx}',
-      '**/es-components/src/**/*.{js,jsx,mjs,ts,tsx}'
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: [
-          path.join(__dirname, 'packages', 'es-components', 'tsconfig.json')
-        ],
-        projectServices: false
-      }
-    }
-  },
-  {
-    files: [
-      '**/es-components/config/*.{js,jsx,mjs,ts,tsx}',
-      '**/cypress.config.{js,jsx,mjs,ts,tsx}'
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: [path.join(__dirname, 'tsconfig.json')],
-        projectServices: false
-      }
+    files: ['**/*-theme/**/index.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 0
     }
   },
   {
@@ -186,8 +151,7 @@ export default tseslint.config(
       '**/cypress/*.{js,jsx,mjs,ts,tsx}',
       '**/cypress/**/*.{js,jsx,mjs,ts,tsx}'
     ],
-    ...cypressPlugin.configs.globals,
-    ...cypressPlugin.configs.recommended
+    extends: [cypressPlugin.configs.globals, cypressPlugin.configs.recommended]
   },
   {
     files: [
@@ -203,8 +167,13 @@ export default tseslint.config(
   },
   {
     files: ['**/*.specs.{js,jsx,ts,tsx}', '**/test-utils.{js,jsx,ts,tsx}'],
-    ...jestPlugin.configs['flat/recommended'],
-    ...testingLibraryPlugin.configs['flat/react'],
+    plugins: {
+      jest: jestPlugin
+    },
+    extends: [
+      jestPlugin.configs['flat/recommended'],
+      testingLibraryPlugin.configs['flat/react']
+    ],
     rules: {
       'testing-library/prefer-screen-queries': 'warn',
       'testing-library/no-node-access': 'warn',
@@ -222,10 +191,7 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-argument': 0,
       '@typescript-eslint/no-unsafe-call': 0,
       '@typescript-eslint/restrict-template-expressions': 0,
-      '@typescript-eslint/restrict-plus-operands': 0,
-
-      // reset import rules previously handled by typescript
-      ...importPlugin.configs.recommended.rules
+      '@typescript-eslint/restrict-plus-operands': 0
     }
   }
 );

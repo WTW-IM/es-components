@@ -2,23 +2,15 @@
 
 exports[`sets the appropriate styles for isPastStep 1`] = `
 .c0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: none;
-  border: none;
-  counter-increment: progress-tracker-counter;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: column nowrap;
-  -ms-flex-flow: column nowrap;
   flex-flow: column nowrap;
-  font-family: 'Source Sans Pro',sans-serif;
-  margin-top: 12.5px;
+  align-items: center;
   padding: 0;
+  border: none;
+  margin-top: 12.5px;
+  background: none;
+  counter-increment: progress-tracker-counter;
+  font-family: 'Source Sans Pro',sans-serif;
   text-align: center;
 }
 
@@ -29,28 +21,28 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 .c0 span {
-  color: #444;
   display: none;
+  color: #444;
   font-size: 18px;
   line-height: 1.1em;
 }
 
 .c0::before {
-  background-color: white;
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
   border: 1px solid #c5c5c5;
   border-radius: 20px;
+  margin-bottom: 5px;
+  background-color: white;
   box-shadow: 0 0 0 3px white;
-  box-sizing: border-box;
   color: #444;
   content: counter(progress-tracker-counter);
-  display: block;
   font-size: 16px;
-  height: 20px;
   line-height: 1em;
-  margin-bottom: 5px;
   text-align: center;
-  width: 20px;
-  position: relative;
 }
 
 .c1 {
@@ -58,13 +50,12 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
 }
 
 .c1:hover::before {
-  box-shadow: rgba(0,0,0,0.35) 0 0 3px 1px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 0 3px 1px;
 }
 
 .c1:active span,
 .c1:hover span,
 .c1:focus span {
-  -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
@@ -80,34 +71,34 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
   border-color: #444;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0 {
-    font-size: 18px;
-    margin-top: 0;
     margin: 0 auto;
+    margin-top: 0;
+    font-size: 18px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0 span {
     display: inline;
     font-weight: normal;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0::before {
-    border-radius: 41px;
+    width: 41px;
+    height: 41px;
     border-width: 3px;
+    border-radius: 41px;
     font-size: 20.008px;
     font-weight: normal;
-    height: 41px;
     line-height: 1.7em;
-    width: 41px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1::before {
     border-width: 5px;
     font-weight: bold;
@@ -115,13 +106,13 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 span {
     font-weight: bold;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 

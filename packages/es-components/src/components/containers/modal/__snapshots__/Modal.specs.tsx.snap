@@ -8,8 +8,8 @@ exports[`renders different modal sections 1`] = `
   margin-bottom: 0.45em;
   margin-top: 0;
   color: inherit;
-  font-size: 25.92px;
   margin-bottom: 1rem;
+  font-size: 25.92px;
 }
 
 .c0 small {
@@ -24,95 +24,95 @@ exports[`renders different modal sections 1`] = `
   margin: 0;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0 {
-    font-size: 25.92px;
     margin-bottom: 1rem;
+    font-size: 25.92px;
   }
 }
 
-@media (min-width:480px) {
+@media (min-width: 480px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:900px) {
+@media (min-width: 900px) {
 
 }
 
-@media (min-width:480px) {
+@media (min-width: 480px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:900px) {
+@media (min-width: 900px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
 <h4
   class="c0 c1"
-  id="abcdef"
+  id="renders-different-modal-sections-3"
 >
   Header
 </h4>
 `;
 
 exports[`renders different modal sections 2`] = `
-.c1 {
+.c0 {
   color: #444;
   padding: 15px;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:480px) {
+@media (min-width: 480px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:900px) {
+@media (min-width: 900px) {
 
 }
 
-@media (min-width:480px) {
+@media (min-width: 480px) {
   .small .c0 {
     margin-top: unset;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .medium .c0 {
     margin-top: unset;
   }
 }
 
-@media (min-width:900px) {
+@media (min-width: 900px) {
   .large .c0 {
     margin-top: unset;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
 <div
-  class="c0 c1"
+  class="c0"
 >
   Body
 </div>
@@ -120,13 +120,7 @@ exports[`renders different modal sections 2`] = `
 
 exports[`renders different modal sections 3`] = `
 .c0 {
-  -webkit-align-items: baseline;
-  -webkit-box-align: baseline;
-  -ms-flex-align: baseline;
   align-items: baseline;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   padding: 15px 15px 55px;
   text-align: right;
@@ -136,35 +130,35 @@ exports[`renders different modal sections 3`] = `
   width: auto;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:480px) {
+@media (min-width: 480px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:900px) {
+@media (min-width: 900px) {
 
 }
 
-@media (min-width:480px) {
+@media (min-width: 480px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
 
 }
 
-@media (min-width:900px) {
+@media (min-width: 900px) {
 
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0 {
     padding: 15px 15px 19px;
   }

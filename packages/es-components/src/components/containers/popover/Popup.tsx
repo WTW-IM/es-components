@@ -24,14 +24,14 @@ import useRootNode from '../../util/useRootNode';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 
 const PopperBox = styled.div<{ topIndex: number }>`
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 2px;
-  max-width: 350px;
-  min-width: 270px;
   position: absolute;
-  text-align: center;
   z-index: ${({ topIndex }) => topIndex};
+  min-width: 270px;
+  max-width: 350px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
 `;
 
 type NumberString = `${number}`;
@@ -94,22 +94,26 @@ const arrowSizes: ArrowSizeDefinitions = {
 
 const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
   position: absolute;
+
   &::before,
   &::after {
+    position: absolute;
     border: solid transparent;
     content: '';
-    position: absolute;
   }
+
   &[data-placement*='bottom'] {
     top: 0;
     left: 0;
     margin-top: -${props => props.arrowSize.size}px;
+
     &::before {
       border-width: ${props => props.arrowSize.bottomBorderWidth};
       border-color: transparent;
       border-bottom-color: ${props => props.arrowSize.borderColor};
       margin-left: -${props => props.arrowSize.borderSize}px;
     }
+
     &::after {
       border-width: ${props => props.arrowSize.bottomWidth};
       border-color: transparent;
@@ -118,6 +122,7 @@ const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
       margin-left: -${props => props.arrowSize.size}px;
     }
   }
+
   &[data-placement*='top'] {
     &::before {
       border-width: ${props => props.arrowSize.borderSize}px;
@@ -125,6 +130,7 @@ const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
       border-top-color: ${props => props.arrowSize.borderColor};
       margin-left: -${props => props.arrowSize.borderSize}px;
     }
+
     &::after {
       border-width: ${props => props.arrowSize.size}px;
       border-color: transparent;
@@ -132,14 +138,17 @@ const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
       margin-left: -${props => props.arrowSize.size}px;
     }
   }
+
   &[data-placement*='right'] {
     margin-left: -${props => props.arrowSize.size}px;
+
     &::before {
       border-width: ${props => props.arrowSize.rightBorderWidth};
       border-color: transparent;
       border-right-color: ${props => props.arrowSize.borderColor};
       margin-top: -${props => props.arrowSize.borderSize}px;
     }
+
     &::after {
       border-width: ${props => props.arrowSize.rightWidth};
       border-color: transparent;
@@ -147,14 +156,17 @@ const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
       margin-top: -${props => props.arrowSize.size}px;
     }
   }
+
   &[data-placement*='left'] {
     right: 0;
+
     &::before {
       border-width: ${props => props.arrowSize.borderSize}px;
       border-color: transparent;
       border-left-color: ${props => props.arrowSize.borderColor};
       margin-top: -${props => props.arrowSize.borderSize}px;
     }
+
     &::after {
       border-width: ${props => props.arrowSize.size}px;
       border-color: transparent;

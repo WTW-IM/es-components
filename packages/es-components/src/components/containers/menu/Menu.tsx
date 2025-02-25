@@ -12,16 +12,13 @@ import {
 } from 'es-components-shared-types';
 
 const Backdrop = styled.div<{ isMenuOpen: boolean }>`
-  background-color: black;
-  bottom: 0;
-  cursor: auto;
-  left: 0;
-  opacity: 0.5;
   position: fixed;
-  right: 0;
-  top: 0;
   z-index: auto;
   display: ${props => (props.isMenuOpen ? 'inherit' : 'none')};
+  background-color: black;
+  cursor: auto;
+  inset: 0;
+  opacity: 0.5;
 `;
 
 type MenuProps = Override<
@@ -37,58 +34,57 @@ type MenuProps = Override<
   }
 >;
 
-const Menu = React.forwardRef<HTMLDivElement, MenuProps>(function ForwardedMenu(
-  props,
-  ref
-) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
+  function ForwardedMenu(props, ref) {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  function toggleMenu() {
-    setIsMenuOpen(!isMenuOpen);
-  }
+    function toggleMenu() {
+      setIsMenuOpen(!isMenuOpen);
+    }
 
-  function closeMenu() {
-    setIsMenuOpen(false);
-  }
+    function closeMenu() {
+      setIsMenuOpen(false);
+    }
 
-  const {
-    inline,
-    children,
-    buttonContent,
-    openButtonType,
-    rootClose,
-    hasBackdrop,
-    headerContent,
-    ...other
-  } = props;
+    const {
+      inline = false,
+      rootClose = false,
+      hasBackdrop = false,
+      openButtonType = 'default',
+      children,
+      buttonContent,
+      headerContent,
+      ...other
+    } = props;
 
-  return (
-    <RootCloseWrapper onRootClose={closeMenu} disabled={!rootClose}>
-      <div ref={ref} {...other}>
-        {hasBackdrop && (
-          <Backdrop isMenuOpen={isMenuOpen} onClick={closeMenu} />
-        )}
-        <ToggleButton
-          onClick={toggleMenu}
-          isPressed={isMenuOpen}
-          styleType={openButtonType}
-          aria-expanded={isMenuOpen}
-        >
-          {buttonContent}
-        </ToggleButton>
-        <InlineContext.Provider value={Boolean(inline)}>
-          <MenuPanel
-            headerContent={headerContent}
-            isOpen={isMenuOpen}
-            onClose={closeMenu}
+    return (
+      <RootCloseWrapper onRootClose={closeMenu} disabled={!rootClose}>
+        <div ref={ref} {...other}>
+          {hasBackdrop && (
+            <Backdrop isMenuOpen={isMenuOpen} onClick={closeMenu} />
+          )}
+          <ToggleButton
+            onClick={toggleMenu}
+            isPressed={isMenuOpen}
+            styleType={openButtonType}
+            aria-expanded={isMenuOpen}
           >
-            {children}
-          </MenuPanel>
-        </InlineContext.Provider>
-      </div>
-    </RootCloseWrapper>
-  );
-});
+            {buttonContent}
+          </ToggleButton>
+          <InlineContext.Provider value={Boolean(inline)}>
+            <MenuPanel
+              headerContent={headerContent}
+              isOpen={isMenuOpen}
+              onClose={closeMenu}
+            >
+              {children}
+            </MenuPanel>
+          </InlineContext.Provider>
+        </div>
+      </RootCloseWrapper>
+    );
+  }
+);
 
 type MenuComponent = typeof Menu & {
   MenuSection: typeof MenuSection;
@@ -104,14 +100,6 @@ Menu.propTypes = {
   inline: PropTypes.bool,
   hasBackdrop: PropTypes.bool,
   headerContent: PropTypes.node
-};
-
-Menu.defaultProps = {
-  rootClose: false,
-  openButtonType: 'default',
-  inline: false,
-  hasBackdrop: false,
-  headerContent: undefined
 };
 
 export default Menu as MenuComponent;

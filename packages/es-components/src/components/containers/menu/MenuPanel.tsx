@@ -7,39 +7,39 @@ import useTopZIndex from '../../../hooks/useTopZIndex';
 import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
 const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
+  position: absolute;
+  z-index: ${({ topIndex }) => topIndex};
+  display: ${props => (props.isOpen ? 'block' : 'none')};
   background-color: ${({
     theme: {
       colors: { gray2 }
     }
   }) => gray2};
-  display: ${props => (props.isOpen ? 'block' : 'none')};
-  position: absolute;
-  z-index: ${({ topIndex }) => topIndex};
 `;
 
 const StyledDismissButton = styled(DismissButton)`
-  margin-left: auto;
   margin-right: 4px;
+  margin-left: auto;
 `;
 
-const Header = styled.header`
+interface HeaderStyledProps {
+  $hasHeaderContent: boolean;
+}
+const Header = styled.header<HeaderStyledProps>`
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: ${(props: { hasHeaderContent: boolean }) =>
-    props.hasHeaderContent ? '10px' : '0'};
-  padding-left: 11px;
-  padding-right: 5px;
-  padding-top: ${(props: { hasHeaderContent: boolean }) =>
-    props.hasHeaderContent ? '5px' : '0'};
+  padding: ${props => (props.$hasHeaderContent ? '5px' : '0')} 5px
+    ${props => (props.$hasHeaderContent ? '10px' : '0')} 11px;
 `;
 
-const StyledChildrenContainer = styled.div`
+interface StyledChildrenContainerProps {
+  $inline: boolean;
+}
+const StyledChildrenContainer = styled.div<StyledChildrenContainerProps>`
   display: flex;
-  flex-direction: ${(props: { inline: boolean }) =>
-    props.inline ? 'row' : 'column'};
-  flex-wrap: wrap;
+  flex-flow: ${props => (props.$inline ? 'row' : 'column')} wrap;
 `;
 
 type MenuPanelProps = JSXElementProps<'div'> & {
@@ -87,11 +87,11 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
         topIndex={getTopIndex()}
         {...other}
       >
-        <Header hasHeaderContent={hasHeaderContent}>
+        <Header $hasHeaderContent={hasHeaderContent}>
           {hasHeaderContent && <span>{headerContent}</span>}
           <StyledDismissButton onClick={onClose} />
         </Header>
-        <StyledChildrenContainer inline={inline}>
+        <StyledChildrenContainer $inline={inline}>
           {children}
         </StyledChildrenContainer>
       </StyledPanel>

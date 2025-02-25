@@ -15,17 +15,16 @@ type FieldsetProps = Omit<JSX.IntrinsicElements['fieldset'], 'ref'> & {
 };
 
 const fieldsetReset = css`
-  appearance: none;
-  border: 0;
   padding: 0;
+  border: 0;
   margin: 0;
+  appearance: none;
 `;
 
 const FieldsetBase = styled.fieldset<{ orientation: Orientation }>`
   ${fieldsetReset}
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+  flex-flow: column wrap;
   margin-bottom: 25px;
   width: 100%;
 
@@ -37,8 +36,8 @@ const FieldsetBase = styled.fieldset<{ orientation: Orientation }>`
     props.orientation === 'inline' &&
     css`
       @media (min-width: ${props.theme.screenSize.tablet}) {
-        align-items: baseline;
         flex-direction: row;
+        align-items: baseline;
       }
     `};
 `;
@@ -49,7 +48,7 @@ const Legend = styled.legend`
   flex: 0 0 auto;
   font-size: 21.6px;
   line-height: ${props => props.theme.font.baseLineHeight};
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   width: 100%;
 `;
 

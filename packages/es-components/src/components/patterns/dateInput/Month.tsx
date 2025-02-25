@@ -96,7 +96,7 @@ const Month = React.forwardRef<HTMLSelectElement, MonthProps>(
 
     return (
       <MonthDropdown
-        {...theme.validationInputColor[validationState]}
+        {...(theme?.validationInputColor[validationState] ?? {})}
         {...props}
         onChange={onMonthChange}
         value={month}

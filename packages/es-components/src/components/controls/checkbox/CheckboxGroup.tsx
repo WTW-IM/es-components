@@ -66,12 +66,12 @@ export function useCheckboxGroupActions({
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
-  disableAllOptions,
+  disableAllOptions = false,
   options = [],
   checkAllText,
-  textOnHoverCheckAll,
+  textOnHoverCheckAll = false,
   onChange,
-  displayClassName
+  displayClassName = ''
 }) => {
   const originalSelectedValues = useMemo(
     () => options.filter(o => o.checked).map(o => o.value?.toString() || ''),
@@ -154,14 +154,6 @@ CheckboxGroup.propTypes = {
   textOnHoverCheckAll: PropTypes.bool,
   /** applies to the checkboxes display wrappers */
   displayClassName: PropTypes.string
-};
-
-CheckboxGroup.defaultProps = {
-  checkAllText: undefined,
-  textOnHoverCheckAll: false,
-  disableAllOptions: false,
-  options: [],
-  displayClassName: ''
 };
 
 export default CheckboxGroup;

@@ -11,11 +11,11 @@ exports[`renders as expected 1`] = `
   padding: 8px 15px;
 }
 
-.c0 > li + li {
+.c0 >li+li {
   padding-left: 24px;
 }
 
-.c0 > li + li::before {
+.c0 >li+li::before {
   border-color: #c5c5c5;
   border-style: solid;
   border-width: 0 2px 2px 0;
@@ -26,8 +26,6 @@ exports[`renders as expected 1`] = `
   left: 0px;
   position: absolute;
   top: 20%;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
   width: 13px;
 }
@@ -39,15 +37,13 @@ exports[`renders as expected 1`] = `
   position: relative;
 }
 
-.c1 > a {
+.c1 >a {
   color: #0073b6;
-  -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c1 > a:hover {
-  color: rgb(0,67,105);
-  -webkit-text-decoration: underline;
+.c1 >a:hover {
+  color: rgb(0, 67, 105);
   text-decoration: underline;
 }
 

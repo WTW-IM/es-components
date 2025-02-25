@@ -39,28 +39,28 @@ const InputWrapper = styled.div<InputWrapperProps>`
   ${validationStateSetupStyles}
   ${validationStateInputStyles}
   display: flex;
-
   padding: 0 !important;
 
   &:focus-within {
     ${validationStateHighlightStyles}
   }
 
-  &&:before {
-    ${props => props.prependIconStyles}
-  }
+  ${({ prependIconStyles, appendIconStyles }) => css`
+    &&::before {
+      ${prependIconStyles}
+    }
 
-  &&:after {
-    ${props => props.appendIconStyles}
-  }
+    &&::after {
+      ${appendIconStyles}
+    }
+  `}
 
-  &&:before,
-  &&:after {
+  &&::before,
+  &&::after {
     ${props => css`
       background-color: ${getStyledProp('backgroundColor', 'addOn', props)};
       color: ${getStyledProp('textColor', 'addOn', props)};
     `}
-
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -77,17 +77,16 @@ export const TextboxBase = styled(InputBase)<TextboxAdditionProps>`
   width: 100%;
 
   && {
-    border: none !important;
-    margin: 0 !important;
-
-    &:not([disabled]):not([readonly]) {
-      box-shadow: none !important;
-      background-color: transparent !important;
-    }
-
     height: ${props =>
       getStyledProp('inputStyles.inputHeight', props as ESThemeProps) ||
       '2.2em'};
+    border: none !important;
+    margin: 0 !important;
+
+    &:not([disabled], [readonly]) {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
   }
 
   ${({ hasPrepend }) =>

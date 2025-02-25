@@ -29,7 +29,7 @@ export const buttonVariantStyleTypes = [
   'info',
   'information',
   'magenta',
-  'violet',
+  'violet'
 ] as const;
 export type ButtonVariantStyleType = (typeof buttonVariantStyleTypes)[number];
 
@@ -39,7 +39,7 @@ export const validationStyleTypes = [
   'warning',
   'danger',
   'advisor',
-  'default',
+  'default'
 ] as const;
 export type ValidationStyleType = (typeof validationStyleTypes)[number];
 
@@ -95,74 +95,71 @@ export type NotificationStyles = {
   [key in ValidationStyleType]: NotificationStyle;
 };
 
-const colorNames = [
-  'white',
-  'gray0',
-  'gray1',
-  'gray2',
-  'gray3',
-  'gray4',
-  'gray5',
-  'gray6',
-  'gray7',
-  'gray8',
-  'gray9',
-  'black',
-  'blue25',
-  'blue50',
-  'blue100',
-  'blue300',
-  'blue500',
-  'blue700',
-  'blue900',
-  'green50',
-  'green100',
-  'green300',
-  'green500',
-  'green700',
-  'green900',
-  'magenta50',
-  'magenta100',
-  'magenta300',
-  'magenta500',
-  'magenta700',
-  'magenta900',
-  'violet50',
-  'violet100',
-  'violet300',
-  'violet500',
-  'violet700',
-  'violet900',
-  'yellow50',
-  'yellow100',
-  'yellow300',
-  'yellow500',
-  'yellow700',
-  'yellow900',
-  'primary',
-  'primaryHover',
-  'primaryLight',
-  'success',
-  'successHover',
-  'successLight',
-  'info',
-  'infoHover',
-  'infoLight',
-  'warning',
-  'warningHover',
-  'warningLight',
-  'danger',
-  'dangerHover',
-  'dangerLight',
-  'advisor',
-  'advisorLight',
-  'boxShadowLight',
-  'boxShadowDark',
-  'inputFocus',
-  'disabled',
-] as const;
-
-export type ColorName = (typeof colorNames)[number];
+export type ColorName =
+  | 'white'
+  | 'gray0'
+  | 'gray1'
+  | 'gray2'
+  | 'gray3'
+  | 'gray4'
+  | 'gray5'
+  | 'gray6'
+  | 'gray7'
+  | 'gray8'
+  | 'gray9'
+  | 'black'
+  | 'blue25'
+  | 'blue50'
+  | 'blue100'
+  | 'blue300'
+  | 'blue500'
+  | 'blue700'
+  | 'blue900'
+  | 'green50'
+  | 'green100'
+  | 'green300'
+  | 'green500'
+  | 'green700'
+  | 'green900'
+  | 'magenta50'
+  | 'magenta100'
+  | 'magenta300'
+  | 'magenta500'
+  | 'magenta700'
+  | 'magenta900'
+  | 'violet50'
+  | 'violet100'
+  | 'violet300'
+  | 'violet500'
+  | 'violet700'
+  | 'violet900'
+  | 'yellow50'
+  | 'yellow100'
+  | 'yellow300'
+  | 'yellow500'
+  | 'yellow700'
+  | 'yellow900'
+  | 'primary'
+  | 'primaryHover'
+  | 'primaryLight'
+  | 'success'
+  | 'successHover'
+  | 'successLight'
+  | 'info'
+  | 'infoHover'
+  | 'infoLight'
+  | 'warning'
+  | 'warningHover'
+  | 'warningLight'
+  | 'danger'
+  | 'dangerHover'
+  | 'dangerLight'
+  | 'advisor'
+  | 'advisorLight'
+  | 'boxShadowLight'
+  | 'boxShadowDark'
+  | 'inputFocus'
+  | 'disabled';
 
 export type Colors = {
   [key in ColorName]: CSS.Property.Color;
@@ -173,7 +170,7 @@ export const screenSizeNames = [
   'phone',
   'tablet',
   'desktop',
-  'widescreen',
+  'widescreen'
 ] as const;
 
 export type ScreenSizeName = (typeof screenSizeNames)[number];

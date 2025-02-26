@@ -412,3 +412,51 @@ it('throws an error if monthNames and monthValues are different lengths', () => 
     );
   }).toThrow();
 });
+
+it('correctly unsets the date when month is deselected', async () => {
+  const onChange = jest.fn();
+  const props = {
+    onChange
+  };
+
+  renderWithTheme(
+    <TestDateInput {...props}>
+      <DateInput.Month aria-label="month" selectOptionText="Select a Month" />
+      <DateInput.Day aria-label="day" />
+      <DateInput.Year aria-label="year" />
+    </TestDateInput>
+  );
+
+  await userEvent.selectOptions(
+    screen.getByRole('combobox', { name: /month/ }),
+    'January'
+  );
+  await typeFresh(await screen.findByRole('spinbutton', { name: /day/ }), '15');
+  await typeFresh(
+    await screen.findByRole('spinbutton', { name: /year/ }),
+    '2025'
+  );
+  expect(onChange).toHaveBeenLastCalledWith({
+    isInRange: true,
+    rawValues: {
+      day: '15',
+      month: '1',
+      year: '2025'
+    },
+    value: new Date('2025/1/15')
+  });
+
+  await userEvent.selectOptions(
+    screen.getByRole('combobox', { name: /month/ }),
+    'Select a Month'
+  );
+  expect(onChange).toHaveBeenLastCalledWith({
+    isInRange: false,
+    rawValues: {
+      day: '15',
+      month: '',
+      year: '2025'
+    },
+    value: undefined
+  });
+});

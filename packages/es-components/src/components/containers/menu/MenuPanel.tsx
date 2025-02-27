@@ -6,10 +6,15 @@ import { InlineContext } from './InlineContext';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
-const StyledPanel = styled.div<{ isOpen: boolean; topIndex: number }>`
+interface StyledPanelProps {
+  $isOpen: boolean;
+  $topIndex: number;
+}
+
+const StyledPanel = styled.div<StyledPanelProps>`
   position: absolute;
-  z-index: ${({ topIndex }) => topIndex};
-  display: ${props => (props.isOpen ? 'block' : 'none')};
+  z-index: ${({ $topIndex }) => $topIndex};
+  display: ${props => (props.$isOpen ? 'block' : 'none')};
   background-color: ${({
     theme: {
       colors: { gray2 }
@@ -83,8 +88,8 @@ const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
     return (
       <StyledPanel
         ref={ref}
-        isOpen={isOpen}
-        topIndex={getTopIndex()}
+        $isOpen={isOpen}
+        $topIndex={getTopIndex()}
         {...other}
       >
         <Header $hasHeaderContent={hasHeaderContent}>

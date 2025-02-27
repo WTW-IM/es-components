@@ -4,17 +4,24 @@ import styled, { useTheme, css } from 'styled-components';
 
 import Label from '../label/Label';
 import { useValidationState } from '../ValidationContext';
-import {
-  htmlInputPropTypes,
-  htmlInputDefaultProps
-} from '../../util/htmlProps';
+import { htmlInputPropTypes } from '../../util/htmlProps';
 import {
   ValidationSelectionColors,
   getValidationSelectionColors
 } from '../radio-buttons/RadioButton';
 import useUniqueId from '../../util/useUniqueId';
 
-export const CheckboxLabel = styled(Label)<{ disabled?: boolean }>`
+export interface CheckboxLabelProps {
+  disabled?: boolean;
+}
+
+const disabledLabelStyles = css`
+  cursor: not-allowed;
+  outline: 0;
+  pointer-events: none;
+`;
+
+export const CheckboxLabel = styled(Label)<CheckboxLabelProps>`
   position: relative;
   min-height: 25px;
   padding: 10px 0 10px 42px;
@@ -30,10 +37,10 @@ export const CheckboxLabel = styled(Label)<{ disabled?: boolean }>`
     margin-left: 0;
   }
 
+  ${({ disabled }) => disabled && disabledLabelStyles}
+
   [disabled] {
-    cursor: not-allowed;
-    outline: 0;
-    pointer-events: none;
+    ${disabledLabelStyles}
   }
 `;
 
@@ -197,12 +204,6 @@ export const propTypes = {
   displayClassName: PropTypes.string
 };
 
-export const defaultProps = {
-  ...htmlInputDefaultProps,
-  displayClassName: ''
-};
-
 Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

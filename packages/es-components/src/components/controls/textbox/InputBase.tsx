@@ -148,7 +148,8 @@ const InputBaseComponent = styled.input.withConfig({
       'backgroundColorFlat',
       'addOn',
       'flat',
-      'disabledBackgroundColor'
+      'disabledBackgroundColor',
+      'updateStateSilently'
     ].includes(prop)
 })<ValidationStyleProps>`
   ${getInputStyles}

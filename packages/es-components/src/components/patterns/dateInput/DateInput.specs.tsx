@@ -2,7 +2,7 @@ import React from 'react';
 import { waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { renderWithTheme } from '../../util/test-utils';
+import { renderWithTheme, overrideConsoleErrors } from '../../util/test-utils';
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
 import DateInput, { DateInputProps } from './DateInput';
@@ -399,6 +399,10 @@ it('can handle a subset of months', async () => {
 });
 
 it('throws an error if monthNames and monthValues are different lengths', () => {
+  const resetConsoleError = overrideConsoleErrors(
+    'The above error',
+    'monthNames'
+  );
   expect(() => {
     renderWithTheme(
       <TestDateInput onChange={jest.fn()}>
@@ -411,6 +415,7 @@ it('throws an error if monthNames and monthValues are different lengths', () => 
       </TestDateInput>
     );
   }).toThrow();
+  resetConsoleError();
 });
 
 it('correctly unsets the date when month is deselected', async () => {

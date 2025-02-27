@@ -32,6 +32,25 @@ export function renderWithTheme(component: React.ReactElement): RenderResult {
   };
 }
 
+export function overrideConsoleErrors(...overrideMessages: string[]) {
+  const oldError = console.error;
+  console.error = (err: unknown) => {
+    if (
+      !overrideMessages.length ||
+      overrideMessages.some(mess =>
+        (err as Error | string | undefined)?.toString().includes(mess)
+      )
+    ) {
+      return;
+    }
+
+    oldError(err);
+  };
+  return () => {
+    console.error = oldError;
+  };
+}
+
 export const setClientWidth = (width: number) => {
   Object.defineProperty(document.documentElement, 'clientWidth', {
     writable: true,

@@ -48,11 +48,6 @@ export default tseslint.config(
         ecmaFeatures: {
           jsx: true
         },
-        // project: [
-        //   './tsconfig.json',
-        //   './packages/*/tsconfig.json',
-        //   './shared/*/tsconfig.json'
-        // ],
         projectService: true,
         tsConfigRootDir: __dirname
       }

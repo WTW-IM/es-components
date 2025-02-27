@@ -6,8 +6,12 @@ import CheckAllBox from './CheckAllBox';
 import { htmlInputPropTypes } from '../../util/htmlProps';
 import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
-const Spacer = styled.div<{ bumpRight?: boolean }>`
-  margin-left: ${props => (props.bumpRight ? '10px' : '0')};
+interface SpacerProps {
+  $bumpRight?: boolean;
+}
+
+const Spacer = styled.div<SpacerProps>`
+  margin-left: ${props => (props.$bumpRight ? '10px' : '0')};
 `;
 
 export type CheckboxGroupProps = {
@@ -117,7 +121,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
       )}
       {options.map(({ name, value, disabled, content }, ind) => (
         <Spacer
-          bumpRight={Boolean(checkAllText)}
+          $bumpRight={Boolean(checkAllText)}
           key={
             (Array.isArray(value) ? value.join(';') : value?.toString()) || ind
           }

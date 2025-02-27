@@ -23,9 +23,13 @@ import Fade, { FadeProps } from '../../util/Fade';
 import useRootNode from '../../util/useRootNode';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 
-const PopperBox = styled.div<{ topIndex: number }>`
+interface PopperBoxProps {
+  $topIndex: number;
+}
+
+const PopperBox = styled.div<PopperBoxProps>`
   position: absolute;
-  z-index: ${({ topIndex }) => topIndex};
+  z-index: ${({ $topIndex }) => $topIndex};
   min-width: 270px;
   max-width: 350px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -92,7 +96,12 @@ const arrowSizes: ArrowSizeDefinitions = {
   }
 };
 
-const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
+interface ArrowProps {
+  $arrowSize: ArrowSizeProperties;
+  $hasTitle: boolean;
+}
+
+const Arrow = styled.div<ArrowProps>`
   position: absolute;
 
   &::before,
@@ -105,55 +114,57 @@ const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
   &[data-placement*='bottom'] {
     top: 0;
     left: 0;
-    margin-top: -${props => props.arrowSize.size}px;
+    margin-top: -${props => props.$arrowSize.size}px;
 
     &::before {
-      border-width: ${props => props.arrowSize.bottomBorderWidth};
+      border-width: ${props => props.$arrowSize.bottomBorderWidth};
       border-color: transparent;
-      border-bottom-color: ${props => props.arrowSize.borderColor};
-      margin-left: -${props => props.arrowSize.borderSize}px;
+      border-bottom-color: ${props => props.$arrowSize.borderColor};
+      margin-left: -${props => props.$arrowSize.borderSize}px;
     }
 
     &::after {
-      border-width: ${props => props.arrowSize.bottomWidth};
+      border-width: ${props => props.$arrowSize.bottomWidth};
       border-color: transparent;
       border-bottom-color: ${props =>
-        props.hasTitle ? props.theme.colors.primary : props.theme.colors.white};
-      margin-left: -${props => props.arrowSize.size}px;
+        props.$hasTitle
+          ? props.theme.colors.primary
+          : props.theme.colors.white};
+      margin-left: -${props => props.$arrowSize.size}px;
     }
   }
 
   &[data-placement*='top'] {
     &::before {
-      border-width: ${props => props.arrowSize.borderSize}px;
+      border-width: ${props => props.$arrowSize.borderSize}px;
       border-color: transparent;
-      border-top-color: ${props => props.arrowSize.borderColor};
-      margin-left: -${props => props.arrowSize.borderSize}px;
+      border-top-color: ${props => props.$arrowSize.borderColor};
+      margin-left: -${props => props.$arrowSize.borderSize}px;
     }
 
     &::after {
-      border-width: ${props => props.arrowSize.size}px;
+      border-width: ${props => props.$arrowSize.size}px;
       border-color: transparent;
       border-top-color: ${props => props.theme.colors.white};
-      margin-left: -${props => props.arrowSize.size}px;
+      margin-left: -${props => props.$arrowSize.size}px;
     }
   }
 
   &[data-placement*='right'] {
-    margin-left: -${props => props.arrowSize.size}px;
+    margin-left: -${props => props.$arrowSize.size}px;
 
     &::before {
-      border-width: ${props => props.arrowSize.rightBorderWidth};
+      border-width: ${props => props.$arrowSize.rightBorderWidth};
       border-color: transparent;
-      border-right-color: ${props => props.arrowSize.borderColor};
-      margin-top: -${props => props.arrowSize.borderSize}px;
+      border-right-color: ${props => props.$arrowSize.borderColor};
+      margin-top: -${props => props.$arrowSize.borderSize}px;
     }
 
     &::after {
-      border-width: ${props => props.arrowSize.rightWidth};
+      border-width: ${props => props.$arrowSize.rightWidth};
       border-color: transparent;
       border-right-color: ${props => props.theme.colors.white};
-      margin-top: -${props => props.arrowSize.size}px;
+      margin-top: -${props => props.$arrowSize.size}px;
     }
   }
 
@@ -161,17 +172,17 @@ const Arrow = styled.div<{ arrowSize: ArrowSizeProperties; hasTitle: boolean }>`
     right: 0;
 
     &::before {
-      border-width: ${props => props.arrowSize.borderSize}px;
+      border-width: ${props => props.$arrowSize.borderSize}px;
       border-color: transparent;
-      border-left-color: ${props => props.arrowSize.borderColor};
-      margin-top: -${props => props.arrowSize.borderSize}px;
+      border-left-color: ${props => props.$arrowSize.borderColor};
+      margin-top: -${props => props.$arrowSize.borderSize}px;
     }
 
     &::after {
-      border-width: ${props => props.arrowSize.size}px;
+      border-width: ${props => props.$arrowSize.size}px;
       border-color: transparent;
       border-left-color: ${props => props.theme.colors.white};
-      margin-top: -${props => props.arrowSize.size}px;
+      margin-top: -${props => props.$arrowSize.size}px;
     }
   }
 `;
@@ -213,20 +224,20 @@ export interface PopupProps extends JSXElementProps<'div'> {
 const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
   function ForwardedPopup(
     {
+      position = 'bottom',
+      strategy = 'absolute',
+      transitionTimeout = 150,
+      enableEvents = true,
+      keepTogether = true,
       name,
       trigger,
       children,
-      position,
       arrowSize,
       hasTitle,
       transitionIn: isOpen,
       setIsOpen,
-      transitionTimeout,
       disableFlipping,
       popperRef,
-      enableEvents,
-      strategy,
-      keepTogether,
       disableRootClose,
       onExited,
       ...otherProps
@@ -307,7 +318,7 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
           >
             <PopperBox
               ref={el => callRefs(el, floatingPopupRef, popperRef || null)}
-              topIndex={getTopIndex()}
+              $topIndex={getTopIndex()}
               {...getFloatingProps({
                 ...otherProps,
                 style: {
@@ -336,8 +347,8 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
                         top: arrowY ?? 0
                       }
                 }
-                arrowSize={arrowValues}
-                hasTitle={Boolean(hasTitle)}
+                $arrowSize={arrowValues}
+                $hasTitle={Boolean(hasTitle)}
               />
             </PopperBox>
           </Fade>
@@ -363,22 +374,6 @@ Popup.propTypes = {
   keepTogether: PropTypes.bool,
   setIsOpen: PropTypes.func.isRequired,
   disableRootClose: PropTypes.bool.isRequired
-};
-
-Popup.defaultProps = {
-  name: '' as string,
-  trigger: undefined,
-  children: undefined,
-  position: 'bottom' as Placement,
-  arrowSize: 'default',
-  transitionIn: false,
-  transitionTimeout: 150,
-  hasTitle: false,
-  disableFlipping: false,
-  popperRef: undefined,
-  enableEvents: true,
-  strategy: 'absolute',
-  keepTogether: true
 };
 
 export default Popup;

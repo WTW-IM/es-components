@@ -54,10 +54,15 @@ const Caret = styled.span`
   vertical-align: middle;
 `;
 
-const ButtonPanel = styled.div<{ topIndex: number; isOpen?: boolean }>`
+interface ButtonPanelProps {
+  $topIndex: number;
+  $isOpen?: boolean;
+}
+
+const ButtonPanel = styled.div<ButtonPanelProps>`
   position: relative;
-  z-index: ${({ topIndex }) => topIndex};
-  display: ${props => (props.isOpen ? 'block' : 'none')};
+  z-index: ${({ $topIndex }) => $topIndex};
+  display: ${props => (props.$isOpen ? 'block' : 'none')};
   border: 1px solid ${props => props.theme.colors.gray3};
   margin-top: 3px;
   background-color: ${props => props.theme.colors.white};
@@ -307,9 +312,9 @@ const DropdownButton = React.forwardRef<HTMLButtonElement, DropdownButtonProps>(
           </ActivationButton>
           <div css="position: relative;">
             <ButtonPanel
-              isOpen={isOpen}
+              $isOpen={isOpen}
               id={panelId}
-              topIndex={isOpen ? getTopIndex() : -1}
+              $topIndex={isOpen ? getTopIndex() : -1}
             >
               <ButtonPanelChildrenContainer>
                 {Children.map(children, ch => {

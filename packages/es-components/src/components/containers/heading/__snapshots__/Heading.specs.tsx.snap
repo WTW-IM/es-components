@@ -67,7 +67,6 @@ exports[`renders heading level with another size 1`] = `
     </h3>
     <h3
       class="c0"
-      size="1"
     >
       Heading level 3 size 1
     </h3>

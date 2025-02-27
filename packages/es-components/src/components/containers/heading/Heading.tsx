@@ -96,7 +96,10 @@ function getAdjustedProps<R>(
     });
 }
 
-const UnstyledHeading = styled.h1``;
+const headingProps = ['level', 'size', 'isKnockoutStyle', 'underlineColor'];
+const UnstyledHeading = styled.h1.withConfig({
+  shouldForwardProp: prop => !headingProps.includes(prop)
+})``;
 const Heading = styled(({ level = 1, ...props }: HeadingProps) => (
   <UnstyledHeading as={`h${level}`} {...props} />
 ))`

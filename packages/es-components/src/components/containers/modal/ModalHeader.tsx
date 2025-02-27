@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -13,15 +13,15 @@ const DismissButton = OrigDismissButton as React.ForwardRefExoticComponent<
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it
 const Header = styled.div`
-  align-items: baseline;
-  background-color: ${props => props.theme.colors.white};
-  border-bottom: 2px solid ${props => props.theme.brandColors.primary3};
-  box-sizing: border-box;
-  color: ${props => props.theme.colors.gray9};
   display: flex;
-  font-size: 26px;
+  box-sizing: border-box;
+  align-items: baseline;
   justify-content: space-between;
   padding: 15px;
+  border-bottom: 2px solid ${props => props.theme.brandColors.primary3};
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.gray9};
+  font-size: 26px;
 
   .small & {
     @media (min-width: ${props => props.theme.screenSize.phone}) {
@@ -55,46 +55,35 @@ const DismissModal = styled(DismissButton)`
   font-size: 18px;
 `;
 
-interface ModalHeaderProps {
-  hideCloseButton: boolean;
-  children: React.ReactNode;
-  level: HeadingLevel;
+interface ModalHeaderProps extends JSXElementProps<'div'> {
+  hideCloseButton?: boolean;
+  level?: HeadingLevel;
   size?: HeadingLevel;
 }
 
-function ModalHeader(props: ModalHeaderProps) {
-  const { hideCloseButton, children, level, size, ...otherProps } = props;
-  const { onHide, ariaId } = useContext(ModalContext);
+const ModalHeader = forwardRef<HTMLDivElement, ModalHeaderProps>(
+  function ModalHeader(props, ref) {
+    const { hideCloseButton, children, level = 4, size, ...otherProps } = props;
+    const { onHide, ariaId } = useContext(ModalContext);
 
-  return (
-    <Header {...otherProps}>
-      <Title id={ariaId} level={level} size={size}>
-        {children}
-      </Title>
+    return (
+      <Header {...otherProps} ref={ref}>
+        <Title id={ariaId} level={level} size={size}>
+          {children}
+        </Title>
 
-      {!hideCloseButton && <DismissModal onClick={onHide} />}
-    </Header>
-  );
-}
+        {!hideCloseButton && <DismissModal onClick={onHide} />}
+      </Header>
+    );
+  }
+);
 
 ModalHeader.propTypes = {
   /** Specify whether the modal header should contain a close button */
   hideCloseButton: PropTypes.bool,
   children: PropTypes.any,
   level: PropTypes.oneOf<HeadingLevel>(headingLevel),
-  size: PropTypes.oneOf<HeadingLevel>(headingLevel),
-  ref: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any })
-  ])
-};
-
-ModalHeader.defaultProps = {
-  hideCloseButton: false,
-  children: undefined,
-  level: 4,
-  size: undefined,
-  ref: null
+  size: PropTypes.oneOf<HeadingLevel>(headingLevel)
 };
 
 export default ModalHeader;

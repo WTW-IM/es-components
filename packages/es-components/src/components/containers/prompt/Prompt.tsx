@@ -8,30 +8,34 @@ import Label from '../../controls/label/Label';
 import { PromptType } from './PromptType';
 
 interface IconWrapperProps {
-  bannerBgColor: string;
-  textColor: string;
+  $bannerBgColor: string;
+  $textColor: string;
 }
 
 const IconWrapper = styled.div<IconWrapperProps>`
-  background-color: ${promptProps => promptProps.bannerBgColor};
+  background-color: ${promptProps => promptProps.$bannerBgColor};
   padding: 6px 0 0 6px;
 `;
 
-const StyledIcon = styled(Icon)<{ iconColor: CSS.Property.Color }>`
-  ${({ name, iconColor }) => css`
+interface StyledIconProps {
+  $iconColor: CSS.Property.Color;
+}
+
+const StyledIcon = styled(Icon)<StyledIconProps>`
+  ${({ name, $iconColor }) => css`
     name: ${name};
-    color: ${iconColor};
+    color: ${$iconColor};
     padding-right: 5px;
   `}}
 `;
 
 interface ContentWrapperProps {
-  bgColor: string;
+  $bgColor: string;
 }
 
 const ContentWrapper = styled.div<ContentWrapperProps>`
   align-items: center;
-  background-color: ${promptProps => promptProps.bgColor};
+  background-color: ${promptProps => promptProps.$bgColor};
   color: black;
   border-radius: 2px;
   display: block;
@@ -46,14 +50,14 @@ const Content = styled.div`
 `;
 
 interface BannerLabelProps {
-  bannerTextColor: string;
+  $bannerTextColor: string;
 }
 
 const BannerLabel = styled(Label)<BannerLabelProps>`
   letter-spacing: 0.5px;
   font-size: 20px;
   font-weight: 500;
-  color: ${promptProps => promptProps.bannerTextColor};
+  color: ${promptProps => promptProps.$bannerTextColor};
 `;
 
 export type PromptProps = Override<
@@ -66,44 +70,43 @@ export type PromptProps = Override<
 >;
 
 const Prompt = React.forwardRef<HTMLDivElement, PromptProps>(
-  function ForwardedPrompt({ isContentReadAloud, children, ...props }, ref) {
-    const theme = useTheme();
+  function ForwardedPrompt(
+    { isContentReadAloud = true, children, ...props },
+    ref
+  ) {
+    const theme = useTheme()!;
     const promptStyles = isContentReadAloud
       ? theme.promptStyles[PromptType.readAloud]
       : theme.promptStyles[PromptType.doNotReadAloud];
     const inlineIconText = isContentReadAloud ? (
-      <BannerLabel bannerTextColor={promptStyles.bannerTextColor}>
+      <BannerLabel $bannerTextColor={promptStyles.bannerTextColor}>
         Read Aloud
       </BannerLabel>
     ) : (
-      <BannerLabel bannerTextColor={promptStyles.bannerTextColor}>
+      <BannerLabel $bannerTextColor={promptStyles.bannerTextColor}>
         Do Not Read Aloud
       </BannerLabel>
     );
     return (
       <div ref={ref} {...props}>
         <IconWrapper
-          bannerBgColor={promptStyles.bannerBgColor}
-          textColor={promptStyles.textColor}
+          $bannerBgColor={promptStyles.bannerBgColor}
+          $textColor={promptStyles.textColor}
         >
           <StyledIcon
             name={promptStyles.iconName}
-            iconColor={promptStyles.iconColor}
+            $iconColor={promptStyles.iconColor}
             size={30}
           />
           {inlineIconText}
         </IconWrapper>
-        <ContentWrapper bgColor={promptStyles.bgColor}>
+        <ContentWrapper $bgColor={promptStyles.bgColor}>
           <Content>{children}</Content>
         </ContentWrapper>
       </div>
     );
   }
 );
-
-Prompt.defaultProps = {
-  isContentReadAloud: true
-};
 
 Prompt.propTypes = {
   isContentReadAloud: PropTypes.bool

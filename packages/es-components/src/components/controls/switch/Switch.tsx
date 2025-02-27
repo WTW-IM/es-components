@@ -82,8 +82,8 @@ function getTypeColor(
 }
 
 interface SwitchElementProps {
-  direction: Direction;
-  type: SwitchStyleType;
+  $direction: Direction;
+  $type: SwitchStyleType;
 }
 
 const SwitchBase = styled.div<SwitchElementProps>`
@@ -91,15 +91,17 @@ const SwitchBase = styled.div<SwitchElementProps>`
   display: flex;
 `;
 
-const SwitchLabel = styled.label<SwitchElementProps & { isDisabled?: boolean }>`
-  flex-direction: ${props => Directions[props.direction]};
+type SwitchLabelProps = SwitchElementProps & { $isDisabled?: boolean };
+
+const SwitchLabel = styled.label<SwitchLabelProps>`
+  flex-direction: ${props => Directions[props.$direction]};
   text-align: ${props =>
-    props.direction === 'top' || props.direction === 'bottom'
+    props.$direction === 'top' || props.$direction === 'bottom'
       ? 'center'
       : 'left'};
   justify-content: ${props =>
-    props.direction === 'left' ? 'flex-end' : 'normal'};
-  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
+    props.$direction === 'left' ? 'flex-end' : 'normal'};
+  cursor: ${props => (props.$isDisabled ? 'not-allowed' : 'pointer')};
   display: flex;
   position: relative:
   padding: 5px 0;
@@ -109,18 +111,22 @@ const SwitchLabel = styled.label<SwitchElementProps & { isDisabled?: boolean }>`
     span {
       &::before {
         box-shadow: ${props =>
-          props.isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.4)'};
+          props.$isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.4)'};
       }
     }
 
     input[type="checkbox"]:checked ~ span::before {
       box-shadow: ${props =>
-        props.isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.7)'};
+        props.$isDisabled ? '0' : 'inset 0 3px 3px rgba(0,0,0,0.7)'};
     }
   }
 `;
 
-const SwitchInput = styled.input<{ styleType: SwitchStyleType }>`
+interface SwitchInputProps {
+  $styleType: SwitchStyleType;
+}
+
+const SwitchInput = styled.input<SwitchInputProps>`
   overflow: visible;
   margin: 0;
   font-family: inherit;
@@ -138,8 +144,8 @@ const SwitchInput = styled.input<{ styleType: SwitchStyleType }>`
 
   &:checked ~ span {
     &::before {
-      background: ${({ theme, styleType }) =>
-        getTypeColor(theme, styleType, false)};
+      background: ${({ theme, $styleType }) =>
+        getTypeColor(theme, $styleType, false)};
     }
 
     &::after {
@@ -150,10 +156,10 @@ const SwitchInput = styled.input<{ styleType: SwitchStyleType }>`
 `;
 
 const SwitchLabelText = styled.span<SwitchElementProps>`
-  padding: ${props => Padding[props.direction]};
+  padding: ${props => Padding[props.$direction]};
   flex-grow: 1;
-  color: ${({ theme, type }) =>
-    type === 'primary' ? '#000' : getTypeColor(theme, type, false)};
+  color: ${({ theme, $type }) =>
+    $type === 'primary' ? '#000' : getTypeColor(theme, $type, false)};
 `;
 
 const SwitchCheck = styled.span<SwitchElementProps>`
@@ -162,7 +168,7 @@ const SwitchCheck = styled.span<SwitchElementProps>`
   width: 64px;
 
   &::before {
-    background: ${({ theme, type }) => getTypeColor(theme, type, true)};
+    background: ${({ theme, $type }) => getTypeColor(theme, $type, true)};
     border-radius: 11px;
     content: '';
     display: block;
@@ -173,7 +179,9 @@ const SwitchCheck = styled.span<SwitchElementProps>`
     top: 0.2rem;
     width: 54px;
     z-index: 5;
-    transition: background-color 0.25s linear, border 0.25s linear,
+    transition:
+      background-color 0.25s linear,
+      border 0.25s linear,
       box-shadow 0.25s linear;
   }
 
@@ -193,21 +201,23 @@ const SwitchCheck = styled.span<SwitchElementProps>`
   }
 `;
 
-const SwitchOffText = styled.span<
-  SwitchElementProps & { textOff: React.ReactNode }
->`
+type OffTextProps = SwitchElementProps & {
+  $textOff: React.ReactNode;
+};
+
+const SwitchOffText = styled.span<OffTextProps>`
   order: ${props =>
-    props.direction === 'left' || props.direction === 'top' ? '-1' : '-3'};
-  padding: ${props => (props.textOff === '' ? '0' : '0 1rem 0 1rem')};
+    props.$direction === 'left' || props.$direction === 'top' ? '-1' : '-3'};
+  padding: ${props => (props.$textOff === '' ? '0' : '0 1rem 0 1rem')};
   vertical-align: middle;
 `;
 
-const SwitchOnText = styled.span<
-  SwitchElementProps & { textOn: React.ReactNode }
->`
+type OnTextProps = SwitchElementProps & { $textOn: React.ReactNode };
+
+const SwitchOnText = styled.span<OnTextProps>`
   order: ${props =>
-    props.direction === 'left' || props.direction === 'top' ? '-3' : '-1'};
-  padding: ${props => (props.textOn === '' ? '0' : '0 1rem 0 0.75rem')};
+    props.$direction === 'left' || props.$direction === 'top' ? '-3' : '-1'};
+  padding: ${props => (props.$textOn === '' ? '0' : '0 1rem 0 0.75rem')};
   vertical-align: middle;
 `;
 
@@ -242,18 +252,21 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
 ) {
   const [isToggled, setIsToggled] = useState(checked);
 
-  const elementProps = { direction, type };
+  const elementProps = { $direction: direction, $type: type };
 
   useEffect(() => {
     setIsToggled(checked);
   }, [checked]);
 
   const handleToggle: React.ChangeEventHandler<HTMLInputElement> =
-    useMonitoringCallback((currentOnChange, event) => {
-      const isChecked = event.target.checked;
-      setIsToggled(isChecked);
-      currentOnChange?.(event);
-    }, onChange);
+    useMonitoringCallback(
+      (currentOnChange, event: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = event.target.checked;
+        setIsToggled(isChecked);
+        currentOnChange?.(event);
+      },
+      onChange
+    );
 
   return (
     <SwitchBase
@@ -264,10 +277,10 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
         isToggled ? 'toggled-on' : 'toggled-off'
       }`}
     >
-      <SwitchLabel isDisabled={disabled} {...elementProps}>
+      <SwitchLabel $isDisabled={disabled} {...elementProps}>
         <SwitchInput
           disabled={disabled}
-          styleType={type}
+          $styleType={type}
           type="checkbox"
           checked={isToggled}
           onChange={handleToggle}
@@ -278,7 +291,7 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
         </SwitchLabelText>
         <SwitchOffText
           {...elementProps}
-          textOff={offText}
+          $textOff={offText}
           className="es-switch__off-text"
         >
           {offText}
@@ -286,7 +299,7 @@ const Switch = React.forwardRef<HTMLDivElement, SwitchProps>(function Switch(
         <SwitchCheck {...elementProps} className="es-switch__display" />
         <SwitchOnText
           {...elementProps}
-          textOn={onText}
+          $textOn={onText}
           className="es-switch__on-text"
         >
           {onText}
@@ -318,18 +331,6 @@ Switch.propTypes = {
   onChange: PropTypes.func,
   /** Determines whether the switch is disabled */
   disabled: PropTypes.bool
-};
-
-Switch.defaultProps = {
-  type: 'primary',
-  label: '',
-  direction: 'right',
-  ariaLabel: '',
-  onText: '',
-  offText: '',
-  checked: false,
-  onChange: noop,
-  disabled: false
 };
 
 export default Switch;

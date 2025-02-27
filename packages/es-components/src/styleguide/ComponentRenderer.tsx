@@ -30,7 +30,8 @@ const ComponentRenderer: React.FC<ComponentRendererProps> = ({
 
 ComponentRenderer.propTypes = {
   ...(ReactComponentRenderer?.propTypes || {}),
-  examples: PropTypes.element.isRequired
+  examples: (PropTypes.element as ReactElementPropType<ExamplesComponentProps>)
+    .isRequired
 };
 
 export default ComponentRenderer;

@@ -1,11 +1,7 @@
 import React from 'react';
 import type * as CSS from 'csstype';
 import PropTypes from 'prop-types';
-import originalStyled, {
-  ThemeProvider,
-  DefaultTheme,
-  ThemedStyledInterface
-} from 'styled-components';
+import styled, { ThemeProvider, DefaultTheme } from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { useTheme } from '../../util/useTheme';
 
@@ -16,17 +12,22 @@ export interface SkeletonTheme extends DefaultTheme {
   };
 }
 
-const styled =
-  originalStyled as unknown as ThemedStyledInterface<SkeletonTheme>;
+export interface SkeletonThemeProps {
+  theme: SkeletonTheme;
+}
 
-const SkeletonContainer = styled.div`
+const SkeletonContainer = styled.div<SkeletonThemeProps>`
   position: relative;
   background-color: ${({ theme: { skeleton } }) => skeleton.shimmerColor};
 
   &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
     animation: loading-keyframes 2s linear infinite;
-    background-size: 50%;
-    background-repeat: no-repeat;
     background-image: linear-gradient(
       -60deg,
       ${({ theme: { skeleton } }) =>
@@ -45,29 +46,27 @@ const SkeletonContainer = styled.div`
           tinycolor(skeleton.shimmerColor).setAlpha(0).toRgbString()}
         100%
     );
+    background-repeat: no-repeat;
+    background-size: 50%;
     content: '';
-    display: block;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
   }
 
   @keyframes loading-keyframes {
     0% {
       background-position: -150% 0;
     }
+
     75% {
       background-position: 250% 0;
     }
+
     100% {
       background-position: 250% 0;
     }
   }
 `;
 
-const SkeletonShape = styled.div`
+const SkeletonShape = styled.div<SkeletonThemeProps>`
   background-color: ${({ theme: { skeleton } }) => skeleton.shapeColor};
 `;
 
@@ -81,7 +80,7 @@ const LoadingSkeleton = React.forwardRef<HTMLDivElement, LoadingSkeletonProps>(
     { shapeColor, shimmerColor, ...props },
     ref
   ) {
-    const theme = useTheme();
+    const theme = useTheme() as SkeletonTheme;
     const { colors } = theme;
     const shimmer = shimmerColor || colors.white;
     const shape = shapeColor || colors.gray3;

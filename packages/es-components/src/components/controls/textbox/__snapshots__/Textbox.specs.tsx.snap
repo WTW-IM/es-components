@@ -3,20 +3,12 @@
 exports[`renders the correct addons when provided 1`] = `
 .c0 {
   color: #444;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  flex-flow: column wrap;
   margin-bottom: 25px;
 }
 
-.c0 >[role="group"] {
+.c0 >[role='group'] {
   margin-bottom: 0;
 }
 
@@ -45,7 +37,6 @@ exports[`renders the correct addons when provided 1`] = `
   text-transform: none;
   display: inline-block;
   font-size: 18px;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
 }
@@ -55,8 +46,7 @@ exports[`renders the correct addons when provided 1`] = `
   border-radius: 2px;
   box-sizing: border-box;
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
   font-size: 1.125rem;
@@ -66,8 +56,6 @@ exports[`renders the correct addons when provided 1`] = `
   line-height: 1.428;
   min-width: 0;
   padding: 6px 12px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -75,27 +63,8 @@ exports[`renders the correct addons when provided 1`] = `
   outline: 0;
 }
 
-.c4::-webkit-input-placeholder {
-  color: #787878;
-}
-
-.c4::-moz-placeholder {
-  color: #787878;
-}
-
-.c4:-ms-input-placeholder {
-  color: #787878;
-}
-
 .c4::placeholder {
   color: #787878;
-}
-
-.c4:disabled,
-.c4:disabled:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
-  cursor: not-allowed;
 }
 
 .c4:disabled,
@@ -107,25 +76,21 @@ exports[`renders the correct addons when provided 1`] = `
 
 .c2 {
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
   border-radius: 2px;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  padding: 0 !important;
+  padding: 0!important;
 }
 
 .c2:focus-within {
   border-color: #83bffc;
-  box-shadow: 0 0 8px rgba(102,175,233,0.6),inset 0 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6),inset 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
-.c2.c2:before {
+.c2.c2::before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
@@ -135,27 +100,18 @@ exports[`renders the correct addons when provided 1`] = `
   text-transform: none;
   display: inline-block;
   font-size: inherit;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
   font-size: 18px;
 }
 
-.c2.c2:before,
-.c2.c2:after {
+.c2.c2::before,
+.c2.c2::after {
   background-color: #e4e4e4;
   color: #5e5e5e;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
   margin: 0;
@@ -165,19 +121,13 @@ exports[`renders the correct addons when provided 1`] = `
 
 .c5 {
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   display: table-cell;
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-}
-
-.c5.c5:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
 }
 
 .c5.c5:read-only {
@@ -186,21 +136,21 @@ exports[`renders the correct addons when provided 1`] = `
 }
 
 .c5.c5 {
-  border: none !important;
-  margin: 0 !important;
   height: 2.2em;
+  border: none!important;
+  margin: 0!important;
 }
 
-.c5.c5:not([disabled]):not([readonly]) {
-  box-shadow: none !important;
-  background-color: transparent !important;
+.c5.c5:not([disabled], [readonly]) {
+  background-color: transparent!important;
+  box-shadow: none!important;
 }
 
 .c5.c5:focus {
-  box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     margin-right: 20px;
   }
@@ -244,20 +194,12 @@ exports[`renders the correct addons when provided 1`] = `
 exports[`renders the correct addons when provided 2`] = `
 .c0 {
   color: #444;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  flex-flow: column wrap;
   margin-bottom: 25px;
 }
 
-.c0 >[role="group"] {
+.c0 >[role='group'] {
   margin-bottom: 0;
 }
 
@@ -286,7 +228,6 @@ exports[`renders the correct addons when provided 2`] = `
   text-transform: none;
   display: inline-block;
   font-size: 18px;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
 }
@@ -296,8 +237,7 @@ exports[`renders the correct addons when provided 2`] = `
   border-radius: 2px;
   box-sizing: border-box;
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
   font-size: 1.125rem;
@@ -307,8 +247,6 @@ exports[`renders the correct addons when provided 2`] = `
   line-height: 1.428;
   min-width: 0;
   padding: 6px 12px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -316,27 +254,8 @@ exports[`renders the correct addons when provided 2`] = `
   outline: 0;
 }
 
-.c4::-webkit-input-placeholder {
-  color: #787878;
-}
-
-.c4::-moz-placeholder {
-  color: #787878;
-}
-
-.c4:-ms-input-placeholder {
-  color: #787878;
-}
-
 .c4::placeholder {
   color: #787878;
-}
-
-.c4:disabled,
-.c4:disabled:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
-  cursor: not-allowed;
 }
 
 .c4:disabled,
@@ -348,25 +267,21 @@ exports[`renders the correct addons when provided 2`] = `
 
 .c2 {
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
   border-radius: 2px;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  padding: 0 !important;
+  padding: 0!important;
 }
 
 .c2:focus-within {
   border-color: #83bffc;
-  box-shadow: 0 0 8px rgba(102,175,233,0.6),inset 0 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6),inset 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
-.c2.c2:after {
+.c2.c2::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
@@ -376,27 +291,18 @@ exports[`renders the correct addons when provided 2`] = `
   text-transform: none;
   display: inline-block;
   font-size: inherit;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
   font-size: 18px;
 }
 
-.c2.c2:before,
-.c2.c2:after {
+.c2.c2::before,
+.c2.c2::after {
   background-color: #e4e4e4;
   color: #5e5e5e;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
   margin: 0;
@@ -406,19 +312,13 @@ exports[`renders the correct addons when provided 2`] = `
 
 .c5 {
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   display: table-cell;
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
-}
-
-.c5.c5:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
 }
 
 .c5.c5:read-only {
@@ -427,21 +327,21 @@ exports[`renders the correct addons when provided 2`] = `
 }
 
 .c5.c5 {
-  border: none !important;
-  margin: 0 !important;
   height: 2.2em;
+  border: none!important;
+  margin: 0!important;
 }
 
-.c5.c5:not([disabled]):not([readonly]) {
-  box-shadow: none !important;
-  background-color: transparent !important;
+.c5.c5:not([disabled], [readonly]) {
+  background-color: transparent!important;
+  box-shadow: none!important;
 }
 
 .c5.c5:focus {
-  box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     margin-right: 20px;
   }
@@ -485,20 +385,12 @@ exports[`renders the correct addons when provided 2`] = `
 exports[`renders the correct addons when provided 3`] = `
 .c0 {
   color: #444;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  flex-flow: column wrap;
   margin-bottom: 25px;
 }
 
-.c0 >[role="group"] {
+.c0 >[role='group'] {
   margin-bottom: 0;
 }
 
@@ -527,7 +419,6 @@ exports[`renders the correct addons when provided 3`] = `
   text-transform: none;
   display: inline-block;
   font-size: 18px;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
 }
@@ -537,8 +428,7 @@ exports[`renders the correct addons when provided 3`] = `
   border-radius: 2px;
   box-sizing: border-box;
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   color: #000;
   font-size: 1.125rem;
@@ -548,8 +438,6 @@ exports[`renders the correct addons when provided 3`] = `
   line-height: 1.428;
   min-width: 0;
   padding: 6px 12px;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
 
@@ -557,27 +445,8 @@ exports[`renders the correct addons when provided 3`] = `
   outline: 0;
 }
 
-.c4::-webkit-input-placeholder {
-  color: #787878;
-}
-
-.c4::-moz-placeholder {
-  color: #787878;
-}
-
-.c4:-ms-input-placeholder {
-  color: #787878;
-}
-
 .c4::placeholder {
   color: #787878;
-}
-
-.c4:disabled,
-.c4:disabled:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
-  cursor: not-allowed;
 }
 
 .c4:disabled,
@@ -589,25 +458,21 @@ exports[`renders the correct addons when provided 3`] = `
 
 .c2 {
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   border: 1px solid #c5c5c5;
   border-radius: 2px;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  padding: 0 !important;
+  padding: 0!important;
 }
 
 .c2:focus-within {
   border-color: #83bffc;
-  box-shadow: 0 0 8px rgba(102,175,233,0.6),inset 0 0 0 0 rgba(0,0,0,0);
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6),inset 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
-.c2.c2:before {
+.c2.c2::before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
@@ -617,13 +482,12 @@ exports[`renders the correct addons when provided 3`] = `
   text-transform: none;
   display: inline-block;
   font-size: inherit;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
   font-size: 18px;
 }
 
-.c2.c2:after {
+.c2.c2::after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-style: normal;
@@ -633,27 +497,18 @@ exports[`renders the correct addons when provided 3`] = `
   text-transform: none;
   display: inline-block;
   font-size: inherit;
-  -webkit-text-decoration: none;
   text-decoration: none;
   vertical-align: text-bottom;
   font-size: 18px;
 }
 
-.c2.c2:before,
-.c2.c2:after {
+.c2.c2::before,
+.c2.c2::after {
   background-color: #e4e4e4;
   color: #5e5e5e;
   box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   line-height: 1;
   margin: 0;
@@ -663,21 +518,15 @@ exports[`renders the correct addons when provided 3`] = `
 
 .c5 {
   background-color: #fff;
-  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0,0,0,0.075);
-  -webkit-transition: border-color linear 0.15s,box-shadow linear 0.15s;
+  box-shadow: 0 0 0 0 #c5c5c5,inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color linear 0.15s,box-shadow linear 0.15s;
   display: table-cell;
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
-}
-
-.c5.c5:-moz-read-only {
-  background-color: #ededed;
-  cursor: text;
 }
 
 .c5.c5:read-only {
@@ -686,21 +535,21 @@ exports[`renders the correct addons when provided 3`] = `
 }
 
 .c5.c5 {
-  border: none !important;
-  margin: 0 !important;
   height: 2.2em;
+  border: none!important;
+  margin: 0!important;
 }
 
-.c5.c5:not([disabled]):not([readonly]) {
-  box-shadow: none !important;
-  background-color: transparent !important;
+.c5.c5:not([disabled], [readonly]) {
+  background-color: transparent!important;
+  box-shadow: none!important;
 }
 
 .c5.c5:focus {
-  box-shadow: inset 0 0 0 0 rgba(0,0,0,0);
+  box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     margin-right: 20px;
   }

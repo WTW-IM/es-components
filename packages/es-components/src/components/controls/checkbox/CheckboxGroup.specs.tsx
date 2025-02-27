@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent, {
   PointerEventsCheckLevel
 } from '@testing-library/user-event';
@@ -10,8 +10,6 @@ import { renderWithTheme } from '../../util/test-utils';
 const user = userEvent.setup({
   pointerEventsCheck: PointerEventsCheckLevel.Never
 });
-
-beforeEach(cleanup);
 
 const checkboxOptions = [
   {

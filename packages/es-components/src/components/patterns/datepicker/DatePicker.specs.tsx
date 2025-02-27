@@ -1,7 +1,6 @@
 import React from 'react';
 import viaTheme from 'es-components-via-theme';
-
-import { cleanup, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Control from '../../controls/Control';
 import Label from '../../controls/label/Label';
@@ -17,8 +16,6 @@ Object.defineProperty(window, 'innerWidth', {
 function setScreenWidth(size: number) {
   window.innerWidth = size;
 }
-
-afterEach(cleanup);
 
 it('renders DatePicker when textbox is focused', async () => {
   const user = userEvent.setup();

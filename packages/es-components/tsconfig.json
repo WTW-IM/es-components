@@ -29,6 +29,10 @@
         "../../node_modules/react-styleguidist/lib/typings/index.d.ts"
       ],
       "react": ["../../node_modules/@types/react"],
+      "prop-types": [
+        "../../node_modules/@types/prop-types",
+        "./packages/es-components/src/prop-types"
+      ],
       "*": ["../../node_modules/@types/*"]
     }
   },

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as CSS from 'csstype';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { darken, getTextColor } from '../../util/colors';
 import useUniqueId from '../../util/useUniqueId';
@@ -34,50 +34,60 @@ export type AnswerButtonProps = Override<
   }
 >;
 
-const AnswerLabel = styled.label<{ itemWidth: AnswerButtonProps['itemWidth'] }>`
-  flex-grow: 1;
+interface AnswerLabelProps {
+  $itemWidth: AnswerButtonProps['itemWidth'];
+}
+const AnswerLabel = styled.label.withConfig({
+  shouldForwardProp: prop => !['validationState'].includes(prop)
+})<AnswerLabelProps>`
+  ${({ $itemWidth, theme }) => css`
+    flex-grow: 1;
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    flex-grow: 0;
-    min-width: ${props => props.itemWidth};
-  }
+    @media (min-width: ${theme.screenSize.tablet}) {
+      min-width: ${$itemWidth};
+      flex-grow: 0;
+    }
+  `}
 `;
 
-const AnswerDisplay = styled.div<{
-  buttonStyle: AnswerButtonVariant;
-  buttonSize: ButtonSizeBlock;
-}>`
-  background-color: ${props => props.buttonStyle.bgColor};
+interface AnswerDisplayProps {
+  $buttonStyle: AnswerButtonVariant;
+  $buttonSize: ButtonSizeBlock;
+}
+const AnswerDisplay = styled.div<AnswerDisplayProps>`
+  padding: ${props => props.$buttonSize.paddingTop}
+    ${props => props.$buttonSize.paddingSides}
+    ${props => props.$buttonSize.paddingBottom}
+    ${props => props.$buttonSize.paddingSides};
   border-color: transparent;
-  box-shadow: 0 4px 0 0 ${props => darken(props.buttonStyle.bgColor, 10)};
-  color: ${props => getTextColor(props.buttonStyle.bgColor)};
-  font-weight: ${props => props.buttonSize.fontWeight || 'normal'};
-  font-size: ${props => props.buttonSize.fontSize};
-  line-height: ${props => props.buttonSize.lineHeight};
-  margin-bottom: 4px;
   margin-top: 0;
-  padding-top: ${props => props.buttonSize.paddingTop};
-  padding-right: ${props => props.buttonSize.paddingSides};
-  padding-bottom: ${props => props.buttonSize.paddingBottom};
-  padding-left: ${props => props.buttonSize.paddingSides};
+  margin-bottom: 4px;
+  background-color: ${props => props.$buttonStyle.bgColor};
+  box-shadow: 0 4px 0 0 ${props => darken(props.$buttonStyle.bgColor, 10)};
+  color: ${props => getTextColor(props.$buttonStyle.bgColor)};
+  font-size: ${props => props.$buttonSize.fontSize};
+  font-weight: ${props => props.$buttonSize.fontWeight || 'normal'};
+  line-height: ${props => props.$buttonSize.lineHeight};
   text-align: center;
   text-transform: ${props =>
-    props.buttonSize.textTransform ? props.buttonSize.textTransform : 'none'};
-  transition: background-color 250ms linear, color 250ms linear;
+    props.$buttonSize.textTransform ? props.$buttonSize.textTransform : 'none'};
+  transition:
+    background-color 250ms linear,
+    color 250ms linear;
   user-select: none;
 
   &:active {
-    background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
-    box-shadow: 0 0 0 0 transparent;
-    color: ${props => getTextColor(props.buttonStyle.bgColor)};
-    margin-bottom: 0;
     margin-top: 4px;
+    margin-bottom: 0;
+    background-color: ${props => darken(props.$buttonStyle.bgColor, 8)};
+    box-shadow: 0 0 0 0 transparent;
+    color: ${props => getTextColor(props.$buttonStyle.bgColor)};
   }
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
-      background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
-      color: ${props => getTextColor(props.buttonStyle.bgColor)};
+      background-color: ${props => darken(props.$buttonStyle.bgColor, 8)};
+      color: ${props => getTextColor(props.$buttonStyle.bgColor)};
     }
   }
 
@@ -91,16 +101,20 @@ const AnswerDisplay = styled.div<{
   }
 `;
 
-const OutlineAnswerDisplay = styled(AnswerDisplay)<{ isChecked?: boolean }>`
-  background-color: ${props =>
-    props.isChecked ? props.buttonStyle.bgColor : props.theme.colors.white};
-  border: 2px solid
-    ${props => props.buttonStyle.borderColor || props.buttonStyle.bgColor};
-  box-shadow: none;
+interface OutlineAnswerDisplayProps {
+  $isChecked?: boolean;
+}
+
+const OutlineAnswerDisplay = styled(AnswerDisplay)<OutlineAnswerDisplayProps>`
   box-sizing: border-box;
-  color: ${props =>
-    props.isChecked ? props.theme.colors.white : props.buttonStyle.bgColor};
+  border: 2px solid
+    ${props => props.$buttonStyle.borderColor || props.$buttonStyle.bgColor};
   margin: 0;
+  background-color: ${props =>
+    props.$isChecked ? props.$buttonStyle.bgColor : props.theme.colors.white};
+  box-shadow: none;
+  color: ${props =>
+    props.$isChecked ? props.theme.colors.white : props.$buttonStyle.bgColor};
 
   &:active {
     margin: 0;
@@ -109,24 +123,35 @@ const OutlineAnswerDisplay = styled(AnswerDisplay)<{ isChecked?: boolean }>`
 
 // this preserves css syntax highlighting
 const ModifiedAnswerInput = styled('input').withConfig({
-  shouldForwardProp: (prop, defaultValidatorFn) =>
-    !['buttonStyle', 'size'].includes(prop) && defaultValidatorFn(prop)
+  shouldForwardProp: prop =>
+    ![
+      'size',
+      'styleType',
+      'selectedType',
+      'isOutline',
+      'itemWidth',
+      'isAnswerGroup',
+      'selectedValue',
+      'disableAllOptions'
+    ].includes(prop)
 })``;
 
-const AnswerInput = styled(ModifiedAnswerInput)<{
-  buttonStyle: AnswerButtonVariant;
-}>`
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
+type AnswerInputProps = {
+  $buttonStyle: AnswerButtonVariant;
+};
+
+const AnswerInput = styled(ModifiedAnswerInput)<AnswerInputProps>`
   position: absolute;
-  white-space: nowrap;
+  overflow: hidden;
   width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(100%);
+  white-space: nowrap;
 
   &:focus + div {
-    background-color: ${props => darken(props.buttonStyle.bgColor, 8)};
-    color: ${props => getTextColor(props.buttonStyle.bgColor)};
+    background-color: ${props => darken(props.$buttonStyle.bgColor, 8)};
+    color: ${props => getTextColor(props.$buttonStyle.bgColor)};
   }
 `;
 
@@ -161,21 +186,31 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
     const itemWidth = itemWidthProp || contextProps.itemWidth;
 
     const buttonType = isOutline ? 'outlineButton' : 'button';
-    const buttonSize = theme.buttonStyles[buttonType].size[size];
+    const buttonSize: ButtonSizeBlock = theme?.buttonStyles[buttonType].size[
+      size
+    ] ?? {
+      fontSize: '',
+      fontWeight: '',
+      lineHeight: '',
+      paddingTop: '',
+      paddingSides: '',
+      paddingBottom: '',
+      borderRadius: ''
+    };
 
     const variant =
       validationState !== 'default' && !isOutline
         ? (validationState as ButtonVariantStyleType)
         : styleType;
     const validationBorder =
-      theme.buttonStyles[buttonType].variant[
+      theme?.buttonStyles[buttonType].variant[
         validationState as ButtonVariantStyleType
       ].bgColor;
 
-    let selectedStyles: AnswerButtonVariant =
-      theme.buttonStyles[buttonType].variant[selectedType];
-    let unSelectedStyles: AnswerButtonVariant =
-      theme.buttonStyles[buttonType].variant[variant];
+    let selectedStyles: AnswerButtonVariant = theme?.buttonStyles[buttonType]
+      .variant[selectedType] ?? { bgColor: '' };
+    let unSelectedStyles: AnswerButtonVariant = theme?.buttonStyles[buttonType]
+      .variant[variant] ?? { bgColor: '' };
 
     if (isOutline && validationState !== 'default') {
       selectedStyles = { ...selectedStyles, borderColor: validationBorder };
@@ -186,14 +221,14 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
 
     const buttonProps = {
       disabled,
-      isChecked,
-      buttonStyle,
-      buttonSize
+      $isChecked: isChecked,
+      $buttonStyle: buttonStyle,
+      $buttonSize: buttonSize
     };
 
     const labelProps = {
       disabled: radioProps.disabled,
-      itemWidth,
+      $itemWidth: itemWidth,
       htmlFor: id,
       validationState
     };
@@ -212,7 +247,7 @@ const AnswerButton = React.forwardRef<HTMLInputElement, AnswerButtonProps>(
         <AnswerInput
           type="radio"
           id={id}
-          buttonStyle={buttonStyle}
+          $buttonStyle={buttonStyle}
           ref={ref}
           {...inputProps}
         />

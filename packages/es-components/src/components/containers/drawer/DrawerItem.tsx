@@ -41,14 +41,14 @@ export interface DrawerItemProps {
   children?: React.ReactNode;
 }
 
-export const DrawerItem: React.FC<DrawerItemProps> = ({
+export function DrawerItem({
   id,
   panelKey,
   open: openProp,
   controlledOpen,
   onChange,
   ...props
-}) => {
+}: DrawerItemProps) {
   const { activeKeys, toggleActiveKey, setActiveKey, unsetActiveKey } =
     useContext(DrawerContext);
   const itemId = useUniqueId(id);
@@ -122,7 +122,7 @@ export const DrawerItem: React.FC<DrawerItemProps> = ({
   }, []);
 
   return <DrawerItemContext.Provider {...props} value={itemContext} />;
-};
+}
 
 DrawerItem.propTypes = {
   /** Set the drawer to open or closed (true/false) */
@@ -165,12 +165,14 @@ DrawerItemBody.propTypes = {
   children: PropTypes.node
 };
 
+interface DrawerItemOpenerChildProps {
+  onClick?: (event: React.SyntheticEvent) => void;
+  'aria-expanded'?: boolean;
+  'aria-controls'?: string;
+}
+
 export interface DrawerItemOpenerProps {
-  children: React.ReactElement<{
-    onClick?: (event: React.SyntheticEvent) => void;
-    'aria-expanded'?: boolean;
-    'aria-controls'?: string;
-  }>;
+  children: React.ReactElement<DrawerItemOpenerChildProps>;
 }
 
 function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
@@ -196,16 +198,15 @@ function DrawerItemOpenerSingle({ children }: DrawerItemOpenerProps) {
   });
 }
 
-export const DrawerItemOpener: React.FC<DrawerItemOpenerProps> = ({
+export const DrawerItemOpener = ({
   children,
   ...props
-}) => {
+}: DrawerItemOpenerProps) => {
   try {
     return (
       <DrawerItemOpenerSingle {...props}>{children}</DrawerItemOpenerSingle>
     );
   } catch {
-    // eslint-disable-next-line no-console
     console.error(
       'Drawer.ItemOpener could not set onClick. Please ensure it has only one root child component.'
     );
@@ -214,5 +215,7 @@ export const DrawerItemOpener: React.FC<DrawerItemOpenerProps> = ({
 };
 
 DrawerItemOpener.propTypes = {
-  children: PropTypes.element.isRequired
+  children: (
+    PropTypes.element as unknown as ReactElementPropType<DrawerItemOpenerChildProps>
+  ).isRequired
 };

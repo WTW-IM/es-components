@@ -30,52 +30,71 @@ export type ControlProps = Override<
   }
 >;
 
-interface FlexControlProps extends ControlDisplayProps {
-  hasValidationBorder?: boolean;
-  textColor?: CSS.Property.Color;
-  layoutOrientation?: Orientation;
+interface FlexControlProps {
+  $hasValidationBorder?: boolean;
+  $textColor?: CSS.Property.Color;
+  $layoutOrientation?: Orientation;
+  $borderOffset: ControlDisplayProps['borderOffset'];
+  $validationState: ControlDisplayProps['validationState'];
 }
 
-const FlexControl = styled.div<FlexControlProps>`
-  color: ${props => props.textColor};
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-bottom: 25px;
+const FlexControl = styled.div.withConfig({
+  shouldForwardProp: prop =>
+    ![
+      'backgroundColor',
+      'backgroundColorFlat',
+      'borderColor',
+      'boxShadow',
+      'focusBorderColor',
+      'focusBoxShadow',
+      'focusBoxShadowFlat',
+      'addOn'
+    ].includes(prop)
+})<FlexControlProps>`
+  ${({
+    $textColor,
+    theme,
+    $borderOffset,
+    $hasValidationBorder,
+    $validationState,
+    $layoutOrientation
+  }) => css`
+    color: ${$textColor};
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 25px;
 
-  >[role="group"] {
-    margin-bottom: 0;
-  }
+    > [role='group'] {
+      margin-bottom: 0;
+    }
 
-  ${props =>
-    props.hasValidationBorder &&
-    props.validationState !== 'default' &&
+    ${$hasValidationBorder &&
+    $validationState !== 'default' &&
     css`
-      border-bottom: 2px solid ${props.theme.colors.gray4};
-      box-shadow: inset 0 7px 6px -6px ${props.textColor};
-      padding: 15px ${props.borderOffset};
-      margin-left: -${props.borderOffset};
-      margin-right: -${props.borderOffset};
+      padding: 15px ${$borderOffset};
+      border-bottom: 2px solid ${theme.colors.gray4};
+      margin-right: -${$borderOffset};
+      margin-left: -${$borderOffset};
+      box-shadow: inset 0 7px 6px -6px ${$textColor};
     `}
-  }
 
-  ${props =>
-    props.layoutOrientation === 'inline' &&
+    ${$layoutOrientation === 'inline' &&
     css`
-      @media (min-width: ${props.theme.screenSize.tablet}) {
-        align-items: baseline;
+      @media (min-width: ${theme.screenSize.tablet}) {
         flex-direction: row;
+        align-items: baseline;
       }
     `};
+  `}
 `;
 
 const Control = React.forwardRef<HTMLDivElement, ControlProps>(
   function ForwardedControl(props, ref) {
     const {
       validationState = 'default',
-      hasValidationBorder,
+      hasValidationBorder = false,
       orientation = 'stacked',
-      borderOffset,
+      borderOffset = '15px',
       children,
       flat,
       ...other
@@ -83,20 +102,20 @@ const Control = React.forwardRef<HTMLDivElement, ControlProps>(
     const theme = useTheme();
     const extraFormContext = isBool(flat) ? { flat } : {};
     const textColor =
-      theme.validationTextColor[validationState] ||
-      theme.validationTextColor['default'];
+      theme?.validationTextColor[validationState] ||
+      theme?.validationTextColor['default'];
 
     return (
       <OrientationContext.Provider value={orientation}>
         <FormContextProvider value={extraFormContext}>
           <FlexControl
             ref={ref}
-            textColor={textColor}
-            borderOffset={borderOffset}
-            validationState={validationState}
-            {...theme.validationInputColor[validationState]}
-            layoutOrientation={orientation}
-            hasValidationBorder={hasValidationBorder}
+            $textColor={textColor}
+            $borderOffset={borderOffset}
+            $validationState={validationState}
+            {...(theme?.validationInputColor[validationState] ?? {})}
+            $layoutOrientation={orientation}
+            $hasValidationBorder={hasValidationBorder}
             {...other}
           >
             <ValidationContext.Provider value={validationState}>
@@ -120,15 +139,6 @@ Control.propTypes = {
   /** Apply the Flat Style to all children */
   flat: PropTypes.bool,
   children: PropTypes.node
-};
-
-Control.defaultProps = {
-  orientation: 'stacked',
-  validationState: 'default',
-  hasValidationBorder: false,
-  borderOffset: '15px',
-  flat: undefined,
-  children: null
 };
 
 export default Control;

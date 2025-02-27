@@ -5,7 +5,7 @@ import type * as CSS from 'csstype';
 import { IconName, iconNames } from 'es-components-shared-types';
 import { useRootNodeLocator } from '../../util/useRootNode';
 import IconContext from './IconContext';
-import { htmlProps, htmlDefaultProps } from '../../util/htmlProps';
+import { htmlProps } from '../../util/htmlProps';
 
 export const iconBasics = css`
   -webkit-font-smoothing: antialiased;
@@ -77,13 +77,6 @@ export const propTypes: PropTypesOf<IconProps> = {
   className: htmlProps['className']
 };
 
-export const defaultProps = {
-  ...htmlDefaultProps,
-  size: undefined,
-  className: undefined
-};
-
 Icon.propTypes = propTypes;
-Icon.defaultProps = defaultProps;
 
 export default Icon;

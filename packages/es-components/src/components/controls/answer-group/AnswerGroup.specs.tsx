@@ -59,11 +59,13 @@ it('renders each radio input with the itemWidth size', async () => {
     .filter((el): el is HTMLElement => Boolean(el));
 
   expect(labels).toHaveLength(3);
-  labels.forEach(label =>
+  labels.forEach(label => {
     expect(label).toHaveStyleRule('min-width', '200px', {
-      media: `(min-width: ${viaTheme.screenSize.tablet})`
-    })
-  );
+      // an extra space is required in the media query for now
+      // https://github.com/styled-components/jest-styled-components/issues/430#issuecomment-1658670650
+      media: `(min-width:  ${viaTheme.screenSize.tablet})`
+    });
+  });
 });
 
 it('renders each outline buttons with the validation border', async () => {

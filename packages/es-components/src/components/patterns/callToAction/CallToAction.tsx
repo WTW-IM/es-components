@@ -55,8 +55,4 @@ CallToAction.propTypes = {
   isLight: PropTypes.bool
 };
 
-CallToAction.defaultProps = {
-  isLight: false
-};
-
 export default CallToAction;

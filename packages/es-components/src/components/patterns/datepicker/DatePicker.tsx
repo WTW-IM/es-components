@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import styled from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid as dateIsValid } from 'date-fns';
 import ReactDatePicker from 'react-datepicker';
@@ -8,7 +8,6 @@ import type { ReactDatePickerProps } from 'react-datepicker';
 import Textbox, { TextboxProps } from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
 import { useWindowWidth } from '../../util/useWindowWidth';
-import { useTheme } from '../../util/useTheme';
 import { DatepickerStyles } from './datePickerStyles';
 import {
   OurReactDatePickerProps,
@@ -23,48 +22,66 @@ import {
   useMonitoringEffect
 } from '../../../hooks/useMonitoringHooks';
 
-const STRING_FORMAT = 'yyyy-MM-dd' as const;
+const STRING_FORMAT = 'yyyy-MM-dd';
 
 const isValid = (date: unknown): date is Date => dateIsValid(date);
 
 const isKeyOf = <T extends object>(obj: T, key: unknown): key is keyof T =>
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string
   Boolean(obj && key?.toString && Object.hasOwn(obj, key?.toString()));
 
 function pick<T extends object, K extends string>(
   obj: T,
   keys: K[]
 ): Pick<T, K extends keyof T ? K : keyof T> {
-  return keys.reduce((acc, key) => {
-    if (isKeyOf(obj, key)) {
-      acc[key] = obj[key];
-    }
-    return acc;
-  }, {} as Pick<T, keyof T>);
+  return keys.reduce(
+    (acc, key) => {
+      if (isKeyOf(obj, key)) {
+        acc[key] = obj[key];
+      }
+      return acc;
+    },
+    {} as Pick<T, keyof T>
+  );
 }
 
 function omit<T extends object, K extends string>(
   obj: T,
   keys: K[]
 ): Omit<T, K> {
-  return Object.keys(obj).reduce<Omit<T, K>>((acc, key) => {
-    if (!keys.includes(key as K) && isKeyOf(obj, key)) {
-      (acc as T)[key as keyof T] = obj[key as keyof T];
-    }
-    return acc;
-  }, {} as Omit<T, K>);
+  return Object.keys(obj).reduce<Omit<T, K>>(
+    (acc, key) => {
+      if (!keys.includes(key as K) && isKeyOf(obj, key)) {
+        (acc as T)[key] = obj[key];
+      }
+      return acc;
+    },
+    {} as Omit<T, K>
+  );
 }
 
 type WithRange = boolean | undefined;
 type DatePickerOnChange<T extends WithRange = undefined> =
   ReactDatePickerProps<T>['onChange'];
 type OnChangeDate<T extends WithRange> = Parameters<DatePickerOnChange<T>>[0];
-type WithRangeString<T extends WithRange> = T extends true ? never : string;
-type SelectedDate<T extends WithRange> = OnChangeDate<T> | WithRangeString<T>;
+type SelectedDate<T extends WithRange> = NonNullable<
+  T extends true ? OnChangeDate<T> : OnChangeDate<T> | string
+>;
 
+function normalizeDateString(date: string, stringFormat?: string): string;
+function normalizeDateString(date: Date, stringFormat?: string): string;
+function normalizeDateString<T extends WithRange>(
+  date: OnChangeDate<T>,
+  stringFormat?: string
+): string;
+function normalizeDateString<T extends WithRange>(
+  date: Maybe<SelectedDate<T>>,
+  stringFormat?: string
+): string;
 function normalizeDateString<T extends WithRange>(
   date: Maybe<SelectedDate<T>>,
   stringFormat = STRING_FORMAT
-) {
+): string {
   if (typeof date === 'string') {
     const parsedDate = parse(date, stringFormat, new Date());
     return isValid(parsedDate) ? format(parsedDate, stringFormat) : '';
@@ -72,7 +89,19 @@ function normalizeDateString<T extends WithRange>(
   return isValid(date) ? format(date, stringFormat) : '';
 }
 
-function normalizeDate<T extends WithRange>(
+function normalizeDate<T extends WithRange = false>(
+  date: string
+): OnChangeDate<T>;
+function normalizeDate<T extends WithRange = false>(
+  date: Date
+): OnChangeDate<T>;
+function normalizeDate<T extends WithRange = false>(
+  date: OnChangeDate<T>
+): OnChangeDate<T>;
+function normalizeDate<T extends WithRange = false>(
+  date: Maybe<SelectedDate<T>>
+): OnChangeDate<T>;
+function normalizeDate<T extends WithRange = false>(
   date: Maybe<SelectedDate<T>>
 ): OnChangeDate<T> {
   if (typeof date === 'string') {
@@ -102,7 +131,7 @@ export type DatePickerProps<
       onChange?: DatePickerOnChange<T>;
       suppressDatepicker?: ST;
       allowNativeDatepickerOnMobile?: NT;
-      selectedDate?: SelectedDate<T>;
+      selectedDate?: Maybe<SelectedDate<T>>;
     }
   >
 >;
@@ -117,17 +146,21 @@ const textboxKeys = Object.keys(
   Textbox.propTypes as TextboxValidators
 ) as TextboxPropKeys[];
 
-const CalendarContainer = styled.div`
-  font-size: 18px;
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.gray5};
-  border-radius: 0.3rem;
-  color: ${({ theme }) => theme.colors.gray9};
-  box-shadow: 0 5px 10px ${({ theme }) => theme.colors.boxShadowLight};
-  display: inline-block;
-  position: relative;
+const CalendarContainer = styled.div.withConfig({
+  shouldForwardProp: prop => !['showTime'].includes(prop)
+})`
+  ${({ theme }) => css`
+    font-size: 18px;
+    background-color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.gray5};
+    border-radius: 0.3rem;
+    color: ${theme.colors.gray9};
+    box-shadow: 0 5px 10px ${theme.colors.boxShadowLight};
+    display: inline-block;
+    position: relative;
 
-  ${calendarArrowStyles}
+    ${calendarArrowStyles}
+  `}
 `;
 
 type GenericDatePickerProps = DatePickerProps<WithRange, WithRange, WithRange>;
@@ -156,11 +189,7 @@ const NativeDatePicker = React.forwardRef<
       ...args: Parameters<React.ChangeEventHandler<HTMLInputElement>>
     ) => {
       const [e, ...rest] = args;
-      currentOnChange?.(
-        normalizeDate<T>(e.target.value as SelectedDate<T>),
-        e,
-        ...rest
-      );
+      currentOnChange?.(normalizeDate<T>(e.target.value), e, ...rest);
     },
     onChangeProp
   );
@@ -171,9 +200,9 @@ const NativeDatePicker = React.forwardRef<
       ...args: Parameters<React.ChangeEventHandler<HTMLInputElement>>
     ) => {
       const [e, ...rest] = args;
+
       // date is guaranteed to be valid on select
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      currentOnSelect?.(normalizeDate<false>(e.target.value)!, e, ...rest);
+      currentOnSelect?.(normalizeDate(e.target.value)!, e, ...rest);
     },
     onSelectProp
   );
@@ -200,7 +229,7 @@ const DateTextbox = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
     props: DatePickerProps<NT, ST, T>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) {
-    const { suppressDatepicker, onChange: onChangeProp } = props;
+    const { suppressDatepicker = false, onChange: onChangeProp } = props;
     const getTopIndex = useTopZIndex();
 
     const onChange = useMonitoringCallback(
@@ -219,9 +248,7 @@ const DateTextbox = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
       ...(props.selectsRange
         ? {}
         : {
-            selected: normalizeDate<false>(
-              props.selectedDate as SelectedDate<false>
-            )
+            selected: normalizeDate(props.selectedDate) as Date
           })
     };
     const textboxProps = pick(
@@ -236,11 +263,7 @@ const DateTextbox = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
         if (!suppressDatepicker) return;
 
         const [e, ...rest] = args;
-        currentOnChange?.(
-          normalizeDate<T>(e.target.value as SelectedDate<T>),
-          e,
-          ...rest
-        );
+        currentOnChange?.(normalizeDate<T>(e.target.value), e, ...rest);
       },
       [suppressDatepicker],
       onChangeProp
@@ -286,7 +309,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
     {
       selectedDate: selectedDateProp,
       onChange,
-      allowNativeDatepickerOnMobile,
+      allowNativeDatepickerOnMobile = true,
       ...props
     }: DatePickerProps<NT, ST, T>,
     ref: React.ForwardedRef<HTMLInputElement>
@@ -296,8 +319,8 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
       hasSelectedDate
         ? normalizeDate<false>(selectedDateProp as SelectedDate<false>)
         : props.selectsRange
-        ? ([null, null] as OnChangeDate<true>)
-        : (null as OnChangeDate<false>)
+          ? ([null, null] as OnChangeDate<true>)
+          : (null as OnChangeDate<false>)
     ) as OnChangeDate<T>;
     const [selectedDate, setSelectedDate] = useState<OnChangeDate<T>>(
       normalizedDateFromProps
@@ -308,11 +331,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
         if (date) {
           setSelectedDate(normalizeDate<T>(date as SelectedDate<T>));
         } else if (hasSelectedDate) {
-          setSelectedDate(
-            normalizeDate<false>(
-              selectedDateProp as SelectedDate<false>
-            ) as OnChangeDate<T>
-          );
+          setSelectedDate(normalizeDate(selectedDateProp));
         } else {
           setSelectedDate(
             (props.selectsRange
@@ -341,7 +360,8 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
 
     const windowWidth = useWindowWidth();
     const theme = useTheme();
-    const phoneWidth = parseInt(theme.screenSize.phone.toString(), 10) || 0;
+    const phoneWidth =
+      parseInt(theme?.screenSize.phone.toString() || '0', 10) || 0;
 
     const userAgent = navigator.userAgent.toLowerCase();
     const isAndroid = userAgent.indexOf('android') > -1;
@@ -369,23 +389,6 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
   }
 );
 
-type IsOptional<T, K extends keyof T> = K extends keyof T
-  ? undefined extends T[K]
-    ? K
-    : never
-  : never;
-type OptionalKeys<T> = { [K in keyof T]-?: IsOptional<T, K> }[keyof T];
-
-type DefaultProps<T> = {
-  [P in OptionalKeys<T>]: NonNullable<T[P]>;
-};
-
-class DefaultReactDatePicker {
-  public static defaultProps: DefaultProps<OurReactDatePickerProps>;
-}
-
-type DefaultDatePickerConstructor = typeof DefaultReactDatePicker;
-
 export const propTypes: React.WeakValidationMap<GenericDatePickerProps> = {
   ...reactDatePickerPropTypes,
   suppressDatepicker: PropTypes.bool,
@@ -396,15 +399,6 @@ export const propTypes: React.WeakValidationMap<GenericDatePickerProps> = {
   ])
 };
 
-export const defaultProps: Partial<GenericDatePickerProps> = {
-  ...(ReactDatePicker as unknown as DefaultDatePickerConstructor).defaultProps,
-  highlightDates: undefined,
-  suppressDatepicker: false,
-  allowNativeDatepickerOnMobile: true,
-  children: undefined
-};
-
 DatePicker.propTypes = propTypes;
-DatePicker.defaultProps = defaultProps;
 
 export default DatePicker;

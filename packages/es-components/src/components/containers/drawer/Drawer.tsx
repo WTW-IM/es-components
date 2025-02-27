@@ -10,10 +10,10 @@ import { IconName, iconNames } from 'es-components-shared-types';
 export { useDrawerItemContext, DrawerItemContext } from './DrawerItem';
 
 const StyledDrawer = styled.div`
-  background-color: ${props => props.theme.colors.white};
   border-top: 1px solid ${props => props.theme.colors.gray3};
-  box-shadow: 0 1px 1px ${props => props.theme.colors.boxShadowLight};
   margin-bottom: 25px;
+  background-color: ${props => props.theme.colors.white};
+  box-shadow: 0 1px 1px ${props => props.theme.colors.boxShadowLight};
 `;
 
 const UnstyledDrawer = styled.div``;
@@ -24,8 +24,8 @@ const keysAsArray = (activeKeys?: ActiveKeys) =>
   activeKeys === undefined
     ? []
     : Array.isArray(activeKeys)
-    ? activeKeys
-    : [activeKeys];
+      ? activeKeys
+      : [activeKeys];
 
 const simpleArraysEqual = (arr1: string[], arr2: string[]) =>
   arr1.length === arr2.length && arr1.every(item => arr2.includes(item));
@@ -62,9 +62,9 @@ type DrawerRefProps<T extends ActiveKeys = ActiveKeys> = DrawerProps<T> &
 
 interface DrawerComponentType
   extends React.ForwardRefExoticComponent<DrawerRefProps> {
-  <T extends ActiveKeys>(props: DrawerProps<T>): ReturnType<
-    React.ForwardRefExoticComponent<DrawerProps<T>>
-  >;
+  <T extends ActiveKeys>(
+    props: DrawerProps<T>
+  ): ReturnType<React.ForwardRefExoticComponent<DrawerProps<T>>>;
 }
 
 const Drawer: DrawerComponentType = React.forwardRef<

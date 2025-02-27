@@ -1,42 +1,66 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ValidationInputColor } from 'es-components-shared-types';
 
 import { useTheme } from '../../util/useTheme';
 import ValidationContext from '../ValidationContext';
 
-const TextareaBase = styled.textarea<ValidationInputColor>`
-  border: 1px solid ${props => props.borderColor};
-  border-radius: 2px;
-  box-shadow: ${props => props.boxShadow};
-  box-sizing: border-box;
-  color: ${props => props.theme.colors.black};
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-family: ${props => props.theme.font.baseFontFace};
-  font-weight: normal;
-  line-height: ${props => props.theme.font.baseLineHeight};
-  min-width: 0;
-  padding: 6px 12px;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+type TextareaBaseProps = Partial<ValidationInputColor>;
 
-  &:focus {
-    border-color: ${props => props.focusBorderColor};
-    box-shadow: ${props => props.focusBoxShadow};
-    outline: 0;
-  }
+const TextareaBase = styled.textarea.withConfig({
+  shouldForwardProp: prop =>
+    ![
+      'backgroundColor',
+      'backgroundColorFlat',
+      'borderColor',
+      'boxShadow',
+      'focusBorderColor',
+      'focusBoxShadow',
+      'focusBoxShadowFlat',
+      'addOn'
+    ].includes(prop)
+})<TextareaBaseProps>`
+  ${({
+    borderColor,
+    boxShadow,
+    theme,
+    focusBorderColor,
+    focusBoxShadow
+  }) => css`
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border: 1px solid ${borderColor};
+    border-radius: 2px;
+    box-shadow: ${boxShadow};
+    color: ${theme.colors.black};
+    font-family: ${theme.font.baseFontFace};
+    font-size: ${theme.font.baseFontSize};
+    font-weight: normal;
+    line-height: ${theme.font.baseLineHeight};
+    transition:
+      border-color ease-in-out 0.15s,
+      box-shadow ease-in-out 0.15s;
 
-  &:disabled {
-    background-color: ${props => props.theme.colors.gray2};
-    cursor: not-allowed;
-  }
+    &:focus {
+      border-color: ${focusBorderColor};
+      box-shadow: ${focusBoxShadow};
+      outline: 0;
+    }
 
-  &:read-only {
-    background-color: transparent;
-    border: 0;
-    box-shadow: none;
-    padding-left: 0;
-    padding-right: 0;
-  }
+    &:disabled {
+      background-color: ${theme.colors.gray2};
+      cursor: not-allowed;
+    }
+
+    &:read-only {
+      padding-right: 0;
+      padding-left: 0;
+      border: 0;
+      background-color: transparent;
+      box-shadow: none;
+    }
+  `}
 `;
 
 const Textarea = React.forwardRef<
@@ -50,7 +74,7 @@ const Textarea = React.forwardRef<
     <TextareaBase
       ref={ref}
       {...props}
-      {...theme.validationInputColor[validationState]}
+      {...theme?.validationInputColor[validationState]}
     />
   );
 });

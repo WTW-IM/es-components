@@ -1,7 +1,12 @@
 import type ESTheme from 'es-components-shared-types';
 import React from 'react';
-import PropTypes from 'prop-types';
+import type PropTypes from 'prop-types';
 import type { DefaultTheme } from 'styled-components';
+
+declare module 'styled-components' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  export interface DefaultTheme extends ESTheme {}
+}
 
 declare global {
   type Maybe<T> = T | null | undefined;
@@ -64,6 +69,7 @@ declare global {
   };
 
   const ASSETS_PATH: string;
+  type ReactElementPropType<T> = PropTypes.Requireable<React.ReactElement<T>>;
 
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
@@ -71,9 +77,4 @@ declare global {
       basicHTMLElement: HTMLElementProps;
     }
   }
-}
-
-declare module 'styled-components' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  export interface DefaultTheme extends ESTheme {}
 }

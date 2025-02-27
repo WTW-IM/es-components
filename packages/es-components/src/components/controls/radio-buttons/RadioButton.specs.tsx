@@ -1,4 +1,3 @@
-import 'jest-styled-components';
 import React from 'react';
 import * as CSS from 'csstype';
 import { screen } from '@testing-library/react';
@@ -89,30 +88,34 @@ describe('RadioButton colors', () => {
       );
 
       const radio = await screen.findByRole('radio');
-
-      expect(radio).toHaveStyleRule('border-color', expectedColor, {
-        modifier: cssStyled`~ ${RadioDisplay}`
-      });
-
-      expect(radio).toHaveStyleRule('background-color', expectedColor, {
-        modifier: cssStyled`:checked ~ ${RadioDisplay}:before`
-      });
-
-      expect(radio).toHaveStyleRule('border-color', disabledColor, {
-        modifier: cssStyled`&&:disabled ~ ${RadioDisplay}`
-      });
-
-      expect(radio).toHaveStyleRule('background-color', disabledColor, {
-        modifier: cssStyled`&&:disabled:checked ~ ${RadioDisplay}:before`
-      });
-
       const label = await screen.findByText('Option', {
         selector: 'label'
       });
-      expect(label).toHaveStyleRule('background-color', expectedHoverColor, {
-        modifier: cssStyled`&:hover > ${RadioDisplayWrapper} > ${RadioInput}:not(:disabled):not(:checked) ~ ${RadioDisplay}:before`
-      });
+
+      // Spacing is important in the below `modifier` properties.
+      // In failing scenarios, use the snapshots to verify the correct string with spaces is being used.
+      expect(radio).toMatchSnapshot();
       expect(label).toMatchSnapshot();
+
+      expect(radio).toHaveStyleRule('border-color', expectedColor, {
+        modifier: cssStyled`& ~${RadioDisplay}`
+      });
+
+      expect(radio).toHaveStyleRule('background-color', expectedColor, {
+        modifier: cssStyled`&:checked~${RadioDisplay}::before`
+      });
+
+      expect(radio).toHaveStyleRule('border-color', disabledColor, {
+        modifier: cssStyled`&&:disabled ~${RadioDisplay}`
+      });
+
+      expect(radio).toHaveStyleRule('background-color', disabledColor, {
+        modifier: cssStyled`&&:disabled:checked~${RadioDisplay}::before`
+      });
+
+      expect(label).toHaveStyleRule('background-color', expectedHoverColor, {
+        modifier: cssStyled`&:hover>${RadioDisplayWrapper}>${RadioInput}:not(:disabled):not(:checked)~${RadioDisplay}::before`
+      });
     }
   );
 });

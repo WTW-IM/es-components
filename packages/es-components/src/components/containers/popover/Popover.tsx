@@ -20,66 +20,79 @@ const Container = styled.div`
 
 type HeaderTypes = 'primary' | 'info' | 'success' | 'warning' | 'danger';
 
-const PopoverHeader = styled.div<{
-  hasTitle?: boolean;
-  styleType?: HeaderTypes;
-}>`
-  background-color: ${props =>
-    props.hasTitle
-      ? props.theme.colors[props.styleType || 'primary']
-      : props.theme.colors.white};
-  color: ${props => props.theme.colors.white};
+interface PopoverHeaderProps {
+  $hasTitle?: boolean;
+  $styleType?: HeaderTypes;
+}
+
+const PopoverHeader = styled.div<PopoverHeaderProps>`
   display: flex;
   justify-content: space-between;
+  background-color: ${props =>
+    props.$hasTitle
+      ? props.theme.colors[props.$styleType || 'primary']
+      : props.theme.colors.white};
+  color: ${props => props.theme.colors.white};
   line-height: ${props => props.theme.font.baseLineHeight as number};
   outline: none;
 `;
 
 const TitleBar = styled.h3`
   flex: 1 1;
-  font-size: 18px;
-  margin: 0;
   padding: 8px 14px;
+  margin: 0;
+  font-size: 18px;
   text-align: left;
 `;
 
-const PopoverBody = styled.div<{ hasAltCloseWithNoTitle?: boolean }>`
+interface PopoverBodyProps {
+  $hasAltCloseWithNoTitle?: boolean;
+}
+
+const PopoverBody = styled.div<PopoverBodyProps>`
+  padding: ${props =>
+    props.$hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   background: ${props => props.theme.colors.white};
   color: ${props => props.theme.colors.gray9};
   font-size: 18px;
   font-weight: normal;
   line-height: ${props => props.theme.font.baseLineHeight as number};
-  padding: ${props =>
-    props.hasAltCloseWithNoTitle ? '0 14px 8px' : '8px 14px'};
   text-align: right;
 `;
 
-const PopoverContent = styled.div<{ showCloseButton?: boolean }>`
-  margin-bottom: ${props => (props.showCloseButton ? '8px' : '0')};
+interface PopoverContentProps {
+  $showCloseButton?: boolean;
+}
+
+const PopoverContent = styled.div<PopoverContentProps>`
+  margin-bottom: ${props => (props.$showCloseButton ? '8px' : '0')};
   text-align: left;
 `;
 
 const PopoverCloseButton = styled(Button)`
   display: inline-block;
-  margin: 5px 0;
   width: auto;
+  margin: 5px 0;
 `;
 
-const AltCloseButton = styled(DismissButton)<{ hasTitle: boolean }>`
-  color: ${props =>
-    props.hasTitle ? props.theme.colors.white : props.theme.colors.black};
+interface AltCloseButtonProps {
+  $hasTitle: boolean;
+}
 
+const AltCloseButton = styled(DismissButton)<AltCloseButtonProps>`
   flex: 0 1;
-  margin-left: auto;
   padding: 8px;
+  margin-left: auto;
+  color: ${props =>
+    props.$hasTitle ? props.theme.colors.white : props.theme.colors.black};
 `;
 
 const CloseHelpText = styled.span`
-  color: transparent;
-  flex: none;
-  height: 1px;
-  outline: 0;
   width: 1px;
+  height: 1px;
+  flex: none;
+  color: transparent;
+  outline: 0;
 `;
 
 type RenderFuncParams = {
@@ -120,23 +133,23 @@ export interface PopoverProps
 const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   function ForwardedPopover(
     {
+      placement = 'bottom',
+      arrowSize = 'default',
+      strategy = 'absolute',
+      styleType = 'primary',
+      popoverWrapperClassName = 'popover--active',
+      enableEvents = true,
+      keepTogether = true,
       name,
       title,
       content,
       renderContent,
-      placement,
-      arrowSize,
       renderTrigger,
       hasCloseButton,
       hasAltCloseButton,
       disableCloseOnScroll,
       disableRootClose,
       disableFlipping,
-      enableEvents,
-      keepTogether,
-      strategy,
-      popoverWrapperClassName,
-      styleType,
       ...otherProps
     },
     ref
@@ -249,12 +262,12 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
             className={`root-close-wrapper ${popoverWrapperClassName || ''}`}
           >
             <div>
-              <PopoverHeader hasTitle={hasTitle} styleType={styleType}>
+              <PopoverHeader $hasTitle={hasTitle} $styleType={styleType}>
                 {hasTitle && <TitleBar>{title}</TitleBar>}
                 {hasAltCloseButton ? (
                   <AltCloseButton
                     aria-label="Close"
-                    hasTitle={hasTitle}
+                    $hasTitle={hasTitle}
                     onClick={toggleShowFromInteraction}
                     aria-hidden
                   />
@@ -266,8 +279,8 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
                   aria-label="Press escape to close the Popover"
                 />
               </PopoverHeader>
-              <PopoverBody hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
-                <PopoverContent showCloseButton={showCloseButton}>
+              <PopoverBody $hasAltCloseWithNoTitle={hasAltCloseWithNoTitle}>
+                <PopoverContent $showCloseButton={showCloseButton}>
                   {renderContent
                     ? renderContent({ toggleShow: toggleShowFromInteraction })
                     : content}
@@ -370,10 +383,10 @@ Popover.propTypes = {
   /** The text displayed in the popover title section */
   title: PropTypes.string,
   /** The content displayed in the popover body. This is required if renderContent is not used */
-  // eslint-disable-next-line react/require-default-props
+
   content: contentRequired,
   /** Function returning the content to be displayed in the popover body. This is required if content is not used */
-  // eslint-disable-next-line react/require-default-props
+
   renderContent: contentRequired,
   /** The placement of the popover in relation to the link */
   placement: PropTypes.oneOf(placements),
@@ -407,24 +420,6 @@ Popover.propTypes = {
     'warning',
     'danger'
   ])
-};
-
-Popover.defaultProps = {
-  ...filterPopup(Popup.defaultProps),
-  name: '',
-  placement: 'bottom',
-  arrowSize: 'default',
-  disableRootClose: false,
-  hasCloseButton: false,
-  hasAltCloseButton: false,
-  disableFlipping: false,
-  disableCloseOnScroll: false,
-  title: undefined,
-  enableEvents: true,
-  strategy: 'absolute',
-  keepTogether: true,
-  styleType: 'primary',
-  popoverWrapperClassName: 'popover--active'
 };
 
 export default Popover;

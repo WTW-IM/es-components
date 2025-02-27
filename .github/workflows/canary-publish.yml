@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-
 
       - run: |
-          npm i --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |

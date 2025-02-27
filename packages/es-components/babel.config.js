@@ -31,7 +31,8 @@ module.exports = function (api) {
       'styled-components',
       {
         ssr: false,
-        displayName: false
+        displayName: false,
+        namespace: 'sc'
       }
     ],
     '@babel/plugin-transform-class-properties',

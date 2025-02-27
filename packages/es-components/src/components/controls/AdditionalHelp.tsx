@@ -13,18 +13,18 @@ export type AdditionalHelpProps = JSXElementProps<'div'> & {
 const ValidationIcon = styled(Icon)`
   && {
     align-self: flex-start;
-    font-size: 35px;
     margin-right: 5px;
+    font-size: 35px;
   }
 `;
 
 const HelpText = styled.div`
-  align-items: center;
-  color: inherit;
   display: inline-flex;
+  width: 100%;
+  align-items: center;
   margin-top: 5px;
   margin-bottom: 10px;
-  width: 100%;
+  color: inherit;
 `;
 
 const AdditionalHelp = React.forwardRef<HTMLDivElement, AdditionalHelpProps>(
@@ -37,7 +37,7 @@ const AdditionalHelp = React.forwardRef<HTMLDivElement, AdditionalHelpProps>(
         {hasValidationIcon && children && validationState !== 'default' && (
           <ValidationIcon
             aria-hidden="true"
-            name={theme.validationIconName[validationState]}
+            name={theme?.validationIconName[validationState]}
           />
         )}
         {children}

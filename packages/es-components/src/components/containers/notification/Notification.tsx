@@ -12,8 +12,28 @@ export interface NotificationProps extends BaseNotificationProps {
 }
 
 const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
-  function ForwardedNotification(props, ref) {
-    return <BaseNotification ref={ref} {...props} />;
+  function ForwardedNotification(
+    {
+      includeIcon = false,
+      isDismissable = false,
+      onDismiss = noop,
+      alwaysShowIcon = false,
+      ...props
+    },
+    ref
+  ) {
+    return (
+      <BaseNotification
+        ref={ref}
+        {...{
+          includeIcon,
+          isDismissable,
+          onDismiss,
+          alwaysShowIcon,
+          ...props
+        }}
+      />
+    );
   }
 );
 
@@ -28,13 +48,6 @@ Notification.propTypes = {
   onDismiss: PropTypes.func,
   /** Allows the icon to display at all resolutions */
   alwaysShowIcon: PropTypes.bool
-};
-
-Notification.defaultProps = {
-  includeIcon: false,
-  isDismissable: false,
-  onDismiss: noop,
-  alwaysShowIcon: false
 };
 
 export default Notification;

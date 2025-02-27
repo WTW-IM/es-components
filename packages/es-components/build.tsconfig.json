@@ -26,5 +26,12 @@
     {
       "path": "./shared-types.tsconfig.json"
     }
+  ],
+  "exclude": [
+    "./types",
+    "./src/**/*.specs.ts",
+    "./src/**/*.specs.tsx",
+    "./src/**/*.specs.js",
+    "./src/**/*.specs.jsx"
   ]
 }

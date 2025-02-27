@@ -8,8 +8,8 @@ exports[`renders heading level with another size 1`] = `
   margin-bottom: 0.45em;
   margin-top: 0;
   color: inherit;
-  font-size: 38.7898px;
   margin-bottom: 1.5rem;
+  font-size: 38.7898px;
 }
 
 .c0 small {
@@ -27,8 +27,8 @@ exports[`renders heading level with another size 1`] = `
   margin-bottom: 0.45em;
   margin-top: 0;
   color: inherit;
-  font-size: 31.104px;
   margin-bottom: 1.25rem;
+  font-size: 31.104px;
 }
 
 .c1 small {
@@ -39,17 +39,17 @@ exports[`renders heading level with another size 1`] = `
   font-size: 65%;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0 {
-    font-size: 44.78976px;
     margin-bottom: 1.5rem;
+    font-size: 44.78976px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
-    font-size: 31.104px;
     margin-bottom: 1.25rem;
+    font-size: 31.104px;
   }
 }
 
@@ -67,7 +67,6 @@ exports[`renders heading level with another size 1`] = `
     </h3>
     <h3
       class="c0"
-      size="1"
     >
       Heading level 3 size 1
     </h3>
@@ -83,8 +82,8 @@ exports[`renders knockout heading with different class 1`] = `
   margin-bottom: 0.45em;
   margin-top: 0;
   color: inherit;
-  font-size: 38.7898px;
   margin-bottom: 1.5rem;
+  font-size: 38.7898px;
 }
 
 .c0 small {
@@ -102,8 +101,8 @@ exports[`renders knockout heading with different class 1`] = `
   margin-bottom: 0.45em;
   margin-top: 0;
   color: inherit;
-  font-size: 38.7898px;
   margin-bottom: 1.5rem;
+  font-size: 38.7898px;
 }
 
 .c1 small {
@@ -115,22 +114,22 @@ exports[`renders knockout heading with different class 1`] = `
 }
 
 .c1.c1 {
+  padding: 20px 15px;
   background-color: #0073b6;
   color: white;
-  padding: 20px 15px;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c0 {
-    font-size: 44.78976px;
     margin-bottom: 1.5rem;
+    font-size: 44.78976px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
-    font-size: 44.78976px;
     margin-bottom: 1.5rem;
+    font-size: 44.78976px;
   }
 }
 

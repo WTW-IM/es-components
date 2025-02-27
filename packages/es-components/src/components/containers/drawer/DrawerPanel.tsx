@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import Heading from '../heading/Heading';
 import {
@@ -18,15 +18,15 @@ const PanelWrapper = styled.div`
 `;
 
 export const PanelButton = styled.button`
-  background: none;
-  border: 0;
-  color: ${props => props.theme.colors.primary};
-  cursor: pointer;
   display: flex;
-  font-size: 18px;
+  width: 100%;
   justify-content: space-between;
   padding: 10px 15px;
-  width: 100%;
+  border: 0;
+  background: none;
+  color: ${props => props.theme.colors.primary};
+  cursor: pointer;
+  font-size: 18px;
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
@@ -47,9 +47,9 @@ const PanelIcon = styled(
     return <Icon name={open ? openedIconName : closedIconName} {...props} />;
   }
 )`
-  margin-right: 0.4em;
   position: relative;
   top: -2px;
+  margin-right: 0.4em;
 `;
 
 interface PanelBodyProps {
@@ -57,30 +57,18 @@ interface PanelBodyProps {
   panelKey?: React.Key;
 }
 
-const styledDrawerItemBody = () => {
-  const panelBodyStyle = css<PanelBodyProps>`
-    background-color: ${props => props.theme.colors.white};
-    color: ${props => props.theme.colors.gray9};
+const PanelBody = styled(DrawerItemBody).withConfig({
+  shouldForwardProp: prop =>
+    !['noPadding', 'panelKey'].some(disallowedProp => prop === disallowedProp)
+})<PanelBodyProps>`
+  background-color: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.gray9};
 
-    > div {
-      border-bottom: 4px solid ${props => props.theme.colors.gray3};
-      padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
-    }
-  `;
-  const styledBody = styled(DrawerItemBody);
-
-  // handle styled-components v5
-  styledBody.withConfig = styledBody.withConfig || (() => styledBody);
-
-  return styledBody.withConfig({
-    shouldForwardProp: prop =>
-      !['noPadding', 'panelKey'].some(disallowedProp => prop === disallowedProp)
-  })`
-      ${panelBodyStyle}
-    `;
-};
-
-const PanelBody = styledDrawerItemBody();
+  > div {
+    padding: ${props => (props.noPadding ? '0' : '10px 10px 10px 40px')};
+    border-bottom: 4px solid ${props => props.theme.colors.gray3};
+  }
+`;
 
 export type DrawerPanelProps = Omit<JSXElementProps<'div'>, 'title'> & {
   // this is only any because of the old value in the propTypes object below
@@ -159,7 +147,7 @@ const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
 
 export const propTypes = {
   ...(PanelWrapper.propTypes || {}),
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.node.isRequired,
   /** Aside text/content displayed on the right side of the panel title */
@@ -167,7 +155,7 @@ export const propTypes = {
   /** Removes the default padding from the panel body */
   noPadding: PropTypes.bool,
   /** Set desired aria-level for heading */
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
   headingLevel: Heading.propTypes!.level,
   open: PropTypes.bool,
 

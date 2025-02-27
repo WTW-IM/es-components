@@ -1,10 +1,8 @@
 import React from 'react';
-import originalStyled, { ThemedStyledInterface } from 'styled-components';
-import LoadingSkeleton, { SkeletonTheme } from './LoadingSkeleton';
+import styled from 'styled-components';
+import LoadingSkeleton, { SkeletonThemeProps } from './LoadingSkeleton';
 
 const { Shape } = LoadingSkeleton;
-const styled =
-  originalStyled as unknown as ThemedStyledInterface<SkeletonTheme>;
 
 const TileContainer = styled(LoadingSkeleton)`
   display: flex;
@@ -19,16 +17,16 @@ const HeaderFlex = styled.div`
 `;
 
 const IconPlaceholder = styled(Shape)`
-  flex-grow: 0;
-  height: 65px;
-  margin-right: 40px;
   width: 65px;
+  height: 65px;
+  flex-grow: 0;
+  margin-right: 40px;
 `;
 
 const TitlePlaceholder = styled(Shape)`
-  align-self: center;
-  flex-grow: 1;
   height: 26px;
+  flex-grow: 1;
+  align-self: center;
 `;
 
 const DescriptionPlaceholder = styled(Shape)`
@@ -36,15 +34,15 @@ const DescriptionPlaceholder = styled(Shape)`
   margin-bottom: 9px;
 `;
 
-const ButtonPlaceholder = styled(Shape)`
+const ButtonPlaceholder = styled(Shape)<SkeletonThemeProps>`
+  width: 158px;
+  height: 17px;
   align-self: flex-end;
-  background-clip: content-box;
+  padding: 9px 10px;
   border: 1px solid ${({ theme: { skeleton } }) => skeleton.shapeColor};
   border-radius: 1px;
-  height: 17px;
   margin-top: 10px;
-  padding: 9px 10px;
-  width: 158px;
+  background-clip: content-box;
 `;
 
 export default function SkeletonTile() {

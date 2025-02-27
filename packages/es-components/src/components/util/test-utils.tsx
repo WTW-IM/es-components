@@ -20,16 +20,34 @@ const profilerRender = (id: string, phase: string, actualDuration: number) => {
 };
 
 export function renderWithTheme(component: React.ReactElement): RenderResult {
-  // eslint-disable-next-line testing-library/render-result-naming-convention
-  const renderObj = render(<ThemeComponent>{component}</ThemeComponent>);
+  const { ...viewUtils } = render(<ThemeComponent>{component}</ThemeComponent>);
   return {
-    ...renderObj,
+    ...viewUtils,
     rerender: (rerenderComponent: React.ReactNode) =>
-      renderObj.rerender(
+      viewUtils.rerender(
         <Profiler id="ThemeRender" onRender={profilerRender}>
           <ThemeComponent>{rerenderComponent}</ThemeComponent>
         </Profiler>
       )
+  };
+}
+
+export function overrideConsoleErrors(...overrideMessages: string[]) {
+  const oldError = console.error;
+  console.error = (err: unknown) => {
+    if (
+      !overrideMessages.length ||
+      overrideMessages.some(mess =>
+        (err as Error | string | undefined)?.toString().includes(mess)
+      )
+    ) {
+      return;
+    }
+
+    oldError(err);
+  };
+  return () => {
+    console.error = oldError;
   };
 }
 

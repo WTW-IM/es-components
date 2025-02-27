@@ -1,5 +1,4 @@
 import React from 'react';
-import { withTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import {
   ProgressContainer,
@@ -21,7 +20,7 @@ export interface ProgressTrackerInternalProps {
 
 export type ProgressTrackerProps = Override<
   JSXElementProps<'ol'>,
-  ProgressTrackerInternalProps & OptionalThemeProps
+  ProgressTrackerInternalProps
 >;
 
 const getMappedSteps = ({
@@ -30,7 +29,7 @@ const getMappedSteps = ({
   onFutureStepClicked,
   showNav
 }: Override<
-  ProgressTrackerProps,
+  ProgressTrackerInternalProps,
   Omit<Required<ProgressTrackerInternalProps>, 'onFutureStepClicked'>
 >) => {
   let isPastStep = true;
@@ -63,7 +62,7 @@ const ProgressTracker = React.forwardRef<
     steps = [],
     onPastStepClicked = noop,
     onFutureStepClicked,
-    showNav = false,
+    showNav = true,
     ...props
   },
   ref
@@ -72,8 +71,8 @@ const ProgressTracker = React.forwardRef<
     <ProgressContainer
       ref={ref}
       data-testid="progress-tracker"
-      activeStepIndex={getIndexOfActiveStep(steps)}
-      numberOfSteps={steps.length}
+      $activeStepIndex={getIndexOfActiveStep(steps)}
+      $numberOfSteps={steps.length}
       {...props}
     >
       {getMappedSteps({
@@ -98,11 +97,4 @@ ProgressTracker.propTypes = {
   showNav: PropTypes.bool
 };
 
-ProgressTracker.defaultProps = {
-  steps: [],
-  onPastStepClicked: noop,
-  onFutureStepClicked: undefined,
-  showNav: true
-};
-
-export default withTheme(ProgressTracker);
+export default ProgressTracker;

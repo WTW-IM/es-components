@@ -27,11 +27,13 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
       setIsPressed(isPressedProp);
     }, [isPressedProp]);
 
-    const toggleButton: React.MouseEventHandler<HTMLButtonElement> =
-      useMonitoringCallback((currentOnClick, event) => {
+    const toggleButton = useMonitoringCallback(
+      (currentOnClick, event: React.MouseEvent<HTMLButtonElement>) => {
         setIsPressed(oldIsPressed => !oldIsPressed);
         currentOnClick?.(event);
-      }, onClick);
+      },
+      onClick
+    );
 
     const ToggleButtonType = isOutline ? OutlineButton : Button;
 

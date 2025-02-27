@@ -41,12 +41,14 @@
     "@testing-library/cypress": "^10.0.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/eslint__js": "^8.42.3",
     "@types/js-beautify": "^1.14.3",
     "@types/node": "^18.11.17",
-    "@types/react": "^18.3.12",
+    "@types/prop-types": "^15.7.14",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "@typescript-eslint/utils": "^8.15.0",
     "babel-plugin-lodash": "^3.3.4",
     "commander": "^12.1.0",
@@ -59,7 +61,7 @@
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-cypress": "^4.1.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^28.9.0",
+    "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-jest-dom": "^5.4.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.31.11",
@@ -78,6 +80,7 @@
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-animate-height": "^3.2.3",
+    "react-dom": "^18.3.1",
     "ts-jest": "^29.1.2",
     "ts-patch": "^3.3.0",
     "typescript": "^5.7.3",
@@ -85,6 +88,8 @@
     "typescript-transform-paths": "^3.5.3"
   },
   "overrides": {
-    "@typescript-eslint/utils": "$@typescript-eslint/utils"
+    "@typescript-eslint/utils": "$@typescript-eslint/utils",
+    "react": "$react",
+    "react-dom": "$react-dom"
   }
 }

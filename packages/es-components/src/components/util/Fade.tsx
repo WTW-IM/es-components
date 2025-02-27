@@ -89,8 +89,8 @@ function FadeTransition<T extends TransitionElement>({
 
 const Fade: React.FC<FadeProps> = ({
   children,
-  duration,
-  opacity,
+  duration = 150,
+  opacity = 1,
   ...otherProps
 }) => {
   const transitionStyles = {
@@ -118,11 +118,6 @@ Fade.propTypes = {
   children: PropTypes.any.isRequired,
   duration: PropTypes.number,
   opacity: PropTypes.number
-};
-
-Fade.defaultProps = {
-  duration: 150,
-  opacity: 1
 };
 
 export default Fade;

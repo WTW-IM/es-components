@@ -1,35 +1,34 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import formatMessage from 'format-message';
 import Icon from '../../base/icons/Icon';
 import { IconName } from 'es-components-shared-types';
 import withWindowSize, { WindowSizeProps } from '../../util/withWindowSize';
 import { callRefs } from '../../util/callRef';
 
 const InnerWrapper = styled.div`
+  position: relative;
+  z-index: 0;
   display: flex;
+  height: 100%;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-around;
-  height: 100%;
-  position: relative;
   white-space: nowrap;
-  z-index: 0;
 `;
 
 const OuterWrapper = styled.div<{
   hasOverflow?: boolean;
   isDragging?: boolean;
 }>`
-  overflow: hidden;
-  overflow-x: auto;
   position: relative;
+  overflow: hidden;
   cursor: ${({ hasOverflow, isDragging }) => {
     let cursor = hasOverflow ? 'grab' : 'default';
     cursor = isDragging ? 'grabbing' : cursor;
     return cursor;
   }};
+  overflow-x: auto;
 
   ${InnerWrapper} {
     ${({ hasOverflow }) =>
@@ -44,42 +43,44 @@ const OuterWrapper = styled.div<{
 `;
 
 const ArrowOuterContainer = styled.div`
-  width: 100%;
-  height: 0;
-  overflow: visible;
   position: sticky;
+  z-index: 2;
   top: 0;
   left: 0;
-  z-index: 2;
+  overflow: visible;
+  width: 100%;
+  height: 0;
 `;
 
 const ArrowContainer = styled.div`
-  pointer-events: none;
-  background-color: transparent;
-  height: 100%;
   display: flex;
-  justify-content: space-between;
+  height: 100%;
   align-items: stretch;
+  justify-content: space-between;
+  background-color: transparent;
+  pointer-events: none;
 `;
 
 const ArrowIconContainer = styled.div`
+  display: flex;
   align-items: center;
-  background-color: ${props => props.theme.colors.white};
+  padding: 0.5em;
   border-radius: 50%;
+  background-color: ${props => props.theme.colors.white};
   box-shadow: 0 1px 1px ${props => props.theme.colors.boxShadowDark};
   color: ${props => props.theme.colors.gray9};
-  display: flex;
-  padding: 0.5em;
-  transition: border-color linear 0.15s, box-shadow linear 0.15s;
+  transition:
+    border-color linear 0.15s,
+    box-shadow linear 0.15s;
 `;
 
 export const ScrollIconBaseComponent = styled.button.attrs({ type: 'button' })`
   display: block;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  border: 0;
   appearance: none;
   background-color: transparent;
-  border: 0;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
   font-size: ${({
     theme: {
       font: { baseFontSize }
@@ -99,8 +100,7 @@ const IconBase = styled(ScrollIconBaseComponent);
 
 const ScrollIconBase = (IconBase as Partial<typeof styled.button>).withConfig
   ? IconBase.withConfig({
-      shouldForwardProp: (prop, defaultValidatorFn) =>
-        !['visible'].includes(prop) && defaultValidatorFn(prop)
+      shouldForwardProp: prop => !['visible'].includes(prop)
     })``
   : IconBase``;
 
@@ -118,14 +118,14 @@ const ScrollIconInner = ({ onClick, iconName, ...props }: ScrollIconProps) => (
 );
 
 const ScrollIcon = styled(ScrollIconInner)`
-  align-items: center;
-  cursor: pointer;
+  z-index: 1;
   display: flex;
   height: 100%;
+  align-items: center;
+  cursor: pointer;
   outline: 0;
-  z-index: 1;
-  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
   pointer-events: all;
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
 `;
 
 type HorizontalScrollWrapperProps = JSXElementProps<'div'> &
@@ -289,13 +289,13 @@ const HorizontalScrollWrapper = React.forwardRef<
             <ScrollIcon
               iconName="chevron-left"
               onClick={handleLeftClick}
-              aria-label={formatMessage(`See previous`)}
+              aria-label={`See previous`}
               visible={scrollLeft > 0}
             />
             <ScrollIcon
               iconName="chevron-right"
               onClick={handleRightClick}
-              aria-label={formatMessage(`See next`)}
+              aria-label={`See next`}
               visible={scrollLeft < maxScroll}
             />
           </ArrowContainer>

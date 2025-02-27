@@ -1,6 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioButton colors renders correct colors for { disabled: false, checked: false, validationState: 'default' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #444;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #444;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #aaaaaa;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  class="c0 c1"
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: false, checked: false, validationState: 'default' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -16,93 +63,81 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #444;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #444;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #aaaaaa;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -111,19 +146,19 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 <label
   class="c0 c1"
   for="test-radio"
+  hover="#aaaaaa"
 >
   <div
     class=""
   >
     <input
-      class="c2"
-      fill="#444"
+      class="c2 c3"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -131,6 +166,53 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: false, checked: false, validationState: 'warning' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #c25400;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #c25400;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  class="c0 c1"
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: false, checked: false, validationState: 'warning' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -146,93 +228,81 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #c25400;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #c25400;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -241,19 +311,19 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 <label
   class="c0 c1"
   for="test-radio"
+  hover="#ffbf8f"
 >
   <div
     class=""
   >
     <input
-      class="c2"
-      fill="#c25400"
+      class="c2 c3"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -261,6 +331,54 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: false, checked: true, validationState: 'default' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #0073b6;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #0073b6;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #83d1ff;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  checked=""
+  class="c0 c1"
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: false, checked: true, validationState: 'default' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -276,93 +394,81 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #0073b6;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #0073b6;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #83d1ff;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -371,20 +477,20 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 <label
   class="c0 c1"
   for="test-radio"
+  hover="#83d1ff"
 >
   <div
     class=""
   >
     <input
       checked=""
-      class="c2"
-      fill="#0073b6"
+      class="c2 c3"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -392,6 +498,54 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: false, checked: true, validationState: 'warning' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #c25400;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #c25400;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  checked=""
+  class="c0 c1"
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: false, checked: true, validationState: 'warning' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -407,93 +561,81 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #c25400;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #c25400;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -502,20 +644,20 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 <label
   class="c0 c1"
   for="test-radio"
+  hover="#ffbf8f"
 >
   <div
     class=""
   >
     <input
       checked=""
-      class="c2"
-      fill="#c25400"
+      class="c2 c3"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -523,6 +665,54 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: true, checked: false, validationState: 'default' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #444;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #444;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #aaaaaa;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  class="c0 c1"
+  disabled=""
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: true, checked: false, validationState: 'default' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -538,93 +728,81 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #444;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #444;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #aaaaaa;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -634,20 +812,20 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   class="c0 c1"
   disabled=""
   for="test-radio"
+  hover="#aaaaaa"
 >
   <div
     class=""
   >
     <input
-      class="c2"
+      class="c2 c3"
       disabled=""
-      fill="#444"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -655,6 +833,54 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: true, checked: false, validationState: 'warning' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #c25400;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #c25400;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  class="c0 c1"
+  disabled=""
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: true, checked: false, validationState: 'warning' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -670,93 +896,81 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #c25400;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #c25400;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -766,20 +980,20 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   class="c0 c1"
   disabled=""
   for="test-radio"
+  hover="#ffbf8f"
 >
   <div
     class=""
   >
     <input
-      class="c2"
+      class="c2 c3"
       disabled=""
-      fill="#c25400"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -787,6 +1001,55 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: true, checked: true, validationState: 'default' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #0073b6;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #0073b6;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #83d1ff;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  checked=""
+  class="c0 c1"
+  disabled=""
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: true, checked: true, validationState: 'default' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -802,93 +1065,81 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #0073b6;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #0073b6;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #83d1ff;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -898,21 +1149,21 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   class="c0 c1"
   disabled=""
   for="test-radio"
+  hover="#83d1ff"
 >
   <div
     class=""
   >
     <input
       checked=""
-      class="c2"
+      class="c2 c3"
       disabled=""
-      fill="#0073b6"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option
@@ -920,6 +1171,55 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
 `;
 
 exports[`RadioButton colors renders correct colors for { disabled: true, checked: true, validationState: 'warning' } 1`] = `
+.c1 {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+}
+
+.c1 ~.c3 {
+  border-color: #c25400;
+}
+
+.c1:focus~.c3 {
+  box-shadow: 0 0 3px 3px #83bffc;
+}
+
+.c1:checked~.c3::before {
+  background-color: #c25400;
+}
+
+.c1.c1:disabled ~.c3 {
+  border-color: #c5c5c5;
+}
+
+.c1.c1:disabled:checked~.c3::before {
+  background-color: #c5c5c5;
+}
+
+.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+<input
+  checked=""
+  class="c0 c1"
+  disabled=""
+  id="test-radio"
+  name=""
+  type="radio"
+/>
+`;
+
+exports[`RadioButton colors renders correct colors for { disabled: true, checked: true, validationState: 'warning' } 2`] = `
 .c0 {
   color: #444;
   cursor: pointer;
@@ -935,93 +1235,81 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   cursor: not-allowed;
 }
 
-.c4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 3px;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.c5 {
   display: flex;
-  height: 25px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-right: 8px;
   min-width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 8px;
 }
 
-.c4:before {
-  background-color: transparent;
-  border-radius: 50%;
-  content: '';
+.c5::before {
   display: block;
-  height: 13px;
   width: 13px;
-  -webkit-transition: background 0.25s linear;
+  height: 13px;
+  border-radius: 50%;
+  background-color: transparent;
+  content: '';
   transition: background 0.25s linear;
 }
 
-.c2 {
-  -webkit-clip: rect(0,0,0,0);
-  clip: rect(0,0,0,0);
-  pointer-events: none;
+.c3 {
   position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }
 
-.c2 ~ .c3 {
+.c3 ~.c4 {
   border-color: #c25400;
 }
 
-.c2:focus ~ .c3 {
+.c3:focus~.c4 {
   box-shadow: 0 0 3px 3px #83bffc;
 }
 
-.c2:checked ~ .c3:before {
+.c3:checked~.c4::before {
   background-color: #c25400;
 }
 
-.c2.c2:disabled ~ .c3 {
+.c3.c3:disabled ~.c4 {
   border-color: #c5c5c5;
 }
 
-.c2.c2:disabled:checked ~ .c3:before {
+.c3.c3:disabled:checked~.c4::before {
   background-color: #c5c5c5;
 }
 
 .c1 {
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-  align-self: flex-start;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  position: relative;
   display: flex;
-  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma, sans-serif;
+  align-self: flex-start;
+  padding: 10px 0 10px 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-family: 'Source Sans Pro','Segoe UI',Segoe,Calibri,Tahoma,sans-serif;
   font-size: 1.125rem;
   font-weight: normal;
   line-height: 1.428;
-  margin-right: 15px;
-  margin-bottom: 10px;
-  position: relative;
-  padding: 10px 0 10px 10px;
   text-transform: none;
 }
 
-@media (min-width:768px) {
+.c1:hover>.>.c2:not(:disabled):not(:checked)~.c4::before {
+  background-color: #ffbf8f;
+}
+
+@media (min-width: 768px) {
   .c0 {
     margin-right: 20px;
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .c1 {
     padding: 5px 0;
   }
@@ -1031,21 +1319,21 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   class="c0 c1"
   disabled=""
   for="test-radio"
+  hover="#ffbf8f"
 >
   <div
     class=""
   >
     <input
       checked=""
-      class="c2"
+      class="c2 c3"
       disabled=""
-      fill="#c25400"
       id="test-radio"
       name=""
       type="radio"
     />
     <span
-      class="c3 c4 es-radio__fill"
+      class="c4 c5 es-radio__fill"
     />
   </div>
   Option

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes, ThemeProps, DefaultTheme } from 'styled-components';
+import styled, { StyleFunction, keyframes } from 'styled-components';
 import useUniqueId from '../../util/useUniqueId';
 
 const rotatorAnimation = keyframes`
@@ -36,19 +36,24 @@ const dashAnimation = keyframes`
   }
 `;
 
-const colorsAnimation = (props: ThemeProps<DefaultTheme>) => keyframes`
-  0% {
-    stroke: ${props.theme.brandColors.primary1};
-  }
-  40% {
-    stroke: ${props.theme.brandColors.primary2};
-  }
-  80% {
-    stroke: ${props.theme.brandColors.primary3};
-  }
-  100% {
-    stroke: ${props.theme.brandColors.primary1};
-  }
+const colorsAnimation: StyleFunction<object> = ({
+  theme: { brandColors }
+}) => keyframes`
+    0% {
+      stroke: ${brandColors.primary1};
+    }
+
+    40% {
+      stroke: ${brandColors.primary2};
+    }
+
+    80% {
+      stroke: ${brandColors.primary3};
+    }
+
+    100% {
+      stroke: ${brandColors.primary1};
+    }
 `;
 
 const SpinnerSvg = styled.svg`
@@ -60,12 +65,13 @@ const SpinnerSvg = styled.svg`
 `;
 
 const SpinnerCircle = styled.circle`
+  animation:
+    ${dashAnimation} 1.4s ease-in-out infinite,
+    ${colorsAnimation} 3.5s ease-in-out infinite;
   stroke: ${props => props.theme.brandColors.secondary1};
   stroke-dasharray: 187;
   stroke-dashoffset: 37.4;
   transform-origin: center;
-  animation: ${dashAnimation} 1.4s ease-in-out infinite,
-    ${colorsAnimation} 3.5s ease-in-out infinite;
 `;
 
 // this should probably be shared

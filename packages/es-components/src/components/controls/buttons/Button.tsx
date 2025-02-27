@@ -22,6 +22,9 @@ import { PanelButton } from '../../containers/drawer/DrawerPanel';
 import { ScrollIconBaseComponent } from '../../containers/horizontalScrollWrapper/HorizontalScrollWrapper';
 import { BasicProgressButton } from '../../patterns/progress-tracker/progress-tracker-subcomponents';
 
+const defaultGray4 = '#d8d8d8';
+const defaultBlack = '#000';
+
 type BorderRadii = {
   [key in
     | 'topLeft'
@@ -31,103 +34,104 @@ type BorderRadii = {
 };
 
 type ButtonStyleProps = {
-  colors: ButtonColors;
-  borderRadii: BorderRadii;
-  mobileBlock: boolean;
-  block: boolean;
-  buttonSize: ButtonSizeBlock;
+  $colors: ButtonColors;
+  $borderRadii: BorderRadii;
+  $mobileBlock: boolean;
+  $block: boolean;
+  $buttonSize?: ButtonSizeBlock;
 };
 
 type ButtonStyleCssProps = {
   theme: DefaultTheme;
-} & Omit<ButtonStyleProps, 'mobileBlock' | 'block'>;
+} & Omit<ButtonStyleProps, '$mobileBlock' | '$block'>;
 
 const getButtonCss = ({
   theme,
-  colors,
-  borderRadii,
-  buttonSize
+  $colors,
+  $borderRadii,
+  $buttonSize
 }: ButtonStyleCssProps) => css`
-  background-color: ${colors.bgColor};
-  border: 2px solid transparent;
-  border-color: ${colors.bgColor};
-  border-bottom-left-radius: ${borderRadii.bottomLeft};
-  border-bottom-right-radius: ${borderRadii.bottomRight};
-  border-top-left-radius: ${borderRadii.topLeft};
-  border-top-right-radius: ${borderRadii.topRight};
+  position: relative;
   box-sizing: border-box;
-  color: ${colors.textColor};
+  padding: ${$buttonSize?.paddingTop} ${$buttonSize?.paddingSides}
+    ${$buttonSize?.paddingBottom} ${$buttonSize?.paddingSides};
+  border: 2px solid transparent;
+  border-color: ${$colors.bgColor};
+  border-radius: ${$borderRadii.topLeft} ${$borderRadii.topRight}
+    ${$borderRadii.bottomRight} ${$borderRadii.bottomLeft};
+  background-color: ${$colors.bgColor};
+  color: ${$colors.textColor};
   cursor: pointer;
   font-family: inherit;
-  font-size: ${buttonSize.fontSize};
-  font-weight: ${buttonSize.fontWeight || 'normal'};
-  line-height: ${buttonSize.lineHeight
-    ? buttonSize.lineHeight
+  font-size: ${$buttonSize?.fontSize};
+  font-weight: ${$buttonSize?.fontWeight || 'normal'};
+  line-height: ${$buttonSize?.lineHeight
+    ? $buttonSize?.lineHeight
     : theme.font.baseLineHeight};
-  padding-bottom: ${buttonSize.paddingBottom};
-  padding-left: ${buttonSize.paddingSides};
-  padding-right: ${buttonSize.paddingSides};
-  padding-top: ${buttonSize.paddingTop};
-  position: relative;
   text-align: center;
   text-decoration: none;
-  text-transform: ${buttonSize.textTransform
-    ? buttonSize.textTransform
+  text-transform: ${$buttonSize?.textTransform
+    ? $buttonSize?.textTransform
     : 'none'};
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
 
   @media (hover: hover), (-ms-high-contrast: none) {
     &:hover {
-      color: ${colors.hoverTextColor};
-      background-color: ${colors.hoverBgColor};
-      border-color: ${colors.hoverBorderColor};
+      border-color: ${$colors.hoverBorderColor};
+      background-color: ${$colors.hoverBgColor};
+      color: ${$colors.hoverTextColor};
       text-decoration: none;
     }
   }
 
   &:focus {
-    color: ${colors.hoverTextColor};
-    background-color: ${colors.hoverBgColor};
     border: 2px solid;
-    border-color: ${colors.hoverBorderColor};
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075),
-      0 0 0 0.2rem ${colors.focusBoxShadowColor};
+    border-color: ${$colors.hoverBorderColor};
+    background-color: ${$colors.hoverBgColor};
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 0 0.2rem ${$colors.focusBoxShadowColor};
+    color: ${$colors.hoverTextColor};
     outline: none;
   }
 
   &:active,
   &.pressed {
-    color: ${colors.activeTextColor};
-    background-color: ${colors.activeBgColor};
-    border-color: ${colors.activeBorderColor};
+    border-color: ${$colors.activeBorderColor};
+    background-color: ${$colors.activeBgColor};
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
+    color: ${$colors.activeTextColor};
   }
 
   &:active:focus,
   &.pressed:focus {
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25),
-      0 0 0 0.2rem ${colors.focusBoxShadowColor};
+    box-shadow:
+      inset 0 3px 5px rgba(0, 0, 0, 0.25),
+      0 0 0 0.2rem ${$colors.focusBoxShadowColor};
   }
 
   &[disabled],
   &[data-waiting] {
+    border-color: ${({ theme }) => theme.colors.gray3};
+    background-color: ${({ theme }) => theme.colors.gray3};
     color: ${({ theme }) => theme.colors.gray6};
     cursor: not-allowed;
-    background-color: ${({ theme }) => theme.colors.gray3};
-    border-color: ${({ theme }) => theme.colors.gray3};
 
     &:hover,
     &:active &.pressed {
-      background-color: ${({ theme }) => theme.colors.gray3};
       border-color: ${({ theme }) => theme.colors.gray3};
+      background-color: ${({ theme }) => theme.colors.gray3};
       color: ${({ theme }) => theme.colors.gray6};
 
       &:focus {
-        box-shadow: 0 0 0 0.2rem ${colors.focusBoxShadowColor};
+        box-shadow: 0 0 0 0.2rem ${$colors.focusBoxShadowColor};
       }
     }
 
@@ -140,12 +144,12 @@ const getButtonCss = ({
 const StyledButton = styled(ButtonBase)<ButtonStyleProps>`
   ${getButtonCss}
   min-width: 100px;
-  display: ${({ mobileBlock }) => (mobileBlock ? 'block' : 'inline-block')};
-  width: ${({ mobileBlock }) => (mobileBlock ? '100%' : 'auto')};
+  display: ${({ $mobileBlock }) => ($mobileBlock ? 'block' : 'inline-block')};
+  width: ${({ $mobileBlock }) => ($mobileBlock ? '100%' : 'auto')};
 
   @media (min-width: ${({ theme }) => theme.screenSize.tablet}) {
-    display: ${({ block }) => (block ? 'block' : 'inline-block')};
-    width: ${({ block }) => (block ? '100%' : 'auto')};
+    display: ${({ $block }) => ($block ? 'block' : 'inline-block')};
+    width: ${({ $block }) => ($block ? '100%' : 'auto')};
   }
 `;
 
@@ -179,9 +183,9 @@ export const globalButtonCss = css`
         ) {
         ${getButtonCss({
           theme,
-          colors: getButtonColors(theme, false, 'default'),
-          borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
-          buttonSize: theme.buttonStyles.button.size.default
+          $colors: getButtonColors(theme, false, 'default'),
+          $borderRadii: getBorderRadii(theme.buttonStyles.button.size.default),
+          $buttonSize: theme.buttonStyles.button.size.default
         })}
         ${buttonVariantStyleTypes.map(style =>
           buttonSizes.map(size => {
@@ -192,9 +196,9 @@ export const globalButtonCss = css`
               &.${[style, size].join('.')} {
                 ${getButtonCss({
                   theme,
-                  colors: buttonColors,
-                  borderRadii,
-                  buttonSize
+                  $colors: buttonColors,
+                  $borderRadii: borderRadii,
+                  $buttonSize: buttonSize
                 })}
               }
             `;
@@ -210,19 +214,17 @@ export const buttonStyleTypes = [
 ] as const;
 export type ButtonStyleType = (typeof buttonStyleTypes)[number];
 
-const buttonColorProps = [
-  'bgColor',
-  'textColor',
-  'borderColor',
-  'hoverBgColor',
-  'focusBoxShadowColor',
-  'activeBgColor',
-  'activeTextColor',
-  'activeBorderColor',
-  'hoverTextColor',
-  'hoverBorderColor'
-] as const;
-export type ButtonColorProps = (typeof buttonColorProps)[number];
+export type ButtonColorProps =
+  | 'bgColor'
+  | 'textColor'
+  | 'borderColor'
+  | 'hoverBgColor'
+  | 'focusBoxShadowColor'
+  | 'activeBgColor'
+  | 'activeTextColor'
+  | 'activeBorderColor'
+  | 'hoverTextColor'
+  | 'hoverBorderColor';
 
 export type ButtonColors = {
   [key in ButtonColorProps]: CSS.Property.Color;
@@ -233,16 +235,18 @@ type GuaranteedButtonVariant = Omit<ButtonVariant, 'bgColor'> & {
 };
 
 function getButtonVariant(
-  theme: DefaultTheme,
+  theme: DefaultTheme | undefined,
   buttonVariant: ButtonStyleType
 ): GuaranteedButtonVariant {
-  const variant = theme.buttonStyles.button.variant[buttonVariant] || {};
-  variant.bgColor = variant.bgColor || theme.colors.gray4;
+  const variant =
+    theme?.buttonStyles.button.variant[buttonVariant] ||
+    ({} as GuaranteedButtonVariant);
+  variant.bgColor = variant.bgColor || theme?.colors.gray4 || defaultGray4;
   return variant;
 }
 
 function getButtonColors<T extends boolean>(
-  theme: DefaultTheme,
+  theme: DefaultTheme | undefined,
   isInheritedStyle: T,
   buttonVariant: ButtonStyleType = 'default'
 ): ButtonColors {
@@ -251,7 +255,7 @@ function getButtonColors<T extends boolean>(
     textColor: 'inherited',
     borderColor: 'inherited',
     hoverBgColor: 'inherited',
-    focusBoxShadowColor: theme.colors.gray4,
+    focusBoxShadowColor: theme?.colors.gray4 || defaultGray4,
     activeBgColor: 'inherited',
     activeTextColor: 'inherited',
     activeBorderColor: 'inherited',
@@ -266,7 +270,7 @@ function getButtonColors<T extends boolean>(
   const variant = getButtonVariant(theme, buttonVariant);
 
   const focusBoxShadowColor = tinycolor
-    .mix(variant.bgColor, theme.colors.black, 14)
+    .mix(variant.bgColor, theme?.colors.black ?? defaultBlack, 14)
     .setAlpha(0.5);
 
   const calculatedButtonColors: ButtonColors = {
@@ -320,12 +324,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   ref
 ) {
   const theme = useTheme();
-  const buttonSize = theme.buttonStyles.button.size[size];
+  const buttonSize = theme?.buttonStyles.button.size[size];
   const isInheritedStyle = styleType === 'inherited';
   const mobileBlockSetting =
     flatLeftEdge || flatRightEdge ? false : mobileBlock;
 
-  const defaultRadius = buttonSize.borderRadius;
+  const defaultRadius = buttonSize?.borderRadius ?? '0.25rem';
   const borderRadii: BorderRadii = {
     topLeft: flatLeftEdge ? 0 : defaultRadius,
     topRight: flatRightEdge ? 0 : defaultRadius,
@@ -338,12 +342,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   return (
     <StyledButton
       type="button"
-      block={block}
-      mobileBlock={mobileBlockSetting}
-      buttonSize={buttonSize}
-      colors={buttonColors}
+      $block={block}
+      $mobileBlock={mobileBlockSetting}
+      $buttonSize={buttonSize}
+      $colors={buttonColors}
       ref={ref}
-      borderRadii={borderRadii}
+      $borderRadii={borderRadii}
       {...other}
     >
       {children}

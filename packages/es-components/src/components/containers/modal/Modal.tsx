@@ -1,13 +1,7 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import * as CSS from 'csstype';
 import PropTypes from 'prop-types';
-import {
-  createGlobalStyle,
-  css,
-  DefaultTheme,
-  ThemeProvider,
-  ThemeProviderComponent
-} from 'styled-components';
+import { createGlobalStyle, css, ThemeProvider } from 'styled-components';
 import ReactModal from 'react-modal';
 import tinycolor from 'tinycolor2';
 
@@ -22,12 +16,6 @@ import Footer from './ModalFooter';
 import useTopZIndex from '../../../hooks/useTopZIndex';
 import { useWindowSize } from '../../util/withWindowSize';
 import noop from '../../util/noop';
-
-export type ModalTheme = DefaultTheme & {
-  modalHeight: number;
-  windowHeight: number;
-  portalClassName: string;
-};
 
 type HTMLRef = React.ForwardedRef<HTMLElement> | undefined;
 type BackdropValue = boolean | 'static';
@@ -73,39 +61,35 @@ const getAlphaColor = (color: CSS.Property.Color, alpha: number) => {
   return colorObj.toRgbString();
 };
 
-const ModalStyles = createGlobalStyle<{
+interface ModalGlobalStyleProps {
   showBackdrop: boolean;
   showAnimation?: boolean;
-  theme: ModalTheme;
   topIndex: number;
-}>`
+  portalClassName: string;
+  modalHeight: number;
+  windowHeight: number;
+}
+
+const ModalStyles = createGlobalStyle<ModalGlobalStyleProps>`
 ${({
-  theme: {
-    portalClassName,
-    colors,
-    font,
-    screenSize,
-    windowHeight,
-    modalHeight
-  },
+  theme: { colors, font, screenSize },
+  windowHeight,
+  modalHeight,
+  portalClassName,
   showBackdrop,
   topIndex,
   showAnimation
 }) => css`
   .${portalClassName} {
     .background-overlay {
-      bottom: 0;
-      background-color: ${getAlphaColor(colors.gray9, 0)};
-
-      left: 0;
-      max-height: 100%;
-      overflow-y: auto;
       position: fixed;
-      right: 0;
-      top: 0;
-      transition: background-color ${animationTimeMs / 2}ms linear;
       z-index: ${topIndex};
+      max-height: 100%;
+      background-color: ${getAlphaColor(colors.gray9, 0)};
+      inset: 0;
       -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+      transition: background-color ${animationTimeMs / 2}ms linear;
 
       &.ReactModal__Overlay--after-open {
         background-color: ${() => {
@@ -125,8 +109,8 @@ ${({
       background-color: ${colors.white};
       border-radius: 3px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-        sans-serif;
+      font-family:
+        'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
       font-size: ${font.baseFontSize};
       margin: 0.5rem;
       outline: 0;
@@ -134,8 +118,8 @@ ${({
       position: absolute;
       left: 0;
       transform: translateY(0);
-      transition: transform ${animationTimeMs}ms ease-out
-          ${animationTimeMs / 4}ms,
+      transition:
+        transform ${animationTimeMs}ms ease-out ${animationTimeMs / 4}ms,
         opacity ${animationTimeMs}ms ease-out ${animationTimeMs / 4}ms;
       ${showAnimation
         ? `
@@ -164,45 +148,40 @@ ${({
       &.small {
         @media (min-width: ${screenSize.phone}) {
           position: relative;
-          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
           width: ${modalSize.small};
+          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
         }
       }
 
       &.medium {
         @media (min-width: ${screenSize.tablet}) {
           position: relative;
-          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
           width: ${modalSize.medium};
+          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
         }
       }
 
       &.large {
         @media (min-width: ${screenSize.desktop}) {
           position: relative;
-          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
           width: ${modalSize.large};
+          margin: ${getModalMargin(windowHeight, modalHeight)}px auto;
         }
       }
     }
   }
 `}`;
 
-const ModalThemeProvider = ThemeProvider as unknown as ThemeProviderComponent<
-  ModalTheme,
-  DefaultTheme
->;
-
 function Modal({
   animation = true,
   backdrop = true,
   children,
-  escapeExits,
-  onEnter,
-  onExit,
-  onHide,
-  show,
-  size,
+  escapeExits = true,
+  onEnter = noop,
+  onExit = noop,
+  onHide = noop,
+  show = false,
+  size = 'medium',
   parentSelector,
   className,
   overlayRef,
@@ -276,17 +255,17 @@ function Modal({
   const shouldCloseOnOverlayClick = backdrop === 'static' ? false : backdrop;
 
   return (
-    <ModalThemeProvider
+    <ThemeProvider
       theme={theme => ({
-        ...theme,
-        modalHeight,
-        windowHeight,
-        portalClassName
+        ...theme!
       })}
     >
       <RootNodeLocator />
       {shouldShow ? (
         <ModalStyles
+          portalClassName={portalClassName}
+          modalHeight={modalHeight}
+          windowHeight={windowHeight}
           showAnimation={animation}
           showBackdrop={Boolean(backdrop)}
           topIndex={getTopIndex()}
@@ -314,7 +293,7 @@ function Modal({
           {children}
         </ReactModal>
       </ModalContext.Provider>
-    </ModalThemeProvider>
+    </ThemeProvider>
   );
 }
 
@@ -397,7 +376,6 @@ export const defaultProps = {
 };
 
 Modal.propTypes = propTypes;
-Modal.defaultProps = defaultProps;
 
 Modal.Header = Header;
 Modal.Body = Body;

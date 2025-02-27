@@ -28,8 +28,8 @@ test.each([
     renderWithTheme(
       <ProgressContainer
         data-testid="progress-tracker"
-        activeStepIndex={1}
-        numberOfSteps={numberOfSteps}
+        $activeStepIndex={1}
+        $numberOfSteps={numberOfSteps}
       />
     );
 
@@ -55,7 +55,9 @@ it('sets the appropriate margin-top when inactive', async () => {
     margin-top: ${topMargin}px;
   `);
   expect(instance).toHaveStyleRule('margin-top', '0', {
-    media: `(min-width:${viaTheme.screenSize.tablet})`
+    // an extra space is required in the media query for now
+    // https://github.com/styled-components/jest-styled-components/issues/430#issuecomment-1658670650
+    media: `(min-width:  ${viaTheme.screenSize.tablet})`
   });
 });
 
@@ -70,7 +72,9 @@ it('sets the appropriate margin-top when active', async () => {
     expect(instance).toHaveStyle('margin-top: 0');
   });
   expect(instance).toHaveStyleRule('margin-top', '0', {
-    media: `(min-width:${viaTheme.screenSize.tablet})`
+    // an extra space is required in the media query for now
+    // https://github.com/styled-components/jest-styled-components/issues/430#issuecomment-1658670650
+    media: `(min-width:  ${viaTheme.screenSize.tablet})`
   });
 });
 

@@ -17,20 +17,24 @@ const outlineStyles = css`
   }
 
   > label:last-child > div {
-    border-left: none;
     border-radius: 0 4px 4px 0;
+    border-left: none;
   }
 
-  > label:not(:first-child):not(:last-child) > div {
+  > label:not(:first-child, :last-child) > div {
     border-left: 1px;
   }
 `;
 
-const AnswerSet = styled.div<{ isOutline?: boolean }>`
+interface AnswerSetProps {
+  $isOutline?: boolean;
+}
+
+const AnswerSet = styled.div<AnswerSetProps>`
   display: flex;
   flex-wrap: nowrap;
 
-  ${props => props.isOutline && outlineStyles};
+  ${props => props.$isOutline && outlineStyles};
 `;
 
 export type AnswerGroupProps = Override<
@@ -51,9 +55,9 @@ const AnswerGroup = React.forwardRef<HTMLDivElement, AnswerGroupProps>(
     },
     ref
   ) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     return (
-      <AnswerSet isOutline={isOutline} ref={ref}>
+      <AnswerSet $isOutline={isOutline} ref={ref}>
         <RadioGroup
           {...{
             ...props,

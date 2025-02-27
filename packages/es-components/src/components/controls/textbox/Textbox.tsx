@@ -18,8 +18,8 @@ import InputBase, {
 import { callRefs } from '../../util/callRef';
 
 export type TextboxAdditionProps = {
-  hasPrepend?: boolean;
-  hasAppend?: boolean;
+  $hasPrepend?: boolean;
+  $hasAppend?: boolean;
 };
 
 type IconStyles = ReturnType<typeof useIconStyles>;
@@ -29,38 +29,55 @@ export type InputWrapperProps = Override<
   Override<
     TextboxAdditionProps,
     {
-      prependIconStyles?: IconStyles;
-      appendIconStyles?: IconStyles;
+      $prependIconStyles?: IconStyles;
+      $appendIconStyles?: IconStyles;
     }
   >
 >;
 
-const InputWrapper = styled.div<InputWrapperProps>`
+function shouldForwardValidationProp(prop: string) {
+  return ![
+    'borderColor',
+    'focusBorderColor',
+    'focusBoxShadow',
+    'backgroundColor',
+    'boxShadow',
+    'disabledBackgroundColor',
+    'backgroundColorFlat',
+    'focusBoxShadowFlat',
+    'addOn',
+    'flat'
+  ].includes(prop);
+}
+
+const InputWrapper = styled.div.withConfig({
+  shouldForwardProp: shouldForwardValidationProp
+})<InputWrapperProps>`
   ${validationStateSetupStyles}
   ${validationStateInputStyles}
-  display: flex;
-  padding: 0 !important;
 
   &:focus-within {
     ${validationStateHighlightStyles}
   }
 
-  ${({ prependIconStyles, appendIconStyles }) => css`
+  ${({ $prependIconStyles, $appendIconStyles }) => css`
+    display: flex;
+    padding: 0 !important;
+
     &&::before {
-      ${prependIconStyles}
+      ${$prependIconStyles}
     }
 
     &&::after {
-      ${appendIconStyles}
+      ${$appendIconStyles}
     }
   `}
 
+    ${props => css`
   &&::before,
   &&::after {
-    ${props => css`
       background-color: ${getStyledProp('backgroundColor', 'addOn', props)};
       color: ${getStyledProp('textColor', 'addOn', props)};
-    `}
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -69,6 +86,7 @@ const InputWrapper = styled.div<InputWrapperProps>`
     margin: 0;
     outline: 0;
     padding: 0.333em 0.6111em;
+    `}
   }
 `;
 
@@ -89,15 +107,15 @@ export const TextboxBase = styled(InputBase)<TextboxAdditionProps>`
     }
   }
 
-  ${({ hasPrepend }) =>
-    hasPrepend &&
+  ${({ $hasPrepend }) =>
+    $hasPrepend &&
     css`
       border-bottom-left-radius: 0;
       border-top-left-radius: 0;
     `}
 
-  ${({ hasAppend }) =>
-    hasAppend &&
+  ${({ $hasAppend }) =>
+    $hasAppend &&
     css`
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
@@ -149,7 +167,7 @@ const Textbox = React.forwardRef<HTMLInputElement, TextboxProps>(
 
     const hasPrepend = !!prependIconName;
     const hasAppend = !!appendIconName;
-    const prependProps = { hasPrepend, hasAppend };
+    const prependProps = { $hasPrepend: hasPrepend, $hasAppend: hasAppend };
     const sharedProps = { ...validationProps, ...prependProps };
 
     const focusInput = useCallback(() => inputRef?.focus(), [inputRef]);
@@ -162,8 +180,8 @@ const Textbox = React.forwardRef<HTMLInputElement, TextboxProps>(
         style={style}
         {...{
           ...sharedProps,
-          prependIconStyles,
-          appendIconStyles
+          $prependIconStyles: prependIconStyles,
+          $appendIconStyles: appendIconStyles
         }}
       >
         {hasPrepend || hasAppend ? (

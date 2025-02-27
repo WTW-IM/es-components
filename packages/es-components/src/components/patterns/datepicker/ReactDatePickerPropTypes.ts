@@ -91,7 +91,7 @@ export const reactDatePickerPropTypes: ReactDatePickerPropTypes<
   timeClassName: PropTypes.func,
   disabled: PropTypes.bool,
   disabledKeyboardNavigation: PropTypes.bool,
-  dropdownMode: PropTypes.oneOf(['scroll', 'select'] as const).isRequired,
+  dropdownMode: PropTypes.oneOf(['scroll', 'select'] as const),
   endDate: PropTypes.instanceOf(Date),
   excludeDates: PropTypes.array,
   excludeDateIntervals: PropTypes.arrayOf<DateInterval>(

@@ -167,26 +167,7 @@ exports[`renders the correct addons when provided 1`] = `
       Text
     </label>
     <div
-      addon="[object Object]"
-      backgroundcolor="#fff"
-      backgroundcolorflat="#f4f4f4"
-      bordercolor="#c5c5c5"
-      boxshadow="inset 0 1px 1px rgba(0, 0, 0, 0.075)"
       class="c2"
-      disabledbackgroundcolor="#ededed"
-      focusbordercolor="#83bffc"
-      focusboxshadow="0 0 8px rgba(102, 175, 233, 0.6)"
-      focusboxshadowflat="0 0 1px 2px rgba(102, 175, 233, 0.6)"
-      prependiconstyles="
-    ,() => (0, styled_components_1.css) \`
-      \${Icon_1.iconBaseStyles}
-
-      // computed styles
-      content: \${beforeStyle.content};
-      font-family: \${computedStyle.fontFamily};
-      font-size: \${computedStyle.fontSize};
-    \`,
-  "
     >
       <div
         aria-hidden="true"
@@ -377,26 +358,7 @@ exports[`renders the correct addons when provided 2`] = `
       Text
     </label>
     <div
-      addon="[object Object]"
-      appendiconstyles="
-    ,() => (0, styled_components_1.css) \`
-      \${Icon_1.iconBaseStyles}
-
-      // computed styles
-      content: \${beforeStyle.content};
-      font-family: \${computedStyle.fontFamily};
-      font-size: \${computedStyle.fontSize};
-    \`,
-  "
-      backgroundcolor="#fff"
-      backgroundcolorflat="#f4f4f4"
-      bordercolor="#c5c5c5"
-      boxshadow="inset 0 1px 1px rgba(0, 0, 0, 0.075)"
       class="c2"
-      disabledbackgroundcolor="#ededed"
-      focusbordercolor="#83bffc"
-      focusboxshadow="0 0 8px rgba(102, 175, 233, 0.6)"
-      focusboxshadowflat="0 0 1px 2px rgba(102, 175, 233, 0.6)"
     >
       <div
         aria-hidden="true"
@@ -604,36 +566,7 @@ exports[`renders the correct addons when provided 3`] = `
       Text
     </label>
     <div
-      addon="[object Object]"
-      appendiconstyles="
-    ,() => (0, styled_components_1.css) \`
-      \${Icon_1.iconBaseStyles}
-
-      // computed styles
-      content: \${beforeStyle.content};
-      font-family: \${computedStyle.fontFamily};
-      font-size: \${computedStyle.fontSize};
-    \`,
-  "
-      backgroundcolor="#fff"
-      backgroundcolorflat="#f4f4f4"
-      bordercolor="#c5c5c5"
-      boxshadow="inset 0 1px 1px rgba(0, 0, 0, 0.075)"
       class="c2"
-      disabledbackgroundcolor="#ededed"
-      focusbordercolor="#83bffc"
-      focusboxshadow="0 0 8px rgba(102, 175, 233, 0.6)"
-      focusboxshadowflat="0 0 1px 2px rgba(102, 175, 233, 0.6)"
-      prependiconstyles="
-    ,() => (0, styled_components_1.css) \`
-      \${Icon_1.iconBaseStyles}
-
-      // computed styles
-      content: \${beforeStyle.content};
-      font-family: \${computedStyle.fontFamily};
-      font-size: \${computedStyle.fontSize};
-    \`,
-  "
     >
       <div
         aria-hidden="true"

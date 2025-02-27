@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import styled from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid as dateIsValid } from 'date-fns';
 import ReactDatePicker from 'react-datepicker';
@@ -8,7 +8,6 @@ import type { ReactDatePickerProps } from 'react-datepicker';
 import Textbox, { TextboxProps } from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
 import { useWindowWidth } from '../../util/useWindowWidth';
-import { useTheme } from '../../util/useTheme';
 import { DatepickerStyles } from './datePickerStyles';
 import {
   OurReactDatePickerProps,
@@ -147,17 +146,21 @@ const textboxKeys = Object.keys(
   Textbox.propTypes as TextboxValidators
 ) as TextboxPropKeys[];
 
-const CalendarContainer = styled.div`
-  font-size: 18px;
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.gray5};
-  border-radius: 0.3rem;
-  color: ${({ theme }) => theme.colors.gray9};
-  box-shadow: 0 5px 10px ${({ theme }) => theme.colors.boxShadowLight};
-  display: inline-block;
-  position: relative;
+const CalendarContainer = styled.div.withConfig({
+  shouldForwardProp: prop => !['showTime'].includes(prop)
+})`
+  ${({ theme }) => css`
+    font-size: 18px;
+    background-color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.gray5};
+    border-radius: 0.3rem;
+    color: ${theme.colors.gray9};
+    box-shadow: 0 5px 10px ${theme.colors.boxShadowLight};
+    display: inline-block;
+    position: relative;
 
-  ${calendarArrowStyles}
+    ${calendarArrowStyles}
+  `}
 `;
 
 type GenericDatePickerProps = DatePickerProps<WithRange, WithRange, WithRange>;

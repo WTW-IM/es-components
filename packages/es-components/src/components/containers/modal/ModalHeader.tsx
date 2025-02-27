@@ -55,7 +55,7 @@ const DismissModal = styled(DismissButton)`
   font-size: 18px;
 `;
 
-interface ModalHeaderProps extends JSXElementProps<'div'> {
+export interface ModalHeaderProps extends JSXElementProps<'div'> {
   hideCloseButton?: boolean;
   level?: HeadingLevel;
   size?: HeadingLevel;

@@ -38,7 +38,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit
 
       - name: Run Lint
         working-directory: packages/es-components
@@ -90,7 +90,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |
@@ -133,7 +133,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |
@@ -188,7 +188,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit
 
       - name: Set Commitbot Identity
         run: |

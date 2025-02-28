@@ -35,7 +35,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm i --prefer-offline --no-audit
+          npm ci --prefer-offline --no-audit
 
       - name: Setup Cypress
         working-directory: ${{ env.ES_COMPONENTS_DIR }}

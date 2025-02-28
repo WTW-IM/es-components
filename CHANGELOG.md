@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.15.0...v21.15.1-pre-prod.0) (2025-02-28)
+
+### Build
+
+- using npm ci in canary publish ([100e280](https://github.com/WTW-IM/es-components/commit/100e280884cf253f98926ba2e15fd9f9abcaf632))
+- using npm ci instead of npm i in all builds ([840d7ed](https://github.com/WTW-IM/es-components/commit/840d7ede0c5d2f3c1242716340aa4c1d90bf8f30))
+
+### Fix
+
+- clearing react warnings about forwarded props in Menu and NavigationItem ([7c6ee3a](https://github.com/WTW-IM/es-components/commit/7c6ee3ab9960299a4b49859df370d109163d433c))
+- clearing react warnings about forwarded props in Textbox and Datepicker ([e6f0c72](https://github.com/WTW-IM/es-components/commit/e6f0c72454ed977c5094469f7c0ea7840565b637))
+- clearing warnings about forwarded and defaultProps in CheckboxGroup ([e5ba910](https://github.com/WTW-IM/es-components/commit/e5ba91043f387759530e2ef339ff970eb3734ed2))
+- clearing warnings about forwarded and defaultProps in Popover, DropdownButton, ModalHeader ([a66c01a](https://github.com/WTW-IM/es-components/commit/a66c01aa5ccc255dfe743303865c6bf3ec068b53))
+- ensuring exposed types are not private in Modal ([2928592](https://github.com/WTW-IM/es-components/commit/2928592a518a2da09577c0fbe01c5af91cfc9749))
+- ensuring monthNames are consistent in defaultProps ([435ab8e](https://github.com/WTW-IM/es-components/commit/435ab8e989c8f00cc1e7c0719fe105f0a1f220ec))
+- fixing peer dependencies syntax for styled-components ([5e0b4d8](https://github.com/WTW-IM/es-components/commit/5e0b4d8952ac19431c5e8166155bcf889ebc4063))
+
+### Update
+
+- adding support for styled-components@6 ([daedabd](https://github.com/WTW-IM/es-components/commit/daedabdc772865ee62b69dd1db78775e739f1992))
+
 # [21.15.0](https://github.com/WTW-IM/es-components/compare/v21.15.0-pre-prod.2...v21.15.0) (2025-02-14)
 
 **Note:** Version bump only for package es-components-monorepo

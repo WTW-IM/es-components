@@ -36,37 +36,37 @@ const DrawerValidationControl = styled(Control)`
   margin-bottom: 0;
 `;
 
-const DrawerHeader = styled.div<HeaderAlignment>`
-  ${({ inputAlignment, labelAlignment }) => css`
+const DrawerHeader = styled.div<{
+  $inputAlignment: HeaderAlignment['inputAlignment'];
+  $labelAlignment: HeaderAlignment['labelAlignment'];
+}>`
+  ${({ $inputAlignment, $labelAlignment }) => css`
     display: flex;
     flex-direction: row;
 
     &,
     & > ${Label} {
+      flex-grow: 1;
       flex-wrap: nowrap;
       align-items: center;
-      column-gap: 0.5em;
-      flex-grow: 1;
-
-      margin: 0;
       padding: 0;
+      margin: 0;
+      column-gap: 0.5em;
     }
 
     & > ${Label} {
       display: flex;
-      flex-wrap: nowrap;
-
-      flex-direction: ${inputAlignment === 'left' ? 'row' : 'row-reverse'};
-      justify-content: ${inputAlignment !== labelAlignment
+      flex-flow: ${$inputAlignment === 'left' ? 'row' : 'row-reverse'} nowrap;
+      justify-content: ${$inputAlignment !== $labelAlignment
         ? 'space-between'
         : 'flex-start'};
     }
 
     ${CheckboxDisplay} {
-      display: block;
       position: relative;
       top: 0;
       left: 0;
+      display: block;
     }
 
     ${CheckboxDisplay}, ${RadioDisplay} {
@@ -76,24 +76,24 @@ const DrawerHeader = styled.div<HeaderAlignment>`
 `;
 
 const StyledSelectionDrawerItemContainer = styled.div<{
-  borderColor: CSS.Property.Color;
-  validationState: ValidationStyleType;
-  disabled: boolean;
-  disabledBgColor: CSS.Property.BackgroundColor;
+  $borderColor: CSS.Property.Color;
+  $validationState: ValidationStyleType;
+  $disabledBgColor: CSS.Property.BackgroundColor;
+  $disabled: boolean;
 }>`
-  ${({ borderColor, disabled, disabledBgColor, theme }) => css`
-    border: 2px solid ${borderColor};
+  ${({ $borderColor, $disabled, $disabledBgColor, theme }) => css`
+    border: 2px solid ${$borderColor};
     border-radius: 0.3rem;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     background-color: inherit;
 
-    ${disabled &&
+    ${$disabled &&
     css`
-      background-color: ${disabledBgColor};
       border-color: ${theme.colors.disabled ||
       theme.validationInputColor.default.borderColor};
+      background-color: ${$disabledBgColor};
 
       &,
       & ${Label} {
@@ -107,8 +107,9 @@ const StyledSelectionDrawerItemContainer = styled.div<{
 const StyledDrawerBody = styled(Drawer.ItemBody)`
   flex-shrink: 0;
   padding-top: 1rem;
-
-  transition: padding-top 0.3s linear, height 0.3s ease-in-out;
+  transition:
+    padding-top 0.3s linear,
+    height 0.3s ease-in-out;
 
   &.rah-static--height-zero,
   &.rah-animating--up {
@@ -121,26 +122,22 @@ const StyledOpenerButton = styled(Button)`
   &:hover,
   &:focus,
   &:active {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    min-width: 0;
     display: flex;
+    min-width: 0;
     align-items: center;
     justify-content: center;
+    padding: 0;
+    border: none;
+    margin: 0;
+    background-color: transparent;
   }
 `;
 
-/* eslint-disable react/prop-types */
-const DrawerRadio: ReactFCWithChildren<RadioButtonProps> = props => {
+function DrawerRadio(props: RadioButtonProps) {
   return <RadioButton {...props} />;
-};
+}
 
-const DrawerCheckbox: ReactFCWithChildren<CheckboxProps> = ({
-  children,
-  ...props
-}) => {
+function DrawerCheckbox({ children, ...props }: CheckboxProps) {
   const { itemKey } = useDrawerItemContext();
   const { selectedItems, handleCheckboxChange } = useSelectionDrawerContext();
 
@@ -151,12 +148,15 @@ const DrawerCheckbox: ReactFCWithChildren<CheckboxProps> = ({
       {children}
     </Checkbox>
   );
-};
+}
 
-const DrawerControl: ReactFCWithChildren<{
+const DrawerControl = ({
+  openable,
+  setOpen
+}: React.PropsWithChildren<{
   openable: boolean;
   setOpen: (state: boolean) => void;
-}> = ({ openable, setOpen }) => {
+}>) => {
   const { open } = useDrawerItemContext();
   const label = open ? 'Collapse' : 'Expand';
 
@@ -170,7 +170,6 @@ const DrawerControl: ReactFCWithChildren<{
     <></>
   );
 };
-/* eslint-enable react/prop-types */
 
 type BaseDrawerType<T extends DrawerType> = T extends 'radio'
   ? RadioButtonProps
@@ -273,10 +272,10 @@ export const SelectionDrawerItem = React.forwardRef<
   return (
     <StyledSelectionDrawerItemContainer
       {...{
-        disabled,
-        validationState,
-        borderColor,
-        disabledBgColor
+        $disabled: disabled,
+        $validationState: validationState,
+        $borderColor: borderColor,
+        $disabledBgColor: disabledBgColor
       }}
       ref={ref}
     >
@@ -287,10 +286,15 @@ export const SelectionDrawerItem = React.forwardRef<
           {...(forceOpen
             ? { controlledOpen: true }
             : forceClose
-            ? { controlledOpen: false }
-            : { open })}
+              ? { controlledOpen: false }
+              : { open })}
         >
-          <DrawerHeader {...{ inputAlignment, labelAlignment }}>
+          <DrawerHeader
+            {...{
+              $inputAlignment: inputAlignment,
+              $labelAlignment: labelAlignment
+            }}
+          >
             <Input {...props} disabled={disabled} value={value} ref={inputRef}>
               <div>{header}</div>
             </Input>

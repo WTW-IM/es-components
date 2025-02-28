@@ -11,24 +11,26 @@ import {
 } from '../../base/icons/useIconStyles';
 
 const List = styled.ol`
-  display: flex;
-  margin: 0;
-  padding: 0;
   position: relative;
   z-index: 1;
+  display: flex;
+  padding: 0;
+  margin: 0;
 `;
 
 type CSSStyle = ReturnType<typeof css>;
 
-const ListItem = styled.li<{
-  itemWidth: number;
-  iconStyles?: CSSStyle;
-}>`
+interface ListItemProps {
+  $itemWidth: number;
+  $iconStyles?: CSSStyle;
+}
+
+const ListItem = styled.li<ListItemProps>`
+  position: relative;
+  width: ${props => props.$itemWidth}%;
   color: ${props => props.theme.colors.gray6};
   list-style-type: none;
-  position: relative;
   text-align: center;
-  width: ${props => props.itemWidth}%;
 
   & > .status-text {
     display: none;
@@ -50,29 +52,28 @@ const ListItem = styled.li<{
     }
   }
 
-  &&:before {
+  &&::before {
     content: '';
-    ${props => props.iconStyles}
+    ${props => props.$iconStyles}
     background-color: white;
     border: 3px solid ${props => props.theme.colors.gray5};
     border-radius: 50%;
     font-weight: bold;
     height: 20px;
     line-height: 20px;
-    margin: 5px auto 15px auto;
+    margin: 5px auto 15px;
     text-align: center;
     width: 20px;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
     .error&,
     .active& {
-      height: 30px;
-      line-height: 30px;
-      margin: 0 auto 10px auto;
       width: 30px;
+      height: 30px;
+      margin: 0 auto 10px;
+      line-height: 30px;
     }
 
     .done&,
@@ -102,15 +103,16 @@ const ListItem = styled.li<{
     }
   }
 
-  &:after {
+  &::after {
+    position: absolute;
+    z-index: -1;
+    top: 17px;
+    left: -50%;
+    width: 100%;
+    height: 4px;
     background-color: ${props => props.theme.colors.gray5};
     content: '';
-    height: 4px;
-    left: -50%;
-    position: absolute;
-    top: 17px;
-    width: 100%;
-    z-index: -1;
+
     .active&,
     .done&,
     .error& {
@@ -118,7 +120,7 @@ const ListItem = styled.li<{
     }
   }
 
-  &:first-child:after {
+  &:first-child::after {
     content: none;
   }
 
@@ -127,12 +129,12 @@ const ListItem = styled.li<{
       display: inherit;
     }
 
-    &.active:before,
-    &.done:before {
-      height: 30px;
-      line-height: 30px;
-      margin: 0 auto 10px auto;
+    &.active::before,
+    &.done::before {
       width: 30px;
+      height: 30px;
+      margin: 0 auto 10px;
+      line-height: 30px;
     }
   }
 `;
@@ -172,16 +174,23 @@ const StatusTrackerItem = React.forwardRef<
     }
   >
 >(function ForwardedStatusTrackerItem(
-  { isDone, isErrorState, isActive, className: propsClassName, ...props },
+  {
+    isDone,
+    isErrorState,
+    isActive,
+    itemWidth,
+    className: propsClassName,
+    ...props
+  },
   ref
 ) {
   const statusClass: StatusTrackerItemState | '' = isDone
     ? 'done'
     : isErrorState
-    ? 'error'
-    : isActive
-    ? 'active'
-    : '';
+      ? 'error'
+      : isActive
+        ? 'active'
+        : '';
   const iconClass = statusClass ? iconClasses[statusClass] : '';
   const iconEls = React.useContext(StatusTrackerIconContext);
   const targetIconStyles = useIconStyles(
@@ -191,7 +200,17 @@ const StatusTrackerItem = React.forwardRef<
   const iconStyles = statusClass ? targetIconStyles : undefined;
   const className = `${statusClass} ${propsClassName || ''}`.trim();
 
-  return <ListItem ref={ref} {...{ ...props, className, iconStyles }} />;
+  return (
+    <ListItem
+      ref={ref}
+      {...{
+        ...props,
+        className,
+        $iconStyles: iconStyles,
+        $itemWidth: itemWidth
+      }}
+    />
+  );
 });
 
 const StatusTracker = React.forwardRef<HTMLOListElement, StatusTrackerProps>(
@@ -253,11 +272,6 @@ StatusTracker.propTypes = {
   step: PropTypes.number,
   /** Displays the active status with an error state instead of a check mark */
   isErrorState: PropTypes.bool
-};
-
-StatusTracker.defaultProps = {
-  step: undefined,
-  isErrorState: false
 };
 
 export default StatusTracker;

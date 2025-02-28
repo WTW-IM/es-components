@@ -23,6 +23,12 @@ import Component from 'es-components/lib/path/to/component';
 import { Component } from 'es-components/lib';
 ```
 
+## Typescript
+
+es-components is functional with both `styled-components@5` and `styled-components@6`. However, if you are using typescript, we recommend using `styled-components@6` **without** `@types/styled-components`. If on `styled-components@5` with `@types/styled-components`, some types within es-components will break.
+
+````shell
+
 ### Using The UMD Bundle
 
 Because ES Components needs a reference to `document.body` on startup, you must either include the `defer` attribute, or place the `<script>` tag somwhere within the `body` of your html page. Here we're showing it using the `defer` attribute.
@@ -68,7 +74,7 @@ Because ES Components needs a reference to `document.body` on startup, you must 
 <body>
   <!-- My ES Components Site Body -->
 </body>
-```
+````
 
 ### Jest
 

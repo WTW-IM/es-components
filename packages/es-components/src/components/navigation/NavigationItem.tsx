@@ -6,13 +6,13 @@ import Icon from '../base/icons/Icon';
 import type { NavOrientation } from './Navigation';
 
 type NavItemProps = {
-  isActive?: boolean;
-  isDisabled?: boolean;
-  isVertical?: boolean;
+  $isActive?: boolean;
+  $isDisabled?: boolean;
+  $isVertical?: boolean;
 };
 
 const NavItemWrapper = styled.li<NavItemProps>`
-  ${({ isActive, isDisabled, theme }) => css`
+  ${({ $isActive, $isDisabled, theme }) => css`
     background-color: ${theme.colors.white};
     color: ${theme.colors.black};
     cursor: pointer;
@@ -29,7 +29,7 @@ const NavItemWrapper = styled.li<NavItemProps>`
       }
     }
 
-    ${isActive &&
+    ${$isActive &&
     css`
       background-color: ${theme.colors.primary};
       color: ${theme.colors.white};
@@ -42,7 +42,7 @@ const NavItemWrapper = styled.li<NavItemProps>`
           color: ${theme.colors.white};
         }
       }
-    `} ${isDisabled &&
+    `} ${$isDisabled &&
     css`
       background-color: ${theme.colors.gray1};
       color: ${theme.colors.gray6};
@@ -70,26 +70,27 @@ const NavItemWrapper = styled.li<NavItemProps>`
 
 const AltNavItemWrapper = styled(NavItemWrapper)<NavItemProps>`
   border-bottom: ${props =>
-    props.isVertical ? 'none' : '2px solid'} ${props =>
-  props.theme.colors.gray5};
-  padding-left: ${props => (props.isVertical ? '4px' : '0')};
+    props.$isVertical ? 'none' : '2px solid'} ${props =>
+    props.theme.colors.gray5};
+  padding-left: ${props => (props.$isVertical ? '4px' : '0')};
 
   &:hover {
-    border-${props =>
-      props.isVertical ? 'left' : 'bottom'}: 4px solid ${props =>
-  props.theme.colors.primary};
     padding-left: 0;
+    border-${props =>
+      props.$isVertical ? 'left' : 'bottom'}: 4px solid ${props =>
+      props.theme.colors.primary};
   }
 
   ${props =>
-    props.isActive &&
+    props.$isActive &&
     css`
-      background-color: ${props.theme.colors.gray1};
-      border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-      props.theme.brandColors.primary3
-    };
-      color: ${props.theme.colors.black};
       padding-left: 0;
+      background-color: ${props.theme.colors.gray1};
+      border-${props.$isVertical ? 'left' : 'bottom'}: 4px solid ${
+        props.theme.brandColors.primary3
+      };
+
+      color: ${props.theme.colors.black};
 
       > i {
         color: ${props.theme.brandColors.primary3};
@@ -97,9 +98,10 @@ const AltNavItemWrapper = styled(NavItemWrapper)<NavItemProps>`
 
       &:hover {
         background-color: ${props.theme.colors.gray1};
-        border-${props.isVertical ? 'left' : 'bottom'}: 4px solid ${
-      props.theme.brandColors.primary3
-    };
+        border-${props.$isVertical ? 'left' : 'bottom'}: 4px solid ${
+          props.theme.brandColors.primary3
+        };
+
         color: ${props.theme.colors.black};
 
         > i {
@@ -107,14 +109,14 @@ const AltNavItemWrapper = styled(NavItemWrapper)<NavItemProps>`
         }
       }
     `} ${props =>
-  props.isDisabled &&
-  css`
-    padding-left: 0;
+    props.$isDisabled &&
+    css`
+      padding-left: 0;
 
-    &:hover {
-      border-left: none;
-    }
-  `};
+      &:hover {
+        border-left: none;
+      }
+    `};
 `;
 
 const NavIcon = styled(Icon)`
@@ -122,19 +124,19 @@ const NavIcon = styled(Icon)`
 `;
 
 const NavigationAnchor = styled.a`
-  align-content: center;
-  background-color: transparent;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
+  align-content: center;
+  padding: 10px;
   border: 0;
+  background-color: transparent;
   color: inherit;
   cursor: inherit;
-  display: flex;
   font-size: inherit;
-  height: 100%;
-  padding: 10px;
-  position: relative;
   text-decoration: none;
-  width: 100%;
 
   &:hover,
   &:focus,
@@ -214,9 +216,9 @@ export const NavigationItem = React.forwardRef<
     <Wrapper
       ref={ref}
       {...wrapperProps}
-      isActive={isActive}
-      isDisabled={isDisabled}
-      isVertical={isVertical}
+      $isActive={isActive}
+      $isDisabled={isDisabled}
+      $isVertical={isVertical}
     >
       {styledChild}
     </Wrapper>

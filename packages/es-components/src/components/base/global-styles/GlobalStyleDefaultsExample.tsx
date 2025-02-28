@@ -99,7 +99,7 @@ export default function GlobalStyleDefaultsExample() {
     <StyleSheetManager
       target={(syntaxRef?.content as ShadowRoot | null) || undefined}
       disableCSSOMInjection
-      disableVendorPrefixes
+      enableVendorPrefixes={false}
     >
       <ThemeProvider theme={theme}>
         <template id="global-style-syntax" ref={setSyntaxRef} />

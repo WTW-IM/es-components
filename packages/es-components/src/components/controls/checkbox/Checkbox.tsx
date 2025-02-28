@@ -4,83 +4,94 @@ import styled, { useTheme, css } from 'styled-components';
 
 import Label from '../label/Label';
 import { useValidationState } from '../ValidationContext';
-import {
-  htmlInputPropTypes,
-  htmlInputDefaultProps
-} from '../../util/htmlProps';
+import { htmlInputPropTypes } from '../../util/htmlProps';
 import {
   ValidationSelectionColors,
   getValidationSelectionColors
 } from '../radio-buttons/RadioButton';
 import useUniqueId from '../../util/useUniqueId';
 
-export const CheckboxLabel = styled(Label)<{ disabled?: boolean }>`
-  font-size: ${props => props.theme.font.baseFontSize};
-  font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
+export interface CheckboxLabelProps {
+  disabled?: boolean;
+}
+
+const disabledLabelStyles = css`
+  cursor: not-allowed;
+  outline: 0;
+  pointer-events: none;
+`;
+
+export const CheckboxLabel = styled(Label)<CheckboxLabelProps>`
+  position: relative;
+  min-height: 25px;
+  padding: 10px 0 10px 42px;
+  margin-left: -10px;
+  font-family:
+    'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
   font-size: ${props => props.theme.font.baseFontSize};
   font-weight: normal;
   line-height: ${props => props.theme.font.baseLineHeight};
-  margin-left: -10px;
-  min-height: 25px;
-  padding: 10px 0 10px 42px;
-  position: relative;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin-left: 0;
     padding: 5px 0 5px 32px;
+    margin-left: 0;
   }
 
+  ${({ disabled }) => disabled && disabledLabelStyles}
+
   [disabled] {
-    pointer-events: none;
-    cursor: not-allowed;
-    outline: 0;
+    ${disabledLabelStyles}
   }
 `;
 
 export const CheckboxInput = styled.input`
+  position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
-  position: absolute;
 `;
 
 export const CheckboxDisplayWrapper = styled.div``;
 
-export const CheckboxDisplay = styled.span<
+export const CheckboxDisplay = styled.span.withConfig({
+  shouldForwardProp: prop => !['fill', 'hover'].includes(prop)
+})<
   ValidationSelectionColors & {
-    validationStateClass: string;
+    $validationStateClass: string;
   }
 >`
-  ${({ theme, fill, hover, validationStateClass }) => css`
-    background-color: ${theme.colors.white};
-    border: 3px solid;
-    border-radius: 4px;
-    box-sizing: border-box;
-    cursor: pointer;
-    height: 25px;
-    left: 10px;
+  ${({ theme, fill, hover, $validationStateClass }) => css`
     position: absolute;
     top: 0.55em;
-    transition: all 0.25s linear, box-shadow 0.15s linear;
+    left: 10px;
     width: 25px;
+    height: 25px;
+    box-sizing: border-box;
+    border: 3px solid;
+    border-radius: 4px;
+    background-color: ${theme.colors.white};
+    cursor: pointer;
+    transition:
+      all 0.25s linear,
+      box-shadow 0.15s linear;
 
     @media (min-width: ${theme.screenSize.tablet}) {
-      left: 0;
       top: 0.35em;
+      left: 0;
     }
 
-    &:after {
-      background: transparent;
-      border: 3px solid transparent;
-      border-right: none;
-      border-top: none;
-      box-sizing: border-box;
-      content: '';
+    &::after {
       display: block;
+      width: 15px;
       height: 9px;
+      box-sizing: border-box;
+      border: 3px solid transparent;
+      border-top: none;
+      border-right: none;
       margin: 3px 0 0 2px;
+      background: transparent;
+      content: '';
       transform: rotate(-45deg);
       transition: border 0.25s linear;
-      width: 15px;
     }
 
     ${CheckboxLabel}:focus &,
@@ -94,9 +105,9 @@ export const CheckboxDisplay = styled.span<
       cursor: not-allowed;
       outline: 0;
 
-      ${CheckboxLabel}:focus &:after,
-      ${CheckboxLabel}:hover &:after,
-      &:after {
+      ${CheckboxLabel}:focus &::after,
+      ${CheckboxLabel}:hover &::after,
+      &::after {
         border-color: transparent;
       }
     }
@@ -106,25 +117,25 @@ export const CheckboxDisplay = styled.span<
       theme.validationInputColor.default.borderColor};
       border-color: transparent;
 
-      ${CheckboxLabel}:focus &:after,
-      ${CheckboxLabel}:hover &:after,
-      &:after {
+      ${CheckboxLabel}:focus &::after,
+      ${CheckboxLabel}:hover &::after,
+      &::after {
         border-color: ${theme.colors.white};
       }
     }
 
-    &.${validationStateClass} {
+    &.${$validationStateClass} {
       border-color: ${fill};
 
       ${CheckboxInput}:checked ~ & {
         background-color: ${fill};
 
-        &:after {
+        &::after {
           border-color: ${theme.colors.white};
         }
       }
 
-      &:after {
+      &::after {
         ${CheckboxInput}:not(:disabled):not(:checked) ~ & {
           ${CheckboxLabel}:focus &,
           ${CheckboxLabel}:hover &,
@@ -178,7 +189,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           />
           <CheckboxDisplay
             className={`es-checkbox__fill ${validationStateClass}`}
-            {...{ hover, fill, validationStateClass }}
+            {...{ hover, fill, $validationStateClass: validationStateClass }}
           />
         </CheckboxDisplayWrapper>
         {children}
@@ -193,12 +204,6 @@ export const propTypes = {
   displayClassName: PropTypes.string
 };
 
-export const defaultProps = {
-  ...htmlInputDefaultProps,
-  displayClassName: ''
-};
-
 Checkbox.propTypes = propTypes;
-Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

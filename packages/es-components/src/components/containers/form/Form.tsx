@@ -31,7 +31,7 @@ export const FormContextProvider = ({
   value,
   ...props
 }: React.ProviderProps<FormContextShape>) => {
-  const { inputStyles = {} } = useTheme();
+  const { inputStyles = {} } = useTheme() ?? {};
   const { defaultFormStyle } = inputStyles as { defaultFormStyle?: FormStyle };
   const parentFormContext = useContext(FormContext);
   const newContext: FormContextShape = {

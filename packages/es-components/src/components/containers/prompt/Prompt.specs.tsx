@@ -1,13 +1,9 @@
-/// <reference types="jest">
-
 import React from 'react';
-import { cleanup, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import Prompt from './Prompt';
 import { renderWithTheme } from '../../util/test-utils';
 
 describe('Prompt', () => {
-  afterEach(cleanup);
-
   it('renders read aloud type', () => {
     renderWithTheme(<Prompt isContentReadAloud />);
     expect(screen.getByText('Read Aloud')).not.toBeNull();

@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 import Checkbox, {
   CheckboxProps,
   CheckboxDisplay,
-  propTypes as checkboxPropTypes,
-  defaultProps as checkboxDefaultProps
+  propTypes as checkboxPropTypes
 } from './Checkbox';
 import useUniqueId from '../../util/useUniqueId';
 
@@ -12,85 +12,103 @@ type CheckAllBoxProps = CheckboxProps & {
   textOnHover?: boolean;
 };
 
-const Label = styled.label<CheckAllBoxProps>`
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+type CheckAllBoxStyleProps = Omit<CheckAllBoxProps, 'textOnHover'> & {
+  $textOnHover?: boolean;
+};
 
-  @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    margin-left: 0;
-    padding: 5px 0;
-  }
+const shouldForwardProp = (prop: string) =>
+  !['displayClassName'].includes(prop);
 
-  ${({ textOnHover }) =>
-    textOnHover &&
+const Label = styled.label.withConfig({
+  shouldForwardProp
+})<CheckAllBoxStyleProps>`
+  ${({ theme, $textOnHover }) => css`
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media (min-width: ${theme.screenSize.tablet}) {
+      padding: 5px 0;
+      margin-left: 0;
+    }
+
+    ${$textOnHover &&
     css`
       &:hover {
         ${Text} {
           opacity: 1;
-          transition: visibility 0s linear 10ms, opacity 10ms;
+          transition:
+            visibility 0s linear 10ms,
+            opacity 10ms;
           visibility: visible;
         }
       }
     `}
+  `}
 `;
 
 const Well = styled.div`
-  background-color: ${props => props.theme.colors.gray1};
-  border: solid 1px ${props => props.theme.colors.gray3};
-  border-radius: 2px;
-  height: 45px;
-  margin-right: 6px;
-  width: 45px;
-
   display: flex;
+  width: 45px;
+  height: 45px;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  border: solid 1px ${props => props.theme.colors.gray3};
+  border-radius: 2px;
+  margin-right: 6px;
+  background-color: ${props => props.theme.colors.gray1};
 
   label {
     position: relative;
-    display: block;
     top: 0;
     left: 0;
-    margin: 0;
+    display: block;
     padding: 0;
+    margin: 0;
   }
 
   ${CheckboxDisplay} {
-    display: block;
     position: relative;
     top: 0;
     left: 0;
+    display: block;
   }
 `;
 
-const Text = styled.span<CheckAllBoxProps>`
-  ${({ textOnHover, theme }) =>
-    textOnHover &&
+const Text = styled.span.withConfig({
+  shouldForwardProp
+})<CheckAllBoxStyleProps>`
+  ${({ $textOnHover, theme }) =>
+    $textOnHover &&
     css`
       @media (min-width: ${theme.screenSize.tablet}) {
         opacity: 0;
-        transition: visibility 0s linear 500ms, opacity 500ms;
+        transition:
+          visibility 0s linear 500ms,
+          opacity 500ms;
         visibility: hidden;
       }
     `}
 `;
 
-function CheckAllBox({ children, ...checkboxProps }: CheckAllBoxProps) {
-  const id = useUniqueId(checkboxProps.id);
+function CheckAllBox({
+  children,
+  textOnHover,
+  id: idProp,
+  ...checkboxProps
+}: CheckAllBoxProps) {
+  const id = useUniqueId(idProp);
+  const sharedCheckboxProps = { ...checkboxProps, $textOnHover: textOnHover };
   return (
-    <Label htmlFor={id}>
+    <Label htmlFor={id} {...sharedCheckboxProps}>
       <Well>
         <Checkbox {...checkboxProps} id={id} />
       </Well>
-      <Text
-        className="es-checkbox__text"
-        textOnHover={checkboxProps.textOnHover}
-      >
+      <Text className="es-checkbox__text" {...sharedCheckboxProps}>
         {children}
       </Text>
     </Label>
@@ -98,11 +116,8 @@ function CheckAllBox({ children, ...checkboxProps }: CheckAllBoxProps) {
 }
 
 CheckAllBox.propTypes = {
-  ...checkboxPropTypes
-};
-
-CheckAllBox.defaultProps = {
-  ...checkboxDefaultProps
+  ...checkboxPropTypes,
+  textOnHover: PropTypes.bool
 };
 
 export default CheckAllBox;

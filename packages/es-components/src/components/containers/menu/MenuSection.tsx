@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { InlineContext } from './InlineContext';
 
 export type MenuSectionProps = {
@@ -11,24 +11,21 @@ export type MenuSectionProps = {
   isOnlySection?: boolean;
 } & JSXElementProps<'section'>;
 
-type SectionProps = {
-  isFirst?: boolean;
-  inline?: boolean;
-  isOnlySection?: boolean;
-  isLast?: boolean;
-  theme: {
-    colors: { gray5: string };
-  };
+type StyledSectionProps = {
+  $isFirst?: boolean;
+  $inline?: boolean;
+  $isOnlySection?: boolean;
+  $isLast?: boolean;
 };
 
-const StyledMenuSection = styled.section<SectionProps>`
-  padding-top: ${props =>
-    !props.isFirst && !props.inline && !props.isOnlySection ? '20px' : '0px'};
-  padding-bottom: ${props => (props.isLast ? '0px' : '20px')};
-  border-bottom: ${props =>
-    !props.isLast && !props.inline
-      ? `1px solid ${props.theme.colors.gray5}`
+const StyledMenuSection = styled.section<StyledSectionProps>`
+  ${({ theme, $isFirst, $isLast, $inline, $isOnlySection }) => css`
+    padding-top: ${!$isFirst && !$inline && !$isOnlySection ? '20px' : '0px'};
+    padding-bottom: ${$isLast ? '0px' : '20px'};
+    border-bottom: ${!$isLast && !$inline
+      ? css`1px solid ${theme.colors.gray5}`
       : 'none'};
+  `}
 `;
 
 const StyledHeader = styled.header`
@@ -47,10 +44,10 @@ const MenuSection = React.forwardRef<HTMLElement, MenuSectionProps>(
     return (
       <StyledMenuSection
         ref={ref}
-        isLast={isLast}
-        isFirst={isFirst}
-        inline={inline}
-        isOnlySection={isOnlySection}
+        $isLast={isLast}
+        $isFirst={isFirst}
+        $inline={inline}
+        $isOnlySection={isOnlySection}
         {...other}
       >
         {title && <StyledHeader aria-label={title}>{title}</StyledHeader>}

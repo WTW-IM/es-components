@@ -48,14 +48,14 @@ type SlidingPaneProps = Override<
 >;
 
 const PaneBase = styled(Modal)<PaneBaseProps>`
+  display: flex;
+  width: 100%;
+  min-width: 100px;
+  height: 100%;
+  flex-direction: column;
   background: ${props => props.theme.colors.white};
   box-shadow: 0 8px 8px ${props => props.theme.colors.boxShadowDark};
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-width: 100px;
   transition: transform 0.5s;
-  width: 100%;
   will-change: transform;
 
   &:focus {
@@ -108,46 +108,46 @@ const PaneBottom = styled(PaneBase)`
 `;
 
 const Header = styled.div`
+  display: flex;
+  height: 64px;
+  flex: 0 0 64px;
   align-items: center;
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.white};
-  display: flex;
-  flex: 0 0 64px;
-  height: 64px;
 `;
 
 const CloseLink = styled(LinkButton)<CloseLinkProps>`
+  padding: 16px;
   cursor: pointer;
   opacity: 0.7;
-  padding: 16px;
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
+  min-width: 0;
   flex: 1;
   flex-direction: column;
-  min-width: 0;
 `;
 
 const TitleText = styled(Heading)`
-  margin: 0;
-  max-width: 80%;
   overflow: hidden;
+  max-width: 80%;
   padding: 1px;
+  margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const SubTitle = styled.div`
-  font-size: 12px;
   margin-top: 2px;
+  font-size: 12px;
 `;
 
 const Content = styled.div`
-  flex: 1 1 auto;
-  overflow-y: auto;
-  padding: 1.5em;
   position: relative;
+  flex: 1 1 auto;
+  padding: 1.5em;
+  overflow-y: auto;
 `;
 
 const ScreenReaderText = screenReaderOnly('span');
@@ -223,7 +223,7 @@ export default function SlidingPane({
   } as ReactModal.Styles;
 
   if (appElement) {
-    Pane.setAppElement(appElement);
+    Modal.setAppElement(appElement);
   } else {
     Object.assign(rest, { ariaHideApp: false });
   }
@@ -243,7 +243,7 @@ export default function SlidingPane({
         shouldCloseOnEsc={shouldCloseOnEsc}
         contentLabel={`Modal "${title}"`}
         parentSelector={modalParentSelector}
-        paneWidth={paneWidth || `${theme.screenSize.tablet}`}
+        paneWidth={paneWidth || `${theme?.screenSize.tablet}`}
         {...rest}
       >
         {hideHeader ? (

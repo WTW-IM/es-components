@@ -6,37 +6,38 @@ import noop from '../../util/noop';
 import screenReaderOnly from '../../patterns/screenReaderOnly/screenReaderOnly';
 
 const TabButton = styled.button<{ selected?: boolean }>`
+  z-index: 1;
+  display: inline-block;
+  padding: 10px;
   background-color: ${props =>
     props.selected ? props.theme.colors.white : props.theme.colors.gray2};
   box-shadow: ${props =>
     props.selected ? '0 6px 12px rgba(0, 0, 0, 0.175)' : 'none'};
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.primary};
-  display: inline-block;
   font-size: inherit;
   line-height: ${props => props.theme.font.baseLineHeight};
-  padding: 10px;
   text-align: left;
-  z-index: 1;
 
   &:focus {
     outline: none;
   }
+
   @media (max-width: ${props => props.theme.screenSize.desktop}) {
     border: 1px solid ${props => props.theme.colors.gray4};
   }
 
   @media (min-width: ${props => props.theme.screenSize.desktop}) {
-    background-color: ${props => props.theme.colors.white};
+    padding: 10px 15px;
     border: ${props =>
       props.selected
         ? `1px solid ${props.theme.colors.gray4}`
         : '1px solid transparent'};
     border-bottom-color: ${props =>
       props.selected ? ' transparent' : `${props.theme.colors.gray4}`};
+    margin: 0 2px 0 0;
+    background-color: ${props => props.theme.colors.white};
     box-shadow: none;
-    padding: 10px 15px;
-    margin: 0 2px 0px 0;
 
     &:hover,
     &:focus {
@@ -82,6 +83,7 @@ const Tab = React.forwardRef<HTMLButtonElement, TabProps>(function ForwardedTab(
   const className = `tab-button-${selected ? 'selected' : 'unselected'} ${
     props.className || ''
   }`;
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string
   const ariaLabel = `${simpleName || name.toString()} tab`;
 
   return (

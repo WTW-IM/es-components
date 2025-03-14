@@ -35,7 +35,9 @@ expect.extend({
       'flex-direction',
       'row',
       {
-        media: `(min-width:${viaTheme.screenSize.tablet})`
+        // an extra space is required in the media query for now
+        // https://github.com/styled-components/jest-styled-components/issues/430#issuecomment-1658670650
+        media: `(min-width:  ${viaTheme.screenSize.tablet})`
       }
     ] as const;
 

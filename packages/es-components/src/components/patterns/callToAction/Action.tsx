@@ -22,7 +22,3 @@ export default function Action({ isPrimary, ...rest }: ActionProps) {
 Action.propTypes = {
   isPrimary: PropTypes.bool
 };
-
-Action.defaultProps = {
-  isPrimary: false
-};

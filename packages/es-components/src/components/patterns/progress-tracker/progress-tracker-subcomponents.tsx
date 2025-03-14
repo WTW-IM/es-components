@@ -26,60 +26,60 @@ const stepStates = {
 type StepState = (typeof stepStates)[keyof typeof stepStates];
 
 interface ProgressContainerProps {
-  activeStepIndex: number;
-  numberOfSteps: number;
+  $activeStepIndex: number;
+  $numberOfSteps: number;
 }
 
 export const ProgressContainer = styled.ol<ProgressContainerProps>`
+  display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
   align-items: flex-start;
+  justify-content: space-between;
+  padding-left: 0;
+  margin-left: 0;
   background-image: linear-gradient(
     to right,
     ${props => props.theme.colors.gray9} 0%,
     ${props => props.theme.colors.gray9}
       ${props =>
         getProgressLineBreakPercentage(
-          props.activeStepIndex,
-          props.numberOfSteps
+          props.$activeStepIndex,
+          props.$numberOfSteps
         )}%,
     ${props => props.theme.colors.gray5}
       ${props =>
         getProgressLineBreakPercentage(
-          props.activeStepIndex,
-          props.numberOfSteps
+          props.$activeStepIndex,
+          props.$numberOfSteps
         )}%,
     ${props => props.theme.colors.gray5} 100%
   );
-  background-size: 100% ${() => TRACKING_LINE_HEIGHT}px;
   background-position: 0
     ${() => getCenterTopPosition(ACTIVE, TRACKING_LINE_HEIGHT)}px;
   background-repeat: no-repeat;
+  background-size: 100% ${() => TRACKING_LINE_HEIGHT}px;
   counter-reset: progress-tracker-counter;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  margin-left: 0;
-  padding-left: 0;
-  width: 100%;
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
     background-position: center
       ${() => getCenterTopPosition(DESKTOP, TRACKING_LINE_HEIGHT)}px;
     background-size: ${props =>
-        100 - getProgressItemWidthPercentage(props.numberOfSteps)}%
+        100 - getProgressItemWidthPercentage(props.$numberOfSteps)}%
       ${() => TRACKING_LINE_HEIGHT}px;
   }
 `;
 
 export const BasicProgressButton = styled.button`
-  align-items: center;
-  background: none;
-  border: none;
-  counter-increment: progress-tracker-counter;
   display: flex;
   flex-flow: column nowrap;
-  font-family: 'Source Sans Pro', sans-serif;
-  margin-top: ${() => getCenterTopPosition(ACTIVE, INACTIVE)}px;
+  align-items: center;
   padding: 0;
+  border: none;
+  margin-top: ${() => getCenterTopPosition(ACTIVE, INACTIVE)}px;
+  background: none;
+  counter-increment: progress-tracker-counter;
+  font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
 
   &:active,
@@ -89,14 +89,14 @@ export const BasicProgressButton = styled.button`
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    font-size: 18px;
-    margin-top: 0;
     margin: 0 auto;
+    margin-top: 0;
+    font-size: 18px;
   }
 
   span {
-    color: ${props => props.theme.colors.gray9};
     display: none;
+    color: ${props => props.theme.colors.gray9};
     font-size: 18px;
     line-height: 1.1em;
 
@@ -107,36 +107,37 @@ export const BasicProgressButton = styled.button`
   }
 
   &::before {
-    background-color: white;
+    position: relative;
+    display: block;
+    width: ${() => INACTIVE}px;
+    height: ${() => INACTIVE}px;
+    box-sizing: border-box;
     border: ${props => `1px solid ${props.theme.colors.gray5}`};
     border-radius: ${() => INACTIVE}px;
+    margin-bottom: 5px;
+    background-color: white;
     box-shadow: 0 0 0 3px white;
-    box-sizing: border-box;
     color: ${props => props.theme.colors.gray9};
     content: counter(progress-tracker-counter);
-    display: block;
     font-size: ${() => INACTIVE * 0.8}px;
-    height: ${() => INACTIVE}px;
     line-height: 1em;
-    margin-bottom: 5px;
     text-align: center;
-    width: ${() => INACTIVE}px;
-    position: relative;
 
     @media (min-width: ${props => props.theme.screenSize.tablet}) {
-      border-radius: ${() => DESKTOP}px;
+      width: ${() => DESKTOP}px;
+      height: ${() => DESKTOP}px;
       border-width: 3px;
+      border-radius: ${() => DESKTOP}px;
       font-size: ${() => DESKTOP * 0.488}px;
       font-weight: normal;
-      height: ${() => DESKTOP}px;
       line-height: 1.7em;
-      width: ${() => DESKTOP}px;
     }
   }
 `;
 
 const FutureProgressButton = styled(BasicProgressButton)`
   cursor: pointer;
+
   &:hover {
     &::before {
       box-shadow: rgba(0, 0, 0, 0.35) 0 0 3px 1px;
@@ -173,6 +174,7 @@ const PastProgressButton = styled(BasicProgressButton)`
     &::before {
       box-shadow: ${props => props.theme.colors.inputFocus} 0 0 4px 2px;
     }
+
     span {
       outline: 1px dotted ${props => props.theme.colors.inputFocus};
     }
@@ -180,6 +182,7 @@ const PastProgressButton = styled(BasicProgressButton)`
 
   &::before {
     border-color: ${props => props.theme.colors.gray9};
+
     @media (min-width: ${props => props.theme.screenSize.tablet}) {
       border-width: 5px;
       font-weight: bold;
@@ -197,6 +200,7 @@ const PastProgressButton = styled(BasicProgressButton)`
 const NonNavigablePastProgressButton = styled(BasicProgressButton)`
   &::before {
     border-color: ${props => props.theme.colors.gray9};
+
     @media (min-width: ${props => props.theme.screenSize.tablet}) {
       border-width: 5px;
       font-weight: bold;
@@ -215,27 +219,27 @@ const ActiveProgressButton = styled(BasicProgressButton)`
   margin-top: 0;
 
   &::before {
+    width: ${ACTIVE}px;
+    height: ${ACTIVE}px;
     border: 5px solid ${props => props.theme.brandColors.primary3};
     border-radius: ${ACTIVE}px;
     color: ${props => props.theme.brandColors.primary3};
     font-size: ${ACTIVE * 0.488}px;
     font-weight: bold;
-    height: ${ACTIVE}px;
     line-height: 1.5em;
-    width: ${ACTIVE}px;
 
     @media (min-width: ${props => props.theme.screenSize.tablet}) {
+      width: ${() => DESKTOP}px;
+      height: ${() => DESKTOP}px;
       border-width: 5px;
       font-size: ${() => DESKTOP * 0.488}px;
-      height: ${() => DESKTOP}px;
       line-height: 1.5em;
-      width: ${() => DESKTOP}px;
     }
   }
 
   span {
-    color: ${props => props.theme.brandColors.primary3};
     display: inline;
+    color: ${props => props.theme.brandColors.primary3};
     font-weight: bold;
 
     @media (min-width: ${props => props.theme.screenSize.tablet}) {
@@ -244,12 +248,16 @@ const ActiveProgressButton = styled(BasicProgressButton)`
   }
 `;
 
-const ProgressLi = styled.li<{ numberOfSteps: number }>`
+interface ProgressLiProps {
+  $numberOfSteps: number;
+}
+
+const ProgressLi = styled.li<ProgressLiProps>`
   display: flex;
-  list-style-type: none;
   max-width: ${props =>
-    getProgressItemWidthPercentage(props.numberOfSteps - 1)}%;
+    getProgressItemWidthPercentage(props.$numberOfSteps - 1)}%;
   align-items: center;
+  list-style-type: none;
 
   &:first-child {
     &,
@@ -268,7 +276,7 @@ const ProgressLi = styled.li<{ numberOfSteps: number }>`
   }
 
   @media (min-width: ${props => props.theme.screenSize.tablet}) {
-    width: ${props => getProgressItemWidthPercentage(props.numberOfSteps)}%;
+    width: ${props => getProgressItemWidthPercentage(props.$numberOfSteps)}%;
 
     &:first-child,
     &:last-child {
@@ -338,7 +346,7 @@ export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
       onFutureStepClicked,
       canClickFutureStep,
       label,
-      showNav
+      showNav = true
     },
     ref
   ) {
@@ -350,13 +358,12 @@ export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
     const itemId = useUniqueId();
 
     const listItemProps = {
-      numberOfSteps,
       disabled: !isPastStep && !canClickFutureStep,
       onClick: isPastStep ? onPastStepClicked : onFutureStepClicked
     };
 
     return (
-      <ProgressLi numberOfSteps={numberOfSteps} ref={ref}>
+      <ProgressLi $numberOfSteps={numberOfSteps} ref={ref}>
         <ProgressItemType
           {...listItemProps}
           id={itemId}
@@ -377,13 +384,4 @@ ProgressItem.propTypes = {
   label: PropTypes.string,
   canClickFutureStep: PropTypes.bool,
   showNav: PropTypes.bool
-};
-
-ProgressItem.defaultProps = {
-  onPastStepClicked() {
-    // noop
-  },
-  label: '',
-  canClickFutureStep: false,
-  showNav: true
 };

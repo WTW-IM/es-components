@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled, { DefaultTheme, StyledComponent, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import InputBase, {
   validationStateHighlightStyles,
   placeholderStyles,
@@ -20,7 +20,7 @@ const getCSSArrow = (props: ESThemeProps) =>
   }"`;
 
 type StyledInputProps = ValidationStyleProps & {
-  hasValue?: boolean;
+  $hasValue?: boolean;
 };
 
 const getDropdownStyles = (props: ESThemeProps<ValidationStyleProps>) => css`
@@ -54,24 +54,18 @@ export const globalDrowdownCss = css`
   }
 `;
 
-const StyledDropdownInput = styled(InputBase)<StyledInputProps>`
+const DropdownInput = styled(InputBase)<StyledInputProps>`
   ${getDropdownStyles}
 
   && {
-    ${({ hasValue }) =>
-      !hasValue
+    ${({ $hasValue }) =>
+      !$hasValue
         ? placeholderStyles
         : css`
             color: ${getStyledProp('colors.black')};
           `}
   }
 `;
-
-const DropdownInput = StyledDropdownInput as StyledComponent<
-  'select',
-  DefaultTheme,
-  StyledInputProps
->;
 
 export type DropdownProps = JSXElementProps<'select'> & {
   flat?: boolean;
@@ -113,7 +107,7 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
         {...validationStyleProps}
         {...props}
         onChange={onChange}
-        hasValue={hasValue}
+        $hasValue={hasValue}
         ref={inputRefCallback}
         forwardedAs="select"
       />

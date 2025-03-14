@@ -6,8 +6,12 @@ import CheckAllBox from './CheckAllBox';
 import { htmlInputPropTypes } from '../../util/htmlProps';
 import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
-const Spacer = styled.div<{ bumpRight?: boolean }>`
-  margin-left: ${props => (props.bumpRight ? '10px' : '0')};
+interface SpacerProps {
+  $bumpRight?: boolean;
+}
+
+const Spacer = styled.div<SpacerProps>`
+  margin-left: ${props => (props.$bumpRight ? '10px' : '0')};
 `;
 
 export type CheckboxGroupProps = {
@@ -66,12 +70,12 @@ export function useCheckboxGroupActions({
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
-  disableAllOptions,
+  disableAllOptions = false,
   options = [],
   checkAllText,
-  textOnHoverCheckAll,
+  textOnHoverCheckAll = false,
   onChange,
-  displayClassName
+  displayClassName = ''
 }) => {
   const originalSelectedValues = useMemo(
     () => options.filter(o => o.checked).map(o => o.value?.toString() || ''),
@@ -117,7 +121,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
       )}
       {options.map(({ name, value, disabled, content }, ind) => (
         <Spacer
-          bumpRight={Boolean(checkAllText)}
+          $bumpRight={Boolean(checkAllText)}
           key={
             (Array.isArray(value) ? value.join(';') : value?.toString()) || ind
           }
@@ -154,14 +158,6 @@ CheckboxGroup.propTypes = {
   textOnHoverCheckAll: PropTypes.bool,
   /** applies to the checkboxes display wrappers */
   displayClassName: PropTypes.string
-};
-
-CheckboxGroup.defaultProps = {
-  checkAllText: undefined,
-  textOnHoverCheckAll: false,
-  disableAllOptions: false,
-  options: [],
-  displayClassName: ''
 };
 
 export default CheckboxGroup;

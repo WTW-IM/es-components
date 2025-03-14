@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { AriaRole } from 'react';
 import { domProps, domDefaultProps } from './dom';
 import { booleanStrings, ariaRoles, ariaProps, ariaDefaultProps } from './aria';
-import { CSSObject } from 'styled-components';
+import { CSSObject, Interpolation } from 'styled-components';
 
 export type BasicHTMLProps = JSXElementProps<'basicHTMLElement'>;
 
@@ -35,6 +35,12 @@ export const inputModes: InputMode[] = [
   'search'
 ];
 
+declare module 'react' {
+  interface Attributes {
+    css?: Interpolation<object>;
+  }
+}
+
 export const htmlProps: HTMLPropTypes = {
   ...domProps,
   ...ariaProps,
@@ -56,9 +62,9 @@ export const htmlProps: HTMLPropTypes = {
     PropTypes.bool,
     PropTypes.oneOf<BooleanString | 'inherit'>([...booleanStrings, 'inherit'])
   ]),
-  enterKeyHint: PropTypes.oneOf<'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'>(
-    ['enter', 'done', 'go', 'next', 'previous', 'search', 'send']
-  ),
+  enterKeyHint: PropTypes.oneOf<
+    'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
+  >(['enter', 'done', 'go', 'next', 'previous', 'search', 'send']),
   contextMenu: PropTypes.string,
   dir: PropTypes.string,
   draggable: PropTypes.oneOfType([

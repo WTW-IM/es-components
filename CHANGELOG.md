@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.15.1...v21.15.2-pre-prod.1) (2025-03-27)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.0 ([7a08377](https://github.com/WTW-IM/es-components/commit/7a08377e4ce718d899280260084d484add05cf29))
+- fixing snapshots after dependency updates ([8569902](https://github.com/WTW-IM/es-components/commit/85699023bbce1fd488c0130baca8d5f29e39bec7))
+
+### Fix
+
+- ensuring html type matches react expectations ([de3c697](https://github.com/WTW-IM/es-components/commit/de3c697a0668b7a0969a312d6a7a876bfe0141d6))
+- updating to non-bad dependencies ([38a35c4](https://github.com/WTW-IM/es-components/commit/38a35c477fe3cb21c4ba171a3547a076ba691ad5))
+
 ## [21.15.2-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.15.1...v21.15.2-pre-prod.0) (2025-03-27)
 
 ### Build

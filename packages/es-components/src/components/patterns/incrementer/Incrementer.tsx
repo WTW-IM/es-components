@@ -8,8 +8,7 @@ import OutlineButton from '../../controls/buttons/OutlineButton';
 import {
   BasicTextbox,
   BasicTextboxProps,
-  basicTextboxPropTypes,
-  basicTextboxDefaultProps
+  basicTextboxPropTypes
 } from '../../controls/textbox/InputBase';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
 import noop from '../../util/noop';
@@ -98,13 +97,13 @@ export type IncrementerProps = BasicTextboxProps & {
 const Incrementer = React.forwardRef<HTMLDivElement, IncrementerProps>(
   function ForwardedIncrementer(
     {
-      startingValue,
+      startingValue = 0,
       incrementAmount = 1,
       decrementAmount = 1,
       upperThreshold = null,
       lowerThreshold = null,
-      useOutlineButton,
-      onValueUpdated,
+      useOutlineButton = false,
+      onValueUpdated = noop,
       ...other
     },
     ref
@@ -279,17 +278,6 @@ Incrementer.propTypes = {
   useOutlineButton: PropTypes.bool,
   /** Function to execute with the new value */
   onValueUpdated: PropTypes.func
-};
-
-Incrementer.defaultProps = {
-  ...basicTextboxDefaultProps,
-  startingValue: 0,
-  incrementAmount: 1,
-  decrementAmount: 1,
-  onValueUpdated: noop,
-  upperThreshold: null,
-  lowerThreshold: null,
-  useOutlineButton: false
 };
 
 export default Incrementer;

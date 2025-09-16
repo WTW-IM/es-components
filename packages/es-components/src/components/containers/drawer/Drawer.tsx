@@ -224,18 +224,6 @@ Drawer.propTypes = {
   useDefaultStyles: PropTypes.bool
 };
 
-Drawer.defaultProps = {
-  activeKeys: undefined,
-  isAccordion: false,
-  closedIconName: 'add',
-  openedIconName: 'minus',
-  children: undefined,
-  useDefaultStyles: true,
-  onActiveKeysChanged: () => {
-    // noop
-  }
-};
-
 type DrawerComponent = DrawerComponentType & {
   Panel: typeof DrawerPanel;
   Item: typeof DrawerItem;

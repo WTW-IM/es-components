@@ -1,6 +1,9 @@
 import React, { useCallback } from 'react';
 
-const callRef = <T, R extends React.ForwardedRef<T>>(ref: Maybe<R>, value: T) =>
+const callRef = <T, R extends React.ForwardedRef<T>>(
+  ref: Maybe<R>,
+  value: T
+) =>
   typeof ref === 'function'
     ? ref(value)
     : ref && Object.hasOwn(ref, 'current') && (ref.current = value);
@@ -14,7 +17,9 @@ export function callRefs<T, R extends Maybe<React.ForwardedRef<T>>>(
   refs.forEach(r => callRef(r, value));
 }
 
-export function useMergedRefs<T>(...refs: React.Ref<T>[]) {
+export function useMergedRefs<T>(
+  ...refs: React.Ref<T>[]
+): React.RefCallback<T> {
   const mergedRefs = useCallback<React.RefCallback<T>>(
     el => {
       callRefs(el, ...refs);

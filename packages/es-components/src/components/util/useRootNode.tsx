@@ -5,7 +5,7 @@ export type RootNode = HTMLElement | ShadowRoot | undefined;
 
 export default function useRootNode<T extends RootNode = RootNode>(
   initialRoot?: T
-) {
+): [T, React.RefCallback<Maybe<T>>] {
   const [rootNode, setRootNode] = useState(initialRoot as T);
   const nodeRef = useCallback<React.RefCallback<Maybe<RootNode>>>(
     (node: Maybe<T>) => {

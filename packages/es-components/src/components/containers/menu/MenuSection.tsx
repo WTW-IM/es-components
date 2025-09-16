@@ -38,7 +38,14 @@ const StyledChildrenContainer = styled.section`
 
 const MenuSection = React.forwardRef<HTMLElement, MenuSectionProps>(
   function MenuSection(props, ref) {
-    const { title, children, isLast, isFirst, isOnlySection, ...other } = props;
+    const {
+      title,
+      children,
+      isLast = false,
+      isFirst = false,
+      isOnlySection = false,
+      ...other
+    } = props;
     const inline = useContext(InlineContext);
 
     return (
@@ -65,14 +72,6 @@ MenuSection.propTypes = {
   isLast: PropTypes.bool,
   isFirst: PropTypes.bool,
   isOnlySection: PropTypes.bool
-};
-
-MenuSection.defaultProps = {
-  title: undefined,
-  children: undefined,
-  isLast: false,
-  isFirst: false,
-  isOnlySection: false
 };
 
 export default MenuSection;

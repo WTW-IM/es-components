@@ -99,7 +99,7 @@ export type SpinnerProps = RequireAtLeastOne<
   JSXElementProps<'svg'>;
 
 const Spinner = React.forwardRef<SVGSVGElement, SpinnerProps>(
-  function ForwardedSpinner({ title, description, ...other }, ref) {
+  function ForwardedSpinner({ title = '', description = '', ...other }, ref) {
     const propId = other.id || '';
     const generatedId = `${useUniqueId(propId)}-title`;
     const generatedDesc = `${useUniqueId(propId)}-desc`;
@@ -150,11 +150,6 @@ Spinner.propTypes = {
   /** The description of the spinner for screen readers. This or `title` is
    * required */
   description: descriptionTitleProp
-};
-
-Spinner.defaultProps = {
-  title: '',
-  description: ''
 };
 
 export default Spinner;

@@ -8,8 +8,15 @@ import { validationStyleTypes } from 'es-components-shared-types';
 const MessageNotification = React.forwardRef<
   HTMLDivElement,
   BaseNotificationProps
->(function ForwardedMessageNotification(props, ref) {
-  return <BaseNotification ref={ref} {...props} styleType="messageOnly" />;
+>(function ForwardedMessageNotification({ onDismiss = noop, ...props }, ref) {
+  return (
+    <BaseNotification
+      ref={ref}
+      onDismiss={onDismiss}
+      {...props}
+      styleType="messageOnly"
+    />
+  );
 });
 
 MessageNotification.propTypes = {
@@ -23,13 +30,6 @@ MessageNotification.propTypes = {
   onDismiss: PropTypes.func,
   /** Allows the icon to display at all resolutions */
   alwaysShowIcon: PropTypes.bool
-};
-
-MessageNotification.defaultProps = {
-  includeIcon: false,
-  isDismissable: false,
-  onDismiss: noop,
-  alwaysShowIcon: false
 };
 
 export default MessageNotification;

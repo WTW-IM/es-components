@@ -34,7 +34,10 @@ type TabPanelChildProps = Override<
   }
 >;
 
-const TabPanelTabRenderer = ({ child, ...tabChildProps }: TabPanelChildProps) =>
+const TabPanelTabRenderer = ({
+  child,
+  ...tabChildProps
+}: TabPanelChildProps) =>
   React.isValidElement<TabProps>(child)
     ? React.cloneElement(child, tabChildProps)
     : child;
@@ -70,7 +73,7 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
   function ForwardedTabPanel(
     {
       children,
-      selectedKey,
+      selectedKey = '',
       tabChanged = noop,
       canTabChange = tabCanChangeFunc,
       ...props
@@ -171,13 +174,6 @@ TabPanel.propTypes = {
    */
   tabChanged: PropTypes.func,
   className: PropTypes.string
-};
-
-TabPanel.defaultProps = {
-  children: undefined,
-  selectedKey: '',
-  tabChanged: noop,
-  canTabChange: tabCanChangeFunc
 };
 
 type TabPanelComponent = typeof TabPanel & {

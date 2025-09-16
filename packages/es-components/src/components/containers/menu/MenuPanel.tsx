@@ -55,7 +55,7 @@ type MenuPanelProps = JSXElementProps<'div'> & {
 
 const MenuPanel = React.forwardRef<HTMLDivElement, MenuPanelProps>(
   function ForwardedMenuPanel(
-    { children, headerContent, isOpen, onClose, ...other },
+    { children, headerContent = null, isOpen = false, onClose, ...other },
     ref
   ) {
     const getTopIndex = useTopZIndex();
@@ -109,11 +109,6 @@ MenuPanel.propTypes = {
   headerContent: PropTypes.node,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired
-};
-
-MenuPanel.defaultProps = {
-  headerContent: null,
-  isOpen: false
 };
 
 export default MenuPanel;

@@ -8,8 +8,15 @@ import { BaseNotification, BaseNotificationProps } from './BaseNotification';
 const LightNotification = React.forwardRef<
   HTMLDivElement,
   BaseNotificationProps
->(function LightNotification(props, ref) {
-  return <BaseNotification ref={ref} {...props} styleType="light" />;
+>(function LightNotification({ onDismiss = noop, ...props }, ref) {
+  return (
+    <BaseNotification
+      ref={ref}
+      onDismiss={onDismiss}
+      {...props}
+      styleType="light"
+    />
+  );
 });
 
 LightNotification.propTypes = {
@@ -23,13 +30,6 @@ LightNotification.propTypes = {
   onDismiss: PropTypes.func,
   /** Allows the icon to display at all resolutions */
   alwaysShowIcon: PropTypes.bool
-};
-
-LightNotification.defaultProps = {
-  includeIcon: false,
-  isDismissable: false,
-  onDismiss: noop,
-  alwaysShowIcon: false
 };
 
 export default LightNotification;

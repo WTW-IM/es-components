@@ -37,7 +37,13 @@ export type NavigationProps = Override<
 
 export const Navigation = React.forwardRef<HTMLElement, NavigationProps>(
   function ForwardedNavigation(
-    { navOrientation, children, useAltStyle, selected: selectedProp, ...props },
+    {
+      navOrientation,
+      children,
+      useAltStyle = false,
+      selected: selectedProp,
+      ...props
+    },
     ref
   ) {
     const OrientedNavigation =
@@ -82,9 +88,4 @@ Navigation.propTypes = {
   children: PropTypes.node.isRequired,
   /** Set the selected nav item by id, controlled mode */
   selected: PropTypes.string
-};
-
-Navigation.defaultProps = {
-  useAltStyle: false,
-  selected: undefined
 };

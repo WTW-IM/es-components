@@ -115,20 +115,4 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
   }
 );
 
-const UnstyledSelectInput = styled('select')``;
-
-export const propTypes = {
-  ...UnstyledSelectInput.propTypes,
-  /** Whether the input should be rendered as a flat-style input */
-  flat: PropTypes.bool
-};
-
-export const defaultProps = {
-  ...UnstyledSelectInput.defaultProps,
-  flat: InputBase.defaultProps?.flat
-};
-
-Dropdown.propTypes = propTypes;
-Dropdown.defaultProps = defaultProps;
-
 export default Dropdown;

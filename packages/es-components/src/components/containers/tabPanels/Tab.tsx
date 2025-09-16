@@ -71,7 +71,7 @@ export type TabProps = Override<
 const Tab = React.forwardRef<HTMLButtonElement, TabProps>(function ForwardedTab(
   {
     name,
-    selected,
+    selected = false,
     action = noop,
     children,
     simpleName = '',
@@ -134,14 +134,6 @@ Tab.propTypes = {
    * Additional text to be read after the simple name
    */
   announcerText: PropTypes.string
-};
-
-Tab.defaultProps = {
-  selected: false,
-  action: noop,
-  children: undefined,
-  simpleName: '',
-  announcerText: ''
 };
 
 export default Tab;

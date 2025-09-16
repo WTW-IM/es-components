@@ -189,7 +189,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       maxDate,
       minDate,
       onChange: onChangeProp,
-      onBlur,
+      onBlur = noop,
       ...props
     },
     ref
@@ -331,15 +331,6 @@ DateInput.propTypes = {
   defaultValue: PropTypes.instanceOf(Date),
   /** Set the default day of the month */
   defaultDay: PropTypes.string
-};
-
-DateInput.defaultProps = {
-  id: undefined,
-  maxDate: undefined,
-  minDate: undefined,
-  defaultValue: undefined,
-  defaultDay: '',
-  onBlur: noop
 };
 
 const setParts = (Input: DateInputType) => {

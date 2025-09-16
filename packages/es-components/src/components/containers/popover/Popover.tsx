@@ -10,7 +10,7 @@ import { Placement } from '@floating-ui/react';
 const Button = OriginalButton as ReturnType<
   typeof React.forwardRef<
     HTMLElement | undefined,
-    JSX.IntrinsicElements['button']
+    React.JSX.IntrinsicElements['button']
   >
 >;
 

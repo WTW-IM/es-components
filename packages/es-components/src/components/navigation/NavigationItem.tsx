@@ -164,8 +164,8 @@ export const NavigationItem = React.forwardRef<
   {
     highlightedId,
     id,
-    isDisabled,
-    useAltStyle,
+    isDisabled = false,
+    useAltStyle = false,
     children,
     navOrientation,
     ...props
@@ -236,11 +236,4 @@ NavigationItem.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   /** Disable the nav item to render it un-clickable */
   isDisabled: PropTypes.bool
-};
-
-NavigationItem.defaultProps = {
-  useAltStyle: false,
-  isDisabled: false,
-  children: undefined,
-  highlightedId: undefined
 };

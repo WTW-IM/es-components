@@ -127,7 +127,7 @@
   },
   "dependencies": {
     "@babel/helpers": "^7.20.7",
-    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-react": "^7.27.1",
     "@babel/runtime": "^7.20.7",
     "@babel/runtime-corejs3": "^7.20.7",
     "@floating-ui/dom": "^1.6.3",

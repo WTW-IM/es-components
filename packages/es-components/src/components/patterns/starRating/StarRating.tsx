@@ -72,9 +72,6 @@ const StarOverlay = styled.div`
   height: 25px;
   margin-top: -23px;
   background-image: url(${ASSETS_PATH}images/star-rating-mask.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 const PoorPerformerOverlay = styled.div`
@@ -89,9 +86,6 @@ const SummarizedOverlay = styled.div`
   width: 25px;
   margin-top: -23px;
   background-image: url(${ASSETS_PATH}images/summarized-star-rating-mask.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 function getStarRatingBackgroundWidth(rating: number) {

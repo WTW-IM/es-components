@@ -19,8 +19,24 @@ export type StarRatingProps = Override<
     ratingExplanation?: string;
     onExplanationOpen?: () => void;
     noRatingText?: string;
+    isSummarized?: boolean;
+    overwriteSummaryText?: string;
   }
 >;
+
+const SummaryContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+
+  strong {
+    font-size: 1.1em;
+    margin-top: -1px;
+    text-align: left;
+    line-height: 1.2;
+  }
+`;
 
 const StarContainer = styled.div<{ isPoorPerformer?: boolean }>`
   display: flex;
@@ -36,8 +52,10 @@ const StarContainer = styled.div<{ isPoorPerformer?: boolean }>`
   }
 `;
 
-const StarRatingLink = styled(LinkButton)`
-  border-bottom: 1px dashed;
+const StarRatingLink = styled(LinkButton)<{
+  showBorder?: boolean;
+}>`
+  border-bottom: ${props => (props.showBorder ? '1px dashed' : 'none')};
   color: ${props => props.theme.colors.gray8};
   text-decoration: none;
 
@@ -67,6 +85,13 @@ const PoorPerformerOverlay = styled.div`
   margin-top: -5px;
   background-image: url(${ASSETS_PATH}images/poor-performer-mask.svg);
   background-size: 100% 100%;
+`;
+
+const SummarizedOverlay = styled.div`
+  height: 25px;
+  width: 25px;
+  margin-top: -23px;
+  background-image: url(${ASSETS_PATH}images/summarized-star-rating-mask.svg);
 `;
 
 function getStarRatingBackgroundWidth(rating: number) {
@@ -104,6 +129,8 @@ const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
       noRatingText = NOT_AVAILABLE_MESSAGE,
       onClick: onClickProp,
       onExplanationOpen,
+      isSummarized = false,
+      overwriteSummaryText,
       ...props
     },
     ref
@@ -132,26 +159,42 @@ const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
       <>
         <StarRatingLink
           ref={el => callRefs(el, rootNodeRef, ref)}
+          showBorder={!isSummarized}
           {...props}
           onClick={onClick}
         >
-          {rating === null && <span>{noRatingText}</span>}
-          {rating !== null && (
-            <StarContainer
-              aria-label={ariaText}
-              isPoorPerformer={isPoorPerformer}
-            >
-              {!isPoorPerformer ? (
-                <div>
-                  <StarFill fillWidth={getStarRatingBackgroundWidth(rating)} />
-                  <StarOverlay />
-                </div>
+          {rating === null ? (
+            <span>{noRatingText}</span>
+          ) : (
+            <>
+              {isSummarized ? (
+                <SummaryContainer aria-label={ariaText}>
+                  <div>
+                    <StarFill fillWidth={getStarRatingBackgroundWidth(1)} />
+                    <SummarizedOverlay />
+                  </div>
+                  <strong>{overwriteSummaryText || `${rating}/5`}</strong>
+                </SummaryContainer>
               ) : (
-                <div>
-                  <PoorPerformerOverlay />
-                </div>
+                <StarContainer
+                  aria-label={ariaText}
+                  isPoorPerformer={isPoorPerformer}
+                >
+                  {!isPoorPerformer ? (
+                    <div>
+                      <StarFill
+                        fillWidth={getStarRatingBackgroundWidth(rating)}
+                      />
+                      <StarOverlay />
+                    </div>
+                  ) : (
+                    <div>
+                      <PoorPerformerOverlay />
+                    </div>
+                  )}
+                </StarContainer>
               )}
-            </StarContainer>
+            </>
           )}
         </StarRatingLink>
         <StarRatingExplanation
@@ -165,10 +208,16 @@ const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
 );
 
 StarRating.propTypes = {
+  /** The rating to show. */
   rating: PropTypes.number.isRequired,
+  /** Whether to show the poor performer version. It will hide its rating */
   isPoorPerformer: PropTypes.bool,
   onExplanationOpen: PropTypes.func,
-  noRatingText: PropTypes.string
+  noRatingText: PropTypes.string,
+  /** Whether to show the summarized version. */
+  isSummarized: PropTypes.bool,
+  /** Whether to overwrite the summary text. It will hide its rating. It only shows if `isSummarized` is true. */
+  overwriteSummaryText: PropTypes.string
 };
 
 export default StarRating;

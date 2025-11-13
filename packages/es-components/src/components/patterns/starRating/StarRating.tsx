@@ -49,7 +49,10 @@ const StarContainer = styled.div<{ isPoorPerformer?: boolean }>`
   }
 `;
 
-const StarRatingLink = styled(LinkButton)`
+const StarRatingLink = styled(LinkButton)<{
+  showBorder?: boolean;
+}>`
+  border-bottom: ${props => (props.showBorder ? '1px dashed' : 'none')};
   color: ${props => props.theme.colors.gray8};
   text-decoration: none;
 
@@ -153,6 +156,7 @@ const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
       <>
         <StarRatingLink
           ref={el => callRefs(el, rootNodeRef, ref)}
+          showBorder={!isSummarized}
           {...props}
           onClick={onClick}
         >
@@ -201,7 +205,7 @@ const StarRating = React.forwardRef<HTMLButtonElement, StarRatingProps>(
 );
 
 StarRating.propTypes = {
-  /** The rating to show. This is required */
+  /** The rating to show. */
   rating: PropTypes.number.isRequired,
   /** Whether to show the poor performer version. It will hide its rating */
   isPoorPerformer: PropTypes.bool,

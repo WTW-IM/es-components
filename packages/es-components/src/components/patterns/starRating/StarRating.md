@@ -24,3 +24,7 @@ Overwriting summarized star rating with text:
 ```
 <StarRating rating={4} isSummarized overwriteSummaryText='Plan Too New To Be Measured' />
 ```
+No rating available:
+```
+<StarRating rating={null}/>
+```

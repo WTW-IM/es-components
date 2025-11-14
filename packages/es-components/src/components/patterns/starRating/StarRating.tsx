@@ -26,12 +26,15 @@ export type StarRatingProps = Override<
 
 const SummaryContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   gap: 4px;
 
   strong {
     font-size: 1.1em;
-    margin-top: -2px;
+    margin-top: -1px;
+    text-align: left;
+    line-height: 1.2;
   }
 `;
 

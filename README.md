@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/es-components.svg)](https://badge.fury.io/js/es-components)
 [![Build Status](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml)
-[![dependency status](https://david-dm.org/wtw-im/es-components.svg?path=packages%2Fes-components)](https://david-dm.org/wtw-im/es-components?path=packages%2Fes-components)
+[![dependency status](https://img.shields.io/librariesio/github/WTW-IM/es-components)](https://libraries.io/github/WTW-IM/es-components)
 
 # es-components-via-theme
 

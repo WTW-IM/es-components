@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "npm ci --workspaces --include-workspace-root",
+    "build": "echo build_start && npm ci --workspaces --include-workspace-root",
     "ci-run": "sh ci.sh",
     "build-via-theme": "npm run build --prefix packages/es-components-via-theme",
     "build-wtw-theme": "npm run build --prefix packages/es-components-wtw-theme",
@@ -58,7 +58,7 @@
     "commander": "^12.1.0",
     "commitlint": "^17.3.0",
     "conventional-changelog": "^3.1.25",
-    "cypress": "^14.0.0",
+    "cypress": "^15.0.0",
     "data-uri-to-buffer": "^5.0.1",
     "eslint": "^9.19.0",
     "eslint-import-resolver-typescript": "^3.5.3",

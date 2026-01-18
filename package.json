@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "echo build_start && npm ci --workspaces --include-workspace-root",
+    "preinstall": "echo build_start && npm ci --workspaces --include-workspace-root",
     "ci-run": "sh ci.sh",
     "build-via-theme": "npm run build --prefix packages/es-components-via-theme",
     "build-wtw-theme": "npm run build --prefix packages/es-components-wtw-theme",

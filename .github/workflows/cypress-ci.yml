@@ -21,6 +21,20 @@ jobs:
           repository: ${{ (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name) || github.repository  }}
           fetch-depth: 0
 
+      - name: Debug - Show commit and workflow info
+        run: |
+          echo "=== Commit Information ==="
+          echo "Current commit SHA: $(git rev-parse HEAD)"
+          echo "Current commit message: $(git log -1 --pretty=%B)"
+          echo "Branch: $(git branch --show-current)"
+          echo ""
+          echo "=== Workflow File Content ==="
+          echo "Cypress working-directory setting:"
+          grep -A 2 "cypress-io/github-action@v6" .github/workflows/cypress-ci.yml
+          echo ""
+          echo "Event name: ${{ github.event_name }}"
+          echo "Workflow SHA: ${{ github.sha }}"
+
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'

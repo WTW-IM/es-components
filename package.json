@@ -93,5 +93,9 @@
     "@typescript-eslint/utils": "$@typescript-eslint/utils",
     "react": "$react",
     "react-dom": "$react-dom"
+  },
+  "optionalDependencies": {
+    "encoding": "^0.1.13",
+    "iconv-lite": "^0.7.2"
   }
 }

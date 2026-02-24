@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.4) (2026-02-24)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/WTW-IM/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+
 ## [21.15.2-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.3) (2026-02-24)
 
 ### Build

@@ -15,7 +15,8 @@ function screenReaderOnly<T extends React.ElementType>(Component: T) {
   type TProps = React.ComponentProps<T>;
   type SROProps = React.ComponentProps<typeof ScreenReaderOnlyBase>;
   type P = TProps & SROProps;
-  const SROnly = forwardRef<HTMLElement, P>(function SROnly(props, ref) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const SROnly = forwardRef<any, P>(function SROnly(props, ref) {
     return <ScreenReaderOnlyBase as={Component} {...props} ref={ref} />;
   });
   return SROnly;

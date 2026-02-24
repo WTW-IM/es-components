@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.3) (2026-02-24)
+
+### Build
+
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+
 ## [21.15.2-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.1...v21.15.2-pre-prod.2) (2026-02-24)
 
 **Note:** Version bump only for package es-components-monorepo

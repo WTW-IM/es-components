@@ -4,7 +4,7 @@
   "description": "React components built for Exchange Solutions products",
   "author": "Willis Towers Watson - Individual Marketplace",
   "license": "MIT",
-  "repository": "https://github.com/wtw-im/es-components",
+  "repository": "https://github.com/WTW-IM/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
   "files": [

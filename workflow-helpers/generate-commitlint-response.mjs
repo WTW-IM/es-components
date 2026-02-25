@@ -1,5 +1,5 @@
-const { program } = require('commander');
-const core = require('@actions/core');
+import { program } from 'commander';
+import * as core from '@actions/core';
 
 program.option('--results <string>');
 program.parse(process.argv);
@@ -19,11 +19,22 @@ let message = `All commit messages are correctly formatted.`;
 if (errors.length) {
   message = `The following commit messages do not meet our commit convention. Please reword these commits for correct versioning and changelog generation.
 
-${errors.map(lintResult => `* ${lintResult.message} ${lintResult.errors.map(error => `
-    * ${error}`).join('')}
-`).join('\n')}`;
+${errors
+  .map(
+    lintResult => `* ${lintResult.message} ${lintResult.errors
+      .map(
+        error => `
+    * ${error}`
+      )
+      .join('')}
+`
+  )
+  .join('\n')}`;
 }
 
-core.setOutput('msg', `${badgeUrl}
+core.setOutput(
+  'msg',
+  `${badgeUrl}
 
-${message}`);
+${message}`
+);

@@ -33,7 +33,7 @@ jobs:
         run: |
           npm i commander
           npm i @actions/core
-          node ./workflow-helpers/generate-commitlint-response.js --results "$COMMIT_RESPONSE"
+          node ./workflow-helpers/generate-commitlint-response.mjs --results "$COMMIT_RESPONSE"
 
       - name: Post comment
         if: ${{ always() }}

@@ -3,6 +3,13 @@ on:
   push:
     branches:
       - pre-prod
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: write
+  actions: write
+  attestations: write
+
 jobs:
   pre-prod-release:
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
@@ -16,10 +23,11 @@ jobs:
           ref: pre-prod
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
           cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
 
       - uses: actions/cache@v3
         with:
@@ -39,7 +47,6 @@ jobs:
 
       - name: Lerna Publish
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
@@ -61,10 +68,11 @@ jobs:
           ref: pre-prod
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
           cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
 
       - uses: actions/cache@v3
         with:

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.9](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.8...v21.15.2-pre-prod.9) (2026-02-25)
+
+### Build
+
+- better error handling around failing icon setup ([459bb86](https://github.com/wtw-im/es-components/commit/459bb86435dd9d959b704167125517c02ed605e0))
+
 ## [21.15.2-pre-prod.8](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.8) (2026-02-25)
 
 ### Build

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.9](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.8...v21.15.2-pre-prod.9) (2026-02-25)
+
+### Build
+
+- better error handling around failing icon setup ([459bb86](https://github.com/WTW-IM/es-components/commit/459bb86435dd9d959b704167125517c02ed605e0))
+- updating lerna to latest ([cb51cb0](https://github.com/WTW-IM/es-components/commit/cb51cb057a7237fc48554d6e3a4d557af03edb3f))
+
+### Fix
+
+- ensuring NODE_AUTH_TOKEN is correct in releases ([9e214f8](https://github.com/WTW-IM/es-components/commit/9e214f811f19a72e07a08216ddd57d6d105e26f8))
+
 ## [21.15.2-pre-prod.8](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.8) (2026-02-25)
 
 ### Build

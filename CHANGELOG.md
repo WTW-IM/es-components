@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.10](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.9...v21.15.2-pre-prod.10) (2026-02-25)
+
+### Fix
+
+- ensuring CI can add comments and checks ([b94b17c](https://github.com/WTW-IM/es-components/commit/b94b17ccd7054de50f8e45d01c63bfcf7fcd95ef))
+- ensuring npm packages have correct repository URL and casing ([2639d6d](https://github.com/WTW-IM/es-components/commit/2639d6d95b5951e4db0057748b6a72c9f94b3e0e))
+
 ## [21.15.2-pre-prod.9](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.8...v21.15.2-pre-prod.9) (2026-02-25)
 
 ### Build

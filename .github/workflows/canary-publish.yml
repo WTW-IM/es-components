@@ -3,6 +3,16 @@ on:
   workflow_dispatch:
     branches-ignore:
       - main
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: write
+  actions: write
+  attestations: write
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   deploy_canary:
     name: Build And Deploy Canary Release
@@ -10,23 +20,16 @@ jobs:
     environment: canary
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           cache: 'npm'
-
-      - uses: actions/cache@v3
-        id: node-cache
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          registry-url: 'https://registry.npmjs.org'
 
       - run: |
           npm ci --prefer-offline --no-audit
@@ -38,7 +41,6 @@ jobs:
 
       - name: Lerna Publish
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           preId=$(git rev-parse --abbrev-ref HEAD | tr "[:upper:]" "[:lower:]")
           echo "Publishing a canary release..."
           npx lerna publish \

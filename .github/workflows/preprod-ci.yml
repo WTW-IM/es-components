@@ -10,6 +10,9 @@ permissions:
   actions: write
   attestations: write
 
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   pre-prod-release:
     if: ${{ github.ref == 'refs/heads/pre-prod' && !contains(github.event.head_commit.message, '[skip-release]') }}
@@ -40,7 +43,6 @@ jobs:
 
       - name: Lerna Publish
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \

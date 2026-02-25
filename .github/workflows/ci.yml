@@ -11,9 +11,6 @@ permissions:
   actions: write
   attestations: write
 
-env:
-  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
   test:
     name: Test with Node v${{matrix.node}}
@@ -96,6 +93,8 @@ jobs:
           git config user.email "es-components-bot@wtw.org"
 
       - name: Lerna Publish Latest
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npx lerna publish \
             --conventional-commits \
@@ -142,7 +141,6 @@ jobs:
       # (Pre-prod can be ahead of main, but never behind.)
       - name: Lerna Publish Pre-Prod
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \

@@ -47,7 +47,8 @@ jobs:
 
       - name: Lerna Publish
         run: |
-          npx lerna publish \
+          NODE_AUTH_TOKEN="" npx lerna publish \
+            --no-verify-access \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
             --conventional-prerelease \

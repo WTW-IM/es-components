@@ -92,11 +92,9 @@
     "typescript-transform-paths": "^4.0.0-beta.2"
   },
   "overrides": {
-    "@types/glob": "$@types/glob",
     "@typescript-eslint/utils": "$@typescript-eslint/utils",
     "react": "$react",
-    "react-dom": "$react-dom",
-    "glob": "$glob"
+    "react-dom": "$react-dom"
   },
   "optionalDependencies": {
     "encoding": "^0.1.13",

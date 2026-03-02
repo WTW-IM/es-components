@@ -100,8 +100,6 @@ export const domProps: DOMPropTypes = {
   onProgressCapture: PropTypes.func,
   onRateChange: PropTypes.func,
   onRateChangeCapture: PropTypes.func,
-  onResize: PropTypes.func,
-  onResizeCapture: PropTypes.func,
   onSeeked: PropTypes.func,
   onSeekedCapture: PropTypes.func,
   onSeeking: PropTypes.func,

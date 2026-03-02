@@ -53,6 +53,8 @@ export const htmlProps: HTMLPropTypes = {
   ]),
   suppressContentEditableWarning: PropTypes.bool,
   suppressHydrationWarning: PropTypes.bool,
+  exportparts: PropTypes.string,
+  part: PropTypes.string,
 
   // Standard HTML Attributes
   accessKey: PropTypes.string,

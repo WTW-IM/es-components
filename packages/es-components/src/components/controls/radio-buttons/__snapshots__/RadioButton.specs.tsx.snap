@@ -27,7 +27,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #aaaaaa;
 }
 
@@ -192,7 +192,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #ffbf8f;
 }
 
@@ -357,7 +357,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #83d1ff;
 }
 
@@ -524,7 +524,7 @@ exports[`RadioButton colors renders correct colors for { disabled: false, checke
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #ffbf8f;
 }
 
@@ -691,7 +691,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #aaaaaa;
 }
 
@@ -859,7 +859,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #ffbf8f;
 }
 
@@ -1027,7 +1027,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #83d1ff;
 }
 
@@ -1197,7 +1197,7 @@ exports[`RadioButton colors renders correct colors for { disabled: true, checked
   background-color: #c5c5c5;
 }
 
-.c2:hover>.sc-gjcoXW>.c0:not(:disabled):not(:checked)~.c3::before {
+.c2:hover>.sc-gEvEes>.c0:not(:disabled):not(:checked)~.c3::before {
   background-color: #ffbf8f;
 }
 

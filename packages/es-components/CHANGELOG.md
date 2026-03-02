@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2-pre-prod.10](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.9...v21.15.2-pre-prod.10) (2026-02-25)
+
+### Fix
+
+- ensuring npm packages have correct repository URL and casing ([2639d6d](https://github.com/WTW-IM/es-components/commit/2639d6d95b5951e4db0057748b6a72c9f94b3e0e))
+
+## [21.15.2-pre-prod.9](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.8...v21.15.2-pre-prod.9) (2026-02-25)
+
+### Build
+
+- better error handling around failing icon setup ([459bb86](https://github.com/wtw-im/es-components/commit/459bb86435dd9d959b704167125517c02ed605e0))
+
+## [21.15.2-pre-prod.8](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.8) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/wtw-im/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/wtw-im/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- [skip ci][skip-release] v21.15.2-pre-prod.5 ([18e57c1](https://github.com/wtw-im/es-components/commit/18e57c1684528f6c762a59ad3f19f06b4c8cb16d))
+- [skip ci][skip-release] v21.15.2-pre-prod.6 ([3648ce2](https://github.com/wtw-im/es-components/commit/3648ce20a34c935837f9d80b66659d62c3db51e5))
+- [skip ci][skip-release] v21.15.2-pre-prod.7 ([ffd5058](https://github.com/wtw-im/es-components/commit/ffd5058f4d0bd02457397d8b2d8d59a05c79dd11))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/wtw-im/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/wtw-im/es-components/issues/901)
+
+## [21.15.2-pre-prod.7](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.7) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/wtw-im/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/wtw-im/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- [skip ci][skip-release] v21.15.2-pre-prod.5 ([18e57c1](https://github.com/wtw-im/es-components/commit/18e57c1684528f6c762a59ad3f19f06b4c8cb16d))
+- [skip ci][skip-release] v21.15.2-pre-prod.6 ([3648ce2](https://github.com/wtw-im/es-components/commit/3648ce20a34c935837f9d80b66659d62c3db51e5))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/wtw-im/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/wtw-im/es-components/issues/901)
+
+## [21.15.2-pre-prod.6](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.6) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/wtw-im/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/wtw-im/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- [skip ci][skip-release] v21.15.2-pre-prod.5 ([18e57c1](https://github.com/wtw-im/es-components/commit/18e57c1684528f6c762a59ad3f19f06b4c8cb16d))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/wtw-im/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/wtw-im/es-components/issues/901)
+
+## [21.15.2-pre-prod.5](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.5) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/wtw-im/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/wtw-im/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/wtw-im/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/wtw-im/es-components/issues/901)
+
+## [21.15.2-pre-prod.4](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.4) (2026-02-24)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/wtw-im/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/wtw-im/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/wtw-im/es-components/issues/901)
+
+## [21.15.2-pre-prod.3](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.3) (2026-02-24)
+
+### Build
+
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/wtw-im/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/wtw-im/es-components/issues/901)
+
+## [21.15.2-pre-prod.2](https://github.com/wtw-im/es-components/compare/v21.15.2-pre-prod.1...v21.15.2-pre-prod.2) (2026-02-24)
+
+**Note:** Version bump only for package es-components
+
+## [21.15.2-pre-prod.1](https://github.com/wtw-im/es-components/compare/v21.15.1...v21.15.2-pre-prod.1) (2025-03-27)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.0 ([7a08377](https://github.com/wtw-im/es-components/commit/7a08377e4ce718d899280260084d484add05cf29))
+- fixing snapshots after dependency updates ([8569902](https://github.com/wtw-im/es-components/commit/85699023bbce1fd488c0130baca8d5f29e39bec7))
+
+### Fix
+
+- ensuring html type matches react expectations ([de3c697](https://github.com/wtw-im/es-components/commit/de3c697a0668b7a0969a312d6a7a876bfe0141d6))
+
+## [21.15.2-pre-prod.0](https://github.com/wtw-im/es-components/compare/v21.15.1...v21.15.2-pre-prod.0) (2025-03-27)
+
+### Build
+
+- fixing snapshots after dependency updates ([8569902](https://github.com/wtw-im/es-components/commit/85699023bbce1fd488c0130baca8d5f29e39bec7))
+
 ## [21.15.1](https://github.com/wtw-im/es-components/compare/v21.15.1-pre-prod.0...v21.15.1) (2025-03-14)
 
 **Note:** Version bump only for package es-components

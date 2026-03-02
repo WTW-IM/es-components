@@ -4,6 +4,18 @@ on:
   push:
     branches:
       - main
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: write
+  actions: write
+  attestations: write
+  pull-requests: write
+  checks: write
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   test:
     name: Test with Node v${{matrix.node}}
@@ -13,7 +25,7 @@ jobs:
         node: [lts/*, node]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: ${{ github.head_ref || github.ref }}
@@ -24,17 +36,11 @@ jobs:
           fetch-depth: 0
 
       - name: Use Node Version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: 'npm'
-
-      - uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
         run: |
@@ -70,23 +76,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: main
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           cache: 'npm'
-
-      - uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
         run: |
@@ -99,7 +99,6 @@ jobs:
 
       - name: Lerna Publish Latest
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
@@ -113,23 +112,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: pre-prod
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           cache: 'npm'
-
-      - uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
         run: |
@@ -151,7 +144,6 @@ jobs:
       # (Pre-prod can be ahead of main, but never behind.)
       - name: Lerna Publish Pre-Prod
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > ~/.npmrc
           npx lerna publish \
             --conventional-commits \
             --changelog-preset @aabenoja/conventional-changelog-eslint-lerna \
@@ -168,23 +160,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.PIPELINE_BOT_PAT }}
           ref: main
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
           cache: 'npm'
-
-      - uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
         run: |

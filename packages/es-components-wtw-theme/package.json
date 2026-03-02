@@ -1,6 +1,6 @@
 {
   "name": "es-components-wtw-theme",
-  "version": "21.15.2-pre-prod.10",
+  "version": "21.15.2",
   "repository": "https://github.com/WTW-IM/es-components",
   "main": "dist/packages/es-components-wtw-theme/src/index.js",
   "files": [

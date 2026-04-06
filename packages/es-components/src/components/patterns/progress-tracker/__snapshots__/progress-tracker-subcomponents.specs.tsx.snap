@@ -33,7 +33,7 @@ exports[`sets the appropriate styles for isPastStep 1`] = `
   width: 20px;
   height: 20px;
   box-sizing: border-box;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #919191;
   border-radius: 20px;
   margin-bottom: 5px;
   background-color: white;

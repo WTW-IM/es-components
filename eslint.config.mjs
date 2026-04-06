@@ -4,7 +4,7 @@ import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
-import cypressPlugin from 'eslint-plugin-cypress/flat';
+import cypressPlugin from 'eslint-plugin-cypress';
 import jestPlugin from 'eslint-plugin-jest';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import globals from 'globals';
@@ -146,7 +146,17 @@ export default tseslint.config(
       '**/cypress/*.{js,jsx,mjs,ts,tsx}',
       '**/cypress/**/*.{js,jsx,mjs,ts,tsx}'
     ],
-    extends: [cypressPlugin.configs.globals, cypressPlugin.configs.recommended]
+    plugins: {
+      cypress: cypressPlugin
+    },
+    rules: {
+      ...cypressPlugin.configs.recommended.rules
+    },
+    languageOptions: {
+      globals: {
+        ...cypressPlugin.configs.globals.languageOptions.globals
+      }
+    }
   },
   {
     files: [

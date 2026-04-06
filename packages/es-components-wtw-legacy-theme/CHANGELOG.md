@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.10...v21.15.2) (2026-03-02)
+
+**Note:** Version bump only for package es-components-wtw-legacy-theme
+
+## [21.15.2-pre-prod.10](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.9...v21.15.2-pre-prod.10) (2026-02-25)
+
+### Fix
+
+- ensuring npm packages have correct repository URL and casing ([2639d6d](https://github.com/WTW-IM/es-components/commit/2639d6d95b5951e4db0057748b6a72c9f94b3e0e))
+
 ## [21.14.4](https://github.com/WTW-IM/es-components/compare/v21.14.4-pre-prod.0...v21.14.4) (2025-01-28)
 
 **Note:** Version bump only for package es-components-wtw-legacy-theme

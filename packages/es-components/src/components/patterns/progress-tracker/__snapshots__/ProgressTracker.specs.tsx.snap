@@ -9,7 +9,7 @@ exports[`ProgressTracker renders as expected 1`] = `
   justify-content: space-between;
   padding-left: 0;
   margin-left: 0;
-  background-image: linear-gradient(     to right,     #444 0%,     #444       0%,     #c5c5c5       0%,     #c5c5c5 100%   );
+  background-image: linear-gradient(     to right,     #444 0%,     #444       0%,     #919191       0%,     #919191 100%   );
   background-position: 0 21px;
   background-repeat: no-repeat;
   background-size: 100% 3px;
@@ -48,7 +48,7 @@ exports[`ProgressTracker renders as expected 1`] = `
   width: 20px;
   height: 20px;
   box-sizing: border-box;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #919191;
   border-radius: 20px;
   margin-bottom: 5px;
   background-color: white;
@@ -228,7 +228,7 @@ exports[`ProgressTracker renders as expected 2`] = `
   justify-content: space-between;
   padding-left: 0;
   margin-left: 0;
-  background-image: linear-gradient(     to right,     #444 0%,     #444       50%,     #c5c5c5       50%,     #c5c5c5 100%   );
+  background-image: linear-gradient(     to right,     #444 0%,     #444       50%,     #919191       50%,     #919191 100%   );
   background-position: 0 21px;
   background-repeat: no-repeat;
   background-size: 100% 3px;
@@ -267,7 +267,7 @@ exports[`ProgressTracker renders as expected 2`] = `
   width: 20px;
   height: 20px;
   box-sizing: border-box;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #919191;
   border-radius: 20px;
   margin-bottom: 5px;
   background-color: white;
@@ -486,7 +486,7 @@ exports[`ProgressTracker renders as expected 3`] = `
   justify-content: space-between;
   padding-left: 0;
   margin-left: 0;
-  background-image: linear-gradient(     to right,     #444 0%,     #444       100%,     #c5c5c5       100%,     #c5c5c5 100%   );
+  background-image: linear-gradient(     to right,     #444 0%,     #444       100%,     #919191       100%,     #919191 100%   );
   background-position: 0 21px;
   background-repeat: no-repeat;
   background-size: 100% 3px;
@@ -525,7 +525,7 @@ exports[`ProgressTracker renders as expected 3`] = `
   width: 20px;
   height: 20px;
   box-sizing: border-box;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #919191;
   border-radius: 20px;
   margin-bottom: 5px;
   background-color: white;
@@ -743,7 +743,7 @@ exports[`ProgressTracker renders as expected 4`] = `
   justify-content: space-between;
   padding-left: 0;
   margin-left: 0;
-  background-image: linear-gradient(     to right,     #444 0%,     #444       100%,     #c5c5c5       100%,     #c5c5c5 100%   );
+  background-image: linear-gradient(     to right,     #444 0%,     #444       100%,     #919191       100%,     #919191 100%   );
   background-position: 0 21px;
   background-repeat: no-repeat;
   background-size: 100% 3px;
@@ -782,7 +782,7 @@ exports[`ProgressTracker renders as expected 4`] = `
   width: 20px;
   height: 20px;
   box-sizing: border-box;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #919191;
   border-radius: 20px;
   margin-bottom: 5px;
   background-color: white;

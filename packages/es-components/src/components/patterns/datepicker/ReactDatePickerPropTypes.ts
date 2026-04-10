@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import type { DatePickerProps } from 'react-datepicker';
 import { Placement, placements } from '@floating-ui/utils';
@@ -56,7 +55,7 @@ type DateInterval = {
   end: Date;
 };
 
-export type InnerHighlightDates<T extends boolean | undefined = undefined> =
+export type InnerHighlightDates =
   DatePickerProps['highlightDates'];
 
 // copied from react-datepicker@v4.15.0 - https://github.com/Hacker0x01/react-datepicker/blob/v4.15.0/src/index.jsx

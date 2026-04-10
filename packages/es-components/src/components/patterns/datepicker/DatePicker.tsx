@@ -3,7 +3,6 @@ import styled, { css, useTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid as dateIsValid } from 'date-fns';
 import ReactDatePicker from 'react-datepicker';
-import type { DatePickerProps } from 'react-datepicker';
 
 import Textbox, { TextboxProps } from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
@@ -95,9 +94,9 @@ function normalizeDateString<T extends WithRange>(
   return isValid(date) ? format(date, stringFormat) : '';
 }
 
-function normalizeDate<T extends WithRange = false>(date: string): OnChangeDate;
-function normalizeDate<T extends WithRange = false>(date: Date): OnChangeDate;
-function normalizeDate<T extends WithRange = false>(
+function normalizeDate<_T extends WithRange = false>(date: string): OnChangeDate;
+function normalizeDate<_T extends WithRange = false>(date: Date): OnChangeDate;
+function normalizeDate<_T extends WithRange = false>(
   date: OnChangeDate
 ): OnChangeDate;
 function normalizeDate<T extends WithRange = false>(

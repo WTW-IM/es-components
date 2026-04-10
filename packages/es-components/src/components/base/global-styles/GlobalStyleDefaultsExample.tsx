@@ -76,20 +76,22 @@ export default function GlobalStyleDefaultsExample() {
   }, [rawCssString]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (cssString) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInstruction('Open drawer to see CSS.');
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setInstruction('Loading...');
   }, [cssString]);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (drawerOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInstruction(drawerOpeningText);
       setTimeout(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setInstruction(old =>
           old === drawerOpeningText ? 'See CSS below.' : old
         );

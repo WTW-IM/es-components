@@ -1,8 +1,6 @@
 import React, { useImperativeHandle, useRef } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Heading from '../heading/Heading';
 import {
   useDrawerItemContext,
   DrawerItem,
@@ -11,7 +9,7 @@ import {
 } from './DrawerItem';
 import Icon, { IconProps } from '../../base/icons/Icon';
 import useUniqueId from '../../util/useUniqueId';
-import { IconName, iconNames, HeadingLevel } from 'es-components-shared-types';
+import { IconName, HeadingLevel } from 'es-components-shared-types';
 
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.gray3};

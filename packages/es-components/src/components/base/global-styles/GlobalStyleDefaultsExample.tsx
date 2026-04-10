@@ -90,7 +90,6 @@ export default function GlobalStyleDefaultsExample() {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setInstruction(drawerOpeningText);
       setTimeout(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setInstruction(old =>
           old === drawerOpeningText ? 'See CSS below.' : old
         );

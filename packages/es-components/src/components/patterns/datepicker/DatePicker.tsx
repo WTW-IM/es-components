@@ -75,7 +75,7 @@ type SelectedDate<T extends WithRange> = NonNullable<
 
 function normalizeDateString(date: string, stringFormat?: string): string;
 function normalizeDateString(date: Date, stringFormat?: string): string;
-function normalizeDateString<T extends WithRange>(
+function normalizeDateString<_T extends WithRange>(
   date: OnChangeDate,
   stringFormat?: string
 ): string;

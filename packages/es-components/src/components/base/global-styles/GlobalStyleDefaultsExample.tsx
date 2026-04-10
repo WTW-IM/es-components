@@ -82,7 +82,6 @@ export default function GlobalStyleDefaultsExample() {
       return;
     }
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setInstruction('Loading...');
   }, [cssString]);
 

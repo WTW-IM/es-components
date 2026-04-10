@@ -138,12 +138,12 @@ const Drawer: DrawerComponentType = React.forwardRef<
     });
   }, []);
 
-  const [drawerState, setDrawerState] = useState({
+  const [drawerState, setDrawerState] = useState(() => ({
     activeKeys,
     setActiveKey,
     unsetActiveKey,
     toggleActiveKey
-  });
+  }));
 
   useEffect(() => {
     if (

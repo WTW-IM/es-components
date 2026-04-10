@@ -56,7 +56,7 @@ const addTag = (node: TrueRootNode, func: (node: TrueRootNode) => void) => {
       'Failed to load icon styles on node',
       { cause: err }
     );
-    console.error(nodeError);  
+    console.error(nodeError);
     return undefined;
   }
 };

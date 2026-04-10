@@ -47,7 +47,7 @@ const getIconStyles = (iconName: IconName, rootNode?: RootNode) => {
     .flatMap(sheet => {
       try {
         return [...(sheet.rules || [])];
-      } catch (e) {
+      } catch (_e) {
         return [];
       }
     })

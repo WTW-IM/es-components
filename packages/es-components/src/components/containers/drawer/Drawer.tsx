@@ -86,11 +86,14 @@ const Drawer: DrawerComponentType = React.forwardRef<
   ref
 ) {
   const keysChangedCallback = useRef(onActiveKeysChanged);
-  keysChangedCallback.current = onActiveKeysChanged;
   const currentActiveKeysProp = useRef(activeKeysProp);
-  currentActiveKeysProp.current = activeKeysProp;
 
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
+
+  useEffect(() => {
+    keysChangedCallback.current = onActiveKeysChanged;
+    currentActiveKeysProp.current = activeKeysProp;
+  });
 
   const resetActiveKeys = useCallback<
     (keymaker: (oldKeys: ActiveKeys) => ActiveKeys) => void
@@ -107,7 +110,10 @@ const Drawer: DrawerComponentType = React.forwardRef<
     [isAccordion]
   );
   const resetActiveKeysCallback = useRef(resetActiveKeys);
-  resetActiveKeysCallback.current = resetActiveKeys;
+
+  useEffect(() => {
+    resetActiveKeysCallback.current = resetActiveKeys;
+  });
 
   const setActiveKey = useCallback(
     (key: string) =>

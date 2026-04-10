@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { render, cleanup, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeComponent } from '../../util/test-utils';
 
@@ -37,8 +37,6 @@ function PanelDrawer<T extends ActiveKeys>(props: DrawerProps<T>) {
     </ThemeComponent>
   );
 }
-
-beforeEach(cleanup);
 
 describe('drawer', () => {
   it('active panel is opened', async () => {

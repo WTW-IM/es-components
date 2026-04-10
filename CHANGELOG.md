@@ -3,6 +3,116 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.15.2](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.10...v21.15.2) (2026-03-02)
+
+**Note:** Version bump only for package es-components-monorepo
+
+## [21.15.2-pre-prod.10](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.9...v21.15.2-pre-prod.10) (2026-02-25)
+
+### Fix
+
+- ensuring CI can add comments and checks ([b94b17c](https://github.com/WTW-IM/es-components/commit/b94b17ccd7054de50f8e45d01c63bfcf7fcd95ef))
+- ensuring npm packages have correct repository URL and casing ([2639d6d](https://github.com/WTW-IM/es-components/commit/2639d6d95b5951e4db0057748b6a72c9f94b3e0e))
+
+## [21.15.2-pre-prod.9](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.8...v21.15.2-pre-prod.9) (2026-02-25)
+
+### Build
+
+- better error handling around failing icon setup ([459bb86](https://github.com/WTW-IM/es-components/commit/459bb86435dd9d959b704167125517c02ed605e0))
+- updating lerna to latest ([cb51cb0](https://github.com/WTW-IM/es-components/commit/cb51cb057a7237fc48554d6e3a4d557af03edb3f))
+
+### Fix
+
+- ensuring NODE_AUTH_TOKEN is correct in releases ([9e214f8](https://github.com/WTW-IM/es-components/commit/9e214f811f19a72e07a08216ddd57d6d105e26f8))
+
+## [21.15.2-pre-prod.8](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.8) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/WTW-IM/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/WTW-IM/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- [skip ci][skip-release] v21.15.2-pre-prod.5 ([18e57c1](https://github.com/WTW-IM/es-components/commit/18e57c1684528f6c762a59ad3f19f06b4c8cb16d))
+- [skip ci][skip-release] v21.15.2-pre-prod.6 ([3648ce2](https://github.com/WTW-IM/es-components/commit/3648ce20a34c935837f9d80b66659d62c3db51e5))
+- [skip ci][skip-release] v21.15.2-pre-prod.7 ([ffd5058](https://github.com/WTW-IM/es-components/commit/ffd5058f4d0bd02457397d8b2d8d59a05c79dd11))
+- clearing NODE_AUTH_TOKEN before publish ([383f051](https://github.com/WTW-IM/es-components/commit/383f051658f792c231b32b2fa6fe0555c2912b64))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+- fixing commitlint processing ([691a1f6](https://github.com/WTW-IM/es-components/commit/691a1f673b1c2fdf8571f399a04423500470aca6))
+- removing clearance of NODE_AUTH_TOKEN in preprod-ci ([2c275fb](https://github.com/WTW-IM/es-components/commit/2c275fb3c22bdb9df8109411c44ff42e0d25aa4d))
+- updating checkout and setup-node actions in preprod-ci ([e20d1ab](https://github.com/WTW-IM/es-components/commit/e20d1ab8f50f7b37009711628ec19daa12ab8ca5))
+- updating preprod-ci for npm Trusted Publishing ([998c380](https://github.com/WTW-IM/es-components/commit/998c38025edd1a0da4ca16f85f8fa762bd67cfd9))
+
+### Fix
+
+- realigning package-lock with package ([43ebc64](https://github.com/WTW-IM/es-components/commit/43ebc64113f744fbda841daabced1e6c00e072de))
+- realigning package-lock with package; new IconNames type ([0e04625](https://github.com/WTW-IM/es-components/commit/0e0462526751042c717595e56e55aa782b133773))
+
+## [21.15.2-pre-prod.7](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.7) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/WTW-IM/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/WTW-IM/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- [skip ci][skip-release] v21.15.2-pre-prod.5 ([18e57c1](https://github.com/WTW-IM/es-components/commit/18e57c1684528f6c762a59ad3f19f06b4c8cb16d))
+- [skip ci][skip-release] v21.15.2-pre-prod.6 ([3648ce2](https://github.com/WTW-IM/es-components/commit/3648ce20a34c935837f9d80b66659d62c3db51e5))
+- clearing NODE_AUTH_TOKEN before publish ([383f051](https://github.com/WTW-IM/es-components/commit/383f051658f792c231b32b2fa6fe0555c2912b64))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+- fixing commitlint processing ([691a1f6](https://github.com/WTW-IM/es-components/commit/691a1f673b1c2fdf8571f399a04423500470aca6))
+- updating checkout and setup-node actions in preprod-ci ([e20d1ab](https://github.com/WTW-IM/es-components/commit/e20d1ab8f50f7b37009711628ec19daa12ab8ca5))
+- updating preprod-ci for npm Trusted Publishing ([998c380](https://github.com/WTW-IM/es-components/commit/998c38025edd1a0da4ca16f85f8fa762bd67cfd9))
+
+### Fix
+
+- realigning package-lock with package ([43ebc64](https://github.com/WTW-IM/es-components/commit/43ebc64113f744fbda841daabced1e6c00e072de))
+- realigning package-lock with package; new IconNames type ([0e04625](https://github.com/WTW-IM/es-components/commit/0e0462526751042c717595e56e55aa782b133773))
+
+## [21.15.2-pre-prod.6](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.6) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/WTW-IM/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/WTW-IM/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- [skip ci][skip-release] v21.15.2-pre-prod.5 ([18e57c1](https://github.com/WTW-IM/es-components/commit/18e57c1684528f6c762a59ad3f19f06b4c8cb16d))
+- clearing NODE_AUTH_TOKEN before publish ([383f051](https://github.com/WTW-IM/es-components/commit/383f051658f792c231b32b2fa6fe0555c2912b64))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+- fixing commitlint processing ([691a1f6](https://github.com/WTW-IM/es-components/commit/691a1f673b1c2fdf8571f399a04423500470aca6))
+- updating preprod-ci for npm Trusted Publishing ([998c380](https://github.com/WTW-IM/es-components/commit/998c38025edd1a0da4ca16f85f8fa762bd67cfd9))
+
+### Fix
+
+- realigning package-lock with package ([43ebc64](https://github.com/WTW-IM/es-components/commit/43ebc64113f744fbda841daabced1e6c00e072de))
+- realigning package-lock with package; new IconNames type ([0e04625](https://github.com/WTW-IM/es-components/commit/0e0462526751042c717595e56e55aa782b133773))
+
+## [21.15.2-pre-prod.5](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.5) (2026-02-25)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/WTW-IM/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- [skip ci][skip-release] v21.15.2-pre-prod.4 ([96d259e](https://github.com/WTW-IM/es-components/commit/96d259e1ff574ade27fb9bed1736f9455fcfb230))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+- fixing commitlint processing ([691a1f6](https://github.com/WTW-IM/es-components/commit/691a1f673b1c2fdf8571f399a04423500470aca6))
+- updating preprod-ci for npm Trusted Publishing ([998c380](https://github.com/WTW-IM/es-components/commit/998c38025edd1a0da4ca16f85f8fa762bd67cfd9))
+
+### Fix
+
+- realigning package-lock with package ([43ebc64](https://github.com/WTW-IM/es-components/commit/43ebc64113f744fbda841daabced1e6c00e072de))
+
+## [21.15.2-pre-prod.4](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.4) (2026-02-24)
+
+### Build
+
+- [skip ci][skip-release] v21.15.2-pre-prod.3 ([bd702db](https://github.com/WTW-IM/es-components/commit/bd702db975cc87673c02f0e0207ebf093cc7ad94))
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+
+## [21.15.2-pre-prod.3](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.2...v21.15.2-pre-prod.3) (2026-02-24)
+
+### Build
+
+- fix Cypress working-directory path in CI workflow (#901) ([2ef7284](https://github.com/WTW-IM/es-components/commit/2ef7284bdff6e969cdf6b54ad62d81338c0add8e)), closes [#901](https://github.com/WTW-IM/es-components/issues/901)
+
+## [21.15.2-pre-prod.2](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.1...v21.15.2-pre-prod.2) (2026-02-24)
+
+**Note:** Version bump only for package es-components-monorepo
+
 ## [21.15.2-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.15.1...v21.15.2-pre-prod.1) (2025-03-27)
 
 ### Build

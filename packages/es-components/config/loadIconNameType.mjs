@@ -9,17 +9,27 @@ chalk.level = 1;
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 async function getIconNames() {
-  const iconResponse = await fetch(
-    'https://app.viabenefits.com/static/cdn/es-assets/icon-demo.html'
-  );
-  const iconRegex = /class="bds-icon bds-([a-z-]+)"/;
-  const globalIconRegex = new RegExp(iconRegex, 'g');
+  try {
+    const iconResponse = await fetch(
+      'https://app.viabenefits.com/static/cdn/es-assets/icon-demo.html'
+    );
+    if (!iconResponse.ok) {
+      throw new Error(
+        `Failed to fetch icon demo page: ${iconResponse.status} - ${iconResponse.statusText}`
+      );
+    }
+    const iconRegex = /class="bds-icon bds-([a-z-]+)"/;
+    const globalIconRegex = new RegExp(iconRegex, 'g');
 
-  const iconDemoBody = await iconResponse.text();
+    const iconDemoBody = await iconResponse.text();
 
-  const allIcons = iconDemoBody.match(globalIconRegex);
-  const iconNames = allIcons.map(icon => `"${icon.match(iconRegex)[1]}"`);
-  return iconNames;
+    const allIcons = iconDemoBody.match(globalIconRegex);
+    const iconNames = allIcons.map(icon => `"${icon.match(iconRegex)[1]}"`);
+    return iconNames;
+  } catch (err) {
+    console.error(chalk.bold.red('Error fetching icon names:', err));
+    throw err;
+  }
 }
 
 async function generateIconNameType() {

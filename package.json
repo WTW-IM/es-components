@@ -94,7 +94,8 @@
   "overrides": {
     "@typescript-eslint/utils": "$@typescript-eslint/utils",
     "react": "$react",
-    "react-dom": "$react-dom"
+    "react-dom": "$react-dom",
+    "react-onclickoutside": "^6.13.2"
   },
   "optionalDependencies": {
     "encoding": "^0.1.13",

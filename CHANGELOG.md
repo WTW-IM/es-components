@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [21.16.0-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.15.2...v21.16.0-pre-prod.0) (2026-04-10)
+
+### Fix
+
+- updating contrast colours in sliding pane and progress tracker components ([45127c1](https://github.com/WTW-IM/es-components/commit/45127c13f7fafdcc577a27297c9f30eb84521d51))
+
+### New
+
+- updating star rating component to include new summary view ([128ca98](https://github.com/WTW-IM/es-components/commit/128ca989619127ca6debc3966371bab3765cca36))
+
 ## [21.15.2](https://github.com/WTW-IM/es-components/compare/v21.15.2-pre-prod.10...v21.15.2) (2026-03-02)
 
 **Note:** Version bump only for package es-components-monorepo

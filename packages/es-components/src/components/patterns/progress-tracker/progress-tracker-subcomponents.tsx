@@ -47,13 +47,13 @@ export const ProgressContainer = styled.ol<ProgressContainerProps>`
           props.$activeStepIndex,
           props.$numberOfSteps
         )}%,
-    ${props => props.theme.colors.gray5}
+    ${props => props.theme.colors.gray6}
       ${props =>
         getProgressLineBreakPercentage(
           props.$activeStepIndex,
           props.$numberOfSteps
         )}%,
-    ${props => props.theme.colors.gray5} 100%
+    ${props => props.theme.colors.gray6} 100%
   );
   background-position: 0
     ${() => getCenterTopPosition(ACTIVE, TRACKING_LINE_HEIGHT)}px;
@@ -112,7 +112,7 @@ export const BasicProgressButton = styled.button`
     width: ${() => INACTIVE}px;
     height: ${() => INACTIVE}px;
     box-sizing: border-box;
-    border: ${props => `1px solid ${props.theme.colors.gray5}`};
+    border: ${props => `1px solid ${props.theme.colors.gray6}`};
     border-radius: ${() => INACTIVE}px;
     margin-bottom: 5px;
     background-color: white;
@@ -289,19 +289,31 @@ const ProgressLi = styled.li<ProgressLiProps>`
   }
 `;
 
-function getProgressItemType(
-  itemType: Maybe<StepState>,
-  showNav: Maybe<boolean>
-) {
+function ProgressItemRenderer({
+  itemType,
+  showNav,
+  ...rest
+}: {
+  itemType: Maybe<StepState>;
+  showNav: Maybe<boolean>;
+} & React.ComponentPropsWithoutRef<'button'>) {
   switch (itemType) {
     case stepStates.active:
-      return ActiveProgressButton;
+      return <ActiveProgressButton {...rest} />;
     case stepStates.pastStep:
-      return showNav ? PastProgressButton : NonNavigablePastProgressButton;
+      return showNav ? (
+        <PastProgressButton {...rest} />
+      ) : (
+        <NonNavigablePastProgressButton {...rest} />
+      );
     case stepStates.clickableFutureStep:
-      return showNav ? FutureProgressButton : BasicProgressButton;
+      return showNav ? (
+        <FutureProgressButton {...rest} />
+      ) : (
+        <BasicProgressButton {...rest} />
+      );
     default:
-      return BasicProgressButton;
+      return <BasicProgressButton {...rest} />;
   }
 }
 
@@ -350,11 +362,10 @@ export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
     },
     ref
   ) {
-    let itemType;
-    if (isPastStep || active || canClickFutureStep) {
-      itemType = getStepState(active, isPastStep, canClickFutureStep);
-    }
-    const ProgressItemType = getProgressItemType(itemType, showNav);
+    const itemType =
+      isPastStep || active || canClickFutureStep
+        ? getStepState(active, isPastStep, canClickFutureStep)
+        : undefined;
     const itemId = useUniqueId();
 
     const listItemProps = {
@@ -364,13 +375,15 @@ export const ProgressItem = React.forwardRef<HTMLLIElement, ProgressItemProps>(
 
     return (
       <ProgressLi $numberOfSteps={numberOfSteps} ref={ref}>
-        <ProgressItemType
+        <ProgressItemRenderer
+          itemType={itemType}
+          showNav={showNav}
           {...listItemProps}
           id={itemId}
           aria-labelledby={`${itemId}-span`}
         >
           <span id={`${itemId}-span`}>{label}</span>
-        </ProgressItemType>
+        </ProgressItemRenderer>
       </ProgressLi>
     );
   }

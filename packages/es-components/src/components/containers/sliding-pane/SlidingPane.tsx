@@ -119,7 +119,7 @@ const Header = styled.div`
 const CloseLink = styled(LinkButton)<CloseLinkProps>`
   padding: 16px;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 1;
 `;
 
 const TitleWrapper = styled.div`
@@ -176,14 +176,17 @@ const GlobalPaneStyles = createGlobalStyle`
   }
 `;
 
-function getPane(direction: string) {
+function PaneDirectional({
+  direction,
+  ...rest
+}: { direction: string } & PaneBaseProps & ReactModal.Props) {
   switch (direction) {
     case 'bottom':
-      return PaneBottom;
+      return <PaneBottom {...rest} />;
     case 'left':
-      return PaneLeft;
+      return <PaneLeft {...rest} />;
     default:
-      return PaneRight;
+      return <PaneRight {...rest} />;
   }
 }
 
@@ -216,7 +219,6 @@ export default function SlidingPane({
     [rootNode]
   );
   const modalParentSelector = parentSelector || handle;
-  const Pane = getPane(from);
   const styles = {
     overlay: { ...defaultStyles.overlay, ...overlayStyles },
     content: { ...defaultStyles.content, ...contentStyles }
@@ -234,7 +236,8 @@ export default function SlidingPane({
     <>
       <GlobalPaneStyles />
       <RootNodeLocator />
-      <Pane
+      <PaneDirectional
+        direction={from}
         style={styles}
         closeTimeoutMS={closeTimeout}
         isOpen={isOpen}
@@ -263,7 +266,7 @@ export default function SlidingPane({
           </Header>
         )}
         <Content>{children}</Content>
-      </Pane>
+      </PaneDirectional>
     </>
   );
 }

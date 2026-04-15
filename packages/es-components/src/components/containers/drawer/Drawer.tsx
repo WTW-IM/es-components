@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
+import React, { useCallback, useMemo, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -85,12 +85,10 @@ const Drawer: DrawerComponentType = React.forwardRef<
   },
   ref
 ) {
-  const keysChangedCallback = useRef(onActiveKeysChanged);
-  keysChangedCallback.current = onActiveKeysChanged;
-  const currentActiveKeysProp = useRef(activeKeysProp);
-  currentActiveKeysProp.current = activeKeysProp;
+  const keysChangedCallback = useRef<typeof onActiveKeysChanged>(onActiveKeysChanged);
+  const currentActiveKeysProp = useRef<typeof activeKeysProp>(activeKeysProp);
 
-  const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
+  const [activeKeys, setActiveKeys] = useState<ActiveKeys>(activeKeysProp || []);
 
   const resetActiveKeys = useCallback<
     (keymaker: (oldKeys: ActiveKeys) => ActiveKeys) => void
@@ -106,8 +104,7 @@ const Drawer: DrawerComponentType = React.forwardRef<
       }),
     [isAccordion]
   );
-  const resetActiveKeysCallback = useRef(resetActiveKeys);
-  resetActiveKeysCallback.current = resetActiveKeys;
+  const resetActiveKeysCallback = useRef<typeof resetActiveKeys>(resetActiveKeys);
 
   const setActiveKey = useCallback(
     (key: string) =>
@@ -132,12 +129,15 @@ const Drawer: DrawerComponentType = React.forwardRef<
     });
   }, []);
 
-  const [drawerState, setDrawerState] = useState({
-    activeKeys,
-    setActiveKey,
-    unsetActiveKey,
-    toggleActiveKey
-  });
+  const memoizedDrawerState = useMemo(
+    () => ({
+      activeKeys,
+      setActiveKey,
+      unsetActiveKey,
+      toggleActiveKey
+    }),
+    [activeKeys, setActiveKey, unsetActiveKey, toggleActiveKey]
+  );
 
   useEffect(() => {
     if (
@@ -161,19 +161,10 @@ const Drawer: DrawerComponentType = React.forwardRef<
     );
   }, [activeKeysProp]);
 
-  useEffect(() => {
-    setDrawerState({
-      activeKeys,
-      setActiveKey,
-      unsetActiveKey,
-      toggleActiveKey
-    });
-  }, [activeKeys, setActiveKey, unsetActiveKey, toggleActiveKey]);
-
   const DrawerContainer = useDefaultStyles ? StyledDrawer : UnstyledDrawer;
 
   return (
-    <DrawerContext.Provider value={drawerState}>
+    <DrawerContext.Provider value={memoizedDrawerState}>
       <DrawerContainer {...other} ref={ref}>
         {React.Children.map(children, (child, ind) => {
           if (!child) return child;

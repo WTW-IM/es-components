@@ -75,12 +75,13 @@ export function withLoadingStateWhileRunning<P extends ExpectedButtonProps>(
     return <ButtonComponent {...(buttonProps as unknown as P)} ref={ref} />;
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   ButtonWithLoadingState.propTypes = {
     children: PropTypes.node,
     ...(ButtonComponent.propTypes || {}),
     showWhileRunning: PropTypes.node,
     onClick: PropTypes.func
-  } as (typeof ButtonWithLoadingState)['propTypes'];
+  };
 
   return ButtonWithLoadingState;
 }

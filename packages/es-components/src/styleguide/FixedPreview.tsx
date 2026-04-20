@@ -9,7 +9,8 @@ import { ProcessedStyleguidistConfig } from 'orig-sg-typings';
 type PreviewComponent = typeof OrigPreview;
 type PreviewProps = React.ComponentProps<PreviewComponent>;
 
-export default function FixedPreview({ code, evalInContext }: PreviewProps) {
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const FixedPreview = ({ code, evalInContext }: PreviewProps) => {
   const [error, setError] = useState('');
   const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
   const { config, codeRevision } = useContext(RSGContext);
@@ -28,7 +29,7 @@ export default function FixedPreview({ code, evalInContext }: PreviewProps) {
   const handleError = useCallback(
     (err: Error) => {
       updateError(err);
-      console.error(err); // eslint-disable-line no-console
+      console.error(err);
     },
     [updateError]
   );
@@ -44,6 +45,7 @@ export default function FixedPreview({ code, evalInContext }: PreviewProps) {
 
   useEffect(
     function clearErrorWithNewCode() {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setError('');
     },
     [code]
@@ -72,12 +74,14 @@ export default function FixedPreview({ code, evalInContext }: PreviewProps) {
       if (!mountNode) return;
 
       const newRoot = createRoot(mountNode);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setRoot(newRoot);
 
       return () => {
         setTimeout(() => {
           newRoot.unmount();
         });
+
         setRoot(undefined);
       };
     },
@@ -90,6 +94,8 @@ export default function FixedPreview({ code, evalInContext }: PreviewProps) {
       {error ? <PlaygroundError message={error} /> : <></>}
     </>
   );
-}
+};
 
 FixedPreview.propTypes = { ...OrigPreview.propTypes };
+
+export default FixedPreview;

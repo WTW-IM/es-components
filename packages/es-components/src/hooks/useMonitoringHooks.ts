@@ -26,10 +26,10 @@ export function useMonitoringEffect<T>(
   const monitorValue = depsIncluded ? (monitor as T) : (depsOrMonitor as T);
 
   const monitorRef = useRef(monitorValue);
-  monitorRef.current = monitorValue;
+  monitorRef.current = monitorValue; // eslint-disable-line react-hooks/refs
 
   const effectRef = useRef(effect);
-  effectRef.current = effect;
+  effectRef.current = effect; // eslint-disable-line react-hooks/refs
 
   useEffect(() => {
     return effectRef.current(monitorRef.current);
@@ -80,7 +80,7 @@ export function useMonitoringCallback<
   const monitorRef = useRef(monitorValue);
   monitorRef.current = monitorValue;
 
-  /* eslint-disable @typescript-eslint/no-unsafe-return,react-hooks/exhaustive-deps */
+  /* eslint-disable @typescript-eslint/no-unsafe-return,react-hooks/exhaustive-deps,react-hooks/use-memo */
   const monitoredCallback = useCallback<ReturnCallback>(
     ((...args: Parameters<ReturnCallback>) =>
       callbackRef.current(
@@ -89,7 +89,7 @@ export function useMonitoringCallback<
       ) as ReturnType<ReturnCallback>) as ReturnCallback,
     deps
   );
-  /* eslint-enable @typescript-eslint/no-unsafe-return,react-hooks/exhaustive-deps */
+  /* eslint-enable @typescript-eslint/no-unsafe-return,react-hooks/exhaustive-deps,react-hooks/use-memo */
 
   return monitoredCallback;
 }

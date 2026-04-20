@@ -145,12 +145,15 @@ const OutlineButton = React.forwardRef<HTMLButtonElement, OutlineButtonProps>(
   }
 );
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const propTypes = {
   ...Button.propTypes,
   /** Select the color style of the button, types come from theme buttonStyles.outlineButton */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   styleType: Button.propTypes!.styleType
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 OutlineButton.propTypes = propTypes;
 
 export default OutlineButton;

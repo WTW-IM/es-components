@@ -81,6 +81,7 @@ export function DrawerItem({
   useEffect(
     function setOpenFromActiveKeys() {
       const newOpen = activeKeys.includes(itemKey);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       safeSetOpen(newOpen);
     },
     [activeKeys, itemKey, safeSetOpen]
@@ -112,12 +113,14 @@ export function DrawerItem({
 
   useEffect(
     function setChangedContext() {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setItemContext({ open, itemId, itemKey, toggleOpen });
     },
     [open, itemId, itemKey, toggleOpen]
   );
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAfterInitialRender(true);
   }, []);
 
@@ -204,6 +207,7 @@ export const DrawerItemOpener = ({
 }: DrawerItemOpenerProps) => {
   try {
     return (
+      // eslint-disable-next-line react-hooks/error-boundaries
       <DrawerItemOpenerSingle {...props}>{children}</DrawerItemOpenerSingle>
     );
   } catch {

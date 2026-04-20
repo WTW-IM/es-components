@@ -282,7 +282,9 @@ SlidingPane.propTypes = {
   from: PropTypes.oneOf(['left', 'right', 'bottom']),
   closeIcon: PropTypes.any,
   closeIconScreenReaderText: PropTypes.string,
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   headingLevel: Heading.propTypes?.level,
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   headingSize: Heading.propTypes?.size,
   closeTimeout: PropTypes.number,
   overlayStyles: PropTypes.object,

@@ -59,6 +59,7 @@ export function useCheckboxGroupActions({
   );
 
   useEffect(function lastEffect() {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAfterFirstRender(true);
   }, []);
 
@@ -79,7 +80,8 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 }) => {
   const originalSelectedValues = useMemo(
     () => options.filter(o => o.checked).map(o => o.value?.toString() || ''),
-    [] // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
 
   const { selectedValues, setSelectedValues, handleCheckboxChange } =
@@ -93,6 +95,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     const allChecked = options.every(o =>
       selectedValues.includes(o.value?.toString() || '')
     );
+
     setCheckAll(allChecked);
   }, [options, selectedValues]);
 

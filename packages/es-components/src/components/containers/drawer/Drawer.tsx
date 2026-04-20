@@ -1,4 +1,10 @@
-import React, { useCallback, useMemo, useEffect, useRef } from 'react';
+import React, {
+  useCallback,
+  useMemo,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -85,10 +91,13 @@ const Drawer: DrawerComponentType = React.forwardRef<
   },
   ref
 ) {
-  const keysChangedCallback = useRef<typeof onActiveKeysChanged>(onActiveKeysChanged);
+  const keysChangedCallback =
+    useRef<typeof onActiveKeysChanged>(onActiveKeysChanged);
   const currentActiveKeysProp = useRef<typeof activeKeysProp>(activeKeysProp);
 
-  const [activeKeys, setActiveKeys] = useState<ActiveKeys>(activeKeysProp || []);
+  const [activeKeys, setActiveKeys] = useState<ActiveKeys>(
+    activeKeysProp || []
+  );
 
   const resetActiveKeys = useCallback<
     (keymaker: (oldKeys: ActiveKeys) => ActiveKeys) => void
@@ -104,7 +113,8 @@ const Drawer: DrawerComponentType = React.forwardRef<
       }),
     [isAccordion]
   );
-  const resetActiveKeysCallback = useRef<typeof resetActiveKeys>(resetActiveKeys);
+  const resetActiveKeysCallback =
+    useRef<typeof resetActiveKeys>(resetActiveKeys);
 
   const setActiveKey = useCallback(
     (key: string) =>

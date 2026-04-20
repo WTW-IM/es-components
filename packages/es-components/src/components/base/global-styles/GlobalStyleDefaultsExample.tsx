@@ -61,6 +61,7 @@ export default function GlobalStyleDefaultsExample() {
   }, [syntaxRef]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCssString(
       beautify.css(rawCssString, {
         indent_size: 4,
@@ -76,6 +77,7 @@ export default function GlobalStyleDefaultsExample() {
 
   useEffect(() => {
     if (cssString) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInstruction('Open drawer to see CSS.');
       return;
     }
@@ -85,6 +87,7 @@ export default function GlobalStyleDefaultsExample() {
 
   useEffect(() => {
     if (drawerOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInstruction(drawerOpeningText);
       setTimeout(() => {
         setInstruction(old =>
@@ -92,6 +95,7 @@ export default function GlobalStyleDefaultsExample() {
         );
       }, 500);
     }
+
     setTimeout(() => setDisplayCss(drawerOpen), 0);
   }, [drawerOpen]);
 

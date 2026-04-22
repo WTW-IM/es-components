@@ -195,8 +195,11 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     ref
   ) {
     const onChange = useRef(onChangeProp);
-    onChange.current = onChangeProp;
     const afterInitialRender = useRef(false);
+
+    useEffect(() => {
+      onChange.current = onChangeProp;
+    }, [onChangeProp]);
 
     const [state, setState] = useState(
       getDefaultState(defaultValue, defaultDay)
@@ -214,6 +217,11 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       [children]
     );
 
+    const firstDatePartChild = useMemo(() => {
+      if (!id) return null;
+      return React.Children.toArray(children).find(isDatePartChild) || null;
+    }, [children, id]);
+
     const currentDate = useMemo(
       () =>
         createDate(state, {
@@ -227,10 +235,12 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     useEffect(() => {
       if (!afterInitialRender.current) return;
 
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSilentState(state);
     }, [state]);
 
     useEffect(() => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentMinDate(oldMin => {
         if (oldMin?.toString() === minDate?.toString()) return oldMin;
         return minDate;
@@ -238,6 +248,7 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     }, [minDate]);
 
     useEffect(() => {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentMaxDate(oldMax => {
         if (oldMax?.toString() === maxDate?.toString()) return oldMax;
         return maxDate;
@@ -288,16 +299,13 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       afterInitialRender.current = true;
     }, []);
 
-    let hasSetId = false;
-
     return (
       <Wrapper ref={ref} tabIndex={-1} {...props} onBlur={onBlurComponent}>
         {React.Children.map(children, child => {
           const isDatePart = isDatePartChild(child);
           if (!isDatePart) return child;
 
-          const childId =
-            !hasSetId && id ? ((hasSetId = true), id) : child.props.id;
+          const childId = firstDatePartChild === child ? id : child.props.id;
 
           return cloneDateChild(child, currentDate, {
             id: childId,

@@ -1,5 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useState, useLayoutEffect } from 'react';
 import styled, { css } from 'styled-components';
 import InputBase, {
   validationStateHighlightStyles,
@@ -93,8 +92,9 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
       [ref]
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       if (inputRef) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setHasValue(Boolean(inputRef && inputRef.value));
         return;
       }

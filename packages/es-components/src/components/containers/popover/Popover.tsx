@@ -238,6 +238,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <Container ref={ref}>
         <Popup
           name={name}
+          // eslint-disable-next-line react-hooks/refs
           trigger={renderTrigger({
             ref: triggerBtnRef,
             toggleShow: toggleShowFromInteraction,

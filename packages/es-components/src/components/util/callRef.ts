@@ -24,7 +24,7 @@ export function useMergedRefs<T>(
     el => {
       callRefs(el, ...refs);
     },
-    [...refs] // eslint-disable-line react-hooks/exhaustive-deps
+    [...refs] // eslint-disable-line react-hooks/exhaustive-deps, react-hooks/use-memo
   );
 
   return mergedRefs;

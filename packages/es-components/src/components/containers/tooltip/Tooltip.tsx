@@ -182,6 +182,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       whileElementsMounted: autoUpdate,
       placement: position,
       middleware: [
+        // eslint-disable-next-line react-hooks/refs
         arrow({ element: arrowRef }),
         shift({
           limiter: limitShift()

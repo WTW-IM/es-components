@@ -106,6 +106,7 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
         childIsSelected(child, selectedKey || value)
       );
 
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedIndex(Math.max(newSelectedIndex, 0));
     }, [selectedKey, value, children]);
 

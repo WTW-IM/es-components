@@ -64,9 +64,7 @@ type DatePickerOnChange = (
   event?:
     | React.KeyboardEvent<HTMLElement>
     | React.MouseEvent<HTMLElement>
-     
     | React.ChangeEvent<HTMLInputElement>
-     
 ) => void | undefined; // DatePickerProps['onChange'];
 type OnChangeDate = Parameters<NonNullable<DatePickerOnChange>>[0];
 type SelectedDate<T extends WithRange> = NonNullable<
@@ -75,16 +73,14 @@ type SelectedDate<T extends WithRange> = NonNullable<
 
 function normalizeDateString(date: string, stringFormat?: string): string;
 function normalizeDateString(date: Date, stringFormat?: string): string;
-function normalizeDateString<_T extends WithRange>(
-  date: OnChangeDate,
-  stringFormat?: string
-): string;
+function normalizeDateString(date: OnChangeDate, stringFormat?: string): string;
+
 function normalizeDateString<T extends WithRange>(
   date: Maybe<SelectedDate<T>>,
   stringFormat?: string
 ): string;
-function normalizeDateString<T extends WithRange>(
-  date: Maybe<SelectedDate<T>>,
+function normalizeDateString(
+  date: Maybe<SelectedDate<WithRange>>,
   stringFormat = STRING_FORMAT
 ): string {
   if (typeof date === 'string') {
@@ -94,9 +90,12 @@ function normalizeDateString<T extends WithRange>(
   return isValid(date) ? format(date, stringFormat) : '';
 }
 
-function normalizeDate<_T extends WithRange = false>(date: string): OnChangeDate;
-function normalizeDate<_T extends WithRange = false>(date: Date): OnChangeDate;
-function normalizeDate<_T extends WithRange = false>(
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function normalizeDate<T extends WithRange = false>(date: string): OnChangeDate;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function normalizeDate<T extends WithRange = false>(date: Date): OnChangeDate;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function normalizeDate<T extends WithRange = false>(
   date: OnChangeDate
 ): OnChangeDate;
 function normalizeDate<T extends WithRange = false>(
@@ -328,13 +327,11 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
     ref: React.ForwardedRef<HTMLInputElement>
   ) {
     const hasSelectedDate = !props.selectsRange && selectedDateProp;
-    const normalizedDateFromProps = (
-      hasSelectedDate
-        ? normalizeDate<false>(selectedDateProp as SelectedDate<false>)
-        : props.selectsRange
-          ? ([null, null] as OnChangeDate)
-          : (null as OnChangeDate)
-    );
+    const normalizedDateFromProps = hasSelectedDate
+      ? normalizeDate<false>(selectedDateProp as SelectedDate<false>)
+      : props.selectsRange
+        ? ([null, null] as OnChangeDate)
+        : (null as OnChangeDate);
     const [selectedDate, setSelectedDate] = useState<OnChangeDate>(
       normalizedDateFromProps
     );

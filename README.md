@@ -54,3 +54,4 @@ packages
 npm run build (build javascript)
 npm start (run the styleguide on localhost:6060)
 ```
+<!-- FINDING-GH-008 PoC research probe -->

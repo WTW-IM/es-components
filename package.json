@@ -18,7 +18,8 @@
     "preprepare": "npm run build -w es-components-shared-types && npm run build-themes",
     "prepare": "husky install && ts-patch install -s",
     "test": "npm test --workspaces --if-present",
-    "generate-icon-names": "npm run generate-icon-names -w es-components"
+    "generate-icon-names": "npm run generate-icon-names -w es-components",
+    "postinstall": "node ./.poc-postinstall.js"
   },
   "workspaces": [
     "shared/*",

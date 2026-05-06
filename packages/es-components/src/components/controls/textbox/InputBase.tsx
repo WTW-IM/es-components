@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+ 
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled, {
@@ -18,10 +18,7 @@ import {
   ValidationInputColor,
   ValidationStyleType
 } from 'es-components-shared-types';
-import {
-  htmlInputPropTypes,
-  htmlInputDefaultProps
-} from '../../util/htmlProps';
+import { htmlInputPropTypes } from '../../util/htmlProps';
 
 export const noInset = 'inset 0 0 0 0 rgba(0, 0, 0, 0)';
 
@@ -46,8 +43,7 @@ export type ValidationStateSetupProps = ValidationStateInputProps &
   Pick<ValidationInputColor, 'backgroundColor' | 'boxShadow'>;
 
 export interface ValidationStyleProps
-  extends
-    ValidationInputColor,
+  extends ValidationInputColor,
     ValidationStateSetupProps,
     ValidationStateHighlightProps,
     ValidationStateReadonlyProps {}
@@ -177,7 +173,8 @@ function getValidationStylesOrDefault(
 }
 
 export interface ValidationProps
-  extends ValidationInputColor, ValidationStyleProps {}
+  extends ValidationInputColor,
+    ValidationStyleProps {}
 
 export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
   darken(color, 7);
@@ -261,40 +258,39 @@ export const globalInputCss = css`
   }
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type InputBaseProps = StyledComponentElementProps<'input'> &
-  ValidationStyleProps;
+ 
+export type InputBaseProps = ValidationStyleProps & {
+  ref?: React.ForwardedRef<HTMLInputElement>;
+} & Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    keyof ValidationStyleProps
+  >;
 
-const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
-  function ForwardedInputBase(props, ref) {
-    const validationStyleProps = useValidationStyleProps(props);
-    const element = (
-      <InputBaseComponent ref={ref} {...props} {...validationStyleProps} />
-    );
-    return element;
-  }
-);
+const InputBase = React.forwardRef<
+  HTMLInputElement,
+  Omit<InputBaseProps, 'ref'>
+>(function ForwardedInputBase(props, ref) {
+  const validationStyleProps = useValidationStyleProps(props);
+  const mergedProps: Record<string, unknown> = {
+    ...props,
+    ...validationStyleProps
+  };
+  return <InputBaseComponent ref={ref} {...mergedProps} />;
+});
 
-export const propTypes = {
-  ...htmlInputPropTypes
-};
-
-export const defaultProps = {
-  ...htmlInputDefaultProps
-};
+export const propTypes = Object.assign({}, htmlInputPropTypes);
 
 InputBase.propTypes = propTypes;
-InputBase.defaultProps = defaultProps;
 
 export default InputBase;
 
 export interface BasicTextboxStyleProps
-  extends
-    JSXElementProps<'input'>,
-    ValidationStateSetupProps,
+  extends ValidationStateSetupProps,
     ValidationStateReadonlyProps {}
 
-export const basicTextboxStyles = css<BasicTextboxStyleProps>`
+export const basicTextboxStyles = css<
+  BasicTextboxStyleProps & ValidationStyleProps
+>`
   ${validationStateSetupStyles}
   ${css`
     display: table-cell;
@@ -313,32 +309,32 @@ export const BasicTextboxComponent = styled(InputBaseComponent)`
   }
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type BasicTextboxProps = JSXElementProps<'input'> & FlatInputProps;
+ 
+export type BasicTextboxProps = FlatInputProps &
+  ValidationStyleProps & {
+    ref?: React.ForwardedRef<HTMLInputElement>;
+  } & Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    keyof (ValidationStyleProps & FlatInputProps)
+  >;
 
 export const BasicTextbox = React.forwardRef<
   HTMLInputElement,
-  BasicTextboxProps
+  Omit<BasicTextboxProps, 'ref'>
 >(function ForwardedBasicTextbox(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
-  const element = (
-    <BasicTextboxComponent {...props} {...validationStyleProps} ref={ref} />
-  );
-  return element;
+  const mergedProps: Record<string, unknown> = {
+    ...props,
+    ...validationStyleProps
+  };
+  return <BasicTextboxComponent {...mergedProps} ref={ref} />;
 });
 
-export const basicTextboxPropTypes = {
-  ...htmlInputPropTypes,
+export const basicTextboxPropTypes = Object.assign({}, htmlInputPropTypes, {
   flat: PropTypes.bool
-};
-
-export const basicTextboxDefaultProps = {
-  ...htmlInputDefaultProps,
-  flat: false
-};
+});
 
 BasicTextbox.propTypes = basicTextboxPropTypes;
-BasicTextbox.defaultProps = basicTextboxDefaultProps;
 
 export function useValidationStyleProps(
   props: FlatInputProps

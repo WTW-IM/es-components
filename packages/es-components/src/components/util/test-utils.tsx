@@ -20,11 +20,11 @@ const profilerRender = (id: string, phase: string, actualDuration: number) => {
 };
 
 export function renderWithTheme(component: React.ReactElement): RenderResult {
-  const { ...viewUtils } = render(<ThemeComponent>{component}</ThemeComponent>);
+  const utils = render(<ThemeComponent>{component}</ThemeComponent>);
   return {
-    ...viewUtils,
+    ...utils,
     rerender: (rerenderComponent: React.ReactNode) =>
-      viewUtils.rerender(
+      utils.rerender(
         <Profiler id="ThemeRender" onRender={profilerRender}>
           <ThemeComponent>{rerenderComponent}</ThemeComponent>
         </Profiler>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled, {
@@ -45,7 +46,8 @@ export type ValidationStateSetupProps = ValidationStateInputProps &
   Pick<ValidationInputColor, 'backgroundColor' | 'boxShadow'>;
 
 export interface ValidationStyleProps
-  extends ValidationInputColor,
+  extends
+    ValidationInputColor,
     ValidationStateSetupProps,
     ValidationStateHighlightProps,
     ValidationStateReadonlyProps {}
@@ -175,8 +177,7 @@ function getValidationStylesOrDefault(
 }
 
 export interface ValidationProps
-  extends ValidationInputColor,
-    ValidationStyleProps {}
+  extends ValidationInputColor, ValidationStyleProps {}
 
 export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
   darken(color, 7);
@@ -260,13 +261,17 @@ export const globalInputCss = css`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export type InputBaseProps = StyledComponentElementProps<'input'> &
   ValidationStyleProps;
 
 const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
   function ForwardedInputBase(props, ref) {
     const validationStyleProps = useValidationStyleProps(props);
-    return <InputBaseComponent ref={ref} {...validationStyleProps} />;
+    const element = (
+      <InputBaseComponent ref={ref} {...props} {...validationStyleProps} />
+    );
+    return element;
   }
 );
 
@@ -284,7 +289,8 @@ InputBase.defaultProps = defaultProps;
 export default InputBase;
 
 export interface BasicTextboxStyleProps
-  extends JSXElementProps<'input'>,
+  extends
+    JSXElementProps<'input'>,
     ValidationStateSetupProps,
     ValidationStateReadonlyProps {}
 
@@ -307,6 +313,7 @@ export const BasicTextboxComponent = styled(InputBaseComponent)`
   }
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export type BasicTextboxProps = JSXElementProps<'input'> & FlatInputProps;
 
 export const BasicTextbox = React.forwardRef<
@@ -314,9 +321,10 @@ export const BasicTextbox = React.forwardRef<
   BasicTextboxProps
 >(function ForwardedBasicTextbox(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
-  return (
+  const element = (
     <BasicTextboxComponent {...props} {...validationStyleProps} ref={ref} />
   );
+  return element;
 });
 
 export const basicTextboxPropTypes = {

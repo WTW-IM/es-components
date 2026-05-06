@@ -1,4 +1,3 @@
- 
 import React, { useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled, {
@@ -43,7 +42,8 @@ export type ValidationStateSetupProps = ValidationStateInputProps &
   Pick<ValidationInputColor, 'backgroundColor' | 'boxShadow'>;
 
 export interface ValidationStyleProps
-  extends ValidationInputColor,
+  extends
+    ValidationInputColor,
     ValidationStateSetupProps,
     ValidationStateHighlightProps,
     ValidationStateReadonlyProps {}
@@ -173,8 +173,7 @@ function getValidationStylesOrDefault(
 }
 
 export interface ValidationProps
-  extends ValidationInputColor,
-    ValidationStyleProps {}
+  extends ValidationInputColor, ValidationStyleProps {}
 
 export const getDisabledBackgroundColor = (color: CSS.Property.Color) =>
   darken(color, 7);
@@ -258,7 +257,6 @@ export const globalInputCss = css`
   }
 `;
 
- 
 export type InputBaseProps = ValidationStyleProps & {
   ref?: React.ForwardedRef<HTMLInputElement>;
 } & Omit<
@@ -271,11 +269,13 @@ const InputBase = React.forwardRef<
   Omit<InputBaseProps, 'ref'>
 >(function ForwardedInputBase(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
-  const mergedProps: Record<string, unknown> = {
-    ...props,
-    ...validationStyleProps
-  };
-  return <InputBaseComponent ref={ref} {...mergedProps} />;
+  return (
+    <InputBaseComponent
+      ref={ref}
+      {...(props as Record<string, unknown>)}
+      {...validationStyleProps}
+    />
+  );
 });
 
 export const propTypes = Object.assign({}, htmlInputPropTypes);
@@ -285,8 +285,7 @@ InputBase.propTypes = propTypes;
 export default InputBase;
 
 export interface BasicTextboxStyleProps
-  extends ValidationStateSetupProps,
-    ValidationStateReadonlyProps {}
+  extends ValidationStateSetupProps, ValidationStateReadonlyProps {}
 
 export const basicTextboxStyles = css<
   BasicTextboxStyleProps & ValidationStyleProps
@@ -309,7 +308,6 @@ export const BasicTextboxComponent = styled(InputBaseComponent)`
   }
 `;
 
- 
 export type BasicTextboxProps = FlatInputProps &
   ValidationStyleProps & {
     ref?: React.ForwardedRef<HTMLInputElement>;
@@ -323,11 +321,13 @@ export const BasicTextbox = React.forwardRef<
   Omit<BasicTextboxProps, 'ref'>
 >(function ForwardedBasicTextbox(props, ref) {
   const validationStyleProps = useValidationStyleProps(props);
-  const mergedProps: Record<string, unknown> = {
-    ...props,
-    ...validationStyleProps
-  };
-  return <BasicTextboxComponent {...mergedProps} ref={ref} />;
+  return (
+    <BasicTextboxComponent
+      {...(props as Record<string, unknown>)}
+      {...validationStyleProps}
+      ref={ref}
+    />
+  );
 });
 
 export const basicTextboxPropTypes = Object.assign({}, htmlInputPropTypes, {

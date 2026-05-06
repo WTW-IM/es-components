@@ -266,7 +266,9 @@ export type InputBaseProps = StyledComponentElementProps<'input'> &
 const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
   function ForwardedInputBase(props, ref) {
     const validationStyleProps = useValidationStyleProps(props);
-    return <InputBaseComponent ref={ref} {...validationStyleProps} />;
+    return (
+      <InputBaseComponent ref={ref} {...props} {...validationStyleProps} />
+    );
   }
 );
 

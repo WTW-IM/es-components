@@ -246,7 +246,7 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         ASSETS_PATH: JSON.stringify(assets_url),
-        process: `{}`
+        process: '({})'
       })
     ],
     module: {

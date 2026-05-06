@@ -73,8 +73,8 @@ module.exports = {
         <style>
           body {
             color: #444;
-            font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-              sans-serif;
+            font-family:
+              'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
             font-weight: 400;
           }
 

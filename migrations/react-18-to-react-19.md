@@ -20,7 +20,7 @@ ES Components has been upgraded from React 18.3.1 to React 19.0.0. React 19 incl
 Babel was updated to support React 19's automatic JSX transform. The `@babel/preset-react` preset now includes `{ runtime: 'automatic' }`:
 
 ```javascript
-['@babel/preset-react', { runtime: 'automatic' }]
+['@babel/preset-react', { runtime: 'automatic' }];
 ```
 
 **No action required** - this is handled automatically in the build configuration.
@@ -58,16 +58,19 @@ The following dependencies were updated for React 19 compatibility:
 **Important Clarification**: React 19 IS fully compatible with Drawer and Popover components. The issue is with a transitive dependency.
 
 **What Works**:
+
 - ✅ React 19 + Drawer component (in production)
-- ✅ React 19 + Popover component (in production)  
+- ✅ React 19 + Popover component (in production)
 - ✅ All 221 Jest unit tests pass with drawer/popover components
 - ✅ Drawer/Popover functionality verified working
 
 **What Doesn't Work** (Development Only):
+
 - ❌ Cypress E2E tests against dev server (webpack bundling issue)
 - ❌ NOT the components themselves or React 19
 
-**Root Cause**: 
+**Root Cause**:
+
 - Drawer and Popover components use `react-modal` for modal functionality
 - `react-modal` v3.16.3 (latest, pre-React-19-support version) contains optional chaining (`?.`) syntax
 - When webpack bundles react-modal with React 19 in the dev server, the transpilation fails
@@ -75,6 +78,7 @@ The following dependencies were updated for React 19 compatibility:
 - **This is a dev server webpack bundling issue, NOT a React 19 incompatibility**
 
 **Official References**:
+
 - React 19 Compatibility: React 19 IS compatible (proven by 221 passing tests)
 - react-modal GitHub: https://github.com/reactjs/react-modal
 - Official React 19 Support Issue: https://github.com/reactjs/react-modal/issues/1052 ⭐
@@ -85,7 +89,8 @@ The following dependencies were updated for React 19 compatibility:
 - Current Status: react-modal v3.16.3 allows React 19 peerDependency (but has webpack bundling issues)
 - Breaking Change Alert: This is NOT a React 19 breaking change, it's a pre-existing dependency issue
 
-**Status**: 
+**Status**:
+
 - ✅ Unit tests (Jest): All 221 tests pass with React 19, including drawer/popover tests
 - ❌ E2E tests (Cypress): Blocked by react-modal webpack bundling in dev server only
 - ✅ Runtime functionality: Drawer and Popover components work correctly in production with React 19
@@ -94,8 +99,8 @@ The following dependencies were updated for React 19 compatibility:
 **Workarounds**:
 
 1. **For Production**: No workaround needed - components work perfectly with React 19
-2. **For E2E Testing**: 
-   - Recommended: Wait for react-modal v4.0+ 
+2. **For E2E Testing**:
+   - Recommended: Wait for react-modal v4.0+
    - Monitor GitHub: https://github.com/reactjs/react-modal/issues
    - Check npm registry: https://www.npmjs.com/package/react-modal
 3. **Alternative Modal Library**: Replace react-modal with React 19-compatible library
@@ -103,24 +108,29 @@ The following dependencies were updated for React 19 compatibility:
 ## Testing
 
 ### Jest Unit Tests
+
 All 221 unit tests pass with React 19:
+
 ```bash
 npm run test
 # Result: 44 test suites, 221 tests passed ✅
 ```
 
 ### Cypress E2E Tests
+
 Currently skipped due to react-modal incompatibility. Tests can be re-enabled when:
+
 1. react-modal is updated to React 19-compatible version
 2. Or library is replaced with React 19-compatible alternative
 
 To re-enable:
+
 ```javascript
 // In cypress/e2e/*.cy.js files, change:
-describe.skip('...') // Currently skipped
+describe.skip('...'); // Currently skipped
 
 // To:
-describe('...') // When dependency is resolved
+describe('...'); // When dependency is resolved
 ```
 
 ## Migration Path for Downstream Projects
@@ -132,6 +142,7 @@ If you're using ES Components in your project:
 3. **No other action needed** - all component APIs remain the same
 
 ### Breaking Changes
+
 - None related to ES Components
 - React 19 itself has no breaking changes to component APIs (only internal improvements)
 
@@ -155,12 +166,14 @@ For issues upgrading to React 19:
 ### Known Ecosystem Issues
 
 The following ecosystem packages have known issues with React 19:
+
 - **react-modal@3.16.3**: Webpack bundling issues (see Known Incompatibilities section above)
 - **Check before upgrade**: https://react19.codethon.io/ for full compatibility matrix
 
 ### Contributing Issues
 
 If you encounter React 19 compatibility issues:
+
 1. **ES Components**: Report in https://github.com/WTW-IM/es-components/issues
 2. **React Core**: Report in https://github.com/facebook/react/issues
 3. **Dependencies**: Report in the respective package's GitHub repository

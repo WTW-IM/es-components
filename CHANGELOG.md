@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.16.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.16.0...v21.16.1-pre-prod.0) (2026-05-21)
+
+### Fix
+
+- remove styled components v5 from package json (#920) ([69de641](https://github.com/WTW-IM/es-components/commit/69de6419ff9204a2bcd5af034c86d66ce890f2fe)), closes [#920](https://github.com/WTW-IM/es-components/issues/920)
+
 # [21.16.0](https://github.com/WTW-IM/es-components/compare/v21.16.0-pre-prod.0...v21.16.0) (2026-04-14)
 
 **Note:** Version bump only for package es-components-monorepo

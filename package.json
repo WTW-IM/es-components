@@ -22,7 +22,8 @@
   },
   "workspaces": [
     "shared/*",
-    "packages/*"
+    "packages/*",
+    "packages/es-components/cypress"
   ],
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,mjs,json,yml,yaml}": [

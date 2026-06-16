@@ -317,10 +317,6 @@ HorizontalScrollWrapper.propTypes = {
   slideAmount: PropTypes.number
 };
 
-HorizontalScrollWrapper.defaultProps = {
-  slideAmount: 300
-};
-
 export default withWindowSize<HorizontalScrollWrapperProps, HTMLDivElement>(
   HorizontalScrollWrapper
 );

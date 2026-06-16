@@ -10,7 +10,7 @@ import { Placement } from '@floating-ui/react';
 const Button = OriginalButton as ReturnType<
   typeof React.forwardRef<
     HTMLElement | undefined,
-    JSX.IntrinsicElements['button']
+    React.JSX.IntrinsicElements['button']
   >
 >;
 
@@ -238,6 +238,7 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <Container ref={ref}>
         <Popup
           name={name}
+          // eslint-disable-next-line react-hooks/refs
           trigger={renderTrigger({
             ref: triggerBtnRef,
             toggleShow: toggleShowFromInteraction,

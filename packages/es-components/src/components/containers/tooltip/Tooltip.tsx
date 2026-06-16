@@ -100,7 +100,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 
 const ScreenReaderContent = screenReaderOnly('div');
 
-type DivPropsWithRef = React.PropsWithRef<JSX.IntrinsicElements['div']>;
+type DivPropsWithRef = React.PropsWithRef<React.JSX.IntrinsicElements['div']>;
 type Tooltips = [
   IStyledComponent<'web', DivPropsWithRef & TooltipStyleProps>,
   IStyledComponent<'web', DivPropsWithRef>
@@ -146,20 +146,18 @@ type TooltipProps = Override<
 >;
 
 const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
-  function ForwardedTooltip(props, ref) {
+  function ForwardedTooltip(
+    {
+      position = 'top',
+      disableHover = false,
+      disableFocus = false,
+      linkProps = {},
+      ...props
+    },
+    ref
+  ) {
     const [show, setShow] = useState(false);
-    const {
-      name,
-      disableHover,
-      disableFocus,
-      position,
-      content,
-      styleType,
-      children,
-      linkProps,
-      id: idProp,
-      ...other
-    } = props;
+    const { name, content, styleType, children, id: idProp, ...other } = props;
 
     const getTopIndex = useTopZIndex();
     const tooltipId = name ? `es-tooltip__${name}` : undefined;
@@ -314,14 +312,6 @@ Tooltip.propTypes = {
   linkProps: PropTypes.exact<PopoverLinkValidationMap>(
     passedPopoverLinkProps
   ) as Validator<PopoverLinkValidationProps>
-};
-
-Tooltip.defaultProps = {
-  position: 'top',
-  disableHover: false,
-  disableFocus: false,
-  styleType: undefined,
-  linkProps: {}
 };
 
 export default Tooltip;

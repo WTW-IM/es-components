@@ -1,8 +1,6 @@
 import React, { useImperativeHandle, useRef } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Heading from '../heading/Heading';
 import {
   useDrawerItemContext,
   DrawerItem,
@@ -11,7 +9,7 @@ import {
 } from './DrawerItem';
 import Icon, { IconProps } from '../../base/icons/Icon';
 import useUniqueId from '../../util/useUniqueId';
-import { IconName, iconNames, HeadingLevel } from 'es-components-shared-types';
+import { IconName, HeadingLevel } from 'es-components-shared-types';
 
 const PanelWrapper = styled.div`
   border-bottom: 1px solid ${props => props.theme.colors.gray3};
@@ -106,7 +104,7 @@ const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
     },
     ref
   ) {
-    const buttonRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
+    const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => ({
       focusHeaderButton: () => buttonRef.current?.focus()
     }));
@@ -144,40 +142,5 @@ const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
     );
   }
 );
-
-export const propTypes = {
-  ...(PanelWrapper.propTypes || {}),
-  children: PropTypes.node.isRequired,
-  /** Title text displayed next to the open/close icon */
-  title: PropTypes.node.isRequired,
-  /** Aside text/content displayed on the right side of the panel title */
-  titleAside: PropTypes.node,
-  /** Removes the default padding from the panel body */
-  noPadding: PropTypes.bool,
-  /** Set desired aria-level for heading */
-
-  headingLevel: Heading.propTypes!.level,
-  open: PropTypes.bool,
-
-  // INTERNAL PROPS
-  /** @ignore */
-  closedIconName: PropTypes.oneOf<IconName>([...iconNames]),
-  /** @ignore */
-  openedIconName: PropTypes.oneOf<IconName>([...iconNames]),
-  /** @ignore */
-  panelKey: PropTypes.string
-};
-
-DrawerPanel.propTypes = propTypes;
-DrawerPanel.defaultProps = {
-  ...(PanelWrapper.defaultProps || {}),
-  noPadding: false,
-  titleAside: undefined,
-  headingLevel: 2,
-  panelKey: undefined,
-  open: undefined,
-  closedIconName: 'add',
-  openedIconName: 'minus'
-};
 
 export default DrawerPanel;

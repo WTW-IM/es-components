@@ -86,6 +86,18 @@ export const htmlProps: HTMLPropTypes = {
   tabIndex: PropTypes.number,
   title: PropTypes.string,
   translate: PropTypes.oneOf<'yes' | 'no'>(['yes', 'no']),
+  popover: PropTypes.oneOf<'' | 'auto' | 'manual' | undefined>([
+    '',
+    'auto',
+    'manual'
+  ]),
+  popoverTargetAction: PropTypes.oneOf<'toggle' | 'show' | 'hide' | undefined>([
+    'toggle',
+    'show',
+    'hide'
+  ]),
+  popoverTarget: PropTypes.string,
+  inert: PropTypes.bool,
 
   // Unknown
   radioGroup: PropTypes.string, // <command>, <menuitem>

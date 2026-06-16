@@ -56,7 +56,7 @@ const addTag = (node: TrueRootNode, func: (node: TrueRootNode) => void) => {
       'Failed to load icon styles on node',
       { cause: err }
     );
-    console.error(nodeError); // eslint-disable-line no-console
+    console.error(nodeError);
     return undefined;
   }
 };
@@ -74,7 +74,7 @@ const initializeBody = (node: TrueRootNode) => {
 
 const initializeNode = (node: TrueRootNode) => {
   // body must always be set up
-  setup(document.body); // eslint-disable-line no-use-before-define
+  setup(document.body);
   return addTag(node, (tag: TrueRootNode) => node.prepend(tag));
 };
 

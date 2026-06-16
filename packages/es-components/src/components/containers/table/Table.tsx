@@ -45,8 +45,8 @@ const TableBase = styled.table<TableBaseProps>`
   }
 
   th {
-    font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-      sans-serif;
+    font-family:
+      'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
     font-weight: bold;
     line-height: ${props => props.theme.font.baseLineHeight};
     padding: ${props => props.cellPadding};
@@ -120,13 +120,6 @@ Table.propTypes = {
   isCondensed: PropTypes.bool,
   /** increase cell padding for more white space */
   isRoomy: PropTypes.bool
-};
-
-Table.defaultProps = {
-  hasStripes: false,
-  hasHover: false,
-  isCondensed: false,
-  isRoomy: false
 };
 
 export default Table as TableComponent;

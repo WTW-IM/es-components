@@ -7,12 +7,4 @@ const LightCallToAction = React.forwardRef<HTMLDivElement, CallToActionProps>(
   }
 );
 
-LightCallToAction.propTypes = {
-  ...(CallToAction.propTypes || {})
-};
-
-LightCallToAction.defaultProps = {
-  ...(CallToAction.defaultProps || {})
-};
-
 export default LightCallToAction;

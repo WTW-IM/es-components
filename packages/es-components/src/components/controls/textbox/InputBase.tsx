@@ -266,7 +266,9 @@ export type InputBaseProps = StyledComponentElementProps<'input'> &
 const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
   function ForwardedInputBase(props, ref) {
     const validationStyleProps = useValidationStyleProps(props);
-    return <InputBaseComponent ref={ref} {...validationStyleProps} />;
+    return (
+      <InputBaseComponent ref={ref} {...props} {...validationStyleProps} />
+    );
   }
 );
 
@@ -274,12 +276,7 @@ export const propTypes = {
   ...htmlInputPropTypes
 };
 
-export const defaultProps = {
-  ...htmlInputDefaultProps
-};
-
 InputBase.propTypes = propTypes;
-InputBase.defaultProps = defaultProps;
 
 export default InputBase;
 
@@ -324,13 +321,7 @@ export const basicTextboxPropTypes = {
   flat: PropTypes.bool
 };
 
-export const basicTextboxDefaultProps = {
-  ...htmlInputDefaultProps,
-  flat: false
-};
-
 BasicTextbox.propTypes = basicTextboxPropTypes;
-BasicTextbox.defaultProps = basicTextboxDefaultProps;
 
 export function useValidationStyleProps(
   props: FlatInputProps

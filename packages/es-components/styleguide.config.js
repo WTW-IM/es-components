@@ -73,8 +73,8 @@ module.exports = {
         <style>
           body {
             color: #444;
-            font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-              sans-serif;
+            font-family:
+              'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
             font-weight: 400;
           }
 
@@ -246,7 +246,7 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         ASSETS_PATH: JSON.stringify(assets_url),
-        process: `{}`
+        process: `({})`
       })
     ],
     module: {

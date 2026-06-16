@@ -77,7 +77,7 @@ export type LoadingSkeletonProps = JSXElementProps<'div'> & {
 
 const LoadingSkeleton = React.forwardRef<HTMLDivElement, LoadingSkeletonProps>(
   function ForwardedLoadingSkeleton(
-    { shapeColor, shimmerColor, ...props },
+    { shapeColor = '', shimmerColor = '', ...props },
     ref
   ) {
     const theme = useTheme() as SkeletonTheme;
@@ -96,11 +96,6 @@ const LoadingSkeleton = React.forwardRef<HTMLDivElement, LoadingSkeletonProps>(
 LoadingSkeleton.propTypes = {
   shapeColor: PropTypes.string,
   shimmerColor: PropTypes.string
-};
-
-LoadingSkeleton.defaultProps = {
-  shapeColor: '',
-  shimmerColor: ''
 };
 
 type LoadingSkeletonComponent = typeof LoadingSkeleton & {

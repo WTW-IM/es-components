@@ -8,7 +8,7 @@ import OrientationContext, {
 } from '../../controls/OrientationContext';
 import isBool from '../../util/isBool';
 
-type FieldsetProps = Omit<JSX.IntrinsicElements['fieldset'], 'ref'> & {
+type FieldsetProps = Omit<React.JSX.IntrinsicElements['fieldset'], 'ref'> & {
   legendContent?: React.ReactNode | undefined;
   orientation?: Orientation | undefined;
   flat?: boolean | undefined;
@@ -54,7 +54,13 @@ const Legend = styled.legend`
 
 const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
   function ForwardedFieldset(
-    { legendContent, children, orientation: orientationProp, flat, ...other },
+    {
+      legendContent = null,
+      children,
+      orientation: orientationProp,
+      flat,
+      ...other
+    },
     ref
   ) {
     const orientation = useContext(OrientationContext);
@@ -85,13 +91,6 @@ Fieldset.propTypes = {
   /** Apply the Flat Style to all children */
   flat: PropTypes.bool,
   children: PropTypes.node
-};
-
-Fieldset.defaultProps = {
-  orientation: undefined,
-  legendContent: null,
-  flat: undefined,
-  children: undefined
 };
 
 (Fieldset as FieldsetComponent).Legend = Legend;

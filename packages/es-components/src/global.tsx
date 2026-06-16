@@ -8,6 +8,15 @@ declare module 'styled-components' {
   export interface DefaultTheme extends ESTheme {}
 }
 
+declare module 'react' {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      basicHTMLElement: HTMLElementProps;
+    }
+  }
+}
+
 declare global {
   type Maybe<T> = T | null | undefined;
   type IsNullable<T, K> = null | undefined extends T ? K : never;
@@ -31,12 +40,12 @@ declare global {
 
   type ReactFCWithChildren<T = unknown> = React.FC<React.PropsWithChildren<T>>;
 
-  type JSXElementProps<T extends keyof JSX.IntrinsicElements> =
-    T extends keyof JSX.IntrinsicElements
+  type JSXElementProps<T extends keyof React.JSX.IntrinsicElements> =
+    T extends keyof React.JSX.IntrinsicElements
       ? React.PropsWithoutRef<
-          'key' extends keyof JSX.IntrinsicElements[T]
-            ? Omit<JSX.IntrinsicElements[T], 'key'>
-            : JSX.IntrinsicElements[T]
+          'key' extends keyof React.JSX.IntrinsicElements[T]
+            ? Omit<React.JSX.IntrinsicElements[T], 'key'>
+            : React.JSX.IntrinsicElements[T]
         >
       : never;
 
@@ -48,11 +57,12 @@ declare global {
   >;
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  type StyledComponentElementProps<T extends keyof JSX.IntrinsicElements> =
-    JSXElementProps<T> & {
-      as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-      forwardedAs?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-    };
+  type StyledComponentElementProps<
+    T extends keyof React.JSX.IntrinsicElements
+  > = JSXElementProps<T> & {
+    as?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>;
+    forwardedAs?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>;
+  };
   /* eslint-enable @typescript-eslint/no-explicit-any */
 
   interface OptionalThemeProps {
@@ -70,11 +80,4 @@ declare global {
 
   const ASSETS_PATH: string;
   type ReactElementPropType<T> = PropTypes.Requireable<React.ReactElement<T>>;
-
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface IntrinsicElements {
-      basicHTMLElement: HTMLElementProps;
-    }
-  }
 }

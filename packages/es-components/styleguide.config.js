@@ -73,8 +73,8 @@ module.exports = {
         <style>
           body {
             color: #444;
-            font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-              sans-serif;
+            font-family:
+              'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
             font-weight: 400;
           }
 
@@ -207,6 +207,12 @@ module.exports = {
   require: [path.join(__dirname, 'config', 'styleguidist-page-scripts')],
   assetsDir,
   webpackConfig: {
+    ignoreWarnings: [
+      {
+        module: /react-datepicker\/dist\/index\.es\.js/,
+        message: /Critical dependency/
+      }
+    ],
     optimization: {
       splitChunks: {
         maxSize: 500000,
@@ -246,7 +252,8 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         ASSETS_PATH: JSON.stringify(assets_url),
-        process: `{}`
+        'process.env.NODE_ENV': JSON.stringify('development'),
+        process: '({})'
       })
     ],
     module: {

@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@typescript-eslint/utils": "^8.15.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@aabenoja/conventional-changelog-eslint-lerna": "^1.0.2",
@@ -53,8 +53,8 @@
     "@types/js-beautify": "^1.14.3",
     "@types/node": "^18.11.17",
     "@types/prop-types": "^15.7.14",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "babel-plugin-lodash": "^3.3.4",
     "commander": "^12.1.0",
     "commitlint": "^17.3.0",
@@ -94,7 +94,10 @@
   "overrides": {
     "@typescript-eslint/utils": "$@typescript-eslint/utils",
     "react": "$react",
-    "react-dom": "$react-dom"
+    "react-dom": "$react-dom",
+    "react-test-renderer": "^19.2.5",
+    "@types/react": "$@types/react",
+    "@types/react-dom": "$@types/react-dom"
   },
   "optionalDependencies": {
     "encoding": "^0.1.13",

@@ -28,7 +28,10 @@ const HelpText = styled.div`
 `;
 
 const AdditionalHelp = React.forwardRef<HTMLDivElement, AdditionalHelpProps>(
-  function AdditionalHelp({ children, hasValidationIcon, ...props }, ref) {
+  function AdditionalHelp(
+    { children, hasValidationIcon = true, ...props },
+    ref
+  ) {
     const theme = useTheme();
     const validationState = React.useContext(ValidationContext);
 
@@ -51,11 +54,6 @@ AdditionalHelp.propTypes = {
   children: PropTypes.any,
   /** use to show or hide an associated validation icon */
   hasValidationIcon: PropTypes.bool
-};
-
-AdditionalHelp.defaultProps = {
-  children: undefined,
-  hasValidationIcon: true
 };
 
 export default AdditionalHelp;

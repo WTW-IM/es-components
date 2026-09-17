@@ -123,12 +123,6 @@ export const propTypes = {
   flat: PropTypes.bool
 };
 
-export const defaultProps = {
-  ...UnstyledSelectInput.defaultProps,
-  flat: InputBase.defaultProps?.flat
-};
-
 Dropdown.propTypes = propTypes;
-Dropdown.defaultProps = defaultProps;
 
 export default Dropdown;

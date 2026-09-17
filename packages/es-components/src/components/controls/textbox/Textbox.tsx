@@ -12,7 +12,6 @@ import InputBase, {
   noInset,
   basicTextboxStyles,
   propTypes as basePropTypes,
-  defaultProps as baseDefaultProps,
   ValidationStyleProps
 } from './InputBase';
 import { callRefs } from '../../util/callRef';
@@ -246,15 +245,6 @@ export const propTypes = {
   flat: PropTypes.bool
 };
 
-export const defaultProps = {
-  ...baseDefaultProps,
-  prependIconName: undefined,
-  appendIconName: undefined,
-  type: 'text',
-  flat: undefined
-};
-
 Textbox.propTypes = propTypes;
-Textbox.defaultProps = defaultProps;
 
 export default Textbox;

@@ -194,16 +194,16 @@ export default function SlidingPane({
   isOpen,
   title,
   subTitle,
-  shouldCloseOnEsc,
+  shouldCloseOnEsc = true,
   onRequestClose = noop,
   onAfterOpen,
   children,
   closeIcon,
-  closeIconScreenReaderText,
+  closeIconScreenReaderText = 'Close',
   from = 'right',
-  headingLevel,
-  headingSize,
-  closeTimeout,
+  headingLevel = 2,
+  headingSize = 3,
+  closeTimeout = 500,
   overlayStyles,
   contentStyles,
   appElement,
@@ -294,25 +294,4 @@ SlidingPane.propTypes = {
   hideHeader: PropTypes.bool,
   /** The width size in pixels of the sliding pane. This defaults to the tablet size.  */
   paneWidth: PropTypes.string
-};
-
-SlidingPane.defaultProps = {
-  /* Timeout is in milliseconds */
-  closeTimeout: 500,
-  from: 'right',
-  headingLevel: 2,
-  headingSize: 3,
-  shouldCloseOnEsc: true,
-  title: undefined,
-  subTitle: undefined,
-  onRequestClose: noop,
-  onAfterOpen: noop,
-  closeIcon: undefined,
-  closeIconScreenReaderText: 'Close',
-  overlayStyles: {},
-  contentStyles: {},
-  appElement: undefined,
-  parentSelector: null,
-  hideHeader: false,
-  paneWidth: null
 };

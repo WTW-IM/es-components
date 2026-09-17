@@ -152,7 +152,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       name,
       disableHover,
       disableFocus,
-      position,
+      position = 'top',
       content,
       styleType,
       children,
@@ -318,14 +318,6 @@ Tooltip.propTypes = {
   linkProps: PropTypes.exact<PopoverLinkValidationMap>(
     passedPopoverLinkProps
   ) as Validator<PopoverLinkValidationProps>
-};
-
-Tooltip.defaultProps = {
-  position: 'top',
-  disableHover: false,
-  disableFocus: false,
-  styleType: undefined,
-  linkProps: {}
 };
 
 export default Tooltip;

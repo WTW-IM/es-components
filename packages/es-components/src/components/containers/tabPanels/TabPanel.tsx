@@ -173,13 +173,6 @@ TabPanel.propTypes = {
   className: PropTypes.string
 };
 
-TabPanel.defaultProps = {
-  children: undefined,
-  selectedKey: '',
-  tabChanged: noop,
-  canTabChange: tabCanChangeFunc
-};
-
 type TabPanelComponent = typeof TabPanel & {
   Tab: typeof Tab;
 };

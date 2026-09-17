@@ -100,7 +100,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 
 const ScreenReaderContent = screenReaderOnly('div');
 
-type DivPropsWithRef = React.PropsWithRef<JSX.IntrinsicElements['div']>;
+type DivPropsWithRef = React.PropsWithRef<React.JSX.IntrinsicElements['div']>;
 type Tooltips = [
   IStyledComponent<'web', DivPropsWithRef & TooltipStyleProps>,
   IStyledComponent<'web', DivPropsWithRef>

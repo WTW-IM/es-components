@@ -8,7 +8,7 @@ import OrientationContext, {
 } from '../../controls/OrientationContext';
 import isBool from '../../util/isBool';
 
-type FieldsetProps = Omit<JSX.IntrinsicElements['fieldset'], 'ref'> & {
+type FieldsetProps = Omit<React.JSX.IntrinsicElements['fieldset'], 'ref'> & {
   legendContent?: React.ReactNode | undefined;
   orientation?: Orientation | undefined;
   flat?: boolean | undefined;

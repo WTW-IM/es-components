@@ -108,8 +108,10 @@ export type RenderTriggerFunc = (
   params: RenderTriggerParams
 ) => React.ReactNode;
 
-export interface PopoverProps
-  extends Omit<Partial<PopupProps>, 'content' | 'setIsOpen'> {
+export interface PopoverProps extends Omit<
+  Partial<PopupProps>,
+  'content' | 'setIsOpen'
+> {
   name: string;
   renderTrigger: RenderTriggerFunc;
   title?: string;
@@ -238,11 +240,17 @@ const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <Container ref={ref}>
         <Popup
           name={name}
-          trigger={renderTrigger({
-            ref: triggerBtnRef,
-            toggleShow: toggleShowFromInteraction,
-            isOpen: isOpen
-          })}
+          trigger={
+            /* renderTrigger is a render-prop: the ref is forwarded so the
+             * consumer attaches it to their own trigger element's `ref`
+             * prop, it is not read synchronously during this render. */
+            // eslint-disable-next-line react-hooks/refs
+            renderTrigger({
+              ref: triggerBtnRef,
+              toggleShow: toggleShowFromInteraction,
+              isOpen: isOpen
+            })
+          }
           position={placement}
           arrowSize={arrowSize}
           transitionIn={isOpen}

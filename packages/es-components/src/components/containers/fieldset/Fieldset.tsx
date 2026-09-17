@@ -87,13 +87,6 @@ Fieldset.propTypes = {
   children: PropTypes.node
 };
 
-Fieldset.defaultProps = {
-  orientation: undefined,
-  legendContent: null,
-  flat: undefined,
-  children: undefined
-};
-
 (Fieldset as FieldsetComponent).Legend = Legend;
 
 export default Fieldset as FieldsetComponent;

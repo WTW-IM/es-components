@@ -99,8 +99,8 @@ const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
       noPadding = false,
       headingLevel = 2,
       open,
-      openedIconName = 'add',
-      closedIconName = 'minus',
+      openedIconName = 'minus',
+      closedIconName = 'add',
       panelKey,
       ...other
     },
@@ -169,15 +169,5 @@ export const propTypes = {
 };
 
 DrawerPanel.propTypes = propTypes;
-DrawerPanel.defaultProps = {
-  ...(PanelWrapper.defaultProps || {}),
-  noPadding: false,
-  titleAside: undefined,
-  headingLevel: 2,
-  panelKey: undefined,
-  open: undefined,
-  closedIconName: 'add',
-  openedIconName: 'minus'
-};
 
 export default DrawerPanel;

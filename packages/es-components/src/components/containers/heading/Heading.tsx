@@ -128,14 +128,6 @@ Heading.propTypes = {
   underlineColor: PropTypes.string
 };
 
-Heading.defaultProps = {
-  children: undefined,
-  level: 1,
-  size: undefined,
-  isKnockoutStyle: false,
-  underlineColor: null
-};
-
 /** @component */
 export default Heading;
 

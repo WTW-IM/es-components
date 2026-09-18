@@ -15,7 +15,6 @@ import Month, { MonthProps } from './Month';
 import Year, { YearProps } from './Year';
 
 import isBool from '../../util/isBool';
-import noop from '../../util/noop';
 import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const Wrapper = styled.div`
@@ -331,15 +330,6 @@ DateInput.propTypes = {
   defaultValue: PropTypes.instanceOf(Date),
   /** Set the default day of the month */
   defaultDay: PropTypes.string
-};
-
-DateInput.defaultProps = {
-  id: undefined,
-  maxDate: undefined,
-  minDate: undefined,
-  defaultValue: undefined,
-  defaultDay: '',
-  onBlur: noop
 };
 
 const setParts = (Input: DateInputType) => {

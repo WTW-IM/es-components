@@ -11,8 +11,4 @@ LightCallToAction.propTypes = {
   ...(CallToAction.propTypes || {})
 };
 
-LightCallToAction.defaultProps = {
-  ...(CallToAction.defaultProps || {})
-};
-
 export default LightCallToAction;

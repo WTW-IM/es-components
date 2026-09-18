@@ -237,10 +237,3 @@ NavigationItem.propTypes = {
   /** Disable the nav item to render it un-clickable */
   isDisabled: PropTypes.bool
 };
-
-NavigationItem.defaultProps = {
-  useAltStyle: false,
-  isDisabled: false,
-  children: undefined,
-  highlightedId: undefined
-};

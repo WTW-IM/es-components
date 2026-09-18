@@ -3,6 +3,12 @@
 [![Build Status](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/es-components.svg)](https://badge.fury.io/js/es-components)
 
+## React Version Support
+
+- **Recommended**: React 19.0.0+
+- **Also Supported**: React 17+
+- **Note**: For React 18 → React 19 migration, see [Migration Guide](../../migrations/react-18-to-react-19.md)
+
 ## Documentation and Demos
 
 [https://wtw-im.github.io/es-components/](https://wtw-im.github.io/es-components/)

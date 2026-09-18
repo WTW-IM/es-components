@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CallToAction, { CallToActionProps } from './CallToAction';
 
 const LightCallToAction = React.forwardRef<HTMLDivElement, CallToActionProps>(
@@ -8,11 +9,7 @@ const LightCallToAction = React.forwardRef<HTMLDivElement, CallToActionProps>(
 );
 
 LightCallToAction.propTypes = {
-  ...(CallToAction.propTypes || {})
-};
-
-LightCallToAction.defaultProps = {
-  ...(CallToAction.defaultProps || {})
+  ...((CallToAction.propTypes as PropTypes.WeakValidationMap<object>) || {})
 };
 
 export default LightCallToAction;

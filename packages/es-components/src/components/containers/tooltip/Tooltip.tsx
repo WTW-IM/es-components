@@ -100,7 +100,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 
 const ScreenReaderContent = screenReaderOnly('div');
 
-type DivPropsWithRef = React.PropsWithRef<JSX.IntrinsicElements['div']>;
+type DivPropsWithRef = React.PropsWithRef<React.JSX.IntrinsicElements['div']>;
 type Tooltips = [
   IStyledComponent<'web', DivPropsWithRef & TooltipStyleProps>,
   IStyledComponent<'web', DivPropsWithRef>
@@ -152,7 +152,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       name,
       disableHover,
       disableFocus,
-      position,
+      position = 'top',
       content,
       styleType,
       children,
@@ -184,6 +184,10 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       whileElementsMounted: autoUpdate,
       placement: position,
       middleware: [
+        /* @floating-ui/react's arrow middleware reads `element.current`
+         * inside its own positioning pipeline, not synchronously during
+         * this render. */
+        // eslint-disable-next-line react-hooks/refs
         arrow({ element: arrowRef }),
         shift({
           limiter: limitShift()
@@ -314,14 +318,6 @@ Tooltip.propTypes = {
   linkProps: PropTypes.exact<PopoverLinkValidationMap>(
     passedPopoverLinkProps
   ) as Validator<PopoverLinkValidationProps>
-};
-
-Tooltip.defaultProps = {
-  position: 'top',
-  disableHover: false,
-  disableFocus: false,
-  styleType: undefined,
-  linkProps: {}
 };
 
 export default Tooltip;

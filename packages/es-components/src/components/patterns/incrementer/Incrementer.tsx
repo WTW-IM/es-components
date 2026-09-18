@@ -8,11 +8,9 @@ import OutlineButton from '../../controls/buttons/OutlineButton';
 import {
   BasicTextbox,
   BasicTextboxProps,
-  basicTextboxPropTypes,
-  basicTextboxDefaultProps
+  basicTextboxPropTypes
 } from '../../controls/textbox/InputBase';
 import screenReaderOnly from '../screenReaderOnly/screenReaderOnly';
-import noop from '../../util/noop';
 import { useMonitoringEffect } from '../../../hooks/useMonitoringHooks';
 
 const IncrementerWrapper = styled.div`
@@ -279,17 +277,6 @@ Incrementer.propTypes = {
   useOutlineButton: PropTypes.bool,
   /** Function to execute with the new value */
   onValueUpdated: PropTypes.func
-};
-
-Incrementer.defaultProps = {
-  ...basicTextboxDefaultProps,
-  startingValue: 0,
-  incrementAmount: 1,
-  decrementAmount: 1,
-  onValueUpdated: noop,
-  upperThreshold: null,
-  lowerThreshold: null,
-  useOutlineButton: false
 };
 
 export default Incrementer;

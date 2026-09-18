@@ -93,6 +93,23 @@ export const htmlProps: HTMLPropTypes = {
   // WAI-ARIA
   role: PropTypes.oneOf<AriaRole>(ariaRoles),
 
+  // Popover API
+  popover: PropTypes.oneOf<'' | 'auto' | 'manual' | 'hint'>([
+    '',
+    'auto',
+    'manual',
+    'hint'
+  ]),
+  popoverTargetAction: PropTypes.oneOf<'toggle' | 'show' | 'hide'>([
+    'toggle',
+    'show',
+    'hide'
+  ]),
+  popoverTarget: PropTypes.string,
+
+  // Living Standard
+  inert: PropTypes.bool,
+
   // RDFa Attributes
   about: PropTypes.string,
   content: PropTypes.string,

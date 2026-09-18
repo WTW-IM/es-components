@@ -83,8 +83,3 @@ Navigation.propTypes = {
   /** Set the selected nav item by id, controlled mode */
   selected: PropTypes.string
 };
-
-Navigation.defaultProps = {
-  useAltStyle: false,
-  selected: undefined
-};

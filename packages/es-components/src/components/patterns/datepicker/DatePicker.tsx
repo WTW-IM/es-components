@@ -389,7 +389,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
   }
 );
 
-export const propTypes: React.WeakValidationMap<GenericDatePickerProps> = {
+export const propTypes: PropTypes.WeakValidationMap<GenericDatePickerProps> = {
   ...reactDatePickerPropTypes,
   suppressDatepicker: PropTypes.bool,
   allowNativeDatepickerOnMobile: PropTypes.bool,

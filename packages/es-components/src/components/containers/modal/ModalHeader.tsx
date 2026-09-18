@@ -8,7 +8,7 @@ import Heading from '../heading/Heading';
 import { HeadingLevel, headingLevel } from 'es-components-shared-types';
 
 const DismissButton = OrigDismissButton as React.ForwardRefExoticComponent<
-  JSX.IntrinsicElements['button']
+  React.JSX.IntrinsicElements['button']
 >;
 
 // Note: ModalHeader relies on a parent (Modal) with ThemeProvider wrapping it

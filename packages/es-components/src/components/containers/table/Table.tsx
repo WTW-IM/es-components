@@ -122,11 +122,4 @@ Table.propTypes = {
   isRoomy: PropTypes.bool
 };
 
-Table.defaultProps = {
-  hasStripes: false,
-  hasHover: false,
-  isCondensed: false,
-  isRoomy: false
-};
-
 export default Table as TableComponent;

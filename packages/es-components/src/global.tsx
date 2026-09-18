@@ -31,12 +31,12 @@ declare global {
 
   type ReactFCWithChildren<T = unknown> = React.FC<React.PropsWithChildren<T>>;
 
-  type JSXElementProps<T extends keyof JSX.IntrinsicElements> =
-    T extends keyof JSX.IntrinsicElements
+  type JSXElementProps<T extends keyof React.JSX.IntrinsicElements> =
+    T extends keyof React.JSX.IntrinsicElements
       ? React.PropsWithoutRef<
-          'key' extends keyof JSX.IntrinsicElements[T]
-            ? Omit<JSX.IntrinsicElements[T], 'key'>
-            : JSX.IntrinsicElements[T]
+          'key' extends keyof React.JSX.IntrinsicElements[T]
+            ? Omit<React.JSX.IntrinsicElements[T], 'key'>
+            : React.JSX.IntrinsicElements[T]
         >
       : never;
 
@@ -48,11 +48,12 @@ declare global {
   >;
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  type StyledComponentElementProps<T extends keyof JSX.IntrinsicElements> =
-    JSXElementProps<T> & {
-      as?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-      forwardedAs?: keyof JSX.IntrinsicElements | React.ComponentType<any>;
-    };
+  type StyledComponentElementProps<
+    T extends keyof React.JSX.IntrinsicElements
+  > = JSXElementProps<T> & {
+    as?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>;
+    forwardedAs?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>;
+  };
   /* eslint-enable @typescript-eslint/no-explicit-any */
 
   interface OptionalThemeProps {
@@ -70,7 +71,14 @@ declare global {
 
   const ASSETS_PATH: string;
   type ReactElementPropType<T> = PropTypes.Requireable<React.ReactElement<T>>;
+}
 
+// The bare global `JSX` namespace is no longer merged by @types/react 19 —
+// `IntrinsicElements` now lives under `React.JSX`. Per React's TypeScript
+// migration guide, augmentations must target the module that matches the
+// configured `jsx` compiler option (`"react"` here means the `"react"`
+// module itself: https://react.dev/blog/2024/04/25/react-19-upgrade-guide#the-jsx-namespace-in-typescript).
+declare module 'react' {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {

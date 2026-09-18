@@ -73,8 +73,8 @@ module.exports = {
         <style>
           body {
             color: #444;
-            font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-              sans-serif;
+            font-family:
+              'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
             font-weight: 400;
           }
 
@@ -207,6 +207,21 @@ module.exports = {
   require: [path.join(__dirname, 'config', 'styleguidist-page-scripts')],
   assetsDir,
   webpackConfig: {
+    devServer: {
+      client: {
+        overlay: {
+          // Only surface compile errors in the dev-server overlay, not warnings.
+          // React 19 removed `findDOMNode`, which react-onclickoutside (a
+          // react-datepicker dependency) still references, producing a
+          // benign compile warning. Left enabled, that warning triggers a
+          // full-viewport overlay iframe on every page (shared bundle),
+          // blocking real user interaction and Cypress clicks.
+          errors: true,
+          warnings: false
+        }
+      },
+      ...(extraWebpack.devServer || {})
+    },
     optimization: {
       splitChunks: {
         maxSize: 500000,
@@ -246,7 +261,7 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         ASSETS_PATH: JSON.stringify(assets_url),
-        process: `{}`
+        process: '({})'
       })
     ],
     module: {
@@ -277,8 +292,7 @@ module.exports = {
           use: ['./config/rsg-loader']
         }
       ]
-    },
-    ...extraWebpack
+    }
   },
   styles: {
     Playground: {

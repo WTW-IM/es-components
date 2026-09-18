@@ -53,57 +53,70 @@ The following dependencies were updated for React 19 compatibility:
 
 ## Known Incompatibilities
 
-### react-modal v3.16.3 (Dependency Issue - NOT Drawer/Popover Components)
+### Dev-server error overlay blocking Cypress clicks (RESOLVED)
 
-**Important Clarification**: React 19 IS fully compatible with Drawer and Popover components. The issue is with a transitive dependency.
+**Update**: This was originally believed to be a `react-modal`/webpack bundling issue requiring a wait
+for `react-modal` v4. That diagnosis was incorrect. The actual root cause has been found and fixed, and
+the previously-skipped Drawer/Popover Cypress suites are re-enabled and passing.
 
-**What Works**:
+**Root cause**:
 
-- ✅ React 19 + Drawer component (in production)
-- ✅ React 19 + Popover component (in production)
-- ✅ All 221 Jest unit tests pass with drawer/popover components
-- ✅ Drawer/Popover functionality verified working
+- `react-datepicker` (used by the `DatePicker` component) depends on `react-onclickoutside`, which calls
+  React's `findDOMNode` API.
+- React 19 removed `findDOMNode` for function components, so this call throws a runtime warning/error.
+- `webpack-dev-server`'s default error overlay (`#webpack-dev-server-client-overlay`) renders this
+  warning as a full-page, full-viewport `<iframe>` that sits on top of the entire styleguide app.
+- Because the overlay covers the whole page (not just the failing component), it silently intercepted
+  **every** Cypress click on **every** page of the dev-only styleguide - including the Drawer and Popover
+  pages, which have nothing to do with `react-datepicker` themselves. This is why the tests appeared to
+  fail specifically on Drawer/Popover even though those components render and work fine.
+- This only affects the local dev server's error overlay; it never affected production builds, consuming
+  applications, or the components' actual runtime behavior.
 
-**What Doesn't Work** (Development Only):
+**Fix applied** (`styleguide.config.js`):
 
-- ❌ Cypress E2E tests against dev server (webpack bundling issue)
-- ❌ NOT the components themselves or React 19
+```javascript
+devServer: {
+  client: {
+    overlay: { errors: true, warnings: false }
+  }
+}
+```
 
-**Root Cause**:
-
-- Drawer and Popover components use `react-modal` for modal functionality
-- `react-modal` v3.16.3 (latest, pre-React-19-support version) contains optional chaining (`?.`) syntax
-- When webpack bundles react-modal with React 19 in the dev server, the transpilation fails
-- Error: `SyntaxError: Unexpected token '.'`
-- **This is a dev server webpack bundling issue, NOT a React 19 incompatibility**
-
-**Official References**:
-
-- React 19 Compatibility: React 19 IS compatible (proven by 221 passing tests)
-- react-modal GitHub: https://github.com/reactjs/react-modal
-- Official React 19 Support Issue: https://github.com/reactjs/react-modal/issues/1052 ⭐
-  - Status: Closed (Dec 17, 2024)
-  - Maintainer note: "Peer dependencies updated... Please bring feedback if it didn't work"
-  - Reference: This issue documents the official React 19 support effort by maintainers
-- Package Details: https://www.npmjs.com/package/react-modal
-- Current Status: react-modal v3.16.3 allows React 19 peerDependency (but has webpack bundling issues)
-- Breaking Change Alert: This is NOT a React 19 breaking change, it's a pre-existing dependency issue
+This keeps the overlay for real errors but stops non-fatal warnings (like the `findDOMNode` deprecation
+notice) from covering the page during development/Cypress runs.
 
 **Status**:
 
+- ✅ Cypress E2E tests: Drawer and Popover suites are un-skipped and passing (4/4, no `force: true` needed)
 - ✅ Unit tests (Jest): All 221 tests pass with React 19, including drawer/popover tests
-- ❌ E2E tests (Cypress): Blocked by react-modal webpack bundling in dev server only
 - ✅ Runtime functionality: Drawer and Popover components work correctly in production with React 19
 - ✅ Component APIs: No breaking changes in drawer/popover components
 
-**Workarounds**:
+**Follow-up (out of scope for this upgrade)**: `react-datepicker` v9+ has since dropped the
+`react-onclickoutside` dependency entirely, which would remove the underlying `findDOMNode` warning at
+the source. Upgrading `react-datepicker` past its current major version is a larger change (new props/
+behavior) and was left as a separate, future piece of work.
 
-1. **For Production**: No workaround needed - components work perfectly with React 19
-2. **For E2E Testing**:
-   - Recommended: Wait for react-modal v4.0+
-   - Monitor GitHub: https://github.com/reactjs/react-modal/issues
-   - Check npm registry: https://www.npmjs.com/package/react-modal
-3. **Alternative Modal Library**: Replace react-modal with React 19-compatible library
+### TypeScript build errors (RESOLVED)
+
+React 19's updated type definitions (`@types/react@19`) surfaced TypeScript errors that CI did not catch,
+because the test pipeline only runs Jest, not `tsc`/`npm run build`. These have all been fixed:
+
+- `React.WeakValidationMap` was removed from `@types/react`; `prop-types`' own `WeakValidationMap` is used
+  instead where a `propTypes` export needs an explicit type.
+- New DOM/HTML attributes introduced in React 19 (`onScrollEnd`, `onToggle`, `onBeforeToggle`,
+  `onTransitionRun`/`Start`/`Cancel`, `popover`, `popoverTarget`, `popoverTargetAction`, `inert`) were
+  added to this codebase's hand-maintained `PropTypesOf<T>` mirror types in `src/components/util/htmlProps/`.
+- `InputBase`/`BasicTextbox` prop types now correctly mark validation-style props as optional
+  (`Partial<ValidationStyleProps>`), since `useValidationStyleProps` always computes them internally -
+  this was a gap left by the original `defaultProps` removal.
+- A handful of `any`-typed `Component.propTypes` lookups (reaching into another component's `propTypes`
+  static, which React types as `any`) were replaced with typed inline validators or explicit casts to
+  satisfy `@typescript-eslint/no-unsafe-assignment`/`no-unsafe-member-access`.
+
+**Verification**: `npx tsc --noEmit` reports 0 errors, `npm run build` succeeds, ESLint reports 0 errors
+on all touched files, and the full Jest suite passes (221/221).
 
 ## Testing
 
@@ -118,19 +131,12 @@ npm run test
 
 ### Cypress E2E Tests
 
-Currently skipped due to react-modal incompatibility. Tests can be re-enabled when:
+Drawer and Popover E2E tests are re-enabled and passing (see "Known Incompatibilities" above for the
+root cause that previously required skipping them):
 
-1. react-modal is updated to React 19-compatible version
-2. Or library is replaced with React 19-compatible alternative
-
-To re-enable:
-
-```javascript
-// In cypress/e2e/*.cy.js files, change:
-describe.skip('...'); // Currently skipped
-
-// To:
-describe('...'); // When dependency is resolved
+```bash
+npx cypress run
+# Result: Drawer and Popover suites pass (4/4), no force:true needed
 ```
 
 ## Migration Path for Downstream Projects
@@ -165,9 +171,9 @@ For issues upgrading to React 19:
 
 ### Known Ecosystem Issues
 
-The following ecosystem packages have known issues with React 19:
-
-- **react-modal@3.16.3**: Webpack bundling issues (see Known Incompatibilities section above)
+- **react-datepicker's `react-onclickoutside` dependency**: calls the removed `findDOMNode` API, producing
+  a dev-only warning (see "Known Incompatibilities" above). Resolved for this repo via the dev-server
+  overlay configuration; a future `react-datepicker` major upgrade would remove the warning at its source.
 - **Check before upgrade**: https://react19.codethon.io/ for full compatibility matrix
 
 ### Contributing Issues
@@ -186,6 +192,28 @@ If you encounter React 19 compatibility issues:
 
 ## Timeline
 
-- **Completed**: React 19 core upgrade and validation (all unit tests passing)
-- **In Progress**: Resolve react-modal dependency for E2E testing
-- **Future**: Monitor for additional React 19 incompatibilities in ecosystem
+- **Completed**: React 19 core upgrade and validation - `defaultProps` removal, `styled-components` peer
+  dependency, TypeScript build errors, ESLint errors, and the Drawer/Popover Cypress overlay issue are all
+  resolved. `npx tsc --noEmit`, `npm run build`, `eslint`, the full Jest suite, and the Drawer/Popover
+  Cypress suites all pass.
+- **Future**: Monitor for additional React 19 incompatibilities in the ecosystem; consider a
+  `react-datepicker` major upgrade to drop the `react-onclickoutside` dependency entirely.
+
+## QA Focus Areas
+
+Reviewers and QA verifying this upgrade should pay particular attention to:
+
+- **Drawer / Popover / SlidingPane**: root-caused and fixed dev-server overlay issue; Cypress suites
+  re-enabled - verify these still render, open/close, and handle focus correctly across browsers.
+- **Textbox-family components** (`Textbox`, `MaskedTextbox`, `Incrementer`, `DateInput`'s `Day`/`Year`,
+  `Dropdown`): validation-style props (`borderColor`, `backgroundColor`, `boxShadow`, etc.) are now
+  optional in the public prop types (previously enforced via `defaultProps`, which React 19 removed) -
+  verify custom/consumer usages that don't pass these props still render with correct default validation
+  styling.
+- **`DatePicker`**: `propTypes` typing changed (the removed `React.WeakValidationMap` was replaced) -
+  verify prop-types warnings still fire correctly in development for invalid props.
+- **Components with `defaultProps` removed** (~28 components across earlier batches of this PR): verify
+  default prop values still apply as expected when a consumer omits an optional prop.
+- **`DateInput`**: the `minDate`/`maxDate`/`hasSetId` internal logic was restructured to satisfy stricter
+  React Hooks lint rules without changing behavior - verify min/max date constraints and the `id` prop
+  passthrough to the first date part still work as before.

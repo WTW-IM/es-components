@@ -57,7 +57,7 @@ export const validationStateHighlightStyles = ({
 `;
 
 type ValidationStyleFunction<P extends object> = (
-  ...args: Parameters<StyleFunction<P>>
+  ...args: Parameters<StyleFunction<Partial<P>>>
 ) => Interpolation<object>;
 
 export const validationStateInputStyles: ValidationStyleFunction<
@@ -84,7 +84,7 @@ export const validationStateReadonlyStyles: ValidationStyleFunction<
 const maybeGetComma = ({
   flat,
   boxShadow
-}: Pick<ValidationStateSetupProps, 'flat' | 'boxShadow'>) =>
+}: Partial<Pick<ValidationStateSetupProps, 'flat' | 'boxShadow'>>) =>
   (flat || boxShadow) && ', ';
 
 export const validationStateSetupStyles: ValidationStyleFunction<
@@ -257,7 +257,7 @@ export const globalInputCss = css`
   }
 `;
 
-export type InputBaseProps = ValidationStyleProps & {
+export type InputBaseProps = Partial<ValidationStyleProps> & {
   ref?: React.ForwardedRef<HTMLInputElement>;
 } & Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
@@ -288,7 +288,7 @@ export interface BasicTextboxStyleProps
   extends ValidationStateSetupProps, ValidationStateReadonlyProps {}
 
 export const basicTextboxStyles = css<
-  BasicTextboxStyleProps & ValidationStyleProps
+  Partial<BasicTextboxStyleProps & ValidationStyleProps>
 >`
   ${validationStateSetupStyles}
   ${css`
@@ -309,7 +309,7 @@ export const BasicTextboxComponent = styled(InputBaseComponent)`
 `;
 
 export type BasicTextboxProps = FlatInputProps &
-  ValidationStyleProps & {
+  Partial<ValidationStyleProps> & {
     ref?: React.ForwardedRef<HTMLInputElement>;
   } & Omit<
     React.InputHTMLAttributes<HTMLInputElement>,

@@ -95,6 +95,7 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
 
     useEffect(() => {
       if (inputRef) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- syncs hasValue from the underlying DOM select's actual value (e.g. after browser autofill), which can't be observed any other way
         setHasValue(Boolean(inputRef && inputRef.value));
         return;
       }
@@ -118,7 +119,8 @@ const Dropdown = React.forwardRef<HTMLSelectElement, DropdownProps>(
 const UnstyledSelectInput = styled('select')``;
 
 export const propTypes = {
-  ...UnstyledSelectInput.propTypes,
+  ...((UnstyledSelectInput.propTypes as PropTypes.WeakValidationMap<object>) ||
+    {}),
   /** Whether the input should be rendered as a flat-style input */
   flat: PropTypes.bool
 };

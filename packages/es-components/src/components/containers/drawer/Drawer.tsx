@@ -60,8 +60,7 @@ export type DrawerProps<T extends ActiveKeys = ActiveKeys> =
 type DrawerRefProps<T extends ActiveKeys = ActiveKeys> = DrawerProps<T> &
   React.RefAttributes<HTMLDivElement>;
 
-interface DrawerComponentType
-  extends React.ForwardRefExoticComponent<DrawerRefProps> {
+interface DrawerComponentType extends React.ForwardRefExoticComponent<DrawerRefProps> {
   <T extends ActiveKeys>(
     props: DrawerProps<T>
   ): ReturnType<React.ForwardRefExoticComponent<DrawerProps<T>>>;
@@ -86,9 +85,11 @@ const Drawer: DrawerComponentType = React.forwardRef<
   ref
 ) {
   const keysChangedCallback = useRef(onActiveKeysChanged);
-  keysChangedCallback.current = onActiveKeysChanged;
   const currentActiveKeysProp = useRef(activeKeysProp);
-  currentActiveKeysProp.current = activeKeysProp;
+  useEffect(() => {
+    keysChangedCallback.current = onActiveKeysChanged;
+    currentActiveKeysProp.current = activeKeysProp;
+  });
 
   const [activeKeys, setActiveKeys] = useState(activeKeysProp || []);
 
@@ -107,7 +108,9 @@ const Drawer: DrawerComponentType = React.forwardRef<
     [isAccordion]
   );
   const resetActiveKeysCallback = useRef(resetActiveKeys);
-  resetActiveKeysCallback.current = resetActiveKeys;
+  useEffect(() => {
+    resetActiveKeysCallback.current = resetActiveKeys;
+  });
 
   const setActiveKey = useCallback(
     (key: string) =>
@@ -132,6 +135,7 @@ const Drawer: DrawerComponentType = React.forwardRef<
     });
   }, []);
 
+  // eslint-disable-next-line react-hooks/refs -- setActiveKey/unsetActiveKey/toggleActiveKey are stored as values here, not invoked; they're only called later from event handlers via resetActiveKeysCallback.current
   const [drawerState, setDrawerState] = useState({
     activeKeys,
     setActiveKey,

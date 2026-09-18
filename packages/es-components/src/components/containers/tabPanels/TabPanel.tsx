@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Tab, { TabAction, TabProps, RequiredReactNode } from './Tab';
@@ -34,7 +34,10 @@ type TabPanelChildProps = Override<
   }
 >;
 
-const TabPanelTabRenderer = ({ child, ...tabChildProps }: TabPanelChildProps) =>
+const TabPanelTabRenderer = ({
+  child,
+  ...tabChildProps
+}: TabPanelChildProps) =>
   React.isValidElement<TabProps>(child)
     ? React.cloneElement(child, tabChildProps)
     : child;
@@ -78,7 +81,6 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
     ref
   ) {
     const [value, setValue] = useState(selectedKey);
-    const [selectedIndex, setSelectedIndex] = useState(0);
     const selectTabAction = useCallback<TabAction>(
       async header => {
         /*
@@ -96,15 +98,12 @@ const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
       [canTabChange, tabChanged]
     );
     const arrayOfChildren = React.Children.toArray(children);
-
-    useEffect(() => {
-      const childArray = React.Children.toArray(children);
-      const newSelectedIndex = childArray.findIndex(child =>
+    const selectedIndex = Math.max(
+      arrayOfChildren.findIndex(child =>
         childIsSelected(child, selectedKey || value)
-      );
-
-      setSelectedIndex(Math.max(newSelectedIndex, 0));
-    }, [selectedKey, value, children]);
+      ),
+      0
+    );
 
     return (
       <div ref={ref} {...props}>

@@ -50,7 +50,7 @@ const AdditionalHelp = React.forwardRef<HTMLDivElement, AdditionalHelpProps>(
 );
 
 AdditionalHelp.propTypes = {
-  ...HelpText.propTypes,
+  ...((HelpText.propTypes as PropTypes.WeakValidationMap<object>) || {}),
   children: PropTypes.any,
   /** use to show or hide an associated validation icon */
   hasValidationIcon: PropTypes.bool

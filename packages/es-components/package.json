@@ -7,6 +7,21 @@
   "repository": "https://github.com/WTW-IM/es-components",
   "module": "lib/index.js",
   "main": "cjs/index.js",
+  "exports": {
+    ".": {
+      "types": "./types/src/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./cjs/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./build-utils/jest": {
+      "types": "./types/src/build-utils/jest.d.ts",
+      "import": "./build-utils/jest.js",
+      "require": "./build-utils/jest.js",
+      "default": "./build-utils/jest.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "lib",
     "cjs",

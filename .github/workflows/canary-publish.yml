@@ -5,7 +5,14 @@ on:
       - main
 
 permissions:
-  id-token: write # Required for OIDC
+  # id-token: write is intentionally omitted here. npm auto-attempts OIDC
+  # Trusted Publishing when this permission is present, but the theme
+  # packages (es-components-wtw-theme, es-components-via-theme,
+  # es-components-wtw-legacy-theme) don't have a Trusted Publisher linked
+  # on npmjs.com yet, causing canary publishes to fail with E404. Omitting
+  # this permission forces npm to fall back to the classic NPM_TOKEN auth
+  # below for all packages. Once Trusted Publishing is configured for the
+  # theme packages, this can be restored.
   contents: write
   actions: write
   attestations: write

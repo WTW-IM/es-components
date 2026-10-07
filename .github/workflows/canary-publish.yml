@@ -39,6 +39,21 @@ jobs:
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
 
+      # The theme packages' npm Trusted Publishing is registered for a
+      # different workflow file, so they get rejected (E403) when
+      # publishing from this one. Marking them private makes lerna skip
+      # them so es-components can still publish a canary build on its
+      # own. lerna requires a clean working tree before publishing, so
+      # this change is committed locally in this ephemeral CI checkout
+      # only (never pushed to origin). Remove this step once Trusted
+      # Publishing is reworked to cover all publish workflows.
+      - name: Exclude unpublishable theme packages
+        run: |
+          for pkg in es-components-wtw-theme es-components-via-theme es-components-wtw-legacy-theme; do
+            npm pkg set --json "private=true" --prefix "packages/$pkg"
+          done
+          git commit -am "Build: [skip ci][skip-release] temporarily mark unpublishable theme packages private for canary"
+
       - name: Lerna Publish
         run: |
           preId=$(git rev-parse --abbrev-ref HEAD | tr "[:upper:]" "[:lower:]")

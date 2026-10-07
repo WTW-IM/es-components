@@ -5,16 +5,7 @@ on:
       - main
 
 permissions:
-  # Required so es-components can publish via npm OIDC Trusted
-  # Publishing, which IS correctly configured for it. The theme packages
-  # (es-components-wtw-theme, es-components-via-theme,
-  # es-components-wtw-legacy-theme) do NOT have Trusted Publishing set up
-  # yet, so they always fail canary publishing with npm E404 regardless
-  # of auth method. See the "Exclude unpublishable theme packages" step
-  # below, which works around that by skipping them entirely so
-  # es-components can still publish on its own. Remove that step once an
-  # admin configures Trusted Publishing for the theme packages too.
-  id-token: write
+  id-token: write # Required for OIDC
   contents: write
   actions: write
   attestations: write
@@ -47,21 +38,6 @@ jobs:
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
-
-      # The theme packages don't have npm Trusted Publishing configured,
-      # so they always fail canary publishing with E404. Marking them
-      # private makes lerna skip them so es-components can still publish
-      # a canary build on its own via its working OIDC path. lerna
-      # requires a clean working tree before publishing, so this change
-      # is committed locally in this ephemeral CI checkout only (never
-      # pushed to origin). Remove this step once an admin configures
-      # Trusted Publishing for the theme packages.
-      - name: Exclude unpublishable theme packages
-        run: |
-          for pkg in es-components-wtw-theme es-components-via-theme es-components-wtw-legacy-theme; do
-            npm pkg set --json "private=true" --prefix "packages/$pkg"
-          done
-          git commit -am "Build: [skip ci][skip-release] temporarily mark unpublishable theme packages private for canary"
 
       - name: Lerna Publish
         run: |

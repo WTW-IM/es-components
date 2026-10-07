@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { writeFileSync } from 'fs';
 import babel from '@rollup/plugin-babel';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import resolve from '@rollup/plugin-node-resolve';
@@ -31,6 +32,25 @@ var self = this.styled ? this : self;
 var globalThis = self || globalThis;
 ${processBanner}
 `;
+
+// Marks the cjs/ and lib/ output directories with their own package.json
+// so Node and ESM-aware tooling (e.g. esm.sh) can resolve each format
+// unambiguously instead of guessing from the ambiguous .js extension.
+function writeModuleTypeMarkers() {
+  return {
+    name: 'write-module-type-markers',
+    writeBundle() {
+      writeFileSync(
+        path.join(path.dirname(pkg.main), 'package.json'),
+        `${JSON.stringify({ type: 'commonjs' }, null, 2)}\n`
+      );
+      writeFileSync(
+        path.join(path.dirname(pkg.module), 'package.json'),
+        `${JSON.stringify({ type: 'module' }, null, 2)}\n`
+      );
+    }
+  };
+}
 
 export default async args => {
   await Promise.all([writeIconNameType(), tscEsComponents()]);
@@ -65,7 +85,10 @@ export default async args => {
       ],
       external,
       plugins: [
-        wildcardExternal(['core-js/**', 'text-mask-addons/**']),
+        // text-mask-addons is intentionally NOT wildcard-externalized here:
+        // it's imported via extensionless subpaths that break native ESM
+        // resolution, so it must be bundled (see getPackageExternals.mjs).
+        wildcardExternal(['core-js/**']),
         commonjs({ include: [/node_modules/, sharedTypesPath], extensions }),
         resolve({
           extensions,
@@ -79,7 +102,8 @@ export default async args => {
         replace({
           ASSETS_PATH: JSON.stringify(assets_url),
           preventAssignment: true
-        })
+        }),
+        writeModuleTypeMarkers()
       ]
     },
     {

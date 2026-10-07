@@ -6,13 +6,14 @@ on:
 
 permissions:
   # id-token: write is intentionally omitted here. npm auto-attempts OIDC
-  # Trusted Publishing when this permission is present, but the theme
-  # packages (es-components-wtw-theme, es-components-via-theme,
-  # es-components-wtw-legacy-theme) don't have a Trusted Publisher linked
-  # on npmjs.com yet, causing canary publishes to fail with E404. Omitting
-  # this permission forces npm to fall back to the classic NPM_TOKEN auth
-  # below for all packages. Once Trusted Publishing is configured for the
-  # theme packages, this can be restored.
+  # Trusted Publishing when this permission is present. Removing it alone
+  # was NOT sufficient to fix theme package publishes (confirmed: the
+  # classic NPM_TOKEN below also gets E404 for them, meaning that token's
+  # granted scope doesn't include the theme packages at all). See the
+  # "Exclude unpublishable theme packages" step below for the actual
+  # workaround. Once an admin either widens NPM_TOKEN's scope or sets up
+  # Trusted Publishing for the theme packages, both this and that step
+  # can be removed.
   contents: write
   actions: write
   attestations: write
@@ -45,6 +46,20 @@ jobs:
         run: |
           git config user.name "ES-Components Lerna Publish Bot"
           git config user.email "es-components-bot@wtw.org"
+
+      # The NPM_TOKEN used here does not have publish access to the theme
+      # packages (es-components-wtw-theme, es-components-via-theme,
+      # es-components-wtw-legacy-theme), which always fails canary
+      # publishing with npm E404. Marking them private (in this CI
+      # checkout only, never committed) makes lerna skip them so
+      # es-components can still publish a canary build on its own.
+      # Remove this step once an admin fixes the theme packages' npm
+      # publish access.
+      - name: Exclude unpublishable theme packages
+        run: |
+          for pkg in es-components-wtw-theme es-components-via-theme es-components-wtw-legacy-theme; do
+            npm pkg set --json "private=true" --prefix "packages/$pkg"
+          done
 
       - name: Lerna Publish
         run: |

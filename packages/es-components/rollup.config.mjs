@@ -32,6 +32,23 @@ var globalThis = self || globalThis;
 ${processBanner}
 `;
 
+const normalizeStyledGlobal = () => ({
+  name: 'normalize-styled-global',
+  renderChunk(code) {
+    const styledGlobal = /\bglobal\.styled\b/g;
+    const matches = code.match(styledGlobal) || [];
+    if (matches.length !== 1) {
+      this.error(
+        `Expected one global.styled reference in the UMD wrapper, found ${matches.length}`
+      );
+    }
+    return code.replace(
+      styledGlobal,
+      '(global.styled && global.styled.__esModule && global.styled.default || global.styled)'
+    );
+  }
+});
+
 export default async args => {
   await Promise.all([writeIconNameType(), tscEsComponents()]);
   const isProduction = getIsProduction(args);
@@ -96,6 +113,7 @@ export default async args => {
           'styled-components': 'styled'
         },
         plugins: [
+          normalizeStyledGlobal(),
           terser({
             compress: {
               if_return: false,

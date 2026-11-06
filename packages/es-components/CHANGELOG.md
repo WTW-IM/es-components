@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [21.16.1-pre-prod.1](https://github.com/WTW-IM/es-components/compare/v21.16.1-pre-prod.0...v21.16.1-pre-prod.1) (2026-11-06)
+
+### Fix
+
+- add normalizeStyledGlobal to validate global.styled references in UMD wrapper ([9fa8ea1](https://github.com/WTW-IM/es-components/commit/9fa8ea1e20a6b98ae5301a8d1ba4f3676df06e0a))
+
 ## [21.16.1-pre-prod.0](https://github.com/WTW-IM/es-components/compare/v21.16.0...v21.16.1-pre-prod.0) (2026-05-21)
 
 ### Fix

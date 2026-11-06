@@ -4,7 +4,7 @@ const fs = require('fs');
 const version = require('./package.json').version;
 const styleguidePaths = require('./config/paths');
 const baseComponentDir = styleguidePaths.baseComponentDir;
-const yargs = require('yargs/yargs');
+const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
 const argv = yargs(hideBin(process.argv)).argv;
 const { getAssetsUrl } = require('./config/assetsUrl');
@@ -73,8 +73,8 @@ module.exports = {
         <style>
           body {
             color: #444;
-            font-family: 'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma,
-              sans-serif;
+            font-family:
+              'Source Sans Pro', 'Segoe UI', Segoe, Calibri, Tahoma, sans-serif;
             font-weight: 400;
           }
 

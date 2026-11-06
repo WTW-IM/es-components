@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes, { Validator } from 'prop-types';
 import {
   useFloating,
@@ -175,8 +175,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       placement,
       middlewareData: { arrow: arrowCoords },
       context,
-      reference: floatingAnchorRef,
-      floating: floatingTooltipRef,
+      refs,
       strategy
     } = useFloating<HTMLButtonElement>({
       open: show,
@@ -195,6 +194,15 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
         ...autoPlacementMiddleware
       ]
     });
+
+    const floatingAnchorRef = useCallback(
+      (node: HTMLButtonElement | null) => refs.setReference(node),
+      [refs]
+    );
+    const floatingTooltipRef = useCallback(
+      (node: HTMLDivElement | null) => refs.setFloating(node),
+      [refs]
+    );
 
     const { x: arrowX, y: arrowY } = arrowCoords || {};
     const [InnerTooltip, TooltipArrow] = getTooltips(placement);

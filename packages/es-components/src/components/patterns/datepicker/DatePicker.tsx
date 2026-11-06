@@ -3,7 +3,6 @@ import styled, { css, useTheme } from 'styled-components';
 import PropTypes from 'prop-types';
 import { format, parse, isValid as dateIsValid } from 'date-fns';
 import ReactDatePicker from 'react-datepicker';
-import type { ReactDatePickerProps } from 'react-datepicker';
 
 import Textbox, { TextboxProps } from '../../controls/textbox/Textbox';
 import MaskedTextbox from '../../controls/textbox/MaskedTextbox';
@@ -61,9 +60,13 @@ function omit<T extends object, K extends string>(
 }
 
 type WithRange = boolean | undefined;
-type DatePickerOnChange<T extends WithRange = undefined> =
-  ReactDatePickerProps<T>['onChange'];
-type OnChangeDate<T extends WithRange> = Parameters<DatePickerOnChange<T>>[0];
+type OnChangeDate<T extends WithRange> = T extends true
+  ? [Date | null, Date | null]
+  : Date | null;
+type DatePickerOnChange<T extends WithRange = undefined> = (
+  date: OnChangeDate<T>,
+  event?: React.SyntheticEvent<HTMLElement>
+) => void;
 type SelectedDate<T extends WithRange> = NonNullable<
   T extends true ? OnChangeDate<T> : OnChangeDate<T> | string
 >;
@@ -126,7 +129,7 @@ export type DatePickerProps<
 > = Override<
   TextboxProps,
   Override<
-    OurReactDatePickerProps<T>,
+    OurReactDatePickerProps,
     {
       onChange?: DatePickerOnChange<T>;
       suppressDatepicker?: ST;
@@ -199,10 +202,12 @@ const NativeDatePicker = React.forwardRef<
       currentOnSelect,
       ...args: Parameters<React.ChangeEventHandler<HTMLInputElement>>
     ) => {
-      const [e, ...rest] = args;
+      const [e] = args;
 
-      // date is guaranteed to be valid on select
-      currentOnSelect?.(normalizeDate(e.target.value)!, e, ...rest);
+      currentOnSelect?.(
+        normalizeDate(e.target.value),
+        e as unknown as React.MouseEvent<HTMLElement>
+      );
     },
     onSelectProp
   );
@@ -213,7 +218,7 @@ const NativeDatePicker = React.forwardRef<
       prependIconName="calendar"
       type="date"
       value={normalizeDateString<T>(selectedDate)}
-      {...textboxProps}
+      {...(textboxProps as TextboxProps)}
       onChange={onChange}
       onSelect={onSelect}
     />
@@ -235,16 +240,17 @@ const DateTextbox = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
     const onChange = useMonitoringCallback(
       (
         currentOnChange,
-        ...args: Parameters<NonNullable<typeof onChangeProp>>
+        date: OnChangeDate<T>,
+        event?: React.SyntheticEvent<HTMLElement>
       ) => {
-        currentOnChange?.(...args);
+        currentOnChange?.(date, event);
       },
       onChangeProp
     );
 
-    const datepickerProps: ReactDatePickerProps<T> = {
+    const datepickerProps: OurReactDatePickerProps = {
       ...pick(props, reactDatepickerPropKeys),
-      onChange,
+      onChange: onChange as OurReactDatePickerProps['onChange'],
       ...(props.selectsRange
         ? {}
         : {
@@ -291,7 +297,9 @@ const DateTextbox = React.forwardRef<HTMLInputElement, GenericDatePickerProps>(
               customInput={textbox}
               placeholderText={props.placeholder}
               calendarContainer={CalendarContainer}
-              {...datepickerProps}
+              {...(datepickerProps as React.ComponentProps<
+                typeof ReactDatePicker
+              >)}
             />
           </>
         )}
@@ -397,7 +405,7 @@ export const propTypes: PropTypes.WeakValidationMap<GenericDatePickerProps> = {
     PropTypes.instanceOf(Date),
     PropTypes.string
   ])
-};
+} as PropTypes.WeakValidationMap<GenericDatePickerProps>;
 
 DatePicker.propTypes = propTypes;
 

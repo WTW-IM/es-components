@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as CSS from 'csstype';
@@ -261,8 +261,7 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
       y,
       placement,
       context,
-      reference: floatingAnchorRef,
-      floating: floatingPopupRef,
+      refs,
       middlewareData: { arrow: arrowCoords }
     } = useFloating<HTMLElement>({
       open: isOpen,
@@ -282,11 +281,23 @@ const Popup = React.forwardRef<HTMLDivElement, PopupProps>(
         offset({
           mainAxis: parseInt(arrowValues.marginSize, 10)
         }),
+        /* @floating-ui/react's arrow middleware reads `element.current`
+         * inside its own positioning pipeline, not synchronously during
+         * this render. */
+        // eslint-disable-next-line react-hooks/refs
         arrow({
           element: arrowRef
         })
       ]
     });
+    const floatingAnchorRef = useCallback(
+      (node: HTMLElement | null) => refs.setReference(node),
+      [refs]
+    );
+    const floatingPopupRef = useCallback(
+      (node: HTMLElement | null) => refs.setFloating(node),
+      [refs]
+    );
     const { x: arrowX, y: arrowY } = arrowCoords || {};
 
     const role = useRole(context);

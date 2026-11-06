@@ -211,11 +211,18 @@ module.exports = {
       client: {
         overlay: {
           // Only surface compile errors in the dev-server overlay, not warnings.
-          // React 19 removed `findDOMNode`, which react-onclickoutside (a
-          // react-datepicker dependency) still references, producing a
-          // benign compile warning. Left enabled, that warning triggers a
-          // full-viewport overlay iframe on every page (shared bundle),
-          // blocking real user interaction and Cypress clicks.
+          // react-datepicker (v9+) does an optional `require('date-fns-tz')`
+          // for IANA timezone support, which webpack can't statically
+          // analyze and flags as a "Critical dependency: the request of a
+          // dependency is an expression" warning. It's harmless (the
+          // try/catch around it degrades gracefully when the optional dep
+          // is absent, and we ship date-fns-tz anyway), but left enabled,
+          // warnings like this trigger a full-viewport overlay iframe on
+          // every page (shared bundle), blocking real user interaction and
+          // Cypress clicks. (Previously this comment referenced the
+          // React 19 `findDOMNode` removal via react-onclickoutside, a
+          // react-datepicker v6-8 dependency; that gap was closed by the
+          // v9 upgrade, which drops react-onclickoutside entirely.)
           errors: true,
           warnings: false
         }

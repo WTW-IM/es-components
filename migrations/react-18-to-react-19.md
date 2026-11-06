@@ -49,7 +49,10 @@ The following dependencies were updated for React 19 compatibility:
 - `@types/react`: 18.x → 19.0.0
 - `@types/react-dom`: 18.x → 19.0.0
 - `react-is`: 18.2.0 → 19.0.0
-- `react-datepicker`: 6.1.0 → 7.0.0 (for React 19 support)
+- `react-datepicker`: 6.1.0 → 9.1.0 (for React 19 support - see "ESM `findDOMNode` SyntaxError" below for why this specific major was required)
+- `date-fns`: 2.x → 4.x (required by `react-datepicker` 9.x)
+- `date-fns-tz`: added as an explicit dependency (an optional peer of `react-datepicker` 9.x's IANA timezone support)
+- `@floating-ui/react`: bumped to 0.27.x (used internally by `react-datepicker` 9.x, and directly by `Tooltip`/`Popup` - see "`@floating-ui/react` 0.27 ref API change" below)
 
 ## Known Incompatibilities
 
@@ -93,10 +96,63 @@ notice) from covering the page during development/Cypress runs.
 - ✅ Runtime functionality: Drawer and Popover components work correctly in production with React 19
 - ✅ Component APIs: No breaking changes in drawer/popover components
 
-**Follow-up (out of scope for this upgrade)**: `react-datepicker` v9+ has since dropped the
-`react-onclickoutside` dependency entirely, which would remove the underlying `findDOMNode` warning at
-the source. Upgrading `react-datepicker` past its current major version is a larger change (new props/
-behavior) and was left as a separate, future piece of work.
+**Follow-up**: `react-datepicker` v9+ has since dropped the `react-onclickoutside` dependency entirely,
+which removes the underlying `findDOMNode` warning (and the more serious ESM `SyntaxError` below) at the
+source. This repo has completed that upgrade (`react-datepicker` 6.1.0 → 9.1.0) - see "ESM `findDOMNode`
+SyntaxError (RESOLVED)" below.
+
+### ESM `findDOMNode` SyntaxError (RESOLVED)
+
+**Discovered after the initial React 19 upgrade landed**: the dev-server overlay issue above was
+originally treated as a cosmetic, dev-only warning. A downstream consumer testing real ESM module
+delivery (static `import` resolution, not CommonJS/webpack bundling) found that it is actually a **hard,
+unrecoverable runtime failure** under that loading model:
+
+```
+SyntaxError: The requested module '.../react-dom/19.2.5/index.js' does not provide an export named 'findDOMNode'
+```
+
+**Root cause**: `react-onclickoutside` (a transitive dependency of `react-datepicker` 6.x-8.x) does
+`import { findDOMNode } from 'react-dom'`. Under CommonJS/webpack bundling this is dead code that merely
+logs a warning if ever reached (as described above). Under real ESM static imports, a named import that
+doesn't exist on the target module is a **module-load-time `SyntaxError`**, not a lazy/runtime one - it
+throws before any of `react-datepicker`'s or the consuming app's own code ever executes, regardless of
+whether `findDOMNode` is actually called.
+
+**Fix**: upgrade `react-datepicker` to v9.1.0, which replaces `react-onclickoutside` (and Popper.js)
+internally with `@floating-ui/react` and its own click-outside handling. Confirmed via
+`npm ls react-onclickoutside` that the dependency is now completely absent from the tree.
+
+**Required follow-on changes for the v9 upgrade**:
+
+- `date-fns` 2.x → 4.x, and `date-fns-tz` added as an explicit dependency (react-datepicker 9.x's own
+  peer/optional requirements).
+- `src/components/util/isParseableDate.ts`: updated to date-fns v4's named-export shape.
+- `DatePicker.tsx` / `ReactDatePickerPropTypes.ts`: react-datepicker 9.x's `DatePickerProps` type is no
+  longer generic - it's a discriminated union keyed on `selectsRange`/`selectsMultiple`. This codebase's
+  own `OurReactDatePickerProps`, `ReactDatePickerPropTypes`, and the `DatePicker` component's internal
+  generic type helpers (`OnChangeDate<T>`, `DatePickerOnChange<T>`, etc.) were reworked to match. The
+  previous `declare module 'react-datepicker' { ... }` augmentation block was removed entirely, since all
+  of the custom fields it added (`form`, `selectsDisabledDaysInRange`, `renderMonthContent`,
+  `renderQuarterContent`, `renderYearContent`, `onYearMouseEnter`, `onYearMouseLeave`) are now natively
+  present on the v9 type.
+- `@floating-ui/react` 0.27 ref API change - see next section.
+
+**Status**: ✅ `npx tsc --noEmit`, `npm run build`, ESLint, and the full Jest suite (221/221, including
+`DatePicker.specs.tsx`) all pass. `npm audit`'s vulnerability count is unchanged before/after this bump
+(confirmed by comparing against a clean `npm install` on the pre-Step-8 `package.json`), so it is not a
+regression introduced by this change.
+
+### `@floating-ui/react` 0.27 ref API change (RESOLVED)
+
+`react-datepicker` 9.x's internal dependency bump to `@floating-ui/react` 0.27 required bumping this
+repo's own direct dependency on it too (used by `Tooltip` and `Popup`). That version moved
+`useFloating()`'s callback refs from top-level `reference`/`floating` properties into a nested
+`refs: { setReference, setFloating }` object. `Tooltip.tsx` and `Popup.tsx` were updated accordingly, and
+each setter is wrapped in a memoized local callback (rather than passed by bare reference) to satisfy
+`@typescript-eslint/unbound-method`. Verified via the `Tooltip.specs.tsx`/`Popover.specs.tsx` Jest specs
+and the `popover-tests.cy.js` Cypress E2E spec (both passing), confirming tooltip/popover positioning and
+open/close behavior are unchanged.
 
 ### TypeScript build errors (RESOLVED)
 
@@ -171,9 +227,9 @@ For issues upgrading to React 19:
 
 ### Known Ecosystem Issues
 
-- **react-datepicker's `react-onclickoutside` dependency**: calls the removed `findDOMNode` API, producing
-  a dev-only warning (see "Known Incompatibilities" above). Resolved for this repo via the dev-server
-  overlay configuration; a future `react-datepicker` major upgrade would remove the warning at its source.
+- **react-datepicker's `react-onclickoutside` dependency**: resolved - see "ESM `findDOMNode` SyntaxError
+  (RESOLVED)" above. `react-datepicker` was upgraded to v9.1.0, which drops `react-onclickoutside`
+  entirely.
 - **Check before upgrade**: https://react19.codethon.io/ for full compatibility matrix
 
 ### Contributing Issues
@@ -196,8 +252,13 @@ If you encounter React 19 compatibility issues:
   dependency, TypeScript build errors, ESLint errors, and the Drawer/Popover Cypress overlay issue are all
   resolved. `npx tsc --noEmit`, `npm run build`, `eslint`, the full Jest suite, and the Drawer/Popover
   Cypress suites all pass.
-- **Future**: Monitor for additional React 19 incompatibilities in the ecosystem; consider a
-  `react-datepicker` major upgrade to drop the `react-onclickoutside` dependency entirely.
+- **Completed**: `react-datepicker` upgraded 6.1.0 → 9.1.0 (with `date-fns` 2.x → 4.x and
+  `@floating-ui/react` bumped to 0.27.x), closing the ESM `findDOMNode` `SyntaxError` gap described above.
+  This was initially deferred as a "future" item but was escalated to required scope after a downstream
+  consumer's real ESM-delivery testing confirmed it is a hard runtime failure, not just a dev-only
+  warning.
+- **Future**: Monitor for additional React 19 incompatibilities in the ecosystem as other dependencies
+  catch up.
 
 ## QA Focus Areas
 
@@ -211,7 +272,11 @@ Reviewers and QA verifying this upgrade should pay particular attention to:
   verify custom/consumer usages that don't pass these props still render with correct default validation
   styling.
 - **`DatePicker`**: `propTypes` typing changed (the removed `React.WeakValidationMap` was replaced) -
-  verify prop-types warnings still fire correctly in development for invalid props.
+  verify prop-types warnings still fire correctly in development for invalid props. Additionally,
+  `react-datepicker` was upgraded 6.1.0 → 9.1.0 as part of this work (non-generic prop types, new
+  `@floating-ui/react`-based positioning internally replacing Popper.js/`react-onclickoutside`) - verify
+  single-date, range (`selectsRange`), and month/quarter/year custom-render usages all still work, along
+  with the native mobile fallback (`NativeDatePicker`).
 - **Components with `defaultProps` removed** (~28 components across earlier batches of this PR): verify
   default prop values still apply as expected when a consumer omits an optional prop.
 - **`DateInput`**: the `minDate`/`maxDate`/`hasSetId` internal logic was restructured to satisfy stricter

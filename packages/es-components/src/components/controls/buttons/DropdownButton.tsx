@@ -363,7 +363,7 @@ DropdownButton.propTypes = {
   shouldCloseOnButtonClick: PropTypes.bool,
   /**
    * Defines whether the dropdown will close when any other element on the page is clicked.
-   * Uses RootCloseWrapper from React-Overlay
+   * Uses RootCloseWrapper
    */
   rootClose: PropTypes.bool,
   /** Select the color style of the button, types come from theme */

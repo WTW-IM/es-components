@@ -2,7 +2,6 @@ import React, { useImperativeHandle, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import Heading from '../heading/Heading';
 import {
   useDrawerItemContext,
   DrawerItem,
@@ -99,14 +98,14 @@ const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
       noPadding = false,
       headingLevel = 2,
       open,
-      openedIconName = 'add',
-      closedIconName = 'minus',
+      openedIconName = 'minus',
+      closedIconName = 'add',
       panelKey,
       ...other
     },
     ref
   ) {
-    const buttonRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
+    const buttonRef = useRef<HTMLButtonElement>(null);
     useImperativeHandle(ref, () => ({
       focusHeaderButton: () => buttonRef.current?.focus()
     }));
@@ -146,7 +145,7 @@ const DrawerPanel = React.forwardRef<unknown, DrawerPanelProps>(
 );
 
 export const propTypes = {
-  ...(PanelWrapper.propTypes || {}),
+  ...((PanelWrapper.propTypes as PropTypes.WeakValidationMap<object>) || {}),
   children: PropTypes.node.isRequired,
   /** Title text displayed next to the open/close icon */
   title: PropTypes.node.isRequired,
@@ -156,7 +155,7 @@ export const propTypes = {
   noPadding: PropTypes.bool,
   /** Set desired aria-level for heading */
 
-  headingLevel: Heading.propTypes!.level,
+  headingLevel: PropTypes.oneOf<HeadingLevel>([1, 2, 3, 4, 5, 6]),
   open: PropTypes.bool,
 
   // INTERNAL PROPS
@@ -169,15 +168,5 @@ export const propTypes = {
 };
 
 DrawerPanel.propTypes = propTypes;
-DrawerPanel.defaultProps = {
-  ...(PanelWrapper.defaultProps || {}),
-  noPadding: false,
-  titleAside: undefined,
-  headingLevel: 2,
-  panelKey: undefined,
-  open: undefined,
-  closedIconName: 'add',
-  openedIconName: 'minus'
-};
 
 export default DrawerPanel;

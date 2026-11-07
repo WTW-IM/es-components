@@ -4,6 +4,8 @@
 [![Build Status](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/WTW-IM/es-components/actions/workflows/ci.yml)
 [![dependency status](https://david-dm.org/wtw-im/es-components.svg?path=packages%2Fes-components)](https://david-dm.org/wtw-im/es-components?path=packages%2Fes-components)
 
+> **React 19 Support**: This version supports React 19.0.0+. For detailed upgrade information, see [React 18 to React 19 Migration Guide](migrations/react-18-to-react-19.md).
+
 # es-components-via-theme
 
 [![npm version](https://badge.fury.io/js/es-components-via-theme.svg)](https://badge.fury.io/js/es-components-via-theme)

@@ -1,6 +1,4 @@
-import parseJSON from 'date-fns/parseJSON';
-import parseISO from 'date-fns/parseISO';
-import isValid from 'date-fns/isValid';
+import { parseJSON, parseISO, isValid } from 'date-fns';
 
 type ParseableDate = Parameters<typeof parseJSON>[0];
 
@@ -15,8 +13,8 @@ export default function isParseableDate(date: ParseableDate) {
   let parsedDate: Date;
   try {
     // Parses ISOs missing time. i.e. 2020-10-01
-    parsedDate = parseISO(date as string);
-  } catch (exception) {
+    parsedDate = parseISO(date);
+  } catch {
     return false;
   }
 

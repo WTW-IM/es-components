@@ -190,6 +190,8 @@ export const domProps: DOMPropTypes = {
   // UI Events
   onScroll: PropTypes.func,
   onScrollCapture: PropTypes.func,
+  onScrollEnd: PropTypes.func,
+  onScrollEndCapture: PropTypes.func,
 
   // Wheel Events
   onWheel: PropTypes.func,
@@ -203,9 +205,19 @@ export const domProps: DOMPropTypes = {
   onAnimationIteration: PropTypes.func,
   onAnimationIterationCapture: PropTypes.func,
 
+  // Toggle Events
+  onToggle: PropTypes.func,
+  onBeforeToggle: PropTypes.func,
+
   // Transition Events
+  onTransitionCancel: PropTypes.func,
+  onTransitionCancelCapture: PropTypes.func,
   onTransitionEnd: PropTypes.func,
-  onTransitionEndCapture: PropTypes.func
+  onTransitionEndCapture: PropTypes.func,
+  onTransitionRun: PropTypes.func,
+  onTransitionRunCapture: PropTypes.func,
+  onTransitionStart: PropTypes.func,
+  onTransitionStartCapture: PropTypes.func
 };
 
 export const domDefaultProps: DOMDefaultProps = {};

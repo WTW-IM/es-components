@@ -98,11 +98,6 @@ LoadingSkeleton.propTypes = {
   shimmerColor: PropTypes.string
 };
 
-LoadingSkeleton.defaultProps = {
-  shapeColor: '',
-  shimmerColor: ''
-};
-
 type LoadingSkeletonComponent = typeof LoadingSkeleton & {
   Shape: typeof SkeletonShape;
 };

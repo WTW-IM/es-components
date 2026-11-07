@@ -136,12 +136,4 @@ Tab.propTypes = {
   announcerText: PropTypes.string
 };
 
-Tab.defaultProps = {
-  selected: false,
-  action: noop,
-  children: undefined,
-  simpleName: '',
-  announcerText: ''
-};
-
 export default Tab;

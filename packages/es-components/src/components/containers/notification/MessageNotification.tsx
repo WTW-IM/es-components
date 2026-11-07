@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import noop from '../../util/noop';
 
 import { BaseNotification, BaseNotificationProps } from './BaseNotification';
 import { validationStyleTypes } from 'es-components-shared-types';
@@ -23,13 +22,6 @@ MessageNotification.propTypes = {
   onDismiss: PropTypes.func,
   /** Allows the icon to display at all resolutions */
   alwaysShowIcon: PropTypes.bool
-};
-
-MessageNotification.defaultProps = {
-  includeIcon: false,
-  isDismissable: false,
-  onDismiss: noop,
-  alwaysShowIcon: false
 };
 
 export default MessageNotification;

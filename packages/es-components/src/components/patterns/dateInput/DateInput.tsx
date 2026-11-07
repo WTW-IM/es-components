@@ -15,7 +15,6 @@ import Month, { MonthProps } from './Month';
 import Year, { YearProps } from './Year';
 
 import isBool from '../../util/isBool';
-import noop from '../../util/noop';
 import { useMonitoringCallback } from '../../../hooks/useMonitoringHooks';
 
 const Wrapper = styled.div`
@@ -195,7 +194,9 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     ref
   ) {
     const onChange = useRef(onChangeProp);
-    onChange.current = onChangeProp;
+    useEffect(() => {
+      onChange.current = onChangeProp;
+    });
     const afterInitialRender = useRef(false);
 
     const [state, setState] = useState(
@@ -227,22 +228,17 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
     useEffect(() => {
       if (!afterInitialRender.current) return;
 
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- silentState intentionally mirrors state on every state change (after mount) so subsequent partial updates merge against the latest committed state; not a simple prop-derived value that can be computed during render
       setSilentState(state);
     }, [state]);
 
-    useEffect(() => {
-      setCurrentMinDate(oldMin => {
-        if (oldMin?.toString() === minDate?.toString()) return oldMin;
-        return minDate;
-      });
-    }, [minDate]);
+    if (currentMinDate?.toString() !== minDate?.toString()) {
+      setCurrentMinDate(minDate);
+    }
 
-    useEffect(() => {
-      setCurrentMaxDate(oldMax => {
-        if (oldMax?.toString() === maxDate?.toString()) return oldMax;
-        return maxDate;
-      });
-    }, [maxDate]);
+    if (currentMaxDate?.toString() !== maxDate?.toString()) {
+      setCurrentMaxDate(maxDate);
+    }
 
     useEffect(() => {
       if (!afterInitialRender.current) return;
@@ -288,16 +284,17 @@ const DateInput = React.forwardRef<HTMLDivElement, DateInputProps>(
       afterInitialRender.current = true;
     }, []);
 
-    let hasSetId = false;
+    const firstDatePartIndex =
+      React.Children.toArray(children).findIndex(isDatePartChild);
 
     return (
       <Wrapper ref={ref} tabIndex={-1} {...props} onBlur={onBlurComponent}>
-        {React.Children.map(children, child => {
+        {React.Children.map(children, (child, index) => {
           const isDatePart = isDatePartChild(child);
           if (!isDatePart) return child;
 
           const childId =
-            !hasSetId && id ? ((hasSetId = true), id) : child.props.id;
+            index === firstDatePartIndex && id ? id : child.props.id;
 
           return cloneDateChild(child, currentDate, {
             id: childId,
@@ -331,15 +328,6 @@ DateInput.propTypes = {
   defaultValue: PropTypes.instanceOf(Date),
   /** Set the default day of the month */
   defaultDay: PropTypes.string
-};
-
-DateInput.defaultProps = {
-  id: undefined,
-  maxDate: undefined,
-  minDate: undefined,
-  defaultValue: undefined,
-  defaultDay: '',
-  onBlur: noop
 };
 
 const setParts = (Input: DateInputType) => {

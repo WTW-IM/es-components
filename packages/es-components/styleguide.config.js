@@ -276,7 +276,6 @@ module.exports = {
         {
           test: /\.(js|jsx|ts|tsx)?$/,
           include: [
-            getDependencyDirectory('react-overlays'),
             getDependencyDirectory('react-context-toolbox'),
             getDependencyDirectory('ansi-styles'),
             getDependencyDirectory('strip-ansi'),

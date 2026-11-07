@@ -153,7 +153,6 @@
     "@types/prop-types": "^15.7.14",
     "@types/react-modal": "^3.16.0",
     "@types/react-text-mask": "^5.4.11",
-    "@types/react-transition-group": "^4.4.5",
     "@types/text-mask-addons": "^3.8.1",
     "@types/tinycolor2": "^1.4.3",
     "core-js": "^3.33.2",
@@ -167,8 +166,6 @@
     "react-datepicker": "^9.1.0",
     "react-is": "^18.2.0",
     "react-modal": "^3.16.1",
-    "react-overlays": "^5.2.1",
-    "react-transition-group": "^4.4.5",
     "text-mask-addons": "3.8.0",
     "tinycolor2": "^1.5.1",
     "typescript-eslint": "^8.22.0"

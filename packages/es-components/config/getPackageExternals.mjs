@@ -6,14 +6,9 @@ import pkg from '../package.json' with { type: 'json' };
 // CJS/bundler resolution, which tolerates missing extensions and directory
 // imports):
 //   - get-root-node-polyfill/implement  (extensionless subpath)
-//   - react-transition-group/Transition (directory import, no index resolution)
 //   - text-mask-addons/dist/createAutoCorrectedDatePipe, .../createNumberMask (extensionless)
 // Leaving them external breaks native ESM consumers (e.g. esm.sh).
-const ALWAYS_BUNDLED_DEPS = [
-  'get-root-node-polyfill',
-  'react-transition-group',
-  'text-mask-addons'
-];
+const ALWAYS_BUNDLED_DEPS = ['get-root-node-polyfill', 'text-mask-addons'];
 
 export function getPackageExternals() {
   const peerDepNames = Object.keys(pkg.peerDependencies || {});

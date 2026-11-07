@@ -143,6 +143,45 @@ internally with `@floating-ui/react` and its own click-outside handling. Confirm
 (confirmed by comparing against a clean `npm install` on the pre-Step-8 `package.json`), so it is not a
 regression introduced by this change.
 
+### ESM `findDOMNode` in `react-transition-group`/`react-overlays` (RESOLVED)
+
+**Discovered via a downstream consumer's real ESM load** of a published canary: `react-onclickoutside`
+(above) was not the only `findDOMNode` consumer left in the dependency graph. `react-transition-group`
+(used internally by `Fade`) and `react-overlays` (used internally by `RootCloseWrapper`) both do
+`import ReactDOM from 'react-dom'; ReactDOM.findDOMNode(...)`. Unlike `react-onclickoutside`'s **named**
+import, this is a **default** import, so it does not throw a module-load-time `SyntaxError` (`react-dom`
+19 is CJS, so a default import always resolves to a synthetic default) - but the `findDOMNode` reference
+is still physically present in the built artifact/dependency graph, and this codebase's own usages
+already avoided ever invoking the broken runtime path (`Fade` always passes `nodeRef`;
+`RootCloseWrapper` always passes a plain DOM ref). A strict "zero `findDOMNode` anywhere in the shipped
+graph" validation requirement (not just "never called at runtime") meant this dead code still had to be
+removed, not merely proven unreachable.
+
+**Fix**: removed both dependencies entirely rather than patching them:
+
+- `src/components/util/Fade.tsx`: reimplemented as a dependency-free, hooks-based CSS-transition
+  component (function components + `useState`/`useEffect`/`requestAnimationFrame`, no
+  `react-transition-group`, no class components). Preserves the full public prop surface (`in`, `appear`,
+  `mountOnEnter`, `unmountOnExit`, `duration`, `opacity`, `onEnter`/`onEntering`/`onEntered`/`onExit`/
+  `onExiting`/`onExited`) since `Fade` is a public top-level export.
+  - `onEnter`/`onExit` fire synchronously when the transition starts; two `requestAnimationFrame` calls
+    let the browser paint the `opacity: 0` frame before flipping to the final opacity (so the CSS
+    transition actually animates), then `onEntering`/`onEntered` fire; `onExiting` fires immediately on
+    exit and `onExited` after `duration` ms (optionally unmounting if `unmountOnExit`).
+- `src/components/util/RootCloseWrapper.tsx`: reimplemented click-outside/escape-to-close detection with
+  native `document` `click`/`keyup` listeners and the wrapper's own ref, instead of `react-overlays`'s
+  `useRootClose`. `RootCloseWrapper` is internal-only (not a public export), so no prop-surface
+  compatibility constraints applied here.
+- Removed `react-transition-group`, `react-overlays`, and `@types/react-transition-group` from
+  `package.json`, and dropped `react-transition-group` from rollup's `ALWAYS_BUNDLED_DEPS` force-bundle
+  list (see `config/getPackageExternals.mjs`) since it is no longer a dependency at all.
+
+**Status**: ✅ Confirmed via `npm ls react-transition-group react-overlays` (fully absent from the tree),
+and via a string scan of the built `cjs/index.js`, `lib/index.js`, and `bundle/main.min.js` artifacts for
+`findDOMNode`/`react-transition-group`/`react-overlays` (zero matches). `npx tsc --noEmit`, ESLint, and
+the full Jest suite (44/44 suites, 221/221 tests, including `Tooltip`, `Popover`, `Menu`, and
+`DropdownButton` specs) all pass.
+
 ### `@floating-ui/react` 0.27 ref API change (RESOLVED)
 
 `react-datepicker` 9.x's internal dependency bump to `@floating-ui/react` 0.27 required bumping this

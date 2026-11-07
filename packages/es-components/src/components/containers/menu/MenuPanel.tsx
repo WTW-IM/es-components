@@ -111,9 +111,4 @@ MenuPanel.propTypes = {
   onClose: PropTypes.func.isRequired
 };
 
-MenuPanel.defaultProps = {
-  headerContent: null,
-  isOpen: false
-};
-
 export default MenuPanel;

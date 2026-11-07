@@ -11,7 +11,7 @@ import { renderWithTheme } from '../../util/test-utils';
 const Button = OriginalButton as ReturnType<
   typeof React.forwardRef<
     HTMLElement | undefined,
-    JSX.IntrinsicElements['button'] & {
+    React.JSX.IntrinsicElements['button'] & {
       styleType: keyof (typeof viaTheme)['buttonStyles']['button']['variant'];
     }
   >

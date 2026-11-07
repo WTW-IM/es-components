@@ -12,10 +12,6 @@ const propTypes = {
   text: PropTypes.node.isRequired
 };
 
-const defaultProps = {
-  emphasizedText: undefined
-};
-
 export const InlineMessage = React.forwardRef<HTMLSpanElement, MessageProps>(
   function ForwardedInlineMessage(props, ref) {
     return <Message {...props} isInline ref={ref} />;
@@ -23,7 +19,6 @@ export const InlineMessage = React.forwardRef<HTMLSpanElement, MessageProps>(
 );
 
 InlineMessage.propTypes = propTypes;
-InlineMessage.defaultProps = defaultProps;
 
 export const Message = React.forwardRef<HTMLSpanElement, MessageProps>(
   function Message({ emphasizedText, text, isInline, ...rest }, ref) {
@@ -44,4 +39,3 @@ export const Message = React.forwardRef<HTMLSpanElement, MessageProps>(
 );
 
 Message.propTypes = propTypes;
-Message.defaultProps = defaultProps;

@@ -59,7 +59,3 @@ Form.propTypes = {
   /** Apply the Flat Style to all children */
   flat: PropTypes.bool
 };
-
-Form.defaultProps = {
-  flat: undefined
-};

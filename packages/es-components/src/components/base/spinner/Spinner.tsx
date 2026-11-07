@@ -152,9 +152,4 @@ Spinner.propTypes = {
   description: descriptionTitleProp
 };
 
-Spinner.defaultProps = {
-  title: '',
-  description: ''
-};
-
 export default Spinner;

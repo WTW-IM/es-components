@@ -1,6 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import type { ReactDatePickerProps } from 'react-datepicker';
+import type { DatePickerProps } from 'react-datepicker';
 import { Placement, placements } from '@floating-ui/utils';
 import type { Middleware } from '@floating-ui/dom';
 
@@ -8,47 +7,19 @@ export interface HighlightDates {
   [className: string]: Date[];
 }
 
-declare module 'react-datepicker' {
-  export interface ReactDatePickerProps {
-    form?: JSXElementProps<'input'>['form'];
-    selectsDisabledDaysInRange?: boolean;
-    renderMonthContent?: (
-      month: number,
-      shortMonth: string,
-      longMonth: string
-    ) => React.ReactNode;
-    renderQuarterContent?: (
-      quarter: number,
-      shortQuarter: string
-    ) => React.ReactNode;
-    renderYearContent?: (year: number) => React.ReactNode;
-    onYearMouseEnter?: (
-      ev: React.MouseEvent<HTMLDivElement>,
-      year: number
-    ) => void;
-    onYearMouseLeave?: (
-      ev: React.MouseEvent<HTMLDivElement>,
-      year: number
-    ) => void;
-  }
-}
-
 export type PopperPlacement = Placement;
 
-export type OurReactDatePickerProps<T extends boolean | undefined = undefined> =
-  Override<
-    ReactDatePickerProps<T>,
-    {
-      highlightDates?: (HighlightDates | Date)[] | undefined;
-    }
-  >;
+export type OurReactDatePickerProps = Override<
+  DatePickerProps,
+  {
+    highlightDates?: (HighlightDates | Date)[] | undefined;
+  }
+>;
 
-export type ReactDatePickerPropTypes<
-  T extends boolean | undefined = undefined
-> = {
+export type ReactDatePickerPropTypes = {
   [key in keyof OurReactDatePickerProps]:
-    | PropTypes.Requireable<OurReactDatePickerProps<T>[key]>
-    | PropTypes.Validator<OurReactDatePickerProps<T>[key]>;
+    | PropTypes.Requireable<OurReactDatePickerProps[key]>
+    | PropTypes.Validator<OurReactDatePickerProps[key]>;
 };
 
 type DateInterval = {
@@ -56,13 +27,15 @@ type DateInterval = {
   end: Date;
 };
 
-export type InnerHighlightDates<T extends boolean | undefined = undefined> =
-  ReactDatePickerProps<T>['highlightDates'];
+export type InnerHighlightDates = DatePickerProps['highlightDates'];
 
 // copied from react-datepicker@v4.15.0 - https://github.com/Hacker0x01/react-datepicker/blob/v4.15.0/src/index.jsx
-export const reactDatePickerPropTypes: ReactDatePickerPropTypes<
-  boolean | undefined
-> = {
+// Note: react-datepicker v9's DatePickerProps is a discriminated union (several
+// mutually-exclusive prop shapes for range/multi-select/month-year-dropdown
+// variants, etc). A single flat PropTypes validator map can't satisfy every
+// branch's narrowed literal types at once, so the object is intentionally
+// cast through `unknown` rather than fighting the union per-field.
+const rawReactDatePickerPropTypes = {
   adjustDateOnChange: PropTypes.bool,
   allowSameDay: PropTypes.bool,
   ariaDescribedBy: PropTypes.string,
@@ -239,8 +212,13 @@ export const reactDatePickerPropTypes: ReactDatePickerPropTypes<
   monthAriaLabelPrefix: PropTypes.string
 };
 
-export type ReactDatePickerPropName<T extends boolean | undefined = undefined> =
-  Extract<keyof OurReactDatePickerProps<T>, string>;
+export const reactDatePickerPropTypes =
+  rawReactDatePickerPropTypes as unknown as ReactDatePickerPropTypes;
+
+export type ReactDatePickerPropName = Extract<
+  keyof OurReactDatePickerProps,
+  string
+>;
 
 export const reactDatepickerPropKeys: ReactDatePickerPropName[] = Object.keys(
   reactDatePickerPropTypes

@@ -207,6 +207,28 @@ module.exports = {
   require: [path.join(__dirname, 'config', 'styleguidist-page-scripts')],
   assetsDir,
   webpackConfig: {
+    devServer: {
+      client: {
+        overlay: {
+          // Only surface compile errors in the dev-server overlay, not warnings.
+          // react-datepicker (v9+) does an optional `require('date-fns-tz')`
+          // for IANA timezone support, which webpack can't statically
+          // analyze and flags as a "Critical dependency: the request of a
+          // dependency is an expression" warning. It's harmless (the
+          // try/catch around it degrades gracefully when the optional dep
+          // is absent, and we ship date-fns-tz anyway), but left enabled,
+          // warnings like this trigger a full-viewport overlay iframe on
+          // every page (shared bundle), blocking real user interaction and
+          // Cypress clicks. (Previously this comment referenced the
+          // React 19 `findDOMNode` removal via react-onclickoutside, a
+          // react-datepicker v6-8 dependency; that gap was closed by the
+          // v9 upgrade, which drops react-onclickoutside entirely.)
+          errors: true,
+          warnings: false
+        }
+      },
+      ...(extraWebpack.devServer || {})
+    },
     optimization: {
       splitChunks: {
         maxSize: 500000,
@@ -246,7 +268,7 @@ module.exports = {
     plugins: [
       new webpack.DefinePlugin({
         ASSETS_PATH: JSON.stringify(assets_url),
-        process: `{}`
+        process: '({})'
       })
     ],
     module: {
@@ -254,7 +276,6 @@ module.exports = {
         {
           test: /\.(js|jsx|ts|tsx)?$/,
           include: [
-            getDependencyDirectory('react-overlays'),
             getDependencyDirectory('react-context-toolbox'),
             getDependencyDirectory('ansi-styles'),
             getDependencyDirectory('strip-ansi'),
@@ -277,8 +298,7 @@ module.exports = {
           use: ['./config/rsg-loader']
         }
       ]
-    },
-    ...extraWebpack
+    }
   },
   styles: {
     Playground: {

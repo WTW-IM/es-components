@@ -53,8 +53,4 @@ FullColorIcon.propTypes = {
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
-FullColorIcon.defaultProps = {
-  size: undefined
-};
-
 export default FullColorIcon;

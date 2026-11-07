@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes, { Validator } from 'prop-types';
 import {
   useFloating,
@@ -100,7 +100,7 @@ const TooltipArrowLeft = styled(TooltipArrowBase)`
 
 const ScreenReaderContent = screenReaderOnly('div');
 
-type DivPropsWithRef = React.PropsWithRef<JSX.IntrinsicElements['div']>;
+type DivPropsWithRef = React.PropsWithRef<React.JSX.IntrinsicElements['div']>;
 type Tooltips = [
   IStyledComponent<'web', DivPropsWithRef & TooltipStyleProps>,
   IStyledComponent<'web', DivPropsWithRef>
@@ -152,7 +152,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       name,
       disableHover,
       disableFocus,
-      position,
+      position = 'top',
       content,
       styleType,
       children,
@@ -175,8 +175,7 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       placement,
       middlewareData: { arrow: arrowCoords },
       context,
-      reference: floatingAnchorRef,
-      floating: floatingTooltipRef,
+      refs,
       strategy
     } = useFloating<HTMLButtonElement>({
       open: show,
@@ -184,6 +183,10 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
       whileElementsMounted: autoUpdate,
       placement: position,
       middleware: [
+        /* @floating-ui/react's arrow middleware reads `element.current`
+         * inside its own positioning pipeline, not synchronously during
+         * this render. */
+        // eslint-disable-next-line react-hooks/refs
         arrow({ element: arrowRef }),
         shift({
           limiter: limitShift()
@@ -191,6 +194,15 @@ const Tooltip = React.forwardRef<HTMLButtonElement, TooltipProps>(
         ...autoPlacementMiddleware
       ]
     });
+
+    const floatingAnchorRef = useCallback(
+      (node: HTMLButtonElement | null) => refs.setReference(node),
+      [refs]
+    );
+    const floatingTooltipRef = useCallback(
+      (node: HTMLDivElement | null) => refs.setFloating(node),
+      [refs]
+    );
 
     const { x: arrowX, y: arrowY } = arrowCoords || {};
     const [InnerTooltip, TooltipArrow] = getTooltips(placement);
@@ -314,14 +326,6 @@ Tooltip.propTypes = {
   linkProps: PropTypes.exact<PopoverLinkValidationMap>(
     passedPopoverLinkProps
   ) as Validator<PopoverLinkValidationProps>
-};
-
-Tooltip.defaultProps = {
-  position: 'top',
-  disableHover: false,
-  disableFocus: false,
-  styleType: undefined,
-  linkProps: {}
 };
 
 export default Tooltip;
